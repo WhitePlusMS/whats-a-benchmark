@@ -1,0 +1,99 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "gsm8k",
+  "name": "GSM8K",
+  "subtitle": "用几步算术解开生活应用题",
+  "category": "reasoning",
+  "tags": [
+    "数学应用题",
+    "多步推理"
+  ],
+  "publisher": "OpenAI",
+  "year": 2021,
+  "version": "main 题集",
+  "summary": "看似普通的数学应用题，考查模型能否把文字条件转成连续计算步骤。",
+  "task": "阅读日常情景问题，推导最终数值答案。",
+  "format": "JSONL 的 question 与 answer 字段；官方解答包含中间步骤和最终答案标记。",
+  "metric": {
+    "name": "正确率",
+    "description": "通常提取最终数值并检查正确性；中间文字看起来合理不代表答案正确。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "主要是基础数学应用题，不能代表研究数学能力。",
+    "长期公开，较强模型上的区分度可能下降。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/openai/grade-school-math",
+      "label": "官方数据与许可",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 180,
+  "brandIds": [
+    "openai"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "0",
+        "title": "卖鸭蛋的收入",
+        "raw": {
+          "question": "Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?",
+          "answer": "Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.\nShe makes 9 * 2 = $<<9*2=18>>18 every day at the farmer’s market.\n#### 18"
+        },
+        "split": "test",
+        "excerpt": false,
+        "prompt": "Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?",
+        "answer": "Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.\nShe makes 9 * 2 = $<<9*2=18>>18 every day at the farmer’s market.\n#### 18",
+        "explanation": "题目要先扣除吃掉和烘焙用的鸭蛋，再计算剩余鸭蛋的销售额。它测试从文字情景建立多步算式的能力。",
+        "source": "https://github.com/openai/grade-school-math/blob/master/grade_school_math/data/test.jsonl",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/gsm8k.txt",
+        "type": "text"
+      },
+      {
+        "id": "1",
+        "title": "制作长袍需要多少布料",
+        "raw": {
+          "question": "A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?",
+          "answer": "It takes 2/2=<<2/2=1>>1 bolt of white fiber\nSo the total amount of fabric is 2+1=<<2+1=3>>3 bolts of fabric\n#### 3"
+        },
+        "split": "test",
+        "excerpt": false,
+        "prompt": "A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?",
+        "answer": "It takes 2/2=<<2/2=1>>1 bolt of white fiber\nSo the total amount of fabric is 2+1=<<2+1=3>>3 bolts of fabric\n#### 3",
+        "explanation": "先算白色布料用量，再加上蓝色布料。最终数字与解释步骤是两个层次。",
+        "source": "https://github.com/openai/grade-school-math/blob/master/grade_school_math/data/test.jsonl",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/gsm8k.txt",
+        "type": "text"
+      },
+      {
+        "id": "2",
+        "title": "翻修房屋后的利润",
+        "raw": {
+          "question": "Josh decides to try flipping a house.  He buys a house for $80,000 and then puts in $50,000 in repairs.  This increased the value of the house by 150%.  How much profit did he make?",
+          "answer": "The cost of the house and repairs came out to 80,000+50,000=$<<80000+50000=130000>>130,000\nHe increased the value of the house by 80,000*1.5=<<80000*1.5=120000>>120,000\nSo the new value of the house is 120,000+80,000=$<<120000+80000=200000>>200,000\nSo he made a profit of 200,000-130,000=$<<200000-130000=70000>>70,000\n#### 70000"
+        },
+        "split": "test",
+        "excerpt": false,
+        "prompt": "Josh decides to try flipping a house.  He buys a house for $80,000 and then puts in $50,000 in repairs.  This increased the value of the house by 150%.  How much profit did he make?",
+        "answer": "The cost of the house and repairs came out to 80,000+50,000=$<<80000+50000=130000>>130,000\nHe increased the value of the house by 80,000*1.5=<<80000*1.5=120000>>120,000\nSo the new value of the house is 120,000+80,000=$<<120000+80000=200000>>200,000\nSo he made a profit of 200,000-130,000=$<<200000-130000=70000>>70,000\n#### 70000",
+        "explanation": "需要分清成本、增值额与最终利润。看起来熟悉的生活用语也要求准确建立计算关系。",
+        "source": "https://github.com/openai/grade-school-math/blob/master/grade_school_math/data/test.jsonl",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/gsm8k.txt",
+        "type": "text"
+      }
+    ]
+  }
+}

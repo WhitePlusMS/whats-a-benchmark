@@ -1,0 +1,52 @@
+{
+  "aliases": [
+    "LongBench2",
+    "LongBench V2"
+  ],
+  "related": [
+    {
+      "id": "longbench",
+      "label": "后续版本",
+      "detail": "任务设计与指标不再直接沿用 v1 全部设定。"
+    }
+  ],
+  "kind": "derivative",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "longbench-v2",
+  "name": "LongBench v2",
+  "subtitle": "长材料里找线索，并完成复杂推理",
+  "category": "context",
+  "tags": [
+    "长上下文",
+    "复杂问答"
+  ],
+  "publisher": "THUDM / LongBench 研究团队",
+  "year": 2024,
+  "version": "LongBench v2",
+  "summary": "在更长且复杂的材料中提出问题，用选择题形式检查模型能否真正理解并推理。",
+  "task": "结合长篇上下文，选出问题的正确答案。",
+  "format": "长 context、question、选项、answer 与长度/领域等元数据。",
+  "metric": {
+    "name": "正确率",
+    "description": "统计指定长度、难度或领域下的选择题正确率。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "允许的思考预算与上下文截断方式需要说明。",
+    "能定位一句话不等于能跨材料推理。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/THUDM/LongBench",
+      "label": "官方 v2 说明与数据",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 370,
+  "brandIds": [
+    "thudm"
+  ],
+  "availability": "unknown"
+}

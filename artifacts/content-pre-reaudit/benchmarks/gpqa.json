@@ -1,0 +1,47 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "gpqa-diamond",
+      "label": "精选子集",
+      "detail": "模型发布会中常报告 Diamond 子集。"
+    }
+  ],
+  "kind": "original",
+  "sampleNote": "数据卡要求不在公开网页披露原题。可以访问官方数据卡了解访问条件和任务结构。",
+  "verifiedAt": "2026-09-22",
+  "id": "gpqa",
+  "name": "GPQA",
+  "subtitle": "需要专业背景的科学问答",
+  "category": "knowledge",
+  "tags": [
+    "科学知识",
+    "选择题"
+  ],
+  "publisher": "David Rein 等研究者",
+  "year": 2023,
+  "version": "GPQA 主集",
+  "summary": "由专家编写与验证的物理、化学、生物题目，强调专业知识与难以简单检索的推理。",
+  "task": "根据科学问题，从四个答案候选中选择一个。",
+  "format": "CSV 记录中的问题、正确答案、三个错误答案及相关元数据。",
+  "metric": {
+    "name": "正确率",
+    "description": "对所选题集计算正确率；主集、Extended 和 Diamond 的范围不同。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "名称中的 Google-proof 是设计目标，不保证任意时期都无法搜索到答案。",
+    "模型工具权限与题目子集会改变成绩的意义。"
+  ],
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "label": "数据说明及限制",
+      "kind": "data"
+    }
+  ],
+  "status": "published",
+  "order": 90,
+  "brandIds": [],
+  "availability": "restricted"
+}

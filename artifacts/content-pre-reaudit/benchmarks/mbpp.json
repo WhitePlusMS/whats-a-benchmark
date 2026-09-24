@@ -1,0 +1,101 @@
+{
+  "aliases": [
+    "Mostly Basic Python Problems"
+  ],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "mbpp",
+  "name": "MBPP",
+  "subtitle": "把一段小程序需求写成代码",
+  "category": "coding",
+  "tags": [
+    "Python",
+    "基础编程"
+  ],
+  "publisher": "Google Research",
+  "year": 2021,
+  "version": "MBPP / sanitized 划分需区分",
+  "summary": "用自然语言描述简单编程任务，检查生成的 Python 程序能否通过对应测试。",
+  "task": "根据任务说明编写代码，满足测试用例中的断言。",
+  "format": "JSON/JSONL 记录包含 text、code、test_list、task_id；清洗版另有对应文件。",
+  "metric": {
+    "name": "测试通过率 / pass@k",
+    "direction": "higher",
+    "description": "按所用评测程序判断代码是否通过测试，再汇总成功比例或 pass@k。"
+  },
+  "limitations": [
+    "原始版与 sanitized 版内容、划分不完全相同。",
+    "基础程序题不能直接代表大型系统开发能力。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/google-research/google-research/tree/master/mbpp",
+      "label": "官方数据与说明",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 130,
+  "brandIds": [
+    "google-research"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "2",
+        "title": "找出两组数据的共同元素",
+        "raw": {
+          "source_file": "Benchmark Questions Verification V2.ipynb",
+          "task_id": 2,
+          "prompt": "Write a function to find the shared elements from the given two lists.",
+          "code": "def similar_elements(test_tup1, test_tup2):\n  res = tuple(set(test_tup1) & set(test_tup2))\n  return (res) ",
+          "test_imports": [],
+          "test_list": [
+            "assert set(similar_elements((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))",
+            "assert set(similar_elements((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))",
+            "assert set(similar_elements((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))"
+          ]
+        },
+        "split": "sanitized 公开文件",
+        "excerpt": false,
+        "prompt": "Write a function to find the shared elements from the given two lists.",
+        "answer": "def similar_elements(test_tup1, test_tup2):\n  res = tuple(set(test_tup1) & set(test_tup2))\n  return (res) ",
+        "explanation": "自然语言是任务输入，test_list 是验证程序行为的断言。sanitized 文件使用 prompt 字段记录题目。",
+        "source": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
+        "license": "Apache-2.0 · Google Research",
+        "licensePath": "licenses/google-research.txt",
+        "type": "text"
+      },
+      {
+        "id": "3",
+        "title": "识别非质数",
+        "raw": {
+          "source_file": "Benchmark Questions Verification V2.ipynb",
+          "task_id": 3,
+          "prompt": "Write a python function to identify non-prime numbers.",
+          "code": "import math\ndef is_not_prime(n):\n    result = False\n    for i in range(2,int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            result = True\n    return result",
+          "test_imports": [],
+          "test_list": [
+            "assert is_not_prime(2) == False",
+            "assert is_not_prime(10) == True",
+            "assert is_not_prime(35) == True",
+            "assert is_not_prime(37) == False"
+          ]
+        },
+        "split": "sanitized 公开文件",
+        "excerpt": false,
+        "prompt": "Write a python function to identify non-prime numbers.",
+        "answer": "import math\ndef is_not_prime(n):\n    result = False\n    for i in range(2,int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            result = True\n    return result",
+        "explanation": "自然语言是任务输入，test_list 是验证程序行为的断言。sanitized 文件使用 prompt 字段记录题目。",
+        "source": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
+        "license": "Apache-2.0 · Google Research",
+        "licensePath": "licenses/google-research.txt",
+        "type": "text"
+      }
+    ]
+  }
+}

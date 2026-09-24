@@ -1,0 +1,356 @@
+[
+  {
+    "id": "glm53-flash",
+    "title": "GLM-5.3-Flash",
+    "publisher": "Z.ai / 智谱 AI",
+    "date": "2026-09-23",
+    "url": "https://autoclaw.z.ai/blog/model/glm-5.3-flash/",
+    "description": "官方发布页以代码智能体、工具执行和多模态任务评测模型，表内混合了具体 benchmark 版本与带工具运行条件。",
+    "benchmarkIds": [
+      "terminal-bench-2-1",
+      "deep-swe-v1-1",
+      "nl2repo-bench",
+      "toolathlon-verified",
+      "automationbench",
+      "agents-last-exam",
+      "hle",
+      "officeqa-pro",
+      "charxiv",
+      "chartography",
+      "babyvision"
+    ],
+    "note": "专题博客标注 2026-09-23，GLM-V 官方仓库另写 2026-08-26 released，本站保留日期冲突。HLE、CharXiv、Chartography 等行带 tools 条件；GDPval-AA v2 未映射到站内 v2.1，MVBench 与 MMVU 尚未建档。"
+  },
+  {
+    "id": "opus55",
+    "title": "Claude Opus 5.5",
+    "publisher": "Anthropic",
+    "date": "2026-09-22",
+    "url": "https://www.anthropic.com/claude-opus-5-5",
+    "description": "Anthropic 发布 Claude Opus 5.5，并报告其在代码、知识工作、业务流程、科学研究、电脑操作和图表理解基准上的成绩。",
+    "benchmarkIds": [
+      "terminal-bench-4",
+      "frontiercode-1-1-main",
+      "cursorbench-4",
+      "gdpval-aa-v2-1",
+      "automationbench",
+      "hle",
+      "terminal-bench-science-0-1",
+      "osworld-2",
+      "chartography",
+      "wandr"
+    ],
+    "note": "关联成绩表中的九项评测；WANDR 来自正文。各项分数的工具配置与统计口径不同：OSWorld 2.0 使用部分完成分，Terminal-Bench 4.0 使用 xhigh 推理设置。WANDR 使用离线网页工具和 980k token 预算，不能直接与 Perplexity 的公开配置比较。完整条件见官方表格脚注。"
+  },
+  {
+    "id": "step5-preview",
+    "title": "Step 5 Preview",
+    "publisher": "阶跃星辰 / StepFun",
+    "date": "2026-09-20",
+    "url": "https://www.stepfun.com/step-5-preview",
+    "description": "阶跃星辰官方发布页以八项代码、终端、办公和专业工作 benchmark 展示 Preview 模型。",
+    "benchmarkIds": [
+      "deep-swe-v1-1",
+      "terminal-bench-4",
+      "agents-last-exam",
+      "gdpval-aa-v2-1"
+    ],
+    "note": "官网标注 2026-09-20，并称开放权重计划于 2026-10-15；截至核验日应理解为已可体验的 Preview。Terminal-Bench v4 与 ALE-CLI 按页面原名保留其版本/切片含义；GDPval-AA v2.1 成绩来自页面注明的 Artificial Analysis 时间截点。"
+  },
+  {
+    "id": "deepseek-v41-flash",
+    "title": "DeepSeek-V4.1-Flash",
+    "publisher": "DeepSeek",
+    "date": "2026-09-10",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "description": "DeepSeek 官方更新日志列出推理、终端、代码智能体、工具使用和多模态智能体评测。",
+    "benchmarkIds": [
+      "gpqa-diamond",
+      "hle",
+      "terminal-bench-2-1",
+      "terminal-bench-4",
+      "deep-swe-v1-1",
+      "nl2repo-bench",
+      "automationbench",
+      "agents-last-exam",
+      "chartography",
+      "babyvision"
+    ],
+    "note": "对应更新日志 2026-09-10 的 DeepSeek-V4.1-Flash Release。HLE 公告脚注只测试纯文本子集，带工具行与无工具行不能合并；Terminal-Bench 2.1 与 4.0 分别关联。未收录的厂商表项继续留在研究记录，不用相似名称替代。"
+  },
+  {
+    "id": "gpt6-astra",
+    "title": "GPT-6 Astra",
+    "publisher": "OpenAI",
+    "date": "2026-09-03",
+    "url": "https://openai.com/index/gpt-6-astra/",
+    "description": "GPT-6 Astra 官方发布报告，覆盖职业工作、电脑与网页操作、科学健康、代码、安全及交互式推理评测。",
+    "benchmarkIds": [
+      "benchcad",
+      "browsecomp",
+      "arc-agi-3",
+      "frontiermath",
+      "gpqa-diamond",
+      "healthbench-professional",
+      "genebench-pro",
+      "lifescibench",
+      "agents-last-exam",
+      "terminal-bench-4",
+      "terminal-bench-science-0-1",
+      "osworld-2",
+      "frontiercode-1-1-main"
+    ],
+    "note": "摘录发布页中与本图鉴条目对应的评测。ARC-AGI-3 使用 OpenAI Responses API harness；HealthBench Professional 采用 length-adjusted 分数。Mind2Web 报告未注明版本，因此未关联到原始 Mind2Web 条目。FrontierCode 结果明确区分 1.1 Main 与 Extended，本处对应 Main。发布日期经 OpenAI 安全概览核实；仅摘录部分结果。"
+  },
+  {
+    "id": "qwen38",
+    "title": "Qwen3.8",
+    "publisher": "Qwen Team / 阿里巴巴",
+    "date": "2026-08-12",
+    "url": "https://github.com/QwenLM/Qwen3.8/blob/main/README.md",
+    "description": "Qwen3.8 官方仓库与模型卡报告代码智能体、工具使用、指令遵循、专业问答和长上下文评测。",
+    "benchmarkIds": [
+      "terminal-bench-2-1",
+      "swe-bench-pro",
+      "deep-swe-v1-1",
+      "nl2repo-bench",
+      "paperbench",
+      "skillsbench",
+      "agents-last-exam",
+      "automationbench",
+      "toolathlon-verified",
+      "hle",
+      "gpqa-diamond",
+      "ifbench",
+      "healthbench",
+      "mrcr-v2",
+      "longbench-v2"
+    ],
+    "note": "发布日期取官方仓库 2026-08-12 的 2.4T-A95B 记录；27B 为 2026-08-14。2.4T 模型卡的比较列写 Qwen3.8-Max，且各 benchmark 使用不同 harness、上下文和重复次数；本站不把整表说成单一本地 checkpoint 的统一复测。"
+  },
+  {
+    "id": "kimi-k3",
+    "title": "Kimi K3",
+    "publisher": "Moonshot AI / Kimi Team",
+    "date": "2026-07-27",
+    "url": "https://github.com/MoonshotAI/Kimi-K3",
+    "description": "官方技术报告表覆盖推理、代码、智能体、办公与视觉任务，并逐项说明部分外部榜单与工具配置。",
+    "benchmarkIds": [
+      "gpqa-diamond",
+      "hle",
+      "deep-swe-v1-1",
+      "terminal-bench-2-1",
+      "scicode",
+      "browsecomp",
+      "toolathlon-verified",
+      "mcp-atlas",
+      "automationbench",
+      "agents-last-exam",
+      "apex-agents",
+      "officeqa-pro",
+      "osworld-2",
+      "omnidocbench",
+      "video-mme",
+      "babyvision",
+      "mmmu-pro",
+      "charxiv"
+    ],
+    "note": "Kimi K3 以 max reasoning effort 报告；DeepSWE 与 Terminal-Bench 2.1 使用 Kimi Code harness，BabyVision 带 Python 工具，HLE-Full 与多项视觉任务区分无工具/工具增强。GDPval-AA v2、Finance Agent v2 等没有强行映射到站内不同版本。"
+  },
+  {
+    "id": "gpt56",
+    "title": "GPT-5.6",
+    "publisher": "OpenAI",
+    "date": "2026-07-09",
+    "url": "https://openai.com/index/gpt-5-6/",
+    "description": "GPT-5.6 家族发布报告，报告专业工作流、软件开发、网络安全与生命科学评测；同页报告工具成本与耗时配置。",
+    "benchmarkIds": [
+      "agents-last-exam",
+      "browsecomp",
+      "genebench-pro",
+      "lifescibench"
+    ],
+    "note": "摘录发布页中与本图鉴条目对应的评测。Agents’ Last Exam 的 53.6 是 Score；GeneBench Pro 的 pass rate 随 reasoning level 和 Pro mode 改变。仅摘录部分结果，不覆盖发布页全部评测。"
+  },
+  {
+    "id": "minimax-m3",
+    "title": "MiniMax M3",
+    "publisher": "MiniMax",
+    "date": "2026-06-01",
+    "url": "https://www.minimax.io/blog/minimax-m3",
+    "description": "MiniMax 官方发布页和评测方法覆盖软件工程、终端、科研复现、工具调用、办公与多模态任务。",
+    "benchmarkIds": [
+      "swe-bench-pro",
+      "terminal-bench-2-1",
+      "swe-bench-verified",
+      "nl2repo-bench",
+      "paperbench",
+      "browsecomp",
+      "officeqa-pro",
+      "mcp-atlas",
+      "apex-agents",
+      "omnidocbench",
+      "mmmu-pro",
+      "video-mme",
+      "bfcl",
+      "gpqa"
+    ],
+    "note": "正文重点列出 SWE-Bench Pro、Terminal-Bench 2.1、SWE-fficiency、KernelBench Hard 与 MCP Atlas；本站只关联已有且身份核实的条目。方法附录包含内部评测和不同 scaffold，PaperBench 使用厂商自报的 12 小时流程与 Opus-4.6 评分，不能视为官方默认配置。"
+  },
+  {
+    "id": "gpt54",
+    "title": "GPT-5.4",
+    "publisher": "OpenAI",
+    "date": "2026-03-05",
+    "url": "https://openai.com/index/introducing-gpt-5-4/",
+    "description": "面向专业工作的发布报告，覆盖职业任务、代码、电脑操作、工具调用、学术推理与长上下文评测。",
+    "benchmarkIds": [
+      "gdpval",
+      "finance-agent",
+      "officeqa-pro",
+      "swe-bench-pro",
+      "terminal-bench-2",
+      "osworld",
+      "mmmu-pro",
+      "browsecomp",
+      "mcp-atlas",
+      "tau2-bench",
+      "frontiermath",
+      "gpqa-diamond",
+      "hle",
+      "mrcr"
+    ],
+    "note": "摘录发布页中与本图鉴条目对应的评测。OpenAI 将该项写作 OfficeQA；Databricks 当前仓库称已发表模型结果均为 Pro。仅摘录部分结果，不覆盖发布页全部评测。"
+  },
+  {
+    "id": "gemini31",
+    "title": "Gemini 3.1 Pro",
+    "publisher": "Google DeepMind",
+    "date": "2026-02-19",
+    "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+    "description": "模型卡报告推理、多模态、Agent、多语言和长上下文评测；配套方法文档说明 Gemini API 版本、pass@1 及部分成绩的外部来源。",
+    "benchmarkIds": [
+      "hle",
+      "arc-agi-2",
+      "gpqa-diamond",
+      "terminal-bench-2",
+      "swe-bench-verified",
+      "swe-bench-pro",
+      "gdpval-aa",
+      "tau2-bench",
+      "mcp-atlas",
+      "browsecomp",
+      "mmmu-pro",
+      "mmmlu",
+      "mrcr-v2",
+      "livecodebench-pro",
+      "scicode",
+      "apex-agents"
+    ],
+    "note": "LiveCodeBench Pro 的 Elo 来自公开排行榜，SciCode 分数来自 Artificial Analysis；模型卡中的外部成绩与厂商自行运行结果须分别理解。工具框架、任务域和上下文长度见配套评测方法。"
+  },
+  {
+    "chartUrl": "https://www-cdn.anthropic.com/images/4zrzovbb/website/f9564dd2f758237bd9dbe775674c4a375aff1e8a-2600x2968.png",
+    "id": "opus46",
+    "title": "Claude Opus 4.6",
+    "publisher": "Anthropic",
+    "date": "2026-02-05",
+    "url": "https://www.anthropic.com/news/claude-opus-4-6",
+    "description": "从终端任务到电脑操作，再到办公室交付。一张表里其实混合了不同能力和评分尺度。",
+    "benchmarkIds": [
+      "terminal-bench-2",
+      "swe-bench-verified",
+      "osworld",
+      "tau2-bench",
+      "mcp-atlas",
+      "browsecomp",
+      "hle",
+      "finance-agent",
+      "gdpval-aa",
+      "arc-agi-2",
+      "gpqa-diamond",
+      "mmmu-pro",
+      "mmmlu",
+      "mrcr"
+    ],
+    "note": "已查看发布页原始成绩表图片。该页称 MRCR v2，并链接 OpenAI MRCR 数据卡；这里保留这个来源指向，不与 DeepMind 同名实现合并。"
+  },
+  {
+    "id": "deepseek-v32-exp",
+    "title": "DeepSeek-V3.2-Exp",
+    "publisher": "DeepSeek",
+    "date": "2025-09-29",
+    "url": "https://github.com/deepseek-ai/DeepSeek-V3.2-Exp",
+    "description": "官方实验版发布页比较 V3.1-Terminus 与 V3.2-Exp 的推理、代码和 Agent 搜索结果。",
+    "benchmarkIds": [
+      "browsecomp-zh",
+      "swe-bench-multilingual"
+    ],
+    "note": "摘录 DeepSeek-V3.2-Exp 官方发布页表格。该表明确对照 V3.1-Terminus 和 V3.2-Exp；BrowseComp-zh 与 SWE-bench Multilingual 位于 Agentic Tool Use 区域。官方页面另说明发布更新及特定推理实现问题。"
+  },
+  {
+    "id": "gpt5",
+    "title": "GPT-5",
+    "publisher": "OpenAI",
+    "date": "2025-08-07",
+    "url": "https://openai.com/index/introducing-gpt-5/",
+    "description": "数学、代码、视觉和健康任务分别采用不同评测。工具权限和题目范围是读分数时的关键。",
+    "benchmarkIds": [
+      "aime-2025",
+      "swe-bench-verified",
+      "aider-polyglot",
+      "mmmu",
+      "gpqa-diamond",
+      "healthbench",
+      "healthbench-hard",
+      "charxiv",
+      "openai-internal-coding"
+    ],
+    "note": "GPT-5 页面说明其 SWE-bench 使用 477 个任务；这与 Verified 的 500 题定义需要区分。内部前端评测见关联的开发者发布页。"
+  },
+  {
+    "id": "kimi-k2",
+    "title": "Kimi K2 技术报告",
+    "publisher": "Moonshot AI / Kimi Team",
+    "date": "2025-07-28",
+    "url": "https://arxiv.org/abs/2507.20534",
+    "description": "技术报告覆盖代码、数学、长上下文和开放式回答等评测；不同表格使用各自的数据集与评分方式。",
+    "benchmarkIds": [
+      "arena-hard-v2",
+      "swe-bench-multilingual",
+      "longbench-v2"
+    ],
+    "note": "摘录 Kimi K2 官方技术报告：Arena Hard v2.0 分列 Hard Prompt 与 Creative Writing 胜率；摘要明确报告 SWE-bench Multilingual；表格另列 LongBench v2。不同指标及模型设置不得合并。"
+  },
+  {
+    "id": "qwen3",
+    "title": "Qwen3 技术报告",
+    "publisher": "Qwen Team / 阿里巴巴",
+    "date": "2025-05-14",
+    "url": "https://arxiv.org/abs/2505.09388",
+    "description": "技术报告包含多项通用能力与对齐评测，报告中的 AlignBench v1.1 用于观察中文对齐表现。",
+    "benchmarkIds": [
+      "alignbench"
+    ],
+    "note": "摘录 Qwen3 官方技术报告中 AlignBench v1.1 对齐评测条目。此处仅记录报告确实列出的基准名称，不据此推断当前模型排名；裁判模型与配置须结合论文表注复核。"
+  },
+  {
+    "id": "deepseek-r1",
+    "title": "DeepSeek-R1",
+    "publisher": "DeepSeek",
+    "date": "2025-01-20",
+    "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+    "description": "同一张技术报告表格中，包含知识问答、数学解题和代码任务，注意 Pass@1 与其他指标的区别。",
+    "benchmarkIds": [
+      "mmlu",
+      "mmlu-pro",
+      "gpqa-diamond",
+      "simpleqa",
+      "aime-2024",
+      "math-500",
+      "livecodebench",
+      "swe-bench-verified"
+    ],
+    "note": "按官方仓库的评测表和运行说明整理；这是历史发布资料，不表示模型当前排名。"
+  }
+]

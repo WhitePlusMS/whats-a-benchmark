@@ -1,0 +1,157 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "osworld",
+  "name": "OSWorld",
+  "subtitle": "像人一样操作桌面软件",
+  "category": "agents",
+  "tags": [
+    "电脑操作",
+    "多应用工作流"
+  ],
+  "publisher": "OSWorld 研究团队",
+  "year": 2024,
+  "version": "OSWorld；具体环境版本见报告",
+  "metric": {
+    "name": "任务成功率",
+    "description": "按任务 execution evaluator 判定成功；总体成功率须以明确的任务集合为分母。官方早期论文页面报告当时最佳模型与人类结果，但它们是论文实验快照，不能直接当作当前 OSWorld-Verified 榜单数据。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2404.07972",
+      "https://os-world.github.io/",
+      "https://github.com/xlang-ai/OSWorld"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "369 题中逐项的当前初始化可用性、任务级许可证和完整文件清单未重新执行/检查。",
+      "sourceUrls": [
+        "https://os-world.github.io/",
+        "https://github.com/xlang-ai/OSWorld"
+      ]
+    },
+    {
+      "text": "43 项 Windows 补充任务的开放范围和具体激活流程未在此核查；不转载其内容。",
+      "sourceUrls": [
+        "https://os-world.github.io/",
+        "https://github.com/xlang-ai/OSWorld"
+      ]
+    },
+    {
+      "text": "OSWorld-Verified 当前榜单和各方法运行配置会变动，本报告不抄录当期分数。",
+      "sourceUrls": [
+        "https://os-world.github.io/",
+        "https://github.com/xlang-ai/OSWorld"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OSWorld 项目页",
+      "url": "https://os-world.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "XLANG Lab 官方仓库",
+      "url": "https://github.com/xlang-ai/OSWorld",
+      "role": "readme"
+    },
+    {
+      "label": "官方仓库 LICENSE",
+      "url": "https://github.com/xlang-ai/OSWorld/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "arXiv:2404.07972",
+      "url": "https://arxiv.org/abs/2404.07972",
+      "role": "paper"
+    },
+    {
+      "label": "OSWorld-V2 迁移指南",
+      "url": "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
+      "role": "code"
+    },
+    {
+      "label": "OSWorld 官方任务目录",
+      "url": "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 270,
+  "brandIds": [
+    "osworld"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评测 agent 能否在 Ubuntu、Windows、macOS 等桌面环境中使用真实 web/desktop 应用、操作文件并完成跨应用工作流。官方任务由真实计算机使用场景构造，配有初始状态配置和执行式 evaluator。",
+    "task": "在真实桌面应用中完成开放域任务，并由任务自定义 evaluator 核验最终状态。",
+    "sourceUrls": [
+      "https://os-world.github.io/",
+      "https://github.com/xlang-ai/OSWorld"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言任务指令、VM 初始状态及任务预置文件或应用状态。",
+    "output": "桌面或应用的最终状态，由该任务的 execution evaluator 判定是否完成。",
+    "environment": "Agent 通过图形界面操作桌面应用；可由 VMware、VirtualBox、Docker 或 AWS 等 provider 启动 VM，并记录 OS 与任务版本。",
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld",
+      "https://os-world.github.io/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原始 OSWorld 以 Ubuntu 任务为主，并另列 Windows 补充任务和 Drive 初始化例外。",
+    "disclosure": "partial",
+    "scale": [
+      "Ubuntu 369 项；Windows 补充 43 项；主集含 8 项 Google Drive 初始化例外。"
+    ],
+    "splits": [
+      "官方未报告 train/validation/test；Windows 项是补充集，Drive 项可按官方指引配置或排除。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://os-world.github.io/",
+      "https://github.com/xlang-ai/OSWorld"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "OSWorld 原始公开仓库和 369 题任务代码公开可访问；Windows 补充任务 43 项因版权限制须激活。Google Drive 的 8 项另有网络/初始化限制，官方接受完整手工配置或排除后按 361 项评测并要求注明做法。"
+    ],
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld",
+      "https://os-world.github.io/",
+      "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples"
+    ],
+    "url": "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "OSWorld 仓库标注 Apache-2.0；该许可证按 LICENSE 适用于其覆盖的代码/文件。",
+    "scope": "仓库许可证不自动覆盖受版权限制的 Windows 任务或任务涉及的第三方应用、网站及用户材料。",
+    "boundaries": [
+      "不复制任务提示、初始化资源、第三方页面、应用截图、用户数据或执行轨迹。",
+      "任务资产的具体权利未逐项核查；Windows 补充任务明确受版权限制。"
+    ],
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld/blob/main/LICENSE",
+      "https://os-world.github.io/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "仓库包含公开任务示例和演示页面，但执行环境中的第三方应用界面/页面并非因仓库代码许可而自动获转载权。本站不复制原始任务全文、资产或截图，仅链接官方 viewer 和 README。Windows 补充数据明确有版权限制，不能作为站内样例。",
+    "sourceUrls": [
+      "https://os-world.github.io/",
+      "https://github.com/xlang-ai/OSWorld/blob/main/LICENSE",
+      "https://github.com/xlang-ai/OSWorld",
+      "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples"
+    ],
+    "url": "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples"
+  }
+}

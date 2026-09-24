@@ -1,0 +1,137 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "video-mme",
+  "name": "Video-MME",
+  "subtitle": "从短片到长视频，看懂发生了什么",
+  "category": "multimodal",
+  "tags": [
+    "视频理解",
+    "音画信息"
+  ],
+  "publisher": "Video-MME 研究团队",
+  "year": 2024,
+  "version": "Video-MME 原版",
+  "metric": {
+    "name": "正确率",
+    "description": "主要指标为多项选择题准确率；官方脚本还返回按视频时长、领域、子类别、任务类型划分的准确率。成绩须标明是否使用字幕、采样帧数/策略和覆盖的 duration 类别，因为这些设置改变输入。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME",
+      "https://arxiv.org/abs/2405.21075"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未下载、播放或逐条审查 900 段视频和标注；不确认每条视频 URL 的现行可用状态。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME"
+      ]
+    },
+    {
+      "text": "未逐项获取视频权利人或字幕素材的单独授权；官方声明已足以支持本站不再发布任何该基准媒体/内容。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME"
+      ]
+    },
+    {
+      "text": "未在本轮复跑评测或固定仓库 commit。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2405.21075",
+      "role": "paper"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/MME-Benchmarks/Video-MME",
+      "role": "readme"
+    },
+    {
+      "label": "项目主页",
+      "url": "https://video-mme.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "官方任务与示例",
+      "url": "https://video-mme.github.io/home_page.html",
+      "role": "definition"
+    }
+  ],
+  "status": "published",
+  "order": 340,
+  "brandIds": [
+    "video-mme"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Video-MME 评估模型对视频序列的理解，支持视频 MLLM，也可作为多图像模型输入设置。官方仓库报告 900 段视频、总计 254 小时和 2,700 个人工标注问答，视频长度从 11 秒到 1 小时，并含短、中、长时长设置。数据形式涉及视频帧、字幕和音频等模态。",
+    "task": "理解视频内容并回答四选一问题，按时长、领域等维度报告准确率。",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME",
+      "https://arxiv.org/abs/2405.21075"
+    ]
+  },
+  "taskContract": {
+    "input": "视频内容和一道四选一问题；可选择将采样帧对应字幕加入 prompt。",
+    "output": "模型返回选项字母，并整理为官方 JSON 提交格式。",
+    "environment": "按官方流程获取视频/字幕、抽帧并运行模型；记录字幕、帧采样和评测工具设置。",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME",
+      "https://arxiv.org/abs/2405.21075"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Video-MME 数据由视频、字幕和人工标注问答组成。",
+    "disclosure": "partial",
+    "scale": [
+      "900 段视频、744 份字幕、2,700 个 QA；总时长 254 小时。"
+    ],
+    "splits": [
+      "官方未报告 train/validation/test；short、medium、long 是视频时长类别。"
+    ],
+    "fields": [],
+    "files": [
+      "视频、字幕、问答标注；预测提交采用 JSON。"
+    ],
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub、项目主页及作者提供的数据入口公开可访问；运行需获取视频、字幕和标注资源并准备待测模型。本轮未下载、展示或播放数据媒体，也未执行模型评测。"
+    ],
+    "url": "https://github.com/MME-Benchmarks/Video-MME",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME"
+    ]
+  },
+  "reusePolicy": {
+    "status": "prohibited",
+    "license": "官方数据区限定学术研究、禁止商业用途，并禁止未经事先批准分发、发布、复制、传播或修改数据内容。",
+    "scope": "限制覆盖 Video-MME 数据及标注；本候选不据此推断代码许可范围。",
+    "boundaries": [
+      "视频版权属于各自权利人；复用媒体还须取得官方批准和必要的权利人许可。",
+      "本站只写原创概述并链接官方资源，不转载视频、截帧、字幕、题目或标注。"
+    ],
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "不在公开 GitHub Pages 转载视频、截帧、字幕、题目或标注。官方明确禁止未经先前批准而分发、发布、复制、传播或修改 Video-MME 全部或部分内容，并将视频版权归于各视频拥有者。页面可写自有文字概述并链接官方项目和论文；如需嵌入样例媒体，应先获得官方事先批准和相应权利人许可。",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME"
+    ]
+  }
+}

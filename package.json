@@ -1,0 +1,35 @@
+{
+  "name": "whats-a-benchmark",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "npm run content:generate",
+    "dev": "vite",
+    "content": "tsx scripts/content-cli.ts",
+    "content:generate": "tsx scripts/generate-content.ts",
+    "content:reaudit-check": "tsx scripts/validate-reaudit-candidates.ts",
+    "typecheck": "npm run content:generate && vue-tsc --noEmit",
+    "validate": "tsx scripts/validate-content.ts",
+    "test": "npm run content:generate && tsx --test tests/*.test.ts",
+    "build": "npm run typecheck && tsx scripts/build-site.ts",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@lucide/vue": "1.47.0",
+    "@unhead/vue": "3.4.1",
+    "vue": "3.5.43",
+    "vue-router": "5.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.2",
+    "@vitejs/plugin-vue": "6.0.9",
+    "prettier": "3.6.2",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vite": "8.3.0",
+    "vite-ssg": "28.3.0",
+    "vue-tsc": "3.3.11",
+    "zod": "4.6.5"
+  }
+}

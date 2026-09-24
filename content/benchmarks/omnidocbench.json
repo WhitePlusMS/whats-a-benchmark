@@ -1,0 +1,161 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "omnidocbench",
+  "name": "OmniDocBench",
+  "subtitle": "把复杂 PDF 读成结构化内容",
+  "category": "multimodal",
+  "tags": [
+    "文档解析",
+    "OCR / 表格 / 公式"
+  ],
+  "publisher": "OpenDataLab / 研究合作者",
+  "year": 2024,
+  "version": "版本须随报告记录",
+  "metric": {
+    "name": "编辑距离 / 表格与公式等分项指标",
+    "direction": "mixed",
+    "description": "官方支持 Normalized Edit Distance、BLEU、METEOR、TEDS 与 COCO detection metrics（如 mAP/mAR）；依任务配置组合，不能把不同模块的分数视作同一指标。官方更新说明 v1.5 leaderboard 的 Overall 公式为文本归一化编辑分、表格 TEDS、公式 CDM 三项平均，但该公式与数据/代码版本关联，不应自动套用到所有版本。",
+    "sourceUrls": [
+      "https://github.com/opendatalab/OmniDocBench",
+      "https://github.com/opendatalab/OmniDocBench#updates",
+      "https://github.com/opendatalab/OmniDocBench#benchmark-introduction",
+      "https://arxiv.org/abs/2412.07626"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "Hugging Face 页面显示 1,657 rows，而仓库 README 记载 1,651 PDF 页面；条目与页面的映射及当前数据快照差异未逐项核查。",
+      "sourceUrls": [
+        "https://github.com/opendatalab/OmniDocBench",
+        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+        "https://github.com/opendatalab/OmniDocBench#updates"
+      ]
+    },
+    {
+      "text": "v1.7 的记录没有明确说明数据文件是否同步更新；不可假定其与 v1.6 数据完全相同或不同。",
+      "sourceUrls": [
+        "https://github.com/opendatalab/OmniDocBench",
+        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+        "https://github.com/opendatalab/OmniDocBench#updates"
+      ]
+    },
+    {
+      "text": "PDF、图片及数据集中每个第三方作品的具体授权未逐项查验；公开 GitHub Pages 再分发权限未知。",
+      "sourceUrls": [
+        "https://github.com/opendatalab/OmniDocBench",
+        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+        "https://github.com/opendatalab/OmniDocBench#updates"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenDataLab 官方仓库 README",
+      "url": "https://github.com/opendatalab/OmniDocBench",
+      "role": "readme"
+    },
+    {
+      "label": "arXiv:2412.07626",
+      "url": "https://arxiv.org/abs/2412.07626",
+      "role": "paper"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/opendatalab/OmniDocBench#benchmark-introduction",
+      "role": "readme"
+    },
+    {
+      "label": "OpenDataLab 官方 Hugging Face 数据页",
+      "url": "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+      "role": "data"
+    },
+    {
+      "label": "官方更新记录",
+      "url": "https://github.com/opendatalab/OmniDocBench#updates",
+      "role": "readme"
+    },
+    {
+      "label": "官方 LICENSE",
+      "url": "https://github.com/opendatalab/OmniDocBench/blob/main/LICENSE",
+      "role": "code"
+    }
+  ],
+  "status": "published",
+  "order": 350,
+  "brandIds": [
+    "opendatalab"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估模型从 PDF 页面解析文档内容与结构的能力，覆盖端到端解析、文本 OCR、版面检测、表格识别、公式识别及阅读顺序等维度。数据带有文本、公式、表格和页面组件的区域定位与识别标注，并含页面/块级属性标签。",
+    "task": "从 PDF 页面解析文档内容与结构，执行端到端解析或指定单模块识别。",
+    "sourceUrls": [
+      "https://github.com/opendatalab/OmniDocBench#benchmark-introduction",
+      "https://github.com/opendatalab/OmniDocBench",
+      "https://arxiv.org/abs/2412.07626"
+    ]
+  },
+  "taskContract": {
+    "input": "PDF 页面或对应图像；单模块评测可输入组件裁切及标注数据。",
+    "output": "端到端输出结构化文本/Markdown；单模块输出文本、LaTeX、HTML、版面框或阅读顺序预测。",
+    "environment": "官方提供端到端和单模块评测代码；公式 CDM 另需相应系统工具。复现时固定代码版本、配置和输入分辨率。",
+    "sourceUrls": [
+      "https://github.com/opendatalab/OmniDocBench",
+      "https://github.com/opendatalab/OmniDocBench#benchmark-introduction",
+      "https://arxiv.org/abs/2412.07626"
+    ]
+  },
+  "dataProfile": {
+    "summary": "OmniDocBench 提供文档页面及组件标注数据；README 与 HF Viewer 的计数口径不同。",
+    "disclosure": "partial",
+    "scale": [
+      "README 报告 1,651 页、10 种文档类型、5 种版面类型和 5 种语言；HF 显示 1,657 rows。",
+      "v1.6 更新加入 296 页并调整标注。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/opendatalab/OmniDocBench",
+      "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+      "https://github.com/opendatalab/OmniDocBench#updates"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "评测代码与数据入口公开可访问，数据可从官方 Hugging Face、OpenDataLab 页面获取。公开下载不表示 PDF 页面及其识别内容可无限制转载；官方声明数据仅供研究使用、不可商用。"
+    ],
+    "url": "https://github.com/opendatalab/OmniDocBench",
+    "sourceUrls": [
+      "https://github.com/opendatalab/OmniDocBench",
+      "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+      "https://github.com/opendatalab/OmniDocBench#updates"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "GitHub 仓库代码标注 Apache-2.0；数据页声明数据仅供研究、不可商用。",
+    "scope": "Apache-2.0 仅按仓库 LICENSE 用于受其覆盖的代码/文件；PDF、图片和标注的统一再发布许可未确认。",
+    "boundaries": [
+      "PDF 来自公开网络和社区贡献，底层作品的逐项授权未核实。",
+      "本站只链接官方数据与展示页，不转载 PDF 页面、截图、题目材料或逐样本标注。"
+    ],
+    "sourceUrls": [
+      "https://github.com/opendatalab/OmniDocBench/blob/main/LICENSE",
+      "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+      "https://github.com/opendatalab/OmniDocBench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "仓库有 demo JSON 和图像/解析演示，但 demo 可能展示源 PDF 的内容。当前未逐项确认其中原始文件、图片和标注可再分发；不复制官方样例或页面截图到公开站点，仅提供官方链接。如后续确需展示，应先核对该条目的原始来源和许可，不以仓库 Apache-2.0 或“公开可下载”替代权利判断。",
+    "sourceUrls": [
+      "https://github.com/opendatalab/OmniDocBench",
+      "https://huggingface.co/datasets/opendatalab/OmniDocBench"
+    ]
+  }
+}

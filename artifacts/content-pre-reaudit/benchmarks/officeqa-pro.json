@@ -1,0 +1,57 @@
+{
+  "id": "officeqa-pro",
+  "status": "published",
+  "order": 603,
+  "name": "OfficeQA Pro",
+  "subtitle": "从密集财政文件中找到并核算证据",
+  "summary": "Databricks 的端到端 grounded reasoning 评测，要求代理在真实财政公告 PDF 中检索并组合证据以回答复杂问题。",
+  "category": "work",
+  "tags": [
+    "文档推理",
+    "表格与 PDF",
+    "检索",
+    "专业工作"
+  ],
+  "publisher": "Databricks",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Pro",
+  "kind": "subset",
+  "aliases": [
+    "OfficeQA",
+    "OfficeQA Pro"
+  ],
+  "task": "在大量财政公报中查找并组合数字、表格和叙述信息，回答需要多步文档推理的问题。",
+  "format": "133 个困难问题与 1939–2025 年美国财政部公告语料；含问题、真值、来源文档和评测脚本，代理可使用文件搜索、网页搜索与代码执行。",
+  "metric": {
+    "name": "答案准确率",
+    "description": "基于官方 reward 脚本对数值、货币或标签/值列表答案进行误差容忍度判定；端到端代理结果和给定 oracle 页的语言模型结果是不同测试设置。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "OfficeQA 是包含 Pro、Full 和 Pro V2 的套件；Pro V2 使用另一组财政文件，不能合并排名。原始 OfficeQA 于 2025 年发布；本条 Pro 变体于 2026 年发布。",
+    "问题与答案数据集在 Hugging Face 需申请访问；OpenAI GPT-5.4 表格未注明变体，Databricks 当前仓库称已发表结果均为 Pro。",
+    "分数高度依赖代理工具环境、语料解析方式和答案容差；OpenAI GPT-5.4 表格的 68.1% 应保留发布报告口径。"
+  ],
+  "availability": "unknown",
+  "sampleNote": "Databricks 在 Hugging Face 提供受控访问的数据集及公开评分代码；本站不转载原题。",
+  "sources": [
+    {
+      "label": "Databricks 官方仓库、子集差异与访问说明",
+      "url": "https://github.com/databricks/officeqa",
+      "kind": "code"
+    },
+    {
+      "label": "OfficeQA 技术报告",
+      "url": "https://arxiv.org/abs/2603.08655",
+      "kind": "paper"
+    },
+    {
+      "label": "OpenAI GPT-5.4 官方报告",
+      "url": "https://openai.com/index/introducing-gpt-5-4/",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

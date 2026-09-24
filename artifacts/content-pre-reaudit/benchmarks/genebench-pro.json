@@ -1,0 +1,58 @@
+{
+  "id": "genebench-pro",
+  "status": "published",
+  "order": 605,
+  "name": "GeneBench-Pro",
+  "subtitle": "在基因组分析中做出可靠的研究判断",
+  "summary": "OpenAI 为研究级计算生物学设计的基准，要求代理在含噪、复杂数据中选择并迭代分析方案，形成可供下游决策的结论。",
+  "category": "work",
+  "tags": [
+    "科学研究",
+    "基因组学",
+    "数据分析代理"
+  ],
+  "publisher": "OpenAI",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2026,
+  "version": "v13",
+  "kind": "original",
+  "aliases": [
+    "GeneBench Pro",
+    "GeneBench-Pro"
+  ],
+  "task": "在提供的实验背景与数据文件上探索数据、选择统计/生物信息学分析路径、迭代修订分析，并给出带目标估计量的科学结论。",
+  "format": "129 个合成计算生物学问题，覆盖 10 个领域；每题提供数据和隔离工作区，附预期分析结构、案例研究与专家审阅信息。",
+  "metric": {
+    "name": "Pass Rate",
+    "description": "对照已知数据生成目标进行确定性判分；报告需注明 reasoning level 与 Pro mode。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "官方指出开发过程中使用前沿 GPT 模型评审与加固题目，存在对 GPT 模型偏置的潜在风险。",
+    "官方只公开 10 道代表题；完整 benchmark 未公开，数据集未公开提供。",
+    "题目使用合成生物学标签与数据，不能推断为真实患者或真实研究队列的分析结果。"
+  ],
+  "availability": "private",
+  "sampleNote": "OpenAI 公开 10 道代表题；完整 benchmark 未公开。本站不附题目样例。",
+  "sources": [
+    {
+      "label": "GeneBench-Pro 官方介绍、计分与公开样题范围",
+      "url": "https://openai.com/index/introducing-genebench-pro/",
+      "kind": "home"
+    },
+    {
+      "label": "OpenAI GeneBench-Pro 代表性案例",
+      "url": "https://openai.com/index/genebench-pro/case-studies/",
+      "kind": "data"
+    },
+    {
+      "label": "GPT-6 Astra 官方成绩表与版本脚注",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

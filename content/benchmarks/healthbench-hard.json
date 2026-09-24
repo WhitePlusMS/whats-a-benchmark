@@ -1,0 +1,163 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "healthbench",
+      "label": "子集来自",
+      "detail": "在同一评测体系中突出高难任务。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+      ]
+    }
+  ],
+  "kind": "subset",
+  "verifiedAt": "2026-09-23",
+  "id": "healthbench-hard",
+  "name": "HealthBench Hard",
+  "subtitle": "医疗对话评测中的困难部分",
+  "category": "work",
+  "tags": [
+    "医疗健康",
+    "困难子集"
+  ],
+  "publisher": "OpenAI",
+  "year": 2025,
+  "version": "HealthBench Hard",
+  "metric": {
+    "name": "困难子集 rubric 分数",
+    "direction": "higher",
+    "description": "采用 HealthBench rubric-derived score：模型 grader 独立判定 rubric criteria 是否满足，再按权重汇总；结果取决于 grader、准则权重、汇总/截断方式及是否采用长度调整等配置。官方代码包含 Hard 子集选择和聚合逻辑。跨报告比较时必须核对这些运行参数，不能将 Hard 分数与完整 HealthBench 分数直接视为同一个数据范围。",
+    "sourceUrls": [
+      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py",
+      "https://arxiv.org/abs/2505.08775"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未对 Hard JSONL 当前 revision 做逐例核对、哈希或与官方页面示例逐条映射。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+      ]
+    },
+    {
+      "text": "本轮未验证数据内容与 MIT 声明之间的法律适用范围；在线样例披露请求则是发布页的明确要求。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+      ]
+    },
+    {
+      "text": "具体厂商报告的 grader、长度校正、工具和抽样协议需逐份核对。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI 发布页",
+      "url": "https://openai.com/index/healthbench/",
+      "role": "definition"
+    },
+    {
+      "label": "HealthBench 论文",
+      "url": "https://arxiv.org/abs/2505.08775",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI `simple-evals` healthbench_eval.py",
+      "url": "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py",
+      "role": "code"
+    },
+    {
+      "label": "OpenAI `simple-evals` README",
+      "url": "https://github.com/openai/simple-evals#evals",
+      "role": "readme"
+    },
+    {
+      "label": "HealthBench Professional 论文",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "模型发布报告",
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "role": "vendor-report"
+    }
+  ],
+  "status": "published",
+  "order": 460,
+  "brandIds": [
+    "openai"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "HealthBench Hard 从 5,000 个 HealthBench 对话中筛选出 1,000 个前沿模型仍较难完成的任务；它沿用母集的逐例医生 rubric 评分。",
+    "task": "回答健康相关多轮对话的最后一条用户消息，由 grader 按该对话的医生撰写 rubric criteria 评分。",
+    "sourceUrls": [
+      "https://openai.com/index/healthbench/",
+      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+    ]
+  },
+  "taskContract": {
+    "input": "以用户消息结束的健康相关多轮对话，面向个人用户或医疗专业人员，可能涉及多语言、专科和不同情境。",
+    "output": "对最后一条用户消息作答；grader 逐项判断是否满足该例 rubric criteria。",
+    "environment": "基准本身是对话回答评测；检索、其他工具、重复采样和 grader 版本依具体运行报告而定。",
+    "sourceUrls": [
+      "https://openai.com/index/healthbench/",
+      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Hard 子集有 1,000 个对话；母集有 5,000 个对话和 48,562 条独特 rubric criteria。",
+    "disclosure": "complete",
+    "scale": [
+      "Hard：1,000 个对话；母集：5,000 个对话、48,562 条独特 rubric criteria。"
+    ],
+    "splits": [
+      "Hard 是 HealthBench 的公开困难子集，通过单独 JSONL 输入评测；它不是独立任务格式。"
+    ],
+    "fields": [],
+    "files": [
+      "官方评测脚本为 Hard 指定单独 JSONL 输入；本轮未固定数据版本核实具体列名和文件哈希。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/healthbench/",
+      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "OpenAI 发布页和 simple-evals 提供 Hard 数据入口及评测代码；可访问不等于允许在线转载样例。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/healthbench/",
+      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+    ],
+    "url": "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "simple-evals README 将 HealthBench 列为 MIT；发布页同时给出在线样例披露请求。",
+    "scope": "OpenAI 要求不要在线以纯文本或图片披露 HealthBench 样例，以减少训练语料和联网检索造成的泄漏。",
+    "boundaries": [
+      "不在线转载 Hard 对话、回答、rubric、图片或可还原题目的截图；MIT 标签不取消该请求。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/simple-evals#evals",
+      "https://openai.com/index/healthbench/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "Hard 属于 HealthBench，适用官方不得在线披露样例的请求；不展示原题、回答、rubric、图片或截图，只提供不含题文的概述与链接。",
+    "sourceUrls": [
+      "https://openai.com/index/healthbench/",
+      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+    ]
+  }
+}

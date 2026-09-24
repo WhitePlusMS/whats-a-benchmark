@@ -1,0 +1,158 @@
+{
+  "aliases": [
+    "HLE",
+    "Humanity's Last Exam",
+    "人类最后的考试"
+  ],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "hle",
+  "name": "Humanity’s Last Exam",
+  "subtitle": "跨学科的高难度专业问答",
+  "category": "knowledge",
+  "tags": [
+    "多学科",
+    "图文推理"
+  ],
+  "publisher": "CAIS / Scale AI / 专家贡献者",
+  "year": 2025,
+  "version": "公开题集与私有留出集",
+  "metric": {
+    "name": "正确率",
+    "description": "主要指标为正确率；论文以 o3-mini judge 判断答案是否等价于标准答案，数值可在小范围内近似一致。论文还报告 RMS calibration error，用以衡量模型自报置信度与正确率的匹配。图像题是否纳入、文本子集、答案判定器、模型版本和工具条件均会影响结果。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2501.14249"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "private held-out 的题量、访问权限和当前部署方式没有在已查官方材料中公开。",
+      "sourceUrls": [
+        "https://lastexam.ai/",
+        "https://github.com/centerforaisafety/hle",
+        "https://huggingface.co/datasets/cais/hle"
+      ]
+    },
+    {
+      "text": "数据卡 MIT 元数据与“不得公开分享、重新上传或分发”的明示要求同时存在；本记录按更具体的基准完整性请求处理，不作法律解释。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2501.14249",
+        "https://huggingface.co/datasets/cais/hle"
+      ]
+    },
+    {
+      "text": "本轮未逐版本对比 HLE-Rolling 变化清单与公开 cais/hle 当前 revision。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2501.14249",
+        "https://huggingface.co/datasets/cais/hle"
+      ]
+    },
+    {
+      "text": "各厂商带工具结果的搜索范围、代码工具、预算、judge 和题目子集须逐报告查证。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2501.14249",
+        "https://huggingface.co/datasets/cais/hle"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "HLE 官网",
+      "url": "https://lastexam.ai/",
+      "role": "definition"
+    },
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2501.14249",
+      "role": "paper"
+    },
+    {
+      "label": "CAIS 官方 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/cais/hle",
+      "role": "data"
+    },
+    {
+      "label": "CAIS 官方 GitHub",
+      "url": "https://github.com/centerforaisafety/hle",
+      "role": "readme"
+    }
+  ],
+  "status": "published",
+  "order": 30,
+  "brandIds": [
+    "cais",
+    "scale"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Humanity’s Last Exam 衡量模型在广泛专业知识和高难度闭合式学术问题上的表现。专家贡献题目，经模型筛查和多轮审阅，答案须明确可验证。",
+    "task": "解答跨百余学科的多选或 exact-match 短答问题；部分题目需要结合图片。它不等同于开放式研究能力或通用智能。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2501.14249"
+    ]
+  },
+  "taskContract": {
+    "input": "英语问题，可附图片；约 14% 为图文题，约 24% 为多项选择，其余为 exact-match 短答。",
+    "output": "输出选项或可核验短答案；原论文用 o3-mini judge 对照标准答案判定，并报告置信度校准指标。",
+    "environment": "论文基线使用 zero-shot CoT，原始评测不提供计算器或代码执行工具；带搜索工具的结果应与无工具基线分开。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2501.14249"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开集有 2,500 题、百余学科；另保留私有 held-out questions，题量未公开。",
+    "disclosure": "partial",
+    "scale": [
+      "公开集：2,500 题、百余学科；约 14% 要求图像理解，约 24% 为选择题。"
+    ],
+    "splits": [
+      "公开 test：2,500 题；另有 private held-out questions，未公布数量。"
+    ],
+    "fields": [
+      "id、question、image、image_preview、answer、answer_type、author_name、rationale、rationale_image、raw_subject、category、canary。"
+    ],
+    "files": [
+      "CAIS Hugging Face 受控访问的公开 test 数据；另有未公开的 private held-out questions。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2501.14249",
+      "https://huggingface.co/datasets/cais/hle"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "公开 HF 文件需接受数据集条件并共享联系信息；官网与作者仓库提供资料入口。论文确认另有私有留出题。"
+    ],
+    "sourceUrls": [
+      "https://lastexam.ai/",
+      "https://github.com/centerforaisafety/hle",
+      "https://huggingface.co/datasets/cais/hle"
+    ],
+    "url": "https://huggingface.co/datasets/cais/hle"
+  },
+  "reusePolicy": {
+    "status": "prohibited",
+    "license": "HF 元数据标注 MIT，但数据卡明确禁止公开分享、重新上传或分发数据集；arXiv 论文许可不自动适用于数据、题目、答案或图像。",
+    "scope": "按作者针对数据集的明确分发限制处理；公开页面只介绍 benchmark 并链接官方访问入口。",
+    "boundaries": [
+      "不转载或镜像题目、答案、rationale、图像或截图；遵循作者关于避免训练语料污染和 canary 过滤的说明。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/cais/hle",
+      "https://github.com/centerforaisafety/hle",
+      "https://arxiv.org/abs/2501.14249"
+    ]
+  },
+  "sampleAccess": {
+    "status": "gated",
+    "reason": "官方数据卡禁止公开分享、重传或分发数据集；只给不含题文的概述与官方入口，不发布题目、答案、rationale 或图像。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/cais/hle",
+      "https://github.com/centerforaisafety/hle"
+    ],
+    "url": "https://huggingface.co/datasets/cais/hle"
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "id": "apex-agents",
+  "status": "published",
+  "order": 702,
+  "name": "APEX-Agents",
+  "subtitle": "跨应用完成多步骤专业工作",
+  "category": "agents",
+  "tags": [
+    "Agent",
+    "长程任务",
+    "专业工作"
+  ],
+  "publisher": "Mercor / APEX-Agents 团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "APEX-Agents",
+  "kind": "original",
+  "aliases": [
+    "AI Productivity Index for Agents"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "APEX-Agents 是 Mercor 发布的专业工作智能体评测，任务来自投行、咨询和法律等工作场景。原版与 1.1 是不同版本，规模和任务包不可合并。",
+    "task": "Agent 阅读单轮任务提示，在对应模拟工作世界中产出可交付成果；按 rubric 中的 Met/Not met 条件判定。Gold output 是评分参考，不是 agent 输出。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+      "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+    ]
+  },
+  "taskContract": {
+    "input": "单轮任务提示、rubric、gold output、任务 metadata，以及任务引用的 world 文件和相关工件。",
+    "output": "Agent 在受控工作环境中生成的交付物；评分器根据 rubric 的逐项条件判定通过情况。",
+    "environment": "原版为模拟的专业应用环境，包含世界文件与工具；1.1 提供 Harbor 可运行任务包。具体工具依任务及版本而异。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原版和 1.1 均为 gated 任务包；公开页面披露规模与包结构，未在本次核验中取得任务文件。",
+    "disclosure": "not-public",
+    "scale": [
+      "原版：480 tasks、33 worlds，含投行、咨询、法律三个领域。",
+      "1.1：240 tasks、31 worlds、5,182 个文件；该版本重构了任务与环境。"
+    ],
+    "splits": [
+      "官方页面未声明标准 train/dev/test split。"
+    ],
+    "fields": [
+      "任务卡包含 instruction、rubric、gold output、metadata 及 world/artifact 引用。",
+      "1.1 Harbor 包含环境配置、任务定义、agent 配置、solution 与 grader 等文件。"
+    ],
+    "files": [
+      "1.1 公开说明列出 environment/、tasks/、worlds/、manifest.json、registry.json 和 run_task.sh。",
+      "原版任务内容在 Hugging Face gated 文件中；本次未下载或检查原始文件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "原版与 1.1 数据卡均要求先接受访问条款并提供联系信息；本次未接受条款、下载或读取 gated 文件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ],
+    "url": "https://huggingface.co/datasets/mercor/apex-agents"
+  },
+  "reusePolicy": {
+    "status": "prohibited",
+    "license": "数据卡中的 CC BY 4.0 元数据不覆盖明确的 evaluation-only 限制；代码仓库许可仅适用于实现。",
+    "scope": "仅将定义、规模和方法作为带来源的描述信息展示；不得将任务内容用于训练、微调、参数拟合，也不得公开复制原始任务资产。",
+    "boundaries": [
+      "保留 gated 访问边界，不把任务提示、rubric、gold output、metadata 或 world 文件转存为公开样例。",
+      "官方禁止为训练用途抓取或爬取数据；遵守两个版本各自的访问条款。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+      "https://github.com/Mercor-Intelligence/apex_loop_truncated_tools_agent"
+    ]
+  },
+  "sampleAccess": {
+    "status": "gated",
+    "reason": "官方提供规模和结构说明，但原版及 1.1 的任务文件受 gated 条款约束；本次没有读取原始题目或输出。页面只链接官方数据卡。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ],
+    "url": "https://huggingface.co/datasets/mercor/apex-agents"
+  },
+  "metric": {
+    "name": "Rubric pass rate",
+    "description": "原版报告 Pass@1、Pass@8、Pass^8 与平均分；每题按 rubric 的 Met/Not met 项判定。1.1 使用固定 harness revision，并为每个任务设置 100 turns 或 10,800 秒上限。版本间分数应分开报告。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "原版 480/33 与 1.1 的 240/31 是不同版本的规模，不能合并为单一题量。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents",
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      ]
+    },
+    {
+      "text": "任务文件 gated；字段与包结构依据数据卡说明，未对受控文件逐项抽查。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents",
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      ]
+    },
+    {
+      "text": "复用约束含 evaluation-only、禁止训练用途和抓取限制；公开展示不得外推为原始题目再发布许可。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents",
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+        "https://github.com/Mercor-Intelligence/apex_loop_truncated_tools_agent"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "APEX-Agents 原版 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/mercor/apex-agents",
+      "role": "data"
+    },
+    {
+      "label": "APEX-Agents 1.1 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+      "role": "data"
+    },
+    {
+      "label": "Mercor APEX-Agents 1.1 发布说明",
+      "url": "https://www.mercor.com/blog/introducing-apex-agents-1-1/",
+      "role": "definition"
+    },
+    {
+      "label": "Mercor APEX agent 实现仓库",
+      "url": "https://github.com/Mercor-Intelligence/apex_loop_truncated_tools_agent",
+      "role": "code"
+    },
+    {
+      "label": "APEX-Agents 研究论文",
+      "url": "https://arxiv.org/abs/2601.14242",
+      "role": "paper"
+    },
+    {
+      "label": "Mercor APEX 项目页",
+      "url": "https://www.mercor.com/apex/",
+      "role": "definition"
+    }
+  ]
+}

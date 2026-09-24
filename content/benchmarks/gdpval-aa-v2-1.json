@@ -1,0 +1,194 @@
+{
+  "id": "gdpval-aa-v2-1",
+  "status": "published",
+  "order": 503,
+  "name": "GDPval-AA v2.1",
+  "subtitle": "职业工作任务的独立代理评测",
+  "category": "work",
+  "tags": [
+    "知识工作",
+    "职业任务"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v2.1",
+  "kind": "derivative",
+  "aliases": [
+    "GDPval-AA v2.1",
+    "GDPval AA v2.1"
+  ],
+  "related": [
+    {
+      "label": "前一版本",
+      "id": "gdpval-aa",
+      "detail": "同一评测方对 GDPval 任务的代理评估，本条记录 v2.1 方法。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa",
+        "https://artificialanalysis.ai/evaluations/gdpval-aa"
+      ]
+    },
+    {
+      "label": "基于",
+      "id": "gdpval",
+      "detail": "复用 GDPval 职业任务来源，执行代理流程和评级方法由 Artificial Analysis 定义。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa",
+        "https://artificialanalysis.ai/evaluations/gdpval-aa"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "GDPval 评估模型能否完成美国职业场景中的经济价值工作并交付可审阅成果；GDPval-AA v2.1 是 Artificial Analysis 基于该任务集运行的独立模型对比榜单。",
+    "task": "模型根据专业工作任务生成所需文件或交付物；OpenAI 的专家 win/tie 评测与 AA 的盲配对 Elo 是不同协议。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2510.04374",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa"
+    ]
+  },
+  "taskContract": {
+    "input": "任务提示、相关 reference files 和交付要求。",
+    "output": "一个或多个可审阅的工作成果文件。",
+    "environment": "AA v2.1 使用 Stirrup harness 与 E2B sandbox，提供网页检索、文件查看和代码执行等工具；这一运行环境不改变底层题集定义。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa",
+      "https://github.com/ArtificialAnalysis/Stirrup"
+    ]
+  },
+  "dataProfile": {
+    "summary": "OpenAI 原始 GDPval 含 1,320 项，公开 gold 子集为 220 项；AA v2.1 对公开题集的 220 项进行一轮模型对比。",
+    "disclosure": "partial",
+    "scale": [
+      "原始 GDPval：1,320 项，覆盖 44 种职业与 9 个产业。",
+      "公开 gold subset：220 项；AA v2.1 方法页使用 220 tasks、每 task 1 次的配置。"
+    ],
+    "splits": [
+      "Hugging Face 数据卡将 220 条公开题目标记为 train；该标签不构成完整 GDPval 的 train/test 划分。"
+    ],
+    "fields": [
+      "公开记录包括 task_id、sector、occupation、prompt、reference files、deliverable files 与 rubric 相关信息。"
+    ],
+    "files": [
+      "openai/gdpval Hugging Face 数据集提供 220 条公开 gold 记录及关联材料。",
+      "OpenAI 论文描述完整任务集；AA 评测代码单独位于 Stirrup 仓库。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2510.04374",
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa",
+      "https://github.com/ArtificialAnalysis/Stirrup"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "OpenAI Hugging Face 数据集公开提供 220 条 gold 记录；这不是原始 1,320 条任务全量。AA leaderboard、方法与部分示例另行公开。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://arxiv.org/abs/2510.04374",
+      "https://artificialanalysis.ai/evaluations/gdpval-aa"
+    ],
+    "url": "https://huggingface.co/datasets/openai/gdpval"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "OpenAI Hugging Face 数据卡未显示明确的数据 SPDX 许可证；Stirrup 的 MIT 仅适用于 harness 软件。",
+    "scope": "许可未明确前只概述与链接，不转载 prompt、rubric、reference files、gold deliverables、媒体或 AA 模型提交。",
+    "boundaries": [
+      "公开下载不等于对第三方品牌、图像/视频或 gold 交付物授予无条件再发布权。",
+      "不得把 Stirrup 的 MIT 许可套用于 GDPval 题目数据或 AA 榜单媒体。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://github.com/ArtificialAnalysis/Stirrup",
+      "https://arxiv.org/abs/2510.04374"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "AA 页面和 OpenAI 数据集提供代表任务或公开 gold 记录，但题目、rubric、reference files 与交付物的再发布许可未确认；候选只链接原始页面，不复制任务内容。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "https://huggingface.co/datasets/openai/gdpval"
+    ],
+    "url": "https://artificialanalysis.ai/evaluations/gdpval-aa"
+  },
+  "metric": {
+    "name": "AA Elo rating",
+    "description": "AA v2.1 对同题的匿名模型提交进行成对比较，以 Crowd-BT 拟合 Elo；该相对排名不同于 OpenAI 原始 GDPval 的专家 human win/tie 结果。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa",
+      "https://arxiv.org/abs/2510.04374",
+      "https://openai.com/index/gdpval/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开数据卡未声明覆盖所有题目、reference files 与媒体的 SPDX license；第三方素材权利未逐项检查。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/gdpval"
+      ]
+    },
+    {
+      "text": "AA 的实际 pairing 数、完整 judge prompt 及在线榜单快照未在本次逐项重算，页面会随评测更新。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa",
+        "https://artificialanalysis.ai/evaluations/gdpval-aa"
+      ]
+    },
+    {
+      "text": "AA 对部分 Office 文件做兼容性修复；本次未逐文件复核修复是否只触及元数据与关系。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Artificial Analysis leaderboard",
+      "url": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "role": "leaderboard"
+    },
+    {
+      "label": "OpenAI GDPval 论文",
+      "url": "https://arxiv.org/abs/2510.04374",
+      "role": "definition"
+    },
+    {
+      "label": "Artificial Analysis 方法说明",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#gdpval-aa",
+      "role": "definition"
+    },
+    {
+      "label": "OpenAI 数据卡",
+      "url": "https://huggingface.co/datasets/openai/gdpval",
+      "role": "data"
+    },
+    {
+      "label": "AA methodology",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "Stirrup 仓库",
+      "url": "https://github.com/ArtificialAnalysis/Stirrup",
+      "role": "code"
+    },
+    {
+      "label": "OpenAI 发布页",
+      "url": "https://openai.com/index/gdpval/",
+      "role": "definition"
+    },
+    {
+      "label": "Anthropic Opus 5.5 发布页",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "role": "vendor-report"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "aliases": [
+    "DeepMind MRCR v2",
+    "Google MRCR v2"
+  ],
+  "related": [
+    {
+      "id": "mrcr",
+      "label": "同类任务的另一实现",
+      "detail": "OpenAI 公开集与此处 DeepMind 实现分别保留来源；不默认内容或分数等价。"
+    }
+  ],
+  "kind": "derivative",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "mrcr-v2",
+  "name": "MRCR v2（DeepMind）",
+  "subtitle": "在相似回答中定位指定的那一次",
+  "category": "context",
+  "tags": [
+    "多轮指代",
+    "长上下文",
+    "厂商实现"
+  ],
+  "publisher": "Google DeepMind",
+  "year": null,
+  "version": "eval_hub / mrcr_v2；8-needle、长度与评分模式需注明",
+  "summary": "DeepMind 将其 MRCR 内部实现公开，要求模型在长对话的相似请求中找回指定回答。",
+  "task": "根据格式、风格、主题和出现次序定位回答，先输出指定随机前缀，再复现目标内容。",
+  "format": "按 needle 数与上下文长度下载任务子集；官方仓库提供数据生成、评分和分布检查代码。",
+  "metric": {
+    "name": "MRCR 匹配得分",
+    "direction": "higher",
+    "description": "官方提供默认和较宽松两种评分模式。upto_128K 是累计范围，at_1M 是指定长度；比较前须统一配置。"
+  },
+  "limitations": [
+    "必须说明是否允许代码工具，否则测量的能力不同。",
+    "8-needle 与其他干扰数量、累计长度与单点长度不能直接互换。",
+    "MRCR 任务可追溯到 2024 年 Michelangelo 论文；本条目的 v2 首次公开年份尚未单独核实。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
+      "label": "DeepMind 官方数据与评分",
+      "kind": "code"
+    },
+    {
+      "url": "https://arxiv.org/abs/2409.12640v2",
+      "label": "MRCR 任务原始论文",
+      "kind": "paper"
+    },
+    {
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-1-pro/",
+      "label": "Gemini 3.1 Pro 评测方法",
+      "kind": "report"
+    }
+  ],
+  "status": "published",
+  "order": 400,
+  "brandIds": [
+    "google-deepmind"
+  ],
+  "availability": "unknown"
+}

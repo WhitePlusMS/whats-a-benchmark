@@ -1,0 +1,142 @@
+{
+  "id": "vending-bench-2",
+  "status": "published",
+  "order": 716,
+  "name": "Vending-Bench 2",
+  "subtitle": "在长时程售货机经营模拟中评估智能体",
+  "category": "agents",
+  "tags": [
+    "长时程智能体",
+    "工具使用",
+    "商业模拟"
+  ],
+  "publisher": "Andon Labs",
+  "brandIds": [],
+  "year": 2025,
+  "version": "Vending-Bench 2; Vending-Bench Arena is a separate multi-agent variant",
+  "kind": "original",
+  "aliases": [
+    "Vending Bench 2"
+  ],
+  "researchStatus": "partial",
+  "officialDefinition": {
+    "summary": "Andon Labs 的长时程 agent benchmark，要求模型在模拟一年中经营自动售货机业务并优化期末余额。",
+    "task": "模型以 $500 起始资金经营模拟售货业务；若连续十天无法支付每天 $2 机器费则提前终止；主要评分是模拟年度期末账户余额。",
+    "sourceUrls": [
+      "https://andonlabs.com/evals/vending-bench-2"
+    ]
+  },
+  "taskContract": {
+    "input": "系统提示、业务模拟状态、采购/库存/销售工具；agent 可以搜索供应商并通过邮件下单。",
+    "output": "模拟环境中的经营操作序列及期末银行余额；官方榜单展示五次运行平均余额。",
+    "environment": "模拟一年长期多轮售货机经营环境，包含供应商谈判、配送、库存、销售、费用与退款；官方称常见运行约 3,000–6,000 条消息。",
+    "sourceUrls": [
+      "https://andonlabs.com/evals/vending-bench-2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方网页公开动态排行榜与运行余额曲线；未确认固定公开任务数据集、字段 schema 或标准数据拆分。",
+    "disclosure": "partial",
+    "scale": [
+      "网页当前 leaderboard 标示平均 5 runs；运行消息量为官方约数 3,000–6,000。"
+    ],
+    "splits": [
+      "榜单可切换 Frontier/Open/All，不是 train/dev/test 数据集 split。",
+      "Vending-Bench Arena 是竞争版，不能并入此条成绩。"
+    ],
+    "fields": [
+      "所查官方网页未说明可下载数据 schema 或标准提交/结果 JSON schema。"
+    ],
+    "files": [
+      "官方评测网页提供动态表格、图表及任务/系统提示说明；固定数据包未核实。"
+    ],
+    "sourceUrls": [
+      "https://andonlabs.com/evals/vending-bench-2",
+      "https://andonlabs.com/evals/vending-bench-arena"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "官方定义和动态 leaderboard 可公开浏览；本轮未确认固定版本可执行仓库、任务包或独立复现接口。"
+    ],
+    "url": "https://andonlabs.com/evals/vending-bench-2",
+    "sourceUrls": [
+      "https://andonlabs.com/evals/vending-bench-2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "所查官方页面未见任务数据、系统提示、图表或榜单数据的明确再分发许可。",
+    "scope": "只链接官方页面并撰写原创摘要；不复制完整提示、运行数据、排行榜或图像。",
+    "boundaries": [
+      "榜单动态变化，记录结果必须带查询日期、分组和均值方式。",
+      "不要与多智能体 Vending-Bench Arena 成绩混用。"
+    ],
+    "sourceUrls": [
+      "https://andonlabs.com/evals/vending-bench-2",
+      "https://andonlabs.com/evals/vending-bench-arena"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方页面展示系统提示片段和图表，但没有确认再分发许可；不在候选条目中复制官方样例或成绩图。",
+    "url": "https://andonlabs.com/evals/vending-bench-2",
+    "sourceUrls": [
+      "https://andonlabs.com/evals/vending-bench-2"
+    ]
+  },
+  "metric": {
+    "name": "Final bank balance (USD)",
+    "description": "以模拟周期结束时余额计分；当前榜单注明均值来自五次运行，并支持 arithmetic mean 与 geometric mean 视图。分数没有理论上限。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://andonlabs.com/evals/vending-bench-2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "所查官方页未锁定数据集版本号、仓库 commit、完整仿真接口或标准可执行环境。",
+      "sourceUrls": [
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
+    },
+    {
+      "text": "排行榜动态变化且前十行以外需展开；不得将当前页面的一部分当作静态完整榜单。",
+      "sourceUrls": [
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
+    },
+    {
+      "text": "系统提示、任务数据、图表及榜单数据的再分发许可未确认。",
+      "sourceUrls": [
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
+    },
+    {
+      "text": "GLM-5.1 厂商模型卡列出 Vending Bench 2；该引用不构成 benchmark 定义或独立复现。",
+      "sourceUrls": [
+        "https://huggingface.co/zai-org/GLM-5.1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Andon Labs Vending-Bench 2 官方评测页（引文年份 2025，页面未标具体发布日期）",
+      "url": "https://andonlabs.com/evals/vending-bench-2",
+      "role": "definition"
+    },
+    {
+      "label": "Andon Labs Vending-Bench Arena 官方页（用于区别多智能体变体）",
+      "url": "https://andonlabs.com/evals/vending-bench-arena",
+      "role": "readme"
+    },
+    {
+      "label": "GLM-5.1 厂商模型卡",
+      "url": "https://huggingface.co/zai-org/GLM-5.1",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

@@ -1,0 +1,155 @@
+{
+  "id": "ifbench",
+  "status": "published",
+  "order": 710,
+  "name": "IFBench",
+  "subtitle": "以可验证约束衡量精确指令遵循",
+  "category": "alignment",
+  "tags": [
+    "指令遵循",
+    "可验证评测",
+    "OOD"
+  ],
+  "publisher": "Allen Institute for AI (Ai2)",
+  "brandIds": [],
+  "year": 2025,
+  "version": "IFBench OOD constraints / official test release",
+  "kind": "original",
+  "aliases": [
+    "Generalizing Verifiable Instruction Following"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "IFBench 是 Ai2 发布的精确指令遵循评测，测试 58 个新的分布外约束及其 verifier，并提供可选的双轮约束隔离设置。",
+    "task": "给定 prompt 与约束生成回答，由对应规则验证器检查回答是否符合约束；评估可按 prompt 或 instruction 及 strict/loose 模式聚合。",
+    "sourceUrls": [
+      "https://github.com/allenai/IFBench/blob/main/README.md",
+      "https://arxiv.org/abs/2507.02833"
+    ]
+  },
+  "taskContract": {
+    "input": "官方 IFBench_test.jsonl prompt/约束及模型回复 JSONL；多轮变体将原始 prompt 和后续约束分两轮提交。",
+    "output": "规则 verifier 对生成回复的逐项结果，以及 prompt-level 或 instruction-level 准确率聚合。",
+    "environment": "使用 Ai2 官方 Python 仓库或 ifbench 包；评估设置包括 temperature 0，并按模型类型设置最大生成 token。",
+    "sourceUrls": [
+      "https://github.com/allenai/IFBench/blob/main/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "测试部分由 58 个 OOD constraint 类型构成；官方另发多轮测试和 IF-RLVR 训练数据。",
+    "disclosure": "partial",
+    "scale": [
+      "58 个新的 OOD 测试约束及相应验证函数。",
+      "IF-RLVR 另有 29 个训练约束，不计作 IFBench 测试约束。"
+    ],
+    "splits": [
+      "官方提供单轮测试、多轮测试及独立 IF-RLVR 训练数据。"
+    ],
+    "fields": [
+      "README 要求测试 JSONL 与 prompt/completion 回复 JSONL；未在本候选中断言统一完整字段 schema。"
+    ],
+    "files": [
+      "测试文件名为 IFBench_test.jsonl；示例回复文件名为 sample_output.jsonl。"
+    ],
+    "sourceUrls": [
+      "https://github.com/allenai/IFBench/blob/main/README.md",
+      "https://huggingface.co/datasets/allenai/IFBench_test"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub 与 Hugging Face 测试集入口公开；运行需安装依赖并准备模型回复 JSONL。"
+    ],
+    "url": "https://huggingface.co/datasets/allenai/IFBench_test",
+    "sourceUrls": [
+      "https://github.com/allenai/IFBench/blob/main/README.md",
+      "https://huggingface.co/datasets/allenai/IFBench_test"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "官方 README 声明代码 Apache-2.0、数据 ODC-BY-1.0；数据面向研究与教育用途并受 Ai2 Responsible Use Guidelines 约束。",
+    "scope": "许可按官方仓库声明适用于相应代码和数据；数据中的第三方模型生成输出还受各自独立条款约束。",
+    "boundaries": [
+      "第三方模型生成内容的使用条款可能不同，未逐条确认。",
+      "公开数据访问不等于本站可不加筛查地转载完整测试题或回答。"
+    ],
+    "sourceUrls": [
+      "https://github.com/allenai/IFBench/blob/main/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方入口可访问且数据标注 ODC-BY-1.0，但 README 提醒第三方模型输出适用独立条款；在逐项筛查数据来源前只链接官方入口，不本地发布样例。",
+    "url": "https://huggingface.co/datasets/allenai/IFBench_test",
+    "sourceUrls": [
+      "https://github.com/allenai/IFBench/blob/main/README.md",
+      "https://huggingface.co/datasets/allenai/IFBench_test"
+    ]
+  },
+  "metric": {
+    "name": "Prompt-level loose accuracy",
+    "description": "论文通常报告 prompt-level loose accuracy；官方代码另支持 strict/loose 及 prompt-level/instruction-level 聚合。thinking 模型可使用不同 token 上限，评分前会提取最终答案，因此发布成绩应标记所用口径和生成设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/allenai/IFBench/blob/main/README.md",
+      "https://arxiv.org/abs/2507.02833"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未逐条检查测试 JSONL 和多轮数据的记录字段、行数、数据 revision 或第三方输出权利。",
+      "sourceUrls": [
+        "https://github.com/allenai/IFBench/blob/main/README.md",
+        "https://huggingface.co/datasets/allenai/IFBench_test"
+      ]
+    },
+    {
+      "text": "模型厂商 benchmark 表可能省略 strict/loose、温度及 thinking token 上限等设置；本候选不复算厂商分数。",
+      "sourceUrls": [
+        "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Ai2 IFBench 官方 README",
+      "url": "https://github.com/allenai/IFBench/blob/main/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "IFBench 论文",
+      "url": "https://arxiv.org/abs/2507.02833",
+      "role": "paper"
+    },
+    {
+      "label": "IFBench 官方测试集卡",
+      "url": "https://huggingface.co/datasets/allenai/IFBench_test",
+      "role": "data"
+    },
+    {
+      "label": "Qwen3.8-27B 官方模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Qwen3.8-Max 官方模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [
+    {
+      "id": "ifeval",
+      "label": "IFEval",
+      "detail": "IFBench 的仓库包含经典 IFEval verifier，论文/README 将 IFBench描述为其扩展；两者题集和 benchmark identity 不同，本站应作为关联条目而非同名别名合并。",
+      "sourceUrls": [
+        "https://github.com/allenai/IFBench/blob/main/README.md",
+        "https://arxiv.org/abs/2507.02833"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-09-23"
+}

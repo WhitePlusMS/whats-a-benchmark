@@ -1,0 +1,55 @@
+{
+  "aliases": [
+    "MRCR",
+    "OpenAI-MRCR",
+    "MRCR v2（Anthropic 报告）",
+    "OpenAI MRCR"
+  ],
+  "related": [
+    {
+      "id": "mrcr-v2",
+      "label": "同类任务的另一实现",
+      "detail": "DeepMind 发布自己的 MRCR v2 数据、生成与评分代码；不据名称推断两者版本或成绩等价。"
+    }
+  ],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "mrcr",
+  "name": "MRCR（OpenAI 公开集）",
+  "subtitle": "长对话里，找回指定的那一次回答",
+  "category": "context",
+  "tags": [
+    "多轮检索",
+    "相似信息干扰"
+  ],
+  "publisher": "OpenAI",
+  "year": 2025,
+  "version": "OpenAI 公开集；2 / 4 / 8 needle 与长度需注明",
+  "summary": "在长对话里插入多个相似请求，检验模型能否区分并找回指定内容。",
+  "task": "读取包含多个相似目标的对话，根据后续指代提取或复现指定回答。",
+  "format": "长 messages 对话、目标答案及评分辅助字段，按 needle 数等配置组织。",
+  "metric": {
+    "name": "回答匹配分数",
+    "direction": "higher",
+    "description": "按官方匹配方法衡量找回内容的准确程度；不同 needle 数、长度和修订版须区分。"
+  },
+  "limitations": [
+    "2-needle 与 8-needle 的干扰程度不同。",
+    "检索表现不能单独代表所有长文本推理。",
+    "Anthropic Opus 4.6 发布页把 MRCR v2 链接到本数据卡；Google 的同名 v2 则有独立实现，不能仅凭名称等同。"
+  ],
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/openai/mrcr",
+      "label": "官方数据与评分说明",
+      "kind": "data"
+    }
+  ],
+  "status": "published",
+  "order": 390,
+  "brandIds": [
+    "openai"
+  ],
+  "availability": "unknown"
+}

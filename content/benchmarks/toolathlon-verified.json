@@ -1,0 +1,176 @@
+{
+  "id": "toolathlon-verified",
+  "status": "published",
+  "order": 715,
+  "name": "Toolathlon-Verified",
+  "subtitle": "真实应用环境中的长时程工具使用基准最终核验版",
+  "category": "agents",
+  "tags": [
+    "tool-use",
+    "agent",
+    "long-horizon",
+    "real-environment"
+  ],
+  "publisher": "HKUST NLP Group",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Verified final release (2026-06-30)",
+  "kind": "original",
+  "aliases": [
+    "Toolathlon",
+    "Toolathlon Verified"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估语言 agent 在真实软件环境中执行多步工具任务的能力，任务以执行后的环境状态进行程序化核验。",
+    "task": "Agent 根据自然语言指令，在带有预置状态的真实或容器化应用环境中逐轮调用工具并完成任务；独立 evaluator 检查结果状态。",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+      "https://arxiv.org/abs/2510.25726"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言任务指令、预置环境状态或 initial_workspace 文件，以及任务配置指定的 MCP servers/tools。",
+    "output": "多轮 agent 工具操作和应用环境状态变化；逐任务 evaluator 产出 0–1 reward。",
+    "environment": "多应用远端和容器环境，按任务使用工具；官方本地运行需 Linux、Docker/Podman、应用账户/凭据或公开评测服务。",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+      "https://arxiv.org/abs/2510.25726"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原论文报告 108 个任务及 32 个 MCP servers/604 tools；官方仓库声明当前代码对应 Toolathlon-Verified final release，但最终版精确任务数未独立核实。",
+    "disclosure": "partial",
+    "scale": [
+      "原论文任务数 108，不能自动作为 Verified finalpool 精确任务数",
+      "原论文列出 32 个 MCP servers 和 604 个工具",
+      "原论文统计 72/108 个任务使用状态初始化"
+    ],
+    "splits": [
+      "官方论文与 README 未声明传统 train/validation/test 划分"
+    ],
+    "fields": [
+      "逐任务自然语言指令",
+      "可选状态初始化脚本或 initial_workspace 预设文件",
+      "逐任务 evaluation script 与配置的必要工具服务"
+    ],
+    "files": [
+      "官方 GitHub tasks/finalpool/<taskname> 任务目录",
+      "评测服务和本地运行脚本、应用配置与 evaluator",
+      "Hugging Face 上独立发布的 gated 模型轨迹包"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2510.25726",
+      "https://github.com/hkust-nlp/Toolathlon/tree/main/tasks/finalpool",
+      "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方 GitHub 代码与任务目录公开；本轮未验证 finalpool 的完整数量。",
+      "本地评测需要容器化环境、应用服务和模型 API/账号凭据。",
+      "模型评测轨迹需登录 Hugging Face 并接受 benchmark-only 使用条件。"
+    ],
+    "url": "https://github.com/hkust-nlp/Toolathlon",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+      "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "本轮未在官方仓库根目录或 README 中找到对所有 benchmark task content 适用的通用数据/代码/媒体许可；轨迹数据卡另有明确访问使用条件。",
+    "scope": "在取得逐项内容许可或官方明确授权前，仅链接和使用自写概述，不复制原始任务及评测素材。",
+    "boundaries": [
+      "官方轨迹数据卡限制将原始轨迹公开镜像或重新分发。",
+      "轨迹数据不得用于预训练、后训练、蒸馏、合成训练数据或用于回答/复制 benchmark 的检索语料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+      "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "公开仓库提供 README 示例和 finalpool 任务入口，但任务文本、ground truth、evaluator 与媒体转载许可未确认；只保留官方入口。",
+    "url": "https://github.com/hkust-nlp/Toolathlon/tree/main/tasks/finalpool",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+      "https://github.com/hkust-nlp/Toolathlon/tree/main/tasks/finalpool"
+    ]
+  },
+  "metric": {
+    "name": "Pass@1 success rate",
+    "description": "论文对模型评测三次并报告平均 Pass@1 success rate 及标准差，另报告 Pass@3、Pass³ 和平均 turns；每任务 reward 在 0–1 范围内，由执行后的环境状态 evaluator 计算。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2510.25726"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "原论文 108-task count 属于论文实验版口径，未确认等于 2026 Verified finalpool 的准确任务数。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2510.25726",
+        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "未找到覆盖所有任务及媒体的通用复用许可；不据仓库公开或可见推定可复制。",
+      "sourceUrls": [
+        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "Hugging Face 轨迹仓库是 gated 的 benchmark-sensitive artifacts，原始轨迹不可公开转载。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "HKUST NLP Toolathlon 官方 README 与 Verified 发布日志",
+      "url": "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+      "role": "release"
+    },
+    {
+      "label": "Toolathlon 官方论文",
+      "url": "https://arxiv.org/abs/2510.25726",
+      "role": "paper"
+    },
+    {
+      "label": "官方 finalpool 任务目录",
+      "url": "https://github.com/hkust-nlp/Toolathlon/tree/main/tasks/finalpool",
+      "role": "data"
+    },
+    {
+      "label": "HKUST NLP 官方 Toolathlon Verified 轨迹数据卡",
+      "url": "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories",
+      "role": "access"
+    },
+    {
+      "label": "Qwen3.8-Max 厂商模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "role": "vendor-report"
+    },
+    {
+      "label": "GLM-5.3-Flash 厂商发布页",
+      "url": "https://autoclaw.z.ai/blog/model/glm-5.3-flash/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "DeepSeek-V4-Flash-Vision-Exp 厂商模型卡",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Kimi K3 厂商 benchmark 表",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

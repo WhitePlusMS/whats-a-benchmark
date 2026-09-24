@@ -1,0 +1,280 @@
+{
+  "id": "bfcl",
+  "status": "published",
+  "order": 260,
+  "name": "BFCL",
+  "subtitle": "该调用哪个函数，参数填得对不对",
+  "category": "agents",
+  "tags": [
+    "函数调用",
+    "结构化参数"
+  ],
+  "publisher": "UC Berkeley Gorilla 团队",
+  "brandIds": [
+    "gorilla"
+  ],
+  "year": 2024,
+  "version": "BFCL 系列；具体版本见榜单",
+  "kind": "suite",
+  "aliases": [
+    "Berkeley Function Calling Leaderboard",
+    "BFCL v3",
+    "BFCL v4"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Berkeley Function Calling Leaderboard (BFCL) 评估模型是否能根据自然语言请求正确选择函数并生成结构化参数，后续版本逐步加入多轮、真实工具及 agentic 任务。",
+    "task": "模型接收用户请求和函数 schema，输出函数调用及参数；部分任务需执行调用或在无法作答时拒绝。",
+    "sourceUrls": [
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+      "https://openreview.net/pdf?id=2GmDdhBdDk"
+    ]
+  },
+  "taskContract": {
+    "input": "用户问题、可用函数或工具定义；多轮任务还包含先前对话和工具结果。",
+    "output": "一个或多个符合 schema 的函数调用及参数，或规定的拒绝/终止结果。",
+    "environment": "基础任务通过 AST/结构化比较评分；较新的 V4 含网页搜索、memory 和其他 agentic 工具任务。",
+    "sourceUrls": [
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+      "https://openreview.net/pdf?id=2GmDdhBdDk"
+    ]
+  },
+  "dataProfile": {
+    "summary": "BFCL 持续增加任务类型；V1 的约 2K 题规模不能代表后续 V2–V4 的总规模。",
+    "disclosure": "complete",
+    "scale": [
+      "V1 初始 benchmark 约 2K 条；该规模只对应 V1。",
+      "V2 Live、V3 multi-turn/multi-step 与 V4 Agentic 分别扩展了任务范围。"
+    ],
+    "splits": [
+      "官方按 function-call 类别和版本组织任务；未声明一个适用于所有版本的统一 train/dev/test split。"
+    ],
+    "fields": [
+      "基础记录包含 id、question 与 function 定义；多轮任务另有对话上下文和期望工具结果。"
+    ],
+    "files": [
+      "任务以多个 JSON/JSONL 类别文件提供。",
+      "V4 示例文件为 BFCL_v4_simple_python.json。"
+    ],
+    "sourceUrls": [
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#bfcl-v1",
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方代码仓库公开提供评测实现和多类任务文件；具体类别、版本和许可声明应以数据 README 为准。"
+    ],
+    "sourceUrls": [
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md"
+    ],
+    "url": "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方数据 README 对 benchmark data 标注 Apache-2.0；代码与数据许可范围应分别核对。",
+    "scope": "可按数据 README 中 Apache-2.0 条款复用许可覆盖的公开记录并保留 notice。",
+    "boundaries": [
+      "不同版本和贡献类别可能有各自说明；复用前按具体文件及其上游来源核验。"
+    ],
+    "sourceUrls": [
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "simple_python_0",
+        "title": "三角形面积函数调用",
+        "type": "record",
+        "prompt": "Find the area of a triangle with a base of 10 units and height of 5 units.",
+        "explanation": "原始 question 是用户请求，function 是模型可调用的函数定义；该记录没有附标准答案字段。",
+        "raw": {
+          "id": "simple_python_0",
+          "question": [
+            [
+              {
+                "role": "user",
+                "content": "Find the area of a triangle with a base of 10 units and height of 5 units."
+              }
+            ]
+          ],
+          "function": [
+            {
+              "name": "calculate_triangle_area",
+              "description": "Calculate the area of a triangle given its base and height.",
+              "parameters": {
+                "type": "dict",
+                "properties": {
+                  "base": {
+                    "type": "integer",
+                    "description": "The base of the triangle."
+                  },
+                  "height": {
+                    "type": "integer",
+                    "description": "The height of the triangle."
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description": "The unit of measure (defaults to 'units' if not specified)"
+                  }
+                },
+                "required": [
+                  "base",
+                  "height"
+                ]
+              }
+            }
+          ]
+        },
+        "source": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+        "license": "Apache-2.0 · BFCL benchmark data",
+        "split": "BFCL V4 · simple_python category; official source does not name a train/validation/test split",
+        "excerpt": false
+      },
+      {
+        "id": "simple_python_1",
+        "title": "阶乘函数调用",
+        "type": "record",
+        "prompt": "Calculate the factorial of 5 using math functions.",
+        "explanation": "原始 question 是用户请求，function 是模型可调用的函数定义；该记录没有附标准答案字段。",
+        "raw": {
+          "id": "simple_python_1",
+          "question": [
+            [
+              {
+                "role": "user",
+                "content": "Calculate the factorial of 5 using math functions."
+              }
+            ]
+          ],
+          "function": [
+            {
+              "name": "math.factorial",
+              "description": "Calculate the factorial of a given number.",
+              "parameters": {
+                "type": "dict",
+                "properties": {
+                  "number": {
+                    "type": "integer",
+                    "description": "The number for which factorial needs to be calculated."
+                  }
+                },
+                "required": [
+                  "number"
+                ]
+              }
+            }
+          ]
+        },
+        "source": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+        "license": "Apache-2.0 · BFCL benchmark data",
+        "split": "BFCL V4 · simple_python category; official source does not name a train/validation/test split",
+        "excerpt": false
+      }
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "候选样例取自官方 V4 simple_python JSON 文件；只展示已许可的少量函数调用记录，不代表其他类别或版本。",
+    "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+    "sourceUrls": [
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L990-L991",
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy / category macro average",
+    "description": "按任务类别计算调用结构或执行结果是否正确，再汇总各类别结果；V4 leaderboard 采用版本特定的类别聚合方式。必须注明版本与任务类别，不能将 V1 规模或口径直接外推到 V4。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#evaluation",
+      "https://gorilla.cs.berkeley.edu/leaderboard.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "V1 约 2K 仅为初版；V4 计分类别与 Format Sensitivity 非计分集合范围不同，报告规模时须注明统计口径。",
+      "sourceUrls": [
+        "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#bfcl-v1",
+        "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+        "https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html"
+      ]
+    },
+    {
+      "text": "V2、V3、V4 持续扩充类别和交互形式；跨版本分数需核验任务集合与类别平均方式。",
+      "sourceUrls": [
+        "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+        "https://gorilla.cs.berkeley.edu/leaderboard.html"
+      ]
+    },
+    {
+      "text": "样例只覆盖 V4 simple_python 类别，不代表其他类别的记录 schema。",
+      "sourceUrls": [
+        "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L990-L991"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方方法/历史介绍",
+      "url": "https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#berkeley-function-calling-leaderboard",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方数据说明",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "论文",
+      "url": "https://openreview.net/pdf?id=2GmDdhBdDk",
+      "role": "definition"
+    },
+    {
+      "label": "官方 V1 分类数据说明",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#bfcl-v1",
+      "role": "data"
+    },
+    {
+      "label": "V4 simple_python",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方 V4 数据",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L990-L991",
+      "role": "leaderboard"
+    },
+    {
+      "label": "许可说明",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方评测方法说明",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#evaluation",
+      "role": "readme"
+    },
+    {
+      "label": "当前 V4 leaderboard",
+      "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Gorilla 团队方法博客",
+      "url": "https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html",
+      "role": "leaderboard"
+    },
+    {
+      "label": "BFCL V4 数据与计分范围",
+      "url": "https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html",
+      "role": "leaderboard"
+    }
+  ]
+}

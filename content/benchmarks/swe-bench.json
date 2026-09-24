@@ -1,0 +1,199 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "swe-bench-verified",
+      "label": "人工核验子集",
+      "detail": "对部分任务质量进行人工筛选。",
+      "sourceUrls": [
+        "https://github.com/SWE-bench/SWE-bench",
+        "https://openai.com/index/introducing-swe-bench-verified/",
+        "https://github.com/scaleapi/SWE-bench_Pro-os",
+        "https://arxiv.org/abs/2310.06770"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "swe-bench",
+  "name": "SWE-bench",
+  "subtitle": "从函数题走向真实软件问题",
+  "category": "coding",
+  "tags": [
+    "GitHub issues",
+    "仓库修改"
+  ],
+  "publisher": "SWE-bench 研究团队",
+  "year": 2023,
+  "version": "原始 SWE-bench",
+  "metric": {
+    "name": "任务成功率",
+    "description": "核心指标为在明确 split 中同时通过 FAIL_TO_PASS 与 PASS_TO_PASS 测试的任务比例（resolved rate）。分数受 agent scaffold、模型输入上下文、工具权限、生成预算、patch 提交规则、容器镜像、测试超时及 evaluator 版本影响；比较时必须标注这些实验配置。论文早期结果只对应论文中的模型、运行参数和历史数据/harness，不可作为当前榜单成绩。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2310.06770",
+      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/reference/harness.md",
+      "https://github.com/SWE-bench/SWE-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方原始数据卡没有对 issue 文本、PR patch、test patch 和仓库快照给出统一许可；12 个上游项目、具体 issue/PR 和不同字段的权利未逐项检查。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2310.06770",
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "本次未下载并逐项审查原始数据所有 splits，也未重跑 2,294 项评测；论文原始规模与当前 HF Viewer 的 dev 展示行数属于不同口径。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2310.06770",
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "SWE-bench repo 与 CLI 持续演进，旧论文结果所用 harness 和当前 v5 CLI 任务目录模式之间的逐版本迁移/复现兼容性未在本记录核查。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2310.06770",
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SWE-bench 官方仓库",
+      "url": "https://github.com/SWE-bench/SWE-bench",
+      "role": "readme"
+    },
+    {
+      "label": "SWE-bench ICLR 2024 论文",
+      "url": "https://arxiv.org/abs/2310.06770",
+      "role": "paper"
+    },
+    {
+      "label": "Verified 构造说明",
+      "url": "https://openai.com/index/introducing-swe-bench-verified/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "官方 harness 文档",
+      "url": "https://github.com/SWE-bench/SWE-bench/blob/main/docs/reference/harness.md",
+      "role": "code"
+    },
+    {
+      "label": "quickstart",
+      "url": "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md",
+      "role": "code"
+    },
+    {
+      "label": "原始 SWE-bench Hugging Face 数据页",
+      "url": "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+      "role": "data"
+    },
+    {
+      "label": "官方 LICENSE",
+      "url": "https://github.com/SWE-bench/SWE-bench/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "SWE-bench Pro 官方仓库",
+      "url": "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "role": "readme"
+    },
+    {
+      "label": "官方主页与版本",
+      "url": "https://www.swebench.com/",
+      "role": "definition"
+    }
+  ],
+  "status": "published",
+  "order": 150,
+  "brandIds": [
+    "swe-bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "原始 SWE-bench 评估语言模型能否理解开源软件仓库与 issue 描述，编辑代码并生成解决该问题的补丁。论文定义的原始数据集包含 2,294 个问题，来自 12 个常用 Python 仓库；任务解决往往需跨函数或文件理解与修改。",
+    "task": "根据真实 GitHub issue 在修复前仓库状态生成补丁，并通过 F2P/P2P 测试验证修复。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2310.06770",
+      "https://github.com/SWE-bench/SWE-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "原始 GitHub issue 文本、修复前代码库和固定 commit；模型看不到判分测试。",
+    "output": "可应用于代码库的 patch。",
+    "environment": "Docker evaluation harness 准备实例、应用 patch 并执行测试；须与模型使用的 agent scaffold 分开记录。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-swe-bench-verified/",
+      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/reference/harness.md",
+      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md",
+      "https://arxiv.org/abs/2310.06770",
+      "https://github.com/SWE-bench/SWE-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "此项只记录 Princeton/SWE-bench 的原始 Python 仓库任务集。",
+    "disclosure": "partial",
+    "scale": [
+      "原始论文定义 2,294 个问题，来自 12 个 Python 仓库。",
+      "当前 HF Viewer 默认展示的 dev split 为 225 行。"
+    ],
+    "splits": [
+      "原始作者数据读取入口为 test；HF Viewer 当前默认展示 dev，不能用 dev 行数替代论文规模。"
+    ],
+    "fields": [
+      "repo、instance_id、base_commit、patch、test_patch、problem_statement、hints_text、created_at、version、FAIL_TO_PASS、PASS_TO_PASS、environment_setup_commit。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2310.06770",
+      "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+      "https://github.com/SWE-bench/SWE-bench",
+      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 SWE-bench GitHub 仓库、Hugging Face 数据页和 Docker-based evaluation harness 均公开访问；官方 quickstart 明确提供 full、Lite、Verified 等数据读取方法。仓库 2026 年 README 另描述以 task repo 构建镜像的当前 v5 CLI，历史脚本/数据发布与当前 CLI 不应在复现记录中混为同一运行环境。数据公开下载不等于所有第三方原始内容有统一复制许可。"
+    ],
+    "url": "https://github.com/SWE-bench/SWE-bench",
+    "sourceUrls": [
+      "https://github.com/SWE-bench/SWE-bench",
+      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md",
+      "https://arxiv.org/abs/2310.06770",
+      "https://huggingface.co/datasets/princeton-nlp/SWE-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "SWE-bench 软件仓库采用 MIT；官方原始数据卡未声明覆盖所有样本内容的统一许可证。",
+    "scope": "MIT 按 LICENSE 适用于相应软件代码；issue 文本、上游 patch、测试与代码快照须遵守其各自来源条款。",
+    "boundaries": [
+      "12 个上游仓库及 issue/PR 字段的权利未逐项核查，不能据 evaluator 许可推定数据可集中再发布。",
+      "本站不复制真实 issue、参考 patch、测试内容、轨迹或仓库文件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/SWE-bench/SWE-bench/blob/main/LICENSE",
+      "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+      "https://arxiv.org/abs/2310.06770"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "官方 Viewer 可见部分任务和参考字段，但未标注覆盖全部内容的统一许可。本站不复制题目或代码，只链接官方 Viewer、论文和仓库。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+      "https://arxiv.org/abs/2310.06770",
+      "https://github.com/SWE-bench/SWE-bench",
+      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+    ]
+  }
+}

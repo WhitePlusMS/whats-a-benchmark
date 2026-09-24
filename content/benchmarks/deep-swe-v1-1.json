@@ -1,0 +1,171 @@
+{
+  "id": "deep-swe-v1-1",
+  "status": "published",
+  "order": 709,
+  "name": "DeepSWE v1.1",
+  "subtitle": "隔离验证的长时程软件工程 agent 基准",
+  "category": "coding",
+  "tags": [
+    "coding-agent",
+    "long-horizon",
+    "software-engineering"
+  ],
+  "publisher": "DataCurve AI",
+  "brandIds": [],
+  "year": 2026,
+  "version": "v1.1 (2026-06-15)",
+  "kind": "original",
+  "aliases": [
+    "DeepSWE",
+    "DeepSWE v1.1"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "DataCurve 的长时程软件工程 agent benchmark，以程序化 verifier 检查原创工程任务中实现的可观察行为。",
+    "task": "Agent 在固定开源仓库基线与隔离环境中完成任务指令，提交 patch 后由独立 verifier 环境应用并执行隐藏测试。",
+    "sourceUrls": [
+      "https://github.com/datacurve-ai/deep-swe",
+      "https://deepswe.datacurve.ai/changelog"
+    ]
+  },
+  "taskContract": {
+    "input": "task.toml 元数据、instruction.md 指令及指定仓库基线。",
+    "output": "完成后的 patch；verifier 输出 binary reward、pass fractions、测试报告与日志。",
+    "environment": "Harbor 格式的 Docker 任务；v1.1 使用隔离 verifier 环境，Pier 需高于 0.3.0。",
+    "sourceUrls": [
+      "https://github.com/datacurve-ai/deep-swe"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方发布 113 个原创任务，覆盖 91 个仓库与 5 种语言；本候选针对 v1.1 固定口径。",
+    "disclosure": "partial",
+    "scale": [
+      "113 个任务",
+      "官网列出 91 个仓库",
+      "覆盖 TypeScript、Go、Python、JavaScript、Rust 五种语言"
+    ],
+    "splits": [
+      "未报告传统 train/validation/test split；官网当前 v1.1 leaderboard 以 113-task 基准展示"
+    ],
+    "fields": [
+      "task.toml：仓库、base commit、语言、镜像与资源限制",
+      "instruction.md：agent 可见的任务指令"
+    ],
+    "files": [
+      "environment/：Dockerfile 与环境复现定义",
+      "tests/：verifier 入口、held-out 测试与 grader 配置",
+      "solution/：离线抽查用参考方案",
+      "verifier/reward.json、ctrf.json、test-stdout.txt、run.log：评测输出"
+    ],
+    "sourceUrls": [
+      "https://github.com/datacurve-ai/deep-swe",
+      "https://deepswe.datacurve.ai/"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub 仓库公开；本轮未下载全量任务。",
+      "运行需 Pier、容器环境及模型 API 凭据。"
+    ],
+    "url": "https://github.com/datacurve-ai/deep-swe",
+    "sourceUrls": [
+      "https://github.com/datacurve-ai/deep-swe"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "仓库标注 Apache-2.0；PROVENANCE.md 将其范围限定为 DataCurve 原创贡献，上游项目许可各自适用；官网声明 benchmark 数据不得进入训练语料。",
+    "scope": "仅在核实具体任务、上游项目及素材的适用许可后复用 DataCurve 原创贡献；不将仓库总许可推及第三方材料。",
+    "boundaries": [
+      "不得将 benchmark 数据纳入训练语料。",
+      "本候选不复制任务、reference patch、测试或媒体。"
+    ],
+    "sourceUrls": [
+      "https://github.com/datacurve-ai/deep-swe/blob/main/PROVENANCE.md",
+      "https://deepswe.datacurve.ai/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "DeepSWE 官方主页公开列出任务示例。本按钮仅打开官方原页；本站不复制任务、参考补丁、测试或媒体，并遵守官方禁止将 benchmark 数据纳入训练语料的要求。",
+    "sourceUrls": [
+      "https://deepswe.datacurve.ai/",
+      "https://github.com/datacurve-ai/deep-swe/blob/main/PROVENANCE.md"
+    ],
+    "url": "https://deepswe.datacurve.ai/"
+  },
+  "metric": {
+    "name": "官方任务得分（%）",
+    "description": "官网 leaderboard 展示任务百分比及置信区间；verifier 输出 binary reward 与 pass fractions。当前一手入口未明确将聚合百分比命名为 pass@k，因此不作该推断。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://deepswe.datacurve.ai/",
+      "https://github.com/datacurve-ai/deep-swe"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未固定数据仓库 revision 或逐任务审查上游项目许可，不能据总仓库许可推定全部任务素材可转载。",
+      "sourceUrls": [
+        "https://github.com/datacurve-ai/deep-swe/blob/main/PROVENANCE.md"
+      ]
+    },
+    {
+      "text": "本轮未确认 leaderboard 百分比对 binary reward 与 pass fractions 的精确聚合规则，故不映射为 pass@k。",
+      "sourceUrls": [
+        "https://deepswe.datacurve.ai/",
+        "https://github.com/datacurve-ai/deep-swe"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "DataCurve DeepSWE v1.1 官方仓库 README",
+      "url": "https://github.com/datacurve-ai/deep-swe",
+      "role": "readme"
+    },
+    {
+      "label": "DeepSWE 官方 v1.1 发布 changelog",
+      "url": "https://deepswe.datacurve.ai/changelog",
+      "role": "release"
+    },
+    {
+      "label": "DeepSWE 官方 leaderboard",
+      "url": "https://deepswe.datacurve.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "DataCurve 对任务及上游来源的许可说明",
+      "url": "https://github.com/datacurve-ai/deep-swe/blob/main/PROVENANCE.md",
+      "role": "access"
+    },
+    {
+      "label": "Step 5 Preview 厂商发布页",
+      "url": "https://www.stepfun.com/step-5-preview",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Qwen3.8-Max 厂商模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "role": "vendor-report"
+    },
+    {
+      "label": "GLM-5.3-Flash 厂商发布页",
+      "url": "https://autoclaw.z.ai/blog/model/glm-5.3-flash/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "DeepSeek-V4.1-Flash 厂商更新日志",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Kimi K3 厂商 benchmark 表",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

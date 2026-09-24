@@ -1,0 +1,52 @@
+{
+  "id": "arena-hard-v2",
+  "status": "published",
+  "order": 706,
+  "name": "Arena-Hard v2.0",
+  "subtitle": "用高难度提示评估开放式回答质量",
+  "summary": "通过较难的用户提示和自动评审比较模型开放式回答表现。",
+  "category": "alignment",
+  "tags": [
+    "开放式问答",
+    "指令遵循",
+    "自动评审"
+  ],
+  "publisher": "LMSYS / Arena-Hard 团队",
+  "brandIds": [
+    "lmsys"
+  ],
+  "year": 2025,
+  "version": "Arena-Hard v2.0",
+  "kind": "original",
+  "aliases": [
+    "Arena Hard v2.0"
+  ],
+  "task": "对高难度开放式提示生成回答，并由裁判模型比较或评分回答质量。",
+  "format": "高难度提示、候选模型输出以及自动评审；官方仓库列出 hard prompt、style control 和 Gemini 2.5 judge 配置。",
+  "metric": {
+    "name": "胜率",
+    "description": "通常以对比评审得到的胜率报告；须注明基线、裁判模型和提示集合版本。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "自动评审结果受裁判模型及提示影响。",
+    "高难度提示集并不能覆盖全部用户需求。",
+    "若引用 Kimi 技术报告结果，须按其报告中 Arena-Hard-Auto 与 v2.0 的表述区分配置。"
+  ],
+  "availability": "public",
+  "sampleNote": "官方仓库提供提示、评测与配置入口；本站未复制提示或答案。",
+  "sources": [
+    {
+      "label": "Arena-Hard-Auto 官方仓库与 v2.0 配置",
+      "url": "https://github.com/lmarena/arena-hard-auto",
+      "kind": "code"
+    },
+    {
+      "label": "Kimi K2 官方技术报告",
+      "url": "https://raw.githubusercontent.com/MoonshotAI/Kimi-K2/main/tech_report.pdf",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

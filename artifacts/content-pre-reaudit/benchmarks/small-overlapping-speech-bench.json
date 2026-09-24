@@ -1,0 +1,191 @@
+{
+  "id": "small-overlapping-speech-bench",
+  "status": "published",
+  "order": 700,
+  "name": "Small Overlapping Speech Bench",
+  "subtitle": "三种语言同时说话，模型能听清多少？",
+  "summary": "用三人同时发声、且每人说不同欧洲语言的音频，检查语音识别模型能恢复多少内容词，以及模型能否估计说话人数。",
+  "category": "multimodal",
+  "tags": [
+    "多语种语音识别",
+    "重叠语音",
+    "说话人分离"
+  ],
+  "publisher": "LAION e.V.（Hugging Face 数据集由 ChristophSchuhmann 账号发布）",
+  "brandIds": [],
+  "year": null,
+  "version": "官方未标注版本号",
+  "kind": "original",
+  "aliases": [],
+  "task": "对每段音频中的三名同时发声者进行多语种语音识别，尽量恢复每个人说出的内容；部分评测还检查模型估计的说话人数。",
+  "format": "官方 test split 共 100 段音频，每段由三位不同语言的说话者混音；MP3、16 kHz、单声道，约 15–26 秒。记录提供每位说话者的语言、源 speaker ID、起止时间和 transcript。语言为德语、法语、西班牙语、意大利语、荷兰语和葡萄牙语。",
+  "metric": {
+    "name": "内容词召回率 / 说话人数误差",
+    "description": "内容词召回率按每位说话者的参考 transcript 统计：模型输出中出现的参考内容词数除以参考内容词数，只统计长度至少 3 个字母的词；另报告各语言、每段最佳/最差说话者、捕获人数，以及平均说话人数、恰好预测为 3 人的比例和相对真实人数 3 的 MAE。官方说明多语言同时说话时词序没有定义，因此不使用通常的 WER。",
+    "direction": "mixed"
+  },
+  "limitations": [
+    "源音频来自有声书朗读，重叠是混音生成，不代表自然对话中的插话、语气和轮次变化。",
+    "荷兰语在 MLS 来源池中的说话人数较少，因此样例语言分布不均。",
+    "只有 100 段，官方定位为快速、低成本的压力测试，不适合作为大规模评测集。",
+    "各语音按相近响度混合；真实多人场景中的音量差、混响和背景噪声没有充分覆盖。"
+  ],
+  "availability": "public",
+  "sampleNote": "官方公开 test split，可播放真实音频并展开逐说话人原始 transcript；展示参考文本会公开该样例答案。",
+  "sources": [
+    {
+      "label": "官方数据集卡与文件列表",
+      "url": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
+      "kind": "data"
+    },
+    {
+      "label": "官方数据格式、任务说明与许可",
+      "url": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md",
+      "kind": "data"
+    },
+    {
+      "label": "官方评价方法与结果说明",
+      "url": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/RESULTS.md",
+      "kind": "report"
+    },
+    {
+      "label": "官方机器可读评测指标",
+      "url": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/metrics.json",
+      "kind": "data"
+    },
+    {
+      "label": "上游 Multilingual LibriSpeech 论文",
+      "url": "https://arxiv.org/abs/2012.03411",
+      "kind": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "clip_000",
+        "title": "三语重叠音频 · clip_000",
+        "type": "audio",
+        "prompt": "Each of the 100 clips contains three people speaking at the same time, each in a different European language, with ground-truth per-speaker timestamps, languages, and transcripts.",
+        "answer": "S1 · Italian · 0.000–12.980 s\nchiamando buon vulcano aiuta aiuta sì com'el fece alla pugna di flegra e me saetti con tutta sua forza non ne potrebbe aver vendetta allegra\n\nS2 · Portuguese · 6.717–17.097 s\nconstituíam uma destas fisionomias que se sente que vão ficar na galeria da história e que servirão a futuros historiadores para explicar um destino e um gênio em novo\n\nS3 · French · 12.590–26.180 s\ns'écria d'abord le génie salomon grand prophète de dieu pardon pardon jamais je ne m'opposerai à vos volontés j'obéirai à tous vos commandements scheherazade apercevant le jour interrompit là son conte",
+        "explanation": "原始记录没有单条 prompt 字段；上方文字是官方数据卡对全部 100 段音频的任务说明。参考答案保留三位说话者的语言、时间区间与原始 transcript。",
+        "raw": {
+          "clip_id": "clip_000",
+          "duration": 26.18,
+          "num_speakers": 3,
+          "languages": [
+            "italian",
+            "portuguese",
+            "french"
+          ],
+          "speakers": [
+            {
+              "id": "S1",
+              "language": "italian",
+              "code": "it",
+              "src_speaker_id": 280,
+              "start_time": 0.0,
+              "end_time": 12.98,
+              "transcript": "chiamando buon vulcano aiuta aiuta sì com'el fece alla pugna di flegra e me saetti con tutta sua forza non ne potrebbe aver vendetta allegra"
+            },
+            {
+              "id": "S2",
+              "language": "portuguese",
+              "code": "pt",
+              "src_speaker_id": 12287,
+              "start_time": 6.717,
+              "end_time": 17.097,
+              "transcript": "constituíam uma destas fisionomias que se sente que vão ficar na galeria da história e que servirão a futuros historiadores para explicar um destino e um gênio em novo"
+            },
+            {
+              "id": "S3",
+              "language": "french",
+              "code": "fr",
+              "src_speaker_id": 1406,
+              "start_time": 12.59,
+              "end_time": 26.18,
+              "transcript": "s'écria d'abord le génie salomon grand prophète de dieu pardon pardon jamais je ne m'opposerai à vos volontés j'obéirai à tous vos commandements scheherazade apercevant le jour interrompit là son conte"
+            }
+          ],
+          "audio_file": "data/clip_000.mp3"
+        },
+        "source": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/ground_truth.jsonl",
+        "license": "CC BY 4.0 · Small Overlapping Speech Bench / Multilingual LibriSpeech",
+        "licensePath": "licenses/small-overlapping-speech-bench.txt",
+        "split": "test",
+        "excerpt": false,
+        "assets": [
+          {
+            "kind": "audio",
+            "path": "audio/small-overlapping-speech-clip-000.mp3",
+            "caption": "官方 clip_000.mp3 · 26.18 秒 · 意大利语、葡萄牙语、法语",
+            "source": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/main/data/clip_000.mp3"
+          }
+        ]
+      },
+      {
+        "id": "clip_001",
+        "title": "三语重叠音频 · clip_001",
+        "type": "audio",
+        "prompt": "Each of the 100 clips contains three people speaking at the same time, each in a different European language, with ground-truth per-speaker timestamps, languages, and transcripts.",
+        "answer": "S1 · Portuguese · 0.000–12.060 s\namor fero cruel fortuna dura bem tendes vossa força experimentada assolai destruí não fique nada vingai-vos desta vida quinda dura\n\nS2 · German · 4.893–14.993 s\nsprechen kann man mit den nomaden nicht unsere sprache kennen sie nicht ja sie haben kaum eine eigene untereinander verständigen sie sich ähnlich wie dohlen\n\nS3 · Spanish · 8.444–20.764 s\nsabes lo que es sentir tus pensamientos agitarse en la sombra por debajo y no verles los ojos ni de su voz sentir el dulce llanto",
+        "explanation": "原始记录没有单条 prompt 字段；上方文字是官方数据卡对全部 100 段音频的任务说明。参考答案保留三位说话者的语言、时间区间与原始 transcript。",
+        "raw": {
+          "clip_id": "clip_001",
+          "duration": 20.764,
+          "num_speakers": 3,
+          "languages": [
+            "portuguese",
+            "german",
+            "spanish"
+          ],
+          "speakers": [
+            {
+              "id": "S1",
+              "language": "portuguese",
+              "code": "pt",
+              "src_speaker_id": 4405,
+              "start_time": 0.0,
+              "end_time": 12.06,
+              "transcript": "amor fero cruel fortuna dura bem tendes vossa força experimentada assolai destruí não fique nada vingai-vos desta vida quinda dura"
+            },
+            {
+              "id": "S2",
+              "language": "german",
+              "code": "de",
+              "src_speaker_id": 1844,
+              "start_time": 4.893,
+              "end_time": 14.993,
+              "transcript": "sprechen kann man mit den nomaden nicht unsere sprache kennen sie nicht ja sie haben kaum eine eigene untereinander verständigen sie sich ähnlich wie dohlen"
+            },
+            {
+              "id": "S3",
+              "language": "spanish",
+              "code": "es",
+              "src_speaker_id": 11266,
+              "start_time": 8.444,
+              "end_time": 20.764,
+              "transcript": "sabes lo que es sentir tus pensamientos agitarse en la sombra por debajo y no verles los ojos ni de su voz sentir el dulce llanto"
+            }
+          ],
+          "audio_file": "data/clip_001.mp3"
+        },
+        "source": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/ground_truth.jsonl",
+        "license": "CC BY 4.0 · Small Overlapping Speech Bench / Multilingual LibriSpeech",
+        "licensePath": "licenses/small-overlapping-speech-bench.txt",
+        "split": "test",
+        "excerpt": false,
+        "assets": [
+          {
+            "kind": "audio",
+            "path": "audio/small-overlapping-speech-clip-001.mp3",
+            "caption": "官方 clip_001.mp3 · 20.764 秒 · 葡萄牙语、德语、西班牙语",
+            "source": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/main/data/clip_001.mp3"
+          }
+        ]
+      }
+    ]
+  }
+}

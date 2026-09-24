@@ -1,0 +1,177 @@
+{
+  "id": "babyvision",
+  "status": "published",
+  "order": 708,
+  "name": "BabyVision",
+  "subtitle": "衡量多模态模型的基础视觉推理能力",
+  "category": "multimodal",
+  "tags": [
+    "视觉推理",
+    "多模态",
+    "图像生成"
+  ],
+  "publisher": "UniPat AI 与合作者",
+  "brandIds": [],
+  "year": 2026,
+  "version": "BabyVision; BabyVision-Gen; BabyVision-Mini subset",
+  "kind": "original",
+  "aliases": [
+    "BabyVision-Gen",
+    "BabyVision-Mini"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "BabyVision 是评估多模态大模型基础视觉能力的 benchmark，覆盖 388 个项目、22 个子类与四类视觉推理任务。",
+    "task": "MLLM 轨回答包含图像的视觉问题；另有 BabyVision-Gen 轨要求图像生成模型以图形标注作答。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.06521",
+      "https://github.com/UniPat-AI/BabyVision"
+    ]
+  },
+  "taskContract": {
+    "input": "MLLM 轨输入视觉问题和图片；Gen 轨输入视觉谜题与标注指令。类别为 fine-grained discrimination、visual tracking、spatial perception、visual pattern recognition。",
+    "output": "MLLM 以 \\boxed{Answer} 格式作答；Gen 轨输出带圆圈、线或箭头标注的图像。",
+    "environment": "官方实现调用模型及 judge API；Gen 使用图像生成与图像 judge 流程。工具、thinking 与轮次由运行配置决定，并非统一固定协议。",
+    "sourceUrls": [
+      "https://github.com/UniPat-AI/BabyVision"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文称主 benchmark 有 388 项、22 个子类和四大类别；官方还维护独立的 BabyVision-Gen 轨及 20 题 BabyVision-Mini pilot 子集。",
+    "disclosure": "partial",
+    "scale": [
+      "论文：388 个项目；22 个子类；4 类。",
+      "HF Collection Viewer 显示 BabyVision 388 行、BabyVision-Gen 280 行；行数口径未与论文统计核对。",
+      "BabyVision-Mini 是 20 个视觉任务的 pilot 子集。"
+    ],
+    "splits": [
+      "所查论文、README 未确认统一的 train/validation/test split 名称。"
+    ],
+    "fields": [
+      "MLLM 样本包含图像、视觉问题与 ground truth；Gen 轨含指令、生成图及 ground-truth 图；统一完整 schema 未核实。"
+    ],
+    "files": [
+      "官方仓库列出 babyvision_data.zip、babyvision_gen_data.zip、mllm_results.zip；HF 有 MLLM 与 Gen Viewer。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.06521",
+      "https://github.com/UniPat-AI/BabyVision",
+      "https://huggingface.co/collections/UnipatAI/babyvision",
+      "https://unipat.ai/blog/BabyVision"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方 GitHub 提供代码及数据压缩包；作者 Hugging Face Collection 提供两个 Viewer。",
+      "运行 MLLM 轨需模型与 judge API；Gen 轨需生成模型和图像评估服务。"
+    ],
+    "url": "https://huggingface.co/collections/UnipatAI/babyvision",
+    "sourceUrls": [
+      "https://github.com/UniPat-AI/BabyVision",
+      "https://huggingface.co/collections/UnipatAI/babyvision"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "官方 README 只称 released for research purposes；没有明确标准再分发许可。",
+    "scope": "代码、数据、图片、标注与评测结果的权利范围尚不明确；不得将研究用途说明等同于内容可转载授权。",
+    "boundaries": [
+      "未取得明确许可前不复制数据样例、题图、答案或结果图。"
+    ],
+    "sourceUrls": [
+      "https://github.com/UniPat-AI/BabyVision"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方文章和 HF Viewer 展示了题目与图像，但当前未核实这些数据、答案及图片具有可再分发许可。",
+    "url": "https://huggingface.co/collections/UnipatAI/babyvision",
+    "sourceUrls": [
+      "https://github.com/UniPat-AI/BabyVision",
+      "https://huggingface.co/collections/UnipatAI/babyvision",
+      "https://unipat.ai/blog/BabyVision"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy",
+    "description": "Overall、type-wise、subtype-wise accuracy；多轮运行报告 mean ± std。BabyVision-Mini pilot 的 pass@1（三次随机运行）是子集实验设置，不可直接当作完整 benchmark 默认值。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/UniPat-AI/BabyVision",
+      "https://unipat.ai/blog/BabyVision"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "仓库仅写 research purposes，未确定公开转载许可；数据包可下载不代表可再分发。",
+      "sourceUrls": [
+        "https://github.com/UniPat-AI/BabyVision"
+      ]
+    },
+    {
+      "text": "完整任务 split、字段 schema、每个类别/子类项目计数未核实。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.06521",
+        "https://github.com/UniPat-AI/BabyVision"
+      ]
+    },
+    {
+      "text": "BabyVision、BabyVision-Gen 与 BabyVision-Mini 的评估任务和口径不同，应保留变体名。",
+      "sourceUrls": [
+        "https://github.com/UniPat-AI/BabyVision",
+        "https://unipat.ai/blog/BabyVision"
+      ]
+    },
+    {
+      "text": "Kimi K3 厂商结果表的 BabyVision 行带有 w/ python 设置，不代表无工具官方默认分数。",
+      "sourceUrls": [
+        "https://github.com/MoonshotAI/Kimi-K3"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "BabyVision 作者论文（v1 2026-01-10；v2 2026-07-07）",
+      "url": "https://arxiv.org/abs/2601.06521",
+      "role": "paper"
+    },
+    {
+      "label": "UniPat-AI 官方仓库 README",
+      "url": "https://github.com/UniPat-AI/BabyVision",
+      "role": "readme"
+    },
+    {
+      "label": "UniPat AI 发布文章（2026-01-12）",
+      "url": "https://unipat.ai/blog/BabyVision",
+      "role": "release"
+    },
+    {
+      "label": "UniPatAI Hugging Face Collection",
+      "url": "https://huggingface.co/collections/UnipatAI/babyvision",
+      "role": "data"
+    },
+    {
+      "label": "Kimi K3 厂商 benchmark 表",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "role": "vendor-report"
+    },
+    {
+      "label": "GLM-5.3-Flash 厂商发布页",
+      "url": "https://autoclaw.z.ai/blog/model/glm-5.3-flash/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "DeepSeek-V4.1-Flash 厂商更新日志",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Qwen3.5-9B 厂商模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

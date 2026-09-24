@@ -1,0 +1,261 @@
+{
+  "id": "arena",
+  "status": "published",
+  "order": 420,
+  "name": "Chatbot Arena",
+  "subtitle": "隐藏模型名字，让人比较两份回答",
+  "category": "alignment",
+  "tags": [
+    "人类偏好",
+    "匿名对战"
+  ],
+  "publisher": "LMSYS / Arena 团队",
+  "brandIds": [
+    "lmsys"
+  ],
+  "year": 2023,
+  "version": "按榜单日期与领域查看",
+  "kind": "suite",
+  "aliases": [
+    "LMArena",
+    "Arena",
+    "ChatbotArena"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-22",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Chatbot Arena 是由 LMSYS 维护的在线匿名人类偏好评测平台，访客比较两个模型回复并可提交投票。",
+    "task": "同一用户提示下匿名展示两个模型回答，由用户选择偏好或平局；不同历史数据快照是平台数据发布，不构成固定题库。",
+    "sourceUrls": [
+      "https://arena.ai/blog/arena#introduction"
+    ]
+  },
+  "taskContract": {
+    "input": "用户提交的自然语言提示及候选模型回复。",
+    "output": "用户投票的偏好标签，通常为左侧胜、右侧胜或平局。",
+    "environment": "在线平台按其当期匹配、隐私和投票流程运行；历史数据集快照不等于平台全部实时对话。",
+    "sourceUrls": [
+      "https://arena.ai/blog/arena#introduction",
+      "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations"
+    ]
+  },
+  "dataProfile": {
+    "summary": "平台持续产生投票与对话数据；公开数据集是特定历史快照，数量和许可按发布版本区分。",
+    "disclosure": "partial",
+    "scale": [
+      "历史公开对话集约 33K 条，来自早期快照。",
+      "arena-human-preference-55k 发布版约 57.5K 条对话；二者为不同快照。"
+    ],
+    "splits": [
+      "55k 发布集标注为单一 train split；这不是 Arena 平台的统一评测划分。"
+    ],
+    "fields": [
+      "历史对话记录包含模型、提示、回复与偏好标签等字段；精确 schema 随数据集版本变化。"
+    ],
+    "files": [
+      "公开发布的 33K 与 55K 快照分别托管于 Hugging Face；不等同于平台实时完整数据库。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations",
+      "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "榜单和 Battle Mode 可在线浏览与参与；官方只定期分享平台部分数据，而不发布完整对话日志\n",
+      "33K HF 数据卡要求用户登录并同意其数据使用条件；页面标许可证字段 cc（非明确版本/具体 CC 子许可），并含不尝试确定数据中个体身份的要求。",
+      "arena-human-preference-55k HF 页面标注 Apache-2.0。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/faq#supporting--contributing",
+      "https://arena.ai/blog/policy#sharing-data",
+      "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations#L70-L85",
+      "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k#L74-L90"
+    ],
+    "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "不同快照的许可标注不一致：55k 数据集页面标注 Apache-2.0，历史对话快照未确认相同许可；平台整体没有单一数据许可。",
+    "scope": "只按指定数据快照各自声明的许可证处理记录；不将某一快照许可外推至平台全部对话。",
+    "boundaries": [
+      "公开前移除个人信息并评估模型输出、用户提示及第三方内容权利。",
+      "请保留数据集版本与来源；不得把平台实时数据描述为已公开数据。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations",
+      "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方平台提供在线投票与历史数据集链接；本站只链接平台和对应快照，不复制用户提示、回复或个人信息。",
+    "sourceUrls": [
+      "https://arena.ai/blog/arena#introduction",
+      "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
+    ],
+    "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k#dataset-viewer"
+  },
+  "metric": {
+    "name": "对战评级及置信区间",
+    "description": "当前平台使用 Bradley–Terry rating 从成对投票估计模型偏好，并支持 style control 等额外因素；与 Elo 类似但不是固定静态题的准确率。\n早期 2023 发布展示基于 Elo 的初始榜单；官方当时只公开投票结果而不公开对话历史。当前官方 FAQ 的 Bradley–Terry 方法应优先于早期 Elo 描述\n\n榜单公开资格、至少约 1,000 票/评分稳定要求和抽样重加权会影响分数解释，引用某一排名需记录日期、榜单类别和模型是否 preliminary\n",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arena.ai/faq#battle-mode",
+      "https://arena.ai/blog/arena#elo-rating-system",
+      "https://arena.ai/blog/policy#evaluating-publicly-released-models",
+      "https://arena.ai/blog/policy#sampling-policy"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "平台持续更新，历史 33K 与 55K 发布数据是不同快照，字段及纳入标准不能互相代替。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations",
+        "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
+      ]
+    },
+    {
+      "text": "55K 数据集的许可证不能直接推定历史快照或平台实时记录的权利状态。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k",
+        "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations"
+      ]
+    },
+    {
+      "text": "用户偏好结果受参与者构成、匹配流程和模型版本影响，不代表人口普查式质量测量。",
+      "sourceUrls": [
+        "https://arena.ai/blog/arena#introduction"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "原始官方介绍",
+      "url": "https://arena.ai/blog/arena#introduction",
+      "role": "definition"
+    },
+    {
+      "label": "当前 FAQ",
+      "url": "https://arena.ai/faq#battle-mode",
+      "role": "definition"
+    },
+    {
+      "label": "官方方法说明",
+      "url": "https://arena.ai/blog/arena#data-collection",
+      "role": "definition"
+    },
+    {
+      "label": "官方政策",
+      "url": "https://arena.ai/blog/policy#sampling-policy",
+      "role": "definition"
+    },
+    {
+      "label": "当前 FAQ",
+      "url": "https://arena.ai/faq#side-by-side-mode",
+      "role": "definition"
+    },
+    {
+      "label": "当前 FAQ",
+      "url": "https://arena.ai/faq#supporting--contributing",
+      "role": "definition"
+    },
+    {
+      "label": "官方 HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations#chatbot-arena-conversations-dataset",
+      "role": "data"
+    },
+    {
+      "label": "官方 HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k#dataset-viewer",
+      "role": "data"
+    },
+    {
+      "label": "官方 33K 发布说明",
+      "url": "https://arena.ai/blog/dataset#dataset-1-33k-chatbot-arena-conversation-data",
+      "role": "definition"
+    },
+    {
+      "label": "57.5k HF snapshot",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k#L83-L90",
+      "role": "data"
+    },
+    {
+      "label": "Leaderboard Policy",
+      "url": "https://arena.ai/blog/policy#sharing-data",
+      "role": "leaderboard"
+    },
+    {
+      "label": "HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations#L70-L85",
+      "role": "data"
+    },
+    {
+      "label": "HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k#L74-L90",
+      "role": "data"
+    },
+    {
+      "label": "官方发布说明",
+      "url": "https://arena.ai/blog/dataset#disclaimers-and-terms",
+      "role": "access"
+    },
+    {
+      "label": "Arena FAQ privacy/data",
+      "url": "https://arena.ai/faq#transparency--privacy",
+      "role": "definition"
+    },
+    {
+      "label": "早期文章",
+      "url": "https://arena.ai/blog/arena#elo-rating-system",
+      "role": "definition"
+    },
+    {
+      "label": "Leaderboard Policy",
+      "url": "https://arena.ai/blog/policy#evaluating-publicly-released-models",
+      "role": "leaderboard"
+    },
+    {
+      "label": "2023 首发文章",
+      "url": "https://arena.ai/blog/arena",
+      "role": "definition"
+    },
+    {
+      "label": "33K 数据发布",
+      "url": "https://arena.ai/blog/dataset",
+      "role": "definition"
+    },
+    {
+      "label": "57.5K 数据卡",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k",
+      "role": "data"
+    },
+    {
+      "label": "Arena FAQ",
+      "url": "https://arena.ai/faq",
+      "role": "definition"
+    },
+    {
+      "label": "Leaderboard Policy",
+      "url": "https://arena.ai/blog/policy",
+      "role": "leaderboard"
+    },
+    {
+      "label": "lmsys/chatbot_arena_conversations",
+      "url": "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations",
+      "role": "data"
+    },
+    {
+      "label": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference",
+      "url": "https://arxiv.org/abs/2403.04132",
+      "role": "paper"
+    },
+    {
+      "label": "Arena Leaderboard",
+      "url": "https://arena.ai/leaderboard",
+      "role": "leaderboard"
+    }
+  ]
+}

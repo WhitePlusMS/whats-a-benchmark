@@ -1,0 +1,149 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "mathvista",
+  "name": "MathVista",
+  "subtitle": "读懂几何图和图表，再做数学",
+  "category": "multimodal",
+  "tags": [
+    "图形数学",
+    "视觉推理"
+  ],
+  "publisher": "MathVista / TIGER-AI-Lab 团队",
+  "year": 2023,
+  "version": "MathVista；testmini / test 区分",
+  "metric": {
+    "name": "正确率",
+    "description": "榜单主要报告准确率，并按任务类型和数学推理类别细分；自由回答的标准化、答案抽取及代码执行设置会影响结果。发布比较时需说明模型、prompt/few-shot、是否使用 OCR/图注/代码执行以及评分器。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/lupantech/MathVista",
+      "https://arxiv.org/abs/2310.02255"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "6,141 条中的图像与问题未按 pid 逐项核对原始来源、许可证、授权和署名要求。",
+      "sourceUrls": [
+        "https://github.com/lupantech/MathVista"
+      ]
+    },
+    {
+      "text": "本轮未固定 Hugging Face revision、校验图像包哈希或对每张图执行来源归属检查。",
+      "sourceUrls": [
+        "https://mathvista.github.io/",
+        "https://github.com/lupantech/MathVista"
+      ]
+    },
+    {
+      "text": "公开榜单/第三方报告的模型设置和评分差异未逐条复核。",
+      "sourceUrls": [
+        "https://mathvista.github.io/",
+        "https://github.com/lupantech/MathVista"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MathVista 项目网站",
+      "url": "https://mathvista.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "MathVista 论文",
+      "url": "https://arxiv.org/abs/2310.02255",
+      "role": "paper"
+    },
+    {
+      "label": "官方仓库榜单",
+      "url": "https://github.com/lupantech/MathVista",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方数据格式",
+      "url": "https://github.com/lupantech/MathVista#data-format",
+      "role": "readme"
+    },
+    {
+      "label": "AI4Math/MathVista 官方 Hugging Face",
+      "url": "https://huggingface.co/datasets/AI4Math/MathVista",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 310,
+  "brandIds": [
+    "tiger-lab"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MathVista 将数学推理与图表、几何图形、教材和其他视觉材料结合，评估模型在视觉上下文中的数学推理能力；它汇集 28 个既有数据集及 3 个新建集合。",
+    "task": "依据图像和问题作答，可为多项选择或自由回答；部分任务提供选项、单位或精度要求。",
+    "sourceUrls": [
+      "https://mathvista.github.io/",
+      "https://github.com/lupantech/MathVista"
+    ]
+  },
+  "taskContract": {
+    "input": "图像和问题文本；记录可含 choices、unit、precision、question_type、answer_type 及来源元数据。",
+    "output": "多选或自由回答；公开 test 记录不提供标准答案。",
+    "environment": "静态图像问答；官方脚本可选 OCR/图像描述、few-shot 或代码执行，比较成绩时注明所用辅助设置。",
+    "sourceUrls": [
+      "https://github.com/lupantech/MathVista#data-format",
+      "https://github.com/lupantech/MathVista"
+    ]
+  },
+  "dataProfile": {
+    "summary": "MathVista 共 6,141 个实例，来自 28 个既有数据集和 3 个新建集合；分为 testmini 与标准 test。",
+    "disclosure": "partial",
+    "scale": [
+      "6,141 个实例：testmini 1,000 条，test 5,141 条；标准 test 答案标签不公开。"
+    ],
+    "splits": [
+      "testmini 用于开发/验证或资源受限评测；test 用于标准评测，答案标签不公开。"
+    ],
+    "fields": [
+      "question、image、choices、unit、precision、answer、question_type、answer_type、pid、metadata、query。metadata 含 split、language、source、category、task、context、grade、skills。"
+    ],
+    "files": [
+      "题目 JSON 与 JPG 图像包；source.json 和每条 metadata.source 用于追溯上游来源。"
+    ],
+    "sourceUrls": [
+      "https://mathvista.github.io/",
+      "https://github.com/lupantech/MathVista"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者 GitHub、项目页和 Hugging Face 提供数据入口，图像以 JPG 包发布；标准 test 的答案不公开。"
+    ],
+    "sourceUrls": [
+      "https://github.com/lupantech/MathVista",
+      "https://huggingface.co/datasets/AI4Math/MathVista"
+    ],
+    "url": "https://huggingface.co/datasets/AI4Math/MathVista"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者对新建集合、筛选清理、标准化和元数据标注声明 CC BY-SA 4.0；图像与原始问题版权属于各自来源。",
+    "scope": "须逐 pid 追踪 metadata.source 与 source.json，核对原始媒体/题目的许可、署名和再发布条件；作者还禁止将数据用于训练。",
+    "boundaries": [
+      "未逐项完成 6,141 条来源审查前，不转载真实题目、图像、图表、选项或答案；数据集贡献许可不自动覆盖上游素材。"
+    ],
+    "sourceUrls": [
+      "https://github.com/lupantech/MathVista"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "MathVista 官方主页展示例题并提供 Explorer。本按钮仅打开作者官方页面；本站不复制题文、图像或答案，题目及图像的各自来源权利仍须遵守。",
+    "sourceUrls": [
+      "https://mathvista.github.io/",
+      "https://github.com/lupantech/MathVista"
+    ],
+    "url": "https://mathvista.github.io/"
+  }
+}

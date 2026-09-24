@@ -1,0 +1,152 @@
+{
+  "aliases": [
+    "GPQA (Diamond)"
+  ],
+  "related": [
+    {
+      "id": "gpqa",
+      "label": "子集来自",
+      "detail": "题目从 GPQA 中筛选，测试范围更明确。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa"
+      ]
+    }
+  ],
+  "kind": "subset",
+  "verifiedAt": "2026-09-23",
+  "id": "gpqa-diamond",
+  "name": "GPQA Diamond",
+  "subtitle": "一份高难度科学选择题精选集",
+  "category": "knowledge",
+  "tags": [
+    "物理 / 化学 / 生物",
+    "专家题"
+  ],
+  "publisher": "David Rein 等研究者",
+  "year": 2023,
+  "version": "Diamond 子集",
+  "metric": {
+    "name": "正确率",
+    "description": "常见指标为准确率（正确题数/该 split 题数），但生成式测评还依赖答案抽取、prompt、选项顺序、工具访问、采样温度和重复次数。官方 baseline 仓库显式支持多种 closed-book 与 retrieval prompt 类型，并提供选项 shuffle seed 参数；比较成绩应附相应运行条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/idavidrein/gpqa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "此轮未逐列核验 HF 固定 revision 的题目 CSV schema 与题目/答案文件哈希。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa",
+        "https://arxiv.org/abs/2311.12022"
+      ]
+    },
+    {
+      "text": "不同厂商 GPQA Diamond 分数报告中的 prompt、是否多次采样、解码限制与答案抽取器并不统一，未逐一对照。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa",
+        "https://arxiv.org/abs/2311.12022"
+      ]
+    },
+    {
+      "text": "可再分发或衍生发布数据的义务应以 HF CC BY 4.0 条款及数据卡 no-online-example disclosure 条件共同核对；本文不作法律解释。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa",
+        "https://arxiv.org/abs/2311.12022"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Rein et al., GPQA 论文",
+      "url": "https://arxiv.org/abs/2311.12022",
+      "role": "paper"
+    },
+    {
+      "label": "官方 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "role": "data"
+    },
+    {
+      "label": "作者官方 GitHub 仓库",
+      "url": "https://github.com/idavidrein/gpqa",
+      "role": "readme"
+    },
+    {
+      "label": "GitHub 代码许可",
+      "url": "https://github.com/idavidrein/gpqa/blob/main/LICENSE",
+      "role": "access"
+    }
+  ],
+  "status": "published",
+  "order": 20,
+  "brandIds": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "GPQA Diamond 是作者数据卡 gpqa_diamond 配置中的 198 题高质量子集，属于 GPQA，不是独立基准或 GPQA 全集。",
+    "task": "回答生物、物理或化学领域的高难度英语四选一科学问题；Diamond 是子集标记。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://arxiv.org/abs/2311.12022"
+    ]
+  },
+  "taskContract": {
+    "input": "一条英语科学问题及四个候选选项。",
+    "output": "选择一个选项；生成式回答的选项抽取规则应随具体评测报告记录。",
+    "environment": "闭卷/联网、推理提示、选项顺序和抽样方式由运行协议决定；不能仅凭 Google-Proof 名称推定工具条件。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://arxiv.org/abs/2311.12022",
+      "https://github.com/idavidrein/gpqa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "GPQA Diamond 配置有 198 题；GPQA Main 有 448 题，Diamond 是其中的子集。",
+    "disclosure": "complete",
+    "scale": [
+      "Diamond：198 题；GPQA Main：448 题。"
+    ],
+    "splits": [
+      "HF 数据卡以 gpqa_diamond 等配置发布；Diamond 与 Main 是嵌套/筛选关系，不应相加。"
+    ],
+    "fields": [],
+    "files": [
+      "按配置提供的 CSV；本轮未按固定 revision 核实具体列名。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://arxiv.org/abs/2311.12022"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "Hugging Face 数据集需接受访问条件；作者 GitHub 公开基线代码，dataset.zip 需密码。"
+    ],
+    "sourceUrls": [
+      "https://github.com/idavidrein/gpqa",
+      "https://huggingface.co/datasets/Idavidrein/gpqa"
+    ],
+    "url": "https://huggingface.co/datasets/Idavidrein/gpqa"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "Hugging Face 数据卡标注题目数据为 CC BY 4.0；GitHub MIT 许可针对代码。",
+    "scope": "作者数据卡要求不要在线以纯文本或图片披露任何题目样例；该公开披露限制不由可访问性或代码许可覆盖。",
+    "boundaries": [
+      "公开网站不转载题目、选项、答案或截图；其他用途应同时遵守 HF 数据访问条件和 CC BY 4.0。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "作者明确要求不得在线发布样例文字或图片，且仓库含污染追踪 canary。公开页面只概述任务与规模并链接原始资料。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa"
+    ]
+  }
+}

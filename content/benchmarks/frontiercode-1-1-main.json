@@ -1,0 +1,154 @@
+{
+  "id": "frontiercode-1-1-main",
+  "status": "published",
+  "order": 501,
+  "name": "FrontierCode 1.1 Main",
+  "subtitle": "以是否值得合并衡量代码代理",
+  "category": "coding",
+  "tags": [
+    "代码代理",
+    "代码质量"
+  ],
+  "publisher": "Cognition",
+  "brandIds": [
+    "cognition"
+  ],
+  "year": 2026,
+  "version": "1.1 Main",
+  "kind": "subset",
+  "aliases": [
+    "FrontierCode v1.1 (Main)",
+    "FrontierCode 1.1 Main"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "FrontierCode 1.1 Main 是 Cognition 用于评估智能体在真实开源代码库中完成 issue 与补丁任务的 benchmark 子集。",
+    "task": "Agent 阅读 issue，在给定代码仓库中实现修复或功能，并通过项目测试和质量检查。",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1",
+      "https://cognition.com/frontiercode"
+    ]
+  },
+  "taskContract": {
+    "input": "真实代码仓库、任务 issue 和评测环境指令。",
+    "output": "可应用的代码补丁；按测试、rubric 与阻塞条件评估任务结果。",
+    "environment": "容器化代码工作区；Cognition 说明包含普通网络访问和泄漏扫描限制，禁止访问会泄露解决方案的来源。",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1",
+      "https://cognition.com/blog/frontier-code"
+    ]
+  },
+  "dataProfile": {
+    "summary": "FrontierCode 1.1 Main 的官方任务集不公开；发布页公布 Main 与 Extended 两个集合的规模。",
+    "disclosure": "not-public",
+    "scale": [
+      "Main：100 个任务。",
+      "Extended：150 个任务；它与 Main 是独立规模口径。"
+    ],
+    "splits": [
+      "Main 和 Extended 是评测子集，不是 train/test 划分。"
+    ],
+    "fields": [
+      "官方未发布可检查的逐题字段 schema。"
+    ],
+    "files": [
+      "未提供可下载的完整任务包或数据文件。"
+    ],
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1",
+      "https://cognition.com/frontiercode"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "官方公布结果和基准说明；完整任务数据未公开，访问依照官方合作/评估申请流程。"
+    ],
+    "sourceUrls": [
+      "https://cognition.com/frontiercode",
+      "https://cognition.com/blog/frontier-code-1.1"
+    ],
+    "url": "https://cognition.com/frontiercode"
+  },
+  "reusePolicy": {
+    "status": "prohibited",
+    "license": "没有找到任务数据的公开再分发许可证；公开 benchmark 介绍不授予任务包转载权。",
+    "scope": "仅引用公开方法、规模与官方结果，不复制或重新发布隐藏任务、仓库内容及参考解法。",
+    "boundaries": [
+      "遵守官方的 anti-leak 规则和来源扫描限制。",
+      "不要把 GitHub 公开代码库误认为 FrontierCode benchmark 题库。"
+    ],
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1",
+      "https://cognition.com/frontiercode"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方结果页提供 benchmark 介绍与少量可交互演示信息，但没有公开完整 Main 任务包；本站只链接官方页面，不复制隐藏题目。",
+    "sourceUrls": [
+      "https://cognition.com/frontiercode",
+      "https://cognition.com/blog/frontier-code-1.1"
+    ],
+    "url": "https://cognition.com/frontiercode"
+  },
+  "metric": {
+    "name": "Score / pass rate",
+    "description": "官方报告 Main 的聚合 Score 和 pass rate，并描述逐任务测试与 rubric 条件；1.1 的精确运行次数与所有加权细节未完整公开，故需以官方固定版本结果为准。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1",
+      "https://cognition.com/frontiercode"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "完整 Main 任务、仓库快照和逐题 rubric 未公开，无法独立复算分数。",
+      "sourceUrls": [
+        "https://cognition.com/frontiercode",
+        "https://cognition.com/blog/frontier-code-1.1"
+      ]
+    },
+    {
+      "text": "1.1 的精确重复运行次数及加权细节未在发布资料中完整披露。",
+      "sourceUrls": [
+        "https://cognition.com/blog/frontier-code-1.1"
+      ]
+    },
+    {
+      "text": "公开仓库只是结果和介绍入口；不能由此推断题目或参考解法允许转载。",
+      "sourceUrls": [
+        "https://cognition.com/frontiercode"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Cognition：FrontierCode 1.1",
+      "url": "https://cognition.com/blog/frontier-code-1.1",
+      "role": "definition"
+    },
+    {
+      "label": "Cognition：Introducing FrontierCode",
+      "url": "https://cognition.com/blog/frontier-code",
+      "role": "definition"
+    },
+    {
+      "label": "FrontierCode leaderboard",
+      "url": "https://cognition.com/frontiercode",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Epoch AI",
+      "url": "https://epoch.ai/benchmarks/frontiercode",
+      "role": "definition"
+    },
+    {
+      "label": "Anthropic 发布页",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "role": "vendor-report"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "aliases": [
+    "Berkeley Function Calling Leaderboard",
+    "BFCL v3",
+    "BFCL v4"
+  ],
+  "related": [],
+  "kind": "suite",
+  "sampleNote": "展示 2 条 BFCL V4 simple_python 官方数据记录；源记录没有标准答案字段，本站不补造调用结果。",
+  "verifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-23",
+  "id": "bfcl",
+  "name": "BFCL",
+  "subtitle": "该调用哪个函数，参数填得对不对",
+  "category": "agents",
+  "tags": [
+    "函数调用",
+    "结构化参数"
+  ],
+  "publisher": "UC Berkeley Gorilla 团队",
+  "year": 2024,
+  "version": "BFCL 系列；具体版本见榜单",
+  "summary": "围绕函数与工具调用，检查模型能否选择合适工具、正确填写参数并处理多种调用情景。",
+  "task": "阅读用户请求与函数定义，生成正确调用；不同版本增加多轮、记忆等任务。",
+  "format": "消息、函数 schema、参数与预期调用或执行结果。",
+  "metric": {
+    "name": "调用正确率 / 分类汇总",
+    "direction": "higher",
+    "description": "依据任务采用结构匹配或执行等方法评估，再按该版本规则汇总。"
+  },
+  "limitations": [
+    "BFCL 各版本的任务构成不同。",
+    "函数参数正确不能代表代理完成了所有现实业务流程。"
+  ],
+  "sources": [
+    {
+      "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "label": "官方榜单与版本",
+      "kind": "leaderboard"
+    },
+    {
+      "url": "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard",
+      "label": "官方任务与程序",
+      "kind": "code"
+    },
+    {
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+      "label": "BFCL V4 simple_python 官方数据",
+      "kind": "data"
+    },
+    {
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+      "label": "BFCL 数据许可说明",
+      "kind": "data"
+    }
+  ],
+  "status": "published",
+  "order": 260,
+  "brandIds": [
+    "gorilla"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "simple_python_0",
+        "title": "三角形面积函数调用",
+        "type": "record",
+        "prompt": "Find the area of a triangle with a base of 10 units and height of 5 units.",
+        "explanation": "原始 question 是用户请求，function 是模型可调用的函数定义；该记录没有附标准答案字段。",
+        "raw": {
+          "id": "simple_python_0",
+          "question": [
+            [
+              {
+                "role": "user",
+                "content": "Find the area of a triangle with a base of 10 units and height of 5 units."
+              }
+            ]
+          ],
+          "function": [
+            {
+              "name": "calculate_triangle_area",
+              "description": "Calculate the area of a triangle given its base and height.",
+              "parameters": {
+                "type": "dict",
+                "properties": {
+                  "base": {
+                    "type": "integer",
+                    "description": "The base of the triangle."
+                  },
+                  "height": {
+                    "type": "integer",
+                    "description": "The height of the triangle."
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description": "The unit of measure (defaults to 'units' if not specified)"
+                  }
+                },
+                "required": [
+                  "base",
+                  "height"
+                ]
+              }
+            }
+          ]
+        },
+        "source": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+        "license": "Apache-2.0 · BFCL benchmark data",
+        "split": "BFCL V4 · simple_python category; official source does not name a train/validation/test split",
+        "excerpt": false
+      },
+      {
+        "id": "simple_python_1",
+        "title": "阶乘函数调用",
+        "type": "record",
+        "prompt": "Calculate the factorial of 5 using math functions.",
+        "explanation": "原始 question 是用户请求，function 是模型可调用的函数定义；该记录没有附标准答案字段。",
+        "raw": {
+          "id": "simple_python_1",
+          "question": [
+            [
+              {
+                "role": "user",
+                "content": "Calculate the factorial of 5 using math functions."
+              }
+            ]
+          ],
+          "function": [
+            {
+              "name": "math.factorial",
+              "description": "Calculate the factorial of a given number.",
+              "parameters": {
+                "type": "dict",
+                "properties": {
+                  "number": {
+                    "type": "integer",
+                    "description": "The number for which factorial needs to be calculated."
+                  }
+                },
+                "required": [
+                  "number"
+                ]
+              }
+            }
+          ]
+        },
+        "source": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+        "license": "Apache-2.0 · BFCL benchmark data",
+        "split": "BFCL V4 · simple_python category; official source does not name a train/validation/test split",
+        "excerpt": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "aliases": [
+    "Terminal Bench",
+    "Terminal-Bench",
+    "Terminal Bench 2.0",
+    "TB2"
+  ],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "terminal-bench-2",
+  "name": "Terminal-Bench 2.0",
+  "subtitle": "在终端里把一件事情真正做完",
+  "category": "agents",
+  "tags": [
+    "终端操作",
+    "执行任务"
+  ],
+  "publisher": "Terminal-Bench 团队",
+  "year": 2025,
+  "version": "2.0",
+  "metric": {
+    "name": "任务成功率",
+    "description": "核心指标为任务解决率/通过率；具体统计依赖任务、agent、模型、试验次数与 Harbor/verifier 版本。排行榜结果应引用对应 2.0 数据版与提交记录，不能与其他版本分数横向视作同一试验。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.11868",
+      "https://www.tbench.ai/news/leaderboard-integrity-update",
+      "https://github.com/harbor-framework/terminal-bench-2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未下载 Harbor 发布包或固定 Git commit，未重新统计任务文件及其 schema。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.11868",
+        "https://github.com/harbor-framework/terminal-bench-2"
+      ]
+    },
+    {
+      "text": "未逐项核查 89 个任务、附件和第三方材料的独立许可；仓库 Apache-2.0 标记不能单独证明所有材料可转载。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.11868",
+        "https://github.com/harbor-framework/terminal-bench-2"
+      ]
+    },
+    {
+      "text": "本轮未运行评测或核验任何特定模型的 2.0 成绩。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.11868",
+        "https://github.com/harbor-framework/terminal-bench-2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Terminal-Bench 2.0 官方仓库",
+      "url": "https://github.com/harbor-framework/terminal-bench-2",
+      "role": "readme"
+    },
+    {
+      "label": "Terminal-Bench 2.0 论文",
+      "url": "https://arxiv.org/abs/2601.11868",
+      "role": "paper"
+    },
+    {
+      "label": "官方完整性说明",
+      "url": "https://www.tbench.ai/news/leaderboard-integrity-update",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Terminal-Bench 官方版本目录",
+      "url": "https://www.tbench.ai/benchmarks",
+      "role": "definition"
+    },
+    {
+      "label": "官方主页与各版本任务",
+      "url": "https://www.tbench.ai/",
+      "role": "definition"
+    },
+    {
+      "label": "任务与执行代码",
+      "url": "https://github.com/laude-institute/terminal-bench",
+      "role": "readme"
+    },
+    {
+      "label": "Terminal-Bench 2 官方 Harbor Hub 数据集",
+      "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2/latest",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 50,
+  "brandIds": [
+    "terminal-bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "官方论文将 2.0 描述为由 89 个经过策划的终端环境任务组成，任务取材于真实工作流，覆盖多种技术任务。官方 README 举例包括蛋白质合成设计、异步代码调试和安全漏洞处理。2.0 是具体发布版，不是对所有 Terminal-Bench 版本规模和运行结果的统称。",
+    "task": "在 Harbor 固定版本的容器任务中完成终端工作，由任务 verifier 判断是否解决。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.11868",
+      "https://github.com/harbor-framework/terminal-bench-2"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令及该任务容器内的文件、依赖和工作环境。",
+    "output": "agent 在容器内完成的任务产物，由 task verifier 判定。",
+    "environment": "官方以 Harbor 在 Docker 容器中运行 terminal-bench@2.0；运行需准备容器运行时和模型接口。",
+    "sourceUrls": [
+      "https://github.com/harbor-framework/terminal-bench-2",
+      "https://arxiv.org/abs/2601.11868"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Terminal-Bench 2.0 是固定 Harbor 数据标识的特定任务版本。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告 89 项任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.11868",
+      "https://github.com/harbor-framework/terminal-bench-2"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub 仓库公开，官方 README 给出 Harbor 运行入口；本轮未执行 benchmark，也未下载整套任务。运行需自行准备 Docker 与模型服务凭据。"
+    ],
+    "url": "https://github.com/harbor-framework/terminal-bench-2",
+    "sourceUrls": [
+      "https://github.com/harbor-framework/terminal-bench-2",
+      "https://arxiv.org/abs/2601.11868"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库标注 Apache-2.0；该标记对 Harbor 任务包和逐项第三方材料的覆盖范围未核实。",
+    "scope": "Apache-2.0 按 LICENSE 适用于其覆盖的仓库代码/文件；任务数据再发布权限仍未确认。",
+    "boundaries": [
+      "官方要求基准数据不得进入训练语料；该防污染要求不等同于通用数据再分发许可。",
+      "本站只写原创概述并链接项目，不复制真实任务、解答或测试。"
+    ],
+    "sourceUrls": [
+      "https://github.com/harbor-framework/terminal-bench-2",
+      "https://www.tbench.ai/news/leaderboard-integrity-update"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "Harbor Hub 官方目录列出公开的 Terminal-Bench 2 任务集。本按钮仅打开官方数据页；本站不复制任务、解答或测试，官方防污染提示及逐项素材授权仍须遵守。",
+    "sourceUrls": [
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2/latest",
+      "https://github.com/harbor-framework/terminal-bench-2",
+      "https://www.tbench.ai/news/leaderboard-integrity-update"
+    ],
+    "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2/latest"
+  }
+}

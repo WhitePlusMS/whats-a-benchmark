@@ -1,0 +1,150 @@
+{
+  "id": "lifescibench",
+  "status": "published",
+  "order": 606,
+  "name": "LifeSciBench",
+  "subtitle": "衡量 AI 对真实生命科学研究的支持能力",
+  "category": "work",
+  "tags": [
+    "科学研究",
+    "生命科学",
+    "专家 rubric"
+  ],
+  "publisher": "OpenAI / 生命科学专家",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2026,
+  "version": "Gold v1",
+  "kind": "original",
+  "aliases": [],
+  "metric": {
+    "name": "专家 rubric 评分",
+    "description": "Normalized rubric score：每个回答获得的 rubric 分除以该题满分，再对题目等权平均，保留部分得分。\nTask pass rate：回答达到该题专属 rubric 分的 70% 阈值的题目比例。应与 normalized score 并报，因为获得部分分不代表达到任务级通过门槛。\n论文另按 workflow、domain、artifact 类型、rubric 类别和回答格式分层；该类子组结果应保留各子集大小并考虑小样本波动。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+      "https://openai.com/index/introducing-life-sci-bench/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "全量任务、附件、标准 rubric、grading 实现和版本化数据包的公开访问与授权条件未公开说明。",
+      "sourceUrls": [
+        "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+        "https://openai.com/index/introducing-life-sci-bench/"
+      ]
+    },
+    {
+      "text": "每项附件所含第三方文章、数据库、临床/专有信息及文件格式的逐项许可未提供统一清单。",
+      "sourceUrls": [
+        "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+      ]
+    },
+    {
+      "text": "生物安全审查具体排除了哪些任务或附件未披露；不得从公开示例推断未公开附件内容。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-life-sci-bench/",
+        "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+      ]
+    },
+    {
+      "text": "论文可公开任务示例中可见的具体内容仍应逐项遵循作者/原始材料的权利与安全限制；本站本记录不复刻这些内容。",
+      "sourceUrls": [
+        "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI: Introducing LifeSciBench",
+      "url": "https://openai.com/index/introducing-life-sci-bench/",
+      "role": "definition"
+    },
+    {
+      "label": "论文附录 A.4 与 §6",
+      "url": "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "GPT-6 Astra 官方成绩表与版本脚注",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "GPT-5.6 官方成绩表",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "LifeSciBench 由 OpenAI 与 Tacit Labs 研究人员提出，评估生命科学研究任务中的证据解读、分析、实验设计、验证和科学沟通能力；任务由领域专家撰写并审阅。",
+    "task": "模型完成单轮生命科学研究工作任务，结合上下文和可选附件作出分析或研究产物回答，并按任务专属专家 rubric 评分。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-life-sci-bench/",
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+    ]
+  },
+  "taskContract": {
+    "input": "单轮科学研究问题、上下文和可选附件；附件类型可包括序列、分子结构、表格、PDF、仪器输出及显微/凝胶图像。",
+    "output": "自由文本或科学产物回答；rubric 按科学主张、计算、决策、论证、限制条件和格式逐项评分。",
+    "environment": "论文评测为单轮，不允许追问或纠正，并允许 unrestricted Internet browsing；复现需记录浏览及附件处理条件。",
+    "sourceUrls": [
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+    ]
+  },
+  "dataProfile": {
+    "summary": "LifeSciBench 有 750 个 expert-authored tasks，覆盖 7 类 workflow 和 7 个生命科学领域，含 1,062 个附件与 19,020 项 rubric criteria。",
+    "disclosure": "partial",
+    "scale": [
+      "750 个任务、7 类 workflow、7 个生命科学领域；1,062 个附件、19,020 项 rubric criteria；37 题提供 URL，53% 题目需至少一个附件。"
+    ],
+    "splits": [
+      "论文未声明公开 train/dev/test 切分；公开论文和精选示例不等于完整 750 题数据包。"
+    ],
+    "fields": [
+      "每题由 prompt、可选支持材料和专属 rubric 构成；完整数据 schema 未公开。"
+    ],
+    "files": [
+      "任务附件类型可包括序列、分子结构、表格、PDF、仪器输出及图像；完整任务包未公开。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/introducing-life-sci-bench/",
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "目前可访问 OpenAI 介绍和论文；未找到完整任务、rubric 与附件的公开下载入口，公开材料可能受许可、隐私、专有信息或生物安全因素限制。"
+    ],
+    "sourceUrls": [
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+      "https://openai.com/index/introducing-life-sci-bench/"
+    ],
+    "url": "https://openai.com/index/introducing-life-sci-bench/"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "未发现全量任务数据或专属 harness 的公开许可；论文说明发布可能受许可、隐私、专有信息和生物安全限制。",
+    "scope": "可阅读论文不代表取得复制 benchmark 任务、附件、rubric 或第三方材料的许可。",
+    "boundaries": [
+      "页面只用原创概述、聚合统计和官方链接；不转载题目全文、附件、详细 rubric 或可能受限的安全材料。"
+    ],
+    "sourceUrls": [
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "OpenAI 官方介绍页含 Eval Example。本按钮仅打开官方原文；本站不复制完整任务、附件、序列或 rubric，也不据此推定完整数据集可转载。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-life-sci-bench/",
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+    ],
+    "url": "https://openai.com/index/introducing-life-sci-bench/"
+  }
+}

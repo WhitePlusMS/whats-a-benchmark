@@ -1,0 +1,200 @@
+{
+  "aliases": [
+    "MMMU Pro"
+  ],
+  "related": [
+    {
+      "id": "mmmu",
+      "label": "衍生自",
+      "detail": "重新筛选并增强对视觉理解的要求。",
+      "sourceUrls": [
+        "https://github.com/MMMU-Benchmark/MMMU#introduction",
+        "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+        "https://github.com/MMMU-Benchmark/MMMU#news",
+        "https://arxiv.org/abs/2409.02813"
+      ]
+    }
+  ],
+  "kind": "derivative",
+  "verifiedAt": "2026-09-22",
+  "id": "mmmu-pro",
+  "name": "MMMU-Pro",
+  "subtitle": "进一步排除“没看图也能猜对”",
+  "category": "multimodal",
+  "tags": [
+    "视觉推理",
+    "专业知识"
+  ],
+  "publisher": "MMMU 研究团队",
+  "year": 2024,
+  "version": "MMMU-Pro；standard / vision 等设置需注明",
+  "metric": {
+    "name": "正确率",
+    "description": "主要以答案准确率计分。论文的 MMMU-Pro 总分为 Standard 10-option 与 Vision-only 得分的算术平均；Standard 4-option 和原版 MMMU validation 只作比较参照。作者还比较 Direct 与 CoT，并在总体结果中报告两者较高值，因此跨报告比较须核对聚合方法、提示、图像呈现、选项数和工具设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2409.02813#S3",
+      "https://github.com/MMMU-Benchmark/MMMU#introduction",
+      "https://github.com/MMMU-Benchmark/MMMU#news",
+      "https://arxiv.org/abs/2409.02813"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未逐条检查 1,730 条题目和图片的上游来源、权利人及许可；公开转载的媒体权利不能由仓库级许可证推定。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+        "https://arxiv.org/html/2409.02813#S2",
+        "https://arxiv.org/html/2409.02813#S3"
+      ]
+    },
+    {
+      "text": "未复跑评测或核对任何模型厂商的结果配置。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+        "https://arxiv.org/html/2409.02813#S2",
+        "https://arxiv.org/html/2409.02813#S3"
+      ]
+    },
+    {
+      "text": "本轮仅核验 Standard 10-option Viewer；其余数据包装和榜单快照未固定。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+        "https://arxiv.org/html/2409.02813#S2",
+        "https://arxiv.org/html/2409.02813#S3"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者仓库与新闻",
+      "url": "https://github.com/MMMU-Benchmark/MMMU#news",
+      "role": "readme"
+    },
+    {
+      "label": "MMMU-Pro arXiv",
+      "url": "https://arxiv.org/abs/2409.02813",
+      "role": "paper"
+    },
+    {
+      "label": "作者官方仓库",
+      "url": "https://github.com/MMMU-Benchmark/MMMU#introduction",
+      "role": "readme"
+    },
+    {
+      "label": "作者仓库",
+      "url": "https://github.com/MMMU-Benchmark/MMMU/tree/main/mmmu-pro",
+      "role": "readme"
+    },
+    {
+      "label": "MMMU-Pro Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+      "role": "data"
+    },
+    {
+      "label": "Pro 论文实验设置",
+      "url": "https://arxiv.org/html/2409.02813#S2",
+      "role": "paper"
+    },
+    {
+      "label": "Pro 论文实验设置",
+      "url": "https://arxiv.org/html/2409.02813#S3",
+      "role": "paper"
+    },
+    {
+      "label": "版权说明",
+      "url": "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "role": "readme"
+    },
+    {
+      "label": "作者仓库 LICENSE",
+      "url": "https://github.com/MMMU-Benchmark/MMMU/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "官方项目与 Pro 入口",
+      "url": "https://mmmu-benchmark.github.io/",
+      "role": "definition"
+    }
+  ],
+  "status": "published",
+  "order": 300,
+  "brandIds": [
+    "mmmu"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MMMU-Pro 基于 MMMU，筛掉可仅凭文本答对的问题、增加有迷惑性的选项，并加入将题目文字嵌入图片的 vision-only 设置；目标是提高对真实视觉理解与推理能力的测量强度。作者把它定义为更严格的多学科多模态评测，而非原版成绩的更新快照。",
+    "task": "根据大学课程和专业领域问题选择答案，并按 Standard 或 Vision-only 设置使用对应图像信息。",
+    "sourceUrls": [
+      "https://github.com/MMMU-Benchmark/MMMU#introduction",
+      "https://github.com/MMMU-Benchmark/MMMU#news",
+      "https://arxiv.org/abs/2409.02813"
+    ]
+  },
+  "taskContract": {
+    "input": "大学课程和专业领域的问题、候选选项及相应图像；Vision-only 设置还会把题干作为图像输入。",
+    "output": "选择题答案。",
+    "environment": "静态多模态问答；运行记录应标明 Standard/Vision 设置、图像呈现、提示和工具配置。",
+    "sourceUrls": [
+      "https://github.com/MMMU-Benchmark/MMMU/tree/main/mmmu-pro",
+      "https://github.com/MMMU-Benchmark/MMMU#introduction",
+      "https://github.com/MMMU-Benchmark/MMMU#news",
+      "https://arxiv.org/abs/2409.02813"
+    ]
+  },
+  "dataProfile": {
+    "summary": "MMMU-Pro 发布 Standard 与 Vision-only 两种输入设置；当前 Viewer 仅显示 Standard 10-option test split。",
+    "disclosure": "partial",
+    "scale": [
+      "1,730 道筛选题；Standard 与 Vision-only 两种主要形式共 3,460 个输入实例。"
+    ],
+    "splits": [
+      "Viewer：standard (10 options) 的 test；论文另报告 Vision-only，并以 Standard 4-option 作对照。"
+    ],
+    "fields": [
+      "id、question、options、explanation、image_1–image_7、img_type、answer、topic_difficulty、subject。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+      "https://arxiv.org/html/2409.02813#S2",
+      "https://arxiv.org/html/2409.02813#S3"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方数据卡及代码仓库公开；Standard 10-option 测试记录可从 Hugging Face 浏览。论文报告 Standard 和 Vision 两个主要设置及 4-option 对照，但浏览器核验到的 Hugging Face Viewer 只显示 Standard 10-option，不据此推断所有官方评测包装都已在该 Viewer 发布。"
+    ],
+    "url": "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+      "https://arxiv.org/html/2409.02813#S3",
+      "https://arxiv.org/html/2409.02813#S2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "MMMU-Pro 数据卡标注 Apache-2.0；作者代码仓库另有 LICENSE。",
+    "scope": "数据卡许可按其声明记录；代码许可仅适用于仓库中受 LICENSE 覆盖的代码。作者要求遵守题目和图片原始来源的版权与许可。",
+    "boundaries": [
+      "逐题及嵌入图片的来源许可未列明，不能由 Apache-2.0 标签推定所有题目、解释和媒体可整体转载。",
+      "本站仅作概述并链接官方资源，不复制真实题目、选项、答案、解释或图片。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+      "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "https://github.com/MMMU-Benchmark/MMMU/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "Viewer 可见包含答案和图片的真实记录，但没有逐项来源权利清单。本站不复制样例，只链接官方数据卡。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+      "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "https://arxiv.org/html/2409.02813#S3"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "healthbench-hard",
+      "label": "困难子集",
+      "detail": "选取更具挑战性的任务进行单独衡量。"
+    }
+  ],
+  "kind": "original",
+  "sampleNote": "官方发布页请求不要在网上转载题目文本或图片。请通过官方入口查看已展示的情景与方法。",
+  "verifiedAt": "2026-09-22",
+  "id": "healthbench",
+  "name": "HealthBench",
+  "subtitle": "医疗对话里，回答是否完整且合适",
+  "category": "work",
+  "tags": [
+    "医疗健康",
+    "评分细则"
+  ],
+  "publisher": "OpenAI / 医疗专家",
+  "year": 2025,
+  "version": "HealthBench 公开集",
+  "summary": "用健康相关对话与专家制定的评分细则，评估模型回答的质量与安全相关表现。",
+  "task": "根据对话给出回答，再依据该情景的具体评分要求检查。",
+  "format": "对话消息、情景标签和带权重的 rubric 评分项。",
+  "metric": {
+    "name": "Rubric 评分",
+    "direction": "higher",
+    "description": "按照情景对应的标准给分并汇总，不是一次临床诊断的正确概率。"
+  },
+  "limitations": [
+    "评测分数不构成临床有效性验证。",
+    "不同子集的难度和评价范围不同。"
+  ],
+  "sources": [
+    {
+      "url": "https://openai.com/index/healthbench/",
+      "label": "官方发布与方法",
+      "kind": "home"
+    },
+    {
+      "url": "https://github.com/openai/simple-evals",
+      "label": "官方评测与数据入口",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 450,
+  "brandIds": [
+    "openai"
+  ],
+  "availability": "restricted"
+}

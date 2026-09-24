@@ -1,0 +1,176 @@
+{
+  "id": "ceval",
+  "status": "published",
+  "order": 110,
+  "name": "C-Eval",
+  "subtitle": "看中文专业考试，理解中文能力",
+  "category": "knowledge",
+  "tags": [
+    "中文",
+    "专业考试"
+  ],
+  "publisher": "C-Eval 研究团队",
+  "brandIds": [
+    "ceval"
+  ],
+  "year": 2023,
+  "version": "C-Eval 原始版",
+  "kind": "original",
+  "aliases": [
+    "C Eval",
+    "CEval"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-22",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "C-Eval 以中文考试式选择题评估模型在 STEM、社会科学、人文与其他领域的知识和推理能力。",
+    "task": "针对中文题干，从 A–D 选项中选择答案；部分 split 另含解释。",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/ceval",
+      "https://arxiv.org/abs/2305.08322"
+    ]
+  },
+  "taskContract": {
+    "input": "中文选择题题干与 A–D 四个选项。",
+    "output": "单个选项答案，数据字段还包括 id 与 explanation。",
+    "environment": "官方基线包含 zero-shot 与 five-shot；dev 用作示例、val 用于开发，test 用于评测。无交互式 agent 环境。",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/ceval#data",
+      "https://github.com/hkust-nlp/ceval#leaderboard"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库报告 13,948 道题，覆盖 52 个学科与四个难度层级。",
+    "disclosure": "partial",
+    "scale": [
+      "总量 13,948 道选择题，覆盖 52 个学科与四个难度层级。",
+      "每个学科的 dev split 含 5 道示例；官方报告 val 共 1,346 道。"
+    ],
+    "splits": [
+      "按学科组织 dev、val、test 三个 split。",
+      "README 旧说明称 test 标签不公开，而 2025-07 公告及当前 Hugging Face 页面显示 test 数据已发布；核验时点和仓库版本需一并记录。"
+    ],
+    "fields": [
+      "CSV 行包含 id、question、A、B、C、D、answer 和 explanation。",
+      "subject_mapping.json 提供主题英文名、中文名与大类映射。"
+    ],
+    "files": [
+      "官方仓库提供按主题组织的 CSV、数据压缩包和 subject_mapping.json。",
+      "Hugging Face 发布为 ceval/ceval-exam 数据集。"
+    ],
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/ceval#data",
+      "https://github.com/hkust-nlp/ceval#news",
+      "https://huggingface.co/datasets/ceval/ceval-exam"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub 仓库和其链接的 Hugging Face 数据集公开可访问；旧 README 对 test 标签的说明与后续发布记录存在版本差异。"
+    ],
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/ceval",
+      "https://github.com/hkust-nlp/ceval#news",
+      "https://huggingface.co/datasets/ceval/ceval-exam"
+    ],
+    "url": "https://huggingface.co/datasets/ceval/ceval-exam"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库将代码标为 MIT、数据标为 CC BY-NC-SA 4.0；Hugging Face 页面显示的许可标签不同，数据许可口径尚未统一。",
+    "scope": "许可冲突厘清前只链接和描述数据，不在候选中转载题干、选项、答案或解析。",
+    "boundaries": [
+      "MIT 只覆盖代码；不得据此判定数据题目可商业复用。",
+      "先核对具体数据快照适用的许可和非商业条件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/ceval#licenses",
+      "https://huggingface.co/datasets/ceval/ceval-exam"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方仓库及 Hugging Face 可查看部分题目；GitHub 与数据卡对数据许可的标注不一致，因此本站只链接官方样例，不复制题目内容。",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/ceval#data",
+      "https://github.com/hkust-nlp/ceval#licenses",
+      "https://huggingface.co/datasets/ceval/ceval-exam"
+    ],
+    "url": "https://huggingface.co/datasets/ceval/ceval-exam"
+  },
+  "metric": {
+    "name": "正确率",
+    "description": "官方报告 zero-shot、five-shot accuracy，并提供按主题和大类的结果。README 的历史 leaderboard 数值属于发布时结果，不作为当前排行榜值；当前比较应同时记录数据版本、prompt 设置与题目 split。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/ceval#leaderboard"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "README 的旧版 test 标签说明与 2025 年发布公告冲突；本次未下载并逐文件核对当前数据快照。",
+      "sourceUrls": [
+        "https://github.com/hkust-nlp/ceval",
+        "https://github.com/hkust-nlp/ceval#news",
+        "https://huggingface.co/datasets/ceval/ceval-exam"
+      ]
+    },
+    {
+      "text": "13,948 是官方公布的总量；本次未从各主题 CSV 重新逐条计数。",
+      "sourceUrls": [
+        "https://github.com/hkust-nlp/ceval#data"
+      ]
+    },
+    {
+      "text": "仓库与 Hugging Face 对数据许可的标注不同，题目及其来源的权利链仍待澄清。",
+      "sourceUrls": [
+        "https://github.com/hkust-nlp/ceval#licenses",
+        "https://huggingface.co/datasets/ceval/ceval-exam"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库",
+      "url": "https://github.com/hkust-nlp/ceval",
+      "role": "definition"
+    },
+    {
+      "label": "论文",
+      "url": "https://arxiv.org/abs/2305.08322",
+      "role": "paper"
+    },
+    {
+      "label": "官方仓库数据格式",
+      "url": "https://github.com/hkust-nlp/ceval#data",
+      "role": "code"
+    },
+    {
+      "label": "官方仓库",
+      "url": "https://github.com/hkust-nlp/ceval#news",
+      "role": "code"
+    },
+    {
+      "label": "官方数据集卡与浏览器",
+      "url": "https://huggingface.co/datasets/ceval/ceval-exam",
+      "role": "data"
+    },
+    {
+      "label": "官方许可说明",
+      "url": "https://github.com/hkust-nlp/ceval#licenses",
+      "role": "access"
+    },
+    {
+      "label": "官方仓库",
+      "url": "https://github.com/hkust-nlp/ceval#leaderboard",
+      "role": "leaderboard"
+    },
+    {
+      "label": "C-Eval Benchmark",
+      "url": "https://cevalbenchmark.com/",
+      "role": "definition"
+    }
+  ]
+}

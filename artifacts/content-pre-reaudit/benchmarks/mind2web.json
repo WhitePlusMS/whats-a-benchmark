@@ -1,0 +1,49 @@
+{
+  "id": "mind2web",
+  "status": "published",
+  "order": 607,
+  "name": "Mind2Web",
+  "subtitle": "让网页代理跨站点执行自然语言任务",
+  "summary": "真实网站上的通用网页代理数据集与评测，使用多样网站、领域和自然语言任务轨迹研究网页操作能力。",
+  "category": "agents",
+  "tags": [
+    "网页代理",
+    "多步操作",
+    "跨站点泛化"
+  ],
+  "publisher": "The Ohio State University / Mind2Web 研究团队",
+  "brandIds": [],
+  "year": 2023,
+  "version": "原始版",
+  "kind": "original",
+  "aliases": [],
+  "task": "根据自然语言指令在真实网站上完成复杂操作任务，可从候选动作中选择下一步或运行完整交互序列。",
+  "format": "超过 2,000 个开放任务，来源于 137 个网站和 31 个领域；包含网站 HTML 快照及人工操作序列，并提供 cross-task、cross-website、cross-domain 划分。",
+  "metric": {
+    "name": "任务成功 / 操作预测准确率",
+    "description": "依任务与实验设置使用任务完成表现或分步操作预测准确率；论文报告的 action prediction accuracy 使用 macro average，不能误用代码默认 micro average 进行直接对照。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "真实网站可能变化；离线快照上的分步操作预测与当前网站端到端任务成功不是同一测法。",
+    "官方代码明确区分 macro 与 micro average；直接比较论文结果时须采用 macro average。",
+    "测试数据为避免污染采取单独下载措施，官方要求不要在网上重新分发解压后的测试文件。",
+    "GPT-6 Astra 发布页提到 Mind2Web 任务耗时加速，但没有注明 benchmark 版本；该结果不与本条原始版本关联。"
+  ],
+  "availability": "public",
+  "sampleNote": "研究数据与代码公开；官方测试 split 需单独下载且要求不得再分发。本条目不复制样例。",
+  "sources": [
+    {
+      "label": "Mind2Web 作者仓库、划分、指标与数据访问说明",
+      "url": "https://github.com/OSU-NLP-Group/Mind2Web",
+      "kind": "code"
+    },
+    {
+      "label": "Mind2Web 项目主页",
+      "url": "https://osu-nlp-group.github.io/Mind2Web/",
+      "kind": "home"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

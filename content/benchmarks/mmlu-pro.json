@@ -1,0 +1,259 @@
+{
+  "aliases": [
+    "MMLU Pro"
+  ],
+  "related": [
+    {
+      "id": "mmlu",
+      "label": "衍生自",
+      "detail": "保留部分原 MMLU 题目，并加入其他来源与更强干扰项。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2406.01574",
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
+      ]
+    }
+  ],
+  "kind": "derivative",
+  "verifiedAt": "2026-09-23",
+  "id": "mmlu-pro",
+  "name": "MMLU-Pro",
+  "subtitle": "更多干扰项，更强调推理",
+  "category": "knowledge",
+  "tags": [
+    "多学科",
+    "推理增强"
+  ],
+  "publisher": "TIGER-Lab",
+  "year": 2024,
+  "version": "MMLU-Pro 公开集",
+  "metric": {
+    "name": "正确率",
+    "description": "主要指标是选择题准确率，官方论文报告总分及 14 学科分项，实验通常 5-shot CoT；一部分基线使用 zero-shot。公开榜单分数不一定共享 prompt、shot 数或模型时点。重现需说明 direct/CoT、shot 数、validation exemplar、答案解析和采用的 micro/macro 汇总口径；不要将多个 setup 的数字直比。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.01574",
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "HF 页面总行数和 split 计数随数据修订变化，本次未下载 Parquet 对所有 test 记录逐项计数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
+      ]
+    },
+    {
+      "text": "论文称题目来源及整体 MIT 条款，但 STEM Website 具体站点授权的逐条清单本次未追溯；需复用具体来源文本时应进一步核验。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+        "https://arxiv.org/abs/2406.01574"
+      ]
+    },
+    {
+      "text": "已保存的 validation 样例字段和答案映射可从现有快照复核；此轮未逐条从全量 Parquet 重载，以验证该快照仍与最新 commit 一致。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+        "https://arxiv.org/abs/2406.01574"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MMLU-Pro 作者论文",
+      "url": "https://arxiv.org/abs/2406.01574",
+      "role": "paper"
+    },
+    {
+      "label": "TIGER-AI-Lab/MMLU-Pro",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro",
+      "role": "readme"
+    },
+    {
+      "label": "TIGER-Lab/MMLU-Pro 数据卡",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+      "role": "data"
+    },
+    {
+      "label": "官方仓库许可",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "官方站内样例记录",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 80,
+  "brandIds": [
+    "tiger-lab"
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "1",
+        "title": "多项式上的两个变换",
+        "raw": {
+          "question_id": 1,
+          "question": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
+          "options": [
+            "ST + TS is the identity map of V onto itself.",
+            "TS = 0",
+            "ST = 1",
+            "ST - TS = 0",
+            "ST = T",
+            "ST = 0",
+            "ST = TS",
+            "ST - TS is the identity map of V onto itself.",
+            "TS = T",
+            "ST = S"
+          ],
+          "answer": "H",
+          "answer_index": 7,
+          "cot_content": "A: Let's think step by step. For a given polynomial $p$ we have\n\\[ST(p) = (xp(x))’ = p(x) + xp’(x)\\]\nand\n\\[TS(p) = xp’(x).\\]\nHence \\[ST(p) - TS(p) = p(x) + xp’(x) - xp’(x).\\] The answer is (H).",
+          "category": "math",
+          "src": "cot_lib-college_mathematics"
+        },
+        "split": "validation / math",
+        "excerpt": false,
+        "prompt": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
+        "options": [
+          "ST + TS is the identity map of V onto itself.",
+          "TS = 0",
+          "ST = 1",
+          "ST - TS = 0",
+          "ST = T",
+          "ST = 0",
+          "ST = TS",
+          "ST - TS is the identity map of V onto itself.",
+          "TS = T",
+          "ST = S"
+        ],
+        "answer": "H. ST - TS is the identity map of V onto itself.",
+        "explanation": "这里有十个候选项。除了理解定义，还要比较多个相似表达式。原始记录中的 src 保留题源标识，cot_content 是数据提供方附带的解答文本。",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt",
+        "type": "choice"
+      },
+      {
+        "id": "2",
+        "title": "整数约束下的最大负值",
+        "raw": {
+          "question_id": 2,
+          "question": "Let A be the set of all ordered pairs of integers (m, n) such that 7m + 12n = 22. What is the greatest negative number in the set B = {m + n : (m, n) \\in A}?",
+          "options": [
+            "-5",
+            "0",
+            "-3",
+            "-7",
+            "-4",
+            "-6",
+            "-1",
+            "-2",
+            "-9",
+            "N/A"
+          ],
+          "answer": "E",
+          "answer_index": 4,
+          "cot_content": "A: Let's think step by step. We have 12n = 22 - 7m and one of the solutions is $m = -2$, $n = 3$. Then $m + n = 1$, hence we need to look for smaller $m$ in order to make $m + n$ negative. The next solution is $m = -14$ and $n = 10$. For smaller $m$ we have $m + n$ smaller than $-4$. The answer is (E).",
+          "category": "math",
+          "src": "cot_lib-college_mathematics"
+        },
+        "split": "validation / math",
+        "excerpt": false,
+        "prompt": "Let A be the set of all ordered pairs of integers (m, n) such that 7m + 12n = 22. What is the greatest negative number in the set B = {m + n : (m, n) \\in A}?",
+        "options": [
+          "-5",
+          "0",
+          "-3",
+          "-7",
+          "-4",
+          "-6",
+          "-1",
+          "-2",
+          "-9",
+          "N/A"
+        ],
+        "answer": "E. -4",
+        "explanation": "这里有十个候选项。除了理解定义，还要比较多个相似表达式。原始记录中的 src 保留题源标识，cot_content 是数据提供方附带的解答文本。",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt",
+        "type": "choice"
+      }
+    ]
+  },
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MMLU-Pro 是扩展原 MMLU 的英语多学科选择题基准，融合筛选后的 MMLU 题及 STEM 网站、TheoremQA、SciBench 等来源，增加推理题与干扰项。",
+    "task": "回答学科题干和通常为十选一的选项；少数经审核的题目选项少于十个。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+      "https://arxiv.org/abs/2406.01574"
+    ]
+  },
+  "taskContract": {
+    "input": "学科题干和若干选项；可直接作答或按论文常用 5-shot CoT 设置，示例取自 validation。",
+    "output": "答案字母 A–J；官方代码解析输出并统计准确率。",
+    "environment": "静态文本题库；数据卡记录答案、拼写和 schema 多次维护，复现时锁定数据 revision。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+      "https://arxiv.org/abs/2406.01574",
+      "https://github.com/TIGER-AI-Lab/MMLU-Pro"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方数据卡描述 12,032 题、14 个学科；其中 6,810 题来自 MMLU、5,222 题为新增。",
+    "disclosure": "complete",
+    "scale": [
+      "12,032 题、14 个学科；6,810 题来自 MMLU，5,222 题为新增。"
+    ],
+    "splits": [
+      "作者数据卡提供 validation 和 test；论文的 5-shot 示例取自 validation。当前具体 test 行数需按固定 revision 查看。"
+    ],
+    "fields": [
+      "question_id、question、options、answer、answer_index、cot_content、category、src。options 通常有 10 项，但并非固定。"
+    ],
+    "files": [
+      "HF Parquet 数据集，包含 validation 与 test 配置/切分。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+      "https://arxiv.org/abs/2406.01574"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者公开 Hugging Face Parquet、validation/test 和代码；数据卡持续修订，引用时需锁定 revision。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
+    ],
+    "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者论文许可附录将 MMLU-Pro 数据集标为 MIT；论文列出原 MMLU、STEM 网站、TheoremQA 和 SciBench 的来源许可。",
+    "scope": "代码仓库也有 MIT 许可；许可不能替代对具体 STEM 来源文本的逐站核验。",
+    "boundaries": [
+      "复用数据时保留许可与来源署名；不要因数据公开就将 test 题当作未泄漏样本，固定 revision 后再引用。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.01574",
+      "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "现有样例来自公开 validation，并非 test；样例字段与答案映射见当前已保存快照。转载时按 MIT 许可保留来源，锁定 HF revision，不公开 cot_content 以外不必要的推理内容。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+      "https://arxiv.org/abs/2406.01574",
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation"
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "id": "scicode",
+  "status": "published",
+  "order": 701,
+  "name": "SciCode",
+  "subtitle": "把科学研究问题转化为可执行代码",
+  "category": "coding",
+  "tags": [
+    "科学编程",
+    "代码生成",
+    "研究任务"
+  ],
+  "publisher": "SciCode 研究团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "SciCode",
+  "kind": "original",
+  "aliases": [],
+  "metric": {
+    "name": "主问题解决率 / 子问题解决率",
+    "description": "官方报告主问题解决率与子问题解决率：分别统计被判定解决的主问题或子问题比例，方向为越高越好。结果必须标明评测粒度、是否提供科学背景、执行器和测试判定设置；两种粒度不可互换。官方仓库的示例排行榜是特定模型和时间点的结果，不是固定通用运行协议。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/scicode-bench/SciCode",
+      "https://arxiv.org/abs/2407.13168",
+      "https://huggingface.co/datasets/SciCode1/SciCode"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未锁定 Git/HF commit，也未下载全部数据来复核 80/338 的当前文件计数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SciCode1/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "https://github.com/scicode-bench/SciCode"
+      ]
+    },
+    {
+      "text": "官方 README 的“五个领域”与后文“六个自然科学学科”文字冲突，未找到作者更正；避免推断缺少的类别。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SciCode1/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "https://github.com/scicode-bench/SciCode"
+      ]
+    },
+    {
+      "text": "未下载运行需要的外部数值测试文件，也未检查全部样例的逐条许可/质量。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SciCode1/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "https://github.com/scicode-bench/SciCode"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2407.13168",
+      "role": "paper"
+    },
+    {
+      "label": "SciCode 官方仓库",
+      "url": "https://github.com/scicode-bench/SciCode",
+      "role": "readme"
+    },
+    {
+      "label": "作者 Hugging Face 数据集",
+      "url": "https://huggingface.co/datasets/SciCode1/SciCode",
+      "role": "data"
+    },
+    {
+      "label": "原始记录",
+      "url": "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "官方 LICENSE",
+      "url": "https://github.com/scicode-bench/SciCode/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "官方数据集与 Apache-2.0 许可",
+      "url": "https://huggingface.co/datasets/SciCode1/SciCode/tree/main",
+      "role": "data"
+    },
+    {
+      "label": "Gemini 3.1 Pro 评测方法（成绩来源说明）",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-1-pro",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-23",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "ewald_summation:10.1",
+        "title": "Ewald 求和参数 alpha",
+        "type": "code",
+        "prompt": "Write a Python function to determine the alpha value for the Ewald summation given reciprocal lattice vectors `recvec` of shape (3, 3).\nAlpha is a parameter that controls the division of the summation into real and reciprocal space components and determines the width of the Gaussian charge distribution.\nMultiply the result by scaling `alpha_scaling` (fixed to 5).",
+        "explanation": "这是官方 dev 数据文件中 problem_id 10 的子任务 10.1。页面只展示题面，不复制同一记录内的 ground_truth_code、test_cases 或参考输出。",
+        "raw": {
+          "problem_name": "ewald_summation",
+          "problem_id": "10",
+          "step_number": "10.1",
+          "step_description_prompt": "Write a Python function to determine the alpha value for the Ewald summation given reciprocal lattice vectors `recvec` of shape (3, 3).\nAlpha is a parameter that controls the division of the summation into real and reciprocal space components and determines the width of the Gaussian charge distribution.\nMultiply the result by scaling `alpha_scaling` (fixed to 5)."
+        },
+        "source": "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "license": "Apache-2.0 · SciCode official dataset",
+        "split": "problems_dev.jsonl · dev · problem_id 10 · step 10.1",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "该评测以科学研究问题为起点，考查模型结合科学知识、推理和程序合成完成计算与模拟任务的能力。官方 README 描述 80 个主问题拆分为 338 个子问题、覆盖 16 个子领域；列出的领域包括物理、数学、材料科学、生物和化学。README 后续另有一句称“6 个自然科学学科”，与前文“五个领域”存在口径不一致，故本站不补出第六个领域，采用前述明确列出的五个领域并保留该资料内差异。",
+    "task": "将科学研究问题拆成代码子任务，编写所需函数或程序并通过专家测试用例。",
+    "sourceUrls": [
+      "https://github.com/scicode-bench/SciCode",
+      "https://arxiv.org/abs/2407.13168",
+      "https://huggingface.co/datasets/SciCode1/SciCode"
+    ]
+  },
+  "taskContract": {
+    "input": "科学问题、可选背景、子任务说明及函数输入/输出约定；子任务可能依赖前序步骤。",
+    "output": "实现要求的函数或程序。",
+    "environment": "官方推荐 Inspect AI；执行需 SciCode 包和数值测试文件。背景提供与否属于不同设置，旧两步方法已弃用。",
+    "sourceUrls": [
+      "https://github.com/scicode-bench/SciCode",
+      "https://arxiv.org/abs/2407.13168",
+      "https://huggingface.co/datasets/SciCode1/SciCode"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者数据按 dev/test 文件发布；HF Viewer 将转换后的记录展示为 validation。",
+    "disclosure": "partial",
+    "scale": [
+      "80 个主问题、338 个子问题、16 个子领域。"
+    ],
+    "splits": [
+      "源文件为 problems_dev.jsonl 与 problems_test.jsonl；HF Viewer 的 validation 标签是转换展示口径。"
+    ],
+    "fields": [
+      "已核验 dev 样例字段：problem_name、problem_id、step_number、step_description_prompt；非完整 schema。"
+    ],
+    "files": [
+      "problems_dev.jsonl、problems_test.jsonl；评测另需数值测试文件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/SciCode1/SciCode",
+      "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+      "https://github.com/scicode-bench/SciCode"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者公开 GitHub 代码、Hugging Face 数据页及 dev/test 文件入口，网页可访问。官方 README 指向外部下载的数值测试结果文件，并说明需将其放在规定路径运行；本轮没有下载数据集全部文件或执行评测。"
+    ],
+    "url": "https://github.com/scicode-bench/SciCode",
+    "sourceUrls": [
+      "https://github.com/scicode-bench/SciCode",
+      "https://huggingface.co/datasets/SciCode1/SciCode",
+      "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方代码 LICENSE 和作者数据卡分别标注 Apache-2.0。",
+    "scope": "按各自 Apache-2.0 条件复用相应代码与已发布数据，并保留署名及许可信息。",
+    "boundaries": [
+      "数据集许可不自动覆盖未注明的外部辅助文件；测试结果与参考答案不作为可展示样例。",
+      "本站 dev 样例只保留已核对题面字段，不包含参考代码或测试用例。"
+    ],
+    "sourceUrls": [
+      "https://github.com/scicode-bench/SciCode/blob/main/LICENSE",
+      "https://huggingface.co/datasets/SciCode1/SciCode",
+      "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站样例来自 dev 的 problem_id=10、step 10.1；problem_name、ID、步骤号和题面已与原始 JSONL 对照。raw 不含参考代码或测试用例，须按 Apache-2.0 保留署名，且标明它不是隐藏测试题。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+      "https://github.com/scicode-bench/SciCode",
+      "https://huggingface.co/datasets/SciCode1/SciCode"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "alignbench",
+  "status": "published",
+  "order": 707,
+  "name": "AlignBench",
+  "subtitle": "评估大模型对中文要求的理解与响应",
+  "summary": "通过多维度中文任务和基于大模型的裁判，评估模型对齐中文用户要求的表现。",
+  "category": "alignment",
+  "tags": [
+    "中文",
+    "指令遵循",
+    "自动评审"
+  ],
+  "publisher": "清华大学 CoAI Group / AlignBench 团队",
+  "brandIds": [
+    "thudm"
+  ],
+  "year": 2023,
+  "version": "AlignBench v1.1",
+  "kind": "original",
+  "aliases": [
+    "ALIGNBENCH"
+  ],
+  "task": "完成涵盖中文对话、创作、推理及其他对齐维度的指令任务。",
+  "format": "多维中文开放式任务，由经过规则校准的多维大模型裁判给出评分和解释。",
+  "metric": {
+    "name": "裁判评分",
+    "description": "使用多维度自动裁判分数汇总模型表现；应报告版本、维度和裁判设置。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "大模型裁判本身可能存在偏差，校准并不能消除所有误差。",
+    "开放式答案对提示、评分标准及裁判模型较敏感。",
+    "Qwen3 技术报告中的 AlignBench v1.1 成绩只作为引用证据，不代表基准发布方排名。"
+  ],
+  "availability": "public",
+  "sampleNote": "官方仓库提供数据和运行说明；本站未复制评测提示或答案。",
+  "sources": [
+    {
+      "label": "AlignBench 官方仓库",
+      "url": "https://github.com/THUDM/AlignBench",
+      "kind": "code"
+    },
+    {
+      "label": "AlignBench 论文",
+      "url": "https://arxiv.org/abs/2311.18743",
+      "kind": "paper"
+    },
+    {
+      "label": "Qwen3 官方技术报告",
+      "url": "https://arxiv.org/abs/2505.09388",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

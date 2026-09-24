@@ -1,0 +1,191 @@
+{
+  "id": "livecodebench-pro",
+  "status": "published",
+  "order": 700,
+  "name": "LiveCodeBench Pro",
+  "subtitle": "奥赛难度的竞赛编程评测",
+  "category": "coding",
+  "tags": [
+    "竞赛编程",
+    "代码生成",
+    "持续更新"
+  ],
+  "publisher": "LiveCodeBench Pro 研究团队",
+  "brandIds": [],
+  "year": 2025,
+  "version": "LiveCodeBench Pro",
+  "kind": "original",
+  "aliases": [
+    "LCB Pro"
+  ],
+  "metric": {
+    "name": "Elo rating",
+    "description": "pass@1：一次生成结果通过官方判题的题目比例，是论文指定的主要结果指标。\npass@k：附录用于观察多次尝试对通过率的影响；并非论文的唯一/主要默认指标。须同时披露 k、采样数、是否允许工具及题目版本。\nCodeforces-equivalent Bayesian Elo：在 Codeforces 子集上，以题目 rating 与 Accepted/Rejected 提交结果估计模型 Elo，可调整难度并映射到人类 rating/percentile。它与 pass@1 是不同统计量；模型在全 benchmark 的 percentile 或跨赛制结论应注明估计范围。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.11928#S13",
+      "https://arxiv.org/html/2506.11928",
+      "https://arxiv.org/html/2506.11928#S7.SS2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "当前 Hugging Face 数据访问协议的全文、数据包内部 schema 与各竞赛资源的逐项再分发许可；页面要求先登录/同意，但 Dataset card 为空。",
+      "sourceUrls": [
+        "https://github.com/GavinZhengOI/LiveCodeBench-Pro",
+        "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+        "https://arxiv.org/html/2506.11928#S7.SS1"
+      ]
+    },
+    {
+      "text": "作者题目仓库是否曾发布独立代码 LICENSE，当前 GitHub 文件列表未显示该文件；在未确认前不得将代码包装仓库认作 permissive licensed。",
+      "sourceUrls": [
+        "https://github.com/GavinZhengOI/LiveCodeBench-Pro",
+        "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+        "https://arxiv.org/html/2506.11928#S7.SS1"
+      ]
+    },
+    {
+      "text": "当前滚动题集的题数、revision、testset 完整性和 leaderboard 跑分是否仍对应论文 584 题快照。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.11928",
+        "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+        "https://arxiv.org/html/2506.11928#S7.SS1"
+      ]
+    },
+    {
+      "text": "竞赛站点的源题条款及不同主办方的题面/测试所有权需逐来源审核。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.11928",
+        "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+        "https://arxiv.org/html/2506.11928#S7.SS1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "论文表 1 与 §8",
+      "url": "https://arxiv.org/html/2506.11928",
+      "role": "paper"
+    },
+    {
+      "label": "GavinZhengOI/LiveCodeBench-Pro",
+      "url": "https://github.com/GavinZhengOI/LiveCodeBench-Pro",
+      "role": "readme"
+    },
+    {
+      "label": "Hugging Face 题集页面",
+      "url": "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+      "role": "data"
+    },
+    {
+      "label": "论文所列题源",
+      "url": "https://arxiv.org/html/2506.11928#S7.SS1",
+      "role": "paper"
+    },
+    {
+      "label": "论文 §15",
+      "url": "https://arxiv.org/html/2506.11928#S15",
+      "role": "paper"
+    },
+    {
+      "label": "论文 §13",
+      "url": "https://arxiv.org/html/2506.11928#S13",
+      "role": "paper"
+    },
+    {
+      "label": "论文附录 §7.2",
+      "url": "https://arxiv.org/html/2506.11928#S7.SS2",
+      "role": "paper"
+    },
+    {
+      "label": "LiveCodeBench Pro leaderboard",
+      "url": "https://www.livecodebenchpro.com/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "LiveCodeBench Pro 论文",
+      "url": "https://arxiv.org/abs/2506.11928",
+      "role": "paper"
+    },
+    {
+      "label": "LiveCodeBench Pro 官方项目页",
+      "url": "https://livecodebenchpro.com/",
+      "role": "definition"
+    },
+    {
+      "label": "Gemini 3.1 Pro 评测方法（Elo 来源说明）",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-1-pro",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "LiveCodeBench Pro 是研究者提出的动态竞赛编程基准，使用竞赛期间采集的题目降低题解泄漏，并由竞赛编程专家标注算法类别与失败原因。它与原版 LiveCodeBench 是不同基准。",
+    "task": "模型求解竞赛题并提交可运行程序，由官方在线判题；论文主结果以 pass@1 衡量，工具辅助设置单独分析。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.11928"
+    ]
+  },
+  "taskContract": {
+    "input": "竞赛题目、公开样例和程序约束；论文主体模型测试不使用外部工具，附录另行研究工具效果。",
+    "output": "可提交程序；在线 judge 返回 Accepted/Rejected，主要报告 pass@1。",
+    "environment": "论文链接的评测 README 要求 Docker/受控 judge；工具仓库说明模型接口和 Hugging Face 题集加载方式。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.11928",
+      "https://github.com/GavinZhengOI/LiveCodeBench-Pro"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文截至 2025-04-25 统计 584 题，覆盖指定 Codeforces、ICPC/IOI 等竞赛；当前题集持续更新且需受控访问。",
+    "disclosure": "partial",
+    "scale": [
+      "论文快照：584 题（截至 2025-04-25）；难度分为 Easy（rating ≤2000）、Medium（2000–3000）和 Hard（>3000）。"
+    ],
+    "splits": [
+      "论文未定义 train/dev/test split；引用应固定题集 revision 和抓取日期。"
+    ],
+    "fields": [],
+    "files": [
+      "论文链接的 Hugging Face 题集以 Parquet 发布，需登录并同意分享联系信息；数据卡未公开字段 schema。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.11928",
+      "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+      "https://arxiv.org/html/2506.11928#S7.SS1"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "论文和工具仓库公开；HF 题集文件访问需登录并同意共享联系信息，页面未提供数据卡内容。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.11928",
+      "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro"
+    ],
+    "url": "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "HF metadata 标注 Apache-2.0，但题库还包含第三方竞赛题面和测试；工具仓库当前未显示独立 LICENSE。",
+    "scope": "数据卡标签不能单独证明各竞赛主办方授权题目再发布，也不能推定工具代码采用 permissive license。",
+    "boundaries": [
+      "只作原创概述并链接论文/数据页；不复制竞赛题面、完整样例、提交代码或 hidden tests，逐来源核查权利。"
+    ],
+    "sourceUrls": [
+      "https://github.com/GavinZhengOI/LiveCodeBench-Pro",
+      "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+      "https://arxiv.org/html/2506.11928#S7.SS1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "论文样例链接第三方竞赛题面及提交代码，作者展示不等同于取得再发布许可。公开页面只用原创任务说明和官方链接。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.11928#S15"
+    ]
+  }
+}

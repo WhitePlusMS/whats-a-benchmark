@@ -1,0 +1,62 @@
+{
+  "id": "wandr",
+  "status": "published",
+  "order": 508,
+  "name": "WANDR",
+  "subtitle": "宽覆盖、深调查的网页研究",
+  "summary": "以高容量结构化信息收集任务评估代理的实体发现、逐项调查与证据支持记录能力。",
+  "category": "agents",
+  "tags": [
+    "网页研究",
+    "证据核验"
+  ],
+  "publisher": "Perplexity",
+  "brandIds": [
+    "perplexity"
+  ],
+  "year": 2026,
+  "version": "论文版；公开任务随提交版本更新",
+  "kind": "original",
+  "aliases": [
+    "WANDR Benchmark",
+    "Wide ANd Deep Research"
+  ],
+  "task": "代理按任务收集大量符合条件实体，逐项搜索并提交可核验记录和证据。",
+  "format": "500 项研究任务；层级式任务规范由动态重取引用页的任务专属判定器评分。",
+  "metric": {
+    "name": "Soft / hard F1",
+    "description": "分别衡量记录质量与层级覆盖的宽松、严格 precision/recall 综合表现。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "网页变化会影响动态重抓证据和评分。",
+    "Anthropic 报告使用离线 web search/web fetch、程序化工具调用、代码执行和 980k token 预算；与 Perplexity 已发布配置不同，分数不可直接比较。",
+    "公开数据集固定提交版不等于论文时评测快照。"
+  ],
+  "availability": "public",
+  "sampleNote": "本站暂未收录样例，任务与数据请查看官方资料。",
+  "sources": [
+    {
+      "label": "WANDR 论文",
+      "url": "https://arxiv.org/abs/2608.14747",
+      "kind": "paper"
+    },
+    {
+      "label": "数据集",
+      "url": "https://huggingface.co/datasets/perplexity-ai/wandr",
+      "kind": "data"
+    },
+    {
+      "label": "评测代码",
+      "url": "https://github.com/perplexityai/wandr",
+      "kind": "code"
+    },
+    {
+      "label": "Anthropic Opus 5.5 报告",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

@@ -1,0 +1,163 @@
+{
+  "aliases": [
+    "ScreenSpot Pro"
+  ],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "screenspot-pro",
+  "name": "ScreenSpot-Pro",
+  "subtitle": "在复杂屏幕上找到要点的位置",
+  "category": "multimodal",
+  "tags": [
+    "界面定位",
+    "高分辨率"
+  ],
+  "publisher": "ScreenSpot-Pro 研究团队",
+  "year": 2025,
+  "version": "ScreenSpot-Pro",
+  "metric": {
+    "name": "定位准确率",
+    "direction": "higher",
+    "description": "官方榜单注明结果使用 greedy decoding，并报告 micro-average。指标为目标 UI 元素 grounding accuracy；官方表格按软件和元素类型展示。复现结果应标出输入分辨率、缩放、坐标映射/判定实现、greedy decoding、微平均方式和各类子分数，不把定位准确率解释为整套界面任务成功率。",
+    "sourceUrls": [
+      "https://gui-agent.github.io/grounding-leaderboard/",
+      "https://arxiv.org/abs/2504.07981",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未通过作者原始文件逐项统计精确截图/指令记录数及 splits；本记录只用作者论文确认的 23 应用、5 行业、3 OS。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.07981",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://gui-agent.github.io/grounding-leaderboard/",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      ]
+    },
+    {
+      "text": "MIT 数据集元数据没有逐项界定其覆盖的第三方软件 UI/截图资产；未取得软件厂商或其他权利人的额外授权证据。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.07981",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://gui-agent.github.io/grounding-leaderboard/",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      ]
+    },
+    {
+      "text": "未复核 annotations JSON 所有字段，也未下载截图文件。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.07981",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://gui-agent.github.io/grounding-leaderboard/",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "ScreenSpot-Pro 作者论文",
+      "url": "https://arxiv.org/abs/2504.07981",
+      "role": "paper"
+    },
+    {
+      "label": "作者 leaderboard",
+      "url": "https://gui-agent.github.io/grounding-leaderboard/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "作者 Hugging Face 数据页",
+      "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+      "role": "data"
+    },
+    {
+      "label": "作者数据卡与 MIT 元数据",
+      "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+      "role": "data"
+    },
+    {
+      "label": "ScreenSpot-Pro-GUI-Grounding",
+      "url": "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding/blob/main/LICENSE",
+      "role": "code"
+    }
+  ],
+  "status": "published",
+  "order": 330,
+  "brandIds": [
+    "screenspot-pro"
+  ],
+  "researchStatus": "partial",
+  "officialDefinition": {
+    "summary": "该评测面向专业桌面软件的高分辨率 GUI 元素定位。给定屏幕截图和自然语言操作指令，模型需将指令对应到截图中的目标元素。作者论文强调高分辨率、小目标及复杂专业软件界面造成的 grounding 难度；这项能力不等同于完成多步 GUI agent 工作流。",
+    "task": "依据自然语言指令，在专业桌面软件截图中定位目标 GUI 元素。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.07981",
+      "https://gui-agent.github.io/grounding-leaderboard/",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+    ]
+  },
+  "taskContract": {
+    "input": "专业软件截图及描述目标控件的自然语言指令。",
+    "output": "目标元素的屏幕坐标或区域定位。",
+    "environment": "高分辨率、多操作系统的专业桌面软件界面；结果依坐标解码、缩放和命中判定配置。",
+    "sourceUrls": [
+      "https://gui-agent.github.io/grounding-leaderboard/",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+      "https://arxiv.org/abs/2504.07981"
+    ]
+  },
+  "dataProfile": {
+    "summary": "数据卡按应用组织截图标注文件，但未提供可确认的完整 schema、split 或精确条目数。",
+    "disclosure": "partial",
+    "scale": [
+      "覆盖 23 个应用、5 个行业和 3 种操作系统；数据卡仅给出 1K<n<10K 的样本范围。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [
+      "按应用组织的 annotations JSON 与图片目录；Dataset Viewer 未配置。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.07981",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+      "https://gui-agent.github.io/grounding-leaderboard/",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者项目页和 Hugging Face 文件列表公开可访问；作者明确说明 viewer 未配置，原因是高分辨率图片加载。公开文件可用不代表其中的截图已取得适用于 本站 再发布的独立授权。"
+    ],
+    "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+    "sourceUrls": [
+      "https://gui-agent.github.io/grounding-leaderboard/",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+      "https://arxiv.org/abs/2504.07981",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者 Hugging Face 数据卡和代码项目标注 MIT。",
+    "scope": "MIT 声明按发布仓库/数据集元数据记录；未发现覆盖逐张截图、软件界面或图标的权利清单。",
+    "boundaries": [
+      "截图中的第三方 UI、图标、商标和内容权利未逐项核实，不能由 MIT 标签推定可复制托管。",
+      "本站只链接作者资料，不镜像截图或摘录界面内容。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+      "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "目前没有经权利核验的站内样例；第三方软件截图及界面元素的逐项转载许可未确认。",
+    "sourceUrls": [
+      "https://gui-agent.github.io/grounding-leaderboard/",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+    ],
+    "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+  }
+}

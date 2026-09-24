@@ -1,0 +1,171 @@
+{
+  "aliases": [
+    "LongBench2",
+    "LongBench V2"
+  ],
+  "related": [
+    {
+      "id": "longbench",
+      "label": "后续版本",
+      "detail": "任务设计与指标不再直接沿用 v1 全部设定。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench"
+      ]
+    }
+  ],
+  "kind": "derivative",
+  "verifiedAt": "2026-09-23",
+  "id": "longbench-v2",
+  "name": "LongBench v2",
+  "subtitle": "长材料里找线索，并完成复杂推理",
+  "category": "context",
+  "tags": [
+    "长上下文",
+    "复杂问答"
+  ],
+  "publisher": "THUDM / LongBench 研究团队",
+  "year": 2024,
+  "version": "LongBench v2",
+  "metric": {
+    "name": "正确率",
+    "description": "官方主要以选择题准确率报告表现，并提供不同任务与上下文长度切片的统计。论文/仓库中的模型成绩对应各自提示与推理设置；不能把不同 CoT、检索、上下文截断或预算下的分数直接视为同一条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2412.15204",
+      "https://github.com/THUDM/LongBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "当前公开 schema 未提供足以逐条追溯上下文来源和权利的完整 manifest；上下文材料的公开转载许可尚未逐条确认。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/THUDM/LongBench-v2",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+        "https://github.com/THUDM/LongBench"
+      ]
+    },
+    {
+      "text": "本轮未对 503 条记录逐条检查内容来源、权利人、引用/授权信息及文件哈希。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/THUDM/LongBench-v2",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+        "https://github.com/THUDM/LongBench"
+      ]
+    },
+    {
+      "text": "未冻结数据仓库 revision；Hugging Face 发布页面及排行榜可能继续更新。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench",
+        "https://huggingface.co/datasets/THUDM/LongBench-v2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者官方仓库",
+      "url": "https://github.com/THUDM/LongBench",
+      "role": "readme"
+    },
+    {
+      "label": "LongBench v2 论文",
+      "url": "https://arxiv.org/abs/2412.15204",
+      "role": "paper"
+    },
+    {
+      "label": "Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/THUDM/LongBench-v2",
+      "role": "data"
+    },
+    {
+      "label": "官方仓库数据格式",
+      "url": "https://github.com/THUDM/LongBench#data-format",
+      "role": "readme"
+    },
+    {
+      "label": "官方 GitHub 代码许可",
+      "url": "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "官方排行榜入口",
+      "url": "https://longbench2.github.io/",
+      "role": "definition"
+    }
+  ],
+  "status": "published",
+  "order": 370,
+  "brandIds": [
+    "thudm"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "LongBench v2 是 THUDM 发布的长上下文理解与推理基准，包含六类真实长上下文任务，并与 LongBench v1 的任务集和统计口径分开。",
+    "task": "模型基于长文档、对话、代码仓库或结构化材料回答多项选择题。",
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench",
+      "https://huggingface.co/datasets/THUDM/LongBench-v2"
+    ]
+  },
+  "taskContract": {
+    "input": "问题、四个选项和所需长上下文；上下文可为文档、书籍或代码仓库。",
+    "output": "从 A、B、C、D 中选择一个答案。",
+    "environment": "主要是给定上下文的静态问答；作者代码可配置直接推理、CoT、无上下文对照或检索增强，报告需注明设置和上下文窗口。",
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench#data-format",
+      "https://huggingface.co/datasets/THUDM/LongBench-v2",
+      "https://github.com/THUDM/LongBench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开集有 503 道多选题；上下文长度约 8K–2M words，多数低于 128K words。",
+    "disclosure": "complete",
+    "scale": [
+      "503 道多选题；上下文约 8K–2M words，多数低于 128K words。"
+    ],
+    "splits": [
+      "HF 发布使用单一 train split、503 行；train 是文件标签，不代表模型训练用途。"
+    ],
+    "fields": [
+      "_id、domain、sub_domain、difficulty、length、question、choice_A 至 choice_D、answer、context。"
+    ],
+    "files": [
+      "Hugging Face LongBench-v2 数据集的单一发布 split。"
+    ],
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench",
+      "https://huggingface.co/datasets/THUDM/LongBench-v2"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者 GitHub 和 Hugging Face 公开提供 503 条数据；公开可访问不等于嵌入上下文均可再次转载。"
+    ],
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench",
+      "https://huggingface.co/datasets/THUDM/LongBench-v2"
+    ],
+    "url": "https://huggingface.co/datasets/THUDM/LongBench-v2"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "HF 数据卡标注 Apache-2.0；作者仓库代码为 MIT。",
+    "scope": "发布标签不证明书籍、文档和代码仓库等上下文材料的原始权利均已清理；本轮未逐条追溯。",
+    "boundaries": [
+      "公开页面只写原创概述并链接来源；未核对具体来源许可前，不转载真实上下文、题目、选项、答案或截图。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/THUDM/LongBench-v2",
+      "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+      "https://github.com/THUDM/LongBench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "上下文来自多种来源，未逐条确认嵌入材料的转载权。公开页面不复制长文、代码、题目、选项、答案或截图。",
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench",
+      "https://huggingface.co/datasets/THUDM/LongBench-v2"
+    ]
+  }
+}

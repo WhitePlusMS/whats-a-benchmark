@@ -1,0 +1,57 @@
+<script setup lang="ts">
+import type { Benchmark } from "../types/benchmark";
+import { kindLabels } from "../content/catalog";
+import {
+  researchStatusLabels,
+  sampleAccessLabels,
+} from "../content/labels";
+import { useComparison } from "../composables/compare";
+import Icon from "./Icon.vue";
+import PublisherMarks from "./PublisherMarks.vue";
+defineProps<{ item: Benchmark }>();
+const { selected, toggle } = useComparison();
+</script>
+<template>
+  <article class="benchmark-card">
+    <div class="card-top">
+      <PublisherMarks :benchmark-id="item.id" :publisher="item.publisher" />
+      <div class="card-badges">
+        <span class="kind-label">{{ kindLabels[item.kind] }}</span>
+        <span
+          v-if="item.researchStatus === 'partial' || item.researchStatus === 'blocked'"
+          class="kind-label evidence-state"
+          >{{ researchStatusLabels[item.researchStatus] }}</span
+        >
+      </div>
+    </div>
+    <RouterLink :to="`/benchmarks/${item.id}/`" class="card-title"
+      ><h3>{{ item.name }}</h3>
+      <Icon name="up" :size="18"
+    /></RouterLink>
+    <p class="card-summary">{{ item.officialDefinition.summary }}</p>
+    <div class="tags">
+      <span v-for="tag in item.tags" :key="tag">{{ tag }}</span>
+    </div>
+    <div class="card-meta">
+      <span :title="item.publisher">{{ item.publisher }}</span
+      ><span>{{ item.year || "年份待考" }}</span>
+    </div>
+    <div class="card-actions">
+      <RouterLink :to="`/benchmarks/${item.id}/#samples`"
+        ><Icon
+          :name="item.sampleAccess.status === 'local' ? 'file' : 'external'"
+          :size="15" />{{ sampleAccessLabels[item.sampleAccess.status]
+        }}<Icon name="arrow" :size="15" /></RouterLink
+      ><button
+        class="compare-toggle"
+        :class="{ chosen: selected.includes(item.id) }"
+        :aria-label="`${selected.includes(item.id) ? '移出' : '加入'}对比：${item.name}`"
+        :aria-pressed="selected.includes(item.id)"
+        @click="toggle(item.id)"
+      >
+        <Icon :name="selected.includes(item.id) ? 'tick' : 'plus'" :size="16" />
+        <span>{{ selected.includes(item.id) ? "已选" : "对比" }}</span>
+      </button>
+    </div>
+  </article>
+</template>

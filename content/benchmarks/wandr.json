@@ -1,0 +1,158 @@
+{
+  "id": "wandr",
+  "status": "published",
+  "order": 508,
+  "name": "WANDR",
+  "subtitle": "宽覆盖、深调查的网页研究",
+  "category": "agents",
+  "tags": [
+    "网页研究",
+    "证据核验"
+  ],
+  "publisher": "Perplexity",
+  "brandIds": [
+    "perplexity"
+  ],
+  "year": 2026,
+  "version": "论文版；公开任务随提交版本更新",
+  "kind": "original",
+  "aliases": [
+    "WANDR Benchmark",
+    "Wide ANd Deep Research"
+  ],
+  "metric": {
+    "name": "Soft / hard F1",
+    "description": "task-specific judge 对逐条记录验证并汇总 soft/hard precision、recall 与 F1，用以区分事实质量、覆盖率和层级完整度。论文对六个生产 research systems 的实验报告最高 high-effort 系统 soft F1 为 0.363、hard F1 为 0.133；这是特定系统/运行强度的报告结果。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.14747",
+      "https://github.com/perplexityai/wandr"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未固定仓库 commit 或逐一统计 500 个 source task 的当前文件清单。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    },
+    {
+      "text": "未逐 task 检查所有第三方来源、网页条款、授权和转载边界；README 已明确要求继承原始来源条款。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    },
+    {
+      "text": "未找到公开 canary/训练排除政策；未据此推断许可训练或确认未污染。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    },
+    {
+      "text": "未运行 benchmark 或付费 API 配置。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2608.14747",
+      "role": "paper"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/perplexityai/wandr",
+      "role": "readme"
+    },
+    {
+      "label": "官方 LICENSE",
+      "url": "https://github.com/perplexityai/wandr/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "数据集",
+      "url": "https://huggingface.co/datasets/perplexity-ai/wandr",
+      "role": "data"
+    },
+    {
+      "label": "Anthropic Opus 5.5 报告",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "WANDR 包含 500 个真实且具挑战性的数据收集任务，要求系统发现符合条件的大量实体（广度）、对每个实体进行多个协同网页搜索和信息补充（深度），并提交带有支持来源和摘录、可独立验证的记录。其 qualification key hierarchy 描述实体、关系、证据及各层数量要求，适用于市场地图、尽调、文献综述、产品比较和人才搜寻等流程。",
+    "task": "执行广度与深度兼备的网络研究，提交带有来源和摘录的可验证实体/关系记录。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.14747",
+      "https://github.com/perplexityai/wandr"
+    ]
+  },
+  "taskContract": {
+    "input": "结构化研究指令，含目标、层级/资格条件和期望记录数；任务可附 schema、artifacts 与公开证据材料。",
+    "output": "按任务 schema 提交实体、关系和证据文件。",
+    "environment": "官方 Harbor verifier 会重抓来源页、规范化和去重实体并核验依据；运行可选 Docker 或 E2B 与多类 provider。",
+    "sourceUrls": [
+      "https://github.com/perplexityai/wandr",
+      "https://arxiv.org/abs/2608.14747"
+    ]
+  },
+  "dataProfile": {
+    "summary": "WANDR 将 source task 与转换生成的 Harbor task 分层维护。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告 500 个数据收集任务。"
+    ],
+    "splits": [
+      "未报告 train/validation/test；smoke、validation、full scored 是运行覆盖层级。"
+    ],
+    "fields": [],
+    "files": [
+      "reference/wandr_tasks/ 中的任务配置、schema、prompts、artifacts；Harbor 包含 instruction.md、task.toml、environment 与 tests。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.14747",
+      "https://github.com/perplexityai/wandr"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者公开 GitHub 仓库、技术报告和 Harbor-format 数据目录。运行可使用官方 wrapper 的本地 Docker 或可选 E2B 路径，并需要相关 provider credentials。本轮未克隆仓库、下载任务数据或运行 API 实验。"
+    ],
+    "url": "https://github.com/perplexityai/wandr",
+    "sourceUrls": [
+      "https://github.com/perplexityai/wandr",
+      "https://arxiv.org/abs/2608.14747"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "GitHub 仓库代码标注 Apache-2.0；第三方来源材料继续受原始来源条款约束。",
+    "scope": "Apache-2.0 按 LICENSE 适用于受其覆盖的代码/文件；WANDR 自有结构数据与第三方证据材料分别处理。",
+    "boundaries": [
+      "官方任务 artifacts 可能含第三方公开记录；再利用前须遵守对应来源服务条款和版权条件。",
+      "已查资料未见训练排除制度；此项保持未知，不能据此确认允许训练或已无污染风险。"
+    ],
+    "sourceUrls": [
+      "https://github.com/perplexityai/wandr",
+      "https://arxiv.org/abs/2608.14747"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "可介绍 WANDR 的结构、评测方式并链接官方仓库/论文。不要整体复制源 task configs 或 artifacts 到公开 GitHub Pages；特别是每项内容中引用的第三方页面、图文或记录，需先满足各自来源服务条款与版权条件。若展示自行整理的示例，应使用自创或已确认许可的来源，并标注其不是 WANDR 原始任务。",
+    "sourceUrls": [
+      "https://github.com/perplexityai/wandr"
+    ]
+  }
+}

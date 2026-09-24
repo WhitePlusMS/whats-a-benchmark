@@ -1,0 +1,244 @@
+{
+  "id": "benchcad",
+  "status": "published",
+  "order": 601,
+  "name": "BenchCAD",
+  "subtitle": "从机械零件视图还原可执行 CAD 程序",
+  "category": "multimodal",
+  "tags": [
+    "CAD",
+    "三维重建",
+    "代码生成",
+    "工程任务"
+  ],
+  "publisher": "BenchCAD 作者团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "1.0",
+  "kind": "original",
+  "aliases": [
+    "BenchCAD 1.0"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass",
+  "officialDefinition": {
+    "summary": "BenchCAD 将视觉 CAD 生成、CAD 编辑和 CAD 问答任务结合起来，评估模型理解工程图像并生成或修改可执行 CadQuery 代码的能力。",
+    "task": "基准包含 Vision2Code、CodeEdit、Vision-QA 和 Code-QA 四种任务模式。",
+    "sourceUrls": [
+      "https://github.com/BenchCAD/BenchCAD-main#tasks",
+      "https://github.com/BenchCAD/BenchCAD-main#dataset"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务模式提供工程图像、CadQuery 源码或工程问题。",
+    "output": "生成或修改后的 CadQuery 程序，或 QA 文本答案；代码任务可通过执行与几何检查评分。",
+    "environment": "官方实现使用 Python 3.11 与 uv；数据分为 code_gen、edit-bench、QA 配置，静态视觉/代码任务无交互式仿真器。",
+    "sourceUrls": [
+      "https://github.com/BenchCAD/BenchCAD-main#installation",
+      "https://github.com/BenchCAD/BenchCAD-main#dataset"
+    ]
+  },
+  "dataProfile": {
+    "summary": "BenchCAD 汇集执行验证的 CadQuery 程序、编辑任务与 QA 数据；不同任务配置使用各自规模。",
+    "disclosure": "complete",
+    "scale": [
+      "code_gen：17,900 个程序。",
+      "edit-bench：748 个编辑样例；QA：2,400 个数值问题。",
+      "数据覆盖 106 个零件族和 47 项工程标准。"
+    ],
+    "splits": [
+      "Hugging Face 分为 code_gen、edit-bench、QA 三个配置。",
+      "当前 QA 配置显示一个 split；官方没有统一声明跨配置的 train/test 划分。"
+    ],
+    "fields": [
+      "记录字段包括 record_id、stem、family、CadQuery code 与视图信息。",
+      "QA 对象包含 question、answer、type、source 和 level。"
+    ],
+    "files": [
+      "主数据由 BenchCAD Hugging Face 配置提供。",
+      "公开仓库另有 QA/test_data/records.jsonl 小型 QA 文件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/BenchCAD/BenchCAD-main#dataset",
+      "https://huggingface.co/datasets/BenchCAD/BenchCAD",
+      "https://github.com/BenchCAD/BenchCAD-main/blob/main/QA/test_data/records.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "数据集可从官方 Hugging Face 页面及 GitHub 仓库公开获取。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/BenchCAD/BenchCAD",
+      "https://github.com/BenchCAD/BenchCAD-main#installation"
+    ],
+    "url": "https://huggingface.co/datasets/BenchCAD/BenchCAD"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Hugging Face 数据集标注 CC BY 4.0；评测代码仓库另标 MIT，二者适用范围不同。",
+    "scope": "按 CC BY 4.0 条件署名并注明修改后复用公开数据；代码单独遵循 MIT 条款。",
+    "boundaries": [
+      "外部工程图像的逐项权利仍需核对；不得将代码许可证视为图像数据许可证。"
+    ],
+    "sourceUrls": [
+      "https://github.com/BenchCAD/BenchCAD-main/blob/main/LICENSE",
+      "https://huggingface.co/datasets/BenchCAD/BenchCAD"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "threaded_adapter_000240_s4420",
+        "title": "threaded_adapter · 几何属性问答",
+        "type": "text",
+        "prompt": "Is every hole radius in this part less than or equal to 1.0?",
+        "answer": "0",
+        "explanation": "原始 QA 记录以数值标签给出答案；本站保留标签 0，不擅自改写为语义答案。",
+        "raw": {
+          "record_id": "threaded_adapter_000240_s4420",
+          "family": "threaded_adapter",
+          "qa_pairs": [
+            {
+              "question": "Is every hole radius in this part less than or equal to 1.0?",
+              "answer": 0
+            }
+          ]
+        },
+        "source": "https://github.com/BenchCAD/BenchCAD-main/blob/main/QA/test_data/records.jsonl",
+        "license": "CC BY 4.0 · BenchCAD dataset",
+        "split": "QA/test_data/records.jsonl",
+        "excerpt": true
+      },
+      {
+        "id": "motor_end_cap_000500_s4420",
+        "title": "motor_end_cap · 尺寸问答",
+        "type": "text",
+        "prompt": "What is the size of the largest chamfer in this part?",
+        "answer": "1.5",
+        "explanation": "原始记录将该问答标记为 dim 类型；题目和数值答案均按官方测试记录展示。",
+        "raw": {
+          "record_id": "motor_end_cap_000500_s4420",
+          "family": "motor_end_cap",
+          "qa_pairs": [
+            {
+              "question": "What is the size of the largest chamfer in this part?",
+              "answer": 1.5,
+              "type": "dim"
+            }
+          ]
+        },
+        "source": "https://github.com/BenchCAD/BenchCAD-main/blob/main/QA/test_data/records.jsonl",
+        "license": "CC BY 4.0 · BenchCAD dataset",
+        "split": "QA/test_data/records.jsonl",
+        "excerpt": true
+      }
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "候选样例来自官方 QA records.jsonl 中的公开 QA 记录；Hugging Face 数据卡可核对相同任务配置与字段。",
+    "url": "https://github.com/BenchCAD/BenchCAD-main/blob/main/QA/test_data/records.jsonl",
+    "sourceUrls": [
+      "https://github.com/BenchCAD/BenchCAD-main/blob/main/QA/test_data/records.jsonl",
+      "https://huggingface.co/datasets/BenchCAD/BenchCAD"
+    ]
+  },
+  "metric": {
+    "name": "几何 IoU / 对称比例准确率",
+    "description": "Vision2Code 的 IoU 基于模型生成并执行后的 STEP 几何体与 GT STEP 的 voxel 比较；官方榜还同时展示 execution rate 与 composite total。CodeEdit 的 accuracy 是原始到目标 IoU 间隙被关闭的归一化比例。QA 计 symmetric ratio accuracy，整数要求精确命中，比例题有容差；不同任务的指标不应横向合并。（行 200–206）；（行 190–201、221–258）",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/BenchCAD/BenchCAD-main#tasks",
+      "https://github.com/BenchCAD/BenchCAD-main/blob/main/LEADERBOARD.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "QA 小型 JSONL 文件只是公开 QA 记录，不代表 17,900 条 code_gen 与全部 edit-bench 数据。",
+      "sourceUrls": [
+        "https://github.com/BenchCAD/BenchCAD-main/blob/main/QA/test_data/records.jsonl",
+        "https://huggingface.co/datasets/BenchCAD/BenchCAD"
+      ]
+    },
+    {
+      "text": "不同任务类型使用不同评分方式；比较结果需同时记录任务配置和执行环境。",
+      "sourceUrls": [
+        "https://github.com/BenchCAD/BenchCAD-main/blob/main/LEADERBOARD.md",
+        "https://github.com/BenchCAD/BenchCAD-main#tasks"
+      ]
+    },
+    {
+      "text": "公开的代码和数据许可分别声明，工程图像来源权利未逐项复核。",
+      "sourceUrls": [
+        "https://github.com/BenchCAD/BenchCAD-main/blob/main/LICENSE",
+        "https://huggingface.co/datasets/BenchCAD/BenchCAD"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 README",
+      "url": "https://github.com/BenchCAD/BenchCAD-main#benchcad",
+      "role": "readme"
+    },
+    {
+      "label": "项目网站",
+      "url": "https://benchcad.com/",
+      "role": "definition"
+    },
+    {
+      "label": "README Tasks / Why BenchCAD",
+      "url": "https://github.com/BenchCAD/BenchCAD-main#tasks",
+      "role": "definition"
+    },
+    {
+      "label": "README 数据表",
+      "url": "https://github.com/BenchCAD/BenchCAD-main#dataset",
+      "role": "readme"
+    },
+    {
+      "label": "数据卡 schema 与文件",
+      "url": "https://huggingface.co/datasets/BenchCAD/BenchCAD",
+      "role": "data"
+    },
+    {
+      "label": "README Installation/Quick Start/Dataset",
+      "url": "https://github.com/BenchCAD/BenchCAD-main#installation",
+      "role": "readme"
+    },
+    {
+      "label": "LICENSE 数据许可说明",
+      "url": "https://github.com/BenchCAD/BenchCAD-main/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "官方文件",
+      "url": "https://github.com/BenchCAD/BenchCAD-main/blob/main/QA/test_data/records.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "官方榜单评分说明",
+      "url": "https://github.com/BenchCAD/BenchCAD-main/blob/main/LEADERBOARD.md",
+      "role": "leaderboard"
+    },
+    {
+      "label": "README Citation / Dataset",
+      "url": "https://github.com/BenchCAD/BenchCAD-main#citation",
+      "role": "readme"
+    },
+    {
+      "label": "arXiv:2605.10865",
+      "url": "https://arxiv.org/abs/2605.10865",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI GPT-6 Astra",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "role": "vendor-report"
+    }
+  ]
+}

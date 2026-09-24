@@ -1,0 +1,103 @@
+{
+  "id": "automationbench",
+  "status": "published",
+  "order": 504,
+  "name": "AutomationBench",
+  "subtitle": "跨应用业务流程自动化",
+  "summary": "在模拟企业软件中衡量代理能否正确完成销售、市场、运营、支持、财务与人力资源流程。",
+  "category": "agents",
+  "tags": [
+    "业务流程",
+    "工具使用"
+  ],
+  "publisher": "Zapier",
+  "brandIds": [
+    "zapier"
+  ],
+  "year": 2026,
+  "version": "1.0",
+  "kind": "original",
+  "aliases": [],
+  "task": "代理处理工作请求，发现并调用跨应用 API，按最终状态验收。",
+  "format": "模拟 SaaS 工具、初始状态与断言；公开任务集和私有留出榜单集分开。",
+  "metric": {
+    "name": "任务完成率",
+    "description": "全部必需断言通过才记成功；另报告断言部分得分。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "Anthropic 注明 Opus 5.5 未启用 fallback，安全拦截被计为失败。",
+    "公开任务集与榜单留出集不同。"
+  ],
+  "availability": "public",
+  "sampleNote": "展示 1 条官方 simple domain 任务，包含用户请求、模拟邮件、联系人初始状态和验收断言。",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "simple.email_sf_contact_phone_update:3001",
+        "title": "邮件触发的联系人电话更新",
+        "type": "record",
+        "prompt": "Jordan Lee just emailed us with a new phone number. Can you find that email and update her phone number in Salesforce?",
+        "answer": "salesforce contacts/003001.phone = +1-555-0101",
+        "explanation": "answer 展示的是官方任务断言要求的最终状态；任务是否通过由该断言检查，不是自由文本答案。",
+        "raw": {
+          "task": "simple.email_sf_contact_phone_update",
+          "example_id": 3001,
+          "user_prompt": "Jordan Lee just emailed us with a new phone number. Can you find that email and update her phone number in Salesforce?",
+          "email": {
+            "id": "msg_3001",
+            "subject": "Updated phone number",
+            "body_plain": "Hi, just a heads up my new direct line is +1-555-0101. Please update your records. Thanks, Jordan"
+          },
+          "contact": {
+            "id": "003001",
+            "phone": "+1-555-0000"
+          },
+          "assertions": [
+            {
+              "type": "salesforce_field_equals",
+              "collection": "contacts",
+              "record_id": "003001",
+              "field": "phone",
+              "value": "+1-555-0101"
+            }
+          ]
+        },
+        "source": "https://github.com/zapier/AutomationBench/blob/main/automationbench/domains/simple/tasks.py",
+        "license": "MIT · Zapier-authored benchmark task and mock data; excludes third-party API schema representations",
+        "split": "simple domain · example_id 3001",
+        "excerpt": true
+      }
+    ]
+  },
+  "sources": [
+    {
+      "label": "AutomationBench 榜单",
+      "url": "https://zapier.com/benchmarks",
+      "kind": "leaderboard"
+    },
+    {
+      "label": "官方仓库与任务定义",
+      "url": "https://github.com/zapier/AutomationBench",
+      "kind": "code"
+    },
+    {
+      "label": "官方 simple domain 任务记录",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/automationbench/domains/simple/tasks.py",
+      "kind": "data"
+    },
+    {
+      "label": "官方 MIT 许可及第三方材料排除说明",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/LICENSE",
+      "kind": "code"
+    },
+    {
+      "label": "Anthropic Opus 5.5 报告",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

@@ -1,0 +1,228 @@
+{
+  "id": "arc-agi-3",
+  "status": "published",
+  "order": 602,
+  "name": "ARC-AGI-3",
+  "subtitle": "在交互环境中边探索边学习规则",
+  "category": "reasoning",
+  "tags": [
+    "交互推理",
+    "技能习得",
+    "长程规划"
+  ],
+  "publisher": "ARC Prize Foundation",
+  "brandIds": [
+    "arc-prize"
+  ],
+  "year": 2026,
+  "version": "3",
+  "kind": "original",
+  "aliases": [
+    "ARC AGI 3"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "ARC-AGI-3 是交互式游戏评测：智能体通过探索、动作和反馈，逐步发现环境规则并完成目标。",
+    "task": "观察当前游戏画面和可用动作，提交下一步动作，根据新画面与状态继续探索，直至完成或达到预算。",
+    "sourceUrls": [
+      "https://arcprize.org/arc-agi/3#what-is-arc-agi-3",
+      "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=1"
+    ]
+  },
+  "taskContract": {
+    "input": "当前游戏帧、游戏状态以及该环境支持的动作信息。",
+    "output": "一次游戏动作；系统返回后续帧和状态，任务按完成关卡/目标判定。",
+    "environment": "经 ARC-AGI-3 Agents API 访问游戏；运行需遵循当前 Toolkit/API 版本，部分接口需 API key。",
+    "sourceUrls": [
+      "https://github.com/arcprize/docs/blob/main/game-schema.mdx#L1-L38",
+      "https://github.com/arcprize/ARC-AGI-3-Agents#quickstart",
+      "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=12"
+    ]
+  },
+  "dataProfile": {
+    "summary": "技术报告列出公开演示集、半私有集和完全私有集；游戏通过 API 提供，不是统一下载的静态题表。",
+    "disclosure": "partial",
+    "scale": [
+      "Public Demo：25 个环境。",
+      "Semi-Private：55 个环境；Fully Private：55 个环境。"
+    ],
+    "splits": [
+      "环境按 Public Demo、Semi-Private、Fully Private 三类提供，后两类不向普通用户公开。"
+    ],
+    "fields": [
+      "Game Schema 定义 FrameData 和动作结构；具体字段会随 Toolkit 版本调整。",
+      "状态包括当前游戏帧与游戏进度；不同游戏的状态细节并不统一。"
+    ],
+    "files": [
+      "本次未核验到完整可下载游戏文件清单；公开 demo 通过官方 API/Agents 工具访问。"
+    ],
+    "sourceUrls": [
+      "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=6",
+      "https://github.com/arcprize/docs/blob/main/game-schema.mdx#L1-L38",
+      "https://github.com/arcprize/ARC-AGI-3-Agents#changelog"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方提供公开 demo 游戏集；半私有和完全私有环境受访问条件限制。API 使用要求以官方 Agents quickstart 为准。"
+    ],
+    "sourceUrls": [
+      "https://arcprize.org/arc-agi/3#links",
+      "https://github.com/arcprize/ARC-AGI-3-Agents#quickstart"
+    ],
+    "url": "https://arcprize.org/arc-agi/3"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "Agents/Toolkit 代码仓库注明 MIT；本次未核实游戏数据、图像和媒体内容存在统一开放数据许可证。",
+    "scope": "可按代码许可证复用评测工具；游戏任务数据、画面和媒体仅作官方链接与概述。",
+    "boundaries": [
+      "不得把 MIT 代码许可解释为游戏数据或媒体的再发布许可；每个游戏素材的权利未逐项核实。"
+    ],
+    "sourceUrls": [
+      "https://github.com/arcprize/ARC-AGI-3-Agents#license",
+      "https://arcprize.org/arc-agi/3#links"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "可链接官方 Public Game Set、游戏试玩页和 SDK 文档。未确认公开 demo 的题面/帧/replay 的再发布许可，因此不把真实环境截图或状态记录下载并内嵌 GitHub Pages。官方技术报告演示图只引用报告链接，不另行复制媒体\n",
+    "sourceUrls": [
+      "https://arcprize.org/arc-agi/3#links",
+      "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=6"
+    ],
+    "url": "https://arcprize.org/arc-agi/3#links"
+  },
+  "metric": {
+    "name": "RHAE（Relative Human Action Efficiency）",
+    "description": "RHAE（Relative Human Action Efficiency）以每关动作数相对人类基线效率评分，对每关单独计算、按环境归一化后跨环境汇总；技术报告以动作效率的平方比率刻画效率，单关分值范围 0–115%，总分为环境平均、范围 0–100%。\n官方 2026 年后续评分更新将基线从每关第二名人类调整为中位人类，并把单关上限从 100% 提至 115%；引用技术报告旧稿公式时需同步注明这一已发布修订。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=12",
+      "https://arcprize.org/blog/arc-agi-3-human-dataset#arc-agi-3-scoring-updates"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "FrameData 字段在 Toolkit 版本间发生过重命名，复现实验需要记录 agents/toolkit 版本。",
+      "sourceUrls": [
+        "https://github.com/arcprize/docs/blob/main/game-schema.mdx#L1-L38",
+        "https://github.com/arcprize/ARC-AGI-3-Agents#changelog"
+      ]
+    },
+    {
+      "text": "本次未读取半私有或私有游戏环境文件，无法逐项确认其字段和附件清单。",
+      "sourceUrls": [
+        "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=6",
+        "https://github.com/arcprize/ARC-AGI-3-Agents#quickstart"
+      ]
+    },
+    {
+      "text": "Agents 代码许可不能代表所有游戏画面及数据内容的再使用授权。",
+      "sourceUrls": [
+        "https://github.com/arcprize/ARC-AGI-3-Agents#license",
+        "https://arcprize.org/arc-agi/3#links"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 benchmark 页面",
+      "url": "https://arcprize.org/arc-agi/3#what-is-arc-agi-3",
+      "role": "definition"
+    },
+    {
+      "label": "官方页面",
+      "url": "https://arcprize.org/arc-agi/3#how-it-measures-intelligence",
+      "role": "definition"
+    },
+    {
+      "label": "技术报告",
+      "url": "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=1",
+      "role": "definition"
+    },
+    {
+      "label": "官方 Game Schema",
+      "url": "https://github.com/arcprize/docs/blob/main/game-schema.mdx#L1-L38",
+      "role": "code"
+    },
+    {
+      "label": "官方 Agents repo",
+      "url": "https://github.com/arcprize/ARC-AGI-3-Agents#quickstart",
+      "role": "code"
+    },
+    {
+      "label": "ARC-AGI Toolkit",
+      "url": "https://github.com/arcprize/ARC-AGI",
+      "role": "code"
+    },
+    {
+      "label": "官方技术报告，第 3 节/Table 1",
+      "url": "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=6",
+      "role": "paper"
+    },
+    {
+      "label": "官方 Agents repo changelog",
+      "url": "https://github.com/arcprize/ARC-AGI-3-Agents#changelog",
+      "role": "code"
+    },
+    {
+      "label": "官方 benchmark 页面",
+      "url": "https://arcprize.org/arc-agi/3#links",
+      "role": "definition"
+    },
+    {
+      "label": "官方 Agents repo license",
+      "url": "https://github.com/arcprize/ARC-AGI-3-Agents#license",
+      "role": "access"
+    },
+    {
+      "label": "官方技术报告评分章节",
+      "url": "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=12",
+      "role": "paper"
+    },
+    {
+      "label": "官方评分更新",
+      "url": "https://arcprize.org/blog/arc-agi-3-human-dataset#arc-agi-3-scoring-updates",
+      "role": "definition"
+    },
+    {
+      "label": "官方发布说明",
+      "url": "https://arcprize.org/blog/arc-agi-3-launch",
+      "role": "definition"
+    },
+    {
+      "label": "ARC-AGI-3",
+      "url": "https://arcprize.org/arc-agi/3",
+      "role": "definition"
+    },
+    {
+      "label": "ARC-AGI-3 Technical Report",
+      "url": "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "ARC-AGI-3-Agents",
+      "url": "https://github.com/arcprize/ARC-AGI-3-Agents",
+      "role": "code"
+    },
+    {
+      "label": "Game Schema",
+      "url": "https://github.com/arcprize/docs/blob/main/game-schema.mdx",
+      "role": "code"
+    },
+    {
+      "label": "Measuring Human Performance on ARC-AGI-3",
+      "url": "https://arcprize.org/blog/arc-agi-3-human-dataset",
+      "role": "definition"
+    },
+    {
+      "label": "ARC Prize Leaderboard",
+      "url": "https://arcprize.org/leaderboard",
+      "role": "leaderboard"
+    }
+  ]
+}

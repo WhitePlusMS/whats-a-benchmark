@@ -1,0 +1,227 @@
+{
+  "id": "automationbench",
+  "status": "published",
+  "order": 504,
+  "name": "AutomationBench",
+  "subtitle": "跨应用业务流程自动化",
+  "category": "agents",
+  "tags": [
+    "业务流程",
+    "工具使用"
+  ],
+  "publisher": "Zapier",
+  "brandIds": [
+    "zapier"
+  ],
+  "year": 2026,
+  "version": "1.0",
+  "kind": "original",
+  "aliases": [],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AutomationBench 评估智能体在模拟 Zapier 应用中根据事件触发器和用户目标完成自动化工作流的能力。",
+    "task": "Agent 根据 trigger 和 initial state 调用模拟应用工具，完成用户目标并满足预设 assertions。",
+    "sourceUrls": [
+      "https://github.com/zapier/AutomationBench/blob/main/README.md#how-it-works"
+    ]
+  },
+  "taskContract": {
+    "input": "任务的触发条件、初始应用状态、可用工具和目标描述。",
+    "output": "一组工具调用及最终应用状态；测试 assertions 判断工作流是否达成目标。",
+    "environment": "官方仓库提供模拟集成环境和公开任务；榜单 private split 由官方单独保留。",
+    "sourceUrls": [
+      "https://github.com/zapier/AutomationBench/blob/main/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开仓库包含 600 个计分任务与 200 个 simple 基础任务；官方榜单还保留 private 任务。",
+    "disclosure": "partial",
+    "scale": [
+      "六个计分领域各 100 项，共 600 个公开任务。",
+      "simple 域另有 200 个单步或双步任务，不纳入正式分数。"
+    ],
+    "splits": [
+      "公开任务按 Sales、Marketing、Operations、Support、Finance、HR 组织。",
+      "官方榜单的 private split 与公开仓库任务分开。"
+    ],
+    "fields": [
+      "任务包含 trigger、initial state、tools 和 assertions。"
+    ],
+    "files": [
+      "公开任务位于 automationbench/domains/；simple 演示任务位于 automationbench/domains/simple/。"
+    ],
+    "sourceUrls": [
+      "https://github.com/zapier/AutomationBench/blob/main/README.md",
+      "https://github.com/zapier/AutomationBench/tree/main/automationbench/domains"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开任务可从官方仓库获取；官方榜单同时使用未公开的 private 任务。"
+    ],
+    "sourceUrls": [
+      "https://github.com/zapier/AutomationBench/blob/main/README.md#public-vs-official-scores",
+      "https://github.com/zapier/AutomationBench/tree/main/automationbench/domains"
+    ],
+    "url": "https://github.com/zapier/AutomationBench"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方仓库采用 MIT；此许可覆盖仓库内受其许可约束的 mock 内容和实现。",
+    "scope": "可按 MIT 条款复用公开 mock 任务与代码，并保留版权及许可声明。",
+    "boundaries": [
+      "第三方应用 API schema、商标及外部素材不因仓库 MIT 标注自动取得再发布授权。"
+    ],
+    "sourceUrls": [
+      "https://github.com/zapier/AutomationBench/blob/main/LICENSE"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "simple.email_sf_contact_phone_update:3001",
+        "title": "邮件触发的联系人电话更新",
+        "type": "record",
+        "prompt": "Jordan Lee just emailed us with a new phone number. Can you find that email and update her phone number in Salesforce?",
+        "answer": "salesforce contacts/003001.phone = +1-555-0101",
+        "explanation": "answer 展示的是官方任务断言要求的最终状态；任务是否通过由该断言检查，不是自由文本答案。",
+        "raw": {
+          "task": "simple.email_sf_contact_phone_update",
+          "example_id": 3001,
+          "user_prompt": "Jordan Lee just emailed us with a new phone number. Can you find that email and update her phone number in Salesforce?",
+          "email": {
+            "id": "msg_3001",
+            "subject": "Updated phone number",
+            "body_plain": "Hi, just a heads up my new direct line is +1-555-0101. Please update your records. Thanks, Jordan"
+          },
+          "contact": {
+            "id": "003001",
+            "phone": "+1-555-0000"
+          },
+          "assertions": [
+            {
+              "type": "salesforce_field_equals",
+              "collection": "contacts",
+              "record_id": "003001",
+              "field": "phone",
+              "value": "+1-555-0101"
+            }
+          ]
+        },
+        "source": "https://github.com/zapier/AutomationBench/blob/main/automationbench/domains/simple/tasks.py",
+        "license": "MIT · Zapier-authored benchmark task and mock data; excludes third-party API schema representations",
+        "split": "simple domain · example_id 3001",
+        "excerpt": true
+      }
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "候选样例来自官方 simple 域的公开基础任务文件；该样例是格式与工具调用演示，不是正式计分 private 任务。",
+    "url": "https://github.com/zapier/AutomationBench/blob/main/automationbench/domains/simple/tasks.py",
+    "sourceUrls": [
+      "https://github.com/zapier/AutomationBench/blob/main/automationbench/domains/simple/tasks.py",
+      "https://github.com/zapier/AutomationBench/blob/main/README.md#simple-domain"
+    ]
+  },
+  "metric": {
+    "name": "任务完成率",
+    "description": "每项任务同时报告 partial_credit（满足断言比例，0–1）与 task_completed_correctly（全断言通过为 1，否则为 0）。正式 AutomationBench pass rate 是排除 simple 后所有计分任务的严格通过率均值；部分分仅为密集反馈/reward，不是官方总榜准确率。公开榜单的 600 任务成绩与官方 private 榜成绩口径不可混用。（行 196–229）",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/zapier/AutomationBench/blob/main/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开仓库任务与官方 leaderboard private split 不同，不能用公开任务数量代替完整榜单评测规模。",
+      "sourceUrls": [
+        "https://github.com/zapier/AutomationBench/blob/main/README.md#public-vs-official-scores"
+      ]
+    },
+    {
+      "text": "simple 域基础任务不计入正式 benchmark 分数。",
+      "sourceUrls": [
+        "https://github.com/zapier/AutomationBench/blob/main/README.md#simple-domain"
+      ]
+    },
+    {
+      "text": "第三方应用 schema 与商标的再利用权利不由仓库 MIT 许可自动覆盖。",
+      "sourceUrls": [
+        "https://github.com/zapier/AutomationBench/blob/main/LICENSE",
+        "https://github.com/zapier/AutomationBench/blob/main/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "zapier/AutomationBench",
+      "url": "https://github.com/zapier/AutomationBench",
+      "role": "code"
+    },
+    {
+      "label": "仓库 README § Overview、Public vs. Official Scores",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/README.md#overview",
+      "role": "readme"
+    },
+    {
+      "label": "论文摘要",
+      "url": "https://arxiv.org/abs/2604.18934",
+      "role": "paper"
+    },
+    {
+      "label": "README § Overview、How It Works",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/README.md#how-it-works",
+      "role": "definition"
+    },
+    {
+      "label": "README § Overview、How It Works、CLI Options",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "仓库目录",
+      "url": "https://github.com/zapier/AutomationBench/tree/main/automationbench/domains",
+      "role": "code"
+    },
+    {
+      "label": "README § Public vs. Official Scores",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/README.md#public-vs-official-scores",
+      "role": "readme"
+    },
+    {
+      "label": "LICENSE § Scope of License",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "官方 simple tasks.py",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/automationbench/domains/simple/tasks.py",
+      "role": "code"
+    },
+    {
+      "label": "README 行 193–197",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/README.md#simple-domain",
+      "role": "readme"
+    },
+    {
+      "label": "CHANGELOG",
+      "url": "https://github.com/zapier/AutomationBench/blob/main/CHANGELOG.md",
+      "role": "code"
+    },
+    {
+      "label": "Zapier benchmarks",
+      "url": "https://zapier.com/benchmarks",
+      "role": "definition"
+    },
+    {
+      "label": "Anthropic Claude Opus 5.5",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "role": "vendor-report"
+    }
+  ]
+}

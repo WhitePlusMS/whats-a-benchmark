@@ -1,0 +1,161 @@
+{
+  "id": "paperbench",
+  "status": "published",
+  "order": 712,
+  "name": "PaperBench",
+  "subtitle": "衡量智能体从零复现机器学习研究的能力",
+  "category": "agents",
+  "tags": [
+    "研究复现",
+    "代码执行",
+    "长时程智能体"
+  ],
+  "publisher": "OpenAI",
+  "brandIds": [],
+  "year": 2025,
+  "version": "PaperBench; PaperBench Code-Dev variant",
+  "kind": "original",
+  "aliases": [
+    "PaperBench Code-Dev"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "OpenAI 发布的智能体研究复现基准，以复现 ICML 2024 的 20 篇 Spotlight/Oral 论文衡量 agent 的研究工程能力。",
+    "task": "Agent 根据论文及层级 rubric 从零构建复现代码库，提交在隔离环境执行，并由 LLM judge 对照 rubric 评分。",
+    "sourceUrls": [
+      "https://openai.com/index/paperbench/",
+      "https://arxiv.org/abs/2504.01848",
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "论文、逐篇复现 rubric、作者补充说明和所需资产；部分任务需要 Hugging Face gated data 或外部 API。",
+    "output": "Agent 创建的复现代码库，经独立容器执行后形成实验产物，并由 judge 输出 rubric 得分。",
+    "environment": "Agent rollout、提交执行与评分分阶段隔离；完整复现通常需 Docker/GPU，具体模型、工具和时限由 solver 配置。",
+    "sourceUrls": [
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方发布定义包含 20 篇 ICML 2024 Spotlight/Oral 论文与 8,316 个可评分 rubric 节点。",
+    "disclosure": "partial",
+    "scale": [
+      "20 篇论文；8,316 个可评分 rubric 子任务。"
+    ],
+    "splits": [
+      "官方实现出现 debug、dev、all 等 paper split；Code-Dev 是省略执行和结果匹配评分的变体。"
+    ],
+    "fields": [
+      "逐篇包含研究论文与复现 rubric；仓库还可含 addendum、assets、blacklist.txt、config.yaml、可选 judge addendum。"
+    ],
+    "files": [
+      "论文 PDF/Markdown、assets、rubric.json、addendum.md、blacklist.txt、config.yaml；数据由 Git LFS 管理。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/paperbench/",
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "代码仓库公开；数据需 Git LFS 获取。完整复现可能需 Docker、GPU、OpenAI API key、HF token，且依赖可能受限的 ImageNet/Llama 2 等资源。",
+      "README 明确部分 JudgeEval tarball 不可自动再分发。"
+    ],
+    "url": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+    "sourceUrls": [
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未确认 PaperBench 数据、论文资产、rubric 与第三方内容的统一再分发许可。",
+    "scope": "仓库代码许可信息不能自动延伸到 benchmark 文件及第三方论文/数据。本站候选不复制原始题目、图像或 rubric。",
+    "boundaries": [
+      "逐文件许可未审查。",
+      "部分 JudgeEval tarball 官方称不能自动再分发。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md",
+      "https://github.com/openai/frontier-evals"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方可见论文任务和 rubrics，但未核实所有题目文件、论文资产及第三方数据的再分发权利；仅保留官方链接。",
+    "url": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+    "sourceUrls": [
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+    ]
+  },
+  "metric": {
+    "name": "Replication score",
+    "description": "完整版本根据 8,316 个层级 rubric 子任务评分并汇总为百分比；Code-Dev 只评代码开发要求，省略执行与结果匹配要求。比较时须保留版本、split、solver、时间和评分配置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://openai.com/index/paperbench/",
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "逐文件数据许可、论文资产权利及第三方数据授权未完整核实，不能据代码仓库的许可提示推断数据可转载。",
+      "sourceUrls": [
+        "https://github.com/openai/frontier-evals",
+        "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+      ]
+    },
+    {
+      "text": "Code-Dev 是轻量化变体，排除执行和结果匹配，成绩不可与完整 PaperBench 直接等同。",
+      "sourceUrls": [
+        "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+      ]
+    },
+    {
+      "text": "Kimi K2.5 与 MiniMax M3 的厂商发布资料只证明各自报告了该名称或配置，不是 benchmark 官方定义/排行榜。",
+      "sourceUrls": [
+        "https://github.com/MoonshotAI/Kimi-K2.5",
+        "https://www.minimax.io/blog/minimax-m3"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI PaperBench 发布页（2025-04-02）",
+      "url": "https://openai.com/index/paperbench/",
+      "role": "release"
+    },
+    {
+      "label": "PaperBench 作者论文",
+      "url": "https://arxiv.org/abs/2504.01848",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI Frontier Evals PaperBench README",
+      "url": "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "OpenAI Frontier Evals repository",
+      "url": "https://github.com/openai/frontier-evals",
+      "role": "code"
+    },
+    {
+      "label": "Kimi K2.5 模型厂商评测表",
+      "url": "https://github.com/MoonshotAI/Kimi-K2.5",
+      "role": "vendor-report"
+    },
+    {
+      "label": "MiniMax M3 厂商评测方法",
+      "url": "https://www.minimax.io/blog/minimax-m3",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Qwen3.8-Max 厂商模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

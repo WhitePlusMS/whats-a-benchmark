@@ -1,0 +1,68 @@
+import { benchmarks, categoryById } from "../content/catalog";
+import type { Benchmark } from "../types/benchmark";
+
+/** Normalize presentation differences without throwing away meaningful version numbers. */
+export function normalizeName(value: string): string {
+  return value
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[’']/g, "")
+    .replace(/[\s_‐‑–—-]/g, "");
+}
+
+export function searchBenchmarks(query: string): Benchmark[] {
+  const normalized = normalizeName(query.trim());
+  if (!normalized) return benchmarks;
+  return benchmarks
+    .map((item) => {
+      const names = [item.name, ...item.aliases].map(normalizeName);
+      const corpus = normalizeName(
+        [
+          item.subtitle,
+          item.officialDefinition.summary,
+          item.officialDefinition.task,
+          item.taskContract.input,
+          item.taskContract.output,
+          item.dataProfile.summary,
+          item.publisher,
+          ...item.tags,
+          categoryById.get(item.category)?.name || "",
+        ].join(" "),
+      );
+      const score = names.includes(normalized)
+        ? 3
+        : names.some((name) => name.includes(normalized))
+          ? 2
+          : corpus.includes(normalized)
+            ? 1
+            : 0;
+      return { item, score };
+    })
+    .filter((result) => result.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((result) => result.item);
+}
+
+export function recognizeNames(
+  input: string,
+): { input: string; matches: Benchmark[] }[] {
+  const names = [
+    ...new Set(
+      input
+        .split(/[\n,，;；]+/)
+        .map((name) => name.trim())
+        .filter(Boolean),
+    ),
+  ];
+  return names.slice(0, 60).map((name) => {
+    const exact = benchmarks.filter((item) =>
+      [item.name, ...item.aliases].some(
+        (alias) => normalizeName(alias) === normalizeName(name),
+      ),
+    );
+    return {
+      input: name,
+      matches: exact.length ? exact : searchBenchmarks(name).slice(0, 5),
+    };
+  });
+}

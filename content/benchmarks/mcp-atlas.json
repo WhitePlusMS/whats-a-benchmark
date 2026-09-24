@@ -1,0 +1,218 @@
+{
+  "aliases": [
+    "MCP Atlas",
+    "MCP-ATLAS"
+  ],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-23",
+  "id": "mcp-atlas",
+  "name": "MCP-Atlas",
+  "subtitle": "面对很多工具，还能选对并用好吗",
+  "category": "agents",
+  "tags": [
+    "MCP",
+    "多工具工作流"
+  ],
+  "publisher": "Scale Labs / MCP-Atlas 团队",
+  "year": 2025,
+  "version": "MCP-Atlas 官方任务定义",
+  "metric": {
+    "name": "任务成功率",
+    "description": "主指标为 claim coverage（每项 claim 记 1、0.5 或 0，求任务平均）及 coverage ≥ 0.75 的 pass rate；也可报告 ≥0.50、≥0.90 阈值、平均 coverage、时长、工具调用数和按失败类别的诊断。需固定 judge，因为三种 judge 对同一模型可有 2.1–4.6 个百分点差异。分 public/private 的分数差是暴露审计信号，不是污染的直接证明。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.00933"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "已通过 Hugging Face 官方 Viewer API 重新读取首行，确认 TASK、PROMPT 和 ENABLED_TOOLS；稳定 TASK ID 为 689f4d693e212e8ef3390731，本地仅发布这三个字段。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer/default/train?p=0",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
+      ]
+    },
+    {
+      "text": "本轮只核验并复制一个公开任务的题面与工具名，未逐行审计其余 499 行；GTFA_CLAIMS、TRAJECTORY 和外部服务返回均未进入本站样例。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
+      ]
+    },
+    {
+      "text": "论文同时说公开卡 3–6 tool calls/task、正文参考轨迹均值 9.8 steps，统计口径有别，本文不将其强行对齐。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.00933",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+        "https://github.com/scaleapi/mcp-atlas/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "第三方工具实现和工具返回内容适用其上游许可及 API 条款，不能由数据集许可证覆盖。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.00933",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+        "https://github.com/scaleapi/mcp-atlas/blob/main/data_exports/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2602.00933",
+      "role": "paper"
+    },
+    {
+      "label": "scaleapi/mcp-atlas",
+      "url": "https://github.com/scaleapi/mcp-atlas",
+      "role": "readme"
+    },
+    {
+      "label": "ScaleAI/MCP-Atlas 数据卡",
+      "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+      "role": "data"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/scaleapi/mcp-atlas/blob/main/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "官方仓库数据导出说明",
+      "url": "https://github.com/scaleapi/mcp-atlas/blob/main/data_exports/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "Scale AI MCP-Atlas Leaderboard",
+      "url": "https://scale.com/leaderboard/mcp_atlas",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方评测说明与榜单",
+      "url": "https://labs.scale.com/leaderboard/mcp_atlas",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方公开记录浏览器",
+      "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer",
+      "role": "data"
+    },
+    {
+      "label": "ScaleAI MCP-Atlas 官方公开样例 Viewer",
+      "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer/default/train?p=0",
+      "role": "data"
+    },
+    {
+      "label": "MCP-Atlas 固定 revision 官方 Parquet",
+      "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet",
+      "role": "data"
+    },
+    {
+      "label": "Creative Commons Attribution 4.0 International Legal Code",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 290,
+  "brandIds": [
+    "scale"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MCP-Atlas 评估智能体在真实 MCP 服务中发现工具、执行多步调用并汇总结果的能力。论文定义 1,000 个任务，覆盖 36 个服务器和 220 个工具；公开与私有任务各 500 个。",
+    "task": "模型根据未点名工具或服务器的自然语言请求完成跨工具工作流，返回最终回答和可审计调用轨迹；主要结果是 claim coverage 达到阈值的任务比例。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.00933"
+    ]
+  },
+  "taskContract": {
+    "input": "单轮自然语言请求、受控工具子集和真实 MCP 服务器；公开任务暴露 6–37 个工具，其中 2–8 个相关。",
+    "output": "最终回答与调用轨迹；评分器按参考事实主张计算 coverage，论文以 coverage ≥0.75 的任务比例报告 pass rate。",
+    "environment": "版本锁定的真实 MCP 服务、容器化 harness 和评估器；部分服务需第三方账户/API 凭证。公开卡的 3–6 次调用与论文参考轨迹平均 9.8 步口径不同。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.00933",
+      "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+      "https://github.com/scaleapi/mcp-atlas"
+    ]
+  },
+  "dataProfile": {
+    "summary": "完整基准有 1,000 个任务，官方公开发布 500 个；私有 500 个保留用于暴露监测和榜单完整性。",
+    "disclosure": "partial",
+    "scale": [
+      "完整集：1,000 个任务；公开集：500 个；私有保留集：500 个。公开任务覆盖 36 个服务器和 220 个工具。"
+    ],
+    "splits": [
+      "官方 Hugging Face Viewer 将 500 行公开 release 子集标记为 train；论文中的基准范围划分是 public 500 / private 500，不能将 Viewer 标签直接解读为原基准训练集。样例定位为 Viewer train 第 0 行。"
+    ],
+    "fields": [
+      "TASK（24 字符 ID）、ENABLED_TOOLS、PROMPT、GTFA_CLAIMS、TRAJECTORY；工具列表、主张和轨迹在 Parquet 中为序列化字符串。"
+    ],
+    "files": [
+      "官方 Hugging Face 发布为含 500 行公开子集的 Parquet；运行结果 CSV 是输出记录，不是原始任务 schema。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.00933",
+      "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+      "https://github.com/scaleapi/mcp-atlas/blob/main/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "作者 HF 页面提供 500 个公开任务；另有 500 个私有任务不开放。完整复跑还可能需要第三方服务凭证和专用数据。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+      "https://github.com/scaleapi/mcp-atlas"
+    ],
+    "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者论文与 HF 数据卡将公开任务数据按 CC BY 4.0 发布；harness 代码为 Apache-2.0。",
+    "scope": "许可覆盖公开任务发布内容；第三方 MCP server 和 API 返回结果仍受各自许可与服务条款约束。",
+    "boundaries": [
+      "转载公开任务时按 CC BY 4.0 署名、链接许可并标记修改；不据此再发布未公开的原始服务数据或第三方工具输出。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.00933",
+      "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+      "https://github.com/scaleapi/mcp-atlas/blob/main/data_exports/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站展示官方公开 release 中 TASK=\"689f4d693e212e8ef3390731\" 的 PROMPT 与 ENABLED_TOOLS，符合数据卡对模型输入字段的说明。CC BY 4.0 署名 Scale AI / MCP-Atlas 并标记本站选取字段的修改；明确排除 GTFA_CLAIMS、TRAJECTORY 及第三方工具/API 返回内容。HF Viewer 将 500 行公开子集标为 train，此标签不等于论文的 500 public / 500 private 范围划分。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+      "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ],
+    "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer/default/train?p=0"
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "689f4d693e212e8ef3390731",
+        "title": "MCP-Atlas 公开任务 689f4d693e212e8ef3390731",
+        "type": "record",
+        "prompt": "I've been looking into contributions in open source videogames and I'm curious about the longevity of this one open source project. Can you get me the year difference between the creation of the repository of the shooter game assaultcube and the domain registration date of the game's official site",
+        "explanation": "这是官方公开任务中的一条自然语言请求。样例仅保留 TASK、PROMPT 和 ENABLED_TOOLS；不包含参考主张、TRAJECTORY 或任何第三方工具/API 返回内容。",
+        "raw": {
+          "TASK": "689f4d693e212e8ef3390731",
+          "ENABLED_TOOLS": "[\"fetch_fetch\",\"whois_whois_domain\",\"github_search_repositories\",\"github_search_code\",\"github_search_users\",\"github_get_issue\",\"github_list_issues\",\"github_search_issues\",\"github_get_issue_comments\",\"github_get_repository\",\"github_get_commit\",\"github_list_commits\",\"github_get_file_contents\",\"github_list_branches\",\"mcp-code-executor_execute_code\"]",
+          "PROMPT": "I've been looking into contributions in open source videogames and I'm curious about the longevity of this one open source project. Can you get me the year difference between the creation of the repository of the shooter game assaultcube and the domain registration date of the game's official site"
+        },
+        "source": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet",
+        "license": "CC BY 4.0 · Scale AI / MCP-Atlas（本站选取公开任务字段并省略参考主张与轨迹）",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "split": "train（Hugging Face Viewer 当前标签；公开 release 子集）",
+        "excerpt": false
+      }
+    ]
+  }
+}

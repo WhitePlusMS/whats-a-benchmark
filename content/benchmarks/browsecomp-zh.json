@@ -1,0 +1,174 @@
+{
+  "id": "browsecomp-zh",
+  "status": "published",
+  "order": 704,
+  "name": "BrowseComp-ZH",
+  "subtitle": "用中文问题检验深度网页搜索",
+  "category": "agents",
+  "tags": [
+    "中文",
+    "网页搜索",
+    "Agent"
+  ],
+  "publisher": "BrowseComp-ZH 研究团队",
+  "brandIds": [],
+  "year": 2025,
+  "version": "BrowseComp-ZH",
+  "kind": "original",
+  "aliases": [],
+  "related": [
+    {
+      "id": "browsecomp",
+      "label": "英文对应基准",
+      "detail": "BrowseComp-ZH 面向中文搜索任务，数据集与题目不同。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.19314",
+        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "BrowseComp-ZH 是中文化的多跳浏览检索 benchmark，要求从分散线索中定位并推理出一个具体事实答案。",
+    "task": "给定中文研究问题，模型通过网页搜索汇集线索并提交答案；官方以答案匹配评估结果。",
+    "sourceUrls": [
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md",
+      "https://arxiv.org/abs/2504.19314"
+    ]
+  },
+  "taskContract": {
+    "input": "中文自然语言问题。",
+    "output": "单个简洁答案，并保留官方数据中的 canary 字段用于泄漏检测。",
+    "environment": "使用网页搜索与阅读工具完成多跳信息检索；官方提供评测和解密工具。",
+    "sourceUrls": [
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AF%84%E6%B5%8B%E8%BF%90%E8%A1%8C",
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/data/browsecomp-zh-decrypt.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库发布 289 道题，覆盖 11 个领域；题目表格经过加密，未声明常见训练/验证/测试划分。",
+    "disclosure": "partial",
+    "scale": [
+      "289 道中文题，涵盖 11 个领域。"
+    ],
+    "splits": [
+      "官方未声明标准 train/dev/test 划分。"
+    ],
+    "fields": [
+      "解密表格包含 Topic、Question、Answer 和 canary 字段。"
+    ],
+    "files": [
+      "仓库提供加密文件 data/browsecomp-zh-encrypted.xlsx。",
+      "data/browsecomp-zh-decrypt.py 提供官方解密流程；本次未解密并公开题面。"
+    ],
+    "sourceUrls": [
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/data/browsecomp-zh-decrypt.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "代码仓库和加密题目文件公开可获取；读取明文需要按仓库流程解密。"
+    ],
+    "sourceUrls": [
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/data/browsecomp-zh-decrypt.py"
+    ],
+    "url": "https://github.com/PALIN2018/BrowseComp-ZH"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "README 对题目数据限于学术用途；仓库代码许可不自动覆盖题目文本。",
+    "scope": "只作学术评测并遵守 README 的数据使用条件；题目及答案不面向商业再分发。",
+    "boundaries": [
+      "不将加密文件解密后转存或公开发布题面、答案。",
+      "公开说明仅引用规模、结构和官方链接。"
+    ],
+    "sourceUrls": [
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE",
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "仓库公开的是加密表格，明文题目按学术用途提供；候选不解密或转载单条题目，仅链接作者仓库。",
+    "sourceUrls": [
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE"
+    ],
+    "url": "https://github.com/PALIN2018/BrowseComp-ZH"
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "官方论文/README 报告准确率（accuracy）和校准误差（calibration error）；README 表中模型分数以 accuracy 百分数和 calibration error (%) 展示。它们反映不同性质，不能合为单一分数。统计脚本名为 run_acc_calibration_error.py。（行 235–286）。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md",
+      "https://arxiv.org/abs/2504.19314"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "题目表格需通过官方解密脚本读取；本次未对全部明文题逐项检查。",
+      "sourceUrls": [
+        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/data/browsecomp-zh-decrypt.py"
+      ]
+    },
+    {
+      "text": "研究页面未给出标准数据划分，不能从加密文件路径推断 train/test split。",
+      "sourceUrls": [
+        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE"
+      ]
+    },
+    {
+      "text": "题目使用许可与代码许可分开；候选不重发解密后的记录。",
+      "sourceUrls": [
+        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者仓库 README-ZH",
+      "url": "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md",
+      "role": "definition"
+    },
+    {
+      "label": "论文摘要",
+      "url": "https://arxiv.org/abs/2504.19314",
+      "role": "paper"
+    },
+    {
+      "label": "官方 README-ZH 评测运行及输出目录",
+      "url": "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AF%84%E6%B5%8B%E8%BF%90%E8%A1%8C",
+      "role": "readme"
+    },
+    {
+      "label": "README-ZH 数据规模/结构",
+      "url": "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
+      "role": "readme"
+    },
+    {
+      "label": "官方解密脚本",
+      "url": "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/data/browsecomp-zh-decrypt.py",
+      "role": "data"
+    },
+    {
+      "label": "README-ZH License",
+      "url": "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE",
+      "role": "readme"
+    },
+    {
+      "label": "PALIN2018/BrowseComp-ZH",
+      "url": "https://github.com/PALIN2018/BrowseComp-ZH",
+      "role": "code"
+    },
+    {
+      "label": "DeepSeek-V3.2-Exp 官方发布页",
+      "url": "https://www.deepseek.com/",
+      "role": "release"
+    }
+  ]
+}

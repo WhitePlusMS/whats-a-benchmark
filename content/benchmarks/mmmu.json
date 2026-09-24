@@ -1,0 +1,199 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "mmmu-pro",
+      "label": "衍生评测",
+      "detail": "Pro 调整选项和呈现方式，提高视觉依赖。",
+      "sourceUrls": [
+        "https://github.com/MMMU-Benchmark/MMMU#introduction",
+        "https://arxiv.org/abs/2409.02813",
+        "https://github.com/MMMU-Benchmark/MMMU",
+        "https://arxiv.org/abs/2311.16502"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "mmmu",
+  "name": "MMMU",
+  "subtitle": "先看懂图，再回答专业问题",
+  "category": "multimodal",
+  "tags": [
+    "图像理解",
+    "大学专业知识"
+  ],
+  "publisher": "MMMU 研究团队",
+  "year": 2023,
+  "version": "MMMU 原版",
+  "metric": {
+    "name": "正确率",
+    "description": "主要指标为选择题准确率，按答对题目数与评测题目数计算。总体成绩受领域分布、题目子集、视觉输入、提示、答案解析和是否使用工具影响；报告应标出 split 或榜单设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2311.16502",
+      "https://github.com/MMMU-Benchmark/MMMU",
+      "https://github.com/MMMU-Benchmark/MMMU#introduction"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未逐题核对题目和媒体的原始出处、许可文本及权利状态；test 答案虽公开，也不代表媒体可不受限制地转载。",
+      "sourceUrls": [
+        "https://github.com/MMMU-Benchmark/MMMU#evaluation",
+        "https://huggingface.co/datasets/MMMU/MMMU",
+        "https://github.com/MMMU-Benchmark/MMMU#news"
+      ]
+    },
+    {
+      "text": "未复跑基准或校准第三方/厂商分数。",
+      "sourceUrls": [
+        "https://github.com/MMMU-Benchmark/MMMU#evaluation",
+        "https://huggingface.co/datasets/MMMU/MMMU",
+        "https://github.com/MMMU-Benchmark/MMMU#news"
+      ]
+    },
+    {
+      "text": "Hugging Face 仓库可能持续更新；本轮未固定 revision 或逐文件哈希。",
+      "sourceUrls": [
+        "https://github.com/MMMU-Benchmark/MMMU#evaluation",
+        "https://huggingface.co/datasets/MMMU/MMMU",
+        "https://github.com/MMMU-Benchmark/MMMU#news"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MMMU 作者仓库",
+      "url": "https://github.com/MMMU-Benchmark/MMMU",
+      "role": "readme"
+    },
+    {
+      "label": "CVPR 2024 论文",
+      "url": "https://arxiv.org/abs/2311.16502",
+      "role": "paper"
+    },
+    {
+      "label": "官方仓库",
+      "url": "https://github.com/MMMU-Benchmark/MMMU#introduction",
+      "role": "readme"
+    },
+    {
+      "label": "官方 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/MMMU/MMMU",
+      "role": "data"
+    },
+    {
+      "label": "作者仓库评测说明",
+      "url": "https://github.com/MMMU-Benchmark/MMMU#evaluation",
+      "role": "readme"
+    },
+    {
+      "label": "作者仓库新闻与评测说明",
+      "url": "https://github.com/MMMU-Benchmark/MMMU#news",
+      "role": "readme"
+    },
+    {
+      "label": "作者版权与数据收集说明",
+      "url": "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "role": "readme"
+    },
+    {
+      "label": "代码 LICENSE",
+      "url": "https://github.com/MMMU-Benchmark/MMMU/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "MMMU-Pro 论文",
+      "url": "https://arxiv.org/abs/2409.02813",
+      "role": "paper"
+    },
+    {
+      "label": "官网、示例与论文",
+      "url": "https://mmmu-benchmark.github.io/",
+      "role": "paper"
+    }
+  ],
+  "status": "published",
+  "order": 60,
+  "brandIds": [
+    "mmmu"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MMMU 收录来自大学考试、测验和教材的多模态问题，考查模型结合大学层次学科知识，对题目和图像进行感知与推理的能力。范围覆盖六大领域、30 个学科和 183 个子领域，视觉材料类型包括图表、示意图、地图、表格、乐谱和化学结构等。",
+    "task": "结合大学层次学科知识理解题目和图像，并回答多学科选择题。",
+    "sourceUrls": [
+      "https://github.com/MMMU-Benchmark/MMMU#introduction",
+      "https://github.com/MMMU-Benchmark/MMMU",
+      "https://arxiv.org/abs/2311.16502"
+    ]
+  },
+  "taskContract": {
+    "input": "英文专业问题、候选选项及零个或多个图像字段；图片可能包含解题所需信息。",
+    "output": "选择题答案，由官方评测解析并判定正误。",
+    "environment": "静态多学科视觉问答；比较结果时记录 split、视觉处理、提示和工具设置。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MMMU/MMMU",
+      "https://github.com/MMMU-Benchmark/MMMU",
+      "https://github.com/MMMU-Benchmark/MMMU#introduction",
+      "https://arxiv.org/abs/2311.16502"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原始数据覆盖 30 个学科、183 个子领域及多种视觉材料。",
+    "disclosure": "partial",
+    "scale": [
+      "约 11.5K 道题；30 个学科、183 个子领域。"
+    ],
+    "splits": [
+      "development（150）、validation（900）、test（10,500）；当前 Viewer 列出三个 split。"
+    ],
+    "fields": [
+      "id、question、options、explanation、image_1–image_7、img_type、answer、topic_difficulty、question_type、subfield。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/MMMU-Benchmark/MMMU#evaluation",
+      "https://huggingface.co/datasets/MMMU/MMMU",
+      "https://github.com/MMMU-Benchmark/MMMU#news"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者 GitHub 和 Hugging Face 数据集公开。数据卡当前列出 30 个子集和 3 个 split；仓库记录显示 2026-02 已发布 test set 答案，使本地评分成为可能。这个发布状态与论文初版“答案保留、通过 EvalAI 提交”的时期不同，应以当前数据 revision 为准。"
+    ],
+    "url": "https://github.com/MMMU-Benchmark/MMMU#news",
+    "sourceUrls": [
+      "https://github.com/MMMU-Benchmark/MMMU#news",
+      "https://huggingface.co/datasets/MMMU/MMMU",
+      "https://github.com/MMMU-Benchmark/MMMU#evaluation"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "MMMU 数据卡标注 Apache-2.0；作者代码仓库另有 LICENSE。",
+    "scope": "数据卡许可按其声明记录；代码许可仅适用于仓库中受 LICENSE 覆盖的代码。作者要求遵守题目和图片原始来源的版权与许可。",
+    "boundaries": [
+      "逐题及嵌入图片的来源许可未列明，不能由 Apache-2.0 标签推定全部媒体均可公开转载。",
+      "本站仅作概述并链接官方资源，不复制真实题目、选项、答案、解释或图片。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MMMU/MMMU",
+      "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "https://github.com/MMMU-Benchmark/MMMU/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "MMMU 作者官网明确展示各学科抽样问题和图像。本按钮仅打开作者官网；题目来自考试、测验及教材，本站不复制题目或图片，也不推定其来源权利允许转载。",
+    "sourceUrls": [
+      "https://mmmu-benchmark.github.io/",
+      "https://huggingface.co/datasets/MMMU/MMMU",
+      "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "https://github.com/MMMU-Benchmark/MMMU#news"
+    ],
+    "url": "https://mmmu-benchmark.github.io/"
+  }
+}

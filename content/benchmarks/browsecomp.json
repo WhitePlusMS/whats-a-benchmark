@@ -1,0 +1,169 @@
+{
+  "id": "browsecomp",
+  "status": "published",
+  "order": 230,
+  "name": "BrowseComp",
+  "subtitle": "找到网上很难找到的那个答案",
+  "category": "agents",
+  "tags": [
+    "深度搜索",
+    "信息检索"
+  ],
+  "publisher": "OpenAI",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2025,
+  "version": "原始 BrowseComp",
+  "kind": "original",
+  "aliases": [],
+  "related": [],
+  "verifiedAt": "2026-09-22",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "BrowseComp 是 OpenAI 发布的 browsing benchmark，包含需要搜索并综合多个网页信息才能回答的高难度问题。",
+    "task": "浏览网络寻找分散证据，给出与参考答案匹配的简洁答案。",
+    "sourceUrls": [
+      "https://openai.com/index/browsecomp/",
+      "https://arxiv.org/abs/2504.12516"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言研究问题及评测脚本提供的搜索环境。",
+    "output": "可核验的简洁答案；评测实现读取问题、参考答案和 canary。",
+    "environment": "通过 simple-evals 的浏览器/搜索评测流程执行；完整工具权限与运行配置需按报告注明。",
+    "sourceUrls": [
+      "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py",
+      "https://openai.com/index/browsecomp/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方发布题数为 1,266；完整记录通过加密数据交付，评测代码可公开浏览。",
+    "disclosure": "partial",
+    "scale": [
+      "1,266 道浏览研究问题。"
+    ],
+    "splits": [
+      "官方没有发布标准 train/dev/test 划分。"
+    ],
+    "fields": [
+      "评测记录包含 question、reference answer 和 canary 等字段。"
+    ],
+    "files": [
+      "simple-evals 仓库提供 browsecomp 评测实现。",
+      "题目文件以加密记录随官方加载流程提供，不作为普通明文数据表发布。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/browsecomp/",
+      "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py",
+      "https://github.com/openai/simple-evals#evals"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方介绍页与评测代码公开；题目数据以加密形式提供，需按官方实现加载。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/browsecomp/",
+      "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py",
+      "https://openaipublic.blob.core.windows.net/simple-evals/browse_comp_test_set.csv"
+    ],
+    "url": "https://openaipublic.blob.core.windows.net/simple-evals/browse_comp_test_set.csv"
+  },
+  "reusePolicy": {
+    "status": "prohibited",
+    "license": "MIT",
+    "scope": "OpenAI 将 BrowseComp 列为 MIT License benchmark；项目仓库 LICENSE 为 MIT。发布页脚注还明确请求不要在线以纯文本或图片展示任何数据样例，以避免训练数据泄漏和评测作弊，并使用 canary 帮助过滤训练语料\n（行 110–112）。此处应遵循明确的“不公开题目样例”请求：不在公开 GitHub Pages 转载题面、答案或其图片；MIT 许可不消除该防泄漏请求。发布页图表用于介绍总体结果，不等于可展示具体题目样例。",
+    "boundaries": [
+      "保持加密题目不进入公开网页、训练语料或可被搜索索引的明文语料；只引用官方加密数据与方法入口。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/simple-evals#evals",
+      "https://github.com/openai/simple-evals/blob/main/LICENSE",
+      "https://openai.com/index/browsecomp/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "OpenAI 明确要求保护 BrowseComp 题目不被泄漏；本站不解密或转载题目、答案和 canary，只链接官方介绍与评测入口。",
+    "sourceUrls": [
+      "https://openai.com/index/browsecomp/",
+      "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py"
+    ],
+    "url": "https://openai.com/index/browsecomp/"
+  },
+  "metric": {
+    "name": "正确率",
+    "description": "官方核心指标为 accuracy（正确题数/总题数）。官方论文还研究 test-time compute、64 次采样后的多数/加权/Best-of-N 聚合，以及按每道题 pass rate 的分布；这些需要与单次 accuracy 分开报告。发布页原始表列模型准确率（如 GPT-4o、GPT-4o browsing、o1、Deep Research），且说明 Deep Research 受过专门 BrowseComp 训练，不应无注释地视为同条件模型比较。（行 82–107、112）。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://openai.com/index/browsecomp/",
+      "https://arxiv.org/abs/2504.12516"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开代码不等同于可公开转载明文题目；题目文件按官方流程加密交付。",
+      "sourceUrls": [
+        "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py",
+        "https://github.com/openai/simple-evals/blob/main/LICENSE"
+      ]
+    },
+    {
+      "text": "指标复现依赖搜索工具、检索时点和评测配置，需与题目数量一并记录。",
+      "sourceUrls": [
+        "https://openai.com/index/browsecomp/",
+        "https://arxiv.org/abs/2504.12516"
+      ]
+    },
+    {
+      "text": "题目公开规模为 1,266；官方未声明标准数据划分。",
+      "sourceUrls": [
+        "https://openai.com/index/browsecomp/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI 官方发布",
+      "url": "https://openai.com/index/browsecomp/",
+      "role": "definition"
+    },
+    {
+      "label": "论文 arXiv:2504.12516",
+      "url": "https://arxiv.org/abs/2504.12516",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI simple-evals",
+      "url": "https://github.com/openai/simple-evals",
+      "role": "code"
+    },
+    {
+      "label": "官方评测实现",
+      "url": "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py",
+      "role": "code"
+    },
+    {
+      "label": "simple-evals README",
+      "url": "https://github.com/openai/simple-evals#evals",
+      "role": "readme"
+    },
+    {
+      "label": "simple-evals LICENSE",
+      "url": "https://github.com/openai/simple-evals/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "论文 PDF",
+      "url": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf#page=9",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI 官方加密 BrowseComp CSV",
+      "url": "https://openaipublic.blob.core.windows.net/simple-evals/browse_comp_test_set.csv",
+      "role": "data"
+    }
+  ]
+}

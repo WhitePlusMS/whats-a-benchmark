@@ -1,0 +1,63 @@
+{
+  "id": "healthbench-professional",
+  "status": "published",
+  "order": 604,
+  "name": "HealthBench Professional",
+  "subtitle": "评估临床对话、文书与医学研究支持",
+  "summary": "HealthBench 的临床专业场景补充集，聚焦 care consult、写作与文档，以及医学研究三类医生工作对话。",
+  "category": "work",
+  "tags": [
+    "医疗健康",
+    "临床工作流",
+    "专家 rubric"
+  ],
+  "publisher": "OpenAI / 临床医师",
+  "brandIds": [
+    "openai"
+  ],
+  "year": null,
+  "version": "Professional",
+  "kind": "derivative",
+  "aliases": [
+    "HealthBench Professional"
+  ],
+  "task": "在单轮或多轮临床专业对话中回应医生的最后一条消息，完成咨询、临床文书或医学研究任务。",
+  "format": "525 个医生撰写任务，带逐例 rubric criteria；从 15,079 个候选例中按难度、质量与代表性筛选，含 good-faith 与 red-teaming 场景。",
+  "metric": {
+    "name": "Rubric 分数",
+    "description": "依照每例医生撰写并经多位医师审阅的细则计分；报告还区分 length-adjusted 与 unclipped 等统计口径，不能仅以名称相同就与 HealthBench 原版总分互换。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "该基准覆盖临床工作流，分数不是临床有效性、安全性或真实患者结局的替代证明。",
+    "它是 HealthBench 的补充变体，不能与 HealthBench、HealthBench Hard 的题量和总分混同。",
+    "报告中的模型结果使用了特定 GPT-5.4 grader、长度校正等设置；跨报告比较需核对评分者与口径。"
+  ],
+  "availability": "public",
+  "sampleNote": "论文提供公开数据地址；本条目不保存样例，数据再发布许可未单独核实。",
+  "sources": [
+    {
+      "label": "HealthBench Professional 数据与方法论文",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "OpenAI 公开评测数据包",
+      "url": "https://openaipublic.blob.core.windows.net/simple-evals/healthbench_professional/assets.zip",
+      "kind": "data"
+    },
+    {
+      "label": "GPT-6 Astra 官方成绩表与比较口径",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "kind": "report"
+    }
+  ],
+  "related": [
+    {
+      "id": "healthbench",
+      "label": "补充于",
+      "detail": "HealthBench Professional 聚焦临床医生的咨询、文书与医学研究工作流；不是原版 HealthBench 的改名或简单子集。"
+    }
+  ],
+  "verifiedAt": "2026-09-23"
+}

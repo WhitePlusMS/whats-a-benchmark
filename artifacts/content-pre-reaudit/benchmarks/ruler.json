@@ -1,0 +1,43 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "suite",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "ruler",
+  "name": "RULER",
+  "subtitle": "标称能读很长，实际能用多长",
+  "category": "context",
+  "tags": [
+    "合成长文本",
+    "检索与追踪"
+  ],
+  "publisher": "NVIDIA 研究团队",
+  "year": 2024,
+  "version": "RULER 任务套件",
+  "summary": "用可控制长度的合成任务，测量模型对长上下文检索、追踪和聚合信息的实际能力。",
+  "task": "在大量干扰文本中检索信息，或完成多跳追踪、聚合等任务。",
+  "format": "任务生成配置、不同长度的输入与对应答案；部分文本素材有独立来源。",
+  "metric": {
+    "name": "分任务正确率 / 有效长度",
+    "direction": "higher",
+    "description": "在多个输入长度下检查正确率，观察性能何时明显下降。"
+  },
+  "limitations": [
+    "合成任务与真实文档分布不同。",
+    "官方上下文窗口上限不等于所有任务都能稳定利用的长度。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/NVIDIA/RULER",
+      "label": "官方代码与任务生成",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 380,
+  "brandIds": [
+    "nvidia"
+  ],
+  "availability": "unknown"
+}

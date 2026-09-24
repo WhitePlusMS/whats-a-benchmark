@@ -1,0 +1,48 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "OpenAI 明确请求不要将题目以明文或图片公开转载，以免搜索代理直接找到答案。本站不打包原题。",
+  "verifiedAt": "2026-09-22",
+  "id": "browsecomp",
+  "name": "BrowseComp",
+  "subtitle": "找到网上很难找到的那个答案",
+  "category": "agents",
+  "tags": [
+    "深度搜索",
+    "信息检索"
+  ],
+  "publisher": "OpenAI",
+  "year": 2025,
+  "version": "原始 BrowseComp",
+  "summary": "问题答案简短明确，但找到答案往往需要反复搜索、追踪线索与核实证据。",
+  "task": "浏览多个网页，组合线索，给出被资料支持的简短答案。",
+  "format": "官方评测程序加载问题、参考答案与元数据；数据发布方式考虑了防污染要求。",
+  "metric": {
+    "name": "正确率",
+    "description": "参考答案判定下的正确比例；需区分联网、非联网和多次采样的配置。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "擅长找一个隐蔽事实，不等于能写好开放式研究报告。",
+    "高搜索预算是系统配置的一部分。"
+  ],
+  "sources": [
+    {
+      "url": "https://openai.com/index/browsecomp/",
+      "label": "官方发布与转载请求",
+      "kind": "home"
+    },
+    {
+      "url": "https://github.com/openai/simple-evals",
+      "label": "官方评测代码",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 230,
+  "brandIds": [
+    "openai"
+  ],
+  "availability": "restricted"
+}

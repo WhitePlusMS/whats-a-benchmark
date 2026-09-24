@@ -1,0 +1,158 @@
+{
+  "id": "healthbench-professional",
+  "status": "published",
+  "order": 604,
+  "name": "HealthBench Professional",
+  "subtitle": "评估临床对话、文书与医学研究支持",
+  "category": "work",
+  "tags": [
+    "医疗健康",
+    "临床工作流",
+    "专家 rubric"
+  ],
+  "publisher": "OpenAI / 临床医师",
+  "brandIds": [
+    "openai"
+  ],
+  "year": null,
+  "version": "Professional",
+  "kind": "derivative",
+  "aliases": [
+    "HealthBench Professional"
+  ],
+  "metric": {
+    "name": "Rubric 分数",
+    "description": "逐例评分由模型 grader 对每条 rubric criterion 独立打标；满足时加该 criterion 的分值，负分 criteria 用于惩罚不良行为。例分以满足项分值总和（包含负项）除以正向最大可能分数，可能为负；论文还给出长度校正分及不同配置结果。报告需区分原始/长度校正、grader 版本、重复采样数及是否平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未下载当前 assets.zip 固定版本并核验各例与公开 Hugging Face 525 行是否完全一致。",
+      "sourceUrls": [
+        "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+        "https://huggingface.co/datasets/openai/healthbench-professional"
+      ]
+    },
+    {
+      "text": "本轮只记录官方 HF 页面的 MIT 元数据和论文的明确不披露请求，不对数据中真实临床对话的来源/隐私或法律授权作独立判断。",
+      "sourceUrls": [
+        "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+        "https://huggingface.co/datasets/openai/healthbench-professional"
+      ]
+    },
+    {
+      "text": "论文提及的内部评测实现不公开；simple-evals 的具体匹配程度需按固定代码 revision 核查。",
+      "sourceUrls": [
+        "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+        "https://huggingface.co/datasets/openai/healthbench-professional"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方论文讨论",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI 官方 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/openai/healthbench-professional",
+      "role": "data"
+    },
+    {
+      "label": "OpenAI `simple-evals`",
+      "url": "https://github.com/openai/simple-evals",
+      "role": "readme"
+    },
+    {
+      "label": "OpenAI 公开评测数据包",
+      "url": "https://openaipublic.blob.core.windows.net/simple-evals/healthbench_professional/assets.zip",
+      "role": "definition"
+    },
+    {
+      "label": "GPT-6 Astra 官方成绩表与比较口径",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [
+    {
+      "id": "healthbench",
+      "label": "补充于",
+      "detail": "HealthBench Professional 聚焦临床医生的咨询、文书与医学研究工作流；不是原版 HealthBench 的改名或简单子集。",
+      "sourceUrls": [
+        "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "HealthBench Professional 收录医生在 ChatGPT for Clinicians 中完成的真实工作任务对话，并用医生撰写、审定的 rubric 评分；任务覆盖咨询、文书和医学研究。",
+    "task": "回应医生围绕临床咨询、文档或医学研究提出的聊天任务；每例 rubric 可奖励必要信息，也可扣除不安全或不理想行为。",
+    "sourceUrls": [
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    ]
+  },
+  "taskContract": {
+    "input": "医生与模型之间的单轮或多轮对话，始终以医生/用户消息结束。",
+    "output": "回答最后一条消息；grader 按每例医生撰写的 rubric criteria 评分。",
+    "environment": "实验可使用不同模型、harness 和工具；论文区分基础模型与 ChatGPT for Clinicians 产品环境，报告需注明这些条件和推理 effort。",
+    "sourceUrls": [
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    ]
+  },
+  "dataProfile": {
+    "summary": "最终公开评测集有 525 例，从 15,079 个候选中筛选；约三分之一为 red-teaming 例。论文还说明保留了小型私有留出集。",
+    "disclosure": "partial",
+    "scale": [
+      "公开集：525 例，来自 15,079 个候选；约三分之一为 red-teaming，困难例相对候选池约 3.5 倍富集。"
+    ],
+    "splits": [
+      "公开 test：525 行；另有小型 private held-out set，数量未公开。"
+    ],
+    "fields": [
+      "id、conversation、rubric_items、use_case、type、difficulty、specialty、physician_response、canary_string。"
+    ],
+    "files": [
+      "论文指向的 assets.zip；OpenAI Hugging Face 数据卡公开 test split。"
+    ],
+    "sourceUrls": [
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "https://huggingface.co/datasets/openai/healthbench-professional"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "论文指向公开 Blob assets.zip，HF 数据卡公开 525 例；私有留出集和内部评分实现未公开。"
+    ],
+    "sourceUrls": [
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "https://huggingface.co/datasets/openai/healthbench-professional"
+    ],
+    "url": "https://huggingface.co/datasets/openai/healthbench-professional"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "OpenAI Hugging Face 数据卡标注 MIT；同一评测论文明确要求不要在线以纯文本或图片展示样例。",
+    "scope": "MIT 元数据不推翻论文的样例披露请求；论文还说明设置 canary 用于训练数据过滤。",
+    "boundaries": [
+      "不在线转载对话、模型回答、rubric、医生参考回答或截图；此处不对数据隐私或法律授权作独立判断。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/healthbench-professional",
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "Professional 论文明确要求不要在线以纯文本或图片披露样例。只呈现类别、规模、字段和评测方式，不展示可还原任务的内容。",
+    "sourceUrls": [
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "swe-bench-multilingual",
+  "status": "published",
+  "order": 705,
+  "name": "SWE-bench Multilingual",
+  "subtitle": "跨九种编程语言修复真实仓库问题",
+  "summary": "用多语言开源仓库中的真实软件工程问题，评估智能体理解代码库并提交修复的能力。",
+  "category": "coding",
+  "tags": [
+    "软件工程",
+    "多语言",
+    "Agent"
+  ],
+  "publisher": "SWE-bench 团队",
+  "brandIds": [
+    "swe-bench"
+  ],
+  "year": 2025,
+  "version": "SWE-bench Multilingual",
+  "kind": "derivative",
+  "aliases": [],
+  "task": "在真实代码仓库环境中解决 GitHub issue，并生成可通过测试的代码修改。",
+  "format": "300 个任务，分布于 42 个仓库和 9 种语言：C、C++、Go、Java、JavaScript、TypeScript、PHP、Ruby、Rust。",
+  "metric": {
+    "name": "Resolved rate",
+    "description": "按基准评测器判定成功解决的任务比例报告；应说明 Agent scaffold 和测试环境。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "任务数较少，细分语言的分数易受少量样本影响。",
+    "结果依赖 Agent scaffold、执行环境和测试判定。",
+    "仓库语言覆盖并不代表所有软件生态或项目类型。"
+  ],
+  "availability": "public",
+  "sampleNote": "官方 SWE-bench 页面提供多语言任务集说明与下载入口；本站未复刻任务。",
+  "sources": [
+    {
+      "label": "SWE-bench Multilingual 官方介绍",
+      "url": "https://www.swebench.com/multilingual.html",
+      "kind": "home"
+    },
+    {
+      "label": "SWE-bench 数据集说明",
+      "url": "https://www.swebench.com/SWE-bench/guides/datasets/",
+      "kind": "data"
+    },
+    {
+      "label": "DeepSeek-V3.2-Exp 官方评测表",
+      "url": "https://github.com/deepseek-ai/DeepSeek-V3.2-Exp",
+      "kind": "report"
+    }
+  ],
+  "related": [
+    {
+      "id": "swe-bench",
+      "label": "SWE-bench 系列",
+      "detail": "多语言版本增加多种仓库语言，不能与 Python 原版任务分数直接比较。"
+    }
+  ],
+  "verifiedAt": "2026-09-23"
+}

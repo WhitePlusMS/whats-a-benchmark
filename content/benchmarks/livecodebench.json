@@ -1,0 +1,180 @@
+{
+  "aliases": [
+    "LCB",
+    "Live Code Bench"
+  ],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "livecodebench",
+  "name": "LiveCodeBench",
+  "subtitle": "持续加入新题的编程考场",
+  "category": "coding",
+  "tags": [
+    "竞赛编程",
+    "时间窗口"
+  ],
+  "publisher": "LiveCodeBench 研究团队",
+  "year": 2024,
+  "version": "须指定 release 与题目时间窗口",
+  "metric": {
+    "name": "pass@k / 对应任务正确率",
+    "direction": "higher",
+    "description": "code generation 主指标为 pass@1 和 pass@5，使用官方修改版 APPS checker；生成时仓库 README 默认采用多样本设置，实际报告仍要写清 release、scenario、n、temperature 与生成/评测超时。\n官方说明评测时限可能造成轻微分数浮动；可按日期窗口过滤题目以应对特定知识截止日期/污染分析。\n其他场景各有专属度量；不要把 code execution 或 test output prediction 的计分直接称作 code-generation pass@1。",
+    "sourceUrls": [
+      "https://github.com/LiveCodeBench/LiveCodeBench#evaluation",
+      "https://github.com/LiveCodeBench/LiveCodeBench#data"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "cc 是 Hugging Face 卡上的通用 license 元数据，没有指定具体许可文本；题目与测试的逐平台再分发条款未在 LiveCodeBench 软件仓库中汇总。",
+      "sourceUrls": [
+        "https://github.com/LiveCodeBench/LiveCodeBench/blob/main/LICENSE",
+        "https://huggingface.co/datasets/livecodebench/code_generation_lite"
+      ]
+    },
+    {
+      "text": "主仓库的当前 release_latest 与数据卡版本可能随时间变化；发布成绩时需重新固定数据 revision 和题目日期区间。",
+      "sourceUrls": [
+        "https://github.com/LiveCodeBench/LiveCodeBench#dataset-versions",
+        "https://huggingface.co/datasets/livecodebench/code_generation_lite",
+        "https://huggingface.co/livecodebench"
+      ]
+    },
+    {
+      "text": "Lite 测试删减/抽样的精确文件级映射及每个 release 下的当前问题数，不能仅由总体 release README 完整重建。",
+      "sourceUrls": [
+        "https://github.com/LiveCodeBench/LiveCodeBench#dataset-versions",
+        "https://huggingface.co/datasets/livecodebench/code_generation_lite",
+        "https://huggingface.co/livecodebench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "LiveCodeBench 官方 GitHub 仓库",
+      "url": "https://github.com/LiveCodeBench/LiveCodeBench",
+      "role": "readme"
+    },
+    {
+      "label": "LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code",
+      "url": "https://arxiv.org/html/2403.07974",
+      "role": "paper"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/LiveCodeBench/LiveCodeBench#introduction",
+      "role": "readme"
+    },
+    {
+      "label": "官方数据场景说明",
+      "url": "https://github.com/LiveCodeBench/LiveCodeBench#data",
+      "role": "readme"
+    },
+    {
+      "label": "code_generation_lite 数据卡",
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite",
+      "role": "data"
+    },
+    {
+      "label": "官方仓库评测说明",
+      "url": "https://github.com/LiveCodeBench/LiveCodeBench#inference-and-evaluation",
+      "role": "readme"
+    },
+    {
+      "label": "官方版本记录与 lite 说明",
+      "url": "https://github.com/LiveCodeBench/LiveCodeBench#dataset-versions",
+      "role": "release"
+    },
+    {
+      "label": "官方数据组织页",
+      "url": "https://huggingface.co/livecodebench",
+      "role": "definition"
+    },
+    {
+      "label": "LiveCodeBench/LICENSE",
+      "url": "https://github.com/LiveCodeBench/LiveCodeBench/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/LiveCodeBench/LiveCodeBench#evaluation",
+      "role": "readme"
+    }
+  ],
+  "status": "published",
+  "order": 140,
+  "brandIds": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "LiveCodeBench 是研究者发布的动态代码能力基准，按时间持续采集竞赛题，覆盖代码生成、执行、自我修复和测试输出预测；它与 LiveCodeBench Pro 分开记录。",
+    "task": "依据选定 scenario 生成代码、预测运行输出或根据测试反馈修复代码；结果需同时标明 scenario 和 release。",
+    "sourceUrls": [
+      "https://github.com/LiveCodeBench/LiveCodeBench#introduction",
+      "https://arxiv.org/html/2403.07974"
+    ]
+  },
+  "taskContract": {
+    "input": "随 scenario 而异：代码生成接收竞赛题，输出预测接收代码及输入，自我修复接收测试反馈。",
+    "output": "代码生成输出程序；执行/输出预测返回执行结果；自我修复输出修订程序。",
+    "environment": "代码生成 runner 支持 vLLM/open model 和闭源 API；运行生成代码时应使用隔离容器和明确超时，并固定 checker、release 与模型参数。",
+    "sourceUrls": [
+      "https://github.com/LiveCodeBench/LiveCodeBench#data",
+      "https://huggingface.co/datasets/livecodebench/code_generation_lite",
+      "https://github.com/LiveCodeBench/LiveCodeBench#inference-and-evaluation"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方列出 release_v1 至 release_v6；截至 2025-04 的 v6 有 1,055 题，原始 v1 有 400 题。",
+    "disclosure": "complete",
+    "scale": [
+      "release_v6：1,055 题；release_v1：400 题。"
+    ],
+    "splits": [
+      "release 按题目公开日期划分，不是随机 train/validation/test；code_generation_lite 对测试用例做修剪/抽样。"
+    ],
+    "fields": [
+      "code-generation 记录含 problem description、输入/输出样例、hidden test cases、difficulty 和 release date。"
+    ],
+    "files": [
+      "官方 code_generation_lite 数据集；code execution、test generation 和 execution 等场景另有独立数据集。"
+    ],
+    "sourceUrls": [
+      "https://github.com/LiveCodeBench/LiveCodeBench#dataset-versions",
+      "https://huggingface.co/datasets/livecodebench/code_generation_lite",
+      "https://huggingface.co/livecodebench"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub 与 Hugging Face 组织公开代码和数据入口，并提供固定 release 参数；各 scenario 分开发布。"
+    ],
+    "sourceUrls": [
+      "https://github.com/LiveCodeBench/LiveCodeBench",
+      "https://huggingface.co/datasets/livecodebench/code_generation_lite"
+    ],
+    "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "工具仓库代码为 MIT；HF 数据卡的 license metadata 仅写通用 cc，未明确版本。",
+    "scope": "代码许可不自动覆盖来自 LeetCode、AtCoder、Codeforces 等站点的题面、样例和测试。",
+    "boundaries": [
+      "不复制竞赛题面、完整样例或隐藏测试；引用具体数据前应核实数据卡版本和各源站再发布条款。"
+    ],
+    "sourceUrls": [
+      "https://github.com/LiveCodeBench/LiveCodeBench/blob/main/LICENSE",
+      "https://huggingface.co/datasets/livecodebench/code_generation_lite"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "官方 README 和数据卡展示场景与结构信息，但第三方竞赛内容的授权不随工具代码 MIT 许可统一。公开页面不复制真实题面、样例或测试。",
+    "sourceUrls": [
+      "https://github.com/LiveCodeBench/LiveCodeBench",
+      "https://huggingface.co/datasets/livecodebench/code_generation_lite"
+    ]
+  }
+}

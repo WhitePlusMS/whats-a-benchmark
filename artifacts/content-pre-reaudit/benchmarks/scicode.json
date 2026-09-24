@@ -1,0 +1,86 @@
+{
+  "id": "scicode",
+  "status": "published",
+  "order": 701,
+  "name": "SciCode",
+  "subtitle": "把科学研究问题转化为可执行代码",
+  "summary": "以科学家整理的研究级科学编程问题，评估模型结合学科知识、推理和代码合成完成计算任务的能力。",
+  "category": "coding",
+  "tags": [
+    "科学编程",
+    "代码生成",
+    "研究任务"
+  ],
+  "publisher": "SciCode 研究团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "SciCode",
+  "kind": "original",
+  "aliases": [],
+  "task": "解决来自数学、物理、化学、生物和材料科学的研究级编程问题；问题拆分为主问题及子问题。",
+  "format": "80 个主问题拆分为 338 个子问题，提供问题背景、参考解答及测试；可在是否提供科学背景的设置下评测。",
+  "metric": {
+    "name": "主问题解决率 / 子问题解决率",
+    "description": "按通过评测的主问题或子问题比例报告；需说明是否使用背景信息及对应评测设置。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "分数会随主问题或子问题粒度及背景信息设置变化。",
+    "代码执行环境、依赖和测试通过条件会影响可复现性。",
+    "Gemini 3.1 Pro 方法文档注明其报告成绩来源为 Artificial Analysis，不能与自主运行设置直接等同。"
+  ],
+  "availability": "public",
+  "sampleNote": "展示 1 条官方 problems_dev.jsonl 子任务，只保留题面字段，不公开参考代码、测试或输出。",
+  "sources": [
+    {
+      "label": "SciCode 官方仓库与任务说明",
+      "url": "https://github.com/scicode-bench/SciCode",
+      "kind": "code"
+    },
+    {
+      "label": "SciCode 论文",
+      "url": "https://arxiv.org/abs/2407.13168",
+      "kind": "paper"
+    },
+    {
+      "label": "官方 dev 数据记录",
+      "url": "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+      "kind": "data"
+    },
+    {
+      "label": "官方数据集与 Apache-2.0 许可",
+      "url": "https://huggingface.co/datasets/SciCode1/SciCode/tree/main",
+      "kind": "data"
+    },
+    {
+      "label": "Gemini 3.1 Pro 评测方法（成绩来源说明）",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-1-pro",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-23",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "ewald_summation:10.1",
+        "title": "Ewald 求和参数 alpha",
+        "type": "code",
+        "prompt": "Write a Python function to determine the alpha value for the Ewald summation given reciprocal lattice vectors `recvec` of shape (3, 3).\nAlpha is a parameter that controls the division of the summation into real and reciprocal space components and determines the width of the Gaussian charge distribution.\nMultiply the result by scaling `alpha_scaling` (fixed to 5).",
+        "explanation": "这是官方 dev 数据文件中 problem_id 10 的子任务 10.1。页面只展示题面，不复制同一记录内的 ground_truth_code、test_cases 或参考输出。",
+        "raw": {
+          "problem_name": "ewald_summation",
+          "problem_id": "10",
+          "step_number": "10.1",
+          "step_description_prompt": "Write a Python function to determine the alpha value for the Ewald summation given reciprocal lattice vectors `recvec` of shape (3, 3).\nAlpha is a parameter that controls the division of the summation into real and reciprocal space components and determines the width of the Gaussian charge distribution.\nMultiply the result by scaling `alpha_scaling` (fixed to 5)."
+        },
+        "source": "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "license": "Apache-2.0 · SciCode official dataset",
+        "split": "problems_dev.jsonl · dev · problem_id 10 · step 10.1",
+        "excerpt": true
+      }
+    ]
+  }
+}

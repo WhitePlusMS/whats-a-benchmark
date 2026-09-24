@@ -1,0 +1,194 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "swe-bench-verified",
+      "label": "同类评测",
+      "detail": "同测仓库工作，但题集和难度不同；不推定为其子集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro#changelog",
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md",
+        "https://arxiv.org/abs/2509.16941",
+        "https://github.com/scaleapi/SWE-bench_Pro-os",
+        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "swe-bench-pro",
+  "name": "SWE-bench Pro",
+  "subtitle": "更长流程的软件工程任务",
+  "category": "coding",
+  "tags": [
+    "软件工程",
+    "长程任务"
+  ],
+  "publisher": "Scale AI / 研究合作者",
+  "year": 2025,
+  "version": "公开开源任务集",
+  "metric": {
+    "name": "任务成功率",
+    "description": "主要结果是 resolved rate：成功解决的任务数除以所报 split 的任务数；论文和官方 leaderboard 还可能区分 public 与 commercial set。V2 官方要求将模型 diff 在 pristine image 中重新评分，并报告重评分结果；协议版 agent 运行结果与未锁定 harness 的结果不应只按同一 benchmark 名称直接横比。引用分数需注明 V1/V2、split/config、任务数、模型与 scaffold、工具权限/网络策略、时间预算及 grader。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md",
+      "https://scale.com/leaderboard/swe_bench_pro_public",
+      "https://arxiv.org/abs/2509.16941",
+      "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未逐一核查 11 个上游仓库在题面、gold patch、测试 patch 和仓库快照层面的具体许可及平台内容条款；因此不建议本站转载原始任务材料。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2509.16941",
+        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+      ]
+    },
+    {
+      "text": "本次没有重新执行官方 Harbor 评测或校验所有 642 个镜像；文中 release gate 结果是 Scale 官方对 V2 发布所作的说明。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2509.16941",
+        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+      ]
+    },
+    {
+      "text": "论文和 README 的历史实验配置不必然等同当前 leaderboard 默认 harness；各模型具体使用的 scaffold 与调用参数仍须回到相应提交记录核对。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2509.16941",
+        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Scale AI 官方仓库",
+      "url": "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "role": "readme"
+    },
+    {
+      "label": "Scale AI 论文",
+      "url": "https://arxiv.org/abs/2509.16941",
+      "role": "paper"
+    },
+    {
+      "label": "Scale AI 官方数据卡",
+      "url": "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+      "role": "data"
+    },
+    {
+      "label": "Scale AI 官方仓库 V2 README",
+      "url": "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "官方仓库 MIT LICENSE",
+      "url": "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "官方数据卡许可说明",
+      "url": "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro#license",
+      "role": "data"
+    },
+    {
+      "label": "Scale AI leaderboard",
+      "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+      "role": "leaderboard"
+    },
+    {
+      "label": "V2 更新记录",
+      "url": "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro#changelog",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 160,
+  "brandIds": [
+    "scale"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "该基准衡量模型/agent 能否处理较长程的软件工程问题：从指定版本的真实代码库和 issue/PR 说明出发，提交能够满足需求的代码补丁，并通过任务测试。V1 论文所述全基准有 1,865 个问题、分布在 41 个仓库，其中 11 仓库构成公开集，另有 12 个 held-out 仓库和 18 个商业合作仓库；这不是 V2 的公开题数。V2 是经验证的公开部分，642 题来自 11 个仓库。",
+    "task": "在固定代码库版本中解决较长程软件工程问题，并提交通过任务测试的补丁。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2509.16941",
+      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md",
+      "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"
+    ]
+  },
+  "taskContract": {
+    "input": "固定 base commit 的代码库，以及由 PR 描述、需求和接口说明组成的 instruction.md。",
+    "output": "代码差异 patch。",
+    "environment": "V2 使用 Harbor verifier 检查 F2P/P2P；锁定协议限制网络并设 50 分钟任务预算。其他运行须注明 scaffold、工具、预算及重评分方式。",
+    "sourceUrls": [
+      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md",
+      "https://arxiv.org/abs/2509.16941",
+      "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"
+    ]
+  },
+  "dataProfile": {
+    "summary": "SWE-bench Pro 有公开 V1/V2 数据与独立 HARD-51 子集；V2 是当前默认版本。",
+    "disclosure": "partial",
+    "scale": [
+      "V1 公开 731 项；V2 default/test 642 项，hard config 51 项；论文 1,865 项总量还含未公开集。"
+    ],
+    "splits": [
+      "V1 config/tag；V2 default 的 test split；独立 hard config。"
+    ],
+    "fields": [
+      "V2：repo、instance_id、base_commit、patch、test_patch、problem_statement、requirements、interface、repo_language、fail_to_pass、pass_to_pass、镜像字段、hard、version。"
+    ],
+    "files": [
+      "instruction.md、task.toml、Dockerfile、参考方案和 verifier 文件。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2509.16941",
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "V1 的 731 题与 V2 的 642 题、任务目录、容器镜像及评测代码均由 Scale AI 公开提供；HARD-51 可作为 V2 hard config 取得。论文所述 held-out 12 仓库与商业 18 仓库并未公开题目，不能将其成绩或总数误报为可下载公开 split。V2 公开镜像为 Linux/amd64；官方说明可匿名拉取。"
+    ],
+    "url": "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md",
+      "https://arxiv.org/abs/2509.16941"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "仓库软件和文档标注 MIT；数据卡说明题目、patch 与测试来自 11 个上游仓库，仍受各自许可约束。",
+    "scope": "MIT 按仓库 LICENSE 适用于其覆盖的软件/文档；上游 issue、源码快照、patch 与测试须遵守各来源条款。",
+    "boundaries": [
+      "逐仓库、逐字段的第三方权利链未审查；公开下载不构成统一转载授权。",
+      "本站不复制任务说明、PR 要求、gold/test patch、测试内容、仓库快照或镜像。"
+    ],
+    "sourceUrls": [
+      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/LICENSE",
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro#license",
+      "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "公开任务文件含第三方文本、代码、参考解法和测试，未逐任务确认转载授权。本站只链接 Scale AI 官方仓库和数据卡。",
+    "sourceUrls": [
+      "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+    ]
+  }
+}

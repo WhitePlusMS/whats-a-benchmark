@@ -1,0 +1,91 @@
+{
+  "aliases": [
+    "Human Eval",
+    "HumanEval"
+  ],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "human-eval",
+  "name": "HumanEval",
+  "subtitle": "按说明补全一个 Python 函数",
+  "category": "coding",
+  "tags": [
+    "函数生成",
+    "Python"
+  ],
+  "publisher": "OpenAI",
+  "year": 2021,
+  "version": "原始 HumanEval",
+  "summary": "给函数签名和说明，让模型补完函数，再用测试检查功能是否正确。",
+  "task": "根据 docstring 描述生成函数体，执行隐藏测试验证功能。",
+  "format": "JSONL：task_id、prompt、canonical_solution、test、entry_point。",
+  "metric": {
+    "name": "pass@k",
+    "direction": "higher",
+    "description": "衡量多次生成中至少有一个解通过测试的可能性。pass@1 与 pass@10 不能直接混排。"
+  },
+  "limitations": [
+    "小函数题不覆盖仓库级软件开发。",
+    "公开时间较长，需要关注数据污染和增强测试版本。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/openai/human-eval",
+      "label": "官方代码、数据与许可",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 120,
+  "brandIds": [
+    "openai"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "HumanEval/0",
+        "title": "找出距离足够近的两个数",
+        "raw": {
+          "task_id": "HumanEval/0",
+          "prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+          "entry_point": "has_close_elements",
+          "canonical_solution": "    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                distance = abs(elem - elem2)\n                if distance < threshold:\n                    return True\n\n    return False\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False\n\n"
+        },
+        "split": "HumanEval 原始集",
+        "excerpt": false,
+        "prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+        "answer": "    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                distance = abs(elem - elem2)\n                if distance < threshold:\n                    return True\n\n    return False\n",
+        "explanation": "模型需要补全函数体，而不是口头解释算法。docstring 给出要求与例子，test 保存用于检验函数行为的代码。参考实现来自原始记录。",
+        "source": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      },
+      {
+        "id": "HumanEval/1",
+        "title": "分开嵌套括号组",
+        "raw": {
+          "task_id": "HumanEval/1",
+          "prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+          "entry_point": "separate_paren_groups",
+          "canonical_solution": "    result = []\n    current_string = []\n    current_depth = 0\n\n    for c in paren_string:\n        if c == '(':\n            current_depth += 1\n            current_string.append(c)\n        elif c == ')':\n            current_depth -= 1\n            current_string.append(c)\n\n            if current_depth == 0:\n                result.append(''.join(current_string))\n                current_string.clear()\n\n    return result\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [\n        '(()())', '((()))', '()', '((())()())'\n    ]\n    assert candidate('() (()) ((())) (((())))') == [\n        '()', '(())', '((()))', '(((())))'\n    ]\n    assert candidate('(()(())((())))') == [\n        '(()(())((())))'\n    ]\n    assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\n"
+        },
+        "split": "HumanEval 原始集",
+        "excerpt": false,
+        "prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+        "answer": "    result = []\n    current_string = []\n    current_depth = 0\n\n    for c in paren_string:\n        if c == '(':\n            current_depth += 1\n            current_string.append(c)\n        elif c == ')':\n            current_depth -= 1\n            current_string.append(c)\n\n            if current_depth == 0:\n                result.append(''.join(current_string))\n                current_string.clear()\n\n    return result\n",
+        "explanation": "模型需要补全函数体，而不是口头解释算法。docstring 给出要求与例子，test 保存用于检验函数行为的代码。参考实现来自原始记录。",
+        "source": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      }
+    ]
+  }
+}

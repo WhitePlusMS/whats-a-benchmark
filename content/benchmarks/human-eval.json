@@ -1,0 +1,215 @@
+{
+  "aliases": [
+    "Human Eval",
+    "HumanEval"
+  ],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "human-eval",
+  "name": "HumanEval",
+  "subtitle": "按说明补全一个 Python 函数",
+  "category": "coding",
+  "tags": [
+    "函数生成",
+    "Python"
+  ],
+  "publisher": "OpenAI",
+  "year": 2021,
+  "version": "原始 HumanEval",
+  "metric": {
+    "name": "pass@k",
+    "direction": "higher",
+    "description": "pass@k：每题采样 n≥k 个程序，若 c 个通过测试，则以无偏估计量 1 − C(n−c,k)/C(n,k) 估计从 k 个样本中至少有一个正确程序的比例，再对题目取平均。它不是简单地把经验 pass@1 代入 1−(1−p)^k。\n论文使用 n=200 并报告 k≤100 的若干值；官方仓库默认展示 pass@1/10/100，并要求每题的生成样本数达到相应 k。\n运行超时、采样方案及温度都会影响结果；必须随数值报告评测条件。运行生成代码的安全隔离也属于协议的一部分。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2107.03374#S2.SS1",
+      "https://github.com/openai/human-eval#usage",
+      "https://arxiv.org/html/2107.03374#S2.SS3"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方仓库根许可证未将题库、测试、示例和 harness 分别列出许可范围；正式大规模镜像前应按具体文件和许可文本复核。",
+      "sourceUrls": [
+        "https://github.com/openai/human-eval"
+      ]
+    },
+    {
+      "text": "当前任务文件与原始 2021 论文所述数据是否逐字一致，需固定 commit 后比对；上游仓库并无正式语义版本标签。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2107.03374#S2.SS2",
+        "https://github.com/openai/human-eval",
+        "https://arxiv.org/html/2107.03374#S2.SS1",
+        "https://github.com/openai/human-eval#usage"
+      ]
+    },
+    {
+      "text": "不同论文使用的停止序列、prompt 封装、采样配置、超时和测试分叉不一定相同；成绩差异不能只归因于模型。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2107.03374#S2.SS2",
+        "https://github.com/openai/human-eval",
+        "https://arxiv.org/html/2107.03374#S2.SS1",
+        "https://github.com/openai/human-eval#usage"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "原始论文",
+      "url": "https://arxiv.org/html/2107.03374#S2.SS2",
+      "role": "paper"
+    },
+    {
+      "label": "openai/human-eval",
+      "url": "https://github.com/openai/human-eval",
+      "role": "readme"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/openai/human-eval#usage",
+      "role": "readme"
+    },
+    {
+      "label": "OpenAI Codex 论文",
+      "url": "https://arxiv.org/html/2107.03374#S2.SS1",
+      "role": "paper"
+    },
+    {
+      "label": "论文评测协议",
+      "url": "https://arxiv.org/html/2107.03374#S2.SS3",
+      "role": "paper"
+    },
+    {
+      "label": "官方 evaluation.py",
+      "url": "https://github.com/openai/human-eval/blob/master/human_eval/evaluation.py",
+      "role": "code"
+    },
+    {
+      "label": "OpenAI 论文",
+      "url": "https://arxiv.org/html/2107.03374#S3.SS1",
+      "role": "paper"
+    },
+    {
+      "label": "官方站内样例记录",
+      "url": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 120,
+  "brandIds": [
+    "openai"
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "HumanEval/0",
+        "title": "找出距离足够近的两个数",
+        "raw": {
+          "task_id": "HumanEval/0",
+          "prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+          "entry_point": "has_close_elements",
+          "canonical_solution": "    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                distance = abs(elem - elem2)\n                if distance < threshold:\n                    return True\n\n    return False\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False\n\n"
+        },
+        "split": "HumanEval 原始集",
+        "excerpt": false,
+        "prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+        "answer": "    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                distance = abs(elem - elem2)\n                if distance < threshold:\n                    return True\n\n    return False\n",
+        "explanation": "模型需要补全函数体，而不是口头解释算法。docstring 给出要求与例子，test 保存用于检验函数行为的代码。参考实现来自原始记录。",
+        "source": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      },
+      {
+        "id": "HumanEval/1",
+        "title": "分开嵌套括号组",
+        "raw": {
+          "task_id": "HumanEval/1",
+          "prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+          "entry_point": "separate_paren_groups",
+          "canonical_solution": "    result = []\n    current_string = []\n    current_depth = 0\n\n    for c in paren_string:\n        if c == '(':\n            current_depth += 1\n            current_string.append(c)\n        elif c == ')':\n            current_depth -= 1\n            current_string.append(c)\n\n            if current_depth == 0:\n                result.append(''.join(current_string))\n                current_string.clear()\n\n    return result\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [\n        '(()())', '((()))', '()', '((())()())'\n    ]\n    assert candidate('() (()) ((())) (((())))') == [\n        '()', '(())', '((()))', '(((())))'\n    ]\n    assert candidate('(()(())((())))') == [\n        '(()(())((())))'\n    ]\n    assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\n"
+        },
+        "split": "HumanEval 原始集",
+        "excerpt": false,
+        "prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+        "answer": "    result = []\n    current_string = []\n    current_depth = 0\n\n    for c in paren_string:\n        if c == '(':\n            current_depth += 1\n            current_string.append(c)\n        elif c == ')':\n            current_depth -= 1\n            current_string.append(c)\n\n            if current_depth == 0:\n                result.append(''.join(current_string))\n                current_string.clear()\n\n    return result\n",
+        "explanation": "模型需要补全函数体，而不是口头解释算法。docstring 给出要求与例子，test 保存用于检验函数行为的代码。参考实现来自原始记录。",
+        "source": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      }
+    ]
+  },
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "HumanEval 是 OpenAI 在 Codex 论文中提出的手写 Python 函数合成测试集：模型按函数签名和 docstring 补全函数，再用单元测试检查功能。人工编写的题目旨在降低与公开代码题解直接重合的风险，不保证此后不进入训练数据。",
+    "task": "根据函数签名和自然语言说明补全独立 Python 函数，并通过题目测试。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2107.03374#S2.SS2"
+    ]
+  },
+  "taskContract": {
+    "input": "函数签名、docstring/上下文和待补全位置；原始问题记录含 task_id、prompt、canonical_solution、test、entry_point。",
+    "output": "补全代码；harness 执行单元测试并记录 passed、timeout 或 failed，再计算 pass@k。",
+    "environment": "生成代码是不可信程序，必须在稳健隔离环境执行；官方仓库默认不直接启用执行入口，并要求先阅读安全说明。",
+    "sourceUrls": [
+      "https://github.com/openai/human-eval#usage",
+      "https://arxiv.org/html/2107.03374#S2.SS2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原始题集有 164 道手写 Python 函数题，论文报告每题平均 7.7 个单元测试。",
+    "disclosure": "complete",
+    "scale": [
+      "164 道问题；平均每题 7.7 个单元测试。"
+    ],
+    "splits": [
+      "官方没有 train/validation/test 多切分；整个集合是评测题集。"
+    ],
+    "fields": [
+      "task_id、prompt、canonical_solution、test、entry_point。评测提交记录至少含 task_id、completion。"
+    ],
+    "files": [
+      "HumanEval.jsonl.gz；官方评测 harness；用于调试的 example problem/sample 文件。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2107.03374#S2.SS2",
+      "https://github.com/openai/human-eval",
+      "https://arxiv.org/html/2107.03374#S2.SS1",
+      "https://github.com/openai/human-eval#usage"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "OpenAI 官方 GitHub 公开题目与 harness；运行生成代码前需配置隔离执行环境。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/human-eval"
+    ],
+    "url": "https://github.com/openai/human-eval"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "OpenAI human-eval 仓库根目录附 MIT 许可，未单独区分题库数据与 harness。",
+    "scope": "按仓库许可文本核对文件覆盖范围；不把论文页面、第三方题解或其代码自动视为 MIT 内容。",
+    "boundaries": [
+      "复用仓库文件时保留适用版权和许可声明并记录 commit；正式大规模镜像前按具体文件核查许可。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/human-eval"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方 README 提供样本格式和 debug 示例。现有站内样例按仓库许可保留来源；不从论文图表另行复制内容，运行代码仍须隔离。",
+    "sourceUrls": [
+      "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz"
+    ]
+  }
+}

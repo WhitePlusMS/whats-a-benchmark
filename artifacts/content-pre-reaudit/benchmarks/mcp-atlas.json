@@ -1,0 +1,77 @@
+{
+  "aliases": [
+    "MCP Atlas",
+    "MCP-ATLAS"
+  ],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "展示 1 条官方公开 train split 任务，仅保留 TASK 与 PROMPT；不公开答案主张、执行轨迹或工具清单。",
+  "verifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-23",
+  "id": "mcp-atlas",
+  "name": "MCP-Atlas",
+  "subtitle": "面对很多工具，还能选对并用好吗",
+  "category": "agents",
+  "tags": [
+    "MCP",
+    "多工具工作流"
+  ],
+  "publisher": "Scale Labs / MCP-Atlas 团队",
+  "year": 2025,
+  "version": "MCP-Atlas 官方任务定义",
+  "summary": "通过 MCP 工具工作流，检验模型面对实际工具和任务时能否完成可靠的多步操作。",
+  "task": "理解任务，选择相关 MCP 工具，组织调用并返回有依据的结果。",
+  "format": "任务请求、MCP 工具定义、服务环境与评估记录。",
+  "metric": {
+    "name": "任务成功率",
+    "description": "依据官方任务评分方法判断端到端完成情况；工具规模与配置需要一并说明。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "工具集版本与执行环境会影响结果。",
+    "函数调用格式正确不代表整个工作流正确。"
+  ],
+  "sources": [
+    {
+      "url": "https://labs.scale.com/leaderboard/mcp_atlas",
+      "label": "官方评测说明与榜单",
+      "kind": "leaderboard"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+      "label": "官方公开数据集与 CC BY 4.0 许可",
+      "kind": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer",
+      "label": "官方公开记录浏览器",
+      "kind": "data"
+    }
+  ],
+  "status": "published",
+  "order": 290,
+  "brandIds": [
+    "scale"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "689f4d693e212e8ef3390731",
+        "title": "查询 AssaultCube 项目的时间跨度",
+        "type": "record",
+        "prompt": "I've been looking into contributions in open source videogames and I'm curious about the longevity of this one open source project. Can you get me the year difference between the creation of the repository of the shooter game assaultcube and the domain registration date of the game's official site",
+        "explanation": "这是官方公开数据集的一条真实多工具任务。页面仅展示 TASK 和 PROMPT，不复制 GTFA_CLAIMS、TRAJECTORY 或工具清单。",
+        "raw": {
+          "TASK": "689f4d693e212e8ef3390731",
+          "PROMPT": "I've been looking into contributions in open source videogames and I'm curious about the longevity of this one open source project. Can you get me the year difference between the creation of the repository of the shooter game assaultcube and the domain registration date of the game's official site"
+        },
+        "source": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer",
+        "license": "CC BY 4.0 · ScaleAI MCP-Atlas public dataset",
+        "split": "official public release · train split · 500-row sample subset",
+        "excerpt": true
+      }
+    ]
+  }
+}

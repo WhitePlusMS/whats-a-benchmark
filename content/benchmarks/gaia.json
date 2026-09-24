@@ -1,0 +1,145 @@
+{
+  "id": "gaia",
+  "status": "published",
+  "order": 280,
+  "name": "GAIA",
+  "subtitle": "看似日常，却需要多种工具配合",
+  "category": "agents",
+  "tags": [
+    "通用助手",
+    "多步任务"
+  ],
+  "publisher": "GAIA 研究团队",
+  "brandIds": [
+    "gaia"
+  ],
+  "year": 2023,
+  "version": "2023 任务集；validation / test 分开",
+  "kind": "original",
+  "aliases": [],
+  "related": [],
+  "verifiedAt": "2026-09-22",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "GAIA 以现实问题评估助手的推理、多模态信息处理、网页浏览与工具使用能力，预期答案通常简短并可核验。",
+    "task": "回答自然语言问题，部分任务附 PDF、图像、表格、视频或音频等附件；工具路径由具体问题决定。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2311.12983"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言问题，部分记录附带文件或多模态附件。",
+    "output": "简短事实答案，通常为字符串、数字或列表；论文采用答案类型归一化后的准精确匹配。",
+    "environment": "GAIA 本身不要求唯一工具/API；具体 benchmark runner 或厂商 harness 可能选择不同浏览、解析和代码工具。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2311.12983"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文原始集含 466 道问题；当前官方 Hugging Face 卡片称 450+ 条，并采用 gated 访问。",
+    "disclosure": "not-public",
+    "scale": [
+      "论文发布时设计 466 道问题，并保留 300 个答案用于排行榜。",
+      "当前数据卡采用 450+ 的规模描述；两者属于不同发布口径。"
+    ],
+    "splits": [
+      "数据卡列出三个难度等级及 dev/validation 与 test split；test 答案和元数据受限。"
+    ],
+    "fields": [
+      "当前卡片列出 task_id、Question、Level、Final answer、file_name、file_path 和 Annotator Metadata。"
+    ],
+    "files": [
+      "2025 年 10 月后数据卡列出 Parquet split；部分题目通过 file_name/file_path 引用附件。",
+      "受 gated 条款限制，本次未下载或逐文件核对完整包。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2311.12983",
+      "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+      "https://huggingface.co/datasets/gaia-benchmark/GAIA/blob/main/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "数据集在 Hugging Face gated access 下，需按站点流程申请访问。官方明确称加入 gating 是为了阻止 bot 抓取；并要求不要以可被爬取的格式分享 validation 或 test set。当前 leaderboard 入口在同一官方数据卡中链接。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+    ],
+    "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+  },
+  "reusePolicy": {
+    "status": "prohibited",
+    "license": "未核实",
+    "scope": "此次核对的 Hugging Face dataset card 未发现明确的 SPDX/data license 声明，因此题目、答案、元数据及附件的再分发许可为未明确；不能从页面可申请访问推断复制授权。\ngated prompt 明确要求不得将 GAIA submissions set 分享到 Hugging Face 上 gated/private 仓库之外；README 也要求不要以可爬取格式重发 validation 或 test。故不得把题面、答案、附件或整行数据复制到公开 GitHub Pages。\n论文中公开的研究定义和数字可作归属引用；论文中展示的示例题面、截图或附件不因此自动取得 dataset 再发布许可。页面媒体权利未单独核实。",
+    "boundaries": [
+      "此次核对的 Hugging Face dataset card 未发现明确的 SPDX/data license 声明，因此题目、答案、元数据及附件的再分发许可为未明确；不能从页面可申请访问推断复制授权。",
+      "gated prompt 明确要求不得将 GAIA submissions set 分享到 Hugging Face 上 gated/private 仓库之外；README 也要求不要以可爬取格式重发 validation 或 test。故不得把题面、答案、附件或整行数据复制到公开 GitHub Pages。",
+      "论文中公开的研究定义和数字可作归属引用；论文中展示的示例题面、截图或附件不因此自动取得 dataset 再发布许可。页面媒体权利未单独核实。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+    ]
+  },
+  "sampleAccess": {
+    "status": "gated",
+    "reason": "官方 HF 数据集包含 dev/validation 与 test 数据，访问须 gated；数据卡明令不要在可爬取格式下重分享 validation/test，gated prompt 进一步约束整个 submissions set 的分享位置。本站不转载任何实际 GAIA 题面、附件、答案、元数据记录或排行榜提交；只提供 benchmark 概述及官方数据/论文链接\n",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+      "https://arxiv.org/abs/2311.12983"
+    ],
+    "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+  },
+  "metric": {
+    "name": "正确率",
+    "description": "题目级准确率基于经答案类型归一化的准精确匹配；整体与各 level 结果可按答对题数汇总为百分比。论文的初始模型/人类数字属于指定题集和运行配置，不是当前 gated leaderboard 的普遍分数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2311.12983"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "论文的 466 题口径与当前数据卡的 450+ 口径不同，未通过公开文件快照逐行对齐。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2311.12983",
+        "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+      ]
+    },
+    {
+      "text": "当前 gated split 的行数、附件清单与 leaderboard 对应 commit 未逐文件核验。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+        "https://huggingface.co/datasets/gaia-benchmark/GAIA/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "数据卡未发现明确题库许可证；不得把访问申请获批视为再发布授权。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "GAIA 论文",
+      "url": "https://arxiv.org/abs/2311.12983",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据集卡",
+      "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+      "role": "data"
+    },
+    {
+      "label": "GAIA 官方数据卡",
+      "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA/blob/main/README.md",
+      "role": "data"
+    },
+    {
+      "label": "GAIA leaderboard",
+      "url": "https://huggingface.co/spaces/gaia-benchmark/leaderboard",
+      "role": "leaderboard"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "gdpval-aa",
+      "label": "衍生评测",
+      "detail": "Artificial Analysis 在 GDPval 基础上设置代理流程与对战评级。",
+      "sourceUrls": [
+        "https://openai.com/index/gdpval/",
+        "https://artificialanalysis.ai/evaluations/gdpval-aa"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "gdpval",
+  "name": "GDPval",
+  "subtitle": "交一份能用的工作成果",
+  "category": "work",
+  "tags": [
+    "职业任务",
+    "文档与表格"
+  ],
+  "publisher": "OpenAI",
+  "year": 2025,
+  "version": "公开 gold 子集 · 220 任务",
+  "metric": {
+    "name": "交付质量 / 专家比较结果",
+    "direction": "higher",
+    "description": "OpenAI 原始评测采用职业领域专家的盲法成品比较，评审对 AI 与任务作者提交物进行排序，并按 better、as good as、worse than 分类。具体报告分数应同时标明比较对象、评审方式、任务子集及运行配置；这类专家比较结果不能与 AA 的 Elo、自动 rubric 分或其他厂商自报百分比直接互换。",
+    "sourceUrls": [
+      "https://openai.com/index/gdpval/#how-we-grade-model-performance",
+      "https://arxiv.org/abs/2510.04374"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "完整 1,320 项任务的公众访问路径、其余 1,100 项的任务 ID 与是否保留集状态未由本轮第一方下载入口核实。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/gdpval",
+        "https://evals.openai.com/gdpval/grading"
+      ]
+    },
+    {
+      "text": "数据卡中的全套附件、参考成品与 rubric 是否分别含第三方内容及各自许可，未逐文件核对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/gdpval"
+      ]
+    },
+    {
+      "text": "OpenAI Evals grading 页面本轮可见内容有限，公开服务的完整调用约束、账户条件与当前版本未核实。",
+      "sourceUrls": [
+        "https://openai.com/index/gdpval/",
+        "https://huggingface.co/datasets/openai/gdpval"
+      ]
+    },
+    {
+      "text": "不同外部报告的工具、推理时长、代理 harness 与专家评审配置不统一，不能仅依 benchmark 名称比较成绩。",
+      "sourceUrls": [
+        "https://openai.com/index/gdpval/",
+        "https://huggingface.co/datasets/openai/gdpval"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI GDPval",
+      "url": "https://openai.com/index/gdpval/",
+      "role": "definition"
+    },
+    {
+      "label": "OpenAI `openai/gdpval` 数据集卡",
+      "url": "https://huggingface.co/datasets/openai/gdpval",
+      "role": "data"
+    },
+    {
+      "label": "GDPval 论文",
+      "url": "https://arxiv.org/abs/2510.04374",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI GDPval 介绍",
+      "url": "https://openai.com/index/gdpval/#how-we-grade-model-performance",
+      "role": "definition"
+    },
+    {
+      "label": "OpenAI Evals GDPval grading",
+      "url": "https://evals.openai.com/gdpval/grading",
+      "role": "definition"
+    },
+    {
+      "label": "AA GDPval-AA",
+      "url": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "role": "definition"
+    }
+  ],
+  "status": "published",
+  "order": 430,
+  "brandIds": [
+    "openai"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "OpenAI GDPval 评估模型完成美国 GDP 相关行业中的现实知识工作任务的能力。完整任务集与公开 gold 子集范围不同；GDPval-AA 是使用公开子集的独立第三方评测。",
+    "task": "模型依据真实职业任务提示和参考材料制作工作成品，由相关职业的资深从业者设计、审阅任务，并按任务 rubric 比较成品质量。",
+    "sourceUrls": [
+      "https://openai.com/index/gdpval/"
+    ]
+  },
+  "taskContract": {
+    "input": "工作任务提示及该任务的支持文件，文件可为不同格式。",
+    "output": "按任务要求生成文档、幻灯片、表格、图表或其他工作成品；不是固定的短答案格式。",
+    "environment": "工具、执行时长和代理环境取决于运行方。OpenAI 初始评测由相关职业专家盲评模型成品与任务作者成品，并标注 better、as good as 或 worse than。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://arxiv.org/abs/2510.04374",
+      "https://openai.com/index/gdpval/#how-we-grade-model-performance"
+    ]
+  },
+  "dataProfile": {
+    "summary": "OpenAI 报告完整 GDPval 有 1,320 个任务，覆盖 44 个职业和 9 个行业；公开 gold 子集为每职业 5 个、共 220 个任务。",
+    "disclosure": "partial",
+    "scale": [
+      "完整集：1,320 个任务、44 个职业、9 个行业；公开 gold：220 个任务、每职业 5 个。"
+    ],
+    "splits": [
+      "Hugging Face 上的 220 个公开 gold 任务标为 train；它是数据发布标签，不表示完整基准的训练/测试切分。"
+    ],
+    "fields": [
+      "任务记录包括 task_id、sector、occupation、prompt、参考文件链接、交付物链接、rubric_pretty 和 rubric_json。"
+    ],
+    "files": [
+      "Hugging Face 任务记录及其关联的多格式参考文件、成品文件；Parquet 行预览不包含完整任务附件。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/gdpval/",
+      "https://huggingface.co/datasets/openai/gdpval"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "220 个公开 gold 任务可从 OpenAI Hugging Face 获取；本轮未找到完整 1,320 个任务的第一方公开下载入口。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://evals.openai.com/gdpval/grading"
+    ],
+    "url": "https://huggingface.co/datasets/openai/gdpval"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "OpenAI 数据卡未显示覆盖整个数据集及附件的统一许可证，并披露少量第三方品牌/商标仅用于研究和评测。",
+    "scope": "不能仅凭公开下载推定任务、附件、图像、参考答案和第三方素材均可整体复制。",
+    "boundaries": [
+      "逐文件确认权利和 OpenAI 当前条款前，只链接来源并使用原创说明，不转载 prompt、参考文件、rubric 或交付物。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/gdpval"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "OpenAI 页面及公开数据卡可查看任务信息。本站只链接官方入口并概述任务与成品类型；未确认许可前不复制 prompt、参考文件、rubric 或成品。",
+    "sourceUrls": [
+      "https://openai.com/index/gdpval/",
+      "https://huggingface.co/datasets/openai/gdpval"
+    ],
+    "url": "https://openai.com/index/gdpval/"
+  }
+}

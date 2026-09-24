@@ -1,0 +1,163 @@
+{
+  "id": "skillsbench",
+  "status": "published",
+  "order": 713,
+  "name": "SkillsBench",
+  "subtitle": "衡量智能体如何使用 Agent Skills",
+  "category": "agents",
+  "tags": [
+    "Agent Skills",
+    "智能体评测",
+    "工作流"
+  ],
+  "publisher": "SkillsBench Team / BenchFlow",
+  "brandIds": [],
+  "year": 2026,
+  "version": "1.1",
+  "kind": "original",
+  "aliases": [
+    "Skills Bench",
+    "SkillsBench v1.1"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "SkillsBench 评测智能体如何使用结构化 Agent Skills，并衡量技能本身与 agent 行为的影响。当前官方固定发布为 SkillsBench v1.1。",
+    "task": "在 BenchFlow 任务环境中执行专业任务，对比无技能、策划技能或指定实验中的自生成技能条件，并由任务 verifier 判定结果。",
+    "sourceUrls": [
+      "https://www.skillsbench.ai/blogs/skillsbench-1-1",
+      "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1"
+    ]
+  },
+  "taskContract": {
+    "input": "任务说明、任务环境和可选任务专属 skill 包；实验配置应记录 no-skill 或 with-skill 等条件。",
+    "output": "任务环境内的工作产物及任务级 verifier 结果；with-skill 运行还可记录 skill 调用情况。",
+    "environment": "BenchFlow 原生 task.md 包，内含 environment、oracle 与 verifier 目录；运行需 agent/model 接口及沙箱。",
+    "sourceUrls": [
+      "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
+      "https://github.com/benchflow-ai/skillsbench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "v1.1 是固定在官方 release 的任务集合；release 附任务级版本、类别、难度、标签和摘要信息。",
+    "disclosure": "partial",
+    "scale": [
+      "87 个默认 active tasks，涵盖 8 个领域。",
+      "难度分布为 easy 6、medium 53、hard 28。"
+    ],
+    "splits": [
+      "tasks-extra/ 中依赖凭据或暂不兼容的包不属于默认 87 项。"
+    ],
+    "fields": [
+      "任务类别、难度、tags 与版本等元数据由官方任务 manifest 记录。"
+    ],
+    "files": [
+      "固定任务包以 task.md、environment/、oracle/ 和 verifier/ 组织。"
+    ],
+    "sourceUrls": [
+      "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
+      "https://www.skillsbench.ai/tasks"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "GitHub release 与任务注册表公开。运行需 BenchFlow、可用模型接口和沙箱；部分 tasks-extra 需外部凭据。"
+    ],
+    "url": "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
+    "sourceUrls": [
+      "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
+      "https://github.com/benchflow-ai/skillsbench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库标注 Apache-2.0，但未逐项确认任务嵌入的第三方数据与素材权利。",
+    "scope": "Apache-2.0 仅按许可证对其覆盖的仓库材料适用；不从仓库级标识推断独立上游素材许可。",
+    "boundaries": [
+      "官方站点显示 benchmark 数据防训练污染提示。",
+      "在逐项核验上游来源和权利之前，不复制任务文本、技能包、oracle、verifier 或截图。"
+    ],
+    "sourceUrls": [
+      "https://github.com/benchflow-ai/skillsbench",
+      "https://www.skillsbench.ai/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "SkillsBench 官方任务注册表可浏览 v1.1 固定任务及题面。本按钮仅打开官方原页；本站不复制任务文件、oracle、测试或轨迹，并遵守官方关于 benchmark 数据不得进入训练语料的提示。",
+    "sourceUrls": [
+      "https://www.skillsbench.ai/tasks",
+      "https://www.skillsbench.ai/"
+    ],
+    "url": "https://www.skillsbench.ai/tasks"
+  },
+  "metric": {
+    "name": "任务解决率",
+    "description": "官方报告 resolution rate，并按实验配置区分 no-skill 与 with-skill；skill lift 和 invocation rate 是另行报告的指标。比较时注明 harness、模型、任务快照、技能条件和 trial 数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.skillsbench.ai/blogs/skillsbench-1-1",
+      "https://www.skillsbench.ai/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本研究未下载固定 release 的任务包，也未逐项检查内嵌数据与第三方素材的许可。",
+      "sourceUrls": [
+        "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
+        "https://github.com/benchflow-ai/skillsbench"
+      ]
+    },
+    {
+      "text": "早期论文快照与 v1.1 roster 的任务变更清单未逐项比对；本条边界以 v1.1 固定 release 为准。",
+      "sourceUrls": [
+        "https://www.skillsbench.ai/blogs/introducing-skillsbench",
+        "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SkillsBench v1.1 官方发布说明",
+      "url": "https://www.skillsbench.ai/blogs/skillsbench-1-1",
+      "role": "release"
+    },
+    {
+      "label": "SkillsBench v1.1 GitHub release",
+      "url": "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
+      "role": "data"
+    },
+    {
+      "label": "SkillsBench 官方任务注册表",
+      "url": "https://www.skillsbench.ai/tasks",
+      "role": "data"
+    },
+    {
+      "label": "SkillsBench 官方 GitHub 仓库与许可证",
+      "url": "https://github.com/benchflow-ai/skillsbench",
+      "role": "readme"
+    },
+    {
+      "label": "SkillsBench 官方主页及榜单",
+      "url": "https://www.skillsbench.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "SkillsBench 论文",
+      "url": "https://arxiv.org/abs/2602.12670",
+      "role": "paper"
+    },
+    {
+      "label": "Qwen3.8-Max 官方模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "role": "vendor-report"
+    },
+    {
+      "label": "SkillsBench 早期发布说明",
+      "url": "https://www.skillsbench.ai/blogs/introducing-skillsbench",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

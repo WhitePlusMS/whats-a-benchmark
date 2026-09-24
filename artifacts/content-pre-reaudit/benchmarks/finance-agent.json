@@ -1,0 +1,76 @@
+{
+  "aliases": [
+    "FinanceAgent"
+  ],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "finance-agent",
+  "name": "Finance Agent",
+  "subtitle": "查财报、找资料，回答复杂金融问题",
+  "category": "work",
+  "tags": [
+    "财务研究",
+    "联网工具"
+  ],
+  "publisher": "Vals AI",
+  "year": 2025,
+  "version": "Finance Agent 官方任务集",
+  "summary": "检验模型能否通过搜索、公司申报文件等工具，研究并回答复杂财务问题。",
+  "task": "调用网页搜索、SEC 文件检索和页面解析等工具，汇总支持答案的资料。",
+  "format": "公开问题文件、搜索/检索工具接口及代理运行日志；部分评测平台访问需要申请。",
+  "metric": {
+    "name": "回答评估分数",
+    "direction": "higher",
+    "description": "依据官方评分流程评估研究答案；具体工具环境和运行方法需一并记录。"
+  },
+  "limitations": [
+    "题目可公开与完整平台能否访问是两回事。",
+    "历史财务问答能力不等于投资预测能力。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/vals-ai/finance-agent",
+      "label": "官方问题与工具代码",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 470,
+  "brandIds": [
+    "vals-ai"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "public-line-1",
+        "title": "研究公司并购影响",
+        "prompt": "How has US Steel addressed its planned merger with Nippon Steel and its effect on its business operations?",
+        "raw": "How has US Steel addressed its planned merger with Nippon Steel and its effect on its business operations?",
+        "explanation": "问题来自官方 public.txt，需要查询相关时期的公司材料并综合信息；该文件未提供答案。",
+        "source": "https://github.com/vals-ai/finance-agent/blob/main/data/public.txt",
+        "license": "MIT · Vals AI",
+        "split": "public.txt",
+        "excerpt": false,
+        "licensePath": "licenses/finance-agent.txt",
+        "type": "text"
+      },
+      {
+        "id": "public-line-2",
+        "title": "研究 Netflix 的用户收入变化",
+        "prompt": "How has Netflix's (NASDAQ: NFLX) Average Revenue Per Paying User Changed from 2019 to 2024?",
+        "raw": "How has Netflix's (NASDAQ: NFLX) Average Revenue Per Paying User Changed from 2019 to 2024?",
+        "explanation": "问题来自官方 public.txt，需要查询相关时期的公司材料并综合信息；该文件未提供答案。",
+        "source": "https://github.com/vals-ai/finance-agent/blob/main/data/public.txt",
+        "license": "MIT · Vals AI",
+        "split": "public.txt",
+        "excerpt": false,
+        "licensePath": "licenses/finance-agent.txt",
+        "type": "text"
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "arc-agi-3",
+  "status": "published",
+  "order": 602,
+  "name": "ARC-AGI-3",
+  "subtitle": "在交互环境中边探索边学习规则",
+  "summary": "ARC Prize 的交互式推理基准：代理需在没有文字说明的环境中发现目标、学习规则并适应后续关卡。",
+  "category": "reasoning",
+  "tags": [
+    "交互推理",
+    "技能习得",
+    "长程规划"
+  ],
+  "publisher": "ARC Prize Foundation",
+  "brandIds": [
+    "arc-prize"
+  ],
+  "year": 2026,
+  "version": "3",
+  "kind": "original",
+  "aliases": [
+    "ARC AGI 3"
+  ],
+  "task": "探索新环境、从反馈中发现目标与规则、完成关卡，并将学到的策略迁移到后续交互。",
+  "format": "可交互的回合制环境与游戏关卡，记录逐步动作、环境反馈和完成情况；官方提供公共游戏集、SDK 与回放。",
+  "metric": {
+    "name": "RHAE（Relative Human Action Efficiency）",
+    "description": "按关卡比较代理完成任务的动作效率与人类基准，按环境归一后汇总；OpenAI 的 99.9% 是其特定 Responses API harness 报告值。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "它评估交互、技能习得与相对动作效率，不等同于静态 ARC 网格题的准确率。",
+    "官方人类基线和计分细节版本会影响结果；应记录测试集、SDK 与 harness。",
+    "GPT-6 Astra 报告说明使用了改变两项设置的 Responses API harness，不能把 99.9% 无条件视为标准官方 harness 成绩。"
+  ],
+  "availability": "public",
+  "sampleNote": "ARC Prize 提供公开游戏集、开发工具与回放入口；本站不另行复制任务。",
+  "sources": [
+    {
+      "label": "ARC Prize 官方任务、工具与说明",
+      "url": "https://arcprize.org/arc-agi/3",
+      "kind": "home"
+    },
+    {
+      "label": "ARC Prize ARC-AGI-3 技术报告",
+      "url": "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "OpenAI GPT-6 Astra 官方报告与配置脚注",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

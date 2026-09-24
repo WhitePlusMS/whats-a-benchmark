@@ -1,0 +1,159 @@
+{
+  "id": "charxiv",
+  "status": "published",
+  "order": 320,
+  "name": "CharXiv",
+  "subtitle": "看懂论文里的复杂图表",
+  "category": "multimodal",
+  "tags": [
+    "科研图表",
+    "视觉问答"
+  ],
+  "publisher": "Princeton NLP 研究团队",
+  "brandIds": [
+    "princeton-nlp"
+  ],
+  "year": 2024,
+  "version": "descriptive / reasoning 任务",
+  "kind": "original",
+  "aliases": [
+    "CharXiv Reasoning"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-22",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "CharXiv 评估模型理解科学论文图表的能力，分别测试图表描述与需要推理的问答。",
+    "task": "针对论文图表完成描述题或推理题；模型依据图像及关联图表信息作答。",
+    "sourceUrls": [
+      "https://charxiv.github.io/",
+      "https://arxiv.org/abs/2406.18521"
+    ]
+  },
+  "taskContract": {
+    "input": "科学论文图表图像和对应的问题；描述题与推理题分开。",
+    "output": "文本描述或答案；test split 的 gold answer 置为 null 以减少泄漏。",
+    "environment": "静态图像问答，不要求交互式 agent 环境；复现实验需固定 split 和任务模式。",
+    "sourceUrls": [
+      "https://github.com/princeton-nlp/CharXiv",
+      "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+    ]
+  },
+  "dataProfile": {
+    "summary": "项目页报告 2,323 张图表；GitHub README 的图像目录计数为 2,333 张，属于两个不同的统计口径。",
+    "disclosure": "partial",
+    "scale": [
+      "项目网站称 2,323 张图表。",
+      "README 对图像目录计数为 2,333 张；本记录保留两种口径，不合并为一个总数。"
+    ],
+    "splits": [
+      "官方仓库分为 val 与 test。",
+      "每个 split 包含 descriptive 与 reasoning 两种任务模式；test 的答案字段为空。"
+    ],
+    "fields": [
+      "Hugging Face 记录包含 image、category、year、figure_path、panel 信息与描述题字段。",
+      "推理字段包括 reasoning_q、来源类别、reasoning_a 和答案类型。"
+    ],
+    "files": [
+      "Hugging Face 发布 Parquet 记录及图像数据。",
+      "GitHub 仓库另有 image_metadata_val/test.json 与图像下载说明。"
+    ],
+    "sourceUrls": [
+      "https://charxiv.github.io/",
+      "https://github.com/princeton-nlp/CharXiv",
+      "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub 仓库、项目页与 Hugging Face 数据集公开提供信息和下载入口。"
+    ],
+    "sourceUrls": [
+      "https://github.com/princeton-nlp/CharXiv",
+      "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+    ],
+    "url": "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "仓库将代码许可标为 Apache-2.0，问答文本标注 CC BY-SA 4.0；科学论文图表图像可能受原论文版权约束。",
+    "scope": "按对应许可证分别处理代码和问答文本；图表图像仅在核对其原始来源授权后复用。",
+    "boundaries": [
+      "不得把文本许可扩展到论文原始图表图像。",
+      "保留题目及图像与其各自来源的关联。"
+    ],
+    "sourceUrls": [
+      "https://github.com/princeton-nlp/CharXiv#license",
+      "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "项目页和 HF 页面展示任务与图像样例，但图表来自论文原件且其版权需逐项确认；候选仅链接官方资源，不转载记录或图片。",
+    "sourceUrls": [
+      "https://charxiv.github.io/",
+      "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+    ],
+    "url": "https://huggingface.co/datasets/princeton-nlp/CharXiv#dataset-viewer"
+  },
+  "metric": {
+    "name": "正确率",
+    "description": "官方榜单按 descriptive 与 reasoning 分别报告准确率及子类结果。评测流水线生成模型响应，再由 GPT-4o 对答案评分；作者论文报告其评测数据与人类表现对比，但本记录不把论文发布时模型成绩作为当前榜单值\n",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/princeton-nlp/CharXiv",
+      "https://charxiv.github.io/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "项目页的 2,323 与 README 的 2,333 图像计数不同，未通过固定 revision 的全量文件重新计数。",
+      "sourceUrls": [
+        "https://charxiv.github.io/",
+        "https://github.com/princeton-nlp/CharXiv"
+      ]
+    },
+    {
+      "text": "公开许可分别涉及代码、问答文本和图像；图表的上游论文权利未逐图审查。",
+      "sourceUrls": [
+        "https://github.com/princeton-nlp/CharXiv#license",
+        "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+      ]
+    },
+    {
+      "text": "test split 的答案设置为 null；不可将公开验证答案集与测试集标签混为一谈。",
+      "sourceUrls": [
+        "https://github.com/princeton-nlp/CharXiv",
+        "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "项目网站",
+      "url": "https://charxiv.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "官方 GitHub",
+      "url": "https://github.com/princeton-nlp/CharXiv",
+      "role": "definition"
+    },
+    {
+      "label": "官方论文页",
+      "url": "https://arxiv.org/abs/2406.18521",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据集",
+      "url": "https://huggingface.co/datasets/princeton-nlp/CharXiv",
+      "role": "data"
+    },
+    {
+      "label": "官方许可说明",
+      "url": "https://github.com/princeton-nlp/CharXiv#license",
+      "role": "access"
+    }
+  ]
+}

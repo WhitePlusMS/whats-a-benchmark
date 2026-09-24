@@ -1,0 +1,134 @@
+{
+  "id": "cursorbench-4",
+  "status": "published",
+  "order": 502,
+  "name": "CursorBench 4.0",
+  "subtitle": "真实 Cursor 会话中的多文件任务",
+  "category": "coding",
+  "tags": [
+    "多文件编辑",
+    "代码代理"
+  ],
+  "publisher": "Cursor",
+  "brandIds": [
+    "cursor"
+  ],
+  "year": 2026,
+  "version": "4.0",
+  "kind": "original",
+  "aliases": [],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "CursorBench 4.0 是 Cursor 用于评估其编码智能体在真实软件开发任务中表现的内部 benchmark。",
+    "task": "智能体在任务仓库中完成编码工作；Cursor 公布汇总表现与部分成本和过程统计，不公开完整题库。",
+    "sourceUrls": [
+      "https://cursor.com/cursorbench",
+      "https://cursor.com/blog/cursorbench"
+    ]
+  },
+  "taskContract": {
+    "input": "真实代码库与任务说明；公开资料没有披露完整任务输入或统一字段。",
+    "output": "代码变更或软件开发成果；公开页面未完整定义逐题输出格式。",
+    "environment": "Cursor 内部 agent 与评测流程；完整 sandbox、工具权限和测试命令未公开。",
+    "sourceUrls": [
+      "https://cursor.com/cursorbench",
+      "https://cursor.com/blog/cursorbench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "4.0 页面未公开题数、split、逐题 schema 或可下载的任务包。",
+    "disclosure": "not-public",
+    "scale": [
+      "任务总数未公开。"
+    ],
+    "splits": [
+      "未公开数据划分。"
+    ],
+    "fields": [
+      "未公开逐题字段 schema。"
+    ],
+    "files": [
+      "未提供可下载的 benchmark 任务文件。"
+    ],
+    "sourceUrls": [
+      "https://cursor.com/cursorbench",
+      "https://cursor.com/blog/cursorbench"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "公开页面提供结果和少量说明；未发现公开题目数据包。"
+    ],
+    "sourceUrls": [
+      "https://cursor.com/cursorbench",
+      "https://cursor.com/blog/cursorbench"
+    ],
+    "url": "https://cursor.com/cursorbench"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "未发现 benchmark 任务数据许可证；公开页面和结果不构成题目数据再发布授权。",
+    "scope": "仅引用公开的方法和聚合结果，不复制未公开任务或内部评测材料。",
+    "boundaries": [
+      "公开页面中的分数不能当作可下载逐题数据。"
+    ],
+    "sourceUrls": [
+      "https://cursor.com/cursorbench",
+      "https://cursor.com/blog/cursorbench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "private",
+    "reason": "官网公布基准结果，但没有发布可复用的逐题任务样例或题目包。",
+    "sourceUrls": [
+      "https://cursor.com/cursorbench",
+      "https://cursor.com/blog/cursorbench"
+    ],
+    "url": "https://cursor.com/cursorbench"
+  },
+  "metric": {
+    "name": "CursorBench Score",
+    "description": "官网报告名为 Score 的聚合结果，并另外提供 Cost、Tokens、Steps 等运行统计；公开资料没有把 Score 定义为逐题成功率或准确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://cursor.com/cursorbench",
+      "https://cursor.com/blog/cursorbench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "任务数、split、数据字段和逐题评分细节未公开，无法独立复算聚合分数。",
+      "sourceUrls": [
+        "https://cursor.com/cursorbench"
+      ]
+    },
+    {
+      "text": "Score 的具体聚合公式未在公开页面完整定义，不应解读为准确率。",
+      "sourceUrls": [
+        "https://cursor.com/cursorbench",
+        "https://cursor.com/blog/cursorbench"
+      ]
+    },
+    {
+      "text": "公开结果依赖 Cursor 内部 agent 和运行配置，缺少完整外部复现实验包。",
+      "sourceUrls": [
+        "https://cursor.com/blog/cursorbench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "CursorBench 4.0 官方页面",
+      "url": "https://cursor.com/cursorbench",
+      "role": "definition"
+    },
+    {
+      "label": "Cursor 官方研究博文",
+      "url": "https://cursor.com/blog/cursorbench",
+      "role": "definition"
+    }
+  ]
+}

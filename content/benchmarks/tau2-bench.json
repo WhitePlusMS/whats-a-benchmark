@@ -1,0 +1,201 @@
+{
+  "aliases": [
+    "tau2-bench",
+    "tau-bench 2",
+    "tau²-bench",
+    "τ2-bench",
+    "tau2"
+  ],
+  "related": [
+    {
+      "id": "tau-bench",
+      "label": "基于",
+      "detail": "在工具—用户交互任务上扩展双方环境控制。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md",
+        "https://arxiv.org/html/2506.07982v1"
+      ]
+    }
+  ],
+  "kind": "derivative",
+  "verifiedAt": "2026-09-22",
+  "id": "tau2-bench",
+  "name": "τ²-bench",
+  "subtitle": "用户和代理一起操作，协作完成任务",
+  "category": "agents",
+  "tags": [
+    "业务工具",
+    "多轮交互"
+  ],
+  "publisher": "Sierra Research",
+  "year": 2025,
+  "version": "τ²-bench；领域与 release 需注明",
+  "metric": {
+    "name": "任务成功率",
+    "description": "论文报告 pass^k，即同一任务 k 次独立运行全都成功的比率；成功由所选任务 criteria 对最终环境/交互状态的检查决定。论文实验为每题运行四次，pass^1 为单次成功率。它不是 pass@k，亦不能在未注明领域和模式的情况下把 retail、airline、telecom 或 no-user 成绩混成单一数字。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.07982v1",
+      "https://arxiv.org/abs/2506.07982v1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "2025 论文发布时每个域任务文件与当前 main 任务集的完整逐题映射尚未核实；需对指定 Git commit/tag 进行差异审计。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+      ]
+    },
+    {
+      "text": "没有查到明确覆盖 τ² task JSON、政策文本和 mock database 的独立数据许可；公开页面转载权未确认。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+      ]
+    },
+    {
+      "text": "本站当前无 τ² 具体任务样例；本次对已有条目的核对仅确认字段链接、未知访问状态及既有“暂缓复制”的样例决策，不以论文示例轨迹填充任务样例。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "τ² 作者论文",
+      "url": "https://arxiv.org/abs/2506.07982v1",
+      "role": "paper"
+    },
+    {
+      "label": "论文",
+      "url": "https://arxiv.org/html/2506.07982v1",
+      "role": "paper"
+    },
+    {
+      "label": "官方仓库",
+      "url": "https://github.com/sierra-research/tau2-bench",
+      "role": "readme"
+    },
+    {
+      "label": "官方 domains README",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "官方 τ³ 仓库变更说明",
+      "url": "https://github.com/sierra-research/tau2-bench#readme",
+      "role": "readme"
+    },
+    {
+      "label": "官方 changelog",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md",
+      "role": "code"
+    },
+    {
+      "label": "官方根 LICENSE",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "零售任务目录",
+      "url": "https://github.com/sierra-research/tau2-bench/tree/main/data/tau2/domains/retail",
+      "role": "readme"
+    },
+    {
+      "label": "官方 retail task JSON",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/main/data/tau2/domains/retail/tasks.json",
+      "role": "code"
+    }
+  ],
+  "status": "published",
+  "order": 250,
+  "brandIds": [
+    "sierra"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "τ²-bench 将代理和用户建模为 Dec-POMDP 中的两个参与方。用户除了通过语言提供目标或偏好，也能调用受限工具改变自己的设备状态；代理必须诊断问题、指导用户、调用自己的业务工具，并共同达到可程序化验证的最终状态。论文还给出 no-user 等消融设置，用于分辨自主推理和人机协调的影响。",
+    "task": "在 dual-control 设置中，代理和模拟用户协同操作共享环境，达到可程序化验证的目标状态。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.07982v1",
+      "https://arxiv.org/abs/2506.07982v1"
+    ]
+  },
+  "taskContract": {
+    "input": "领域政策、任务场景/用户指令、双方可用工具及 mock 数据库。",
+    "output": "多轮对话、双方工具轨迹及共享环境最终状态。",
+    "environment": "任务按领域组合数据库检查、状态/语言断言、沟通要求或动作匹配；复现须固定 agent、user simulator、任务版本和 trial 数。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.07982v1",
+      "https://github.com/sierra-research/tau2-bench",
+      "https://arxiv.org/abs/2506.07982v1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文版包含既有 retail/airline 任务及新增 dual-control telecom 领域。",
+    "disclosure": "partial",
+    "scale": [
+      "Retail 115 项、airline 50 项；telecom 组合空间 2,285 项，平衡抽样 114 项。"
+    ],
+    "splits": [
+      "论文未报告统一 train/validation/test；telecom 的 114 项是组合任务中的平衡评测样本。"
+    ],
+    "fields": [],
+    "files": [
+      "当前仓库使用 tasks.json 与 split_tasks.json；该布局不代表论文首发 snapshot 的固定 schema。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.07982v1",
+      "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+      "https://github.com/sierra-research/tau2-bench#readme",
+      "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "论文和 Sierra 官方仓库公开。仓库当前 README 已公告 τ³-bench，包含新 banking_knowledge 领域、语音评测以及任务修订；main 分支已不能简单等同于 2025 年论文对应的冻结 τ² 实验快照。复现实验应固定 τ² 时代的 commit/tag 和运行配置，并明确领域、split 与版本。"
+    ],
+    "url": "https://github.com/sierra-research/tau2-bench#readme",
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau2-bench#readme",
+      "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md",
+      "https://arxiv.org/html/2506.07982v1",
+      "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "论文文本标注 CC BY 4.0；GitHub 根 LICENSE 为 MIT，但描述范围为 Software 及相关文档。",
+    "scope": "两项许可分别适用于论文和受软件许可证覆盖的代码；未见单独覆盖任务 JSON、政策或数据库的许可。",
+    "boundaries": [
+      "公开仓库不等于可复制整套任务数据；本站仅链接官方任务目录，不复制指令、动作、政策或数据库。",
+      "论文示例轨迹不能误标为官方 release 数据行。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2506.07982v1",
+      "https://github.com/sierra-research/tau2-bench/blob/main/LICENSE",
+      "https://github.com/sierra-research/tau2-bench/tree/main/data/tau2/domains/retail",
+      "https://github.com/sierra-research/tau2-bench/blob/main/data/tau2/domains/retail/tasks.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "本站未内嵌具体任务记录，样例状态为 restricted。专项样例核验曾审查官方 retail tasks.json 与根 MIT License，结论为暂缓：未找到明确覆盖任务 JSON 或领域数据的独立许可。因此目前只链接官方任务目录，不复制任务题面、目标动作、政策或数据库。τ² 论文中的示例轨迹可用于解释论文方法，不应误标为官方 release 数据行。",
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau2-bench/blob/main/data/tau2/domains/retail/tasks.json",
+      "https://github.com/sierra-research/tau2-bench#readme",
+      "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+    ]
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "aliases": [
+    "tau-bench",
+    "tau bench"
+  ],
+  "related": [
+    {
+      "id": "tau2-bench",
+      "label": "后续评测",
+      "detail": "进一步考虑用户与代理双方操作环境的协作。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2406.12045v1",
+        "https://arxiv.org/abs/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://arxiv.org/html/2406.12045v1",
+        "https://github.com/sierra-research/tau-bench"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-23",
+  "id": "tau-bench",
+  "name": "τ-bench",
+  "subtitle": "边和用户聊天，边按业务规则办事",
+  "category": "agents",
+  "tags": [
+    "客服场景",
+    "工具调用"
+  ],
+  "publisher": "Sierra Research",
+  "year": 2024,
+  "version": "τ-bench 原版",
+  "metric": {
+    "name": "pass^k / 任务成功率",
+    "direction": "higher",
+    "description": "原论文定义 pass^k（pass hat k）：在同一任务的 k 次独立运行都成功的概率，再跨任务平均；它衡量稳定性，不等同于至少一次成功的 pass@k。成功的单次 episode 以目标数据库状态和必要回复信息计算二元 reward，默认 pass^1 为主指标。报告需写明领域、k、任务快照、agent/user 模型及策略。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2406.12045v1",
+      "https://arxiv.org/abs/2406.12045v1",
+      "https://github.com/sierra-research/tau-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "当前 main 中原版任务与论文提交快照的逐题差异尚未审计；严格复现实验需固定仓库 commit。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2406.12045v1",
+        "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+        "https://github.com/sierra-research/tau-bench#readme",
+        "https://github.com/sierra-research/tau-bench"
+      ]
+    },
+    {
+      "text": "根 MIT License 对仓库 task 文件的授权依据来自仓库层面的 “Code and Data” 声明，未见单独的逐文件数据许可证或逐任务第三方权利清单。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2406.12045v1",
+        "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+        "https://github.com/sierra-research/tau-bench#readme",
+        "https://github.com/sierra-research/tau-bench"
+      ]
+    },
+    {
+      "text": "当前 τ³ 修订任务的完整语义、任务数量及许可边界属于独立版本核验范围，不纳入原版 τ-bench 的规模描述。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2406.12045v1",
+        "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+        "https://github.com/sierra-research/tau-bench#readme",
+        "https://github.com/sierra-research/tau-bench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "τ-bench 论文",
+      "url": "https://arxiv.org/abs/2406.12045v1",
+      "role": "paper"
+    },
+    {
+      "label": "官方仓库榜单与运行参数",
+      "url": "https://github.com/sierra-research/tau-bench",
+      "role": "readme"
+    },
+    {
+      "label": "τ-bench 作者论文 v1",
+      "url": "https://arxiv.org/html/2406.12045v1",
+      "role": "paper"
+    },
+    {
+      "label": "官方运行说明",
+      "url": "https://github.com/sierra-research/tau-bench#run",
+      "role": "readme"
+    },
+    {
+      "label": "官方 retail dev tasks",
+      "url": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+      "role": "code"
+    },
+    {
+      "label": "官方仓库警告",
+      "url": "https://github.com/sierra-research/tau-bench#readme",
+      "role": "readme"
+    },
+    {
+      "label": "官方 retail data README",
+      "url": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/data/readme.md",
+      "role": "readme"
+    },
+    {
+      "label": "官方任务源",
+      "url": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py#L903-L925",
+      "role": "code"
+    },
+    {
+      "label": "仓库许可证",
+      "url": "https://github.com/sierra-research/tau-bench/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "τ²-bench 论文",
+      "url": "https://arxiv.org/abs/2506.07982v1",
+      "role": "paper"
+    },
+    {
+      "label": "当前 τ² 仓库 README",
+      "url": "https://github.com/sierra-research/tau2-bench#readme",
+      "role": "readme"
+    },
+    {
+      "label": "τ²-bench 作者论文 v1",
+      "url": "https://arxiv.org/html/2506.07982v1",
+      "role": "paper"
+    }
+  ],
+  "status": "published",
+  "order": 240,
+  "brandIds": [
+    "sierra"
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "TASKS_DEV[0]:olivia_ito_3591",
+        "title": "出行前取消待收货订单",
+        "type": "record",
+        "prompt": "Your name is Olivia Ito and your zip code is 80218. You are outgoing, flexible, pessimistic, organized, logical. You've ordered an item (#W5442520) from this shop. You've realized that you'll be traveling by the time the item arrives and you won't be able to receive it, so you'd want to not receive the item and you'll place a new order when you return. You do't want to place the new order right now, and you simply want to not receive the current order and get a full refund.",
+        "explanation": "这是官方 tasks_dev.py 中 TASKS_DEV 列表第 1 条，源文件没有独立 task id，因此用列表位置和 user_id 定位。官方已说明这批 retail 任务过时；源记录的 actions 是目标动作，没有在本站复制。",
+        "raw": {
+          "user_id": "olivia_ito_3591",
+          "instruction": "Your name is Olivia Ito and your zip code is 80218. You are outgoing, flexible, pessimistic, organized, logical. You've ordered an item (#W5442520) from this shop. You've realized that you'll be traveling by the time the item arrives and you won't be able to receive it, so you'd want to not receive the item and you'll place a new order when you return. You do't want to place the new order right now, and you simply want to not receive the current order and get a full refund."
+        },
+        "source": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+        "license": "MIT · τ-bench official code and data repository",
+        "split": "retail tasks_dev.py · TASKS_DEV[0] · obsolete original task version",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "基准把每个任务建模为代理、模拟用户、业务数据库/API 和领域政策组成的交互环境。代理须从用户对话中获取信息、遵守政策、调用工具；结束时比较数据库最终状态与标注的目标状态，并检查必要的回复内容。用户模拟由语言模型生成，因此同一任务可以有不同对话轨迹，但仍对应唯一目标状态。",
+    "task": "通过多轮客户服务对话和 API 工具调用，遵守领域政策并达到目标状态。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2406.12045v1",
+      "https://arxiv.org/abs/2406.12045v1",
+      "https://github.com/sierra-research/tau-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "模拟用户任务指令、领域政策、数据库和 API 工具；目标动作不直接暴露给被测代理。",
+    "output": "代理与模拟用户的对话、工具操作及其导致的数据库状态变化。",
+    "environment": "mock 环境按目标数据库状态和必要回复信息计算二元奖励；该自动奖励不覆盖所有政策违规。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2406.12045v1",
+      "https://github.com/sierra-research/tau-bench#run",
+      "https://arxiv.org/abs/2406.12045v1",
+      "https://github.com/sierra-research/tau-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "τ-bench 原版由 retail 与 airline 两个客户服务领域构成。",
+    "disclosure": "partial",
+    "scale": [
+      "论文首版：retail 115 项、airline 50 项。"
+    ],
+    "splits": [
+      "没有证据表明原版使用统一 train/validation/test；tasks_dev.py 是具体源文件名。"
+    ],
+    "fields": [
+      "instruction、目标 actions、可选 outputs。"
+    ],
+    "files": [
+      "官方仓库按领域保存 task 源文件、政策、数据库和 API 实现。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2406.12045v1",
+      "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+      "https://github.com/sierra-research/tau-bench#readme",
+      "https://github.com/sierra-research/tau-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "原版代码、任务和 mock 环境可在 Sierra 官方 GitHub 仓库公开浏览并运行；运行需配置所用模型供应商的 API 凭证。官方同时提供部分历史轨迹。当前仓库自述其 airline/retail 任务未更新，若报告为当前基准结果，必须明确具体任务快照、代码版本和运行配置，不能只写 τ-bench。"
+    ],
+    "url": "https://github.com/sierra-research/tau-bench",
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau-bench",
+      "https://arxiv.org/html/2406.12045v1",
+      "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+      "https://github.com/sierra-research/tau-bench#readme"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Sierra 将仓库描述为 Code and Data for Tau-Bench，并提供 MIT LICENSE；论文文本另标 CC BY 4.0。",
+    "scope": "按 MIT 条件使用受仓库许可覆盖的代码和数据；retail mock-data README 对其中部分数据库数据另有复用说明。",
+    "boundaries": [
+      "论文 CC BY 4.0 仅按其适用范围记录；不推定许可外部模型、服务或所有衍生数据。",
+      "现有样例属于过时原版任务，不能代表 τ²/τ³ 数据。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau-bench",
+      "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/data/readme.md",
+      "https://arxiv.org/html/2406.12045v1",
+      "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py#L903-L925",
+      "https://github.com/sierra-research/tau-bench/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站样例对应官方 retail TASKS_DEV[0]；已核对 user_id 与 instruction，raw 不含目标 actions。保留 MIT 归属说明，并标注该任务集为过时原版。",
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py#L903-L925",
+      "https://github.com/sierra-research/tau-bench/blob/main/LICENSE",
+      "https://github.com/sierra-research/tau-bench"
+    ]
+  }
+}

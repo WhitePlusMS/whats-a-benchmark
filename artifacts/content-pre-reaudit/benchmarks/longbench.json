@@ -1,0 +1,51 @@
+{
+  "aliases": [
+    "LongBench v1"
+  ],
+  "related": [
+    {
+      "id": "longbench-v2",
+      "label": "后续评测",
+      "detail": "v2 更强调长材料上的复杂推理与选择题判定。"
+    }
+  ],
+  "kind": "suite",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "longbench",
+  "name": "LongBench",
+  "subtitle": "读长材料，还能回答、总结和推理吗",
+  "category": "context",
+  "tags": [
+    "长上下文",
+    "中英文"
+  ],
+  "publisher": "THUDM / LongBench 研究团队",
+  "year": 2023,
+  "version": "LongBench v1",
+  "summary": "组合多种中英文长文本任务，检查模型在问答、总结和其他任务中的长上下文能力。",
+  "task": "阅读长材料，按任务要求生成答案、摘要或代码等输出。",
+  "format": "context、input、answers、length、dataset 等字段；任务采用各自评分方法。",
+  "metric": {
+    "name": "任务分项指标及汇总",
+    "direction": "mixed",
+    "description": "问答、摘要、分类等任务指标不同，应查看各项定义再读汇总分。"
+  },
+  "limitations": [
+    "单一平均分可能掩盖某类长文本任务的弱点。",
+    "截断输入会改变实际测试长度。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/THUDM/LongBench/tree/main/LongBench",
+      "label": "官方任务与指标",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 360,
+  "brandIds": [
+    "thudm"
+  ],
+  "availability": "unknown"
+}

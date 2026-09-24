@@ -1,0 +1,237 @@
+{
+  "aliases": [
+    "IF Eval"
+  ],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "ifeval",
+  "name": "IFEval",
+  "subtitle": "“写三段、不要用这个词”也要做到",
+  "category": "alignment",
+  "tags": [
+    "指令遵循",
+    "可验证约束"
+  ],
+  "publisher": "Google Research",
+  "year": 2023,
+  "version": "IFEval 原始集",
+  "metric": {
+    "name": "严格 / 宽松遵循率",
+    "direction": "higher",
+    "description": "prompt-level strict：一个 prompt 中所有指令都通过的 prompt 比例；instruction-level strict：逐条指令通过的比例。\nloose：在 strict 规则外，对回答尝试去除 markdown 粗体/斜体标记、首行或末行（及其组合）后再检查，用于减少特定格式导致的假阴性。作者提醒 loose 可能引入假阳性，因此应与 strict 并列报告而非取代它。\n共四项：prompt-level strict、instruction-level strict、prompt-level loose、instruction-level loose。对比成绩时需说明选用哪项，尤其不能把“loose”单值写成未注明口径的 IFEval accuracy。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2311.07911#S2.SS2",
+      "https://arxiv.org/html/2311.07911#S3"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "仓库 README 指向整体 code and data，但当前未发现独立的数据授权声明；Apache-2.0 对每项 prompt 及其潜在外部来源的具体适用边界未逐条拆分。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2311.07911#S2",
+        "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+        "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py"
+      ]
+    },
+    {
+      "text": "上游主分支可能变动。需在正式对比或公开镜像时保存代码和数据的 commit/hash。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2311.07911#S2",
+        "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+        "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py"
+      ]
+    },
+    {
+      "text": "loose scorer 变换会扩大通过机会；官方明确将其视为补充并指出有假阳性风险。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2311.07911#S2",
+        "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+        "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Google 作者论文",
+      "url": "https://arxiv.org/html/2311.07911",
+      "role": "paper"
+    },
+    {
+      "label": "google-research/instruction_following_eval",
+      "url": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+      "role": "readme"
+    },
+    {
+      "label": "论文数据规模",
+      "url": "https://arxiv.org/html/2311.07911#S2",
+      "role": "paper"
+    },
+    {
+      "label": "evaluation_main.py",
+      "url": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py",
+      "role": "code"
+    },
+    {
+      "label": "论文 loose 定义和限制",
+      "url": "https://arxiv.org/html/2311.07911#S2.SS2",
+      "role": "paper"
+    },
+    {
+      "label": "总仓 Apache-2.0 许可",
+      "url": "https://github.com/google-research/google-research/blob/master/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "论文示例",
+      "url": "https://arxiv.org/html/2311.07911#S2.SS1",
+      "role": "paper"
+    },
+    {
+      "label": "原论文结果说明",
+      "url": "https://arxiv.org/html/2311.07911#S3",
+      "role": "paper"
+    },
+    {
+      "label": "evaluation_lib.py",
+      "url": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_lib.py",
+      "role": "code"
+    },
+    {
+      "label": "原始论文",
+      "url": "https://arxiv.org/abs/2311.07911",
+      "role": "paper"
+    },
+    {
+      "label": "官方站内样例记录",
+      "url": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 410,
+  "brandIds": [
+    "google-research"
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "1001",
+        "title": "写旅行计划，但不能出现逗号",
+        "raw": {
+          "key": 1001,
+          "prompt": "I am planning a trip to Japan, and I would like thee to write an itinerary for my journey in a Shakespearean style. You are not allowed to use any commas in your response.",
+          "instruction_id_list": [
+            "punctuation:no_comma"
+          ],
+          "kwargs": [
+            {}
+          ]
+        },
+        "split": "公开 input_data",
+        "excerpt": false,
+        "prompt": "I am planning a trip to Japan, and I would like thee to write an itinerary for my journey in a Shakespearean style. You are not allowed to use any commas in your response.",
+        "explanation": "重点是回答是否满足可检查约束。原始 instruction_id_list 指出要运行的规则，kwargs 保存参数。这里没有唯一参考答案，程序检查生成的文本是否满足要求。",
+        "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research",
+        "licensePath": "licenses/google-research.txt",
+        "type": "text"
+      },
+      {
+        "id": "1005",
+        "title": "简历中必须有足够多的占位符",
+        "raw": {
+          "key": 1005,
+          "prompt": "Write a resume for a fresh high school graduate who is seeking their first job. Make sure to include at least 12 placeholder represented by square brackets, such as [address], [name].",
+          "instruction_id_list": [
+            "detectable_content:number_placeholders"
+          ],
+          "kwargs": [
+            {
+              "num_placeholders": 12
+            }
+          ]
+        },
+        "split": "公开 input_data",
+        "excerpt": false,
+        "prompt": "Write a resume for a fresh high school graduate who is seeking their first job. Make sure to include at least 12 placeholder represented by square brackets, such as [address], [name].",
+        "explanation": "重点是回答是否满足可检查约束。原始 instruction_id_list 指出要运行的规则，kwargs 保存参数。这里没有唯一参考答案，程序检查生成的文本是否满足要求。",
+        "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research",
+        "licensePath": "licenses/google-research.txt",
+        "type": "text"
+      }
+    ]
+  },
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "IFEval 由 Google 研究团队作者提出，用于评估模型遵循可由程序客观验证的指令的能力。它不是主观偏好或通用回答质量评测。",
+    "task": "回答包含词频、长度或格式等可验证约束的自然语言提示，并由确定性规则检查遵循情况。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2311.07911#S2"
+    ]
+  },
+  "taskContract": {
+    "input": "prompt 集及待评 response；官方输入包含提示，评测记录示例包含 prompt 和 response。",
+    "output": "离线计算 strict/loose 遵循结果，并给出 prompt 级与 instruction 级分数。",
+    "environment": "官方 Python 评测代码离线检查响应；任务不要求模型执行程序或依赖在线裁判。",
+    "sourceUrls": [
+      "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+      "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py",
+      "https://arxiv.org/html/2311.07911#S2.SS2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原始评测集含 541 个 prompts、25 类可验证指令；没有官方 train/dev/test 切分。",
+    "disclosure": "complete",
+    "scale": [
+      "541 个 prompts；25 类可验证指令。"
+    ],
+    "splits": [
+      "官方称其为评测 prompts，未定义 train/dev/test split。"
+    ],
+    "fields": [
+      "提示文件包含 prompts 和可验证指令；回答示例记录含 prompt、response。"
+    ],
+    "files": [
+      "仓库 data/ 下的输入数据与示例回答；评分输出 eval_results_strict.jsonl 和 eval_results_loose.jsonl。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2311.07911#S2",
+      "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+      "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Google Research 仓库公开数据与代码并提供本地评测；README 声明该仓库不是 Google 官方支持的产品。"
+    ],
+    "sourceUrls": [
+      "https://github.com/google-research/google-research/tree/master/instruction_following_eval"
+    ],
+    "url": "https://github.com/google-research/google-research/tree/master/instruction_following_eval"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Google Research 总仓采用 Apache-2.0；IFEval 子目录未单独列出数据许可。",
+    "scope": "仓库许可仅适用于其覆盖的文件，不推定 prompt 中引用或涉及的外部文本拥有相同权利。",
+    "boundaries": [
+      "复用仓库内容时保留 Apache-2.0 署名和许可条件；涉及外部文本的 prompts 需逐项核查来源。"
+    ],
+    "sourceUrls": [
+      "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+      "https://github.com/google-research/google-research/blob/master/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "论文与官方仓库公开示例；现有站内样例保留官方来源并作少量展示，不批量转载 541 个 prompt 或作者回答，也不以论文 CC BY 条款替代仓库数据许可。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2311.07911#S2.SS1",
+      "https://arxiv.org/html/2311.07911",
+      "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl"
+    ]
+  }
+}

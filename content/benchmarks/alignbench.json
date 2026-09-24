@@ -1,0 +1,164 @@
+{
+  "id": "alignbench",
+  "status": "published",
+  "order": 707,
+  "name": "AlignBench",
+  "subtitle": "评估大模型对中文要求的理解与响应",
+  "category": "alignment",
+  "tags": [
+    "中文",
+    "指令遵循",
+    "自动评审"
+  ],
+  "publisher": "清华大学 CoAI Group / AlignBench 团队",
+  "brandIds": [
+    "thudm"
+  ],
+  "year": 2023,
+  "version": "AlignBench v1.1",
+  "kind": "original",
+  "aliases": [
+    "ALIGNBENCH"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AlignBench 是 THUDM 提出的中文大语言模型多维度对齐评测基准，结合开放式中文指令、参考答案和 LLM-as-Judge 评分。",
+    "task": "模型回答中文用户指令后，judge 按多个维度给出分析与评分。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2311.18743#L3-L6",
+      "https://github.com/THUDM/AlignBench#L190-L204"
+    ]
+  },
+  "taskContract": {
+    "input": "每题含中文问题和人工修订参考答案；知识密集题还可附 evidences 引用。评测时另提供待测模型答案。",
+    "output": "LLM judge 输出分维度分析、解释及校准后的 1–10 分。",
+    "environment": "运行流程包含目标模型作答、GPT-4 judge 与结果汇总脚本；API 服务需自行配置。",
+    "sourceUrls": [
+      "https://github.com/THUDM/AlignBench#L190-L204"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方 README 报告 683 条中文任务，分为八类。",
+    "disclosure": "complete",
+    "scale": [
+      "683 条；基本任务 68、中文理解 58、综合问答 38、文本写作 75、逻辑推理 92、数学计算 112、角色扮演 116、专业能力 124。"
+    ],
+    "splits": [
+      "未见官方 train/dev/test split 声明；README 将数据作为评测输入。"
+    ],
+    "fields": [
+      "JSONL 记录包含 question_id、category、subcategory、question、reference；示例还含 evidences（url、quote）。"
+    ],
+    "files": [
+      "官方文件为 data/data_release.jsonl；仓库还提供 data/data_v1.1_release.jsonl 修订快照。"
+    ],
+    "sourceUrls": [
+      "https://github.com/THUDM/AlignBench#L190-L204",
+      "https://github.com/THUDM/AlignBench#L204-L232",
+      "https://github.com/THUDM/AlignBench#L177-L180"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者 GitHub 仓库公开数据文件、评分代码、config、inference 与 scripts；README 给出运行流程。"
+    ],
+    "url": "https://github.com/THUDM/AlignBench",
+    "sourceUrls": [
+      "https://github.com/THUDM/AlignBench#L148-L164",
+      "https://github.com/THUDM/AlignBench#L190-L204"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到覆盖 AlignBench 整体数据与代码的官方许可证声明。",
+    "scope": "仓库可访问及论文可下载不等于数据集再发布授权；evidences 中的外部网页摘录也有各自权利。",
+    "boundaries": [
+      "明确许可前，仅链接官方数据文件；不复制原题、参考答案或外部证据摘录。"
+    ],
+    "sourceUrls": [
+      "https://github.com/THUDM/AlignBench#L148-L164",
+      "https://arxiv.org/abs/2311.18743#L3-L6",
+      "https://github.com/THUDM/AlignBench#L204-L232"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方 README 可见 JSONL 结构与“专业能力”样例，但样例含问题、参考答案和外部证据摘录；未核实数据及第三方摘录再发布授权。",
+    "url": "https://github.com/THUDM/AlignBench#L204-L232",
+    "sourceUrls": [
+      "https://github.com/THUDM/AlignBench#L204-L232",
+      "https://github.com/THUDM/AlignBench#L148-L164"
+    ]
+  },
+  "metric": {
+    "name": "1–10 judge score",
+    "description": "官方方法由 judge 按任务维度分析后输出经规则校准的单题评分；leaderboard 另列 overall、reasoning、language 等聚合结果。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/THUDM/AlignBench#L190-L204",
+      "https://github.com/THUDM/AlignBench#L295-L320"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方仓库未见整体数据/代码许可声明，且题目中的外部证据需要独立核查。",
+      "sourceUrls": [
+        "https://github.com/THUDM/AlignBench#L148-L164",
+        "https://github.com/THUDM/AlignBench#L204-L232"
+      ]
+    },
+    {
+      "text": "data_release.jsonl 与 data_v1.1_release.jsonl 的逐条差异及字段演进尚未完成审计。",
+      "sourceUrls": [
+        "https://github.com/THUDM/AlignBench#L177-L180",
+        "https://github.com/THUDM/AlignBench#L190-L204"
+      ]
+    },
+    {
+      "text": "judge prompt、采样参数和完整聚合配置需固定仓库版本才能复现具体榜单结果。",
+      "sourceUrls": [
+        "https://github.com/THUDM/AlignBench#L234-L292"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "AlignBench 作者论文",
+      "url": "https://arxiv.org/abs/2311.18743#L3-L6",
+      "role": "paper"
+    },
+    {
+      "label": "THUDM 官方 README：规模与类别",
+      "url": "https://github.com/THUDM/AlignBench#L190-L204",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据字段与样例",
+      "url": "https://github.com/THUDM/AlignBench#L204-L232",
+      "role": "data"
+    },
+    {
+      "label": "官方运行与评分说明",
+      "url": "https://github.com/THUDM/AlignBench#L234-L292",
+      "role": "readme"
+    },
+    {
+      "label": "官方版本更新",
+      "url": "https://github.com/THUDM/AlignBench#L177-L180",
+      "role": "release"
+    },
+    {
+      "label": "官方 leaderboard",
+      "url": "https://github.com/THUDM/AlignBench#L295-L320",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方仓库文件清单",
+      "url": "https://github.com/THUDM/AlignBench#L148-L164",
+      "role": "code"
+    }
+  ]
+}

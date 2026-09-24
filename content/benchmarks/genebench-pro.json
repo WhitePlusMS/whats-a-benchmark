@@ -1,0 +1,195 @@
+{
+  "id": "genebench-pro",
+  "status": "published",
+  "order": 605,
+  "name": "GeneBench-Pro",
+  "subtitle": "在基因组分析中做出可靠的研究判断",
+  "category": "work",
+  "tags": [
+    "科学研究",
+    "基因组学",
+    "数据分析代理"
+  ],
+  "publisher": "OpenAI",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2026,
+  "version": "v13",
+  "kind": "original",
+  "aliases": [
+    "GeneBench Pro",
+    "GeneBench-Pro"
+  ],
+  "metric": {
+    "name": "Pass Rate",
+    "description": "官方介绍报告 pass rate，并称以已知数据生成目标确定性评分。每题具有规定答案和容差；汇总成绩仍取决于报告使用的题集、模型推理配置和是否启用 Pro 模式等条件。不能把官方 pass rate 当成专家主观评分，也不能混同于 GeneBench 原版分数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-genebench-pro/",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "完整 129 题的公开访问、版本快照、split 划分及其与 10 个公开案例的包含关系未由公开材料完整说明。",
+      "sourceUrls": [
+        "https://openai.com/index/genebench-pro/case-studies/",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package"
+      ]
+    },
+    {
+      "text": "50 题 Artificial Analysis 子集的当前正式发布状态、题目清单和评分实现未核实。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-genebench-pro/",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "不同模型发布的运行预算、重试和工具配置若未在对应报告披露，不能认为配置一致。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-genebench-pro/",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "样例 txr1_mtb_causal_sv 来自公开 release；目录标题标记 synthetic，但题面保留通用句称数据来自真实实验。此冲突已在本站说明；样例仅含题面，不含数据文件或评分答案。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI 介绍",
+      "url": "https://openai.com/index/introducing-genebench-pro/",
+      "role": "definition"
+    },
+    {
+      "label": "OpenAI GeneBench 论文 PDF",
+      "url": "https://cdn.openai.com/pdf/6dc7175d-d9e7-4b8d-96b8-48fe5798cd5b/oai_genebench_benchmark.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI Hugging Face public package",
+      "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package",
+      "role": "data"
+    },
+    {
+      "label": "AA 方法目录",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "OpenAI Inside GeneBench-Pro",
+      "url": "https://openai.com/index/genebench-pro/case-studies/",
+      "role": "definition"
+    },
+    {
+      "label": "GPT-6 Astra 官方成绩表与版本脚注",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "GeneBench-Pro 固定 revision 公开案例 eval_config",
+      "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "OpenAI GeneBench-Pro 是计算生物学研究任务基准，侧重模型在真实分析流程中的检查、判断和迭代，不是单项生物学知识问答。",
+    "task": "模型检查复杂数据，结合实验背景选择并迭代分析方法，按每题答案结构提交结论；官方完整集有 129 题，公开包为 10 个案例。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-genebench-pro/"
+    ]
+  },
+  "taskContract": {
+    "input": "问题提示、实验上下文及相关数据文件；任务可能包含数据质量问题、歧义或分析决策。",
+    "output": "按每题 answer schema 提交分析结论和规定字段；公开包 eval_config.json 记录提示、数据文件、答案结构、参考值和 grader contract。",
+    "environment": "隔离工作区包含 Python、科学计算库和常见基因组学软件（如 PLINK 2.0）；官方称任务不要求特定领域专用工具。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-genebench-pro/",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package"
+    ]
+  },
+  "dataProfile": {
+    "summary": "完整 benchmark 有 129 题；当前官方公开包含 10 个代表案例及其参考答案和 grader，不是完整题库或隐藏答案集。",
+    "disclosure": "partial",
+    "scale": [
+      "完整 benchmark：129 题；公开 case-study package：10 题。"
+    ],
+    "splits": [
+      "公开资料未定义 train/dev/test 切分；10 个公开案例含 ground truth 和 grader 容差。"
+    ],
+    "fields": [
+      "problems.csv 为案例索引；每题 eval_config.json 记录 prompt、数据文件清单、答案结构、参考值和 grader contract。"
+    ],
+    "files": [
+      "包级 problems.csv、manifest.json、校验和、参考定义与 grader；案例目录含 eval_config.json、data_files/ 和 report_public.pdf。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/introducing-genebench-pro/",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "OpenAI 页面和 Hugging Face 提供 10 个公开案例；本轮未找到完整 129 题下载入口。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/genebench-pro/case-studies/",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package"
+    ],
+    "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方 Hugging Face 将 10 案例公开包标为 MIT；该结论只适用于该发布包。",
+    "scope": "许可不自动扩展到完整未公开基准、网页 UI 或嵌入的第三方材料。公开案例含参考答案，不应作为未泄漏隐藏题使用。",
+    "boundaries": [
+      "复用公开包文件时保留 MIT 许可和归属，并确认文件未含另行受限素材；不得把 10 个案例描述为全部 129 题。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站展示官方公开包 release 案例 txr1_mtb_causal_sv 的原始题面。官方 README 声明该自包含公开包供公开分发并采用 MIT；本站保留许可与 OpenAI 归属，仅复制题面，不复制数据文件、参考答案或 grader。官方案例标题标注 synthetic，而题面含通用的真实实验句，原样保留并在样例说明中指出这一文本冲突。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json"
+    ],
+    "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json"
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "txr1_mtb_causal_sv",
+        "title": "Synthetic structural-variant driven tumor therapy decision",
+        "type": "record",
+        "prompt": "A molecular tumor board registry contains trial-eligible advanced solid-tumor cases considered for a TXR1-directed inhibitor. Estimate, for tumors with SV-driven TXR1 target-mediated activation at time zero, the marginal effect of TXR1i versus non-TXR1 systemic therapy on week-16 clinical benefit as if all patients had an assessable week-16 visit. Also estimate the 8-week treatment-limiting toxicity/discontinuation risk under TXR1i in the same target population. Report net clinical utility = benefit risk difference (percentage points) - 0.35 * toxicity risk (percentage points), and choose therapy_class_code 1 if TXR1i has positive net utility and 0 otherwise.\n\nUse percentage-point units for all non-code quantities. Positive benefit means TXR1i improves week-16 clinical benefit relative to non-TXR1 systemic therapy.\n\nThese data came from a real experiment; you will be graded not just on numerical correctness but the quality of analytical reasoning you exhibit; do not attempt to take any shortcuts.\n\nReturn your final answer as exactly one JSON object.\nDo not wrap the JSON in markdown.\nDo not add prose before or after the JSON.\nDo not omit any keys shown in the example.\nReturn the JSON object in your final answer:\n {\n  \"answer\": {\n    \"therapy_class_code\": <int>,\n    \"benefit_rd_pp\": <float>,\n    \"toxicity_dropout_risk_pp\": <float>,\n    \"net_clinical_utility_pp\": <float>\n  },\n  \"reasoning\": \"<description of method and QC>\"\n}",
+        "explanation": "这是 GeneBench-Pro 官方公开案例包中的合成案例题面。目录标题标为 synthetic，但原题面还包含称数据来自真实实验的通用句；本站保留原文，不据此断言存在真实患者数据。此处只展示题面，不附数据文件、ground truth 或 grader。",
+        "raw": {
+          "id": "txr1_mtb_causal_sv",
+          "eval_uuid": "0e5c8fd6-aac7-4aa0-915d-5e6b0d550c99",
+          "task": "A molecular tumor board registry contains trial-eligible advanced solid-tumor cases considered for a TXR1-directed inhibitor. Estimate, for tumors with SV-driven TXR1 target-mediated activation at time zero, the marginal effect of TXR1i versus non-TXR1 systemic therapy on week-16 clinical benefit as if all patients had an assessable week-16 visit. Also estimate the 8-week treatment-limiting toxicity/discontinuation risk under TXR1i in the same target population. Report net clinical utility = benefit risk difference (percentage points) - 0.35 * toxicity risk (percentage points), and choose therapy_class_code 1 if TXR1i has positive net utility and 0 otherwise.\n\nUse percentage-point units for all non-code quantities. Positive benefit means TXR1i improves week-16 clinical benefit relative to non-TXR1 systemic therapy.\n\nThese data came from a real experiment; you will be graded not just on numerical correctness but the quality of analytical reasoning you exhibit; do not attempt to take any shortcuts.\n\nReturn your final answer as exactly one JSON object.\nDo not wrap the JSON in markdown.\nDo not add prose before or after the JSON.\nDo not omit any keys shown in the example.\nReturn the JSON object in your final answer:\n {\n  \"answer\": {\n    \"therapy_class_code\": <int>,\n    \"benefit_rd_pp\": <float>,\n    \"toxicity_dropout_risk_pp\": <float>,\n    \"net_clinical_utility_pp\": <float>\n  },\n  \"reasoning\": \"<description of method and QC>\"\n}"
+        },
+        "source": "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json",
+        "license": "MIT · OpenAI GeneBench-Pro public case studies package",
+        "licensePath": "licenses/genebench-pro.txt",
+        "split": "release（官方 10 个公开案例包）",
+        "excerpt": false
+      }
+    ]
+  }
+}

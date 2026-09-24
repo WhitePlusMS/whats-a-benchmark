@@ -1,0 +1,142 @@
+{
+  "id": "chartography",
+  "status": "published",
+  "order": 507,
+  "name": "Chartography",
+  "subtitle": "专业图表理解",
+  "category": "multimodal",
+  "tags": [
+    "图表理解",
+    "专业图表"
+  ],
+  "publisher": "Surge AI",
+  "brandIds": [
+    "surge-ai"
+  ],
+  "year": 2026,
+  "version": "首版",
+  "kind": "original",
+  "aliases": [
+    "Chartography Benchmark"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Chartography 是专业图表理解 benchmark，任务将真实图表与专家撰写的问题及标准答案配对，覆盖 STEM、金融、制造/供应链和医疗等领域。",
+    "task": "读取图表图像并回答问题；问题可能要求提取、估算、比较或组合图表信息。",
+    "sourceUrls": [
+      "https://github.com/surge-ai/chartography",
+      "https://arxiv.org/abs/2608.10677"
+    ]
+  },
+  "taskContract": {
+    "input": "一张图表图像和对应文本问题。",
+    "output": "文本答案，与专家标准答案按官方评测器判定匹配程度。",
+    "environment": "官方评测代码使用 Inspect AI；HF 数据集提供正式任务，GitHub 中两个 sample charts 仅为 dummy dry-run 示例。",
+    "sourceUrls": [
+      "https://github.com/surge-ai/chartography",
+      "https://huggingface.co/datasets/surgeai/chartography"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Hugging Face 正式集为单一 test split，当前显示 100 项；仓库中的两个演示任务不是正式题目。",
+    "disclosure": "complete",
+    "scale": [
+      "正式数据集包含 100 个任务。"
+    ],
+    "splits": [
+      "Hugging Face 数据集显示单一 test split；未声明训练集或验证集。"
+    ],
+    "fields": [
+      "任务记录包含 task_id、prompt、golden_answer、chart_path、domain_combined、source_type 和 source_url。"
+    ],
+    "files": [
+      "正式图表和记录托管于 surgeai/chartography Hugging Face 数据集。",
+      "GitHub 的 task_packs/sample_charts/ 有两个 dry-run 虚构样例；src/chartography/ 为评测实现。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/chartography",
+      "https://github.com/surge-ai/chartography"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "100 项正式数据可从 Surge AI 的 Hugging Face 页面公开浏览；代码仓库也公开。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/chartography",
+      "https://github.com/surge-ai/chartography"
+    ],
+    "url": "https://huggingface.co/datasets/surgeai/chartography"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "HF 数据集标注 CC BY 4.0，并注明 not-for-training；GitHub 未声明代码许可证。外部图表素材的上游权利另需逐项核验。",
+    "scope": "仅对确认由数据集发布者授权的文字记录依 CC BY 4.0 署名复用；图像先核对 source_url 和上游权利。",
+    "boundaries": [
+      "不得将 not-for-training 数据用于训练。",
+      "不得将数据许可标记推定为覆盖每张第三方图表图像。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/chartography",
+      "https://github.com/surge-ai/chartography"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方 HF 浏览器展示正式任务及图像；仓库演示集只有两个 dry-run dummy tasks。本站只链接官方数据页，不复制正式题目或图像。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/chartography",
+      "https://github.com/surge-ai/chartography"
+    ],
+    "url": "https://huggingface.co/datasets/surgeai/chartography"
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "评测器报告 accuracy/mean：由一次模型裁判调用判断最终答案是否匹配标准答案的比例；裁判看到问题、标准答案和模型回应，但不看图表。排行榜配置建议每题 10 次运行，并报告 Pass@1、Pass@10 与 10 次全通过率；README 另提供 Inspect 计算 Pass@K / Pass^K 的说明。准确率受裁判模型与任务运行配置影响。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/surge-ai/chartography"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "100 张图表的来源及第三方转载权利未逐项审查，尤其是非 expert-created 图像。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/chartography"
+      ]
+    },
+    {
+      "text": "GitHub 中两个 sample charts 是 dummy 示例，不能代替 HF 正式 100 题数据。",
+      "sourceUrls": [
+        "https://github.com/surge-ai/chartography",
+        "https://huggingface.co/datasets/surgeai/chartography"
+      ]
+    },
+    {
+      "text": "官方榜单主张未在本次逐题重跑；结果受 judge、运行次数与 Inspect 配置影响。",
+      "sourceUrls": [
+        "https://github.com/surge-ai/chartography"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 GitHub",
+      "url": "https://github.com/surge-ai/chartography",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据集",
+      "url": "https://huggingface.co/datasets/surgeai/chartography",
+      "role": "data"
+    },
+    {
+      "label": "Chartography: A Benchmark for Professional Chart Understanding",
+      "url": "https://arxiv.org/abs/2608.10677",
+      "role": "paper"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "aider-polyglot",
+  "status": "published",
+  "order": 170,
+  "name": "Aider Polyglot",
+  "subtitle": "用多种语言编辑代码完成练习",
+  "category": "coding",
+  "tags": [
+    "代码编辑",
+    "多编程语言"
+  ],
+  "publisher": "Aider",
+  "brandIds": [
+    "aider"
+  ],
+  "year": 2024,
+  "version": "Polyglot",
+  "kind": "original",
+  "aliases": [
+    "Aider",
+    "Aider polyglot"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-22",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Aider Polyglot 是 Aider 维护的代码编辑 benchmark，使用 Exercism 多语言练习衡量模型按自然语言要求修改现有代码并通过测试的能力。",
+    "task": "在给定练习源码和自然语言要求后，模型通过 Aider 编辑流程提交代码修改，并接受该练习测试。",
+    "sourceUrls": [
+      "https://aider.chat/2024/12/21/polyglot.html#L105-L175",
+      "https://github.com/Aider-AI/aider/blob/main/benchmark/README.md#L192-L270"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言编程要求、练习现有源码及其单元测试。",
+    "output": "练习文件的代码改动；任务是否成功按关联测试判定，榜单另记录编辑格式是否有效。",
+    "environment": "官方建议使用 Docker 隔离执行生成代码；需同时记录 Aider/harness 版本、模型、edit format 和试验次数。",
+    "sourceUrls": [
+      "https://github.com/Aider-AI/aider/blob/main/benchmark/README.md#L192-L270"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方初版题库共 225 题，覆盖 C++、Go、Java、JavaScript、Python、Rust 六种语言。",
+    "disclosure": "complete",
+    "scale": [
+      "225 题：C++ 26、Go 39、Java 47、JavaScript 49、Python 34、Rust 30。",
+      "Aider 最初从六语言 Exercism 的 697 道练习中筛选出 225 题；这是初版选题过程。"
+    ],
+    "splits": [
+      "官方未声明 train/dev/test split；题库按语言目录组织。"
+    ],
+    "fields": [
+      "练习文件包含源码、自然语言任务说明及关联测试；官方没有定义统一 JSONL 行 schema。"
+    ],
+    "files": [
+      "polyglot-benchmark 仓库按 cpp/、go/、java/、javascript/、python/、rust/ 目录存储练习。"
+    ],
+    "sourceUrls": [
+      "https://aider.chat/2024/12/21/polyglot.html#L105-L175",
+      "https://github.com/Aider-AI/polyglot-benchmark#L148-L187"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "题库公开于 Aider-AI/polyglot-benchmark；执行与统计 harness 位于 Aider 主仓库 benchmark/。"
+    ],
+    "url": "https://github.com/Aider-AI/polyglot-benchmark",
+    "sourceUrls": [
+      "https://github.com/Aider-AI/polyglot-benchmark#L148-L187",
+      "https://github.com/Aider-AI/aider/blob/main/benchmark/README.md#L192-L270"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "题库未声明统一数据集许可证；Exercism 各 track 按各自适用的开放许可提供。",
+    "scope": "题目源自 Exercism，需按涉及的语言仓库和具体文件核对许可与署名条件。Aider harness 的软件许可不代表 Exercism 练习内容的许可。",
+    "boundaries": [
+      "逐文件许可未完成核查前，仅链接与概述；不转载题目正文或测试代码。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Aider-AI/polyglot-benchmark#L148-L187"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方题库和 leaderboard 可公开访问，但题目来自不同 Exercism tracks，整套题库没有统一数据许可声明。未逐文件确认前不复制题目或测试；可链接官方题库。",
+    "url": "https://github.com/Aider-AI/polyglot-benchmark",
+    "sourceUrls": [
+      "https://github.com/Aider-AI/polyglot-benchmark#L148-L187",
+      "https://github.com/Aider-AI/aider/blob/main/aider/website/docs/leaderboards/index.md#L202-L216"
+    ]
+  },
+  "metric": {
+    "name": "pass_rate_2",
+    "description": "Aider leaderboard 主排序量：配置的多次尝试中通过全部测试的任务比例；同时报告编辑格式有效率、成本等。结果依模型、prompt、edit format、尝试数和 harness commit 而变。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/Aider-AI/aider/blob/main/aider/website/docs/leaderboards/index.md#L202-L216",
+      "https://github.com/Aider-AI/aider/blob/main/benchmark/README.md#L192-L270"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "Exercism 六语言 track 的每道题及第三方素材许可需逐仓库、逐文件核对。",
+      "sourceUrls": [
+        "https://github.com/Aider-AI/polyglot-benchmark#L148-L187"
+      ]
+    },
+    {
+      "text": "官方题库未声明稳定语义版本；比较结果前需固定题库与 harness commit。",
+      "sourceUrls": [
+        "https://github.com/Aider-AI/polyglot-benchmark#L148-L187",
+        "https://github.com/Aider-AI/aider/blob/main/benchmark/README.md#L192-L270"
+      ]
+    },
+    {
+      "text": "leaderboard 的 pass_rate 受具体运行配置影响，不能只按 benchmark 名称横向比较。",
+      "sourceUrls": [
+        "https://github.com/Aider-AI/aider/blob/main/benchmark/README.md#L192-L270"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Aider Polyglot 发布说明",
+      "url": "https://aider.chat/2024/12/21/polyglot.html#L105-L175",
+      "role": "definition"
+    },
+    {
+      "label": "官方题库 README",
+      "url": "https://github.com/Aider-AI/polyglot-benchmark#L148-L187",
+      "role": "data"
+    },
+    {
+      "label": "官方 harness README",
+      "url": "https://github.com/Aider-AI/aider/blob/main/benchmark/README.md#L192-L270",
+      "role": "readme"
+    },
+    {
+      "label": "官方 leaderboard 指标",
+      "url": "https://github.com/Aider-AI/aider/blob/main/aider/website/docs/leaderboards/index.md#L202-L216",
+      "role": "leaderboard"
+    }
+  ]
+}

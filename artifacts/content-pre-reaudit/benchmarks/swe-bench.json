@@ -1,0 +1,54 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "swe-bench-verified",
+      "label": "人工核验子集",
+      "detail": "对部分任务质量进行人工筛选。"
+    }
+  ],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "swe-bench",
+  "name": "SWE-bench",
+  "subtitle": "从函数题走向真实软件问题",
+  "category": "coding",
+  "tags": [
+    "GitHub issues",
+    "仓库修改"
+  ],
+  "publisher": "SWE-bench 研究团队",
+  "year": 2023,
+  "version": "原始 SWE-bench",
+  "summary": "从开源项目已解决的问题构建任务，要求模型在真实代码库中完成修复。",
+  "task": "读取 issue 和指定代码版本，生成修改，再运行相应测试。",
+  "format": "问题描述、仓库标识、基础提交、参考修改和测试元数据。",
+  "metric": {
+    "name": "任务成功率",
+    "description": "任务在对应环境下通过要求的测试才算解决。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "环境和测试的有效性会影响判定。",
+    "原版、Lite、Verified 等题集不应混为同一分数。"
+  ],
+  "sources": [
+    {
+      "url": "https://www.swebench.com/",
+      "label": "官方主页与版本",
+      "kind": "home"
+    },
+    {
+      "url": "https://github.com/SWE-bench/SWE-bench",
+      "label": "任务与评测代码",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 150,
+  "brandIds": [
+    "swe-bench"
+  ],
+  "availability": "unknown"
+}

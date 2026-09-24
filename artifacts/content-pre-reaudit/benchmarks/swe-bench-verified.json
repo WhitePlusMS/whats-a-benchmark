@@ -1,0 +1,90 @@
+{
+  "aliases": [
+    "SWE Verified",
+    "SWE-bench (Verified)"
+  ],
+  "related": [
+    {
+      "id": "swe-bench",
+      "label": "子集来自",
+      "detail": "对原始任务进行人工核验与筛选。"
+    },
+    {
+      "id": "swe-bench-pro",
+      "label": "相关评测",
+      "detail": "Pro 的任务与评测设置不同，分数不能直接互换。"
+    }
+  ],
+  "kind": "subset",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "swe-bench-verified",
+  "name": "SWE-bench Verified",
+  "subtitle": "让 AI 在真实仓库里修好一个问题",
+  "category": "coding",
+  "tags": [
+    "真实代码库",
+    "自动测试"
+  ],
+  "publisher": "SWE-bench 团队 / OpenAI",
+  "year": 2024,
+  "version": "Verified · 500 题子集",
+  "summary": "给模型一个 GitHub issue 和对应仓库，检验它能否提交真正解决问题的代码修改。",
+  "task": "阅读问题和代码，修改仓库文件，再由评测环境运行测试，检查问题是否解决以及原有功能是否保留。",
+  "format": "任务记录包含 instance_id、repo、base_commit、problem_statement 及测试信息；需要对应代码仓库和运行环境。",
+  "metric": {
+    "name": "任务成功率",
+    "description": "通过规定测试、成功解决 issue 的任务占比。比较时要核对题目子集、工具框架和尝试次数。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "这是模型与代理工具共同完成的仓库任务，不只是代码补全。",
+    "官方 Verified 有 500 题；某些厂商报告使用经过额外筛选的子集。"
+  ],
+  "sources": [
+    {
+      "url": "https://openai.com/index/introducing-swe-bench-verified/",
+      "label": "原始发布与筛选方法",
+      "kind": "home"
+    },
+    {
+      "url": "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
+      "label": "官方任务数据",
+      "kind": "data"
+    },
+    {
+      "url": "https://www.swebench.com/",
+      "label": "官方榜单",
+      "kind": "leaderboard"
+    }
+  ],
+  "status": "published",
+  "order": 10,
+  "brandIds": [
+    "swe-bench",
+    "openai"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "astropy__astropy-12907",
+        "title": "Astropy：嵌套模型的可分离性计算",
+        "prompt": "Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels",
+        "raw": {
+          "instance_id": "astropy__astropy-12907",
+          "repo": "astropy/astropy",
+          "base_commit": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+          "problem_statement": "Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels"
+        },
+        "explanation": "任务来自 Astropy，涉及嵌套复合模型的 separability_matrix。模型需要读取仓库并修复计算行为；本站仅摘录原题标题与定位元数据，完整题目、补丁和测试请查看来源。",
+        "source": "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified/viewer/default/test",
+        "license": "短摘录与出处标注；原仓库材料权利见来源",
+        "split": "Verified / test",
+        "excerpt": true,
+        "type": "text"
+      }
+    ]
+  }
+}

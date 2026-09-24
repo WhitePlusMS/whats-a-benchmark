@@ -1,0 +1,119 @@
+{
+  "aliases": [
+    "Multilingual MMLU"
+  ],
+  "related": [
+    {
+      "id": "mmlu",
+      "label": "翻译自",
+      "detail": "保留 MMLU 的学科选择题形式，使用专业人工翻译。"
+    },
+    {
+      "id": "mmmu",
+      "label": "易混名称",
+      "detail": "MMMU 测图文专业理解，两者输入模态不同。"
+    }
+  ],
+  "kind": "derivative",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "mmmlu",
+  "name": "MMMLU",
+  "subtitle": "同一套知识问题，换成多种语言",
+  "category": "knowledge",
+  "tags": [
+    "多语言",
+    "人工翻译"
+  ],
+  "publisher": "OpenAI",
+  "year": 2024,
+  "version": "MMLU test 的 14 种语言翻译",
+  "summary": "将 MMLU 测试题人工翻译为多种语言，检验知识问答能力能否跨越语言。",
+  "task": "读取指定语言的四选一问题，选择正确答案；分别报告各语言或指定聚合范围的表现。",
+  "format": "CSV / 数据集记录：Question、A、B、C、D、Answer、Subject；按 ZH_CN 等语言配置组织。",
+  "metric": {
+    "name": "正确率",
+    "description": "在选定语言题集上的回答正确比例；跨语言汇总必须注明语言范围与聚合方式。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "MMMLU 的额外 M 指多语言；它不是包含视觉题的 MMMU。",
+    "这是 MMLU 翻译评测，不能覆盖所有母语文化与日常交互能力。"
+  ],
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/openai/MMMLU",
+      "label": "官方数据卡与语言说明",
+      "kind": "data"
+    }
+  ],
+  "status": "published",
+  "order": 0,
+  "brandIds": [
+    "openai"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "ZH_CN-0",
+        "title": "域扩张的次数",
+        "prompt": "求 Q 上给定域扩张 Q(sqrt(2), sqrt(3), sqrt(18)) 的次数。",
+        "options": [
+          "0",
+          "4",
+          "2",
+          "6"
+        ],
+        "answer": "B. 4",
+        "raw": {
+          "Unnamed: 0": 0,
+          "Question": "求 Q 上给定域扩张 Q(sqrt(2), sqrt(3), sqrt(18)) 的次数。",
+          "A": "0",
+          "B": "4",
+          "C": "2",
+          "D": "6",
+          "Answer": "B",
+          "Subject": "abstract_algebra"
+        },
+        "explanation": "中文题面来自 OpenAI 发布的人工翻译版本。Question 是问题，A–D 是候选答案，Subject 标明学科。它考查多语言知识问答，不包含 MMMU 式的图像输入。",
+        "source": "https://huggingface.co/datasets/openai/MMMLU/viewer/ZH_CN/test",
+        "license": "MIT · OpenAI / 原 MMLU 作者；数据卡见来源，MMLU 许可见下方原文",
+        "split": "ZH_CN / test",
+        "excerpt": false,
+        "licensePath": "licenses/mmlu.txt",
+        "type": "choice"
+      },
+      {
+        "id": "ZH_CN-1",
+        "title": "置换生成子群的指数",
+        "prompt": "设 S_5 中 p = (1, 2, 5, 4)(2, 3)。求 S_5 中 <p> 的幂。",
+        "options": [
+          "8",
+          "2",
+          "24",
+          "120"
+        ],
+        "answer": "C. 24",
+        "raw": {
+          "Unnamed: 0": 1,
+          "Question": "设 S_5 中 p = (1, 2, 5, 4)(2, 3)。求 S_5 中 <p> 的幂。",
+          "A": "8",
+          "B": "2",
+          "C": "24",
+          "D": "120",
+          "Answer": "C",
+          "Subject": "abstract_algebra"
+        },
+        "explanation": "中文题面来自 OpenAI 发布的人工翻译版本。Question 是问题，A–D 是候选答案，Subject 标明学科。它考查多语言知识问答，不包含 MMMU 式的图像输入。",
+        "source": "https://huggingface.co/datasets/openai/MMMLU/viewer/ZH_CN/test",
+        "license": "MIT · OpenAI / 原 MMLU 作者；数据卡见来源，MMLU 许可见下方原文",
+        "split": "ZH_CN / test",
+        "excerpt": false,
+        "licensePath": "licenses/mmlu.txt",
+        "type": "choice"
+      }
+    ]
+  }
+}

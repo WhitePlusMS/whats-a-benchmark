@@ -1,0 +1,88 @@
+{
+  "aliases": [
+    "tau-bench",
+    "tau bench"
+  ],
+  "related": [
+    {
+      "id": "tau2-bench",
+      "label": "后续评测",
+      "detail": "进一步考虑用户与代理双方操作环境的协作。"
+    }
+  ],
+  "kind": "original",
+  "sampleNote": "展示 1 条原始 τ-bench retail dev 任务。官方已标注该批任务过时；这里只用于理解旧版任务形态。",
+  "verifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-23",
+  "id": "tau-bench",
+  "name": "τ-bench",
+  "subtitle": "边和用户聊天，边按业务规则办事",
+  "category": "agents",
+  "tags": [
+    "客服场景",
+    "工具调用"
+  ],
+  "publisher": "Sierra Research",
+  "year": 2024,
+  "version": "τ-bench 原版",
+  "summary": "让代理在模拟业务场景中与用户交互、调用工具，并遵守领域政策。",
+  "task": "根据用户请求和业务规则操作系统，最终让数据库状态与目标一致。",
+  "format": "任务、用户模拟、政策、数据库与可调用工具共同组成评测环境。",
+  "metric": {
+    "name": "pass^k / 任务成功率",
+    "direction": "higher",
+    "description": "pass^k 强调连续多次尝试都成功的可靠性；它与“多次中有一次成功”的 pass@k 不同。"
+  },
+  "limitations": [
+    "用户模拟器和政策版本会影响成绩。",
+    "对话流畅不等于最终业务状态正确。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/sierra-research/tau-bench",
+      "label": "官方代码与任务",
+      "kind": "code"
+    },
+    {
+      "url": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+      "label": "原版 retail dev 官方任务",
+      "kind": "data"
+    },
+    {
+      "url": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/data/readme.md",
+      "label": "官方 mock data 复用说明",
+      "kind": "data"
+    },
+    {
+      "url": "https://github.com/sierra-research/tau-bench/blob/main/LICENSE",
+      "label": "官方 MIT 许可",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 240,
+  "brandIds": [
+    "sierra"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "TASKS_DEV[0]:olivia_ito_3591",
+        "title": "出行前取消待收货订单",
+        "type": "record",
+        "prompt": "Your name is Olivia Ito and your zip code is 80218. You are outgoing, flexible, pessimistic, organized, logical. You've ordered an item (#W5442520) from this shop. You've realized that you'll be traveling by the time the item arrives and you won't be able to receive it, so you'd want to not receive the item and you'll place a new order when you return. You do't want to place the new order right now, and you simply want to not receive the current order and get a full refund.",
+        "explanation": "这是官方 tasks_dev.py 中 TASKS_DEV 列表第 1 条，源文件没有独立 task id，因此用列表位置和 user_id 定位。官方已说明这批 retail 任务过时；源记录的 actions 是目标动作，没有在本站复制。",
+        "raw": {
+          "user_id": "olivia_ito_3591",
+          "instruction": "Your name is Olivia Ito and your zip code is 80218. You are outgoing, flexible, pessimistic, organized, logical. You've ordered an item (#W5442520) from this shop. You've realized that you'll be traveling by the time the item arrives and you won't be able to receive it, so you'd want to not receive the item and you'll place a new order when you return. You do't want to place the new order right now, and you simply want to not receive the current order and get a full refund."
+        },
+        "source": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+        "license": "MIT · τ-bench official code and data repository",
+        "split": "retail tasks_dev.py · TASKS_DEV[0] · obsolete original task version",
+        "excerpt": true
+      }
+    ]
+  }
+}

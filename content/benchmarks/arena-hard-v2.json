@@ -1,0 +1,223 @@
+{
+  "id": "arena-hard-v2",
+  "status": "published",
+  "order": 706,
+  "name": "Arena-Hard v2.0",
+  "subtitle": "用高难度提示评估开放式回答质量",
+  "category": "alignment",
+  "tags": [
+    "开放式问答",
+    "指令遵循",
+    "自动评审"
+  ],
+  "publisher": "LMSYS / Arena-Hard 团队",
+  "brandIds": [
+    "lmsys"
+  ],
+  "year": 2025,
+  "version": "Arena-Hard v2.0",
+  "kind": "original",
+  "aliases": [
+    "Arena Hard v2.0"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Arena-Hard v2.0 是从真实用户对话中筛选的高难度提示集，使用 LLM judge 评估模型相对参考模型的回答质量。",
+    "task": "模型回答给定用户提示，再由 judge 与目标模型回答比较；榜单以偏好胜率呈现。",
+    "sourceUrls": [
+      "https://github.com/lmarena/arena-hard-auto#about"
+    ]
+  },
+  "taskContract": {
+    "input": "用户提示及指定的目标模型对话上下文。",
+    "output": "对提示的文本回答；judge 将候选回答与目标模型回答进行比较。",
+    "environment": "基于 Arena-Hard auto-eval 脚本运行；必须记录被比较模型、judge 模型与采样配置。",
+    "sourceUrls": [
+      "https://github.com/lmarena/arena-hard-auto#about"
+    ]
+  },
+  "dataProfile": {
+    "summary": "v2.0 提供 750 个提示：500 个 hard prompts 和 250 个 creative-writing prompts。",
+    "disclosure": "complete",
+    "scale": [
+      "500 个 hard prompts。",
+      "250 个 creative-writing prompts；合计 750 个提示。"
+    ],
+    "splits": [
+      "官方未声明 train/dev/test 划分；公开题目用于评测。"
+    ],
+    "fields": [
+      "题目记录包含 uid、category、subcategory 与 prompt。"
+    ],
+    "files": [
+      "官方题目文件位于 data/arena-hard-v2.0/question.jsonl。",
+      "结果数据另有公开仓库或 Hugging Face 发布；与题目 JSONL 分开。"
+    ],
+    "sourceUrls": [
+      "https://github.com/lmarena/arena-hard-auto#about",
+      "https://github.com/lmarena/arena-hard-auto#download-dataset"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开题目 JSONL 位于官方 GitHub 仓库；Hugging Face 结果集的浏览器状态不影响 GitHub 原始题目文件获取。"
+    ],
+    "sourceUrls": [
+      "https://github.com/lmarena/arena-hard-auto#about",
+      "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto"
+    ],
+    "url": "https://github.com/lmarena/arena-hard-auto/blob/main/data/arena-hard-v2.0/question.jsonl"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "仓库与 Hugging Face 数据集标注 Apache-2.0；提示源自用户查询，公开许可不解决上游对话内容的权利问题。",
+    "scope": "复用代码和明确由发布者授权的内容时遵循 Apache-2.0，并保留 attribution。",
+    "boundaries": [
+      "未经上游权利核验，不将用户提示或模型输出作为公开再发布样例。",
+      "Leaderboard 与结果文件应注明数据集和模型版本。"
+    ],
+    "sourceUrls": [
+      "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE",
+      "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方题目文件可下载，但题目来源于真实用户查询；在确认上游内容权利前只链接仓库，不复制题目正文。",
+    "sourceUrls": [
+      "https://github.com/lmarena/arena-hard-auto#about",
+      "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE"
+    ],
+    "url": "https://github.com/lmarena/arena-hard-auto/blob/main/data/arena-hard-v2.0/question.jsonl"
+  },
+  "metric": {
+    "name": "LLM-judge preference win rate",
+    "description": "对模型回答与目标回答进行成对偏好判断，汇总为胜率；该指标是相对偏好分数，不是准确率。须固定 judge、目标模型与提示版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/lmarena/arena-hard-auto#about"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "提示来自上游用户查询；公开仓库许可不能替代对每条源内容权利的审查。",
+      "sourceUrls": [
+        "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE",
+        "https://github.com/lmarena/arena-hard-auto#download-dataset"
+      ]
+    },
+    {
+      "text": "Hugging Face 页面结果数据和 GitHub 题目文件是不同发布物，复现时应固定各自版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto",
+        "https://github.com/lmarena/arena-hard-auto#about"
+      ]
+    },
+    {
+      "text": "胜率受 judge 模型、目标模型和运行提示影响，在线榜单快照会变化。",
+      "sourceUrls": [
+        "https://github.com/lmarena/arena-hard-auto#about"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 README",
+      "url": "https://github.com/lmarena/arena-hard-auto#about",
+      "role": "definition"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/lmarena/arena-hard-auto#evaluate",
+      "role": "readme"
+    },
+    {
+      "label": "官方判断脚本",
+      "url": "https://github.com/lmarena/arena-hard-auto/blob/main/gen_judgment.py",
+      "role": "code"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/lmarena/arena-hard-auto#leaderboard",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方 question.jsonl",
+      "url": "https://github.com/lmarena/arena-hard-auto/blob/main/data/arena-hard-v2.0/question.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "官方 question.jsonl",
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/main/data/arena-hard-v2.0/question.jsonl#L0-L5",
+      "role": "data"
+    },
+    {
+      "label": "HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto#L125-L135",
+      "role": "data"
+    },
+    {
+      "label": "README 下载指引",
+      "url": "https://github.com/lmarena/arena-hard-auto#download-dataset",
+      "role": "readme"
+    },
+    {
+      "label": "HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto#L68-L75",
+      "role": "data"
+    },
+    {
+      "label": "HF Viewer 状态",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto#dataset-viewer",
+      "role": "data"
+    },
+    {
+      "label": "官方 GitHub LICENSE",
+      "url": "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto#L54-L62",
+      "role": "data"
+    },
+    {
+      "label": "Arena 数据说明",
+      "url": "https://arena.ai/blog/dataset#disclaimers-and-terms",
+      "role": "access"
+    },
+    {
+      "label": "官方 HF 数据卡",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto#dataset-overview",
+      "role": "data"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/lmarena/arena-hard-auto#news",
+      "role": "readme"
+    },
+    {
+      "label": "lmarena/arena-hard-auto",
+      "url": "https://github.com/lmarena/arena-hard-auto",
+      "role": "code"
+    },
+    {
+      "label": "lmarena-ai/arena-hard-auto HF",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto",
+      "role": "data"
+    },
+    {
+      "label": "Arena-Hard and BenchBuilder arXiv:2406.11939",
+      "url": "https://arxiv.org/abs/2406.11939",
+      "role": "paper"
+    },
+    {
+      "label": "Chatbot Arena Conversation Dataset Release",
+      "url": "https://arena.ai/blog/dataset",
+      "role": "definition"
+    }
+  ]
+}

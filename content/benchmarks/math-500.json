@@ -1,0 +1,166 @@
+{
+  "aliases": [
+    "MATH500",
+    "MATH 500"
+  ],
+  "related": [],
+  "kind": "subset",
+  "verifiedAt": "2026-09-23",
+  "id": "math-500",
+  "name": "MATH-500",
+  "subtitle": "从数学题库中抽出的 500 题",
+  "category": "reasoning",
+  "tags": [
+    "竞赛数学",
+    "精选子集"
+  ],
+  "publisher": "OpenAI（500 题子集）/ MATH 作者（原题库）",
+  "year": 2023,
+  "version": "MATH 的 500 题评测子集",
+  "metric": {
+    "name": "正确率",
+    "description": "常见汇总指标为最终答案准确率，OpenAI PRM800K 原工作还涉及基于多条采样解题轨迹的 best-of-N 评估及过程奖励模型评估。它们是不同指标；报告必须说明采样数、温度、答案解析/等价判断器、推理预算及是否评估过程步骤。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/openai/prm800k"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "Hugging Face MATH-500 镜像未列出清楚的数据许可证元数据；MIT 仓库许可证对派生题目文件的具体覆盖范围未作法律解释。",
+      "sourceUrls": [
+        "https://github.com/openai/prm800k/blob/main/LICENSE",
+        "https://github.com/hendrycks/math/blob/main/LICENSE",
+        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
+        "https://github.com/openai/prm800k"
+      ]
+    },
+    {
+      "text": "本轮未将镜像 500 行与 PRM800K Git LFS 文件逐行比较，也未冻结 revision 或校验哈希。",
+      "sourceUrls": [
+        "https://github.com/openai/prm800k",
+        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+      ]
+    },
+    {
+      "text": "不同公开报告采用的答案抽取器、符号等价规则和采样预算未逐一审计。",
+      "sourceUrls": [
+        "https://github.com/openai/prm800k",
+        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI PRM800K README",
+      "url": "https://github.com/openai/prm800k",
+      "role": "readme"
+    },
+    {
+      "label": "Let's Verify Step by Step",
+      "url": "https://arxiv.org/abs/2305.20050",
+      "role": "paper"
+    },
+    {
+      "label": "HuggingFaceH4/MATH-500 数据卡",
+      "url": "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
+      "role": "data"
+    },
+    {
+      "label": "PRM800K LICENSE",
+      "url": "https://github.com/openai/prm800k/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "MATH LICENSE",
+      "url": "https://github.com/hendrycks/math/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "Hendrycks MATH 仓库",
+      "url": "https://github.com/hendrycks/math",
+      "role": "readme"
+    },
+    {
+      "label": "MATH 论文",
+      "url": "https://arxiv.org/abs/2103.03874",
+      "role": "paper"
+    }
+  ],
+  "status": "published",
+  "order": 190,
+  "brandIds": [
+    "openai"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MATH-500 通常指 OpenAI PRM800K 工作从 Hendrycks MATH test 均匀抽出的 500 道 held-out 题，是固定子集而非独立原始题库。",
+    "task": "解答英语竞赛数学问题；相关研究可评价最终答案准确率，也可用该子集比较解题轨迹与过程监督方法。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
+      "https://github.com/openai/prm800k"
+    ]
+  },
+  "taskContract": {
+    "input": "英语数学问题，包含自然语言和 LaTeX 表达。",
+    "output": "生成解题过程或最终答案；评测常抽取最终答案与参考值比较，具体抽取与规范化依运行协议而定。",
+    "environment": "静态数学推理。PRM800K 原始工作把 held-out 子集用于解题轨迹评估；最终答案准确率与过程监督指标应分开报告。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
+      "https://github.com/openai/prm800k"
+    ]
+  },
+  "dataProfile": {
+    "summary": "MATH-500 是 MATH test 中均匀随机抽出的 500 道 held-out 题；PRM800K 将其余 4,500 道原测试题纳入训练。",
+    "disclosure": "complete",
+    "scale": [
+      "held-out test：500 题；其余 4,500 道 MATH test 题进入 PRM800K 训练。"
+    ],
+    "splits": [
+      "PRM800K 的 math_splits/test 与 math_splits/train 是项目自定义切分，不等同 Hendrycks MATH 原始 train/test。"
+    ],
+    "fields": [
+      "镜像记录包括题目、解答、答案、学科、难度和来源标识；精确字段名以固定 HF revision 为准。"
+    ],
+    "files": [
+      "PRM800K math_splits/train.jsonl、math_splits/test.jsonl；另有 HuggingFaceH4/MATH-500 镜像。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/prm800k",
+      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Hugging Face 镜像和 PRM800K 源仓库可公开访问；相关 PRM800K 文件经 Git LFS 提供。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
+      "https://github.com/openai/prm800k"
+    ],
+    "url": "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "MATH-500 HF 镜像未显示明确数据许可；PRM800K 与 Hendrycks MATH 仓库有 MIT LICENSE。",
+    "scope": "仓库中的 MIT 文件不能在未核验具体覆盖范围和题目来源权利链时自动作为派生题库再发布授权。",
+    "boundaries": [
+      "公开页面只介绍并链接来源；不复制题目、答案、解答或截图，除非固定文件并核实相应许可。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/prm800k/blob/main/LICENSE",
+      "https://github.com/hendrycks/math/blob/main/LICENSE",
+      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
+      "https://github.com/openai/prm800k"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "公开镜像虽展示题目，但派生数据门户未单列许可，来源仓库许可覆盖范围也未逐文件核实。公开页面不转载真实题文、答案或解答。",
+    "sourceUrls": [
+      "https://github.com/openai/prm800k",
+      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+    ]
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "gpqa-diamond",
+      "label": "精选子集",
+      "detail": "模型发布会中常报告 Diamond 子集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "gpqa",
+  "name": "GPQA",
+  "subtitle": "需要专业背景的科学问答",
+  "category": "knowledge",
+  "tags": [
+    "科学知识",
+    "选择题"
+  ],
+  "publisher": "David Rein 等研究者",
+  "year": 2023,
+  "version": "GPQA 主集",
+  "metric": {
+    "name": "正确率",
+    "description": "常用成绩为准确率；但官方基线仓库指出实验设置包括多种提示模式、closed-book/retrieval 设置以及选项顺序 shuffle 等选择。报告成绩必须连带说明模型快照、提示、是否联网、采样和答案解析；名称相同不能保证协议一致。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/idavidrein/gpqa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "HF 文件精确版本、hash 与每个 split 的字段 schema 未固定到 commit 核验。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa",
+        "https://github.com/idavidrein/gpqa"
+      ]
+    },
+    {
+      "text": "各模型厂商报告的运行协议与答案解析器尚未逐条比对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa",
+        "https://github.com/idavidrein/gpqa"
+      ]
+    },
+    {
+      "text": "公开数据卡的许可声明和 no-online-examples 条件应一并遵循；本条目不将许可范围扩张解释到所有引用材料或第三方依赖。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Idavidrein/gpqa",
+        "https://github.com/idavidrein/gpqa/blob/main/LICENSE"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "GPQA 论文",
+      "url": "https://arxiv.org/abs/2311.12022",
+      "role": "paper"
+    },
+    {
+      "label": "作者官方 GitHub 仓库",
+      "url": "https://github.com/idavidrein/gpqa",
+      "role": "readme"
+    },
+    {
+      "label": "作者 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "role": "data"
+    },
+    {
+      "label": "仓库 MIT LICENSE",
+      "url": "https://github.com/idavidrein/gpqa/blob/main/LICENSE",
+      "role": "access"
+    }
+  ],
+  "status": "published",
+  "order": 90,
+  "brandIds": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "GPQA 是 Rein 等作者提出的专家级科学多项选择题基准，涵盖生物、物理和化学；它不是模型厂商成绩榜。",
+    "task": "模型回答由领域专家撰写和验证的英语科学四选一问题；非本领域高技能验证者即使可上网也难以回答是作者的设计目标，不代表搜索必然无效。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2311.12022"
+    ]
+  },
+  "taskContract": {
+    "input": "英语科学问题及四个候选选项，主题为生物、物理或化学。",
+    "output": "从四个选项中选择正确答案；可直接输出选项字母，也可生成解释后由解析器抽取。",
+    "environment": "评测可为 closed-book 或联网。作者基线覆盖 zero-shot、few-shot、CoT 和 retrieval 设置；报告应注明是否允许访问网络。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "GPQA Main 有 448 题；数据卡另列 546 题 Extended、198 题 Diamond 和 Experts 配置。",
+    "disclosure": "complete",
+    "scale": [
+      "Main：448 题；Extended：546 题；Diamond：198 题。"
+    ],
+    "splits": [
+      "HF 配置包括 gpqa_main、gpqa_extended、gpqa_diamond 和 gpqa_experts；配置之间可能重叠，不是互斥切分。"
+    ],
+    "fields": [],
+    "files": [
+      "HF 各配置的 CSV；作者仓库提供数据下载指引和评测代码。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "Hugging Face 数据集需接受访问条件；GitHub 的 dataset.zip 需要密码，仓库公开基线代码。"
+    ],
+    "sourceUrls": [
+      "https://github.com/idavidrein/gpqa",
+      "https://huggingface.co/datasets/Idavidrein/gpqa"
+    ],
+    "url": "https://huggingface.co/datasets/Idavidrein/gpqa"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者 Hugging Face 数据卡标注题目数据为 CC BY 4.0；GitHub MIT 许可适用于仓库代码。",
+    "scope": "数据卡明确要求访问者不要在线以纯文本或图片披露数据集样例，旨在减少题目进入训练语料。",
+    "boundaries": [
+      "不得在公开网站复制题目或答案；代码许可不能替代题目数据许可或作者的样例披露要求。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "作者数据卡明确要求不得在线发布题目样例文字或图片。公开页面只保留不含题文的题型说明、规模和官方链接。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Idavidrein/gpqa"
+    ]
+  }
+}

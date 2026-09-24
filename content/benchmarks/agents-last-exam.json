@@ -1,0 +1,177 @@
+{
+  "id": "agents-last-exam",
+  "status": "published",
+  "order": 600,
+  "name": "Agents’ Last Exam",
+  "subtitle": "让代理完成跨职业的真实工作流程",
+  "category": "work",
+  "tags": [
+    "专业工作",
+    "长程代理",
+    "职业任务"
+  ],
+  "publisher": "UC Berkeley RDI",
+  "brandIds": [],
+  "year": 2026,
+  "version": "ALE-V1",
+  "kind": "original",
+  "aliases": [
+    "ALE",
+    "Agents' Last Exam"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "ALE 是由 UC Berkeley RDI 与 RDI Foundation 牵头的智能体评测框架，汇集可核验的专业工作流任务，覆盖 55 个子领域和 13 个行业簇。",
+    "task": "Agent 接收专业工作任务，在机器式沙箱中操作并提交可由 grader 核验的产物。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.05405#L3-L5",
+      "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
+    ]
+  },
+  "taskContract": {
+    "input": "任务说明及该任务所需的文件、数据和软件上下文；隐藏参考不提供给 agent。",
+    "output": "Agent 在沙箱中生成的文件或其他产物，并附带可回放轨迹、日志及 grader 结果；任务分数为 0–1。",
+    "environment": "机器式工作区，官方实现支持 Windows/Linux 与多种 VM、容器或 CUA provider；所需依赖随任务而异。",
+    "sourceUrls": [
+      "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文总体描述超过 1,000 项任务；官方仓库当前约公开 150 项任务，分布于 55 个子领域。两者分别是总体研究规模与当前公开子集。",
+    "disclosure": "partial",
+    "scale": [
+      "总体研究规模：论文称 1,000+ 项；仓库公开子集约 150 项、55 个子领域。"
+    ],
+    "splits": [
+      "官方运行入口列出 near-term、full-spectrum、last-exam 难度列表，并有 provider-specific 与 unlicensed 子集。"
+    ],
+    "fields": [
+      "任务以 main.py 可执行单元组织，包含 instruction、输入数据、隐藏参考与 grader；官方未声明统一 JSON 行 schema。"
+    ],
+    "files": [
+      "公开仓库包含 tasks/、selected_tasks/、sample_run/ 等目录；具体布局随任务而异。"
+    ],
+    "sourceUrls": [
+      "https://github.com/rdi-berkeley/agents-last-exam#L185-L196",
+      "https://arxiv.org/abs/2606.05405#L3-L5"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方仓库和 Task Gallery 可公开访问；公开任务约 150 项。运行需自行配置 agent、沙箱 provider 与任务依赖；不同任务列表的环境要求不同。"
+    ],
+    "url": "https://github.com/rdi-berkeley/agents-last-exam",
+    "sourceUrls": [
+      "https://github.com/rdi-berkeley/agents-last-exam#L185-L196",
+      "https://agents-last-exam.org/demo#L4-L8"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "框架代码 Apache-2.0；指定 benchmark 内容 CC BY 4.0。",
+    "scope": "官方将代码与任务内容分开许可。仅可复用 CC BY 4.0 覆盖且未标为 unlicensed 的内容，须署名、链接许可并标明修改；该许可不自动覆盖未单列授权的媒体或第三方素材。",
+    "boundaries": [
+      "不要转载被标为 unlicensed 的任务；图片和截图的独立权利未确认。"
+    ],
+    "sourceUrls": [
+      "https://github.com/rdi-berkeley/agents-last-exam#L258-L263",
+      "https://agents-last-exam.org/docs#L18-L20"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "demo/hello",
+        "title": "Demo: Acme Code Generator (GUI)",
+        "type": "record",
+        "prompt": "A single-screen web app takes an input/order JSON, generates code, and writes output/result.txt.",
+        "explanation": "这里展示的是官方 task_card.json 的 summary 字段及身份字段，不把摘要扩写成不存在的完整题目，也不虚构参考答案。",
+        "raw": {
+          "taskId": "demo/hello",
+          "title": "Demo: Acme Code Generator (GUI)",
+          "summary": "A single-screen web app takes an input/order JSON, generates code, and writes output/result.txt.",
+          "category": "demo"
+        },
+        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/main/tasks/demo/hello/task_card.json",
+        "license": "CC BY 4.0 · Agents’ Last Exam task data",
+        "split": "official demo task · demo/hello",
+        "excerpt": true
+      }
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "候选站内样例对应官方公开任务卡 tasks/demo/hello/task_card.json；Task Gallery 提供 ALE-V1 样例。仅按 CC BY 4.0 标注后复用明确获许可的文本，并排除标记为 unlicensed 的内容；媒体权利需逐项核验。",
+    "url": "https://agents-last-exam.org/demo",
+    "sourceUrls": [
+      "https://agents-last-exam.org/demo#L4-L8",
+      "https://github.com/rdi-berkeley/agents-last-exam#L258-L263"
+    ]
+  },
+  "metric": {
+    "name": "Per-task grader score / full-pass rate",
+    "description": "grader 为每个任务给出 0–1 分；汇总结果需注明具体 run、任务列表和聚合口径。论文报告的 hardest-tier full-pass 数值只对应其指定实验配置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/rdi-berkeley/agents-last-exam#L185-L196",
+      "https://arxiv.org/abs/2606.05405#L3-L5"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "论文总体 1K+ 与仓库当前公开约 150 项的逐任务对应关系及完整受限任务数量未核实。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2606.05405#L3-L5",
+        "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
+      ]
+    },
+    {
+      "text": "任务依赖、grader 语义和许可例外随 task 变化，本文不把个别任务字段外推为统一 schema。",
+      "sourceUrls": [
+        "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
+      ]
+    },
+    {
+      "text": "官方许可声明未单独界定图片、截图或第三方素材的转载范围。",
+      "sourceUrls": [
+        "https://github.com/rdi-berkeley/agents-last-exam#L258-L263"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2606.05405#L3-L5",
+      "role": "paper"
+    },
+    {
+      "label": "官方仓库 README",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam#L185-L196",
+      "role": "definition"
+    },
+    {
+      "label": "官方仓库运行与任务说明",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam#L199-L249",
+      "role": "readme"
+    },
+    {
+      "label": "官方仓库许可说明",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam#L258-L263",
+      "role": "access"
+    },
+    {
+      "label": "官方 Task Gallery",
+      "url": "https://agents-last-exam.org/demo#L4-L8",
+      "role": "data"
+    },
+    {
+      "label": "官方 Docs 许可说明",
+      "url": "https://agents-last-exam.org/docs#L18-L20",
+      "role": "access"
+    }
+  ]
+}

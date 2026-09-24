@@ -1,0 +1,94 @@
+{
+  "id": "agents-last-exam",
+  "status": "published",
+  "order": 600,
+  "name": "Agents’ Last Exam",
+  "subtitle": "让代理完成跨职业的真实工作流程",
+  "summary": "UC Berkeley RDI 构建的大规模职业工作流代理评测，任务来自真实专业工作并设有可核验的成功标准。",
+  "category": "work",
+  "tags": [
+    "专业工作",
+    "长程代理",
+    "职业任务"
+  ],
+  "publisher": "UC Berkeley RDI",
+  "brandIds": [],
+  "year": 2026,
+  "version": "ALE-V1",
+  "kind": "original",
+  "aliases": [
+    "ALE",
+    "Agents' Last Exam"
+  ],
+  "task": "在真实职业工作流中执行多步任务，并产出满足可核验成功标准的结果。",
+  "format": "专业工作任务、可验证成功条件、代理运行轨迹及任务评分；官网列出 Near-term、Full-Spectrum、Last-Exam 等划分。",
+  "metric": {
+    "name": "Pass Rate / Score",
+    "description": "Pass Rate 是获得满分的运行占比；Score 是平均部分得分。Best-per-task 会为每项任务只取最高分运行，不能与单次运行榜单混读。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "分数受到代理框架、模型推理力度、任务划分以及是否按任务取最佳运行影响。",
+    "ALE 官网列有 Last-Exam 等高难子集；子集与全量成绩不可互换。",
+    "OpenAI GPT-5.6 发布页报告的 53.6 为 Score，不能误写成 Pass Rate。",
+    "OpenAI 发布页未说明该次运行对应的排行榜 split 或 Best-per-task 版本。"
+  ],
+  "availability": "public",
+  "sampleNote": "展示 1 条官方 demo task card 的真实字段；该记录只提供任务摘要，没有公开答案。",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "demo/hello",
+        "title": "Demo: Acme Code Generator (GUI)",
+        "type": "record",
+        "prompt": "A single-screen web app takes an input/order JSON, generates code, and writes output/result.txt.",
+        "explanation": "这里展示的是官方 task_card.json 的 summary 字段及身份字段，不把摘要扩写成不存在的完整题目，也不虚构参考答案。",
+        "raw": {
+          "taskId": "demo/hello",
+          "title": "Demo: Acme Code Generator (GUI)",
+          "summary": "A single-screen web app takes an input/order JSON, generates code, and writes output/result.txt.",
+          "category": "demo"
+        },
+        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/main/tasks/demo/hello/task_card.json",
+        "license": "CC BY 4.0 · Agents’ Last Exam task data",
+        "split": "official demo task · demo/hello",
+        "excerpt": true
+      }
+    ]
+  },
+  "sources": [
+    {
+      "label": "ALE 官方排行榜与版本定义",
+      "url": "https://agents-last-exam.org/leaderboard",
+      "kind": "leaderboard"
+    },
+    {
+      "label": "UC Berkeley RDI 项目发布介绍",
+      "url": "https://agents-last-exam.org/blogs/job-ready-agents",
+      "kind": "report"
+    },
+    {
+      "label": "官方 demo/hello 任务卡",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/main/tasks/demo/hello/task_card.json",
+      "kind": "data"
+    },
+    {
+      "label": "官方仓库与任务数据许可说明",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam",
+      "kind": "code"
+    },
+    {
+      "label": "OpenAI GPT-5.6 官方报告",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "kind": "report"
+    },
+    {
+      "label": "OpenAI GPT-6 Astra 官方报告",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

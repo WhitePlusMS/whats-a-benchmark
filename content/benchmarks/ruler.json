@@ -1,0 +1,149 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "suite",
+  "verifiedAt": "2026-09-22",
+  "id": "ruler",
+  "name": "RULER",
+  "subtitle": "标称能读很长，实际能用多长",
+  "category": "context",
+  "tags": [
+    "合成长文本",
+    "检索与追踪"
+  ],
+  "publisher": "NVIDIA 研究团队",
+  "year": 2024,
+  "version": "RULER 任务套件",
+  "metric": {
+    "name": "分任务正确率 / 有效长度",
+    "direction": "higher",
+    "description": "基础任务按各自 evaluator 计算准确率，论文的主要汇总为 13 个任务准确率的平均分，并按序列长度分别比较。长度、NIAH 位置/复杂度、任务集合和实现分支都会影响结果；单一汇总值不应脱离这些运行条件解释。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2404.06654",
+      "https://github.com/NVIDIA/RULER"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "原始论文 appendix、当前 NeMo-Skills 的 ruler 定义与主仓库旧 pipeline 的逐项 task mapping 未逐项对照；不同实现间的对等性不能默认成立。",
+      "sourceUrls": [
+        "https://github.com/NVIDIA/RULER",
+        "https://arxiv.org/abs/2404.06654"
+      ]
+    },
+    {
+      "text": "Paul Graham、SQuAD、HotpotQA 当前版本的独立许可文本和各来源内容分布未逐条复核，因而不作再发布许可判断。",
+      "sourceUrls": [
+        "https://github.com/NVIDIA/RULER",
+        "https://arxiv.org/abs/2404.06654"
+      ]
+    },
+    {
+      "text": "论文中的数据长度、样本生成和聚合细节应针对固定论文版本/commit 复现；本次没有运行评测。",
+      "sourceUrls": [
+        "https://github.com/NVIDIA/RULER",
+        "https://arxiv.org/abs/2404.06654"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NVIDIA/RULER GitHub",
+      "url": "https://github.com/NVIDIA/RULER",
+      "role": "readme"
+    },
+    {
+      "label": "arXiv:2404.06654",
+      "url": "https://arxiv.org/abs/2404.06654",
+      "role": "paper"
+    },
+    {
+      "label": "Apache-2.0 LICENSE",
+      "url": "https://github.com/NVIDIA/RULER/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "rulerv1-ns",
+      "url": "https://github.com/NVIDIA/RULER/tree/rulerv1-ns",
+      "role": "readme"
+    },
+    {
+      "label": "rulerv2-ns",
+      "url": "https://github.com/NVIDIA/RULER/tree/rulerv2-ns",
+      "role": "readme"
+    }
+  ],
+  "status": "published",
+  "order": 380,
+  "brandIds": [
+    "nvidia"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "RULER 通过可配置长度和复杂度的长上下文任务，测试模型是否能完成简单 needle retrieval 以外的上下文定位、变量追踪、文本抽取和问答。目的在于估计模型实际可用的上下文能力，而非只采纳模型声明的最大 token 窗口。",
+    "task": "以不同长度和复杂度的长上下文任务，检验模型实际可用的上下文处理能力。",
+    "sourceUrls": [
+      "https://github.com/NVIDIA/RULER",
+      "https://arxiv.org/abs/2404.06654"
+    ]
+  },
+  "taskContract": {
+    "input": "按模型 tokenizer 和目标序列长度生成的长文本及任务查询。",
+    "output": "文本答案，由任务专用 evaluator 与目标答案比较。",
+    "environment": "运行需加载被测模型；记录 pipeline 分支、任务配置、长度、tokenizer 和生成参数。",
+    "sourceUrls": [
+      "https://github.com/NVIDIA/RULER",
+      "https://arxiv.org/abs/2404.06654"
+    ]
+  },
+  "dataProfile": {
+    "summary": "RULER v1 以长度参数化生成多种长上下文任务；旧 pipeline 还引用外部文本和 QA 数据。",
+    "disclosure": "partial",
+    "scale": [
+      "原始论文覆盖 4 类、13 项任务；此数不是固定数据行数。",
+      "论文基线长度为 4K–128K tokens。"
+    ],
+    "splits": [
+      "未报告固定 train/validation/test；按任务配置、tokenizer 和长度生成输入。"
+    ],
+    "fields": [],
+    "files": [
+      "旧 pipeline 含生成脚本、配置及外部背景文本/QA 输入。"
+    ],
+    "sourceUrls": [
+      "https://github.com/NVIDIA/RULER",
+      "https://arxiv.org/abs/2404.06654"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "评测代码、脚本和配置在公开 NVIDIA GitHub；v1/v2 现行 NeMo-Skills pipeline 通过各自公开分支运行，并按模型 tokenizer 生成数据。部分基准输入来自外部来源，访问与使用权仍受那些来源自身条款约束。"
+    ],
+    "url": "https://github.com/NVIDIA/RULER",
+    "sourceUrls": [
+      "https://github.com/NVIDIA/RULER",
+      "https://arxiv.org/abs/2404.06654"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "RULER 仓库代码标注 Apache-2.0。",
+    "scope": "Apache-2.0 按仓库 LICENSE 覆盖的代码/文件适用；旧 pipeline 的背景文本和 QA 数据沿用各自来源条款。",
+    "boundaries": [
+      "Paul Graham 文本、SQuAD 和 HotpotQA 不因 RULER 代码许可而获得额外再分发授权。",
+      "本站不复制外部文章、QA 条目或由其组成的任务样例。"
+    ],
+    "sourceUrls": [
+      "https://github.com/NVIDIA/RULER/blob/main/LICENSE",
+      "https://github.com/NVIDIA/RULER"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "官方仓库公开运行脚本与任务配置，但具体示例输入可由外部文章或 QA 数据源构成。不把 README 中的数据下载或生成样例复制到本站；只链接 NVIDIA 仓库。Apache 许可对代码的覆盖不等于许可转载背景文本和 QA 数据。",
+    "sourceUrls": [
+      "https://github.com/NVIDIA/RULER"
+    ]
+  }
+}

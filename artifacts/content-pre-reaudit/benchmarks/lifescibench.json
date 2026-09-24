@@ -1,0 +1,55 @@
+{
+  "id": "lifescibench",
+  "status": "published",
+  "order": 606,
+  "name": "LifeSciBench",
+  "subtitle": "衡量 AI 对真实生命科学研究的支持能力",
+  "summary": "由生命科学家编写并审阅的研究任务集，覆盖多类生命科学工作流，考察模型处理证据、数据文件、不确定性和科研判断的能力。",
+  "category": "work",
+  "tags": [
+    "科学研究",
+    "生命科学",
+    "专家 rubric"
+  ],
+  "publisher": "OpenAI / 生命科学专家",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2026,
+  "version": "Gold v1",
+  "kind": "original",
+  "aliases": [],
+  "task": "回应研究者的开放式生命科学请求，阅读上下文和相关数据文件，作出分析、实验设计、验证或转化判断并说明依据。",
+  "format": "750 个专家撰写任务，覆盖七类工作流与七个生物领域，含 1,062 个附件、19,020 条专家制定的 rubric criteria。",
+  "metric": {
+    "name": "专家 rubric 评分",
+    "description": "按任务专属细则评估科学主张、计算、决策和论证；OpenAI GPT-5.6 / GPT-6 报告列百分制综合得分，但发布介绍中的完整评分流程与各变体须结合原论文确认。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "与窄领域知识问答不同，该分数聚合多种开放式科研任务，不应解释为单一知识正确率。",
+    "任务依赖专家 rubric 和附件解释；跨版本、跨模型比较前应核实 Gold v1 等版本及裁判配置。",
+    "本次核查到官方介绍和论文入口，完整基准数据的公开访问条件尚未确认。"
+  ],
+  "availability": "unknown",
+  "sampleNote": "目前依据 OpenAI 官方介绍与论文入口整理；未核实数据许可与完整样题获取条件，本站不保存样例。",
+  "sources": [
+    {
+      "label": "LifeSciBench 官方介绍与论文入口",
+      "url": "https://openai.com/index/introducing-life-sci-bench/",
+      "kind": "home"
+    },
+    {
+      "label": "GPT-6 Astra 官方成绩表与版本脚注",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "kind": "report"
+    },
+    {
+      "label": "GPT-5.6 官方成绩表",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "kind": "report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

@@ -1,0 +1,161 @@
+{
+  "id": "finance-agent",
+  "status": "published",
+  "order": 470,
+  "name": "Finance Agent",
+  "subtitle": "查财报、找资料，回答复杂金融问题",
+  "category": "work",
+  "tags": [
+    "财务研究",
+    "联网工具"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2025,
+  "version": "Finance Agent 官方任务集",
+  "kind": "original",
+  "aliases": [
+    "FinanceAgent"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-22",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Finance Agent Benchmark 评估智能体在真实金融分析场景中检索资料、分析数据并交付专业财务结论的能力。",
+    "task": "Agent 阅读金融研究任务，使用工具调查并输出结构化分析或财务交付物。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/fabv2",
+      "https://arxiv.org/abs/2508.00828"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言金融任务及其公开数据/财务背景。",
+    "output": "研究分析或财务交付成果，由 benchmark rubric 逐项评分。",
+    "environment": "Vals v2 使用 SEC EDGAR、网页搜索与解析、检索材料搜索、计算器及历史价格等工具；每个任务最长 2 小时。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/fabv2",
+      "https://github.com/vals-ai/finance-agent-v2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Vals v2 页面列出 927 个任务；早期版本的 537 项是不同版本，不能与 v2 相加。",
+    "disclosure": "partial",
+    "scale": [
+      "v2 共 927 项：27 个 public、450 个 validation、450 个 private test。",
+      "初版 537 项仅作为旧版本规模单独记录。"
+    ],
+    "splits": [
+      "v2 分为 public、validation 与 private test；validation 需按数据访问条件申请。",
+      "任务规模和 split 仅按 v2 页面口径表述。"
+    ],
+    "fields": [
+      "公开任务材料包含 prompt 与 rubric 检查项；完整隐藏测试记录 schema 未公开。"
+    ],
+    "files": [
+      "官方仓库公开 data/public.csv 与 data/public.txt。",
+      "完整 validation/private test 数据没有作为公开仓库文件发布。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/fabv2",
+      "https://github.com/vals-ai/finance-agent-v2/tree/main/data"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开任务样例可从仓库获取；validation 受许可条件约束，private test 不公开。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/fabv2",
+      "https://github.com/vals-ai/finance-agent-v2/tree/main/data"
+    ],
+    "url": "https://www.vals.ai/benchmarks/fabv2"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库 MIT 许可证覆盖评测实现；未核实金融任务数据具有独立开放再发布许可证。",
+    "scope": "仅在许可状态明确前链接公开样例和代码；不得将 MIT 代码许可外推到题目及 reference materials。",
+    "boundaries": [
+      "Validation 与 private test 按各自访问条款使用。",
+      "题目可能包含外部金融信息来源，逐项权利未审查。"
+    ],
+    "sourceUrls": [
+      "https://github.com/vals-ai/finance-agent-v2/blob/main/LICENSE",
+      "https://www.vals.ai/benchmarks/fabv2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "公开版本有少量示例，但数据许可未单独核实；候选仅链接官方页面和仓库，不复制任务或 reference materials。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/fabv2",
+      "https://github.com/vals-ai/finance-agent-v2/tree/main/data"
+    ],
+    "url": "https://github.com/vals-ai/finance-agent-v2/tree/main/data"
+  },
+  "metric": {
+    "name": "Partial Credit accuracy / All-Pass",
+    "description": "v2 对 rubric 检查项计算 Partial Credit accuracy，并同时报告需所有检查项通过的 All-Pass；页面建议三次运行。不同版本和运行预算下的值不可直接合并。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/fabv2",
+      "https://github.com/vals-ai/finance-agent-v2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "v2 的 927 项拆分为 27 public、450 validation 和 450 private test；隐藏部分未逐项下载核验。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/fabv2"
+      ]
+    },
+    {
+      "text": "旧版 537 与 v2 的任务版本及覆盖范围不同，不能将两个数字合并。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/fabv2",
+        "https://arxiv.org/abs/2508.00828"
+      ]
+    },
+    {
+      "text": "仓库 MIT 许可证未明确覆盖任务文本与外部金融材料。",
+      "sourceUrls": [
+        "https://github.com/vals-ai/finance-agent-v2/blob/main/LICENSE",
+        "https://www.vals.ai/benchmarks/fabv2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Vals AI 当前基准页",
+      "url": "https://www.vals.ai/benchmarks/fabv2",
+      "role": "definition"
+    },
+    {
+      "label": "Anthropic 系统卡对 benchmark 来源的说明",
+      "url": "https://www-cdn.anthropic.com/14e4fb01875d2a69f646fa5e574dea2b1c0ff7b5.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "初版论文",
+      "url": "https://arxiv.org/abs/2508.00828",
+      "role": "definition"
+    },
+    {
+      "label": "Vals AI v2 仓库",
+      "url": "https://github.com/vals-ai/finance-agent-v2",
+      "role": "code"
+    },
+    {
+      "label": "v2 官方仓库",
+      "url": "https://github.com/vals-ai/finance-agent-v2/tree/main/data",
+      "role": "code"
+    },
+    {
+      "label": "官方 LICENSE",
+      "url": "https://github.com/vals-ai/finance-agent-v2/blob/main/LICENSE",
+      "role": "access"
+    }
+  ]
+}

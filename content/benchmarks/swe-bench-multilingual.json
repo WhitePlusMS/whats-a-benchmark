@@ -1,0 +1,167 @@
+{
+  "id": "swe-bench-multilingual",
+  "status": "published",
+  "order": 705,
+  "name": "SWE-bench Multilingual",
+  "subtitle": "跨九种编程语言修复真实仓库问题",
+  "category": "coding",
+  "tags": [
+    "软件工程",
+    "多语言",
+    "Agent"
+  ],
+  "publisher": "SWE-bench 团队",
+  "brandIds": [
+    "swe-bench"
+  ],
+  "year": 2025,
+  "version": "SWE-bench Multilingual",
+  "kind": "derivative",
+  "aliases": [],
+  "metric": {
+    "name": "Resolved rate",
+    "description": "核心指标为任务解决率（resolved rate）：通过评测 harness 中 F2P 与 P2P 测试判定成功任务的比例。按语言分项样本数约 12–44 条，差异较小的分数可能受少量实例影响。必须列明 agent scaffold、模型工具/成本预算、镜像与 harness 版本和成功规则。官方基线所报 Claude 3.7 Sonnet + SWE-agent、$2.50 预算 43% 是特定协议的历史基线，不作跨 setup 比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.swebench.com/multilingual.html",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未枚举 42 个上游仓库的许可证，也未逐条检查 issue 正文、PR patch、测试代码及其中可能引用的素材授权。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+        "https://www.swebench.com/SWE-bench/guides/datasets/",
+        "https://www.swebench.com/multilingual.html"
+      ]
+    },
+    {
+      "text": "HF Viewer 公开 300 行；本轮未下载并锁定其全量 Parquet、记录哈希或完整复跑 harness。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+        "https://www.swebench.com/SWE-bench/guides/datasets/",
+        "https://www.swebench.com/multilingual.html"
+      ]
+    },
+    {
+      "text": "官方卡当前支持的模型榜单/模型成绩可能使用不同工具预算和 agent 设置；未做横向可比性审计。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+        "https://www.swebench.com/SWE-bench/guides/datasets/",
+        "https://www.swebench.com/multilingual.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SWE-bench Multilingual 作者介绍",
+      "url": "https://www.swebench.com/multilingual.html",
+      "role": "definition"
+    },
+    {
+      "label": "官方 Hugging Face dataset",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+      "role": "data"
+    },
+    {
+      "label": "SWE-bench 官方数据集指南",
+      "url": "https://www.swebench.com/SWE-bench/guides/datasets/",
+      "role": "data"
+    },
+    {
+      "label": "SWE-bench 官方仓库",
+      "url": "https://github.com/SWE-bench/SWE-bench",
+      "role": "readme"
+    },
+    {
+      "label": "DeepSeek-V3.2-Exp 官方评测表",
+      "url": "https://github.com/deepseek-ai/DeepSeek-V3.2-Exp",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [
+    {
+      "id": "swe-bench",
+      "label": "SWE-bench 系列",
+      "detail": "多语言版本增加多种仓库语言，不能与 Python 原版任务分数直接比较。",
+      "sourceUrls": [
+        "https://www.swebench.com/SWE-bench/guides/datasets/",
+        "https://www.swebench.com/multilingual.html",
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估模型/agent 能否在多种编程语言的真实软件仓库中，根据 GitHub issue 修改代码并修复问题。它沿用 SWE-bench 的实例格式和测试验证思路，规模刻意控制为 300 个精选任务，覆盖 42 个仓库和 9 种语言。",
+    "task": "根据多语言真实软件仓库中的 GitHub issue 修改代码，提交修复补丁。",
+    "sourceUrls": [
+      "https://www.swebench.com/multilingual.html",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual"
+    ]
+  },
+  "taskContract": {
+    "input": "issue 描述、对应仓库的固定解题前版本和评测环境；测试补丁不是 agent 的可见题面。",
+    "output": "模型生成的代码修改 patch。",
+    "environment": "官方 harness 在多语言 Docker 环境中运行；成功需 F2P 与 P2P 测试通过，并记录 scaffold、预算和镜像版本。",
+    "sourceUrls": [
+      "https://www.swebench.com/multilingual.html",
+      "https://www.swebench.com/SWE-bench/guides/datasets/",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual"
+    ]
+  },
+  "dataProfile": {
+    "summary": "SWE-bench Multilingual 是覆盖多种编程语言的精选 issue-to-patch 测试集。",
+    "disclosure": "partial",
+    "scale": [
+      "test split 300 项；覆盖 42 个仓库、9 种编程语言。"
+    ],
+    "splits": [
+      "test。"
+    ],
+    "fields": [
+      "instance_id、repo、issue_id、base_commit、problem_statement、version、issue_url、pr_url、patch、test_patch、FAIL_TO_PASS、PASS_TO_PASS。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+      "https://www.swebench.com/SWE-bench/guides/datasets/",
+      "https://www.swebench.com/multilingual.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "SWE-bench 官方网站、GitHub harness 和 Hugging Face 公开 dataset 可访问；HF 页列出 test split 300 行及 Apache/Docker harness 使用入口。可下载状态与将原始 issue/PR/代码补丁摘录到第三方站点的权利状态分开处理。"
+    ],
+    "url": "https://www.swebench.com/multilingual.html",
+    "sourceUrls": [
+      "https://www.swebench.com/multilingual.html",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+      "https://www.swebench.com/SWE-bench/guides/datasets/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "HF 数据页的 dataset metadata 标注 MIT；SWE-bench 代码仓库也采用 MIT。",
+    "scope": "这些声明分别记录数据集元数据与项目代码；没有逐实例确定其是否覆盖上游 issue、PR、patch 和测试内容。",
+    "boundaries": [
+      "42 个上游仓库的许可及各条 issue/PR 素材未逐项核验。",
+      "本站不复制 issue、patch、测试代码或仓库素材，只提供官方入口和原创说明。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+      "https://www.swebench.com/multilingual.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "当前 本站 未保留该条目具体任务样例。本轮不新增 issue/PR 题面、patch、测试或截图样例：官方任务源链接公开可读，但问题正文及代码来自不同上游仓库，未逐条核验项目授权和再发布范围。可展示官方任务入口与原创协议摘要。",
+    "sourceUrls": [
+      "https://www.swebench.com/multilingual.html",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual"
+    ]
+  }
+}

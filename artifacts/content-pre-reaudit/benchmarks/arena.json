@@ -1,0 +1,52 @@
+{
+  "aliases": [
+    "LMArena",
+    "Arena",
+    "ChatbotArena"
+  ],
+  "related": [],
+  "kind": "suite",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "arena",
+  "name": "Chatbot Arena",
+  "subtitle": "隐藏模型名字，让人比较两份回答",
+  "category": "alignment",
+  "tags": [
+    "人类偏好",
+    "匿名对战"
+  ],
+  "publisher": "LMSYS / Arena 团队",
+  "year": 2023,
+  "version": "按榜单日期与领域查看",
+  "summary": "通过匿名比较模型回答和用户投票，估计不同模型在人类偏好上的相对表现。",
+  "task": "同一个请求由两个模型回答，用户比较后投票；平台汇总形成评级。",
+  "format": "对话、两个候选回答、投票结果与统计元数据。",
+  "metric": {
+    "name": "对战评级及置信区间",
+    "direction": "higher",
+    "description": "评级来自对战统计，不是百分制正确率；还要看样本量、置信区间和领域。"
+  },
+  "limitations": [
+    "用户群体、提示分布和回答风格会影响偏好。",
+    "喜欢某个回答不等于它在所有事实和任务上都正确。"
+  ],
+  "sources": [
+    {
+      "url": "https://lmarena.ai/",
+      "label": "官方平台与榜单",
+      "kind": "leaderboard"
+    },
+    {
+      "url": "https://arxiv.org/abs/2403.04132",
+      "label": "方法论文",
+      "kind": "paper"
+    }
+  ],
+  "status": "published",
+  "order": 420,
+  "brandIds": [
+    "lmsys"
+  ],
+  "availability": "unknown"
+}

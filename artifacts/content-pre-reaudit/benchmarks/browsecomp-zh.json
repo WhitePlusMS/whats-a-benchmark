@@ -1,0 +1,59 @@
+{
+  "id": "browsecomp-zh",
+  "status": "published",
+  "order": 704,
+  "name": "BrowseComp-ZH",
+  "subtitle": "用中文问题检验深度网页搜索",
+  "summary": "评估模型或搜索智能体通过网页浏览找到复杂问题答案的能力，是 BrowseComp 的中文对应基准。",
+  "category": "agents",
+  "tags": [
+    "中文",
+    "网页搜索",
+    "Agent"
+  ],
+  "publisher": "BrowseComp-ZH 研究团队",
+  "brandIds": [],
+  "year": 2025,
+  "version": "BrowseComp-ZH",
+  "kind": "original",
+  "aliases": [],
+  "task": "通过网页搜索与浏览，找到难以直接检索、需要综合信息的中文问题答案。",
+  "format": "中文问题及答案；模型可结合网页搜索工具运行，数据仓库按项目说明提供加密文件及解密方法。",
+  "metric": {
+    "name": "准确率",
+    "description": "统计最终答案正确比例；报告工具可用性、运行系统和评审方式。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "该数据针对搜索智能体系统，结果取决于搜索工具、提示和运行配置。",
+    "网页内容和搜索索引随时间变化，复现实验须记录日期。",
+    "公开数据使用加密分发，公开仓库存在不等同于可直接再发布题目。"
+  ],
+  "availability": "public",
+  "sampleNote": "官方仓库提供加密数据和使用说明；本站未保存题目或答案。",
+  "sources": [
+    {
+      "label": "BrowseComp-ZH 论文",
+      "url": "https://arxiv.org/abs/2504.19314",
+      "kind": "paper"
+    },
+    {
+      "label": "BrowseComp-ZH 官方数据仓库",
+      "url": "https://github.com/PALIN2018/BrowseComp-ZH",
+      "kind": "code"
+    },
+    {
+      "label": "DeepSeek-V3.2 官方技术报告",
+      "url": "https://arxiv.org/abs/2512.02556",
+      "kind": "report"
+    }
+  ],
+  "related": [
+    {
+      "id": "browsecomp",
+      "label": "英文对应基准",
+      "detail": "BrowseComp-ZH 面向中文搜索任务，数据集与题目不同。"
+    }
+  ],
+  "verifiedAt": "2026-09-23"
+}

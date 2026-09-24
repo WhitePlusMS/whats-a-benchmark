@@ -1,0 +1,155 @@
+{
+  "aliases": [],
+  "related": [
+    {
+      "id": "mmlu-pro",
+      "label": "衍生评测",
+      "detail": "引入更多推理题和干扰选项，并重新审核题目。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2009.03300",
+        "https://github.com/hendrycks/test"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "mmlu",
+  "name": "MMLU",
+  "subtitle": "一张覆盖很多学科的知识试卷",
+  "category": "knowledge",
+  "tags": [
+    "多学科",
+    "选择题"
+  ],
+  "publisher": "Dan Hendrycks 等研究者",
+  "year": 2020,
+  "version": "原始 MMLU",
+  "metric": {
+    "name": "正确率",
+    "description": "原始指标为选择题 accuracy，按 57 科和 Humanities、Social Sciences、STEM、Other 分组，并计算平均。引用对照结果时需报告 zero/few-shot、logit 选择或文本解析策略及汇总方法。原始论文数值为历史快照上的基准结果，不代表当前排行榜。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2009.03300",
+      "https://github.com/hendrycks/test"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本次没有下载全部原始 subject 文件重新计数和验证行格式；规模来自原论文，仓库提供下载入口。",
+      "sourceUrls": [
+        "https://github.com/hendrycks/test"
+      ]
+    },
+    {
+      "text": "仓库 MIT 文件与题库第三方源材料的逐题授权边界没有完全厘清；避免复制原始问答内容。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2009.03300",
+        "https://github.com/hendrycks/test"
+      ]
+    },
+    {
+      "text": "官方原始资料没有污染豁免保证，也没有专门要求的 anti-training canary；全量测试数据公开会带来暴露风险，但不能仅据此断言任何具体模型受到了污染。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2009.03300",
+        "https://github.com/hendrycks/test"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "原作者论文",
+      "url": "https://arxiv.org/abs/2009.03300",
+      "role": "paper"
+    },
+    {
+      "label": "hendrycks/test",
+      "url": "https://github.com/hendrycks/test",
+      "role": "readme"
+    },
+    {
+      "label": "官方 evaluate.py",
+      "url": "https://github.com/hendrycks/test/blob/master/evaluate.py",
+      "role": "code"
+    },
+    {
+      "label": "作者仓库 LICENSE",
+      "url": "https://github.com/hendrycks/test/blob/master/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "Aligning AI With Shared Human Values",
+      "url": "https://arxiv.org/abs/2008.02275",
+      "role": "paper"
+    }
+  ],
+  "status": "published",
+  "order": 70,
+  "brandIds": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MMLU 衡量文本模型在 57 个学科中的广域知识与问题求解能力，原始论文报告 15,908 题。它是四选一文本题库，与 MMLU-Pro 及多语言 MMMLU 分开。",
+    "task": "输入每科题目和四个候选答案，模型按 zero-shot 或使用该科 development 示例的 few-shot 提示选择答案。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2009.03300"
+    ]
+  },
+  "taskContract": {
+    "input": "学科题目和四个候选答案；few-shot 示例来自该科 development 数据。",
+    "output": "选择 A–D 之一；使用概率评分或生成文本解析时应记录具体实现。",
+    "environment": "静态文本评测，无外部任务环境；提示和 zero/few-shot 设置决定具体协议。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2009.03300",
+      "https://github.com/hendrycks/test/blob/master/evaluate.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原始 MMLU 有 15,908 题、57 个学科；test 每科至少 100 题。",
+    "disclosure": "complete",
+    "scale": [
+      "总计 15,908 题；57 个学科，每科 test 至少 100 题。"
+    ],
+    "splits": [
+      "development：每科 5 题；validation：1,540 题；test：14,079 题。"
+    ],
+    "fields": [
+      "官方按学科 CSV 行包含 question、四个 choices 和 answer；subject 由所属学科文件识别，不保证有稳定全局题目 ID。"
+    ],
+    "files": [
+      "按学科划分的原始 CSV 文件；第三方合并版或 Parquet 字段不能无说明替代原始格式。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2009.03300",
+      "https://github.com/hendrycks/test"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者仓库提供评测代码并链接公开题库下载；报告和复现需锁定仓库版本及数据文件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/hendrycks/test"
+    ],
+    "url": "https://github.com/hendrycks/test"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者仓库有 MIT LICENSE；原论文还要求引用其借鉴的 ETHICS 数据。",
+    "scope": "仓库级许可及论文引用信息未逐题厘清各学科材料的上游权利，不能据代码许可推定所有题目均可重新发布。",
+    "boundaries": [
+      "页面描述题型并链接作者资料；不镜像完整题目或答案键，复用具体内容前核对其来源和许可。"
+    ],
+    "sourceUrls": [
+      "https://github.com/hendrycks/test/blob/master/LICENSE",
+      "https://github.com/hendrycks/test"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "原始题库公开，但本站曾存的第三方重打包样例未能证明来自作者原始格式或特定行。没有逐项核清题源许可，且公开 test 题及答案会暴露评测内容；不展示该样例，只保留原创说明和官方链接。",
+    "sourceUrls": [
+      "https://github.com/hendrycks/test",
+      "https://arxiv.org/abs/2009.03300"
+    ]
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "id": "officeqa-pro",
+  "status": "published",
+  "order": 603,
+  "name": "OfficeQA Pro",
+  "subtitle": "从密集财政文件中找到并核算证据",
+  "category": "work",
+  "tags": [
+    "文档推理",
+    "表格与 PDF",
+    "检索",
+    "专业工作"
+  ],
+  "publisher": "Databricks",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Pro",
+  "kind": "subset",
+  "aliases": [
+    "OfficeQA",
+    "OfficeQA Pro"
+  ],
+  "metric": {
+    "name": "答案准确率",
+    "description": "官方 reward.py 按指定相对误差容差检查数值答案，并支持货币、括号负数、百分比及标签/数值答案。官方报告区分端到端 Agent Harness Performance 与给定 oracle 页的模型评测；比较时还要统一工具、文档解析方式、可搜索语料和容差。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa/blob/main/reward.py",
+      "https://github.com/databricks/officeqa",
+      "https://huggingface.co/datasets/databricks/officeqa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "当前 CSV gated，本轮未取得许可或读取题目/答案键；未逐条核验题目与答案内容。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    },
+    {
+      "text": "未下载完整语料，也未按 NOTICE 对每份 PDF 和解析文件独立进行哈希及来源检查。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    },
+    {
+      "text": "未重跑任何官方模型结果；未将不同 agent、oracle-page 设置或答案容差下的结果换算为等价成绩。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    },
+    {
+      "text": "数据卡、仓库及 HF 授权状态可能更新；本轮未固定 revision。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方结果与变体说明",
+      "url": "https://github.com/databricks/officeqa",
+      "role": "readme"
+    },
+    {
+      "label": "Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/databricks/officeqa",
+      "role": "data"
+    },
+    {
+      "label": "官方访问与 schema 说明",
+      "url": "https://github.com/databricks/officeqa#data-access",
+      "role": "readme"
+    },
+    {
+      "label": "官方数据许可说明",
+      "url": "https://huggingface.co/datasets/databricks/officeqa#license",
+      "role": "data"
+    },
+    {
+      "label": "NOTICE",
+      "url": "https://github.com/databricks/officeqa/blob/main/NOTICE",
+      "role": "code"
+    },
+    {
+      "label": "官方 `reward.py`",
+      "url": "https://github.com/databricks/officeqa/blob/main/reward.py",
+      "role": "code"
+    },
+    {
+      "label": "官方仓库变体对照",
+      "url": "https://github.com/databricks/officeqa#overview",
+      "role": "readme"
+    },
+    {
+      "label": "V2 数据卡",
+      "url": "https://huggingface.co/datasets/databricks/officeqa-pro-v2",
+      "role": "data"
+    },
+    {
+      "label": "OfficeQA Technical Report",
+      "url": "https://arxiv.org/abs/2603.08655",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI GPT-5.4 官方报告",
+      "url": "https://openai.com/index/introducing-gpt-5-4/",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "OfficeQA Pro 衡量模型或代理能否在真实、密集的美国财政部公报中找到并组合财务表格、图表和正文证据，完成端到端文档推理。问题需基于 1939–2025 年 Treasury Bulletin 语料作答；它测试检索、工具使用和多步计算/推理。",
+    "task": "从 Treasury Bulletin 中检索并组合财务表格、图表和正文证据，回答多步文档推理问题。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/databricks/officeqa",
+      "https://github.com/databricks/officeqa"
+    ]
+  },
+  "taskContract": {
+    "input": "问题及 Treasury Bulletin PDF、解析 JSON 或转写文本语料。",
+    "output": "数值、货币或标签/数值答案。",
+    "environment": "官方提供端到端 Agent Harness 和给定 oracle pages 的 LLM+网页搜索设置；两种结果应分开报告，并注明工具、解析方式和容差。",
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa",
+      "https://huggingface.co/datasets/databricks/officeqa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "OfficeQA Pro 使用 1939–2025 年 Treasury Bulletin 语料；题目与答案集需申请访问。",
+    "disclosure": "partial",
+    "scale": [
+      "Pro 133 题；Full 246 题（133 hard、113 easy）；共享 697 期公报语料。"
+    ],
+    "splits": [
+      "Pro CSV 使用 train；OfficeQA Full 是独立变体，不是 Pro 的 split。"
+    ],
+    "fields": [
+      "uid、question、answer、source_docs、source_files、difficulty。"
+    ],
+    "files": [
+      "officeqa_pro.csv；原始 PDF、解析 JSON 和转写 TXT 语料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa",
+      "https://huggingface.co/datasets/databricks/officeqa",
+      "https://github.com/databricks/officeqa#data-access"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "题目与答案集 gated：Databricks 说明需在 Hugging Face 申请并获准访问，问题 CSV 和真值答案仅向有访问权用户提供；网页浏览代理不能直接看到答案键。仓库及评分代码公开，语料亦在 Hugging Face 数据集仓库，但资料下载同样取决于 HF 访问授权。这里分别区分题目/答案访问和代码公开，不把“仓库可见”当作免审批取用。"
+    ],
+    "url": "https://github.com/databricks/officeqa#data-access",
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa#data-access",
+      "https://huggingface.co/datasets/databricks/officeqa",
+      "https://github.com/databricks/officeqa"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "数据卡将 benchmark dataset 标注 CC BY-SA 4.0；代码和脚本为 Apache-2.0。",
+    "scope": "NOTICE 为政府来源 PDF 与解析文件列出逐文件公共领域依据；这些文件依据与数据集和代码许可证分别适用。",
+    "boundaries": [
+      "Pro 题目与答案受 gated 访问控制；本站不转载题目、答案、源文件或截图。",
+      "不把数据卡许可标签扩大解释为所有题面及来源材料均可无条件转载。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/databricks/officeqa#license",
+      "https://github.com/databricks/officeqa",
+      "https://github.com/databricks/officeqa/blob/main/NOTICE",
+      "https://github.com/databricks/officeqa#data-access",
+      "https://huggingface.co/datasets/databricks/officeqa"
+    ]
+  },
+  "sampleAccess": {
+    "status": "gated",
+    "reason": "Pro CSV 包含问题与 ground-truth answer，且需经 HF 授权访问；GitHub 仓库公开 schema、访问流程和评分接口。本站不展示任何真实问题、答案、来源页截图或 PDF 摘录，也不尝试从搜索结果重建答案键。只展示规模、字段名、任务说明和数据卡/仓库链接。",
+    "url": "https://github.com/databricks/officeqa#data-access",
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa#data-access",
+      "https://huggingface.co/datasets/databricks/officeqa"
+    ]
+  }
+}

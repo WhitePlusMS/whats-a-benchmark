@@ -1,0 +1,164 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "verifiedAt": "2026-09-22",
+  "id": "simpleqa",
+  "name": "SimpleQA",
+  "subtitle": "简短事实问题，答对还是瞎猜",
+  "category": "knowledge",
+  "tags": [
+    "事实准确性",
+    "短答案"
+  ],
+  "publisher": "OpenAI",
+  "year": 2024,
+  "version": "SimpleQA 原始公开集",
+  "metric": {
+    "name": "正确率 / 错误率 / 不作答率",
+    "direction": "mixed",
+    "description": "官方代码把答案交由 grader 判断为正确、错误或未作答，并输出相应比例；单题布尔 score 只在标签为正确时为真。准确、错误和弃答指标应一起报告。官方文章还讨论答案频率与准确性/一致性等分析，这些不能与上述 SimpleQA grader 计分混成一个指标。",
+    "sourceUrls": [
+      "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py",
+      "https://openai.com/index/introducing-simpleqa/",
+      "https://cdn.openai.com/papers/simpleqa.pdf"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方 CSV 文件本体在本轮无法由可用读取工具解析；未核实实际 header、首尾行、记录数、字节数、ETag 或哈希。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-simpleqa/",
+        "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+      ]
+    },
+    {
+      "text": "官方 benchmark README 标注 MIT，但没有在 CSV 对象本体确认独立授权文件/元数据；外部 CSV 的授权范围需继续交叉核实。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-simpleqa/",
+        "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+      ]
+    },
+    {
+      "text": "没有核验当前 CSV 是否与论文发布时版本逐行完全相同。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-simpleqa/",
+        "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI SimpleQA 发布说明",
+      "url": "https://openai.com/index/introducing-simpleqa/",
+      "role": "definition"
+    },
+    {
+      "label": "SimpleQA 官方论文",
+      "url": "https://cdn.openai.com/papers/simpleqa.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "官方 `simpleqa_eval.py`",
+      "url": "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py",
+      "role": "code"
+    },
+    {
+      "label": "官方 README",
+      "url": "https://github.com/openai/simple-evals/blob/main/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "官方 LICENSE",
+      "url": "https://github.com/openai/simple-evals/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "官方仓库",
+      "url": "https://github.com/openai/simple-evals",
+      "role": "readme"
+    },
+    {
+      "label": "OpenAI 官方 SimpleQA CSV",
+      "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 100,
+  "brandIds": [
+    "openai"
+  ],
+  "researchStatus": "partial",
+  "officialDefinition": {
+    "summary": "SimpleQA 使用简短、可核查且预期有单一答案的事实查询。它以窄范围任务降低任意长篇回答中事实判断的复杂度；官方明确指出，短事实回答表现是否能代表长篇文本事实性尚未确定。",
+    "task": "回答简短、可核查且通常预期只有一个答案的事实性问题。",
+    "sourceUrls": [
+      "https://cdn.openai.com/papers/simpleqa.pdf"
+    ]
+  },
+  "taskContract": {
+    "input": "简短事实问题；官方参考运行直接生成简短回答。",
+    "output": "对问题作答；grader 将结果分类为 CORRECT、INCORRECT 或 NOT_ATTEMPTED。",
+    "environment": "官方实现使用模型 grader；记录回答模型、grader、提示和联网检索设置，三类结果应分别报告。",
+    "sourceUrls": [
+      "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py",
+      "https://cdn.openai.com/papers/simpleqa.pdf"
+    ]
+  },
+  "dataProfile": {
+    "summary": "OpenAI 发布页报告 4,326 个问题；本轮未读取官方 CSV 本体。",
+    "disclosure": "partial",
+    "scale": [
+      "OpenAI 发布页报告 4,326 个问题；未独立核验当前 CSV 行数。"
+    ],
+    "splits": [
+      "官方代码读取 simple_qa_test_set.csv；本轮未核验 split 标注或行数。"
+    ],
+    "fields": [
+      "problem、answer（由官方评分实现读取；CSV 表头未独立核验）。"
+    ],
+    "files": [
+      "simple_qa_test_set.csv（OpenAI Blob endpoint；本轮未读取文件内容）。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/introducing-simpleqa/",
+      "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方发布页称数据已开放，参考代码指向 OpenAI 公共 Blob CSV；本轮未能读取 endpoint 响应或核验文件规模。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/introducing-simpleqa/",
+      "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py",
+      "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
+    ],
+    "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "simple-evals 仓库代码为 MIT；README 将 SimpleQA benchmark 列为 MIT。CSV 本体的许可元数据未在本轮确认。",
+    "scope": "仓库 LICENSE 适用于相应代码；README 的 benchmark 许可声明单独记录，不将代码许可自动延伸到外部 CSV 文件。",
+    "boundaries": [
+      "上传数据者须具备充分权利；公开托管题目之前需固定 CSV 并核对其授权范围。",
+      "本轮没有核实真实数据行，本站不收录题目、答案或推测样例。"
+    ],
+    "sourceUrls": [
+      "https://github.com/openai/simple-evals/blob/main/README.md",
+      "https://github.com/openai/simple-evals/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "没有已核实的站内 SimpleQA 样例；官方 CSV 本体和真实数据行本轮无法读取，因此只保留官方发布页与入口链接。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-simpleqa/",
+      "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py",
+      "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
+    ],
+    "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
+  }
+}

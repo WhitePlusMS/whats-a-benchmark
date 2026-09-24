@@ -1,0 +1,151 @@
+{
+  "id": "cmmlu",
+  "status": "published",
+  "order": 703,
+  "name": "CMMLU",
+  "subtitle": "中文语境下的多学科知识与推理",
+  "category": "knowledge",
+  "tags": [
+    "中文",
+    "多学科",
+    "选择题"
+  ],
+  "publisher": "CMMLU 研究团队",
+  "brandIds": [],
+  "year": 2023,
+  "version": "CMMLU",
+  "kind": "original",
+  "aliases": [
+    "Chinese Massive Multitask Language Understanding"
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "CMMLU 通过中文选择题评估模型在中国语境下的知识与推理能力，覆盖中学、大学、职业考试和日常知识等领域。",
+    "task": "读取中文题干和四个选项，选择一个答案。",
+    "sourceUrls": [
+      "https://github.com/haonan-li/CMMLU",
+      "https://arxiv.org/abs/2306.09212"
+    ]
+  },
+  "taskContract": {
+    "input": "中文问题与 A–D 四个备选项。",
+    "output": "一个选项答案；记录字段还包含 subject 与 answer。",
+    "environment": "静态问答数据集；官方基线使用 few-shot 示例与准确率统计，不包含模拟器。",
+    "sourceUrls": [
+      "https://github.com/haonan-li/CMMLU",
+      "https://arxiv.org/html/2306.09212"
+    ]
+  },
+  "dataProfile": {
+    "summary": "CMMLU 包含 11,528 道题，覆盖 67 个学科。",
+    "disclosure": "complete",
+    "scale": [
+      "共 11,528 道选择题，分布于 67 个学科。"
+    ],
+    "splits": [
+      "官方仓库按 dev、val 和 test 组织数据。",
+      "各 split 的可用答案及用途需按相应仓库版本核对。"
+    ],
+    "fields": [
+      "每条记录包含 question、A、B、C、D 与 answer。",
+      "subject_mapping.json 将 subject 映射为学科名称和类别。"
+    ],
+    "files": [
+      "仓库按学科提供 CSV 文件，并含 subject_mapping.json。",
+      "Hugging Face 同步发布 haonan-li/cmmlu 数据集。"
+    ],
+    "sourceUrls": [
+      "https://github.com/haonan-li/CMMLU",
+      "https://huggingface.co/datasets/haonan-li/cmmlu"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方 GitHub 与 Hugging Face 数据集公开可访问；如 HF viewer 无法渲染，可从仓库文件获取。"
+    ],
+    "sourceUrls": [
+      "https://github.com/haonan-li/CMMLU",
+      "https://huggingface.co/datasets/haonan-li/cmmlu"
+    ],
+    "url": "https://github.com/haonan-li/CMMLU"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "GitHub 仓库与 Hugging Face 数据卡对数据许可的说明不一致；代码许可与问答数据许可需要分开判断。",
+    "scope": "在数据许可冲突解决前，限于概述和官方链接，不复制题面、选项、答案或解析。",
+    "boundaries": [
+      "不要把项目代码许可证视为题库数据许可证。",
+      "取得与所用快照相符的授权后再决定转载或商业使用。"
+    ],
+    "sourceUrls": [
+      "https://github.com/haonan-li/CMMLU",
+      "https://huggingface.co/datasets/haonan-li/cmmlu"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "官方资源公开题目文件，但仓库与 HF 数据卡的许可口径冲突；候选只提供官方链接，不复制真实题目记录。",
+    "sourceUrls": [
+      "https://github.com/haonan-li/CMMLU",
+      "https://huggingface.co/datasets/haonan-li/cmmlu"
+    ],
+    "url": "https://github.com/haonan-li/CMMLU"
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "以选项准确率为主要指标，官方结果报告 zero-shot 与 five-shot，并按 STEM、人文、社会科学、其他及中国特定主题等维度分组。作者论文对总体分数使用跨主题 macro average，而非将各题直接合并做简单微平均；复现应保持原评分策略并注明推理策略\n",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2306.09212",
+      "https://github.com/haonan-li/CMMLU"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "README 对全量 test 答案可用性的说明随仓库版本变化；本次未逐文件校验所有 CSV。",
+      "sourceUrls": [
+        "https://github.com/haonan-li/CMMLU",
+        "https://huggingface.co/datasets/haonan-li/cmmlu"
+      ]
+    },
+    {
+      "text": "公开页面报告 11,528 题、67 个学科；本次未从固定版本逐行重算总量。",
+      "sourceUrls": [
+        "https://github.com/haonan-li/CMMLU",
+        "https://arxiv.org/html/2306.09212"
+      ]
+    },
+    {
+      "text": "仓库与 HF 对许可说明不同，数据及题目来源的权利链仍需核对。",
+      "sourceUrls": [
+        "https://github.com/haonan-li/CMMLU",
+        "https://huggingface.co/datasets/haonan-li/cmmlu"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库",
+      "url": "https://github.com/haonan-li/CMMLU",
+      "role": "definition"
+    },
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2306.09212",
+      "role": "definition"
+    },
+    {
+      "label": "作者论文统计",
+      "url": "https://arxiv.org/html/2306.09212",
+      "role": "paper"
+    },
+    {
+      "label": "Hugging Face 数据集",
+      "url": "https://huggingface.co/datasets/haonan-li/cmmlu",
+      "role": "data"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "aliases": [
+    "IF Eval"
+  ],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "ifeval",
+  "name": "IFEval",
+  "subtitle": "“写三段、不要用这个词”也要做到",
+  "category": "alignment",
+  "tags": [
+    "指令遵循",
+    "可验证约束"
+  ],
+  "publisher": "Google Research",
+  "year": 2023,
+  "version": "IFEval 原始集",
+  "summary": "把输出长度、关键词、格式等指令变成可以自动检查的约束，测量模型是否按要求回答。",
+  "task": "回答自然语言请求，同时满足可验证的格式或内容限制。",
+  "format": "prompt、instruction_id_list 与每项约束的 kwargs。",
+  "metric": {
+    "name": "严格 / 宽松遵循率",
+    "direction": "higher",
+    "description": "分别统计单条指令及整个提示的约束满足情况；strict 与 loose 不应混用。"
+  },
+  "limitations": [
+    "符合格式不等于内容正确或有用。",
+    "自动可验证约束不能覆盖所有复杂意图。"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+      "label": "官方代码与数据",
+      "kind": "code"
+    },
+    {
+      "url": "https://arxiv.org/abs/2311.07911",
+      "label": "原始论文",
+      "kind": "paper"
+    }
+  ],
+  "status": "published",
+  "order": 410,
+  "brandIds": [
+    "google-research"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "1001",
+        "title": "写旅行计划，但不能出现逗号",
+        "raw": {
+          "key": 1001,
+          "prompt": "I am planning a trip to Japan, and I would like thee to write an itinerary for my journey in a Shakespearean style. You are not allowed to use any commas in your response.",
+          "instruction_id_list": [
+            "punctuation:no_comma"
+          ],
+          "kwargs": [
+            {}
+          ]
+        },
+        "split": "公开 input_data",
+        "excerpt": false,
+        "prompt": "I am planning a trip to Japan, and I would like thee to write an itinerary for my journey in a Shakespearean style. You are not allowed to use any commas in your response.",
+        "explanation": "重点是回答是否满足可检查约束。原始 instruction_id_list 指出要运行的规则，kwargs 保存参数。这里没有唯一参考答案，程序检查生成的文本是否满足要求。",
+        "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research",
+        "licensePath": "licenses/google-research.txt",
+        "type": "text"
+      },
+      {
+        "id": "1005",
+        "title": "简历中必须有足够多的占位符",
+        "raw": {
+          "key": 1005,
+          "prompt": "Write a resume for a fresh high school graduate who is seeking their first job. Make sure to include at least 12 placeholder represented by square brackets, such as [address], [name].",
+          "instruction_id_list": [
+            "detectable_content:number_placeholders"
+          ],
+          "kwargs": [
+            {
+              "num_placeholders": 12
+            }
+          ]
+        },
+        "split": "公开 input_data",
+        "excerpt": false,
+        "prompt": "Write a resume for a fresh high school graduate who is seeking their first job. Make sure to include at least 12 placeholder represented by square brackets, such as [address], [name].",
+        "explanation": "重点是回答是否满足可检查约束。原始 instruction_id_list 指出要运行的规则，kwargs 保存参数。这里没有唯一参考答案，程序检查生成的文本是否满足要求。",
+        "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research",
+        "licensePath": "licenses/google-research.txt",
+        "type": "text"
+      }
+    ]
+  }
+}

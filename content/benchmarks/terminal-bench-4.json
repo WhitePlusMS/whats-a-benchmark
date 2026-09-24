@@ -1,0 +1,198 @@
+{
+  "id": "terminal-bench-4",
+  "status": "published",
+  "order": 500,
+  "name": "Terminal-Bench 4.0",
+  "subtitle": "终端中的复杂多步任务",
+  "category": "agents",
+  "tags": [
+    "终端操作",
+    "多步任务"
+  ],
+  "publisher": "Terminal-Bench 团队",
+  "brandIds": [
+    "terminal-bench"
+  ],
+  "year": 2026,
+  "version": "4.0.0",
+  "kind": "original",
+  "aliases": [
+    "Terminal Bench 4.0",
+    "TB4"
+  ],
+  "metric": {
+    "name": "任务成功率",
+    "description": "官网 leaderboard 展示 resolution rate，发布说明用于比较不同任务 outcome、资源消耗和运行错误。4.0 运行中较少出现 timeout/error，官方仍指出剩余错误主要是模型拒答与输出 token 超限。跨模型比较需同时交代 agent、模型、资源设置、任务集及重复次数；一次运行的比例不能视为无不确定性的固定能力值。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://www.tbench.ai/",
+      "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未下载 Harbor Hub 4.0.0 全集，故没有对总任务数、split、字段或每个任务依赖逐项计数。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0",
+        "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+        "https://www.tbench.ai/news/terminal-bench-4-0",
+        "https://www.tbench.ai/run"
+      ]
+    },
+    {
+      "text": "未逐任务审核全部许可、第三方资源授权和具体再发布边界。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0",
+        "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+        "https://www.tbench.ai/news/terminal-bench-4-0",
+        "https://www.tbench.ai/run"
+      ]
+    },
+    {
+      "text": "2.0 公布的完整性政策未在本轮确认是否逐字适用于 4.0 当前榜单；4.0 自身官方材料明确包含训练数据 canary。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0",
+        "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+        "https://www.tbench.ai/news/terminal-bench-4-0",
+        "https://www.tbench.ai/run"
+      ]
+    },
+    {
+      "text": "未运行基准或核验单个模型成绩。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0",
+        "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+        "https://www.tbench.ai/news/terminal-bench-4-0",
+        "https://www.tbench.ai/run"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 4.0 说明",
+      "url": "https://www.tbench.ai/news/terminal-bench-4-0",
+      "role": "release"
+    },
+    {
+      "label": "GitHub v4.0.0 release",
+      "url": "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0",
+      "role": "release"
+    },
+    {
+      "label": "官方运行说明",
+      "url": "https://www.tbench.ai/run",
+      "role": "definition"
+    },
+    {
+      "label": "Harbor Hub 4.0 数据集",
+      "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+      "role": "data"
+    },
+    {
+      "label": "官方 2.0 完整性政策",
+      "url": "https://www.tbench.ai/news/leaderboard-integrity-update",
+      "role": "leaderboard"
+    },
+    {
+      "label": "GitHub LICENSE",
+      "url": "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "官方 leaderboard",
+      "url": "https://www.tbench.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Anthropic Opus 5.5 报告",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [
+    {
+      "label": "早期版本",
+      "id": "terminal-bench-2",
+      "detail": "与项目已收录 Terminal-Bench 2.0 属同一持续演进基准，任务集与运行设定已变化。",
+      "sourceUrls": [
+        "https://www.tbench.ai/news/terminal-bench-4-0",
+        "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "4.0 调整 agent 可用时间、CPU、内存，修复任务，并删除 8 个因饱和、拒绝、公开解法或质量/兼容性问题而移出的任务；另修改 19 项任务。官方说明连续基准版本按语义版本管理：改变 agent 环境、任务、提示、数据或工具等要求重跑；verifier 变化需要重评分；纯元数据变动可复用既有结果。",
+    "task": "在 Harbor 4.0.0 任务环境中完成终端工作，由任务级 verifier 检查产出。",
+    "sourceUrls": [
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0"
+    ]
+  },
+  "taskContract": {
+    "input": "各 task 的指令、环境和任务材料；具体工作流因任务而异。",
+    "output": "agent 在任务环境中生成的工作成果。",
+    "environment": "Harbor 运行，官方建议 GPU 沙箱；4.0 任务时限为 8 小时，须固定 dataset tag 与资源配置。",
+    "sourceUrls": [
+      "https://www.tbench.ai/run",
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0"
+    ]
+  },
+  "dataProfile": {
+    "summary": "4.0.0 相较 3.0 删除并修改了任务，但发布说明没有提供完整总量。",
+    "disclosure": "partial",
+    "scale": [
+      "相对 3.0 移除 8 项、修改 19 项；该数字不是 4.0 总题量。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0",
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://www.tbench.ai/run"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方发布说明、官网运行指引及 GitHub v4.0.0 release 可访问。数据通过 Harbor Hub 发布；本轮没有下载完整 task 包，也没有运行评测。"
+    ],
+    "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+    "sourceUrls": [
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://www.tbench.ai/run",
+      "https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0",
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库代码标注 Apache-2.0；4.0 Harbor 数据包的统一许可和第三方素材权利未逐项确认。",
+    "scope": "Apache-2.0 按 LICENSE 适用于其覆盖的代码/文件，不据此推定 Harbor 任务材料可转载。",
+    "boundaries": [
+      "4.0 官方说明要求基准数据不得进入训练语料；该限制不能替代任务包的再分发授权。",
+      "本站不复制任务原文、solutions、tests 或第三方素材。"
+    ],
+    "sourceUrls": [
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://www.tbench.ai/news/leaderboard-integrity-update",
+      "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE",
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "可以介绍 4.0 的版本变更并链接官方发布说明、GitHub release 与 Harbor Hub。任务原文、solutions、tests 和第三方材料不建议复制到公开 GitHub Pages：官方明确基准数据不得进入训练语料，且当前检查未确定所有任务材料的统一再发布权利。",
+    "sourceUrls": [
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4",
+      "https://www.tbench.ai/run"
+    ],
+    "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4"
+  }
+}

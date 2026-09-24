@@ -1,0 +1,185 @@
+{
+  "id": "nl2repo-bench",
+  "status": "published",
+  "order": 711,
+  "name": "NL2Repo-Bench",
+  "subtitle": "从自然语言规格生成完整 Python 软件仓库的长时程基准",
+  "category": "coding",
+  "tags": [
+    "coding-agent",
+    "repository-generation",
+    "long-horizon",
+    "python"
+  ],
+  "publisher": "NL2Repo-Bench authors (official repository: multimodal-art-projection)",
+  "brandIds": [],
+  "year": 2025,
+  "version": "2025 paper benchmark (104 tasks)",
+  "kind": "original",
+  "aliases": [
+    "NL2Repo",
+    "NL2RepoBench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评测 coding agents 从单份自然语言规格和空工作区起步，生成完整可安装 Python 仓库的长时程能力。",
+    "task": "Agent 不获得脚手架、原始源码或测试；完成仓库后在独立 Docker 环境运行目标项目的原始 pytest suite。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.12730",
+      "https://github.com/multimodal-art-projection/NL2RepoBench/blob/main/readme.md"
+    ]
+  },
+  "taskContract": {
+    "input": "一份自然语言规格文档，包含 Project Description、Supports、API Usage Guide、Implementation Notes；工作区为空。",
+    "output": "完整 Python 项目仓库；按目标项目原始 pytest suite 的通过比例评分。",
+    "environment": "每项任务有隔离 Docker 执行环境，按上游依赖构建；官方 README 给出本地 OpenHands headless batch 流程。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.12730",
+      "https://github.com/multimodal-art-projection/NL2RepoBench/blob/main/readme.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文报告 104 个任务、九类 Python library 项目，难度按原项目代码规模分层；每份输入规格平均约 18,800 tokens。",
+    "disclosure": "partial",
+    "scale": [
+      "104 个任务",
+      "九类任务：Web Development、Testing、Utility Libraries、Machine Learning、Data Analysis & Processing、Database Interaction、Networking Tools、Batch File Processing、System Tools",
+      "规格文档平均约 18,800 tokens"
+    ],
+    "splits": [
+      "论文未报告传统 train/validation/test split",
+      "Easy 26、Medium 46、Hard 32 为难度层级，不是 train/validation/test 切分"
+    ],
+    "fields": [
+      "Project Description：项目目标和功能范围",
+      "Supports：依赖与预期目录结构等补充材料",
+      "API Usage Guide：核心 API 名称、签名、行为要求",
+      "Implementation Notes：关键 API 的具体例子或参考"
+    ],
+    "files": [
+      "作者仓库可见 docker_self/、openhands/、template/、test_files/、tests/、workspaces/ 等目录",
+      "论文称发布 task dataset、Docker environments 与 evaluation toolkit；全量任务文件映射未逐一核实"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.12730",
+      "https://github.com/multimodal-art-projection/NL2RepoBench"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者 GitHub 仓库公开；本地运行需 Docker 和 OpenHands runtime。",
+      "本轮未下载并逐项复核全量 task package。"
+    ],
+    "url": "https://github.com/multimodal-art-projection/NL2RepoBench",
+    "sourceUrls": [
+      "https://github.com/multimodal-art-projection/NL2RepoBench",
+      "https://arxiv.org/abs/2512.12730"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方仓库根目录未显示 LICENSE，且作者仓库存在未获答复的许可问题；论文说明公开发布不等同于授予复用权。",
+    "scope": "取得作者明确许可前仅链接官方来源并使用自写概述，不复制题目、测试、环境镜像或媒体。",
+    "boundaries": [
+      "任务对应的上游开源项目有各自独立许可，不能由 benchmark repo 状态替代。",
+      "不得把公开可访问误解为允许镜像或再分发。"
+    ],
+    "sourceUrls": [
+      "https://github.com/multimodal-art-projection/NL2RepoBench",
+      "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "论文和 repo 有任务说明入口，但未找到对题面、测试、容器素材及图像适用的公开复用许可；不转载样例。",
+    "url": "https://github.com/multimodal-art-projection/NL2RepoBench",
+    "sourceUrls": [
+      "https://github.com/multimodal-art-projection/NL2RepoBench",
+      "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
+    ]
+  },
+  "metric": {
+    "name": "平均 pytest 测试通过率",
+    "description": "生成仓库被打包送入测试镜像后执行目标原仓库 pytest suite；平均测试通过比例作为任务分数。论文另报告 overall pass rate 和单次完整通过任务数 Pass@1。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.12730"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本轮未固定作者仓库 revision 或下载全量任务，未逐一确认论文 104-task 数据与当前分支文件映射。",
+      "sourceUrls": [
+        "https://github.com/multimodal-art-projection/NL2RepoBench",
+        "https://arxiv.org/abs/2512.12730"
+      ]
+    },
+    {
+      "text": "未核实 benchmark 数据、代码、媒体及第三方上游库素材的复用许可；官方 issue 对许可的询问仍开放。",
+      "sourceUrls": [
+        "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
+      ]
+    },
+    {
+      "text": "当前目录仅证实 repo 顶层结构，不能作为每个 task 的统一文件 schema。",
+      "sourceUrls": [
+        "https://github.com/multimodal-art-projection/NL2RepoBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NL2Repo-Bench authors' official paper",
+      "url": "https://arxiv.org/abs/2512.12730",
+      "role": "paper"
+    },
+    {
+      "label": "NL2Repo-Bench official paper HTML",
+      "url": "https://arxiv.org/html/2512.12730",
+      "role": "paper"
+    },
+    {
+      "label": "Official author repository",
+      "url": "https://github.com/multimodal-art-projection/NL2RepoBench",
+      "role": "code"
+    },
+    {
+      "label": "Author repository README",
+      "url": "https://github.com/multimodal-art-projection/NL2RepoBench/blob/main/readme.md",
+      "role": "readme"
+    },
+    {
+      "label": "Open repository issue asking about license",
+      "url": "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18",
+      "role": "access"
+    },
+    {
+      "label": "Qwen3.8-Max 厂商模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "role": "vendor-report"
+    },
+    {
+      "label": "GLM-5.3-Flash 厂商发布页",
+      "url": "https://autoclaw.z.ai/blog/model/glm-5.3-flash/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "DeepSeek-V4.1-Flash 厂商更新日志",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Kimi K3 厂商 benchmark 表",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "role": "vendor-report"
+    },
+    {
+      "label": "MiniMax M3 厂商评测方法",
+      "url": "https://www.minimax.io/blog/minimax-m3",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23"
+}

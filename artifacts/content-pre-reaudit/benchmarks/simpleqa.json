@@ -1,0 +1,48 @@
+{
+  "aliases": [],
+  "related": [],
+  "kind": "original",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "simpleqa",
+  "name": "SimpleQA",
+  "subtitle": "简短事实问题，答对还是瞎猜",
+  "category": "knowledge",
+  "tags": [
+    "事实准确性",
+    "短答案"
+  ],
+  "publisher": "OpenAI",
+  "year": 2024,
+  "version": "SimpleQA 原始公开集",
+  "summary": "围绕短小、可核实的事实问题，观察模型答对、答错以及选择不作答的情况。",
+  "task": "给一个事实性问题，模型输出简短答案，再由规定的评分方式判断正确性。",
+  "format": "problem 与 answer 等字段；评测输出还区分正确、错误和未尝试。",
+  "metric": {
+    "name": "正确率 / 错误率 / 不作答率",
+    "direction": "mixed",
+    "description": "不同结果应一起观察。大量猜测与有意识地不回答，可能产生相近的正确率但不同风险。"
+  },
+  "limitations": [
+    "短事实问答不能代表长篇回答中每个陈述都准确。",
+    "联网检索与闭卷回答测试的是不同系统能力。"
+  ],
+  "sources": [
+    {
+      "url": "https://openai.com/index/introducing-simpleqa/",
+      "label": "原始发布",
+      "kind": "home"
+    },
+    {
+      "url": "https://github.com/openai/simple-evals",
+      "label": "官方评测与数据入口",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 100,
+  "brandIds": [
+    "openai"
+  ],
+  "availability": "unknown"
+}

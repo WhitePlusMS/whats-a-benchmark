@@ -1,0 +1,185 @@
+{
+  "aliases": [
+    "MRCR",
+    "OpenAI-MRCR",
+    "OpenAI MRCR"
+  ],
+  "related": [
+    {
+      "id": "mrcr-v2",
+      "label": "同类任务的另一实现",
+      "detail": "DeepMind 发布自己的 MRCR v2 数据、生成与评分代码；不据名称推断两者版本或成绩等价。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr",
+        "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2"
+      ]
+    }
+  ],
+  "kind": "original",
+  "verifiedAt": "2026-09-23",
+  "id": "mrcr",
+  "name": "MRCR（OpenAI 公开集）",
+  "subtitle": "长对话里，找回指定的那一次回答",
+  "category": "context",
+  "tags": [
+    "多轮检索",
+    "相似信息干扰"
+  ],
+  "publisher": "OpenAI",
+  "year": 2025,
+  "version": "OpenAI 公开集；2 / 4 / 8 needle 与长度需注明",
+  "metric": {
+    "name": "回答匹配分数",
+    "direction": "higher",
+    "description": "OpenAI 数据卡采用 Python difflib.SequenceMatcher 比率比较预测与真值：先验证前缀，匹配后移除前缀再比较答案。不同 needle 数与上下文长度的样本难度不同；报告必须标明所用长度/needle 切片和数据修订。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/mrcr"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "已固定并核验 train row 0；未下载或哈希校验完整 2,400 条数据文件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr"
+      ]
+    },
+    {
+      "text": "未独立复现 OpenAI GPT-4.1 发布页中的结果。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr"
+      ]
+    },
+    {
+      "text": "未将 OpenAI MRCR 与 DeepMind MRCR v2 逐样本、逐评分规则比对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI 官方数据卡",
+      "url": "https://huggingface.co/datasets/openai/mrcr",
+      "role": "data"
+    },
+    {
+      "label": "OpenAI GPT-4.1 发布页",
+      "url": "https://openai.com/index/gpt-4-1/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Google DeepMind MRCR v2",
+      "url": "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
+      "role": "readme"
+    },
+    {
+      "label": "Michelangelo",
+      "url": "https://arxiv.org/abs/2409.12640v2",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI MRCR 固定版本 2-needle 数据文件",
+      "url": "https://huggingface.co/datasets/openai/mrcr/blob/f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d/2needle/2needle_0.parquet",
+      "role": "data"
+    }
+  ],
+  "status": "published",
+  "order": 390,
+  "brandIds": [
+    "openai"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "给模型一段由用户—助手多轮组成的合成对话；同一写作请求（例如某主题的诗或博客）会重复出现多次，随后要求模型找出第 i 次对应的助手输出。目标前置一段随机字母数字字符串，模型须先输出该字符串，再复现指定内容。它检验相似内容的长上下文区分和顺序定位。",
+    "task": "在合成的长多轮对话中，根据 needle 次序找回指定助手回答，并先输出随机前缀。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/mrcr"
+    ]
+  },
+  "taskContract": {
+    "input": "合成多轮 messages 对话、指定 needle 次序和随机前缀要求。",
+    "output": "先输出随机前缀，再复现目标回答；前缀不匹配时官方示例计分为零。",
+    "environment": "公开数据含 2、4、8-needle 与不同长度区间；外部复测须固定模型、上下文限制、提示和评分配置。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/mrcr"
+    ]
+  },
+  "dataProfile": {
+    "summary": "OpenAI 公布的 MRCR 数据集包含合成多轮对话记录。",
+    "disclosure": "complete",
+    "scale": [
+      "2,400 条记录，约 1.39 GB；含 438 种实体和 10 种写作形式。"
+    ],
+    "splits": [
+      "train。"
+    ],
+    "fields": [
+      "prompt、answer、random_string_to_prepend、n_needles、desired_msg_index、total_messages、n_chars、date_added。"
+    ],
+    "files": [
+      "Parquet 数据文件；长度区间从 4,096–8,192 至 524,288–1,048,576 tokens。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/mrcr"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "OpenAI 的 Hugging Face 数据集公开可浏览/下载，不是受控访问集。数据卡提供 Parquet 文件路径和运行示例；公开可下载不等于所有引用或媒体可忽略许可证条件。"
+    ],
+    "url": "https://huggingface.co/datasets/openai/mrcr",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/mrcr"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "OpenAI Hugging Face 数据卡将该数据集标注为 MIT。",
+    "scope": "MIT 标签针对该数据集发布；按其条件使用数据，并将数据许可与参考代码许可分别核对。",
+    "boundaries": [
+      "公开可下载不免除遵守许可条件及适用法律的义务。",
+      "本站仅按许可转载一条有明确省略标记的真实节选，不发布完整长对话或完整数据文件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/mrcr"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站展示一条官方数据记录的明确节选；数据修订、文件代次、行位置和内容哈希见 artifacts/research/mrcr.json。所附许可文本对应官方数据卡或该任务目录 LICENSE。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/mrcr/blob/f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d/2needle/2needle_0.parquet",
+      "https://huggingface.co/datasets/openai/mrcr"
+    ]
+  },
+  "updatedAt": "2026-09-23",
+  "sampleSet": {
+    "retrievedAt": "2026-09-23",
+    "samples": [
+      {
+        "id": "mrcr-openai-2needle-train-0",
+        "title": "OpenAI MRCR 2-needle 长对话片段",
+        "type": "record",
+        "prompt": "[...前面 772 条对话消息节略... ]\nPrepend mWEa9DrPT3 to the 2nd (1 indexed) song about agreements. Do not include any other text in your response.",
+        "answer": "mWEa9DrPT3**Verse 1**  \nIn a world so vast and wide,  \nWe walk on paths unknown.  \nTwo souls meeting eye to eye,  \nSeeds of trust are sown.  \nWhispers of understanding,\n[...答案其余部分节略... ]",
+        "explanation": "这是固定版本中一条真实 2-needle train 记录的节选。原始 prompt 有 772 条消息；此处只保留末尾任务指令与答案开头，随机前缀须原样先输出。",
+        "raw": {
+          "prompt": "[...原始 prompt 前文省略... ]\nPrepend mWEa9DrPT3 to the 2nd (1 indexed) song about agreements. Do not include any other text in your response.",
+          "answer": "mWEa9DrPT3**Verse 1**  \nIn a world so vast and wide,  \nWe walk on paths unknown.  \nTwo souls meeting eye to eye,  \nSeeds of trust are sown.  \nWhispers of understanding,\n[...原始 answer 后文省略... ]",
+          "random_string_to_prepend": "mWEa9DrPT3",
+          "n_needles": 2,
+          "desired_msg_index": 721,
+          "total_messages": 772,
+          "n_chars": 708925,
+          "date_added": "04-12-2025"
+        },
+        "source": "https://huggingface.co/datasets/openai/mrcr/blob/f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d/2needle/2needle_0.parquet",
+        "license": "MIT · OpenAI MRCR 数据集",
+        "licensePath": "licenses/openai-mrcr.txt",
+        "split": "train · config default · row index 0",
+        "excerpt": true
+      }
+    ]
+  }
+}

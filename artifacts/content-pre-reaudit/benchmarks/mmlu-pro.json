@@ -1,0 +1,153 @@
+{
+  "aliases": [
+    "MMLU Pro"
+  ],
+  "related": [
+    {
+      "id": "mmlu",
+      "label": "衍生自",
+      "detail": "保留部分原 MMLU 题目，并加入其他来源与更强干扰项。"
+    }
+  ],
+  "kind": "derivative",
+  "sampleNote": "通过下方官方资料查看原始任务；本站保留任务结构解读。",
+  "verifiedAt": "2026-09-22",
+  "id": "mmlu-pro",
+  "name": "MMLU-Pro",
+  "subtitle": "更多干扰项，更强调推理",
+  "category": "knowledge",
+  "tags": [
+    "多学科",
+    "推理增强"
+  ],
+  "publisher": "TIGER-Lab",
+  "year": 2024,
+  "version": "MMLU-Pro 公开集",
+  "summary": "在 MMLU 的基础上重新筛题、增加题源和干扰项，让单靠记忆或猜选项更难得分。",
+  "task": "从通常更多的选项中选择答案，处理较复杂的学科推理题。",
+  "format": "question_id、question、options、answer、answer_index、category、src 等字段。",
+  "metric": {
+    "name": "正确率",
+    "description": "按照指定类别与汇总方式统计正确率。选项数量变化会改变随机猜测的基线。",
+    "direction": "higher"
+  },
+  "limitations": [
+    "通常最多十个选项，但不能假定每一道题固定十个。",
+    "数据会修订，比较结果时需保留使用快照。"
+  ],
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+      "label": "官方数据与修订记录",
+      "kind": "data"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro",
+      "label": "官方代码",
+      "kind": "code"
+    }
+  ],
+  "status": "published",
+  "order": 80,
+  "brandIds": [
+    "tiger-lab"
+  ],
+  "availability": "public",
+  "sampleSet": {
+    "retrievedAt": "2026-09-22",
+    "samples": [
+      {
+        "id": "1",
+        "title": "多项式上的两个变换",
+        "raw": {
+          "question_id": 1,
+          "question": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
+          "options": [
+            "ST + TS is the identity map of V onto itself.",
+            "TS = 0",
+            "ST = 1",
+            "ST - TS = 0",
+            "ST = T",
+            "ST = 0",
+            "ST = TS",
+            "ST - TS is the identity map of V onto itself.",
+            "TS = T",
+            "ST = S"
+          ],
+          "answer": "H",
+          "answer_index": 7,
+          "cot_content": "A: Let's think step by step. For a given polynomial $p$ we have\n\\[ST(p) = (xp(x))’ = p(x) + xp’(x)\\]\nand\n\\[TS(p) = xp’(x).\\]\nHence \\[ST(p) - TS(p) = p(x) + xp’(x) - xp’(x).\\] The answer is (H).",
+          "category": "math",
+          "src": "cot_lib-college_mathematics"
+        },
+        "split": "validation / math",
+        "excerpt": false,
+        "prompt": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
+        "options": [
+          "ST + TS is the identity map of V onto itself.",
+          "TS = 0",
+          "ST = 1",
+          "ST - TS = 0",
+          "ST = T",
+          "ST = 0",
+          "ST = TS",
+          "ST - TS is the identity map of V onto itself.",
+          "TS = T",
+          "ST = S"
+        ],
+        "answer": "H. ST - TS is the identity map of V onto itself.",
+        "explanation": "这里有十个候选项。除了理解定义，还要比较多个相似表达式。原始记录中的 src 保留题源标识，cot_content 是数据提供方附带的解答文本。",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt",
+        "type": "choice"
+      },
+      {
+        "id": "2",
+        "title": "整数约束下的最大负值",
+        "raw": {
+          "question_id": 2,
+          "question": "Let A be the set of all ordered pairs of integers (m, n) such that 7m + 12n = 22. What is the greatest negative number in the set B = {m + n : (m, n) \\in A}?",
+          "options": [
+            "-5",
+            "0",
+            "-3",
+            "-7",
+            "-4",
+            "-6",
+            "-1",
+            "-2",
+            "-9",
+            "N/A"
+          ],
+          "answer": "E",
+          "answer_index": 4,
+          "cot_content": "A: Let's think step by step. We have 12n = 22 - 7m and one of the solutions is $m = -2$, $n = 3$. Then $m + n = 1$, hence we need to look for smaller $m$ in order to make $m + n$ negative. The next solution is $m = -14$ and $n = 10$. For smaller $m$ we have $m + n$ smaller than $-4$. The answer is (E).",
+          "category": "math",
+          "src": "cot_lib-college_mathematics"
+        },
+        "split": "validation / math",
+        "excerpt": false,
+        "prompt": "Let A be the set of all ordered pairs of integers (m, n) such that 7m + 12n = 22. What is the greatest negative number in the set B = {m + n : (m, n) \\in A}?",
+        "options": [
+          "-5",
+          "0",
+          "-3",
+          "-7",
+          "-4",
+          "-6",
+          "-1",
+          "-2",
+          "-9",
+          "N/A"
+        ],
+        "answer": "E. -4",
+        "explanation": "这里有十个候选项。除了理解定义，还要比较多个相似表达式。原始记录中的 src 保留题源标识，cot_content 是数据提供方附带的解答文本。",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt",
+        "type": "choice"
+      }
+    ]
+  }
+}

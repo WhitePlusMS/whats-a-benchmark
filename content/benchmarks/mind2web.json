@@ -1,0 +1,150 @@
+{
+  "id": "mind2web",
+  "status": "published",
+  "order": 607,
+  "name": "Mind2Web",
+  "subtitle": "让网页代理跨站点执行自然语言任务",
+  "category": "agents",
+  "tags": [
+    "网页代理",
+    "多步操作",
+    "跨站点泛化"
+  ],
+  "publisher": "The Ohio State University / Mind2Web 研究团队",
+  "brandIds": [],
+  "year": 2023,
+  "version": "原始版",
+  "kind": "original",
+  "aliases": [],
+  "metric": {
+    "name": "任务成功 / 操作预测准确率",
+    "description": "原论文指标为 element accuracy（预测元素与所有可接受元素比较）、operation F1（对预测操作和值计算 token-level F1；Click 相当于准确率）、step success rate（元素和操作都正确）及全任务 success rate（所有步骤均成功）。论文对 step-wise 指标采用跨任务 macro average；作者仓库后来补充 micro 结果并提醒直接比较论文应使用 macro。报告需写明候选元素生成方式、split 和宏/微口径。此离线逐步预测结果不能与当前网站上的在线端到端成功率等同。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2306.06070",
+      "https://github.com/OSU-NLP-Group/Mind2Web"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本轮未下载并校验各 split JSON 的逐条数量和 HTML 媒体权利；数量引用作者 README。",
+      "sourceUrls": [
+        "https://github.com/OSU-NLP-Group/Mind2Web",
+        "https://papers.nips.cc/paper_files/paper/2023/file/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf"
+      ]
+    },
+    {
+      "text": "GitHub README 当前指向更新后的 HF 工件；原始原始 dump、Multimodal-Mind2Web 和 Online-Mind2Web 的具体 revision 边界仍需逐版固定。",
+      "sourceUrls": [
+        "https://github.com/OSU-NLP-Group/Mind2Web"
+      ]
+    },
+    {
+      "text": "原始仓库对 test 压缩文件要求不得在线分发；未将 CC BY 4.0 解释为可忽略该专门要求。",
+      "sourceUrls": [
+        "https://github.com/OSU-NLP-Group/Mind2Web"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者论文",
+      "url": "https://arxiv.org/abs/2306.06070",
+      "role": "paper"
+    },
+    {
+      "label": "OSU-NLP-Group/Mind2Web README",
+      "url": "https://github.com/OSU-NLP-Group/Mind2Web",
+      "role": "readme"
+    },
+    {
+      "label": "Mind2Web project page",
+      "url": "https://osu-nlp-group.github.io/Mind2Web/",
+      "role": "definition"
+    },
+    {
+      "label": "NeurIPS D&B 论文材料",
+      "url": "https://papers.nips.cc/paper_files/paper/2023/file/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "Online-Mind2Web 作者仓库",
+      "url": "https://github.com/OSU-NLP-Group/Online-Mind2Web",
+      "role": "readme"
+    },
+    {
+      "label": "Mind2Web-2 作者仓库",
+      "url": "https://github.com/OSU-NLP-Group/Mind2Web-2",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-09-23",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Mind2Web 是 OSU 研究团队于 2023 年发布的网页代理数据集与评测，基于真实网站 HTML 快照和人工操作轨迹研究网页通用代理；本条不含后续同名扩展。",
+    "task": "给定自然语言任务、页面快照和候选 DOM 元素，预测网页代理下一步的目标元素及操作；原论文主要评估离线动作预测。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2306.06070",
+      "https://github.com/OSU-NLP-Group/Mind2Web"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言网页任务、对应页面快照/HTML、候选 DOM 元素和已有操作轨迹。",
+    "output": "所选 DOM 元素及 CLICK、TYPE、SELECT 等操作类型/参数；部分原操作会映射到论文定义的动作。",
+    "environment": "原始主要设置使用记录下来的 HTML 快照而非持续在线网站；action prediction 与其他 harness 的在线任务完成率需分开。直接比较论文时使用 macro average。",
+    "sourceUrls": [
+      "https://github.com/OSU-NLP-Group/Mind2Web",
+      "https://osu-nlp-group.github.io/Mind2Web/",
+      "https://arxiv.org/abs/2306.06070"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者报告 2,000 多项任务，覆盖 137 个网站和 31 个领域；README 分列 train 与三个不同泛化目的的 test split。",
+    "disclosure": "partial",
+    "scale": [
+      "README：train 1,009；test_task 252；test_website 177；test_domain 912。作者总体摘要另称 2,000+ 任务，不用单一合计覆盖各口径。"
+    ],
+    "splits": [
+      "test_task：已见网站上的新任务；test_website：未见网站；test_domain：未见领域。test 文件以受控方式提供。"
+    ],
+    "fields": [
+      "顶层含 annotation_id、website、domain、subdomain、confirmed_task、action_reprs、actions；action 含 action_uid、raw_html/cleaned_html、operation、pos_candidates、neg_candidates。"
+    ],
+    "files": [
+      "训练数据托管于作者 HF；test split 以带密码 ZIP 单独提供。"
+    ],
+    "sourceUrls": [
+      "https://github.com/OSU-NLP-Group/Mind2Web"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "训练数据可从作者 HF 获取；测试文件以带密码 ZIP 单独交付，作者明确要求不要在线再分发解压后的测试文件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/OSU-NLP-Group/Mind2Web"
+    ],
+    "url": "https://github.com/OSU-NLP-Group/Mind2Web"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者 README 声明数据集为 CC BY 4.0、代码为 MIT；另对解压后的 test 文件提出不得在线再分发的明确要求。",
+    "scope": "CC BY 4.0 不自动授予 HTML 页面内第三方内容额外权利，也不取消 test 文件的专门分发限制。",
+    "boundaries": [
+      "不托管或嵌入解压后的 test JSON、HTML 或动作轨迹；发布训练记录也需署名并关注网页内容来源。"
+    ],
+    "sourceUrls": [
+      "https://github.com/OSU-NLP-Group/Mind2Web",
+      "https://papers.nips.cc/paper_files/paper/2023/file/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "公开页面没有嵌入具体记录。作者禁止在线分发解压后的 test 文件；只用原创抽象示例或链接作者入口，不摘录 test 任务、HTML、DOM 元素或操作轨迹。",
+    "sourceUrls": [
+      "https://github.com/OSU-NLP-Group/Mind2Web"
+    ]
+  }
+}

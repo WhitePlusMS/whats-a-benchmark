@@ -1,0 +1,131 @@
+{
+  "aliases": [
+    "OpenAI frontend eval",
+    "Frontend web development"
+  ],
+  "related": [],
+  "kind": "internal",
+  "verifiedAt": "2026-09-22",
+  "id": "openai-internal-coding",
+  "name": "OpenAI 前端偏好评测",
+  "subtitle": "发布报告里的内部网页制作对比",
+  "category": "coding",
+  "tags": [
+    "前端开发",
+    "内部评价"
+  ],
+  "publisher": "OpenAI",
+  "year": 2025,
+  "version": "GPT-5 发布报告中的内部测试",
+  "metric": {
+    "name": "内部比较胜率",
+    "direction": "higher",
+    "description": "唯一披露的量化结果是偏好率：并排比较中 GPT-5 被测试者选中的比例为 70%。发布材料未公布分母、区间估计、平局处理或显著性检验；不可将它解释为 pass rate、质量分或覆盖所有前端任务的总体偏好概率。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "任务数、前端任务类别、提示词、测试器人数/资历、模型运行配置及盲化程序均未披露。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+      ]
+    },
+    {
+      "text": "偏好率分母、平局处理、置信区间与显著性均未公布。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+      ]
+    },
+    {
+      "text": "公开材料未给出正式 eval 名称；本条标题仅便于目录检索，不代表 OpenAI 官方名称。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "OpenAI GPT-5 for developers",
+      "url": "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering",
+      "role": "vendor-report"
+    },
+    {
+      "label": "OpenAI Codex 升级说明",
+      "url": "https://openai.com/index/introducing-upgrades-to-codex/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "OpenAI GPT-5.6 发布说明",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "role": "vendor-report"
+    },
+    {
+      "label": "官方开发者发布资料",
+      "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+      "role": "vendor-report"
+    }
+  ],
+  "status": "published",
+  "order": 480,
+  "brandIds": [
+    "openai"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "该披露说明一种围绕前端代码生成结果的 side-by-side 人类偏好比较：比较者看 GPT-5 和 o3 的输出并选择偏好项。OpenAI 将结论描述为 GPT-5 在前端代码的审美、进取程度和准确性方面更强。来源没有给出正式基准名称或更完整的研究方法，因此不扩写为标准化前端质量榜单。",
+    "task": "测试人员并排比较 GPT-5 与 o3 生成的 Web 应用前端结果并选择偏好；完整评测协议未公开。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+    ]
+  },
+  "taskContract": {
+    "input": "已披露场景为 Web 应用前端代码生成，以及 GPT-5 和 o3 的并排输出；具体任务和提示词未公开。",
+    "output": "测试人员选择偏好的模型输出；OpenAI 披露 GPT-5 获选比例为 70%。",
+    "environment": "比较者、样本量、盲化、平局处理和运行设置未披露，无法据此重建实验。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+    ]
+  },
+  "dataProfile": {
+    "summary": "OpenAI 仅公开偏好比较摘要和精选生成示例，没有发布任务集或可复现数据。",
+    "disclosure": "not-public",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "仅评测摘要和少量 GPT-5 单次生成示例公开；比较任务、成对输出及评审记录未公开。发布页明确将 gallery 示例称为精选示例，它们不构成偏好评测数据集。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "官方没有发布偏好评测数据或代码的许可。",
+    "scope": "可链接并引用发布页披露的比较摘要；精选作品示例不属于偏好评测数据集。",
+    "boundaries": [
+      "比较任务、成对输出和评审记录未公开；不得据 gallery 示例拼造官方题集。",
+      "70% 结果应标作 OpenAI 自行披露，不描述为独立复测。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/gpt-5-6/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "偏好比较样本与评审记录未公开。页面精选作品仅可作为发布页示例链接，不代表 benchmark 样本。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+    ],
+    "url": "https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering"
+  }
+}

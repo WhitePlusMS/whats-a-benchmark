@@ -1,0 +1,194 @@
+{
+  "aliases": [
+    "GDPval AA"
+  ],
+  "related": [
+    {
+      "id": "gdpval",
+      "label": "基于",
+      "detail": "复用职业任务来源，但改变执行与评估方法。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://artificialanalysis.ai/evaluations/gdpval-aa"
+      ]
+    }
+  ],
+  "kind": "derivative",
+  "verifiedAt": "2026-09-23",
+  "id": "gdpval-aa",
+  "name": "GDPval-AA",
+  "subtitle": "同一批工作任务，换一套评测流程",
+  "category": "work",
+  "tags": [
+    "厂商外复测",
+    "代理交付"
+  ],
+  "publisher": "Artificial Analysis",
+  "year": 2025,
+  "version": "须注明 AA 方法版本",
+  "metric": {
+    "name": "Elo 类评级",
+    "direction": "higher",
+    "description": "主指标为盲法成对提交比较聚合出的 Elo。当前 v2.1 将 DeepSeek V4.1 Flash（max）锚定为 1600，并通过 Crowd-BT 拟合比较结果；排行榜还展示置信区间、成本、token 用量和每任务平均回合数等辅助量。v2.1 Elo 不是 GDPval 原始专家对模型/人类交付物的胜平负比例，不能把两种数字互换。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://artificialanalysis.ai/evaluations/gdpval-aa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "AA v2.1 的具体任务级提示、评审配对总数、judge 各任务抽样和当前模型参数，需以所引用页面当日快照及其完整方法附件为准；此处未从汇总网页推导未披露字段。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/gdpval-aa#L16-L20",
+        "https://openai.com/index/gdpval/",
+        "https://huggingface.co/datasets/openai/gdpval",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "对 OpenAI Hugging Face 数据包中的全部任务附件和第三方素材逐文件许可未核实。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/gdpval",
+        "https://artificialanalysis.ai/data-api/docs"
+      ]
+    },
+    {
+      "text": "AA 的兼容性修复文件与对应上游 dataset revision 的逐文件差异未在本轮下载比对。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/gdpval-aa",
+        "https://huggingface.co/datasets/openai/gdpval"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Artificial Analysis GDPval-AA",
+      "url": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "role": "definition"
+    },
+    {
+      "label": "AA 方法说明",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "AA 页面",
+      "url": "https://artificialanalysis.ai/evaluations/gdpval-aa#L13-L23",
+      "role": "definition"
+    },
+    {
+      "label": "OpenAI 公开数据集卡",
+      "url": "https://huggingface.co/datasets/openai/gdpval",
+      "role": "data"
+    },
+    {
+      "label": "AA 页面 FAQ",
+      "url": "https://artificialanalysis.ai/evaluations/gdpval-aa#L271-L276",
+      "role": "definition"
+    },
+    {
+      "label": "AA 方法说明",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#L85-L87",
+      "role": "definition"
+    },
+    {
+      "label": "AA GDPval-AA 页面",
+      "url": "https://artificialanalysis.ai/evaluations/gdpval-aa#L16-L20",
+      "role": "definition"
+    },
+    {
+      "label": "OpenAI GDPval 介绍",
+      "url": "https://openai.com/index/gdpval/",
+      "role": "definition"
+    },
+    {
+      "label": "AA 数据/API 条款说明",
+      "url": "https://artificialanalysis.ai/data-api/docs",
+      "role": "access"
+    },
+    {
+      "label": "GDPval 论文",
+      "url": "https://arxiv.org/abs/2510.04374",
+      "role": "paper"
+    }
+  ],
+  "status": "published",
+  "order": 440,
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Artificial Analysis 基于 OpenAI GDPval 的公开 gold 子集建立了 GDPval-AA，并用自己的 Stirrup agent 环境和成品盲评协议报告结果。它是独立的第三方评测，不等同于 OpenAI GDPval。",
+    "task": "模型在 Stirrup agent 环境中完成 GDPval 职业任务，提交工作成品；AA 对不同模型的成品进行匿名成对比较并汇总 Elo。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/gdpval-aa#L13-L23",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "公开 GDPval gold 任务提示及该任务的参考文件。",
+    "output": "一个或多个符合任务要求的工作成品文件，如文档、演示文稿、图表或表格。",
+    "environment": "AA Stirrup agent、shell、网页浏览和隔离沙箱；方法页记录每题运行一次，模型版本与推理设置随榜单条目区分。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "https://artificialanalysis.ai/evaluations/gdpval-aa#L271-L276",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#L85-L87"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA v2.1 使用 GDPval 公开 gold 子集中的 220 个任务，覆盖 44 个职业和 9 个行业；上游 GDPval 完整集为 1,320 个任务。",
+    "disclosure": "partial",
+    "scale": [
+      "AA v2.1：220 个任务、44 个职业、9 个行业；上游完整 GDPval：1,320 个任务。"
+    ],
+    "splits": [
+      "OpenAI Hugging Face 发布将 220 个公开任务标为 train；这是文件发布标签，不是完整 GDPval 的模型训练切分。"
+    ],
+    "fields": [
+      "task_id、sector、occupation、prompt、参考文件 URL、交付物 URL、rubric_pretty、rubric_json。"
+    ],
+    "files": [
+      "公开任务记录及其链接的参考文件和交付物；AA 对少数 Office 文件做过兼容性修复，运行快照不保证逐字节等同上游。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/gdpval-aa#L16-L20",
+      "https://openai.com/index/gdpval/",
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "AA 榜单、方法和代表任务可浏览；上游 220 个公开任务可从 OpenAI Hugging Face 获取。复现时分别固定数据、harness 和榜单版本。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "https://huggingface.co/datasets/openai/gdpval"
+    ],
+    "url": "https://huggingface.co/datasets/openai/gdpval"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "OpenAI Hugging Face 数据卡未显示覆盖全部任务及附件的统一许可证；AA 榜单与文件另受 AA 网站条款约束。",
+    "scope": "公开下载不等于允许整体转载。任务、参考文件、交付物及其中的第三方材料须分别核对权利。",
+    "boundaries": [
+      "公开页面仅链接来源并使用原创概述；未逐项确认许可前，不复制任务正文、参考文件或模型交付物。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://artificialanalysis.ai/data-api/docs"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "AA 页面可浏览代表任务与提交，OpenAI 发布 220 个公开 gold 任务；本站只链接并概述，不转载任务、附件或成品，除非逐项确认许可。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "https://huggingface.co/datasets/openai/gdpval"
+    ],
+    "url": "https://artificialanalysis.ai/evaluations/gdpval-aa"
+  }
+}

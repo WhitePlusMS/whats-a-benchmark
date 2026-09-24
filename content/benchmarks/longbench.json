@@ -1,0 +1,161 @@
+{
+  "aliases": [
+    "LongBench v1"
+  ],
+  "related": [
+    {
+      "id": "longbench-v2",
+      "label": "后续评测",
+      "detail": "v2 更强调长材料上的复杂推理与选择题判定。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench/tree/main/LongBench",
+        "https://github.com/THUDM/LongBench"
+      ]
+    }
+  ],
+  "kind": "suite",
+  "verifiedAt": "2026-09-23",
+  "id": "longbench",
+  "name": "LongBench",
+  "subtitle": "读长材料，还能回答、总结和推理吗",
+  "category": "context",
+  "tags": [
+    "长上下文",
+    "中英文"
+  ],
+  "publisher": "THUDM / LongBench 研究团队",
+  "year": 2023,
+  "version": "LongBench v1",
+  "metric": {
+    "name": "任务分项指标及汇总",
+    "direction": "mixed",
+    "description": "各任务使用任务适配指标，官方榜单报告分类任务类别的平均分，并提供 LongBench-E 长度区间表现。官方要求按评测配置处理超长模型输入；引用分数时须注明逐任务指标、汇总方法、截断方式、提示及模型上下文窗口。",
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench/tree/main/LongBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "上表所列既有数据及嵌入文本/代码未完成逐条权利人、来源许可、署名义务和再分发条款的原件级审查。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench/tree/main/LongBench",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE"
+      ]
+    },
+    {
+      "text": "本轮未固定 Hugging Face revision、逐配置记录文件哈希或审查每条 LongBench-E 派生样本的血缘。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench/tree/main/LongBench"
+      ]
+    },
+    {
+      "text": "各任务评分器的固定版本和第三方模型分数运行条件未逐一复核。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench/tree/main/LongBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "论文",
+      "url": "https://arxiv.org/abs/2308.14508",
+      "role": "paper"
+    },
+    {
+      "label": "作者官方 README",
+      "url": "https://github.com/THUDM/LongBench/tree/main/LongBench",
+      "role": "readme"
+    },
+    {
+      "label": "官方仓库数据格式",
+      "url": "https://github.com/THUDM/LongBench/tree/main/LongBench#data-format",
+      "role": "readme"
+    },
+    {
+      "label": "THUDM/LongBench Hugging Face",
+      "url": "https://huggingface.co/datasets/THUDM/LongBench",
+      "role": "data"
+    },
+    {
+      "label": "作者仓库 LICENSE",
+      "url": "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "LongBench v2 仓库",
+      "url": "https://github.com/THUDM/LongBench",
+      "role": "readme"
+    }
+  ],
+  "status": "published",
+  "order": 360,
+  "brandIds": [
+    "thudm"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "LongBench 是 THUDM 发布的中英文多任务长上下文理解基准，覆盖六类任务；LongBench-E 是长度分层扩展切片，LongBench v2 则是独立后续版本。",
+    "task": "根据长上下文完成问答、摘要、少样本、合成或代码补全等任务，按数据集使用各自评分指标。",
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench/tree/main/LongBench"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令或问题、长上下文以及特定任务所需的类别或选项信息。",
+    "output": "任务指定的生成文本、答案或类别；各任务使用适配指标。",
+    "environment": "静态长文本输入/输出；仓库提供 zero-shot 结果和超长输入中间截断策略，报告需说明模型上下文限制及截断方式。",
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench/tree/main/LongBench#data-format",
+      "https://github.com/THUDM/LongBench/tree/main/LongBench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "LongBench v1 有 21 项任务、4,750 条测试记录，含 14 项英语、5 项中文和 2 项代码任务；多数任务平均长度为 5K–15K。",
+    "disclosure": "complete",
+    "scale": [
+      "21 项任务、4,750 条测试记录（14 英语、5 中文、2 代码）；多数平均长度 5K–15K。"
+    ],
+    "splits": [
+      "LongBench-E 是从 13 项任务按长度区间抽样的评测切片，不与 v1 总数相加，也不是独立版本。"
+    ],
+    "fields": [
+      "input、context、answers、length、dataset、language、all_classes、_id。"
+    ],
+    "files": [
+      "作者 LongBench 数据目录中的任务文件；LongBench-E 有单独派生样本。具体发布文件随仓库版本固定。"
+    ],
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench/tree/main/LongBench"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者 GitHub README 提供 Hugging Face 加载方式和任务配置；各任务可公开获取，但上游素材许可各不相同。"
+    ],
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench/tree/main/LongBench",
+      "https://huggingface.co/datasets/THUDM/LongBench"
+    ],
+    "url": "https://huggingface.co/datasets/THUDM/LongBench"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者仓库根目录标注 MIT；这属于仓库级代码许可，不能统一覆盖各上游数据和嵌入材料。",
+    "scope": "21 项任务复用多种数据集、长文、新闻、政府文件、Wikipedia 和代码来源；逐项再发布权利未清。",
+    "boundaries": [
+      "不复制任务原文、长上下文、文章、答案、代码片段或截图；转载前固定 revision 并核验具体来源及许可。"
+    ],
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench/tree/main/LongBench",
+      "https://github.com/THUDM/LongBench/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "基准混合多个上游数据源，仓库 MIT 不能清除各源素材的许可差异。页面只保留任务名称、原创概述和官方链接。",
+    "sourceUrls": [
+      "https://github.com/THUDM/LongBench/tree/main/LongBench"
+    ]
+  }
+}
