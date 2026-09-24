@@ -456,3 +456,8 @@
 - 提交范围：本轮已审查的架构与样式优化、F1–F8修复、39项回归测试、中英文README及维护/审查文档，保留初始基线历史。docs/CONTENT_MAINTENANCE.md 同步已绑定的实际远程仓库与main推送触发规则。
 - 推送前验证：严格TypeScript、39/39自动测试和git diff --check通过。既有生产构建及浏览器验收记录见上文；GitHub Actions 将对推送提交重新安装依赖、测试、构建与部署。
 - 部署结果以对应提交的GitHub Actions结论与实际站点访问为准，记录本段时尚未推送，不预先宣称上线成功。
+
+- 发布完成：提交 dda3c34 已推送 origin/main，远端 HEAD 与本地一致，main 已建立跟踪关系。通过既有本地代理完成推送，未修改全局 Git/网络配置。
+- GitHub Pages 已选择 GitHub Actions。首次构建与测试成功；空仓库初始化的 github-pages 环境规则仍指向不存在的 mater，已精确改为 main（仅允许该分支，未取消分支限制），重跑失败的部署任务后成功。
+- 验证记录：工作流 https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/35975671314 的第2次尝试为 Success；站点 https://whiteplusms.github.io/whats-a-benchmark/ 已用真实浏览器打开，84项目录、MMMLU详情及动态真实样例正常加载。
+- 后续 main 推送会自动执行测试、构建、部署。工作流仍有上游 Actions Node 20 运行时迁移警告，但本次已在平台提供的运行时成功执行；不将告警写成部署失败。本次未启动本地服务。
