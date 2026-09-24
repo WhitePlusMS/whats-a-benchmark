@@ -1,5 +1,16 @@
 // Prepare candidates only. Review and copy selected samples into a content entry before publication.
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { assertResearchBatchReady } from "./research-batch.mjs";
+await assertResearchBatchReady(process.cwd(), [
+  "human-eval",
+  "gsm8k",
+  "mbpp",
+  "mmlu",
+  "mmlu-pro",
+  "ifeval",
+  "finance-agent",
+  "swe-bench-verified",
+]);
 await mkdir("artifacts/candidates/samples", { recursive: true });
 await mkdir("artifacts/candidates/licenses", { recursive: true });
 const read = async (id) =>

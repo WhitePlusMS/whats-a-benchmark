@@ -10,25 +10,30 @@ export function normalizeName(value: string): string {
     .replace(/[\s_‐‑–—-]/g, "");
 }
 
+// 公开目录在本次运行期间不变；名称和全文只标准化一次，输入时仅做匹配。
+const searchIndex = benchmarks.map((item) => ({
+  item,
+  names: [item.name, ...item.aliases].map(normalizeName),
+  corpus: normalizeName(
+    [
+      item.subtitle,
+      item.officialDefinition.summary,
+      item.officialDefinition.task,
+      item.taskContract.input,
+      item.taskContract.output,
+      item.dataProfile.summary,
+      item.publisher,
+      ...item.tags,
+      categoryById.get(item.category)?.name || "",
+    ].join(" "),
+  ),
+}));
+
 export function searchBenchmarks(query: string): Benchmark[] {
   const normalized = normalizeName(query.trim());
   if (!normalized) return benchmarks;
-  return benchmarks
-    .map((item) => {
-      const names = [item.name, ...item.aliases].map(normalizeName);
-      const corpus = normalizeName(
-        [
-          item.subtitle,
-          item.officialDefinition.summary,
-          item.officialDefinition.task,
-          item.taskContract.input,
-          item.taskContract.output,
-          item.dataProfile.summary,
-          item.publisher,
-          ...item.tags,
-          categoryById.get(item.category)?.name || "",
-        ].join(" "),
-      );
+  return searchIndex
+    .map(({ item, names, corpus }) => {
       const score = names.includes(normalized)
         ? 3
         : names.some((name) => name.includes(normalized))
@@ -55,11 +60,11 @@ export function recognizeNames(
     ),
   ];
   return names.slice(0, 60).map((name) => {
-    const exact = benchmarks.filter((item) =>
-      [item.name, ...item.aliases].some(
-        (alias) => normalizeName(alias) === normalizeName(name),
-      ),
-    );
+    const normalized = normalizeName(name);
+    if (!normalized) return { input: name, matches: [] };
+    const exact = searchIndex
+      .filter((entry) => entry.names.includes(normalized))
+      .map((entry) => entry.item);
     return {
       input: name,
       matches: exact.length ? exact : searchBenchmarks(name).slice(0, 5),

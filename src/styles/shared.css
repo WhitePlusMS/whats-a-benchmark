@@ -1,0 +1,140 @@
+/* 跨页面复用的按钮、标签、提示与阅读容器。 */
+
+.section-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tags > span {
+  background: #f7f6fa;
+  border: 1px solid #efedf4;
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 41px;
+  padding: 10px 18px;
+  border-radius: 7px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.primary-button {
+  background: var(--accent);
+  color: var(--text-inverse);
+}
+.primary-button:hover {
+  background: #5845ba;
+}
+.secondary-button {
+  background: var(--surface);
+  border: 1px solid #e4deed;
+  color: var(--text-secondary);
+}
+.secondary-button:hover {
+  background: #f3effa;
+}
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  color: var(--muted);
+  border-radius: 5px;
+}
+.icon-button:hover {
+  background: #f0eaf6;
+}
+.text-link {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.text-link:hover {
+  color: #6950a1;
+}
+.empty-state {
+  padding: 80px 25px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed #e1d9e9;
+  border-radius: 12px;
+  background: #fcfbfd;
+}
+.empty-state > svg {
+  margin: 0 auto 18px;
+}
+.empty-state h2,
+.empty-state h3 {
+  color: #756581;
+  margin-bottom: 10px;
+}
+.empty-state p {
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+.reading-page {
+  padding-top: 36px;
+  max-width: 1180px;
+}
+.reading-page > h1 {
+  font-size: 32px;
+  letter-spacing: -0.7px;
+  margin: 0 0 14px;
+}
+.page-lead {
+  font-size: 15px;
+  max-width: 750px;
+  line-height: 1.9;
+  margin-bottom: 40px;
+  color: var(--muted);
+}
+.info-banner {
+  display: flex;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid #e8e1ef;
+  background: #f2eef8;
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 30px;
+}
+.small-badge {
+  font-size: 9px;
+  padding: 3px 8px;
+  background: #f3f4f6;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .reading-page {
+    padding-top: 32px;
+  }
+  .reading-page > h1 {
+    font-size: 30px;
+  }
+  .page-lead {
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+  .section-line {
+    gap: 12px;
+  }
+}

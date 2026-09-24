@@ -40,6 +40,13 @@ test("批量粘贴能处理中文分隔符、重复值和未收录名称", () =>
   );
 });
 
+test("批量识别忽略标准化后为空的名称，普通空搜索仍返回全部目录", () => {
+  const rows = recognizeNames("-;___");
+  assert.deepEqual(rows.map((row) => row.input), ["-", "___"]);
+  assert.ok(rows.every((row) => row.matches.length === 0));
+  assert.ok(searchBenchmarks("").length > 0);
+});
+
 test("官方 Opus 5.5 表中九个名称精确识别，旧版不替代新版本", () => {
   // 使用发布表的原始拼写，特别保留 Main 括号及版本号。
   const labels = [

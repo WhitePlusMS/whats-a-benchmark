@@ -1,27 +1,19 @@
 <script setup lang="ts">
-import { computed, provide, ref } from "vue";
-import { useRoute } from "vue-router";
-import { comparisonKey } from "./composables/compare";
+import { computed, onMounted, onUnmounted, provide } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { comparisonKey, createComparison } from "./composables/compare";
+import { COMPARISON_LIMIT } from "./lib/comparison";
 import { byId } from "./content/catalog";
 import Icon from "./components/Icon.vue";
 import { useCatalogNavigation } from "./composables/catalogNavigation";
 const route = useRoute();
 const { catalogLocation } = useCatalogNavigation();
-// State belongs to this application instance so static rendering cannot leak selections.
-const selected = ref<string[]>([]);
-const notice = ref("");
-function toggle(id: string) {
-  notice.value = "";
-  if (selected.value.includes(id))
-    selected.value = selected.value.filter((value) => value !== id);
-  else if (selected.value.length < 3) selected.value.push(id);
-  else notice.value = "最多对比 3 个评测，请先移除一个。";
-}
-function clear() {
-  selected.value = [];
-  notice.value = "";
-}
-provide(comparisonKey, { selected, toggle, clear, notice });
+// Own selection state per application and dispose the navigation subscription.
+const comparison = createComparison(useRouter());
+const { selected, notice, toggle, clear } = comparison;
+provide(comparisonKey, comparison);
+onMounted(comparison.activate);
+onUnmounted(comparison.dispose);
 const compareUrl = computed(() => ({
   path: "/compare/",
   query: { ids: selected.value.join(",") },
@@ -42,7 +34,10 @@ const compareUrl = computed(() => ({
             stroke-width="2"
             stroke-linejoin="round"
           /></svg
-        ><span>what's a benchmark? <span aria-hidden="true">🚀</span><small>到底测什么？</small></span></RouterLink
+        ><span
+          >what's a benchmark? <span aria-hidden="true">🚀</span
+          ><small>到底测什么？</small></span
+        ></RouterLink
       >
       <nav class="main-nav" aria-label="主导航">
         <RouterLink
@@ -62,7 +57,9 @@ const compareUrl = computed(() => ({
   <main id="main-content"><RouterView /></main>
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="footer-brand">what's a benchmark?<span>到底测什么？</span></div>
+      <div class="footer-brand">
+        what's a benchmark?<span>到底测什么？</span>
+      </div>
       <div>
         <RouterLink to="/about/">来源与收录规范</RouterLink
         ><span>任务 · 样例 · 指标 · 版本</span>
@@ -72,7 +69,8 @@ const compareUrl = computed(() => ({
   <div v-if="selected.length" class="compare-dock" aria-label="已选评测">
     <div class="dock-heading">
       <Icon name="compare" /><strong
-        >评测对比 <span>{{ selected.length }}/3</span></strong
+        >评测对比
+        <span>{{ selected.length }}/{{ COMPARISON_LIMIT }}</span></strong
       >
     </div>
     <div class="dock-items">

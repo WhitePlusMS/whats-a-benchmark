@@ -61,4 +61,3 @@ export const createApp = ViteSSG(
     };
   },
 );
-import "./styles/responsive.css";

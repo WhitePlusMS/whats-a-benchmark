@@ -54,7 +54,8 @@ function groupSources(sources: Source[]): SourceGroup[] {
     const existing = groups.get(key);
     if (existing) {
       existing.count++;
-      if (!existing.roles.includes(source.role)) existing.roles.push(source.role);
+      if (!existing.roles.includes(source.role))
+        existing.roles.push(source.role);
       continue;
     }
     groups.set(key, {
@@ -99,7 +100,9 @@ useHead(() => ({
   meta: [
     {
       name: "description",
-      content: item.value?.officialDefinition.summary || "了解 AI 评测的任务、样例与评分方法。",
+      content:
+        item.value?.officialDefinition.summary ||
+        "了解 AI 评测的任务、样例与评分方法。",
     },
   ],
 }));
@@ -156,12 +159,16 @@ useHead(() => ({
     </header>
 
     <div class="detail-facts">
-      <div><small>发布方</small><strong>{{ item.publisher }}</strong></div>
+      <div>
+        <small>发布方</small><strong>{{ item.publisher }}</strong>
+      </div>
       <div>
         <small>首次发布年份</small>
         <strong>{{ item.year || "尚未核实" }}</strong>
       </div>
-      <div><small>评测版本</small><strong>{{ item.version }}</strong></div>
+      <div>
+        <small>评测版本</small><strong>{{ item.version }}</strong>
+      </div>
       <div>
         <small>数据访问</small>
         <strong>{{ dataAccessLabels[item.dataAccess.status] }}</strong>
@@ -184,7 +191,9 @@ useHead(() => ({
     <section id="definition" class="detail-section">
       <div class="section-title-row">
         <h2>官方定义</h2>
-        <span class="small-badge">{{ researchStatusLabels[item.researchStatus] }}</span>
+        <span class="small-badge">{{
+          researchStatusLabels[item.researchStatus]
+        }}</span>
       </div>
       <p class="task-description">{{ item.officialDefinition.task }}</p>
       <EvidenceLinks
@@ -281,10 +290,7 @@ useHead(() => ({
             <dd>{{ item.reusePolicy.scope }}</dd>
           </dl>
           <ul v-if="item.reusePolicy.boundaries.length">
-            <li
-              v-for="boundary in item.reusePolicy.boundaries"
-              :key="boundary"
-            >
+            <li v-for="boundary in item.reusePolicy.boundaries" :key="boundary">
               {{ boundary }}
             </li>
           </ul>
@@ -336,10 +342,7 @@ useHead(() => ({
           <ul>
             <li v-for="note in item.limitations" :key="note.text">
               <p>{{ note.text }}</p>
-              <EvidenceLinks
-                :sources="item.sources"
-                :urls="note.sourceUrls"
-              />
+              <EvidenceLinks :sources="item.sources" :urls="note.sourceUrls" />
             </li>
           </ul>
           <RouterLink to="/guide/" class="text-link">
@@ -352,18 +355,21 @@ useHead(() => ({
     <section v-if="item.related.length" id="relations" class="detail-section">
       <h2>版本与衍生评测</h2>
       <div class="relation-list">
-        <RouterLink
+        <article
           v-for="relation in item.related"
           :key="relation.id"
-          :to="`/benchmarks/${relation.id}/`"
+          class="relation-item"
         >
-          <span class="small-badge">{{ relation.label }}</span>
-          <div>
-            <h3>{{ byId.get(relation.id)?.name }}</h3>
-            <p>{{ relation.detail }}</p>
-          </div>
-          <Icon name="arrow" :size="20" />
-        </RouterLink>
+          <RouterLink :to="`/benchmarks/${relation.id}/`" class="relation-link">
+            <span class="small-badge">{{ relation.label }}</span>
+            <div>
+              <h3>{{ byId.get(relation.id)?.name }}</h3>
+              <p>{{ relation.detail }}</p>
+            </div>
+            <Icon name="arrow" :size="20" />
+          </RouterLink>
+          <EvidenceLinks :sources="item.sources" :urls="relation.sourceUrls" />
+        </article>
       </div>
     </section>
 
@@ -386,7 +392,9 @@ useHead(() => ({
           <span>
             <strong>{{ source.label }}</strong>
             <small>
-              {{ source.roles.map((role) => sourceRoleLabels[role]).join(" · ") }}
+              {{
+                source.roles.map((role) => sourceRoleLabels[role]).join(" · ")
+              }}
               · {{ source.host }}
               <template v-if="source.count > 1">
                 · {{ source.count }} 处定位

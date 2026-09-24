@@ -272,6 +272,9 @@ export async function generateContent(root = process.cwd()) {
   // Complete validation before replacing previously generated output.
   const workspace = await loadContent(root);
   const projection = publicProjection(workspace);
+  // favicon 不属于条目附件，必须同样在清理旧产物前读取并验证。
+  const favicon = await readFile(join(root, "public/favicon.svg"));
+  if (!favicon.length) throw new Error("public/favicon.svg: 空文件");
   await resetGenerated(root);
   for (const [name, value] of Object.entries(projection))
     await writeJson(join(root, `.generated/${name}.json`), value);
@@ -286,9 +289,6 @@ export async function generateContent(root = process.cwd()) {
     await mkdir(dirname(destination), { recursive: true });
     await copyFile(await sourceAssetPath(root, file), destination);
   }
-  await copyFile(
-    join(root, "public/favicon.svg"),
-    join(root, ".generated/public/favicon.svg"),
-  );
+  await writeFile(join(root, ".generated/public/favicon.svg"), favicon);
   return workspace;
 }

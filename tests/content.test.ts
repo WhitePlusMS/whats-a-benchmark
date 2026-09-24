@@ -61,6 +61,78 @@ async function fixture(t: TestContext) {
   };
 }
 
+test("有来源的出向关系在发布、草稿、恢复发布之间完整保留", async (t) => {
+  const { root, entry, path } = await fixture(t);
+  await writeJson(join(root, "content/benchmarks/second.json"), {
+    ...entry,
+    id: "second",
+  });
+  entry.related = [
+    {
+      id: "second",
+      label: "关联",
+      detail: "保留来源的关系",
+      sourceUrls: [entry.sources[0]!.url],
+    },
+  ];
+  await writeJson(path, entry);
+  await setStatus(root, entry.id, "draft");
+  const withdrawn = await generateContent(root);
+  assert(!withdrawn.entries.some((item) => item.id === entry.id));
+  assert.deepEqual(
+    withdrawn.documents.find((item) => item.id === entry.id)?.related,
+    entry.related,
+  );
+  assert(
+    !(await listFiles(join(root, ".generated/public"))).includes(
+      "samples/mmlu-pro.json",
+    ),
+  );
+  await setStatus(root, entry.id, "published");
+  assert.deepEqual(entrySchema.parse(await readJson(path)), entry);
+});
+
+test("附属日志失败明确警告已完成，不把新建、状态修改或删除误报为失败", async (t) => {
+  const { root, path } = await fixture(t);
+  await mkdir(join(root, "UPDATE_LOG.md"));
+  const warnings = t.mock.method(console, "warn", () => {});
+  const draftPath = await createDraft(root, "log-test");
+  assert((await readFile(draftPath, "utf8")).includes('"draft"'));
+  await setStatus(root, "mmlu-pro", "archived", "日志失败测试");
+  assert.equal(entrySchema.parse(await readJson(path)).status, "archived");
+  await deleteEntry(root, "log-test");
+  await assert.rejects(readFile(draftPath), { code: "ENOENT" });
+  assert.equal(warnings.mock.callCount(), 3);
+  for (const call of warnings.mock.calls) {
+    assert.match(String(call.arguments[0]), /内容操作已完成/);
+    assert.match(String(call.arguments[0]), /请手工补记，不要重复执行/);
+  }
+});
+
+test("favicon 缺失或为空时保留整份旧生成结果，恢复输入后正常生成", async (t) => {
+  const { root } = await fixture(t);
+  await generateContent(root);
+  const output = join(root, ".generated");
+  const files = await listFiles(output);
+  const before = await Promise.all(
+    files.map((file) => readFile(join(output, file))),
+  );
+  const faviconPath = join(root, "public/favicon.svg");
+  const favicon = await readFile(faviconPath);
+  await unlink(faviconPath);
+  await assert.rejects(generateContent(root), /favicon.svg/);
+  await writeFile(faviconPath, "");
+  await assert.rejects(generateContent(root), /favicon.svg: 空文件/);
+  assert.deepEqual(await listFiles(output), files);
+  assert.deepEqual(
+    await Promise.all(files.map((file) => readFile(join(output, file)))),
+    before,
+  );
+  await writeFile(faviconPath, favicon);
+  await generateContent(root);
+  assert.deepEqual(await readFile(join(output, "public/favicon.svg")), favicon);
+});
+
 test("新增草稿不进入任何生成数据、附件或样例；发布必须先通过完整校验", async (t) => {
   const { root } = await fixture(t);
   await createDraft(root, "new-benchmark");
@@ -205,10 +277,7 @@ test("硬删除列出评测、草稿和报告引用；阻止公开内容指向�
   const impact = deletionImpact(await loadContent(root), "mmlu-pro");
   assert.equal(impact.references.length, 3);
   await assert.rejects(deleteEntry(root, "mmlu-pro"), /referrer|draft-ref/);
-  await assert.rejects(
-    setStatus(root, "mmlu-pro", "draft"),
-    /不存在或未发布/,
-  );
+  await assert.rejects(setStatus(root, "mmlu-pro", "draft"), /不存在或未发布/);
   assert.equal(
     entrySchema.parse(
       await readJson(join(root, "content/benchmarks/mmlu-pro.json")),
@@ -286,9 +355,7 @@ test("题型结构和转载限制在构建前拦截，不让坏数据进入组�
     sampleSchema.safeParse({
       ...base,
       type: "image",
-      assets: [
-        { kind: "image", path: "images/example.png", alt: "测试图片" },
-      ],
+      assets: [{ kind: "image", path: "images/example.png", alt: "测试图片" }],
     }).success,
     true,
   );

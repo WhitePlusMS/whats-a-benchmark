@@ -1,0 +1,311 @@
+/* 样例查看器基础与响应式样式，由组件 scoped 加载。 */
+
+.sample-viewer {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.sample-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 20px;
+  background: #f8f9fb;
+  border-bottom: 1px solid var(--border);
+}
+.sample-tabs {
+  display: flex;
+  gap: 3px;
+  background: #efe9f5;
+  border-radius: 6px;
+  padding: 3px;
+}
+.sample-tabs button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.sample-tabs button.active {
+  background: var(--surface);
+  color: var(--muted);
+  box-shadow: 0 1px 4px #9580aa12;
+}
+.sample-toolbar select {
+  font-size: 11px;
+  border: 1px solid #e6dceb;
+  background: var(--surface);
+  border-radius: 5px;
+  padding: 6px 8px;
+  max-width: 50%;
+}
+.sample-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(220px, 1fr);
+}
+.sample-question {
+  padding: 26px;
+  min-width: 0;
+}
+.sample-question h3 {
+  font-size: 18px;
+  margin: 23px 0 17px;
+  color: var(--text-strong);
+}
+.prompt-text {
+  font-family: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.9;
+  margin: 0;
+  color: var(--text-strong);
+  font-size: 14px;
+}
+.answer-options {
+  padding-left: 23px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text-strong);
+}
+.answer-button {
+  margin-top: 24px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f5effa;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+}
+.answer-content {
+  font-size: 12px;
+  line-height: 1.8;
+  padding: 15px;
+  background: #f6f8f5;
+  border: 1px solid #e4ece0;
+  border-radius: 6px;
+  color: var(--muted);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.raw-content {
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.85;
+  background: #f4f6f8;
+  max-height: 540px;
+  overflow: auto;
+  padding: 18px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--text-strong);
+}
+.sample-insight {
+  background: #fafbfc;
+  border-left: 1px solid var(--border);
+  padding: 26px;
+  color: var(--muted);
+  min-width: 0;
+}
+.insight-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.sample-insight > p {
+  line-height: 1.9;
+  margin: 16px 0 24px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.sample-insight dl {
+  line-height: 1.75;
+  font-size: 12px;
+}
+.sample-insight dt {
+  margin-top: 15px;
+  color: var(--muted);
+}
+.sample-insight dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+.sample-insight > a {
+  margin-top: 20px;
+  font-size: 11px;
+}
+.sample-loading {
+  padding: 55px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  border: 1px dashed #e5d8ee;
+  border-radius: 10px;
+}
+.external-sample {
+  text-align: left;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 22px;
+}
+.external-sample h3 {
+  font-size: 20px;
+  color: var(--text-strong);
+}
+.external-sample > p {
+  font-size: 13px;
+  max-width: 760px;
+  margin: 10px 0 16px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.external-sample > .muted {
+  display: block;
+  margin-top: 17px;
+  font-size: 10px;
+}
+@media (max-width: 900px) {
+  .sample-body {
+    grid-template-columns: 1fr;
+  }
+  .sample-insight {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .sample-insight dl {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 9px;
+  }
+  .sample-insight dt,
+  .sample-insight dd {
+    margin: 0;
+  }
+}
+@media (max-width: 700px) {
+  .sample-toolbar {
+    padding: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .sample-toolbar select {
+    max-width: 100%;
+    width: 100%;
+  }
+  .sample-tabs {
+    width: 100%;
+  }
+  .sample-tabs button {
+    flex: 1;
+  }
+  .sample-question,
+  .sample-insight {
+    padding: 21px;
+  }
+  .sample-question h3 {
+    font-size: 17px;
+  }
+  .sample-insight dl {
+    grid-template-columns: 85px 1fr;
+  }
+  .external-sample {
+    padding: 24px 18px;
+  }
+}
+
+/* 当前样例的选项、答案及来源交互。 */
+.mode-note {
+  margin-left: 6px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.external-sample > .downloaded-sample-note {
+  max-width: 760px;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.sample-count,
+.prompt-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.prompt-label {
+  margin-bottom: 10px;
+}
+.code-prompt {
+  font-family: "Cascadia Code", Consolas, monospace;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #f8f9fb;
+  font-size: 12px;
+}
+.sample-options {
+  margin: 20px 0 0;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.sample-options legend {
+  font-size: 12px;
+  color: var(--muted);
+}
+.answer-options li {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0;
+  margin-bottom: 8px;
+}
+.answer-options label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.answer-options input {
+  margin: 5px 0 0;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.answer-options .option-selected {
+  border-color: var(--accent);
+  background: #f5f3fc;
+}
+.sample-question > .muted {
+  margin-top: 20px;
+}
+.sample-provenance {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.sample-provenance summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 550;
+}
+.sample-provenance summary:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+.sample-provenance dd a {
+  margin-top: 8px;
+}
+@media (max-width: 700px) {
+  .sample-tabs button {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}

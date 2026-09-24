@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { Benchmark } from "../types/benchmark";
 import { kindLabels } from "../content/catalog";
-import {
-  researchStatusLabels,
-  sampleAccessLabels,
-} from "../content/labels";
+import { researchStatusLabels, sampleAccessLabels } from "../content/labels";
 import { useComparison } from "../composables/compare";
 import Icon from "./Icon.vue";
 import PublisherMarks from "./PublisherMarks.vue";
@@ -18,7 +15,10 @@ const { selected, toggle } = useComparison();
       <div class="card-badges">
         <span class="kind-label">{{ kindLabels[item.kind] }}</span>
         <span
-          v-if="item.researchStatus === 'partial' || item.researchStatus === 'blocked'"
+          v-if="
+            item.researchStatus === 'partial' ||
+            item.researchStatus === 'blocked'
+          "
           class="kind-label evidence-state"
           >{{ researchStatusLabels[item.researchStatus] }}</span
         >
@@ -55,3 +55,6 @@ const { selected, toggle } = useComparison();
     </div>
   </article>
 </template>
+
+<!-- 列表模式依赖目录父容器，因此保留明确类名的非 scoped 规则。 -->
+<style src="../styles/benchmark-card.css"></style>

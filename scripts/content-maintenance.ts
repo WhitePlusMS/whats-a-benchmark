@@ -11,10 +11,18 @@ function record(value: unknown): Record<string, unknown> {
 const entryPath = (root: string, id: string) =>
   join(root, "content/benchmarks", `${idSchema.parse(id)}.json`);
 async function logChange(root: string, message: string) {
-  await appendFile(
-    join(root, "UPDATE_LOG.md"),
-    `\n- ${new Date().toISOString()} 内容维护：${message}。需重新构建后发布生效。\n`,
-  );
+  try {
+    await appendFile(
+      join(root, "UPDATE_LOG.md"),
+      `\n- ${new Date().toISOString()} 内容维护：${message}。需重新构建后发布生效。\n`,
+    );
+  } catch (error) {
+    // 内容此时已落盘：明确报告附属日志失败，不能诱导调用者重复执行变更。
+    console.warn(
+      `[content] 内容操作已完成：${message}。UPDATE_LOG.md 写入失败，请手工补记，不要重复执行内容操作。`,
+      error instanceof Error ? error.message : String(error),
+    );
+  }
 }
 export async function createDraft(root: string, id: string) {
   const path = entryPath(root, id);

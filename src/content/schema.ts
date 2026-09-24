@@ -415,11 +415,8 @@ export const entrySchema = z
     if (entry.status === "published" && entry.archiveNote)
       ctx.addIssue({ code: "custom", path: ["archiveNote"], message: "发布状态不应保留归档提示" });
   });
-const draftRelationSchema = z.strictObject({
-  id: idSchema,
-  label: text,
-  detail: text,
-});
+// 草稿可暂缺依据；撤回正式条目时必须原样保留已经登记的关系来源。
+const draftRelationSchema = sourcedRelationSchema.partial({ sourceUrls: true });
 // Drafts may be incomplete. Their bodies never enter client modules or public files.
 export const draftSchema = z
   .object({

@@ -1,0 +1,209 @@
+/* 评测卡片及列表模式；列表上下文由目录容器提供。 */
+
+.benchmark-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 280px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.benchmark-card:hover {
+  border-color: #b8b5ca;
+  box-shadow: 0 3px 12px #26334d08;
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.card-badges {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.kind-label.evidence-state {
+  background: #fff8e8;
+  border-color: #ead9a9;
+  color: #685523;
+}
+.kind-label {
+  border: 1px solid #eeedf3;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+.card-title h3 {
+  font-size: 18px;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.card-title > svg {
+  opacity: 0;
+  color: var(--muted);
+  transition: opacity 0.2s;
+}
+.card-title:hover > svg,
+.card-title:focus-visible > svg {
+  opacity: 1;
+}
+.card-summary {
+  line-height: 1.8;
+  margin: 12px 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding: 16px 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.card-meta > span:first-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 85%;
+}
+.card-actions {
+  border-top: 1px solid #e9ebef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+}
+.card-actions > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.card-actions > a > svg:last-child {
+  margin-left: 5px;
+}
+.compare-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 8px;
+  min-height: 32px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.compare-toggle:hover,
+.compare-toggle.chosen {
+  background: #efe8fb;
+  color: var(--muted);
+}
+.list-view .benchmark-card {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 55px 1fr auto;
+  column-gap: 20px;
+  padding: 18px;
+}
+.list-view .card-top {
+  grid-row: 1/5;
+  margin: 0;
+  align-items: flex-start;
+}
+.list-view .kind-label {
+  display: none;
+}
+.list-view .card-title,
+.list-view .card-summary,
+.list-view .tags {
+  grid-column: 2;
+}
+.list-view .card-summary {
+  min-height: 0;
+  margin: 8px 0;
+}
+.list-view .card-meta {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 10px;
+  max-width: 180px;
+}
+.list-view .card-actions {
+  grid-column: 3;
+  grid-row: 2/5;
+  align-self: center;
+  border: 0;
+  gap: 14px;
+}
+.benchmark-card:focus-within {
+  border-color: #8e7bd3;
+}
+@media (max-width: 900px) {
+  .benchmark-card {
+    padding: 18px 16px 0;
+  }
+  .list-view .benchmark-card {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+  .list-view .card-meta,
+  .list-view .card-actions {
+    grid-column: 2;
+    grid-row: auto;
+    max-width: none;
+  }
+  .list-view .card-actions {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 700px) {
+  .compare-toggle {
+    min-height: 40px;
+  }
+  .benchmark-card {
+    min-height: 0;
+    padding: 21px 22px 0;
+  }
+  .card-summary {
+    min-height: 0;
+    margin: 14px 0;
+  }
+  .card-title h3 {
+    font-size: 20px;
+  }
+  .card-title > svg {
+    opacity: 1;
+  }
+  .card-top {
+    margin-bottom: 12px;
+  }
+  .card-actions {
+    min-height: 50px;
+  }
+  .card-meta {
+    padding-top: 20px;
+  }
+  .list-view .benchmark-card {
+    padding: 18px;
+    gap: 8px 14px;
+  }
+}

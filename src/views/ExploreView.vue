@@ -1,86 +1,33 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
 import { useHead } from "@unhead/vue";
-import {
-  benchmarks,
-  categories,
-  kindLabels,
-} from "../content/catalog";
+import { benchmarks, categories, kindLabels } from "../content/catalog";
 import { sampleAccessLabels } from "../content/labels";
-import { searchBenchmarks, recognizeNames } from "../lib/search";
+import { recognizeNames } from "../lib/search";
+import {
+  useCatalogQuery,
+  type CatalogFilterKey,
+} from "../composables/catalogQuery";
 import BenchmarkCard from "../components/BenchmarkCard.vue";
 import Icon from "../components/Icon.vue";
 useHead({ title: "到底测什么？ · what's a benchmark?" });
-const route = useRoute();
-const router = useRouter();
 const batchOpen = ref(false);
 const batchInput = ref("");
 const showFilters = ref(false);
-// 视图与筛选一同保留在 URL 中，返回目录时恢复原有浏览方式。
-const view = computed(() => (route.query.view === "list" ? "list" : "grid"));
-const q = computed(() =>
-  typeof route.query.q === "string" ? route.query.q : "",
-);
-const category = computed(() =>
-  typeof route.query.category === "string" ? route.query.category : "",
-);
-const publisher = computed(() =>
-  typeof route.query.publisher === "string" ? route.query.publisher : "",
-);
-const sampleStatus = computed(() =>
-  typeof route.query.sample === "string" ? route.query.sample : "",
-);
-const kind = computed(() =>
-  typeof route.query.kind === "string" ? route.query.kind : "",
-);
-const sort = computed(() =>
-  typeof route.query.sort === "string" ? route.query.sort : "featured",
-);
-const publishers = [...new Set(benchmarks.map((item) => item.publisher))].sort(
-  (a, b) => a.localeCompare(b, "zh"),
-);
-const localCount = benchmarks.filter(
-  (item) => item.sampleAccess.status === "local",
-).length;
-const sampleCount = benchmarks.reduce((total, item) => total + item.sampleCount, 0);
-const hasFilters = computed(
-  () =>
-    !!(
-      q.value ||
-      category.value ||
-      publisher.value ||
-      sampleStatus.value ||
-      kind.value
-    ),
-);
-const results = computed(() => {
-  const items = searchBenchmarks(q.value).filter(
-    (item) =>
-      (!category.value || item.category === category.value) &&
-      (!publisher.value || item.publisher === publisher.value) &&
-      (!sampleStatus.value || item.sampleAccess.status === sampleStatus.value) &&
-      (!kind.value || item.kind === kind.value),
-  );
-  if (sort.value === "name")
-    return [...items].sort((a, b) => a.name.localeCompare(b.name));
-  if (sort.value === "year")
-    return [...items].sort((a, b) => (b.year || 0) - (a.year || 0));
-  return items;
-});
+const {
+  query,
+  results,
+  currentCategory,
+  hasFilters,
+  stats,
+  setFilter: updateFilter,
+  reset,
+} = useCatalogQuery();
+const { publishers, localCount, sampleCount, categoryCounts } = stats;
 const batchResults = computed(() => recognizeNames(batchInput.value));
-function setFilter(key: string, value: string) {
-  router.replace({
-    path: "/",
-    query: { ...route.query, [key]: value || undefined },
-  });
+function setFilter(key: CatalogFilterKey, value: string) {
+  void updateFilter(key, value);
   if (key === "category") showFilters.value = false;
-}
-function reset() {
-  router.replace({
-    path: "/",
-    query: { view: route.query.view, sort: route.query.sort },
-  });
 }
 </script>
 <template>
@@ -105,11 +52,11 @@ function reset() {
     <div class="search-box">
       <Icon name="search" :size="23" /><input
         aria-label="搜索评测"
-        :value="q"
+        :value="query.q"
         @input="setFilter('q', ($event.target as HTMLInputElement).value)"
         placeholder="搜索评测名称、能力或发布方…"
       /><button
-        v-if="q"
+        v-if="query.q"
         class="icon-button"
         aria-label="清空搜索"
         @click="setFilter('q', '')"
@@ -179,7 +126,7 @@ function reset() {
       <div class="filter-heading">能力分类</div>
       <button
         class="category-filter"
-        :class="{ active: !category }"
+        :class="{ active: !query.category }"
         @click="setFilter('category', '')"
       >
         <Icon name="grid" :size="18" /><span>全部评测</span
@@ -188,19 +135,17 @@ function reset() {
         v-for="cat in categories"
         :key="cat.id"
         class="category-filter"
-        :class="{ active: category === cat.id }"
+        :class="{ active: query.category === cat.id }"
         @click="setFilter('category', cat.id)"
       >
         <Icon :name="cat.glyph" :size="18" /><span>{{ cat.name }}</span
-        ><small>{{
-          benchmarks.filter((b) => b.category === cat.id).length
-        }}</small>
+        ><small>{{ categoryCounts.get(cat.id) || 0 }}</small>
       </button>
       <div class="filter-more">
         <label for="publisher">发布方</label
         ><select
           id="publisher"
-          :value="publisher"
+          :value="query.publisher"
           @change="
             setFilter('publisher', ($event.target as HTMLSelectElement).value)
           "
@@ -212,7 +157,7 @@ function reset() {
         ><label for="sample-status">样例查看方式</label
         ><select
           id="sample-status"
-          :value="sampleStatus"
+          :value="query.sample"
           @change="
             setFilter('sample', ($event.target as HTMLSelectElement).value)
           "
@@ -228,7 +173,7 @@ function reset() {
         ><label for="kind">评测类型</label
         ><select
           id="kind"
-          :value="kind"
+          :value="query.kind"
           @change="
             setFilter('kind', ($event.target as HTMLSelectElement).value)
           "
@@ -250,21 +195,18 @@ function reset() {
         <div>
           <h2>
             {{
-              category
-                ? categories.find((cat) => cat.id === category)?.name ||
-                  "评测目录"
-                : "全部评测"
+              query.category ? currentCategory?.name || "评测目录" : "全部评测"
             }}<span>{{ results.length }}</span>
           </h2>
-          <p v-if="category">
-            {{ categories.find((cat) => cat.id === category)?.description }}
+          <p v-if="query.category">
+            {{ currentCategory?.description }}
           </p>
         </div>
         <div class="result-controls">
           <label class="sr-only" for="sort">排序方式</label
           ><select
             id="sort"
-            :value="sort"
+            :value="query.sort"
             @change="
               setFilter('sort', ($event.target as HTMLSelectElement).value)
             "
@@ -275,16 +217,16 @@ function reset() {
           </select>
           <div class="view-toggle">
             <button
-              :class="{ active: view === 'grid' }"
+              :class="{ active: query.view === 'grid' }"
               aria-label="卡片视图"
-              :aria-pressed="view === 'grid'"
+              :aria-pressed="query.view === 'grid'"
               @click="setFilter('view', 'grid')"
             >
               <Icon name="grid" :size="17" /></button
             ><button
-              :class="{ active: view === 'list' }"
+              :class="{ active: query.view === 'list' }"
               aria-label="列表视图"
-              :aria-pressed="view === 'list'"
+              :aria-pressed="query.view === 'list'"
               @click="setFilter('view', 'list')"
             >
               <Icon name="list" :size="18" />
@@ -294,13 +236,13 @@ function reset() {
       </div>
       <div v-if="hasFilters" class="active-filters">
         <span
-          >{{ q ? `搜索“${q}”` : "已应用筛选" }} ·
+          >{{ query.q ? `搜索“${query.q}”` : "已应用筛选" }} ·
           {{ results.length }} 项结果</span
         ><button @click="reset">
           清空筛选 <Icon name="close" :size="13" />
         </button>
       </div>
-      <div class="cards" :class="{ 'list-view': view === 'list' }">
+      <div class="cards" :class="{ 'list-view': query.view === 'list' }">
         <BenchmarkCard v-for="item in results" :key="item.id" :item="item" />
       </div>
       <div v-if="!results.length" class="empty-state">
@@ -310,7 +252,8 @@ function reset() {
         <button class="primary-button" @click="reset">查看全部评测</button>
       </div>
       <p class="catalog-footnote">
-        共 {{ sampleCount }} 条真实样例，覆盖 {{ localCount }} 个评测；其他条目注明样例获取方式与原始来源。
+        共 {{ sampleCount }} 条真实样例，覆盖
+        {{ localCount }} 个评测；其他条目注明样例获取方式与原始来源。
       </p>
     </section>
   </div>

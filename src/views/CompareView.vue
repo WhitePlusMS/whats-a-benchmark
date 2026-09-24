@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
 import { byId, categoryById } from "../content/catalog";
 import {
@@ -10,13 +9,13 @@ import {
 } from "../content/labels";
 import type { Benchmark } from "../types/benchmark";
 import Icon from "../components/Icon.vue";
+import { useComparison } from "../composables/compare";
 useHead({ title: "评测对比 · what's a benchmark?" });
-const route = useRoute();
+const { selected } = useComparison();
 const items = computed(() =>
-  [...new Set(String(route.query.ids || "").split(","))]
-    .slice(0, 3)
+  selected.value
     .map((id) => byId.get(id))
-    .filter((b): b is Benchmark => !!b),
+    .filter((item): item is Benchmark => !!item),
 );
 const rows: { label: string; value: (b: Benchmark) => string }[] = [
   { label: "官方定义", value: (b) => b.officialDefinition.summary },

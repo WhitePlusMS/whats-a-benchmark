@@ -1,8 +1,6 @@
 // Read-only upstream collection. Only explicitly selected public datasets are fetched.
 // Raw records stay outside public/ until fields and licensing have been reviewed.
-import { mkdir, writeFile } from "node:fs/promises";
-import { gunzipSync } from "node:zlib";
-await mkdir("artifacts/research", { recursive: true });
+import { runResearchBatch } from "./research-batch.mjs";
 const hf = (dataset, config, split) =>
   `https://datasets-server.huggingface.co/rows?dataset=${encodeURIComponent(dataset)}&config=${config}&split=${split}&offset=0&length=3`;
 const inputs = [
@@ -46,39 +44,5 @@ const inputs = [
     "json",
   ],
 ];
-await Promise.all(
-  inputs.map(async ([id, url, format]) => {
-    try {
-      const response = await fetch(url, { signal: AbortSignal.timeout(45000) });
-      if (!response.ok)
-        throw new Error(`${response.status} ${response.statusText}`);
-      const content =
-        format === "gz"
-          ? gunzipSync(Buffer.from(await response.arrayBuffer())).toString()
-          : await response.text();
-      const parsed =
-        format === "jsonl" || format === "gz"
-          ? content
-              .trim()
-              .split("\n")
-              .slice(0, 3)
-              .map((line) => JSON.parse(line))
-          : format === "text"
-            ? content.trim().split("\n").slice(0, 3)
-            : JSON.parse(content);
-      const rows =
-        format === "hf"
-          ? parsed.rows.map((item) => item.row)
-          : Array.isArray(parsed)
-            ? parsed.slice(0, 3)
-            : parsed;
-      await writeFile(
-        `artifacts/research/${id}.json`,
-        JSON.stringify({ url, rows }, null, 2),
-      );
-      console.info(id, JSON.stringify(rows).slice(0, 1600));
-    } catch (error) {
-      console.error(id, error.message);
-    }
-  }),
-);
+const succeeded = await runResearchBatch({ root: process.cwd(), inputs });
+if (!succeeded) process.exitCode = 1;
