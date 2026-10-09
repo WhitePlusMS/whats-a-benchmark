@@ -1,5 +1,85 @@
 # 更新说明
 
+## 2026-10-09 — GitHub Pages发布前核对与生产构建
+
+- 原因：用户明确要求提交、推送并确认GitHub已部署最新版本；复用现有main分支与Pages工作流，保留功能分支上的已有提交历史，不新增发布机制。
+- 文件范围：本轮提交包含26项图片映射、21份原始素材、品牌登记、PublisherMarks毛玻璃回退与横向显示修正、Brand背景字段、来源/覆盖文档、实际浏览器截图及本更新日志；此前已提交的内容扩充、原始数据和界面改版随main快进一并发布。
+- 远端核对：git fetch后origin/main为1f8d2fa，当前功能分支领先3个提交、落后0个；GitHub默认分支为main，Pages使用GitHub Actions，唯一现有工作流仅由main推送或手动运行触发。远端最近成功部署仍是旧提交1f8d2fa。
+- 构建验证：使用BASE_PATH=/whats-a-benchmark/及SITE_URL=https://whiteplusms.github.io/whats-a-benchmark/执行npm run build，严格TypeScript通过，生成151条公开目录，SSG构建完成并核验156个静态页面及Pages 404。git diff --check通过；保留既有大包体积提示，不将warning称为失败。上一轮47项测试和内容校验已通过；发布工作流会再次运行现有测试及生产构建。
+- 发布步骤：先提交当前已核对的改动，再将功能分支以ff-only合入main并正常推送；等待本次提交对应的build/deploy成功，随后核对公开页面、真实图片和案例资源。此时尚未执行推送或声称最新版本已上线。
+- 环境边界：本轮不启动前后端服务，不修改Pages保护规则、工作流、依赖或版本机制；.generated、dist和候选审计仍按原有.gitignore处理。
+
+## 2026-10-09 — 26项图片标识接入完成与验收
+
+- 结果：缺图从26项降至0项，151/151条目有图片映射；新增21份原素材、复用3种已有品牌，登记素材58→79。26项除brandIds外的字段及sampleSet哈希逐条不变，21份源素材与生成文件SHA逐条一致。
+- 文件与职责：`content/brands.json`登记21项及wide/必要背景；下表列出全部26份条目文件与21份原始素材。`src/content/schema.ts`只增加严格HEX可选背景字段，`src/components/PublisherMarks.vue`复用原容器底色与wide选择器，失败仍显示原毛玻璃文字。`artifacts/candidates/2026-10-09-logo-assets.json`保存来源、下载、哈希、采纳及验证证据；`docs/LOGO_SOURCES.md`和`docs/reviews/2026-10-09-logo-coverage.md`更新当前状态与身份边界；`artifacts/screenshots/2026-10-09-datacurve-logo.jpg`保存实际浏览器截图。
+
+| 修改条目文件 | brandIds绑定 | 本地素材文件 | 图片类型 |
+| --- | --- | --- | --- |
+| content/benchmarks/agents-last-exam.json | agents-last-exam | content/assets/logos/agents-last-exam.png | 项目标识 |
+| content/benchmarks/aime-2024.json | maa | content/assets/logos/maa.webp | 机构官方账户标识 |
+| content/benchmarks/aime-2025.json | maa | content/assets/logos/maa.webp | 机构官方账户标识 |
+| content/benchmarks/apex-agents.json | mercor | 复用mercor原素材 | 已注册发布方标识 |
+| content/benchmarks/babyvision.json | babyvision | content/assets/logos/babyvision.png | 项目标识 |
+| content/benchmarks/benchcad.json | benchcad | content/assets/logos/benchcad.svg | 项目标识 |
+| content/benchmarks/browsecomp-zh.json | palin2018 | content/assets/logos/palin2018.png | 维护者账户identicon |
+| content/benchmarks/cmmlu.json | cmmlu | content/assets/logos/cmmlu.jpg | 官方项目标题图 |
+| content/benchmarks/critpt.json | critpt | content/assets/logos/critpt.png | 项目标识 |
+| content/benchmarks/deep-swe-v1-1.json | datacurve | content/assets/logos/datacurve.png | 发布方标识 |
+| content/benchmarks/gdp-pdf.json | surge-ai | 复用surge-ai原素材 | 已注册发布方标识 |
+| content/benchmarks/gpqa.json | david-rein | content/assets/logos/david-rein.jpg | 维护者头像 |
+| content/benchmarks/gpqa-diamond.json | david-rein | content/assets/logos/david-rein.jpg | 维护者头像 |
+| content/benchmarks/ifbench.json | ai2 | content/assets/logos/ai2.png | 发布方网站标识 |
+| content/benchmarks/livecodebench.json | livecodebench | content/assets/logos/livecodebench.svg | 官方项目网站图标 |
+| content/benchmarks/livecodebench-pro.json | livecodebench-pro-maintainer | content/assets/logos/livecodebench-pro-maintainer.jpg | 维护者账户自选图片 |
+| content/benchmarks/mind2web.json | osu-nlp-group | content/assets/logos/osu-nlp-group.jpg | 发布组织账户标识 |
+| content/benchmarks/mmlu.json | dan-hendrycks | content/assets/logos/dan-hendrycks.jpg | 维护者头像 |
+| content/benchmarks/nl2repo-bench.json | map | content/assets/logos/map.png | 发布组织账户标识 |
+| content/benchmarks/officeqa-pro.json | officeqa | content/assets/logos/officeqa.png | 系列项目标识 |
+| content/benchmarks/paperbench.json | openai | 复用openai原素材 | 已注册发布方标识 |
+| content/benchmarks/scicode.json | scicode | content/assets/logos/scicode.png | 官方项目网站图标 |
+| content/benchmarks/skillsbench.json | skillsbench | content/assets/logos/skillsbench.svg | 官方项目网站图标 |
+| content/benchmarks/small-overlapping-speech-bench.json | laion | content/assets/logos/laion.svg | 发布方标识 |
+| content/benchmarks/toolathlon-verified.json | toolathlon | content/assets/logos/toolathlon.svg | 项目标识 |
+| content/benchmarks/vending-bench-2.json | andon-labs | content/assets/logos/andon-labs.svg | 发布方网站标识 |
+
+- 验证：`npm run typecheck`通过并同步生成151项；`npm run validate`通过（151项、149样例、17报告）；既有测试47/47通过。浏览器目录有151个标识容器、156张已解码图片、文字回退0、加载失败0；列表wide缩略图44px、详情wide84px；DataCurve PNG及CritPt深底浅字已实际查看，390px小屏无横向溢出；当前浏览器错误日志为空。
+- 来源边界：GPQA/Diamond、MMLU、BrowseComp-ZH、LiveCodeBench Pro这5项使用官方维护者身份图片，title/alt明确维护者，未称专属Logo；MAA使用官网明确认证账户的原标识；CMMLU为官方README标题图。未造图、未改原图色彩/比例、未借模型厂商品牌。
+- 未做生产build、发布或提交。工具管理的临时Vite进程及验收页面已关闭，5173连接返回ECONNREFUSED；下载辅助脚本和临时验图文件已清理。验收进程仍有既有Vue Router `next()`弃用提示，未出现浏览器错误日志或标识加载失败。
+
+
+## 2026-10-09 — 补齐26项Benchmark图片标识（过程记录，已完成）
+
+- 原因：用户授权将上一轮盘点的26项缺图全部接入；沿用原有品牌登记、brandIds映射、内容生成和PublisherMarks展示。
+- 文件：新增 `artifacts/candidates/2026-10-09-logo-assets.json`，逐项登记21种新素材的第一方来源、标识主体和类型，以及3项已有素材复用。待下载原始素材至 `content/assets/logos/`，再统一登记 `content/brands.json` 和26项条目映射。
+- 来源边界：优先真实项目/发布方图形。GPQA及Diamond、MMLU、BrowseComp-ZH、LiveCodeBench Pro本轮只定位到官方维护者账户图片，按真实身份命名与登记；MAA使用其官网指南明确列出的机构官方账户原图，不称AIME专属Logo。排除Mind2Web空SVG、论文图表、第三方图库、被测模型厂商图标和自动社交缩略图。
+- 当时状态：保存来源计划，尚未登记品牌或更新生成目录；不增加组件、依赖或第二套运行时映射。现已完成接入，最新状态见上节。
+- 素材下载与检查：21份原文件已下载并记录GET状态、媒体类型、字节数、SHA-256；新增原文件合计2,697,500字节。Agents’ Last Exam官网.jpg链接误报JPEG、实际为PNG，改用官方仓库原PNG；未转换或重绘。15份栅格图已实际查看，SVG检查图形节点及主动/远程内容。
+- 展示必要调整：`src/content/schema.ts` 的Brand增加可选六位HEX `background`，用于CritPt浅色透明字标；`src/components/PublisherMarks.vue`沿用既有标识容器设置该底色，图片失败时仍用原毛玻璃文字占位。提高既有wide选择器优先级，避免详情页large和移动端规则把横向Logo压成方形。没有新增组件或替代映射，`vue-tsc --noEmit`通过。
+- wide覆盖仅对large详情容器提高优先级，保留目录列表视图原有44px缩略图覆盖；复用同一组宽度声明，不引入第二份样式实现。调整后 `vue-tsc --noEmit`再次通过。
+
+## 2026-10-09 — Benchmark图片标识缺项统计与来源核查
+
+- 原因：用户要求统计没有LOGO的benchmark，并指出DataCurve AI应有真实标识；先核对现状与官方来源。
+- 文件：新增 `docs/reviews/2026-10-09-logo-coverage.md`，记录151项中125项有图片映射、26项为空、58种素材、引用资源缺失0项；包含26项完整名称、分类、发布方、第一方来源与图片线索。源条目与生成目录的brandIds逐项一致。
+- 发现：10项已定位正式项目或发布方素材，其中PaperBench/OpenAI、GDP.pdf/Surge AI、APEX-Agents/Mercor这3项本地素材已存在但未绑定；DataCurve官网有真实SVG标识。另3项有官方站点图标线索、2项有MAA机构Logo指南但独立图片未核实、11项尚需确认。Mind2Web的200 SVG实际没有图形节点，不能当作可用素材；125项已配图片中包含5项已登记的作者头像/identicon，不统一称作专属Logo。
+- 影响：本轮只写盘点报告和更新日志，未修改品牌注册、条目映射、图片素材、组件或生成数据；后续沿用现有brandIds/brands/PublisherMarks链路。
+- 验证：读取当前内容与生成目录、检查引用文件存在；26项均核对第一方来源线索，新素材记录HEAD/GET状态与类型，DataCurve及站点SVG核对正文。未下载或接入新图、未进行所有图片的浏览器验图、未运行构建或启停服务。
+
+## 2026-10-09 — 文字占位标识改为毛玻璃效果
+
+- 原因：用户反馈黑色描边过于生硬，要求改为毛玻璃；按最简原则复用现有文字占位组件和主题变量。
+- 文件：`src/components/PublisherMarks.vue`；`.publisher-name` 改用不透明度60%的主题表面底色、半透明浅色边缘、8px圆角、12px背景模糊及轻柔阴影。图片加载失败的 `.publisher-logo.is-fallback` 底色改为透明，让玻璃效果透出背景。
+- 影响：目录与详情页中的发布方文字占位统一采用柔和的玻璃样式；占位尺寸和文字排版保持原有结构，正常图片标识的样式不变。
+- 验证：`vue-tsc --noEmit`通过；本地浏览器核对LiveCodeBench Pro占位为60%半透明底、12px模糊和8px圆角，尺寸仍为110px × 46px，文字换行正常。现有5173预览服务保持运行，供用户审核。
+
+## 2026-10-09 — 文字占位标识增加黑色细描边
+
+- 原因：无Logo时的发布方文字占位缺少边界，按用户截图要求以最简样式修正。
+- 文件：`src/components/PublisherMarks.vue`；复用已有 `.publisher-name`，增加 `1px solid #000` 边框、`4px 6px` 内边距及块状展示，不新增组件或分支。
+- 影响：目录和详情页中无Logo、图片加载失败的文字占位统一显示细黑边框。
+- 验证：`vue-tsc --noEmit`通过；实际浏览器中的LiveCodeBench Pro占位边框为`1px solid rgb(0, 0, 0)`，宽110px、高46px，文字正常换行。现有5173预览服务保持运行，供用户审核。
+
 ## 2026-10-09 — 原始来源投影恢复（进行中）
 
 - 原因：用户要求来源节选展示真实原始数据的精简内容，便于核对任务结构。Root更新 `src/content/schema.ts` 与 `src/composables/sampleLoader.ts`，移除 editorial raw 只能为字符串和240字符上限的限制，同时仍要求 raw 非空；`src/components/SampleViewer.vue` 统一显示原始数据与来源节选，并保留媒体许可校验。`tests/sample-loader.test.ts`、`tests/sample-origin.test.ts` 覆盖原生结构接收及媒体/数据许可边界；`docs/LOCAL_SAMPLE_IMPORT.md` 同步模式说明。Root报告 `vue-tsc --noEmit` 通过、专项测试6/6通过。该改动允许按源格式展示结构，不改变许可状态。

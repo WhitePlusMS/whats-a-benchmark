@@ -35,6 +35,8 @@ export const brandSchema = z.strictObject({
   sourceUrl: https,
   assetUrl: https,
   wide: z.boolean().optional(),
+  // 浅色原始标识可声明承载底色，保持素材自身颜色与透明度不变。
+  background: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
 });
 const grid = z
   .array(z.array(z.number().int().min(0).max(9)).min(1).max(30))

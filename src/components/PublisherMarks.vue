@@ -50,6 +50,7 @@ watch(
       :key="mark.id"
       class="publisher-logo"
       :class="{ wide: mark.wide, 'is-fallback': failed.includes(mark.id) }"
+      :style="{ backgroundColor: failed.includes(mark.id) ? undefined : mark.background }"
       :title="mark.name"
     >
       <img
@@ -97,18 +98,26 @@ watch(
 .publisher-logo.is-fallback {
   height: auto;
   min-height: 44px;
+  background: transparent;
 }
-.publisher-logo.wide {
+/* 横向标识在详情页和移动端也保持横向尺寸，避免被large规则覆盖。 */
+.publisher-logo.wide,
+.large .publisher-logo.wide {
   width: 84px;
   flex-basis: 84px;
 }
-.publisher-logo.wide img {
+.publisher-logo.wide img,
+.large .publisher-logo.wide img {
   width: 80px;
 }
 .publisher-name {
-  /* 未提供Logo或图片加载失败时，用细边框明确文字占位范围。 */
+  /* 文字占位使用主题色的半透明玻璃底，柔化边缘并透出后方背景。 */
   display: inline-block;
-  border: 1px solid #000;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--surface) 75%, transparent);
+  border-radius: 8px;
+  backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: 0 2px 8px var(--dock-shadow);
   padding: 4px 6px;
   color: var(--muted-tint);
   font-size: 12px;

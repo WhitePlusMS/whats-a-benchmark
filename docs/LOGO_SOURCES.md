@@ -33,7 +33,7 @@
 
 - SWE-bench Verified 并列 SWE-bench 与 OpenAI；HLE 并列 CAIS 与 Scale。标识不表示穷尽所有个人贡献者，完整发布方仍以正文为准。
 - CharXiv 使用自己的项目标识，虽然内部素材键为 princeton-nlp，也不用于其他研究项目。BFCL、THUDM 标识来自其项目/团队自己的官方呈现，不按某一作者所属院校推测。
-- GPQA / Diamond、MMLU、LiveCodeBench 未核实可用统一标识，采用发布方文字。MAA 的完整 Logo 有最小尺寸要求，不压缩成小图标，AIME 使用 MAA 文字。
+- 2026-09-22时，GPQA / Diamond、MMLU、LiveCodeBench未核实可用统一标识，曾采用发布方文字；AIME也曾采用MAA文字。2026-10-09接入结果及实际图片身份见文末，不将MAA官方账户图标称为完整Logo。
 - [MAA 官方品牌规范](https://maa.org/wp-content/uploads/2025/05/MAA-Logo-Guidelines.pdf)。
 
 ## 2026-09-23 新增标识
@@ -91,3 +91,39 @@
 - LiveBench、SimpleBench、BullshitBench v2、Lech Mazur Short-Story 的官方 GitHub 账户当前采用 identicon。它们已明确登记为账户图标，**没有宣称找到了专属评测 Logo**；将来如第一方发布专属标识，再替换原登记。SimpleBench 站点另有 ICO，但既有 Brand schema 不接收 ICO，本次没有引入格式转换或扩展 schema。
 - LiveBench 网站 `logo192.png` 是 React 默认图标，已排除；TubeLab 站点声明的 `apple-icon.png` 实际 404，改用其声明且可访问的 `favicon-32x32.png`；RWS 白色透明头像不可见，改用其官方技术仓库内的 `rws-logo-128.png`。
 - 来源核验与下载审计详情见 `artifacts/candidates/2026-10-08-expansion-brand-assets.json`。保留官方文件的原始像素、透明度、格式和比例，没有 AI 重绘、改色或拼装徽标。
+
+## 2026-10-09 补齐26项缺图
+
+按用户授权接入21份第一方原始图片，并复用OpenAI、Surge AI、Mercor已有素材。当前151/151项均有图片映射，素材登记共79项；目录实际渲染156张标识（部分条目有多个发布方），均完成解码，没有文字回退。
+
+| 标识主体 | 类型 | 本地原文件 | 第一方出处 | 原图 | 对应条目 |
+| --- | --- | --- | --- | --- | --- |
+| DataCurve AI | 发布方标识 | logos/datacurve.png | [来源](https://datacurve.ai/) | [原图](https://datacurve.ai/apple-icon?21bbc7811497e303) | deep-swe-v1-1 |
+| Agents’ Last Exam | 项目标识 | logos/agents-last-exam.png | [来源](https://github.com/rdi-berkeley/agents-last-exam) | [原图](https://raw.githubusercontent.com/rdi-berkeley/agents-last-exam/main/assets/logo.png) | agents-last-exam |
+| BabyVision | 项目标识 | logos/babyvision.png | [来源](https://github.com/UniPat-AI/BabyVision) | [原图](https://raw.githubusercontent.com/UniPat-AI/BabyVision/main/assets/baby_logo.png) | babyvision |
+| BenchCAD | 项目标识 | logos/benchcad.svg | [来源](https://github.com/BenchCAD/BenchCAD-main) | [原图](https://raw.githubusercontent.com/BenchCAD/BenchCAD-main/main/assets/benchcad-icon.svg) | benchcad |
+| CMMLU | 官方项目标题图 | logos/cmmlu.jpg | [来源](https://github.com/haonan-li/CMMLU) | [原图](https://raw.githubusercontent.com/haonan-li/CMMLU/master/fig/logo.jpg) | cmmlu |
+| OfficeQA | 系列项目标识 | logos/officeqa.png | [来源](https://github.com/databricks/officeqa) | [原图](https://raw.githubusercontent.com/databricks/officeqa/main/logo.png) | officeqa-pro |
+| Toolathlon | 项目标识 | logos/toolathlon.svg | [来源](https://github.com/hkust-nlp/Toolathlon) | [原图](https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/assets/toolathlon.svg) | toolathlon-verified |
+| LiveCodeBench | 官方项目网站图标 | logos/livecodebench.svg | [来源](https://livecodebench.github.io/) | [原图](https://livecodebench.github.io/images/favicon.svg) | livecodebench |
+| SkillsBench | 官方项目网站图标 | logos/skillsbench.svg | [来源](https://www.skillsbench.ai/) | [原图](https://www.skillsbench.ai/favicon.svg) | skillsbench |
+| Andon Labs | 发布方网站标识 | logos/andon-labs.svg | [来源](https://andonlabs.com/evals/vending-bench-2) | [原图](https://andonlabs.com/favicon.svg) | vending-bench-2 |
+| CritPt | 项目标识 | logos/critpt.png | [来源](https://critpt.com/) | [原图](https://critpt.com/figures/CritPt_Cavolini.png) | critpt |
+| SciCode | 官方项目网站图标 | logos/scicode.png | [来源](https://scicode-bench.github.io/) | [原图](https://scicode-bench.github.io/assets/images/favicon.png) | scicode |
+| OSU NLP Group（官方发布组织） | 发布组织账户标识 | logos/osu-nlp-group.jpg | [来源](https://github.com/OSU-NLP-Group/Mind2Web) | [原图](https://avatars.githubusercontent.com/u/92067480?s=200&v=4) | mind2web |
+| Ai2 | 发布方网站标识 | logos/ai2.png | [来源](https://allenai.org/) | [原图](https://allenai.org/apple-icon.png?c1d111c3e4ad49a6) | ifbench |
+| LAION | 发布方标识 | logos/laion.svg | [来源](https://laion.ai/) | [原图](https://laion.ai/images/logo.svg) | small-overlapping-speech-bench |
+| multimodal-art-projection（官方发布组织） | 发布组织账户标识 | logos/map.png | [来源](https://github.com/multimodal-art-projection) | [原图](https://avatars.githubusercontent.com/u/136257670?s=200&v=4) | nl2repo-bench |
+| MAA（官方机构账户） | 机构官方账户标识 | logos/maa.webp | [来源](https://bsky.app/profile/joinmaa.bsky.social) | [原图](https://cdn.bsky.app/img/avatar/plain/did:plc:saopeob4zh3jm2p2e3meukri/bafkreiamlihy3p2uzsupwgonr2bbsm6cbghyh7pjz5f2l67hjpk5aqousa) | aime-2024, aime-2025 |
+| David Rein（官方维护者） | 维护者头像 | logos/david-rein.jpg | [来源](https://github.com/idavidrein/gpqa) | [原图](https://avatars.githubusercontent.com/u/26013403?s=200&v=4) | gpqa, gpqa-diamond |
+| Dan Hendrycks（官方维护者） | 维护者头像 | logos/dan-hendrycks.jpg | [来源](https://github.com/hendrycks/test) | [原图](https://avatars.githubusercontent.com/u/11670606?s=200&v=4) | mmlu |
+| Chris Zhou / PALIN2018（仓库维护者） | 维护者账户identicon | logos/palin2018.png | [来源](https://github.com/PALIN2018/BrowseComp-ZH) | [原图](https://avatars.githubusercontent.com/u/35458200?s=200&v=4) | browsecomp-zh |
+| GavinZhengOI（仓库维护者） | 维护者账户自选图片 | logos/livecodebench-pro-maintainer.jpg | [来源](https://github.com/GavinZhengOI/LiveCodeBench-Pro) | [原图](https://avatars.githubusercontent.com/u/33168669?s=200&v=4) | livecodebench-pro |
+
+- GPQA与Diamond共用David Rein官方维护者头像；MMLU使用Dan Hendrycks头像；BrowseComp-ZH使用PALIN2018官方账户identicon；LiveCodeBench Pro使用论文所链评测仓库的GavinZhengOI账户自选图片。合计5个条目没有冒充已找到专属Logo，图片title/alt直接标出维护者身份。
+- MAA采用其[官方指南](https://maa.org/wp-content/uploads/2025/05/MAA-Logo-Guidelines.pdf)第4页明确列出的[官方Bluesky账户](https://bsky.app/profile/joinmaa.bsky.social)实际使用的蓝色Icosahedron原图；保留原图，不改比例或重绘，不称完整MAA lockup或AIME独立Logo。
+- CMMLU原 `fig/logo.jpg` 实图是README的分类扇面标题图，记录为官方项目标题图；OfficeQA为系列标识；SciCode与LiveCodeBench使用各自项目网站声明图标。图像身份与专属商标分别记录。
+- DataCurve与Ai2使用官网声明的原PNG；LAION采用官网页头原SVG；Mind2Web使用发布组织OSU NLP Group自选标识，排除其空SVG。MAP使用官方发布组织自选图形，而非GitHub默认identicon。
+- CritPt原PNG是浅色透明字标，保持原字节，通过Brand可选HEX背景字段设置 `#101419`，图片本身未改色。横向图继续使用既有wide，详情84px、列表44px；390px小屏无横向溢出。
+- 原始GET状态、类型、尺寸、字节数、SHA-256及26项采纳映射见 [接入审计](../artifacts/candidates/2026-10-09-logo-assets.json)。21份源素材与生成文件SHA逐条相同；26项仅改变brandIds，其他内容和样例哈希逐条保持一致。
+- `typecheck`、内容校验（151项/149样例/17报告）、47/47测试通过；实际浏览器核对卡片、列表、DataCurve和CritPt详情及小屏。没有新增组件、依赖、第二套品牌映射或生产构建。
