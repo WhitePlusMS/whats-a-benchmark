@@ -178,9 +178,9 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-09",
     "samples": [
       {
         "id": "longbench-multi-news-row-0",
@@ -188,10 +188,13 @@
         "type": "text",
         "promptOrigin": "editorial",
         "prompt": "LongBench v1 的 Multi-News 测试集 row 0 是多篇新闻摘要任务。该记录涉及洛杉矶 Occupy 营地在警方清场前获暂缓、公园外发生逮捕，以及费城抗议者在截止时间后仍留守、警方当时不计划强制驱离。请概括报道涉及的事件与两地处置情况。此处为原创中文事实解读；原文新闻和参考摘要均未复制。",
-        "explanation": "定位为 THUDM/LongBench 固定 revision 的 test split、data/multi_news.jsonl 第 1 行（_id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8）。source input 字段为空，记录类型为 Multi-News 摘要任务。原新闻上下文和作者 gold 摘要均未复制；单句 raw 是 context 的短引。",
-        "raw": "About 100 Occupy Philly protesters sat down",
+        "explanation": "定位为 THUDM/LongBench 固定 revision 的 test split、data/multi_news.jsonl 第 1 行（_id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8）。source input 字段为空，记录类型为 Multi-News 摘要任务。原新闻上下文和作者 gold 摘要均未复制；单句 raw 是 context 的短引。\n原始数据精简说明：保留原生_id和input实际前缀；省略input其余长新闻正文、answers及其他字段。原始资料与本站中文说明分开，未通过格式包装补造记录。",
+        "raw": {
+          "_id": "e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
+          "input": "About 100 Occupy Philly protesters sat down"
+        },
         "source": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
-        "license": "本站原创中文解读与必要短引；LongBench 数据卡未声明 license 值，未推定整条记录的再发布许可。",
+        "license": "本站原创中文解读与必要短引；LongBench 数据卡未声明 license 值，未推定整条记录的再发布许可。 原始数据只显示上述已公开源字段、事实配置与必要原文节录，不扩展为受控题库、第三方完整正文或附件的公开再发布授权。",
         "split": "LongBench v1 / test / multi_news.jsonl row 0; _id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
         "excerpt": true
       }

@@ -45,14 +45,9 @@
 - 既有许可来源记载：No task-data license found on checked official pages；scope：Official leaderboard sample and methodology pages.；URL：https://cognition.com/frontiercode, https://cognition.com/blog/frontier-code, https://cognition.com/blog/frontier-code-1.1。
 
 ### `frontierswe-v2`
-- 载体：Markdown text excerpt；版本/快照：instruction.md SHA-256 3e7d8998c7865b4d04c1e4e217ba68386f26111b6988e899d2f78928cd61ff03。
-- 原始定位：instruction.md opening task paragraph。
-- 原始字段路径：task instruction text。
-- 原始投影：Your workspace runs an SGLang serving instance with Qwen3.5-4B on a B200 GPU. Make it serve requests as fast as possible.
-- 响应 SHA-256：3e7d8998c7865b4d04c1e4e217ba68386f26111b6988e899d2f78928cd61ff03。
-- 省略范围：Other source fields omitted; the projection preserves the listed native source paths.
-- 既有许可来源记载：Task prompt license not explicitly stated；scope：Task instruction.md；URL：https://github.com/Proximal-Labs/frontier-swe-v2/blob/main/README.md, https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md。
-
+- Source: [official instruction.md](https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md), plain text, lines 0–3; line 0 SHA-256 recorded as `3e7d8998c7865b4d04c1e4e217ba68386f26111b6988e899d2f78928cd61ff03` in the earlier source proof.
+- Exact continuous 25-word excerpt from line 0: “Your workspace runs an SGLang serving instance with Qwen3.5-4B on a B200 GPU. Make it serve requests as fast as possible — single-request latency across”.
+- Omitted: remainder of line 0 and lines 1–3.
 ### `hyper-tau-bench`
 - Source: [official task JSON](https://raw.githubusercontent.com/sierra-research/hyper-tau-bench/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json); HTTP 200, 5,562 bytes; SHA-256 `aa1fdc915727a067f27249bceac99b6bbdfb41e59330cd6256c46bdf16e8831b`.
 - Native fields: `id`, `source_domain`, `task_type`, `task_description`. Exact values: id `002_airline_plus_construction_core_evidence_seeded_performance_hard`; source_domain `airline_plus`; task_type `construction`.
@@ -132,14 +127,9 @@
 - 既有许可来源记载：HF card did not state a dataset license; upstream Astropy source repository uses BSD-3-Clause；scope：Dataset card metadata and upstream source-code license were checked; issue-text license scope was not established.；URL：https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/blob/78f471bf655a3137b2e8a75af1501690ec009ec3/README.md, https://github.com/astropy/astropy/blob/main/LICENSE.rst。
 
 ### `vibe-code-bench-1-100`
-- 载体：HTML task example text；版本/快照：Official page HTML SHA-256 f5d7b6e6e3004243522c3ec8f604e5bf582e8cc51c1f309567a7d7e81ffdd736; accessed 2026-10-08.。
-- 原始定位：Vals example Zeeter / iteration 1; current HTML bytes hash (differs from prior proof)。
-- 原始字段路径：非结构化原文，无 JSON 字段路径。
-- 原始投影：Add a private Saved area where signed-in members can save and unsave posts from the feed, profiles, and post detail.
-- 响应 SHA-256：2493c289efbe70acee331a304d11e9230c40ee7d6fc3a308a955bbb3ea24587c。
-- 省略范围：Only the shown original text excerpt is represented; surrounding page/document content omitted.
-- 既有许可来源记载：No benchmark-data reuse license located；scope：Public standalone Zeeter example on Vals page.；URL：https://www.vals-ai.com/benchmarks/vcb-1-100。
-
+- Source: [official Vals page](https://www.vals-ai.com/benchmarks/vcb-1-100), section “Example task: Zeeter”, “Example request — iteration 1”.
+- Exact continuous source excerpt: “Add a private Saved area where signed-in members can save and unsave posts from the feed, profiles, and post detail”.
+- This is the original request prefix; the remaining request text and page material are omitted. The current official page was rechecked on 2026-10-09; the page is mutable and no response-body hash was captured in this pass.
 ### `vibe-code-bench-v1-1`
 - 载体：plain text excerpt；版本/快照：Gist revision 0bd7400df1f9d444c54350f13af2a02aac72bd67; app_instructions.txt SHA-256 c89db0c3c6d325193190060c5e9a468e55d0cb59cb9cb22b7bb799702d6e0655.。
 - 原始定位：gist app_instructions.txt; pinned revision 0bd7400df1f9d444c54350f13af2a02aac72bd67。
@@ -171,14 +161,9 @@ Deliver a simple short-form publishing platform where users share quick updates 
 - 既有许可来源记载：MIT repository license; question-data scope not explicit；scope：Repository README and LICENSE; explicit question-data scope not found.；URL：https://github.com/petergpt/bullshit-benchmark/blob/main/README.md, https://raw.githubusercontent.com/petergpt/bullshit-benchmark/main/LICENSE。
 
 ### `facts-parametric`
-- 载体：PDF table fields；版本/快照：PDF SHA-256 f079762c7a3ce79e725e79fa009fa3afd63eb3cbf77f6507c1f9901640752cb7; Table 5。
-- 原始定位：FACTS benchmark paper Table 5。
-- 原始字段路径：Question, Answer, URL Suffix, Topic, Answer Type。
-- 原始投影：{"Question": "who played harmonica on the rockford files theme song", "Answer": "Tommy Morgan", "URL Suffix": "Tommy_Morgan", "Topic": "People (artists)", "Answer Type": "Performer"}
-- 响应 SHA-256：f079762c7a3ce79e725e79fa009fa3afd63eb3cbf77f6507c1f9901640752cb7。
-- 省略范围：Other source fields omitted; the projection preserves the listed native source paths.
-- 既有许可来源记载：No explicit dataset/example license located；scope：Official report example and public-dataset metadata；URL：https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf, https://www.kaggle.com/benchmarks/google/facts-parametric/leaderboard。
-
+- Source: [FACTS benchmark suite paper](https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf), Table 5, public-set example row (paper page 7).
+- Original table columns and row values: Question=`who played harmonica on the rockford files theme song`; Answer=`Tommy Morgan`; URL Suffix=`Tommy_Morgan`; Topic=`People (artists)`; Answer Type=`Performer`.
+- This is a projection of one PDF table row using its column labels, not a source JSON record. PDF SHA-256: `f079762c7a3ce79e725e79fa009fa3afd63eb3cbf77f6507c1f9901640752cb7`.
 ### `hle`
 - 载体：HTML article excerpt；版本/快照：Scale article capture SHA-256 27668620A50CD2E81A10DD28ED4FE1825412512BD59A2960C6AE7D56A926F327。
 - 原始定位：Scale article Ecology example; article excerpt only。
@@ -189,15 +174,9 @@ Deliver a simple short-form publishing platform where users share quick updates 
 - 既有许可来源记载：MIT metadata; explicit HLE non-distribution request also shown；scope：MIT is dataset page metadata; HLE card request covers dataset redistribution.；URL：https://huggingface.co/datasets/cais/hle, https://scale.com/blog/humanitys-last-exam-results。
 
 ### `rws-mgate`
-- 载体：browser-indexed HTML text excerpt；版本/快照：RWS release 2026-08-24 SHA-256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855。
-- 原始定位：Official article “Four patterns stood out,” web index lines 245–246; direct HTTP response 202/0 bytes。
-- 原始字段路径：非结构化原文，无 JSON 字段路径。
-- 原始投影：One example stumper sentence, “Everything I told you is what I thought I had said I would,” sounds awkward enough to be wrong
-- 响应 SHA-256：不可用/本轮未取得。
-- 省略范围：Only the shown original text excerpt is represented; surrounding page/document content omitted.
-- 本轮边界：Official article “Four patterns stood out,” web index lines 245–246; direct HTTP response 202/0 bytes
-- 既有许可来源记载：No benchmark data license located；scope：Public press-release example；URL：https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/, https://www.linkedin.com/posts/rws-group_mgate-trainai-multilingual-activity-7510610256272441344-p-KR。
-
+- Source: [official RWS release](https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/), section “Four patterns stood out”, item 1. The direct HTTP fetch returned status 202 with a 0-byte body; the sentence is present in the official article's indexed text.
+- Exact standalone original sentence: “Everything I told you is what I thought I had said I would.” No surrounding article framing is included.
+- Release date shown by source: 2026-08-24. No response-body hash is available for the 202/0-byte fetch.
 ### `aime-2024`
 - Source: [pinned Parquet row](https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet); HTTP 200, 6,187 bytes; SHA-256 `e4033c704609cc7cdfe712ed410357b190733dec75aa5b54a39adc55add49393`.
 - Locator/schema: row 0 of 15; native columns `problem_idx`, `problem`, `answer`.
@@ -218,15 +197,9 @@ kilometers per hour. Find the number of minutes the walk takes her, including th
 - 既有许可来源记载：CC-BY-NC-SA-4.0 (MathArena dataset card)；scope：MathArena dataset card declaration for the 30-row release; MAA-specific rights to contest text not established.；URL：https://huggingface.co/datasets/MathArena/aime_2025/blob/c94da77eb22bbd6439e62a323bec18493a421302/README.md, https://maa.org/maa-invitational-competitions/。
 
 ### `arc-agi-3`
-- 载体：HTML text excerpt；版本/快照：Preview article SHA-256 4BACC4350908EFA0C1928F093F26AD1DB227DB6303ECE95A5C6E3FBB02EC926B。
-- 原始定位：preview games table, ls20; no underlying grid。
-- 原始字段路径：非结构化原文，无 JSON 字段路径。
-- 原始投影：ls20 — Navigate a map while bringing a matching symbol to another object; the symbol must pass through transformations to reach the goal.
-- 响应 SHA-256：4bacc4350908efa0c1928f093f26ad1db227db6303ece95a5c6e3fbb02ec926b。
-- 省略范围：Only the shown original text excerpt is represented; surrounding page/document content omitted.
-- 本轮边界：preview games table, ls20; no underlying grid
-- 既有许可来源记载：No benchmark-data license found on checked official pages；scope：Website text and preview game descriptions.；URL：https://arcprize.org/blog/arc-agi-3-preview-30-day-learnings, https://arcprize.org/blog/arc-agi-3-launch, https://docs.arcprize.org/full-play-test。
-
+- Source: [ARC Prize preview article](https://arcprize.org/blog/arc-agi-3-preview-30-day-learnings), “Preview games released” HTML table, `ls20` row.
+- Native cells: Game `ls20`; Type `Agentic, map based`; exact Description cell excerpt: “The symbol must go through various transformations in order for it to reach the goal.”
+- The excerpt is the table cell's second sentence (15 words); the first sentence and other rows are omitted. Prior preview-page SHA-256: `4bacc4350908efa0c1928f093f26ad1db227db6303ece95a5c6e3fbb02ec926b`.
 ### `chess-puzzles`
 - Source: public Inspect `.eval` ZIP at https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval; object length 48,757,423 bytes, accepts byte ranges.
 - Locator: only member `samples/1_epoch_1.json` was decompressed (646,985 compressed bytes; 936,262 uncompressed bytes); decompressed member SHA-256 `f305e7145dbb11d2b109c68dfa1a49e689010ecca1c6bf41297b4a1d30b1408a`.
@@ -252,14 +225,9 @@ kilometers per hour. Find the number of minutes the walk takes her, including th
 - 既有许可来源记载：No explicit sample-data license located；scope：Published sample problem；URL：https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems, https://epoch.ai/benchmarks/frontiermath-tier-4-v2。
 
 ### `frontiermath-v2-tiers-1-3`
-- 载体：HTML text excerpt；版本/快照：sample SHA-256 01160b8b13b607cdeb05d36ee4b1bf3a46d73b2d99da90b4732e3660dee5aab5; v2 hub SHA-256 429dae7f5f97bd43da63f2ab692a416d3e08d5ae566ab883d040856a56aa0539。
-- 原始定位：Tier 1 / Counting nonzero solutions of homogeneous equations / Problem; old A2 item for same ID incorrectly locates Tier 3。
-- 原始字段路径：非结构化原文，无 JSON 字段路径。
-- 原始投影：How many nonzero points are there on \([x^3y+y^3z+z^3x=0]\) over \(\mathbb{F}_{5^{18}}\) up to scaling? Answer: 3814708984376.
-- 响应 SHA-256：01160b8b13b607cdeb05d36ee4b1bf3a46d73b2d99da90b4732e3660dee5aab5。
-- 省略范围：Only the shown original text excerpt is represented; surrounding page/document content omitted.
-- 既有许可来源记载：No explicit sample-data license located；scope：Published sample problem；URL：https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems, https://epoch.ai/benchmarks/frontiermath-tier-4-v2。
-
+- Source: [Epoch AI FrontierMath sample problems](https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems), Tier 1, “Counting nonzero solutions of homogeneous equations”, rendered lines 881–883.
+- Exact problem text: “How many nonzero points are there on [x^3y+y^3z+z^3x=0] over \mathbb{F}_{5^{18}} up to scaling?” The expression and finite-field domain are in the source problem; no solution prose is included.
+- Prior recorded sample-text SHA-256: `01160b8b13b607cdeb05d36ee4b1bf3a46d73b2d99da90b4732e3660dee5aab5`; v2 hub SHA-256: `429dae7f5f97bd43da63f2ab692a416d3e08d5ae566ab883d040856a56aa0539`.
 ### `math-500`
 - 载体：native datasets-server row fields；版本/快照：see locator/source hash; no immutable revision in current sample。
 - 原始定位：test row_idx=0 current rows API; prior proof pins dataset revision 6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be; solution omitted。

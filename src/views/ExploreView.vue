@@ -26,97 +26,109 @@ const {
 } = useCatalogQuery();
 const { publishers, localCount, sampleCount, categoryCounts } = stats;
 const batchResults = computed(() => recognizeNames(batchInput.value));
+// 未筛选的默认浏览状态按能力分类分组展示；筛选或列表视图回到平铺结果。
+const groupedResults = computed(() => {
+  if (hasFilters.value || query.value.view === "list") return [];
+  return categories
+    .map((category) => ({
+      category,
+      items: results.value.filter((item) => item.category === category.id),
+    }))
+    .filter((group) => group.items.length);
+});
 function setFilter(key: CatalogFilterKey, value: string) {
   void updateFilter(key, value);
   if (key === "category") showFilters.value = false;
 }
 </script>
 <template>
-  <section class="catalog-header container">
-    <div>
-      <h1>到底测什么？</h1>
-      <p>查询评测任务、真实样例、评分方法与版本关系。</p>
-      <RouterLink to="/guide/#tasks" class="text-link"
-        >按工作任务找评测 <Icon name="arrow" :size="15"
-      /></RouterLink>
-    </div>
-    <div class="catalog-stats" aria-label="目录收录情况">
-      <span
-        ><b>{{ formatCount(benchmarks.length) }}</b> 个评测</span
-      >
-      <span
-        ><b>{{ formatCount(categories.length) }}</b> 类能力</span
-      >
-      <span
-        ><b>{{ formatCount(sampleCount) }}</b> 条真实样例</span
-      >
-    </div>
-  </section>
-  <section class="container search-section" aria-label="搜索评测">
-    <div class="search-box">
-      <Icon name="search" :size="23" /><input
-        aria-label="搜索评测"
-        type="search"
-        name="benchmark-search"
-        autocomplete="off"
-        :value="query.q"
-        @input="setFilter('q', ($event.target as HTMLInputElement).value)"
-        placeholder="搜索评测名称、能力或发布方…"
-      /><button
-        v-if="query.q"
-        class="icon-button"
-        aria-label="清空搜索"
-        @click="setFilter('q', '')"
-      >
-        <Icon name="close" :size="18" /></button
-      ><span v-else class="search-hint">例如 GPQA / 数学 / OpenAI</span>
-    </div>
-    <button
-      class="batch-button"
-      :aria-expanded="batchOpen"
-      @click="batchOpen = !batchOpen"
-    >
-      <Icon name="copy" :size="18" />批量查询评测
-    </button>
-    <div v-if="batchOpen" class="batch-panel">
-      <div class="section-line">
-        <div>
-          <h3>批量查询评测</h3>
-          <p>每行一个，也可以用逗号或分号分隔。最多识别 60 项。</p>
-        </div>
-        <button
-          class="icon-button"
-          aria-label="关闭批量查询"
-          @click="batchOpen = false"
+  <div class="hero">
+    <section class="catalog-header container">
+      <div>
+        <h1>到底测什么？</h1>
+        <p>查询评测任务、真实样例、评分方法与版本关系。</p>
+        <RouterLink to="/guide/#tasks" class="text-link"
+          >按工作任务找评测 <Icon name="arrow" :size="15"
+        /></RouterLink>
+      </div>
+      <div class="catalog-stats" aria-label="目录收录情况">
+        <span
+          ><b>{{ formatCount(benchmarks.length) }}</b> 个评测</span
         >
-          <Icon name="close" />
-        </button>
+        <span
+          ><b>{{ formatCount(categories.length) }}</b> 类能力</span
+        >
+        <span
+          ><b>{{ formatCount(sampleCount) }}</b> 条真实样例</span
+        >
       </div>
-      <textarea
-        aria-label="批量评测名称"
-        name="benchmark-names"
-        autocomplete="off"
-        spellcheck="false"
-        v-model="batchInput"
-        rows="3"
-        placeholder="SWE-bench Verified, GPQA Diamond, AIME 2025…"
-      ></textarea>
-      <div class="batch-results" aria-live="polite">
-        <div v-for="row in batchResults" :key="row.input">
-          <strong>{{ row.input }}</strong
-          ><span v-if="!row.matches.length" class="muted">暂未收录</span
-          ><span v-else-if="row.matches.length > 1" class="muted"
-            >请选择具体条目：</span
-          ><RouterLink
-            v-for="match in row.matches"
-            :key="match.id"
-            :to="`/benchmarks/${match.id}/`"
-            >{{ match.name }} <Icon name="up" :size="13"
-          /></RouterLink>
+    </section>
+    <section class="container search-section" aria-label="搜索评测">
+      <div class="search-box">
+        <Icon name="search" :size="23" /><input
+          aria-label="搜索评测"
+          type="search"
+          name="benchmark-search"
+          autocomplete="off"
+          :value="query.q"
+          @input="setFilter('q', ($event.target as HTMLInputElement).value)"
+          placeholder="搜索评测名称、能力或发布方…"
+        /><button
+          v-if="query.q"
+          class="icon-button"
+          aria-label="清空搜索"
+          @click="setFilter('q', '')"
+        >
+          <Icon name="close" :size="18" /></button
+        ><span v-else class="search-hint">例如 GPQA / 数学 / OpenAI</span>
+      </div>
+      <button
+        class="batch-button"
+        :aria-expanded="batchOpen"
+        @click="batchOpen = !batchOpen"
+      >
+        <Icon name="copy" :size="18" />批量查询评测
+      </button>
+      <div v-if="batchOpen" class="batch-panel">
+        <div class="section-line">
+          <div>
+            <h3>批量查询评测</h3>
+            <p>每行一个，也可以用逗号或分号分隔。最多识别 60 项。</p>
+          </div>
+          <button
+            class="icon-button"
+            aria-label="关闭批量查询"
+            @click="batchOpen = false"
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+        <textarea
+          aria-label="批量评测名称"
+          name="benchmark-names"
+          autocomplete="off"
+          spellcheck="false"
+          v-model="batchInput"
+          rows="3"
+          placeholder="SWE-bench Verified, GPQA Diamond, AIME 2025…"
+        ></textarea>
+        <div class="batch-results" aria-live="polite">
+          <div v-for="row in batchResults" :key="row.input">
+            <strong>{{ row.input }}</strong
+            ><span v-if="!row.matches.length" class="muted">暂未收录</span
+            ><span v-else-if="row.matches.length > 1" class="muted"
+              >请选择具体条目：</span
+            ><RouterLink
+              v-for="match in row.matches"
+              :key="match.id"
+              :to="`/benchmarks/${match.id}/`"
+              >{{ match.name }} <Icon name="up" :size="13"
+            /></RouterLink>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
   <div class="container atlas-layout" id="catalog">
     <button
       class="mobile-filter-button"
@@ -264,7 +276,41 @@ function setFilter(key: CatalogFilterKey, value: string) {
           清空筛选 <Icon name="close" :size="13" />
         </button>
       </div>
-      <div class="cards" :class="{ 'list-view': query.view === 'list' }">
+      <template v-if="groupedResults.length">
+        <section
+          v-for="group in groupedResults"
+          :key="group.category.id"
+          class="category-group"
+        >
+          <div class="category-group-heading">
+            <h3>
+              <Icon :name="group.category.glyph" :size="19" />{{
+                group.category.name
+              }}
+            </h3>
+            <span>{{ group.items.length }} 个条目</span>
+            <button
+              class="text-link"
+              @click="setFilter('category', group.category.id)"
+            >
+              只看这一类 <Icon name="arrow" :size="14" />
+            </button>
+          </div>
+          <p class="category-group-desc">{{ group.category.description }}</p>
+          <div class="cards">
+            <BenchmarkCard
+              v-for="item in group.items"
+              :key="item.id"
+              :item="item"
+            />
+          </div>
+        </section>
+      </template>
+      <div
+        v-else
+        class="cards"
+        :class="{ 'list-view': query.view === 'list' }"
+      >
         <BenchmarkCard v-for="item in results" :key="item.id" :item="item" />
       </div>
       <div v-if="!results.length" class="empty-state">

@@ -146,7 +146,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
   "interpretation": {
     "judge": {
       "text": "每个任务以各自验证器对代码、研究模型或优化产物评分，v2统一至0–1；Proximus允许持续提交，完成声明或生成文字不直接得分。",
@@ -162,7 +162,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-09",
     "samples": [
       {
         "id": "public-case-frontierswe-v2",
@@ -170,10 +170,10 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "在 B200 GPU 上优化运行 Qwen3.5-4B 的 SGLang 服务，同时考虑不同输入输出长度的单请求延迟及多个并发水平。优化后温度为 0 的输出需与起始配置保持至少 0.95 的平均空白分词前缀匹配；服务由 /app/server/launch_server.sh 启动。",
-        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：tasks/sglang-inference-system-optimization/instruction.md",
-        "raw": "Your workspace runs an SGLang serving instance with Qwen3.5-4B",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：tasks/sglang-inference-system-optimization/instruction.md\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。",
+        "raw": "Your workspace runs an SGLang serving instance with Qwen3.5-4B on a B200 GPU. Make it serve requests as fast as possible — single-request latency across",
         "source": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md",
-        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
         "split": "FrontierSWE V2 task 27, SGLang Inference System Optimization",
         "excerpt": true
       }

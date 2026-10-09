@@ -99,6 +99,11 @@
       "label": "OfficeQA Pro 官方论文 Figure 3 / UID0013 公开例题",
       "url": "https://arxiv.org/pdf/2603.08655v1#page=4",
       "role": "data"
+    },
+    {
+      "label": "案例原始数据精简片段出处",
+      "url": "https://arxiv.org/html/2603.08655v1#S2.F3",
+      "role": "data"
     }
   ],
   "related": [],
@@ -230,9 +235,9 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-09",
     "samples": [
       {
         "id": "officeqa-pro-paper-uid0013",
@@ -240,12 +245,12 @@
         "type": "text",
         "promptOrigin": "editorial",
         "prompt": "从美国 Treasury Bulletin 中取出1929–1942财年的联邦个人所得税收入（扣除退款，单位为十亿美元名义值）。以未经变换的数值年份为自变量、收入为因变量，拟合普通最小二乘线性回归。返回斜率和截距，各自四舍五入到小数点后三位，以方括号内用逗号分隔的两个数输出。",
-        "raw": "Sample Question UID0013",
-        "source": "https://arxiv.org/pdf/2603.08655v1#page=4",
-        "license": "本条仅对 Databricks 官方技术报告 v1 的 Figure 3 主动公开的 OfficeQA Pro 例题作中文事实解读和必要标题短引；报告保留版权所有声明。未复制论文题图或逐字完整题面，未读取 gated CSV、答案键或下载所需语料；数据卡许可不被扩展为对受控集合的无条件再发布授权。",
+        "raw": "Question UID0013\n\nUsing U.S. federal individual income tax receipts, net of refunds, for fiscal years 1929-1942, reported in billions of nominal dollars",
+        "source": "https://arxiv.org/html/2603.08655v1#S2.F3",
+        "license": "本条仅对 Databricks 官方技术报告 v1 的 Figure 3 主动公开的 OfficeQA Pro 例题作中文事实解读和必要标题短引；报告保留版权所有声明。未复制论文题图或逐字完整题面，未读取 gated CSV、答案键或下载所需语料；数据卡许可不被扩展为对受控集合的无条件再发布授权。 原始数据只显示上述已公开源字段、事实配置与必要原文节录，不扩展为受控题库、第三方完整正文或附件的公开再发布授权。",
         "split": "OfficeQA Pro 官方报告 · arXiv:2603.08655v1 · p.4 Figure 3 · UID0013 · 非 gated CSV 提取",
         "excerpt": true,
-        "explanation": "论文 Figure 3 明确说明此图为 OfficeQA Pro 的示例问题，并给出 UID0013；第2.2节同时定义133道Pro题及另外113道Easy题。该题实际考察财政文档检索与线性回归，输入年份、净退款口径、单位、回归变量与输出格式均来自公开例题。图中没有公布本题答案，本站不自行填写答案；所需公报数据也未作为附件转存。"
+        "explanation": "论文 Figure 3 明确说明此图为 OfficeQA Pro 的示例问题，并给出 UID0013；第2.2节同时定义133道Pro题及另外113道Easy题。该题实际考察财政文档检索与线性回归，输入年份、净退款口径、单位、回归变量与输出格式均来自公开例题。图中没有公布本题答案，本站不自行填写答案；所需公报数据也未作为附件转存。\n原始数据精简说明：保留官方来源实际公开的题目、配置或表格标签片段；其余完整题面、长正文、附件、数据池及未公开参考答案省略。原始资料与本站中文说明分开，未通过格式包装补造记录。"
       }
     ]
   }

@@ -1,34 +1,39 @@
 /* 目录搜索、筛选和结果布局；断点与所属规则共同维护。 */
 
+.hero {
+  background: linear-gradient(180deg, var(--accent-softer), transparent 82%);
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+}
 .catalog-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding-top: 32px;
+  padding-top: 40px;
   padding-bottom: 26px;
 }
 .catalog-header h1 {
-  font-size: 30px;
-  letter-spacing: -0.7px;
+  font-size: 42px;
+  letter-spacing: -1.2px;
 }
 .catalog-header p {
-  margin-top: 8px;
+  margin-top: 10px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
 }
 .catalog-stats {
   display: flex;
-  gap: 22px;
+  gap: 26px;
   color: var(--muted);
   font-size: 12px;
   flex-wrap: wrap;
 }
 .catalog-stats b {
   color: var(--text);
-  font-size: 18px;
-  font-weight: 600;
-  margin-right: 4px;
+  font-size: 26px;
+  font-weight: 650;
+  margin-right: 5px;
 }
 .search-section {
   display: flex;
@@ -136,6 +141,8 @@
   max-height: calc(100vh - 112px);
   overflow-y: auto;
   padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
 }
 .filter-heading {
   font-size: 11px;
@@ -289,10 +296,45 @@
 .cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 24px;
 }
 .cards.list-view {
   grid-template-columns: 1fr;
+}
+.category-group {
+  margin-top: 44px;
+}
+.category-group:first-of-type {
+  margin-top: 0;
+}
+.category-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.category-group-heading h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  letter-spacing: -0.4px;
+  color: var(--text-strong);
+}
+.category-group-heading h3 > svg {
+  color: var(--accent);
+}
+.category-group-heading > span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.category-group-heading > .text-link {
+  margin-left: auto;
+}
+.category-group-desc {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 720px;
+  margin: 8px 0 20px;
 }
 .active-filters {
   display: flex;
@@ -338,7 +380,7 @@
     gap: 20px;
   }
   .cards {
-    gap: 14px;
+    gap: 16px;
   }
   .results-toolbar {
     align-items: flex-start;
@@ -352,11 +394,12 @@
 }
 @media (max-width: 700px) {
   .catalog-header {
-    padding-top: 24px;
+    padding-top: 28px;
     padding-bottom: 20px;
   }
   .catalog-header h1 {
-    font-size: 26px;
+    font-size: 30px;
+    letter-spacing: -0.8px;
   }
   .catalog-header p {
     font-size: 13px;
@@ -366,7 +409,7 @@
     font-size: 11px;
   }
   .catalog-stats b {
-    font-size: 15px;
+    font-size: 20px;
   }
   .search-section {
     gap: 10px;
@@ -452,5 +495,11 @@
   .cards {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+  .category-group {
+    margin-top: 36px;
+  }
+  .category-group-heading h3 {
+    font-size: 19px;
   }
 }

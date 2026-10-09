@@ -1064,8 +1064,9 @@
         }
       ],
       "originalRaw": "A recursive construction on large permutations",
-      "rawProjection": "\\(F:W\\rightarrow W\\)",
-      "fieldValuesExactlyMatchSource": true
+      "rawProjection": "\\(F(\\epsilon)=\\epsilon\\)\n\\(F(w)=F(L)F(R)m\\)\n\\(w=LmR\\)\n\\(n=10^{12}\\)\n\\((F(\\sigma))^{-1}(i+1) \\lt (F(\\sigma))^{-1}(i)\\)\nCompute \\(\\lfloor X\\rfloor\\).\nAnswer: 499999999972.",
+      "fieldValuesExactlyMatchSource": true,
+      "mathematicalOrSyntheticExampleDataPreserved": true
     },
     {
       "benchmarkId": "frontiermath-v2-tier-4",
@@ -1082,8 +1083,10 @@
         }
       ],
       "originalRaw": "An optimization problem in BMO space",
-      "rawProjection": "Let \\[",
-      "fieldValuesExactlyMatchSource": true
+      "rawProjection": "\\[ c = \\sup_{f} \\int_{0}^{1} (f(t)^{3}+|f(t)|)dt\\]\n\\(\\int_{0}^{1}f(t)dt=-10\\)\n\\(\\int_{0}^{1} f^{2}(t)dt=100+\\frac{1}{12}\\)\n\\[ \\sup_{J \\subset [0,1]} \\frac{1}{|J|}\\int_{J} \\left|f(t) - \\frac{1}{|J|}\\int_{J}f(s)ds \\right|^{2}dt \\leq \\frac{1}{12},\\]\nFind \\(c+\\frac{1985}{2}\\).",
+      "fieldValuesExactlyMatchSource": true,
+      "formulaExcerptFromOriginalSource": true,
+      "mathematicalOrSyntheticExampleDataPreserved": true
     },
     {
       "benchmarkId": "mysterymechanism",
@@ -1325,8 +1328,9 @@
         }
       ],
       "originalRaw": "Task 1 Band Stage Plot",
-      "rawProjection": "GDPval-AA v2.1 Leaderboard\n\nThe 2 main vocalists use in-ear monitor systems that require an XLR split from each of their vocal mics onstage.",
-      "fieldValuesExactlyMatchSource": true
+      "rawProjection": "Create a one-page visual stage plot for the touring band",
+      "fieldValuesExactlyMatchSource": true,
+      "sharedSourceQuoteWords": 11
     },
     {
       "benchmarkId": "gdpval-aa",
@@ -1343,8 +1347,9 @@
         }
       ],
       "originalRaw": "Task 1 Band Stage Plot",
-      "rawProjection": "Create a",
-      "fieldValuesExactlyMatchSource": true
+      "rawProjection": "Create a one-page visual stage plot for the touring band",
+      "fieldValuesExactlyMatchSource": true,
+      "sharedSourceQuoteWords": 11
     },
     {
       "benchmarkId": "lhtb",
@@ -1924,6 +1929,236 @@
       "originalRaw": "why good engineers still get rejected for AI roles",
       "rawProjection": "Script 9\ncareer guide / hiring analysis\nwhy good engineers still get rejected for AI roles, and what would have gotten them hired.",
       "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "frontierswe-v2",
+      "sampleId": "public-case-frontierswe-v2",
+      "source": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md",
+      "rawProjection": "Your workspace runs an SGLang serving instance with Qwen3.5-4B on a B200 GPU. Make it serve requests as fast as possible — single-request latency across",
+      "format": "plain-text instruction.md",
+      "sourceSha256": "3e7d8998c7865b4d04c1e4e217ba68386f26111b6988e899d2f78928cd61ff03",
+      "sourcePath": "instruction.md, line 0; exact contiguous prefix excerpt",
+      "originalRaw": "Your workspace runs an SGLang serving instance with Qwen3.5-4B",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "vibe-code-bench-1-100",
+      "sampleId": "public-case-vibe-code-bench-1-100",
+      "source": "https://www.vals-ai.com/benchmarks/vcb-1-100",
+      "rawProjection": "Add a private Saved area where signed-in members can save and unsave posts from the feed, profiles, and post detail",
+      "format": "HTML example-task quotation",
+      "sourceSha256": null,
+      "sourcePath": "Example task: Zeeter; Example request — iteration 1; exact continuous prefix excerpt",
+      "originalRaw": "Add a private Saved area where signed-in members can",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "rws-mgate",
+      "sampleId": "public-case-rws-mgate",
+      "source": "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
+      "rawProjection": "Everything I told you is what I thought I had said I would.",
+      "format": "indexed official press-release text",
+      "sourceSha256": null,
+      "sourcePath": "Official article section “Four patterns stood out”, item 1; standalone stumper sentence",
+      "originalRaw": "Everything I told you is what I thought I had said I would.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "arc-agi-3",
+      "sampleId": "arc-agi-3-ls20-preview",
+      "source": "https://arcprize.org/blog/arc-agi-3-preview-30-day-learnings",
+      "rawProjection": "Game: ls20\nType: Agentic, map based\nDescription: The symbol must go through various transformations in order for it to reach the goal.",
+      "format": "HTML table row, original cells",
+      "sourceSha256": "4bacc4350908efa0c1928f093f26ad1db227db6303ece95a5c6e3fbb02ec926b",
+      "sourcePath": "Preview games released table; row for ls20",
+      "originalRaw": "Navigate a map while bringing a matching symbol to another object.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "facts-parametric",
+      "sampleId": "public-case-facts-parametric",
+      "source": "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf",
+      "rawProjection": "Question: who played harmonica on the rockford files theme song\nAnswer: Tommy Morgan\nURL Suffix: Tommy_Morgan\nTopic: People (artists)\nAnswer Type: Performer",
+      "format": "PDF table row (Table 5)",
+      "sourceSha256": "f079762c7a3ce79e725e79fa009fa3afd63eb3cbf77f6507c1f9901640752cb7",
+      "sourcePath": "FACTS benchmark suite paper, Table 5, row “who played harmonica…”; page 7 in the paper text",
+      "originalRaw": "who played harmonica on the rockford files theme song",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "frontiermath-v2-tiers-1-3",
+      "sampleId": "public-case-frontiermath-v2-tiers-1-3",
+      "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+      "rawProjection": "How many nonzero points are there on [x^3y+y^3z+z^3x=0] over \\mathbb{F}_{5^{18}} up to scaling?",
+      "format": "official HTML problem text",
+      "sourceSha256": "01160b8b13b607cdeb05d36ee4b1bf3a46d73b2d99da90b4732e3660dee5aab5",
+      "sourcePath": "Tier 1; “Counting nonzero solutions of homogeneous equations”; rendered problem lines 881–883",
+      "originalRaw": "Counting nonzero solutions of homogeneous equations",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "babyvision",
+      "sampleId": "babyvision-gallery-count-3d-blocks-4597",
+      "source": "https://www.unipat.ai/blog/BabyVision",
+      "rawProjection": "The image shows a 3D shape made of stacked cubes. None are suspended. How many cubes are there at least?\nAnswer: 13",
+      "format": "官方文章 HTML gallery card：公开图像文件名及相邻题文",
+      "sourceSha256": "d2be849af899c2a77b7be789ae2caf817f6075fd8f0059137ef382e791474bd2",
+      "sourcePath": [
+        "image URL filename: gallery_4597_input.png",
+        "adjacent category/title text",
+        "question paragraph",
+        "Answer paragraph"
+      ],
+      "originalRaw": "Count 3D Blocks",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "screenspot-pro",
+      "sampleId": "screenspot-pro-davinci-blur-dissolve",
+      "source": "https://arxiv.org/html/2504.07981v1",
+      "rawProjection": "Instruction: Blur Dissolve.\nApplication: davinci\nType: icon\nBounding Box: [460, 1344, 709, 1375]",
+      "format": "论文 HTML Figure 5 图像说明项（caption label block）",
+      "sourceSha256": "0c87673b1b8d90c960b04d0156abe2dcc8b8f118ca5683ce5c6bbf9a16dc2bc0",
+      "sourcePath": [
+        "Appendix D > Instruction",
+        "Application",
+        "Type",
+        "Bounding Box"
+      ],
+      "originalRaw": "Blur Dissolve",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "tubelab",
+      "sampleId": "tubelab-science-documentary-pfoa",
+      "source": "https://tubelab.net/benchmark/scriptwriting",
+      "rawProjection": "Science documentary\r\nThe Company That Put Poison In Everyone's Blood\r\nA video about PFOA, the \"forever chemical\" DuPont used to make Teflon",
+      "format": "官方 HTML task-list card text",
+      "sourceSha256": "96c5194701caeedace7256091bfbb2a36f0438b441977b4a6252df4618ef7f3b",
+      "sourcePath": [
+        "genre text",
+        "title text",
+        "task-card description"
+      ],
+      "originalRaw": "The Company That Put Poison In Everyone's Blood",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "roboflow-vision-evals",
+      "sampleId": "roboflow-visual-reasoning-technical-drawing-03",
+      "source": "https://playground.roboflow.com/evals/visual-reasoning",
+      "rawProjection": "Based on the technical drawing, what is the horizontal distance between the leftmost center of the left slot and the vertical centerline\n2.742",
+      "format": "官方 HTML rendered example card",
+      "sourceSha256": "a9cbebd7a216e00b33d2b4c98f7b553bf70ed89aeeb5ce28a58d18a1474d7c07",
+      "sourcePath": [
+        "Example 03 heading",
+        "The models are asked paragraph",
+        "Ground truth label/value"
+      ],
+      "originalRaw": "horizontal distance",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "design-arena",
+      "sampleId": "design-arena-tournament-33d366af",
+      "source": "https://www.designarena.ai/tournaments/33d366af-ea0b-4220-8cb1-c275096a452e",
+      "rawProjection": "build me a login page for a grocery ecommerce webpage with a theme of green and white",
+      "format": "actual rendered public tournament input",
+      "sourcePath": "public tournament title/input text in browser, matched existing grocery login case",
+      "originalRaw": "grocery ecommerce webpage",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "automationbench-aa",
+      "sampleId": "official-case-automationbench-aa",
+      "source": "https://artificialanalysis.ai/evaluations/automationbench-aa",
+      "rawProjection": "Google Sheets spreadsheet \"Grant Management\" with a \"January Expenses\" worksheet: Lab equipment $12,000 (Equipment, NSF-2024-001); Research travel $2,800 (Travel, NSF-2024-001); Conference registration $1,500 (Travel, DOE-2025-003); Office party supplies $450 (Entertainment, NSF-2024-001)\n\n\nA \"Grant Budgets\" worksheet: NSF-2024-001 with $150,000 total, $138,000 spent, $12,000 remaining, allowable categories Equipment, Travel, Personnel, Supplies; DOE-2025-003 with $80,000 total, $15,000 spent, $65,000 remaining, allowable categories Travel, Personnel, Supplies, Subcontracts",
+      "format": "official example environment data paragraph",
+      "sourceSha256": "1e85077e477e31afcbeab8c409b5e855b6107733509cf5a756749bc65e035611",
+      "sourcePath": "finance.grant_expense_tracking / Environment / January Expenses + Grant Budgets; actual factual data values",
+      "originalRaw": "Allocate this month's expenses to the appropriate grants.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "browsecomp-zh",
+      "sampleId": "browsecomp-zh-art-paper-figure1",
+      "source": "https://arxiv.org/pdf/2504.19314v2#page=2",
+      "sourceSha256": "0da298790f8fa1e31fd68c7700002bc342d9da80e4a404c919e8854c8f6c41e4",
+      "sourcePath": "arXiv:2504.19314v2 / PDF p.2 Figure 1 / first illustrated sample, Topic: Art",
+      "format": "native-blocks",
+      "originalRaw": "酒后兴起所创",
+      "rawProjection": "话题：艺术\n问题：起源于元代，盛行于清末\n答案：锦灰堆",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "browsecomp",
+      "sampleId": "official-case-browsecomp",
+      "source": "https://openai.com/index/browsecomp/",
+      "sourceSha256": null,
+      "sourcePath": "OpenAI / BrowseComp article / authoring example, explicitly not a located benchmark row",
+      "format": "native-blocks",
+      "originalRaw": "Give me the title of the scientific paper",
+      "rawProjection": "the EMNLP conference between 2018-2023 where the first author did their undergrad at Dartmouth College\n\nFrequency Effects on Syntactic Rule Learning in Transformers",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "gaia",
+      "sampleId": "official-case-gaia",
+      "source": "https://arxiv.org/html/2311.12983",
+      "sourceSha256": "940c081ce62c68f9d5d4a5d6d1056677a08e9732887a3dbb5ea839131fab0717",
+      "sourcePath": "GAIA paper / Table 1 / question-creation phase example",
+      "format": "native-blocks",
+      "originalRaw": "What was the actual enrollment count of the clinical trial",
+      "rawProjection": "Question: actual enrollment count of the clinical trial on H. pylori in acne vulgaris patients\nLevel: 1\nNumber of steps: 8\nAnswer: 90",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "gdpval",
+      "sampleId": "official-case-gdpval",
+      "source": "https://openai.com/index/gdpval/",
+      "sourceSha256": null,
+      "sourcePath": "OpenAI GDPval / Prompt + task context / Manufacturing Engineer example",
+      "format": "native-blocks",
+      "originalRaw": "This is June 2025 and you are a Manufacturing Engineer,",
+      "rawProjection": "develop a jig/fixture to simplify reel in and reel out of the cable reel spool\n\nThe 3d design file is not required for submission.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "longbench",
+      "sampleId": "longbench-multi-news-row-0",
+      "source": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+      "sourceSha256": null,
+      "sourcePath": "test / multi_news.jsonl row 0 / _id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
+      "format": "json",
+      "originalRaw": "About 100 Occupy Philly protesters sat down",
+      "rawProjection": {
+        "_id": "e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
+        "input": "About 100 Occupy Philly protesters sat down"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "officeqa-pro",
+      "sampleId": "officeqa-pro-paper-uid0013",
+      "source": "https://arxiv.org/html/2603.08655v1#S2.F3",
+      "sourceSha256": "1ddea1566d3ab64cab2a41f4c5237343e4fdd2b1001fae9fac9ba96b8fff95e6",
+      "sourcePath": "OfficeQA Pro arXiv v1 p.4 Figure 3 / Sample Question UID0013",
+      "format": "native-blocks",
+      "originalRaw": "Sample Question UID0013",
+      "rawProjection": "Question UID0013\n\nUsing U.S. federal individual income tax receipts, net of refunds, for fiscal years 1929-1942, reported in billions of nominal dollars",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "ruler",
+      "sampleId": "official-case-ruler-s-niah-magic-number",
+      "source": "https://arxiv.org/html/2404.06654v3",
+      "sourceSha256": "2609e116ffbe746d7d9b6a834b6aa778f529bf0e0e7afabd91c70e68d6040784",
+      "sourcePath": "RULER paper v3 / Table 2 / Single NIAH (S-NIAH)",
+      "format": "native-blocks",
+      "originalRaw": "12345",
+      "rawProjection": "Single NIAH (S-NIAH)\n\ntype_key = word\ntype_value = number\ntype_haystack = essay\nsize_haystack ∝ context length\n\nOne of the special magic numbers for long-context is: 12345.\nWhat is the special magic number for long-context mentioned in the provided text?\nAnswer: 12345",
+      "fieldValuesExactlyMatchSource": true,
+      "mathematicalOrSyntheticExampleDataPreserved": true
     }
   ]
 }

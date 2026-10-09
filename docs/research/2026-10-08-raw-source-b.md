@@ -11,19 +11,19 @@
 | `aa-analyst-agent` | HTML 页面示例 | Artificial Analysis 评测页公开示例；题型/示例标题/附件名/参考值为页面标签 | page text: example title<br>page text: task type<br>page text: named supporting file<br>page text: reference answer | 按原页面标签显示真实字段值及短题目引文；页面未给JSON/CSV record ID。 |
 | `apex-agents-1-1` | HTML leaderboard 示例 | Mercor corporate-lawyer-agent leaderboard / displayed sample 1/80 | visible sample counter<br>displayed prompt<br>named JV Agreement<br>page disclaimer | 沿用原网页标签和短任务摘录；页内未标版本，不能把页面计数包装为v1.1记录。 |
 | `apex-agents` | HTML leaderboard 示例 | Mercor management-consultant agent leaderboard / displayed sample 1/160 | visible sample counter<br>displayed prompt<br>named input email and spreadsheet<br>page disclaimer | 保留页面样例计数、实际prompt短摘录和附件标签；不是已定位数据行。 |
-| `automationbench-aa` | HTML 评测页示例 | AA finance.grant_expense_tracking / task prompt and environment detail | officialTaskId<br>environmentApplications<br>displayedSheetContext<br>taskObjectives | 显示AA页面任务ID、应用环境、真实公开表格输入字段/值及用户目标，忠实复制源字段的网页形式。 |
+| `automationbench-aa` | Python公开任务定义 + AA官方页面映射 | `finance/tasks.py` / `get_fin_grant_expense_tracking_task` / 初始状态真实cells | `Date`、`Description`、`Amount`、`Category`、`Grant` | 展示源行键值，不拼接虚构管道表；AA页任务ID与公开任务定义一致。 |
 | `biomysterybench` | HTML 研究文章 | Anthropic BioMysteryBench文章公开RNA-seq knockout问题示例 | article heading<br>example question text<br>described input type | 展示文章原有问题标签和必要短题目引文；无公开JSON行或题目ID。 |
-| `browsecomp-zh` | PDF 论文图示 | arXiv:2504.19314v2 p.2 Figure 1 / Art example | figure caption<br>sample topic label<br>visible example question<br>published answer | 按图中主题标签、题面可见文字的短引及公布答案展示；是revised variant论文图示。 |
-| `browsecomp` | HTML 官方创题示例 | OpenAI BrowseComp文章的作者创题worked example及其答案 | authoring example prompt<br>article supplied answer | 标明是创题示例，按文章可见prompt/answer块呈现，不显示为dataset schema。 |
+| `browsecomp-zh` | PDF论文图示 | arXiv:2504.19314v2 Figure 1 first sample | Topic<br>问题原文短引<br>答案 | 保留11字连续原文短引、Topic: Art和答案“锦灰堆”；不映射为加密题库记录。 |
+| `browsecomp` | HTML官方创题示例 | OpenAI BrowseComp / Example question | 作者示范问题连续短引<br>答案标题原文 | 展示原文短引和答案标题，并注明问题其余条件省略；这是创题示例，不是已定位的评测数据行。 |
 | `ebr-bench` | HTML 官方结果更新文章 | Epoch更新文章的模型运行事件段；不是逐题prompt | reported model<br>reported original-version outcome<br>reported behavior<br>subsequent rule change | 使用文章段落原有事件事实与短引，明确原版card-unbanned运行；不造task record。 |
 | `excel-emb` | Markdown 任务指令 | 公开instructions.md / Dataroom Summaries M003-scratch | instruction prose<br>role/context<br>named deliverables | 呈现原Markdown标题/字段及短任务正文片段；附件不存在可验证的行结构。 |
 | `finance-agent` | HTML benchmark 页面示例 | Vals Finance Agent Benchmark v2公开示例题 | visible question text<br>listed ticker and reporting period<br>page sample label | 保留原页面实际问题段落标签和短引；不假设底层固定行ID。 |
 | `finbenchmark` | Markdown任务目录 | TASKS.md / task set v2 / Knowledge (v1) / knowledge_001 | task set heading<br>task ID<br>question text<br>catalog answer mark | 使用原目录任务编号/章节/原答案标记的Markdown行结构，不转成臆造JSON。 |
-| `gaia` | HTML 论文示例 | arXiv 2311.12983公开GAIA示例任务段 | paper example label<br>displayed question<br>published answer/source note when present | 按论文的示例块/表格原样呈现字段，短引问题；没有公开JSON对象时不伪造schema。 |
+| `gaia` | HTML论文Table 1 | arXiv:2311.12983 / Table 1 / annotated question | Question<br>Level<br>Number of steps<br>Answer | 保留真实表头值；问题为连续原文片段，不含本站新增的字段名。 |
 | `gdp-pdf` | HTML benchmark页面示例 | SurgeHQ GDP-PDF公开示例问句 | question text<br>equipment model/serial as displayed<br>requested PDF-grounded fact | 按网页中实际问题文本标签展示最短原文片段与事实性字段；无确认的dataset row ID。 |
 | `gdpval-aa-v2-1` | HTML AA公开任务示例 | GDPval-AA v2.1 Example Tasks & Submissions / Task 1 | example task title<br>occupation label<br>displayed task constraints<br>final PDF output | 按当前v2.1页真实字段展示，作为代表性演示；不补造task_id。 |
 | `gdpval-aa` | HTML AA公开任务示例 | GDPval-AA Example Tasks & Submissions / Task 1 Band Stage Plot | example task title<br>occupation label<br>displayed task constraints<br>final PDF output | 按AA页面标题、角色和演示要求展示；声明为v2共享上游例题，非v2分数行。 |
-| `gdpval` | HTML 官方任务演示 | OpenAI GDPval文章公开任务例及交付说明 | role/date context<br>task request<br>required deliverable | 使用官方演示原来的段落/列表标签；按已核事实保留最终PDF-only交付。 |
+| `gdpval` | HTML官方任务演示 | OpenAI GDPval / Prompt + task context / Manufacturing Engineer example | 任务请求原文短节选<br>final upload原句 | 保留原始任务措辞及3D文件不需提交的原句；其余题面和附件省略。 |
 | `harvey-lab` | JSON task.json | Harvey LAB v1.0 / corporate-ma/review-data-room-red-flag-review/task.json | title<br>work_type<br>tags<br>instructions<br>deliverables<br>criteria | 沿JSON原键显示title/work_type/deliverables及少量实际输入约束，长instructions/criteria仅作截断预览。 |
 | `legal-research-vals` | JSON public suite | data/public.json / dataset_version 1.0.0 / tests[0] P-001 | dataset_name<br>dataset_version<br>tests[].id<br>tests[].question | 保持suite JSON嵌套层级，仅显示P-001 id和短题面原文片段；不补答案字段。 |
 | `lhtb` | Markdown instruction.md | tasks/langchain-version-migration/instruction.md / dependency target | task ID from path<br>dependency target<br>migration requirements<br>tests/expected behavior if stated | 显示Markdown中的实际依赖版本行及原任务小段，不改写成源JSON。 |
@@ -33,12 +33,12 @@
 | `medscribe` | HTML 页面中的医患transcript演示 | Vals MedScribe / Methodology / Sample Doctor-Patient Transcript | sample transcript label<br>displayed dialogue turns<br>symptom/timing facts | 保持网页真实的transcript标签和对话顺序，至多展示短原文片段及来源事实。 |
 | `mind2web` | HTML 项目页示例(a) | official project page / example (a); no record ID or split | example letter<br>task description text<br>site/operation trace if visible | 页面提供的是文本任务示例，不是已映射JSON行；可呈现原HTML示例标签及短题面原文。 |
 | `mlcr-aa` | HTML AA评测页示例 | AA MLCR-AA page / one of three Example Tasks | example label<br>displayed task prompt<br>stated task type/tier | 以网页列出的实际问题块及原字段标签展示；不映射到Wisedocs公开数据集行。 |
-| `officeqa-pro` | PDF 论文Figure 3 | OfficeQA Pro public case proof / v1 paper p.4 Figure 3 / UID0013 | figure number<br>UID<br>task input facts<br>requested output format | 按论文图中UID/字段事实展示，中文解读旁保留短原文；明确官方Pro子集成员事实和无答案。 |
+| `officeqa-pro` | v1论文Figure 3左面板SVG | arXiv:2603.08655v1 / HTML `S2.F3` / UID0013 | Figure label<br>continuous question text | ASCII连字符逐字保留为`1929-1942`；原PDF SHA另存于proof，剩余题面省略。 |
 | `osworld-2` | HTML 官方项目站Task035示例 | OSWorld 2.0 Task035 / Purchase Requests; official site version 2.0 | task identifier<br>task title<br>displayed instruction facts<br>site version label | 按官网显示的Task035及Purchase Requests事实/标签展示，精确标2.0，不把2.1 gated Python task classes当来源。 |
 | `osworld` | JSON task record | evaluation_examples/examples/chrome/030eeff7-b492-4218-b312-701ec99ee0cc.json; test_all.json chrome membership | id<br>snapshot<br>instruction<br>evaluator.func<br>evaluator.result.type<br>evaluator.expected.rules.expected | 原JSON键和值：id、snapshot、instruction（10词以内摘录）、evaluator.func/result/expected；省略setup trajectory细节。 |
 | `paperbench` | JSON rubric | frontier-evals main / project/paperbench/data/papers/adaptive-pruning/rubric.json | id<br>requirements<br>weight<br>sub_tasks<br>task_category<br>finegrained_task_category | 保留源JSON键/嵌套结构，仅展示rubric id、weight和分类字段；requirements以短摘录截断。 |
 | `prbench` | HF Viewer JSON row | dataset ScaleAI/PRBench / config=default / split=finance / row_idx=0 / task=ea67e314b6c2e8fc70627c19 | task<br>turns<br>field<br>topic<br>expert<br>prompt_0<br>response_0<br>model_0<br>reference_texts_0<br>rubric<br>canary | 按原JSON键投影task/turns/field/topic/expert/prompt_0；prompt_0只展示≤10英文词片段。API实测turns=10、field=Finance、topic=Risk Management & Stress Testing、expert=Expert。 |
-| `ruler` | 论文Table 2 / PDF或HTML | RULER paper arXiv:2404.06654 / Table 2 concrete example row | table caption<br>task type<br>input length/parameters<br>specific query/result where printed | 仅以Table 2实际行标签/数字值作短摘录；论文CC BY 4.0事实只覆盖论文表述，不外推全部synthetic data。 |
+| `ruler` | 论文Table 2 | arXiv:2404.06654v3 / Single NIAH row | Task<br>Configuration | 仅保留表中已核实的S-NIAH标签和Configuration单元格原值；不展示示例题面或合成任务池。 |
 | `skillsbench` | Markdown task.md with YAML front matter | SkillsBench v1.1 / tasks/sec-financial-report/task.md | schema_version<br>metadata.difficulty/category/subcategory/task_type/modality/interface<br>task prompt/questions<br>verifier.type/timeout_sec | 保留YAML原键和实际metadata值，任务正文选一条具体SEC查询目标的短原文；不复制电子申报文件。 |
 | `spreadsheetbench-v2` | HTML 官方项目页示例 | SpreadsheetBench 2 / Version 2 / Example 1 / Financial Modeling | version label<br>example number/title<br>displayed workbook instructions<br>named sheets/metrics | 使用网页原字段标签及明确sheet/metric名称；不存在已定位record ID。 |
 | `tau2-bench` | JSON array tasks record | τ²-bench v0.1.0 commit 37199f36924c8896f5e048360691f8476cd89ba1 / telecom/tasks.json row 0 / 114 tasks | id<br>description<br>user_scenario.instructions<br>ticket<br>initial_state<br>evaluation_criteria.actions<br>evaluation_criteria.env_assertions | 保持JSON原字段路径，展示task id、scenario约束、toggle_data/refuel_data及2GB目标值；姓名/号码省略。 |
@@ -129,3 +129,16 @@
 ## 2026-10-09 — 原文投影校正补记
 
 本轮按来源实际载体复核研究候选：保留公开JSON原键值、任务配置原文、网页/PDF原生标签与连续短文本；Terminal-Bench 4增加的格式示例来自官方 `instruction.md` 原JSON代码块。OfficeQA Pro Figure 3 / UID0013保留连续原文短节选和明确省略项，不新增虚构的JSON参数。Terminal-Bench 2.1只保留所选真实约束行并注明省略约束。EBR-Bench的已查官方页面仍未给出可定位的单条任务记录，因此候选标注为来源查验，不作为已展示逐题原始数据。仅更新候选审计和研究记录，不改正式样例、许可或共享代码；未运行服务、构建或测试。
+## 2026-10-09 — 七项原始字段再核
+
+按root要求，仅重核 `automationbench-aa`、`browsecomp-zh`、`browsecomp`、`gdpval`、`gaia`、`officeqa-pro`、`ruler` 的真实原文/原字段：
+
+- `automationbench-aa`：Zapier公开 `finance/tasks.py` 中 `get_fin_grant_expense_tracking_task` 的 `initial_state`，原始行键和值为 `Date=2026-01-08`、`Description=Lab equipment`、`Amount=$12,000`、`Category=Equipment`、`Grant=NSF-2024-001`；代码行号10594–10603，文件SHA记录在机器候选中。没有把网页解释改造成管道分隔表。
+- `browsecomp-zh`：论文Figure 1第一例保留11字连续中文原文短引、Topic: Art和答案“锦灰堆”；不声明映射到加密发布池记录。
+- `browsecomp`：OpenAI页面作者示范问题的连续原文短引和括号内答案标题原文分别保留，问题未摘录部分与venue/year后缀省略；该页面说明是创题例，未标识成scored dataset row。
+- `gdpval`：保留制造工程师工装任务中的请求片段和提交边界原句；两个摘录均来自同一官方GDPval任务上下文。
+- `gaia`：论文Table 1实际列 `Question`、`Level`、`Number of steps`、`Answer`；问题保留原文连续片段，表值为1、8、90。
+- `officeqa-pro`：从官方v1 Figure 3左侧面板SVG文本确认ASCII连字符 `1929-1942`；连续20词短片段照原字符记录，HTML文件hash及原PDF proof分开列示。
+- `ruler`：论文Table 2的S-NIAH标签及Configuration单元格原值；配置键和值经论文表格核验，不声称是冻结评测池记录。
+
+原因是避免把原表格、图中题面和网页示范压成标题短引或人工重述；影响仅为候选投影与研究记录更新，正式样例、数据许可和分类不变。未运行服务、构建或测试。

@@ -7,6 +7,10 @@
 - `docs/research/2026-10-08-raw-source-b.md` 追加本阶段31项真实来源投影范围、原生内容示例与未定位字段边界。修改范围仅研究候选、研究说明和本日志，未修改正式benchmark样例/目录、共享代码或许可状态。复核JSON解析、候选ID唯一性、每项投影格式和已记录SHA长度；具体采纳/覆盖数字等待root最终核对。未运行服务、构建或测试，保留用户预览所需服务运行状态。
 - 依据root对原始来源展示的复核意见，校正候选投影的节选范围与载体表达：artifacts/candidates/2026-10-08-raw-source-b.json 中 Terminal-Bench 2.1 保留来源原句及两条精确约束并省略另一约束；OfficeQA Pro UID0013仅保留图中标签和连续逐字短片段，不把解读转成伪JSON。检查所有native-blocks不含sourceFacts，原生块均有实际文本和来源路径；Terminal-Bench 4保留instruction.md中的原始JSON代码示例。docs/research/2026-10-08-raw-source-b.md 与本日志记录上述边界；EBR-Bench仍标为查验事实，未定位具体prompt/replay，不当作恢复了原题。原因是让界面展示可核对的源格式并清楚显示省略范围；仅候选与研究记录变化，许可和正式样例不变。仅做JSON解析与结构核对，未运行服务、构建或测试。
 
+- 依root新核对要求，继续修正 `artifacts/candidates/2026-10-08-raw-source-b.json` 中7项原始投影：AutomationBench-AA改为Zapier公开finance任务源的实际cells键值；BrowseComp-ZH、BrowseComp、GDPval替换为官方图示/网页逐字题面或答案；GAIA使用Table 1真实列；OfficeQA逐字符核对Figure 3 SVG的ASCII连字符；RULER保留Table 2已核实的S-NIAH标签和Configuration单元格原值。`docs/research/2026-10-08-raw-source-b.md`同步原生路径、省略项和版本/成员边界。原因是修复旧投影中的摘要、拼接表值和未验证标点；影响限候选与审计文档，不改正式样例、分类或许可。
+
+- Root于2026-10-09报告本阶段原始投影恢复完成：96/96条editorial案例已按实际来源格式恢复，其中32项为原生JSON字段投影、64项为原文/表格/配置片段；既有53条source记录未改，采纳核验见 `artifacts/2026-10-09-raw-data-adoption.json`。当前为151个目录项、149条样例记录；139项详情可展示案例，12项仍有缺口，不代表151项全覆盖。Root报告 `generate` 151项、`validate` 151项/149条记录/17份报告、`vue-tsc --noEmit`及全量47/47测试通过；LongBench原始JSON展示与rawURL恢复已做浏览器核验。跨类型浏览器核对仍继续；本记录不宣称生产构建或发布完成。将 `docs/research/2026-10-08-raw-source-b.md` 全文行尾统一为LF，以消除该文件混合CRLF/LF引发的diff-check空白告警；此改动只涉及研究文档格式。
+
 ## 2026-10-08 — 全量评测真实案例补齐（进行中）
 
 - 用户目标：151项已发布评测每项至少有1项真实、具体案例；开始盘点时已有25项、36例。

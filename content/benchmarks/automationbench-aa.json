@@ -150,9 +150,9 @@
     }
   ],
   "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-09",
     "samples": [
       {
         "id": "official-case-automationbench-aa",
@@ -160,10 +160,10 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "模拟 Google Sheets/Gmail 环境中，将本月支出分配到科研经费：NSF 剩余 12000 美元，却有设备 12000、差旅 2800、聚会 450；DOE 剩余 65000 美元，对应会议差旅 1500。检查预算与允许类别，标记 NSF 超支和 Entertainment 不可报销，再按任务要求邮件提交分配报告，保留源数据数值。",
-        "explanation": "官方 finance.grant_expense_tracking 公开演示；页面明确将它与 657 项私有留出集区分。这里展示任务事实，不执行任何邮件操作，也不复制私有任务。",
-        "raw": "Allocate this month's expenses to the appropriate grants.",
+        "explanation": "官方 finance.grant_expense_tracking 公开演示；页面明确将它与 657 项私有留出集区分。这里展示任务事实，不执行任何邮件操作，也不复制私有任务。\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。",
+        "raw": "Google Sheets spreadsheet \"Grant Management\" with a \"January Expenses\" worksheet: Lab equipment $12,000 (Equipment, NSF-2024-001); Research travel $2,800 (Travel, NSF-2024-001); Conference registration $1,500 (Travel, DOE-2025-003); Office party supplies $450 (Entertainment, NSF-2024-001)\n\n\nA \"Grant Budgets\" worksheet: NSF-2024-001 with $150,000 total, $138,000 spent, $12,000 remaining, allowable categories Equipment, Travel, Personnel, Supplies; DOE-2025-003 with $80,000 total, $15,000 spent, $65,000 remaining, allowable categories Travel, Personnel, Supplies, Subcontracts",
         "source": "https://artificialanalysis.ai/evaluations/automationbench-aa",
-        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
         "split": "官方公开演示 / 非已定位的计分数据行",
         "excerpt": true
       }
