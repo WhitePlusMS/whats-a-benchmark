@@ -1,5 +1,15 @@
 # 更新说明
 
+## 2026-10-09 — GitHub Pages应用发布完成与线上验收
+
+- 提交与推送：61909a7c768b56685c98627a6bfa235302154c48（feat(benchmarks): 补齐评测图片标识并优化占位展示）已正常推送origin/main；已有3个本地提交通过ff-only保留历史并一并发布。推送后本地HEAD与git ls-remote的main一致，工作区干净。
+- GitHub结果：[Actions 37886898415](https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/37886898415)的head_sha精确对应61909a7，npm test、生产build、Pages产物上传及deploy均success；github-pages部署6953412375最新状态success，环境URL为https://whiteplusms.github.io/whats-a-benchmark/。
+- 提交内容核对：26项benchmark只改变brandIds，其他解析字段逐条不变；21份新增原素材的暂存Git对象与下载文件SHA逐条一致。修正暂存时Windows换行格式造成的差异放大，未混入整文件格式修改；原始SVG的CRLF保留，使用cr-at-eol检查原文件，实际新增代码/文档无尾部空白错误。
+- 线上资源：21/21份新增素材HTTP 200，其SHA-256与61909a7内的文件逐条一致。线上比对以已发布Git对象为准，避免本地checkout把部分SVG的LF转换为CRLF而误判成部署差异。
+- 实际浏览器：公开首页显示151评测、10类能力、149条记录；151个标识容器、156张图片均已解码，加载失败0、文字回退0。DataCurve标识及DeepSWE详情和任务案例加载正常，详情可直接刷新；LongBench能切换原始JSON节选，显示_id/input两字段并更新sampleView=raw URL。抽查过程中浏览器error日志为空，不将此抽查扩大为全部样例的逐项语义验收。
+- 验收资料：本节更新UPDATE_LOG.md；新增artifacts/screenshots/2026-10-09-pages-datacurve.jpg，保存当前线上页面的原生IAB截图。此阶段只补充发布证据，无应用代码变动；沿用原有GitHub Actions发布流程。
+- 后续交付核对：本验收资料单独提交并正常推送main；交付前再核对最终文档提交对应的Actions及github-pages部署成功。最终提交/运行/部署回执保存到本地artifacts/candidates/2026-10-09-pages-release-verification.json，按既有候选目录规则忽略，不引入运行时版本或第二套发布机制。本轮未启动前后端服务。
+
 ## 2026-10-09 — GitHub Pages发布前核对与生产构建
 
 - 原因：用户明确要求提交、推送并确认GitHub已部署最新版本；复用现有main分支与Pages工作流，保留功能分支上的已有提交历史，不新增发布机制。
