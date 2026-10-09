@@ -9,7 +9,7 @@
 
 - 依root新核对要求，继续修正 `artifacts/candidates/2026-10-08-raw-source-b.json` 中7项原始投影：AutomationBench-AA改为Zapier公开finance任务源的实际cells键值；BrowseComp-ZH、BrowseComp、GDPval替换为官方图示/网页逐字题面或答案；GAIA使用Table 1真实列；OfficeQA逐字符核对Figure 3 SVG的ASCII连字符；RULER保留Table 2已核实的S-NIAH标签和Configuration单元格原值。`docs/research/2026-10-08-raw-source-b.md`同步原生路径、省略项和版本/成员边界。原因是修复旧投影中的摘要、拼接表值和未验证标点；影响限候选与审计文档，不改正式样例、分类或许可。
 
-- Root于2026-10-09报告本阶段原始投影恢复完成：96/96条editorial案例已按实际来源格式恢复，其中32项为原生JSON字段投影、64项为原文/表格/配置片段；既有53条source记录未改，采纳核验见 `artifacts/2026-10-09-raw-data-adoption.json`。当前为151个目录项、149条样例记录；139项详情可展示案例，12项仍有缺口，不代表151项全覆盖。Root报告 `generate` 151项、`validate` 151项/149条记录/17份报告、`vue-tsc --noEmit`及全量47/47测试通过；LongBench原始JSON展示与rawURL恢复已做浏览器核验。跨类型浏览器核对仍继续；本记录不宣称生产构建或发布完成。将 `docs/research/2026-10-08-raw-source-b.md` 全文行尾统一为LF，以消除该文件混合CRLF/LF引发的diff-check空白告警；此改动只涉及研究文档格式。
+- Root于2026-10-09报告原始投影恢复完成：96/96条editorial案例按实际来源格式恢复（32项原生JSON字段、64项原文/表格/配置片段），既有53条source样例未改；核对记录见 `artifacts/2026-10-09-raw-data-adoption.json`。完整展示审计、统计与校验材料为 `docs/reviews/2026-10-09-raw-data-display.md`、`artifacts/2026-10-09-raw-data-summary.json` 和 `artifacts/2026-10-09-raw-data-validation.json`。Root更新 `docs/CONTENT_MAINTENANCE.md`、`docs/LOCAL_SAMPLE_IMPORT.md` 和旧覆盖报告，修正editorial原始投影旧限制说明。当前151个目录项、149条记录；139项详情可显示真实案例，仍有12项缺口，未称151项全覆盖。42个原Source条目的完整JSON SHA与2026-10-08快照逐条一致；138个生成样例文件/149条记录均与源sampleSet逐条一致。Root报告 `vue-tsc --noEmit`、`validate`（151/149/17）、全量47/47测试与 `git diff --check`通过。真实IAB核对确认LongBench的11个原始JSON字段与rawURL刷新、tau2嵌套actions/assertions值、Terminal-Bench 4原TOML及完整1739字符原JSON注释占位符代码块；未见样例加载错误。控制台有现有依赖路径触发的Vue Router `next()`弃用警告。HTTP页面和root数据均为200；用户授权保留5173预览服务运行。未做生产build或发布。
 
 ## 2026-10-08 — 全量评测真实案例补齐（进行中）
 

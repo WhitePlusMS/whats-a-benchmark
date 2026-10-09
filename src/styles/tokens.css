@@ -1,14 +1,24 @@
 :root {
   color-scheme: light;
+  /* 主题色唯一入口：换肤只覆盖这三个变量，accent 派生色全部自动跟随。 */
+  --theme-brand: #6957d4;
+  --theme-brand-hover: #5845ba;
+  --theme-dark-brand: #a08ef0;
+
+  /* accent 家族从主题变量派生；tint 用 alpha 混合，亮暗模式自适应底层。 */
+  --accent: var(--theme-brand);
+  --accent-hover: var(--theme-brand-hover);
+  --accent-text: var(--theme-brand);
+  --accent-softer: color-mix(in srgb, var(--accent) 7%, transparent);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --accent-ring: color-mix(in srgb, var(--accent) 16%, transparent);
+  --accent-border: color-mix(in srgb, var(--accent) 25%, transparent);
+  --accent-border-strong: color-mix(in srgb, var(--accent) 62%, var(--surface));
+  --focus-ring: var(--accent);
+  --selection: color-mix(in srgb, var(--accent) 18%, transparent);
+  --notice-bg: color-mix(in srgb, var(--theme-brand) 45%, #191524);
+
   /* 全站语义颜色；ARC 网格与机构标识保留各自原色。 */
-  --accent: #6957d4;
-  --accent-hover: #5845ba;
-  --accent-text: #5845ba;
-  --accent-softer: #f5f1fa;
-  --accent-soft: #ece5f9;
-  --accent-ring: #ece8fc;
-  --accent-border: #e4deed;
-  --accent-border-strong: #a698e0;
   --muted: #606773;
   --muted-tint: #756581;
   --border: #e2e5e9;
@@ -22,9 +32,6 @@
   --text-secondary: #4f5664;
   --page-background: #f7f8fa;
   --brand-text: #242438;
-  --focus-ring: #6957d4;
-  --selection: #e5dffa;
-  --notice-bg: #342a45;
   --dock-shadow: rgb(53 43 76 / 13%);
   --evidence-bg: #fff8e8;
   --evidence-border: #ead9a9;
@@ -38,14 +45,16 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --accent: #7563d6;
-    --accent-hover: #6759c9;
-    --accent-text: #a08ef0;
-    --accent-softer: rgb(138 122 228 / 10%);
-    --accent-soft: rgb(138 122 228 / 18%);
-    --accent-ring: rgb(138 122 228 / 28%);
-    --accent-border: rgb(138 122 228 / 30%);
-    --accent-border-strong: #8b7ae4;
+    /* 暗色下按钮底色压深以保住白字对比度，文字链接直接用亮色变体。 */
+    --accent: color-mix(in srgb, var(--theme-dark-brand) 62%, #000);
+    --accent-hover: color-mix(in srgb, var(--theme-dark-brand) 50%, #000);
+    --accent-text: var(--theme-dark-brand);
+    --focus-ring: var(--theme-dark-brand);
+    --accent-border-strong: color-mix(
+      in srgb,
+      var(--theme-dark-brand) 65%,
+      var(--surface)
+    );
     --muted: #9aa1af;
     --muted-tint: #b0a6c2;
     --border: #2c313c;
@@ -59,9 +68,8 @@
     --text-secondary: #c3c9d4;
     --page-background: #10131a;
     --brand-text: #eceef4;
-    --focus-ring: #9d8cec;
-    --selection: rgb(138 122 228 / 35%);
-    --notice-bg: #3b3050;
+    --selection: color-mix(in srgb, var(--theme-dark-brand) 30%, transparent);
+    --notice-bg: color-mix(in srgb, var(--theme-dark-brand) 30%, #221e30);
     --dock-shadow: rgb(0 0 0 / 55%);
     --evidence-bg: rgb(216 185 106 / 10%);
     --evidence-border: rgb(216 185 106 / 32%);

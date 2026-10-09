@@ -19,6 +19,17 @@
       content="到底测什么？：读懂大模型 benchmark 的测试内容、真实样例、评分方法与版本关系。"
     />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <script>
+      // 防换肤闪烁：静态页面在绘制前应用 localStorage 中的主题变量。
+      (function () {
+        try {
+          var saved = JSON.parse(localStorage.getItem("wab-theme") || "null");
+          if (saved)
+            for (var key in saved)
+              document.documentElement.style.setProperty(key, saved[key]);
+        } catch (error) {}
+      })();
+    </script>
     <title>what's a benchmark? · 到底测什么？</title>
   </head>
   <body>

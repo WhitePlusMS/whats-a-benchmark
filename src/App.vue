@@ -5,9 +5,12 @@ import { comparisonKey, createComparison } from "./composables/compare";
 import { COMPARISON_LIMIT } from "./lib/comparison";
 import { byId } from "./content/catalog";
 import Icon from "./components/Icon.vue";
+import ThemeSwitcher from "./components/ThemeSwitcher.vue";
+import { initTheme } from "./lib/theme";
 import { useCatalogNavigation } from "./composables/catalogNavigation";
 const route = useRoute();
 const { catalogLocation } = useCatalogNavigation();
+initTheme();
 // Own selection state per application and dispose the navigation subscription.
 const comparison = createComparison(useRouter());
 const { selected, notice, toggle, clear } = comparison;
@@ -48,6 +51,7 @@ const compareUrl = computed(() => ({
         ><RouterLink to="/releases/">发布资料</RouterLink
         ><RouterLink to="/guide/">阅读指南</RouterLink>
       </nav>
+      <ThemeSwitcher />
       <RouterLink to="/about/" class="about-link"
         >关于 <Icon name="up" :size="16"
       /></RouterLink>

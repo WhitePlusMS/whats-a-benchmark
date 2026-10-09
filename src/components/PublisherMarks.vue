@@ -106,6 +106,10 @@ watch(
   width: 80px;
 }
 .publisher-name {
+  /* 未提供Logo或图片加载失败时，用细边框明确文字占位范围。 */
+  display: inline-block;
+  border: 1px solid #000;
+  padding: 4px 6px;
   color: var(--muted-tint);
   font-size: 12px;
   line-height: 1.5;
