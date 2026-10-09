@@ -1,5 +1,66 @@
 # 更新说明
 
+## 2026-10-09 — 授权提交与推送 README 更新
+
+- 原因与原则：用户明确要求“推送吧，到 git”；将已确认的中英文 README、真实截图、GIF Hero 及审核记录作为同一项文档更新提交，遵循最简、保留既有历史和明确授权原则。
+- 提交文件：`README.md`、`README_ZH.md`、`artifacts/screenshots/2026-10-09-readme-home.jpg`、`assets/readme/hero.svg`、`assets/readme/hero.gif`、`assets/readme/hero-motion.json`、`docs/reviews/2026-10-09-readme-review.md`、`UPDATE_LOG.md`，共 8 个文件。
+- 文档补充：本日志记录授权、目标和提交范围；审核记录明确其中的远端页面观察与未推送状态属于提交前快照，保留原始检查结果。
+- 远端核对：拉取远端引用后，本地 `main` 与 `origin/main` 一致（领先 0、落后 0），目标为 `https://github.com/WhitePlusMS/whats-a-benchmark.git`；没有其他暂存改动或待发布的本地提交。
+- 验证依据：此前的严格 TypeScript、两版 README 素材/链接审计、Markdown 格式和 7 个实际浏览器视图均已通过；本轮提交前再核对文档格式、图片引用及暂存范围。
+- 发布方式与影响：使用现有 `main` 分支正常提交和推送，不强制推送；现有 Pages 工作流由 `main` 推送自动触发。没有应用代码、评测数据、依赖或工作流改动，没有启动开发服务或额外执行本地生产构建。
+
+## 2026-10-09 — 接入 GIF Hero 并全文审核中英文 README
+
+- 原因与原则：用户先确认将 Hero 加入 README，随后明确要求调用 `beautify-github-readme` 全文审核并更新；在现有介绍方向上按项目价值、真实预览、功能、在线使用、资料来源与反馈组织内容，沿用既有素材和最简原则。
+- `README.md`、`README_ZH.md`：将已确认的 `assets/readme/hero.gif` 接入顶部，并链接用户指定的 GitHub Pages 地址；保留可搜索的 Markdown 标题和简介，补充静态封面链接及有意义的图片替代文字。真实首页截图前移，移除开头手写目录，功能长表改为手机上易读的列表；明确样例媒体与参考答案按条目提供，保留中文界面、原始材料语言、免登录和来源标注说明。
+- 来源核对：代码搜索与功能证据由 GPT6 Luna 只读提取，主代理核对表述；能力分类核对 `content/categories.json`，已确认网站、Issues 和维护者三个外部地址均返回 HTTP 200。素材使用用户刚确认的 GIF/SVG，没有新建或替换视觉风格。
+- `docs/reviews/2026-10-09-readme-review.md`：新增完整审核记录，保存最终调整、功能表述的本地依据、样例条件、链接与结构结果、真实浏览器验证和发布边界；另记录公开仓库独立 About 文案仍写 84 项，此次未修改仓库设置。
+- 渲染修正：实际 GFM 预览发现中文简介的加粗标记与后文紧邻而显示星号，去掉这处多余强调；两版复验均无意外标记。其余标题与正文保持可搜索、可复制，图片有有意义的替代文字。
+- 完整验证：技能素材审计两版均通过（各 2 个本地图片），语言切换、静态封面和全部本地文件目标存在；各 1 个 H1、6 个正文章节，没有长段落表格或非必要脚本/iframe/object。三个外部地址 GET 均为 200，严格 TypeScript、Markdown 格式及 git diff --check 通过。
+- 实际浏览器：核对中英文桌面/手机、中文手机正文与功能区、深色桌面，共 7 个视图；桌面 Hero 为 900px，手机视口 390px（实际图片约 343px），所有页面 scrollWidth=clientWidth，无整页横向溢出，动图与首页图片全部加载/解码成功。临时预览及记录保存于既有忽略目录 `artifacts/candidates/readme-review-20261009/`。
+- 环境收尾：本轮仅使用临时 Markdown 预览服务，现已终止并确认端口 7340 关闭；临时标签已关闭、视口已恢复。没有启动前后端开发服务；本地 GFM 预览不等于已推送后的 GitHub 页面验收。
+- 范围：仅 README 与文档更新，保留此前已有的未提交修改；不改应用实现、不启动前后端开发服务、不提交、推送或发布。
+
+## 2026-10-09 — animated GIF Hero 素材制作与预览（仅素材，已完成）
+
+- 原因与原则：用户明确调用 `beautify-github-readme`，要求保持 README 不变，仅制作一个 animated GIF Hero 并保留 SVG 源文件，先展示渲染预览；沿用现有项目视觉和真实内容，遵循最简与范围约束。
+- `assets/readme/hero.svg`：新增 1200×420 的静态可编辑源文件，复用现有书本轮廓、鸢尾紫和界面文字/背景色，采用展开的书页构图；项目名称和定位固定展示，以真实 HumanEval/0 节选和 pass@k 字段说明任务、样例与评分，不虚构模型成绩或评测执行。
+- `assets/readme/hero-motion.json`：记录设计依据、配色、文字与形状、来源及三个动画层的时间轴；指定 30 FPS、5.4 秒、256 色、稳定透明边界，三层依次进入后静止阅读，再共同退出形成循环。
+- `assets/readme/hero.gif`：新增 1200×420、5.4 秒的循环动图，共 495,293 字节（约 484 KiB）；30 FPS 源时间轴生成 162 帧，编码时合并相同停留帧，实际 GIF 为 77 个编码帧，播放时长保持 5,400 毫秒。
+- 渲染方式：复用技能 `render_motion_gif.py` 的分层抽取、祖先样式、缓出时间轴和透明轮廓检查；本机未提供独立 ffmpeg/rsvg-convert 命令，因此临时适配器使用已有的 bundled sharp/librsvg 渲染 SVG、已有 Pillow 编码共享调色板 GIF。没有安装依赖、修改技能脚本或在项目中新增运行逻辑，素材依然保留标准 SVG 和动画规范。
+- 视觉检查：已查看进入、完整停留、退出、循环边界，以及 900px/360px、浅色/深色背景预览；项目名称、关键标签和书页主体可辨，中文文字没有裁切。手机宽度下右页例题细节属于辅助内容，项目名称与“任务·样例·评分”保留主要信息。
+- 数据与循环验证：实际题目节选和 pass@k 均核对仓库字段；70 个停留源帧逐字节哈希相同，GIF 解码后的停留帧 RGBA 字节相同；源帧与 GIF 的首尾 RGBA 字节均完全相同，全部编码帧的透明轮廓一致、四角均透明。SVG XML、动画层 ID、安全标签/资源检查、动画 JSON 格式和 `git diff --check` 均通过，严格 TypeScript 检查通过。
+- 验证资料：静态稿、阶段帧、宽窄/明暗预览和 `validation.json` 保存于本机临时目录 `C:\Users\admin\AppData\Local\Temp\readme-hero-e947520b28074d4ab0699771718e9f38`；正式交付仅为 `hero.svg`、`hero.gif` 和 `hero-motion.json` 三个素材文件。
+- 范围核对：两份 README 与本轮开始时的 SHA-256 完全一致（英文 `94C9B4DD4E44B4EBA10B2E145624FACC29FF661580ECDB8D811296345FA91F1B`；中文 `749EF4B07B5CC64E0085A87B858967236E74DD111C3D4AC5E55C3D202E120317`），没有插入素材或改变链接，保留此前已有未提交修改。本轮未启动服务、未生产构建、未提交、推送或发布。
+
+## 2026-10-09 — 安装 beautify-github-readme 技能
+
+- 原因与原则：用户明确要求安装 `oil-oil/beautify-github-readme`；复用 Codex 已有 skill-installer 安装流程，不另外安装一套管理工具。
+- 来源与位置：通过官方本地安装脚本，从 [oil-oil/beautify-github-readme](https://github.com/oil-oil/beautify-github-readme) 的 `main` 分支、`skills/beautify-github-readme` 目录安装到 `C:\Users\admin\.codex\skills\beautify-github-readme`。
+- 文件范围：全局技能目录新增 12 个文件，包含 `SKILL.md`、`agents/openai.yaml`、2 个配套 Python 脚本和 8 份参考文档；项目内只在 `UPDATE_LOG.md` 新增本节记录，保留此前 README 和截图改动。
+- 功能说明：技能提供整篇 README 整理与美化、仅生成视觉素材两种模式；要求依据真实项目材料，不虚构功能，提交、推送、PR 或发布须遵守用户明确授权。
+- 验证：安装脚本退出码为 0；已完整读取入口说明，技能名称匹配，8 份唯一引用文档与 3 个必需配套文件均存在，安装总文件数为 12。安装后从下一条消息起可使用 `$beautify-github-readme`；本轮未执行该技能的美化流程、未运行配套脚本或服务、未提交或推送。
+
+## 2026-10-09 — 按常见 GitHub README 结构整理并突出网站入口
+
+- 原因与原则：用户要求加入并突出自己的 GitHub Pages 链接，同时参考其他项目的 README 格式；遵循最简和项目介绍优先原则，采用清楚的 Markdown 标题、目录、图片、功能表和链接组织内容。
+- 参考资料：[GitHub 官方 README 说明](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)、[Immich README](https://github.com/immich-app/immich/blob/main/README.md)、[LobeHub README](https://github.com/lobehub/lobehub/blob/main/README.md)。参考项目介绍、在线入口、目录、功能及反馈信息的组织方式，没有复制其他项目的文案或素材。
+- `README.md`、`README_ZH.md`：在标题与语言切换下方单独列出完整网站地址 `https://whiteplusms.github.io/whats-a-benchmark`，使用方式中也链接同一地址；同步整理为目录、项目简介、页面预览、主要功能、使用方式、资料来源、参与贡献，功能改用便于阅读的表格，补充 GitHub Issues 反馈入口及维护者链接。继续介绍项目用途和实际功能，没有重新加入技术栈、开发命令、构建或部署教程。
+- `artifacts/screenshots/2026-10-09-readme-home.jpg`：新增真实公开网站首页截图，展示当前项目名称、目录搜索、能力分类及评测卡片，供两版 README 共用；使用仓库相对图片路径，不复用带旧项目名的历史首页截图，不生成或加工界面图。
+- `UPDATE_LOG.md`：新增本节，记录本次结构调整、参考出处、入口与截图来源、修改影响和验证结果。
+- 影响：只修改两份 README、更新日志并新增一张预览图，网站功能、评测源数据、依赖及部署配置未变。网站链接从语言切换行中独立出来，读者可直接识别和点击完整地址。
+- 验证：用户指定的网站地址 HTTP 200，实际浏览器打开后确认当前公开首页并保存截图；严格 TypeScript 检查通过；两版 README 的 Prettier 格式检查通过，12 个目录锚点、4 个本地文档/图片引用均有效，每版均包含 2 个完全匹配用户地址的链接，技术内容残留检查与 `git diff --check` 通过。本轮未启动服务、未运行生产构建或业务测试、未提交或推送；README 调整仍为本地文件修改。
+
+## 2026-10-09 — 中英文 README 改为项目介绍
+
+- 原因与原则：用户指出 README 混入过多技术细节，要求只介绍项目；遵循最简、文档与实际功能一致原则，让仓库首页面向希望了解项目的读者。
+- `README.md`：重写英文介绍，说明项目用途、面向读者、评测介绍、具体样例、评分方法、版本对比、官方资料、阅读指南与浏览步骤；保留资料标注和网站语言说明，增加沿用项目现有记录的在线浏览入口。
+- `README_ZH.md`：同步对应中文介绍，与英文版保持相同的内容结构及语言切换链接；用读者视角介绍实际可浏览的内容，不把双语 README 描述为英文网站界面。
+- 两版删除：内部覆盖统计与审计过程、运行环境与安装命令、开发/测试/构建命令表、目录结构、技术栈与数据生成实现、内容维护命令、部署步骤和环境变量、面向开发者的操作要求及技术文档索引。资料来源与样例说明收为简短介绍，不再展开内部维护和许可核对流程。
+- `UPDATE_LOG.md`：新增本节，记录修改文件、原因、具体删改内容、影响与验证结果，保留既有历史记录。
+- 影响：只调整项目介绍文档；应用功能、评测源数据、依赖和部署配置没有修改。中英文版均提供在线浏览入口，说明网站当前使用简体中文、原始样例保留来源语言。
+- 验证：`npm run typecheck` 通过（生成 151 个公开条目后执行严格 TypeScript 检查）；两版 README 的 Prettier 格式检查通过，2 个本地语言切换链接目标均存在，技术内容残留检查与 `git diff --check` 通过。本轮未启动服务、未运行业务测试或生产构建、未提交或推送；线上入口沿用既有记录，本轮未重新进行线上验收。
+
 ## 2026-10-09 — GitHub Pages应用发布完成与线上验收
 
 - 提交与推送：61909a7c768b56685c98627a6bfa235302154c48（feat(benchmarks): 补齐评测图片标识并优化占位展示）已正常推送origin/main；已有3个本地提交通过ff-only保留历史并一并发布。推送后本地HEAD与git ls-remote的main一致，工作区干净。

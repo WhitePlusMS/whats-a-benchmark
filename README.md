@@ -1,179 +1,53 @@
 # what's a benchmark?
 
-**Understand what AI benchmarks actually measure.**
+**A Chinese-language guide to AI benchmark tasks, examples, and scores.**
 
-English · [简体中文](README_ZH.md)
+English · [简体中文](README_ZH.md) · [Static cover](assets/readme/hero.svg)
 
-A source-backed reference site for exploring AI evaluation tasks, real examples, scoring methods, and relationships between benchmark versions. Search names from model release reports, inspect what a task looks like, and compare evaluation protocols side by side.
+**Website:** [https://whiteplusms.github.io/whats-a-benchmark](https://whiteplusms.github.io/whats-a-benchmark)
 
-The website's interface and editorial explanations are currently in **Simplified Chinese**. Original examples retain their source language; this English README documents the project and how to run it.
+<p align="center">
+  <a href="https://whiteplusms.github.io/whats-a-benchmark">
+    <img src="assets/readme/hero.gif" width="100%" alt="what's a benchmark? — understand tasks, examples, and scoring through a real HumanEval example">
+  </a>
+</p>
 
-## At a glance
+## Preview
 
-Catalog snapshot as of **October 8, 2026**:
+![Catalog homepage of what's a benchmark?](artifacts/screenshots/2026-10-09-readme-home.jpg)
 
-| Coverage                                           | Count |
-| -------------------------------------------------- | ----: |
-| Benchmark entries                                  |   151 |
-| Capability categories                              |    10 |
-| Source task records, including labeled excerpts     |    53 |
-| Official public cases explained on site             |    96 |
-| Stored case records                                |   149 |
-| Entries with their own on-site cases                |   138 |
-| Detail pages with cases, including a composite index|   139 |
-| Entries with unresolved case gaps                   |    12 |
-| Official model release reports indexed             |    17 |
+## About
 
-Categories cover coding, mathematical and scientific reasoning, knowledge, agents and tools, multimodal understanding including audio, long context, instruction following and preferences, professional tasks, writing and design, and cross-capability evaluations and indices.
+**what's a benchmark?** brings together AI benchmark descriptions, task examples, scoring methods, and official sources. It helps readers understand the evaluation names and numbers in model release reports, including what models are asked to do and how related versions differ.
 
-The October 8 expansion adds 59 entries and maps all 90 sources and specializations on the reviewed AIHOT directory to benchmark families, named versions, subsets, or suites. Repeated institution runs and display slices are not counted as separate datasets. The [coverage review](docs/research/2026-10-08-aihot-coverage.md) records the exact mapping, first-party evidence and unresolved execution details.
-
-The subsequent [per-entry review](docs/reviews/2026-10-08-expansion-deep-audit.md) connects verified publisher/project identities for all 59 entries, expands task/data/scoring details, and adds nine permission-checked task records at fixed revisions through the existing sample pipeline.
-
-The [full case coverage audit](docs/reviews/2026-10-08-all-cases-coverage.md) lists every entry, case, source and remaining gap. The 53 source records cover 42 entries; the 96 public case explanations cover 96 further entries. One composite index displays a declared component's case. Public case explanations identify concrete official tasks or evaluation runs, label the site's own wording, and link to the original input when images or attachments are not republished. They are not presented as complete original dataset rows. The remaining 12 entries explain online disclosure restrictions, unavailable public task inputs, or missing evidence that a public example belongs to the indexed version.
+The website is currently in **Simplified Chinese**. Original task material retains its source language, with explanations provided by the site. You can browse without signing in.
 
 ## Features
 
-- **Find benchmarks:** search names, aliases, capabilities, or publishers; filter by category, publisher, example availability, and benchmark type. Switch between card and list views and sort by name or year.
-- **Recognize a list:** paste up to 60 names separated by newlines, commas, or semicolons. Version and year differences remain meaningful.
-- **Read the protocol:** inspect official definitions, inputs and outputs, execution requirements, data structure, scoring, limitations, and access conditions, with evidence links beside each section.
-- **Explore real examples:** view text, code, multiple-choice questions, long-context excerpts, structured records, ARC grids, images and audio. Inspect original fields or labeled public-source excerpts, reveal available reference answers, and read provenance and licensing notes. Official public cases explained by the site are labeled separately.
-- **Compare and share:** compare two or three benchmarks side by side. Selection is encoded in the comparison URL; catalog filters, sorting, and view preferences are also reflected in the URL.
-- **Trace versions and sources:** distinguish originals, subsets, derivatives, suites, and internal evaluations. Follow supported relationships and official report references.
-- **Interpret scores:** selected entries explain judges, comparison conditions, disclosure and version changes. Composite indices show source-backed weights and links to their component evaluations. Task-oriented guide links reuse catalog categories.
-- **Browse on desktop or mobile:** responsive layouts and statically generated detail pages that support direct links and refreshes.
+- **Find benchmarks:** search by name, capability, or publisher, browse categories, or paste a list of names from a model report.
+- **Understand the tasks:** read what models receive, what they need to produce, and which capabilities an evaluation tests.
+- **Explore examples:** read source tasks, labeled excerpts, and the site's explanations. Text, code, images, audio, and reference answers are available depending on the entry.
+- **Interpret scores:** learn how metrics are calculated, which evaluation conditions matter, and what the results can tell you.
+- **Compare evaluations:** place two or three benchmarks side by side and explore their tasks, coverage, limitations, and version relationships.
+- **Follow the sources:** use reading guides and model report references to reach official papers, project pages, and datasets.
 
-This is a reading and discovery tool. It does not execute evaluations, call model APIs, or generate a unified model ranking. Entries without suitable on-site examples explain their availability and link to official resources.
+Coverage includes coding, mathematical and logical reasoning, knowledge, agents and tools, multimodal understanding, long context, instruction following, professional work, writing and design, and evaluations spanning multiple capabilities.
 
-## Quick start
+## Usage
 
-Use **Node.js 22.12+** and npm. The project has been verified with Node.js 22.22.1; the GitHub Actions workflow uses Node.js 22.
+1. Open the [website](https://whiteplusms.github.io/whats-a-benchmark) and search for a benchmark or browse by capability.
+2. Open an entry to read its task description, explore available examples, and understand its scoring.
+3. Select two or three related benchmarks to compare their tasks and evaluation conditions.
+4. Follow the source links for the original material, or use the reading guides to explore further.
 
-From the repository root:
+## Sources
 
-```sh
-npm ci
-npm test
-npm run build
-npm run preview
-```
+Descriptions are based on papers, project pages, official repositories, and dataset documentation from benchmark publishers. Model release reports provide references to evaluation use and reported results.
 
-Open the local HTTP address printed by the preview command. The deployable site is generated in `dist/`; serve it over HTTP rather than opening its HTML files directly. Stop the preview with `Ctrl+C` when finished.
+Original material, excerpts, and the site's own explanations are labeled separately. Entries explain example availability; some provide official access links rather than on-site task material.
 
-For development, run `npm run dev` if a development server is not already running. After editing content, use `npm run content:generate` to refresh the data consumed by an existing server.
+## Contributing
 
-### Commands
+Corrections, suggestions for new benchmarks, and clearer sources are welcome through [GitHub Issues](https://github.com/WhitePlusMS/whats-a-benchmark/issues). Include the benchmark name, the information to add or correct, and an official source link.
 
-| Command                    | Purpose                                                          |
-| -------------------------- | ---------------------------------------------------------------- |
-| `npm run dev`              | Generate content and start Vite development mode                 |
-| `npm run content:generate` | Validate authoring content and regenerate the public projection  |
-| `npm run validate`         | Validate content, references, and referenced assets              |
-| `npm run typecheck`        | Generate content and run strict TypeScript checks                |
-| `npm test`                 | Generate content and run automated tests                         |
-| `npm run build`            | Run type checks, generate static pages, and verify public output |
-| `npm run preview`          | Serve the production build locally                               |
-| `npm run content -- help`  | Show content lifecycle commands                                  |
-
-`typecheck`, `test`, and `build` generate their content inputs automatically. You do not need to check in or manually create `.generated/`. Run both tests and the build before submitting a change; `build` does not run the test suite itself.
-
-## Project structure
-
-```text
-content/
-  benchmarks/       One JSON authoring file per benchmark
-  assets/           Logos, license texts, and permitted sample assets
-  templates/        Draft entry template
-  categories.json   Shared capability categories
-  brands.json       Publisher identities and logo sources
-  releases.json     Official reports and benchmark references
-src/
-  components/       Reusable presentation components
-  composables/      Query, comparison, and sample interaction state
-  content/          Shared schema and adapters for generated data
-  lib/              Search, query, and comparison rules
-  styles/           Design tokens and styles grouped by responsibility
-  views/            Catalog, details, comparison, and reading pages
-scripts/            Content maintenance, generation, and build verification
-tests/              Automated regression tests
-docs/               Architecture, editorial workflows, and research records
-.generated/         Generated public metadata and sample files (ignored)
-dist/               Deployable static site (ignored)
-```
-
-Built with **Vue 3, TypeScript, Vite, Vite SSG, Vue Router, Zod, and Lucide**. It runs as a static site without a backend, database, or account system.
-
-Authoring JSON passes through a shared schema into a public projection. Catalog metadata is available to the app, while sample bodies load on demand. Drafts are excluded from public output; archived entries retain their historical detail pages. Global styles have one entry point, with tokens and page-specific responsibilities separated. See the [architecture guide](docs/ARCHITECTURE.md) for module boundaries and state rules.
-
-## Maintain content
-
-Create a draft:
-
-```sh
-npm run content -- new my-benchmark
-```
-
-Edit `content/benchmarks/my-benchmark.json`. Record the official definition, task protocol, data profile, access and reuse conditions, scoring, limitations, version relationships, and supporting sources. Add up to six real examples only when their public display is supported by the applicable permissions.
-
-After filling in and reviewing the entry:
-
-```sh
-npm run content -- publish my-benchmark
-npm run validate
-npm test
-npm run build
-```
-
-The `publish` command changes the local source status; it does not upload the website. The same CLI supports `archive`, `draft`, `check-delete`, and `delete`. References are checked before withdrawal or deletion. Record the reason and impact of manual changes in [UPDATE_LOG.md](UPDATE_LOG.md).
-
-Research and preparation scripts write unpublished records under `artifacts/research/` and `artifacts/candidates/`. These directories are ignored by Git and excluded from deployment. Sample preparation requires a successful collection batch; candidates still need editorial and licensing review before adoption. Normal builds do not fetch upstream datasets.
-
-See the [content maintenance guide](docs/CONTENT_MAINTENANCE.md) and [local sample import workflow](docs/LOCAL_SAMPLE_IMPORT.md) for field definitions, lifecycle behavior, and provenance requirements.
-
-## Deploy
-
-### GitHub Pages
-
-The repository includes a [Pages workflow](.github/workflows/pages.yml):
-
-1. Create your GitHub repository and push the source to `main`. If you use another default branch, update the workflow trigger.
-2. In **Settings → Pages → Build and deployment**, select **GitHub Actions**.
-3. Push a commit or run the workflow manually from **Actions**.
-
-The workflow installs dependencies, runs tests, builds, and uploads only `dist/`. It reads the base path and site URL from the Pages configuration, supporting project subpaths and configured custom domains.
-
-For other static hosts, publish the contents of `dist/`. Configure these build environment variables when needed:
-
-| Variable    | Meaning                                                             |
-| ----------- | ------------------------------------------------------------------- |
-| `BASE_PATH` | Public path prefix, such as `/whats-a-benchmark/`; defaults to `/`  |
-| `SITE_URL`  | Full public site URL, used to generate the sitemap and robots entry |
-
-Leave `SITE_URL` unset until the deployment address is known. Do not upload the entire workspace or unpublished research candidates.
-
-## Contribute
-
-Corrections to definitions, sources, version relationships, and sample provenance are welcome. Include a precise official source and identify the affected benchmark ID. For a new version, explain how its tasks or protocol differ from existing entries.
-
-For code changes, follow existing module and naming conventions, keep types strict, and reuse existing components. Run `npm test` and `npm run build`; verify UI changes in a browser at desktop and mobile widths. Update the relevant documentation and `UPDATE_LOG.md`.
-
-## Sources and usage rights
-
-Definitions are grounded in benchmark publishers' papers, repositories, project pages, and dataset cards. Model release reports document usage or reported results; they do not replace the benchmark's own definition. The catalog is a dated editorial snapshot, with verification dates recorded per entry.
-
-Original task material and this site's explanations are labeled separately. Sample attribution and reuse notes are attached to each record, with available license texts in [content/assets/licenses](content/assets/licenses/). Download access alone is not permission to redistribute a dataset or its third-party media. Source records and media require permission for the actual fields used. An independently published official case can be explained with a short source excerpt without changing the underlying dataset's access or reuse policy; full prompts, answers or media subject to an explicit online disclosure restriction are not mirrored.
-
-Logos retain their respective ownership and do not imply endorsement. Provenance is recorded in [content/brands.json](content/brands.json) and [logo sources](docs/LOGO_SOURCES.md). Third-party data and asset licenses apply to their respective material; they do not establish a license for this project's source code. A repository-wide source code license has not yet been specified.
-
-## Documentation
-
-The detailed guides are currently in Chinese.
-
-- [Architecture and styling](docs/ARCHITECTURE.md)
-- [Content maintenance](docs/CONTENT_MAINTENANCE.md)
-- [Importing real examples](docs/LOCAL_SAMPLE_IMPORT.md)
-- [Official-source research workflow](docs/RESEARCH_WORKFLOW.md)
-- [AIHOT coverage and classification review](docs/research/2026-10-08-aihot-coverage.md)
-- [All 151 entries: case coverage and remaining gaps](docs/reviews/2026-10-08-all-cases-coverage.md)
-- [Product design](docs/PRODUCT_DESIGN.md)
-- [Update log](UPDATE_LOG.md)
+Maintained by [WhitePlusMS](https://github.com/WhitePlusMS).

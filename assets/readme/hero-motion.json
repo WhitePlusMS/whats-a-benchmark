@@ -1,0 +1,54 @@
+{
+  "design": {
+    "audience": "AI 使用者、开发者和希望理解模型发布报告的读者",
+    "value": "把评测名称还原为能读懂的任务、真实样例和评分方法",
+    "proof": "content/benchmarks/human-eval.json 内的 HumanEval/0 原始例子与 pass@k 字段",
+    "first_action": "在已有网站查找评测名称并打开条目",
+    "theme": "沿用鸢尾紫与书本标识，将 Hero 组织成展开的两页评测手册",
+    "palette": {
+      "background": "#f7f8fa",
+      "surface": "#ffffff",
+      "foreground": "#252932",
+      "primary": "#6957d4",
+      "muted": "#606773",
+      "border": "#e2e5e9"
+    },
+    "typography": "Segoe UI / Microsoft YaHei / PingFang SC / sans-serif；标题 92、关键标签 40、示例 28–32",
+    "shape": "24 单位外圆角、轻量书页轮廓、2 单位分隔线、8 单位间距基数",
+    "motif": "书页和评测条目，复用既有书本线稿",
+    "composition": "静止项目名称与书页；仅让任务、样例、评分三个内容层依次进入",
+    "sources": [
+      "src/styles/tokens.css",
+      "src/styles/base.css",
+      "public/favicon.svg",
+      "content/benchmarks/human-eval.json",
+      "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz"
+    ]
+  },
+  "width": 1200,
+  "fps": 30,
+  "duration": 5.4,
+  "colors": 256,
+  "dither": "none",
+  "clip_to_base_alpha": true,
+  "transparent_color": "#ff00ff",
+  "max_size_mb": 2.0,
+  "reveals": [],
+  "layers": [
+    {
+      "id": "task-detail",
+      "enter": { "start": 0.15, "end": 0.95, "from": [0, 18] },
+      "exit": { "start": 4.6, "end": 5.25, "to": [0, -8] }
+    },
+    {
+      "id": "sample-detail",
+      "enter": { "start": 0.75, "end": 1.55, "from": [0, 18] },
+      "exit": { "start": 4.6, "end": 5.25, "to": [0, -8] }
+    },
+    {
+      "id": "score-detail",
+      "enter": { "start": 1.35, "end": 2.15, "from": [0, 18] },
+      "exit": { "start": 4.6, "end": 5.25, "to": [0, -8] }
+    }
+  ]
+}
