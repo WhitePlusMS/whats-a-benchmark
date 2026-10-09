@@ -1,0 +1,196 @@
+{
+  "id": "arena-creative-writing",
+  "status": "published",
+  "order": 665,
+  "name": "Arena Creative Writing",
+  "subtitle": "文本平台里创意写作对话的偏好切片",
+  "category": "writing",
+  "tags": [
+    "创意写作",
+    "人类偏好",
+    "文本子榜",
+    "匿名对战"
+  ],
+  "publisher": "Arena / LMArena",
+  "brandIds": [
+    "arena"
+  ],
+  "year": null,
+  "version": "Text Arena Creative Writing 专项",
+  "kind": "subset",
+  "aliases": [
+    "LMArena Creative Writing",
+    "Text Arena Creative Writing",
+    "Arena 创作盲选"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Text Arena 中的创意写作类别，比较用户在匿名回答间的偏好。",
+    "task": "在用户创作请求下生成文本，由用户投票；不是 EQ-bench 的固定创作提示协议。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/text/creative-writing"
+    ]
+  },
+  "taskContract": {
+    "input": "被归入 Creative Writing 的用户文本请求。",
+    "output": "模型创意写作回答。",
+    "environment": "Arena 文本投票平台和创意写作类别筛选；模型身份在投票前隐藏。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/text/creative-writing"
+    ]
+  },
+  "dataProfile": {
+    "summary": "创意写作子榜公开；完整当期类别数据、提示和投票的公开范围未确认。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arena.ai/faq",
+      "https://arena.ai/blog/policy"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "按当前 Text Arena 创意写作类别查看；历史公开快照不能当作该子榜完整固定测试集。"
+    ],
+    "url": "https://arena.ai/leaderboard/text/creative-writing",
+    "sourceUrls": [
+      "https://arena.ai/faq"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/faq"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://arena.ai/blog/arena-category",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "sourceUrls": [
+      "https://arena.ai/blog/arena-category"
+    ]
+  },
+  "metric": {
+    "name": "Arena Rating / Rank Spread",
+    "description": "成对用户偏好产生相对分数、置信区间和 rank spread；不是客观写作正确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arena.ai/faq",
+      "https://arena.ai/blog/ranking-method"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "用户构成、提示分布、语言与风格控制影响偏好；与固定题目和模型裁判创作 benchmark 不同。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/text/creative-writing",
+        "https://arena.ai/faq"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 Creative Writing 类别",
+      "url": "https://arena.ai/leaderboard/text/creative-writing",
+      "role": "definition"
+    },
+    {
+      "label": "官方投票与数据 FAQ",
+      "url": "https://arena.ai/faq",
+      "role": "access"
+    },
+    {
+      "label": "官方排名不确定性方法",
+      "url": "https://arena.ai/blog/ranking-method",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据政策",
+      "url": "https://arena.ai/blog/policy",
+      "role": "access"
+    },
+    {
+      "url": "https://arena.ai/blog/arena-category",
+      "label": "Arena 官方类别说明与示例提示",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "arena",
+      "label": "类别子榜",
+      "detail": "Arena 文本对话中的 Creative Writing 类别，沿用平台投票框架。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/text/creative-writing",
+        "https://arena.ai/faq"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "真人投票前模型身份隐藏，基于成对偏好产生相对评级；不是EQ固定提示与LLM文学rubric。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/text/creative-writing",
+        "https://arena.ai/faq"
+      ]
+    },
+    "comparison": {
+      "text": "固定文本类别、style control、模型池、票数和日期；类别过滤后的分数不能与平台文本总榜或其他创作Elo直接互换。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/text/creative-writing",
+        "https://arena.ai/faq"
+      ]
+    },
+    "disclosure": {
+      "text": "创意写作子榜公开；完整当期类别数据、提示和投票的公开范围未确认。",
+      "sourceUrls": [
+        "https://arena.ai/faq",
+        "https://arena.ai/blog/policy"
+      ]
+    },
+    "versionChanges": {
+      "text": "本条是 Text Arena 类别切片，模型池与分类会更新，不另造固定版本。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/text/creative-writing"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/text/creative-writing"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "arena-creative-writing-mystery-titles",
+        "title": "神秘小说标题创作提示",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "Arena Creative Writing 官方示例要求依据两个给定短语，为一部悬疑小说提出 20 个有吸引力的标题。此处是本站对真实示例的概述，不含评选结果或模型回答。",
+        "raw": "List 20 suitably intriguing titles for a mystery novel based on ‘I’m Alone’ and ‘So Alone’",
+        "explanation": "官方类别文章的 Creative Writing 示例。文章没有为该 prompt 提供稳定的比赛记录 ID；这里只记录公开示例中的具体创作任务，不复制后续模型作品，也不表示固定题库样本。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "source": "https://arena.ai/blog/arena-category",
+        "license": "未核实覆盖该 prompt 与模型输出的统一再发布许可。本页仅保留少量短引和本站任务概述，不复制答案或生成作品。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Arena 官方类别文章 · Creative Writing 示例 · 无稳定 row ID",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -68,24 +68,24 @@
     ]
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "官方 README 声明代码 Apache-2.0、数据 ODC-BY-1.0；数据面向研究与教育用途并受 Ai2 Responsible Use Guidelines 约束。",
-    "scope": "许可按官方仓库声明适用于相应代码和数据；数据中的第三方模型生成输出还受各自独立条款约束。",
+    "status": "permitted",
+    "license": "ODC-BY-1.0（选定公开任务的数据许可）",
+    "scope": "ODC-BY-1.0 数据声明覆盖本页研究教育用途的测试 prompt/约束；不包含第三方模型生成输出。",
     "boundaries": [
-      "第三方模型生成内容的使用条款可能不同，未逐条确认。",
-      "公开数据访问不等于本站可不加筛查地转载完整测试题或回答。"
+      "保留发布方、数据快照和来源；各第三方材料按原作者许可另行核对。",
+      "不将此展示作为训练数据；遵守 Ai2 研究教育用途说明。"
     ],
     "sourceUrls": [
-      "https://github.com/allenai/IFBench/blob/main/README.md"
+      "https://raw.githubusercontent.com/allenai/IFBench/main/README.md"
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "官方入口可访问且数据标注 ODC-BY-1.0，但 README 提醒第三方模型输出适用独立条款；在逐项筛查数据来源前只链接官方入口，不本地发布样例。",
-    "url": "https://huggingface.co/datasets/allenai/IFBench_test",
+    "status": "local",
+    "reason": "在回答圆轨道量子力学问题的同时，要求使用至少五种不同并列连词。规则名称来自原行 count:conjunctions；公开行没有参考回答，本页不编造标准答案。未展示第三方模型输出。",
+    "url": "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl",
     "sourceUrls": [
-      "https://github.com/allenai/IFBench/blob/main/README.md",
-      "https://huggingface.co/datasets/allenai/IFBench_test"
+      "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl",
+      "https://raw.githubusercontent.com/allenai/IFBench/main/README.md"
     ]
   },
   "metric": {
@@ -99,14 +99,7 @@
   },
   "limitations": [
     {
-      "text": "未逐条检查测试 JSONL 和多轮数据的记录字段、行数、数据 revision 或第三方输出权利。",
-      "sourceUrls": [
-        "https://github.com/allenai/IFBench/blob/main/README.md",
-        "https://huggingface.co/datasets/allenai/IFBench_test"
-      ]
-    },
-    {
-      "text": "模型厂商 benchmark 表可能省略 strict/loose、温度及 thinking token 上限等设置；本候选不复算厂商分数。",
+      "text": "模型厂商成绩表可能省略 strict/loose、温度和 thinking token 上限，比较前需查完整设置。",
       "sourceUrls": [
         "https://huggingface.co/Qwen/Qwen3.8-27B",
         "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B"
@@ -138,6 +131,16 @@
       "label": "Qwen3.8-Max 官方模型卡",
       "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
       "role": "vendor-report"
+    },
+    {
+      "label": "已核验的原始具体任务",
+      "url": "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "数据许可及公开范围声明",
+      "url": "https://raw.githubusercontent.com/allenai/IFBench/main/README.md",
+      "role": "access"
     }
   ],
   "related": [
@@ -151,5 +154,91 @@
       ]
     }
   ],
-  "verifiedAt": "2026-09-23"
+  "verifiedAt": "2026-10-08",
+  "researchNotes": [
+    {
+      "text": "模型厂商 benchmark 表可能省略 strict/loose、温度及 thinking token 上限等设置；本候选不复算厂商分数。",
+      "sourceUrls": [
+        "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B"
+      ]
+    },
+    {
+      "text": "已重新读取官方源文件并核对具体记录；SHA-256 a2bf7b8e7ed11d39c65b4ec781da8b99663ed0121f97033d70fcecb61f8a9d85。在回答圆轨道量子力学问题的同时，要求使用至少五种不同并列连词。规则名称来自原行 count:conjunctions；公开行没有参考回答，本页不编造标准答案。未展示第三方模型输出。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "test-key-5",
+        "title": "物理问答 · 至少五种并列连词约束",
+        "type": "text",
+        "prompt": "particle of mass m moves only along a frictionless, vertical, circular track of radius a. (a) Write the classical energy of this mass as a function of angular momentum, neglecting gravity, and assume that the quantum mechanical Hamiltonian comes from substituting the quantum angular momentum operator. What is the Hamiltonian operator? (b) Write Schrodinger equation in the position representation. The angle φ should figure prominently. (c) Find the energy eigenvalues and energy eigenfunctions in the position representation. Use at least 5 different coordinating conjunctions in the response.",
+        "explanation": "在回答圆轨道量子力学问题的同时，要求使用至少五种不同并列连词。规则名称来自原行 count:conjunctions；公开行没有参考回答，本页不编造标准答案。未展示第三方模型输出。",
+        "raw": {
+          "key": "5",
+          "prompt": "particle of mass m moves only along a frictionless, vertical, circular track of radius a. (a) Write the classical energy of this mass as a function of angular momentum, neglecting gravity, and assume that the quantum mechanical Hamiltonian comes from substituting the quantum angular momentum operator. What is the Hamiltonian operator? (b) Write Schrodinger equation in the position representation. The angle φ should figure prominently. (c) Find the energy eigenvalues and energy eigenfunctions in the position representation. Use at least 5 different coordinating conjunctions in the response.",
+          "instruction_id_list": [
+            "count:conjunctions"
+          ],
+          "kwargs": [
+            {
+              "N": null,
+              "capital_frequency": null,
+              "capital_relation": null,
+              "end_phrase": null,
+              "first_word": null,
+              "forbidden_words": null,
+              "frequency": null,
+              "keyword": null,
+              "keyword1": null,
+              "keyword2": null,
+              "keyword3": null,
+              "keyword4": null,
+              "keyword5": null,
+              "keywords": null,
+              "language": null,
+              "let_frequency": null,
+              "let_relation": null,
+              "letter": null,
+              "m": null,
+              "max_words": null,
+              "min_words": null,
+              "n": null,
+              "n_end": null,
+              "n_start": null,
+              "nth_paragraph": null,
+              "num_bullets": null,
+              "num_highlights": null,
+              "num_paragraphs": null,
+              "num_placeholders": null,
+              "num_sections": null,
+              "num_sentences": null,
+              "num_words": null,
+              "options": null,
+              "percentage": null,
+              "postscript_marker": null,
+              "prompt_to_repeat": null,
+              "reference_text": null,
+              "relation": null,
+              "section_spliter": null,
+              "sep": null,
+              "small_n": 5.0,
+              "word": null
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl",
+        "license": "Allen Institute for AI (Ai2) / ODC-BY-1.0",
+        "licensePath": "licenses/ifbench-sample-source.txt",
+        "split": "official single-turn test / key=5",
+        "excerpt": false
+      }
+    ]
+  }
 }

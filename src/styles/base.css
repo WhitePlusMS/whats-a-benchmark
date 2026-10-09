@@ -39,7 +39,11 @@ a,
 input,
 select,
 textarea {
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgb(105 87 212 / 8%);
+  touch-action: manipulation;
+}
+summary {
+  touch-action: manipulation;
 }
 button {
   cursor: pointer;
@@ -61,9 +65,12 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
+summary:focus-visible,
 [tabindex]:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 4px;
+  scroll-margin-block: var(--anchor-offset)
+    calc(var(--dock-clearance) + env(safe-area-inset-bottom, 0px));
 }
 h1,
 h2,
@@ -75,6 +82,7 @@ h1,
 h2,
 h3 {
   line-height: 1.35;
+  text-wrap: balance;
 }
 button {
   border: 0;
@@ -84,13 +92,14 @@ input,
 textarea,
 select {
   color: inherit;
+  background-color: var(--surface);
 }
 svg {
   flex-shrink: 0;
   vertical-align: middle;
 }
 ::selection {
-  background: #e5dffa;
+  background: var(--selection);
 }
 a,
 button {
@@ -132,7 +141,17 @@ button {
   top: 10px;
 }
 #main-content {
-  scroll-margin-top: 88px;
+  scroll-margin-top: var(--anchor-offset);
+}
+[id] {
+  scroll-margin-top: var(--anchor-offset);
+}
+.source-number,
+time,
+.sample-count,
+.catalog-stats b,
+.composition-table td:nth-child(3) {
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 1190px) {
@@ -142,6 +161,9 @@ button {
   }
 }
 @media (max-width: 700px) {
+  :root {
+    --anchor-offset: 118px;
+  }
   .container {
     padding-left: 20px;
     padding-right: 20px;

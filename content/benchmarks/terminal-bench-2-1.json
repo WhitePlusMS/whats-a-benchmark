@@ -24,7 +24,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "Terminal-Bench 2.1 是 Terminal-Bench 2.0 的更经验证修订版。官方公告称 89 项 2.0 tasks 中修复 28 项；专用仓库 README 称修改 26 项，二者计数不一致，暂不调和。",
+    "summary": "在容器化终端中完成工作并通过验证；2.1 修订 2.0 任务，官方修订计数有差异。",
     "task": "在容器化终端任务中执行复杂工作，由任务专属 verifier 检查结果。",
     "sourceUrls": [
       "https://www.tbench.ai/news/terminal-bench-2-1",
@@ -74,26 +74,27 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "GitHub 仓库标注 Apache-2.0；未逐项确认所有 Harbor task、第三方依赖或其他材料的再分发权。",
-    "scope": "Apache-2.0 仅按许可证覆盖的仓库文件适用；不将仓库标识推及未审计的第三方内容。",
+    "license": "仓库Apache-2.0；2.1 task/sequence许可未分别确立。",
+    "scope": "仅官方2.1任务目录成员事实；序列和其余任务素材许可未查明。",
     "boundaries": [
-      "官方 benchmark 材料包含不得进入训练语料的 canary。",
-      "本站仅保留原创说明和官方链接，不复制题面、解答、测试、trajectory 或图像。"
+      "dna-assembly也在2.0目录，不称为2.1独有。",
+      "不复制序列、fixture、tests、solution或canary值。"
     ],
     "sourceUrls": [
-      "https://github.com/harbor-framework/terminal-bench-2-1",
-      "https://www.tbench.ai/news/terminal-bench-2-1"
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest?tab=tasks",
+      "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+      "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "Harbor Hub 提供公开的 Terminal-Bench 2.1 官方数据集入口。本按钮仅打开官方数据页；本站不复制任务、oracle、测试、轨迹或截图，逐项素材授权仍需按来源核实。",
+    "status": "local",
+    "reason": "官方Terminal-Bench 2.1数据集/任务目录列出dna-assembly；本站只展示任务事实解读。",
+    "url": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
     "sourceUrls": [
-      "https://github.com/harbor-framework/terminal-bench-2-1",
-      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest",
-      "https://www.tbench.ai/news/terminal-bench-2-1"
-    ],
-    "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest"
+      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest?tab=tasks",
+      "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+      "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE"
+    ]
   },
   "metric": {
     "name": "任务解决率",
@@ -106,28 +107,10 @@
   },
   "limitations": [
     {
-      "text": "公告称修订 28 项，2.1 README 称修改 26 项；本轮未对比 task manifest 和 commit diff 来确定口径。",
+      "text": "官方公告与 2.1 README 分别称修订 28 项和 26 项，核对任务集合时需查看发布清单。",
       "sourceUrls": [
         "https://www.tbench.ai/news/terminal-bench-2-1",
         "https://github.com/harbor-framework/terminal-bench-2-1"
-      ]
-    },
-    {
-      "text": "未逐任务核验 Harbor 包字段、任务依赖、运行环境或第三方材料许可。",
-      "sourceUrls": [
-        "https://github.com/harbor-framework/terminal-bench-2-1",
-        "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest"
-      ]
-    },
-    {
-      "text": "多家模型厂商报告使用 Terminal-Bench 2.1，但 harness、资源与重复次数不同；本条未独立复现其中任一成绩。",
-      "sourceUrls": [
-        "https://huggingface.co/Qwen/Qwen3.8-27B",
-        "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
-        "https://autoclaw.z.ai/blog/model/glm-5.3-flash/",
-        "https://api-docs.deepseek.com/updates/",
-        "https://github.com/MoonshotAI/Kimi-K3",
-        "https://www.minimax.io/blog/minimax-m3"
       ]
     }
   ],
@@ -186,6 +169,21 @@
       "label": "MiniMax M3 厂商评测方法",
       "url": "https://www.minimax.io/blog/minimax-m3",
       "role": "vendor-report"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest?tab=tasks",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE",
+      "role": "access"
     }
   ],
   "related": [
@@ -208,5 +206,51 @@
       ]
     }
   ],
-  "verifiedAt": "2026-09-23"
+  "verifiedAt": "2026-09-23",
+  "researchNotes": [
+    {
+      "text": "公告称修订 28 项，2.1 README 称修改 26 项；本轮未对比 task manifest 和 commit diff 来确定口径。",
+      "sourceUrls": [
+        "https://www.tbench.ai/news/terminal-bench-2-1",
+        "https://github.com/harbor-framework/terminal-bench-2-1"
+      ]
+    },
+    {
+      "text": "未逐任务核验 Harbor 包字段、任务依赖、运行环境或第三方材料许可。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench-2-1",
+        "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest"
+      ]
+    },
+    {
+      "text": "多家模型厂商报告使用 Terminal-Bench 2.1，但 harness、资源与重复次数不同；本条未独立复现其中任一成绩。",
+      "sourceUrls": [
+        "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+        "https://autoclaw.z.ai/blog/model/glm-5.3-flash/",
+        "https://api-docs.deepseek.com/updates/",
+        "https://github.com/MoonshotAI/Kimi-K3",
+        "https://www.minimax.io/blog/minimax-m3"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-terminal-bench-2-1-dna-assembly",
+        "title": "公开任务成员 · Golden Gate 引物设计",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Terminal-Bench 2.1 官方任务目录也包含 dna-assembly：给定输入质粒和egfp、flag、snap三段基因，设计8对Golden Gate PCR引物，加入BsaI-HF v2识别位点和有序组装overhang，并以FASTA输出。任务slug与2.0相同；本样例按2.1目录成员记录，未复制任务序列、tests或solution。",
+        "explanation": "Harbor数据集页标题明确为Terminal-Bench 2.1，官方任务列表含dna-assembly；详情页说明了设计约束和FASTA产物。未把当前task页面称为冻结2.1文件快照。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "terminal-bench/dna-assembly\n\nGiven an input plasmid and three gene sequences (egfp, flag, snap)\n\nAnnealing region length: 15-45 nucleotides\nPrimer pair Tm difference: ≤5°C\n\nterminal-bench-2-1",
+        "source": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+        "license": "本站原创任务解读与必要短引；Apache-2.0仓库许可不自动覆盖task assets/序列。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "terminal-bench/terminal-bench-2-1 / task list member dna-assembly",
+        "excerpt": true
+      }
+    ]
+  }
 }

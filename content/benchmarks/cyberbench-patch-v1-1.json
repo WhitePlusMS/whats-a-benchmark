@@ -1,0 +1,166 @@
+{
+  "id": "cyberbench-patch-v1-1",
+  "status": "published",
+  "order": 1140,
+  "name": "CyberBench Patch v1.1",
+  "subtitle": "消除真实漏洞并保持正确行为",
+  "category": "coding",
+  "tags": [
+    "安全修补",
+    "隐藏验证"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2026,
+  "version": "CyberBench v1.1 / Patch track",
+  "kind": "subset",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 OSS-Fuzz 真实漏洞任务上提交代码修补，需消除已知崩溃并通过隐藏 holdout。",
+    "task": "给定漏洞项目源码、触发崩溃的PoC及sanitizer报告，修补源码并通过维护者参考行为的隐藏检查。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/cyber"
+    ]
+  },
+  "taskContract": {
+    "input": "漏洞项目源码树、原PoC输入和sanitizer崩溃报告。",
+    "output": "可编译的修补源码；必须使原PoC不再崩溃，并保持维护者修复版本在隐藏输入上的行为。",
+    "environment": "离线任务沙箱、mini-swe-agent及加固的cleanroom评分器。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/cyber"
+    ]
+  },
+  "dataProfile": {
+    "summary": "任务形态与部分补丁案例公开，完整评测任务为专有数据。",
+    "disclosure": "partial",
+    "scale": [
+      "v1.1 Patch任务：56项。"
+    ],
+    "splits": [
+      "Patch是CyberBench v1.1分项；60项PoC属于另一分项。"
+    ],
+    "fields": [],
+    "files": [
+      "公开方法展示漏洞补丁案例；每个Patch任务涉及漏洞源码、原PoC与sanitizer报告，完整56项材料及隐藏holdout输入没有公开下载。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/cyber"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "完整Patch任务数据未提供公开下载。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/cyber"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/cyber"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://www.vals.ai/benchmarks/cyber",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/cyber"
+    ]
+  },
+  "metric": {
+    "name": "Patch任务通过率",
+    "description": "补丁必须成功编译、让原PoC不再触发sanitizer错误，并在隐藏输入上匹配维护者修复后的参考行为。本条目只记录Patch通过率；CyberBench总分另平均PoC和Patch两项。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/cyber"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "v1.1采用离线沙箱和加固评分器，与v1分数不可直接比较。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/cyber"
+      ]
+    },
+    {
+      "text": "提供方对漏洞提示的拒答计为失败。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/cyber"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "只收录56项Patch，不把60项PoC任务数量当作本条目规模。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/cyber"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/cyber"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：Patch Examples, task oss-fuzz:435781342；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/cyber"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Vals CyberBench methodology",
+      "url": "https://www.vals.ai/benchmarks/cyber",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "依次构建候选补丁、重跑原PoC检查sanitizer、在隐藏输入比对维护者参考行为；Patch全条件通过才成功。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/cyber"
+      ]
+    },
+    "comparison": {
+      "text": "56项Patch与60项PoC分别报告，总Cyber分才平均两track；v1.1离线/加固评分器使v1成绩不能直接拼接，拒答计失败。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/cyber"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-cyberbench-patch-v1-1",
+        "title": "Patch 演示 · libxml2 生命周期修复",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方 Patch Examples 的具体 libxml2 任务标识为 oss-fuzz:435781342。页面对比了 SAX2.c 中症状层面的命名空间补丁与 parserInternals.c 生命周期修复的效果；该案例展示漏洞修复任务的结构，本页不提供攻击输入、补丁或判定它为标准答案。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：Patch Examples, task oss-fuzz:435781342\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "<li><code>oss-fuzz:435781342</code> (<code>libxml2</code>) contrasts symptom-level namespace handling patches in <code>SAX2.c</code> with GPT-5.5’s passing <code>parserInternals.c</code> lifecycle fix.</li>",
+        "source": "https://www.vals.ai/benchmarks/cyber",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "CyberBench v1.1 public Patch case study, libxml2",
+        "excerpt": true
+      }
+    ]
+  }
+}

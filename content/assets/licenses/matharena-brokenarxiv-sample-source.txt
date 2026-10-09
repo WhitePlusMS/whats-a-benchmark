@@ -1,0 +1,85 @@
+BrokenArXiv 站内样例来源与许可证据
+固定记录来源：https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet
+数据许可：CC-BY-SA-4.0
+署名：MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0
+只展示所选官方记录；未复制外部网页、来源论文正文或媒体。
+来源论文：https://arxiv.org/abs/2606.10817v1
+来源论文作者：Scott Hiatt; Connor Simpson; Botong Wang; Chenxi Wu
+来源论文许可：CC0-1.0
+
+原始许可证据：https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md
+---
+dataset_info:
+  features:
+  - name: problem_idx
+    dtype: int64
+  - name: points
+    dtype: int64
+  - name: problem
+    dtype: string
+  - name: original_problem
+    dtype: string
+  - name: source
+    dtype: string
+  - name: title
+    dtype: string
+  - name: authors
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 66906
+    num_examples: 54
+  download_size: 46377
+  dataset_size: 66906
+configs:
+- config_name: default
+  data_files:
+  - split: train
+    path: data/train-*
+license: cc-by-sa-4.0
+language:
+- en
+pretty_name: BrokenArXiv June 2026
+size_categories:
+- n<1K
+---
+
+### Homepage and repository
+
+- **Homepage:** [https://matharena.ai/](https://matharena.ai/)
+- **Repository:** [https://github.com/eth-sri/matharena](https://github.com/eth-sri/matharena)
+
+### Dataset Summary
+
+This dataset contains the questions from BrokenArXiv June 2026 used for the MathArena Leaderboard.
+
+### Data Fields
+
+The dataset contains the following fields:
+
+- `problem_idx` (`int64`): Problem index within the corresponding MathArena benchmark.
+- `points` (`int64`): Maximum score for the problem.
+- `problem` (`string`): False mathematical statement that models are asked to prove.
+- `original_problem` (`string`): Original unperturbed mathematical statement.
+- `source` (`string`): arXiv identifier for the source paper.
+- `title` (`string`): Title of the source arXiv paper.
+- `authors` (`string`): Authors of the source arXiv paper.
+
+### Licensing Information
+
+This dataset is licensed under the Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). Please abide by the license when using the provided data.
+
+### Citation Information
+
+```
+@article{dekoninck2026matharena,
+      title={Beyond Benchmarks: MathArena as an Evaluation Platform for Mathematics with LLMs},
+      author={Jasper Dekoninck and Nikola Jovanović and Tim Gehrunger and Kári Rögnvaldsson and Ivo Petrov and Chenhao Sun and Martin Vechev},
+      year={2026},
+      eprint={2605.00674},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2605.00674},
+}
+```
+

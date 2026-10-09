@@ -1,0 +1,173 @@
+{
+  "id": "tonebench",
+  "status": "published",
+  "order": 654,
+  "name": "ToneBench",
+  "subtitle": "按真实频道语气写完整技术视频脚本",
+  "category": "writing",
+  "tags": [
+    "视频脚本",
+    "语气匹配",
+    "重复生成",
+    "加权评分"
+  ],
+  "publisher": "Louis-François Bouchard / Towards AI",
+  "brandIds": [
+    "towards-ai"
+  ],
+  "year": null,
+  "version": "2026-10 核验的九维协议",
+  "kind": "original",
+  "aliases": [
+    "Towards AI Writing Benchmark",
+    "ToneBench · 文风与脚本"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "根据真实视频 brief 和研究材料写完整脚本，检查频道语气与内容质量。",
+    "task": "模仿作者的频道表达方式、结构和技术深度，生成可朗读的完整视频脚本。",
+    "sourceUrls": [
+      "https://benchmark.towardsai.com/methodology.html"
+    ]
+  },
+  "taskContract": {
+    "input": "风格指南、目标长度、brief 和研究资料；被测模型不见参考脚本。",
+    "output": "完整脚本及必要的视觉提示。",
+    "environment": "每个任务生成五次；原生环境可使用搜索或工具，不同推理配置独立列榜。",
+    "sourceUrls": [
+      "https://benchmark.towardsai.com/methodology.html"
+    ]
+  },
+  "dataProfile": {
+    "summary": "方法和任务概述公开；精确评分 rubric 保持私有，参考脚本锚定作者频道标准。",
+    "disclosure": "partial",
+    "scale": [
+      "10 项真实视频脚本任务，每项 5 次。"
+    ],
+    "splits": [
+      "十个真实视频brief每项五次生成；参考脚本和精确rubric只给裁判。新脚本通常在视频发布前入榜以减轻记忆污染。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://benchmark.towardsai.com/methodology.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官网查看任务描述、评分说明和结果；公开描述不足以等同完整固定 rubric。"
+    ],
+    "url": "https://benchmark.towardsai.com/methodology.html",
+    "sourceUrls": [
+      "https://benchmark.towardsai.com/methodology.html"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://benchmark.towardsai.com/methodology.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "sourceUrls": [
+      "https://benchmark.towardsai.com/methodology.html"
+    ],
+    "reason": "本站仅展示 Script 9 的官方公开主题概要短引和编辑性说明；完整 brief、research packet 与 reference script 不公开，也不作为完整测试输入。",
+    "url": "https://benchmark.towardsai.com/methodology.html"
+  },
+  "metric": {
+    "name": "九维加权 Overall / 派生 Elo",
+    "description": "语气19%、文字13%、内容15%、连贯情绪14%、视频规范12%、开头10%、长度8%、Slop5%、视觉提示4%；Elo 从每任务评分差异推导，另有独立盲比较检查。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://benchmark.towardsai.com/methodology.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "标准针对特定作者与频道；精确 rubric 私有，编辑权重和模型裁判偏好会影响排名。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方任务与评分方法",
+      "url": "https://benchmark.towardsai.com/methodology.html",
+      "role": "definition"
+    },
+    {
+      "label": "作者官方介绍",
+      "url": "https://benchmark.towardsai.com/about.html",
+      "role": "definition"
+    },
+    {
+      "label": "官方榜单",
+      "url": "https://benchmark.towardsai.com/",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "四席裁判读brief、研究资料、reference与candidate；三家LLM评分前需引用证据，Jev逐指标选质量层级，长度代码计算，Slop混合代码与裁判。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
+    },
+    "comparison": {
+      "text": "Overall为九维加权；Elo由同任务五次评分差经Welch阈值产生胜负/平后推导，独立盲比较与人类Arena票不参与该Elo。裁判换席必须整批重评。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
+    },
+    "disclosure": {
+      "text": "方法和任务概述公开；精确评分 rubric 保持私有，参考脚本锚定作者频道标准。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
+    },
+    "versionChanges": {
+      "text": "官方更换裁判或 rubric 后整批重评分，不混合旧评分制度；引用榜单需注明日期。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "samples": [
+      {
+        "license": "本页仅保留官方公开概要的必要短引和本站编辑性说明；未确认覆盖题目、完整 brief、reference 或模型输出的统一再发布许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "excerpt": true,
+        "prompt": "ToneBench Script 9 是一篇从招聘方视角出发的职业指南：分析优秀工程师为什么仍会被 AI 岗位拒绝，并讨论哪些做法可能帮助他们获聘。这里仅呈现官方公开任务概要；完整 brief、research packet 和 reference script 均未公开，因此这不是完整测试输入。",
+        "split": "official methodology · Script 9 · career guide / hiring analysis · public synopsis only",
+        "title": "AI 岗位招聘与求职指南",
+        "explanation": "官方 Methodology 的 Script 9 标为 career guide / hiring analysis，并公开上述任务主题与写作方向。页面说明每项实际输入还包括风格指南、目标长度、brief 与 research packet；这些完整材料及 reference script 不在本站复现。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "promptOrigin": "editorial",
+        "type": "text",
+        "id": "tonebench-script-9-ai-hiring-guide",
+        "source": "https://benchmark.towardsai.com/methodology.html",
+        "raw": "Script 9\ncareer guide / hiring analysis\nwhy good engineers still get rejected for AI roles, and what would have gotten them hired."
+      }
+    ],
+    "retrievedAt": "2026-10-09"
+  }
+}

@@ -39,29 +39,7 @@
       "https://deepmind.google/research/evals/"
     ]
   },
-  "limitations": [
-    {
-      "text": "已固定并哈希校验 2-needle 4,096–8,192 tokens CSV，核验其中一条真实数据行；未逐项审查其他 CSV。",
-      "sourceUrls": [
-        "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
-        "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/download.sh"
-      ]
-    },
-    {
-      "text": "未确认公开数据总行数、每个子集完整文件清单与逐项题文内容。",
-      "sourceUrls": [
-        "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
-        "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/download.sh"
-      ]
-    },
-    {
-      "text": "未运行模型或评分脚本，也未将 DeepMind 与 OpenAI 分数对齐。",
-      "sourceUrls": [
-        "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
-        "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/download.sh"
-      ]
-    }
-  ],
+  "limitations": [],
   "sources": [
     {
       "label": "DeepMind 官方 README",
@@ -111,8 +89,8 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "MRCR v2 是固定简单任务复杂度的长上下文推理测评：在多轮用户—助手对话中，用户多次以格式、主题、风格组合提出写作请求，助手每次生成不同文本；模型最后按索引找回某次输出，并先输出一段专属随机字符串。它用于观察上下文长度增加时的泛化，而不是单纯定位短片段。",
-    "task": "在长多轮对话中按 needle 数量和出现次序找回指定助手回答，并先输出对应随机字符串。",
+    "summary": "从长对话中按出现次序找回指定回答并输出专属前缀，观察上下文增长时的区分与定位能力。",
+    "task": "多轮对话中，格式、主题和风格相似的写作请求会重复出现。模型按出现次序找回指定助手回答，先输出专属随机字符串，再复现内容；任务复杂度固定，用于观察上下文增长时的泛化。",
     "sourceUrls": [
       "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
       "https://deepmind.google/research/evals/"
@@ -170,13 +148,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示一条官方数据记录的明确节选；数据修订、文件代次、行位置和内容哈希见 artifacts/research/mrcr-v2.json。所附许可文本对应官方数据卡或该任务目录 LICENSE。",
+    "reason": "本站展示一条 2-needle 公开记录的节选，完整上下文见记录来源。",
     "sourceUrls": [
       "https://storage.googleapis.com/download/storage/v1/b/mrcr_v2/o/mrcr_v2p1_2needle_in_(4096%2C8192)_dynamic_fewshot_text_style_fast.csv?generation=1752091035115105&alt=media",
       "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/LICENSE"
     ]
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-10-08",
   "sampleSet": {
     "retrievedAt": "2026-09-23",
     "samples": [
@@ -186,7 +164,7 @@
         "type": "record",
         "prompt": "[...前面的真实多轮对话节略... ]\nUser: Prepend Q7jYVGPcnz10 to the second tweet about penguins in a technical style. Do not include any other text in your response.\n\nAssistant:",
         "answer": "Q7jYVGPcnz10Penguin locomotion: not \"waddling inefficiency\" as you suggest. Highly optimized for glacial/ice pack traversal. Short legs = low CoG, minimizing torque req'd for stability. Dense bone structure & streamlined hydrodynamics yield exceptional underwater propulsion (Vmax ~36km/h). ROI potential in biomimicry is significant. #penguins #biomimetics #engineering",
-        "explanation": "这是官方下载 CSV 中一条真实记录。样例保留了原始末尾任务指令和完整目标答案；更长的上下文被明确节略，因此标为摘录。",
+        "explanation": "末尾指令要求找回第二条采用技术风格、主题为企鹅的 tweet，并先输出指定前缀。此页节略前文，仅用于说明任务结构；完整评测需要全部上下文。",
         "raw": {
           "queries": "[...原始 queries 前文省略... ]\nUser: Write a tweet about a fictional product launch in humorous style.\n\nAssistant: TOP SECRET: Operation Fuzzybutt is a GO. Launching the Self-Fluffing House Slipper v2.0 tomorrow. Yes, it *actually* self-fluffs. No, marketing still doesn't understand the tech. Pray for us. And hide the spare batteries. #Fuzzybutt #Innovation #SendHelp #SlipperTech #DontTellGaryInAccounting\n\nUser: Prepend Q7jYVGPcnz10 to the second tweet about penguins in a technical style. Do not include any other text in your response.\n\nAssistant:",
           "answer": "Q7jYVGPcnz10Penguin locomotion: not \"waddling inefficiency\" as you suggest. Highly optimized for glacial/ice pack traversal. Short legs = low CoG, minimizing torque req'd for stability. Dense bone structure & streamlined hydrodynamics yield exceptional underwater propulsion (Vmax ~36km/h). ROI potential in biomimicry is significant. #penguins #biomimetics #engineering",
@@ -206,5 +184,41 @@
         "excerpt": true
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "已固定并哈希校验 2-needle 4,096–8,192 tokens CSV，核验其中一条真实数据行；未逐项审查其他 CSV。",
+      "sourceUrls": [
+        "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
+        "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/download.sh"
+      ]
+    },
+    {
+      "text": "未确认公开数据总行数、每个子集完整文件清单与逐项题文内容。",
+      "sourceUrls": [
+        "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
+        "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/download.sh"
+      ]
+    },
+    {
+      "text": "未运行模型或评分脚本，也未将 DeepMind 与 OpenAI 分数对齐。",
+      "sourceUrls": [
+        "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
+        "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/download.sh"
+      ]
+    },
+    {
+      "text": "本站展示一条官方数据记录的明确节选；数据修订、文件代次、行位置和内容哈希见 artifacts/research/mrcr-v2.json。所附许可文本对应官方数据卡或该任务目录 LICENSE。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/download/storage/v1/b/mrcr_v2/o/mrcr_v2p1_2needle_in_(4096%2C8192)_dynamic_fewshot_text_style_fast.csv?generation=1752091035115105&alt=media",
+        "https://github.com/google-deepmind/eval_hub/blob/master/eval_hub/mrcr_v2/LICENSE"
+      ]
+    },
+    {
+      "text": "样例 mrcr-v2-deepmind-2needle-4096-8192-row-2：这是官方下载 CSV 中一条真实记录。样例保留了原始末尾任务指令和完整目标答案；更长的上下文被明确节略，因此标为摘录。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/download/storage/v1/b/mrcr_v2/o/mrcr_v2p1_2needle_in_(4096%2C8192)_dynamic_fewshot_text_style_fast.csv?generation=1752091035115105&alt=media"
+      ]
+    }
+  ]
 }

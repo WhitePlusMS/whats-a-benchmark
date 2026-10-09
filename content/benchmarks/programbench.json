@@ -1,0 +1,226 @@
+{
+  "id": "programbench",
+  "status": "published",
+  "order": 1110,
+  "name": "ProgramBench",
+  "subtitle": "从黑盒可执行程序重建完整软件",
+  "category": "coding",
+  "tags": [
+    "黑盒重建",
+    "整库生成"
+  ],
+  "publisher": "Meta Superintelligence Labs / Stanford University / Harvard University",
+  "brandIds": [
+    "programbench"
+  ],
+  "year": 2026,
+  "version": "harness v1.2.5；200任务官网快照",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "从可执行程序及其文档重建程序，不提供实现源码。",
+    "task": "在只能执行原程序、无法读取源码的条件下，为命令行工具及大型软件实现行为相同的代码库。",
+    "sourceUrls": [
+      "https://programbench.com/"
+    ]
+  },
+  "taskContract": {
+    "input": "参考可执行程序与文档，包括README和help输出。",
+    "output": "完整候选代码库；每个 instance_id 目录提交 submission.tar.gz，评分后在同目录生成 <instance_id>.eval.json。",
+    "environment": "Linux x86_64 的 task_cleanroom_v6 镜像中离线开发，不可反编译；programbench eval 在独立评分镜像中运行候选实现，并按需获取分支测试档案。",
+    "sourceUrls": [
+      "https://programbench.com/",
+      "https://github.com/facebookresearch/ProgramBench/blob/main/docs/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开评测仓库与使用文档，任务执行依赖镜像和测试材料。",
+    "disclosure": "complete",
+    "scale": [
+      "官网快照：200项任务，超过248,000个行为测试。"
+    ],
+    "splits": [
+      "cleanroom 推理材料与独立评分测试分开；官网未定义统一 train/dev/test 划分。"
+    ],
+    "fields": [
+      "评分结果包含 test_results；每项记录 name、branch、status 和 extra（耗时及失败信息）。",
+      "顶层还有 error_code、error_details、log、solution_branch、test_branches、test_branch_errors、executable_hash 和 warnings；这些是运行结果字段，不是给模型的答案。"
+    ],
+    "files": [
+      "ProgramBench-Tests 按 instance_id 存放分支测试档案；DockerHub 提供 cleanroom 推理镜像与任务评分镜像。",
+      "提交为 <instance_id>/submission.tar.gz；结果为 <instance_id>.eval.json。仓库 data/tests.json 标明忽略的非确定性或有缺陷测试。"
+    ],
+    "sourceUrls": [
+      "https://github.com/facebookresearch/ProgramBench/blob/main/docs/README.md",
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "从官方GitHub仓库获取代码，使用Docker与Linux x86_64环境。",
+      "评测测试材料按需从Hugging Face下载。"
+    ],
+    "sourceUrls": [
+      "https://github.com/facebookresearch/ProgramBench",
+      "https://github.com/facebookresearch/ProgramBench/blob/main/docs/README.md"
+    ],
+    "url": "https://github.com/facebookresearch/ProgramBench"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "ProgramBench-Tests 固定数据卡的 license 元数据标注 MIT；所选测试文件是该数据集中的 AI-generated behavioral test suite。该 entr 实例的 attribution 另注明上游 eradman/entr commit 8e2e8b4 使用 BSD-2-Clause；两者分别记录，不以工具代码许可替代数据卡声明。",
+    "scope": "仅展示固定任务测试分支 aa2ac39b58a8 中 test_empty_input_line 函数的原文节选；授权范围按 ProgramBench-Tests 数据卡声明，未据此扩展到完整测试档案、可执行文件或整个数据集之外的上游材料。",
+    "boundaries": [
+      "保留 ProgramBench-Tests 数据集及所选 entr 上游仓库的来源署名和许可信息。",
+      "本地只展示一个测试函数节选；不镜像测试归档、二进制或测试套件。",
+      "该记录测试评测器对候选程序的行为，不是面向智能体的自然语言任务题面。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests/raw/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/README.md",
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/tests/aa2ac39b58a8.tar.gz",
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/ATTRIBUTION.md",
+      "https://raw.githubusercontent.com/facebookresearch/ProgramBench/27f02157c785f8da3647aa6dbbe6b9137f99f10e/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "固定 HF revision 中的公开测试归档已定位到 entr 任务分支 aa2ac39b58a8；本站仅展示一个原始 pytest 函数节选，并保留任务 attribution 与数据卡许可来源。",
+    "url": "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/tests/aa2ac39b58a8.tar.gz",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests/raw/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/README.md",
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/tests/aa2ac39b58a8.tar.gz",
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/ATTRIBUTION.md",
+      "https://raw.githubusercontent.com/facebookresearch/ProgramBench/27f02157c785f8da3647aa6dbbe6b9137f99f10e/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "完全解决率与平均测试通过率",
+    "description": "一项任务通过全部测试才算完全解决；榜单优先按完全解决率排序，再看至少95%测试通过的任务比例及平均测试通过率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://programbench.com/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方使用文档说明部分非确定性或有缺陷的分支与测试会被忽略。",
+      "sourceUrls": [
+        "https://github.com/facebookresearch/ProgramBench/blob/main/docs/README.md",
+        "https://programbench.com/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "v1.2.5指运行工具仓库版本；200项任务和测试数量属于官网数据快照，未逐个下载或运行。",
+      "sourceUrls": [
+        "https://github.com/facebookresearch/ProgramBench/releases",
+        "https://programbench.com/",
+        "https://github.com/facebookresearch/ProgramBench"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://programbench.com/"
+      ]
+    },
+    {
+      "text": "固定 HF 数据卡 revision de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5 标注 license: mit，并说明 tests/ 是 AI-generated behavioral test suites；所选任务的 ATTRIBUTION.md 指向 eradman/entr commit 8e2e8b4、BSD-2-Clause。只摘录单个评测函数，未运行测试或镜像归档。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/programbench/ProgramBench-Tests/raw/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/README.md",
+        "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/ATTRIBUTION.md",
+        "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/tests/aa2ac39b58a8.tar.gz"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "ProgramBench official site",
+      "url": "https://programbench.com/",
+      "role": "definition"
+    },
+    {
+      "label": "ProgramBench usage guide",
+      "url": "https://github.com/facebookresearch/ProgramBench/blob/main/docs/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "ProgramBench LICENSE",
+      "url": "https://github.com/facebookresearch/ProgramBench/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "ProgramBench releases",
+      "url": "https://github.com/facebookresearch/ProgramBench/releases",
+      "role": "release"
+    },
+    {
+      "label": "ProgramBench 官方材料",
+      "url": "https://github.com/facebookresearch/ProgramBench",
+      "role": "readme"
+    },
+    {
+      "label": "ProgramBench 官方测试档案目录",
+      "url": "https://huggingface.co/datasets/programbench/ProgramBench-Tests",
+      "role": "data"
+    },
+    {
+      "label": "ProgramBench tests dataset card at fixed revision",
+      "url": "https://huggingface.co/datasets/programbench/ProgramBench-Tests/raw/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/README.md",
+      "role": "data"
+    },
+    {
+      "label": "ProgramBench selected test archive at fixed revision",
+      "url": "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/tests/aa2ac39b58a8.tar.gz",
+      "role": "data"
+    },
+    {
+      "label": "ProgramBench source repository MIT license at fixed commit",
+      "url": "https://raw.githubusercontent.com/facebookresearch/ProgramBench/27f02157c785f8da3647aa6dbbe6b9137f99f10e/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "Selected entr task attribution at fixed dataset revision",
+      "url": "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/ATTRIBUTION.md",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "独立评分镜像对候选实现执行行为测试；先检查 error_code 与 test_branch_errors，再按 programbench info 的忽略规则读分。",
+      "sourceUrls": [
+        "https://github.com/facebookresearch/ProgramBench/blob/main/docs/README.md"
+      ]
+    },
+    "comparison": {
+      "text": "同时报告完全解决率、≥95% 通过的任务比例与平均测试通过率；部分测试通过不能解释为完整程序等价。",
+      "sourceUrls": [
+        "https://programbench.com/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "programbench-entr-empty-input-line",
+        "title": "entr：空输入行拒绝测试",
+        "type": "code",
+        "prompt": "def test_empty_input_line():\n    \"\"\"Test that empty lines in input are rejected.\"\"\"\n    result = run(\"echo\", \"test\", stdin=\"\\n\")\n    assert result.returncode == 1\n    # Should produce no output\n    assert result.stdout == b\"\"",
+        "explanation": "这是评分端 pytest evaluator fixture，不是要求 agent 自然语言作答的用户任务。原函数调用 run(\"echo\", \"test\", stdin=\"\\n\")，并断言返回码为 1、标准输出为空；函数未检查 stderr。本次只读取源文件，未运行该测试。",
+        "raw": "def test_empty_input_line():\n    \"\"\"Test that empty lines in input are rejected.\"\"\"\n    result = run(\"echo\", \"test\", stdin=\"\\n\")\n    assert result.returncode == 1\n    # Should produce no output\n    assert result.stdout == b\"\"",
+        "source": "https://huggingface.co/datasets/programbench/ProgramBench-Tests/resolve/de0ddfb637590c7ecb54fa0b5301f6dc7dfbcee5/eradman__entr.8e2e8b4/tests/aa2ac39b58a8.tar.gz",
+        "license": "MIT（ProgramBench-Tests 固定数据卡元数据声明；单个生成测试函数节选）",
+        "licensePath": "licenses/programbench-sample-source.txt",
+        "split": "entr task / test branch aa2ac39b58a8 / eval/tests/test_basic_invocation.py::test_empty_input_line",
+        "excerpt": true
+      }
+    ]
+  }
+}

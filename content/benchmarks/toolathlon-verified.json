@@ -68,7 +68,7 @@
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "官方 GitHub 代码与任务目录公开；本轮未验证 finalpool 的完整数量。",
+      "官方 GitHub 代码与任务目录公开。",
       "本地评测需要容器化环境、应用服务和模型 API/账号凭据。",
       "模型评测轨迹需登录 Hugging Face 并接受 benchmark-only 使用条件。"
     ],
@@ -80,24 +80,24 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "本轮未在官方仓库根目录或 README 中找到对所有 benchmark task content 适用的通用数据/代码/媒体许可；轨迹数据卡另有明确访问使用条件。",
-    "scope": "在取得逐项内容许可或官方明确授权前，仅链接和使用自写概述，不复制原始任务及评测素材。",
+    "license": "官方task.md未单列数据许可，仓库根LICENSE路径返回404；轨迹数据卡条件与任务文本分开。",
+    "scope": "仅公开main上的find-alita-paper任务事实；main未固定release，不推断完整taskpool、evaluator、附件或轨迹许可。",
     "boundaries": [
-      "官方轨迹数据卡限制将原始轨迹公开镜像或重新分发。",
-      "轨迹数据不得用于预训练、后训练、蒸馏、合成训练数据或用于回答/复制 benchmark 的检索语料。"
+      "不以仓库公开/README示例推定完整任务集授权。",
+      "不复制论文PDF、完整任务文件、evaluator或轨迹。"
     ],
     "sourceUrls": [
-      "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
-      "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/README.md",
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md"
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "公开仓库提供 README 示例和 finalpool 任务入口，但任务文本、ground truth、evaluator 与媒体转载许可未确认；只保留官方入口。",
-    "url": "https://github.com/hkust-nlp/Toolathlon/tree/main/tasks/finalpool",
+    "status": "local",
+    "reason": "已定位官方 Quick Example 指向的公开 find-alita-paper 任务文本；本站只展示原创解读和真实短引，不提供答案或完整题库。",
+    "url": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
     "sourceUrls": [
-      "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
-      "https://github.com/hkust-nlp/Toolathlon/tree/main/tasks/finalpool"
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/README.md",
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md"
     ]
   },
   "metric": {
@@ -109,19 +109,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "原论文 108-task count 属于论文实验版口径，未确认等于 2026 Verified finalpool 的准确任务数。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2510.25726",
-        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md"
-      ]
-    },
-    {
-      "text": "未找到覆盖所有任务及媒体的通用复用许可；不据仓库公开或可见推定可复制。",
-      "sourceUrls": [
-        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md"
-      ]
-    },
     {
       "text": "Hugging Face 轨迹仓库是 gated 的 benchmark-sensitive artifacts，原始轨迹不可公开转载。",
       "sourceUrls": [
@@ -169,8 +156,66 @@
       "label": "Kimi K3 厂商 benchmark 表",
       "url": "https://github.com/MoonshotAI/Kimi-K3",
       "role": "vendor-report"
+    },
+    {
+      "label": "Toolathlon 官方 README（Quick Example 任务入口）",
+      "url": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "Toolathlon 官方 find-alita-paper 任务文本",
+      "url": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23"
+  "verifiedAt": "2026-09-23",
+  "researchNotes": [
+    {
+      "text": "原论文 108-task count 属于论文实验版口径，未确认等于 2026 Verified finalpool 的准确任务数。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2510.25726",
+        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "未找到覆盖所有任务及媒体的通用复用许可；不据仓库公开或可见推定可复制。",
+      "sourceUrls": [
+        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "本轮未在官方仓库根目录或 README 中找到对所有 benchmark task content 适用的通用数据/代码/媒体许可；轨迹数据卡另有明确访问使用条件。",
+      "sourceUrls": [
+        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+        "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+      ]
+    },
+    {
+      "text": "官方 GitHub 代码与任务目录公开；本轮未验证 finalpool 的完整数量。",
+      "sourceUrls": [
+        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+        "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-toolathlon-find-alita-paper-001",
+        "title": "公开任务 · 查找 Alita 论文",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Toolathlon 官方 README 的 Quick Example 指向 finalpool/find-alita-paper。任务要求查找一篇与 agentic reasoning 相关、标题含 Alita 且发表于 2025 年 6 月或更早的 arXiv 论文；下载最新版本 PDF，命名为 alita_{arxiv_id}.pdf，并返回标题、arXiv 摘要页 URL 和代码仓库链接。官方任务文本没有指定唯一答案。",
+        "explanation": "任务来自官方仓库 Quick Example 所指向的公开 task.md。这里概述搜索条件和交付字段，不提供论文答案，不声称任务已运行或属于已固定版本的评分行。Task.md 未单列数据许可；仓库根路径 LICENSE 检查返回 404，不能据此推断任务文本许可。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "I'm looking for a paper on arxiv related to agentic reasoning.\n\ntitle contains \"Alita\" and it was published in June 2025 or earlier.\n\ntitle:\narxiv_abs_url:",
+        "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+        "license": "本站原创中文任务解读及必要短引；任务文本未见单独许可声明，仓库代码许可范围未确认。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "official main checked 2026-10-08 / tasks/finalpool/find-alita-paper/docs/task.md; README Quick Example",
+        "excerpt": true
+      }
+    ]
+  }
 }

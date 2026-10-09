@@ -10,6 +10,7 @@ import {
 } from "../composables/catalogQuery";
 import BenchmarkCard from "../components/BenchmarkCard.vue";
 import Icon from "../components/Icon.vue";
+import { formatCount } from "../lib/displayFormats";
 useHead({ title: "到底测什么？ · what's a benchmark?" });
 const batchOpen = ref(false);
 const batchInput = ref("");
@@ -35,16 +36,19 @@ function setFilter(key: CatalogFilterKey, value: string) {
     <div>
       <h1>到底测什么？</h1>
       <p>查询评测任务、真实样例、评分方法与版本关系。</p>
+      <RouterLink to="/guide/#tasks" class="text-link"
+        >按工作任务找评测 <Icon name="arrow" :size="15"
+      /></RouterLink>
     </div>
     <div class="catalog-stats" aria-label="目录收录情况">
       <span
-        ><b>{{ benchmarks.length }}</b> 个评测</span
+        ><b>{{ formatCount(benchmarks.length) }}</b> 个评测</span
       >
       <span
-        ><b>{{ categories.length }}</b> 类能力</span
+        ><b>{{ formatCount(categories.length) }}</b> 类能力</span
       >
       <span
-        ><b>{{ sampleCount }}</b> 条真实样例</span
+        ><b>{{ formatCount(sampleCount) }}</b> 条真实样例</span
       >
     </div>
   </section>
@@ -52,6 +56,9 @@ function setFilter(key: CatalogFilterKey, value: string) {
     <div class="search-box">
       <Icon name="search" :size="23" /><input
         aria-label="搜索评测"
+        type="search"
+        name="benchmark-search"
+        autocomplete="off"
         :value="query.q"
         @input="setFilter('q', ($event.target as HTMLInputElement).value)"
         placeholder="搜索评测名称、能力或发布方…"
@@ -87,9 +94,12 @@ function setFilter(key: CatalogFilterKey, value: string) {
       </div>
       <textarea
         aria-label="批量评测名称"
+        name="benchmark-names"
+        autocomplete="off"
+        spellcheck="false"
         v-model="batchInput"
         rows="3"
-        placeholder="SWE-bench Verified, GPQA Diamond, AIME 2025"
+        placeholder="SWE-bench Verified, GPQA Diamond, AIME 2025…"
       ></textarea>
       <div class="batch-results" aria-live="polite">
         <div v-for="row in batchResults" :key="row.input">
@@ -145,6 +155,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
         <label for="publisher">发布方</label
         ><select
           id="publisher"
+          name="publisher"
+          autocomplete="off"
           :value="query.publisher"
           @change="
             setFilter('publisher', ($event.target as HTMLSelectElement).value)
@@ -157,6 +169,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
         ><label for="sample-status">样例查看方式</label
         ><select
           id="sample-status"
+          name="sample-status"
+          autocomplete="off"
           :value="query.sample"
           @change="
             setFilter('sample', ($event.target as HTMLSelectElement).value)
@@ -173,6 +187,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
         ><label for="kind">评测类型</label
         ><select
           id="kind"
+          name="benchmark-kind"
+          autocomplete="off"
           :value="query.kind"
           @change="
             setFilter('kind', ($event.target as HTMLSelectElement).value)
@@ -191,6 +207,10 @@ function setFilter(key: CatalogFilterKey, value: string) {
       ></RouterLink>
     </aside>
     <section class="results-section">
+      <p class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {{ query.q ? `搜索“${query.q}”，` : "" }}找到
+        {{ formatCount(results.length) }} 项评测。
+      </p>
       <div class="results-toolbar">
         <div>
           <h2>
@@ -206,6 +226,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
           <label class="sr-only" for="sort">排序方式</label
           ><select
             id="sort"
+            name="sort"
+            autocomplete="off"
             :value="query.sort"
             @change="
               setFilter('sort', ($event.target as HTMLSelectElement).value)

@@ -14,7 +14,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "id": "swe-bench",
   "name": "SWE-bench",
   "subtitle": "从函数题走向真实软件问题",
@@ -38,25 +38,7 @@
   },
   "limitations": [
     {
-      "text": "官方原始数据卡没有对 issue 文本、PR patch、test patch 和仓库快照给出统一许可；12 个上游项目、具体 issue/PR 和不同字段的权利未逐项检查。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2310.06770",
-        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
-        "https://github.com/SWE-bench/SWE-bench",
-        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
-      ]
-    },
-    {
-      "text": "本次未下载并逐项审查原始数据所有 splits，也未重跑 2,294 项评测；论文原始规模与当前 HF Viewer 的 dev 展示行数属于不同口径。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2310.06770",
-        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
-        "https://github.com/SWE-bench/SWE-bench",
-        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
-      ]
-    },
-    {
-      "text": "SWE-bench repo 与 CLI 持续演进，旧论文结果所用 harness 和当前 v5 CLI 任务目录模式之间的逐版本迁移/复现兼容性未在本记录核查。",
+      "text": "旧论文结果与当前 CLI 的 harness 和任务目录规则需按版本核对。",
       "sourceUrls": [
         "https://arxiv.org/abs/2310.06770",
         "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
@@ -110,6 +92,11 @@
       "label": "官方主页与版本",
       "url": "https://www.swebench.com/",
       "role": "definition"
+    },
+    {
+      "label": "已核验的具体任务或公开例题",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench&config=default&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -119,7 +106,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "原始 SWE-bench 评估语言模型能否理解开源软件仓库与 issue 描述，编辑代码并生成解决该问题的补丁。论文定义的原始数据集包含 2,294 个问题，来自 12 个常用 Python 仓库；任务解决往往需跨函数或文件理解与修改。",
+    "summary": "根据真实 GitHub issue 修改 Python 仓库并提交通过测试的补丁；原始集含 2,294 题。",
     "task": "根据真实 GitHub issue 在修复前仓库状态生成补丁，并通过 F2P/P2P 测试验证修复。",
     "sourceUrls": [
       "https://arxiv.org/abs/2310.06770",
@@ -187,13 +174,70 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "官方 Viewer 可见部分任务和参考字段，但未标注覆盖全部内容的统一许可。本站不复制题目或代码，只链接官方 Viewer、论文和仓库。",
+    "status": "local",
+    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
-      "https://arxiv.org/abs/2310.06770",
-      "https://github.com/SWE-bench/SWE-bench",
-      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "官方原始数据卡没有对 issue 文本、PR patch、test patch 和仓库快照给出统一许可；12 个上游项目、具体 issue/PR 和不同字段的权利未逐项检查。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2310.06770",
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "本次未下载并逐项审查原始数据所有 splits，也未重跑 2,294 项评测；论文原始规模与当前 HF Viewer 的 dev 展示行数属于不同口径。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2310.06770",
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "SWE-bench repo 与 CLI 持续演进，旧论文结果所用 harness 和当前 v5 CLI 任务目录模式之间的逐版本迁移/复现兼容性未在本记录核查。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2310.06770",
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "本轮已核验并展示具体任务事实解读，来源位置为 default/test, row_idx=0, instance_id=astropy__astropy-11693, base_commit=3832210580d516365ddae1a62071001faf94d416；未镜像底层完整材料。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-swe-bench",
+        "title": "Astropy · 非线性 WCS 绘图异常",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "任务 astropy__astropy-11693：用包含非线性畸变的 WCS 作图时，世界坐标到像素坐标转换出现 NoConvergence。需要在指定 Astropy 基线仓库中修复这一绘图行为；原 issue 还说明 quiet=True 与收敛错误的关系。",
+        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：default/test, row_idx=0, instance_id=astropy__astropy-11693, base_commit=3832210580d516365ddae1a62071001faf94d416\n原始数据精简说明：保留原生字段 instance_id、base_commit、version、problem_statement；其他记录字段未收录。 /problem_statement 保留源值字符[0:84]，源字段共13614字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "instance_id": "astropy__astropy-11693",
+          "base_commit": "3832210580d516365ddae1a62071001faf94d416",
+          "version": "4.2",
+          "problem_statement": "'WCS.all_world2pix' failed to converge when plotting WCS with non linear distortions"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench&config=default&split=test&offset=0&length=1",
+        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "Full SWE-bench default test split, row 0, Astropy issue task",
+        "excerpt": true
+      }
     ]
   }
 }

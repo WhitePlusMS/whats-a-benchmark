@@ -23,7 +23,7 @@
   "verifiedAt": "2026-09-23",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "ALE 是由 UC Berkeley RDI 与 RDI Foundation 牵头的智能体评测框架，汇集可核验的专业工作流任务，覆盖 55 个子领域和 13 个行业簇。",
+    "summary": "在沙箱中完成专业工作流并提交可核验产物；覆盖 55 个子领域和 13 个行业簇。",
     "task": "Agent 接收专业工作任务，在机器式沙箱中操作并提交可由 grader 核验的产物。",
     "sourceUrls": [
       "https://arxiv.org/abs/2606.05405#L3-L5",
@@ -89,7 +89,7 @@
         "title": "Demo: Acme Code Generator (GUI)",
         "type": "record",
         "prompt": "A single-screen web app takes an input/order JSON, generates code, and writes output/result.txt.",
-        "explanation": "这里展示的是官方 task_card.json 的 summary 字段及身份字段，不把摘要扩写成不存在的完整题目，也不虚构参考答案。",
+        "explanation": "任务卡描述一个单屏 Web 应用：读取输入 JSON，生成代码并写出结果文件。此处仅展示摘要，完整步骤与环境需查看原始任务卡。",
         "raw": {
           "taskId": "demo/hello",
           "title": "Demo: Acme Code Generator (GUI)",
@@ -122,19 +122,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "论文总体 1K+ 与仓库当前公开约 150 项的逐任务对应关系及完整受限任务数量未核实。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2606.05405#L3-L5",
-        "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
-      ]
-    },
-    {
-      "text": "任务依赖、grader 语义和许可例外随 task 变化，本文不把个别任务字段外推为统一 schema。",
-      "sourceUrls": [
-        "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
-      ]
-    },
     {
       "text": "官方许可声明未单独界定图片、截图或第三方素材的转载范围。",
       "sourceUrls": [
@@ -173,5 +160,28 @@
       "url": "https://agents-last-exam.org/docs#L18-L20",
       "role": "access"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "论文总体 1K+ 与仓库当前公开约 150 项的逐任务对应关系及完整受限任务数量未核实。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2606.05405#L3-L5",
+        "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
+      ]
+    },
+    {
+      "text": "任务依赖、grader 语义和许可例外随 task 变化，本文不把个别任务字段外推为统一 schema。",
+      "sourceUrls": [
+        "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
+      ]
+    },
+    {
+      "text": "样例 demo/hello：这里展示的是官方 task_card.json 的 summary 字段及身份字段，不把摘要扩写成不存在的完整题目，也不虚构参考答案。",
+      "sourceUrls": [
+        "https://agents-last-exam.org/demo#L4-L8",
+        "https://github.com/rdi-berkeley/agents-last-exam#L258-L263"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

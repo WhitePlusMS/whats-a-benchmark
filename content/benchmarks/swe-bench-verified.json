@@ -24,7 +24,7 @@
     }
   ],
   "kind": "subset",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "id": "swe-bench-verified",
   "name": "SWE-bench Verified",
   "subtitle": "让 AI 在真实仓库里修好一个问题",
@@ -48,27 +48,9 @@
   },
   "limitations": [
     {
-      "text": "Verified HF 数据卡未为题面、PR patch、测试和 OpenAI 人工标注声明统一数据许可；未逐项检查 12 个上游仓库和原 issue/PR 的具体条款。",
+      "text": "人工筛选提高题目质量，不保证每个任务都能由智能体求解。",
       "sourceUrls": [
-        "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
-        "https://openai.com/index/introducing-swe-bench-verified/",
-        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
-      ]
-    },
-    {
-      "text": "本次没有重新运行 500 项，也未逐项验证当前镜像、测试稳定性或预测评分脚本版本。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
-        "https://openai.com/index/introducing-swe-bench-verified/",
-        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
-      ]
-    },
-    {
-      "text": "leaderboard、第三方 agent harness 与评测环境持续更新；本记录未采录当前排行榜分数。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
-        "https://openai.com/index/introducing-swe-bench-verified/",
-        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+        "https://github.com/SWE-bench/SWE-bench"
       ]
     }
   ],
@@ -112,6 +94,11 @@
       "label": "官方榜单",
       "url": "https://www.swebench.com/",
       "role": "leaderboard"
+    },
+    {
+      "label": "已核验的具体任务或公开例题",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -122,8 +109,8 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "每个任务给出 GitHub issue 原文与修复前的代码库，要求 agent 修改代码形成补丁。Verified 继承原 benchmark 的 issue-to-patch 形式，仅替换为经过人工质量筛查的 500 项子集；筛选关注问题描述是否足够明确、FAIL_TO_PASS 测试是否会不公平地拒绝有效解，以及其他重大质量问题。它是筛选质量改良，不是原数据集所有问题均由人工重新编写或证明能由 agent 求解。",
-    "task": "根据真实 GitHub issue 在固定仓库状态上生成补丁；该条目对应人工筛选的 500 题子集。",
+    "summary": "根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。",
+    "task": "根据真实 GitHub issue 在修复前仓库状态上生成补丁，再用测试验证。Verified 是人工质量筛选的 500 项子集；筛选关注问题描述是否明确、FAIL_TO_PASS 测试是否公平，以及其他重大质量问题。",
     "sourceUrls": [
       "https://github.com/SWE-bench/SWE-bench"
     ]
@@ -185,12 +172,67 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "OpenAI 发布页展示的任务与测试片段来自第三方项目，页面展示不等于本站转载授权。本站只链接 OpenAI 说明、官方数据集和 harness。",
+    "status": "local",
+    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://openai.com/index/introducing-swe-bench-verified/",
-      "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
-      "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "Verified HF 数据卡未为题面、PR patch、测试和 OpenAI 人工标注声明统一数据许可；未逐项检查 12 个上游仓库和原 issue/PR 的具体条款。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
+        "https://openai.com/index/introducing-swe-bench-verified/",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "本次没有重新运行 500 项，也未逐项验证当前镜像、测试稳定性或预测评分脚本版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
+        "https://openai.com/index/introducing-swe-bench-verified/",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "leaderboard、第三方 agent harness 与评测环境持续更新；本记录未采录当前排行榜分数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
+        "https://openai.com/index/introducing-swe-bench-verified/",
+        "https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/quickstart.md"
+      ]
+    },
+    {
+      "text": "本轮已核验并展示具体任务事实解读，来源位置为 default/test, row_idx=0, instance_id=astropy__astropy-12907, base_commit=d16bfe05a744909de4b27f5875fe0d4ed41ce607；未镜像底层完整材料。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-swe-bench-verified",
+        "title": "Astropy · 嵌套组合模型可分离矩阵",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "任务 astropy__astropy-12907：两个独立的 Linear1D(10) 和 Linear1D(5) 组合应保留各自的独立性；将该组合再嵌入 CompoundModel 后，可分离矩阵计算出现不一致。需要修复指定仓库中的这一实际 issue。",
+        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：default/test, row_idx=0, instance_id=astropy__astropy-12907, base_commit=d16bfe05a744909de4b27f5875fe0d4ed41ce607\n原始数据精简说明：保留原生字段 instance_id、base_commit、version、problem_statement；其他记录字段未收录。 /problem_statement 保留源值字符[0:98]，源字段共1246字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "instance_id": "astropy__astropy-12907",
+          "base_commit": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+          "version": "4.3",
+          "problem_statement": "Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1",
+        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "SWE-bench Verified test split, row 0, Astropy issue task",
+        "excerpt": true
+      }
     ]
   }
 }

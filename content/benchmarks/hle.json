@@ -2,11 +2,12 @@
   "aliases": [
     "HLE",
     "Humanity's Last Exam",
-    "人类最后的考试"
+    "人类最后的考试",
+    "HLE · AA"
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "id": "hle",
   "name": "Humanity’s Last Exam",
   "subtitle": "跨学科的高难度专业问答",
@@ -32,20 +33,6 @@
       "sourceUrls": [
         "https://lastexam.ai/",
         "https://github.com/centerforaisafety/hle",
-        "https://huggingface.co/datasets/cais/hle"
-      ]
-    },
-    {
-      "text": "数据卡 MIT 元数据与“不得公开分享、重新上传或分发”的明示要求同时存在；本记录按更具体的基准完整性请求处理，不作法律解释。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2501.14249",
-        "https://huggingface.co/datasets/cais/hle"
-      ]
-    },
-    {
-      "text": "本轮未逐版本对比 HLE-Rolling 变化清单与公开 cais/hle 当前 revision。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2501.14249",
         "https://huggingface.co/datasets/cais/hle"
       ]
     },
@@ -77,6 +64,11 @@
       "label": "CAIS 官方 GitHub",
       "url": "https://github.com/centerforaisafety/hle",
       "role": "readme"
+    },
+    {
+      "label": "已核验的具体公开任务",
+      "url": "https://scale.com/blog/humanitys-last-exam-results",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -147,12 +139,52 @@
     ]
   },
   "sampleAccess": {
-    "status": "gated",
-    "reason": "官方数据卡禁止公开分享、重传或分发数据集；只给不含题文的概述与官方入口，不发布题目、答案、rationale 或图像。",
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 案例来自 Scale 2025-01-23 已公开文章，与 HF 题库条目分开；题库限制仍按原数据许可说明保留。",
+    "url": "https://scale.com/blog/humanitys-last-exam-results",
     "sourceUrls": [
-      "https://huggingface.co/datasets/cais/hle",
-      "https://github.com/centerforaisafety/hle"
-    ],
-    "url": "https://huggingface.co/datasets/cais/hle"
+      "https://scale.com/blog/humanitys-last-exam-results"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "数据卡 MIT 元数据与“不得公开分享、重新上传或分发”的明示要求同时存在；本记录按更具体的基准完整性请求处理，不作法律解释。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2501.14249",
+        "https://huggingface.co/datasets/cais/hle"
+      ]
+    },
+    {
+      "text": "本轮未逐版本对比 HLE-Rolling 变化清单与公开 cais/hle 当前 revision。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2501.14249",
+        "https://huggingface.co/datasets/cais/hle"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：Scale article section “The questions were designed…” / Ecology example; no HF row ID or current dataset membership ID identified.；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://scale.com/blog/humanitys-last-exam-results"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-hle",
+        "title": "作者公开例题 · 蜂鸟尾部籽骨",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Scale 的发布文章单独公开了一道生态学例题：蜂鸟尾部指定肌肉腱膜中存在成对椭圆籽骨，要求回答该骨支持几对肌腱，并以数字作答。文章此处未给答案，本页不补造答案或读取受限题库行。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 案例来自 Scale 2025-01-23 已公开文章，与 HF 题库条目分开；题库限制仍按原数据许可说明保留。 来源位置：Scale article section “The questions were designed…” / Ecology example; no HF row ID or current dataset membership ID identified.\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Hummingbirds within Apodiformes uniquely have a bilaterally paired oval bone, a sesamoid embedded in the caudolateral portion of the expanded, cruciate aponeurosis",
+        "source": "https://scale.com/blog/humanitys-last-exam-results",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "A short excerpt from a separately published Scale article example; no gated HF benchmark rows were opened.",
+        "excerpt": true
+      }
+    ]
   }
 }

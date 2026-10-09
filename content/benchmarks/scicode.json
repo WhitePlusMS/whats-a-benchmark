@@ -15,7 +15,9 @@
   "year": 2024,
   "version": "SciCode",
   "kind": "original",
-  "aliases": [],
+  "aliases": [
+    "SciCode · AA"
+  ],
   "metric": {
     "name": "主问题解决率 / 子问题解决率",
     "description": "官方报告主问题解决率与子问题解决率：分别统计被判定解决的主问题或子问题比例，方向为越高越好。结果必须标明评测粒度、是否提供科学背景、执行器和测试判定设置；两种粒度不可互换。官方仓库的示例排行榜是特定模型和时间点的结果，不是固定通用运行协议。",
@@ -26,32 +28,7 @@
       "https://huggingface.co/datasets/SciCode1/SciCode"
     ]
   },
-  "limitations": [
-    {
-      "text": "未锁定 Git/HF commit，也未下载全部数据来复核 80/338 的当前文件计数。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/SciCode1/SciCode",
-        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
-        "https://github.com/scicode-bench/SciCode"
-      ]
-    },
-    {
-      "text": "官方 README 的“五个领域”与后文“六个自然科学学科”文字冲突，未找到作者更正；避免推断缺少的类别。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/SciCode1/SciCode",
-        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
-        "https://github.com/scicode-bench/SciCode"
-      ]
-    },
-    {
-      "text": "未下载运行需要的外部数值测试文件，也未检查全部样例的逐条许可/质量。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/SciCode1/SciCode",
-        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
-        "https://github.com/scicode-bench/SciCode"
-      ]
-    }
-  ],
+  "limitations": [],
   "sources": [
     {
       "label": "作者论文",
@@ -91,7 +68,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-09-23",
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-10-08",
   "sampleSet": {
     "retrievedAt": "2026-09-23",
     "samples": [
@@ -100,7 +77,7 @@
         "title": "Ewald 求和参数 alpha",
         "type": "code",
         "prompt": "Write a Python function to determine the alpha value for the Ewald summation given reciprocal lattice vectors `recvec` of shape (3, 3).\nAlpha is a parameter that controls the division of the summation into real and reciprocal space components and determines the width of the Gaussian charge distribution.\nMultiply the result by scaling `alpha_scaling` (fixed to 5).",
-        "explanation": "这是官方 dev 数据文件中 problem_id 10 的子任务 10.1。页面只展示题面，不复制同一记录内的 ground_truth_code、test_cases 或参考输出。",
+        "explanation": "为 Ewald 求和编写 Python 函数，根据倒格矢矩阵求参数 alpha，并乘以指定缩放系数。它要求把科学计算定义落实为可测试的代码。",
         "raw": {
           "problem_name": "ewald_summation",
           "problem_id": "10",
@@ -116,7 +93,7 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "该评测以科学研究问题为起点，考查模型结合科学知识、推理和程序合成完成计算与模拟任务的能力。官方 README 描述 80 个主问题拆分为 338 个子问题、覆盖 16 个子领域；列出的领域包括物理、数学、材料科学、生物和化学。README 后续另有一句称“6 个自然科学学科”，与前文“五个领域”存在口径不一致，故本站不补出第六个领域，采用前述明确列出的五个领域并保留该资料内差异。",
+    "summary": "结合科学知识、推理和代码生成完成计算与模拟；80 个主问题拆分为 338 个子问题。",
     "task": "将科学研究问题拆成代码子任务，编写所需函数或程序并通过专家测试用例。",
     "sourceUrls": [
       "https://github.com/scicode-bench/SciCode",
@@ -158,7 +135,7 @@
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "作者公开 GitHub 代码、Hugging Face 数据页及 dev/test 文件入口，网页可访问。官方 README 指向外部下载的数值测试结果文件，并说明需将其放在规定路径运行；本轮没有下载数据集全部文件或执行评测。"
+      "GitHub 和 Hugging Face 提供 dev/test 数据入口；运行还需下载数值测试结果文件并放入指定路径。"
     ],
     "url": "https://github.com/scicode-bench/SciCode",
     "sourceUrls": [
@@ -189,5 +166,45 @@
       "https://github.com/scicode-bench/SciCode",
       "https://huggingface.co/datasets/SciCode1/SciCode"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "未锁定 Git/HF commit，也未下载全部数据来复核 80/338 的当前文件计数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SciCode1/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "https://github.com/scicode-bench/SciCode"
+      ]
+    },
+    {
+      "text": "官方 README 的“五个领域”与后文“六个自然科学学科”文字冲突，未找到作者更正；避免推断缺少的类别。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SciCode1/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "https://github.com/scicode-bench/SciCode"
+      ]
+    },
+    {
+      "text": "未下载运行需要的外部数值测试文件，也未检查全部样例的逐条许可/质量。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SciCode1/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl",
+        "https://github.com/scicode-bench/SciCode"
+      ]
+    },
+    {
+      "text": "作者公开 GitHub 代码、Hugging Face 数据页及 dev/test 文件入口，网页可访问。官方 README 指向外部下载的数值测试结果文件，并说明需将其放在规定路径运行；本轮没有下载数据集全部文件或执行评测。",
+      "sourceUrls": [
+        "https://github.com/scicode-bench/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode",
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl"
+      ]
+    },
+    {
+      "text": "样例 ewald_summation:10.1：这是官方 dev 数据文件中 problem_id 10 的子任务 10.1。页面只展示题面，不复制同一记录内的 ground_truth_code、test_cases 或参考输出。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SciCode1/SciCode/blob/main/problems_dev.jsonl"
+      ]
+    }
+  ]
 }

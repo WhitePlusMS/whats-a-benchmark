@@ -1,0 +1,151 @@
+{
+  "id": "medscribe",
+  "status": "published",
+  "order": 460,
+  "name": "MedScribe",
+  "subtitle": "把诊疗对话整理为规范的 SOAP 记录",
+  "category": "work",
+  "tags": [
+    "医疗",
+    "文档生成",
+    "结构化记录",
+    "专家评分"
+  ],
+  "publisher": "Vals AI / Protege",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": null,
+  "version": "官方 2026-10 页面方法",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "考察从医患对话文本生成符合专家标准的临床文档。",
+    "task": "依统一模板，将对话内容整理成 Subjective、Objective、Assessment、Plan 四部分记录。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medscribe"
+    ]
+  },
+  "taskContract": {
+    "input": "基于脱敏记录生成的模拟医患对话文本及统一模板。",
+    "output": "SOAP 临床记录。",
+    "environment": "官方温度 1、最大 30k 输出 tokens；LLM judge 对照专家 rubric。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medscribe"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方披露 100 份文档质量 rubric；80 段对话的真实性研究与完整计分集不是同一统计。",
+    "disclosure": "partial",
+    "scale": [
+      "100 份专家 rubric。"
+    ],
+    "splits": [
+      "官方展示对话样例；未核实完整评分集逐项公开。"
+    ],
+    "fields": [],
+    "files": [
+      "模拟对话、模板及专家 rubric。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medscribe"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可查看官网样例；完整计分材料非公开。"
+    ],
+    "url": "https://www.vals.ai/benchmarks/medscribe",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medscribe"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "Vals MedScribe页面标为Proprietary；示例transcript未见单独复用许可，真实/模拟状态未说明。",
+    "scope": "完整MedScribe评测为Proprietary；公开transcript示例的来源及单独许可未查明。",
+    "boundaries": [
+      "不复制完整对话、SOAP输出、患者身份信息或rubric。",
+      "不推断示例是真实或模拟病例。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medscribe"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "Vals官方页面公开一段示例医患对话；本站只提供病情事实与任务目标的原创摘要，不展示完整对话或记录。",
+    "url": "https://www.vals.ai/benchmarks/medscribe",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medscribe"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy（rubric）",
+    "description": "依专家 rubric 检查 SOAP 文档质量，并分 SOAP 栏目报告。官方在 3 个样本、180 项检查的评委研究中报告 80.5% 与人类多数意见一致；此一致率不是模型文档准确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medscribe"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "LLM judge 对格式的判断会影响得分；评委一致性研究不能代替完整文档质量结果。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medscribe"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medscribe"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MedScribe 官方定义与方法",
+      "url": "https://www.vals.ai/benchmarks/medscribe",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "模型只读模拟医患对话及统一SOAP模板生成记录，LLM judge对照专家逐项标准；真实脱敏SOAP记录用于构造对话而非作为输出答案给模型。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medscribe"
+      ]
+    },
+    "comparison": {
+      "text": "100份文档rubric、80段真实/模拟对话真实性研究，以及3样本180检查的80.5%评委一致率是三种统计，后两者不能替代模型文档Accuracy。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medscribe"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-medscribe-doctor-transcript",
+        "title": "官方示例 · 咽痛与耳痛就诊对话",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Vals MedScribe 页面展示一段医患对话：患者称咽痛、双耳痛、鼻塞和疲倦约4天，并提到兄弟约一个月前患过单核细胞增多症。任务是根据就诊对话形成临床记录；此处仅概述公开示例事实，不复制完整对话、SOAP输出或医疗记录。",
+        "explanation": "页面将该部分标为Sample Doctor-Patient Transcript，并把MedScribe标为Proprietary。页面未标明这段示例属于真实还是模拟，因此不由全体样本比例推断该段类别。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Um, not great honestly. I've been feeling pretty sick for like, like four days now, you know.\n\nDoctor\nPatient",
+        "source": "https://www.vals.ai/benchmarks/medscribe",
+        "license": "本站原创案例解读与Vals页面必要短引；底层transcript/完整评测Proprietary，未确认独立转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Vals官方 MedScribe / Methodology / Sample Doctor-Patient Transcript；单例类别未标明",
+        "excerpt": true
+      }
+    ]
+  }
+}

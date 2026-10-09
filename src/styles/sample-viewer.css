@@ -12,13 +12,13 @@
   align-items: center;
   gap: 16px;
   padding: 13px 20px;
-  background: #f8f9fb;
+  background: var(--surface-subtle);
   border-bottom: 1px solid var(--border);
 }
 .sample-tabs {
   display: flex;
   gap: 3px;
-  background: #efe9f5;
+  background: var(--accent-softer);
   border-radius: 6px;
   padding: 3px;
 }
@@ -35,7 +35,7 @@
 }
 .sample-toolbar select {
   font-size: 11px;
-  border: 1px solid #e6dceb;
+  border: 1px solid var(--accent-border);
   background: var(--surface);
   border-radius: 5px;
   padding: 6px 8px;
@@ -75,7 +75,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #f5effa;
+  background: var(--accent-softer);
   padding: 10px 14px;
   border-radius: 6px;
   color: var(--text-secondary);
@@ -84,8 +84,8 @@
   font-size: 12px;
   line-height: 1.8;
   padding: 15px;
-  background: #f6f8f5;
-  border: 1px solid #e4ece0;
+  background: var(--answer-bg);
+  border: 1px solid var(--answer-border);
   border-radius: 6px;
   color: var(--muted);
   white-space: pre-wrap;
@@ -95,7 +95,7 @@
   font-family: "Cascadia Code", Consolas, monospace;
   font-size: 11px;
   line-height: 1.85;
-  background: #f4f6f8;
+  background: var(--surface-sunken);
   max-height: 540px;
   overflow: auto;
   padding: 18px;
@@ -105,7 +105,7 @@
   color: var(--text-strong);
 }
 .sample-insight {
-  background: #fafbfc;
+  background: var(--surface-subtle);
   border-left: 1px solid var(--border);
   padding: 26px;
   color: var(--muted);
@@ -147,7 +147,7 @@
   text-align: center;
   color: var(--muted);
   font-size: 13px;
-  border: 1px dashed #e5d8ee;
+  border: 1px dashed var(--accent-border);
   border-radius: 10px;
 }
 .external-sample {
@@ -156,10 +156,6 @@
   background: var(--surface);
   border-radius: 8px;
   padding: 22px;
-}
-.external-sample h3 {
-  font-size: 20px;
-  color: var(--text-strong);
 }
 .external-sample > p {
   font-size: 13px;
@@ -171,7 +167,7 @@
 .external-sample > .muted {
   display: block;
   margin-top: 17px;
-  font-size: 10px;
+  font-size: 11px;
 }
 @media (max-width: 900px) {
   .sample-body {
@@ -225,7 +221,7 @@
 /* 当前样例的选项、答案及来源交互。 */
 .mode-note {
   margin-left: 6px;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
 }
 .external-sample > .downloaded-sample-note {
@@ -233,6 +229,13 @@
   margin-top: 14px;
   font-size: 12px;
   color: var(--muted);
+}
+.downloaded-sample-note summary {
+  cursor: pointer;
+}
+.downloaded-sample-note p {
+  margin-top: 10px;
+  line-height: 1.9;
 }
 .sample-count,
 .prompt-label {
@@ -247,7 +250,7 @@
   padding: 16px;
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: #f8f9fb;
+  background: var(--surface-subtle);
   font-size: 12px;
 }
 .sample-options {
@@ -281,7 +284,7 @@
 }
 .answer-options .option-selected {
   border-color: var(--accent);
-  background: #f5f3fc;
+  background: var(--accent-softer);
 }
 .sample-question > .muted {
   margin-top: 20px;

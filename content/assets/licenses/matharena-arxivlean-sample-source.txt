@@ -1,0 +1,85 @@
+ArXivLean 站内样例来源与许可证据
+固定记录来源：https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet
+数据许可：CC-BY-SA-4.0
+署名：MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0
+只展示所选官方记录；未复制外部网页、来源论文正文或媒体。
+来源论文：https://arxiv.org/abs/2606.00316v1
+来源论文作者：Tudor Micu; Cornel Pintea; George C. Ţurcaş
+来源论文许可：CC-BY-4.0
+
+原始许可证据：https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md
+---
+dataset_info:
+  features:
+  - name: problem_idx
+    dtype: int64
+  - name: problem
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: formal_statement
+    dtype: string
+  - name: source
+    dtype: string
+  - name: title
+    dtype: string
+  - name: authors
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 79550
+    num_examples: 46
+  download_size: 51890
+  dataset_size: 79550
+configs:
+- config_name: default
+  data_files:
+  - split: train
+    path: data/train-*
+license: cc-by-sa-4.0
+language:
+- en
+pretty_name: ArXivLean June 2026
+size_categories:
+- n<1K
+---
+
+### Homepage and repository
+
+- **Homepage:** [https://matharena.ai/](https://matharena.ai/)
+- **Repository:** [https://github.com/eth-sri/matharena](https://github.com/eth-sri/matharena)
+
+### Dataset Summary
+
+This dataset contains the questions from ArXivLean June 2026 used for the MathArena Leaderboard.
+
+### Data Fields
+
+The dataset contains the following fields:
+
+- `problem_idx` (`int64`): Problem index within the corresponding MathArena benchmark.
+- `problem` (`string`): Informal problem statement, usually stored as LaTeX source.
+- `answer` (`string`): Formal Lean statement, duplicated for compatibility with answer-based loading code.
+- `formal_statement` (`string`): Formal Lean statement paired with the informal problem statement.
+- `source` (`string`): arXiv identifier for the source paper.
+- `title` (`string`): Title of the source arXiv paper.
+- `authors` (`string`): Authors of the source arXiv paper.
+
+### Licensing Information
+
+This dataset is licensed under the Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). Please abide by the license when using the provided data.
+
+### Citation Information
+
+```
+@article{dekoninck2026matharena,
+      title={Beyond Benchmarks: MathArena as an Evaluation Platform for Mathematics with LLMs},
+      author={Jasper Dekoninck and Nikola Jovanović and Tim Gehrunger and Kári Rögnvaldsson and Ivo Petrov and Chenhao Sun and Martin Vechev},
+      year={2026},
+      eprint={2605.00674},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2605.00674},
+}
+```
+

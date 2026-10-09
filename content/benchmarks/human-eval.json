@@ -35,7 +35,7 @@
       ]
     },
     {
-      "text": "当前任务文件与原始 2021 论文所述数据是否逐字一致，需固定 commit 后比对；上游仓库并无正式语义版本标签。",
+      "text": "不同论文使用的停止序列、prompt 封装、采样配置、超时和测试分叉不一定相同；成绩差异不能只归因于模型。",
       "sourceUrls": [
         "https://arxiv.org/html/2107.03374#S2.SS2",
         "https://github.com/openai/human-eval",
@@ -44,12 +44,9 @@
       ]
     },
     {
-      "text": "不同论文使用的停止序列、prompt 封装、采样配置、超时和测试分叉不一定相同；成绩差异不能只归因于模型。",
+      "text": "人工编题旨在降低与公开题解直接重合的风险，不保证题目此后不会进入训练数据。",
       "sourceUrls": [
-        "https://arxiv.org/html/2107.03374#S2.SS2",
-        "https://github.com/openai/human-eval",
-        "https://arxiv.org/html/2107.03374#S2.SS1",
-        "https://github.com/openai/human-eval#usage"
+        "https://arxiv.org/html/2107.03374#S2.SS2"
       ]
     }
   ],
@@ -117,7 +114,7 @@
         "excerpt": false,
         "prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
         "answer": "    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                distance = abs(elem - elem2)\n                if distance < threshold:\n                    return True\n\n    return False\n",
-        "explanation": "模型需要补全函数体，而不是口头解释算法。docstring 给出要求与例子，test 保存用于检验函数行为的代码。参考实现来自原始记录。",
+        "explanation": "补全函数，判断列表中是否存在距离小于阈值的两个数。函数签名和例子约束返回值；完成后由测试检查实际行为。",
         "source": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
         "license": "MIT · OpenAI",
         "licensePath": "licenses/human-eval.txt",
@@ -137,7 +134,7 @@
         "excerpt": false,
         "prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
         "answer": "    result = []\n    current_string = []\n    current_depth = 0\n\n    for c in paren_string:\n        if c == '(':\n            current_depth += 1\n            current_string.append(c)\n        elif c == ')':\n            current_depth -= 1\n            current_string.append(c)\n\n            if current_depth == 0:\n                result.append(''.join(current_string))\n                current_string.clear()\n\n    return result\n",
-        "explanation": "模型需要补全函数体，而不是口头解释算法。docstring 给出要求与例子，test 保存用于检验函数行为的代码。参考实现来自原始记录。",
+        "explanation": "把平衡括号文本拆成互不嵌套的组，并忽略空格。任务需要返回字符串列表，测试会检查分组边界。",
         "source": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
         "license": "MIT · OpenAI",
         "licensePath": "licenses/human-eval.txt",
@@ -147,7 +144,7 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "HumanEval 是 OpenAI 在 Codex 论文中提出的手写 Python 函数合成测试集：模型按函数签名和 docstring 补全函数，再用单元测试检查功能。人工编写的题目旨在降低与公开代码题解直接重合的风险，不保证此后不进入训练数据。",
+    "summary": "按函数签名和 docstring 补全 Python 函数，再用单元测试检查功能；题目由人工编写。",
     "task": "根据函数签名和自然语言说明补全独立 Python 函数，并通过题目测试。",
     "sourceUrls": [
       "https://arxiv.org/html/2107.03374#S2.SS2"
@@ -211,5 +208,17 @@
     "sourceUrls": [
       "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "当前任务文件与原始 2021 论文所述数据是否逐字一致，需固定 commit 后比对；上游仓库并无正式语义版本标签。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2107.03374#S2.SS2",
+        "https://github.com/openai/human-eval",
+        "https://arxiv.org/html/2107.03374#S2.SS1",
+        "https://github.com/openai/human-eval#usage"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

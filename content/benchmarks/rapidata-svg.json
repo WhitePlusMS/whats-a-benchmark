@@ -1,0 +1,190 @@
+{
+  "id": "rapidata-svg",
+  "status": "published",
+  "order": 660,
+  "name": "Rapidata SVG Generation",
+  "subtitle": "真人比较 SVG 的偏好、连贯性和提示匹配",
+  "category": "writing",
+  "tags": [
+    "SVG生成",
+    "人类评分",
+    "提示匹配",
+    "版本化榜单"
+  ],
+  "publisher": "Rapidata",
+  "brandIds": [
+    "rapidata"
+  ],
+  "year": null,
+  "version": "SVG generation v1 · 2026-08-20 live release",
+  "kind": "original",
+  "aliases": [
+    "Rapidata Static SVG Generation Benchmark",
+    "Rapidata SVG Benchmark",
+    "Rapidata SVG"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "将同提示 SVG 渲染成图片，由真人比较偏好、连贯性和提示匹配。",
+    "task": "从文本生成静态 SVG，匿名比较同一提示的渲染结果；不以自动图像分数替代真人判断。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+    ]
+  },
+  "taskContract": {
+    "input": "固定的英语文本提示。",
+    "output": "原始 SVG markup，渲染为图片供比较。",
+    "environment": "同提示输出成对抽样，合格标注者提供多次反馈；live 轮持续累积投票。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark",
+      "https://www.benchmark.ai/methodology"
+    ]
+  },
+  "dataProfile": {
+    "summary": "HF 公开静态 SVG 比较发布集，含代码、渲染图和三维人工偏好；该数据快照不等同持续更新的 live 榜单。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [
+      "HF 发布集 train；不是模型训练授权或评测划分的统一定义。"
+    ],
+    "fields": [
+      "prompt、svg1、svg2、image1、image2、model1、model2。",
+      "偏好：weighted_results_image1_preference、weighted_results_image2_preference、detailed_results_preference。",
+      "连贯性：weighted_results_image1_coherence、weighted_results_image2_coherence、detailed_results_coherence。",
+      "提示匹配：weighted_results_image1_alignment、weighted_results_image2_alignment、detailed_results_alignment。"
+    ],
+    "files": [
+      "HF data/存放发布记录，media/保存渲染媒体；Viewer逐条呈现同prompt的SVG代码、两张图片和三维人工反馈。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "区分 HF 发布快照与 benchmark.ai live v1；复现需明确提示与投票批次。"
+    ],
+    "url": "https://huggingface.co/datasets/Rapidata/svg-benchmark",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "数据卡明确将该发布集 prompt set 标注为 CC BY 4.0；SVG/PNG 输出分别受模型提供方条款约束。",
+    "scope": "仅复用该固定 revision 的单条 prompt set 内容；保留数据卡来源并遵守 CC BY 4.0 署名条款。",
+    "boundaries": [
+      "本许可不覆盖数据卡说明受模型提供方条款约束的 SVG/PNG 输出，也不表示人工标注的许可范围。",
+      "不把 prompt set 的许可外推到其他 Rapidata 数据集、榜单、实时投票或第三方材料。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站展示 HF 固定 revision 的 train row 0 原始 seed prompt。原行中的 SVG、PNG 生成候选未在本站镜像；完整官方记录可从数据卡查看。",
+    "url": "https://huggingface.co/datasets/Rapidata/svg-benchmark/viewer/default/train?row=0",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+    ]
+  },
+  "metric": {
+    "name": "Bradley–Terry 评级与 95% 区间",
+    "description": "由人工成对反馈拟合 BT 评级并缩放至熟悉的 Elo 范围；总体偏好、连贯性与提示匹配为不同维度。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.benchmark.ai/methodology"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "live 投票与冻结数据版本不同；标注者可靠性估计包含专有机制，不能宣称完全公开重算。",
+      "sourceUrls": [
+        "https://www.benchmark.ai/methodology",
+        "https://www.benchmark.ai/benchmarks"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方静态 SVG 数据卡",
+      "url": "https://huggingface.co/datasets/Rapidata/svg-benchmark",
+      "role": "data"
+    },
+    {
+      "label": "官方真人评分方法",
+      "url": "https://www.benchmark.ai/methodology",
+      "role": "definition"
+    },
+    {
+      "label": "官方版本目录",
+      "url": "https://www.benchmark.ai/benchmarks",
+      "role": "release"
+    },
+    {
+      "label": "官方 SVG live 榜单",
+      "url": "https://www.benchmark.ai/svg",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "合格真人标注者提供成对比较；反馈按可靠性加权，区间由 bootstrap 估计。",
+      "sourceUrls": [
+        "https://www.benchmark.ai/methodology"
+      ]
+    },
+    "comparison": {
+      "text": "检查维度、提示范围、投票覆盖与冻结轮次；不与 svgbench.ai 的评分或自动 SVG 检查互换。",
+      "sourceUrls": [
+        "https://www.benchmark.ai/benchmarks",
+        "https://www.benchmark.ai/methodology"
+      ]
+    },
+    "disclosure": {
+      "text": "HF 公开静态 SVG 比较发布集，含代码、渲染图和三维人工偏好；该数据快照不等同持续更新的 live 榜单。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+      ]
+    },
+    "versionChanges": {
+      "text": "benchmark.ai 将 live SVG 标为 v1/2026-08-20；HF 数据另按其发布快照读取。",
+      "sourceUrls": [
+        "https://www.benchmark.ai/benchmarks"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "train-0",
+        "title": "SVG seed prompt · horse riding an astronaut",
+        "type": "text",
+        "prompt": "Make an SVG of a horse riding an astronaut",
+        "explanation": "这是数据卡所列由 benchmark 创建者撰写的 seed prompt，数据卡明确称 prompt set 按 CC BY 4.0 发布。该记录没有在本站镜像 SVG 或 PNG 候选输出；它们受模型提供方条款约束，也不是参考答案。",
+        "raw": {
+          "prompt": "Make an SVG of a horse riding an astronaut"
+        },
+        "source": "https://huggingface.co/datasets/Rapidata/svg-benchmark/viewer/default/train?row=0",
+        "license": "CC BY 4.0 · 数据卡明确授权 prompt set；模型生成的 SVG/PNG 输出另受各提供方条款约束，本站不展示",
+        "licensePath": "licenses/rapidata-svg-sample-source.txt",
+        "split": "train / row 0 · source revision f5c382c80029a2b8f9a58ab0056515471cbb4599",
+        "excerpt": true
+      }
+    ]
+  }
+}

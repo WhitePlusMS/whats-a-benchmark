@@ -62,9 +62,11 @@ watch(
         decoding="async"
         @error="markFailed(mark.id)"
       />
-      <span v-else class="publisher-name">{{ mark.name }}</span>
+      <span v-else class="publisher-name" translate="no">{{ mark.name }}</span>
     </span>
-    <span v-if="!marks.length" class="publisher-name">{{ publisher }}</span>
+    <span v-if="!marks.length" class="publisher-name" translate="no">{{
+      publisher
+    }}</span>
   </span>
 </template>
 
@@ -104,8 +106,8 @@ watch(
   width: 80px;
 }
 .publisher-name {
-  color: #685f76;
-  font-size: 11px;
+  color: var(--muted-tint);
+  font-size: 12px;
   line-height: 1.5;
   font-weight: 600;
   overflow-wrap: anywhere;

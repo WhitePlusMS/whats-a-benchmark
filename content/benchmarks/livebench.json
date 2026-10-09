@@ -1,0 +1,243 @@
+{
+  "id": "livebench",
+  "status": "published",
+  "order": 16,
+  "name": "LiveBench",
+  "subtitle": "用持续更新的客观题比较综合能力",
+  "category": "general",
+  "tags": [
+    "综合评测",
+    "持续更新",
+    "客观评分",
+    "编程",
+    "指令遵循"
+  ],
+  "publisher": "LiveBench 作者团队",
+  "brandIds": [
+    "livebench"
+  ],
+  "year": 2024,
+  "version": "系列；官网当前 release 2026-06-25，站内示例来自 2024-06-24",
+  "kind": "suite",
+  "aliases": [
+    "LiveBench 综合评测",
+    "LiveBench Coding",
+    "LiveBench Reasoning",
+    "LiveBench Data Analysis",
+    "LiveBench Language",
+    "LiveBench Instruction Following",
+    "LiveBench Agentic Coding",
+    "LiveBench · 编程综合",
+    "LiveBench · 推理与数学",
+    "LiveBench · 数据分析",
+    "LiveBench · 语言与指令"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "持续补充新题、以客观答案自动评分的综合能力评测体系。",
+    "task": "按指定 release 完成客观评分任务；官网当前类别为 Reasoning、Coding、Agentic Coding、Mathematics、Data Analysis、Language、Instruction Following。",
+    "sourceUrls": [
+      "https://github.com/livebench/livebench",
+      "https://livebench.ai/"
+    ]
+  },
+  "taskContract": {
+    "input": "题目及任务材料，按类别和发布日期选择评测快照。",
+    "output": "可由相应评分程序验证的答案或代码。",
+    "environment": "run_livebench.py 按类别与 livebench-release-option 生成回答并调用客观评分器；编程题安装 code_runner 依赖，agentic coding 另构建任务 Docker 镜像。",
+    "sourceUrls": [
+      "https://github.com/livebench/livebench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "首发为 6 类、18 项任务、960 题；2026-10-08 实读官网当前 release 2026-06-25，显示 7 类、23 项任务。公开旧题与当期题集分别说明。",
+    "disclosure": "partial",
+    "scale": [
+      "首发：6 个能力类别、18 项任务、960 道题。",
+      "官网当前 release 2026-06-25：7 个类别、23 项客观任务，页面说明每六个月更新。"
+    ],
+    "splits": [
+      "首发 datasheet 将 960 题全部定位为评测 test set；公开类别数据再按 livebench-release-option 及 release/removal 日期筛选。",
+      "仓库 README 提醒部分较新 release 并未全部公开；不能把一个可下载旧快照当作当期完整题集。"
+    ],
+    "fields": [
+      "question_id、category、task、turns、ground_truth；官方 reasoning 发布还包含 livebench_release_date、livebench_removal_date 和 level。",
+      "turns 是模型输入，ground_truth 是自动评分答案；发布日期与移除日期用于固定 release，类别额外字段应按对应数据卡查看。"
+    ],
+    "files": [
+      "HF 的类别数据集（如 livebench/reasoning）提供 test 记录；livebench/model_answer 保存作者发布的模型原始回答。",
+      "仓库 run_livebench.py 执行推理和评分，show_livebench_result.py 汇总结果；编程评分还依赖 code_runner。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/livebench/reasoning",
+      "https://github.com/livebench/livebench",
+      "https://github.com/LiveBench/LiveBench/blob/main/docs/DATASHEET.md",
+      "https://livebench.ai/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开类别数据可下载；部分较新 release 并未全部公开。比较成绩须固定 release、任务集合和评分程序。"
+    ],
+    "url": "https://huggingface.co/livebench",
+    "sourceUrls": [
+      "https://github.com/livebench/livebench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方 datasheet 声明首发 benchmark suite 按 Apache License 2.0 发布。",
+    "scope": "本站仅展示固定来源快照中经核验的精选任务字段，保留出处与适用许可；不将其许可外推至外部网页、模型输出或未采用媒体。",
+    "boundaries": [
+      "保留许可证与来源信息；后续快照仍应核对对应数据卡。"
+    ],
+    "sourceUrls": [
+      "https://github.com/LiveBench/LiveBench/blob/main/docs/DATASHEET.md",
+      "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+      "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md"
+    ]
+  },
+  "metric": {
+    "name": "类别均分 / LiveBench score",
+    "description": "原论文先对每项任务的题目得分取均值，再对类别内任务取均值，最后对 6 类取均值。当前榜单比较须固定 release，避免混用后续任务设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://livebench.ai/livebench.pdf",
+      "https://github.com/livebench/livebench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "动态更换题目使跨 release 成绩不能直接对比；客观评分任务不能全面覆盖开放式创作质量。",
+      "sourceUrls": [
+        "https://livebench.ai/livebench.pdf"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本站所选记录 0daa7ca38beec4441b9d5c04d0b98912322926f0a3ac28a5097889d4ed83506f：config=default，split=test，源文件 SHA-256=4204bb94c812690ef8ba5f4c1f10b5b1082ca0b7bc532166834f798aa56e2a3c，完整原记录 SHA-256=e0641f6afd6228579a9dfd315e8c94b1fc81ab9746cd2c77b7eede9c8e4431c3。raw 保留整条原记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+        "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md"
+      ]
+    },
+    {
+      "text": "该站内记录属于公开首发 release 2024-06-24，removal_date 为 2025-04-02；只用于说明合成逻辑题型，不声称属于当前 release。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet"
+      ]
+    },
+    {
+      "text": "2026-10-08 在真实浏览器读取官网，当前 release 为 2026-06-25、7 类/23 任务、每六个月更新；没有提取当前完整私有题集或重算模型成绩。站内合成逻辑样例仍明确使用首发公开快照。",
+      "sourceUrls": [
+        "https://livebench.ai/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "LiveBench 官方仓库",
+      "url": "https://github.com/livebench/livebench",
+      "role": "readme"
+    },
+    {
+      "label": "LiveBench 数据说明",
+      "url": "https://github.com/LiveBench/LiveBench/blob/main/docs/DATASHEET.md",
+      "role": "data"
+    },
+    {
+      "label": "LiveBench 原始论文",
+      "url": "https://livebench.ai/livebench.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "LiveBench 官方榜单",
+      "url": "https://livebench.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "LiveBench 官方数据入口",
+      "url": "https://huggingface.co/livebench",
+      "role": "data"
+    },
+    {
+      "label": "LiveBench 官方推理数据与发布日期字段",
+      "url": "https://huggingface.co/datasets/livebench/reasoning",
+      "role": "data"
+    },
+    {
+      "label": "所选真实记录的固定版本数据文件",
+      "url": "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "所选数据快照的许可说明",
+      "url": "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md",
+      "role": "data"
+    },
+    {
+      "label": "所选材料的固定许可或来源证据",
+      "url": "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "按任务使用规则、标准答案或代码执行评分，不由统一 LLM 裁判判断回答风格；任务聚合后再按类别求均值。",
+      "sourceUrls": [
+        "https://github.com/livebench/livebench",
+        "https://livebench.ai/livebench.pdf"
+      ]
+    },
+    "comparison": {
+      "text": "固定 release、类别、评分程序和生成配置；原论文 6 类与官网当前 7 类分开。原设计与当前更新周期不同，不据周期推断已取得当期全部数据。",
+      "sourceUrls": [
+        "https://github.com/livebench/livebench",
+        "https://github.com/LiveBench/LiveBench/blob/main/docs/DATASHEET.md",
+        "https://livebench.ai/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "0daa7ca38beec4441b9d5c04d0b98912322926f0a3ac28a5097889d4ed83506f",
+        "title": "合成逻辑：谁在说真话",
+        "type": "text",
+        "prompt": "In this question, assume each person either always tells the truth or always lies. Tala is at the movie theater. The person at the restaurant says the person at the aquarium lies. Ayaan is at the aquarium. Ryan is at the botanical garden. The person at the park says the person at the art gallery lies. The person at the museum tells the truth. Zara is at the museum. Jake is at the art gallery. The person at the art gallery says the person at the theater lies. Beatriz is at the park. The person at the movie theater says the person at the train station lies. Nadia is at the campground. The person at the campground says the person at the art gallery tells the truth. The person at the theater lies. The person at the amusement park says the person at the aquarium tells the truth. Grace is at the restaurant. The person at the aquarium thinks their friend is lying. Nia is at the theater. Kehinde is at the train station. The person at the theater thinks their friend is lying. The person at the botanical garden says the person at the train station tells the truth. The person at the aquarium says the person at the campground tells the truth. The person at the aquarium saw a firetruck. The person at the train station says the person at the amusement park lies. Mateo is at the amusement park. Does the person at the train station tell the truth? Does the person at the amusement park tell the truth? Does the person at the aquarium tell the truth? Think step by step, and then put your answer in **bold** as a list of three words, yes or no (for example, **yes, no, yes**). If you don't know, guess.",
+        "explanation": "这是 Web of Lies V2 的纯合成逻辑题，需要追踪真假陈述并按顺序回答。记录属于 2024-06-24 公开 release，后来已从评测中移除，仅说明题型，不代表当前榜单题集。",
+        "raw": {
+          "question_id": "0daa7ca38beec4441b9d5c04d0b98912322926f0a3ac28a5097889d4ed83506f",
+          "category": "reasoning",
+          "ground_truth": "no, yes, yes",
+          "turns": [
+            "In this question, assume each person either always tells the truth or always lies. Tala is at the movie theater. The person at the restaurant says the person at the aquarium lies. Ayaan is at the aquarium. Ryan is at the botanical garden. The person at the park says the person at the art gallery lies. The person at the museum tells the truth. Zara is at the museum. Jake is at the art gallery. The person at the art gallery says the person at the theater lies. Beatriz is at the park. The person at the movie theater says the person at the train station lies. Nadia is at the campground. The person at the campground says the person at the art gallery tells the truth. The person at the theater lies. The person at the amusement park says the person at the aquarium tells the truth. Grace is at the restaurant. The person at the aquarium thinks their friend is lying. Nia is at the theater. Kehinde is at the train station. The person at the theater thinks their friend is lying. The person at the botanical garden says the person at the train station tells the truth. The person at the aquarium says the person at the campground tells the truth. The person at the aquarium saw a firetruck. The person at the train station says the person at the amusement park lies. Mateo is at the amusement park. Does the person at the train station tell the truth? Does the person at the amusement park tell the truth? Does the person at the aquarium tell the truth? Think step by step, and then put your answer in **bold** as a list of three words, yes or no (for example, **yes, no, yes**). If you don't know, guess."
+          ],
+          "task": "web_of_lies_v2",
+          "livebench_release_date": "2024-06-24T00:00:00",
+          "livebench_removal_date": "2025-04-02",
+          "level": null
+        },
+        "source": "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+        "split": "test",
+        "excerpt": false,
+        "license": "Apache-2.0 · LiveBench by Colin White et al.; public reasoning snapshot, synthetic web_of_lies_v2 task, Apache License 2.0 as stated in official DATASHEET Dataset Distribution",
+        "licensePath": "licenses/livebench-sample-source.txt",
+        "answer": "no, yes, yes"
+      }
+    ]
+  }
+}

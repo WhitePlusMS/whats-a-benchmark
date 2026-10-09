@@ -1,0 +1,181 @@
+{
+  "id": "mlcr-aa",
+  "status": "published",
+  "order": 404,
+  "name": "MLCR-AA",
+  "subtitle": "在长篇医疗记录中完成多文档综合推理",
+  "category": "context",
+  "tags": [
+    "长文本",
+    "医疗记录",
+    "多文档",
+    "因果与时序",
+    "简洁性"
+  ],
+  "publisher": "Wisedocs / Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA 私有 expert + compound 60 题实现",
+  "kind": "derivative",
+  "aliases": [
+    "Medical Long Context Reasoning (MLCR-AA)",
+    "Medical Long Context Reasoning"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AA 使用 MLCR 的私有高难题，衡量长篇碎片化医疗记录的综合推理。",
+    "task": "重建时序、分析因果和治疗模式，完整回答跨记录问题。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mlcr-aa"
+    ]
+  },
+  "taskContract": {
+    "input": "约 25k–64k tokens 的合成医疗记录及专家层或复合问题。",
+    "output": "简洁、准确且完整的文本答案。",
+    "environment": "每题 3 次重复；先检查答案长度和是否有答案，再由三位 LLM 评委判断。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mlcr-aa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开 MLCR 有 6 难度层；AA 采用私有的 60 道最高难度题，公开数据不包含该计分集。",
+    "disclosure": "partial",
+    "scale": [
+      "AA：60 题、每题 3 次；记录约 25k–64k tokens。"
+    ],
+    "splits": [
+      "Wisedocs 公开版与 AA 私有 expert / compound 保留集分开。"
+    ],
+    "fields": [
+      "公开questions配置：case_uuid、prompt_id、question、answer、difficulty；cases_summaries：case_uuid、summary_file、summary_text。",
+      "公开filler_files配置：subdir_name、file_name、ocr_text；这些是Wisedocs公开数据字段，不代表AA expert/compound私有题库schema。"
+    ],
+    "files": [
+      "公开原始questions.parquet、cases_summaries.parquet、filler_files.parquet；download --prepare-for-harness重建cases/<uuid>/prompts、answers、summaries与difficulties.csv。",
+      "公开运行器的runs/<uuid>/保存prompt.txt/result.json/summary.csv，评分写results_scoring.csv；HF发布不含source images。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Wisedocs-AI/medical-long-context-reasoning",
+      "https://huggingface.co/datasets/Wisedocs/mlcr-dataset",
+      "https://artificialanalysis.ai/evaluations/mlcr-aa"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开数据可读取；不能用公开数据分数宣称复现 AA 私有榜单。"
+    ],
+    "url": "https://huggingface.co/datasets/Wisedocs/mlcr-dataset",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mlcr-aa"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "AA评测页未为示例问题声明单独复用许可；链接的Wisedocs数据集不证明与AA样例相同。",
+    "scope": "仅AA页面公开问题事实；病历、答案、私有held-out数据的许可和映射未查明。",
+    "boundaries": [
+      "不复制或推测病历内容、答案或记录页码。",
+      "不将示例映射到Wisedocs记录或AA held-out评分集。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mlcr-aa",
+      "https://huggingface.co/datasets/Wisedocs/mlcr-dataset"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "AA官方页面公开具体事实检索题，但未公开其病历附件或答案；本站只展示任务目标。",
+    "url": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mlcr-aa",
+      "https://huggingface.co/datasets/Wisedocs/mlcr-dataset"
+    ]
+  },
+  "metric": {
+    "name": "Overall pass rate / pass@1",
+    "description": "超参考答案 5 倍长度或没有答案即失败；其余回答由三评委多数票同时认定准确和完整才计成功，3 次重复汇总为 pass@1。只在已送审回答中计算的准确率、完整率不能代替主分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mlcr-aa",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开 MLCR 与 AA 保留集范围不同；答案长度门槛会使内容正确但过长的回答归零。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mlcr-aa"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mlcr-aa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MLCR-AA 官方定义",
+      "url": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+      "role": "definition"
+    },
+    {
+      "label": "AA 官方实施方法",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "MLCR 原作者仓库",
+      "url": "https://github.com/Wisedocs-AI/medical-long-context-reasoning",
+      "role": "readme"
+    },
+    {
+      "label": "MLCR 公开数据卡",
+      "url": "https://huggingface.co/datasets/Wisedocs/mlcr-dataset",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "先用参考答案字符长度的五倍作简洁门槛，再以三裁判多数票分别检查准确和完整；过长/空回答在总体中计失败，而不进入judged-only分项分母。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mlcr-aa",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "AA三次重复的60题保留集与公开Wisedocs filler实验矩阵不同；比较时固定expert/compound范围，不能将公开Tier1–3的结果当AA主榜。",
+      "sourceUrls": [
+        "https://github.com/Wisedocs-AI/medical-long-context-reasoning",
+        "https://artificialanalysis.ai/evaluations/mlcr-aa"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-mlcr-aa-mri-fact-retrieval",
+        "title": "官方任务演示 · 腰椎MRI日期与开立者",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在一份病历中定位腰椎MRI的检查日期、开立该检查的医疗服务提供者，并指出证据所在页。AA将此示例归为单事实检索；页面没有附上病例文件或答案。",
+        "explanation": "这是AA评测页面公开的具体Example Task；AA说明其评分集包含独立的private held-out最难样本，页面示例并未标明属于计分集，也未与Wisedocs公开数据建立记录映射。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Fact retrieval\n\nSingle-fact retrieval\n\nOn what date was the lumbar spine MRI performed, and which provider ordered it? Cite the page of the record where",
+        "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+        "license": "本站原创任务解读及AA页面必要短引；示例题文本与底层病历没有单独许可说明。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "AA MLCR-AA / Example Tasks / Fact retrieval；未给记录ID或split",
+        "excerpt": true
+      }
+    ]
+  }
+}

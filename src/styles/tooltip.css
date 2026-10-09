@@ -1,0 +1,37 @@
+/* 所有公共悬停说明共用定位层、颜色、排版与边缘约束。 */
+.ui-tooltip {
+  display: inline-flex;
+}
+.ui-tooltip-content {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 24px));
+  padding: 12px 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 8px 28px rgb(37 41 50 / 14%);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 400;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+/* 只在打开时覆盖 display，保留原生 popover 的默认隐藏语义。 */
+.ui-tooltip-content:popover-open {
+  display: grid;
+  gap: 5px;
+}
+.ui-tooltip-content strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+.ui-tooltip-kicker,
+.ui-tooltip-meta {
+  color: var(--muted);
+  font-size: 11px;
+}

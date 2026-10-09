@@ -97,7 +97,7 @@
         "type": "text",
         "prompt": "Is every hole radius in this part less than or equal to 1.0?",
         "answer": "0",
-        "explanation": "原始 QA 记录以数值标签给出答案；本站保留标签 0，不擅自改写为语义答案。",
+        "explanation": "判断零件的所有孔半径是否满足 1.0 的阈值，需要结合对应零件数据。参考答案保留原始数值标签，不将标签自行解释为文字结论。",
         "raw": {
           "record_id": "threaded_adapter_000240_s4420",
           "family": "threaded_adapter",
@@ -119,7 +119,7 @@
         "type": "text",
         "prompt": "What is the size of the largest chamfer in this part?",
         "answer": "1.5",
-        "explanation": "原始记录将该问答标记为 dim 类型；题目和数值答案均按官方测试记录展示。",
+        "explanation": "题目要求识别零件中最大的倒角尺寸。原始记录标为 dim 问答，答案以数值给出；完成时还需结合对应零件数据。",
         "raw": {
           "record_id": "motor_end_cap_000500_s4420",
           "family": "motor_end_cap",
@@ -169,13 +169,6 @@
       "sourceUrls": [
         "https://github.com/BenchCAD/BenchCAD-main/blob/main/LEADERBOARD.md",
         "https://github.com/BenchCAD/BenchCAD-main#tasks"
-      ]
-    },
-    {
-      "text": "公开的代码和数据许可分别声明，工程图像来源权利未逐项复核。",
-      "sourceUrls": [
-        "https://github.com/BenchCAD/BenchCAD-main/blob/main/LICENSE",
-        "https://huggingface.co/datasets/BenchCAD/BenchCAD"
       ]
     }
   ],
@@ -240,5 +233,15 @@
       "url": "https://openai.com/index/gpt-6-astra/",
       "role": "vendor-report"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "公开的代码和数据许可分别声明，工程图像来源权利未逐项复核。",
+      "sourceUrls": [
+        "https://github.com/BenchCAD/BenchCAD-main/blob/main/LICENSE",
+        "https://huggingface.co/datasets/BenchCAD/BenchCAD"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

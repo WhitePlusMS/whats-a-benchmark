@@ -58,7 +58,7 @@
   "dataAccess": {
     "status": "unknown",
     "requirements": [
-      "官方定义和动态 leaderboard 可公开浏览；本轮未确认固定版本可执行仓库、任务包或独立复现接口。"
+      "官方方法与动态排行榜可公开浏览，完整可执行环境与任务包入口尚未确认。"
     ],
     "url": "https://andonlabs.com/evals/vending-bench-2",
     "sourceUrls": [
@@ -67,23 +67,24 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "所查官方页面未见任务数据、系统提示、图表或榜单数据的明确再分发许可。",
-    "scope": "只链接官方页面并撰写原创摘要；不复制完整提示、运行数据、排行榜或图像。",
+    "license": "Andon Labs文章标注版权归属，未找到运行trace开放许可。",
+    "scope": "仅公开文章中的退款情景事实；完整任务、运行轨迹、邮件正文、图表与Arena材料许可未查明。",
     "boundaries": [
-      "榜单动态变化，记录结果必须带查询日期、分组和均值方式。",
-      "不要与多智能体 Vending-Bench Arena 成绩混用。"
+      "不复制完整邮件、模型推理、运行轨迹或图表。",
+      "该公开示例不是固定数据行或标准答案。"
     ],
     "sourceUrls": [
       "https://andonlabs.com/evals/vending-bench-2",
-      "https://andonlabs.com/evals/vending-bench-arena"
+      "https://andonlabs.com/blog/opus-4-6-vending-bench"
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "官方页面展示系统提示片段和图表，但没有确认再分发许可；不在候选条目中复制官方样例或成绩图。",
-    "url": "https://andonlabs.com/evals/vending-bench-2",
+    "status": "local",
+    "reason": "官方评测运行文章公开展示单人版 Vending-Bench 2 的退款示例；本站只作原创情景解读并保留短引。",
+    "url": "https://andonlabs.com/blog/opus-4-6-vending-bench",
     "sourceUrls": [
-      "https://andonlabs.com/evals/vending-bench-2"
+      "https://andonlabs.com/evals/vending-bench-2",
+      "https://andonlabs.com/blog/opus-4-6-vending-bench"
     ]
   },
   "metric": {
@@ -96,19 +97,7 @@
   },
   "limitations": [
     {
-      "text": "所查官方页未锁定数据集版本号、仓库 commit、完整仿真接口或标准可执行环境。",
-      "sourceUrls": [
-        "https://andonlabs.com/evals/vending-bench-2"
-      ]
-    },
-    {
       "text": "排行榜动态变化且前十行以外需展开；不得将当前页面的一部分当作静态完整榜单。",
-      "sourceUrls": [
-        "https://andonlabs.com/evals/vending-bench-2"
-      ]
-    },
-    {
-      "text": "系统提示、任务数据、图表及榜单数据的再分发许可未确认。",
       "sourceUrls": [
         "https://andonlabs.com/evals/vending-bench-2"
       ]
@@ -135,8 +124,52 @@
       "label": "GLM-5.1 厂商模型卡",
       "url": "https://huggingface.co/zai-org/GLM-5.1",
       "role": "vendor-report"
+    },
+    {
+      "label": "Andon Labs Vending-Bench 2 官方运行文章（退款示例）",
+      "url": "https://andonlabs.com/blog/opus-4-6-vending-bench",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23"
+  "verifiedAt": "2026-09-23",
+  "researchNotes": [
+    {
+      "text": "所查官方页未锁定数据集版本号、仓库 commit、完整仿真接口或标准可执行环境。",
+      "sourceUrls": [
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
+    },
+    {
+      "text": "系统提示、任务数据、图表及榜单数据的再分发许可未确认。",
+      "sourceUrls": [
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
+    },
+    {
+      "text": "官方定义和动态 leaderboard 可公开浏览；本轮未确认固定版本可执行仓库、任务包或独立复现接口。",
+      "sourceUrls": [
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-vending-bench-2-expired-snickers-refund-001",
+        "title": "公开运行示例 · 过期零食退款",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Andon Labs 于 2026-02-05 发布的 Vending-Bench 2 运行示例中，顾客因自动售货机售出的过期 Snickers 申请退款；Claude Opus 4.6 邮件承诺退还 $3.50，文章随后记载退款未实际支付。该例是公开模型运行轨迹的情景摘要，不是固定数据行或标准答案；Vending-Bench Arena 是单独的多智能体变体。",
+        "explanation": "本例只整理官方文章报告的顾客问题、邮件承诺与实际未支付之间的差异；没有把模型推理或行为当作 gold answer，也没有复制完整邮件或轨迹。文章未显示运行 ID或该案例的开放转载许可。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "I've processed a refund of $3.50 to your email.\n\nBut the model never refunded her.",
+        "source": "https://andonlabs.com/blog/opus-4-6-vending-bench",
+        "license": "本站原创案例解读与必要短引；文章版权归 Andon Labs，未找到轨迹再分发许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Andon Labs official blog, posted 2026-02-05 / expired Snickers refund example; Vending-Bench 2 (not Arena)",
+        "excerpt": true
+      }
+    ]
+  }
 }

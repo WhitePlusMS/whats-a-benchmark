@@ -21,7 +21,7 @@
     "CEval"
   ],
   "related": [],
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "C-Eval 以中文考试式选择题评估模型在 STEM、社会科学、人文与其他领域的知识和推理能力。",
@@ -62,7 +62,9 @@
     "sourceUrls": [
       "https://github.com/hkust-nlp/ceval#data",
       "https://github.com/hkust-nlp/ceval#news",
-      "https://huggingface.co/datasets/ceval/ceval-exam"
+      "https://huggingface.co/datasets/ceval/ceval-exam",
+      "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md"
     ]
   },
   "dataAccess": {
@@ -78,27 +80,26 @@
     "url": "https://huggingface.co/datasets/ceval/ceval-exam"
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "仓库将代码标为 MIT、数据标为 CC BY-NC-SA 4.0；Hugging Face 页面显示的许可标签不同，数据许可口径尚未统一。",
-    "scope": "许可冲突厘清前只链接和描述数据，不在候选中转载题干、选项、答案或解析。",
+    "status": "permitted",
+    "license": "CC BY-NC-SA 4.0（固定公开数据快照的许可声明）",
+    "scope": "本页按 CC BY-NC-SA 4.0 非商业方式展示 1 条 dev 示例及原选项/答案/解析；保留归属与相同方式共享条件。",
     "boundaries": [
-      "MIT 只覆盖代码；不得据此判定数据题目可商业复用。",
-      "先核对具体数据快照适用的许可和非商业条件。"
+      "保留发布方、记录位置和许可原文；中文解读由本站撰写。",
+      "此数据许可含非商业和相同方式共享条件，不依据仓库 MIT 代码许可扩大题目使用范围。"
     ],
     "sourceUrls": [
-      "https://github.com/hkust-nlp/ceval#licenses",
-      "https://huggingface.co/datasets/ceval/ceval-exam"
+      "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md",
+      "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt"
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "官方仓库及 Hugging Face 可查看部分题目；GitHub 与数据卡对数据许可的标注不一致，因此本站只链接官方样例，不复制题目内容。",
+    "status": "local",
+    "reason": "已从官方原文件核验并展示 1 条真实公开记录，原题、答案和许可可在本页查看。",
+    "url": "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
     "sourceUrls": [
-      "https://github.com/hkust-nlp/ceval#data",
-      "https://github.com/hkust-nlp/ceval#licenses",
-      "https://huggingface.co/datasets/ceval/ceval-exam"
-    ],
-    "url": "https://huggingface.co/datasets/ceval/ceval-exam"
+      "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md"
+    ]
   },
   "metric": {
     "name": "正确率",
@@ -110,24 +111,10 @@
   },
   "limitations": [
     {
-      "text": "README 的旧版 test 标签说明与 2025 年发布公告冲突；本次未下载并逐文件核对当前数据快照。",
+      "text": "本页核验的固定数据卡和作者仓库均标注数据为 CC BY-NC-SA 4.0；代码 MIT 不替代题目的非商业/相同方式共享条件。",
       "sourceUrls": [
-        "https://github.com/hkust-nlp/ceval",
-        "https://github.com/hkust-nlp/ceval#news",
-        "https://huggingface.co/datasets/ceval/ceval-exam"
-      ]
-    },
-    {
-      "text": "13,948 是官方公布的总量；本次未从各主题 CSV 重新逐条计数。",
-      "sourceUrls": [
-        "https://github.com/hkust-nlp/ceval#data"
-      ]
-    },
-    {
-      "text": "仓库与 Hugging Face 对数据许可的标注不同，题目及其来源的权利链仍待澄清。",
-      "sourceUrls": [
-        "https://github.com/hkust-nlp/ceval#licenses",
-        "https://huggingface.co/datasets/ceval/ceval-exam"
+        "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md",
+        "https://github.com/hkust-nlp/ceval#licenses"
       ]
     }
   ],
@@ -171,6 +158,65 @@
       "label": "C-Eval Benchmark",
       "url": "https://cevalbenchmark.com/",
       "role": "definition"
+    },
+    {
+      "label": "已核验的原始样例文件",
+      "url": "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定数据快照与许可声明",
+      "url": "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md",
+      "role": "access"
+    },
+    {
+      "label": "CC BY-NC-SA 4.0 许可原文",
+      "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt",
+      "role": "access"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "已读取固定原文件：computer_network/dev, id=0; row 0；SHA-256 db2a85d61052c56940f2f8fc95eb2a8eb3f1e176800822563f4a469c4ea03f7b。未运行模型评测，也未核验全部上游题目的逐题来源。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "computer-network-dev-0",
+        "title": "计算机网络 · dev 第 0 题",
+        "type": "choice",
+        "prompt": "下列设备属于资源子网的是____。",
+        "answer": "A",
+        "explanation": "官方 dev 示例要求辨别资源子网和通信子网。四个选项、答案及解析均来自固定 Parquet 原行；dev 用作 few-shot 示例，不是当前 test 留出题。",
+        "raw": {
+          "id": 0,
+          "question": "下列设备属于资源子网的是____。",
+          "A": "计算机软件",
+          "B": "网桥",
+          "C": "交换机",
+          "D": "路由器",
+          "answer": "A",
+          "explanation": "1. 首先，资源子网是指提供共享资源的网络，如打印机、文件服务器等。\r\n2. 其次，我们需要了解选项中设备的功能。网桥、交换机和路由器的主要功能是实现不同网络之间的通信和数据传输，是通信子网设备。而计算机软件可以提供共享资源的功能。"
+        },
+        "source": "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
+        "license": "C-Eval 研究团队 · CC BY-NC-SA 4.0",
+        "licensePath": "licenses/ceval-sample-source.txt",
+        "split": "computer_network / dev",
+        "excerpt": false,
+        "options": [
+          "计算机软件",
+          "网桥",
+          "交换机",
+          "路由器"
+        ]
+      }
+    ]
+  }
 }

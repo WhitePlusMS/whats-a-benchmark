@@ -2,7 +2,6 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
-import type { Source } from "../content/schema";
 import { byId, categoryById, kindLabels } from "../content/catalog";
 import {
   dataAccessLabels,
@@ -10,12 +9,19 @@ import {
   researchStatusLabels,
   reusePolicyLabels,
   sampleAccessLabels,
-  sourceRoleLabels,
 } from "../content/labels";
 import { releases } from "../content/releases";
 import { useComparison } from "../composables/compare";
 import { useCatalogNavigation } from "../composables/catalogNavigation";
-import EvidenceLinks from "../components/EvidenceLinks.vue";
+import { groupSourceReferences } from "../lib/sourceReferences";
+import {
+  compositionSample,
+  sampleAction,
+  sampleSectionTitle,
+} from "../lib/sampleAccess";
+import { formatDate, formatPercent } from "../lib/displayFormats";
+import CitedText from "../components/CitedText.vue";
+import SourceList from "../components/SourceList.vue";
 import Icon from "../components/Icon.vue";
 import SampleViewer from "../components/SampleViewer.vue";
 import PublisherMarks from "../components/PublisherMarks.vue";
@@ -27,74 +33,77 @@ const item = computed(() =>
 const category = computed(
   () => item.value && categoryById.get(item.value.category),
 );
+const scoreInterpretation = computed(() => {
+  const reading = item.value?.interpretation;
+  return [
+    { key: "judge", label: "谁来评分", value: reading?.judge },
+    {
+      key: "comparison",
+      label: "比较成绩前先核对",
+      value: reading?.comparison,
+    },
+  ].flatMap((row) => (row.value ? [{ ...row, ...row.value }] : []));
+});
 const featuredIn = computed(() =>
-  releases.filter((release) =>
-    item.value ? release.benchmarkIds.includes(item.value.id) : false,
+  releases.filter(
+    (release) => item.value && release.benchmarkIds.includes(item.value.id),
   ),
 );
 const { selected, toggle } = useComparison();
 const { catalogLocation } = useCatalogNavigation();
-
-interface SourceGroup {
-  label: string;
-  url: string;
-  host: string;
-  count: number;
-  roles: Source["role"][];
-}
-function canonicalUrl(value: string) {
-  const url = new URL(value);
-  url.hash = "";
-  return url.href;
-}
-function groupSources(sources: Source[]): SourceGroup[] {
-  const groups = new Map<string, SourceGroup>();
-  for (const source of sources) {
-    const key = canonicalUrl(source.url);
-    const existing = groups.get(key);
-    if (existing) {
-      existing.count++;
-      if (!existing.roles.includes(source.role))
-        existing.roles.push(source.role);
-      continue;
-    }
-    groups.set(key, {
-      label: source.label,
-      url: source.url,
-      host: new URL(source.url).hostname,
-      count: 1,
-      roles: [source.role],
-    });
-  }
-  return [...groups.values()];
-}
+const sourceGroups = computed(() =>
+  groupSourceReferences(item.value?.sources || []),
+);
 const officialSources = computed(() =>
-  groupSources(
-    item.value?.sources.filter((source) => source.role !== "vendor-report") ||
-      [],
-  ),
+  sourceGroups.value.filter((group) => !group.vendorReport),
 );
 const vendorReports = computed(() =>
-  groupSources(
-    item.value?.sources.filter((source) => source.role === "vendor-report") ||
-      [],
-  ),
+  sourceGroups.value.filter((group) => group.vendorReport),
 );
-const profileGroups = computed(() => {
-  if (!item.value) return [];
-  return [
-    { label: "规模", values: item.value.dataProfile.scale },
-    { label: "数据划分", values: item.value.dataProfile.splits },
-    { label: "主要字段", values: item.value.dataProfile.fields },
-    { label: "文件与目录", values: item.value.dataProfile.files },
-  ];
-});
+const allProfileGroups = computed(() =>
+  item.value
+    ? [
+        { label: "规模", values: item.value.dataProfile.scale },
+        { label: "数据划分", values: item.value.dataProfile.splits },
+        { label: "主要字段", values: item.value.dataProfile.fields },
+        { label: "文件与目录", values: item.value.dataProfile.files },
+      ]
+    : [],
+);
+const profileGroups = computed(() =>
+  allProfileGroups.value.filter((group) => group.values.length),
+);
+const missingProfileLabels = computed(() =>
+  allProfileGroups.value
+    .filter((group) => !group.values.length)
+    .map((group) => group.label),
+);
 const dataAccessUrl = computed(
   () => item.value?.dataAccess.url || item.value?.dataAccess.sourceUrls[0],
 );
 const dataAccessLinkLabel = computed(() =>
-  item.value?.dataAccess.url ? "打开官方数据入口" : "查看官方访问说明",
+  item.value?.composition
+    ? "查看指数方法说明"
+    : item.value?.dataAccess.url
+      ? "打开官方数据入口"
+      : "查看官方访问说明",
 );
+const primaryAction = computed(() => item.value && sampleAction(item.value));
+const sampleTitle = computed(
+  () => item.value && sampleSectionTitle(item.value),
+);
+const constituentSample = computed(
+  () => item.value && compositionSample(item.value, byId),
+);
+// 数据获取与交叉导航只补充新出处，已在相邻概况/定义/版本说明中注明的来源不重列。
+const accessEvidenceExclusions = computed(() => [
+  ...(item.value?.dataProfile.sourceUrls || []),
+  ...(dataAccessUrl.value ? [dataAccessUrl.value] : []),
+]);
+const relationEvidenceExclusions = computed(() => [
+  ...(item.value?.officialDefinition.sourceUrls || []),
+  ...(item.value?.interpretation?.versionChanges?.sourceUrls || []),
+]);
 useHead(() => ({
   title: `${item.value?.name || "未找到评测"} · what's a benchmark?`,
   meta: [
@@ -112,17 +121,15 @@ useHead(() => ({
   <div v-if="item" class="container detail-page">
     <nav class="breadcrumbs" aria-label="面包屑">
       <RouterLink :to="catalogLocation">返回目录</RouterLink><span>/</span>
-      <RouterLink :to="{ path: '/', query: { category: item.category } }">
-        {{ category?.name }}
-      </RouterLink>
-      <span>/</span><span>{{ item.name }}</span>
+      <RouterLink :to="{ path: '/', query: { category: item.category } }">{{
+        category?.name
+      }}</RouterLink>
+      <span>/</span><span translate="no">{{ item.name }}</span>
     </nav>
-
     <aside v-if="item.status === 'archived'" class="info-banner" role="note">
       <p><strong>本站已归档</strong> · {{ item.archiveNote }}</p>
       <p>保留历史资料与引用，不表示官方评测已停用。</p>
     </aside>
-
     <header class="detail-heading">
       <div class="detail-title-line">
         <PublisherMarks
@@ -132,19 +139,28 @@ useHead(() => ({
         />
         <div>
           <div class="tags">
-            <span>{{ kindLabels[item.kind] }}</span>
-            <span>{{ category?.name }}</span>
-            <span>{{ researchStatusLabels[item.researchStatus] }}</span>
+            <span>{{ kindLabels[item.kind] }}</span
+            ><span>{{ category?.name }}</span
+            ><span>{{ researchStatusLabels[item.researchStatus] }}</span>
           </div>
-          <h1>{{ item.name }}</h1>
+          <h1 translate="no">{{ item.name }}</h1>
+          <p class="detail-subtitle">{{ item.subtitle }}</p>
         </div>
       </div>
       <p class="detail-summary">{{ item.officialDefinition.summary }}</p>
       <div class="detail-cta">
-        <a href="#samples" class="primary-button">
-          <Icon name="file" :size="18" />
-          {{ sampleAccessLabels[item.sampleAccess.status] }}
-          <Icon name="arrow" :size="17" />
+        <a
+          v-if="primaryAction"
+          :href="primaryAction.href"
+          :target="primaryAction.external ? '_blank' : undefined"
+          :rel="primaryAction.external ? 'noreferrer' : undefined"
+          class="primary-button"
+        >
+          <Icon
+            :name="primaryAction.external ? 'external' : 'file'"
+            :size="18"
+          />{{ primaryAction.label
+          }}<Icon :name="primaryAction.external ? 'up' : 'arrow'" :size="17" />
         </a>
         <button
           v-if="item.status === 'published'"
@@ -152,107 +168,276 @@ useHead(() => ({
           @click="toggle(item.id)"
           :aria-pressed="selected.includes(item.id)"
         >
-          <Icon name="compare" :size="18" />
-          {{ selected.includes(item.id) ? "已加入对比" : "加入评测对比" }}
+          <Icon name="compare" :size="18" />{{
+            selected.includes(item.id) ? "已加入对比" : "加入评测对比"
+          }}
         </button>
       </div>
     </header>
-
     <div class="detail-facts">
       <div>
-        <small>发布方</small><strong>{{ item.publisher }}</strong>
+        <small>发布方</small
+        ><strong translate="no">{{ item.publisher }}</strong>
       </div>
       <div>
-        <small>首次发布年份</small>
-        <strong>{{ item.year || "尚未核实" }}</strong>
+        <small>首次发布年份</small
+        ><strong>{{ item.year || "尚未核实" }}</strong>
       </div>
       <div>
-        <small>评测版本</small><strong>{{ item.version }}</strong>
+        <small>评测版本</small
+        ><strong translate="no">{{ item.version }}</strong>
       </div>
       <div>
-        <small>数据访问</small>
-        <strong>{{ dataAccessLabels[item.dataAccess.status] }}</strong>
+        <small>数据访问</small
+        ><strong>{{ dataAccessLabels[item.dataAccess.status] }}</strong>
       </div>
       <div>
-        <small>资料核验日期</small><strong>{{ item.verifiedAt }}</strong>
+        <small>资料核验日期</small
+        ><strong
+          ><time :datetime="item.verifiedAt">{{
+            formatDate(item.verifiedAt)
+          }}</time></strong
+        >
       </div>
     </div>
-
     <nav class="detail-nav" aria-label="详情导航">
-      <a href="#definition">官方定义</a>
-      <a href="#task">任务协议</a>
-      <a href="#data">数据与使用边界</a>
-      <a href="#samples">真实样例</a>
-      <a href="#score">评分方法</a>
-      <a v-if="item.related.length" href="#relations">版本关系</a>
-      <a href="#sources">参考资料</a>
+      <a href="#definition">测什么</a><a href="#task">具体任务</a>
+      <a v-if="item.composition" href="#composition">指数组成</a>
+      <a href="#samples">{{ sampleTitle }}</a
+      ><a href="#score">评分与比较</a><a href="#data">数据与许可</a>
+      <a
+        v-if="item.related.length || item.interpretation?.versionChanges"
+        href="#relations"
+        >版本关系</a
+      ><a href="#sources">参考资料</a>
     </nav>
 
     <section id="definition" class="detail-section">
-      <div class="section-title-row">
-        <h2>官方定义</h2>
-        <span class="small-badge">{{
-          researchStatusLabels[item.researchStatus]
-        }}</span>
-      </div>
-      <p class="task-description">{{ item.officialDefinition.task }}</p>
-      <EvidenceLinks
-        :sources="item.sources"
-        :urls="item.officialDefinition.sourceUrls"
-      />
+      <h2>测什么</h2>
+      <p class="task-description">
+        <CitedText
+          :text="item.officialDefinition.task"
+          :sources="item.sources"
+          :urls="item.officialDefinition.sourceUrls"
+        />
+      </p>
     </section>
-
     <section id="task" class="detail-section">
-      <h2>任务协议</h2>
+      <h2>
+        <CitedText
+          text="具体任务"
+          :sources="item.sources"
+          :urls="item.taskContract.sourceUrls"
+          :exclude-urls="item.officialDefinition.sourceUrls"
+        />
+      </h2>
       <div class="contract-grid">
         <article>
-          <small>任务输入</small>
+          <small>模型收到什么</small>
           <p>{{ item.taskContract.input }}</p>
         </article>
         <article>
-          <small>预期输出</small>
+          <small>需要完成什么</small>
           <p>{{ item.taskContract.output }}</p>
         </article>
         <article>
-          <small>执行环境</small>
+          <small>工具与运行条件</small>
           <p>{{ item.taskContract.environment }}</p>
         </article>
       </div>
-      <EvidenceLinks
-        :sources="item.sources"
-        :urls="item.taskContract.sourceUrls"
-      />
+    </section>
+    <section v-if="item.composition" id="composition" class="detail-section">
+      <h2>
+        指数组成 · <span translate="no">{{ item.version }}</span>
+      </h2>
+      <p class="task-description">
+        <CitedText
+          text="权重表示各项对总分的贡献；计分与换算见下表。不同版本的总分不能直接混比。"
+          :sources="item.sources"
+          :urls="item.composition.sourceUrls"
+        />
+      </p>
+      <div
+        class="composition-scroll"
+        tabindex="0"
+        aria-label="指数组成表，可横向滚动"
+      >
+        <table class="composition-table">
+          <thead>
+            <tr>
+              <th scope="col">能力分组</th>
+              <th scope="col">评测</th>
+              <th scope="col">权重</th>
+              <th scope="col">计分口径</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="component in item.composition.items" :key="component.id">
+              <td>{{ component.group }}</td>
+              <th scope="row">
+                <RouterLink
+                  :to="`/benchmarks/${component.id}/`"
+                  class="text-link"
+                  translate="no"
+                  >{{ byId.get(component.id)?.name }}</RouterLink
+                >
+              </th>
+              <td>{{ formatPercent(component.weight / 100) }}</td>
+              <td>{{ component.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="samples" class="detail-section">
+      <div class="section-title-row">
+        <h2>{{ sampleTitle }}</h2>
+        <span v-if="!item.composition" class="small-badge">{{
+          sampleAccessLabels[item.sampleAccess.status]
+        }}</span>
+      </div>
+      <template v-if="item.composition">
+        <p class="task-description">
+          指数汇总多个评测，本身没有独立题库。下面展示一个组成评测的真实案例；各项任务和执行协议分别核对。
+        </p>
+        <template v-if="constituentSample">
+          <p class="task-description">
+            案例来自
+            <RouterLink
+              :to="`/benchmarks/${constituentSample.id}/#samples`"
+              class="text-link"
+              translate="no"
+              >{{ constituentSample.name }}</RouterLink
+            >，原题、答案与许可由该组成项提供。
+          </p>
+          <SampleViewer :item="constituentSample" />
+        </template>
+        <div class="composition-samples">
+          <RouterLink
+            v-for="component in item.composition.items"
+            :key="component.id"
+            :to="`/benchmarks/${component.id}/#samples`"
+            ><span translate="no">{{ byId.get(component.id)?.name }}</span
+            ><Icon name="arrow" :size="15"
+          /></RouterLink>
+        </div>
+      </template>
+      <SampleViewer v-else :item="item" />
+    </section>
+
+    <section id="score" class="detail-section">
+      <h2>评分与比较条件</h2>
+      <div class="score-layout">
+        <div class="metric-panel">
+          <small>主要指标</small>
+          <h3 translate="no">{{ item.metric.name }}</h3>
+          <span>{{
+            item.metric.direction === "higher"
+              ? "↑ 通常越高越好"
+              : item.metric.direction === "lower"
+                ? "↓ 通常越低越好"
+                : "各分项方向不同"
+          }}</span>
+          <p>
+            <CitedText
+              :text="item.metric.description"
+              :sources="item.sources"
+              :urls="item.metric.sourceUrls"
+            />
+          </p>
+        </div>
+        <div
+          v-if="scoreInterpretation.length || item.limitations.length"
+          class="caveat-panel"
+        >
+          <div
+            v-for="row in scoreInterpretation"
+            :key="row.key"
+            class="score-reading"
+          >
+            <h3>{{ row.label }}</h3>
+            <p>
+              <CitedText
+                :text="row.text"
+                :sources="item.sources"
+                :urls="row.sourceUrls"
+              />
+            </p>
+          </div>
+          <h3 v-if="item.limitations.length">适用范围与限制</h3>
+          <ul v-if="item.limitations.length">
+            <li v-for="note in item.limitations" :key="note.text">
+              <p>
+                <CitedText
+                  :text="note.text"
+                  :sources="item.sources"
+                  :urls="note.sourceUrls"
+                />
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <RouterLink to="/guide/#metrics" class="text-link score-guide"
+        >了解不同评分指标 <Icon name="arrow" :size="16"
+      /></RouterLink>
     </section>
 
     <section id="data" class="detail-section">
       <div class="section-title-row">
-        <h2>数据与使用边界</h2>
-        <span class="small-badge">
-          {{ disclosureLabels[item.dataProfile.disclosure] }}
-        </span>
+        <h2>数据与许可</h2>
+        <span class="small-badge">{{
+          disclosureLabels[item.dataProfile.disclosure]
+        }}</span>
       </div>
-      <p class="task-description">{{ item.dataProfile.summary }}</p>
-      <div class="profile-grid">
+      <p class="task-description">
+        <CitedText
+          :text="item.dataProfile.summary"
+          :sources="item.sources"
+          :urls="item.dataProfile.sourceUrls"
+        />
+      </p>
+      <div v-if="profileGroups.length" class="profile-grid">
         <article v-for="group in profileGroups" :key="group.label">
           <small>{{ group.label }}</small>
-          <ul v-if="group.values.length">
+          <ul>
             <li v-for="value in group.values" :key="value">{{ value }}</li>
           </ul>
-          <p v-else>官方资料未单独披露。</p>
         </article>
       </div>
-      <EvidenceLinks
-        :sources="item.sources"
-        :urls="item.dataProfile.sourceUrls"
-      />
-
+      <p
+        v-if="missingProfileLabels.length && !item.composition"
+        class="profile-missing"
+      >
+        本站尚未整理：{{
+          missingProfileLabels.join("、")
+        }}。可通过下方官方资料核对。
+      </p>
+      <div v-if="item.interpretation?.disclosure" class="data-disclosure">
+        <h3>公开核验范围</h3>
+        <p>
+          <CitedText
+            :text="item.interpretation.disclosure.text"
+            :sources="item.sources"
+            :urls="item.interpretation.disclosure.sourceUrls"
+          />
+        </p>
+      </div>
       <div class="policy-grid">
         <article>
           <div class="section-title-row">
-            <h3>数据访问</h3>
-            <span class="small-badge">
-              {{ dataAccessLabels[item.dataAccess.status] }}
-            </span>
+            <h3>
+              <CitedText
+                text="怎样获取数据"
+                :sources="item.sources"
+                :urls="item.dataAccess.sourceUrls"
+                :exclude-urls="accessEvidenceExclusions"
+              />
+            </h3>
+            <span class="small-badge">{{
+              dataAccessLabels[item.dataAccess.status]
+            }}</span>
           </div>
           <ul v-if="item.dataAccess.requirements.length">
             <li
@@ -268,24 +453,25 @@ useHead(() => ({
             target="_blank"
             rel="noreferrer"
             class="text-link"
-          >
-            {{ dataAccessLinkLabel }} <Icon name="up" :size="15" />
-          </a>
-          <EvidenceLinks
-            :sources="item.sources"
-            :urls="item.dataAccess.sourceUrls"
-          />
+            >{{ dataAccessLinkLabel }} <Icon name="up" :size="15"
+          /></a>
         </article>
         <article>
           <div class="section-title-row">
-            <h3>复用与许可</h3>
-            <span class="small-badge">
-              {{ reusePolicyLabels[item.reusePolicy.status] }}
-            </span>
+            <h3>能否使用这些数据</h3>
+            <span class="small-badge">{{
+              reusePolicyLabels[item.reusePolicy.status]
+            }}</span>
           </div>
           <dl class="policy-definition">
             <dt>许可记录</dt>
-            <dd>{{ item.reusePolicy.license }}</dd>
+            <dd>
+              <CitedText
+                :text="item.reusePolicy.license"
+                :sources="item.sources"
+                :urls="item.reusePolicy.sourceUrls"
+              />
+            </dd>
             <dt>适用范围</dt>
             <dd>{{ item.reusePolicy.scope }}</dd>
           </dl>
@@ -294,152 +480,94 @@ useHead(() => ({
               {{ boundary }}
             </li>
           </ul>
-          <EvidenceLinks
-            :sources="item.sources"
-            :urls="item.reusePolicy.sourceUrls"
-          />
         </article>
       </div>
     </section>
 
-    <section id="samples" class="detail-section">
-      <div class="section-title-row">
-        <h2>真实样例</h2>
-        <span class="small-badge">
-          {{ sampleAccessLabels[item.sampleAccess.status] }}
-        </span>
-      </div>
-      <SampleViewer :item="item" />
-      <EvidenceLinks
-        :sources="item.sources"
-        :urls="item.sampleAccess.sourceUrls"
-      />
-    </section>
-
-    <section id="score" class="detail-section">
-      <h2>评分方法</h2>
-      <div class="score-layout">
-        <div class="metric-panel">
-          <small>主要指标</small>
-          <h3>{{ item.metric.name }}</h3>
-          <span>
-            {{
-              item.metric.direction === "higher"
-                ? "↑ 通常越高越好"
-                : item.metric.direction === "lower"
-                  ? "↓ 通常越低越好"
-                  : "各分项方向不同"
-            }}
-          </span>
-          <p>{{ item.metric.description }}</p>
-          <EvidenceLinks
-            :sources="item.sources"
-            :urls="item.metric.sourceUrls"
-          />
-        </div>
-        <div class="caveat-panel">
-          <h3>适用范围与限制</h3>
-          <ul>
-            <li v-for="note in item.limitations" :key="note.text">
-              <p>{{ note.text }}</p>
-              <EvidenceLinks :sources="item.sources" :urls="note.sourceUrls" />
-            </li>
-          </ul>
-          <RouterLink to="/guide/" class="text-link">
-            评测指标说明 <Icon name="arrow" :size="16" />
-          </RouterLink>
-        </div>
-      </div>
-    </section>
-
-    <section v-if="item.related.length" id="relations" class="detail-section">
+    <section
+      v-if="item.related.length || item.interpretation?.versionChanges"
+      id="relations"
+      class="detail-section"
+    >
       <h2>版本与衍生评测</h2>
-      <div class="relation-list">
+      <div v-if="item.interpretation?.versionChanges" class="version-reading">
+        <p>
+          <CitedText
+            :text="item.interpretation.versionChanges.text"
+            :sources="item.sources"
+            :urls="item.interpretation.versionChanges.sourceUrls"
+          />
+        </p>
+      </div>
+      <div v-if="item.related.length" class="relation-list">
         <article
           v-for="relation in item.related"
           :key="relation.id"
           class="relation-item"
         >
-          <RouterLink :to="`/benchmarks/${relation.id}/`" class="relation-link">
-            <span class="small-badge">{{ relation.label }}</span>
+          <RouterLink :to="`/benchmarks/${relation.id}/`" class="relation-link"
+            ><span class="small-badge">{{ relation.label }}</span>
             <div>
-              <h3>{{ byId.get(relation.id)?.name }}</h3>
-              <p>{{ relation.detail }}</p>
+              <h3 translate="no">{{ byId.get(relation.id)?.name }}</h3>
             </div>
-            <Icon name="arrow" :size="20" />
-          </RouterLink>
-          <EvidenceLinks :sources="item.sources" :urls="relation.sourceUrls" />
+            <Icon name="arrow" :size="20"
+          /></RouterLink>
+          <p>
+            <CitedText
+              :text="relation.detail"
+              :sources="item.sources"
+              :urls="relation.sourceUrls"
+              :exclude-urls="relationEvidenceExclusions"
+            />
+          </p>
         </article>
       </div>
     </section>
 
     <section id="sources" class="detail-section">
-      <h2>官方资料</h2>
+      <h2>参考资料</h2>
       <p class="section-intro">
-        同一官方页面的多个段落定位合并展示；各栏目仍保留精确的证据链接。
+        正文编号对应下列原始资料。同页不同段落可展开查看。
       </p>
-      <div class="source-list">
-        <a
-          v-for="(source, index) in officialSources"
-          :key="canonicalUrl(source.url)"
-          :href="source.url"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <span class="source-number">
-            {{ String(index + 1).padStart(2, "0") }}
-          </span>
-          <span>
-            <strong>{{ source.label }}</strong>
-            <small>
-              {{
-                source.roles.map((role) => sourceRoleLabels[role]).join(" · ")
-              }}
-              · {{ source.host }}
-              <template v-if="source.count > 1">
-                · {{ source.count }} 处定位
-              </template>
-            </small>
-          </span>
-          <Icon name="up" :size="21" />
-        </a>
-      </div>
-
+      <SourceList :groups="officialSources" />
       <template v-if="vendorReports.length">
         <div class="source-subheading">
           <h3>模型发布资料中的引用</h3>
-          <p>这些资料说明某次模型发布采用了该评测，不用于定义评测本身。</p>
+          <p>这些资料记录模型发布采用的评测，不用于定义评测本身。</p>
         </div>
-        <div class="source-list source-list-secondary">
-          <a
-            v-for="source in vendorReports"
-            :key="canonicalUrl(source.url)"
-            :href="source.url"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span>
-              <strong>{{ source.label }}</strong>
-              <small>{{ source.host }}</small>
-            </span>
-            <Icon name="up" :size="19" />
-          </a>
-        </div>
+        <SourceList :groups="vendorReports" />
       </template>
-
       <div v-if="featuredIn.length" class="featured-in">
-        <span>本站收录的相关模型发布资料</span>
+        <span>相关模型发布资料</span>
         <RouterLink
           v-for="release in featuredIn"
           :key="release.id"
-          to="/releases/"
-        >
-          {{ release.title }} <Icon name="up" :size="13" />
-        </RouterLink>
+          :to="`/releases/#${release.id}`"
+          ><span translate="no">{{ release.title }}</span
+          ><Icon name="arrow" :size="13"
+        /></RouterLink>
       </div>
+      <details
+        v-if="item.researchNotes?.length"
+        id="research"
+        class="research-notes"
+      >
+        <summary>资料核验记录 · {{ item.researchNotes.length }} 项</summary>
+        <p>以下说明本站核对资料的范围，不表示已独立运行评测或核实全部数据。</p>
+        <ul>
+          <li v-for="note in item.researchNotes" :key="note.text">
+            <p>
+              <CitedText
+                :text="note.text"
+                :sources="item.sources"
+                :urls="note.sourceUrls"
+              />
+            </p>
+          </li>
+        </ul>
+      </details>
     </section>
   </div>
-
   <div v-else class="container empty-state">
     <h1>没有找到这个评测</h1>
     <RouterLink to="/" class="primary-button">返回评测目录</RouterLink>

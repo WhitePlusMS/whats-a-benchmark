@@ -35,20 +35,6 @@
   },
   "limitations": [
     {
-      "text": "未对 Hard JSONL 当前 revision 做逐例核对、哈希或与官方页面示例逐条映射。",
-      "sourceUrls": [
-        "https://openai.com/index/healthbench/",
-        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
-      ]
-    },
-    {
-      "text": "本轮未验证数据内容与 MIT 声明之间的法律适用范围；在线样例披露请求则是发布页的明确要求。",
-      "sourceUrls": [
-        "https://openai.com/index/healthbench/",
-        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
-      ]
-    },
-    {
       "text": "具体厂商报告的 grader、长度校正、工具和抽样协议需逐份核对。",
       "sourceUrls": [
         "https://openai.com/index/healthbench/",
@@ -95,7 +81,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "HealthBench Hard 从 5,000 个 HealthBench 对话中筛选出 1,000 个前沿模型仍较难完成的任务；它沿用母集的逐例医生 rubric 评分。",
+    "summary": "回答健康相关对话并按医生 rubric 评分；从 HealthBench 中筛选 1,000 个较难任务。",
     "task": "回答健康相关多轮对话的最后一条用户消息，由 grader 按该对话的医生撰写 rubric criteria 评分。",
     "sourceUrls": [
       "https://openai.com/index/healthbench/",
@@ -159,5 +145,22 @@
       "https://openai.com/index/healthbench/",
       "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "未对 Hard JSONL 当前 revision 做逐例核对、哈希或与官方页面示例逐条映射。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+      ]
+    },
+    {
+      "text": "本轮未验证数据内容与 MIT 声明之间的法律适用范围；在线样例披露请求则是发布页的明确要求。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

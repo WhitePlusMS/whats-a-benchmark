@@ -1,0 +1,176 @@
+{
+  "id": "design-arena",
+  "status": "published",
+  "order": 657,
+  "name": "Design Arena",
+  "subtitle": "由匿名投票比较代码与媒体设计成果",
+  "category": "writing",
+  "tags": [
+    "设计偏好",
+    "前端生成",
+    "多媒体",
+    "匿名投票"
+  ],
+  "publisher": "Design Arena / Intelligence",
+  "brandIds": [
+    "design-arena"
+  ],
+  "year": null,
+  "version": "实时平台 · 按子榜与日期查看",
+  "kind": "suite",
+  "aliases": [
+    "DesignArena",
+    "Design Arena · 视觉设计"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在同提示生成结果间匿名投票，比较前端及图片、视频等设计成果。",
+    "task": "平台包含代码、Slides、图片、视频、音频和 builder 任务；Overall Frontend 是 Text-to-HTML 子榜。",
+    "sourceUrls": [
+      "https://www.designarena.ai/about",
+      "https://www.designarena.ai/leaderboard"
+    ]
+  },
+  "taskContract": {
+    "input": "用户提示及所选任务类别，部分任务包含参考媒体。",
+    "output": "该类别的代码、页面或媒体成果。",
+    "environment": "用户选择任务类别，四模型接收同提示同时生成；隐藏身份进行两个初轮、胜者/败者组和决胜共五场投票，形成四模型排序。Builder另有一次生成比较流程。",
+    "sourceUrls": [
+      "https://www.designarena.ai/about"
+    ]
+  },
+  "dataProfile": {
+    "summary": "子榜、方法和在线生成结果入口公开；本次未确认平台完整任务与投票数据库公开。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.designarena.ai/leaderboard"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "先选择具体子榜；Design Arena 与 Arena/LMArena 属于不同平台。"
+    ],
+    "url": "https://www.designarena.ai/leaderboard",
+    "sourceUrls": [
+      "https://www.designarena.ai/leaderboard"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://www.designarena.ai/about"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://www.designarena.ai/tournaments/33d366af-ea0b-4220-8cb1-c275096a452e",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "sourceUrls": [
+      "https://www.designarena.ai/tournaments/33d366af-ea0b-4220-8cb1-c275096a452e"
+    ]
+  },
+  "metric": {
+    "name": "Bradley–Terry Rating / Win Rate",
+    "description": "由人类成对偏好投票拟合相对评级，并显示胜率；类别不同不构成一个固定正确率总分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.designarena.ai/about"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "主观设计偏好受参与者、提示和匹配影响；前端子榜不能代表全部媒体设计或功能正确性。",
+      "sourceUrls": [
+        "https://www.designarena.ai/about"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方方法",
+      "url": "https://www.designarena.ai/about",
+      "role": "definition"
+    },
+    {
+      "label": "官方子榜目录",
+      "url": "https://www.designarena.ai/leaderboard",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方前端总榜",
+      "url": "https://www.designarena.ai/leaderboard/code",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://www.designarena.ai/tournaments/33d366af-ea0b-4220-8cb1-c275096a452e",
+      "label": "Design Arena 官方 tournament 页面",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "每次成对投票等权进入win rate与BT拟合，Rating=400×log10(strength)；模型池/初步覆盖门槛按类别变化。",
+      "sourceUrls": [
+        "https://www.designarena.ai/about"
+      ]
+    },
+    "comparison": {
+      "text": "先选Overall Frontend(Text-to-HTML)或具体媒体/Builder子榜；不同类别的偏好投票不构成同一固定正确率总分。",
+      "sourceUrls": [
+        "https://www.designarena.ai/about"
+      ]
+    },
+    "disclosure": {
+      "text": "子榜、方法和在线生成结果入口公开；本次未确认平台完整任务与投票数据库公开。",
+      "sourceUrls": [
+        "https://www.designarena.ai/leaderboard"
+      ]
+    },
+    "versionChanges": {
+      "text": "实时平台没有一套永久固定题库；新增子榜不等于同一评分尺度扩容。",
+      "sourceUrls": [
+        "https://www.designarena.ai/leaderboard"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://www.designarena.ai/about",
+        "https://www.designarena.ai/leaderboard"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "design-arena-tournament-33d366af",
+        "title": "绿色白色杂货电商登录页",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "Design Arena 已完成的一场真实前端对比任务：为杂货电商网页制作绿色与白色主题的登录页。页面记录四个模型候选并通过匿名投票比较；本站不复制 HTML、页面截图或名次作为标准答案。",
+        "raw": "grocery ecommerce webpage",
+        "explanation": "官方 tournament UUID=33d366af-ea0b-4220-8cb1-c275096a452e；公开 GET API 返回原 prompt、arena=models、category=website、status=completed。只展示短引及本站概述，不披露候选 HTML、投票排名或 gold。平台条款对数据/输出另有限制，公开不代表授权复制。",
+        "source": "https://www.designarena.ai/tournaments/33d366af-ea0b-4220-8cb1-c275096a452e",
+        "license": "未核实统一再发布许可；Design Arena 平台条款 §§7.2、8.11、17、18 对数据和输出另有限制。本页仅保留短提示词和本站概述，不复制生成 HTML、媒体或投票输出。",
+        "split": "公开 tournament · 33d366af-ea0b-4220-8cb1-c275096a452e · website · completed",
+        "excerpt": true
+      }
+    ]
+  }
+}

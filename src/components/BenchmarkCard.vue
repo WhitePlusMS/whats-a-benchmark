@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Benchmark } from "../types/benchmark";
 import { kindLabels } from "../content/catalog";
-import { researchStatusLabels, sampleAccessLabels } from "../content/labels";
+import { researchStatusLabels } from "../content/labels";
 import { useComparison } from "../composables/compare";
 import Icon from "./Icon.vue";
 import PublisherMarks from "./PublisherMarks.vue";
@@ -25,22 +25,26 @@ const { selected, toggle } = useComparison();
       </div>
     </div>
     <RouterLink :to="`/benchmarks/${item.id}/`" class="card-title"
-      ><h3>{{ item.name }}</h3>
+      ><h3 translate="no">{{ item.name }}</h3>
       <Icon name="up" :size="18"
     /></RouterLink>
+    <p class="card-tldr">{{ item.subtitle }}</p>
     <p class="card-summary">{{ item.officialDefinition.summary }}</p>
     <div class="tags">
       <span v-for="tag in item.tags" :key="tag">{{ tag }}</span>
     </div>
     <div class="card-meta">
-      <span :title="item.publisher">{{ item.publisher }}</span
+      <span :title="item.publisher" translate="no">{{ item.publisher }}</span
       ><span>{{ item.year || "年份待考" }}</span>
     </div>
     <div class="card-actions">
       <RouterLink :to="`/benchmarks/${item.id}/#samples`"
-        ><Icon
-          :name="item.sampleAccess.status === 'local' ? 'file' : 'external'"
-          :size="15" />{{ sampleAccessLabels[item.sampleAccess.status]
+        ><Icon name="file" :size="15" />{{
+          item.composition
+            ? "查看组成样例"
+            : item.sampleAccess.status === "local"
+              ? "查看真实题目"
+              : "查看样例获取方式"
         }}<Icon name="arrow" :size="15" /></RouterLink
       ><button
         class="compare-toggle"

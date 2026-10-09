@@ -1,0 +1,173 @@
+{
+  "id": "facts-parametric",
+  "status": "published",
+  "order": 206,
+  "name": "FACTS Parametric",
+  "subtitle": "不用检索，准确回答事实问题",
+  "category": "knowledge",
+  "tags": [
+    "事实性",
+    "参数知识",
+    "短答案",
+    "无工具"
+  ],
+  "publisher": "Google DeepMind / Google Research",
+  "brandIds": [
+    "google-research",
+    "google-deepmind"
+  ],
+  "year": 2025,
+  "version": "FACTS suite 2025；Parametric track",
+  "kind": "subset",
+  "aliases": [
+    "FACTS Parametric Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "FACTS 套件中只依赖模型内部知识的文本事实问答分项。",
+    "task": "在不使用搜索等外部工具的情况下回答可核验事实问题。",
+    "sourceUrls": [
+      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+    ]
+  },
+  "taskContract": {
+    "input": "由用户兴趣驱动的 trivia 风格文本问题。",
+    "output": "事实答案。",
+    "environment": "Kaggle 托管评测；Parametric 不允许借外部搜索解决问题。",
+    "sourceUrls": [
+      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方发布介绍列出 1,052 道公开题和 1,052 道私有题，总计 2,104 题。",
+    "disclosure": "partial",
+    "scale": [
+      "2,104 题。"
+    ],
+    "splits": [
+      "1,052 道公开题；1,052 道私有保留题。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开题可从官方 Kaggle 入口获取；保留集由托管方管理。"
+    ],
+    "url": "https://www.kaggle.com/benchmarks/google/facts-parametric/leaderboard",
+    "sourceUrls": [
+      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖数据、答案和附件的完整许可。",
+    "scope": "本站仅提供原创说明与官方链接。",
+    "boundaries": [
+      "未确认具体发布版本的许可前，不在本站复制题目、答案或附件。"
+    ],
+    "sourceUrls": [
+      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "url": "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf",
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy（Parametric）",
+    "description": "衡量 Parametric 事实问答准确率；这是 FACTS 四项套件中的分项，不是四项平均的 FACTS Score。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "无工具参数知识与带搜索的事实性任务不同；不能以本分项替代整个 FACTS 套件。",
+      "sourceUrls": [
+        "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "公开题量按第一方发布介绍的 1,052 题记录；当前 Kaggle 页面内容未完整提取，下载条件与许可保留未核实。",
+      "sourceUrls": [
+        "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+      ]
+    },
+    {
+      "text": "本轮已核验并展示具体任务事实解读，来源位置为 Table 5 row URL Suffix=Tommy_Morgan；未镜像底层完整材料。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "FACTS 官方定义与方法",
+      "url": "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/",
+      "role": "definition"
+    },
+    {
+      "label": "FACTS Parametric 官方榜单与数据",
+      "url": "https://www.kaggle.com/benchmarks/google/facts-parametric/leaderboard",
+      "role": "data"
+    },
+    {
+      "label": "FACTS 作者论文",
+      "url": "https://arxiv.org/abs/2512.10791",
+      "role": "paper"
+    },
+    {
+      "label": "已核验的具体任务或公开例题",
+      "url": "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "评Parametric无工具factoid答案的事实正确性；问题由用户兴趣驱动且可由Wikipedia核验，不能加web search后仍称同一能力。",
+      "sourceUrls": [
+        "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+      ]
+    },
+    "comparison": {
+      "text": "Parametric的1,052公开+1,052私有题与Search/Multimodal/Grounding分开；FACTS Score才平均四项公私有成绩，不用本分项代替总指数。",
+      "sourceUrls": [
+        "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "public-case-facts-parametric",
+        "title": "官方表 5 · 电视剧主题曲口琴演奏者",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方 FACTS 论文表 5 的真实知识问答：询问 The Rockford Files 主题曲中口琴的演奏者。表中的 performer 答案为 Tommy Morgan。",
+        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：Table 5 row URL Suffix=Tommy_Morgan",
+        "raw": "who played harmonica on the rockford files theme song",
+        "source": "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf",
+        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。",
+        "split": "FACTS Parametric public example table",
+        "excerpt": true,
+        "answer": "Tommy Morgan"
+      }
+    ]
+  }
+}

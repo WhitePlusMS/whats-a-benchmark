@@ -92,6 +92,120 @@ test("有来源的出向关系在发布、草稿、恢复发布之间完整保�
   assert.deepEqual(entrySchema.parse(await readJson(path)), entry);
 });
 
+test("指数组成参与发布、撤回、投影与删除保护，不产生失效成员链接", async (t) => {
+  const { root, entry } = await fixture(t);
+  const suite = {
+    ...entry,
+    id: "suite",
+    kind: "suite",
+    composition: {
+      items: [
+        { id: entry.id, group: "知识", weight: 100, detail: "按官方规则换算" },
+      ],
+      sourceUrls: [entry.sources[0]!.url],
+    },
+  };
+  const path = join(root, "content/benchmarks/suite.json");
+  await writeJson(path, suite);
+  const workspace = await generateContent(root);
+  assert.deepEqual(
+    publicProjection(workspace).catalog.find((item) => item.id === "suite")
+      ?.composition,
+    suite.composition,
+  );
+  assert.match(
+    deletionImpact(workspace, entry.id).references.join(" "),
+    /composition.items/,
+  );
+  await assert.rejects(deleteEntry(root, entry.id), /composition.items/);
+  await assert.rejects(setStatus(root, entry.id, "draft"), /composition.items/);
+  await setStatus(root, "suite", "draft");
+  assert.match(
+    deletionImpact(await loadContent(root), entry.id).references.join(" "),
+    /composition.items/,
+  );
+  await setStatus(root, "suite", "published");
+  assert.deepEqual(
+    entrySchema.parse(await readJson(path)).composition,
+    suite.composition,
+  );
+  for (const id of ["suite", "missing"]) {
+    await writeJson(path, {
+      ...suite,
+      composition: {
+        ...suite.composition,
+        items: [{ ...suite.composition.items[0], id }],
+      },
+    });
+    await assert.rejects(loadContent(root), /composition.items/);
+  }
+});
+
+test("读分解读和指数组成必须有可追溯来源、唯一成员与完整权重", async () => {
+  const entry = entrySchema.parse(
+    await readJson("content/benchmarks/mmlu-pro.json"),
+  );
+  const sourceUrls = [entry.sources[0]!.url];
+  const base = {
+    ...entry,
+    kind: "suite",
+    interpretation: { judge: { text: "程序判分", sourceUrls } },
+    composition: {
+      items: [{ id: "second", group: "知识", weight: 100, detail: "完整权重" }],
+      sourceUrls,
+    },
+  };
+  assert(entrySchema.safeParse(base).success);
+  assert(!entrySchema.safeParse({ ...base, kind: "original" }).success);
+  assert(!entrySchema.safeParse({ ...base, interpretation: {} }).success);
+  assert(
+    !entrySchema.safeParse({
+      ...base,
+      interpretation: {
+        judge: {
+          text: "无依据",
+          sourceUrls: ["https://example.org/unregistered"],
+        },
+      },
+    }).success,
+  );
+  assert(
+    !entrySchema.safeParse({
+      ...base,
+      composition: {
+        ...base.composition,
+        sourceUrls: ["https://example.org/unregistered"],
+      },
+    }).success,
+  );
+  for (const weights of [[80], [0, 100], [-1, 101], [50, 40]])
+    assert(
+      !entrySchema.safeParse({
+        ...base,
+        composition: {
+          ...base.composition,
+          items: weights.map((weight, i) => ({
+            ...base.composition.items[0],
+            id: `member-${i}`,
+            weight,
+          })),
+        },
+      }).success,
+    );
+  assert(
+    !entrySchema.safeParse({
+      ...base,
+      composition: {
+        ...base.composition,
+        items: [50, 50].map((weight) => ({
+          ...base.composition.items[0],
+          weight,
+        })),
+      },
+    }).success,
+  );
+});
+
 test("附属日志失败明确警告已完成，不把新建、状态修改或删除误报为失败", async (t) => {
   const { root, path } = await fixture(t);
   await mkdir(join(root, "UPDATE_LOG.md"));
@@ -355,7 +469,15 @@ test("题型结构和转载限制在构建前拦截，不让坏数据进入组�
     sampleSchema.safeParse({
       ...base,
       type: "image",
-      assets: [{ kind: "image", path: "images/example.png", alt: "测试图片" }],
+      assets: [
+        {
+          kind: "image",
+          path: "images/example.png",
+          alt: "测试图片",
+          width: 640,
+          height: 480,
+        },
+      ],
     }).success,
     true,
   );

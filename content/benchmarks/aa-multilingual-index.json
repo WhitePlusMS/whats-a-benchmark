@@ -1,0 +1,246 @@
+{
+  "id": "aa-multilingual-index",
+  "status": "published",
+  "order": 666,
+  "name": "Artificial Analysis Multilingual Index",
+  "subtitle": "按语言查看 Global-MMLU-Lite 知识推理表现",
+  "category": "general",
+  "tags": [
+    "多语言",
+    "跨学科",
+    "指数",
+    "选择题"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "Global-MMLU-Lite 基础 · 按支持语言快照查看",
+  "kind": "suite",
+  "aliases": [
+    "AA Multilingual Index",
+    "AA 多语言指数",
+    "AA 中文／多语言"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "基于 Global-MMLU-Lite 的支持语言成绩，概括多语言知识与推理表现。",
+    "task": "在各支持语言中回答跨学科知识选择题，展示语言分项与平均表现。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "Global-MMLU-Lite 多语言题干及四个选项。",
+    "output": "所选答案及供 AA 提取的回答。",
+    "environment": "AA 独立执行选择题协议，采用正则答案提取和 pass@1。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "上游 Global-MMLU-Lite 数据公开；其当前 v3.0 的语言集合不等同 AA 榜单所支持的语言快照。",
+    "disclosure": "partial",
+    "scale": [
+      "上游每语言 test 400 项：文化敏感和文化中立各 200；AA 方法报告每支持语言约 400。"
+    ],
+    "splits": [
+      "上游v3.0的test覆盖23种语言，每语言400项；dev覆盖22种语言。AA指数当期支持语言和执行快照独立核对。"
+    ],
+    "fields": [
+      "sample_id、subject、subject_category、question、option_a–d、answer；required_knowledge、time_sensitive、reference、culture、region、country、cultural_sensitivity_label、is_annotated。"
+    ],
+    "files": [
+      "Global-MMLU-Lite按en、zh等语言目录发布test/dev数据；AA指数没有另公开一个统一题库文件，执行与语言支持范围见AA方法。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "读取指定上游版本与 AA 支持语言列表；不将上游全部语言数直接写为 AA 当前覆盖。"
+    ],
+    "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0（选定公开任务的数据许可）",
+    "scope": "只采用 Global-MMLU-Lite Apache-2.0 数据快照的一条原题；不推及 AA 榜单结果和其它数据。",
+    "boundaries": [
+      "保留发布方、数据快照和来源；各第三方材料按原作者许可另行核对。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "这是 AA 多语言指数所采用上游数据的真实中文行；四个选项和答案来自固定 Parquet。它展示题型，不声称复现 AA 某次模型成绩；与 OpenAI MMMLU 分开。",
+    "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+    ]
+  },
+  "metric": {
+    "name": "跨支持语言平均分 / 语言分项",
+    "description": "基础为各语言选择题 pass@1；官网另提供按语言归一化视图，归一化颜色不能替代原始绝对成绩。未把价格或速度混入能力分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/models/multilingual",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "知识题成绩不等于直接语法、专业翻译或口语能力；AA 语言支持快照与上游新增版本需分别核验。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "AA 官方多语言定义与方法",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "AA 官方多语言榜",
+      "url": "https://artificialanalysis.ai/models/multilingual",
+      "role": "leaderboard"
+    },
+    {
+      "label": "AA 官方基础评测",
+      "url": "https://artificialanalysis.ai/evaluations/global-mmlu-lite",
+      "role": "definition"
+    },
+    {
+      "label": "上游 Global-MMLU-Lite 数据卡",
+      "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite",
+      "role": "data"
+    },
+    {
+      "label": "OpenAI MMMLU 数据卡（区别依据）",
+      "url": "https://huggingface.co/datasets/openai/MMMLU",
+      "role": "data"
+    },
+    {
+      "label": "已核验的原始具体任务",
+      "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "数据许可及公开范围声明",
+      "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "mmmlu",
+      "label": "相关但不同",
+      "detail": "两者都涉及多语言 MMLU，但 AA 以 CohereLabs Global-MMLU-Lite 为基础，MMMLU 是 OpenAI 的另一发布。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://huggingface.co/datasets/openai/MMMLU"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "选择题通过正则提取答案并按标准答案计分，由 AA 独立执行。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "固定题集版本、语言支持范围、绝对/归一化视图与模型配置；不是 OpenAI MMMLU 的同义名称。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/models/multilingual",
+        "https://huggingface.co/datasets/openai/MMMLU"
+      ]
+    },
+    "disclosure": {
+      "text": "上游 Global-MMLU-Lite 数据公开；其当前 v3.0 的语言集合不等同 AA 榜单所支持的语言快照。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "versionChanges": {
+      "text": "上游数据卡当前 v3.0/23 语言；AA 官网与方法支持语言描述不完全一致，本条不写一个推断的统一总数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite",
+        "https://artificialanalysis.ai/models/multilingual",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "已重新读取官方源文件并核对具体记录；SHA-256 87e148156e95948db761c5759e33ca5e1a81ffa8c9163edf58a4c42c86c28299。这是 AA 多语言指数所采用上游数据的真实中文行；四个选项和答案来自固定 Parquet。它展示题型，不声称复现 AA 某次模型成绩；与 OpenAI MMMLU 分开。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "global-mmlu-lite-zh-business-ethics-57",
+        "title": "Global-MMLU-Lite · 中文商业伦理题",
+        "type": "choice",
+        "prompt": "_________（例如美国的________）是推动道德商业行为的关键因素。",
+        "explanation": "这是 AA 多语言指数所采用上游数据的真实中文行；四个选项和答案来自固定 Parquet。它展示题型，不声称复现 AA 某次模型成绩；与 OpenAI MMMLU 分开。",
+        "raw": {
+          "sample_id": "business_ethics/test/57",
+          "subject": "business_ethics",
+          "subject_category": "Business",
+          "question": "_________（例如美国的________）是推动道德商业行为的关键因素。",
+          "option_a": "立法，《萨班斯-奥克斯利法案》",
+          "option_b": "公司内部政策，《不道德企业行为法》",
+          "option_c": "公司内部政策，《萨班斯-奥克斯利法案》",
+          "option_d": "立法，《不道德企业行为法》",
+          "answer": "A",
+          "required_knowledge": "['regional', 'regional', 'regional', 'regional']",
+          "time_sensitive": "['No', 'No', 'No', 'No']",
+          "reference": "[{'end': 51, 'label': 'Geographic', 'score': None, 'start': 38}, {'end': 51, 'label': 'Geographic', 'score': None, 'start': 34}, {'end': 51, 'label': 'Geographic', 'score': None, 'start': 38}, {'end': 51, 'label': 'Geographic', 'score': None, 'start': 38}]",
+          "culture": "['Western Culture', 'Western Culture']",
+          "region": "['North America']",
+          "country": "['United States of America (USA)', 'United States of America (USA)', 'United States of America (USA)', 'United States of America (USA)']",
+          "cultural_sensitivity_label": "CS",
+          "is_annotated": true
+        },
+        "source": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+        "license": "Artificial Analysis / Apache-2.0",
+        "licensePath": "licenses/aa-multilingual-index-sample-source.txt",
+        "split": "Global-MMLU-Lite v3 / zh / test / row 9",
+        "excerpt": false,
+        "answer": "A",
+        "options": [
+          "立法，《萨班斯-奥克斯利法案》",
+          "公司内部政策，《不道德企业行为法》",
+          "公司内部政策，《萨班斯-奥克斯利法案》",
+          "立法，《不道德企业行为法》"
+        ]
+      }
+    ]
+  }
+}

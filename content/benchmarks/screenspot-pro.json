@@ -26,35 +26,7 @@
       "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
     ]
   },
-  "limitations": [
-    {
-      "text": "未通过作者原始文件逐项统计精确截图/指令记录数及 splits；本记录只用作者论文确认的 23 应用、5 行业、3 OS。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2504.07981",
-        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
-        "https://gui-agent.github.io/grounding-leaderboard/",
-        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
-      ]
-    },
-    {
-      "text": "MIT 数据集元数据没有逐项界定其覆盖的第三方软件 UI/截图资产；未取得软件厂商或其他权利人的额外授权证据。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2504.07981",
-        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
-        "https://gui-agent.github.io/grounding-leaderboard/",
-        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
-      ]
-    },
-    {
-      "text": "未复核 annotations JSON 所有字段，也未下载截图文件。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2504.07981",
-        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
-        "https://gui-agent.github.io/grounding-leaderboard/",
-        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
-      ]
-    }
-  ],
+  "limitations": [],
   "sources": [
     {
       "label": "ScreenSpot-Pro 作者论文",
@@ -80,6 +52,11 @@
       "label": "ScreenSpot-Pro-GUI-Grounding",
       "url": "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding/blob/main/LICENSE",
       "role": "code"
+    },
+    {
+      "url": "https://arxiv.org/html/2504.07981v1",
+      "label": "ScreenSpot-Pro 官方论文 HTML v1",
+      "role": "paper"
     }
   ],
   "status": "published",
@@ -89,7 +66,7 @@
   ],
   "researchStatus": "partial",
   "officialDefinition": {
-    "summary": "该评测面向专业桌面软件的高分辨率 GUI 元素定位。给定屏幕截图和自然语言操作指令，模型需将指令对应到截图中的目标元素。作者论文强调高分辨率、小目标及复杂专业软件界面造成的 grounding 难度；这项能力不等同于完成多步 GUI agent 工作流。",
+    "summary": "根据自然语言指令，在专业软件的高分辨率截图中定位目标 GUI 元素。",
     "task": "依据自然语言指令，在专业桌面软件截图中定位目标 GUI 元素。",
     "sourceUrls": [
       "https://arxiv.org/abs/2504.07981",
@@ -152,12 +129,59 @@
     ]
   },
   "sampleAccess": {
-    "status": "unverified",
-    "reason": "目前没有经权利核验的站内样例；第三方软件截图及界面元素的逐项转载许可未确认。",
+    "url": "https://arxiv.org/html/2504.07981v1",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
     "sourceUrls": [
-      "https://gui-agent.github.io/grounding-leaderboard/",
-      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
-    ],
-    "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      "https://arxiv.org/html/2504.07981v1"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "未通过作者原始文件逐项统计精确截图/指令记录数及 splits；本记录只用作者论文确认的 23 应用、5 行业、3 OS。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.07981",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://gui-agent.github.io/grounding-leaderboard/",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      ]
+    },
+    {
+      "text": "MIT 数据集元数据没有逐项界定其覆盖的第三方软件 UI/截图资产；未取得软件厂商或其他权利人的额外授权证据。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.07981",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://gui-agent.github.io/grounding-leaderboard/",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      ]
+    },
+    {
+      "text": "未复核 annotations JSON 所有字段，也未下载截图文件。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.07981",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://gui-agent.github.io/grounding-leaderboard/",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "screenspot-pro-davinci-blur-dissolve",
+        "title": "DaVinci Resolve 图标定位任务",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "ScreenSpot-Pro 论文附录中的真实 GUI 定位示例：在 DaVinci 界面截图中定位 Blur Dissolve 图标。截图需在论文附录查看；本站没有附图，文字概述不是完整视觉输入。",
+        "raw": "Blur Dissolve",
+        "explanation": "定位于论文 v1 Appendix D Figure 5，标注 Application=DaVinci、Type=icon、Bounding Box=[460,1344,709,1375]。论文 CC BY 4.0 不自动消除截图内第三方软件界面权利；此处只保留短标签和编辑性任务概述。",
+        "source": "https://arxiv.org/html/2504.07981v1",
+        "license": "论文页面标注 CC BY 4.0；该截图包含第三方软件界面，界面元素及商标的逐项权利未核实。本页仅保留短标签和本站概述，不复制截图，也不把论文许可扩展到界面素材。",
+        "split": "论文 v1 · Appendix D · Figure 5 · Application=DaVinci · Type=icon",
+        "excerpt": true
+      }
+    ]
   }
 }

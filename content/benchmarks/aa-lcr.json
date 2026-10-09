@@ -1,0 +1,203 @@
+{
+  "id": "aa-lcr",
+  "status": "published",
+  "order": 732,
+  "name": "AA-LCR v1.1",
+  "subtitle": "跨多份长文档进行推理",
+  "category": "context",
+  "tags": [
+    "跨多份长文档进行推理"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2025,
+  "version": "v1.1",
+  "kind": "original",
+  "aliases": [
+    "AA-LCR",
+    "AA LCR",
+    "Artificial Analysis Long Context Reasoning"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "要求模型结合多份长文档回答问题，考查长上下文推理而不只是定位一个关键词。",
+    "task": "问题和约十万 token 的文档材料。 → 基于文档的开放答案。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "问题和约十万 token 的文档材料。",
+    "output": "基于文档的开放答案。",
+    "environment": "AA 方法要求至少 128K 上下文窗口；文档长度采用指定 tokenizer 计量。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "数据卡提供题目与文档结构；文档原作者的权利与评测代码、元数据许可分别处理。",
+    "disclosure": "partial",
+    "scale": [
+      "100 题，覆盖 7 类文档。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方数据卡与文件入口公开；原始文档不自动适用仓库许可。"
+    ],
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0（选定公开任务的数据许可）",
+    "scope": "Apache-2.0 明确覆盖 Question set；本页保留问题、答案和原 CSV 元信息，Document set 正文未复制。",
+    "boundaries": [
+      "保留发布方、数据快照和来源；各第三方材料按原作者许可另行核对。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "原题需根据约 94,494 token 的多份文档给行业排序。这里只展示官方问题、参考答案和文档来源元信息，未包含文档正文；不把缺少长输入的页面当作完整可运行题。",
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/README.md"
+    ]
+  },
+  "metric": {
+    "name": "pass@1",
+    "description": "按回答与参考答案的语义一致性判分；AA 当前方法每题重复三次并聚合。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "数据卡的 Apache-2.0 声明不能代替各原始文档的版权许可。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "v1.1 使用 GPT-5.6 Luna（medium）检查语义是否等价。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "核对 v1.0/v1.1、答案键、裁判、上下文容量及文档输入方式。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "disclosure": {
+      "text": "可查看官方题目、文档和方法说明；原始文档仍适用各自的版权与许可。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "versionChanges": {
+      "text": "v1.1 增加判分系统提示并修正 16 个答案键；官方明确不能与 v1.0 成绩直接比较。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "AA-LCR 数据卡",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+      "role": "data"
+    },
+    {
+      "label": "AA 方法说明",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "已核验的原始具体任务",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+      "role": "data"
+    },
+    {
+      "label": "数据许可及公开范围声明",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/README.md",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "researchNotes": [
+    {
+      "text": "可查看官方题目、文档和方法说明；本站未逐项审计第三方文档授权。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "已重新读取官方源文件并核对具体记录；SHA-256 aea5198982436fa774f616964bbeb34716de9e94368a123275b9355765c9b73b。原题需根据约 94,494 token 的多份文档给行业排序。这里只展示官方问题、参考答案和文档来源元信息，未包含文档正文；不把缺少长输入的页面当作完整可运行题。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "test-question-1",
+        "title": "长文档推理 · 行业违规次数排序",
+        "type": "text",
+        "prompt": "Based on the provided documents, there appears to be a correlation between industry concentration and the frequency of consumer-related infringements and undertakings issued by the ACCC. Identify and rank the industries explicitly mentioned in the paragraphs, according to the number of infringements over the past three decades. Exclude Broadcasting Industry from the answer.",
+        "explanation": "原题需根据约 94,494 token 的多份文档给行业排序。这里只展示官方问题、参考答案和文档来源元信息，未包含文档正文；不把缺少长输入的页面当作完整可运行题。",
+        "raw": {
+          "": "0",
+          "document_category": "Academia",
+          "document_set_id": "ac_markets",
+          "question_id": "1",
+          "question": "Based on the provided documents, there appears to be a correlation between industry concentration and the frequency of consumer-related infringements and undertakings issued by the ACCC. Identify and rank the industries explicitly mentioned in the paragraphs, according to the number of infringements over the past three decades. Exclude Broadcasting Industry from the answer.",
+          "answer": "1. Airline Industry (12)\\n2. Accommodation Industry (4)",
+          "data_source_filenames": "barriers-to-collaboration-and-commercialisation-iisa.txt;The-State-of-Competition.txt;FULLTEXT01.txt;DAF-COMP(2023)14.en.txt",
+          "data_source_urls": "https://competition-policy.ec.europa.eu/system/files/2024-06/A_taxonomy_of_industry_competition_launch.pdf;https://www.industry.gov.au/sites/default/files/2023-11/barriers-to-collaboration-and-commercialisation-iisa.pdf;https://e61.in/wp-content/uploads/2023/08/The-State-of-Competition.pdf;https://uu.diva-portal.org/smash/get/diva2:1798138/FULLTEXT01.pdf;https://one.oecd.org/document/DAF/COMP(2023)14/en/pdf",
+          "input_tokens": "94494"
+        },
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+        "license": "Artificial Analysis / Apache-2.0",
+        "licensePath": "licenses/aa-lcr-sample-source.txt",
+        "split": "test / question_id=1 / document_set_id=ac_markets",
+        "excerpt": true,
+        "answer": "1. Airline Industry (12)\n2. Accommodation Industry (4)"
+      }
+    ]
+  }
+}

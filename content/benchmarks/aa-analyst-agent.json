@@ -1,0 +1,169 @@
+{
+  "id": "aa-analyst-agent",
+  "status": "published",
+  "order": 440,
+  "name": "AA-AnalystAgent",
+  "subtitle": "从真实文档和表格得到稳定的分析答案",
+  "category": "work",
+  "tags": [
+    "数据分析",
+    "文档与表格",
+    "业务分析",
+    "可靠性",
+    "智能体"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "80 题；当前官方方法",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "针对业务与数据分析员工作，考察从原始文件到定量答案的完整分析。",
+    "task": "选择分析方法、解释资料和例外情况，从表格与文档计算业务或科学问题的答案。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+    ]
+  },
+  "taskContract": {
+    "input": "一个业务/科学定量问题及当题原始表格/文档文件夹；80题与14领域是整个私有集规模，不是一次推理的输入。",
+    "output": "自由形式分析答案。",
+    "environment": "AA 的 agentic Python 执行环境及评分流程，每题独立运行 5 次。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+    ]
+  },
+  "dataProfile": {
+    "summary": "题集与参考答案私有，仅公开示例；独立榜单，不属于 AA Intelligence Index。",
+    "disclosure": "partial",
+    "scale": [
+      "80 题、14 个领域、每题 5 次独立运行。"
+    ],
+    "splits": [
+      "官方示例公开；完整题集和答案私有。"
+    ],
+    "fields": [],
+    "files": [
+      "每题关联源表格和文档文件夹。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "完整题集和答案不公开。"
+    ],
+    "url": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方页面未为公开示例单独声明复用许可；完整题目集和参考答案未公开。",
+    "scope": "公开页面展示的案例事实；完整题库、参考答案及支持资料的许可范围未查明。",
+    "boundaries": [
+      "页面未说明该示例是否计分。",
+      "不由公开展示推定完整题库、附件或模型输出可复用。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方已公开的分析任务演示；没有下载配套表格，不声称该演示属于私有计分集。",
+    "url": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+    ]
+  },
+  "metric": {
+    "name": "pass^5",
+    "description": "5 次独立运行全部答对的题目占比。官方同时区分单次成功率 pass@1 和至少一次成功率 pass@5；不能把它们当成同一数值。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "强调重复运行可靠性，不能只用一次答对的比例代替主指标。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "完整私有任务与答案未下载；公开示例和方法可用于解释任务边界。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；官方已公开的分析任务演示；没有下载配套表格，不声称该演示属于私有计分集。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "AA-AnalystAgent 官方说明",
+      "url": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+      "role": "definition"
+    },
+    {
+      "label": "AA 官方评测方法",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "Stirrup 官方 harness",
+      "url": "https://github.com/ArtificialAnalysis/Stirrup",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "在agentic Python环境分析源文件；答案由LLM judge二元判正确，并有numeric pre-check override，五次运行独立重复。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "主pass^5为五次都正确的题占比，pass@1为随机给定尝试、pass@5为至少一次；不要用一条成功轨迹概括重复可靠性。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-aa-analyst-agent",
+        "title": "公开演示 · 加州医疗交通支出",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "依据官方所列 FMR1997through2001.xlsx，计算加州 Medicaid 在 2001 年的医疗交通总支出，包含 C- medical transport，按美元取整。官方页面给出的参考值为 115801。",
+        "explanation": "官方已公开的分析任务演示；没有下载配套表格，不声称该演示属于私有计分集。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "California medical transport spend\n\nWhat was the total computable medical transport spend (including C- medical transport) for Medicaid in California in 2001? Round the answer",
+        "source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true,
+        "answer": "115801"
+      }
+    ]
+  }
+}

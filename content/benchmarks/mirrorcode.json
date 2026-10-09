@@ -1,0 +1,194 @@
+{
+  "id": "mirrorcode",
+  "status": "published",
+  "order": 1150,
+  "name": "MirrorCode",
+  "subtitle": "端到端重建现有程序",
+  "category": "coding",
+  "tags": [
+    "黑盒重建",
+    "长程开发"
+  ],
+  "publisher": "Epoch AI and METR",
+  "brandIds": [
+    "epoch-ai"
+  ],
+  "year": 2026,
+  "version": "ML +Private 2L榜单配置；2026-10快照",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在无原始源码条件下端到端重建现有程序，要求匹配隐藏测试输出。",
+    "task": "在无法读取原始实现源码的条件下，根据程序行为和规格重建完整目标程序。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mirrorcode"
+    ]
+  },
+  "taskContract": {
+    "input": "仅可执行的参考程序、程序文档和可见测试输入；可用任意参数观察原程序输出，但不能读取原源码或上网找实现。",
+    "output": "指定语言的完整程序；候选实现在独立评分环境中须精确匹配参考程序的stdout和stderr。",
+    "environment": "Inspect ReAct脚手架提供shell、text_editor、evaluate_testcases与submit；可见测试反馈可迭代，隐藏测试不暴露。当前ML+Private 2L每项3次、每次100亿tokens和7天，Docker中无网络。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mirrorcode",
+      "https://github.com/epoch-research/MirrorCode"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开22个目标程序的材料与运行仓库，另外3个目标保留为私有测试。",
+    "disclosure": "partial",
+    "scale": [
+      "完整集合：25个目标程序，其中22个公开、3个私有。",
+      "当前ML +Private 2L榜单：15个目标、2种实现语言，共30项任务。"
+    ],
+    "splits": [
+      "公开22个目标与私有3个目标；榜单另筛选Medium/Large档位。"
+    ],
+    "fields": [],
+    "files": [
+      "公开评测脚手架、任务材料及预构建容器。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mirrorcode",
+      "https://github.com/epoch-research/MirrorCode"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "从官方GitHub仓库获取公开任务与脚手架，并配置容器运行环境。",
+      "官方建议较长运行使用云端资源。"
+    ],
+    "sourceUrls": [
+      "https://github.com/epoch-research/MirrorCode"
+    ],
+    "url": "https://github.com/epoch-research/MirrorCode"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "公开仓库标注MIT；底层第三方目标程序的许可需单独核对。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://github.com/epoch-research/MirrorCode"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "url": "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "100%解决比例",
+    "description": "当前榜单选择15个Medium/Large目标程序、每个用2种语言实现，形成30项任务；只有达到100%测试解决条件才计完全成功，并展示统计误差。论文采用不同配置，分数不可直接比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mirrorcode"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "部分原软件可能出现在模型训练中；官方记忆筛查不能完全排除记忆贡献。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mirrorcode",
+        "https://github.com/epoch-research/MirrorCode"
+      ]
+    },
+    {
+      "text": "论文配置与当前榜单配置不同，分数需连同任务范围和预算阅读。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mirrorcode",
+        "https://github.com/epoch-research/MirrorCode"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "25个程序是完整集合，30项是当前榜单的程序与语言组合，二者不是冲突的题目总数。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mirrorcode",
+        "https://github.com/epoch-research/MirrorCode"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mirrorcode"
+      ]
+    },
+    {
+      "text": "本轮已核验并展示具体任务事实解读，来源位置为 First row: test_file=bigyear; test_name=1m-month；未镜像底层完整材料。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Epoch MirrorCode benchmark",
+      "url": "https://epoch.ai/benchmarks/mirrorcode",
+      "role": "definition"
+    },
+    {
+      "label": "MirrorCode repository",
+      "url": "https://github.com/epoch-research/MirrorCode",
+      "role": "readme"
+    },
+    {
+      "label": "MirrorCode paper",
+      "url": "https://arxiv.org/abs/2606.30182",
+      "role": "paper"
+    },
+    {
+      "label": "已核验的具体任务或公开例题",
+      "url": "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "在没有参考二进制的评分沙箱重建候选实现；所有端到端测试的stdout/stderr都一致才算100%solve，隐藏测试阻止查表式实现。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mirrorcode"
+      ]
+    },
+    "comparison": {
+      "text": "当前榜是15个Medium/Large目标×2语言的30项，而论文用全25目标、多语言和另一预算；保留目标桶、语言、attempt次数与±SEM。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mirrorcode"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-mirrorcode",
+        "title": "cal · 大年份的周一起始月历输入",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "公开测试记录 test_file=bigyear、test_name=1m-month 的真实命令输入为 cal -1m 12 2147483646：在极大年份生成以周一为起点的十二月月历。被测实现需保持目标程序的命令行为；所选公开记录没有附预期 stdout，本页不补造输出。",
+        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：First row: test_file=bigyear; test_name=1m-month\n原始数据精简说明：保留原生字段 test_file、test_name、description、command；其他记录字段未收录。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "test_file": "bigyear",
+          "test_name": "1m-month",
+          "description": "Gregorian - Monday-based month",
+          "command": "cal -1m 12 2147483646"
+        },
+        "source": "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
+        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "MirrorCode public cal target input case",
+        "excerpt": true
+      }
+    ]
+  }
+}

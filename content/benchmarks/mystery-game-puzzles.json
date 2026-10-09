@@ -1,0 +1,131 @@
+{
+  "id": "mystery-game-puzzles",
+  "status": "published",
+  "order": 1240,
+  "name": "Mystery Game Puzzles",
+  "subtitle": "在未公开身份的游戏中推理下一步",
+  "category": "reasoning",
+  "tags": [
+    "游戏推理",
+    "保密题集"
+  ],
+  "publisher": "Epoch AI",
+  "brandIds": [
+    "epoch-ai"
+  ],
+  "year": 2026,
+  "version": "100局面；2026-07方法快照",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在不公开游戏身份的游戏局面中选择唯一最佳下一步。",
+    "task": "在某知名游戏的谜题变体中，根据文本状态选择唯一最佳下一步；游戏身份暂时保密。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mystery-game-puzzles"
+    ]
+  },
+  "taskContract": {
+    "input": "游戏状态的文字表示与最小agent脚手架。",
+    "output": "通过提交工具给出着法。",
+    "environment": "从随机对局中局状态筛选唯一最佳行动，agent通过工具提交，评分端对行动记法归一化后与答案键匹配。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mystery-game-puzzles"
+    ]
+  },
+  "dataProfile": {
+    "summary": "方法公开，prompt、样例局面与模型轨迹有意暂不公开。",
+    "disclosure": "not-public",
+    "scale": [
+      "100个游戏局面。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mystery-game-puzzles"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "官方为降低针对性准备风险不公开任务提示、示例和模型轨迹。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mystery-game-puzzles"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mystery-game-puzzles"
+    ]
+  },
+  "sampleAccess": {
+    "status": "private",
+    "reason": "官方为避免针对性准备，暂不公开游戏身份、prompt、样例局面或模型轨迹；方法页不作为公开样例。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mystery-game-puzzles"
+    ]
+  },
+  "metric": {
+    "name": "正确行动比例",
+    "description": "归一化后的提交须匹配答案键；无法提取有效着法记录为未回答，非法行动算错误。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/mystery-game-puzzles"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未公开游戏身份和题目，外部无法据页面独立重建完整运行。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mystery-game-puzzles"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本轮只读取官方方法；不推测游戏名称，也不合成所谓官方样例。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mystery-game-puzzles"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mystery-game-puzzles"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Epoch Mystery Game Puzzles",
+      "url": "https://epoch.ai/benchmarks/mystery-game-puzzles",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "agent通过submit工具提交行动，评分器归一化记法后与唯一最佳行动答案键比对；非法动作算错，未提取有效提交则记未回答。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mystery-game-puzzles"
+      ]
+    },
+    "comparison": {
+      "text": "成绩限定100个随机对局中局筛选局面；完整提示与轨迹不公开，不能用猜测的游戏或自编局面复现官方成绩。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/mystery-game-puzzles"
+      ]
+    }
+  }
+}

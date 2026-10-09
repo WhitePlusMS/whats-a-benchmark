@@ -17,6 +17,15 @@
         "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md",
         "https://arxiv.org/html/2506.07982v1"
       ]
+    },
+    {
+      "id": "tau3-banking",
+      "label": "后续银行与知识检索领域",
+      "detail": "Sierra 的银行知识库任务与原 retail/airline/telecom 范围分开。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2603.04370",
+        "https://artificialanalysis.ai/evaluations/tau3-banking"
+      ]
     }
   ],
   "kind": "derivative",
@@ -43,25 +52,7 @@
   },
   "limitations": [
     {
-      "text": "2025 论文发布时每个域任务文件与当前 main 任务集的完整逐题映射尚未核实；需对指定 Git commit/tag 进行差异审计。",
-      "sourceUrls": [
-        "https://arxiv.org/html/2506.07982v1",
-        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
-        "https://github.com/sierra-research/tau2-bench#readme",
-        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
-      ]
-    },
-    {
-      "text": "没有查到明确覆盖 τ² task JSON、政策文本和 mock database 的独立数据许可；公开页面转载权未确认。",
-      "sourceUrls": [
-        "https://arxiv.org/html/2506.07982v1",
-        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
-        "https://github.com/sierra-research/tau2-bench#readme",
-        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
-      ]
-    },
-    {
-      "text": "本站当前无 τ² 具体任务样例；本次对已有条目的核对仅确认字段链接、未知访问状态及既有“暂缓复制”的样例决策，不以论文示例轨迹填充任务样例。",
+      "text": "论文快照与当前 main 的任务集不能默认一致，复现需固定 commit 或 tag。",
       "sourceUrls": [
         "https://arxiv.org/html/2506.07982v1",
         "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
@@ -115,6 +106,26 @@
       "label": "官方 retail task JSON",
       "url": "https://github.com/sierra-research/tau2-bench/blob/main/data/tau2/domains/retail/tasks.json",
       "role": "code"
+    },
+    {
+      "label": "τ-Knowledge 作者论文",
+      "url": "https://arxiv.org/abs/2603.04370",
+      "role": "paper"
+    },
+    {
+      "label": "τ³-Banking 官方 AA 实施",
+      "url": "https://artificialanalysis.ai/evaluations/tau3-banking",
+      "role": "definition"
+    },
+    {
+      "label": "τ²-bench v0.1.0 tag resolution",
+      "url": "https://github.com/sierra-research/tau2-bench/commits/v0.1.0.atom",
+      "role": "release"
+    },
+    {
+      "label": "τ²-bench telecom tasks.json at fixed v0.1.0 commit",
+      "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/37199f36924c8896f5e048360691f8476cd89ba1/data/tau2/domains/telecom/tasks.json",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -124,7 +135,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "τ²-bench 将代理和用户建模为 Dec-POMDP 中的两个参与方。用户除了通过语言提供目标或偏好，也能调用受限工具改变自己的设备状态；代理必须诊断问题、指导用户、调用自己的业务工具，并共同达到可程序化验证的最终状态。论文还给出 no-user 等消融设置，用于分辨自主推理和人机协调的影响。",
+    "summary": "代理与模拟用户分别使用工具、协同改变共享环境，完成可程序化验证的目标状态。",
     "task": "在 dual-control 设置中，代理和模拟用户协同操作共享环境，达到可程序化验证的目标状态。",
     "sourceUrls": [
       "https://arxiv.org/html/2506.07982v1",
@@ -190,12 +201,113 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "本站未内嵌具体任务记录，样例状态为 restricted。专项样例核验曾审查官方 retail tasks.json 与根 MIT License，结论为暂缓：未找到明确覆盖任务 JSON 或领域数据的独立许可。因此目前只链接官方任务目录，不复制任务题面、目标动作、政策或数据库。τ² 论文中的示例轨迹可用于解释论文方法，不应误标为官方 release 数据行。",
+    "status": "local",
+    "reason": "样例来自 τ²-bench v0.1.0 固定提交 telecom 域首条任务；本站只作原创中文事实说明和短引，不复制身份信息、电话号码或完整任务记录，也不推定任务数据许可。",
+    "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/37199f36924c8896f5e048360691f8476cd89ba1/data/tau2/domains/telecom/tasks.json",
     "sourceUrls": [
-      "https://github.com/sierra-research/tau2-bench/blob/main/data/tau2/domains/retail/tasks.json",
-      "https://github.com/sierra-research/tau2-bench#readme",
-      "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+      "https://github.com/sierra-research/tau2-bench/commits/v0.1.0.atom",
+      "https://raw.githubusercontent.com/sierra-research/tau2-bench/37199f36924c8896f5e048360691f8476cd89ba1/data/tau2/domains/telecom/tasks.json"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2025 论文发布时每个域任务文件与当前 main 任务集的完整逐题映射尚未核实；需对指定 Git commit/tag 进行差异审计。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+      ]
+    },
+    {
+      "text": "没有查到明确覆盖 τ² task JSON、政策文本和 mock database 的独立数据许可；公开页面转载权未确认。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+      ]
+    },
+    {
+      "text": "本站当前无 τ² 具体任务样例；本次对已有条目的核对仅确认字段链接、未知访问状态及既有“暂缓复制”的样例决策，不以论文示例轨迹填充任务样例。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2506.07982v1",
+        "https://github.com/sierra-research/tau2-bench/blob/main/src/tau2/domains/README.md",
+        "https://github.com/sierra-research/tau2-bench#readme",
+        "https://github.com/sierra-research/tau2-bench/blob/main/CHANGELOG.md"
+      ]
+    },
+    {
+      "text": "具体案例固定到 v0.1.0 tag 对应提交 37199f36924c8896f5e048360691f8476cd89ba1 的 telecom/tasks.json row 0；不是 τ³ 或后续修订记录。该任务文件 SHA-256 为 192a2c143b3b512c37c3775fdf6c5040c33717388620c38b140c731dc6153cd7。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/tau2-bench/commits/v0.1.0.atom",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/37199f36924c8896f5e048360691f8476cd89ba1/data/tau2/domains/telecom/tasks.json"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "tau2-telecom-v010-task-row-0",
+        "title": "Telecom：移动数据速度故障",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "τ²-bench v0.1.0 的 telecom 首条任务描述移动数据无法正常工作的情形。用户希望手机网络恢复到 excellent 速度；若排查需要，可接受最多 2 GB 流量补充，但不愿更改套餐。John Smith 等身份信息和电话号码未展示。此处为原创中文任务事实解读，保留合成用户任务的目标与约束。",
+        "explanation": "固定文件 data/tau2/domains/telecom/tasks.json 的 row 0，id 为 [mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]。完整任务还包含合成用户资料；本页省去姓名、电话号码和住址，仅概述速度目标、流量补充上限及不改套餐条件。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略known_info with persona name/phone、customer_id/line_id arguments、ticket/initial_state、other criteria。 原文只保留已核片段；具体字段截取范围见取证记录。",
+        "raw": {
+          "id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+          "description": {
+            "purpose": "Test resolution path: Mobile Data/Slow Internet Issues."
+          },
+          "user_scenario": {
+            "instructions": {
+              "domain": "telecom",
+              "task_instructions": "You are willing to refuel 2.0 GB of data if necessary"
+            }
+          },
+          "evaluation_criteria": {
+            "actions": [
+              {
+                "name": "toggle_data",
+                "arguments": {}
+              },
+              {
+                "name": "refuel_data",
+                "arguments": {
+                  "gb_amount": 2.0
+                }
+              }
+            ],
+            "env_assertions": [
+              {
+                "func_name": "assert_mobile_data_status",
+                "arguments": {
+                  "expected_status": true
+                }
+              },
+              {
+                "func_name": "assert_internet_speed",
+                "arguments": {
+                  "expected_speed": 200,
+                  "expected_desc": "excellent"
+                }
+              },
+              {
+                "func_name": "assert_data_refueling_amount",
+                "arguments": {
+                  "expected_amount": 2.0
+                }
+              }
+            ]
+          }
+        },
+        "source": "https://raw.githubusercontent.com/sierra-research/tau2-bench/37199f36924c8896f5e048360691f8476cd89ba1/data/tau2/domains/telecom/tasks.json",
+        "license": "本站原创中文事实解读及必要短引；τ² task 数据许可未在所核记录中确认。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "split": "τ²-bench v0.1.0 / telecom / tasks.json row 0",
+        "excerpt": true
+      }
     ]
   }
 }

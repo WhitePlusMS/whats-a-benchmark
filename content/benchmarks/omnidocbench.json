@@ -27,23 +27,7 @@
   },
   "limitations": [
     {
-      "text": "Hugging Face 页面显示 1,657 rows，而仓库 README 记载 1,651 PDF 页面；条目与页面的映射及当前数据快照差异未逐项核查。",
-      "sourceUrls": [
-        "https://github.com/opendatalab/OmniDocBench",
-        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
-        "https://github.com/opendatalab/OmniDocBench#updates"
-      ]
-    },
-    {
       "text": "v1.7 的记录没有明确说明数据文件是否同步更新；不可假定其与 v1.6 数据完全相同或不同。",
-      "sourceUrls": [
-        "https://github.com/opendatalab/OmniDocBench",
-        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
-        "https://github.com/opendatalab/OmniDocBench#updates"
-      ]
-    },
-    {
-      "text": "PDF、图片及数据集中每个第三方作品的具体授权未逐项查验；公开 GitHub Pages 再分发权限未知。",
       "sourceUrls": [
         "https://github.com/opendatalab/OmniDocBench",
         "https://huggingface.co/datasets/opendatalab/OmniDocBench",
@@ -81,6 +65,11 @@
       "label": "官方 LICENSE",
       "url": "https://github.com/opendatalab/OmniDocBench/blob/main/LICENSE",
       "role": "code"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+      "label": "OmniDocBench 官方 demo JSON",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -90,7 +79,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "评估模型从 PDF 页面解析文档内容与结构的能力，覆盖端到端解析、文本 OCR、版面检测、表格识别、公式识别及阅读顺序等维度。数据带有文本、公式、表格和页面组件的区域定位与识别标注，并含页面/块级属性标签。",
+    "summary": "从 PDF 页面解析文本与结构，评测 OCR、版面、表格、公式及阅读顺序。",
     "task": "从 PDF 页面解析文档内容与结构，执行端到端解析或指定单模块识别。",
     "sourceUrls": [
       "https://github.com/opendatalab/OmniDocBench#benchmark-introduction",
@@ -151,11 +140,72 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "仓库有 demo JSON 和图像/解析演示，但 demo 可能展示源 PDF 的内容。当前未逐项确认其中原始文件、图片和标注可再分发；不复制官方样例或页面截图到公开站点，仅提供官方链接。如后续确需展示，应先核对该条目的原始来源和许可，不以仓库 Apache-2.0 或“公开可下载”替代权利判断。",
+    "url": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
     "sourceUrls": [
-      "https://github.com/opendatalab/OmniDocBench",
-      "https://huggingface.co/datasets/opendatalab/OmniDocBench"
+      "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "Hugging Face 页面显示 1,657 rows，而仓库 README 记载 1,651 PDF 页面；条目与页面的映射及当前数据快照差异未逐项核查。",
+      "sourceUrls": [
+        "https://github.com/opendatalab/OmniDocBench",
+        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+        "https://github.com/opendatalab/OmniDocBench#updates"
+      ]
+    },
+    {
+      "text": "PDF、图片及数据集中每个第三方作品的具体授权未逐项查验；公开 GitHub Pages 再分发权限未知。",
+      "sourceUrls": [
+        "https://github.com/opendatalab/OmniDocBench",
+        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+        "https://github.com/opendatalab/OmniDocBench#updates"
+      ]
+    },
+    {
+      "text": "仓库有 demo JSON 和图像/解析演示，但 demo 可能展示源 PDF 的内容。当前未逐项确认其中原始文件、图片和标注可再分发；不复制官方样例或页面截图到公开站点，仅提供官方链接。如后续确需展示，应先核对该条目的原始来源和许可，不以仓库 Apache-2.0 或“公开可下载”替代权利判断。",
+      "sourceUrls": [
+        "https://github.com/opendatalab/OmniDocBench",
+        "https://huggingface.co/datasets/opendatalab/OmniDocBench"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "omnidocbench-demo-index-0-page-7",
+        "title": "PPT 转 PDF 第 7 页文档解析",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "OmniDocBench 官方 demo 的 PPT 转 PDF 页面解析实例：读取第 7 页并按原结构输出 Markdown，保留标题与正文顺序。原始页图需在官方 demo 查看；本站不附图，因此不是完整视觉输入。",
+        "raw": {
+          "page_info": {
+            "page_no": 7,
+            "page_attribute": {
+              "data_source": "PPT2PDF",
+              "language": "english",
+              "layout": "single_column"
+            }
+          },
+          "layout_dets": [
+            {
+              "category_type": "title",
+              "text": "- Human Factors",
+              "ignore": false,
+              "order": 1
+            }
+          ]
+        },
+        "explanation": "官方 demo JSON index=0，page_no=7，source=PPT2PDF，language=English，layout=single_column，原始 name 字段为“Human Factors”。官方仓库声明数据仅供研究且不可商用；来源页面/图片权利未逐项核实。Apache-2.0 仅按其范围适用于代码，不扩展到数据/图片。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 image content、other detections and annotations、source document page。",
+        "source": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "license": "官方说明 demo 数据仅供研究、不可商用；来源页面/图片的逐项权利未核实。本页只保留原始 name 字段短引和本站任务概述，不复制页面图像、PDF 或标注。Apache-2.0 代码许可不扩展至数据。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "官方 demo JSON · index=0 · page_no=7 · source=PPT2PDF · English · single_column",
+        "excerpt": true
+      }
     ]
   }
 }

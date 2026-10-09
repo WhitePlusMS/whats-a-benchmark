@@ -5,7 +5,7 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "id": "livecodebench",
   "name": "LiveCodeBench",
   "subtitle": "持续加入新题的编程考场",
@@ -101,6 +101,11 @@
       "label": "官方 README",
       "url": "https://github.com/LiveCodeBench/LiveCodeBench#evaluation",
       "role": "readme"
+    },
+    {
+      "label": "具体公开案例的原始来源",
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -108,7 +113,7 @@
   "brandIds": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "LiveCodeBench 是研究者发布的动态代码能力基准，按时间持续采集竞赛题，覆盖代码生成、执行、自我修复和测试输出预测；它与 LiveCodeBench Pro 分开记录。",
+    "summary": "按时间持续采集竞赛题，评测代码生成、执行、自我修复和测试输出预测。",
     "task": "依据选定 scenario 生成代码、预测运行输出或根据测试反馈修复代码；结果需同时标明 scenario 和 release。",
     "sourceUrls": [
       "https://github.com/LiveCodeBench/LiveCodeBench#introduction",
@@ -170,11 +175,47 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "官方 README 和数据卡展示场景与结构信息，但第三方竞赛内容的授权不随工具代码 MIT 许可统一。公开页面不复制真实题面、样例或测试。",
+    "status": "local",
+    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl",
     "sourceUrls": [
-      "https://github.com/LiveCodeBench/LiveCodeBench",
-      "https://huggingface.co/datasets/livecodebench/code_generation_lite"
+      "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl"
     ]
-  }
+  },
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-livecodebench",
+        "title": "Codeforces 1873_A · 最多一次交换排序",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "真实公开题有三张分别标 a、b、c 的牌，顺序任意；允许最多交换一对，判断能否排成 abc。原题样例依次为 abc、acb、bac、bca、cab、cba，输出 YES、YES、YES、NO、NO、YES。来自固定公开快照的 2023 年历史题，用于展示代码题结构。",
+        "explanation": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。 定位：codeforces-1873_A\n原始数据精简说明：保留原生字段 question_title、question_id、platform、contest_id、difficulty、public_test_cases、question_content；其他源字段省略。 文本字段按源值真实前缀精简，范围为{\"question_content\": {\"start\": 0, \"end\": 155, \"sourceCharacters\": 1365}}。",
+        "raw": {
+          "question_title": "A. Short Sort",
+          "question_id": "1873_A",
+          "platform": "codeforces",
+          "contest_id": "1873",
+          "difficulty": "easy",
+          "public_test_cases": "[{\"input\": \"6\\nabc\\nacb\\nbac\\nbca\\ncab\\ncba\\n\", \"output\": \"YES\\nYES\\nYES\\nNO\\nNO\\nYES\\n\", \"testtype\": \"stdin\"}]",
+          "question_content": "There are three cards with letters $\\texttt{a}$, $\\texttt{b}$, $\\texttt{c}$ placed in a row in some order. You can do the following operation at most once:"
+        },
+        "source": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl",
+        "answer": "YES\nYES\nYES\nNO\nNO\nYES",
+        "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据只展示所列真实字段、配置事实与必要原文节录；其格式不被解释为整套数据或其他材料的再发布授权。",
+        "split": "test",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "本轮核对公开具体案例，定位 codeforces-1873_A；正式训练/测试用途与本站展示范围不混用。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl"
+      ]
+    }
+  ]
 }

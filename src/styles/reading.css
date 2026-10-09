@@ -23,7 +23,7 @@
 .release-card .section-line {
   width: 100%;
 }
-.release-card h2 {
+.release-card h3 {
   font-size: 26px;
   margin: 22px 0 12px;
   letter-spacing: -0.7px;
@@ -43,8 +43,8 @@
   display: inline-flex;
   gap: 6px;
   align-items: center;
-  background: #f5f1fa;
-  border: 1px solid #eae2f2;
+  background: var(--accent-softer);
+  border: 1px solid var(--accent-border);
   border-radius: 5px;
   padding: 5px 9px;
   font-size: 11px;
@@ -53,7 +53,7 @@
 .release-card .release-note {
   font-size: 11px;
   margin-top: auto;
-  background: #faf8fc;
+  background: var(--surface-subtle);
   padding: 12px;
   border-radius: 6px;
 }
@@ -62,12 +62,15 @@
 }
 .comparison-scroll {
   overflow: auto;
+  max-height: calc(100dvh - 190px);
+  scroll-padding-inline-start: 150px;
   border: 1px solid var(--border);
   border-radius: 11px;
   background: var(--surface);
 }
 .comparison-table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
   min-width: 760px;
   table-layout: fixed;
@@ -85,11 +88,60 @@
 }
 .comparison-table th:first-child {
   width: 150px;
+  position: sticky;
+  left: 0;
+  z-index: 1;
 }
 .comparison-table thead th {
-  background: #f4f5f7;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface-sunken);
   font-size: 18px;
   color: var(--muted);
+}
+.comparison-table thead th:first-child {
+  z-index: 3;
+}
+.comparison-table td ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.comparison-table td li + li {
+  margin-top: 10px;
+}
+.comparison-table td .text-link {
+  margin-top: 12px;
+  font-size: 12px;
+}
+.comparison-note {
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.reading-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 32px;
+}
+.reading-index a {
+  padding: 7px 10px;
+  color: var(--accent-text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 12px;
+}
+.reading-index a:hover {
+  background: var(--accent-softer);
+}
+.release-month {
+  margin-bottom: 36px;
+}
+.release-month > h2 {
+  font-size: 20px;
+  margin-bottom: 18px;
 }
 .comparison-table thead th > a {
   display: flex;
@@ -99,7 +151,7 @@
 .comparison-table tbody th {
   font-weight: 500;
   color: var(--muted);
-  background: #fafbfc;
+  background: var(--surface-subtle);
 }
 .comparison-table td {
   color: var(--muted);
@@ -110,6 +162,33 @@
   border-top: 1px solid var(--border);
   padding: 35px 0;
   max-width: 900px;
+}
+.task-entry-section {
+  margin-bottom: 36px;
+  scroll-margin-top: var(--anchor-offset);
+}
+.task-entry-section > p {
+  margin: 12px 0 18px;
+}
+.task-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.task-entry-grid > a {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+}
+.task-entry-grid h3 {
+  font-size: 16px;
+}
+.task-entry-grid p {
+  margin: 10px 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
 }
 .lesson-number {
   font-size: 32px;
@@ -128,7 +207,7 @@
   margin: 12px 0;
 }
 .lesson p {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.95;
   margin-bottom: 20px;
   color: var(--muted);
@@ -155,7 +234,7 @@
   margin-top: 0;
 }
 .prose-panel p {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 2;
   color: var(--muted);
 }
@@ -167,6 +246,9 @@
   margin: 20px 0;
 }
 @media (max-width: 700px) {
+  .task-entry-grid {
+    grid-template-columns: 1fr;
+  }
   .release-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -174,7 +256,7 @@
   .release-card {
     padding: 24px;
   }
-  .release-card h2 {
+  .release-card h3 {
     font-size: 21px;
   }
   .lesson {
@@ -195,6 +277,13 @@
   }
   .comparison-table {
     min-width: 720px;
+  }
+  .comparison-scroll {
+    scroll-padding-inline-start: 115px;
+    max-height: calc(100dvh - 230px);
+  }
+  .comparison-table thead th {
+    font-size: 15px;
   }
   .comparison-table th,
   .comparison-table td {

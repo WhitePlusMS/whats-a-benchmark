@@ -1,0 +1,175 @@
+{
+  "id": "short-story",
+  "status": "published",
+  "order": 653,
+  "name": "Lech Mazur Short-Story",
+  "subtitle": "把十个指定元素写成完整短篇",
+  "category": "writing",
+  "tags": [
+    "短篇创作",
+    "约束融合",
+    "模型裁判",
+    "相对评级"
+  ],
+  "publisher": "Lech Mazur",
+  "brandIds": [
+    "lech-mazur"
+  ],
+  "year": null,
+  "version": "当前成对比较协议 · 未标数字版本",
+  "kind": "original",
+  "aliases": [
+    "LLM Creative Story-Writing Benchmark",
+    "Lech Mazur Writing",
+    "Short-Story Creative Writing Benchmark",
+    "Short-Story · 短篇小说"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在相同约束下写短篇故事，比较指定元素融合与整体文字质量。",
+    "task": "将十个必需元素有意义地融合进故事，评价文字、情节连贯、人物和原创性。",
+    "sourceUrls": [
+      "https://github.com/lechmazur/writing"
+    ]
+  },
+  "taskContract": {
+    "input": "匹配的十个必需元素：character、object、concept、attribute、action、method、setting、timeframe、motivation、tone；同故事对使用相同brief。",
+    "output": "600–800 词的短篇故事。",
+    "environment": "多个裁判对相同提示的两个故事按双向顺序比较，再计算相对分数。",
+    "sourceUrls": [
+      "https://github.com/lechmazur/writing"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者仓库公开提示、故事、当前评分数据和历史存档；模型与裁判覆盖随更新变化。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [
+      "每对故事必须来自相同提示；当前数据不是互斥train/test，裁判版本变更通过共同故事对桥接后才合并。"
+    ],
+    "fields": [],
+    "files": [
+      "prompts_wc/保存创作要求；stories_wc/<model>/保存生成故事；data/writing_opus_precision_20260927/提供当前评级、故事对、比较次数与裁判敏感性文件，data/README.md链接历史不可变版本。"
+    ],
+    "sourceUrls": [
+      "https://github.com/lechmazur/writing"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "按当前成对比较协议和作者发布快照读取结果；不以旧绝对评分代替现榜。"
+    ],
+    "url": "https://github.com/lechmazur/writing",
+    "sourceUrls": [
+      "https://github.com/lechmazur/writing"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://github.com/lechmazur/writing"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt"
+    ],
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。"
+  },
+  "metric": {
+    "name": "Comparison Score",
+    "description": "当前评级用Thurstone相对模型并校正故事呈现顺序，每个故事对等权、同评委版本先平均。另给预测胜率和故事/评委bootstrap的95%区间；不是旧0–10绝对rubric均分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/lechmazur/writing"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "受约束的可组合提示不代表完全自由写作；不同裁判批次、缺失故事与对比池影响解释。",
+      "sourceUrls": [
+        "https://github.com/lechmazur/writing"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者官方仓库与结果",
+      "url": "https://github.com/lechmazur/writing",
+      "role": "readme"
+    },
+    {
+      "label": "Lech Mazur官方创作提示目录",
+      "url": "https://github.com/lechmazur/writing/tree/main/prompts_wc",
+      "role": "data"
+    },
+    {
+      "role": "data",
+      "label": "Lech Mazur Writing 官方 prompt_wc_0 模板",
+      "url": "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "多个evaluator对匹配brief的故事双向比较；更换评委名单先用共同故事对和bridge matchups验证，文学偏好仍由模型裁判决定。",
+      "sourceUrls": [
+        "https://github.com/lechmazur/writing"
+      ]
+    },
+    "comparison": {
+      "text": "使用当前 Comparison Score、区间和覆盖情况；与 EQ 创作 Elo 或旧 rubric 分数不直接互换。",
+      "sourceUrls": [
+        "https://github.com/lechmazur/writing"
+      ]
+    },
+    "disclosure": {
+      "text": "作者仓库公开提示、故事、当前评分数据和历史存档；模型与裁判覆盖随更新变化。",
+      "sourceUrls": [
+        "https://github.com/lechmazur/writing"
+      ]
+    },
+    "versionChanges": {
+      "text": "作者将旧 0–10 评分存档；当前公开质量榜采用成对比较，须保留快照日期。",
+      "sourceUrls": [
+        "https://github.com/lechmazur/writing"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://github.com/lechmazur/writing"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "short-story-prompt-wc-0-elements",
+        "title": "洪水后温室中的中子星研究者故事",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "Short-Story 官方模板中的一条具体 brief：把中子星研究者、蝴蝶翅膀粉尘、渐变、风暴损坏的温室（洪水之后）等固定元素融合成故事；模板的 `{min_count}` 与 `{max_count}` 字数范围尚未解析，不能据此补猜。",
+        "raw": "Character: neutron star researcher\nObject: dust from butterfly wing\nSetting: storm-damaged greenhouse\nTimeframe: after the flood\nMotivation: to strip needless drama",
+        "explanation": "官方 prompts_wc/prompt_wc_0.txt 的 Required narrative elements 列出真实元素；原模板字数变量保持未解析。此处只概述固定元素，未复制故事、模型输出或完整提示模板。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "source": "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt",
+        "license": "已查官方仓库与 data README，未发现 prompt/data 独立再发布许可。本页仅保留必要短引和本站概述；仓库公开不代表数据授权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "prompts_wc/prompt_wc_0.txt · Required narrative elements · main 可变分支 · min/max unresolved",
+        "excerpt": true
+      }
+    ]
+  }
+}

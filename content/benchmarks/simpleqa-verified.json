@@ -1,0 +1,233 @@
+{
+  "id": "simpleqa-verified",
+  "status": "published",
+  "order": 208,
+  "name": "SimpleQA Verified",
+  "subtitle": "用重新核验的短事实题测内部知识",
+  "category": "knowledge",
+  "tags": [
+    "事实性",
+    "短答案",
+    "参数知识",
+    "无工具"
+  ],
+  "publisher": "Google DeepMind / Google Research",
+  "brandIds": [
+    "google-research",
+    "google-deepmind"
+  ],
+  "year": 2025,
+  "version": "1,000 题；作者论文 v2（2026-03-10）",
+  "kind": "derivative",
+  "aliases": [
+    "SimpleQA-Verified"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 OpenAI SimpleQA 基础上重新核验标签、去重、平衡主题并改进评委提示的事实性评测。",
+    "task": "不用检索或搜索，根据模型内部知识直接回答短事实题。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/simpleqa-verified"
+    ]
+  },
+  "taskContract": {
+    "input": "problem 字段中的短事实问题；answer 与 urls 是核验标签/出处，不作为无工具答题模型输入。",
+    "output": "直接短答案；自动评委按 gold 判为正确、错误或未尝试回答。",
+    "environment": "官方使用 GPT-4.1 自动评委与改进提示；不允许外部工具。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/simpleqa-verified"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方 eval 分割有 1,000 条记录，并保留原 SimpleQA 索引与支持答案的来源元数据。",
+    "disclosure": "complete",
+    "scale": [
+      "1,000 条问题记录。"
+    ],
+    "splits": [
+      "官方 Hugging Face 发布为 eval 分割。"
+    ],
+    "fields": [
+      "original_index、problem、answer、topic、answer_type、multi_step、requires_reasoning、urls。"
+    ],
+    "files": [
+      "simpleqa_verified.csv 为官方 1,000 条数据；HF Viewer 提供 eval 分割，Kaggle starter notebook 提供 GPT-4.1 autorater 提示。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/simpleqa-verified"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/google/simpleqa-verified",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/simpleqa-verified"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方数据卡标示 MIT。",
+    "scope": "本站仅展示固定来源快照中经核验的精选任务字段，保留出处与适用许可；不将其许可外推至外部网页、模型输出或未采用媒体。",
+    "boundaries": [
+      "保留 MIT 许可与出处，不将链接资料的第三方版权一并视为 MIT。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/simpleqa-verified",
+      "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+      "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md"
+    ]
+  },
+  "metric": {
+    "name": "F1-score（论文）/ factuality",
+    "description": "官方自动评委依据 gold 答案判定回答，论文报告 F1。引用成绩应注明 F1 或正确率口径、评委版本和提示，避免与原 SimpleQA 不同规模成绩直接互换。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2509.07968",
+      "https://huggingface.co/datasets/google/simpleqa-verified"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "任务定位为无工具参数知识；使用搜索会改变所测能力。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified"
+      ]
+    },
+    {
+      "text": "本站所选记录 5：config=simpleqa_verified，split=eval，源文件 SHA-256=b5db21155444763543fe31b67e7cf28ce2bb225742a5b889421c5f182e2f92f5，完整原记录 SHA-256=35d7f9837b82543f79e345076540d9012375d275760f46f32035c8b199ae5e4c。raw 保留整条原记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md"
+      ]
+    },
+    {
+      "text": "本站所选记录 8：config=simpleqa_verified，split=eval，源文件 SHA-256=b5db21155444763543fe31b67e7cf28ce2bb225742a5b889421c5f182e2f92f5，完整原记录 SHA-256=2100b6bbb18fe8a93e2ad691678321fea3a1d3dd1e4130960bdb811ac048df92。raw 保留整条原记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SimpleQA Verified 官方数据卡",
+      "url": "https://huggingface.co/datasets/google/simpleqa-verified",
+      "role": "data"
+    },
+    {
+      "label": "SimpleQA Verified 作者论文",
+      "url": "https://arxiv.org/abs/2509.07968",
+      "role": "paper"
+    },
+    {
+      "label": "SimpleQA Verified 官方榜单",
+      "url": "https://www.kaggle.com/benchmarks/deepmind/simpleqa-verified",
+      "role": "leaderboard"
+    },
+    {
+      "label": "所选真实记录的固定版本数据文件",
+      "url": "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+      "role": "data"
+    },
+    {
+      "label": "所选数据快照的许可说明",
+      "url": "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "simpleqa",
+      "label": "基于并重新核验",
+      "detail": "从 OpenAI SimpleQA 重新筛选与核验 1,000 题，并修改自动评委提示，不是原题集的同名成绩。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2509.07968",
+        "https://huggingface.co/datasets/google/simpleqa-verified"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "使用官方 GPT-4.1 autorater 提示对照答案标签；作者改进的是标签质量、主题平衡与裁判提示，非新增搜索工具。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified"
+      ]
+    },
+    "comparison": {
+      "text": "记录 F1 或正确率口径、评委版本和提示；F1 同时考虑回答覆盖，不能用原 SimpleQA 的不同题量和提示替换此 1,000 题成绩。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2509.07968",
+        "https://huggingface.co/datasets/google/simpleqa-verified"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "5",
+        "title": "历史判决中的赔偿金额",
+        "type": "text",
+        "prompt": "How much money, in euros, was the surgeon held responsible for Stella Obasanjo's death ordered to pay her son?",
+        "explanation": "这是官方固定 CSV 中的短事实问题，参考答案来自同一记录；本站没有复制其链接网页的正文。",
+        "raw": {
+          "original_index": "5",
+          "problem": "How much money, in euros, was the surgeon held responsible for Stella Obasanjo's death ordered to pay her son?",
+          "answer": "120,000 euros",
+          "topic": "Politics",
+          "answer_type": "Number",
+          "multi_step": "True",
+          "requires_reasoning": "False",
+          "urls": "https://en.wikipedia.org/wiki/Stella_Obasanjo,https://www.abc.net.au/news/2009-09-22/doctor-jailed-over-former-first-ladys-lipo-death/1437416),https://www.independent.co.uk/news/world/africa/surgeon-jailed-over-death-of-first-lady-1791712.html)"
+        },
+        "source": "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "split": "eval",
+        "excerpt": false,
+        "license": "MIT · SimpleQA Verified by Lukas Haas, Gal Yona, Giovanni D'Antonio, Sasha Goldshtein and Dipanjan Das, Google DeepMind / Google Research; based on OpenAI SimpleQA",
+        "licensePath": "licenses/simpleqa-verified-sample-source.txt",
+        "answer": "120,000 euros"
+      },
+      {
+        "id": "8",
+        "title": "曾任空乘人员的冰岛前总理",
+        "type": "text",
+        "prompt": "What is the name of the former Prime Minister of Iceland who worked as a cabin crew member until 1971?",
+        "explanation": "这是官方固定 CSV 中的短事实问题，参考答案来自同一记录；本站没有复制其链接网页的正文。",
+        "raw": {
+          "original_index": "8",
+          "problem": "What is the name of the former Prime Minister of Iceland who worked as a cabin crew member until 1971?",
+          "answer": "Jóhanna Sigurðardóttir",
+          "topic": "Politics",
+          "answer_type": "Person",
+          "multi_step": "True",
+          "requires_reasoning": "False",
+          "urls": "https://kids.kiddle.co/J%C3%B3hanna_Sigur%C3%B0ard%C3%B3ttir,https://en.wikipedia.org/wiki/J%C3%B3hanna_Sigur%C3%B0ard%C3%B3ttir,https://www.britannica.com/biography/Johanna-Sigurdardottir"
+        },
+        "source": "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "split": "eval",
+        "excerpt": false,
+        "license": "MIT · SimpleQA Verified by Lukas Haas, Gal Yona, Giovanni D'Antonio, Sasha Goldshtein and Dipanjan Das, Google DeepMind / Google Research; based on OpenAI SimpleQA",
+        "licensePath": "licenses/simpleqa-verified-sample-source.txt",
+        "answer": "Jóhanna Sigurðardóttir"
+      }
+    ]
+  }
+}

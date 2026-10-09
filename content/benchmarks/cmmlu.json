@@ -73,26 +73,29 @@
     "url": "https://github.com/haonan-li/CMMLU"
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "GitHub 仓库与 Hugging Face 数据卡对数据许可的说明不一致；代码许可与问答数据许可需要分开判断。",
-    "scope": "在数据许可冲突解决前，限于概述和官方链接，不复制题面、选项、答案或解析。",
+    "status": "permitted",
+    "license": "CC BY-NC-SA 4.0; the original-author README expressly applies this license to the CMMLU dataset.",
+    "scope": "One original-author dev/agronomy.csv record, pinned by retrieved file SHA-256; reuse is noncommercial and any adapted material must follow ShareAlike terms.",
     "boundaries": [
-      "不要把项目代码许可证视为题库数据许可证。",
-      "取得与所用快照相符的授权后再决定转载或商业使用。"
+      "Attribute CMMLU and its authors; include the license notice/link.",
+      "NonCommercial applies.",
+      "ShareAlike applies to adapted material.",
+      "This row does not establish rights to third-party materials outside the dataset."
     ],
     "sourceUrls": [
-      "https://github.com/haonan-li/CMMLU",
-      "https://huggingface.co/datasets/haonan-li/cmmlu"
+      "https://raw.githubusercontent.com/haonan-li/CMMLU/master/README.md",
+      "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt"
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "官方资源公开题目文件，但仓库与 HF 数据卡的许可口径冲突；候选只提供官方链接，不复制真实题目记录。",
+    "status": "local",
+    "reason": "已从 CMMLU 原作者仓库 dev/agronomy.csv 首条数据记录逐字段核验；原始空首列表头保留为 raw 的空字符串键。",
+    "url": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
     "sourceUrls": [
-      "https://github.com/haonan-li/CMMLU",
-      "https://huggingface.co/datasets/haonan-li/cmmlu"
-    ],
-    "url": "https://github.com/haonan-li/CMMLU"
+      "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+      "https://raw.githubusercontent.com/haonan-li/CMMLU/master/README.md",
+      "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt"
+    ]
   },
   "metric": {
     "name": "准确率",
@@ -105,24 +108,10 @@
   },
   "limitations": [
     {
-      "text": "README 对全量 test 答案可用性的说明随仓库版本变化；本次未逐文件校验所有 CSV。",
+      "text": "该样例来自 dev/agronomy.csv 的第一条数据记录，文件内容以 SHA-256 固定；不能据此推断其他主题、split 或第三方材料的权利范围。",
       "sourceUrls": [
-        "https://github.com/haonan-li/CMMLU",
-        "https://huggingface.co/datasets/haonan-li/cmmlu"
-      ]
-    },
-    {
-      "text": "公开页面报告 11,528 题、67 个学科；本次未从固定版本逐行重算总量。",
-      "sourceUrls": [
-        "https://github.com/haonan-li/CMMLU",
-        "https://arxiv.org/html/2306.09212"
-      ]
-    },
-    {
-      "text": "仓库与 HF 对许可说明不同，数据及题目来源的权利链仍需核对。",
-      "sourceUrls": [
-        "https://github.com/haonan-li/CMMLU",
-        "https://huggingface.co/datasets/haonan-li/cmmlu"
+        "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+        "https://raw.githubusercontent.com/haonan-li/CMMLU/master/README.md"
       ]
     }
   ],
@@ -146,6 +135,70 @@
       "label": "Hugging Face 数据集",
       "url": "https://huggingface.co/datasets/haonan-li/cmmlu",
       "role": "data"
+    },
+    {
+      "label": "原作者 dev/agronomy.csv 固定内容来源",
+      "url": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+      "role": "data"
+    },
+    {
+      "label": "CMMLU 数据许可声明",
+      "url": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/README.md",
+      "role": "access"
+    },
+    {
+      "label": "CC BY-NC-SA 4.0 法律文本",
+      "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt",
+      "role": "access"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "原作者 CSV 第一条数据记录已读取；实际表头为 ',Question,A,B,C,D,Answer'，首列没有字段名，因此 raw 保留空键及值 0，而不将其改写为 index。文件 SHA-256: 17d0d80683455a4a12259b8c653c951af4ad4cd32ac23615908e9a9e509bb48c。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv"
+      ]
+    },
+    {
+      "text": "原项目 README 将 CC BY-NC-SA 4.0 明确应用于 CMMLU 数据集；README SHA-256: 958e0b90d4258bb477b6f432d8eeb919148339efa8869f83e71a60d36ef3e24c。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/haonan-li/CMMLU/master/README.md",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "cmmlu-dev-agronomy-row-0",
+        "title": "畜牧学：肉牛胴体部位",
+        "type": "choice",
+        "prompt": "肉牛屠宰后，胴体的哪个部位肉质较好",
+        "options": [
+          "A. 胸",
+          "B. 腹",
+          "C. 大腿",
+          "D. 小腿"
+        ],
+        "answer": "C",
+        "explanation": "答案字段为原始 CSV 的 Answer=C；record locator 指向首条数据记录。",
+        "raw": {
+          "": "0",
+          "Question": "肉牛屠宰后，胴体的哪个部位肉质较好",
+          "A": "胸",
+          "B": "腹",
+          "C": "大腿",
+          "D": "小腿",
+          "Answer": "C"
+        },
+        "source": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+        "license": "CC BY-NC-SA 4.0",
+        "licensePath": "licenses/cmmlu-sample-source.txt",
+        "split": "dev / agronomy / CSV data row 0",
+        "excerpt": false
+      }
+    ]
+  }
 }

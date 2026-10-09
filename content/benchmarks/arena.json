@@ -19,9 +19,35 @@
   "aliases": [
     "LMArena",
     "Arena",
-    "ChatbotArena"
+    "ChatbotArena",
+    "Arena Text"
   ],
-  "related": [],
+  "related": [
+    {
+      "id": "arena-vision",
+      "label": "视觉偏好专项",
+      "detail": "匿名比较带图像的回答，单独阅读该领域投票。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/vision"
+      ]
+    },
+    {
+      "id": "arena-webdev",
+      "label": "网页开发专项",
+      "detail": "对生成的网页作品进行真人盲选，不等同于功能测试通过率。",
+      "sourceUrls": [
+        "https://arena.ai/blog/webdev-arena"
+      ]
+    },
+    {
+      "id": "arena-creative-writing",
+      "label": "创作偏好专项",
+      "detail": "文本榜中创意写作任务的领域切片。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/text/creative-writing"
+      ]
+    }
+  ],
   "verifiedAt": "2026-09-22",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
@@ -90,13 +116,13 @@
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "官方平台提供在线投票与历史数据集链接；本站只链接平台和对应快照，不复制用户提示、回复或个人信息。",
+    "status": "local",
+    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
     "sourceUrls": [
-      "https://arena.ai/blog/arena#introduction",
+      "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k/viewer/default/train?row=2",
       "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
     ],
-    "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k#dataset-viewer"
+    "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k/viewer/default/train?row=2"
   },
   "metric": {
     "name": "对战评级及置信区间",
@@ -256,6 +282,87 @@
       "label": "Arena Leaderboard",
       "url": "https://arena.ai/leaderboard",
       "role": "leaderboard"
+    },
+    {
+      "label": "Arena 排名方法",
+      "url": "https://arena.ai/blog/ranking-method",
+      "role": "definition"
+    },
+    {
+      "label": "官方 Vision 专项",
+      "url": "https://arena.ai/leaderboard/vision",
+      "role": "definition"
+    },
+    {
+      "label": "官方 WebDev 定义与历史执行",
+      "url": "https://arena.ai/blog/webdev-arena",
+      "role": "definition"
+    },
+    {
+      "label": "官方 Creative Writing 类别",
+      "url": "https://arena.ai/leaderboard/text/creative-writing",
+      "role": "definition"
+    },
+    {
+      "label": "LMArena 55K 公布数据 · row 2",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k/viewer/default/train?row=2",
+      "role": "data"
+    },
+    {
+      "label": "案例原始数据精简字段来源",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=2&length=1",
+      "role": "data"
     }
-  ]
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "真人用户对匿名回答投票，衡量参与者在这些问题上的偏好。",
+      "sourceUrls": [
+        "https://arena.ai/blog/arena#introduction"
+      ]
+    },
+    "comparison": {
+      "text": "一起看榜单领域、日期、样本量、置信区间和 rank spread；原始名次并不表示不确定性消失。",
+      "sourceUrls": [
+        "https://arena.ai/blog/ranking-method"
+      ]
+    },
+    "disclosure": {
+      "text": "公开历史快照不能替代当前平台的完整对话与投票记录。",
+      "sourceUrls": [
+        "https://arena.ai/blog/policy#sharing-data"
+      ]
+    },
+    "versionChanges": {
+      "text": "官方排名方法同时展示 raw rank 与 rank spread；查看历史排名时应核对当时的方法。",
+      "sourceUrls": [
+        "https://arena.ai/blog/ranking-method"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "arena-55k-row-65089",
+        "title": "函数调用问题与偏好平局记录",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "一条编程概念问答要求解释函数调用，并说明如何调用函数。该发布行还记录 GPT-3.5 Turbo 与 Mistral Medium 两份回答后的平局偏好标签。",
+        "raw": {
+          "id": 65089,
+          "model_a": "gpt-3.5-turbo-0613",
+          "model_b": "mistral-medium",
+          "prompt": "[\"explain function calling. how would you call a function?\"]",
+          "winner_tie": 1
+        },
+        "explanation": "定位为 arena-human-preference-55k 的 train row_idx=2、id=65089；原始字段记录 model_a=gpt-3.5-turbo-0613、model_b=mistral-medium、winner_tie=1。平局是该记录的人类偏好标签，不是题目答案；两份模型回答均未复制。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 response_a、response_b、其他 rows。",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=2&length=1",
+        "license": "该 55K 发布版元数据标注 Apache-2.0；本样例只呈现该发布版的短用户提示及对战元数据，不含模型输出。许可不扩展至另一个需协议访问的 33K 数据集或实时平台记录。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "arena-human-preference-55k train · row_idx=2 · id=65089 · revision 18c298340948c0e7f7727399fd459cca6ce0ca6f",
+        "excerpt": true
+      }
+    ]
+  }
 }

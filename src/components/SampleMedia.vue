@@ -32,6 +32,8 @@ function assetCaption(asset: SampleAsset) {
         v-if="asset.kind === 'image' && !failedAssets.includes(asset.path)"
         :src="assetUrl(asset.path)"
         :alt="asset.alt"
+        :width="asset.width"
+        :height="asset.height"
         loading="lazy"
         @error="markAssetFailed(asset.path)"
       />

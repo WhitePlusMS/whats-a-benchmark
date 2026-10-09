@@ -1,0 +1,162 @@
+{
+  "id": "tubelab",
+  "status": "published",
+  "order": 655,
+  "name": "TubeLab Scriptwriting Benchmark",
+  "subtitle": "在同一脚本工作流中比较视频写作能力",
+  "category": "writing",
+  "tags": [
+    "视频脚本",
+    "语气匹配",
+    "工作流",
+    "模型裁判"
+  ],
+  "publisher": "Antonio Santos / TubeLab",
+  "brandIds": [
+    "tubelab"
+  ],
+  "year": 2026,
+  "version": "2026-09 官方更新",
+  "kind": "original",
+  "aliases": [
+    "TubeLab",
+    "YouTube Scriptwriting Benchmark",
+    "TubeLab · 视频脚本"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 TubeLab Scriptwriter 的固定流程内生成脚本，比较六项写作表现。",
+    "task": "根据真实视频需求和频道语气，从研究到完成脚本；参考原视频文本另作对照。",
+    "sourceUrls": [
+      "https://tubelab.net/benchmark/scriptwriting"
+    ]
+  },
+  "taskContract": {
+    "input": "相同简短创意、频道语气资料与按任务锁定的研究材料。",
+    "output": "完整视频脚本。",
+    "environment": "所有模型使用同一个 TubeLab Scriptwriter 工作流；只改变被测模型。",
+    "sourceUrls": [
+      "https://tubelab.net/benchmark/scriptwriting"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官网公开 12 项任务描述、生成脚本入口、rubric 概述和结果；完整可复现工作流本次未核验。",
+    "disclosure": "partial",
+    "scale": [
+      "12 项基于真实视频的任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://tubelab.net/benchmark/scriptwriting"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官网查看任务与脚本说明；结果是该工具中的表现，不能外推其他 harness。"
+    ],
+    "url": "https://tubelab.net/benchmark/scriptwriting",
+    "sourceUrls": [
+      "https://tubelab.net/benchmark/scriptwriting"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://tubelab.net/benchmark/scriptwriting"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://tubelab.net/benchmark/scriptwriting",
+    "sourceUrls": [
+      "https://tubelab.net/benchmark/scriptwriting"
+    ],
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。"
+  },
+  "metric": {
+    "name": "六维 Craft Overall",
+    "description": "开头、留存结构、叙事、语气、节奏、清晰度的评分跨任务平均；拒答/失败按同题最低 craft 处罚。与原视频的比较单列，不驱动排名。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://tubelab.net/benchmark/scriptwriting"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "样本小且裁判不是观众，未验证真实留存；发布者也经营被测工作流工具，存在商业利益关系。",
+      "sourceUrls": [
+        "https://tubelab.net/benchmark/scriptwriting"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "TubeLab 官方方法与榜单",
+      "url": "https://tubelab.net/benchmark/scriptwriting",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "OpenAI/Anthropic/Google裁判匿名打六维craft；不让评委打自家模型。对原视频的同rubric比较另列，拒答/失败按该任务最低craft处罚。",
+      "sourceUrls": [
+        "https://tubelab.net/benchmark/scriptwriting"
+      ]
+    },
+    "comparison": {
+      "text": "主排名平均六维craft，原视频胜负不是主分；只说明同TubeLab Scriptwriter里的表现，bootstrap区间接近的成绩不强行排能力先后。",
+      "sourceUrls": [
+        "https://tubelab.net/benchmark/scriptwriting"
+      ]
+    },
+    "disclosure": {
+      "text": "官网公开 12 项任务描述、生成脚本入口、rubric 概述和结果；完整可复现工作流本次未核验。",
+      "sourceUrls": [
+        "https://tubelab.net/benchmark/scriptwriting"
+      ]
+    },
+    "versionChanges": {
+      "text": "官方说明 2026-07 初评，8 月和 9 月更新模型；固定工具内成绩不代表裸模型通用脚本能力。",
+      "sourceUrls": [
+        "https://tubelab.net/benchmark/scriptwriting"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://tubelab.net/benchmark/scriptwriting"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "tubelab-science-documentary-pfoa",
+        "title": "PFOA 污染科学纪录片脚本任务",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "TubeLab 公开的 Science documentary 任务卡以 DuPont、Teflon 与 PFOA（“永久化学品”）为题材，写作目标是围绕相关污染影响制作纪录片脚本。页面省略了完整 brief 后文；这里保留任务卡节选，不作为完整题面。",
+        "raw": "The Company That Put Poison In Everyone's Blood",
+        "explanation": "官方任务目录列出该科学纪录片工作标题和 PFOA/DuPont/Teflon 摘要。实际输入仍使用 TubeLab Scriptwriter 的频道风格与研究流程；本站不复制参考视频、模型脚本或完整 research brief。",
+        "source": "https://tubelab.net/benchmark/scriptwriting",
+        "license": "未确认任务、参考视频或生成脚本的统一再发布许可。本页仅保留任务标题短引和公开摘要的编辑性概述，不复制脚本或原视频。",
+        "split": "official task list · Science documentary · 12-task inventory · brief excerpt truncated",
+        "excerpt": true
+      }
+    ]
+  }
+}

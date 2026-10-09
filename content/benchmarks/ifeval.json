@@ -27,14 +27,6 @@
   },
   "limitations": [
     {
-      "text": "仓库 README 指向整体 code and data，但当前未发现独立的数据授权声明；Apache-2.0 对每项 prompt 及其潜在外部来源的具体适用边界未逐条拆分。",
-      "sourceUrls": [
-        "https://arxiv.org/html/2311.07911#S2",
-        "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
-        "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py"
-      ]
-    },
-    {
       "text": "上游主分支可能变动。需在正式对比或公开镜像时保存代码和数据的 commit/hash。",
       "sourceUrls": [
         "https://arxiv.org/html/2311.07911#S2",
@@ -132,7 +124,7 @@
         "split": "公开 input_data",
         "excerpt": false,
         "prompt": "I am planning a trip to Japan, and I would like thee to write an itinerary for my journey in a Shakespearean style. You are not allowed to use any commas in your response.",
-        "explanation": "重点是回答是否满足可检查约束。原始 instruction_id_list 指出要运行的规则，kwargs 保存参数。这里没有唯一参考答案，程序检查生成的文本是否满足要求。",
+        "explanation": "回复既要采用莎士比亚风格，又不能出现逗号。评分关注可检查的文本约束；完成主题内容仍可能因格式不合格而失败。",
         "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
         "license": "Apache-2.0 · Google Research",
         "licensePath": "licenses/google-research.txt",
@@ -156,7 +148,7 @@
         "split": "公开 input_data",
         "excerpt": false,
         "prompt": "Write a resume for a fresh high school graduate who is seeking their first job. Make sure to include at least 12 placeholder represented by square brackets, such as [address], [name].",
-        "explanation": "重点是回答是否满足可检查约束。原始 instruction_id_list 指出要运行的规则，kwargs 保存参数。这里没有唯一参考答案，程序检查生成的文本是否满足要求。",
+        "explanation": "简历必须包含至少 12 个方括号占位符。检查器依据 instruction_id_list 和 kwargs 检查数量与格式，此题没有唯一参考文本。",
         "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
         "license": "Apache-2.0 · Google Research",
         "licensePath": "licenses/google-research.txt",
@@ -233,5 +225,16 @@
       "https://arxiv.org/html/2311.07911",
       "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "仓库 README 指向整体 code and data，但当前未发现独立的数据授权声明；Apache-2.0 对每项 prompt 及其潜在外部来源的具体适用边界未逐条拆分。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2311.07911#S2",
+        "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+        "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

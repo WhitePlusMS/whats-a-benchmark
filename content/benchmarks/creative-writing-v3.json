@@ -1,0 +1,201 @@
+{
+  "id": "creative-writing-v3",
+  "status": "published",
+  "order": 650,
+  "name": "Creative Writing v3",
+  "subtitle": "用固定创作要求比较英语写作质量",
+  "category": "writing",
+  "tags": [
+    "创意写作",
+    "模型裁判",
+    "英语",
+    "相对评级"
+  ],
+  "publisher": "Samuel J. Paech / EQ-bench",
+  "brandIds": [
+    "eq-bench"
+  ],
+  "year": 2025,
+  "version": "v3 · 按裁判与榜单日期区分",
+  "kind": "original",
+  "aliases": [
+    "EQ-Bench Creative Writing Benchmark v3"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在固定创作提示下生成英语作品，通过 rubric 和两两对比评估写作质量。",
+    "task": "围绕幽默、爱情、空间关系和特殊叙述视角等创作要求写作；不是对话角色扮演评测。",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/creative-writing-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "writing_prompt 与当轮展开的 seed_modifiers；任务类别和标题是提示元数据，rubric/成对裁判提示用于生成后评分。",
+    "output": "满足提示要求的英语创作文本。",
+    "environment": "每个提示 3 次生成，官方示例温度 0.7、min_p 0.1；先 rubric 评分，再与历史模型邻居双向比较并用修改后的 Glicko-2 求归一化 Elo。",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/creative-writing-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "提示、评测代码及部分生成与评级记录公开；最新榜单与仓库结果包可能存在更新时间差异。",
+    "disclosure": "partial",
+    "scale": [
+      "32 个提示，3 次生成，共 96 项输出。"
+    ],
+    "splits": [
+      "32 个固定提示各生成 3 次；没有另设 train/dev/test 划分。复现榜单还需同一裁判和历史对比池。"
+    ],
+    "fields": [
+      "creative_writing_prompts_v3.json 以提示 id 为键，每项含 category、title、writing_prompt、seed_modifiers。",
+      "单篇 rubric、成对判断和最终 elo_norm 分开保存；裁判材料不属于写作模型输入。"
+    ],
+    "files": [
+      "data/creative_writing_prompts_v3.json；creative_writing_criteria.txt、negative_criteria.txt、pairwise_prompt.txt 与 judging prompt。",
+      "creative_bench_runs.zip 和 elo_results.zip 是榜单复现的历史对比结果包；results/ 提供逐模型 HTML 报告。"
+    ],
+    "sourceUrls": [
+      "https://github.com/EQ-bench/creative-writing-bench",
+      "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "从官方仓库读取提示与代码；完整复现 Elo 还需相同的历史对比结果和裁判配置。"
+    ],
+    "url": "https://github.com/EQ-bench/creative-writing-bench",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/creative-writing-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://github.com/EQ-bench/creative-writing-bench"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json"
+    ]
+  },
+  "metric": {
+    "name": "归一化 Elo / Rubric Score",
+    "description": "主要榜单分数为基于成对比较的归一化 Elo；单篇 rubric 分数另列。Slop、重复率和篇幅是附加指标，不是独立评测。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://eqbench.com/creative_writing.html",
+      "https://github.com/EQ-bench/creative-writing-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "裁判偏好和对比池影响相对评分；官方仅评英语写作，不测对话角色扮演。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/creative-writing-bench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 v3 仓库",
+      "url": "https://github.com/EQ-bench/creative-writing-bench",
+      "role": "readme"
+    },
+    {
+      "label": "官方榜单",
+      "url": "https://eqbench.com/creative_writing.html",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方 v3 方法",
+      "url": "https://eqbench.com/about.html#creative-writing-v3",
+      "role": "definition"
+    },
+    {
+      "label": "Creative Writing v3 官方提示字段",
+      "url": "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json",
+      "role": "data"
+    },
+    {
+      "label": "Creative Writing v3 官方数据与裁判材料目录",
+      "url": "https://github.com/EQ-bench/creative-writing-bench/tree/main/data",
+      "role": "data"
+    },
+    {
+      "label": "案例原始数据精简字段来源",
+      "url": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/main/data/creative_writing_prompts_v3.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "指定 LLM 进行单篇 rubric 与双向成对比较；裁判配置要随榜单版本记录。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/creative-writing-bench"
+      ]
+    },
+    "comparison": {
+      "text": "区分 Elo、rubric 及风格指标；不同裁判或对比池的分数不能直接当成固定准确率。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/creative-writing-bench"
+      ]
+    },
+    "disclosure": {
+      "text": "提示、评测代码及部分生成与评级记录公开；最新榜单与仓库结果包可能存在更新时间差异。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/creative-writing-bench"
+      ]
+    },
+    "versionChanges": {
+      "text": "v3 提示与评分不同于 v2；官方 2026-03-01 说明更新了 Elo 裁判，rubric 仍有独立配置。",
+      "sourceUrls": [
+        "https://eqbench.com/about.html#creative-writing-v3"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/creative-writing-bench"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "creative-writing-v3-gladiator",
+        "title": "罗马角斗士日常片段写作",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "Creative Writing v3 的历史小说提示要求描写罗马帝国时期一名角斗士的一段日常，聚焦感官细节、内心情绪和时代背景，避免写战斗场面，并采用第一人称过去时。",
+        "raw": {
+          "1": {
+            "category": "historical fiction",
+            "title": "Gladiator",
+            "writing_prompt": "Historical Fiction: Write a scene from a story set during the height of the Roman Empire, focusing on a slice"
+          }
+        },
+        "explanation": "官方提示 JSON key=1，category=historical fiction，title=Gladiator。仓库路径指向可变 main 分支，本记录不声称固定 commit；未复制完整 prompt、seed modifiers、评分 rubric 或生成作品。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 1.writing_prompt: retained only its opening sentence; source value continues after this sentence、seed_modifiers、model outputs。 保留文本字段的真实片段，范围为 [{\"path\": \"1.writing_prompt\", \"start\": 0, \"end\": 109, \"sourceCharacters\": 490}]。",
+        "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/main/data/creative_writing_prompts_v3.json",
+        "license": "官方仓库可见 MIT 声明，但本次未确认其对提示文本和评分/模型输出数据的具体覆盖。本页仅保留必要短引和本站中文概述，不据仓库代码许可宣称题库整体授权。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "creative_writing_prompts_v3.json · key=1 · historical fiction · Gladiator",
+        "excerpt": true
+      }
+    ]
+  }
+}

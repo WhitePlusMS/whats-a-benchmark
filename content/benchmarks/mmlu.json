@@ -12,7 +12,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "id": "mmlu",
   "name": "MMLU",
   "subtitle": "一张覆盖很多学科的知识试卷",
@@ -34,19 +34,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "本次没有下载全部原始 subject 文件重新计数和验证行格式；规模来自原论文，仓库提供下载入口。",
-      "sourceUrls": [
-        "https://github.com/hendrycks/test"
-      ]
-    },
-    {
-      "text": "仓库 MIT 文件与题库第三方源材料的逐题授权边界没有完全厘清；避免复制原始问答内容。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2009.03300",
-        "https://github.com/hendrycks/test"
-      ]
-    },
     {
       "text": "官方原始资料没有污染豁免保证，也没有专门要求的 anti-training canary；全量测试数据公开会带来暴露风险，但不能仅据此断言任何具体模型受到了污染。",
       "sourceUrls": [
@@ -80,6 +67,21 @@
       "label": "Aligning AI With Shared Human Values",
       "url": "https://arxiv.org/abs/2008.02275",
       "role": "paper"
+    },
+    {
+      "label": "已核验的原始样例文件",
+      "url": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定数据快照与许可声明",
+      "url": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md",
+      "role": "access"
+    },
+    {
+      "label": "MIT 许可原文",
+      "url": "https://raw.githubusercontent.com/hendrycks/test/master/LICENSE",
+      "role": "access"
     }
   ],
   "status": "published",
@@ -87,7 +89,7 @@
   "brandIds": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "MMLU 衡量文本模型在 57 个学科中的广域知识与问题求解能力，原始论文报告 15,908 题。它是四选一文本题库，与 MMLU-Pro 及多语言 MMMLU 分开。",
+    "summary": "回答 57 个学科的四选一文本题，考查广域知识与问题求解能力。",
     "task": "输入每科题目和四个候选答案，模型按 zero-shot 或使用该科 development 示例的 few-shot 提示选择答案。",
     "sourceUrls": [
       "https://arxiv.org/abs/2009.03300"
@@ -115,11 +117,14 @@
       "官方按学科 CSV 行包含 question、四个 choices 和 answer；subject 由所属学科文件识别，不保证有稳定全局题目 ID。"
     ],
     "files": [
-      "按学科划分的原始 CSV 文件；第三方合并版或 Parquet 字段不能无说明替代原始格式。"
+      "按学科划分的原始 CSV 文件；第三方合并版或 Parquet 字段不能无说明替代原始格式。",
+      "本站选例另固定 CAIS/anatomy 的 Parquet 快照，并保留该发布的原字段；与原作者 CSV 格式区分。"
     ],
     "sourceUrls": [
       "https://arxiv.org/abs/2009.03300",
-      "https://github.com/hendrycks/test"
+      "https://github.com/hendrycks/test",
+      "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md"
     ]
   },
   "dataAccess": {
@@ -133,23 +138,69 @@
     "url": "https://github.com/hendrycks/test"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "作者仓库有 MIT LICENSE；原论文还要求引用其借鉴的 ETHICS 数据。",
-    "scope": "仓库级许可及论文引用信息未逐题厘清各学科材料的上游权利，不能据代码许可推定所有题目均可重新发布。",
+    "status": "permitted",
+    "license": "MIT（固定公开数据快照的许可声明）",
+    "scope": "仅展示此官方公开数据快照中的 1 条记录；许可说明不延伸至其它第三方材料或未公开题集。",
     "boundaries": [
-      "页面描述题型并链接作者资料；不镜像完整题目或答案键，复用具体内容前核对其来源和许可。"
+      "保留发布方、记录位置和许可原文；中文解读由本站撰写。"
     ],
     "sourceUrls": [
-      "https://github.com/hendrycks/test/blob/master/LICENSE",
-      "https://github.com/hendrycks/test"
+      "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md",
+      "https://raw.githubusercontent.com/hendrycks/test/master/LICENSE"
     ]
   },
   "sampleAccess": {
-    "status": "unverified",
-    "reason": "原始题库公开，但本站曾存的第三方重打包样例未能证明来自作者原始格式或特定行。没有逐项核清题源许可，且公开 test 题及答案会暴露评测内容；不展示该样例，只保留原创说明和官方链接。",
+    "status": "local",
+    "reason": "已从官方原文件核验并展示 1 条真实公开记录，原题、答案和许可可在本页查看。",
+    "url": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
     "sourceUrls": [
-      "https://github.com/hendrycks/test",
-      "https://arxiv.org/abs/2009.03300"
+      "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "已读取固定原文件：anatomy/test, row 0；SHA-256 cb88f5920b67ab290dd23a825f8e3826d01d8f48d99ad4931a8b0003a952a211。未运行模型评测，也未核验全部上游题目的逐题来源。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "anatomy-test-row-0",
+        "title": "解剖学 · test 第 0 行",
+        "type": "choice",
+        "prompt": "A lesion causing compression of the facial nerve at the stylomastoid foramen will cause ipsilateral",
+        "answer": "A",
+        "explanation": "根据面神经受压的位置判断受影响功能。选项和答案保留官方公开行；raw 的 answer=0 对应选项 A。来源格式是 CAIS 发布的 Parquet，不冒称作者原始 CSV 的字段结构。",
+        "raw": {
+          "question": "A lesion causing compression of the facial nerve at the stylomastoid foramen will cause ipsilateral",
+          "subject": "anatomy",
+          "choices": [
+            "paralysis of the facial muscles.",
+            "paralysis of the facial muscles and loss of taste.",
+            "paralysis of the facial muscles, loss of taste and lacrimation.",
+            "paralysis of the facial muscles, loss of taste, lacrimation and decreased salivation."
+          ],
+          "answer": 0
+        },
+        "source": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
+        "license": "Dan Hendrycks 等研究者 · MIT",
+        "licensePath": "licenses/mmlu-sample-source.txt",
+        "split": "anatomy / test（CAIS 官方 Parquet 发布）",
+        "excerpt": false,
+        "options": [
+          "paralysis of the facial muscles.",
+          "paralysis of the facial muscles and loss of taste.",
+          "paralysis of the facial muscles, loss of taste and lacrimation.",
+          "paralysis of the facial muscles, loss of taste, lacrimation and decreased salivation."
+        ]
+      }
     ]
   }
 }

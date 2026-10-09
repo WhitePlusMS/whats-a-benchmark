@@ -29,10 +29,10 @@
       ]
     }
   ],
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "partial",
   "officialDefinition": {
-    "summary": "AIME 是 MAA American Mathematics Competitions 系列的数学竞赛。MAA 2024-25 公告确认 AIME I 与 alternate AIME II 分别在 2025 年举行；MAA 未定义同名统一 AI benchmark。",
+    "summary": "用 2025 年 AIME 竞赛题考查数学解题；具体试卷和模型评测协议由报告方决定。",
     "task": "“AIME 2025”是模型评测方采用的年份标签，可能指 AIME I、AIME II 或其自选组合，须以每份报告的方法为准。",
     "sourceUrls": [
       "https://maa.org/news/aime-thresholds-are-available/#L83-L94",
@@ -71,7 +71,7 @@
   "dataAccess": {
     "status": "unknown",
     "requirements": [
-      "MAA 第一方公告可确认 2025 年两场考试安排；本轮未核实到两场题目/答案或机器可读 benchmark 数据的官方文件下载入口。"
+      "第一方公告确认两场考试安排；题目、答案及机器可读数据的官方下载入口尚未确认。"
     ],
     "url": "https://maa.org/maa-invitational-competitions/",
     "sourceUrls": [
@@ -91,13 +91,11 @@
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "所查 MAA 页面提供项目介绍和年度安排，没有可核实的 AIME 2025 benchmark 样例文件。只链接官方入口，不复制原题或答案。",
-    "url": "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100",
+    "status": "local",
+    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "url": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
     "sourceUrls": [
-      "https://maa.org/news/aime-thresholds-are-available/#L83-L94",
-      "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=3",
-      "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet"
     ]
   },
   "metric": {
@@ -111,22 +109,9 @@
   },
   "limitations": [
     {
-      "text": "MAA 第一方题目/答案文件永久链接、文件名及再发布许可未核实。",
-      "sourceUrls": [
-        "https://maa.org/news/aime-thresholds-are-available/#L83-L94",
-        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
-      ]
-    },
-    {
       "text": "各模型报告所用题目清单及 AIME I/II 覆盖关系未由 MAA 第一方资料确认。",
       "sourceUrls": [
         "https://maa.org/news/aime-thresholds-are-available/#L83-L94"
-      ]
-    },
-    {
-      "text": "2026-27 规则不能代表 2025 年的考试流程；本轮未取得对应年份完整考务规则。",
-      "sourceUrls": [
-        "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=3"
       ]
     },
     {
@@ -172,6 +157,66 @@
       "label": "MAA 2026-27 AIME 规则：题目传播限制",
       "url": "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=7",
       "role": "access"
+    },
+    {
+      "label": "具体公开案例的原始来源",
+      "url": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
+      "role": "data"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "MAA 第一方题目/答案文件永久链接、文件名及再发布许可未核实。",
+      "sourceUrls": [
+        "https://maa.org/news/aime-thresholds-are-available/#L83-L94",
+        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      ]
+    },
+    {
+      "text": "2026-27 规则不能代表 2025 年的考试流程；本轮未取得对应年份完整考务规则。",
+      "sourceUrls": [
+        "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=3"
+      ]
+    },
+    {
+      "text": "MAA 第一方公告可确认 2025 年两场考试安排；本轮未核实到两场题目/答案或机器可读 benchmark 数据的官方文件下载入口。",
+      "sourceUrls": [
+        "https://maa.org/news/aime-thresholds-are-available/#L83-L94",
+        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      ]
+    },
+    {
+      "text": "本轮核对公开具体案例，定位 MathArena train row_idx 0, problem_idx 1; MathArena README config aime/aime_2025.yaml；正式训练/测试用途与本站展示范围不混用。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-aime-2025",
+        "title": "公开第 1 题 · 进制整除",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "求所有整数进制 b>9 的总和，使该进制表示的 17_b 能整除 97_b。MathArena 2025 固定发布中 problem_idx=1 的答案为 70；该行没有 AIME I/II 标记，本页保持这一边界。",
+        "explanation": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。 定位：MathArena train row_idx 0, problem_idx 1; MathArena README config aime/aime_2025.yaml\n原始数据精简说明：保留原生字段 problem_idx、problem、answer、problem_type；其他记录字段未收录。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "problem_idx": 1,
+          "problem": "Find the sum of all integer bases $b>9$ for which $17_b$ is a divisor of $97_b.$",
+          "answer": 70,
+          "problem_type": [
+            "Number Theory"
+          ]
+        },
+        "source": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
+        "answer": "70",
+        "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "MathArena AIME 2025 dataset problem_idx 1; 2025 I/II sub-contest not identified in this dataset row",
+        "excerpt": true
+      }
+    ]
+  }
 }

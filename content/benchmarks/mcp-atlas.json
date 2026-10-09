@@ -6,7 +6,7 @@
   "related": [],
   "kind": "original",
   "verifiedAt": "2026-09-23",
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-10-08",
   "id": "mcp-atlas",
   "name": "MCP-Atlas",
   "subtitle": "面对很多工具，还能选对并用好吗",
@@ -27,28 +27,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "已通过 Hugging Face 官方 Viewer API 重新读取首行，确认 TASK、PROMPT 和 ENABLED_TOOLS；稳定 TASK ID 为 689f4d693e212e8ef3390731，本地仅发布这三个字段。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer/default/train?p=0",
-        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
-      ]
-    },
-    {
-      "text": "本轮只核验并复制一个公开任务的题面与工具名，未逐行审计其余 499 行；GTFA_CLAIMS、TRAJECTORY 和外部服务返回均未进入本站样例。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
-        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
-      ]
-    },
-    {
-      "text": "论文同时说公开卡 3–6 tool calls/task、正文参考轨迹均值 9.8 steps，统计口径有别，本文不将其强行对齐。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2602.00933",
-        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
-        "https://github.com/scaleapi/mcp-atlas/blob/main/README.md"
-      ]
-    },
     {
       "text": "第三方工具实现和工具返回内容适用其上游许可及 API 条款，不能由数据集许可证覆盖。",
       "sourceUrls": [
@@ -122,7 +100,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "MCP-Atlas 评估智能体在真实 MCP 服务中发现工具、执行多步调用并汇总结果的能力。论文定义 1,000 个任务，覆盖 36 个服务器和 220 个工具；公开与私有任务各 500 个。",
+    "summary": "在真实 MCP 服务中发现工具、执行多步调用并汇总结果；公开与私有任务各 500 个。",
     "task": "模型根据未点名工具或服务器的自然语言请求完成跨工具工作流，返回最终回答和可审计调用轨迹；主要结果是 claim coverage 达到阈值的任务比例。",
     "sourceUrls": [
       "https://arxiv.org/abs/2602.00933"
@@ -201,7 +179,7 @@
         "title": "MCP-Atlas 公开任务 689f4d693e212e8ef3390731",
         "type": "record",
         "prompt": "I've been looking into contributions in open source videogames and I'm curious about the longevity of this one open source project. Can you get me the year difference between the creation of the repository of the shooter game assaultcube and the domain registration date of the game's official site",
-        "explanation": "这是官方公开任务中的一条自然语言请求。样例仅保留 TASK、PROMPT 和 ENABLED_TOOLS；不包含参考主张、TRAJECTORY 或任何第三方工具/API 返回内容。",
+        "explanation": "需要分别查找 AssaultCube 仓库创建时间与官网域名注册日期，再计算年份差。请求没有直接点名工具，智能体需发现可用 MCP 工具并组合证据。",
         "raw": {
           "TASK": "689f4d693e212e8ef3390731",
           "ENABLED_TOOLS": "[\"fetch_fetch\",\"whois_whois_domain\",\"github_search_repositories\",\"github_search_code\",\"github_search_users\",\"github_get_issue\",\"github_list_issues\",\"github_search_issues\",\"github_get_issue_comments\",\"github_get_repository\",\"github_get_commit\",\"github_list_commits\",\"github_get_file_contents\",\"github_list_branches\",\"mcp-code-executor_execute_code\"]",
@@ -214,5 +192,35 @@
         "excerpt": false
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "已通过 Hugging Face 官方 Viewer API 重新读取首行，确认 TASK、PROMPT 和 ENABLED_TOOLS；稳定 TASK ID 为 689f4d693e212e8ef3390731，本地仅发布这三个字段。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer/default/train?p=0",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
+      ]
+    },
+    {
+      "text": "本轮只核验并复制一个公开任务的题面与工具名，未逐行审计其余 499 行；GTFA_CLAIMS、TRAJECTORY 和外部服务返回均未进入本站样例。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
+      ]
+    },
+    {
+      "text": "论文同时说公开卡 3–6 tool calls/task、正文参考轨迹均值 9.8 steps，统计口径有别，本文不将其强行对齐。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.00933",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+        "https://github.com/scaleapi/mcp-atlas/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "样例 689f4d693e212e8ef3390731：这是官方公开任务中的一条自然语言请求。样例仅保留 TASK、PROMPT 和 ENABLED_TOOLS；不包含参考主张、TRAJECTORY 或任何第三方工具/API 返回内容。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
+      ]
+    }
+  ]
 }

@@ -1,0 +1,176 @@
+{
+  "id": "vibe-code-bench-1-100",
+  "status": "published",
+  "order": 1130,
+  "name": "Vibe Code Bench 1–100",
+  "subtitle": "让已工作的应用连续演进",
+  "category": "coding",
+  "tags": [
+    "应用迭代",
+    "回归测试"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2026,
+  "version": "1–100；2026-10-06方法快照",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "对已工作的 web 应用连续实现最多十个相互依赖的产品请求，并保留先前行为。",
+    "task": "从已通过Vibe Code Bench v1.1测试的应用出发，依次实现最多10条相互依赖的产品请求，同时保留应继续工作的既有行为。",
+    "sourceUrls": [
+      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+    ]
+  },
+  "taskContract": {
+    "input": "起始应用代码和状态、依次给出的产品请求，以及保留的对话与工具历史。",
+    "output": "每轮提交同一代码库中的可运行候选应用及保存状态；浏览器测试在这一候选应用上同时检查新请求和指定历史行为。",
+    "environment": "统一修改版OpenHands V1，提供终端、Supabase、Stripe测试服务和MailHog；每个任务共享10小时生成预算，评测时间另计。",
+    "sourceUrls": [
+      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+    ]
+  },
+  "dataProfile": {
+    "summary": "方法与演示公开，完整测试/验证任务集为专有数据。",
+    "disclosure": "partial",
+    "scale": [
+      "100条应用演进链，共939条请求。",
+      "11,299个浏览器工作流：7,552个新功能检查与3,747个回归检查。",
+      "每项最多10次迭代。"
+    ],
+    "splits": [
+      "50个测试场景与50个验证场景；当前榜单只报告测试子集。"
+    ],
+    "fields": [],
+    "files": [
+      "官网提供公开 application arc/请求与测试演示；私有测试/验证集合含起始应用、按序产品请求和每轮浏览器验收工作流，未作为完整下载包发布。"
+    ],
+    "sourceUrls": [
+      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "官网标注Proprietary，未提供完整任务集公开下载。"
+    ],
+    "sourceUrls": [
+      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://www.vals-ai.com/benchmarks/vcb-1-100",
+    "sourceUrls": [
+      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+    ]
+  },
+  "metric": {
+    "name": "连续完成迭代数",
+    "description": "每轮新功能与选定回归工作流须100%成功；在首个不完整或错误迭代处停止计数。页面成绩仅使用50个测试场景。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "回归测试是选定工作流，并非穷举重测每项历史行为。",
+      "sourceUrls": [
+        "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "1–100是从工作应用继续开发的系列延展，不能与从零构建应用的v1.1分数直接合并。",
+      "sourceUrls": [
+        "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：Example task: Zeeter; iteration 1 request, page lines 152–165; subsequent arc in lines 155–162；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Vals Vibe Code Bench 1–100 methodology",
+      "url": "https://www.vals-ai.com/benchmarks/vcb-1-100",
+      "role": "definition"
+    },
+    {
+      "label": "Vals Vibe Code Bench v1.1",
+      "url": "https://www.vals-ai.com/benchmarks/vibe-code",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "vibe-code-bench-v1-1",
+      "label": "从v1.1工作应用继续迭代",
+      "detail": "官方明确每项任务从完整通过v1.1的应用及其已保存状态出发，再接收连续产品请求。",
+      "sourceUrls": [
+        "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "每个工作流的全部步骤均须成功；当一轮新功能或选定回归检查失败时停止连续迭代计数，不把后续修复视作该轮通过。",
+      "sourceUrls": [
+        "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      ]
+    },
+    "comparison": {
+      "text": "总公开规模含 50 test+50 validation，而榜单仅报告 test；共享十小时生成预算，不计评测时间，回归集合也并非穷举全部旧流程。",
+      "sourceUrls": [
+        "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "public-case-vibe-code-bench-1-100",
+        "title": "Zeeter · 逐轮改造私人收藏区",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方独立 Zeeter 演示的第一轮要求增加私人收藏区，可从信息流、用户主页、帖子详情保存或取消收藏，每个帖子可附最多 500 字符私人备注，重复保存只能产生一条记录。后续五轮依次改变集合、只读分享、撤销链接、删除公开分享及源帖更新/删除处理。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：Example task: Zeeter; iteration 1 request, page lines 152–165; subsequent arc in lines 155–162",
+        "raw": "Add a private Saved area where signed-in members can",
+        "source": "https://www.vals-ai.com/benchmarks/vcb-1-100",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。",
+        "split": "Publisher’s standalone Zeeter example task; explicitly outside test and validation sets",
+        "excerpt": true
+      }
+    ]
+  }
+}

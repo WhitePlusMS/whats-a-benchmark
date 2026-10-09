@@ -18,10 +18,11 @@
   "kind": "subset",
   "aliases": [
     "FrontierCode v1.1 (Main)",
-    "FrontierCode 1.1 Main"
+    "FrontierCode 1.1 Main",
+    "FrontierCode"
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "FrontierCode 1.1 Main 是 Cognition 用于评估智能体在真实开源代码库中完成 issue 与补丁任务的 benchmark 子集。",
@@ -86,13 +87,12 @@
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "官方结果页提供 benchmark 介绍与少量可交互演示信息，但没有公开完整 Main 任务包；本站只链接官方页面，不复制隐藏题目。",
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://cognition.com/frontiercode",
     "sourceUrls": [
-      "https://cognition.com/frontiercode",
-      "https://cognition.com/blog/frontier-code-1.1"
-    ],
-    "url": "https://cognition.com/frontiercode"
+      "https://cognition.com/frontiercode"
+    ]
   },
   "metric": {
     "name": "Score / pass rate",
@@ -149,6 +149,33 @@
       "label": "Anthropic 发布页",
       "url": "https://www.anthropic.com/claude-opus-5-5",
       "role": "vendor-report"
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-frontiercode-1-1-main",
+        "title": "公开工程任务 · 统一警告输出",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在 src/logger.h 添加 LOG_WARNING()，所有警告写到 stderr，不受 --verbose 控制，并统一添加 warning: 前缀；替换代码库中对应的警告输出。官方页面将此列为任务描述演示，本页不提供修改补丁。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：Leaderboard > What a task looks like > Task description (warning logger task)\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Encapsulate all warning logs in a new auto LOG_WARNING() -> std::ostream & method in src/logger.h such that:",
+        "source": "https://cognition.com/frontiercode",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "FrontierCode 1.1 official leaderboard's public task demo; exact benchmark row/subset membership not printed in the demo",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：Leaderboard > What a task looks like > Task description (warning logger task)；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://cognition.com/frontiercode"
+      ]
     }
   ]
 }

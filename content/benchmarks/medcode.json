@@ -1,0 +1,128 @@
+{
+  "id": "medcode",
+  "status": "published",
+  "order": 458,
+  "name": "MedCode",
+  "subtitle": "从住院记录生成医疗结算诊断编码",
+  "category": "work",
+  "tags": [
+    "医疗",
+    "临床文档",
+    "诊断编码",
+    "职业任务"
+  ],
+  "publisher": "Vals AI / Protege",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": null,
+  "version": "官方 2026-10 页面方法",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "根据脱敏住院记录预测主诊断和次诊断的 ICD-10-CM 编码。",
+    "task": "整合出院记录、病程和会诊材料，生成一次住院所需的诊断编码。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medcode"
+    ]
+  },
+  "taskContract": {
+    "input": "脱敏出院总结、住院期间病程和会诊文档，以及用ZIP代码前三位映射的地区/人口资料；专家编码标签不提供给模型。",
+    "output": "主诊断与次诊断 ICD-10-CM 编码。",
+    "environment": "官方温度 1、最大 30k 输出 tokens；由两位认证编码人员标注并协调差异。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medcode"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方描述的数据涵盖 2,755 个主次诊断编码，未明确其与患者记录数的一一对应关系。",
+    "disclosure": "not-public",
+    "scale": [
+      "页面给出 2,755 的编码规模；不能据此宣称有 2,755 位患者。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [
+      "住院文档及专家诊断编码标注；未公开完整下载。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medcode"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "官方未提供患者记录级公开下载入口。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medcode"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "页面标为 Proprietary；数据许可细则未公开核实。",
+    "scope": "本站仅提供原创说明与官方链接。",
+    "boundaries": [
+      "未确认具体发布版本的许可前，不在本站复制题目、答案或附件。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medcode"
+    ]
+  },
+  "sampleAccess": {
+    "status": "private",
+    "reason": "官方未公开可读取的患者级文档/编码样例或下载；仅有方法、模型分项与错误类型图，不能当病例viewer。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medcode"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy",
+    "description": "官方榜单按诊断编码正确性报告 Accuracy，并区分主次诊断、缺失与错配等结果；未将编码数量解释为整例患者通过率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/medcode"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "医疗编码准确度只反映此任务；页面未完整给出患者数量和所有分项汇总细则。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medcode"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "官方 2,755 的单位描述存在歧义，本站保留其编码口径并明确未核实患者记录数量。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medcode"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MedCode 官方定义与方法",
+      "url": "https://www.vals.ai/benchmarks/medcode",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "两名认证专业编码员独立标注并协商差异；模型预测主/次ICD-10-CM编码，与专家标注比对，缺失诊断和主次错配分开统计。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medcode"
+      ]
+    },
+    "comparison": {
+      "text": "榜单Accuracy是编码正确性；2,755的公开单位是primary/secondary codes而非已核实患者数，不推导整例住院通过率。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medcode"
+      ]
+    }
+  }
+}

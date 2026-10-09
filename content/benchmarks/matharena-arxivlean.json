@@ -1,0 +1,215 @@
+{
+  "id": "matharena-arxivlean",
+  "status": "published",
+  "order": 1260,
+  "name": "ArXivLean",
+  "subtitle": "用Lean核验研究数学证明",
+  "category": "reasoning",
+  "tags": [
+    "形式化证明",
+    "研究数学"
+  ],
+  "publisher": "MathArena / ETH Zurich SRI Lab",
+  "brandIds": [
+    "matharena"
+  ],
+  "year": 2026,
+  "version": "arxivlean-0626；2026-06数据集",
+  "kind": "original",
+  "aliases": [
+    "MathArena · ArXivLean"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "要求模型把近期数学研究中的定理正式化并提供可由 Lean 校验的证明。",
+    "task": "针对近期arXiv研究中的数学定理，提交符合给定形式化陈述的完整Lean证明。",
+    "sourceUrls": [
+      "https://matharena.ai/arxivlean/"
+    ]
+  },
+  "taskContract": {
+    "input": "problem 中的自然语言定理与 formal_statement 中待补完的 Lean 声明；source/title/authors 用于溯源。六月数据不提供完整参考证明。",
+    "output": "完整 Lean 文件，含给定定理的证明及所需 lemma/定义；不能通过新增公理、改定义或改变定理意义绕过校验。",
+    "environment": "官方工具配置以Lean 4.29.0、Axle、Loogle和LeanExplore为主，最多200次工具调用；Aristotle使用自己的环境及Lean 4.28.0。",
+    "sourceUrls": [
+      "https://matharena.ai/arxivlean/",
+      "https://github.com/eth-sri/matharena/blob/main/readmes/README_arxivlean.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "2026-06问题与形式化陈述公开，可沿来源追溯arXiv论文。",
+    "disclosure": "complete",
+    "scale": [
+      "2026-06公开版：46题。"
+    ],
+    "splits": [
+      "Hugging Face以train标签存放46条记录；该存储标签不代表可用作训练的官方评测协议。"
+    ],
+    "fields": [
+      "固定六月数据的实际字段为 problem_idx、problem、formal_statement、source、title、authors；formal_statement 含待完成证明的 sorry，不是完整答案。"
+    ],
+    "files": [
+      "arxivlean-0626 的 HF data/ Parquet 发布 46 条 train 记录；README_arxivlean.md 说明 Lean 工具与验证协议。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "可访问Hugging Face数据；复现工具评测需匹配Lean/Mathlib及所用工具配置。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626"
+    ],
+    "url": "https://huggingface.co/datasets/MathArena/arxivlean-0626"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "arxivlean-0626数据卡声明CC BY-SA 4.0；工具代码和底层资源许可分别适用。",
+    "scope": "本站仅展示固定来源快照中经核验的精选任务字段，保留出处与适用许可；不将其许可外推至外部网页、模型输出或未采用媒体。",
+    "boundaries": [
+      "数据卡许可适用于所列月份数据；引用时应遵守署名和相同方式共享等条件。",
+      "不得把数据卡许可自动扩展至工具代码或其他第三方资源。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626",
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md"
+    ]
+  },
+  "metric": {
+    "name": "形式化证明通过率",
+    "description": "在固定Lean环境中校验最终文件，必须保留原定理意义，不能额外引入公理或改变定义。编译成功只有同时通过声明与信任边界检查才算正确。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://matharena.ai/arxivlean/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "部分研究结果尚未进入Mathlib，形式化可能需要深层辅助证明。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivlean/",
+        "https://github.com/eth-sri/matharena/blob/main/readmes/README_arxivlean.md"
+      ]
+    },
+    {
+      "text": "Lean版本影响证明可编译性，尤其要区分Aristotle例外环境。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivlean/",
+        "https://github.com/eth-sri/matharena/blob/main/readmes/README_arxivlean.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条目数据规模固定为2026-06的46题，不把首版2026-03的41题或文章截图当作同一快照。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/arxivlean-0626"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivlean/"
+      ]
+    },
+    {
+      "text": "本站所选记录 1：config=default，split=train，源文件 SHA-256=0bc14398faf9fe0f108effbafecdca589793fc0db56fe359c3b7b26b14860c9a，完整原记录 SHA-256=df2bbf2a6438da1901ba51ed183bd3925f0126b5c0bbfcf063ec0d4f1d94b147。raw 只保留任务和评分字段，排除第三方参考材料/空字段/模型结果；原题未改。 代码题面直接采用 formal_statement 原字段，problem 仍在 raw；不提供完整证明答案。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MathArena ArXivLean methodology",
+      "url": "https://matharena.ai/arxivlean/",
+      "role": "definition"
+    },
+    {
+      "label": "MathArena ArXivLean June 2026 dataset",
+      "url": "https://huggingface.co/datasets/MathArena/arxivlean-0626",
+      "role": "data"
+    },
+    {
+      "label": "MathArena ArXivLean README",
+      "url": "https://github.com/eth-sri/matharena/blob/main/readmes/README_arxivlean.md",
+      "role": "readme"
+    },
+    {
+      "label": "ArXivLean 六月官方逐题 Viewer",
+      "url": "https://huggingface.co/datasets/MathArena/arxivlean-0626/viewer/default/train",
+      "role": "data"
+    },
+    {
+      "label": "所选真实记录的固定版本数据文件",
+      "url": "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "所选数据快照的许可说明",
+      "url": "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md",
+      "role": "data"
+    },
+    {
+      "label": "所选材料的固定许可或来源证据",
+      "url": "https://arxiv.org/abs/2606.00316v1",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "验证最终 Lean 文件与原声明及公理信任边界，能编译但改写原定理的输出不计正确；所需辅助结果未必已存在于 Mathlib。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivlean/",
+        "https://github.com/eth-sri/matharena/blob/main/readmes/README_arxivlean.md"
+      ]
+    },
+    "comparison": {
+      "text": "固定六月 46 题、Lean 与工具预算；Aristotle 的自有环境/Lean 4.28 与主工具协议的 Lean 4.29 需分别记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/arxivlean-0626",
+        "https://matharena.ai/arxivlean/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "1",
+        "title": "子水平集凸性的 Lean 证明目标",
+        "type": "code",
+        "prompt": "theorem sublevel_convex_of_hessian_posDef_on_superlevel (n : ℕ) (f : (Fin n → ℝ) → ℝ) (c : ℝ)\n    (hf : ContDiff ℝ ⊤ f)\n    (hH : ∀ x : Fin n → ℝ, c ≤ f x →\n      (Matrix.of fun i j : Fin n =>\n        ((fderiv ℝ (fun y : Fin n → ℝ => fderiv ℝ f y) x) (Pi.single i (1 : ℝ)))\n          (Pi.single j (1 : ℝ))).PosDef) :\n    Convex ℝ {x : Fin n → ℝ | f x ≤ c} := by\n  sorry\n",
+        "explanation": "原记录的 formal_statement 含 sorry，是需要补完的 Lean 证明目标，不是完整证明或参考答案。自然语言命题保留在原始数据中；这里只展示原字段，不运行 Lean。",
+        "raw": {
+          "problem_idx": 1,
+          "problem": "Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be a smooth function, and let $c \\in \\mathbb{R}$. If the Hessian of $f$ is positive definite at every point $x \\in \\mathbb{R}^n$ such that $f(x) \\ge c$, then the sublevel set $\\{x \\in \\mathbb{R}^n \\mid f(x) \\le c\\}$ is convex.\n",
+          "formal_statement": "theorem sublevel_convex_of_hessian_posDef_on_superlevel (n : ℕ) (f : (Fin n → ℝ) → ℝ) (c : ℝ)\n    (hf : ContDiff ℝ ⊤ f)\n    (hH : ∀ x : Fin n → ℝ, c ≤ f x →\n      (Matrix.of fun i j : Fin n =>\n        ((fderiv ℝ (fun y : Fin n → ℝ => fderiv ℝ f y) x) (Pi.single i (1 : ℝ)))\n          (Pi.single j (1 : ℝ))).PosDef) :\n    Convex ℝ {x : Fin n → ℝ | f x ≤ c} := by\n  sorry\n",
+          "source": "2606.00316",
+          "title": "High-level convexity for products of squared Euclidean distance functions",
+          "authors": "Tudor Micu; Cornel Pintea; George C. Ţurcaş"
+        },
+        "source": "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
+        "split": "train",
+        "excerpt": true,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivlean-sample-source.txt"
+      }
+    ]
+  }
+}

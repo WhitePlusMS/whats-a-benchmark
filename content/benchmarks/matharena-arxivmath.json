@@ -1,0 +1,215 @@
+{
+  "id": "matharena-arxivmath",
+  "status": "published",
+  "order": 1280,
+  "name": "ArXivMath",
+  "subtitle": "回答近期研究中的数学问题",
+  "category": "reasoning",
+  "tags": [
+    "研究数学",
+    "最终答案"
+  ],
+  "publisher": "MathArena / ETH Zurich SRI Lab",
+  "brandIds": [
+    "matharena"
+  ],
+  "year": 2026,
+  "version": "arxivmath-0626；2026-06数据集",
+  "kind": "original",
+  "aliases": [
+    "MathArena · ArXivMath"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "从近期 arXiv 论文摘要构造研究级数学题，要求模型给出可验证的最终答案。",
+    "task": "回答由近期arXiv数学论文核心结果构造的自包含研究问题，以最终答案核验正确性。",
+    "sourceUrls": [
+      "https://matharena.ai/arxivmath/"
+    ]
+  },
+  "taskContract": {
+    "input": "数学题面，通常采用LaTeX；不给答题模型原论文或摘要。",
+    "output": "可核验的最终答案。",
+    "environment": "解析或抽取最终答案并与gold answer比较；官方说明论文检索实验未纳入主榜方法。",
+    "sourceUrls": [
+      "https://matharena.ai/arxivmath/",
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626"
+    ]
+  },
+  "dataProfile": {
+    "summary": "2026-06问题、标准答案与论文来源公开，月份对应不同题集。",
+    "disclosure": "complete",
+    "scale": [
+      "2026-06公开版：48题。"
+    ],
+    "splits": [
+      "Hugging Face以train标签存放48条评测记录。"
+    ],
+    "fields": [
+      "problem_idx、answer、problem、source、title、authors。"
+    ],
+    "files": [
+      "arxivmath-0626 的 HF data/ Parquet 发布 48 条 train 记录，含题目、gold answer 和 source/title/authors；README_arxivmath.md 描述构题筛选。"
+    ],
+    "sourceUrls": [
+      "https://matharena.ai/arxivmath/",
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "可直接访问Hugging Face数据集；复现需固定月份和答案解析流程。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626"
+    ],
+    "url": "https://huggingface.co/datasets/MathArena/arxivmath-0626"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "arxivmath-0626数据卡声明CC BY-SA 4.0；工具代码和底层资源许可分别适用。",
+    "scope": "本站仅展示固定来源快照中经核验的精选任务字段，保留出处与适用许可；不将其许可外推至外部网页、模型输出或未采用媒体。",
+    "boundaries": [
+      "数据卡许可适用于所列月份数据；引用时应遵守署名和相同方式共享等条件。",
+      "不得把数据卡许可自动扩展至工具代码或其他第三方资源。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626",
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626/resolve/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/data/train-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md"
+    ]
+  },
+  "metric": {
+    "name": "最终答案准确率",
+    "description": "模型最终答案与数据集gold answer核对；数据按月更新，比较成绩需固定同一月份和运行配置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://matharena.ai/arxivmath/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方抽样检查中约30%问题可能依据论文引用的既有研究回答。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivmath/"
+      ]
+    },
+    {
+      "text": "构造依赖原论文结果正确，而arXiv论文未必经过同行评审。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivmath/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条目固定2026-06的48题，不与首版40题或其他月份混报。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/arxivmath-0626",
+        "https://matharena.ai/arxivmath/"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivmath/"
+      ]
+    },
+    {
+      "text": "本站所选记录 3：config=default，split=train，源文件 SHA-256=67e038c57192b6c2aaf5131d6877ce82684551ae44282c17c3906cef68de7446，完整原记录 SHA-256=6060ee86b396c942d6a18e04ed79a22019fd9c3fec2bb338c0741ff5e675804d。raw 保留整条原记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/arxivmath-0626/resolve/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/data/train-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MathArena ArXivMath methodology",
+      "url": "https://matharena.ai/arxivmath/",
+      "role": "definition"
+    },
+    {
+      "label": "MathArena ArXivMath June 2026 dataset",
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-0626",
+      "role": "data"
+    },
+    {
+      "label": "MathArena ArXivMath curation README",
+      "url": "https://github.com/eth-sri/matharena/blob/main/readmes/README_arxivmath.md",
+      "role": "readme"
+    },
+    {
+      "label": "ArXivMath 六月官方逐题 Viewer",
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-0626/viewer/default/train",
+      "role": "data"
+    },
+    {
+      "label": "所选真实记录的固定版本数据文件",
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-0626/resolve/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/data/train-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "所选数据快照的许可说明",
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md",
+      "role": "data"
+    },
+    {
+      "label": "所选材料的固定许可或来源证据",
+      "url": "https://arxiv.org/abs/2606.02855v1",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "抽取模型最终答案并对照 gold；不是对长篇推导的整体论文质量评分，论文检索实验也没有混入主榜协议。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivmath/",
+        "https://huggingface.co/datasets/MathArena/arxivmath-0626"
+      ]
+    },
+    "comparison": {
+      "text": "按相同月份题集和答案解析流程比较；source 标注论文来源不保证它是完全新知识，约 30% 的抽样题可能可由此前工作回答。",
+      "sourceUrls": [
+        "https://matharena.ai/arxivmath/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "3",
+        "title": "禁止特定子图后的极值计数",
+        "type": "text",
+        "prompt": "Let $ex(n, K_{t,t}, K_{2,t+1})$ denote the maximum number of copies of the complete bipartite graph $K_{t,t}$ that an $n$-vertex $K_{2,t+1}$-free graph can contain. For a fixed prime power $t \\geq 3$, evaluate the limit $\\lim_{e \\to \\infty} \\frac{ex(n_e, K_{t, t}, K_{2, t+1})}{n_e^2}$, where $n_e = t^{2e - 1}$.\n",
+        "explanation": "这道研究数学题要求给出极值计数的精确极限；参考答案直接取自同一固定数据记录，没有补写解题过程。",
+        "raw": {
+          "problem_idx": 3,
+          "answer": "\\frac{1}{2t(t-1)}",
+          "problem": "Let $ex(n, K_{t,t}, K_{2,t+1})$ denote the maximum number of copies of the complete bipartite graph $K_{t,t}$ that an $n$-vertex $K_{2,t+1}$-free graph can contain. For a fixed prime power $t \\geq 3$, evaluate the limit $\\lim_{e \\to \\infty} \\frac{ex(n_e, K_{t, t}, K_{2, t+1})}{n_e^2}$, where $n_e = t^{2e - 1}$.\n",
+          "source": "2606.02855",
+          "title": "$K_{2, t+1}$-free graphs containing an optimal number of $K_{t, t}$'s",
+          "authors": "Vladislav Taranchuk"
+        },
+        "source": "https://huggingface.co/datasets/MathArena/arxivmath-0626/resolve/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/data/train-00000-of-00001.parquet",
+        "split": "train",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivmath-sample-source.txt",
+        "answer": "\\frac{1}{2t(t-1)}"
+      }
+    ]
+  }
+}

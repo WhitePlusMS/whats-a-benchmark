@@ -17,10 +17,11 @@
   "version": "Finance Agent 官方任务集",
   "kind": "original",
   "aliases": [
-    "FinanceAgent"
+    "FinanceAgent",
+    "Vals Finance Agent"
   ],
   "related": [],
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "Finance Agent Benchmark 评估智能体在真实金融分析场景中检索资料、分析数据并交付专业财务结论的能力。",
@@ -74,26 +75,24 @@
     "url": "https://www.vals.ai/benchmarks/fabv2"
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "仓库 MIT 许可证覆盖评测实现；未核实金融任务数据具有独立开放再发布许可证。",
-    "scope": "仅在许可状态明确前链接公开样例和代码；不得将 MIT 代码许可外推到题目及 reference materials。",
+    "status": "restricted",
+    "license": "Vals Finance Agent v2评测页标示Proprietary；展示问题未另行声明再利用许可，链接仓库MIT为代码许可。",
+    "scope": "正式Finance Agent评测属Proprietary；公开示例问题未单独授予再利用许可，财务参考材料权利另行未知。",
     "boundaries": [
-      "Validation 与 private test 按各自访问条款使用。",
-      "题目可能包含外部金融信息来源，逐项权利未审查。"
+      "不由代码MIT推断题目或财务参考材料授权。",
+      "不把展示问题映射到未标明的split/计分行。"
     ],
     "sourceUrls": [
-      "https://github.com/vals-ai/finance-agent-v2/blob/main/LICENSE",
       "https://www.vals.ai/benchmarks/fabv2"
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "公开版本有少量示例，但数据许可未单独核实；候选仅链接官方页面和仓库，不复制任务或 reference materials。",
+    "status": "local",
+    "reason": "Vals Finance Agent v2 页面真实 model-output example 的问题。页面模型回答没有被当作参考答案转载；未确认演示对应的 split 或正式题号。",
+    "url": "https://www.vals.ai/benchmarks/fabv2",
     "sourceUrls": [
-      "https://www.vals.ai/benchmarks/fabv2",
-      "https://github.com/vals-ai/finance-agent-v2/tree/main/data"
-    ],
-    "url": "https://github.com/vals-ai/finance-agent-v2/tree/main/data"
+      "https://www.vals.ai/benchmarks/fabv2"
+    ]
   },
   "metric": {
     "name": "Partial Credit accuracy / All-Pass",
@@ -105,12 +104,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "v2 的 927 项拆分为 27 public、450 validation 和 450 private test；隐藏部分未逐项下载核验。",
-      "sourceUrls": [
-        "https://www.vals.ai/benchmarks/fabv2"
-      ]
-    },
     {
       "text": "旧版 537 与 v2 的任务版本及覆盖范围不同，不能将两个数字合并。",
       "sourceUrls": [
@@ -157,5 +150,38 @@
       "url": "https://github.com/vals-ai/finance-agent-v2/blob/main/LICENSE",
       "role": "access"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "v2 的 927 项拆分为 27 public、450 validation 和 450 private test；隐藏部分未逐项下载核验。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/fabv2"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；Vals Finance Agent v2 页面真实 model-output example 的问题。页面模型回答没有被当作参考答案转载；未确认演示对应的 split 或正式题号。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/fabv2"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-finance-agent",
+        "title": "v2 演示 · Centene 医疗赔付率",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "查询 Centene（NYSE:CNC）2025 与 2020 财年的公开资料，判断两个年份是否需要向投保人返还保费、若不需要则哪个年份更接近返还条件，并报告各年的 medical loss ratio。",
+        "explanation": "Vals Finance Agent v2 页面真实 model-output example 的问题。页面模型回答没有被当作参考答案转载；未确认演示对应的 split 或正式题号。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Did NYSE: CNC have to pay a rebate to policyholders in fiscal year 2025 or fiscal year 2020?",
+        "source": "https://www.vals.ai/benchmarks/fabv2",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true
+      }
+    ]
+  }
 }

@@ -1,55 +1,83 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useRoute } from "vue-router";
 import type { Source } from "../content/schema";
-import Icon from "./Icon.vue";
+import { sourceReference } from "../lib/sourceReferences";
+import { sourceRoleLabels } from "../content/labels";
+import UiTooltip from "./UiTooltip.vue";
 
-const props = defineProps<{ sources: Source[]; urls: string[] }>();
+const props = defineProps<{
+  sources: Source[];
+  urls: string[];
+  excludeUrls?: string[];
+}>();
+const route = useRoute();
 const links = computed(() => {
-  const byUrl = new Map(props.sources.map((source) => [source.url, source]));
+  const byUrl = new Map(
+    props.sources.map((source, index) => [
+      source.url,
+      sourceReference(source, index),
+    ]),
+  );
   return [...new Set(props.urls)]
-    .map((url) => byUrl.get(url))
-    .filter((source): source is Source => !!source);
+    .filter((url) => !props.excludeUrls?.includes(url))
+    .flatMap((url) => {
+      const reference = byUrl.get(url);
+      return reference ? [{ ...reference, host: new URL(url).hostname }] : [];
+    });
 });
 </script>
 
 <template>
-  <div class="evidence-links" aria-label="本段官方依据">
-    <span>官方依据</span>
-    <a
-      v-for="source in links"
-      :key="source.url"
-      :href="source.url"
-      target="_blank"
-      rel="noreferrer"
-      >{{ source.label }} <Icon name="up" :size="12"
-    /></a>
-  </div>
+  <sup v-if="links.length" class="evidence-links" aria-label="本段参考资料">
+    <UiTooltip v-for="reference in links" :key="reference.id">
+      <template #default="{ describedBy }">
+        <RouterLink
+          :to="{
+            path: route.path,
+            query: route.query,
+            hash: `#${reference.id}`,
+          }"
+          :aria-describedby="describedBy"
+          :aria-label="`参考资料 ${reference.number}：${reference.source.label}`"
+          >[{{ reference.number }}]</RouterLink
+        >
+      </template>
+      <template #content>
+        <span class="ui-tooltip-kicker"
+          >参考资料 [{{ reference.number }}] ·
+          {{ sourceRoleLabels[reference.source.role] }}</span
+        >
+        <strong>{{ reference.source.label }}</strong>
+        <span class="ui-tooltip-meta" translate="no">{{ reference.host }}</span>
+      </template>
+    </UiTooltip>
+  </sup>
 </template>
 
 <style scoped>
 .evidence-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 16px;
-  color: var(--muted);
+  display: inline;
+  vertical-align: super;
+  margin-inline-start: 3px;
+  color: var(--accent-text);
   font-size: 11px;
-}
-.evidence-links > span {
-  font-weight: 600;
+  line-height: 1;
 }
 .evidence-links a {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 7px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: white;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 2px 3px;
+  border-radius: 4px;
+  font-weight: 600;
+  white-space: nowrap;
 }
-.evidence-links a:hover {
-  color: var(--accent);
-  border-color: #b8b0dc;
+.evidence-links a:hover,
+.evidence-links a:focus-visible {
+  color: var(--accent-text);
+  background: var(--accent-softer);
 }
 </style>

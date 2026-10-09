@@ -1,0 +1,215 @@
+{
+  "id": "apex-agents-1-1",
+  "status": "published",
+  "order": 703,
+  "name": "APEX-Agents 1.1",
+  "subtitle": "在修订任务与评分规则下交付专业工作成果",
+  "category": "work",
+  "tags": [
+    "Agent",
+    "长程任务",
+    "专业工作"
+  ],
+  "publisher": "Mercor / APEX-Agents 团队",
+  "brandIds": [
+    "mercor"
+  ],
+  "year": 2026,
+  "version": "1.1；Harbor delivery revision 1.1.1",
+  "kind": "derivative",
+  "aliases": [
+    "APEX Agents 1.1",
+    "APEX-Agents v1.1"
+  ],
+  "related": [
+    {
+      "id": "apex-agents",
+      "label": "修订自原版",
+      "detail": "原版 480 题；1.1 采用 240 个经审订任务并修改环境和裁判。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents",
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+        "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "从投行、咨询和法律项目材料中完成专业任务，提交工作成果；1.1 修订任务并惩罚含糊的多答案。",
+    "task": "读取任务指令及项目资料，找到决定分析或交付要求的证据，提交对应文本或文件，由二元 rubric 逐项判定。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+      "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+    ]
+  },
+  "taskContract": {
+    "input": "单轮任务指令、项目世界中的文件与应用状态；rubric 和 gold output 是评分材料，不作为给模型的标准答案。",
+    "output": "任务要求的文本或文件成果；评分器将它们与专家参考和逐项 rubric 对照。",
+    "environment": "Harbor 0.20.0 的 linux/amd64 世界、agent 与 verifier 镜像；官方实现限 100 turns 或 10,800 秒，网页搜索未配置。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "1.1 是可运行的 Harbor 任务包，与原版 480 题分开。",
+    "disclosure": "not-public",
+    "scale": [
+      "240 个任务，三个职业领域各 80 题；31 个 worlds、5,182 个 world 文件。",
+      "955 项二元 rubric；每题有专家参考文本或文件。"
+    ],
+    "splits": [
+      "240项受控Harbor任务按投行/咨询/法律各80项组织；任务与31个只读world seed复用，未声明互斥train/dev/test划分。"
+    ],
+    "fields": [
+      "instruction、metadata、agent configuration、environment overlay、solution 与 grader。"
+    ],
+    "files": [
+      "environment/、tasks/、worlds/、manifest.json、registry.json、run_task.sh；Hugging Face 文件受访问条款限制。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "接受该版本的数据访问条款并提供联系信息；本站未取得受控任务文件。"
+    ],
+    "url": "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "样例页标注“for illustration only”，未声明内容复用许可；JV Agreement附件和评分材料未公开。",
+    "scope": "仅该榜单展示的corporate-lawyer案例页；具体版本、附件及benchmark题集许可未查明。",
+    "boundaries": [
+      "不把示例页视作可再发布许可。",
+      "不复制协议附件或评分材料。"
+    ],
+    "sourceUrls": [
+      "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方 corporate-lawyer 演示页的真实协议检查任务，页面展示 1/80 样例；协议附件和评分材料未复制。",
+    "url": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+    "sourceUrls": [
+      "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/"
+    ]
+  },
+  "metric": {
+    "name": "Rubric pass rate；Pass@1 / Pass@4 / Pass^4",
+    "description": "裁判按二元标准评分；1.1 对含糊地给出多个答案的行为计零。至少一次成功与多次均成功的指标分别报告，不与原版 Pass@8 或 Pass^8 混用。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+      "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "任务、世界资料和裁判均经过修订，原版与 1.1 的题量和成绩不能合并。",
+      "sourceUrls": [
+        "https://www.mercor.com/blog/introducing-apex-agents-1-1/",
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      ]
+    },
+    {
+      "text": "工具框架修订、步数、时限、模型推理设置及裁判配置会影响结果。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "APEX-Agents 原版 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/mercor/apex-agents",
+      "role": "data"
+    },
+    {
+      "label": "APEX-Agents 1.1 Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+      "role": "data"
+    },
+    {
+      "label": "Mercor APEX-Agents 1.1 发布说明",
+      "url": "https://www.mercor.com/blog/introducing-apex-agents-1-1/",
+      "role": "definition"
+    },
+    {
+      "label": "Mercor APEX agent 实现仓库",
+      "url": "https://github.com/Mercor-Intelligence/apex_loop_truncated_tools_agent",
+      "role": "code"
+    },
+    {
+      "label": "APEX-Agents 研究论文",
+      "url": "https://arxiv.org/abs/2601.14242",
+      "role": "paper"
+    },
+    {
+      "label": "Mercor APEX 项目页",
+      "url": "https://www.mercor.com/apex/",
+      "role": "definition"
+    },
+    {
+      "label": "已核验的官方具体案例",
+      "url": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+      "role": "definition"
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本次仅核验公开数据卡和版本说明，未接受访问条款、下载或读取受控任务包。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+        "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；官方 corporate-lawyer 演示页的真实协议检查任务，页面展示 1/80 样例；协议附件和评分材料未复制。",
+      "sourceUrls": [
+        "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "每项二元rubric独立判Met/Not met；1.1裁判对scattergunned条目计零，即便回答中包含正确候选也不自动通过。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+        "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+      ]
+    },
+    "comparison": {
+      "text": "区分1.1 benchmark与1.1.1 Harbor delivery、100 turns/10800秒及模型推理参数；Pass@4是至少一次，Pass^4是四次均成功。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+        "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-apex-agents-1-1",
+        "title": "法律演示 · 合资协议签署检查",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "BlueAnchor 希望当天签署合资协议。任务仅检查顶层章节标题顺序、单条款中孤立的小节/段落标签，以及签字栏未填完的签署人姓名，并返回需增删改的事项清单；不审查条款定义、交叉引用或商业实质。",
+        "explanation": "官方 corporate-lawyer 演示页的真实协议检查任务，页面展示 1/80 样例；协议附件和评分材料未复制。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "BlueAnchor wants to get the JV Agreement signed today. Can you send me back a message with a list of items\n\nEnvironment\n\nfor illustration only",
+        "source": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true
+      }
+    ]
+  }
+}

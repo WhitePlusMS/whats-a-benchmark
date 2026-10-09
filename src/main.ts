@@ -53,7 +53,18 @@ export const createApp = ViteSSG(
     });
     router.options.scrollBehavior = (to, from, saved) => {
       if (saved) return { ...saved, behavior: "instant" };
-      if (to.hash) return { el: to.hash, top: 150 };
+      if (to.hash) {
+        // 精确引用可能在折叠的来源定位中；先展开祖先，刷新深链接也能到达。
+        const target = document.getElementById(to.hash.slice(1));
+        for (let parent = target; parent; parent = parent.parentElement)
+          if (parent instanceof HTMLDetailsElement) parent.open = true;
+        const offset = Number.parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue(
+            "--anchor-offset",
+          ),
+        );
+        return { el: to.hash, top: offset };
+      }
       if (to.path === from.path) return false;
       if (to.fullPath === catalogLocation.value)
         return { top: catalogScrollTop, behavior: "instant" };

@@ -1,0 +1,435 @@
+{
+  "id": "prbench-legal",
+  "status": "published",
+  "order": 448,
+  "name": "PRBench Legal",
+  "subtitle": "查看 PRBench 的法律专业任务",
+  "category": "work",
+  "tags": [
+    "法律",
+    "专业推理",
+    "专家评分",
+    "多轮任务"
+  ],
+  "publisher": "Scale AI / PRBench 作者团队",
+  "brandIds": [
+    "scale"
+  ],
+  "year": 2025,
+  "version": "2025 论文与公开数据；Finance / Legal 分域",
+  "kind": "subset",
+  "aliases": [
+    "PRBench 法律",
+    "PRBench · Legal"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "PRBench 的法律分项，按该领域专家准则评价开放式专业推理。",
+    "task": "完成法律专业工作情景中的单轮或多轮问题。",
+    "sourceUrls": [
+      "https://labs.scale.com/papers/prbench"
+    ]
+  },
+  "taskContract": {
+    "input": "prompt_0–prompt_9、已有 response/model 历史和该轮 reference_texts；代码将参考文本前置到对应 user prompt。rubric 与 scratchpad 用于参考/评分，不作为末轮答题输入。",
+    "output": "针对给定单轮问题或多轮对话的最后一条助手回答；官方默认 sampled 模式只生成末轮，而非重新生成全部历史轮次。",
+    "environment": "evals.py 读取指定 HF split，拼接公开对话历史、生成末轮回答，再按 criterion 调 LLM judge；缓存回答/评分，最终保存 results 与逐题 outputs。",
+    "sourceUrls": [
+      "https://github.com/scaleapi/PRBench",
+      "https://arxiv.org/abs/2511.11562"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开法律分项有 500 任务，Hard 子集含 250 任务。",
+    "disclosure": "complete",
+    "scale": [
+      "500 个法律任务；其中 Hard 250 个。"
+    ],
+    "splits": [
+      "HF legal 为 500 条，legal_hard 为其中 250 条；两者并非互斥训练/测试划分。"
+    ],
+    "fields": [
+      "task、turns、field、topic、expert；逐轮 prompt_i、response_i、model_i 与 reference_texts_i（最多 10 个 user turn）。",
+      "scratchpad 与 rubric 是参考/评分材料；rubric 经执行器解析为 title、带正负号的 weight 与 criteria_category。另有 economic_pathway、decision_type 和 canary。"
+    ],
+    "files": [
+      "HF data/ 的 finance、legal、finance_hard、legal_hard 发布记录；evals.py 生成/评估，util.py 与 criteria.py 抽取标准和计算分数。",
+      "cache/ 保存模型末轮回答和裁判缓存；results/ 输出 mean_normalized、mean_clipped 和各任务 grades/points/weights 等诊断。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "https://github.com/scaleapi/PRBench/blob/main/util.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
+    "sourceUrls": [
+      "https://labs.scale.com/papers/prbench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方数据卡标示 CC BY 4.0，官方评分代码仓库标示 MIT。",
+    "scope": "本站仅展示固定来源快照中经核验的精选任务字段，保留出处与适用许可；不将其许可外推至外部网页、模型输出或未采用媒体。",
+    "boundaries": [
+      "保留署名与许可；引用的第三方参考文本仍需核对其来源权利。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "https://github.com/scaleapi/PRBench",
+      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/legal-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+    ]
+  },
+  "metric": {
+    "name": "法律 rubric score",
+    "description": "法律分项用 true/false 准则满足值乘带符号权重，逐题除以正权重总和，再取题均值并将总体下限截为 0（mean_clipped）。需区分 legal 500 条与 legal_hard 250 条；不是法律答题准确率或跨域综合指数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "https://github.com/scaleapi/PRBench/blob/main/util.py",
+      "https://github.com/scaleapi/PRBench/blob/main/criteria.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "分域成绩和 Hard 子集分数有不同范围；LLM judge 的版本与配置会影响结果。",
+      "sourceUrls": [
+        "https://labs.scale.com/papers/prbench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条独立展示 法律分项及 Hard 范围；没有把 Hard 题量再次计入父体系总题量。",
+      "sourceUrls": [
+        "https://labs.scale.com/papers/prbench"
+      ]
+    },
+    {
+      "text": "本站所选记录 88707440664b79c6b4448135：config=default，split=legal，源文件 SHA-256=3d80ca175eaf5072880f33fd28e74a610ab99cc74e6c5b173d89312365a7c67f，完整原记录 SHA-256=6ff7c1a7ac136e0a9fd80f083e96dd138a6f0032c3e0735907b0e708fa2cbf35。raw 只保留任务和评分字段，排除第三方参考材料/空字段/模型结果；原题未改。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/legal-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "PRBench 官方介绍",
+      "url": "https://labs.scale.com/papers/prbench",
+      "role": "definition"
+    },
+    {
+      "label": "PRBench 作者论文",
+      "url": "https://arxiv.org/abs/2511.11562",
+      "role": "paper"
+    },
+    {
+      "label": "PRBench 官方数据卡",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "role": "data"
+    },
+    {
+      "label": "PRBench 官方评测仓库",
+      "url": "https://github.com/scaleapi/PRBench",
+      "role": "readme"
+    },
+    {
+      "label": "PRBench 官方末轮生成与汇总实现",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方权重和计分函数",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/util.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方 criterion 解析",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/criteria.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方任务 Explorer",
+      "url": "https://prbench-explorer.vercel.app/",
+      "role": "data"
+    },
+    {
+      "label": "PRBench Legal 官方逐题 Viewer",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench/viewer/default/legal",
+      "role": "data"
+    },
+    {
+      "label": "所选真实记录的固定版本数据文件",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/legal-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "所选数据快照的许可说明",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "prbench",
+      "label": "属于",
+      "detail": "PRBench 的 法律分项，Hard 子集是其中高难任务。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench",
+        "https://github.com/scaleapi/PRBench"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "评委读取完整对话和标准，评的是最终助手回应；负权重会扣分，criterion 通过比例不等于论文 mean_clipped。",
+      "sourceUrls": [
+        "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+        "https://github.com/scaleapi/PRBench/blob/main/util.py"
+      ]
+    },
+    "comparison": {
+      "text": "固定 split、末轮生成或 prefilled 响应来源、评委、工具选项与 trial；官方另有 mean_normalized，不能把它与 mean_clipped 混称同一分数。",
+      "sourceUrls": [
+        "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+        "https://github.com/scaleapi/PRBench/blob/main/util.py"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "88707440664b79c6b4448135",
+        "title": "公共机关违反权利后的法律分析",
+        "type": "record",
+        "prompt": "What happens when an absolute right like article 2 of the HRA gets violated by public authorities?",
+        "explanation": "这是法律专业推理任务，原始数据包含专家 rubric。题目没有统一参考作答，因此不生成答案；所选记录的第三方参考文本均为空。",
+        "raw": {
+          "task": "88707440664b79c6b4448135",
+          "turns": 1,
+          "field": "Legal",
+          "topic": "Constitutional & Civil Rights Law",
+          "expert": "Non-Expert",
+          "prompt_0": "What happens when an absolute right like article 2 of the HRA gets violated by public authorities?",
+          "rubric": [
+            {
+              "annotations": {
+                "criteria_category": "Legal Accuracy",
+                "criteria_description": "The model should include key cases to demonstrate how Article 2 is implemented practically, this would deepen the user's understanding.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 5,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "0e92f7bb-328b-4720-9ddb-a621161d6814",
+              "title": "The response cites at least one relevant case, such as McCann and Others v United Kingdom."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Legal Accuracy",
+                "criteria_description": "It is crucial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 10,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "3f9d7d4b-4966-437f-8aa2-6232823ebf55",
+              "title": "The model describes what an absolute right is, a right which cannot be lawfully restricted under any circumstances."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Legal Accuracy",
+                "criteria_description": "It is crucial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "11bd6fd8-80ca-469b-98ad-a2d6d573596d",
+              "title": "The model explains that Article 2 of the HRA 1998 protects the right to life."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Legal Accuracy",
+                "criteria_description": "It is beneficial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 4,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "4a0897bf-3050-432f-8a7d-3f87b2c28096",
+              "title": "The model explains that public authorities have negative obligations to uphold Article 2 of the HRA 1998."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "It is crucial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 9,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "d921c3c7-3da4-4337-8397-4766c651f490",
+              "title": "The model outlines that an individual can challenge a violation by issuing formal complaints to public authorities."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Application of Law to the Facts",
+                "criteria_description": "It is crucial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 9,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "0a8f776d-9dad-45ad-8d02-e7a68ddd096b",
+              "title": "The model outlines that an individual can challenge a violation by taking legal action using the UK courts under the HRA 1998."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Procedural Correctness",
+                "criteria_description": "It is crucial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "740bbf05-ef15-449d-b383-e0ef59e6dfed",
+              "title": "The model outlines that an individual can challenge a violation by taking the case to the ECtHR if national remedies fail."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Application of Law to the Facts",
+                "criteria_description": "It is crucial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 9,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "27e41921-973d-4f61-a0d0-93223c6f1634",
+              "title": "The model outlines the remedies available such as the issue of a declaration of incompatibility."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "It is crucial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "020bece9-e183-442e-aaf2-57bc5fc7d785",
+              "title": "The model outlines the remedies available such as taking general national measures if the ECtHR establishes a violation."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Supplemental Insight",
+                "criteria_description": "It is beneficial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 5,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": 3,
+                "weight_class": "slightly important"
+              },
+              "id": "c27c9448-13c9-4c72-af89-7690a06b4d62",
+              "title": "The model provides a distinction between qualified and absolute rights, highlighting that qualified rights may be restricted in certain circumstances."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Procedural Correctness",
+                "criteria_description": "It is beneficial for the model to add this as it is central to the request of the prompt, and thus will ensure that it is relevant and valuable to the user. This would ensure a factually relevant and valuable answer.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "legal",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": 3,
+                "weight_class": "important"
+              },
+              "id": "65e316fe-773d-4803-9898-2efbb65a80ed",
+              "title": "The model outlines that a claim can be filed through Judicial Review if there are issues established in the investigation."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Legal Accuracy",
+                "criteria_description": "Absolute rights under the HRA cannot be balanced or restricted.",
+                "critically_detrimental_weight": -10,
+                "critically_important_weight": null,
+                "detrimental_weight": -4,
+                "field_for_category": "legal",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "detrimental"
+              },
+              "id": "0d5303d5-3ba0-4eda-b57d-7775e546f5f9",
+              "title": "The response suggests that Article 2 of the HRA is a qualified right."
+            }
+          ],
+          "economic_pathway": "Informational / Educational Only",
+          "decision_type": "Non-decision / Informational",
+          "canary": "prbench:sample:legal:88707440664b79c6b4448135"
+        },
+        "source": "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/legal-00000-of-00001.parquet",
+        "split": "legal",
+        "excerpt": true,
+        "license": "CC-BY-4.0 · PRBench, Scale AI / PRBench authors, data_v2 snapshot 01947c6ef913df518e6e52626a7b29f132b12d4f, CC BY 4.0",
+        "licensePath": "licenses/prbench-legal-sample-source.txt"
+      }
+    ]
+  }
+}

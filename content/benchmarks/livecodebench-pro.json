@@ -30,15 +30,7 @@
   },
   "limitations": [
     {
-      "text": "当前 Hugging Face 数据访问协议的全文、数据包内部 schema 与各竞赛资源的逐项再分发许可；页面要求先登录/同意，但 Dataset card 为空。",
-      "sourceUrls": [
-        "https://github.com/GavinZhengOI/LiveCodeBench-Pro",
-        "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
-        "https://arxiv.org/html/2506.11928#S7.SS1"
-      ]
-    },
-    {
-      "text": "作者题目仓库是否曾发布独立代码 LICENSE，当前 GitHub 文件列表未显示该文件；在未确认前不得将代码包装仓库认作 permissive licensed。",
+      "text": "HF 数据卡与字段 schema 可公开读取；题目 Parquet 仍需登录并接受访问条件，本文未读取 gated rows。",
       "sourceUrls": [
         "https://github.com/GavinZhengOI/LiveCodeBench-Pro",
         "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
@@ -117,14 +109,34 @@
       "label": "Gemini 3.1 Pro 评测方法（Elo 来源说明）",
       "url": "https://deepmind.google/models/evals-methodology/gemini-3-1-pro",
       "role": "definition"
+    },
+    {
+      "label": "LiveCodeBench Pro paper v1 PDF",
+      "url": "https://arxiv.org/pdf/2506.11928v1",
+      "role": "paper"
+    },
+    {
+      "label": "LiveCodeBench Pro paper v1 HTML",
+      "url": "https://arxiv.org/html/2506.11928v1",
+      "role": "paper"
+    },
+    {
+      "label": "Official Codeforces CF2050D statement",
+      "url": "https://codeforces.com/problemset/problem/2050/D",
+      "role": "data"
+    },
+    {
+      "label": "LiveCodeBench Pro gated dataset card at fixed revision",
+      "url": "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro/resolve/adebffce047dddb7768a86bace6aea4f7425e3bc/README.md",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-09-23",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "LiveCodeBench Pro 是研究者提出的动态竞赛编程基准，使用竞赛期间采集的题目降低题解泄漏，并由竞赛编程专家标注算法类别与失败原因。它与原版 LiveCodeBench 是不同基准。",
-    "task": "模型求解竞赛题并提交可运行程序，由官方在线判题；论文主结果以 pass@1 衡量，工具辅助设置单独分析。",
+    "summary": "求解动态采集的竞赛编程题并接受在线判题；由专家标注算法类别与失败原因。",
+    "task": "求解竞赛题并提交可运行程序，由官方在线判题；论文主结果使用 pass@1，工具辅助设置单独分析。本条是独立基准，与原版 LiveCodeBench 分开记录。",
     "sourceUrls": [
       "https://arxiv.org/html/2506.11928"
     ]
@@ -147,33 +159,38 @@
     "splits": [
       "论文未定义 train/dev/test split；引用应固定题集 revision 和抓取日期。"
     ],
-    "fields": [],
+    "fields": [
+      "公开 HF 数据卡列出 problem_id、link、problem_statement 等字段及六个 split；题目 Parquet 文件仍受控访问。"
+    ],
     "files": [
-      "论文链接的 Hugging Face 题集以 Parquet 发布，需登录并同意分享联系信息；数据卡未公开字段 schema。"
+      "HF 公开数据卡列出 Parquet 格式与字段 schema；实际题库文件需要通过 gated 访问。"
     ],
     "sourceUrls": [
       "https://arxiv.org/html/2506.11928",
       "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
-      "https://arxiv.org/html/2506.11928#S7.SS1"
+      "https://arxiv.org/html/2506.11928#S7.SS1",
+      "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro/resolve/adebffce047dddb7768a86bace6aea4f7425e3bc/README.md"
     ]
   },
   "dataAccess": {
     "status": "gated",
     "requirements": [
-      "论文和工具仓库公开；HF 题集文件访问需登录并同意共享联系信息，页面未提供数据卡内容。"
+      "论文和工具仓库公开；HF 数据卡可公开查看，实际 Parquet 文件访问需登录并接受数据集条件。"
     ],
     "sourceUrls": [
       "https://arxiv.org/html/2506.11928",
-      "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro"
+      "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro",
+      "https://arxiv.org/pdf/2506.11928v1"
     ],
     "url": "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro"
   },
   "reusePolicy": {
     "status": "restricted",
     "license": "HF metadata 标注 Apache-2.0，但题库还包含第三方竞赛题面和测试；工具仓库当前未显示独立 LICENSE。",
-    "scope": "数据卡标签不能单独证明各竞赛主办方授权题目再发布，也不能推定工具代码采用 permissive license。",
+    "scope": "HF 元数据标注 Apache-2.0，但题库还包含第三方竞赛题面和测试；工具仓库当前未显示独立 LICENSE。本站仅作论文公开示例及 Codeforces 原题的原创中文规则说明和短引用，不推定 gated 题库或第三方题面的整体再发布权。",
     "boundaries": [
-      "只作原创概述并链接论文/数据页；不复制竞赛题面、完整样例、提交代码或 hidden tests，逐来源核查权利。"
+      "不复制完整竞赛题面、样例、提交代码或 hidden tests；逐来源核查题目权利。",
+      "本例关联论文 A11 的 String 示例与 Codeforces 2050D；未读取 LiveCodeBench Pro gated rows。"
     ],
     "sourceUrls": [
       "https://github.com/GavinZhengOI/LiveCodeBench-Pro",
@@ -182,10 +199,50 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "论文样例链接第三方竞赛题面及提交代码，作者展示不等同于取得再发布许可。公开页面只用原创任务说明和官方链接。",
+    "status": "local",
+    "reason": "样例依据公开论文 v1 的 A11 String 示例及其 Codeforces 2050D 链接，本站用原创中文解释实际规则并保留短引；未访问 gated rows 或引入自拟输入/输出。",
+    "url": "https://arxiv.org/pdf/2506.11928v1",
     "sourceUrls": [
-      "https://arxiv.org/html/2506.11928#S15"
+      "https://arxiv.org/pdf/2506.11928v1",
+      "https://arxiv.org/html/2506.11928v1",
+      "https://codeforces.com/problemset/problem/2050/D",
+      "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro/resolve/adebffce047dddb7768a86bace6aea4f7425e3bc/README.md"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "固定 HF namespace 为 QAQAQAQAQ/LiveCodeBench-Pro；公开 README 可读取字段与 split schema，HF API 元数据将仓库标记 gated=auto。仅从公开数据卡 metadata/card 取证，未访问 Parquet rows。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro/resolve/adebffce047dddb7768a86bace6aea4f7425e3bc/README.md",
+        "https://huggingface.co/datasets/QAQAQAQAQ/LiveCodeBench-Pro"
+      ]
+    },
+    {
+      "text": "arXiv:2506.11928v1 附录 15 A11 String 示例链接 Codeforces 2050D；检查到的论文没有给出对应 LiveCodeBench Pro problem_id，因此这里只把它记录为论文公开示例，不声称已匹配 gated row。",
+      "sourceUrls": [
+        "https://arxiv.org/pdf/2506.11928v1",
+        "https://arxiv.org/html/2506.11928v1",
+        "https://codeforces.com/problemset/problem/2050/D"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "livecodebench-pro-a11-cf2050d",
+        "title": "A11 String 示例：CF2050D 数字串最大化",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "LiveCodeBench Pro 论文附录 15 的 A11 String 示例关联 Codeforces 2050D（CF2050D）。这道字符串题允许选取一个非零数字、且不能选最左位，将它减 1 后与左邻数字交换；目标是让结果字符串的字典序尽量大。这里仅说明该公开示例的真实规则，不提供自拟输入、样例输出、程序或答案。",
+        "explanation": "arXiv:2506.11928v1 附录 15 的 A11 String 示例，链接到 Codeforces 2050D（Digital string maximization，rating 1300）。论文示例可确认具体规则，但已检查材料未提供对应 LiveCodeBench Pro problem_id 或 HF row；没有加入自拟样例输入、输出或答案。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "You are given a string s, consisting of digits from 0 to 9. In one operation, you can pick any digit in this string",
+        "source": "https://arxiv.org/pdf/2506.11928v1",
+        "license": "本站原创中文规则说明及必要短引；不据论文许可或 HF metadata 推定第三方竞赛题面、整套题库或 gated rows 的再发布许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "LiveCodeBench Pro paper v1 / Appendix 15 A11 String / Codeforces 2050D; matching HF problem_id not published in checked source",
+        "excerpt": true
+      }
     ]
   }
 }

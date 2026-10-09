@@ -36,20 +36,7 @@
   },
   "limitations": [
     {
-      "text": "上表所列既有数据及嵌入文本/代码未完成逐条权利人、来源许可、署名义务和再分发条款的原件级审查。",
-      "sourceUrls": [
-        "https://github.com/THUDM/LongBench/tree/main/LongBench",
-        "https://github.com/THUDM/LongBench/blob/main/LICENSE"
-      ]
-    },
-    {
-      "text": "本轮未固定 Hugging Face revision、逐配置记录文件哈希或审查每条 LongBench-E 派生样本的血缘。",
-      "sourceUrls": [
-        "https://github.com/THUDM/LongBench/tree/main/LongBench"
-      ]
-    },
-    {
-      "text": "各任务评分器的固定版本和第三方模型分数运行条件未逐一复核。",
+      "text": "各任务的评分器和模型运行条件需分别核对，不能只按总评测名称比较。",
       "sourceUrls": [
         "https://github.com/THUDM/LongBench/tree/main/LongBench"
       ]
@@ -85,6 +72,16 @@
       "label": "LongBench v2 仓库",
       "url": "https://github.com/THUDM/LongBench",
       "role": "readme"
+    },
+    {
+      "label": "LongBench v1 Multi-News row at fixed HF revision",
+      "url": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+      "role": "data"
+    },
+    {
+      "label": "LongBench dataset card at fixed HF revision",
+      "url": "https://huggingface.co/datasets/THUDM/LongBench/blob/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/README.md",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -94,7 +91,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "LongBench 是 THUDM 发布的中英文多任务长上下文理解基准，覆盖六类任务；LongBench-E 是长度分层扩展切片，LongBench v2 则是独立后续版本。",
+    "summary": "从中英文长上下文中完成问答、摘要、少样本、合成或代码任务，按任务分别计分。",
     "task": "根据长上下文完成问答、摘要、少样本、合成或代码补全等任务，按数据集使用各自评分指标。",
     "sourceUrls": [
       "https://github.com/THUDM/LongBench/tree/main/LongBench"
@@ -152,10 +149,52 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "基准混合多个上游数据源，仓库 MIT 不能清除各源素材的许可差异。页面只保留任务名称、原创概述和官方链接。",
+    "status": "local",
+    "reason": "基于固定版本 Multi-News test row 0 做原创中文事件概述，仅保留一条短原文引用；未复制新闻正文或参考摘要，亦不据此推定题库许可。",
+    "url": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
     "sourceUrls": [
-      "https://github.com/THUDM/LongBench/tree/main/LongBench"
+      "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+      "https://huggingface.co/datasets/THUDM/LongBench/blob/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/README.md"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "上表所列既有数据及嵌入文本/代码未完成逐条权利人、来源许可、署名义务和再分发条款的原件级审查。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench/tree/main/LongBench",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE"
+      ]
+    },
+    {
+      "text": "本轮未固定 Hugging Face revision、逐配置记录文件哈希或审查每条 LongBench-E 派生样本的血缘。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench/tree/main/LongBench"
+      ]
+    },
+    {
+      "text": "各任务评分器的固定版本和第三方模型分数运行条件未逐一复核。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench/tree/main/LongBench"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "longbench-multi-news-row-0",
+        "title": "Multi-News：占领运动新闻摘要主题",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "LongBench v1 的 Multi-News 测试集 row 0 是多篇新闻摘要任务。该记录涉及洛杉矶 Occupy 营地在警方清场前获暂缓、公园外发生逮捕，以及费城抗议者在截止时间后仍留守、警方当时不计划强制驱离。请概括报道涉及的事件与两地处置情况。此处为原创中文事实解读；原文新闻和参考摘要均未复制。",
+        "explanation": "定位为 THUDM/LongBench 固定 revision 的 test split、data/multi_news.jsonl 第 1 行（_id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8）。source input 字段为空，记录类型为 Multi-News 摘要任务。原新闻上下文和作者 gold 摘要均未复制；单句 raw 是 context 的短引。",
+        "raw": "About 100 Occupy Philly protesters sat down",
+        "source": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+        "license": "本站原创中文解读与必要短引；LongBench 数据卡未声明 license 值，未推定整条记录的再发布许可。",
+        "split": "LongBench v1 / test / multi_news.jsonl row 0; _id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
+        "excerpt": true
+      }
     ]
   }
 }

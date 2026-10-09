@@ -38,19 +38,7 @@
   },
   "limitations": [
     {
-      "text": "已固定并核验 train row 0；未下载或哈希校验完整 2,400 条数据文件。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/openai/mrcr"
-      ]
-    },
-    {
-      "text": "未独立复现 OpenAI GPT-4.1 发布页中的结果。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/openai/mrcr"
-      ]
-    },
-    {
-      "text": "未将 OpenAI MRCR 与 DeepMind MRCR v2 逐样本、逐评分规则比对。",
+      "text": "OpenAI MRCR 与 DeepMind MRCR v2 的题目和评分规则应分别核对。",
       "sourceUrls": [
         "https://huggingface.co/datasets/openai/mrcr"
       ]
@@ -90,8 +78,8 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "给模型一段由用户—助手多轮组成的合成对话；同一写作请求（例如某主题的诗或博客）会重复出现多次，随后要求模型找出第 i 次对应的助手输出。目标前置一段随机字母数字字符串，模型须先输出该字符串，再复现指定内容。它检验相似内容的长上下文区分和顺序定位。",
-    "task": "在合成的长多轮对话中，根据 needle 次序找回指定助手回答，并先输出随机前缀。",
+    "summary": "在含重复写作请求的长对话中找回第几次对应的回答，并先输出指定随机前缀。",
+    "task": "合成多轮对话中，同一写作请求会重复出现。模型按指定次序找回对应的助手回答，先输出随机前缀，再复现要求的内容。",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/mrcr"
     ]
@@ -147,13 +135,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示一条官方数据记录的明确节选；数据修订、文件代次、行位置和内容哈希见 artifacts/research/mrcr.json。所附许可文本对应官方数据卡或该任务目录 LICENSE。",
+    "reason": "本站展示一条 2-needle train 记录的节选，完整上下文见记录来源。",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/mrcr/blob/f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d/2needle/2needle_0.parquet",
       "https://huggingface.co/datasets/openai/mrcr"
     ]
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-10-08",
   "sampleSet": {
     "retrievedAt": "2026-09-23",
     "samples": [
@@ -163,7 +151,7 @@
         "type": "record",
         "prompt": "[...前面 772 条对话消息节略... ]\nPrepend mWEa9DrPT3 to the 2nd (1 indexed) song about agreements. Do not include any other text in your response.",
         "answer": "mWEa9DrPT3**Verse 1**  \nIn a world so vast and wide,  \nWe walk on paths unknown.  \nTwo souls meeting eye to eye,  \nSeeds of trust are sown.  \nWhispers of understanding,\n[...答案其余部分节略... ]",
-        "explanation": "这是固定版本中一条真实 2-needle train 记录的节选。原始 prompt 有 772 条消息；此处只保留末尾任务指令与答案开头，随机前缀须原样先输出。",
+        "explanation": "末尾指令要求找回第二次出现的、关于 agreements 的歌曲，并原样输出指定随机前缀。此页节略前文，展示的是顺序定位与输出要求。",
         "raw": {
           "prompt": "[...原始 prompt 前文省略... ]\nPrepend mWEa9DrPT3 to the 2nd (1 indexed) song about agreements. Do not include any other text in your response.",
           "answer": "mWEa9DrPT3**Verse 1**  \nIn a world so vast and wide,  \nWe walk on paths unknown.  \nTwo souls meeting eye to eye,  \nSeeds of trust are sown.  \nWhispers of understanding,\n[...原始 answer 后文省略... ]",
@@ -181,5 +169,38 @@
         "excerpt": true
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "已固定并核验 train row 0；未下载或哈希校验完整 2,400 条数据文件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr"
+      ]
+    },
+    {
+      "text": "未独立复现 OpenAI GPT-4.1 发布页中的结果。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr"
+      ]
+    },
+    {
+      "text": "未将 OpenAI MRCR 与 DeepMind MRCR v2 逐样本、逐评分规则比对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr"
+      ]
+    },
+    {
+      "text": "本站展示一条官方数据记录的明确节选；数据修订、文件代次、行位置和内容哈希见 artifacts/research/mrcr.json。所附许可文本对应官方数据卡或该任务目录 LICENSE。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr/blob/f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d/2needle/2needle_0.parquet",
+        "https://huggingface.co/datasets/openai/mrcr"
+      ]
+    },
+    {
+      "text": "样例 mrcr-openai-2needle-train-0：这是固定版本中一条真实 2-needle train 记录的节选。原始 prompt 有 772 条消息；此处只保留末尾任务指令与答案开头，随机前缀须原样先输出。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/mrcr/blob/f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d/2needle/2needle_0.parquet"
+      ]
+    }
+  ]
 }

@@ -1,0 +1,176 @@
+{
+  "id": "spreadsheetbench-v2",
+  "status": "published",
+  "order": 450,
+  "name": "SpreadsheetBench 2",
+  "subtitle": "交付完整的业务工作簿与图表",
+  "category": "work",
+  "tags": [
+    "电子表格",
+    "金融建模",
+    "错误修复",
+    "可视化",
+    "智能体"
+  ],
+  "publisher": "中国人民大学、Aptura.AI、AfterQuery、Shortcut.AI / 作者团队",
+  "brandIds": [
+    "ruckb-reasoning"
+  ],
+  "year": 2026,
+  "version": "V2；321 任务",
+  "kind": "original",
+  "aliases": [
+    "SpreadsheetBench V2",
+    "SpreadsheetBench-v2"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以多步、跨工作表操作完成建模、纠错和可视化等业务工作。",
+    "task": "根据工作流目标创建、修复或可视化复杂工作簿，输出可交付成果。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2606.29955v1",
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2"
+    ]
+  },
+  "taskContract": {
+    "input": "instruction 与 spreadsheet_path 指定的业务工作簿；只读挂载当题输入，golden_response_path 对应的黄金文件留给评分端。",
+    "output": "写入该任务独立输出目录的 .xlsx 工作簿；可视化任务在工作簿内创建图表，评分端再导出图表图像。",
+    "environment": "固定 SWE-agent scaffold，最多 50 轮，使用 bash、view_xlsx 和 submit；评测前以 LibreOffice 重算工作簿。可视化导出需 Windows Excel/WPS COM，再由 GLM-4.6V 逐条判断。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2606.29955v1",
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "V2 共 321 任务：金融建模 100、纠错 100、模板 97、可视化 24；平均 11.8 个工作表、593.5 个待修改单元格。",
+    "disclosure": "complete",
+    "scale": [
+      "321 个任务；其中 297 个表格编辑任务、24 个可视化任务。",
+      "平均 11.8 个工作表、593.5 个待修改单元格。"
+    ],
+    "splits": [],
+    "fields": [
+      "id、instruction、spreadsheet_path、golden_response_path。"
+    ],
+    "files": [
+      "每个 Debugging、Financial_Model、Template、Visualization 类别目录含 dataset.json 与 spreadsheet/ 的输入/黄金工作簿。",
+      "evaluation/open_spreadsheet.py 重算缓存值；evaluation.py 评编辑任务；run_visual_vlm_checklist_eval.py 导出图表并进行 VLM checklist 评分。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2606.29955v1",
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2",
+    "sourceUrls": [
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2",
+      "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "检查的官方示例页和仓库README未声明任务文本或工作簿专属许可；HF镜像MIT元数据未用于推定官网素材许可。",
+    "scope": "仅Example 1任务事实的原创概述；任务文本、工作簿、图像与答案文件的独立许可未查明。",
+    "boundaries": [
+      "不复制工作簿、图像或单元格答案。",
+      "不将示例映射为特定split或行ID。"
+    ],
+    "sourceUrls": [
+      "https://spreadsheetbench.github.io/",
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2",
+      "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方Version 2 Example 1公开了具体财务建模步骤；本站只展示原创解读和短字段引文，不附工作簿。",
+    "url": "https://spreadsheetbench.github.io/",
+    "sourceUrls": [
+      "https://spreadsheetbench.github.io/",
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2",
+      "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2"
+    ]
+  },
+  "metric": {
+    "name": "Modif. / Acc.",
+    "description": "每个编辑任务先计算目标单元格值的匹配比例，Overall Modif. 对 100 个建模、100 个纠错和 97 个模板任务共 297 项取平均。编辑任务 Acc. 仅在全部单元格（含非目标单元格）与 golden 匹配时计 1，否则计 0；24 个可视化任务以 VLM rubric 通过率作为任务分。Overall Acc. 汇总全部 321 项的对应任务分，因此包含可视化部分得分，不能解释为 321 项全部采用二元成功判定。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2606.29955v1",
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "Overall Modif. 只覆盖 297 个编辑任务；Overall Acc. 混合编辑任务的整表二元分和可视化的 rubric 通过比例，两种总体指标的分母与含义不同。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2606.29955v1"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按 V2 论文 §2.4、表 1 和表 3 解释统计与指标，不将 V1 的题量或根项目页的其他版本评分口径写入 V2。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2606.29955v1",
+        "https://github.com/RUCKBReasoning/SpreadsheetBench-2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SpreadsheetBench 2 论文正文（v1）",
+      "url": "https://arxiv.org/html/2606.29955v1",
+      "role": "paper"
+    },
+    {
+      "label": "SpreadsheetBench 2 作者论文",
+      "url": "https://arxiv.org/abs/2606.29955",
+      "role": "paper"
+    },
+    {
+      "label": "SpreadsheetBench 2 官方仓库",
+      "url": "https://github.com/RUCKBReasoning/SpreadsheetBench-2",
+      "role": "readme"
+    },
+    {
+      "label": "SpreadsheetBench 2 官方数据",
+      "url": "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2",
+      "role": "data"
+    },
+    {
+      "label": "SpreadsheetBench 2 官方文件下载目录",
+      "url": "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2/tree/main",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://spreadsheetbench.github.io/",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-spreadsheetbench-v2-financial-modeling",
+        "title": "公开任务示例 · 多表财务建模",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "SpreadsheetBench 2 的 Example 1 要求在保持工作簿结构/格式的前提下完成财务模型：在 Financials 表计算 Revenue、EBITDA、EBIT、PAT 和 Total Assets 的历史与预测 CAGR；在 Assumptions 表按前两年均值算2014F–2018F库存天数，并在2015F–2018F每年减少0.5天后推算库存；再算总资产周转率、EV/EBITDA及终值。官网没有提供该展示例的记录ID。",
+        "explanation": "项目页将其标为Version 2 / Example 1 / Financial Modeling；未下载工作簿，也未从图像或不可见输出推定数值答案。任务文本或工作簿的单独许可未在检查的官方页面/README中声明。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "In the Financials sheet, calculate CAGR for both historical and forecast periods for Revenue, EBITDA, EBIT, PAT, and Total Assets.\n\nExample 1: Financial Modeling.",
+        "source": "https://spreadsheetbench.github.io/",
+        "license": "本站原创任务解读与官网必要短引；官方示例文本和工作簿未发现单独许可声明。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "SpreadsheetBench 2 / Version 2 / Example 1 / Financial Modeling；无数据行ID",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "id": "automationbench-aa",
+  "status": "published",
+  "order": 735,
+  "name": "AutomationBench-AA",
+  "subtitle": "跨业务软件的自动化，兼顾目标与安全约束",
+  "category": "work",
+  "tags": [
+    "跨业务软件的自动化，兼顾目标与安全约束"
+  ],
+  "publisher": "Artificial Analysis / Zapier",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AutomationBench dataset v1.0.6 / AA 私有留出集",
+  "kind": "derivative",
+  "aliases": [
+    "AutomationBench AA",
+    "AutomationBench · AA"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AA 在 AutomationBench 的私有留出任务上运行模型，通过业务系统最终状态衡量流程完成情况。",
+    "task": "业务目标、模拟应用状态与 REST API 工具。 → 通过工具操作形成的最终业务状态。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://github.com/zapier/AutomationBench"
+    ]
+  },
+  "taskContract": {
+    "input": "业务目标、模拟应用状态与 REST API 工具。",
+    "output": "通过工具操作形成的最终业务状态。",
+    "environment": "每题一次，最多 50 轮结构化工具调用。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://github.com/zapier/AutomationBench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA 使用 v1.0.6 私有 split，不等同于站内 AutomationBench 公开任务。",
+    "disclosure": "partial",
+    "scale": [
+      "657 项私有留出任务、6 个业务领域。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://github.com/zapier/AutomationBench"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "具体私有任务不可从公开仓库完整取得；可查看实施方法。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://github.com/zapier/AutomationBench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方页称任务集合含私有held-out题，未公开该集合；公开示例页未声明复用许可。",
+    "scope": "公开示例的任务内容许可未查明；私有held-out任务集合保持未公开。",
+    "boundaries": [
+      "不将公开示例映射为held-out评分记录。",
+      "不复制私有任务或附件。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/automationbench-aa"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方 finance.grant_expense_tracking 公开演示；页面明确将它与 657 项私有留出集区分。这里展示任务事实，不执行任何邮件操作，也不复制私有任务。",
+    "url": "https://artificialanalysis.ai/evaluations/automationbench-aa",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/automationbench-aa"
+    ]
+  },
+  "metric": {
+    "name": "带安全约束的目标完成比例",
+    "description": "无 guardrail 违规时按目标完成比例计分；任一安全约束被破坏或运行报错时，该题记零。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://github.com/zapier/AutomationBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不能把上游公开集的严格任务通过率直接当作 AA 的目标完成比例。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://github.com/zapier/AutomationBench"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "程序检查最终系统状态；AA 此项没有额外的模型裁判。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://github.com/zapier/AutomationBench"
+      ]
+    },
+    "comparison": {
+      "text": "核对公开或私有 split、dataset 版本、50 轮限制与目标/安全约束计分方式。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://github.com/zapier/AutomationBench"
+      ]
+    },
+    "disclosure": {
+      "text": "上游代码公开；AA 精确使用的私有留出任务不公开。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://github.com/zapier/AutomationBench"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "AA 实施方法",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "Zapier 官方仓库",
+      "url": "https://github.com/zapier/AutomationBench",
+      "role": "readme"
+    },
+    {
+      "label": "已核验的官方具体案例",
+      "url": "https://artificialanalysis.ai/evaluations/automationbench-aa",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "automationbench",
+      "label": "基于",
+      "detail": "共享上游任务体系，但题集范围与计分方式按 AA 方法独立记录。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "official-case-automationbench-aa",
+        "title": "公开任务 · 科研经费分配",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "模拟 Google Sheets/Gmail 环境中，将本月支出分配到科研经费：NSF 剩余 12000 美元，却有设备 12000、差旅 2800、聚会 450；DOE 剩余 65000 美元，对应会议差旅 1500。检查预算与允许类别，标记 NSF 超支和 Entertainment 不可报销，再按任务要求邮件提交分配报告，保留源数据数值。",
+        "explanation": "官方 finance.grant_expense_tracking 公开演示；页面明确将它与 657 项私有留出集区分。这里展示任务事实，不执行任何邮件操作，也不复制私有任务。",
+        "raw": "Allocate this month's expenses to the appropriate grants.",
+        "source": "https://artificialanalysis.ai/evaluations/automationbench-aa",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；官方 finance.grant_expense_tracking 公开演示；页面明确将它与 657 项私有留出集区分。这里展示任务事实，不执行任何邮件操作，也不复制私有任务。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/automationbench-aa"
+      ]
+    }
+  ]
+}

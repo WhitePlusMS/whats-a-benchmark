@@ -35,28 +35,7 @@
       "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
     ]
   },
-  "limitations": [
-    {
-      "text": "HF 页面总行数和 split 计数随数据修订变化，本次未下载 Parquet 对所有 test 记录逐项计数。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
-      ]
-    },
-    {
-      "text": "论文称题目来源及整体 MIT 条款，但 STEM Website 具体站点授权的逐条清单本次未追溯；需复用具体来源文本时应进一步核验。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
-        "https://arxiv.org/abs/2406.01574"
-      ]
-    },
-    {
-      "text": "已保存的 validation 样例字段和答案映射可从现有快照复核；此轮未逐条从全量 Parquet 重载，以验证该快照仍与最新 commit 一致。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
-        "https://arxiv.org/abs/2406.01574"
-      ]
-    }
-  ],
+  "limitations": [],
   "sources": [
     {
       "label": "MMLU-Pro 作者论文",
@@ -132,7 +111,7 @@
           "ST = S"
         ],
         "answer": "H. ST - TS is the identity map of V onto itself.",
-        "explanation": "这里有十个候选项。除了理解定义，还要比较多个相似表达式。原始记录中的 src 保留题源标识，cot_content 是数据提供方附带的解答文本。",
+        "explanation": "题目定义了乘以 x 和求导两个变换，需要分清组合顺序，再从 10 个表达式中选择正确关系。",
         "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
         "license": "MIT · TIGER-Lab",
         "licensePath": "licenses/mmlu-pro.txt",
@@ -178,7 +157,7 @@
           "N/A"
         ],
         "answer": "E. -4",
-        "explanation": "这里有十个候选项。除了理解定义，还要比较多个相似表达式。原始记录中的 src 保留题源标识，cot_content 是数据提供方附带的解答文本。",
+        "explanation": "先处理整数线性约束，再比较可行的 m+n 值，找出最大的负数；共有 10 个候选答案。",
         "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
         "license": "MIT · TIGER-Lab",
         "licensePath": "licenses/mmlu-pro.txt",
@@ -188,7 +167,7 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "MMLU-Pro 是扩展原 MMLU 的英语多学科选择题基准，融合筛选后的 MMLU 题及 STEM 网站、TheoremQA、SciBench 等来源，增加推理题与干扰项。",
+    "summary": "回答多学科选择题；在 MMLU 等题源基础上增加推理要求与干扰项，通常采用十选一。",
     "task": "回答学科题干和通常为十选一的选项；少数经审核的题目选项少于十个。",
     "sourceUrls": [
       "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
@@ -255,5 +234,28 @@
       "https://arxiv.org/abs/2406.01574",
       "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "HF 页面总行数和 split 计数随数据修订变化，本次未下载 Parquet 对所有 test 记录逐项计数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro"
+      ]
+    },
+    {
+      "text": "论文称题目来源及整体 MIT 条款，但 STEM Website 具体站点授权的逐条清单本次未追溯；需复用具体来源文本时应进一步核验。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+        "https://arxiv.org/abs/2406.01574"
+      ]
+    },
+    {
+      "text": "已保存的 validation 样例字段和答案映射可从现有快照复核；此轮未逐条从全量 Parquet 重载，以验证该快照仍与最新 commit 一致。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+        "https://arxiv.org/abs/2406.01574"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

@@ -1,0 +1,199 @@
+{
+  "id": "simplebench",
+  "status": "published",
+  "order": 1220,
+  "name": "SimpleBench",
+  "subtitle": "回答看似简单的推理陷阱",
+  "category": "reasoning",
+  "tags": [
+    "常识推理",
+    "文字多选"
+  ],
+  "publisher": "SimpleBench Team",
+  "brandIds": [
+    "simplebench"
+  ],
+  "year": 2024,
+  "version": "完整题集与10题公开子集；未编号",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "包含空间/时间推理、社会智能与语言陷阱题的文字多选题 benchmark。",
+    "task": "回答包含空间、时间、社会理解与语言陷阱的文字多选题。",
+    "sourceUrls": [
+      "https://simple-bench.com/"
+    ]
+  },
+  "taskContract": {
+    "input": "公开 runner 读取 prompt（含文字题和选项）；answer 是评分键，不发送为回答提示。",
+    "output": "答案字母；runner 从回答抽取所选选项后与 answer 比较。",
+    "environment": "官方runner可运行公开JSON，默认温度0.7和top_p 0.95，并支持多次回复后多数投票。",
+    "sourceUrls": [
+      "https://github.com/simple-bench/SimpleBench/blob/main/simple_bench_public.json",
+      "https://github.com/simple-bench/SimpleBench/blob/main/run_benchmark.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公开10题子集与runner，完整超过200题集合的公开获取范围未确认。",
+    "disclosure": "partial",
+    "scale": [
+      "官网完整SimpleBench：超过200题。",
+      "公开simple_bench_public.json：10题。"
+    ],
+    "splits": [
+      "公开子集不能替代完整私有评测范围。"
+    ],
+    "fields": [
+      "公开文件顶层为 eval_data；每条记录只有 question_id、prompt 和 answer，选项已写入 prompt。"
+    ],
+    "files": [
+      "simple_bench_public.json 保存 10 个公开问题；run_benchmark.py 负责请求模型、抽取选项和多数投票。"
+    ],
+    "sourceUrls": [
+      "https://simple-bench.com/",
+      "https://github.com/simple-bench/SimpleBench/blob/main/simple_bench_public.json",
+      "https://github.com/simple-bench/SimpleBench"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开JSON无需专门审批；运行模型评测需配置相应API。"
+    ],
+    "sourceUrls": [
+      "https://simple-bench.com/",
+      "https://github.com/simple-bench/SimpleBench"
+    ],
+    "url": "https://github.com/simple-bench/SimpleBench/blob/main/simple_bench_public.json"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库代码标注MIT；本轮未确认单独覆盖完整问题数据的许可证。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://github.com/simple-bench/SimpleBench",
+      "https://simple-bench.com/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json"
+    ]
+  },
+  "metric": {
+    "name": "准确率与AVG@5",
+    "description": "单次回答用选项答案匹配评分，官网榜单展示AVG@5；仓库的多次回复多数投票属于另一聚合方式，不能把二者视为同一指标。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://simple-bench.com/",
+      "https://github.com/simple-bench/SimpleBench/blob/main/run_benchmark.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官网83.7%人类基线来自9名参与者，小样本不能当作稳定人口基线。",
+      "sourceUrls": [
+        "https://github.com/simple-bench/SimpleBench/blob/main/run_benchmark.py",
+        "https://simple-bench.com/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条目讲解完整SimpleBench及其公开子集，未将10题文件描述为完整基准。",
+      "sourceUrls": [
+        "https://simple-bench.com/",
+        "https://github.com/simple-bench/SimpleBench/blob/main/simple_bench_public.json",
+        "https://github.com/simple-bench/SimpleBench"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://simple-bench.com/"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：eval_data[question_id=4]；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SimpleBench official page",
+      "url": "https://simple-bench.com/",
+      "role": "definition"
+    },
+    {
+      "label": "SimpleBench GitHub repository",
+      "url": "https://github.com/simple-bench/SimpleBench",
+      "role": "readme"
+    },
+    {
+      "label": "SimpleBench public dataset",
+      "url": "https://github.com/simple-bench/SimpleBench/blob/main/simple_bench_public.json",
+      "role": "data"
+    },
+    {
+      "label": "SimpleBench runner",
+      "url": "https://github.com/simple-bench/SimpleBench/blob/main/run_benchmark.py",
+      "role": "code"
+    },
+    {
+      "label": "已核验的具体公开任务",
+      "url": "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "公开 runner 按选项键判定，重复回复可采用多数投票；官网 AVG@5 是五次运行均分，不是多数票结果。",
+      "sourceUrls": [
+        "https://simple-bench.com/",
+        "https://github.com/simple-bench/SimpleBench/blob/main/run_benchmark.py"
+      ]
+    },
+    "comparison": {
+      "text": "比较前固定完整榜单或 10 题公开子集、重复次数和聚合方式；九人的 83.7% 基线属于小样本人类实验。",
+      "sourceUrls": [
+        "https://simple-bench.com/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-simplebench",
+        "title": "公开第 4 题 · 两个都说假话的姐妹",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "公开 question_id=4 中，Amy 和 Sam 都说假话。只能向一人问一个问题，以确定通往宝藏的路；数据给出六种候选问法，多种可行时选最短者。官方答案为 C，即直接询问哪条路通往宝藏。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：eval_data[question_id=4]\n原始数据精简说明：保留原生字段 question_id、prompt、answer；其他记录字段未收录。 /prompt 保留源值字符[0:110]，源字段共600字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "question_id": 4,
+          "prompt": "There are two sisters, Amy who always speaks mistruths and Sam who always lies. You don't know which is which.",
+          "answer": "C"
+        },
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "SimpleBench official public test, eval_data question 4",
+        "excerpt": true,
+        "answer": "C（原公开数据答案；直接询问路径）"
+      }
+    ]
+  }
+}

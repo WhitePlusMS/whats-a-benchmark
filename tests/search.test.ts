@@ -6,6 +6,27 @@ import {
   searchBenchmarks,
 } from "../src/lib/search";
 
+test("指数、AA实施与原版名称各自识别，Terminal-Bench版本不混合", () => {
+  const expected = new Map([
+    ["AA 智能指数", "aa-intelligence-index"],
+    ["AA-Briefcase", "aa-briefcase"],
+    ["AA-Omniscience", "aa-omniscience"],
+    ["AA-LCR", "aa-lcr"],
+    ["GDP.pdf", "gdp-pdf"],
+    ["GDPval", "gdpval"],
+    ["CritPt", "critpt"],
+    ["AutomationBench-AA", "automationbench-aa"],
+    ["AutomationBench", "automationbench"],
+    ["Terminal-Bench 3.0", "terminal-bench-3"],
+    ["Terminal-Bench 4.0", "terminal-bench-4"],
+  ]);
+  for (const [label, id] of expected)
+    assert.deepEqual(
+      recognizeNames(label)[0]?.matches.map((item) => item.id),
+      [id],
+    );
+});
+
 test("发布图中的大小写、空格和连字符差异不影响名称识别", () => {
   assert.equal(
     normalizeName("ＳＷＥ–bench Verified"),
@@ -42,7 +63,10 @@ test("批量粘贴能处理中文分隔符、重复值和未收录名称", () =>
 
 test("批量识别忽略标准化后为空的名称，普通空搜索仍返回全部目录", () => {
   const rows = recognizeNames("-;___");
-  assert.deepEqual(rows.map((row) => row.input), ["-", "___"]);
+  assert.deepEqual(
+    rows.map((row) => row.input),
+    ["-", "___"],
+  );
   assert.ok(rows.every((row) => row.matches.length === 0));
   assert.ok(searchBenchmarks("").length > 0);
 });
@@ -72,10 +96,15 @@ test("官方 Opus 5.5 表中九个名称精确识别，旧版不替代新版本"
     "chartography",
   ];
   assert.deepEqual(
-    recognizeNames(labels.join("\n")).map((row) => row.matches.map((item) => item.id)),
+    recognizeNames(labels.join("\n")).map((row) =>
+      row.matches.map((item) => item.id),
+    ),
     ids.map((id) => [id]),
   );
-  assert.equal(recognizeNames("Terminal-Bench 2.0")[0]?.matches[0]?.id, "terminal-bench-2");
+  assert.equal(
+    recognizeNames("Terminal-Bench 2.0")[0]?.matches[0]?.id,
+    "terminal-bench-2",
+  );
   assert.equal(recognizeNames("OSWorld")[0]?.matches[0]?.id, "osworld");
   assert.equal(recognizeNames("GDPval-AA")[0]?.matches[0]?.id, "gdpval-aa");
 });

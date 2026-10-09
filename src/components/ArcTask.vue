@@ -73,7 +73,7 @@ const colors = [
 .arc-pair h4 {
   font-size: 12px;
   margin: 0 0 10px;
-  color: #686477;
+  color: var(--muted-tint);
 }
 .arc-grids {
   display: grid;
@@ -86,14 +86,14 @@ const colors = [
 }
 .arc-grids figcaption {
   font-size: 11px;
-  color: #767083;
+  color: var(--muted);
   margin-bottom: 8px;
 }
 .arc-grids svg {
   width: 100%;
   max-height: 220px;
   display: block;
-  background: #f1f0f5;
+  background: var(--surface-sunken);
   border-radius: 4px;
 }
 .arc-hidden {
@@ -102,14 +102,14 @@ const colors = [
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f1eef8;
-  border: 1px dashed #d6cde8;
+  background: var(--accent-softer);
+  border: 1px dashed var(--accent-border);
   font-size: 38px;
   border-radius: 6px;
-  color: #685f76;
+  color: var(--muted-tint);
 }
 .arc-hidden small {
-  font-size: 10px;
+  font-size: 11px;
   margin-top: 8px;
 }
 </style>

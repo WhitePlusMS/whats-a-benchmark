@@ -1,0 +1,135 @@
+{
+  "id": "code-migration",
+  "status": "published",
+  "order": 1100,
+  "name": "Code Migration",
+  "subtitle": "在不同语言中重建同一程序行为",
+  "category": "coding",
+  "tags": [
+    "跨语言迁移",
+    "行为测试"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": null,
+  "version": "CLI / COBOL 两组；官网2026-10-06快照",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估模型能否在另一种语言中重建程序行为。",
+    "task": "读取原程序，在指定目标语言中重写，实现相同行为，并提交可构建的程序。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/code-migration"
+    ]
+  },
+  "taskContract": {
+    "input": "CLI 任务提供 30 个源仓库之一的实现和迁移要求（Python/Java/Kotlin/Rust/C++ 中选一种非源语言）；COBOL 任务提供源系统并要求重写为 Java。",
+    "output": "可由 Dockerfile 构建的目标语言源码；必须独立实现原行为，不能包装原二进制或硬编码隐藏测试输出。",
+    "environment": "离线开发后在评分端 cleanroom 构建镜像，并通过 CLI 验证标准输出、错误、退出及持久行为；CLI 每项约 100–400 个隐藏测试，代码质量另外诊断。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/code-migration"
+    ]
+  },
+  "dataProfile": {
+    "summary": "方法和分数公开，完整任务材料与隐藏测试未作为开放数据集提供。",
+    "disclosure": "not-public",
+    "scale": [
+      "CLI：30个源仓库，各迁移至4种其他语言，共120项任务。",
+      "COBOL转Java：10个仓库。",
+      "CLI每项约100至400个隐藏行为测试。"
+    ],
+    "splits": [
+      "CLI与COBOL按不同来源和目标语言分组。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/code-migration"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "官网标注Proprietary，未提供完整任务下载入口。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/code-migration"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/code-migration"
+    ]
+  },
+  "sampleAccess": {
+    "status": "private",
+    "reason": "官方只公开迁移形式、方法与分项结果，未给完整任务目录或可下载题面；本条不把榜单页面当成公开代码任务包。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/code-migration"
+    ]
+  },
+  "metric": {
+    "name": "隐藏行为测试通过率",
+    "description": "按隐藏测试通过比例评分；先对每个CLI源仓库的4种目标语言结果取平均，再将全部40个源仓库等权汇总，因此CLI分项占75%、COBOL分项占25%。页面另展示达到不同测试通过阈值的任务比例；代码质量作为独立诊断，不计入通过率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/code-migration"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "行为测试通过比例不等于代码相似度或人工代码质量评分。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/code-migration"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条目为Vals Code Migration，不与Amazon MigrationBench混为同一评测。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/code-migration"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/code-migration"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Code Migration methodology and leaderboard",
+      "url": "https://www.vals.ai/benchmarks/code-migration",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "主要成绩是隐藏行为测试通过比例；评分还检查包装原实现、复制参考产物或硬编码等捷径，人工代码质量不参与通过率。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/code-migration"
+      ]
+    },
+    "comparison": {
+      "text": "先平均每个 CLI 源仓库的四个目标语言成绩，再对 40 个源仓库等权；CLI 75%、COBOL 25%，避免把 120 次迁移当作 120 个源仓库。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/code-migration"
+      ]
+    }
+  }
+}

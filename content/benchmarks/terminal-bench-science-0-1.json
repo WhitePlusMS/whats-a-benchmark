@@ -4,7 +4,7 @@
   "order": 505,
   "name": "Terminal-Bench-Science 0.1",
   "subtitle": "科学研究工作流的终端代理评测",
-  "category": "agents",
+  "category": "work",
   "tags": [
     "科学研究",
     "终端代理"
@@ -16,7 +16,11 @@
   "year": 2026,
   "version": "0.1",
   "kind": "original",
-  "aliases": [],
+  "aliases": [
+    "Terminal-Bench Science",
+    "Terminal-Bench Science · AA",
+    "Terminal-Bench Science · Vals"
+  ],
   "metric": {
     "name": "任务解决率",
     "description": "官方报告 resolution rate（任务解决率），每个模型在 70 个任务上各运行三次。发布文章报告该次实验中 Claude Opus 5 + Claude Code 为 30.0%，GPT-5.6 Sol + Codex 为 22.4%；这是论文/发布文章所列特定模型、agent 与评测时间点结果，不是基准的固有常数。",
@@ -26,29 +30,7 @@
       "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0"
     ]
   },
-  "limitations": [
-    {
-      "text": "未下载 v0.1.0 的全部任务包，未复核逐项输入、依赖、verifier 和样例内容。",
-      "sourceUrls": [
-        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
-        "https://github.com/harbor-framework/terminal-bench-science"
-      ]
-    },
-    {
-      "text": "未逐任务审查科研数据、代码或媒体是否含有额外许可和第三方限制；Apache-2.0 不能覆盖未经确认的第三方材料。",
-      "sourceUrls": [
-        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
-        "https://github.com/harbor-framework/terminal-bench-science"
-      ]
-    },
-    {
-      "text": "本轮未复跑官方 leaderboard 实验。",
-      "sourceUrls": [
-        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
-        "https://github.com/harbor-framework/terminal-bench-science"
-      ]
-    }
-  ],
+  "limitations": [],
   "sources": [
     {
       "label": "官方 0.1 结果",
@@ -74,14 +56,44 @@
       "label": "Anthropic Opus 5.5 报告",
       "url": "https://www.anthropic.com/claude-opus-5-5",
       "role": "vendor-report"
+    },
+    {
+      "label": "AA 独立实施协议",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "Vals 独立实施协议",
+      "url": "https://www.vals.ai/benchmarks/terminal-bench-science",
+      "role": "definition"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/harbor-framework/terminal-bench-science/blob/main/release-notes-v0.1.0.md",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://hub.harborframework.com/datasets/terminal-bench-science/terminal-bench-science",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/harbor-framework/terminal-bench-science/blob/main/LICENSE",
+      "role": "access"
     }
   ],
   "related": [],
   "verifiedAt": "2026-09-23",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "基准通过科学研究中的专业工作流衡量 agent 能力，首版有 70 个专家策划任务，覆盖生命、物理、地球、数学和工程科学。工作涵盖数据分析、统计推断、仿真、优化、定理证明、图像重建、信号处理、反问题、传感器校准、模型拟合、分类和科学机器学习。任务由研究人员贡献并经领域与技术审查。",
-    "task": "完成专家策划的科学研究工作流任务，并通过任务级可复现测试。",
+    "summary": "完成数据分析、仿真和优化等科研工作流；v0.1.0 含 70 个专家策划任务。",
+    "task": "完成专家策划的科学研究工作流，并通过任务级测试。任务涉及数据分析、统计推断、仿真、优化、定理证明、图像重建、信号处理、反问题、传感器校准、模型拟合、分类与科学机器学习。",
     "sourceUrls": [
       "https://www.tbench.ai/news/terminal-bench-science-0-1",
       "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0"
@@ -98,7 +110,7 @@
     ]
   },
   "dataProfile": {
-    "summary": "首发 v0.1.0 包含科学研究工作流任务，完整 task 包本轮未下载。",
+    "summary": "首发 v0.1.0 包含专家策划的科学研究工作流任务。",
     "disclosure": "partial",
     "scale": [
       "v0.1.0：70 项任务，覆盖生命、物理、地球、数学和工程科学。"
@@ -114,7 +126,7 @@
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "官方 GitHub 仓库公开，release 页面提供 70 个任务清单及版本 DOI；官方推荐用 Harbor 和 Modal/Daytona 运行。未在本轮下载任务全集、配置模型或执行评测。"
+      "官方 release 提供 70 个任务清单与版本 DOI，推荐通过 Harbor 和 Modal/Daytona 运行。"
     ],
     "url": "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
     "sourceUrls": [
@@ -124,24 +136,94 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "仓库标注 Apache-2.0，并要求保留特定 Harbor canary；任务数据权利未逐项核实。",
-    "scope": "Apache-2.0 按 LICENSE 适用于其覆盖的仓库代码/文件，不自动覆盖任务中潜在第三方科研资料。",
+    "license": "仓库Apache-2.0；v0.1.0 task data和隐藏验证内容许可未单独确认。",
+    "scope": "仅v0.1.0发布任务事实及当前rev2描述；合成输入、隐藏数据与reference solution范围未查明。",
     "boundaries": [
-      "官方要求 benchmark data 不进入训练语料；派生或摘引内容须保留 canary。",
-      "本站不复制任务内容、答案、科研数据、代码或媒体，发布题目还需核查原始素材条款。"
+      "标明合成数据而非现实观测。",
+      "不披露隐藏规则或reference solution。"
     ],
     "sourceUrls": [
-      "https://github.com/harbor-framework/terminal-bench-science#canary",
-      "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0"
+      "https://github.com/harbor-framework/terminal-bench-science/blob/main/release-notes-v0.1.0.md",
+      "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2",
+      "https://hub.harborframework.com/datasets/terminal-bench-science/terminal-bench-science",
+      "https://github.com/harbor-framework/terminal-bench-science/blob/main/LICENSE"
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "官方 release 展示任务名称与贡献者；可以在署名并链接 v0.1.0 release 的条件下引用官方项目事实。不要复制实际 task 内容、答案、科研数据、代码或媒体到公开 GitHub Pages：除了任务本身可能涉及第三方材料，官方还明确要求保留防污染 canary 并禁止 benchmark data 进入训练语料。发布者若派生或摘引许可范围内内容，应保留 canary，且逐项检查原始素材条款。",
+    "status": "local",
+    "reason": "v0.1.0官方release notes列出symbolic-regression；Harbor task rev2展示任务规模和验证目标；数据与答案未复制。",
+    "url": "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2",
     "sourceUrls": [
-      "https://github.com/harbor-framework/terminal-bench-science#canary",
-      "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
-      "https://github.com/harbor-framework/terminal-bench-science"
+      "https://github.com/harbor-framework/terminal-bench-science/blob/main/release-notes-v0.1.0.md",
+      "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2",
+      "https://hub.harborframework.com/datasets/terminal-bench-science/terminal-bench-science",
+      "https://github.com/harbor-framework/terminal-bench-science/blob/main/LICENSE"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "未下载 v0.1.0 的全部任务包；对当前 symbolic-regression rev2 仅核对公开任务说明、数据注记和 verifier 条件，未逐项复核release包中的输入、依赖和全部验证文件。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
+        "https://github.com/harbor-framework/terminal-bench-science",
+        "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2"
+      ]
+    },
+    {
+      "text": "未逐任务审查科研数据、代码或媒体是否含有额外许可和第三方限制；Apache-2.0 不能覆盖未经确认的第三方材料。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
+        "https://github.com/harbor-framework/terminal-bench-science"
+      ]
+    },
+    {
+      "text": "本轮未复跑官方 leaderboard 实验。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
+        "https://github.com/harbor-framework/terminal-bench-science"
+      ]
+    },
+    {
+      "text": "首发 v0.1.0 包含科学研究工作流任务，完整 task 包本轮未下载。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
+        "https://github.com/harbor-framework/terminal-bench-science"
+      ]
+    },
+    {
+      "text": "官方 GitHub 仓库公开，release 页面提供 70 个任务清单及版本 DOI；官方推荐用 Harbor 和 Modal/Daytona 运行。未在本轮下载任务全集、配置模型或执行评测。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench-science/releases/tag/v0.1.0",
+        "https://github.com/harbor-framework/terminal-bench-science"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "comparison": {
+      "text": "AA、Vals 和原始榜单使用的 agent、模型设置、预算与重复次数须分别核对；同一题集的不同机构复测不构成新的题库。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://www.vals.ai/benchmarks/terminal-bench-science"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-terminal-bench-science-0-1-symbolic-regression",
+        "title": "v0.1.0任务 · 合成表格中的稀疏非线性规则",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Terminal-Bench-Science v0.1.0发布清单包含 symbolic-regression（Harbor任务rev2）。任务以固定seed生成含100个predictor、300行训练数据的合成二分类表格，并加入10%标签翻转噪声；要求恢复隐藏的稀疏非线性规则。官方verifier另用1500个held-out样本检查macro F1阈值。这里不展示数据、target rule或reference solution。",
+        "explanation": "release-notes-v0.1.0列有symbolic-regression；Harbor task rev2页明确给出数据规模、synthetic/fixed-seed/noise属性及验证集条件。此为固定版本task-set成员核对，不把合成数据描述成真实观测。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Recover a hidden sparse non-linear rule behind a binary label from 100 predictors and 300 training rows.",
+        "source": "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2",
+        "license": "本站原创任务解读及必要短引；代码Apache-2.0与task/评测数据许可范围分开。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Terminal-Bench-Science v0.1.0 / symbolic-regression / Harbor task rev2; synthetic fixed-seed data",
+        "excerpt": true
+      }
     ]
   }
 }

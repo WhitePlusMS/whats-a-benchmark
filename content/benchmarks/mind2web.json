@@ -27,19 +27,6 @@
   },
   "limitations": [
     {
-      "text": "本轮未下载并校验各 split JSON 的逐条数量和 HTML 媒体权利；数量引用作者 README。",
-      "sourceUrls": [
-        "https://github.com/OSU-NLP-Group/Mind2Web",
-        "https://papers.nips.cc/paper_files/paper/2023/file/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf"
-      ]
-    },
-    {
-      "text": "GitHub README 当前指向更新后的 HF 工件；原始原始 dump、Multimodal-Mind2Web 和 Online-Mind2Web 的具体 revision 边界仍需逐版固定。",
-      "sourceUrls": [
-        "https://github.com/OSU-NLP-Group/Mind2Web"
-      ]
-    },
-    {
       "text": "原始仓库对 test 压缩文件要求不得在线分发；未将 CC BY 4.0 解释为可忽略该专门要求。",
       "sourceUrls": [
         "https://github.com/OSU-NLP-Group/Mind2Web"
@@ -76,13 +63,23 @@
       "label": "Mind2Web-2 作者仓库",
       "url": "https://github.com/OSU-NLP-Group/Mind2Web-2",
       "role": "readme"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/OSU-NLP-Group/Mind2Web/main/README.md",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/OSU-NLP-Group/Mind2Web/blob/main/LICENSE",
+      "role": "access"
     }
   ],
   "related": [],
   "verifiedAt": "2026-09-23",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "Mind2Web 是 OSU 研究团队于 2023 年发布的网页代理数据集与评测，基于真实网站 HTML 快照和人工操作轨迹研究网页通用代理；本条不含后续同名扩展。",
+    "summary": "根据真实网站快照和人工轨迹，预测网页操作的目标元素与动作；原版侧重离线动作预测。",
     "task": "给定自然语言任务、页面快照和候选 DOM 元素，预测网页代理下一步的目标元素及操作；原论文主要评估离线动作预测。",
     "sourceUrls": [
       "https://arxiv.org/abs/2306.06070",
@@ -129,22 +126,61 @@
     "url": "https://github.com/OSU-NLP-Group/Mind2Web"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "作者 README 声明数据集为 CC BY 4.0、代码为 MIT；另对解压后的 test 文件提出不得在线再分发的明确要求。",
-    "scope": "CC BY 4.0 不自动授予 HTML 页面内第三方内容额外权利，也不取消 test 文件的专门分发限制。",
+    "status": "permitted",
+    "license": "Mind2Web数据集声明CC BY 4.0；MIT仅为代码许可。",
+    "scope": "仅官方数据集中的task-description文字按CC BY 4.0署名复用；live website内容、图像、轨迹和代码分别处理。",
     "boundaries": [
-      "不托管或嵌入解压后的 test JSON、HTML 或动作轨迹；发布训练记录也需署名并关注网页内容来源。"
+      "按数据集许可保留来源归属。",
+      "不复制第三方网站HTML、图像、HAR或MHTML。"
     ],
     "sourceUrls": [
-      "https://github.com/OSU-NLP-Group/Mind2Web",
-      "https://papers.nips.cc/paper_files/paper/2023/file/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf"
+      "https://osu-nlp-group.github.io/Mind2Web/",
+      "https://raw.githubusercontent.com/OSU-NLP-Group/Mind2Web/main/README.md",
+      "https://github.com/OSU-NLP-Group/Mind2Web/blob/main/LICENSE"
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "公开页面没有嵌入具体记录。作者禁止在线分发解压后的 test 文件；只用原创抽象示例或链接作者入口，不摘录 test 任务、HTML、DOM 元素或操作轨迹。",
+    "status": "local",
+    "reason": "Mind2Web官方项目页公开具体任务目标；README将dataset标为CC BY 4.0并另列MIT代码许可。",
+    "url": "https://osu-nlp-group.github.io/Mind2Web/",
     "sourceUrls": [
-      "https://github.com/OSU-NLP-Group/Mind2Web"
+      "https://osu-nlp-group.github.io/Mind2Web/",
+      "https://raw.githubusercontent.com/OSU-NLP-Group/Mind2Web/main/README.md",
+      "https://github.com/OSU-NLP-Group/Mind2Web/blob/main/LICENSE"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "本轮未下载并校验各 split JSON 的逐条数量和 HTML 媒体权利；数量引用作者 README。",
+      "sourceUrls": [
+        "https://github.com/OSU-NLP-Group/Mind2Web",
+        "https://papers.nips.cc/paper_files/paper/2023/file/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf"
+      ]
+    },
+    {
+      "text": "GitHub README 当前指向更新后的 HF 工件；原始原始 dump、Multimodal-Mind2Web 和 Online-Mind2Web 的具体 revision 边界仍需逐版固定。",
+      "sourceUrls": [
+        "https://github.com/OSU-NLP-Group/Mind2Web"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-mind2web-example-a-flight-search",
+        "title": "公开任务例 · 纽约至多伦多单程航班",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在真实网站上查找从纽约飞往多伦多的单程航班。该目标是Mind2Web官方项目页列出的示例(a)；页面没有为这一展示例提供记录ID或split，因此此处不标为test行。",
+        "explanation": "项目页把该目标列在示例任务中。数据集使用CC BY 4.0，仓库代码另用MIT；本例不包含航班网站页面、截图、浏览器轨迹或HAR。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Find one-way flights from New York to Toronto.",
+        "source": "https://osu-nlp-group.github.io/Mind2Web/",
+        "license": "Mind2Web数据集CC BY 4.0；代码MIT。本站保留归属和来源；不复制第三方航班网站内容。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Mind2Web官方项目页 / 示例(a)；未提供数据行ID或split",
+        "excerpt": true
+      }
     ]
   }
 }

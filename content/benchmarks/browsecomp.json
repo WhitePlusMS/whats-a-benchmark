@@ -18,7 +18,7 @@
   "kind": "original",
   "aliases": [],
   "related": [],
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "BrowseComp 是 OpenAI 发布的 browsing benchmark，包含需要搜索并综合多个网页信息才能回答的高难度问题。",
@@ -72,26 +72,24 @@
     "url": "https://openaipublic.blob.core.windows.net/simple-evals/browse_comp_test_set.csv"
   },
   "reusePolicy": {
-    "status": "prohibited",
-    "license": "MIT",
-    "scope": "OpenAI 将 BrowseComp 列为 MIT License benchmark；项目仓库 LICENSE 为 MIT。发布页脚注还明确请求不要在线以纯文本或图片展示任何数据样例，以避免训练数据泄漏和评测作弊，并使用 canary 帮助过滤训练语料\n（行 110–112）。此处应遵循明确的“不公开题目样例”请求：不在公开 GitHub Pages 转载题面、答案或其图片；MIT 许可不消除该防泄漏请求。发布页图表用于介绍总体结果，不等于可展示具体题目样例。",
+    "status": "restricted",
+    "license": "OpenAI对BrowseComp数据题明确提出不得在线披露；本页案例是独立创题示例，不是已确认数据集行，示例页自身未声明复用许可。",
+    "scope": "底层BrowseComp数据题受在线披露限制；当前案例仅对应独立公开创题示例，其单独复用许可未声明。",
     "boundaries": [
-      "保持加密题目不进入公开网页、训练语料或可被搜索索引的明文语料；只引用官方加密数据与方法入口。"
+      "不展示或复制BrowseComp数据集题目。",
+      "不把创题示例标成正式数据集记录。"
     ],
     "sourceUrls": [
-      "https://github.com/openai/simple-evals#evals",
-      "https://github.com/openai/simple-evals/blob/main/LICENSE",
       "https://openai.com/index/browsecomp/"
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "OpenAI 明确要求保护 BrowseComp 题目不被泄漏；本站不解密或转载题目、答案和 canary，只链接官方介绍与评测入口。",
+    "status": "local",
+    "reason": "仅采用 OpenAI 在创题方法中单独刊载的示范问题，未复制 BrowseComp 数据集记录；该池仍有明确禁止在线披露的请求。",
+    "url": "https://openai.com/index/browsecomp/",
     "sourceUrls": [
-      "https://openai.com/index/browsecomp/",
-      "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py"
-    ],
-    "url": "https://openai.com/index/browsecomp/"
+      "https://openai.com/index/browsecomp/"
+    ]
   },
   "metric": {
     "name": "正确率",
@@ -165,5 +163,33 @@
       "url": "https://openaipublic.blob.core.windows.net/simple-evals/browse_comp_test_set.csv",
       "role": "data"
     }
-  ]
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "official-case-browsecomp",
+        "title": "官方创题演示 · 反向检索论文",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "寻找 2018—2023 年 EMNLP 的一篇论文：第一作者本科毕业于 Dartmouth，第四作者本科毕业于 University of Pennsylvania。官方创题说明给出所求标题为 Frequency Effects on Syntactic Rule Learning in Transformers（EMNLP 2021）。",
+        "explanation": "仅采用 OpenAI 在创题方法中单独刊载的示范问题，未复制 BrowseComp 数据集记录；该池仍有明确禁止在线披露的请求。",
+        "raw": "Give me the title of the scientific paper",
+        "source": "https://openai.com/index/browsecomp/",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true,
+        "answer": "Frequency Effects on Syntactic Rule Learning in Transformers, EMNLP 2021"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；仅采用 OpenAI 在创题方法中单独刊载的示范问题，未复制 BrowseComp 数据集记录；该池仍有明确禁止在线披露的请求。",
+      "sourceUrls": [
+        "https://openai.com/index/browsecomp/"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

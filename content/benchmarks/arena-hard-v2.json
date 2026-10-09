@@ -85,13 +85,13 @@
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "官方题目文件可下载，但题目来源于真实用户查询；在确认上游内容权利前只链接仓库，不复制题目正文。",
+    "status": "local",
+    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
     "sourceUrls": [
-      "https://github.com/lmarena/arena-hard-auto#about",
-      "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE"
+      "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+      "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto"
     ],
-    "url": "https://github.com/lmarena/arena-hard-auto/blob/main/data/arena-hard-v2.0/question.jsonl"
+    "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl"
   },
   "metric": {
     "name": "LLM-judge preference win rate",
@@ -218,6 +218,36 @@
       "label": "Chatbot Arena Conversation Dataset Release",
       "url": "https://arena.ai/blog/dataset",
       "role": "definition"
+    },
+    {
+      "label": "Arena-Hard v2.0 pinned question.jsonl",
+      "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+      "role": "data"
     }
-  ]
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "arena-hard-v2-uid-2edbb5f36f5b42be",
+        "title": "Zig 解题程序任务",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "官方 v2.0 记录要求用 Zig 为 Advent of Code 2015 Day 25 编写解题程序，从 input.txt 读取输入并将答案写到标准输出。这里只概述具体任务，不附后续题面正文。",
+        "raw": {
+          "uid": "2edbb5f36f5b42be",
+          "category": "hard_prompt",
+          "subcategory": "coding",
+          "language": "English",
+          "prompt": "Write me a zig program that solves the following problem from advent of code and reads the input from a file input.txt and prints the"
+        },
+        "explanation": "记录 uid=2edbb5f36f5b42be，类别 hard_prompt、子类 coding、语言 English。官方文件只给题目提示，没有该 UID 的参考答案或人类投票结果。本页不复制嵌在 prompt 中的 Advent of Code 全文，也不把别的模型输出当作答案。\n原始数据精简说明：prompt后续题面、其余数据行和模型结果。格式为native JSONL record fields；保留源数据内容，不构造题库原始行。",
+        "source": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+        "license": "数据集元数据标注 Apache-2.0；此记录的 prompt 又嵌有 Advent of Code 第三方题面。本站仅显示短前缀与自己的任务概述，不把数据集许可证推及第三方题面全文。 原数据只展示固定版本JSONL中本题的元数据和必要prompt前缀，不复制其他题目或输出。",
+        "split": "arena-hard-v2.0/question.jsonl · uid=2edbb5f36f5b42be · hard_prompt/coding",
+        "excerpt": true
+      }
+    ]
+  },
+  "updatedAt": "2026-10-09"
 }

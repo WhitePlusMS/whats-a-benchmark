@@ -29,29 +29,18 @@
   },
   "limitations": [
     {
-      "text": "首发 release 的 108 项与后续 2.1 的任务总量差异、逐题增删未在本报告重算；不同 release 需按官方 manifest 和任务哈希复核。",
-      "sourceUrls": [
-        "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
-        "https://github.com/xlang-ai/OSWorld-V2",
-        "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
-        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
-      ]
-    },
-    {
-      "text": "Gated task class、完整 assets 和轨迹内容未下载/逐条检查，故不陈述题面字段、任务分布或其各自许可。",
-      "sourceUrls": [
-        "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
-        "https://github.com/xlang-ai/OSWorld-V2",
-        "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
-        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
-      ]
-    },
-    {
       "text": "各 provider 的镜像、并行数、agent 工具配置和任务成绩未复现。",
       "sourceUrls": [
         "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
         "https://github.com/xlang-ai/OSWorld-V2",
         "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
+      ]
+    },
+    {
+      "text": "公开 Task035 案例不提供完整初始桌面状态或隐藏评分器；本站不把它当作可复现的全量任务包，也不推断其在 v2.1 的成员身份。",
+      "sourceUrls": [
+        "https://osworld-v2.xlang.ai/",
         "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
       ]
     }
@@ -106,6 +95,11 @@
       "label": "OSWorld 2.0 gated task assets",
       "url": "https://huggingface.co/datasets/xlangai/osworld_v2_assets_gated",
       "role": "data"
+    },
+    {
+      "label": "OSWorld 2.0 官方项目站 Task035 公开案例",
+      "url": "https://osworld-v2.xlang.ai/",
+      "role": "definition"
     }
   ],
   "related": [
@@ -124,7 +118,7 @@
   "verifiedAt": "2026-09-23",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "评估 computer-use agent 在真实桌面环境中完成长时程、端到端工作流的能力。论文摘要描述的工作流通常需人类约 1.6 小时完成，并涉及大量交互步骤；这描述任务复杂度，不代表所有题目耗时或调用数固定。",
+    "summary": "在真实桌面环境中完成长时程、端到端工作流，由任务评估器核验最终状态。",
     "task": "在真实桌面环境中完成长时程、端到端工作流，并由任务评估器核验最终状态。",
     "sourceUrls": [
       "https://arxiv.org/abs/2606.29537",
@@ -146,18 +140,22 @@
     "summary": "首发 2.0 release 的任务类和完整 assets 通过 gated 数据集提供。",
     "disclosure": "partial",
     "scale": [
-      "2026-06-24 首发 release 共 108 项任务。"
+      "2026-06-24 首发 release 共 108 项任务。",
+      "论文描述此类工作流通常需人类约 1.6 小时完成，不表示每道题耗时固定。"
     ],
     "splits": [],
     "fields": [],
     "files": [
-      "完整 Python task classes 与 assets 为 gated；公开 runtime assets 只是子集。"
+      "完整 Python task classes 与 assets 为 gated；公开 runtime assets 只是子集。",
+      "本站案例来自官方 2.0 项目站的公开 Task setup，不是正式任务包或 v2.1 数据行。"
     ],
     "sourceUrls": [
       "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
       "https://github.com/xlang-ai/OSWorld-V2",
       "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
-      "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
+      "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md",
+      "https://arxiv.org/abs/2606.29537",
+      "https://osworld-v2.xlang.ai/"
     ]
   },
   "dataAccess": {
@@ -190,15 +188,68 @@
     ]
   },
   "sampleAccess": {
-    "status": "gated",
-    "reason": "首发公告公开了任务数量和数据集入口，但正式任务文件经 gated access 分发。本站不转载题目、评估器、资产、轨迹或页面截图。可以链接公开 README/release；对于可见的公开轨迹或 viewer 内容，本次未发现覆盖再发布的独立许可。",
-    "url": "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+    "status": "local",
+    "reason": "本站展示 OSWorld 2.0 官方项目站公开 Task035 的具体任务背景与完成目标，标为编辑性解读；正式 task classes、完整 assets 仍需授权访问，未复制其任务包或轨迹。",
+    "url": "https://osworld-v2.xlang.ai/",
     "sourceUrls": [
-      "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
-      "https://github.com/xlang-ai/OSWorld-V2",
-      "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
-      "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md",
+      "https://osworld-v2.xlang.ai/",
       "https://huggingface.co/datasets/xlangai/osworld_v2_tasks"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "首发 release 的 108 项与后续 2.1 的任务总量差异、逐题增删未在本报告重算；不同 release 需按官方 manifest 和任务哈希复核。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
+        "https://github.com/xlang-ai/OSWorld-V2",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
+      ]
+    },
+    {
+      "text": "Gated task class、完整 assets 和轨迹内容未下载/逐条检查，故不陈述题面字段、任务分布或其各自许可。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
+        "https://github.com/xlang-ai/OSWorld-V2",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
+      ]
+    },
+    {
+      "text": "首发公告公开了任务数量和数据集入口，但正式任务文件经 gated access 分发。本站不转载题目、评估器、资产、轨迹或页面截图。可以链接公开 README/release；对于可见的公开轨迹或 viewer 内容，本次未发现覆盖再发布的独立许可。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
+        "https://github.com/xlang-ai/OSWorld-V2",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md",
+        "https://huggingface.co/datasets/xlangai/osworld_v2_tasks"
+      ]
+    },
+    {
+      "text": "2026-10-08 核对本站条目的 name/version 为 OSWorld 2.0，官方项目站同样标为 2.0，并主动公开 Task035 的 Context、Goal 与 Design point，因此登记该公开任务的中文事实解读；2.1 manifest 只作为不同 release 的核验边界。",
+      "sourceUrls": [
+        "https://osworld-v2.xlang.ai/",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "osworld-2-task035-public-case",
+        "title": "Task035：汇总采购请求与动态审批",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "采购请求和审批信息分散在一张表格、财务频道以及私信中。请汇总全部请求，核对每项的审批状态，并提交完整的采购单表格；期间到来的审批更新也需要反映在最终表格中。",
+        "raw": "Task035 - Purchase Requests\n\nPurchase requests and approvals arrive through a spreadsheet, finance channel, and direct messages.\n\nSubmit a purchase order sheet with every request",
+        "source": "https://osworld-v2.xlang.ai/",
+        "license": "本条是本站对官方 OSWorld 2.0 项目站主动公开的 Task035 Task setup 的中文事实解读，仅保留必要短引。未复制原始任务包、操作轨迹、截图、模拟网站或隐藏评估器；仓库 Apache-2.0 不被扩展解释为 gated 数据及第三方媒体的再发布许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "OSWorld 2.0 项目站公开案例 · Failure Cases / Task035 / Task setup · 非 v2.1 任务包行记录",
+        "excerpt": true,
+        "explanation": "官方案例编号为 Task035（Purchase Requests），公开 Context 和 Goal 指明输入分散在表格、财务频道与私信，输出是包含每一项请求及正确审批状态的采购单。页面另说明该任务检查晚到消息能否更新工作表。这里只概述公开任务条件和目标，不把失败轨迹中的模型输出当成参考答案，也不推断它在 v2.1 的成员身份。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。"
+      }
     ]
   }
 }

@@ -1,0 +1,193 @@
+{
+  "id": "finbenchmark",
+  "status": "published",
+  "order": 442,
+  "name": "FinanceBenchmark",
+  "subtitle": "用可验证的金融工作任务检查实际能力",
+  "category": "work",
+  "tags": [
+    "金融",
+    "业务工作",
+    "数值验证",
+    "代码执行",
+    "综合指标"
+  ],
+  "publisher": "FinanceBenchmark 项目",
+  "brandIds": [
+    "finbenchmark"
+  ],
+  "year": 2026,
+  "version": "Harness 0.2.0；v1 / v2 / v2.1 / v3",
+  "kind": "original",
+  "aliases": [
+    "Finance Benchmark",
+    "FinBenchmark",
+    "FinanceBenchmark (finbenchmark.ai)"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以数值、代码和结构化输出验证真实金融工作流程的完成情况。",
+    "task": "完成资本计算、衍生品定价、信贷、估值和投资组合等任务。",
+    "sourceUrls": [
+      "https://finbenchmark.ai/methodology"
+    ]
+  },
+  "taskContract": {
+    "input": "金融情景、任务参数和相关材料。",
+    "output": "按 type 返回选择答案、数值、可执行代码、符合 output_schema 的 JSON、Markdown 表格、SQL 或政策/rubric 回答；评分器提取 parsed_answer。",
+    "environment": "官方 harness；方法页描述温度 0、每题 3 次运行，按任务容差或参考实现验证。",
+    "sourceUrls": [
+      "https://finbenchmark.ai/methodology"
+    ]
+  },
+  "dataProfile": {
+    "summary": "仓库全集列出 119 题、17 类；v2 方法页对应 73 题、8 域。不同 task set 不能混用。",
+    "disclosure": "partial",
+    "scale": [
+      "仓库全任务目录：119 题、17 类；v2：73 题、8 域。"
+    ],
+    "splits": [
+      "每类有 3 个保留任务，公开目录并非完整榜单评测集。"
+    ],
+    "fields": [
+      "Task 核心字段为 id、category、type、prompt；可选 context、answer、choices、tolerance、reference_fn、params_seed、difficulty、source。",
+      "v3 扩展 business_function、modality、output_schema、rubric、expected_json、expected_markdown_table、adversarial_tags、private_holdout；答案和 reference_fn 属于验证依据。",
+      "TaskAttempt 记录 task_id、run_index、raw_response、parsed_answer、passed、score、error、latency_ms、input_tokens、output_tokens、confidence 和 abstained。"
+    ],
+    "files": [
+      "tasks/<category>/tasks.json；quant 另有 tasks_v21.json。harness/finbench/reference_answers.py 与 scoring.py 实现参考数值和判分。",
+      "results/ 的 RunResult 保存 harness_version、task_set_version、runs_per_task、temperature、category_scores 和每次 attempts。"
+    ],
+    "sourceUrls": [
+      "https://github.com/gaschwanden/finbenchmark",
+      "https://github.com/gaschwanden/finbenchmark/blob/main/harness/finbench/schemas.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开任务可读取；保留任务位于未随仓库发布的目录。"
+    ],
+    "url": "https://github.com/gaschwanden/finbenchmark",
+    "sourceUrls": [
+      "https://finbenchmark.ai/methodology"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库标注MIT，但TASKS.md未单独说明题目文本/答案是否在许可范围内；IFRS原始来源另有权利边界。",
+    "scope": "仓库代码许可与题目目录/嵌入答案的适用范围未确立；外部IFRS资料不在此许可范围。",
+    "boundaries": [
+      "不把MIT代码许可外推至TASKS.md题目/答案。",
+      "不复制完整题干或IFRS材料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/gaschwanden/finbenchmark",
+      "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已定位官方任务目录中的 knowledge_001，本站展示中文任务解读和一处短字段引文；这不是对目录或整套题目的许可声明。",
+    "url": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+    "sourceUrls": [
+      "https://github.com/gaschwanden/finbenchmark",
+      "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md"
+    ]
+  },
+  "metric": {
+    "name": "Tasks passed / Finance Index",
+    "description": "Tasks passed 是三次尝试中至少成功一次的题目占比，官网将其称为 Pass@1，不能解释为标准单次成功率。Finance Index 对未饱和类别等权平均；另报三次成功次数均值和 95% bootstrap 置信区间。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://finbenchmark.ai/methodology",
+      "https://github.com/gaschwanden/finbenchmark"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官网 Pass@1 的命名与常见单次成功率含义不同；比较须同时说明 task set 和运行次数。",
+      "sourceUrls": [
+        "https://finbenchmark.ai/methodology"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "身份由 finbenchmark.ai 的官方 GitHub 链接核实；与 FinanceBench 和 financebenchmark.ai 不是同一条目。",
+      "sourceUrls": [
+        "https://finbenchmark.ai/methodology"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "FinanceBenchmark 官方方法",
+      "url": "https://finbenchmark.ai/methodology",
+      "role": "definition"
+    },
+    {
+      "label": "FinanceBenchmark 官方仓库",
+      "url": "https://github.com/gaschwanden/finbenchmark",
+      "role": "readme"
+    },
+    {
+      "label": "FinanceBenchmark 官方榜单",
+      "url": "https://finbenchmark.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "FinanceBenchmark 官方任务和结果 schema",
+      "url": "https://github.com/gaschwanden/finbenchmark/blob/main/harness/finbench/schemas.py",
+      "role": "code"
+    },
+    {
+      "label": "FinanceBenchmark 官方任务目录",
+      "url": "https://github.com/gaschwanden/finbenchmark/tree/main/tasks",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源 · data",
+      "url": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "按题型使用答案匹配、数值容差、参考函数或结构验证；每次 passed/score/error 单独保存，先区分 API 错误与答案失败。",
+      "sourceUrls": [
+        "https://github.com/gaschwanden/finbenchmark",
+        "https://finbenchmark.ai/methodology"
+      ]
+    },
+    "comparison": {
+      "text": "官网 Pass@1 实为三次至少成功一次；同时读取 consistency 与 task_set_version，Finance Index 对未饱和类别等权，不能用总正确题数反推。",
+      "sourceUrls": [
+        "https://finbenchmark.ai/methodology",
+        "https://github.com/gaschwanden/finbenchmark"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-finbenchmark-knowledge-001",
+        "title": "公开任务 · IFRS 研究成本",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据 IFRS 相关知识，判断研究成本应如何确认。官方任务目录把本题列为 FinanceBenchmark task set v2 的 Knowledge (v1) 多选题，并标记答案为 B：发生时费用化。",
+        "answer": "B：发生时费用化。",
+        "explanation": "对应官方 TASKS.md 中的 knowledge_001；这里仅复述题目目标及目录标记答案，不表示模型运行结果，也不据仓库 MIT 许可推定题目数据的单独授权。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Under IFRS, which statement best describes the treatment of research costs?\n\nIFRS IAS 38\n\nB) Expense research costs as incurred ✅",
+        "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+        "license": "本站原创任务解读与官方目录短引；仓库 MIT 许可不据此认定任务目录许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "TASKS.md / task set v2 / Knowledge (v1) / knowledge_001",
+        "excerpt": true
+      }
+    ]
+  }
+}

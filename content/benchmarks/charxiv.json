@@ -89,13 +89,13 @@
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "项目页和 HF 页面展示任务与图像样例，但图表来自论文原件且其版权需逐项确认；候选仅链接官方资源，不转载记录或图片。",
+    "status": "local",
+    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
     "sourceUrls": [
-      "https://charxiv.github.io/",
-      "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+      "https://huggingface.co/datasets/princeton-nlp/CharXiv/viewer/default/validation?row=1",
+      "https://huggingface.co/datasets/princeton-nlp/CharXiv/blob/main/README.md"
     ],
-    "url": "https://huggingface.co/datasets/princeton-nlp/CharXiv#dataset-viewer"
+    "url": "https://huggingface.co/datasets/princeton-nlp/CharXiv/viewer/default/validation?row=1"
   },
   "metric": {
     "name": "正确率",
@@ -112,13 +112,6 @@
       "sourceUrls": [
         "https://charxiv.github.io/",
         "https://github.com/princeton-nlp/CharXiv"
-      ]
-    },
-    {
-      "text": "公开许可分别涉及代码、问答文本和图像；图表的上游论文权利未逐图审查。",
-      "sourceUrls": [
-        "https://github.com/princeton-nlp/CharXiv#license",
-        "https://huggingface.co/datasets/princeton-nlp/CharXiv"
       ]
     },
     {
@@ -154,6 +147,55 @@
       "label": "官方许可说明",
       "url": "https://github.com/princeton-nlp/CharXiv#license",
       "role": "access"
+    },
+    {
+      "label": "CharXiv official validation viewer · row 1",
+      "url": "https://huggingface.co/datasets/princeton-nlp/CharXiv/viewer/default/validation?row=1",
+      "role": "data"
+    },
+    {
+      "label": "许可/访问范围核查来源",
+      "url": "https://huggingface.co/datasets/princeton-nlp/CharXiv/blob/main/README.md",
+      "role": "access"
+    },
+    {
+      "label": "案例原始数据精简字段来源",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=princeton-nlp%2FCharXiv&config=default&split=validation&offset=1&length=1",
+      "role": "data"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "公开许可分别涉及代码、问答文本和图像；图表的上游论文权利未逐图审查。",
+      "sourceUrls": [
+        "https://github.com/princeton-nlp/CharXiv#license",
+        "https://huggingface.co/datasets/princeton-nlp/CharXiv"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "charxiv-validation-row-1-2005-07253",
+        "title": "论文图表中的曲线比较",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "CharXiv validation row 1 的图表推理题要求比较图中各曲线的 f_i 值相对 W_H 轴的距离，找出偏离最远的曲线；该行给出的答案为 lambda_L = 0.13。输入图表未在本站附上。",
+        "raw": {
+          "original_id": "2005.07253",
+          "category": "cs",
+          "figure_path": "images/2.jpg",
+          "reasoning_q": "What is the name of the line that is the furthest away from its fi value from the W_H axis?"
+        },
+        "answer": "lambda_L = 0.13",
+        "explanation": "对应 original_id=2005.07253、figure_path=images/2.jpg，config=default / validation row_idx=1。数据卡声明问题字段采用 CC BY-SA 4.0，并单独指出图表版权归原论文作者；本样例不复制图像，打开官方 viewer 可查看记录。README 的已知错误清单指出 row 0/0.jpg 答案错误，因此本样例不用 row 0；不据此宣称 row 1 已独立复核答案。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 image / decoded_image、answer fields、其他问题字段和rows。",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=princeton-nlp%2FCharXiv&config=default&split=validation&offset=1&length=1",
+        "license": "CC BY-SA 4.0仅覆盖问题文本；图表仍归原论文作者，且数据卡写明 evaluation-only/no-training。本站以编辑性中文说明和必要短引展示题目，不嵌图、不把问题许可扩展到图表媒体。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "CharXiv validation · row_idx=1 · original_id=2005.07253 · revision f441eb632fc62f6f777830a0f47619e6e86459b0",
+        "excerpt": true
+      }
+    ]
+  }
 }

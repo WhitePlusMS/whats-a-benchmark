@@ -1,0 +1,200 @@
+{
+  "id": "rws-mgate",
+  "status": "published",
+  "order": 662,
+  "name": "RWS M-GATE",
+  "subtitle": "直接检查语法、往返翻译和多语言效率",
+  "category": "knowledge",
+  "tags": [
+    "多语言",
+    "语法检测",
+    "翻译",
+    "分词效率"
+  ],
+  "publisher": "TrainAI by RWS",
+  "brandIds": [
+    "rws"
+  ],
+  "year": 2026,
+  "version": "论文 v1 · 30 语言协议",
+  "kind": "original",
+  "aliases": [
+    "M-GATE",
+    "Multilingual Grammar, Accuracy in Translation & Efficiency"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "检查多语言语法、往返翻译语义保持及 tokenizer 效率。",
+    "task": "识别语言特有的语法问题，将英语译成目标语言再译回，另记录处理效率。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.03803"
+    ]
+  },
+  "taskContract": {
+    "input": "语法：单句、语言名及英语 Yes/No 指令；翻译：共享英语源句，经 29 个目标语言往返；效率：供 tokenizer 计数的文本，非用户自由问答。",
+    "output": "语法回答 Yes（有语法/拼写问题）或 No；翻译先生成目标语言文本再返回英语；tokenizer 效率由计数得到，不要求模型自行报告 token 数。",
+    "environment": "语法逐句运行并解析 Yes/No，失败时 Haiku 4.5 分类；每语言 100 句各含 50 有错/50 无错。往返译文由三提供商裁判评估语义保持，并与专业人类标注验证。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.03803"
+    ]
+  },
+  "dataProfile": {
+    "summary": "实时测试项私有；论文公开方法，并指定 m-gate.ai 为结果与非 live 示例入口。",
+    "disclosure": "not-public",
+    "scale": [
+      "30 种语言；语法每语言 100 句；翻译共享源句跨 29 个目标语言。"
+    ],
+    "splits": [
+      "语法每语言独立 100 个 adversarial stumper；翻译共享英语源项跨 29 种语言，均为私有 live 测试材料。论文只展示 non-live 示例。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.03803"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "可读论文与官方示例，完整测试项保持私有。"
+    ],
+    "sourceUrls": [
+      "https://www.rws.com/artificial-intelligence/train-ai-data-services/research/m-gate-access/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖公开示例、测试项与模型输出的再发布许可证；论文的存档许可不能外推至这些内容。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "方法和示例公开不等于取得内容转载许可；实时题目保持私有，本站只链接官方入口。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2608.03803v1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
+    "sourceUrls": [
+      "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/"
+    ]
+  },
+  "metric": {
+    "name": "语法 MCC / F1、翻译评分、Tokenizer 效率",
+    "description": "语法主指标为 Matthews 相关系数（MCC，-1 至 +1），并列报告 F1；二者按温度和重复聚合设置分别计算。翻译对三位裁判成功返回的 1–5 语义保持评分取均值，论文另报告归一化结果；tokenizer 效率以字符/Token 衡量，三类指标分别解释。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2608.03803v1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "往返翻译测语义保持，不涵盖全部专业翻译质量；私有数据不能完整独立复现。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.03803"
+      ]
+    },
+    {
+      "text": "语法题按各语言特有现象分别选取，没有跨语言难度校准；MCC/F1 只支持同语言比较，跨语言差距不能直接解释为语言掌握程度的差距。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2608.03803v1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者原始论文",
+      "url": "https://arxiv.org/abs/2608.03803",
+      "role": "paper"
+    },
+    {
+      "label": "论文 v1 全文：解析、计分与可比性",
+      "url": "https://arxiv.org/html/2608.03803v1",
+      "role": "paper"
+    },
+    {
+      "label": "论文指定的官方活榜与示例入口",
+      "url": "https://m-gate.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "RWS 官方方法与访问说明",
+      "url": "https://www.rws.com/artificial-intelligence/train-ai-data-services/research/m-gate-access/",
+      "role": "definition"
+    },
+    {
+      "label": "RWS 官方发布说明",
+      "url": "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "语法先去除首尾空白、转小写并解析首词 Yes/No；失败时 Claude Haiku 4.5 只把已有回答归为二元标签，不判断句子语法。标签对照语言学家标准答案计分；翻译由三家裁判比较原始与往返英语文本。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2608.03803v1"
+      ]
+    },
+    "comparison": {
+      "text": "语法只在同语言比较，再核对温度、重复聚合与推理配置；往返翻译可比较同源句的跨语言实现表现，tokenizer 效率不表示语言理解能力。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2608.03803v1"
+      ]
+    },
+    "disclosure": {
+      "text": "实时题目私有；论文指定活榜与非 live 示例公开入口，本次未独立取得该站当前页面内容。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2608.03803v1"
+      ]
+    },
+    "versionChanges": {
+      "text": "论文 v1 于 2026-08-04 发布；实时模型覆盖与初始论文快照不同。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.03803"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.03803"
+      ]
+    },
+    {
+      "text": "已复核论文 v1 的解析、计分与同语言可比性说明；m-gate.ai 本次工具抓取未取得内容，不据此认定链接失效，也未采录其当前榜单或示例。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2608.03803v1"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：Example stumper under Four patterns stood out；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "public-case-rws-mgate",
+        "title": "官方难句 · 多层嵌套转述",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "RWS 公布的 M-GATE 难句包含 told、thought、had said、would 多层嵌套转述。翻译时需保留指代、时态及省略关系。原句完整保存在来源短摘录中；发布页没有说明本句对应的目标语言、题号或标准译文。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：Example stumper under Four patterns stood out",
+        "raw": "Everything I told you is what I thought I had said I would.",
+        "source": "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。",
+        "split": "M-GATE publisher stumper; row and language unidentified",
+        "excerpt": true
+      }
+    ]
+  }
+}

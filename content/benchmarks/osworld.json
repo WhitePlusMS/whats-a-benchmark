@@ -26,21 +26,7 @@
   },
   "limitations": [
     {
-      "text": "369 题中逐项的当前初始化可用性、任务级许可证和完整文件清单未重新执行/检查。",
-      "sourceUrls": [
-        "https://os-world.github.io/",
-        "https://github.com/xlang-ai/OSWorld"
-      ]
-    },
-    {
       "text": "43 项 Windows 补充任务的开放范围和具体激活流程未在此核查；不转载其内容。",
-      "sourceUrls": [
-        "https://os-world.github.io/",
-        "https://github.com/xlang-ai/OSWorld"
-      ]
-    },
-    {
-      "text": "OSWorld-Verified 当前榜单和各方法运行配置会变动，本报告不抄录当期分数。",
       "sourceUrls": [
         "https://os-world.github.io/",
         "https://github.com/xlang-ai/OSWorld"
@@ -77,6 +63,16 @@
       "label": "OSWorld 官方任务目录",
       "url": "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples",
       "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/examples/chrome/030eeff7-b492-4218-b312-701ec99ee0cc.json",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/test_all.json",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -86,7 +82,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "评测 agent 能否在 Ubuntu、Windows、macOS 等桌面环境中使用真实 web/desktop 应用、操作文件并完成跨应用工作流。官方任务由真实计算机使用场景构造，配有初始状态配置和执行式 evaluator。",
+    "summary": "在真实桌面和网页应用中操作文件、完成跨应用任务，由执行式评估器核验结果。",
     "task": "在真实桌面应用中完成开放域任务，并由任务自定义 evaluator 核验最终状态。",
     "sourceUrls": [
       "https://os-world.github.io/",
@@ -131,27 +127,79 @@
     "url": "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "OSWorld 仓库标注 Apache-2.0；该许可证按 LICENSE 适用于其覆盖的代码/文件。",
-    "scope": "仓库许可证不自动覆盖受版权限制的 Windows 任务或任务涉及的第三方应用、网站及用户材料。",
+    "status": "unknown",
+    "license": "仓库Apache-2.0为仓库许可；检查的task JSON未单独确立任务数据许可scope。",
+    "scope": "仅具体Chrome任务JSON的事实解读；浏览器、网站及第三方页面内容不由仓库许可覆盖。",
     "boundaries": [
-      "不复制任务提示、初始化资源、第三方页面、应用截图、用户数据或执行轨迹。",
-      "任务资产的具体权利未逐项核查；Windows 补充任务明确受版权限制。"
+      "未固定main分支任务文件commit。",
+      "未复制截图、运行轨迹或第三方网页内容。"
     ],
     "sourceUrls": [
       "https://github.com/xlang-ai/OSWorld/blob/main/LICENSE",
-      "https://os-world.github.io/"
+      "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/examples/chrome/030eeff7-b492-4218-b312-701ec99ee0cc.json",
+      "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/test_all.json"
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "仓库包含公开任务示例和演示页面，但执行环境中的第三方应用界面/页面并非因仓库代码许可而自动获转载权。本站不复制原始任务全文、资产或截图，仅链接官方 viewer 和 README。Windows 补充数据明确有版权限制，不能作为站内样例。",
+    "status": "local",
+    "reason": "官方公开test_all中的Chrome任务记录及expected设置目标可读；本站只提供任务事实摘要，没有执行任务。",
+    "url": "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/examples/chrome/030eeff7-b492-4218-b312-701ec99ee0cc.json",
     "sourceUrls": [
-      "https://os-world.github.io/",
       "https://github.com/xlang-ai/OSWorld/blob/main/LICENSE",
-      "https://github.com/xlang-ai/OSWorld",
-      "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples"
-    ],
-    "url": "https://github.com/xlang-ai/OSWorld/tree/main/evaluation_examples/examples"
+      "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/examples/chrome/030eeff7-b492-4218-b312-701ec99ee0cc.json",
+      "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/test_all.json"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "369 题中逐项的当前初始化可用性、任务级许可证和完整文件清单未重新执行/检查。",
+      "sourceUrls": [
+        "https://os-world.github.io/",
+        "https://github.com/xlang-ai/OSWorld"
+      ]
+    },
+    {
+      "text": "OSWorld-Verified 当前榜单和各方法运行配置会变动，本报告不抄录当期分数。",
+      "sourceUrls": [
+        "https://os-world.github.io/",
+        "https://github.com/xlang-ai/OSWorld"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-osworld-chrome-dnt",
+        "title": "公开任务行 · 开启Chrome Do Not Track",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在Chrome中启用 Do Not Track 隐私设置。OSWorld原始公开任务使用chrome snapshot；exact-match evaluator要求设置值为true，且官方test_all列表包含该任务ID。",
+        "answer": "true",
+        "explanation": "source task JSON中的expected字段为字符串true；该值是任务检查目标，不是模型运行输出。此处没有启动浏览器或执行任务。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略evaluator.postconfig、trajectory、proxy、fixed_ip。",
+        "raw": {
+          "id": "030eeff7-b492-4218-b312-701ec99ee0cc",
+          "evaluator": {
+            "result": {
+              "type": "enable_do_not_track"
+            },
+            "expected": {
+              "rules": {
+                "expected": "true"
+              },
+              "type": "rule"
+            },
+            "func": "exact_match"
+          },
+          "snapshot": "chrome",
+          "instruction": "Can you enable the 'Do Not Track' feature in Chrome to enhance my online privacy?"
+        },
+        "source": "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/examples/chrome/030eeff7-b492-4218-b312-701ec99ee0cc.json",
+        "license": "本站原创任务解读与JSON短引；仓库Apache-2.0不自动扩及Chrome或第三方网站内容。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "split": "OSWorld official test_all / chrome / 030eeff7-b492-4218-b312-701ec99ee0cc / snapshot chrome",
+        "excerpt": true
+      }
+    ]
   }
 }

@@ -131,6 +131,14 @@ export async function loadContent(
         "related",
         relation.id,
       );
+    for (const component of doc.composition?.items || [])
+      checkReference(
+        component.id !== doc.id &&
+          (doc.status === "draft" ? allIds : publishedIds).has(component.id),
+        file,
+        "composition.items",
+        component.id,
+      );
     if (doc.status === "draft") continue;
     checkReference(
       categories.some((cat) => cat.id === doc.category),
@@ -228,6 +236,9 @@ export function publicProjection(workspace: ContentWorkspace) {
 }
 export function deletionImpact(workspace: ContentWorkspace, id: string) {
   const references = [
+    ...workspace.documents
+      .filter((doc) => doc.composition?.items.some((item) => item.id === id))
+      .map((doc) => `content/benchmarks/${doc.id}.json → composition.items`),
     ...workspace.documents.flatMap((doc) =>
       (doc.related || [])
         .filter((r) => r.id === id)

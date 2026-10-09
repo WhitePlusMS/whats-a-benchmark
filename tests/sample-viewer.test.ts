@@ -22,7 +22,9 @@ function fixture(benchmarkId: string): SampleFile {
       license: "Test fixture",
       split: "test",
       excerpt: false,
-      assets: [{ kind: "image", path: `${id}.png`, alt: id }],
+      assets: [
+        { kind: "image", path: `${id}.png`, alt: id, width: 100, height: 80 },
+      ],
     })),
   };
 }

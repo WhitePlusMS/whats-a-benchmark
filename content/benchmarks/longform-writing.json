@@ -1,0 +1,190 @@
+{
+  "id": "longform-writing",
+  "status": "published",
+  "order": 651,
+  "name": "Longform Writing",
+  "subtitle": "从故事规划到八章叙事，检查长篇连贯性",
+  "category": "writing",
+  "tags": [
+    "长篇创作",
+    "故事规划",
+    "叙事一致性",
+    "模型裁判"
+  ],
+  "publisher": "Samuel J. Paech / EQ-bench",
+  "brandIds": [
+    "eq-bench"
+  ],
+  "year": 2025,
+  "version": "v1.11；2026-02-19 更新",
+  "kind": "original",
+  "aliases": [
+    "Longform Creative Writing Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "从简短提示规划、修改并写出多章故事，评估叙事与角色的一致性。",
+    "task": "先头脑风暴、审视计划并建立角色档案，再逐章生成完整中篇故事。",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/longform-writing-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "简短故事提示，以及前序计划、角色档案和已写章节。",
+    "output": "故事计划、角色档案和连续八章正文。",
+    "environment": "官方流程含 5 个规划步骤和 8 个章节生成步骤，章节与整篇分别由模型评分。",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/longform-writing-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库提供提示模板、评分标准和运行代码；榜单提供长篇输出入口。",
+    "disclosure": "partial",
+    "scale": [
+      "默认 8 章，每章约 1,000 词。"
+    ],
+    "splits": [
+      "同一故事从五步规划继续到八章；不是把章节随机划分成训练与测试，评分只汇总已完成且有可解析评分的任务。"
+    ],
+    "fields": [
+      "运行任务保存 chapter_judge_scores、final_judge_scores 和 chapter_staccato_index；聚合结果记录 overall_score_0_20、eqbench_longform_score_0_100、num_tasks_scored、num_tasks_total。"
+    ],
+    "files": [
+      "data/prompt1.txt–prompt5.txt 为五个规划步骤，prompt_chapter_first/intermediate/last.txt 控制首、中、末章。",
+      "criteria_weights.json 与 longform_negative_criteria_*.txt 控制权重和负指标；results/longform_bench_runs.json 保存运行、章节与评委结果。"
+    ],
+    "sourceUrls": [
+      "https://github.com/EQ-bench/longform-writing-bench",
+      "https://github.com/EQ-bench/longform-writing-bench/blob/main/core/scoring.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "按官方环境和提示顺序运行；复现时记录章节数与最终评分权重。"
+    ],
+    "url": "https://github.com/EQ-bench/longform-writing-bench",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/longform-writing-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库声明 MIT；本次未逐项核验模型输出与第三方文本的权利范围。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://github.com/EQ-bench/longform-writing-bench"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "sourceUrls": [
+      "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html"
+    ]
+  },
+  "metric": {
+    "name": "章节与整篇综合评分",
+    "description": "当前 v1.11 由 Sonnet 4.6 按 14 项 rubric 评章节与整篇，平均后给 0–100 分；Forced Poetry/Metaphor 加大权重并作 1.7 次幂处理，过量短单句段落触发章节降分。Length 与 Slop 不计入总分，Repetition/Degradation 另作风格和过程诊断。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://eqbench.com/creative_writing_longform.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "长篇计划和连续生成协议会影响结果；与 Creative Writing v3 的短提示任务不同。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/longform-writing-bench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方长篇仓库",
+      "url": "https://github.com/EQ-bench/longform-writing-bench",
+      "role": "readme"
+    },
+    {
+      "label": "官方长篇榜单",
+      "url": "https://eqbench.com/creative_writing_longform.html",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Longform 官方计分实现",
+      "url": "https://github.com/EQ-bench/longform-writing-bench/blob/main/core/scoring.py",
+      "role": "code"
+    },
+    {
+      "label": "Longform 官方规划、章节与评分模板",
+      "url": "https://github.com/EQ-bench/longform-writing-bench/tree/main/data",
+      "role": "data"
+    },
+    {
+      "url": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
+      "label": "EQ-Bench Longform 官方模型报告",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "官方活页 v1.11（2026-02-19）使用 Claude Sonnet 4.6，逐章与整篇按 14 项文学 rubric 评价；不能沿用仓库旧 README 的 Sonnet 4 标签。",
+      "sourceUrls": [
+        "https://eqbench.com/creative_writing_longform.html"
+      ]
+    },
+    "comparison": {
+      "text": "确认 NUM_CHAPTERS、裁判、criteria_weights、最终整篇权重及 num_tasks_scored；仅计分已完成任务，缺失覆盖不能被平均分掩盖。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/longform-writing-bench/blob/main/core/scoring.py",
+        "https://github.com/EQ-bench/longform-writing-bench"
+      ]
+    },
+    "disclosure": {
+      "text": "官方仓库提供提示模板、评分标准和运行代码；榜单提供长篇输出入口。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/longform-writing-bench"
+      ]
+    },
+    "versionChanges": {
+      "text": "v1.1（2025-08-08）引入 metaphor 重点和短单句段落惩罚；v1.11 将裁判由 Sonnet 4 更新到 4.6。仓库 README 未同步裁判，当前榜单以活页版本为准。",
+      "sourceUrls": [
+        "https://eqbench.com/creative_writing_longform.html",
+        "https://github.com/EQ-bench/longform-writing-bench"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/longform-writing-bench"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "longform-writing-pony-alpha-gods-sneakers",
+        "title": "诸神穿上运动鞋的多章节故事提示",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "EQ-Bench Longform 报告中的初始故事种子要求围绕“诸神穿上运动鞋”展开多章节短篇创作。这里仅记录初始种子，不含规划、章节正文、评分或模型回答。",
+        "raw": "Mythology-Inspired Write a short story over several chapters to this prompt: Gods wore sneakers.",
+        "explanation": "官方报告对应模型 openrouter/pony-alpha，任务标题 Mythology-Inspired；该短句是初始任务提示的一部分。本条只概述该真实 report 的 seed，不把报告正文或模型产出当作可复制题库内容。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "source": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
+        "license": "未逐项确认报告题目、模型输出及第三方内容的再发布范围。Longform 仓库 MIT 声明不自动覆盖报告输出。本页仅保留短种子引文和本站概述，不复制故事正文或评分。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "EQ-Bench Longform report · openrouter/pony-alpha · Mythology-Inspired · initial prompt",
+        "excerpt": true
+      }
+    ]
+  }
+}

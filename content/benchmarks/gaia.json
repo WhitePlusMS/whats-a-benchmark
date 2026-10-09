@@ -18,7 +18,7 @@
   "kind": "original",
   "aliases": [],
   "related": [],
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "GAIA 以现实问题评估助手的推理、多模态信息处理、网页浏览与工具使用能力，预期答案通常简短并可核验。",
@@ -69,26 +69,24 @@
     "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA"
   },
   "reusePolicy": {
-    "status": "prohibited",
-    "license": "未核实",
-    "scope": "此次核对的 Hugging Face dataset card 未发现明确的 SPDX/data license 声明，因此题目、答案、元数据及附件的再分发许可为未明确；不能从页面可申请访问推断复制授权。\ngated prompt 明确要求不得将 GAIA submissions set 分享到 Hugging Face 上 gated/private 仓库之外；README 也要求不要以可爬取格式重发 validation 或 test。故不得把题面、答案、附件或整行数据复制到公开 GitHub Pages。\n论文中公开的研究定义和数字可作归属引用；论文中展示的示例题面、截图或附件不因此自动取得 dataset 再发布许可。页面媒体权利未单独核实。",
+    "status": "unknown",
+    "license": "arXiv论文条款适用于论文；检查的页面未确立论文内示例与GAIA数据集记录的单独许可关系。",
+    "scope": "仅论文创题示例；其是否属于后续benchmark split及数据集记录许可均未查明。",
     "boundaries": [
-      "此次核对的 Hugging Face dataset card 未发现明确的 SPDX/data license 声明，因此题目、答案、元数据及附件的再分发许可为未明确；不能从页面可申请访问推断复制授权。",
-      "gated prompt 明确要求不得将 GAIA submissions set 分享到 Hugging Face 上 gated/private 仓库之外；README 也要求不要以可爬取格式重发 validation 或 test。故不得把题面、答案、附件或整行数据复制到公开 GitHub Pages。",
-      "论文中公开的研究定义和数字可作归属引用；论文中展示的示例题面、截图或附件不因此自动取得 dataset 再发布许可。页面媒体权利未单独核实。"
+      "不称论文示例为validation/test数据行。",
+      "不复制gated数据集或附件。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+      "https://arxiv.org/html/2311.12983"
     ]
   },
   "sampleAccess": {
-    "status": "gated",
-    "reason": "官方 HF 数据集包含 dev/validation 与 test 数据，访问须 gated；数据卡明令不要在可爬取格式下重分享 validation/test，gated prompt 进一步约束整个 submissions set 的分享位置。本站不转载任何实际 GAIA 题面、附件、答案、元数据记录或排行榜提交；只提供 benchmark 概述及官方数据/论文链接\n",
+    "status": "local",
+    "reason": "仅采用原论文独立公开的创题/验证示例；未复制 gated 数据集，也未将此问题推断为特定 validation/test 行。",
+    "url": "https://arxiv.org/html/2311.12983",
     "sourceUrls": [
-      "https://huggingface.co/datasets/gaia-benchmark/GAIA",
-      "https://arxiv.org/abs/2311.12983"
-    ],
-    "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+      "https://arxiv.org/html/2311.12983"
+    ]
   },
   "metric": {
     "name": "正确率",
@@ -104,13 +102,6 @@
       "sourceUrls": [
         "https://arxiv.org/abs/2311.12983",
         "https://huggingface.co/datasets/gaia-benchmark/GAIA"
-      ]
-    },
-    {
-      "text": "当前 gated split 的行数、附件清单与 leaderboard 对应 commit 未逐文件核验。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/gaia-benchmark/GAIA",
-        "https://huggingface.co/datasets/gaia-benchmark/GAIA/blob/main/README.md"
       ]
     },
     {
@@ -140,6 +131,46 @@
       "label": "GAIA leaderboard",
       "url": "https://huggingface.co/spaces/gaia-benchmark/leaderboard",
       "role": "leaderboard"
+    },
+    {
+      "label": "已核验的官方具体案例",
+      "url": "https://arxiv.org/html/2311.12983",
+      "role": "definition"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "当前 gated split 的行数、附件清单与 leaderboard 对应 commit 未逐文件核验。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+        "https://huggingface.co/datasets/gaia-benchmark/GAIA/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；仅采用原论文独立公开的创题/验证示例；未复制 gated 数据集，也未将此问题推断为特定 validation/test 行。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2311.12983"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "official-case-gaia",
+        "title": "论文公开例题 · 临床试验人数",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在 NIH 网站查找 2018 年 1—5 月关于痤疮患者 H. pylori 的临床试验，返回实际入组人数。GAIA 原论文公开的 Level 1 例题给出结果 90。",
+        "explanation": "仅采用原论文独立公开的创题/验证示例；未复制 gated 数据集，也未将此问题推断为特定 validation/test 行。",
+        "raw": "What was the actual enrollment count of the clinical trial",
+        "source": "https://arxiv.org/html/2311.12983",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true,
+        "answer": "90"
+      }
+    ]
+  }
 }

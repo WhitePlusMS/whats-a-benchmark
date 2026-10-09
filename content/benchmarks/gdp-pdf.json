@@ -1,0 +1,213 @@
+{
+  "id": "gdp-pdf",
+  "status": "published",
+  "order": 733,
+  "name": "GDP.pdf",
+  "subtitle": "长篇专业 PDF 的理解与分析",
+  "category": "context",
+  "tags": [
+    "长篇专业 PDF 的理解与分析"
+  ],
+  "publisher": "Surge AI",
+  "brandIds": [],
+  "year": 2026,
+  "version": "官方发布集；AA 实施差异单列说明",
+  "kind": "original",
+  "aliases": [
+    "GDP PDF",
+    "GDPpdf"
+  ],
+  "researchStatus": "partial",
+  "officialDefinition": {
+    "summary": "根据长篇专业 PDF 完成分析任务，按任务细则检查答案是否满足要求。",
+    "task": "专业 PDF 文档及分析要求。 → 依据文档形成的回答。",
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-pdf",
+      "https://huggingface.co/datasets/surgeai/GDP.pdf",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "专业 PDF 文档及分析要求。",
+    "output": "依据文档形成的回答。",
+    "environment": "原始实现通过服务商文档接口输入 PDF；AA 使用提取文本并按支持情况提供页图。",
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-pdf",
+      "https://huggingface.co/datasets/surgeai/GDP.pdf",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "任务关联文档及多个评分条件；不要与要求生成职业交付物的 GDPval 混淆。",
+    "disclosure": "partial",
+    "scale": [
+      "100 项任务、10 个专业领域。",
+      "材料共 4,592 页，评分细则共 1,275 条。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-pdf",
+      "https://huggingface.co/datasets/surgeai/GDP.pdf",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "blocked",
+    "requirements": [
+      "官方数据入口已登记，下载条件尚未确认。"
+    ],
+    "url": "https://huggingface.co/datasets/surgeai/GDP.pdf",
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-pdf",
+      "https://huggingface.co/datasets/surgeai/GDP.pdf",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方GDP.pdf页面未声明任务示例复用许可。",
+    "scope": "公开页面中的文档任务事实；prompt、rubric及fryer manual等参考材料许可未查明。",
+    "boundaries": [
+      "不复制电路手册或完整rubric。",
+      "页面展示的模型答复被官方rubric判错，不作为gold。"
+    ],
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-pdf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "这是官方公开演示中的文档问题节选，未转载电路手册。页面展示的模型回答 14932 被官方判错，不能当作金标准；本页参考值取自 rubric。",
+    "url": "https://surgehq.ai/benchmarks/gdp-pdf",
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-pdf"
+    ]
+  },
+  "metric": {
+    "name": "All-pass / Mean Pass（AA 实施）",
+    "description": "AA 的 All-pass 要求一次回答满足全部细则；Mean Pass 对细则通过比例按任务和重复次数等权平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-pdf",
+      "https://huggingface.co/datasets/surgeai/GDP.pdf",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "AA 费用不包含裁判、PDF 预处理和 OCR；其时间估计不是端到端工作耗时。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "AA 使用 GPT-5.6 Luna（medium）逐细则判分；Surge 原始实现使用不同裁判。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "首先区分 Surge 与 AA：文档输入、裁判和指标可能不同，官方明确两者成绩不能直接比较。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "disclosure": {
+      "text": "官方方法说明可查；数据入口的下载条件与第三方 PDF 的转载许可尚未确认。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "Surge GDP.pdf",
+      "url": "https://surgehq.ai/benchmarks/gdp-pdf",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据集",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.pdf",
+      "role": "data"
+    },
+    {
+      "label": "AA 方法与实施差异",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "researchNotes": [
+    {
+      "text": "官方数据入口访问未成功；本轮已从官方GDP.pdf页面定位公开fryer wiring-diagram示例，但页面未说明题目/附件许可，第三方电路手册许可仍未核验。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "本轮未完成数据集及第三方 PDF 的逐项再发布许可审计。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "官方方法可查，数据入口本轮访问返回 401；下载条件及第三方 PDF 的转载许可仍未核验。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "本轮访问官方数据卡返回 401，尚未核验下载条件；不能据此判定数据集为私有或需申请。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf",
+        "https://huggingface.co/datasets/surgeai/GDP.pdf",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；这是官方公开演示中的文档问题节选，未转载电路手册。页面展示的模型回答 14932 被官方判错，不能当作金标准；本页参考值取自 rubric。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks/gdp-pdf"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-gdp-pdf",
+        "title": "公开例题 · 炸锅接线图查部件",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "读取 690 型、序列号 AP0709026 的炸锅资料，查出经 31A 线连接 I/O 板的部件名称和编号。官方 rubric 要求使用正确的接线图页（2-35，即页面 7）。",
+        "explanation": "这是官方公开演示中的文档问题节选，未转载电路手册。页面展示的模型回答 14932 被官方判错，不能当作金标准；本页参考值取自 rubric。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "For a model 690 fryer with serial number AP0709026\n\nThe correct answer is a transformer (part number 60536) on page 2-35.\n\n60536",
+        "source": "https://surgehq.ai/benchmarks/gdp-pdf",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true,
+        "answer": "变压器组件（transformer / transformer assembly），零件号 60536。"
+      }
+    ]
+  }
+}

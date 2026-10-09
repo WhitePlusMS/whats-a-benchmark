@@ -1,0 +1,184 @@
+{
+  "id": "svgbench",
+  "status": "published",
+  "order": 659,
+  "name": "svgbench.ai",
+  "subtitle": "盲选同一提示生成的 SVG 插图",
+  "category": "writing",
+  "tags": [
+    "SVG生成",
+    "矢量插图",
+    "人类偏好",
+    "匿名对战"
+  ],
+  "publisher": "svgbench.ai",
+  "brandIds": [
+    "svgbench"
+  ],
+  "year": null,
+  "version": "实时盲投榜单",
+  "kind": "original",
+  "aliases": [
+    "SVGBench",
+    "SVG Bench",
+    "SVGBench · 矢量图盲选"
+  ],
+  "researchStatus": "partial",
+  "officialDefinition": {
+    "summary": "比较同一提示生成的 SVG 插图，通过人类盲投建立专项排名。",
+    "task": "在相同系统提示、任务列表和画布约束下生成 SVG，比较构图、清晰度与提示匹配。",
+    "sourceUrls": [
+      "https://svgbench.ai/"
+    ]
+  },
+  "taskContract": {
+    "input": "共享的 SVG 创作提示与画布约束。",
+    "output": "有效 SVG 代码及其渲染插图。",
+    "environment": "平台生成有效候选后匿名并排呈现给用户投票，榜单按覆盖和置信度筛选模型。",
+    "sourceUrls": [
+      "https://svgbench.ai/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官网提供榜单、获胜作品和 sandbox；完整任务、输出和投票数据的可下载性未确认。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://svgbench.ai/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "在官网查榜、查看作品或 sandbox；此项目不是 johnbean393/SVGBench 的要求判分仓库。"
+    ],
+    "url": "https://svgbench.ai/leaderboard",
+    "sourceUrls": [
+      "https://svgbench.ai/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://svgbench.ai/"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa",
+    "sourceUrls": [
+      "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa"
+    ],
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。"
+  },
+  "metric": {
+    "name": "人类成对偏好评级",
+    "description": "依据盲投、提示覆盖、置信度和支持程度估计模型强度；官方本页未给出可完整重算的数学细节。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://svgbench.ai/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "只衡量 SVG 插图专项偏好；覆盖不足会隐藏模型，实时投票和缓存影响榜单快照。",
+      "sourceUrls": [
+        "https://svgbench.ai/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方任务与方法介绍",
+      "url": "https://svgbench.ai/",
+      "role": "definition"
+    },
+    {
+      "label": "官方排名与覆盖说明",
+      "url": "https://svgbench.ai/leaderboard",
+      "role": "leaderboard"
+    },
+    {
+      "role": "data",
+      "label": "SVGBench 官方 lion prompt API",
+      "url": "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "用户只看两个隐藏身份的SVG渲染并投票，比较构图、清晰和提示匹配；有效生成与覆盖门槛决定哪些模型进入展示。",
+      "sourceUrls": [
+        "https://svgbench.ai/"
+      ]
+    },
+    "comparison": {
+      "text": "保留画布/系统提示、提示覆盖、支持票与时间；svgbench.ai并非johnbean393/SVGBench代码判分，也不能互换Rapidata的三维BT分。",
+      "sourceUrls": [
+        "https://svgbench.ai/"
+      ]
+    },
+    "disclosure": {
+      "text": "官网提供榜单、获胜作品和 sandbox；完整任务、输出和投票数据的可下载性未确认。",
+      "sourceUrls": [
+        "https://svgbench.ai/"
+      ]
+    },
+    "versionChanges": {
+      "text": "实时平台未标统一数字协议版；与 Rapidata SVG 和其他同名 SVG 仓库分开解释。",
+      "sourceUrls": [
+        "https://svgbench.ai/"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://svgbench.ai/"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "svgbench-prompt-daf3f932ceaa",
+        "title": "Lion SVG 插图提示",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "SVGBench 官方 prompt 记录 `prompt_daf3f932ceaa` 的具体输入是为 lion 生成 SVG 插图。该平台任务通过同提示候选图的匿名偏好投票比较；本站不复制 SVG、缩略图或排名。",
+        "raw": {
+          "prompt": {
+            "id": "prompt_daf3f932ceaa",
+            "slug": "lion",
+            "text": "lion",
+            "category": "animal"
+          },
+          "rankings": [
+            {
+              "generation": {
+                "id": "gen_528217605706"
+              }
+            }
+          ]
+        },
+        "explanation": "公开 prompt detail API 将该提示关联到 generation gen_528217605706（Cogito v2.1 671B）；此关联仅用于定位原例，SVG 与实时投票/排名均未纳入本站样例，也不表示 gold。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 SVG payload、preview/thumbnail、other rankings/votes。",
+        "source": "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa",
+        "license": "未找到 prompt 或生成 SVG 的明确再发布许可。本页只保留单词短引和本站任务概述，不复制生成 SVG 或实时排名。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "official live prompt API · prompt_daf3f932ceaa · slug=lion · generation ID only for locator",
+        "excerpt": true
+      }
+    ]
+  }
+}

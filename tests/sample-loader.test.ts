@@ -154,7 +154,28 @@ test("sample loading rejects empty required text and unsafe optional containers"
   const pair = { input: [[0]], output: [[0]] };
   const invalid = [
     { benchmarkId: "selected", samples: [{ ...sample, title: " " }] },
+    // 本站任务说明必须标为节选，原始数据不能为空。
+    { benchmarkId: "selected", samples: [{ ...sample, promptOrigin: "editorial" }] },
+    { benchmarkId: "selected", samples: [{ ...sample, promptOrigin: "editorial", excerpt: true, raw: {} }] },
+    { benchmarkId: "selected", samples: [{ ...sample, promptOrigin: "unknown", excerpt: true }] },
     { benchmarkId: "selected", samples: [{ ...sample, assets: [{}] }] },
+    {
+      benchmarkId: "selected",
+      samples: [
+        {
+          ...sample,
+          assets: [
+            {
+              kind: "image",
+              path: "example.png",
+              alt: "example",
+              width: 0,
+              height: 100,
+            },
+          ],
+        },
+      ],
+    },
     {
       benchmarkId: "selected",
       samples: [{ ...sample, gridTask: { train: [null], test: [pair] } }],
@@ -185,4 +206,36 @@ test("sample loading rejects empty required text and unsafe optional containers"
   assert.equal(loader.error.value, false);
   const loadedId = loader.data.value?.samples[0]?.id;
   assert.equal(loadedId, "example");
+});
+
+test("sample loading retains source JSON and source text with an editorial prompt", async (t) => {
+  const file = sampleFile("selected");
+  const raw = {
+    id: "example",
+    instruction: "Source task input",
+    messages: [{ role: "user", content: "Source message" }],
+    metadata: { reference_answer: null },
+  };
+  file.samples[0] = {
+    ...file.samples[0]!,
+    promptOrigin: "editorial",
+    excerpt: true,
+    raw,
+  };
+  let count = 0;
+  const text = "Source task paragraph. ".repeat(20);
+  t.mock.method(globalThis, "fetch", async () => Response.json({
+    ...file,
+    samples: [{ ...file.samples[0]!, raw: count++ === 0 ? raw : text }],
+  }));
+  const scope = effectScope();
+  t.after(() => scope.stop());
+  const loader = scope.run(() => useSampleLoader(() => "selected", () => true, "/"))!;
+  await settle();
+  assert.equal(loader.error.value, false);
+  assert.deepEqual(loader.data.value?.samples[0]?.raw, raw);
+  loader.reload();
+  await settle();
+  assert.equal(loader.error.value, false);
+  assert.equal(loader.data.value?.samples[0]?.raw, text);
 });

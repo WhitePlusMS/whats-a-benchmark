@@ -4,7 +4,7 @@
   "order": 702,
   "name": "APEX-Agents",
   "subtitle": "跨应用完成多步骤专业工作",
-  "category": "agents",
+  "category": "work",
   "tags": [
     "Agent",
     "长程任务",
@@ -13,96 +13,94 @@
   "publisher": "Mercor / APEX-Agents 团队",
   "brandIds": [],
   "year": 2026,
-  "version": "APEX-Agents",
+  "version": "原版；480 个任务",
   "kind": "original",
   "aliases": [
     "AI Productivity Index for Agents"
   ],
-  "related": [],
-  "verifiedAt": "2026-09-23",
+  "related": [
+    {
+      "id": "apex-agents-1-1",
+      "label": "后续修订 1.1",
+      "detail": "240 题、31 worlds 的新任务包及裁判修订；不覆盖原版题集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
+        "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "APEX-Agents 是 Mercor 发布的专业工作智能体评测，任务来自投行、咨询和法律等工作场景。原版与 1.1 是不同版本，规模和任务包不可合并。",
+    "summary": "在投行、咨询和法律模拟工作环境中完成跨应用专业任务，提交可审阅的成果。",
     "task": "Agent 阅读单轮任务提示，在对应模拟工作世界中产出可交付成果；按 rubric 中的 Met/Not met 条件判定。Gold output 是评分参考，不是 agent 输出。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents",
-      "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
-      "https://www.mercor.com/blog/introducing-apex-agents-1-1/"
+      "https://huggingface.co/datasets/mercor/apex-agents"
     ]
   },
   "taskContract": {
-    "input": "单轮任务提示、rubric、gold output、任务 metadata，以及任务引用的 world 文件和相关工件。",
+    "input": "单轮任务指令及项目世界中的文件、工具与应用状态；rubric 和专家参考输出用于评分。",
     "output": "Agent 在受控工作环境中生成的交付物；评分器根据 rubric 的逐项条件判定通过情况。",
-    "environment": "原版为模拟的专业应用环境，包含世界文件与工具；1.1 提供 Harbor 可运行任务包。具体工具依任务及版本而异。",
+    "environment": "原版的模拟专业工作环境，包含项目文件和应用工具；网页搜索关闭，具体工具配置须随报告核对。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents",
-      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      "https://huggingface.co/datasets/mercor/apex-agents"
     ]
   },
   "dataProfile": {
-    "summary": "原版和 1.1 均为 gated 任务包；公开页面披露规模与包结构，未在本次核验中取得任务文件。",
+    "summary": "原版 480 个任务的受控任务包；1.1 修订版本另见关联条目。",
     "disclosure": "not-public",
     "scale": [
-      "原版：480 tasks、33 worlds，含投行、咨询、法律三个领域。",
-      "1.1：240 tasks、31 worlds、5,182 个文件；该版本重构了任务与环境。"
+      "480 个任务，三个职业领域各 160 题；33 个 worlds。"
     ],
     "splits": [
       "官方页面未声明标准 train/dev/test split。"
     ],
     "fields": [
-      "任务卡包含 instruction、rubric、gold output、metadata 及 world/artifact 引用。",
-      "1.1 Harbor 包含环境配置、任务定义、agent 配置、solution 与 grader 等文件。"
+      "instruction、rubric、gold output、metadata 及 world/artifact 引用；评分参考与 agent 输入分开。"
     ],
     "files": [
-      "1.1 公开说明列出 environment/、tasks/、worlds/、manifest.json、registry.json 和 run_task.sh。",
-      "原版任务内容在 Hugging Face gated 文件中；本次未下载或检查原始文件。"
+      "原版任务与世界资产在 Hugging Face gated 文件中，本站未下载原始文件。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents",
-      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      "https://huggingface.co/datasets/mercor/apex-agents"
     ]
   },
   "dataAccess": {
     "status": "gated",
     "requirements": [
-      "原版与 1.1 数据卡均要求先接受访问条款并提供联系信息；本次未接受条款、下载或读取 gated 文件。"
+      "接受原版的访问条款并提供联系信息。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents",
-      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      "https://huggingface.co/datasets/mercor/apex-agents"
     ],
     "url": "https://huggingface.co/datasets/mercor/apex-agents"
   },
   "reusePolicy": {
-    "status": "prohibited",
-    "license": "数据卡中的 CC BY 4.0 元数据不覆盖明确的 evaluation-only 限制；代码仓库许可仅适用于实现。",
-    "scope": "仅将定义、规模和方法作为带来源的描述信息展示；不得将任务内容用于训练、微调、参数拟合，也不得公开复制原始任务资产。",
+    "status": "unknown",
+    "license": "样例页标注“for illustration only”，但没有声明内容复用许可；任务附件与版本范围未说明。",
+    "scope": "仅该榜单展示的管理咨询案例页；benchmark任务文件、附件和模型轨迹的许可未查明。",
     "boundaries": [
-      "保留 gated 访问边界，不把任务提示、rubric、gold output、metadata 或 world 文件转存为公开样例。",
-      "官方禁止为训练用途抓取或爬取数据；遵守两个版本各自的访问条款。"
+      "不把博客对benchmark开源/CC-BY的概述外推到此样例页及附件。",
+      "不复制任务附件或完整作品。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents",
-      "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
-      "https://github.com/Mercor-Intelligence/apex_loop_truncated_tools_agent"
+      "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/"
     ]
   },
   "sampleAccess": {
-    "status": "gated",
-    "reason": "官方提供规模和结构说明，但原版及 1.1 的任务文件受 gated 条款约束；本次没有读取原始题目或输出。页面只链接官方数据卡。",
+    "status": "local",
+    "reason": "这是 Mercor 当前管理咨询榜页可见的具体演示任务；配套数据与模型轨迹不转载，也不把演示得分当作完整榜单成绩。",
+    "url": "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/",
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents",
-      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
-    ],
-    "url": "https://huggingface.co/datasets/mercor/apex-agents"
+      "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/"
+    ]
   },
   "metric": {
     "name": "Rubric pass rate",
-    "description": "原版报告 Pass@1、Pass@8、Pass^8 与平均分；每题按 rubric 的 Met/Not met 项判定。1.1 使用固定 harness revision，并为每个任务设置 100 turns 或 10,800 秒上限。版本间分数应分开报告。",
+    "description": "原版报告 Pass@1、Pass@8、Pass^8 与平均分；按 rubric 的逐项二元条件判定，分别表达单次、至少一次和多次均成功。",
     "direction": "higher",
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents",
-      "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      "https://huggingface.co/datasets/mercor/apex-agents"
     ]
   },
   "limitations": [
@@ -159,6 +157,44 @@
       "label": "Mercor APEX 项目页",
       "url": "https://www.mercor.com/apex/",
       "role": "definition"
+    },
+    {
+      "label": "已核验的官方具体案例",
+      "url": "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/",
+      "role": "definition"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "本次仅核验公开数据卡和版本说明，未接受访问条款、下载或读取受控任务包。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mercor/apex-agents"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；这是 Mercor 当前管理咨询榜页可见的具体演示任务；配套数据与模型轨迹不转载，也不把演示得分当作完整榜单成绩。",
+      "sourceUrls": [
+        "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-apex-agents",
+        "title": "咨询演示 · SKU 生命周期分析",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "阅读 EM 的邮件和 SKU 数据，完成 Data Hygiene / Gaps Log 中的生命周期分析：返回四组生命周期的前两名平台/应用，以及最常出现的两个平台/应用。每组均不区分先后；若附百分比，则保留两位小数。",
+        "explanation": "这是 Mercor 当前管理咨询榜页可见的具体演示任务；配套数据与模型轨迹不转载，也不把演示得分当作完整榜单成绩。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Can you get back to me with the four lifecycle top-two pairs and the two most-frequent platforms/applications?\n\nfor illustration only",
+        "source": "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true
+      }
+    ]
+  }
 }

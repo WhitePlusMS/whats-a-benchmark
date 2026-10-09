@@ -1,0 +1,204 @@
+{
+  "id": "legal-research-vals",
+  "status": "published",
+  "order": 454,
+  "name": "Legal Research Bench (Vals AI)",
+  "subtitle": "查证多种法律资料并交付完整研究答案",
+  "category": "work",
+  "tags": [
+    "法律",
+    "研究检索",
+    "多步推理",
+    "智能体",
+    "严格评分"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2026,
+  "version": "2026-10 官方方法；208 个私有测试题",
+  "kind": "original",
+  "aliases": [
+    "Legal Research Bench",
+    "Legal Research",
+    "Legal Research Agent Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "跨美国联邦和州法进行多来源法律研究，产出有依据的回答。",
+    "task": "寻找法规、判例等权威资料，应用于具体情景并综合结论。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/legal_research"
+    ]
+  },
+  "taskContract": {
+    "input": "专家撰写的法律研究问题。",
+    "output": "含法律依据与引用的最终研究答案。",
+    "environment": "法律搜索、网页读取、检索和提交工具；每题上限 3 小时。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/legal_research"
+    ]
+  },
+  "dataProfile": {
+    "summary": "413 个专家题，覆盖 8 类实务；公开样本与许可验证集之外，榜单使用私有测试集。",
+    "disclosure": "partial",
+    "scale": [
+      "413 个题、8 类法律实务。"
+    ],
+    "splits": [
+      "5 个公开样本；200 个许可验证题；208 个私有测试题。"
+    ],
+    "fields": [
+      "公开 data/public.json 顶层为 dataset_name、dataset_version、tests；每条公开记录为 id、question，未在该文件提供 gold 答案或完整 rubric。"
+    ],
+    "files": [
+      "data/public.json 保存公开问题；legal_agent/get_agent.py 构造 agent，logs/ 保存逐题工具使用、tokens、错误与 results.json 汇总。私有验证/测试的答案和 rubric 未随公开问题文件发布。"
+    ],
+    "sourceUrls": [
+      "https://github.com/vals-ai/legal-research-bench/blob/main/data/public.json",
+      "https://github.com/vals-ai/legal-research-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "完整验证集需许可；平台访问需审批；测试集私有。"
+    ],
+    "url": "https://github.com/vals-ai/legal-research-bench",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/legal_research"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "Vals正式Legal Research评测标为Proprietary/approval-gated；公开P-001位于MIT仓库，但候选未确立question数据是否适用仓库许可。",
+    "scope": "完整平台评测为Proprietary；P-001公开question的独立许可范围未查明，法律来源文件另有权利边界。",
+    "boundaries": [
+      "不把P-001说成私有评分行。",
+      "不由代码MIT推断question或外部法律材料授权。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/data/public.json",
+      "https://github.com/vals-ai/legal-research-bench/blob/main/README.md",
+      "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/LICENSE",
+      "https://www.vals.ai/benchmarks/legal_research"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方GitHub文件公开 P-001 样题；平台评分集需审批且标为Proprietary，本站不把公开样题等同私有测试数据。",
+    "url": "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/data/public.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/data/public.json",
+      "https://github.com/vals-ai/legal-research-bench/blob/main/README.md",
+      "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/LICENSE",
+      "https://www.vals.ai/benchmarks/legal_research"
+    ]
+  },
+  "metric": {
+    "name": "All-Pass",
+    "description": "每题的全部必需 rubric 条目通过才计 1，否则计 0，汇总测试题成功比例；另报加权部分得分。官方当前流程由 GPT 5.4 作评委。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/legal_research"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "All-Pass 与加权部分得分含义不同；不得把代码公开解释为全部测试题公开。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/legal_research"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/legal_research"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Vals Legal Research 官方定义与方法",
+      "url": "https://www.vals.ai/benchmarks/legal_research",
+      "role": "definition"
+    },
+    {
+      "label": "Vals Legal Research 官方仓库",
+      "url": "https://github.com/vals-ai/legal-research-bench",
+      "role": "readme"
+    },
+    {
+      "label": "Legal Research Bench 作者论文",
+      "url": "https://arxiv.org/abs/2610.00609",
+      "role": "paper"
+    },
+    {
+      "label": "Legal Research官方公开问题文件",
+      "url": "https://github.com/vals-ai/legal-research-bench/blob/main/data/public.json",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源 · data",
+      "url": "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/data/public.json",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源 · access",
+      "url": "https://github.com/vals-ai/legal-research-bench/blob/main/README.md",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源 · access",
+      "url": "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/LICENSE",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "当前官网用 GPT 5.4 对专家 rubric 逐项判；主 All-Pass 要全部必需标准通过，部分加权得分另列。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/legal_research"
+      ]
+    },
+    "comparison": {
+      "text": "固定五工具和三小时预算；courtlistener_search 负责判例，parse_html_page 保存正文，retrieve_information 从已获取材料提取证据，只有最终提交进入评分。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/legal_research",
+        "https://github.com/vals-ai/legal-research-bench"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-legal-research-vals-p001",
+        "title": "公开样题 · RFE 邮寄错误与缺席递解",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Vals 公开样题 P-001 给出一对墨西哥籍配偶的移民程序时间线：RFE 寄到错误地址、I-130/I-485 被拒，随后出现缺席递解令。问题要求按 2026-04-01 的情况分析可用救济、移民法院文件及费用。公开题目未附参考答案。",
+        "explanation": "README将 data/public.json 列为公开样题；P-001 是该公开问题，不代表平台私有计分题。此处没有提供法律意见或自行补出答案。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略remaining question text、no answer field is present in the checked public example。 原文只保留已核片段；具体字段截取范围见取证记录。",
+        "raw": {
+          "dataset_version": "1.0.0",
+          "tests": [
+            {
+              "question": "A husband originally from Mexico entered the United States on a B-2 visa on December 1, 2022.",
+              "id": "P-001"
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/data/public.json",
+        "license": "本站原创公开样题解读与必要短引；仓库MIT未单独声明覆盖question数据，平台正式评测标为Proprietary。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "split": "data/public.json / dataset_version 1.0.0 / P-001",
+        "excerpt": true
+      }
+    ]
+  }
+}

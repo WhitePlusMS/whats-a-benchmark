@@ -1,0 +1,200 @@
+{
+  "id": "harvey-lab",
+  "status": "published",
+  "order": 438,
+  "name": "Harvey Legal Agent Benchmark (LAB)",
+  "subtitle": "完成律师事务所的长程法律工作",
+  "category": "work",
+  "tags": [
+    "法律",
+    "职业任务",
+    "文档交付",
+    "智能体",
+    "长程执行"
+  ],
+  "publisher": "Harvey AI",
+  "brandIds": [
+    "harvey"
+  ],
+  "year": 2026,
+  "version": "首发 v1.0；当前 main 文档与 lab-core v1.2.0 分开记录",
+  "kind": "original",
+  "aliases": [
+    "Harvey LAB",
+    "Legal Agent Benchmark",
+    "Harvey Legal Agent Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "依据客户事项和文件制作可审阅的法律工作成品。",
+    "task": "在模拟法律事项中阅读材料、执行多步分析，并提交符合专家 rubric 的成品。",
+    "sourceUrls": [
+      "https://www.harvey.ai/blog/introducing-harveys-legal-agent-benchmark"
+    ]
+  },
+  "taskContract": {
+    "input": "律师工作指令、客户事项文件及交付要求。",
+    "output": "output/ 中任务要求的法律交付文件，名称与 task.json 的 deliverables 一致；每项标准只读取其指向的文件。",
+    "environment": "官方 LAB harness 运行与 LLM rubric judge；评分设置应注明单评委或标准双评委。",
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs",
+      "https://github.com/harveyai/harvey-labs/blob/main/docs/eval-strategies.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "首发披露 1,200 多项任务、24 领域、75,000 多条准则；当前 main 评分文档列出 2,010 任务、27 领域、约 114,000 准则。",
+    "disclosure": "partial",
+    "scale": [
+      "首发与当前 main 的任务规模不同；当前文档：2,010 任务、27 领域。"
+    ],
+    "splits": [],
+    "fields": [
+      "task.json 的 deliverables 将输出文件名映射到正式文件名；criteria 是逐项评分标准。",
+      "每个 criterion 包含 id、title、match_criteria、deliverables，以及可选 sources/evaluation_options；match_criteria 定义核验条件，未要求独立 golden 输出。"
+    ],
+    "files": [
+      "任务包含 task.json、客户事项材料和运行环境；agent 写 output/，文件名须与 deliverables map 匹配。",
+      "scores.json 保存 all_pass、n_criteria、n_passed 等；双评委成功后再写 scores_dual.json，并保留各评委独立产物。"
+    ],
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs/blob/main/docs/eval-strategies.md",
+      "https://github.com/harveyai/harvey-labs"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://github.com/harveyai/harvey-labs",
+    "sourceUrls": [
+      "https://www.harvey.ai/blog/introducing-harveys-legal-agent-benchmark"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库MIT许可可确认LAB harness/code范围；task JSON、rubric与matter附件的适用范围未单独确立。",
+    "scope": "具体v1.0任务文件的题目、评分材料和附件许可未查明；MIT仅按代码仓库范围记录。",
+    "boundaries": [
+      "不复制data-room文件、rubric正文或第三方材料。",
+      "不将仓库代码MIT推为任务数据授权。"
+    ],
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs",
+      "https://raw.githubusercontent.com/harveyai/harvey-labs/v1.0/tasks/corporate-ma/review-data-room-red-flag-review/task.json",
+      "https://github.com/harveyai/harvey-labs/blob/v1.0/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方 v1.0 task.json 公开任务和评分检查目标；其数据室附件未复制或独立核验许可。",
+    "url": "https://raw.githubusercontent.com/harveyai/harvey-labs/v1.0/tasks/corporate-ma/review-data-room-red-flag-review/task.json",
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs",
+      "https://raw.githubusercontent.com/harveyai/harvey-labs/v1.0/tasks/corporate-ma/review-data-room-red-flag-review/task.json",
+      "https://github.com/harveyai/harvey-labs/blob/v1.0/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "All-pass rate",
+    "description": "每项准则作二元判断；单评委下全部准则通过才算任务成功。标准双评委主指标对两位评委的任务 all-pass 值取平均，另报双方均通过的严格结果；准则通过率只是诊断指标。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs/blob/main/docs/eval-strategies.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "任务集和评委协议持续演进；首发规模与当前 main 结果不能混作同一冻结版本。",
+      "sourceUrls": [
+        "https://github.com/harveyai/harvey-labs",
+        "https://github.com/harveyai/harvey-labs/blob/main/docs/eval-strategies.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://www.harvey.ai/blog/introducing-harveys-legal-agent-benchmark"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Harvey LAB 官方发布",
+      "url": "https://www.harvey.ai/blog/introducing-harveys-legal-agent-benchmark",
+      "role": "definition"
+    },
+    {
+      "label": "Harvey LAB 官方仓库",
+      "url": "https://github.com/harveyai/harvey-labs",
+      "role": "readme"
+    },
+    {
+      "label": "Harvey LAB 官方评分协议",
+      "url": "https://github.com/harveyai/harvey-labs/blob/main/docs/eval-strategies.md",
+      "role": "code"
+    },
+    {
+      "label": "已核验官方来源 · access",
+      "url": "https://raw.githubusercontent.com/harveyai/harvey-labs/v1.0/tasks/corporate-ma/review-data-room-red-flag-review/task.json",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源 · access",
+      "url": "https://github.com/harveyai/harvey-labs/blob/v1.0/LICENSE",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "两位 LLM 裁判独立对相关交付文件作语义 pass/fail 检查；不用关键词/regex，也不需要独立 golden reference。单评委须全部标准通过才成功。",
+      "sourceUrls": [
+        "https://github.com/harveyai/harvey-labs/blob/main/docs/eval-strategies.md"
+      ]
+    },
+    "comparison": {
+      "text": "标准 dual_all_pass 是两评委任务二元值的平均，一题可为 0/0.5/1；双方都通过的严格结果和 pooled criterion pass rate 是另两个口径。",
+      "sourceUrls": [
+        "https://github.com/harveyai/harvey-labs/blob/main/docs/eval-strategies.md"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-harvey-lab-v1-ma-red-flag-review",
+        "title": "公开任务 · 并购尽调红旗审查",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "审阅拟收购项目的数据室材料，提交红旗备忘录和跟踪表。Harvey LAB v1.0 的任务评分材料明确检查财务资料中的 EBITDA 差异及犹他州危险废物许可转让情况；此处不重现数据室附件。",
+        "explanation": "官方 v1.0 task.json 定义了具体 M&A 尽调任务、两个交付文件及对应评分检查项。附件未复制；这些rubric目标不是我们运行所得结果。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略criteria and scoring details、attached data room files。 原文只保留已核片段；具体字段截取范围见取证记录。",
+        "raw": {
+          "work_type": "review",
+          "instructions": "Review the attached data room documents for this proposed acquisition and prepare a diligence red flag analysis. Output: `red-flag-memo.docx` and",
+          "tags": [
+            "Mergers & Acquisitions",
+            "due-diligence",
+            "data-room",
+            "red-flag-review",
+            "private-equity",
+            "environmental-services",
+            "regulatory-compliance"
+          ],
+          "deliverables": {
+            "red-flag-tracker.xlsx": "red-flag-tracker.xlsx",
+            "red-flag-memo.docx": "red-flag-memo.docx"
+          },
+          "title": "Review Data Room for Acquisition Red Flags — M&A Due Diligence Memo"
+        },
+        "source": "https://raw.githubusercontent.com/harveyai/harvey-labs/v1.0/tasks/corporate-ma/review-data-room-red-flag-review/task.json",
+        "license": "本站原创任务解读及任务标题短引；仓库MIT声明不自动扩及任务数据与附件。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "split": "Harvey LAB / v1.0 / tasks/corporate-ma/review-data-room-red-flag-review/task.json",
+        "excerpt": true
+      }
+    ]
+  }
+}

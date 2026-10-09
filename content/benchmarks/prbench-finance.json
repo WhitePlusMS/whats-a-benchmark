@@ -1,0 +1,739 @@
+{
+  "id": "prbench-finance",
+  "status": "published",
+  "order": 446,
+  "name": "PRBench Finance",
+  "subtitle": "查看 PRBench 的金融专业任务",
+  "category": "work",
+  "tags": [
+    "金融",
+    "专业推理",
+    "专家评分",
+    "多轮任务"
+  ],
+  "publisher": "Scale AI / PRBench 作者团队",
+  "brandIds": [
+    "scale"
+  ],
+  "year": 2025,
+  "version": "2025 论文与公开数据；Finance / Legal 分域",
+  "kind": "subset",
+  "aliases": [
+    "PRBench 金融",
+    "PRBench · Finance"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "PRBench 的金融分项，按该领域专家准则评价开放式专业推理。",
+    "task": "完成金融专业工作情景中的单轮或多轮问题。",
+    "sourceUrls": [
+      "https://labs.scale.com/papers/prbench"
+    ]
+  },
+  "taskContract": {
+    "input": "prompt_0–prompt_9、已有 response/model 历史和该轮 reference_texts；代码将参考文本前置到对应 user prompt。rubric 与 scratchpad 用于参考/评分，不作为末轮答题输入。",
+    "output": "针对给定单轮问题或多轮对话的最后一条助手回答；官方默认 sampled 模式只生成末轮，而非重新生成全部历史轮次。",
+    "environment": "evals.py 读取指定 HF split，拼接公开对话历史、生成末轮回答，再按 criterion 调 LLM judge；缓存回答/评分，最终保存 results 与逐题 outputs。",
+    "sourceUrls": [
+      "https://github.com/scaleapi/PRBench",
+      "https://arxiv.org/abs/2511.11562"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开金融分项有 600 任务，Hard 子集含 300 任务。",
+    "disclosure": "complete",
+    "scale": [
+      "600 个金融任务；其中 Hard 300 个。"
+    ],
+    "splits": [
+      "HF finance 为 600 条，finance_hard 为其中 300 条；两者并非互斥训练/测试划分。"
+    ],
+    "fields": [
+      "task、turns、field、topic、expert；逐轮 prompt_i、response_i、model_i 与 reference_texts_i（最多 10 个 user turn）。",
+      "scratchpad 与 rubric 是参考/评分材料；rubric 经执行器解析为 title、带正负号的 weight 与 criteria_category。另有 economic_pathway、decision_type 和 canary。"
+    ],
+    "files": [
+      "HF data/ 的 finance、legal、finance_hard、legal_hard 发布记录；evals.py 生成/评估，util.py 与 criteria.py 抽取标准和计算分数。",
+      "cache/ 保存模型末轮回答和裁判缓存；results/ 输出 mean_normalized、mean_clipped 和各任务 grades/points/weights 等诊断。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "https://github.com/scaleapi/PRBench/blob/main/util.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
+    "sourceUrls": [
+      "https://labs.scale.com/papers/prbench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方数据卡标示 CC BY 4.0，官方评分代码仓库标示 MIT。",
+    "scope": "本站仅展示固定来源快照中经核验的精选任务字段，保留出处与适用许可；不将其许可外推至外部网页、模型输出或未采用媒体。",
+    "boundaries": [
+      "保留署名与许可；引用的第三方参考文本仍需核对其来源权利。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "https://github.com/scaleapi/PRBench",
+      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+    ]
+  },
+  "metric": {
+    "name": "金融 rubric score",
+    "description": "金融分项用 true/false 准则满足值乘带符号权重，逐题除以正权重总和，再取题均值并将总体下限截为 0（mean_clipped）。需区分 finance 600 条与 finance_hard 300 条；不是金融答题准确率或跨域综合指数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "https://github.com/scaleapi/PRBench/blob/main/util.py",
+      "https://github.com/scaleapi/PRBench/blob/main/criteria.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "分域成绩和 Hard 子集分数有不同范围；LLM judge 的版本与配置会影响结果。",
+      "sourceUrls": [
+        "https://labs.scale.com/papers/prbench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条独立展示 金融分项及 Hard 范围；没有把 Hard 题量再次计入父体系总题量。",
+      "sourceUrls": [
+        "https://labs.scale.com/papers/prbench"
+      ]
+    },
+    {
+      "text": "本站所选记录 643796de687003869b5de46a：config=default，split=finance，源文件 SHA-256=4e3d790d00eefdc9ec7090a2e19459e74c1788921c525b3d14ed0dbf1f155dc0，完整原记录 SHA-256=ab9c75dafb07c26e3e0d360a8d75bf2595e6bbfbba26d4db01491c316957baa2。raw 只保留任务和评分字段，排除第三方参考材料/空字段/模型结果；原题未改。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+      ]
+    },
+    {
+      "text": "本站所选记录 cc44401239817f46b56b4835：config=default，split=finance，源文件 SHA-256=4e3d790d00eefdc9ec7090a2e19459e74c1788921c525b3d14ed0dbf1f155dc0，完整原记录 SHA-256=29d0f250573db81ee59909827881bd0679e8ab6a5ea7f1a9eff043d6dbc00e07。raw 只保留任务和评分字段，排除第三方参考材料/空字段/模型结果；原题未改。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "PRBench 官方介绍",
+      "url": "https://labs.scale.com/papers/prbench",
+      "role": "definition"
+    },
+    {
+      "label": "PRBench 作者论文",
+      "url": "https://arxiv.org/abs/2511.11562",
+      "role": "paper"
+    },
+    {
+      "label": "PRBench 官方数据卡",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "role": "data"
+    },
+    {
+      "label": "PRBench 官方评测仓库",
+      "url": "https://github.com/scaleapi/PRBench",
+      "role": "readme"
+    },
+    {
+      "label": "PRBench 官方末轮生成与汇总实现",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方权重和计分函数",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/util.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方 criterion 解析",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/criteria.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方任务 Explorer",
+      "url": "https://prbench-explorer.vercel.app/",
+      "role": "data"
+    },
+    {
+      "label": "PRBench Finance 官方逐题 Viewer",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench/viewer/default/finance",
+      "role": "data"
+    },
+    {
+      "label": "所选真实记录的固定版本数据文件",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "所选数据快照的许可说明",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "prbench",
+      "label": "属于",
+      "detail": "PRBench 的 金融分项，Hard 子集是其中高难任务。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench",
+        "https://github.com/scaleapi/PRBench"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "评委读取完整对话和标准，评的是最终助手回应；负权重会扣分，criterion 通过比例不等于论文 mean_clipped。",
+      "sourceUrls": [
+        "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+        "https://github.com/scaleapi/PRBench/blob/main/util.py"
+      ]
+    },
+    "comparison": {
+      "text": "固定 split、末轮生成或 prefilled 响应来源、评委、工具选项与 trial；官方另有 mean_normalized，不能把它与 mean_clipped 混称同一分数。",
+      "sourceUrls": [
+        "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+        "https://github.com/scaleapi/PRBench/blob/main/util.py"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "643796de687003869b5de46a",
+        "title": "利率冲击下的资本开支与分配政策",
+        "type": "record",
+        "prompt": "For a nonfinancial with net debt/EBITDA 2.5x, 40% floaters, a four year even maturity ladder and quadratic adjustment costs, how would a persistent 250 bps policy rate shock over six quarters reshape the optimal capex and pay out policy?",
+        "explanation": "这是金融专业推理任务。原始数据展示作者的专家评分准则及任务标签；rubric 是评分材料，不是统一标准作答。本条不复制第三方参考文本或模型输出。",
+        "raw": {
+          "task": "643796de687003869b5de46a",
+          "turns": 1,
+          "field": "Finance",
+          "topic": "Corporate Finance",
+          "expert": "Expert",
+          "prompt_0": "For a nonfinancial with net debt/EBITDA 2.5x, 40% floaters, a four year even maturity ladder and quadratic adjustment costs, how would a persistent 250 bps policy rate shock over six quarters reshape the optimal capex and pay out policy?",
+          "rubric": [
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This ensures the response sizes the shock on day one, it anchors materiality for cash planning.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 10,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "7ce52cac-5a8c-485b-860c-9481b4285f65",
+              "title": "The response quantifies immediate floater pass through; it calculates the instant hit from 40% floating under +250 bps (e.g., 0.025 * 0.4 * 0.25 = 2.5% of EBITDA)."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This captures the dynamic build of interest costs.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 9,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "408b7b06-4143-4197-b788-0a15d1c64403",
+              "title": "The response quantifies ladder rollover through six quarters and shows an even 4-year ladder adds to interest, reaching ~3.9% of EBITDA by Q6."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This criterion prevents fundamental errors.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "94112e5a-f80c-4aa2-8027-1559058dfeb6",
+              "title": "The response states higher policy rates raise financing costs/WACC/hurdles."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "It distinguish timing of impacts.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 5,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "91c48c77-0050-4011-999f-3167918e0e2c",
+              "title": "The response separates immediate from rolling effects; it explicitly distinguishes the floater hit now from refi glide up."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Handling Uncertainty",
+                "criteria_description": "This makes the logic testable if inputs change.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "29fda1c7-e4fd-47bd-8ea5-30c031fc799e",
+              "title": "The response names all assumptions (e.g., stable EBITDA, no hedges, tax rate)."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Risk & Regulatory Disclosure",
+                "criteria_description": "This targets the most important unknowns to refine recommendations effectively.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "34dc5f49-295f-4a1b-a827-971ce6fa1974",
+              "title": "The response addresses key financing risk factors (hedges, reset frequency, revolver capacity, interest coverage, covenant headroom, ratings) by incorporating available data. "
+            },
+            {
+              "annotations": {
+                "criteria_category": "Handling Uncertainty",
+                "criteria_description": "This provides guidance under alternative rate path realities.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 4,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "c191b0be-206c-42b1-8699-169263a8f593",
+              "title": "The response provides different actions for temporary vs persistent high rates."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "This prioritize the lowest adjustment cost buffers first, preserves long term value.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 9,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "c5389bbd-8377-4f2d-8fab-5d0632570ce4",
+              "title": "The response provides a clear, time-phased sequence of financial policy actions, specifying which levers (e.g., buybacks, dividends, capex) are pulled first versus later."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "This prevents underinvestment and operational risk.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "4bf3c419-a208-42c4-bd33-0ed69937be38",
+              "title": "The response clearly states a policy for maintenance versus growth capex. "
+            },
+            {
+              "annotations": {
+                "criteria_category": "Instruction Following",
+                "criteria_description": "This coverts strategy into time phase execution, which follow the prompt's horizon.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "c6ff0d7d-f44d-4988-b68f-382573bfdd2a",
+              "title": "The response passes if it divides the six-quarter horizon into exactly two labeled phases—“Q1–Q2” and “Q3–Q6”—and fails otherwise."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Risk & Regulatory Disclosure",
+                "criteria_description": "This addresses binding constraints that dominates optimal policy.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "1ba5a769-408a-4c0e-87cf-5886e71c935d",
+              "title": "The response flags liquidity/coverage/covenant/rating risks by mentioning revolver headroom, interest coverage, covenants, ratings."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "This is a common but harmful mistake that raises long run costs and risk.",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": -7,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "detrimental"
+              },
+              "id": "40d27caa-47ed-48c3-869a-5ee006b2de27",
+              "title": "The response recommends cutting maintenance capex before other levers."
+            }
+          ],
+          "economic_pathway": "Value Creation, Funding Optimization",
+          "decision_type": "Capital & Funding, Planning & Forecasts",
+          "canary": "prbench:sample:finance:643796de687003869b5de46a"
+        },
+        "source": "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
+        "split": "finance",
+        "excerpt": true,
+        "license": "CC-BY-4.0 · PRBench, Scale AI / PRBench authors, data_v2 snapshot 01947c6ef913df518e6e52626a7b29f132b12d4f, CC BY 4.0",
+        "licensePath": "licenses/prbench-finance-sample-source.txt"
+      },
+      {
+        "id": "cc44401239817f46b56b4835",
+        "title": "向新员工解释现金流量表",
+        "type": "record",
+        "prompt": "How would I explain the cash flow statement to a new employee in the accounting department, and how should I compare the direct versus indirect method?",
+        "explanation": "这是金融专业推理任务。原始数据展示作者的专家评分准则及任务标签；rubric 是评分材料，不是统一标准作答。本条不复制第三方参考文本或模型输出。",
+        "raw": {
+          "task": "cc44401239817f46b56b4835",
+          "turns": 1,
+          "field": "Finance",
+          "topic": "Accounting & Financial Statement Analysis",
+          "expert": "Non-Expert",
+          "prompt_0": "How would I explain the cash flow statement to a new employee in the accounting department, and how should I compare the direct versus indirect method?",
+          "rubric": [
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This is important in establishing a company's financial health",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 5,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "424ad305-d32f-423f-b3e2-639bffb5fc22",
+              "title": "States that the cash-flow statement is one of three primary financial statements (balance sheet, income statement, cash-flow statement)."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This division is critical to understanding cash-flow statements",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 8,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "10e99318-200f-481e-8562-59951c55b030",
+              "title": "The response must state that the sheet is broken down into three parts (operating activities, investing activities, financing activities)."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "This defines a critical portion of the cash-flow statement",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "7e281cc7-9293-4427-a372-d43ebdca0465",
+              "title": "The response must give at least one example of a cash inflow from operating activities, e.g., revenue, dividends, interest."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "Useful in determining the investment health of the company",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "c4ef12ad-cae1-465c-b67a-b370dbce5c91",
+              "title": "The response must give at least one example of a cash inflow arising from investing activities out of the following:\n- selling assets\n- dividing subsidiaries\n- collecting payments on loans."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "These activities will help to determine the health of a company's investing activities",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "931adc21-025a-4ba7-be15-f502b4bf0fa3",
+              "title": "The response must indicate that the outflows from the investing activities include at least one of:\n- capital expenditures\n- investments in securities\n- business acquisitions."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "Together, these help to indicate the company's health relative to their borrowing leverage",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "536f1d4a-52c8-43ac-871a-dd84f45ca06f",
+              "title": "The response must state that the cash inflow from financing activities is generally divided up into various sources, giving at least one example from:\n- Issuing stock\n- Borrowing money."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "This is important in determining operating expenses",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "02e0674f-84c6-4bb0-9c59-a329d6438042",
+              "title": "The response must give at least one example of a cash outflow from operating activities, e.g., payroll, rent, suppliers, utilities, taxes."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "These accounts are important because they help to show the company's financing position",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "64434b1a-51e9-4c1e-81ed-6ecda7f6196e",
+              "title": "The response should give at least one example of a cash outflow for financing activities from:\n- loan payments\n- dividend payments\n- stock buybacks."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "These steps are critical to ensuring that the statement is prepared correctly",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 9,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "b81c419c-a706-499e-966e-eb4c8d5dd3eb",
+              "title": "The response mentions at least five steps involved in creating a cash-flow statement:\n- collect financial data\n- choose a preparation method\n- calculate cash flow from investing and financing activities\n- reconcile the cash flow\n- analyze the results for accuracy."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Instruction Following",
+                "criteria_description": "These two types of corporate accounting are the foundation to every document and reconciliation performed",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 10,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": null,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "critically important"
+              },
+              "id": "cb4bdf7a-f59e-4235-a705-10a40326f4cc",
+              "title": "The response must mention the two methods of preparation for cash-flow statements:\n- Direct (cash-basis)\n- Indirect (accrual basis)."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This is an important distinction between this and the indirect method",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "9f02054e-60a9-4eb5-9300-03ccc3af2b60",
+              "title": "The response must mention that the direct method lists actual transactions because it is based on cash flow."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This is another important distinction that separates this type of preparation\nReviewer note- this is implicit from the previous criteria that says the direct method uses cash accounting. The extra information here is of minimal use",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": 2,
+                "weight_class": "slightly important"
+              },
+              "id": "0291717d-4f5d-4b53-b57c-4124b13cf40c",
+              "title": "The response must mention that the direct method does not rely on the accrual method of accounting."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Practical Utility",
+                "criteria_description": "This is an extremely important method of separation in accounting,\nReviewer note - but less important in this context as we are talking about a single company",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 9,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "398f5d83-67d5-4a28-a067-c60af783a039",
+              "title": "The response must mention that the direct method of preparation is used for cash-heavy business models."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This is an important distinction to determine which companies should use the accrual  methoid of accounting,\nReviewer note - less important here as there is only one company considered",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": 10,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 4,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "8fbd3de4-672e-42dc-a3e7-322932fdcd3a",
+              "title": "The response must mention that the indirect method of preparation is used for large companies that do not rely solely on cash."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "This is an important preparational step for this method of accounting",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "0924cf40-c2d9-439b-bbdc-81ab140e25cd",
+              "title": "The response must mention that the indirect method starts with existing financial statements before adjusting for non-cash income."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Financial Accuracy",
+                "criteria_description": "Knowing that both methods are ok is important, but the accrual method is preferred in most cases",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 7,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "b6d37ce7-766a-4844-8898-fe25002ed8e1",
+              "title": "The response must mention that both methods (direct and indirect) are acceptable in financial reporting."
+            },
+            {
+              "annotations": {
+                "criteria_category": "Supplemental Insight",
+                "criteria_description": "This is important in establishing the norms for accounting practices",
+                "critically_detrimental_weight": null,
+                "critically_important_weight": null,
+                "detrimental_weight": null,
+                "field_for_category": "finance",
+                "important_weight": 6,
+                "slightly_detrimental_weight": null,
+                "slightly_important_weight": null,
+                "weight_class": "important"
+              },
+              "id": "55364d54-10ec-4bdc-bb44-d1efc87274f7",
+              "title": "The response must mention that the indirect (accrual) method of preparation is generally preferred in most cases."
+            }
+          ],
+          "economic_pathway": "Informational / Educational Only",
+          "decision_type": "Non-decision / Informational",
+          "canary": "prbench:sample:finance:cc44401239817f46b56b4835"
+        },
+        "source": "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
+        "split": "finance",
+        "excerpt": true,
+        "license": "CC-BY-4.0 · PRBench, Scale AI / PRBench authors, data_v2 snapshot 01947c6ef913df518e6e52626a7b29f132b12d4f, CC BY 4.0",
+        "licensePath": "licenses/prbench-finance-sample-source.txt"
+      }
+    ]
+  }
+}

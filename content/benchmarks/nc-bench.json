@@ -1,0 +1,196 @@
+{
+  "id": "nc-bench",
+  "status": "published",
+  "order": 656,
+  "name": "NC Bench",
+  "subtitle": "检查写作助手能否按规则编辑和组织文本",
+  "category": "writing",
+  "tags": [
+    "写作辅助",
+    "文本编辑",
+    "规则检查",
+    "多语言"
+  ],
+  "publisher": "Novelcrafter",
+  "brandIds": [
+    "novelcrafter"
+  ],
+  "year": null,
+  "version": "Early access · 持续更新",
+  "kind": "suite",
+  "aliases": [
+    "Novelcrafter Benchmark",
+    "NC Bench Creative Writing",
+    "NC Bench · 作家工作流"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "围绕创作者的编辑、生成、提取、摘要和语言任务检查写作助手表现。",
+    "task": "按具体场景修改文本、遵循创作规则、提取设定或处理多语言内容，辅助写作流程。",
+    "sourceUrls": [
+      "https://www.nc-bench.com/about"
+    ]
+  },
+  "taskContract": {
+    "input": "指定任务、文本片段、故事设定或语言要求。",
+    "output": "符合场景要求的文字或结构化文本。",
+    "environment": "按场景进行客观检查；模型可按不同参数重复测试，平台仍为 early access。",
+    "sourceUrls": [
+      "https://www.nc-bench.com/about"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开场景、测试描述和模型结果；是否提供完整数据与执行实现本次未确认。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.nc-bench.com/tests"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "按官方场景查看提示与结果；不要与 IBM 的同名自然对话 NC-Bench 混用。"
+    ],
+    "url": "https://www.nc-bench.com/tests",
+    "sourceUrls": [
+      "https://www.nc-bench.com/tests"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "HF 数据卡将该公开 NC-Bench 数据集标注为 Apache-2.0；IBM Research 代码仓库许可不用于推定数据许可。",
+    "scope": "仅复用 Hugging Face 上 ibm-research/nc-bench 数据集的 basic split row 0，并保留数据卡署名与许可证来源。",
+    "boundaries": [
+      "本许可说明不延伸到 Novelcrafter 网站上的其它题目、模型输出或资料。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ibm-research/nc-bench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站展示 IBM Research NC-Bench basic split 的完整 row 0 对话，不包含参考答案。",
+    "url": "https://huggingface.co/datasets/ibm-research/nc-bench/viewer/default/basic?row=0",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ibm-research/nc-bench"
+    ]
+  },
+  "metric": {
+    "name": "Total Score / Stability / Rank Score",
+    "description": "Total Score为场景各run得分平均，Top Performers按中位数排序；Stability=中位分×(1−2×标准差)。Rank Score把表现、价格、速度、稳定性在场景模型间min-max归一化，再平均可用维度，缺价格/速度不处罚。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.nc-bench.com/about"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "规则满足和写作习惯检查不等于完整故事文学质量；Rank Score 混合实用成本指标。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/about"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Novelcrafter 官方定义与排名方法",
+      "url": "https://www.nc-bench.com/about",
+      "role": "definition"
+    },
+    {
+      "label": "官方测试目录",
+      "url": "https://www.nc-bench.com/tests",
+      "role": "data"
+    },
+    {
+      "label": "官方项目首页",
+      "url": "https://www.nc-bench.com/",
+      "role": "leaderboard"
+    },
+    {
+      "role": "data",
+      "label": "IBM Research NC-Bench 数据集卡",
+      "url": "https://huggingface.co/datasets/ibm-research/nc-bench"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "平台强调客观场景条件检查，覆盖编辑、生成、提取、摘要与多语言；它不使用统一AI文学质量裁判。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/"
+      ]
+    },
+    "comparison": {
+      "text": "在同一场景和参数内比较Total、Stability或Rank Score；Rank Score纳入成本/速度和可用维度，不是纯文学质量。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/about"
+      ]
+    },
+    "disclosure": {
+      "text": "公开场景、测试描述和模型结果；是否提供完整数据与执行实现本次未确认。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/tests"
+      ]
+    },
+    "versionChanges": {
+      "text": "项目持续开发且未标统一数字版；以场景和参数快照记录结果。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/about"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "basic-0",
+        "title": "Definition request · Index fund vs. mutual fund",
+        "type": "record",
+        "prompt": "system: Let’s do some roleplaying today! We’re just gonna have an ordinary conversation. But keep your turn short, about one sentence.\n\nuser: What's the difference between an index fund and a mutual fund?\n\nassistant: Index funds are passively managed, while most other mutual funds are actively managed.\n\nuser: What does passively managed mean?",
+        "explanation": "完整保留 basic split 的四条对话消息。中间的 assistant 回复属于上下文，不是本题参考答案；本记录没有提供 gold answer。",
+        "raw": {
+          "id": 0,
+          "task": "definition request",
+          "chat_prompt": [
+            {
+              "role": "system",
+              "content": "Let’s do some roleplaying today! We’re just gonna have an ordinary conversation. But keep your turn short, about one sentence."
+            },
+            {
+              "role": "user",
+              "content": "What's the difference between an index fund and a mutual fund?"
+            },
+            {
+              "role": "assistant",
+              "content": "Index funds are passively managed, while most other mutual funds are actively managed."
+            },
+            {
+              "role": "user",
+              "content": "What does passively managed mean?"
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/ibm-research/nc-bench/viewer/default/basic?row=0",
+        "license": "Apache-2.0 · IBM Research 数据卡对该数据集的声明；详见本条目来源说明",
+        "licensePath": "licenses/nc-bench-sample-source.txt",
+        "split": "basic / row 0",
+        "excerpt": false
+      }
+    ]
+  }
+}

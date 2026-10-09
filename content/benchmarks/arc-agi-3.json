@@ -77,7 +77,7 @@
   },
   "reusePolicy": {
     "status": "restricted",
-    "license": "Agents/Toolkit 代码仓库注明 MIT；本次未核实游戏数据、图像和媒体内容存在统一开放数据许可证。",
+    "license": "Agents/Toolkit 代码仓库注明 MIT；游戏数据、图像和媒体的统一开放数据许可尚未确认。",
     "scope": "可按代码许可证复用评测工具；游戏任务数据、画面和媒体仅作官方链接与概述。",
     "boundaries": [
       "不得把 MIT 代码许可解释为游戏数据或媒体的再发布许可；每个游戏素材的权利未逐项核实。"
@@ -88,13 +88,14 @@
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "可链接官方 Public Game Set、游戏试玩页和 SDK 文档。未确认公开 demo 的题面/帧/replay 的再发布许可，因此不把真实环境截图或状态记录下载并内嵌 GitHub Pages。官方技术报告演示图只引用报告链接，不另行复制媒体\n",
+    "status": "local",
+    "reason": "本样例仅依据官方 ls20 公开描述作原创中文游戏目标说明并保留短引；报告 Figure 2 作为来源链接，不复制图像、replay frame、网格或动作数据，未扩张游戏数据许可。",
+    "url": "https://arcprize.org/blog/arc-agi-3-preview-30-day-learnings",
     "sourceUrls": [
-      "https://arcprize.org/arc-agi/3#links",
-      "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=6"
-    ],
-    "url": "https://arcprize.org/arc-agi/3#links"
+      "https://arcprize.org/blog/arc-agi-3-preview-30-day-learnings",
+      "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=5",
+      "https://arcprize.org/replay/681edf4d-496e-4bd1-a9f6-c9fea51d7185?frame=0"
+    ]
   },
   "metric": {
     "name": "RHAE（Relative Human Action Efficiency）",
@@ -111,13 +112,6 @@
       "sourceUrls": [
         "https://github.com/arcprize/docs/blob/main/game-schema.mdx#L1-L38",
         "https://github.com/arcprize/ARC-AGI-3-Agents#changelog"
-      ]
-    },
-    {
-      "text": "本次未读取半私有或私有游戏环境文件，无法逐项确认其字段和附件清单。",
-      "sourceUrls": [
-        "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=6",
-        "https://github.com/arcprize/ARC-AGI-3-Agents#quickstart"
       ]
     },
     {
@@ -223,6 +217,56 @@
       "label": "ARC Prize Leaderboard",
       "url": "https://arcprize.org/leaderboard",
       "role": "leaderboard"
+    },
+    {
+      "label": "Official ARC-AGI-3 Preview description of ls20",
+      "url": "https://arcprize.org/blog/arc-agi-3-preview-30-day-learnings",
+      "role": "definition"
+    },
+    {
+      "label": "Official ARC-AGI-3 Technical Report Figure 2 page",
+      "url": "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=5",
+      "role": "paper"
+    },
+    {
+      "label": "Official public ARC-AGI-3 replay link",
+      "url": "https://arcprize.org/replay/681edf4d-496e-4bd1-a9f6-c9fea51d7185?frame=0",
+      "role": "data"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "本次未读取半私有或私有游戏环境文件，无法逐项确认其字段和附件清单。",
+      "sourceUrls": [
+        "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf#page=6",
+        "https://github.com/arcprize/ARC-AGI-3-Agents#quickstart"
+      ]
+    },
+    {
+      "text": "Agents/Toolkit 代码仓库注明 MIT；本次未核实游戏数据、图像和媒体内容存在统一开放数据许可证。",
+      "sourceUrls": [
+        "https://github.com/arcprize/ARC-AGI-3-Agents#license",
+        "https://arcprize.org/arc-agi/3#links"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "arc-agi-3-ls20-preview",
+        "title": "ls20：地图中的符号变换目标",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "ARC-AGI-3 preview 的 ls20 是地图式交互游戏：玩家要把匹配的符号带到目标物体，途中符号会经历多种变换。交互由当前环境帧和逐步动作构成；官方技术报告 Figure 2 展示的是 ls20 环境截图，不能据此称作 replay 的 frame 0。这里保留公开试玩说明的短引，不复制图像、网格或动作记录。",
+        "explanation": "官方 preview 文章对 ls20 的描述说明它是地图式游戏，玩家需把匹配符号带到另一物体，符号在到达目标前会经历多种变换。技术报告 Figure 2 的 caption 将所示图像称为 ARC-AGI-3 环境 ls20 截图；该图没有被认作公开 replay 的 frame 0。replay URL 单独登记为公开入口，不解析或复制其中帧数据。",
+        "raw": "Navigate a map while bringing a matching symbol to another object.",
+        "source": "https://arcprize.org/blog/arc-agi-3-preview-30-day-learnings",
+        "license": "本站原创中文事实说明及必要短引；ARC-AGI-3 游戏内容、画面和媒体许可仍按条目所列状态处理。",
+        "split": "ARC-AGI-3 Preview / ls20; official report Figure 2, page 5; separate public replay reference",
+        "excerpt": true
+      }
+    ]
+  }
 }

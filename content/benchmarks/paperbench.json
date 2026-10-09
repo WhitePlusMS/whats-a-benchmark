@@ -69,23 +69,26 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "未确认 PaperBench 数据、论文资产、rubric 与第三方内容的统一再分发许可。",
-    "scope": "仓库代码许可信息不能自动延伸到 benchmark 文件及第三方论文/数据。本站候选不复制原始题目、图像或 rubric。",
+    "license": "Frontier Evals仓库MIT为代码许可；rubric任务内容、论文及素材未确立独立许可。",
+    "scope": "仅复现目标的原创解读和必要短引；MIT不外推到论文PDF、详细rubric或第三方资产。",
     "boundaries": [
-      "逐文件许可未审查。",
-      "部分 JudgeEval tarball 官方称不能自动再分发。"
+      "不复制论文PDF、详细rubric、数据或素材。",
+      "不宣称已运行或复现任务。"
     ],
     "sourceUrls": [
+      "https://github.com/openai/frontier-evals/blob/main/LICENSE.md",
       "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md",
-      "https://github.com/openai/frontier-evals"
+      "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json"
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "官方可见论文任务和 rubrics，但未核实所有题目文件、论文资产及第三方数据的再分发权利；仅保留官方链接。",
-    "url": "https://github.com/openai/frontier-evals/tree/main/project/paperbench",
+    "status": "local",
+    "reason": "官方rubric原始JSON公开具体论文复现目标；论文、数据素材和细粒度rubric未复制。",
+    "url": "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
     "sourceUrls": [
-      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+      "https://github.com/openai/frontier-evals/blob/main/LICENSE.md",
+      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md",
+      "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json"
     ]
   },
   "metric": {
@@ -98,13 +101,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "逐文件数据许可、论文资产权利及第三方数据授权未完整核实，不能据代码仓库的许可提示推断数据可转载。",
-      "sourceUrls": [
-        "https://github.com/openai/frontier-evals",
-        "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
-      ]
-    },
     {
       "text": "Code-Dev 是轻量化变体，排除执行和结果匹配，成绩不可与完整 PaperBench 直接等同。",
       "sourceUrls": [
@@ -154,8 +150,59 @@
       "label": "Qwen3.8-Max 厂商模型卡",
       "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
       "role": "vendor-report"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/openai/frontier-evals/blob/main/LICENSE.md",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23"
+  "verifiedAt": "2026-09-23",
+  "researchNotes": [
+    {
+      "text": "逐文件数据许可、论文资产权利及第三方数据授权未完整核实，不能据代码仓库的许可提示推断数据可转载。",
+      "sourceUrls": [
+        "https://github.com/openai/frontier-evals",
+        "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+      ]
+    },
+    {
+      "text": "官方可见论文任务和 rubrics，但未核实所有题目文件、论文资产及第三方数据的再分发权利；仅保留官方链接。",
+      "sourceUrls": [
+        "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-paperbench-adaptive-pruning-reproduction",
+        "title": "公开rubric目标 · APT论文复现",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "PaperBench官方adaptive-pruning任务要求复现 ICML 2024 论文《APT: Adaptive Pruning and Tuning Pretrained Language Models for Efficient Training and Inference》。这里只记录该具体复现目标，不提供论文正文、详细评分rubric或素材。",
+        "explanation": "公开rubric ID为40ff2859-e14d-46ba-af52-0ba4595e2bce，原句明确将该论文复现作为目标；没有把任意模型输出当作答案或复现结果。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略other sub_tasks、paper files and attachments。",
+        "raw": {
+          "finegrained_task_category": "Method Implementation",
+          "requirements": "Code has been implemented such that RoBERTa can be loaded into memory",
+          "id": "9ad77547-04b6-4558-993b-f22d91203bf1",
+          "weight": 1,
+          "task_category": "Code Development",
+          "sub_tasks": []
+        },
+        "source": "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
+        "license": "本站原创任务解读与rubric必要短引；Frontier Evals代码MIT不延伸为第三方论文/素材授权。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "split": "OpenAI frontier-evals / PaperBench / adaptive-pruning / rubric id 40ff2859-e14d-46ba-af52-0ba4595e2bce",
+        "excerpt": true
+      }
+    ]
+  }
 }

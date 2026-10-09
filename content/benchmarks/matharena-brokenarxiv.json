@@ -1,0 +1,216 @@
+{
+  "id": "matharena-brokenarxiv",
+  "status": "published",
+  "order": 1270,
+  "name": "BrokenArXiv",
+  "subtitle": "识别不能被证明的数学假命题",
+  "category": "reasoning",
+  "tags": [
+    "数学可靠性",
+    "错误识别"
+  ],
+  "publisher": "MathArena / ETH Zurich SRI Lab",
+  "brandIds": [
+    "matharena"
+  ],
+  "year": 2026,
+  "version": "brokenarxiv-0626；2026-06数据集",
+  "kind": "original",
+  "aliases": [
+    "MathArena · BrokenArXiv"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估模型面对貌似合理但与近期数学论文结果矛盾的假命题时，是否指出问题而非伪造证明。",
+    "task": "对近期数学论文真实命题的貌似合理但矛盾扰动，观察模型是否指出错误、承认无法证明或伪造证明。",
+    "sourceUrls": [
+      "https://matharena.ai/brokenarxiv/"
+    ]
+  },
+  "taskContract": {
+    "input": "problem 中扰动后的假命题及“尝试证明”提示；原命题 original_problem 只提供给裁判，不给被测模型。",
+    "output": "自然语言回应。",
+    "environment": "Gemini-3.1-Pro裁判结合原命题、扰动命题和模型回答，按行为rubric评分。",
+    "sourceUrls": [
+      "https://matharena.ai/brokenarxiv/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "2026-06问题、原陈述与来源公开，官方文章解释评价rubric。",
+    "disclosure": "complete",
+    "scale": [
+      "2026-06公开版：54题。"
+    ],
+    "splits": [
+      "Hugging Face以train标签存放54条评测记录。"
+    ],
+    "fields": [
+      "problem_idx、points、problem、original_problem、source、title、authors。"
+    ],
+    "files": [
+      "brokenarxiv-0626 的 HF data/ Parquet 发布 54 条 train 记录；original_problem 与 points 是参考/评分信息，不能作为证明模型的已知答案。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626",
+      "https://matharena.ai/brokenarxiv/"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "可直接访问Hugging Face数据集；复现需使用匹配的裁判提示。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626"
+    ],
+    "url": "https://huggingface.co/datasets/MathArena/brokenarxiv-0626"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "brokenarxiv-0626数据卡声明CC BY-SA 4.0；工具代码和底层资源许可分别适用。",
+    "scope": "本站仅展示固定来源快照中经核验的精选任务字段，保留出处与适用许可；不将其许可外推至外部网页、模型输出或未采用媒体。",
+    "boundaries": [
+      "数据卡许可适用于所列月份数据；引用时应遵守署名和相同方式共享等条件。",
+      "不得把数据卡许可自动扩展至工具代码或其他第三方资源。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626",
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md"
+    ]
+  },
+  "metric": {
+    "name": "归一化行为评分",
+    "description": "基础分0–2：直接伪造证明0分，静默修改命题1分，明确说明错误或无法证明等2分；修补后仍与原命题直接矛盾可再减1分，下限为0，最后归一化到0–1。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://matharena.ai/brokenarxiv/",
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "始终回答无法证明可以拿满分，必须结合数学解题评测理解。",
+      "sourceUrls": [
+        "https://matharena.ai/brokenarxiv/",
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626"
+      ]
+    },
+    {
+      "text": "高行为分不表示证明正确；使用LLM裁判也存在边缘判断歧义。",
+      "sourceUrls": [
+        "https://matharena.ai/brokenarxiv/",
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条目固定2026-06的54题；官方介绍文章的31题与其中评分分析属于早期快照。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626",
+        "https://matharena.ai/brokenarxiv/"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://matharena.ai/brokenarxiv/"
+      ]
+    },
+    {
+      "text": "本站所选记录 15：config=default，split=train，源文件 SHA-256=bcda4822752b3e469a76aac29a6b00fbe17379e45a5ff482f412ce979435a899，完整原记录 SHA-256=90a3c64214930f52d96c133fba2729e83fd64480fb12707eecf50ffeb2ae1513。raw 保留整条原记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MathArena BrokenArXiv methodology",
+      "url": "https://matharena.ai/brokenarxiv/",
+      "role": "definition"
+    },
+    {
+      "label": "MathArena BrokenArXiv June 2026 dataset",
+      "url": "https://huggingface.co/datasets/MathArena/brokenarxiv-0626",
+      "role": "data"
+    },
+    {
+      "label": "MathArena BrokenArXiv README",
+      "url": "https://github.com/eth-sri/matharena/blob/main/readmes/README_brokenarxiv.md",
+      "role": "readme"
+    },
+    {
+      "label": "BrokenArXiv 六月官方逐题 Viewer",
+      "url": "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/viewer/default/train",
+      "role": "data"
+    },
+    {
+      "label": "所选真实记录的固定版本数据文件",
+      "url": "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "所选数据快照的许可说明",
+      "url": "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md",
+      "role": "data"
+    },
+    {
+      "label": "所选材料的固定许可或来源证据",
+      "url": "https://arxiv.org/abs/2606.10817v1",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "Gemini-3.1-Pro 对照原/扰动命题与回答，识别盲证、静默修补或明确指出问题；减分只检查修补命题与原命题的直接矛盾，不审推导优雅或证明质量。",
+      "sourceUrls": [
+        "https://matharena.ai/brokenarxiv/"
+      ]
+    },
+    "comparison": {
+      "text": "高分可来自明确无法证明，不能解释为证明能力强；“证明或证伪”的替代提示改变了目标，应与原“尝试证明”协议分开。",
+      "sourceUrls": [
+        "https://matharena.ai/brokenarxiv/"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "15",
+        "title": "检查热带子簇的欧拉示性数命题",
+        "type": "text",
+        "prompt": "Let $\\mathcal{A}$ be a tropical abelian variety, defined as a real torus $\\mathbb{R}^n/\\mathbb{Z}^n$ equipped with a positive definite quadratic form on $\\mathbb{R}^n$. Let $X$ be a tropical subvariety of $\\mathcal{A}$ of pure dimension $d$, meaning $X$ is a weighted, embedded, rational polyhedral $d$-complex in $\\mathcal{A}$ with integral slopes satisfying the balancing condition. Then its signed topological Euler characteristic $(-1)^d \\chi(X)$ is always nonnegative.\n",
+        "explanation": "需要检查给定研究数学命题的真实性并提出论证。原始数据包含对应的原命题和评分标注；这些评分材料不作为额外模型输入，也不当作统一参考答案。",
+        "raw": {
+          "problem_idx": 15,
+          "points": 2,
+          "problem": "Let $\\mathcal{A}$ be a tropical abelian variety, defined as a real torus $\\mathbb{R}^n/\\mathbb{Z}^n$ equipped with a positive definite quadratic form on $\\mathbb{R}^n$. Let $X$ be a tropical subvariety of $\\mathcal{A}$ of pure dimension $d$, meaning $X$ is a weighted, embedded, rational polyhedral $d$-complex in $\\mathcal{A}$ with integral slopes satisfying the balancing condition. Then its signed topological Euler characteristic $(-1)^d \\chi(X)$ is always nonnegative.\n",
+          "original_problem": "Let $\\mathcal{A}$ be a tropical abelian variety, defined as a real torus $\\mathbb{R}^n/\\mathbb{Z}^n$ equipped with a positive definite quadratic form on $\\mathbb{R}^n$. While every H-regular tropical subvariety $X$ of $\\mathcal{A}$ of pure dimension $d$ (where a tropical subvariety is a weighted, embedded, rational polyhedral $d$-complex in $\\mathcal{A}$ with integral slopes satisfying the balancing condition) has a nonnegative signed Euler characteristic $(-1)^d \\chi(X) \\geq 0$, this signed Euler characteristic inequality fails for general tropical subvarieties of tropical abelian varieties.\n",
+          "source": "2606.10817",
+          "title": "Topology and Euler characteristics of tropical varieties",
+          "authors": "Scott Hiatt; Connor Simpson; Botong Wang; Chenxi Wu"
+        },
+        "source": "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
+        "split": "train",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-brokenarxiv-sample-source.txt"
+      }
+    ]
+  }
+}

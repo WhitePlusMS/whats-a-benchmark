@@ -31,21 +31,7 @@
   },
   "limitations": [
     {
-      "text": "未下载 Harbor 发布包或固定 Git commit，未重新统计任务文件及其 schema。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2601.11868",
-        "https://github.com/harbor-framework/terminal-bench-2"
-      ]
-    },
-    {
-      "text": "未逐项核查 89 个任务、附件和第三方材料的独立许可；仓库 Apache-2.0 标记不能单独证明所有材料可转载。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2601.11868",
-        "https://github.com/harbor-framework/terminal-bench-2"
-      ]
-    },
-    {
-      "text": "本轮未运行评测或核验任何特定模型的 2.0 成绩。",
+      "text": "2.0 的任务规模和成绩不适用于其他版本，比较需核对任务集与运行配置。",
       "sourceUrls": [
         "https://arxiv.org/abs/2601.11868",
         "https://github.com/harbor-framework/terminal-bench-2"
@@ -87,6 +73,26 @@
       "label": "Terminal-Bench 2 官方 Harbor Hub 数据集",
       "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2/latest",
       "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/harbor-framework/terminal-bench-2/tree/main/dna-assembly",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "案例原始文本或配置节选出处",
+      "url": "https://raw.githubusercontent.com/harbor-framework/terminal-bench-2/main/dna-assembly/task.toml",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -96,7 +102,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "官方论文将 2.0 描述为由 89 个经过策划的终端环境任务组成，任务取材于真实工作流，覆盖多种技术任务。官方 README 举例包括蛋白质合成设计、异步代码调试和安全漏洞处理。2.0 是具体发布版，不是对所有 Terminal-Bench 版本规模和运行结果的统称。",
+    "summary": "在 Harbor 容器中完成真实终端工作，由任务 verifier 验证；2.0 包含 89 个任务。",
     "task": "在 Harbor 固定版本的容器任务中完成终端工作，由任务 verifier 判断是否解决。",
     "sourceUrls": [
       "https://arxiv.org/abs/2601.11868",
@@ -129,7 +135,7 @@
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "官方 GitHub 仓库公开，官方 README 给出 Harbor 运行入口；本轮未执行 benchmark，也未下载整套任务。运行需自行准备 Docker 与模型服务凭据。"
+      "官方仓库与 Harbor 运行入口公开；运行需 Docker 和模型服务凭据。"
     ],
     "url": "https://github.com/harbor-framework/terminal-bench-2",
     "sourceUrls": [
@@ -139,25 +145,77 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "仓库标注 Apache-2.0；该标记对 Harbor 任务包和逐项第三方材料的覆盖范围未核实。",
-    "scope": "Apache-2.0 按 LICENSE 适用于其覆盖的仓库代码/文件；任务数据再发布权限仍未确认。",
+    "license": "仓库Apache-2.0；task/序列及其他task assets未发现独立许可。",
+    "scope": "仅官方公开dna-assembly任务事实；输入序列、fixture、tests和solution授权未单独确立。",
     "boundaries": [
-      "官方要求基准数据不得进入训练语料；该防污染要求不等同于通用数据再分发许可。",
-      "本站只写原创概述并链接项目，不复制真实任务、解答或测试。"
+      "该slug也出现在2.1，不称为2.0独有。",
+      "不复制序列、tests、solution或canary值。"
     ],
     "sourceUrls": [
       "https://github.com/harbor-framework/terminal-bench-2",
-      "https://www.tbench.ai/news/leaderboard-integrity-update"
+      "https://github.com/harbor-framework/terminal-bench-2/tree/main/dna-assembly",
+      "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+      "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "Harbor Hub 官方目录列出公开的 Terminal-Bench 2 任务集。本按钮仅打开官方数据页；本站不复制任务、解答或测试，官方防污染提示及逐项素材授权仍须遵守。",
+    "status": "local",
+    "reason": "官方2.0目录列有dna-assembly，Harbor任务页说明引物目标；未复现任务或下载序列。",
+    "url": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
     "sourceUrls": [
-      "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2/latest",
       "https://github.com/harbor-framework/terminal-bench-2",
-      "https://www.tbench.ai/news/leaderboard-integrity-update"
-    ],
-    "url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2/latest"
+      "https://github.com/harbor-framework/terminal-bench-2/tree/main/dna-assembly",
+      "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+      "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "未下载 Harbor 发布包或固定 Git commit，未重新统计任务文件及其 schema。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.11868",
+        "https://github.com/harbor-framework/terminal-bench-2"
+      ]
+    },
+    {
+      "text": "未逐项核查 89 个任务、附件和第三方材料的独立许可；仓库 Apache-2.0 标记不能单独证明所有材料可转载。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.11868",
+        "https://github.com/harbor-framework/terminal-bench-2"
+      ]
+    },
+    {
+      "text": "本轮未运行评测或核验任何特定模型的 2.0 成绩。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.11868",
+        "https://github.com/harbor-framework/terminal-bench-2"
+      ]
+    },
+    {
+      "text": "官方 GitHub 仓库公开，官方 README 给出 Harbor 运行入口；本轮未执行 benchmark，也未下载整套任务。运行需自行准备 Docker 与模型服务凭据。",
+      "sourceUrls": [
+        "https://github.com/harbor-framework/terminal-bench-2",
+        "https://arxiv.org/abs/2601.11868"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-terminal-bench-2-dna-assembly",
+        "title": "公开任务成员 · Golden Gate 引物设计",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Terminal-Bench 2.0 的公开任务目录包含 dna-assembly：给定输入质粒和egfp、flag、snap三段基因，设计用于Golden Gate组装的PCR引物，加入BsaI-HF v2识别位点及有序组装overhang，输出恰好8对引物的FASTA。此处不复制序列、引物、tests或solution。",
+        "explanation": "2.0成员身份依据官方Terminal-Bench-2仓库任务目录；具体约束依据官方DNA Assembly任务页。版本列表将该slug列入2.0，任务页也显示它进入后续2.1；本条仅说明2.0成员事实，不称这是2.0独有任务。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "schema_version = \"1.1\"\nartifacts = []\n\n[task]\nname = \"terminal-bench/dna-assembly\"\nkeywords = [\"biology\", \"cloning\", \"scientific-computing\"]\n\n[metadata]\ndifficulty = \"hard\"\ncategory = \"scientific-computing\"\ntags = [\"biology\", \"cloning\"]\n\nThe output fasta file should be titled primers.fasta.",
+        "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench-2/main/dna-assembly/task.toml",
+        "license": "本站原创任务解读及必要短引；仓库Apache-2.0不据此扩张至任务材料/序列。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Terminal-Bench 2.0 / official task list member dna-assembly；任务slug亦在2.1中出现",
+        "excerpt": true
+      }
+    ]
   }
 }

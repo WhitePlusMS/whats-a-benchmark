@@ -1,0 +1,198 @@
+{
+  "id": "lhtb",
+  "status": "published",
+  "order": 1190,
+  "name": "Long-Horizon Terminal-Bench (LHTB)",
+  "subtitle": "在终端里持续推进长程任务",
+  "category": "agents",
+  "tags": [
+    "长程任务",
+    "软件工程",
+    "部分奖励"
+  ],
+  "publisher": "IntelligenceLab / LHTB authors",
+  "brandIds": [
+    "intelligencelab"
+  ],
+  "year": 2026,
+  "version": "46任务仓库快照；历史榜为2026-07配置",
+  "kind": "original",
+  "aliases": [
+    "LHTB"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "测量 LLM agents 能否在有状态容器终端中持续数百步完成多类长程任务，并由隐藏验证器评分。",
+    "task": "在有状态容器终端中持续完成跨游戏、分析、软件工程、科学计算和专业工作流的长程任务，由产物验证器评分。",
+    "sourceUrls": [
+      "https://github.com/zli12321/LHTB"
+    ]
+  },
+  "taskContract": {
+    "input": "任务说明、容器工作区、数据与工具；部分任务包含视频或大文件。",
+    "output": "任务要求的代码、文件、分析报告或其他交付物。",
+    "environment": "Harbor 有状态容器终端；30 项启用 continue_until_timeout，提交未通过时只反馈二元拒绝并继续到超时。新运行需匹配 verifier 隔离补丁；90 分钟是历史 Terminus-2 榜配置。",
+    "sourceUrls": [
+      "https://github.com/zli12321/LHTB"
+    ]
+  },
+  "dataProfile": {
+    "summary": "任务与运行结构公开，历史运行快照和后续补充结果分开记录。",
+    "disclosure": "complete",
+    "scale": [
+      "46项长程任务。",
+      "30项启用continue_until_timeout。"
+    ],
+    "splits": [],
+    "fields": [
+      "task.toml 配置任务元数据、超时与资源；[agent].continue_until_timeout 控制是否提交后继续执行。",
+      "trial 的 result.json 在 agent_result.metadata 中记录 continue_until_timeout_phases 与 verifier_feedback_mode；不是模型可见奖励提示。"
+    ],
+    "files": [
+      "tasks/<task>/ 包含 instruction.md、task.toml、environment/、tests/ 和 solution/；tests 是隐藏 verifier，solution 是参考实现。",
+      "harbor/ 存放匹配的修改版执行器，configs/examples/ 提供 oracle、Terminus-2 和整套运行配置；大型资产使用 Git LFS。"
+    ],
+    "sourceUrls": [
+      "https://github.com/zli12321/LHTB",
+      "https://zli12321.github.io/LHTB/leaderboard.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Git、Git LFS、Docker和Harbor；复现历史结果需使用仓库修改版Harbor。"
+    ],
+    "sourceUrls": [
+      "https://github.com/zli12321/LHTB"
+    ],
+    "url": "https://github.com/zli12321/LHTB/tree/main/tasks"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方仓库根目录Apache-2.0已核；候选未单独确认该许可是否覆盖task/data内容。",
+    "scope": "task instruction及任务资源的数据许可scope未单独确认；第三方bundle/附件排除在已核仓库许可事实之外。",
+    "boundaries": [
+      "不以repo Apache-2.0直接推定任务数据已获授权。",
+      "不复制tests、solution或第三方资源。"
+    ],
+    "sourceUrls": [
+      "https://github.com/zli12321/LHTB",
+      "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+      "https://github.com/zli12321/LHTB/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方 instruction.md 公开迁移目标和保留行为要求；仓库Apache-2.0，未核对/复制第三方资源。",
+    "url": "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+    "sourceUrls": [
+      "https://github.com/zli12321/LHTB",
+      "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+      "https://github.com/zli12321/LHTB/blob/main/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "平均奖励与解决率",
+    "description": "46项任务的partial reward取平均；另把奖励达到0.95的任务计为解决。不同脚手架、时长和加固版本的运行应分开比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/zli12321/LHTB"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "历史快照早于binary-feedback与verifier隔离加固，新运行不能直接拼入历史分数。",
+      "sourceUrls": [
+        "https://github.com/zli12321/LHTB"
+      ]
+    },
+    {
+      "text": "标准Harbor会忽略continue_until_timeout，需要使用匹配的修改版。",
+      "sourceUrls": [
+        "https://github.com/zli12321/LHTB"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本轮未运行46项任务，也未逐项核对全部第三方数据许可。",
+      "sourceUrls": [
+        "https://github.com/zli12321/LHTB",
+        "https://zli12321.github.io/LHTB/leaderboard.html"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://github.com/zli12321/LHTB"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "LHTB repository README",
+      "url": "https://github.com/zli12321/LHTB",
+      "role": "readme"
+    },
+    {
+      "label": "LHTB leaderboard",
+      "url": "https://zli12321.github.io/LHTB/leaderboard.html",
+      "role": "leaderboard"
+    },
+    {
+      "label": "LHTB paper",
+      "url": "https://arxiv.org/abs/2607.08964",
+      "role": "paper"
+    },
+    {
+      "label": "Long-Horizon Terminal-Bench (LHTB) 官方材料",
+      "url": "https://github.com/zli12321/LHTB/tree/main/tasks",
+      "role": "readme"
+    },
+    {
+      "label": "已核验官方来源 · access",
+      "url": "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源 · access",
+      "url": "https://github.com/zli12321/LHTB/blob/main/LICENSE",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "隐藏 verifier 根据产物重建并计算 partial reward；continue-until-timeout 的中间反馈不公开奖励数值、失败路径或测试输出。",
+      "sourceUrls": [
+        "https://github.com/zli12321/LHTB"
+      ]
+    },
+    "comparison": {
+      "text": "平均奖励、reward≥0.95 的解决率和 reward=1 的严格通过率是不同口径；同时注明预算、反馈模式与 verifier 隔离版本。",
+      "sourceUrls": [
+        "https://github.com/zli12321/LHTB"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-lhtb-langchain-version-migration",
+        "title": "公开任务 · LangChain 主版本迁移",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将旧版 LangChain 应用迁移到 langchain==1.3.4，同时保留保存回放行为、API/工具调用及命令行功能。此记录是官方任务 instruction，不表示已执行该迁移或通过其测试。",
+        "explanation": "官方任务指令给出明确依赖版本和三项兼容目标；仓库根许可为 Apache-2.0，本样例未复制第三方附件或测试/solution。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "You are migrating a legacy LangChain support application across a full LangChain API break, from an extremely early runtime\n\nlangchain==1.3.4\n\npreserving CLI/API behavior and replay",
+        "source": "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+        "license": "本站原创任务解读及官方指令短引；仓库Apache-2.0，未复制第三方任务资源。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "tasks/langchain-version-migration/instruction.md / task ID langchain-version-migration",
+        "excerpt": true
+      }
+    ]
+  }
+}

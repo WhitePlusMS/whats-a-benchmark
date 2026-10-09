@@ -26,21 +26,7 @@
   },
   "limitations": [
     {
-      "text": "本轮未逐项核对 974 道记录与所有参考代码片段的第三方来源或附加权利声明。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/google-research-datasets/mbpp",
-        "https://github.com/google-research/google-research/blob/master/LICENSE"
-      ]
-    },
-    {
-      "text": "未冻结 Google Research commit 或 HF revision，未计算数据文件哈希。",
-      "sourceUrls": [
-        "https://github.com/google-research/google-research/tree/master/mbpp",
-        "https://huggingface.co/datasets/google-research-datasets/mbpp"
-      ]
-    },
-    {
-      "text": "不同运行器的容器隔离、超时和隐藏测试差异未逐项比对。",
+      "text": "比较结果前需核对运行器的容器隔离、超时和测试配置。",
       "sourceUrls": [
         "https://github.com/google-research/google-research/tree/master/mbpp",
         "https://huggingface.co/datasets/google-research-datasets/mbpp"
@@ -106,7 +92,7 @@
         "excerpt": false,
         "prompt": "Write a function to find the shared elements from the given two lists.",
         "answer": "def similar_elements(test_tup1, test_tup2):\n  res = tuple(set(test_tup1) & set(test_tup2))\n  return (res) ",
-        "explanation": "自然语言是任务输入，test_list 是验证程序行为的断言。sanitized 文件使用 prompt 字段记录题目。",
+        "explanation": "编写函数找出两个列表的共同元素。自然语言给出目标，test_list 中的断言检查程序行为。",
         "source": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
         "license": "Apache-2.0 · Google Research",
         "licensePath": "licenses/google-research.txt",
@@ -132,7 +118,7 @@
         "excerpt": false,
         "prompt": "Write a python function to identify non-prime numbers.",
         "answer": "import math\ndef is_not_prime(n):\n    result = False\n    for i in range(2,int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            result = True\n    return result",
-        "explanation": "自然语言是任务输入，test_list 是验证程序行为的断言。sanitized 文件使用 prompt 字段记录题目。",
+        "explanation": "编写 Python 函数识别非质数。返回形式和边界情况由原始测试断言约束。",
         "source": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
         "license": "Apache-2.0 · Google Research",
         "licensePath": "licenses/google-research.txt",
@@ -142,7 +128,7 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "MBPP 是 Google Research 发布的 Python 函数代码生成评测集，面向入门编程任务，提供自然语言描述、参考实现和自动测试；sanitized 子集经人工复核描述。",
+    "summary": "根据自然语言说明生成 Python 程序并通过测试；入门任务提供参考实现和自动测试。",
     "task": "根据自然语言任务说明编写 Python 函数或程序，并通过指定单元测试。",
     "sourceUrls": [
       "https://github.com/google-research/google-research/tree/master/mbpp",
@@ -210,5 +196,29 @@
       "https://github.com/google-research/google-research",
       "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "本轮未逐项核对 974 道记录与所有参考代码片段的第三方来源或附加权利声明。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google-research-datasets/mbpp",
+        "https://github.com/google-research/google-research/blob/master/LICENSE"
+      ]
+    },
+    {
+      "text": "未冻结 Google Research commit 或 HF revision，未计算数据文件哈希。",
+      "sourceUrls": [
+        "https://github.com/google-research/google-research/tree/master/mbpp",
+        "https://huggingface.co/datasets/google-research-datasets/mbpp"
+      ]
+    },
+    {
+      "text": "不同运行器的容器隔离、超时和隐藏测试差异未逐项比对。",
+      "sourceUrls": [
+        "https://github.com/google-research/google-research/tree/master/mbpp",
+        "https://huggingface.co/datasets/google-research-datasets/mbpp"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

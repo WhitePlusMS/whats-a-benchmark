@@ -35,22 +35,6 @@
   },
   "limitations": [
     {
-      "text": "未下载并固定 OpenAI Blob 每个 JSONL 文件的 revision、校验和及逐例记录数。",
-      "sourceUrls": [
-        "https://openai.com/index/healthbench/",
-        "https://github.com/openai/simple-evals",
-        "https://huggingface.co/datasets/openai/healthbench"
-      ]
-    },
-    {
-      "text": "HF 数据镜像当前 viewer schema 出错；其转换字段是否与源文件 revision 一致未在本轮验证。",
-      "sourceUrls": [
-        "https://openai.com/index/healthbench/",
-        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py",
-        "https://huggingface.co/datasets/openai/healthbench"
-      ]
-    },
-    {
       "text": "MIT 标签的适用范围不作法律解释；在线不得公开样例的发布请求已由官方页面明确确认。",
       "sourceUrls": [
         "https://openai.com/index/healthbench/",
@@ -111,7 +95,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "HealthBench 含 5,000 段模拟个人用户或临床人员与模型互动的健康对话；模型回答最后一条用户消息，并由 model-based grader 按医生撰写、加权的 rubric criteria 评分。",
+    "summary": "回答健康对话的最后一条消息，按医生撰写的加权 rubric 评分；共 5,000 段对话。",
     "task": "生成健康相关对话回复，并由 grader 对每例 rubric criteria 逐项判定后汇总得分。",
     "sourceUrls": [
       "https://openai.com/index/healthbench/"
@@ -179,5 +163,24 @@
       "https://openai.com/index/healthbench/"
     ],
     "url": "https://openai.com/index/healthbench/"
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "未下载并固定 OpenAI Blob 每个 JSONL 文件的 revision、校验和及逐例记录数。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://github.com/openai/simple-evals",
+        "https://huggingface.co/datasets/openai/healthbench"
+      ]
+    },
+    {
+      "text": "HF 数据镜像当前 viewer schema 出错；其转换字段是否与源文件 revision 一致未在本轮验证。",
+      "sourceUrls": [
+        "https://openai.com/index/healthbench/",
+        "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py",
+        "https://huggingface.co/datasets/openai/healthbench"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

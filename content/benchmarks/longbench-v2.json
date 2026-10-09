@@ -37,23 +37,7 @@
   },
   "limitations": [
     {
-      "text": "当前公开 schema 未提供足以逐条追溯上下文来源和权利的完整 manifest；上下文材料的公开转载许可尚未逐条确认。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/THUDM/LongBench-v2",
-        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
-        "https://github.com/THUDM/LongBench"
-      ]
-    },
-    {
-      "text": "本轮未对 503 条记录逐条检查内容来源、权利人、引用/授权信息及文件哈希。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/THUDM/LongBench-v2",
-        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
-        "https://github.com/THUDM/LongBench"
-      ]
-    },
-    {
-      "text": "未冻结数据仓库 revision；Hugging Face 发布页面及排行榜可能继续更新。",
+      "text": "数据仓库与排行榜可能更新，比较成绩应固定数据 revision。",
       "sourceUrls": [
         "https://github.com/THUDM/LongBench",
         "https://huggingface.co/datasets/THUDM/LongBench-v2"
@@ -90,6 +74,16 @@
       "label": "官方排行榜入口",
       "url": "https://longbench2.github.io/",
       "role": "definition"
+    },
+    {
+      "label": "已核验官方来源 · access",
+      "url": "https://huggingface.co/datasets/zai-org/LongBench-v2",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源 · data",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -148,24 +142,99 @@
     "url": "https://huggingface.co/datasets/THUDM/LongBench-v2"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "HF 数据卡标注 Apache-2.0；作者仓库代码为 MIT。",
-    "scope": "发布标签不证明书籍、文档和代码仓库等上下文材料的原始权利均已清理；本轮未逐条追溯。",
+    "status": "permitted",
+    "license": "官方HF数据卡标注Apache-2.0；已发布数据行字段在该数据集许可scope内，语法书context来源另行区分。",
+    "scope": "仅该公开数据行已发布字段按Apache-2.0处理；不包含未展示的语法书context或该上游文本权利，也不推及生成池整体。",
     "boundaries": [
-      "公开页面只写原创概述并链接来源；未核对具体来源许可前，不转载真实上下文、题目、选项、答案或截图。"
+      "保留数据卡的实际train标记，不推断其他split。",
+      "不展示语法书context长文本或第三方上游全文。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/THUDM/LongBench-v2",
-      "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+      "https://huggingface.co/datasets/zai-org/LongBench-v2",
+      "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
       "https://github.com/THUDM/LongBench"
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "上下文来自多种来源，未逐条确认嵌入材料的转载权。公开页面不复制长文、代码、题目、选项、答案或截图。",
+    "status": "local",
+    "reason": "官方数据卡标注Apache-2.0，Rows API可公开读取503行；本页只列一行题目字段和选项，省略长语法书上下文。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
     "sourceUrls": [
-      "https://github.com/THUDM/LongBench",
-      "https://huggingface.co/datasets/THUDM/LongBench-v2"
+      "https://huggingface.co/datasets/zai-org/LongBench-v2",
+      "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
+      "https://github.com/THUDM/LongBench"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "当前公开 schema 未提供足以逐条追溯上下文来源和权利的完整 manifest；上下文材料的公开转载许可尚未逐条确认。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/THUDM/LongBench-v2",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+        "https://github.com/THUDM/LongBench"
+      ]
+    },
+    {
+      "text": "本轮未对 503 条记录逐条检查内容来源、权利人、引用/授权信息及文件哈希。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/THUDM/LongBench-v2",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+        "https://github.com/THUDM/LongBench"
+      ]
+    },
+    {
+      "text": "未冻结数据仓库 revision；Hugging Face 发布页面及排行榜可能继续更新。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench",
+        "https://huggingface.co/datasets/THUDM/LongBench-v2"
+      ]
+    },
+    {
+      "text": "本页只展示已核官方公开数据行的题目、四个选项、答案及任务元数据；context中的语法书长正文与第三方上下文材料未逐项核权且不复制。",
+      "sourceUrls": [
+        "https://github.com/THUDM/LongBench",
+        "https://huggingface.co/datasets/THUDM/LongBench-v2"
+      ]
+    },
+    {
+      "text": "发布标签不证明书籍、文档和代码仓库等上下文材料的原始权利均已清理；本轮未逐条追溯。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/THUDM/LongBench-v2",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+        "https://github.com/THUDM/LongBench"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-longbench-v2-row-66fcffd9",
+        "title": "公開資料列 · Kalamang 語句翻譯",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "LongBench-v2 的 train 行 66fcffd9bb02136c067c94c5 属于长上下文翻译任务：使用随题提供的卡拉芒语法书上下文，把句子“Faisal emun me mindi don bolonet me ma he kademor”译成英文。官方原选项为：\nA) Faisal's mother is still angry at him for a little thing like that.\nB) Faisal's mother turns furious at him for a big thing like that.\nC) Faisal's mother gets frustrated at him for a big thing like this.\nD) Faisal's mother gets angry at him for a little thing like that.\n原数据答案字段为 D。语法书上下文未复制。",
+        "answer": "D",
+        "explanation": "本条原始数据是官方 Rows API 中 _id=66fcffd9bb02136c067c94c5 的实际 JSON 字段投影，字段名和值均保留原样。保留题目、四个选项、答案和任务元数据；只省略 context 语法书长正文。train 是官方文件标签，503 行中的 row_idx=0；本站中文任务说明另行整理。",
+        "raw": {
+          "_id": "66fcffd9bb02136c067c94c5",
+          "domain": "Long In-context Learning",
+          "sub_domain": "New language translation",
+          "difficulty": "hard",
+          "length": "long",
+          "question": "You are given a grammar book of Kalamang language, now translate the following Kalamang sentence into English: Faisal emun me mindi don bolonet me ma he kademor.",
+          "choice_A": "Faisal's mother is still angry at him for a little thing like that.",
+          "choice_B": "Faisal's mother turns furious at him for a big thing like that.",
+          "choice_C": "Faisal's mother gets frustrated at him for a big thing like this.",
+          "choice_D": "Faisal's mother gets angry at him for a little thing like that.",
+          "answer": "D"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
+        "license": "原始数据为官方公开行字段的精简投影，按已核HF数据卡的Apache-2.0保存来源与归属；只省略context语法书全文，不改写所保留字段值。中文任务说明由本站整理，数据许可不扩展到第三方语法书内容。",
+        "split": "config=default / split=train / row_idx=0 / _id=66fcffd9bb02136c067c94c5",
+        "excerpt": true
+      }
     ]
   }
 }

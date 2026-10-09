@@ -28,24 +28,11 @@
   },
   "limitations": [
     {
-      "text": "本轮逐条核对了已收录 clip_000、clip_001 的记录字段与官方公开源；没有对 100 条记录全部独立校验。",
+      "text": "这是小型重叠语音压力测试，不能代表自然多人对话的完整特征。",
       "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md",
         "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
-        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
-      ]
-    },
-    {
-      "text": "未为音频文件记录哈希或核对每字节媒体内容；当前本地文件命名/链接与源记录对应。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
-        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
-      ]
-    },
-    {
-      "text": "指标说明采用官方 README/结果文件；未在本轮重跑六个模型或重算所有分数。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
-        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
+        "https://arxiv.org/abs/2012.03411"
       ]
     }
   ],
@@ -92,7 +79,7 @@
         "type": "audio",
         "prompt": "Each of the 100 clips contains three people speaking at the same time, each in a different European language, with ground-truth per-speaker timestamps, languages, and transcripts.",
         "answer": "S1 · Italian · 0.000–12.980 s\nchiamando buon vulcano aiuta aiuta sì com'el fece alla pugna di flegra e me saetti con tutta sua forza non ne potrebbe aver vendetta allegra\n\nS2 · Portuguese · 6.717–17.097 s\nconstituíam uma destas fisionomias que se sente que vão ficar na galeria da história e que servirão a futuros historiadores para explicar um destino e um gênio em novo\n\nS3 · French · 12.590–26.180 s\ns'écria d'abord le génie salomon grand prophète de dieu pardon pardon jamais je ne m'opposerai à vos volontés j'obéirai à tous vos commandements scheherazade apercevant le jour interrompit là son conte",
-        "explanation": "原始记录没有单条 prompt 字段；上方文字是官方数据卡对全部 100 段音频的任务说明。参考答案保留三位说话者的语言、时间区间与原始 transcript。",
+        "explanation": "三名说话人同时使用不同语言朗读。需要分辨并恢复各自的内容；参考转写按说话人保留语言与时间区间，可对照听辨。",
         "raw": {
           "clip_id": "clip_000",
           "duration": 26.18,
@@ -153,7 +140,7 @@
         "type": "audio",
         "prompt": "Each of the 100 clips contains three people speaking at the same time, each in a different European language, with ground-truth per-speaker timestamps, languages, and transcripts.",
         "answer": "S1 · Portuguese · 0.000–12.060 s\namor fero cruel fortuna dura bem tendes vossa força experimentada assolai destruí não fique nada vingai-vos desta vida quinda dura\n\nS2 · German · 4.893–14.993 s\nsprechen kann man mit den nomaden nicht unsere sprache kennen sie nicht ja sie haben kaum eine eigene untereinander verständigen sie sich ähnlich wie dohlen\n\nS3 · Spanish · 8.444–20.764 s\nsabes lo que es sentir tus pensamientos agitarse en la sombra por debajo y no verles los ojos ni de su voz sentir el dulce llanto",
-        "explanation": "原始记录没有单条 prompt 字段；上方文字是官方数据卡对全部 100 段音频的任务说明。参考答案保留三位说话者的语言、时间区间与原始 transcript。",
+        "explanation": "这段混音同样包含三种语言的并发语音。可以对照逐说话人的参考转写，观察模型能否在重叠声部中恢复文本。",
         "raw": {
           "clip_id": "clip_001",
           "duration": 20.764,
@@ -212,7 +199,7 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "每段混音中三个人同时说话，每人使用不同的欧洲语言，目标是评估自动语音识别模型对并发语音内容的恢复程度，也可看模型能否估计说话人数。官方将其定位为小型、快速的压力测试，不代表自然多人对话的完整特征。",
+    "summary": "转写三名说话人以不同语言同时朗读的混音，观察重叠语音识别能力。",
     "task": "转写由三名说话人以不同语言同时朗读形成的混音语音，并评估重叠语音识别表现。",
     "sourceUrls": [
       "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md",
@@ -276,9 +263,51 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站的 clip_000 与 clip_001 已逐字段核对官方 test 记录；二者含公开参考转写，展示时标明答案已公开。按 CC BY 4.0 附 LAION/上传者与 MLS 归属信息，并注明任何音频修改。",
+    "reason": "本站提供 clip_000 与 clip_001 两段真实混音和公开参考转写，署名与许可见记录详情。",
     "sourceUrls": [
       "https://huggingface.co/datasets/laion/small-overlapping-speech-bench"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "本轮逐条核对了已收录 clip_000、clip_001 的记录字段与官方公开源；没有对 100 条记录全部独立校验。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "未为音频文件记录哈希或核对每字节媒体内容；当前本地文件命名/链接与源记录对应。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "指标说明采用官方 README/结果文件；未在本轮重跑六个模型或重算所有分数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "本站的 clip_000 与 clip_001 已逐字段核对官方 test 记录；二者含公开参考转写，展示时标明答案已公开。按 CC BY 4.0 附 LAION/上传者与 MLS 归属信息，并注明任何音频修改。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench"
+      ]
+    },
+    {
+      "text": "样例 clip_000：原始记录没有单条 prompt 字段；上方文字是官方数据卡对全部 100 段音频的任务说明。参考答案保留三位说话者的语言、时间区间与原始 transcript。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench"
+      ]
+    },
+    {
+      "text": "样例 clip_001：原始记录没有单条 prompt 字段；上方文字是官方数据卡对全部 100 段音频的任务说明。参考答案保留三位说话者的语言、时间区间与原始 transcript。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

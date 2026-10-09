@@ -1,0 +1,168 @@
+{
+  "id": "biomysterybench",
+  "status": "published",
+  "order": 462,
+  "name": "BioMysteryBench",
+  "subtitle": "分析真实生物数据，回答可验证的研究问题",
+  "category": "work",
+  "tags": [
+    "生物信息学",
+    "科学研究",
+    "数据分析",
+    "工具执行",
+    "客观验证"
+  ],
+  "publisher": "Anthropic",
+  "brandIds": [
+    "anthropic"
+  ],
+  "year": 2026,
+  "version": "首发 99 题；官方数据 v11（2026-07）90 题",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "使用有客观依据的生物信息学问题检验数据分析与研究能力。",
+    "task": "在匿名生物数据中寻找信号，回答关于序列、表达、结构等的分析问题。",
+    "sourceUrls": [
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+    ]
+  },
+  "taskContract": {
+    "input": "question字段、data/<id>.zip中的匿名生物文件与allowed_domains允许的网络资源；answer_rubric含预期答案，只给评分器。",
+    "output": "满足答案 rubric 的最终结论。",
+    "environment": "容器内生物信息工具，可安装工具并访问允许的数据库；禁止借 accession ID 反查原始研究身份。",
+    "sourceUrls": [
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full"
+    ]
+  },
+  "dataProfile": {
+    "summary": "首发 99 题（76 人可解、23 人类困难）；官方 v11 审计后删除 9 题、修改 24 题，当前完整集 90 题。",
+    "disclosure": "partial",
+    "scale": [
+      "首发 99 题；v11 完整集 90 题。"
+    ],
+    "splits": [
+      "human_solvable是至少一位人类解出的标签，不是train/test划分；76/23属于首发99题，v11删改后不自动沿用该分组题量。"
+    ],
+    "fields": [
+      "id、question、answer_rubric、allowed_domains、human_solvable。"
+    ],
+    "files": [
+      "problems.csv与problems.parquet保存问题/评分元数据；data/<id>.zip为对应匿名生物数据，需获受控访问后解压到求解工作区。"
+    ],
+    "sourceUrls": [
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "需登录并接受仅评测用途条件；不得用于训练、微调、强化训练或蒸馏。"
+    ],
+    "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full",
+    "sourceUrls": [
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "Anthropic文章未为示例prompt或数据材料声明单独复用许可。",
+    "scope": "仅文章中可定位的公开示例说明；RNA-seq输入、答案和数据集的许可范围未查明。",
+    "boundaries": [
+      "不补造题号、输入文件或gold答案。",
+      "不复制附件或完整题目。"
+    ],
+    "sourceUrls": [
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "真实官方公开例题；文章未附这道题的原始 RNA-seq 文件、题号或金标准答案，因此本页不补造这些数据。",
+    "url": "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+    "sourceUrls": [
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+    ]
+  },
+  "metric": {
+    "name": "最终答案正确率",
+    "description": "按可验证结论评分，不按分析路线评分；首发分别报告人类可解与困难题，并平均每题 5 次试验。v11 更改答案与题集，比较时须注明数据版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "首发结果与答案审计后的 v11 数据不直接等同；数据源识别与一般数据库分析的允许边界不同。",
+      "sourceUrls": [
+        "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；真实官方公开例题；文章未附这道题的原始 RNA-seq 文件、题号或金标准答案，因此本页不补造这些数据。",
+      "sourceUrls": [
+        "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "BioMysteryBench 官方研究介绍",
+      "url": "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+      "role": "definition"
+    },
+    {
+      "label": "BioMysteryBench 官方完整数据卡",
+      "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "按可验证的最终结论与answer_rubric判正确，分析路线不评分；首发每题五次试验，分人可解/困难报告。",
+      "sourceUrls": [
+        "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full"
+      ]
+    },
+    "comparison": {
+      "text": "固定首发99题或v11的90题；allowed_domains允许常规注释/参考基因组/BLAST，禁止用accession ID反查原研究身份，不可混为全面禁止数据库使用。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-biomysterybench",
+        "title": "官方例题 · 找出被敲除基因",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "比较实验组与对照组的 RNA-seq 数据，识别实验样本中被敲除的基因。这个问题由 Anthropic 在 BioMysteryBench 发布文章中直接举例。",
+        "explanation": "真实官方公开例题；文章未附这道题的原始 RNA-seq 文件、题号或金标准答案，因此本页不补造这些数据。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "What gene was knocked out in the experimental samples compared to the control samples based on RNA-seq data?",
+        "source": "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "id": "hyper-tau-bench",
+  "status": "published",
+  "order": 1170,
+  "name": "τ^τ-bench (Hyper-τ)",
+  "subtitle": "从业务证据构建可用客服agent",
+  "category": "coding",
+  "tags": [
+    "Agent开发",
+    "业务证据"
+  ],
+  "publisher": "Sierra Research",
+  "brandIds": [
+    "sierra"
+  ],
+  "year": 2026,
+  "version": "53项release任务；2026-09发布",
+  "kind": "original",
+  "aliases": [
+    "Hyper-τ-bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估 coding agent 能否根据业务证据、客户需求和生产API构建客服agent，并让其服务模拟客户。",
+    "task": "开发agent根据业务政策、客户资料与API，在沙箱中实现完整客服agent，再以独立客服任务检验其行为。",
+    "sourceUrls": [
+      "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "由任务 JSON 选定的政策、客服记录、录音、截图、流程图与 client REST API；可选初始工作区和客户访谈，内层 test_task_ids 供评分器使用。",
+    "output": "可执行客服agent。",
+    "environment": "固定Docker构建环境与uv；Developer、客户模拟器、用户模拟器/裁判、产出的agent分别使用配置的模型席位。",
+    "sourceUrls": [
+      "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md",
+      "https://arxiv.org/abs/2609.04611"
+    ]
+  },
+  "dataProfile": {
+    "summary": "构造任务和运行代码公开，统一榜单由sealed runner评分。",
+    "disclosure": "partial",
+    "scale": [
+      "53项发布任务，覆盖4个域。",
+      "airline_plus 6项、retail_plus 6项、telecom 6项、banking_knowledge 35项。"
+    ],
+    "splits": [
+      "构造任务与内层客服评分任务有不同职责；统一榜单使用sealed runner。"
+    ],
+    "fields": [
+      "发布 task JSON：id、source_domain、task_type、task_description、sop_variant_manifest_path、composition_pipeline、test_task_ids、interaction_mode、client_api_mode。",
+      "运行配置：sandbox_config（max_time_seconds、command_timeout、docker_image、docker_memory、docker_cpus）、performance_profile、user_llm、user_reasoning_effort；部分任务含 starting_workspace_path。"
+    ],
+    "files": [
+      "data/tau2/hyper/tasks/ 的 53 个 JSON 与 MANIFEST.md；data/tau2/hyper/ 还提供编译后的证据包、SOP 和预置工作区。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md",
+      "https://github.com/sierra-research/hyper-tau-bench/blob/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "需要uv、Docker及所选模型的API访问。",
+      "复现统一榜单需遵循发布任务配置及sealed runner协议。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+    ],
+    "url": "https://github.com/sierra-research/hyper-tau-bench"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://raw.githubusercontent.com/sierra-research/hyper-tau-bench/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/sierra-research/hyper-tau-bench/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json"
+    ]
+  },
+  "metric": {
+    "name": "内层客服任务通过率",
+    "description": "开发者提交的agent在τ³-bench内层held-out客服任务上的通过率作为开发奖励；榜单另报告领域均值与构建时间、成本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩同时受开发脚手架、构建模型及内层模型菜单影响。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "评测对象是构建客服agent的开发过程，因此主分类为编程；它不等同于直接测试客服agent的τ³-bench。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md",
+        "https://arxiv.org/abs/2609.04611"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：JSON id 002_airline_plus_construction_core_evidence_seeded_performance_hard; task_description field；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/sierra-research/hyper-tau-bench/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Hyper-τ-bench repository README",
+      "url": "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "Hyper-τ-bench paper",
+      "url": "https://arxiv.org/abs/2609.04611",
+      "role": "paper"
+    },
+    {
+      "label": "τ^τ-bench (Hyper-τ) 官方材料",
+      "url": "https://github.com/sierra-research/hyper-tau-bench",
+      "role": "readme"
+    },
+    {
+      "label": "τ^τ-bench (Hyper-τ) 官方材料",
+      "url": "https://github.com/sierra-research/hyper-tau-bench/tree/main/data/tau2/hyper/tasks",
+      "role": "readme"
+    },
+    {
+      "label": "Hyper-τ 官方发布任务结构示例",
+      "url": "https://github.com/sierra-research/hyper-tau-bench/blob/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json",
+      "role": "data"
+    },
+    {
+      "label": "已核验的具体公开任务",
+      "url": "https://raw.githubusercontent.com/sierra-research/hyper-tau-bench/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "先由 Developer 构建可执行客服 agent，再由 sealed runner 在内层 held-out 客服任务上评分；开发成果自述不产生奖励。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+      ]
+    },
+    "comparison": {
+      "text": "Overall 是 53 项构造任务的平均奖励；领域均值、构建耗时、构建成本及 serve-credit 消耗各自解释，固定开发 harness 与模型菜单再比较。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/hyper-tau-bench/blob/main/README.md"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-hyper-tau-bench",
+        "title": "航空客服域 · 从材料构建双旅程",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "真实任务 002 要求基于流程图、截图、网站归档、邮件、Slack 决策记录等材料，从零构建 airline+ 客服域。用户旅程包括预订出行及管理已有预订，身份确认是共用前置步骤；管理旅程还涉及改航班/舱位、行李、退款和中断补偿等分支。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：JSON id 002_airline_plus_construction_core_evidence_seeded_performance_hard; task_description field\n原始数据精简说明：保留原生字段 id、source_domain、task_type、task_description；其他源字段省略。 文本字段按源值真实前缀精简，范围为{\"task_description\": {\"start\": 0, \"end\": 138, \"sourceCharacters\": 597}}。",
+        "raw": {
+          "id": "002_airline_plus_construction_core_evidence_seeded_performance_hard",
+          "source_domain": "airline_plus",
+          "task_type": "construction",
+          "task_description": "Build the complete airline+ customer service domain from scratch as two customer journeys: book travel and manage an existing reservation."
+        },
+        "source": "https://raw.githubusercontent.com/sierra-research/hyper-tau-bench/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据只展示所列真实字段、配置事实与必要原文节录；其格式不被解释为整套数据或其他材料的再发布授权。",
+        "split": "Official public release task; benchmark construction input, not inner evaluation answer",
+        "excerpt": true
+      }
+    ]
+  }
+}

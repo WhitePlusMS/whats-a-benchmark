@@ -15,7 +15,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "id": "swe-bench-pro",
   "name": "SWE-bench Pro",
   "subtitle": "更长流程的软件工程任务",
@@ -40,22 +40,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "未逐一核查 11 个上游仓库在题面、gold patch、测试 patch 和仓库快照层面的具体许可及平台内容条款；因此不建议本站转载原始任务材料。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2509.16941",
-        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
-        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
-      ]
-    },
-    {
-      "text": "本次没有重新执行官方 Harbor 评测或校验所有 642 个镜像；文中 release gate 结果是 Scale 官方对 V2 发布所作的说明。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2509.16941",
-        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
-        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
-      ]
-    },
     {
       "text": "论文和 README 的历史实验配置不必然等同当前 leaderboard 默认 harness；各模型具体使用的 scaffold 与调用参数仍须回到相应提交记录核对。",
       "sourceUrls": [
@@ -105,6 +89,11 @@
       "label": "V2 更新记录",
       "url": "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro#changelog",
       "role": "data"
+    },
+    {
+      "label": "已核验的具体任务或公开例题",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-bench_Pro&config=default&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -114,7 +103,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "该基准衡量模型/agent 能否处理较长程的软件工程问题：从指定版本的真实代码库和 issue/PR 说明出发，提交能够满足需求的代码补丁，并通过任务测试。V1 论文所述全基准有 1,865 个问题、分布在 41 个仓库，其中 11 仓库构成公开集，另有 12 个 held-out 仓库和 18 个商业合作仓库；这不是 V2 的公开题数。V2 是经验证的公开部分，642 题来自 11 个仓库。",
+    "summary": "在真实代码库中处理长程工程问题并提交通过测试的补丁；V2 公开部分含 642 题。",
     "task": "在固定代码库版本中解决较长程软件工程问题，并提交通过任务测试的补丁。",
     "sourceUrls": [
       "https://arxiv.org/abs/2509.16941",
@@ -183,12 +172,59 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "公开任务文件含第三方文本、代码、参考解法和测试，未逐任务确认转载授权。本站只链接 Scale AI 官方仓库和数据卡。",
+    "status": "local",
+    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-bench_Pro&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://github.com/scaleapi/SWE-bench_Pro-os",
-      "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
-      "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-bench_Pro&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "未逐一核查 11 个上游仓库在题面、gold patch、测试 patch 和仓库快照层面的具体许可及平台内容条款；因此不建议本站转载原始任务材料。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2509.16941",
+        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+      ]
+    },
+    {
+      "text": "本次没有重新执行官方 Harbor 评测或校验所有 642 个镜像；文中 release gate 结果是 Scale 官方对 V2 发布所作的说明。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2509.16941",
+        "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+      ]
+    },
+    {
+      "text": "本轮已核验并展示具体任务事实解读，来源位置为 default/test, row_idx=0, instance_id=instance_NodeBB__NodeBB-00c70ce7b0541cfc94afe567921d7668cdc8f4ac-vnan, base_commit=ae3fa85f40db0dca83d19dda1afb96064dffcc83；未镜像底层完整材料。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-bench_Pro&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-swe-bench-pro",
+        "title": "NodeBB · 缓存初始化和 slug 批量检查",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "NodeBB 任务的帖子缓存受模块加载和访问顺序影响，导致初始化及缓存操作不一致；slug 存在性检查只能可靠处理单个值，需要为多个输入按原顺序返回结果，并一致拒绝含无效值的数组。",
+        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：default/test, row_idx=0, instance_id=instance_NodeBB__NodeBB-00c70ce7b0541cfc94afe567921d7668cdc8f4ac-vnan, base_commit=ae3fa85f40db0dca83d19dda1afb96064dffcc83\n原始数据精简说明：保留原生字段 instance_id、base_commit、version、problem_statement；其他记录字段未收录。 /problem_statement 保留源值字符[0:75]，源字段共486字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "instance_id": "instance_NodeBB__NodeBB-00c70ce7b0541cfc94afe567921d7668cdc8f4ac-vnan",
+          "base_commit": "ae3fa85f40db0dca83d19dda1afb96064dffcc83",
+          "version": "2.0.0",
+          "problem_statement": "## Title: Post cache access and slug existence checks behave inconsistently"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-bench_Pro&config=default&split=test&offset=0&length=1",
+        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "SWE-bench Pro default test, row 0, V2.0.0 NodeBB task",
+        "excerpt": true
+      }
     ]
   }
 }

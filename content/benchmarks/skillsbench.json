@@ -21,7 +21,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "SkillsBench 评测智能体如何使用结构化 Agent Skills，并衡量技能本身与 agent 行为的影响。当前官方固定发布为 SkillsBench v1.1。",
+    "summary": "在专业任务中对比智能体使用与不使用结构化 Agent Skills 的表现；当前固定版为 v1.1。",
     "task": "在 BenchFlow 任务环境中执行专业任务，对比无技能、策划技能或指定实验中的自生成技能条件，并由任务 verifier 判定结果。",
     "sourceUrls": [
       "https://www.skillsbench.ai/blogs/skillsbench-1-1",
@@ -71,25 +71,27 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "仓库标注 Apache-2.0，但未逐项确认任务嵌入的第三方数据与素材权利。",
-    "scope": "Apache-2.0 仅按许可证对其覆盖的仓库材料适用；不从仓库级标识推断独立上游素材许可。",
+    "license": "仓库Apache-2.0已核；候选未单独确立task instruction、SEC输入材料和任务资源的许可scope。",
+    "scope": "仅SEC任务文本的事实摘要；SEC申报文件、附件、skill包与verifier许可分别未确认。",
     "boundaries": [
-      "官方站点显示 benchmark 数据防训练污染提示。",
-      "在逐项核验上游来源和权利之前，不复制任务文本、技能包、oracle、verifier 或截图。"
+      "不以仓库许可推定SEC文件或任务附件权利。",
+      "不复制申报文件、task assets、skill包或verifier。"
     ],
     "sourceUrls": [
-      "https://github.com/benchflow-ai/skillsbench",
-      "https://www.skillsbench.ai/"
+      "https://www.skillsbench.ai/tasks/sec-financial-report",
+      "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
+      "https://github.com/benchflow-ai/skillsbench/blob/main/LICENSE"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "SkillsBench 官方任务注册表可浏览 v1.1 固定任务及题面。本按钮仅打开官方原页；本站不复制任务文件、oracle、测试或轨迹，并遵守官方关于 benchmark 数据不得进入训练语料的提示。",
+    "status": "local",
+    "reason": "SkillsBench官方v1.1任务注册页和task.md公开具体SEC比较任务及子问题；本站只列目标摘要。",
+    "url": "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
     "sourceUrls": [
-      "https://www.skillsbench.ai/tasks",
-      "https://www.skillsbench.ai/"
-    ],
-    "url": "https://www.skillsbench.ai/tasks"
+      "https://www.skillsbench.ai/tasks/sec-financial-report",
+      "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
+      "https://github.com/benchflow-ai/skillsbench/blob/main/LICENSE"
+    ]
   },
   "metric": {
     "name": "任务解决率",
@@ -102,14 +104,7 @@
   },
   "limitations": [
     {
-      "text": "本研究未下载固定 release 的任务包，也未逐项检查内嵌数据与第三方素材的许可。",
-      "sourceUrls": [
-        "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
-        "https://github.com/benchflow-ai/skillsbench"
-      ]
-    },
-    {
-      "text": "早期论文快照与 v1.1 roster 的任务变更清单未逐项比对；本条边界以 v1.1 固定 release 为准。",
+      "text": "早期论文成绩与 v1.1 任务集不能默认同口径，比较前需核对固定 release。",
       "sourceUrls": [
         "https://www.skillsbench.ai/blogs/introducing-skillsbench",
         "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1"
@@ -156,8 +151,58 @@
       "label": "SkillsBench 早期发布说明",
       "url": "https://www.skillsbench.ai/blogs/introducing-skillsbench",
       "role": "release"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://www.skillsbench.ai/tasks/sec-financial-report",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://github.com/benchflow-ai/skillsbench/blob/main/LICENSE",
+      "role": "access"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23"
+  "verifiedAt": "2026-09-23",
+  "researchNotes": [
+    {
+      "text": "本研究未下载固定 release 的任务包，也未逐项检查内嵌数据与第三方素材的许可。",
+      "sourceUrls": [
+        "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1",
+        "https://github.com/benchflow-ai/skillsbench"
+      ]
+    },
+    {
+      "text": "早期论文快照与 v1.1 roster 的任务变更清单未逐项比对；本条边界以 v1.1 固定 release 为准。",
+      "sourceUrls": [
+        "https://www.skillsbench.ai/blogs/introducing-skillsbench",
+        "https://github.com/benchflow-ai/skillsbench/releases/tag/v1.1"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-skillsbench-sec-financial-report",
+        "title": "官方任务 · 对比2025年Q2/Q3对冲基金持仓",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "SkillsBench v1.1 任务要求分析2025年Q3与Q2对冲基金活动；其明确子问题之一是查找Jim Simons创立的Renaissance Technologies在Q3的资产管理规模。task.md 还要求比较Berkshire Hathaway季度增持标的并查找投资Palantir的基金经理；这里不提供SEC文件或答案。",
+        "explanation": "任务注册页和原始task.md列出期间、SEC filing输入及具体查询目标。仓库Apache-2.0与SEC申报文件/任务资源的权利分开；本页未执行任务。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "schema_version: '1.3'\nmetadata:\n  difficulty: hard\n  category: finance-economics\n  subcategory: sec-filings-analysis\n  task_type:\n  - search\n  - analysis\n  modality:\n  - database\n  - json\n  interface:\n  - terminal\n  - python\nverifier:\n  type: test-script\n  timeout_sec: 900\n\n1. In Q3, what's the AUM of Renaissance Technologies founded by Jim Simons?",
+        "source": "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
+        "license": "本站原创任务解读与task.md必要短引；仓库Apache-2.0不覆盖声明范围未明的SEC材料/第三方资源。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "SkillsBench v1.1 / sec-financial-report / official task.md",
+        "excerpt": true
+      }
+    ]
+  }
 }

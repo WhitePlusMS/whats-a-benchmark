@@ -22,7 +22,16 @@ function hasText(value: unknown): value is string {
 
 function isAsset(value: unknown): boolean {
   if (!isRecord(value) || !hasText(value.path)) return false;
-  if (value.kind === "image") return hasText(value.alt);
+  if (value.kind === "image")
+    return (
+      hasText(value.alt) &&
+      typeof value.width === "number" &&
+      Number.isInteger(value.width) &&
+      value.width > 0 &&
+      typeof value.height === "number" &&
+      Number.isInteger(value.height) &&
+      value.height > 0
+    );
   if (value.kind === "audio") return true;
   if (value.kind === "file") return hasText(value.label);
   if (value.kind !== "video") return false;
@@ -63,7 +72,7 @@ function isSample(value: unknown): boolean {
     !sampleTypes.has(value.type) ||
     !hasText(value.prompt) ||
     !hasText(value.explanation) ||
-    !(typeof value.raw === "string" || isRecord(value.raw)) ||
+    !(hasText(value.raw) || (isRecord(value.raw) && Object.keys(value.raw).length > 0)) ||
     !hasText(value.source) ||
     !hasText(value.license) ||
     !hasText(value.split) ||
@@ -72,6 +81,8 @@ function isSample(value: unknown): boolean {
     return false;
 
   return (
+    (!("promptOrigin" in value) ||
+      (value.promptOrigin === "editorial" && value.excerpt === true)) &&
     (!("answer" in value) || typeof value.answer === "string") &&
     (!("options" in value) ||
       (Array.isArray(value.options) &&

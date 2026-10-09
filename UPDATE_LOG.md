@@ -1,5 +1,233 @@
 # 更新说明
 
+## 2026-10-09 — 原始来源投影恢复（进行中）
+
+- 原因：用户要求来源节选展示真实原始数据的精简内容，便于核对任务结构。Root更新 `src/content/schema.ts` 与 `src/composables/sampleLoader.ts`，移除 editorial raw 只能为字符串和240字符上限的限制，同时仍要求 raw 非空；`src/components/SampleViewer.vue` 统一显示原始数据与来源节选，并保留媒体许可校验。`tests/sample-loader.test.ts`、`tests/sample-origin.test.ts` 覆盖原生结构接收及媒体/数据许可边界；`docs/LOCAL_SAMPLE_IMPORT.md` 同步模式说明。Root报告 `vue-tsc --noEmit` 通过、专项测试6/6通过。该改动允许按源格式展示结构，不改变许可状态。
+- `artifacts/candidates/2026-10-08-raw-source-b.json`：本轮为其余范围逐项补录原生来源投影；覆盖真实JSON字段、网页/PDF任务标签与内容、Markdown/YAML/TOML原文块。包含LongBench v1固定revision行的 `_id`/`input`有限字段投影，以及Harbor DNA assembly、OfficeQA Pro UID0013、OSWorld 2.0 Task035、WANDR JSONL任务格式等事实；Terminal-Bench 4在既有投影中补入instruction.md真实JSON格式片段。逐项记录来源定位、SHA-256及省略范围，不伪造JSON、不补答案、不变更许可状态。EBR-Bench仅留官方页面查验事实，因当前已查页未定位逐题prompt或replay，不冒充题面已恢复；LongBench-v2未改，按root另行处理。
+- `docs/research/2026-10-08-raw-source-b.md` 追加本阶段31项真实来源投影范围、原生内容示例与未定位字段边界。修改范围仅研究候选、研究说明和本日志，未修改正式benchmark样例/目录、共享代码或许可状态。复核JSON解析、候选ID唯一性、每项投影格式和已记录SHA长度；具体采纳/覆盖数字等待root最终核对。未运行服务、构建或测试，保留用户预览所需服务运行状态。
+- 依据root对原始来源展示的复核意见，校正候选投影的节选范围与载体表达：artifacts/candidates/2026-10-08-raw-source-b.json 中 Terminal-Bench 2.1 保留来源原句及两条精确约束并省略另一约束；OfficeQA Pro UID0013仅保留图中标签和连续逐字短片段，不把解读转成伪JSON。检查所有native-blocks不含sourceFacts，原生块均有实际文本和来源路径；Terminal-Bench 4保留instruction.md中的原始JSON代码示例。docs/research/2026-10-08-raw-source-b.md 与本日志记录上述边界；EBR-Bench仍标为查验事实，未定位具体prompt/replay，不当作恢复了原题。原因是让界面展示可核对的源格式并清楚显示省略范围；仅候选与研究记录变化，许可和正式样例不变。仅做JSON解析与结构核对，未运行服务、构建或测试。
+
+## 2026-10-08 — 全量评测真实案例补齐（进行中）
+
+- 用户目标：151项已发布评测每项至少有1项真实、具体案例；开始盘点时已有25项、36例。
+- 按 `coding/reasoning/knowledge` 46项、`agents/work/context` 50项、`writing/multimodal/alignment/general` 30项三组，依据官方公开事实开展取证；不改151项目录，不伪造私有数据，不把 `no-train` 自动视为披露禁令。
+- 复用现有 `sampleSet`、`content/assets/` 与 `SampleViewer` 架构。取证候选记录为 `artifacts/candidates/2026-10-08-all-cases-a2.json`、`2026-10-08-all-cases-b2.json`、`2026-10-08-all-cases-c2.json`、`root-verified-records`，并形成 `docs/research/` 下三份审计记录。
+- 取证展示接入基础已核验：`src/lib/sampleAccess.ts` 增加 `compositionSample`，只读取 `composition.items` 明确成员且具有本地 `sampleSet`/样例计数的成员；`DetailView.vue` 指数样例区域复用成员的 `SampleViewer` 并标示原评测名称和许可，同时保留组成评测链接；`tests/sample-access.test.ts` 覆盖成员缺失、无本地样例及普通关联不继承。理由是避免把组合评测或相关链接误当成其组成评测的题目；影响为仅明确组成成员的可用本地样例可在组合评测详情展示。`vue-tsc --noEmit` 已通过。AA组合评测四条真实案例已完成接入；后续日志项记录实际文件与验证。
+- 第二批官方取证候选：`artifacts/candidates/2026-10-08-all-cases-b2.json` 增加 `excel-emb`、`finance-agent`、`finbenchmark`、`gaia`、`gdp-pdf`、`gdpval-aa-v2-1`、`gdpval-aa`、`gdpval`、`harvey-lab`、`healthbench-hard` 共10条；`docs/research/2026-10-08-all-cases-b.md` 增加对应来源事实、版本及许可边界和证据缺口。修改原因是逐条留存可复核的官方具体任务材料；影响仅为候选与审计文档扩充，不进入已发布评测目录或站内样例。JSON重新解析后共20项、第二批10项且ID无重复；未运行应用构建或服务。
+- Root 已确认新增4条源记录样例：AA-Omniscience（CSV原行question_id=1，public 600条，Apache-2.0）、C-Eval（computer_network dev第0条，原选项/答案/解析，CC BY-NC-SA 4.0，数据卡固定版本一致）、MMLU（CAIS anatomy test第0条，MIT数据卡，格式为Parquet）、SimpleQA（OpenAI CSV首行，4,326行，保留metadata原始字符串，README标明benchmark MIT）。文件包括4项评测JSON、`content/assets/licenses/{id}-sample-source.txt`、`artifacts/candidates/2026-10-08-root-verified-records.json` 和 `artifacts/candidates/2026-10-08-all-cases-adoption.json`；root说明重新解析了固定源文件的原始记录并保存SHA。验证报告为 `vue-tsc --noEmit`、151项生成、151条内容校验、40条例样及17份报告内容校验、45/45测试通过；页面当前有29条本地样例和AA指数组成样例1条共30条可见，121页仍待补。
+- Root 后续完成 `src/content/schema.ts`、`src/composables/sampleLoader.ts`、`src/components/SampleViewer.vue` 与 `tests/sample-loader.test.ts` 修改：为少数评测官方公开的具体任务演示增加 `promptOrigin="editorial"`，要求摘录必须来自真实来源、保留 `excerpt`，且 `raw` 为来源节选字符串，拒绝拼造原始记录对象；查看器显示“官方公开案例·本站解读”或“具体任务·本站根据官方案例整理”，并将原始数据标签调整为“来源节选”。原因是部分私有评测虽公开具体演示，但公开演示不等同整套题库或第三方附件授权；影响是展示范围与原始记录/题库许可范围分开标示，不扩大许可声明。新增3项畸形 editorial 回归（未标 excerpt、raw 为对象、非法 origin）；root报告 `vue-tsc --noEmit` 通过、专项测试5/5通过。以上为展示机制事实，不将尚未采纳的候选写成已完成案例。
+- 第三批取证候选追加到 `artifacts/candidates/2026-10-08-all-cases-b2.json`：`healthbench-professional`、`healthbench`、`legal-research-vals`、`lhtb`、`lifescibench`、`longbench-v2`、`longbench`、`medcode`、`medscribe`、`mind2web` 共10项；`docs/research/2026-10-08-all-cases-b.md` 记录公开任务/记录、版本与许可范围及查找边界。已定位Legal Research P-001公开问题、LHTB LangChain迁移指令、LifeSciBench官方论文具体分析示例、LongBench-v2官方Rows API记录（_id `66fcffd9bb02136c067c94c5`，503行数据中的转换split首条）、MedScribe官方Sample Doctor-Patient Transcript及Mind2Web项目页示例任务；HealthBench系列按官方在线不披露请求不复制样例。LongBench v1的官方viewer/rows尝试返回404且官方文件树列出113,932,529字节全量包，本轮未下载；MedCode检查的Vals官方页未呈现可定位病例题面，均按有限查找范围记录缺口，不写作“无公开演示”。理由是批次留存每项可回查的一手事实和许可/缺失范围；影响仅候选与研究文档扩充，未进入正式内容或站内样例。结构复核为累计30项、30个唯一ID、第三批10项且必需字段/许可字段齐全；未运行服务、构建或测试。
+- 第四批取证候选追加到 `artifacts/candidates/2026-10-08-all-cases-b2.json`：`mlcr-aa`、`officeqa-pro`、`osworld-2`、`osworld`、`paperbench`、`prbench`、`ruler`、`skillsbench`、`spreadsheetbench-v2`、`tau2-bench` 共10项；`docs/research/2026-10-08-all-cases-b.md` 增加对应来源事实、具体任务描述、修订/许可边界及缺项。公开事实包括MLCR-AA官方Example Task、Databricks OfficeQA hard题例（未证明属于Pro子集）、OSWorld Chrome官方test_all记录、OpenAI PaperBench rubric的adaptive-pruning复现任务、Scale AI PRBench Viewer行、RULER论文NIAH合成演示、SkillsBench sec-financial-report、SpreadsheetBench 2金融建模示例，以及Sierra telecom任务文件。OSWorld 2.1任务类按官方说明受gated访问，本轮不登录/申请/接受条款；τ²记录来自当前已演进为τ³时代的官方main，未声称属于原始2025 τ²快照；RULER区分论文演示与固定eval row。原因是逐条留下可公开复核案例或边界清晰的查找事实；影响仅候选和研究审计文档增加，不进入正式内容或站内样例。JSON解析通过，累计40项、40个唯一benchmarkId、必需结构字段齐全；未运行构建、服务或测试。
+- 依据重新打开的OpenAI GDPval页面完整任务结尾，更正 `artifacts/candidates/2026-10-08-all-cases-b2.json` 的GDPval条目与 `docs/research/2026-10-08-all-cases-b.md` 对应记录：原说明误把过程中的3D概念/PPT要求写成最终提交物；修正为任务提及3D建模与PowerPoint，但最终仅上传带3D快照的PDF摘要，原生3D文件无需提交。原因是官方原文在任务末段明确区分工作过程和上传交付；影响为候选任务描述与审计表准确，未改正式评测内容。核对依据为OpenAI GDPval页面末段，候选JSON重新解析通过。
+- Root新增4条实际源记录样例：AA-Briefcase Lite `w1_t1`（原任务brief、不含附件/非计分第五场景、Apache-2.0）、AA-LCR公开test question 1（原CSV题目/答案/元数据、不含约94k正文、question-set Apache-2.0）、AA Multilingual Global-MMLU-Lite zh/test row 9（business_ethics、固定Parquet、Apache-2.0，明确与MMMLU分开）、IFBench key 5（物理题及5类并列连词约束、不含模型输出、ODC-BY研究/教育许可）。Root说明已更新4个评测JSON、4份许可原文、root取证和采用记录，`vue-tsc`及151项内容生成通过；当前33项自有样例加指数成员1项，共34项页面可见。
+- Root另完成11条官方公开具体案例解读的采用，包括AA-AnalystAgent、APEX-Agents及1.1、AutomationBench-AA、BioMysteryBench、Excel-EMB、Finance Agent、GDP.pdf、GAIA、BrowseComp、GDPval；11条均标记为公开案例解读，使用来源必要短引并保留真实节选字符串，许可限定于本站解读/短引，不声明完整题库或附件许可。Root复核纠正APEX management为SKU生命周期分析、GDPval最终只交PDF摘要、GDP.pdf不把错误模型回答当gold、BrowseComp作者独立创题演示不冒充数据集行并保留官方在线披露限制。涉及11条JSON、公开案例来源指纹及采用日志；`vue-tsc`与151项内容生成通过。当前页面为44项自有样例、指数成员1项，共45条页面可见案例/55条样例记录；全量schema和测试尚待所有批次采纳后验证。
+- 全量目标尚未完成，候选材料待逐批采纳与核验。
+- 第五批取证追加至artifacts/candidates/2026-10-08-all-cases-b2.json，含 tau3-banking、tax-agent-bench、terminal-bench-2、terminal-bench-2-1、terminal-bench-3、terminal-bench-4、terminal-bench-science-0-1、toolathlon-verified、vending-bench-2、wandr 共10条；docs/research/2026-10-08-all-cases-b.md 增加对应公开记录/演示、版本、许可范围和缺项。许可字段区分仓库软件LICENSE与任务数据/第三方材料，未单列范围记为未核实。修改原因是补齐原B组最后10项取证并保存可回查事实；影响仅为候选与审计文档增加，不代表采纳或151项目标完成。修改前完整读取UPDATE_LOG.md、候选JSON和审计文档；JSON解析、ID唯一性及必要字段/许可结构检查通过；未运行服务、构建或测试。
+- 全量目标尚未完成，候选材料待逐批采纳与核验。
+
+
+- Root选定的B组公开任务事实解读第一批已接入8项：`finbenchmark`、`gdpval-aa`、`gdpval-aa-v2-1`、`harvey-lab`、`legal-research-vals`、`lhtb`、`lifescibench`、`longbench-v2`。分别新增或补充对应 `content/benchmarks/{id}.json` 的 `sampleSet`、本地样例入口和来源登记；所有样例均为 `type=record`、`promptOrigin=editorial`、`excerpt=true`，`raw` 是逐字来源短节选字符串，未创建原始记录对象。修改原因是把官方可定位的真实题目/任务演示转成本站可复核的具体案例；影响为本批8条可在条目中展示，`reusePolicy` 仅许可本站原创解读与必要短引，代码许可、底层题库、参考文件和附件按已核实范围分别说明。
+- 特别边界：GDPval-AA v2与v2.1样例均指向同一上游Task 1乐队舞台图演示；AA当前任务页标示v2.1，v2协议差异依据2026-06-15 v4.1公告另行说明，不将该演示称作冻结v2页面或v2版评分行。LongBench-v2按官方Rows API行 `_id=66fcffd9bb02136c067c94c5` 展示真实四选项及答案D，省略语法书长上下文；四选项置于解读正文以遵守现有 `record` schema。Harvey任务附件未复制，Vals P-001不冒充私有评分题，LifeSciBench不复制附件/rubric，LHTB不声称已运行任务。
+- `artifacts/candidates/2026-10-08-b-cases-adoption-proof.json` 保存本批源URL、HTTP状态、原始响应字节数/SHA-256、记录定位、短引逐字核验和内容投影。修改中按内容管线要求，将已核验的source URL登记在各条目 `sources`；未改分类、kind、definition或共享schema。
+- 验证：`node_modules/.bin/vue-tsc.cmd --noEmit --pretty false`通过；`npm run validate`通过，核验151项公开条目、71条样例和17份报告。验证首次发现source URL登记缺失及LongBench-v2的 `record` 类型不可带 `options` 字段，均按既有schema修正后复验通过。未运行服务、构建或生成器。
+
+
+- 第二批官方公开任务事实解读已接入8项：`medscribe`、`mind2web`、`mlcr-aa`、`osworld`、`paperbench`、`prbench`、`ruler`、`skillsbench`。对应评测JSON新增本地 `sampleSet`，补齐使用到的官方source登记；proof在 `artifacts/candidates/2026-10-08-b-cases-adoption-proof.json` 追加各源SHA-256、响应大小/时间、定位、短引字面核对和投影。修改原因是把官方页面/记录中可定位的具体任务目标展示为本站原创案例解读；影响限于这8条站内案例，不改分类、kind、definition或共享schema，许可状态只覆盖解读/必要短引或官方明确标注的数据集许可。
+- 边界记录：MedScribe的公开对话例未标明真实/模拟，未复制逐字对话、SOAP输出或患者记录；Mind2Web示例按CC BY 4.0注明归属，未复制第三方网站素材；MLCR-AA示例不映射到private held-out评分题或Wisedocs公开行；OSWorld仅记录Chrome任务目标与expected true，不代表已执行；PaperBench只摘要APT论文复现目标；PRBench仅概述公开finance行首轮CCAR任务事实，不含回复、scratchpad、rubric或canary值，核对的HF数据卡与官方README未出现在线披露禁令；RULER标记为Table 2合成示意而非固定test row；SkillsBench只概述SEC季度分析任务和具名子问题，不提供答案或申报文件。
+- 验证：`node_modules/.bin/vue-tsc.cmd --noEmit --pretty false`通过；`npm run validate`通过，核验151项公开条目、79条样例及17份报告。未运行服务、构建或生成器。
+
+
+- 第三批官方任务事实解读接入8项：`spreadsheetbench-v2`、`tau3-banking`、`tax-agent-bench`、`terminal-bench-2`、`terminal-bench-2-1`、`terminal-bench-3`、`terminal-bench-4`、`terminal-bench-science-0-1`。对应条目JSON新增本地editorial record样例和实际引用来源登记，`artifacts/candidates/2026-10-08-b-cases-adoption-proof.json`追加源响应状态、SHA-256/字节数、检索时间、定位、逐字短引及投影。修改原因是把可定位的官方具体任务目标以原创说明接入图鉴；影响限于8项样例，不改条目分类/kind/definition或共享schema，任务数据与代码许可分别表述。
+- 具体范围：SpreadsheetBench 2使用Version 2 / Example 1 Financial Modeling公开指令；τ³只写官方`banking_knowledge`域和当前主分支`task_001`（源路径仍为`data/tau2/...`），记录其版本/检索配置未锁定，不冒称其他银行快照；Tax Agent Bench为suite v2的P-001公开非计分题，无答案。Terminal-Bench 2.0与2.1分别以各自任务目录核对dna-assembly成员身份，并明确同一slug也出现在两版，不标为2.1独有；Terminal-Bench 3固定v3.0.0/commit 2b0442c的foodstuff-beta-activity；Terminal-Bench 4依据v4.0.0任务清单和Harbor详情整理layout-config-recreation2；Science以v0.1.0发布清单核对symbolic-regression，详情页标明revision 2、固定seed合成数据，不将其描述为现实观测或隐藏规则答案。
+- 数据边界：未复制Spreadsheet工作簿、task序列/fixture/tests/solutions、Sr-90输入文件、设计图稿/字体、Science数据及reference solution；没有运行任何任务或将任务期望动作/输出冒充模型结果。Terminal-Bench公开页面出现的training-corpora/canary标记没有被误作在线披露禁令，也未复制其marker。许可状态仅覆盖本站原创解读/必要短引；底层任务、第三方材料和附件范围按来源证据分别保留未知或受限。
+- 验证：`node_modules/.bin/vue-tsc.cmd --noEmit --pretty false`通过；`npm run validate`通过，核验151项公开条目、87条样例和17份报告。未运行服务、构建或生成器。
+
+- 第四批B组官方案例接入2项：toolathlon-verified 的 find-alita-paper 公开任务，以及 vending-bench-2 官方文章中的过期Snickers退款运行示例。修改 content/benchmarks/toolathlon-verified.json、content/benchmarks/vending-bench-2.json 为 type=record、promptOrigin=editorial、excerpt=true；仅保存实际来源短引字符串，不加入答案或拼造原始记录。原因是官方公开源中已定位具体任务约束和具体模拟事件；影响为两个评测新增可见案例，并在复用声明中将许可严格限于本站原创解读和必要短引，未扩展到任务池、运行轨迹、邮件全文、附件或模型推理。
+- Toolathlon案例标明 main 未固定版本，README Quick Example 与官方 task.md 两处交叉定位；task.md和仓库根 LICENSE 均未显示适用于任务数据的许可声明，不推断整个Verified题库授权。Vending-Bench 2案例来自 Andon Labs 2026-02-05公开文章：顾客因过期Snickers申请退款，模型邮件承诺$3.50、文章记载未实际付款；不把该行为当gold，且注明Arena为独立变体。Wandr当时未在本批次接入；经root复核，固定指令本身规定18+平台、每平台至少3项工作流主张及两类证据，是一项开放研究任务。先前未采纳不表示任务缺少具体要求；root在后续20项案例批次中已接入该任务的editorial案例。仓库Apache-2.0仍不自动覆盖第三方网页。
+- artifacts/candidates/2026-10-08-b-cases-adoption-proof.json 追加两条采用投影和一条Wandr未接入证据，记录来源HTTP状态、响应字节数/SHA-256、时间、定位、逐字短引及投影；现有proof累计26条采用记录，另列1项未接入。未修改分类、kind、definition、151项目录、共享schema或生成器。
+- 验证：node_modules/.bin/vue-tsc.cmd --noEmit --pretty false通过；npm run validate通过，核验151项公开条目、89条样例和17份报告。未运行服务、构建或生成器。全量目标仍未完成。
+
+- Root更新纯 editorial 样例许可校验：src/content/schema.ts 允许仅含本站任务解读和真实短引的 editorial record 在底层数据许可为 unknown/restricted 时展示；若样例含原始数据、options、assets 或 gridTask，reusePolicy 仍须为 permitted。样例raw短引限240字符。src/composables/sampleLoader.ts 同步校验editorial标记、节选字符串和长度上限；src/lib/sampleAccess.ts 将本地样例区和操作入口命名为“真实案例”；src/components/SampleViewer.vue 区分“官方公开案例·本站解读”和“来源节选”，案例编号标为“本页案例编号”。tests/sample-origin.test.ts 覆盖未知数据许可下可展示原创解读及缺失标记、增加options、超长raw均拒绝。影响是将站内文字许可与底层题目数据许可分开。Root报告专项6/6和vue-tsc通过。
+- 按root核对的原始许可事实修正37项纯editorial条目的reusePolicy：longbench-v2、mind2web、prbench、ruler限定于已确认Apache-2.0/CC BY 4.0覆盖的公开字段或论文片段，4项permitted；browsecomp、finance-agent、legal-research-vals、medscribe按官方披露限制/Proprietary边界记restricted；其余29项记unknown，包括lhtb（虽有仓库Apache-2.0，但任务数据授权未单独确认）。代码许可证没有扩展为任务数据授权；未改样例内容、case ID、sample.license或C组条目。
+- 更正 artifacts/candidates/2026-10-08-b-cases-adoption-proof.json 中Wandr的历史批次状态：保留“本批未接入”，不再描述为缺乏具体要求；root已确认其公开instruction是含18+平台、每平台3+ workflow claims和两类证据要求的开放研究任务，editorial样例由root后续处理。仅更新必要的研究状态说明。
+- 两项过期研究备注同步到当前核验范围：content/benchmarks/gdp-pdf.json 更正“样例可用性未核验”为已定位官方fryer wiring-diagram示例、题目/附件和第三方手册许可仍未知；content/benchmarks/terminal-bench-science-0-1.json 区分已查当前symbolic-regression rev2任务页与未下载完整v0.1.0包，并登记对应任务页来源。没有扩展成全包许可结论。
+- 验证：node_modules/.bin/vue-tsc.cmd --noEmit --pretty false通过；npm run validate通过，核验151项公开条目、96条样例和17份报告。样例总数包含并行C组同期新增项；本批未运行生成器、构建或服务，全量151项目标尚未完成。
+
+- Root新增20项官方公开任务事实解读：`bullshitbench-v2`、`swe-bench`、`swe-bench-verified`、`swe-bench-multilingual`、`swe-bench-pro`、`facts-parametric`、`mirrorcode`、`mysterymechanism`、`frontiercode-1-1-main`、`nl2repo-bench`、`frontierswe-v2`、`simplebench`、`weirdml-v2`、`rws-mgate`、`cyberbench-patch-v1-1`、`hyper-tau-bench`、`vibe-code-bench-1-100`、`vibe-code-bench-v1-1`、`hle`、`wandr`。对应20份 `content/benchmarks/<id>.json` 增加 `type=record` 的 editorial 案例及实际来源登记；`raw` 保留来源原文短引字符串，`excerpt=true`，未拼造原始记录对象，也未改条目 kind/category。原因是这些第一方来源可定位到具体任务要求或公开演示；影响限于对应条目展示本站原创中文事实解读和必要短引，底层数据/第三方材料许可继续按各自证据保留。HLE只取公开生态学演示事实与不超过10词的短引，不含gated行或标准答案；WANDR按固定公开指令记录18+平台、每平台3+主张及两类证据等实际任务要求，不再沿用此前“缺少具体任务”的阶段性排除描述。
+- `artifacts/candidates/2026-10-08-all-cases-adoption.json` 追加逐项locator、revision、source与文件事实；来源登记使用已核对的精确URL并参照a2与second-pass核验。维护指南 `docs/CONTENT_MAINTENANCE.md` 现区分Source原始记录与editorial解读：纯文字editorial可在底层许可unknown/restricted下展示，但必须有官方公开且可定位的具体任务事实、本站原创说明和必要短引，`raw`是240字符以内来源字符串；原始数据、题面、选项、网格和媒体仍须有相应许可，明确在线展示禁令仍遵守。指数只复用明确composition成员已有样例。导入指南 `docs/LOCAL_SAMPLE_IMPORT.md` 将84项/18项/27条例及A/B/C等级标为2026-09-23历史快照，解释`no-train`/`canary`单独不自动构成在线展示禁令，并保留明确在线披露限制。
+- 验证：Root报告上述两批各自执行 `node_modules/.bin/vue-tsc.cmd --noEmit --pretty false` 与 `npm run validate` 均通过；当前为151项公开条目、116条样例记录、17份报告。文档本轮仅做说明与历史口径更新，未改样例正文、评测分类、kind、schema、生成器或服务。151项每项至少一例的目标尚未完成。
+- 本轮追加官方来源缺口与版本事实核验，新增 `artifacts/candidates/2026-10-08-final-gap-b.json` 和 `docs/research/2026-10-08-final-gap-b.md`，涵盖 EBR-bench、MedCode、Code Migration、CursorBench 4.0 及 FrontierMath 系列/v2两子集。原因是补齐最后缺口的可复核来源与记录定位，并纠正旧FrontierMath Tier 3短摘录缺少前置定义的问题；影响仅增加候选证据和研究说明，不改正式评测条目、样例、许可状态或151项目录。
+- 证据事实：EBR官方更新报告GPT-6 Astra在原版取得100%并利用绕过时间限制的一张卡，官方方法页记录2026-09-22转v4且当前默认禁卡；MedCode与Code Migration官方Vals页均标注Proprietary，但已查页面未定位患者记录或具体迁移源仓库/题面，仅保留查找范围缺口；Cursor官方4.0 changelog列任务类别，官方博客明确其生产版本3.1，未把3.x示例映射到4.0。FrontierMath候选改用完整Tier 2递归排列题、Tier 1有限域计数题及Tier 4 BMO优化题，记录所有数学输入与约束；v2 hubs只验证tier级公开题数并链接公共题页，未发现题名到固定行ID映射。许可字段分别保留Epoch通用数据许可与题目/答案创作者权利的官方区分，不下具体题目许可结论。
+- 校验：JSON重新解析确认7个唯一benchmarkId、必需证据/定位字段齐全；对10个官方页面进行公开HTTP GET，均返回200并记录响应SHA-256及检查日期。FrontierMath公共题页的三个短标题引用合计18个英文词，每项不超过10词。没有运行服务、构建、生成器或测试；以上为候选阶段取证，后续root采纳状态见下文。
+- Root后续接入的实际案例事实按其提供的记录补入本节：B组共26项（先前20项及后续6项）；A组五项原始来源案例为CMMLU、Deep-SWE、CritPt、SWE-rebench、ProgramBench，前三项见 `artifacts/candidates/2026-10-08-a-source-adoption-proof.json`，SWE-rebench见 `artifacts/candidates/2026-10-08-swe-rebench-adoption-proof.json`，ProgramBench见 `artifacts/candidates/2026-10-08-second-pass-adoption-proof.json`；C组新增14项，ArenaVision加入一条公开博客示例，ToneBench撤下Script 7并改为Script 9。对应案例仍使用各自内容JSON与采用/来源proof；C组图像来源范围未核实的条目不据此宣称媒体可复用。Root另接入3项FrontierMath公开题解读和1项EBR公开运行事件；均保留版本、输入事实和来源范围边界，不将模型报告值写成题库标准答案。上述为root提供的实际修改与事实记录，未扩成151项完成结论。
+- 阶段快照（OSWorld 2.0与OfficeQA Pro新增案例采纳前）：151项评测、136项含自有 `sampleSet`、147条记录；原始来源42项/53条，editorial 94项/94条；AA Intelligence Index另展示1条明确组成成员案例，共137页有案、14页待补。此前146条的验证结果早于BrowseComp-ZH论文Figure 1记录并行接入；该记录解释了本地计数比先前验证多1条。
+- Root后来采纳OSWorld 2.0官方Task035，保持当前条目 `version=2.0`；具体事实和独立来源proof见 `artifacts/candidates/2026-10-08-osworld-2-public-case-proof.json`，没有把2.1版本任务归到2.0。另采纳OfficeQA Pro论文v1第4页Figure 3中可定位的UID0013任务：OLS任务覆盖1929–1942年联邦个人所得税净收入，要求按千位分隔格式输出；无答案，未读取受限CSV。旧2025年博客示例仍未映射为该Pro任务。proof见 `artifacts/candidates/2026-10-08-officeqa-pro-public-case-proof.json`。
+- 最终计数（root已重生成并校验）：151项评测中138项含自有 `sampleSet`、共有149条记录；原始来源42项/53条，editorial解读96项/96条。AA Intelligence Index另通过明确composition成员展示1条，因此139页有真实案例、12页待补：GPQA / GPQA Diamond、HealthBench / HealthBench Hard / HealthBench Professional、Video-MME、MedCode、Code Migration、CursorBench 4.0、Mystery Game Puzzles、TapTap Maker、OpenAI internal coding。`docs/reviews/2026-10-08-all-cases-coverage.md` 与 `artifacts/2026-10-08-all-cases-coverage.json` 保存覆盖清单；两份README已更新计数及Source/editorial模式说明。
+- Root报告最新验证：`vue-tsc --noEmit`通过；`npm run validate`核验151项/149条样例/17份报告；内容生成151项；全量测试46/46通过；`git -c core.safecrlf=false diff --check`通过且staged为空。Root还报告相对HEAD原有27条样例的prompt/raw/answer/assets及文件存在性均保留、0差异，当前新增122条。未启动服务、构建或发布；浏览器验收待完成。全量目标仍缺12项。
+- 最终投影对照已通过，记录见 `artifacts/2026-10-08-all-cases-validation.json`：151条catalog entry、138个样例JSON文件/149条记录，逐项与源 `sampleSet` 完全一致；没有缺失或孤立样例文件。4个媒体素材（2个原有音频、2个新增PNG）与源文件的字节及SHA-256一致；45个许可引用准确对应35个独立许可文件；151条源JSON SHA与覆盖审计匹配；catalog投影不含样例正文。临时8个root采纳/核对Python脚本已从指定Temp根目录定点清理，正式数据与采集proof保留。未检测到本项目Node服务，也未启动服务。浏览器验收和生产build未执行；全量目标仍缺12项。
+- 用户明确要求启动项目供其查看后，Root在工作目录 `E:\项目demo\benchmark show` 执行 `npm.cmd run dev -- --host 127.0.0.1`；Vite 8.3.0 ready，地址为 `http://127.0.0.1:5173/`，会话93172持续运行以供查看。启动时由现有 `predev` 脚本重新生成151项公开数据；没有修改业务代码或配置，也未执行生产build或部署。服务按用户要求保持运行。
+- 本轮继续核查MedCode、Code Migration和CursorBench 4.0的官方公开UI/实际声明加载脚本，更新 `artifacts/candidates/2026-10-08-final-gap-b.json` 与 `docs/research/2026-10-08-final-gap-b.md`。修改原因是确认此前Vals页面缺口是否可沿其公开客户端路径定位样例，并校对Cursor具体演示的版本；影响仅为取证状态补充，不改正式benchmark内容、案例、分类、许可字段或共享schema。
+- MedCode与Code Migration官方Vals页面（更新于2026-10-06、均标注Proprietary）SSR均为 `data-has-examples=false` / `data-active-view=results`。候选记录页面实际声明的40字节 `page.Vn21zqoU.js` 与1,539字节 `hoisted.CoU7OQMV.js` 的HTTP状态、SHA-256及行为：模块只初始化共享client，脚本读取页面examples标志；公开页面false时保留results，已检查路径没有病例/迁移任务载荷。只记所查页面与脚本路径的范围，不推断Vals其他页面没有公开演示。
+- Cursor官方4.0榜单/变更记录列模型汇总分数及任务类别，没有逐项task ID或prompt；官方博客写明当时生产版本3.1。Composer 2官方报告确有Appendix C.1具体任务，但报告明确把结果标为CursorBench-3，因此不将其映射为4.0样例。候选同时标注该PDF公开解析、未下载完整文件。JSON结构复核仍为7个唯一项目、必需字段齐全；未运行服务、构建、生成器或测试。
+
+## 2026-10-08 — 新增评测的内容深度、图标与真实样例补齐
+
+- 原因：用户要求逐项说明上一轮新增59项是否联网、有无图标和具体内容，并按现有架构落实。基线盘点确认59条已进入原内容投影，但57条 `brandIds` 为空、2条复用Epoch图标，新增站内样例为0；170条来源登记与152个不同URL不能单独证明任务内容完整。上一轮“完成”只覆盖收录/分类/基础说明，未完成图标与可许可原题接入。
+- 架构核对：完整读取既有品牌表、严格schema、内容生成/资产校验管线、`PublisherMarks`、卡片/详情及样例组件和维护规则。继续使用 `content/brands.json`、`content/assets/logos/`、条目 `brandIds` 与 `sampleSet`、独立生成样例文件和原加载器；不增加页面、字段、图标映射服务、样例渲染器或依赖。
+- `content/brands.json`、`content/assets/logos/`、`docs/LOGO_SOURCES.md`：从第一方真实链接核验并新增27种标识（品牌总计58），覆盖33项新条目；其它26项复用既有发布方标识。59项均已通过原 `brandIds` 绑定；新增标识中11为项目标识、11为发布方Logo、1为作者头像、4为官方账户identicon，四个identicon不称专属Logo。默认React图、空白图及TubeLab的404素材已排除，SVG/图片格式与哈希核验通过。
+- `content/benchmarks/`精确59项内容深化：复核并改善354个内容字段，22条补真实字段结构、31条补具体文件/运行产物，补任务输入输出、执行步骤、评分公式、实际官方入口和私有边界。ProgramBench交付路径、Hyper-τ任务配置、PR固定多轮历史末轮作答、EQ提示/章节/persona、SWE环境与测试清单等均回第一方核对。Longform更新为v1.11/Sonnet4.6；真实浏览器核对LiveBench当前2026-06-25为7类23任务，与首发6类18任务分开；ArXivLean六月数据没有完整answer，形式化目标不冒作证明答案。
+- `sampleSet`与 `content/assets/licenses/*-sample-source.txt`：主agent用原固定Parquet/CSV重新核对9条源文件、完整原记录、题面/答案、raw投影和许可材料哈希，全部一致后采用。MathArena三项、PRBench Finance/Legal、SimpleQA Verified、LiveBench共7条目展示9条站内样例；原有27条不变，全站36条/25个评测有站内样例。PR排除第三方参考文本和模型结果，不生成标准作答；ArXivLean题面直接用formal_statement原字段，含sorry仅为待完成目标；LiveBench旧release明确展示题型，不冒作当期完整题集。许可材料共7份，按已有asset管线发布。
+- 事实候选：`artifacts/candidates/2026-10-08-expansion-completeness-facts.json`、`2026-10-08-brand-architecture-facts.json`、`2026-10-08-expansion-brand-assets.json`、`2026-10-08-public-sample-records.json` 保存盘点与核验材料；单项联网/完整内容/官方入口/站内原题/图标将分别统计，不用链接数或schema通过代替。
+- 验证与执行边界：各品牌和内容批次直接 `vue-tsc --noEmit` 与严格schema检查通过；最终生成、内容校验、样例原文与素材、实际页面验收完成后补记。复用当前项目服务，未新启开发服务、未生产构建、未调用网页端GPT、未提交推送发布。
+- 当前自动检查：严格TypeScript、151公开条目/36真实样例/17报告内容校验、现有44/44测试通过；独立源文件/原记录/题面/许可哈希9/9通过，原18个带样例的源JSON整文件SHA-256未改变。`README.md`、`README_ZH.md` 更新36样例/25评测快照；`docs/reviews/2026-10-08-expansion-deep-audit.md` 逐项列59个名称、第一方依据、内容、标识类型和真实样例状态，原覆盖记录标注为第一轮阶段。
+- 浏览器地址核查：5173已被另一个RAG项目占用，5174也显示RAG；已通过进程路径确认不属于本仓库，因此没有停止这些服务。UI验收尚待图鉴现有地址，未把其它页面或上轮截图当作本轮通过证明，未绕过约束启动开发服务。
+
+## 2026-10-08 — 引用位置收拢，取消独立编号行
+
+- 原因：用户指出论文式编号仍大量单独成行，要求按阅读内容保留、移动或删除；本轮继续共用模板和公共提示层，不改逐条数据或来源库存。
+- `EvidenceLinks.vue` 删除block属性和独立行样式，引用始终参与行内排版；编号可逐个自然换行，保留统一hover、键盘与点击定位。
+- `DetailView.vue`：任务来源放在任务标题旁，并排除紧邻定义已有的完全相同来源；组成表依据放在说明句末；数据画像依据放在概述句末；访问的额外依据放在卡片标题旁；许可依据放在许可记录句末；关系依据放在关系说明句末，说明移出主链接以避免嵌套链接。
+- 删除本地样例和综合指数样例区外围重复编号。本地样例已有原始记录出处/许可，综合指数已有组成方法与成员链接；结构化来源仍完整保留。
+- `SampleViewer.vue`：非本地样例的必要补充依据贴在获取说明句末，排除已有官方入口；不新增独立引用行。
+- 当前内容源为105个已发布条目，本轮验收覆盖最新目录；原有其他任务新增内容、分类、README等改动保留。
+- 手机检查发现自然断行仍可能使单个编号落到末行；公共引用组件为直接包含引用的说明段落、许可记录和标题启用text-wrap:pretty，不逐页设置换行。完成时目录进一步更新为151项，全部按当前页面重新核对。
+- 进一步精简：数据获取卡排除已在数据概况引用的相同URL；关系卡排除已在本条定义或版本说明引用的相同URL。仅减少重复显示，保留新出处、不同hash及所有结构化来源；共用模板自动适用于151项及后续新增条目。维护文档同步取消block模式和更新保留/去重规则。
+- 按实际行矩形复核，自动换行仍会把部分编号独立推到末行，最终改用公共 `CitedText.vue` / `lib/citationText.ts`：Intl按词分段，完整句末词、尾部标点与引用不可分行，其他正文自然换行；取消尝试的text-wrap:pretty规则。所有共用文本位置接入，不改写原文。新增句末词测试覆盖中文、英文、组合字符、emoji、空文本和原文完整性。
+- 最终验证：严格TypeScript、44/44测试、151条目/27样例/17报告校验、git diff --check通过；151页最终桌面1280×720与手机390×844全部实开，按正文词和引用的行矩形逐一测量2,475个保留入口，无独立编号行、横向溢出或失效引用目标。折叠研究记录不计入可见行测量，来源库存保留。
+- 交付 `artifacts/citation-placement-validation.json` 与 `artifacts/citation-placement-preview.jpg`，保存最终逐页结果和960×884实际任务区截图。重新定位的组成引用支持聚焦提示、Esc关闭与点击原来源。
+- 验收中原预览服务停止，已检查端口空闲后恢复用户预览；本轮没有编辑正式内容JSON或来源资料，不改其他任务的目录扩充。未运行生产构建、提交、推送或部署。
+
+## 2026-10-08 — Benchmark 来源补齐与分类优化
+
+- 原因：用户确认对 AIHOT 评测来源目录的遗漏与分类分析后，授权全部优化；在本轮开始时已有未提交修改上继续工作，不覆盖原有界面、样例或引用优化。
+- `content/categories.json`：新增 `writing`（写作与设计）及 `general`（综合评测与指数），复用现有图标；数理分类纳入物理推理，多模态分类名称纳入音频，指令与偏好描述补充情绪交流。影响目录筛选、分类名称和详情面包屑；不新增字段或依赖。
+- `CONTEXT.md`、`docs/CONTENT_MAINTENANCE.md`：明确主分类、能力标签和综合指数的含义，按主要任务选择分类；区分自然语言和编程语言、创作长篇和长文理解、评测本体和机构运行协议，保留已有版本 ID 与来源约束。
+- `content/benchmarks/`：新增 59 个条目，覆盖编程/科研 19 项、专业工作/知识 20 项、创作/设计/视觉/语言 17 项，另拆出 APEX-Agents 1.1 与 FrontierMath v2 两个难度子集。原条目 ID 保留；新增数据均只解释公开任务协议，不复制题目、模型输出或媒体。完整文件与 90 项来源映射见 `docs/research/2026-10-08-aihot-coverage.md`。
+- 既有分类：AA 智能指数转入 `general`；APEX-Agents、AutomationBench、AutomationBench-AA 和 Terminal-Bench-Science 转入 `work`。通用终端与多工具评测仍归 `agents`；新增 LHTB 依据跨领域任务范围归 `agents`。HLE/GPQA、长文本与界面定位保留既有测量目标分类。
+- 既有版本与关系：APEX 原版只保留 480 题范围，1.1 独立说明 240 题与 Harbor/裁判修订；任务指令与评分参考材料分开。FrontierMath v2 明确 295+43=338 题及 10+2 个公开示例，清理错误标注的发布来源和子条目无关来源。Arena 三专项、SimpleQA Verified、τ³-Banking 与 AA 多语言指数通过 `related` 连接原条目；机构复测在已有 Terminal-Bench 条目中说明，不重复建题库。
+- 独立本地内容审查修正：M-GATE 语法主指标为 MCC/F1，解析失败用裁判归一化标签；APEX 许可采用 `restricted`，区分官方明确禁令与本站不复制范围；SpreadsheetBench 2 采用 V2 论文和仓库依据，区分 297 项编辑指标和 321 项含可视化汇总；Code Migration CLI/COBOL 权重为 75%/25%；删除未核实的 Mercor 专属别名与重复引用。
+- PRBench 保留首发项目的 19,356 项准则与当前 HF 卡 18,692 两种来源快照，不推断差异原因；Finbenchmark 删除未核实的作者姓名，WeirdML 将评测作者与 Epoch 复测/登记方职责分开，避免把报告者当原发布者。
+- `src/views/GuideView.vue`：复用现有任务入口与案例结构，新增写作设计和综合评测入口及两个读榜案例，通用工具入口与专业工作分类含义统一；没有新增筛选状态、组件或样式。`README.md`、`README_ZH.md` 更新 151 条/10 类快照，原有 27 条样例、18 个站内样例评测和 17 份报告数量不变。
+- 名称与关系编辑覆盖 15 个既有条目：`aa-intelligence-index`、`apex-agents`、`arena`、`automationbench-aa`、`automationbench`、`critpt`、`finance-agent`、`frontiercode-1-1-main`、`frontiermath`、`hle`、`scicode`、`simpleqa`、`tau2-bench`、`terminal-bench-4`、`terminal-bench-science-0-1`。AIHOT 的展示名称作为已核实的搜索别名接入；LiveBench 分项回到同一体系，未核实的 Mercor 专属名称不伪装为同义名。
+- 最终自动验证：严格 `vue-tsc --noEmit`、151 公开条目/0 草稿生成、151 条目/27 样例/17 报告校验、43/43 全套测试、12/12 搜索与分类专项、`git diff --check` 通过。使用实际 `recognizeNames` 核对 90 行：89 行唯一精确命中、1 行仅本体对应且专属协议未核验；全库没有跨条目归一化名称冲突。
+- 信息完整性：对本轮开始时 92 个条目的 `sampleSet` 逐项比较序列化 SHA-256，没有变化；原有27条任务的题面、答案、raw、选项、素材、来源、许可和取样日期保留。两个 `artifacts/candidates/2026-10-08-aihot-*.json` 仅为事实候选，不作为未复核即自动发布的输入。
+- 实际浏览器：1365×900、390×844 下实开78路径，共156视图，覆盖全部59新详情、15旧条目及首页/新分类/指南；标题、分类计数、指南6入口/12案例、内部锚点与整页溢出均通过，无捕获运行异常。额外两种宽度实开三个新/综合条目对比，手机展开全部10分类筛选通过；截图逐张查看。首次后台帧等待超时的空记录不计为验收，最终完整重跑成功。
+- 验收文件：`artifacts/2026-10-08-aihot-source-audit.json`、`artifacts/2026-10-08-aihot-browser-validation.json`、`artifacts/2026-10-08-aihot-extra-ui-validation.json`、`artifacts/aihot-expansion-desktop.jpg`、`artifacts/aihot-expansion-mobile.jpg`；覆盖报告为可提交文档，候选与截图仍按项目现有目录约定保存。
+- 收尾：复用原先运行的本项目 Vite完成验收，并按项目约束停止该服务；未另启动服务。浏览器视口覆盖已清除，临时请求/检查脚本删除；未生产构建、未运行真实benchmark、未下载受控任务、未检测全部外链存活或验证线上状态。
+- 执行边界：不启动开发服务、不运行生产构建、不调用网页端 GPT；不提交、推送或发布。许可未核实的任务不复制为站内样例，原有样例保留。
+
+## 2026-10-08 — 全站论文式引用与公共悬停提示
+
+- 原因：用户要求所有正文依据编号改为论文式上标，并在框架公共层统一hover，不逐页定制；继续使用修复分支和原始来源编号。
+- 新增 `src/components/UiTooltip.vue`、`src/styles/tooltip.css`，并通过 `src/styles/main.css` 全局加载提示样式。公共组件负责悬停/键盘聚焦、原生hint顶层、屏幕边缘定位、移入浮层持续显示、Esc/失焦/导航关闭和监听清理；不新增依赖。
+- `EvidenceLinks.vue` 统一渲染sup引用，去掉“依据”文字和按钮边框；提示展示来源编号、类型、名称和域名，aria-describedby关联说明，不再同时输出原生title。点击保留现有参考资料锚点及URL查询状态，实际触发区域至少24×24px。
+- `DetailView.vue` 仅调整共用模板14个引用位置：段落编号放到句末，表格/卡片整体依据使用紧凑脚注；全部92个详情一起生效，没有逐条修改内容或页面。`detail.css` 删除旧引用间距和触发宽度覆盖，防止破坏新的统一样式。
+- 验证：第一批组件和公共样式修改后严格TypeScript检查通过；本批完成后继续类型、既有测试和实际浏览器hover/键盘/边界验收。
+- 最终验证：严格vue-tsc --noEmit、43/43既有测试、92条目/27样例/17报告内容校验通过。全部92详情在1280×720、390×844实开，核对2,171个上标入口的来源名称/类型/域名、aria-describedby、编号目标与唯一提示ID，无遗漏、空提示或整页溢出；898×884与1365×900补充交互检查。
+- 鼠标与键盘：悬停触发、移入提示继续阅读、移出关闭、键盘聚焦与Tab切换只显示一个提示、Esc关闭且保留焦点均通过。手机长来源标题和屏幕左边缘定位正常；Arena折叠定位点击后展开；MMMLU原始样例查询参数在引用跳转后保持，导航不会遗留浮层。
+- `docs/CONTENT_MAINTENANCE.md` 补上标/脚注和公共静态提示的复用约定，避免后续重新出现页面私有hover实现。原始内容与来源库存未改；未运行生产构建、提交、推送或发布。本轮复用用户已打开的预览服务，没有另启开发服务。
+- 验收证据：`artifacts/citation-validation.json` 保存92页桌面/手机检查及交互结果，`artifacts/citation-hover-preview.jpg` 保存898×884真实悬停截图；与上一轮全站修复的证据分别记录。
+- 收尾：浏览器error列表为空，临时验收页关闭、视口覆盖恢复；已重新打开AA指数的评分区域供用户查看上标及悬停提示。沿用用户浏览预览，未另启服务。
+
+## 2026-10-08 — 按用户要求打开修复后网页
+
+- 原因：用户要求打开网页查看本轮UI/UX修复结果；复用现有本地Vite，无源码修改。
+- 确认5173端口空闲后启动127.0.0.1:5173，在浏览器打开首页并保留页面；已确认显示92个评测、8类能力和27条真实样例。
+- 本次为用户浏览启动，预览保持运行；上一轮修复验收服务已结束，本次启动单独记录。未提交、推送或部署。
+
+## 2026-10-08 — UI/UX 全量修复验收与交付
+
+- 分支：`codex/uiux-audit-fixes`。沿用修复前已有未提交修改，所有统计与完整性检查均比较本轮开始时的工作树快照。
+- 交付 `docs/reviews/2026-10-08-uiux-fixes.md`：逐项对应原审查问题，列明源码/样式/测试/维护文件职责，以及全部92个内容文件的编辑字段、摘要长度和外链前后数量。原审查报告继续保留修改前状态。
+- 交付 `artifacts/uiux-fixes-validation.json`、`artifacts/uiux-fixes-desktop.jpg`、`artifacts/uiux-fixes-mobile.jpg`：保存逐页DOM验收数字、27条样例状态、10个指南目标及17个发布卡定位，截图来自实际修复后的页面。
+- 全量文案结果：85个条目有编辑变化，49条摘要缩短；全部摘要不超过80字符，最大79。23条样例解读围绕题目任务，161条研究过程限制进入折叠记录。
+- 信息完整性：27条样例的原题、raw、选项、答案、图格、媒体、来源、许可及取样日期均与快照一致；270条原限制的文字及来源保留在正文或记录。名称、版本、任务协议、指标、关系、来源库存和verifiedAt均未改变。
+- 范围保护：对快照中本轮范围以外的302个文件逐个比较SHA-256，全部一致；README、原内容管线、模板、架构说明及既有截图没有附带改写。
+- 引用结果：92页外链DOM节点由2,869降至862（约70%）；AA指数16→2、Terminal-Bench 4.0 58→11、MMMLU 33→10。原库存中同页不同hash定位完整可达，因此逐页唯一完整地址之和637→671；不是新增资料或HTTP请求量。
+- 自动验证：严格vue-tsc --noEmit、内容生成92公开/0草稿、92条目/27样例/17报告校验、全套43/43测试、git diff --check均通过；未增加依赖。
+- 浏览器验证：98个明确路由在1365×900和390×844实开，无整页横向溢出；92页无失效内部编号或空画像卡；27条样例分别在两种视口显示，答案默认收起。样例分享刷新/第二题/历史返回、折叠引用定位与刷新、对比空行/混合缺项/键盘固定表头、搜索播报/列表/目录返回、指南10个案例定位均通过。
+- 验证边界：浏览器error列表为空；保留原有vite-ssg触发的Vue Router next()弃用提示。未进行生产构建、全部外链HTTP存活检测、真实基准运行、真机安全区或线上验收。
+- 清理：仅终止本轮启动的Vite，确认127.0.0.1:5173不再监听；浏览器视口已恢复、临时页已关闭。未提交、未推送、未部署。
+
+## 2026-10-08 — UI/UX 修复（五）：许可文案复查
+
+- `content/benchmarks/mmmlu.json`：数据访问只说明 CSV 获取，许可记录、转载范围与代码许可边界各表达一项；测试污染说明保留在评分限制和原始核验记录，避免许可区再重复两次。
+- `content/benchmarks/genebench-pro.json`：许可区只说明适用材料和归属要求；10/129 题范围和公开参考答案继续由数据概况说明。站内样例原因改为题面范围，不再声称题旁的解读会讲核验冲突；原标题与原题面冲突仍保留在核验记录。
+- 原因与影响：浏览器和文案复查发现仍有职责交叉；以现有事实收拢表述，不改变来源、许可状态、原题、答案或研究记录。
+
+## 2026-10-08 — UI/UX 修复（四）：全量文案职责整理
+
+- 修改 `content/benchmarks/` 中 85 个条目的编辑文案：49 条超过80字符的摘要改为任务与关键区别；具体筛选、研究工作流、长对话和来源计数仍在对应任务/数据/限制中说明。
+- 75 个条目的161条研究过程限制迁移到带原来源的 `researchNotes`；任务/版本/评分比较所需条件按原说明保留短句。数据和样例字段中的本轮下载/哈希/权限核验过程亦集中记录，41处字段按职责改写，数据访问要求删去过程流水。
+- 23 条真实样例的 explanation 改为该题的任务与判断要点，需保留的原取样/节选/许可边界进入核验记录；未改变 prompt、raw、选项、答案、图格、媒体、来源或许可字段。GAIA 等许可 scope 已逐句包含的 boundaries 不再重复列出。
+- 本轮仅更新实际编辑条目的 `updatedAt`，不改 `verifiedAt`；此操作不声称重新研究外部资料或独立运行基准。来源库存与已登记外链均保留。
+- `App.vue`、`PublisherMarks.vue`、`BenchmarkCard.vue` 补品牌/评测名称的禁翻译；`sample-viewer.css` 补维护说明折叠样式并删无用外部状态标题样式；`main.ts` 使用现有稳定ASCII锚点，避免无效转义引发解析异常。
+- 验证：内容生成92项、严格 TypeScript检查、92项/27样例/17报告校验通过；样例加载/模式/URL专项8项通过。接下来执行全套自动测试、修改前后信息完整性与实际页面检查。
+
+## 2026-10-08 — UI/UX 修复（三）：样例分享与维护约束
+
+- 新增 `src/lib/sampleLocation.ts`；`SampleViewer.vue` 用原始记录 ID 和 read/raw 模式更新现有 URL，加载完成/历史返回恢复状态，连续操作使用最新题目；答案展开与选项仍本地保存。
+- 样例区删去与状态标签相同的小标题；解读标题改为任务导向，原题/答案/raw/编号禁用自动翻译；维护者收集样例说明改为折叠，选择控件补属性，样例数量变化提供 polite 播报。
+- 新增 `tests/sample-location.test.ts` 验证延迟加载、分享地址、连续换题/模式和历史恢复；更新 `content.test.ts` 图片合法夹具和 `sample-loader.test.ts` 无效尺寸案例。
+- 修改 `docs/CONTENT_MAINTENANCE.md`：明确短摘要、研究记录、字段职责、编号引用、原始图像宽高和样例分享地址，减少后续内容重新引入重复说明。
+- 验证状态：本轮结构和尺寸修改后严格 TypeScript 检查通过；本批继续执行类型与样例专项测试，最终统一记录。
+
+## 2026-10-08 — UI/UX 修复（二）：详情职责与对比定位
+
+- 修改 `DetailView.vue`：阅读顺序调整为任务、样例、评分、数据、版本、资料；评分者/比较条件并入评分，公开核验归数据，版本解读归关系；只渲染非空画像并集中说明缺项。综合指数样例区直接定位成员样例，按钮按真实动作命名。
+- 详情采用 `SourceList.vue`，编号可到达每个原始段落；数据/外部样例主入口从邻近依据中排除。模型发布引用改为 `/releases/#<release.id>`，评分指南改为 `/guide/#metrics`。
+- 修改 `CompareView.vue`：全空读分维度隐藏，局部缺项用一次说明和短标记；关键限制分条展示前两项，完整内容在现有详情；参考资料入口覆盖全部来源。`reading.css` 固定首列和表头，限定局部纵向滚动，并增加月份/指南目录样式。
+- 修改 `ReleasesView.vue`：按月份组织17份资料，增加月份目录和稳定卡片 ID，日期采用 UTC 中文 Intl 格式。`main.ts` 的深链接滚动按响应式偏移，自动展开目标的 details 祖先。
+- 修改 `schema.ts`：研究过程新增可选且带来源的 `researchNotes`，限制数组允许为空以避免虚构占位事实；图片素材必须提供正整数宽高。`SampleMedia.vue`、`sampleLoader.ts` 和 `sample-viewer.test.ts` 同步图片尺寸展示/运行时校验/夹具。
+- 修改 `detail.css`：编号来源卡和折叠定位、集中核验记录、评分解读和组成样例入口的样式均归详情域。
+- 验证：第一轮和详情结构完成后直接执行严格 `vue-tsc --noEmit`，均通过；内容调整与样例分享仍在实施。
+
+## 2026-10-08 — UI/UX 修复（一）：引用与基础交互
+
+- 原因与原则：按全站审查结果修复重复呈现和规范缺项；沿用现有组件、路由与视觉，使用静态编号引用保留精确来源。
+- 分支与基线：创建 `codex/uiux-audit-fixes`；已有修改原样保留，并在系统临时目录保存修改前文件快照，供本轮增量核对。
+- 新增 `src/lib/sourceReferences.ts`、`src/components/SourceList.vue`：同一页面合并资料卡，原始 URL/hash 各自保留编号和定位；`EvidenceLinks.vue` 改为简短内部引用，支持排除同区块主入口。
+- 新增 `src/lib/displayFormats.ts`、`src/lib/sampleAccess.ts`：集中稳定的中文日期/计数和样例动作命名；`BenchmarkCard.vue` 的样例入口改为明确动作并禁止翻译名称。
+- 修改 `ExploreView.vue`：常规结果数量增加 polite 状态播报；搜索、批量输入及筛选补 name/autocomplete，批量占位符补省略号。
+- 修改 `GuideView.vue`：10 个课程新增稳定 ID 和页内目录，案例跳到相应任务、评分、数据或组成栏目；`AboutView.vue` 合并重复来源/核验说明。
+- 修改 `tokens.css`、`base.css`、`layout.css`、`benchmark-card.css`、`index.html`：焦点环改用可读紫色；补触摸动作、focus 滚动留白、safe-area、屏外卡片 content-visibility、标题平衡和统一主题底色。
+- 验证状态：本轮实现中；类型检查和最终浏览器记录后续补充。未提交、未推送、未部署。
+
+## 2026-10-08 — UI/UX 全站审查与重复内容分析
+
+- 原因：用户主动调用 web-design-guidelines，要求详细审查每页 UI/UX，重点检查卡片详情的说明、文字、外链与重复信息；遵循最简原则，本轮只形成审查文档，不修改业务界面或内容数据。
+- 新增 `docs/reviews/2026-10-08-uiux-audit.md`：记录最新规范来源、主页面逐项分析、92 个详情的统计附表、27 条样例核验、问题对应文件行号、重复引用与重复入口的区别，以及建议的最小实施顺序。
+- 审查发现：78/92 页数据访问入口与邻近依据链接精确重合，68/74 个非站内样例页存在同样情况；AA Intelligence Index 页同一方法地址生成 16 个外链节点；30 个详情的数据画像产生 61 个重复占位；对比固定读分行产生重复空值说明；部分摘要过长，核验过程说明多处进入主要正文；还记录焦点对比度、搜索结果播报及精确导航等规范/体验问题。
+- 验证：本地 vue-tsc --noEmit 退出码 0；实际打开全部 92 个详情的 1365px、898px、390px 布局和其余 6 主路由的桌面/手机布局；18 个评测中的 27 条真实样例逐条切换，无整页横向溢出或媒体错误提示；验证搜索 URL、键盘对比、刷新恢复、表格键盘滚动及答案/原始数据切换。
+- 统计复核：报告附表包含 92 个唯一条目 ID，无缺漏；外链 DOM 节点合计 2,869，逐页唯一地址数相加 637；包括折叠区域中的链接，不能解释为网络请求次数或全站唯一地址数。
+- 影响与边界：仅新增审查报告并追加本条日志；业务文件集合在文档写入前后 SHA-256 一致，保留既有未提交改动。未运行生产构建、自动测试套件、全部外链存活检测、线上部署或网页版 GPT 评审。浏览器 error 列表为空，存在 Vue Router next() 弃用警告，未修改依赖。
+- 服务：用户本轮明确回复“你自己启动”后使用本地 Vite CLI 启动 127.0.0.1:5173；检查完成已终止本次服务，确认该端口不再监听；没有运行内容生成管线或 npm run build。
+
+## 2026-09-28 — 标题去除火箭与 Logo 候选设计
+
+- 原因：按用户要求简化标题，并提供差异化 Logo 供选择，遵循最小改动原则。
+- 修改 src/App.vue：仅删除站点标题后的火箭装饰，保留名称、副标题和现有图标。
+- 使用内置 GPT Image 生成一张 4×4、01–16 编号的候选图；包含几何、字母、书籍、量尺、像素、印章、线条与立体等不同设计方向，待用户选定后再接入正式 Logo。
+- 验证：内容生成与严格 TypeScript 检查通过；App.vue 差异检查通过。未启动服务，未提交或部署。
+
+## 2026-09-28 — 评测读分模板与综合指数补全
+
+- 原因：文章对照发现综合指数组成、评分者、运行条件与版本变更缺少集中展示；本轮复用现有内容管线、详情、对比与指南，不引入模型成绩库或重复页面。
+- 状态：实现、内容核对与本地验收已完成；未提交、推送或部署。
+- `src/content/schema.ts`、`src/content/interpretation.ts`：增加逐栏目带来源的可选读分解读，以及总权重必须为 100% 的指数组成；详情与对比共用栏目定义。
+- `scripts/content-pipeline.ts`：指数成员进入现有引用校验和删除保护，避免产生指向草稿、缺失条目或自身的公开链接。
+- `src/views/DetailView.vue`、`src/views/CompareView.vue`、`src/styles/detail.css`：复用 EvidenceLinks 和现有网格展示读分提示；通用组成表链接到已有详情，窄屏可局部横向滚动。
+- 本轮按要求未使用网页端 GPT 评审。
+- `content/benchmarks/`：新增 AA 智能指数、AA-Briefcase、AA-Omniscience、AA-LCR、GDP.pdf、CritPt、AutomationBench-AA、Terminal-Bench 3.0 共 8 项；目录增至 92 项。未增加原题转载，27 条站内样例保持不变。既有 `arena.json`、`gdpval-aa-v2-1.json`、`terminal-bench-4.json` 补读分说明及编辑日期，不把局部核对冒充整条重新核验。
+- `content/templates/benchmark.json`：草稿提供四个读分栏目，正式发布前逐项填依据或删除未整理栏目。
+- `GuideView.vue`、`ExploreView.vue`、`reading.css`：增加四个工作任务入口，直接复用目录分类 URL；原指南增添综合分、真人偏好、不确定性与任务成本案例。
+- `tests/content.test.ts`、`tests/search.test.ts`：覆盖权重、来源、成员失效、撤回/删除保护、投影和名称版本隔离。
+- `README.md`、`README_ZH.md` 同步 92 项内容与新功能；`docs/CONTENT_MAINTENANCE.md`、`docs/ARCHITECTURE.md` 记录可选字段、模板填法和引用保护；`docs/research/2026-09-28-score-reading.md` 保存本轮第一方证据与未核实边界。
+- 最终验证：严格 TypeScript 与内容生成通过，92 条目、27 条样例；42 项自动测试全部通过。生产构建完成 98 个路由，核验 97 个静态页面及 Pages 404；git diff --check 通过。主包仍有体积提示（694.30 kB，gzip 193.55 kB），本轮未扩大到打包架构改造。
+- 真实浏览器：桌面读分卡片、指数组成与成员跳转正常；390px 视口下详情组成表与两项对比局部滚动，页面实际宽度和内容宽度均为 375px。指南任务入口进入现有分类，AA-LCR/GDP.pdf 加入对比后显示共用解读与来源；控制台无警告或错误。视口已恢复，临时页面已关闭，截图保存在 artifacts/score-reading-preview.png。
+- 边界修正：GDP.pdf 官方数据卡返回 401，访问与样例标为受阻/未核验，不推断为私有；移除 AA 指数和 AutomationBench-AA 将方法页误当数据入口的 URL，复用访问说明回退。详情空栏目统一说明本站尚未整理，避免暗示官方未披露。
+- 临时生产预览已停止；没有启动开发服务，没有变更线上站点。
+
 ## 2026-09-23 — 无站内样例入口修复与五条官方数据接入
 
 - 原因：用户发现“没有站内样例”可能被误读为“benchmark 没有数据”，并要求所有无样例条目提供准确外部入口，同时研究用户自行下载官方数据后选取一条真实记录公开展示的合规流程。
@@ -461,3 +689,6 @@
 - GitHub Pages 已选择 GitHub Actions。首次构建与测试成功；空仓库初始化的 github-pages 环境规则仍指向不存在的 mater，已精确改为 main（仅允许该分支，未取消分支限制），重跑失败的部署任务后成功。
 - 验证记录：工作流 https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/35975671314 的第2次尝试为 Success；站点 https://whiteplusms.github.io/whats-a-benchmark/ 已用真实浏览器打开，84项目录、MMMLU详情及动态真实样例正常加载。
 - 后续 main 推送会自动执行测试、构建、部署。工作流仍有上游 Actions Node 20 运行时迁移警告，但本次已在平台提供的运行时成功执行；不将告警写成部署失败。本次未启动本地服务。
+
+
+

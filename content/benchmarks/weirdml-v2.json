@@ -1,0 +1,193 @@
+{
+  "id": "weirdml-v2",
+  "status": "published",
+  "order": 1210,
+  "name": "WeirdML v2",
+  "subtitle": "为陌生数据设计并迭代ML代码",
+  "category": "coding",
+  "tags": [
+    "机器学习工程",
+    "反馈迭代"
+  ],
+  "publisher": "Håvard Tveit Ihle / WeirdML",
+  "brandIds": [
+    "havard-ihle"
+  ],
+  "year": null,
+  "version": "v2；不含2026-09独立发布的v3",
+  "kind": "original",
+  "aliases": [
+    "WeirdML"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在新颖、非标准机器学习问题上编写 PyTorch 训练代码，按测试集准确率评估并提供多轮反馈。",
+    "task": "根据非标准机器学习任务及少量数据，生成PyTorch训练代码，在5次提交中利用执行反馈改进模型。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/weirdml",
+      "https://htihle.github.io/weirdml_v2.html"
+    ]
+  },
+  "taskContract": {
+    "input": "任务说明、训练数据、加载数据与保存预测的示例代码；隐藏新任务内容不同，官网只提供早期任务的详细prompt。",
+    "output": "可在Docker内运行的PyTorch训练/预测代码，评分读取测试集预测；每run最多5次提交，前4次可根据日志与测试准确率改进。",
+    "environment": "Docker隔离执行，TITAN V 12GB GPU，每run允许5次提交；作者页与Epoch登记页报告的超时和重复次数不同，需按具体结果配置区分。",
+    "sourceUrls": [
+      "https://htihle.github.io/weirdml_v2.html",
+      "https://epoch.ai/benchmarks/weirdml"
+    ]
+  },
+  "dataProfile": {
+    "summary": "部分早期任务说明和结果公开，完整新任务材料未公开。",
+    "disclosure": "partial",
+    "scale": [
+      "作者结果摘要以17项任务平均。",
+      "每run 5次提交，并提供4轮执行日志和测试准确率反馈。"
+    ],
+    "splits": [
+      "作者页说明只展示早期任务详情，其余新任务隐藏细节。"
+    ],
+    "fields": [],
+    "files": [
+      "作者页提供任务说明示例及结果，未核实完整任务下载。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/weirdml",
+      "https://htihle.github.io/weirdml_v2.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "作者官网可浏览任务示例；完整运行材料下载与数据许可尚未核实。"
+    ],
+    "sourceUrls": [
+      "https://htihle.github.io/weirdml_v2.html"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://htihle.github.io/weirdml_v2.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://htihle.github.io/prompts/task_prompt_shapes_easy.html",
+    "sourceUrls": [
+      "https://htihle.github.io/prompts/task_prompt_shapes_easy.html"
+    ]
+  },
+  "metric": {
+    "name": "各轮最佳测试准确率的任务均值",
+    "description": "每run取5次提交的最高测试准确率，先对同任务的runs取均值，再在任务之间平均。官网提供置信区间；该口径不是5轮平均准确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/weirdml",
+      "https://htihle.github.io/weirdml_v2.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "v3是独立新任务集，与v2成绩不可直接比较。",
+      "sourceUrls": [
+        "https://htihle.github.io/weirdml_v2.html",
+        "https://epoch.ai/benchmarks/weirdml"
+      ]
+    },
+    {
+      "text": "作者页写120秒及通常5 runs，Epoch页写600秒及通常15 runs；这些结果配置不能混并。",
+      "sourceUrls": [
+        "https://htihle.github.io/weirdml_v2.html",
+        "https://epoch.ai/benchmarks/weirdml"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "作者页结果摘要写17任务，但任务介绍又称6个早期任务加13个新任务；本条目保留明确结果范围，不推断两组数字映射。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/weirdml",
+        "https://htihle.github.io/weirdml_v2.html"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://htihle.github.io/weirdml_v2.html"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：Author page title Task Prompt: Shapes (Easy)；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://htihle.github.io/prompts/task_prompt_shapes_easy.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "WeirdML v2 author page",
+      "url": "https://htihle.github.io/weirdml_v2.html",
+      "role": "definition"
+    },
+    {
+      "label": "Epoch WeirdML v2 benchmark page",
+      "url": "https://epoch.ai/benchmarks/weirdml",
+      "role": "definition"
+    },
+    {
+      "label": "Epoch WeirdML v2 review",
+      "url": "https://epoch.ai/benchmarks/weirdml/review",
+      "role": "paper"
+    },
+    {
+      "label": "已核验的具体公开任务",
+      "url": "https://htihle.github.io/prompts/task_prompt_shapes_easy.html",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "执行模型写出的训练代码并用测试预测计算准确率；每run取五轮最高值，再跨runs和任务平均，因此测试反馈参与了迭代。",
+      "sourceUrls": [
+        "https://htihle.github.io/weirdml_v2.html",
+        "https://epoch.ai/benchmarks/weirdml"
+      ]
+    },
+    "comparison": {
+      "text": "作者页120秒/通常5runs与Epoch登记600秒/通常15runs不同；明确取的是哪个结果协议，且不能与独立v3新题集合并。",
+      "sourceUrls": [
+        "https://htihle.github.io/weirdml_v2.html",
+        "https://epoch.ai/benchmarks/weirdml"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-weirdml-v2",
+        "title": "Shapes Easy · 噪声点云形状分类",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方 Shapes Easy 任务的训练数据为 (1000,512,2)：每个样本有 512 对二维坐标，其中部分点形成圆、正方形、三角形、五边形或星形，其余为噪声。形状以 (0.5,0.5) 为中心；需训练模型预测同分布测试样本的五类形状。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：Author page title Task Prompt: Shapes (Easy)\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "This is a challenge to test how good you are at doing machine learning on an unknown dataset.",
+        "source": "https://htihle.github.io/prompts/task_prompt_shapes_easy.html",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "WeirdML v2 first-six public examples; Shapes Easy",
+        "excerpt": true
+      }
+    ]
+  }
+}

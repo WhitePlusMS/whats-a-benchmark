@@ -4,8 +4,8 @@
   display: inline-flex;
   gap: 6px;
   align-items: center;
-  background: #f5f1fa;
-  border: 1px solid #eae2f2;
+  background: var(--accent-softer);
+  border: 1px solid var(--accent-border);
   border-radius: 5px;
   padding: 5px 9px;
   font-size: 11px;
@@ -24,7 +24,7 @@
   color: var(--muted);
 }
 .breadcrumbs a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .detail-heading {
   padding: 24px 0;
@@ -41,8 +41,15 @@
   margin-top: 6px;
   overflow-wrap: anywhere;
 }
+.detail-subtitle {
+  font-size: 15px;
+  font-weight: 550;
+  margin-top: 8px;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
 .detail-summary {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.9;
   margin-top: 12px;
   max-width: 720px;
@@ -65,7 +72,7 @@
 }
 .detail-facts small {
   display: block;
-  font-size: 10px;
+  font-size: 11px;
   margin-bottom: 8px;
   color: var(--muted);
 }
@@ -89,12 +96,12 @@
   white-space: nowrap;
 }
 .detail-nav a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .detail-section {
   padding: 28px 0;
   border-bottom: 1px solid var(--border);
-  scroll-margin-top: 148px;
+  scroll-margin-top: var(--anchor-offset);
 }
 .detail-section h2 {
   font-size: 21px;
@@ -147,7 +154,7 @@
   display: block;
   margin-bottom: 10px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 650;
   letter-spacing: 0.5px;
 }
@@ -165,6 +172,41 @@
 .policy-grid ul {
   margin: 0;
   padding-left: 18px;
+}
+.profile-grid h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+/* 指数复用详情页面，只增加适用于窄屏的表格容器。 */
+.composition-scroll {
+  overflow-x: auto;
+  margin-top: 18px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+.composition-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.composition-table th,
+.composition-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.composition-table thead {
+  background: var(--surface);
+}
+.composition-table th:nth-child(2) {
+  width: 25%;
+}
+.composition-table td:first-child,
+.composition-table td:nth-child(3) {
+  white-space: nowrap;
 }
 .profile-grid li + li,
 .policy-grid li + li {
@@ -185,7 +227,7 @@
 .policy-definition dt {
   margin-top: 12px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 650;
 }
 .policy-definition dd {
@@ -198,13 +240,13 @@
 }
 .metric-panel {
   padding: 28px;
-  background: #f4f5f8;
+  background: var(--surface-sunken);
   border: 1px solid var(--border);
   border-radius: 10px;
 }
 .metric-panel > small {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 .metric-panel h3 {
   font-size: 23px;
@@ -213,7 +255,7 @@
 }
 .metric-panel > span {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 .metric-panel p {
   font-size: 12px;
@@ -240,9 +282,6 @@
 .caveat-panel li > p {
   margin: 0;
 }
-.caveat-panel li .evidence-links {
-  margin-top: 8px;
-}
 .caveat-panel > a {
   font-size: 11px;
 }
@@ -264,10 +303,6 @@
 .relation-link > div {
   min-width: 0;
   overflow-wrap: anywhere;
-}
-.relation-item .evidence-links a {
-  overflow-wrap: anywhere;
-  min-width: 0;
 }
 .relation-list h3 {
   font-size: 16px;
@@ -304,15 +339,16 @@
   color: var(--muted);
   font-size: 12px;
 }
-.source-list-secondary > a {
-  padding: 16px 20px;
+.source-entry {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
-.source-list > a {
+.source-main {
   display: flex;
   align-items: center;
   gap: 15px;
-  background: var(--surface);
-  border: 1px solid var(--border);
   padding: 20px;
   border-radius: 8px;
 }
@@ -328,12 +364,12 @@
   font-size: 13px;
 }
 .source-list small {
-  font-size: 10px;
+  font-size: 11px;
   display: block;
   margin-top: 3px;
   color: var(--muted);
 }
-.source-list > a > svg {
+.source-main > svg {
   margin-left: auto;
   color: var(--muted);
 }
@@ -351,9 +387,97 @@
 .detail-nav a {
   color: var(--text-secondary);
 }
-.source-list > a > span:nth-child(2) {
+.source-main > span:nth-child(2) {
   min-width: 0;
   overflow-wrap: anywhere;
+}
+.source-locations {
+  border-top: 1px solid var(--border);
+  padding: 12px 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.source-locations summary,
+.research-notes summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.source-locations ul,
+.research-notes ul {
+  padding-left: 18px;
+}
+.source-locations li + li {
+  margin-top: 10px;
+}
+.source-locations a {
+  color: var(--accent-text);
+  overflow-wrap: anywhere;
+}
+.source-main:hover {
+  background: var(--surface-subtle);
+}
+.profile-missing,
+.data-disclosure,
+.version-reading,
+.score-reading {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+  margin-top: 18px;
+}
+.data-disclosure h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.score-reading {
+  margin: 0 0 24px;
+}
+.score-reading > p {
+  margin-top: 8px;
+}
+.version-reading {
+  margin-bottom: 18px;
+}
+.score-guide {
+  margin-top: 18px;
+}
+.metric-panel:only-child {
+  grid-column: 1 / -1;
+  max-width: 880px;
+}
+.composition-samples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.composition-samples a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--accent-text);
+  font-size: 13px;
+}
+.research-notes {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.research-notes > p {
+  margin-top: 14px;
+}
+.research-notes li + li {
+  margin-top: 16px;
 }
 @media (max-width: 900px) {
   .score-layout {
@@ -386,8 +510,11 @@
   .detail-title-line {
     gap: 13px;
   }
+  .detail-subtitle {
+    font-size: 14px;
+  }
   .detail-summary {
-    font-size: 13px;
+    font-size: 14px;
   }
   .detail-cta {
     gap: 8px;
@@ -417,7 +544,7 @@
   }
   .detail-section {
     padding: 30px 0;
-    scroll-margin-top: 110px;
+    scroll-margin-top: var(--anchor-offset);
   }
   .detail-section h2 {
     font-size: 21px;
@@ -437,7 +564,7 @@
   .relation-link > div {
     flex: 1 0 70%;
   }
-  .source-list > a {
+  .source-main {
     padding: 18px;
   }
   .metric-panel {

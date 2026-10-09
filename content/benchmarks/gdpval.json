@@ -12,7 +12,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "id": "gdpval",
   "name": "GDPval",
   "subtitle": "交一份能用的工作成果",
@@ -34,26 +34,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "完整 1,320 项任务的公众访问路径、其余 1,100 项的任务 ID 与是否保留集状态未由本轮第一方下载入口核实。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/openai/gdpval",
-        "https://evals.openai.com/gdpval/grading"
-      ]
-    },
-    {
-      "text": "数据卡中的全套附件、参考成品与 rubric 是否分别含第三方内容及各自许可，未逐文件核对。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/openai/gdpval"
-      ]
-    },
-    {
-      "text": "OpenAI Evals grading 页面本轮可见内容有限，公开服务的完整调用约束、账户条件与当前版本未核实。",
-      "sourceUrls": [
-        "https://openai.com/index/gdpval/",
-        "https://huggingface.co/datasets/openai/gdpval"
-      ]
-    },
     {
       "text": "不同外部报告的工具、推理时长、代理 harness 与专家评审配置不统一，不能仅依 benchmark 名称比较成绩。",
       "sourceUrls": [
@@ -101,7 +81,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "OpenAI GDPval 评估模型完成美国 GDP 相关行业中的现实知识工作任务的能力。完整任务集与公开 gold 子集范围不同；GDPval-AA 是使用公开子集的独立第三方评测。",
+    "summary": "完成真实职业任务并提交可审阅成果；完整集与公开 gold 子集的范围不同。",
     "task": "模型依据真实职业任务提示和参考材料制作工作成品，由相关职业的资深从业者设计、审阅任务，并按任务 rubric 比较成品质量。",
     "sourceUrls": [
       "https://openai.com/index/gdpval/"
@@ -140,7 +120,7 @@
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "220 个公开 gold 任务可从 OpenAI Hugging Face 获取；本轮未找到完整 1,320 个任务的第一方公开下载入口。"
+      "220 个公开 gold 任务可从 OpenAI Hugging Face 获取；完整任务集的公开下载方式尚未确认。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/gdpval",
@@ -149,23 +129,77 @@
     "url": "https://huggingface.co/datasets/openai/gdpval"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "OpenAI 数据卡未显示覆盖整个数据集及附件的统一许可证，并披露少量第三方品牌/商标仅用于研究和评测。",
-    "scope": "不能仅凭公开下载推定任务、附件、图像、参考答案和第三方素材均可整体复制。",
+    "status": "unknown",
+    "license": "OpenAI将220-task gold subset称为open-source；所查数据卡未确立具体任务数据许可名称、scope或此页面示例与行的映射。",
+    "scope": "仅官方页面公开演示的原创解读；全套任务、reference files、成品及rubric的独立许可和映射未查明。",
     "boundaries": [
-      "逐文件确认权利和 OpenAI 当前条款前，只链接来源并使用原创说明，不转载 prompt、参考文件、rubric 或交付物。"
+      "不以open-source表述代替明确数据许可元数据。",
+      "不复制任务行、参考文件或人类作品。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/openai/gdpval"
+      "https://openai.com/index/gdpval/"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "OpenAI 页面及公开数据卡可查看任务信息。本站只链接官方入口并概述任务与成品类型；未确认许可前不复制 prompt、参考文件、rubric 或成品。",
+    "status": "local",
+    "reason": "OpenAI 发布页公开的真实工装任务演示；只提供本页原创解读和必要短引用，未转载参考文件、人类作品或底层任务行。最终交付要求已核对原文末段。",
+    "url": "https://openai.com/index/gdpval/",
     "sourceUrls": [
-      "https://openai.com/index/gdpval/",
-      "https://huggingface.co/datasets/openai/gdpval"
-    ],
-    "url": "https://openai.com/index/gdpval/"
+      "https://openai.com/index/gdpval/"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "完整 1,320 项任务的公众访问路径、其余 1,100 项的任务 ID 与是否保留集状态未由本轮第一方下载入口核实。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/gdpval",
+        "https://evals.openai.com/gdpval/grading"
+      ]
+    },
+    {
+      "text": "数据卡中的全套附件、参考成品与 rubric 是否分别含第三方内容及各自许可，未逐文件核对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/gdpval"
+      ]
+    },
+    {
+      "text": "OpenAI Evals grading 页面本轮可见内容有限，公开服务的完整调用约束、账户条件与当前版本未核实。",
+      "sourceUrls": [
+        "https://openai.com/index/gdpval/",
+        "https://huggingface.co/datasets/openai/gdpval"
+      ]
+    },
+    {
+      "text": "220 个公开 gold 任务可从 OpenAI Hugging Face 获取；本轮未找到完整 1,320 个任务的第一方公开下载入口。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/gdpval",
+        "https://evals.openai.com/gdpval/grading"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；OpenAI 发布页公开的真实工装任务演示；只提供本页原创解读和必要短引用，未转载参考文件、人类作品或底层任务行。最终交付要求已核对原文末段。",
+      "sourceUrls": [
+        "https://openai.com/index/gdpval/"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "official-case-gdpval",
+        "title": "官方演示 · 单人电缆卷筒测试工装",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "以 2025 年 6 月汽车装配线的制造工程任务为场景：电缆车终检需要将大卷电缆收放两遍，当前由两人配合。设计工装使一人即可完成操作。参考 Cable reel project requirements.pdf，用 3D 建模制作概念设计并组织展示；最终只提交含设计截图的摘要 PDF，不提交 3D 文件，也不做强度或成本效益计算。",
+        "explanation": "OpenAI 发布页公开的真实工装任务演示；只提供本页原创解读和必要短引用，未转载参考文件、人类作品或底层任务行。最终交付要求已核对原文末段。",
+        "raw": "This is June 2025 and you are a Manufacturing Engineer,",
+        "source": "https://openai.com/index/gdpval/",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true
+      }
+    ]
   }
 }

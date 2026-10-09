@@ -23,26 +23,7 @@
       "https://arxiv.org/abs/2405.21075"
     ]
   },
-  "limitations": [
-    {
-      "text": "未下载、播放或逐条审查 900 段视频和标注；不确认每条视频 URL 的现行可用状态。",
-      "sourceUrls": [
-        "https://github.com/MME-Benchmarks/Video-MME"
-      ]
-    },
-    {
-      "text": "未逐项获取视频权利人或字幕素材的单独授权；官方声明已足以支持本站不再发布任何该基准媒体/内容。",
-      "sourceUrls": [
-        "https://github.com/MME-Benchmarks/Video-MME"
-      ]
-    },
-    {
-      "text": "未在本轮复跑评测或固定仓库 commit。",
-      "sourceUrls": [
-        "https://github.com/MME-Benchmarks/Video-MME"
-      ]
-    }
-  ],
+  "limitations": [],
   "sources": [
     {
       "label": "作者论文",
@@ -72,7 +53,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "Video-MME 评估模型对视频序列的理解，支持视频 MLLM，也可作为多图像模型输入设置。官方仓库报告 900 段视频、总计 254 小时和 2,700 个人工标注问答，视频长度从 11 秒到 1 小时，并含短、中、长时长设置。数据形式涉及视频帧、字幕和音频等模态。",
+    "summary": "理解视频并回答选择题；覆盖短、中、长视频，可结合字幕和音频评测。",
     "task": "理解视频内容并回答四选一问题，按时长、领域等维度报告准确率。",
     "sourceUrls": [
       "https://github.com/MME-Benchmarks/Video-MME",
@@ -108,7 +89,7 @@
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "官方 GitHub、项目主页及作者提供的数据入口公开可访问；运行需获取视频、字幕和标注资源并准备待测模型。本轮未下载、展示或播放数据媒体，也未执行模型评测。"
+      "数据入口公开，运行需获取视频、字幕和标注资源，并准备待测模型。"
     ],
     "url": "https://github.com/MME-Benchmarks/Video-MME",
     "sourceUrls": [
@@ -133,5 +114,32 @@
     "sourceUrls": [
       "https://github.com/MME-Benchmarks/Video-MME"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "未下载、播放或逐条审查 900 段视频和标注；不确认每条视频 URL 的现行可用状态。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME"
+      ]
+    },
+    {
+      "text": "未逐项获取视频权利人或字幕素材的单独授权；官方声明已足以支持本站不再发布任何该基准媒体/内容。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME"
+      ]
+    },
+    {
+      "text": "未在本轮复跑评测或固定仓库 commit。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME"
+      ]
+    },
+    {
+      "text": "官方 GitHub、项目主页及作者提供的数据入口公开可访问；运行需获取视频、字幕和标注资源并准备待测模型。本轮未下载、展示或播放数据媒体，也未执行模型评测。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

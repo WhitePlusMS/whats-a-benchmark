@@ -44,26 +44,6 @@
   },
   "limitations": [
     {
-      "text": "固定 revision 64d5b3a05a263d14426f109345c38abaa7c7948d 的 ZH_CN test CSV 首行已逐字核验；官方数据无稳定题目 ID，研究记录保存 0-based 行号与规范化行 SHA-256。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv"
-      ]
-    },
-    {
-      "text": "本轮仅逐行核验 ZH_CN test 第 0 行，没有对 14 个 locale 的每条记录作逐项内容审计。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/openai/MMMLU",
-        "https://huggingface.co/datasets/openai/MMMLU/tree/main/test"
-      ]
-    },
-    {
-      "text": "本次仅看到 HF metadata 的 MIT 声明；Simple Evals 代码条款与翻译/底本之间逐项权利链没有单独拆解。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/openai/MMMLU",
-        "https://github.com/openai/simple-evals"
-      ]
-    },
-    {
       "text": "数据卡未载明反训练 canary 或明确的污染预防分区；测试集暴露风险是评测完整性限制，不作为上游规则声称。",
       "sourceUrls": [
         "https://huggingface.co/datasets/openai/MMMLU",
@@ -137,10 +117,10 @@
     ]
   },
   "dataProfile": {
-    "summary": "数据卡列出 14 个 locale，每个均为 MMLU test 翻译；逐 locale 固定行数及官方 CSV schema 本轮未核实。",
+    "summary": "数据卡列出 14 个 locale，分别对应 MMLU test 的翻译。",
     "disclosure": "partial",
     "scale": [
-      "14 个 locale；本轮仅从固定 revision 的 ZH_CN test CSV 读取并复核首行。"
+      "14 个 locale。"
     ],
     "splits": [
       "AR_XY、BN_BD、DE_DE、ES_LA、FR_FR、HI_IN、ID_ID、IT_IT、JA_JP、KO_KR、PT_BR、SW_KE、YO_NG、ZH_CN；每个配置均为 test。"
@@ -159,7 +139,7 @@
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "OpenAI Hugging Face 页面公开提供 14 个 locale 的 CSV；元数据标注 MIT。"
+      "可从 OpenAI Hugging Face 页面下载各 locale 的 CSV。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/MMMLU"
@@ -168,10 +148,10 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "OpenAI Hugging Face 数据卡 metadata 将 MMMLU 标为 MIT；数据来源于原始 MMLU test，代码许可另行处理。",
-    "scope": "转载时保留 OpenAI 和原 MMLU 作者引用及许可说明；公开 license 标签不消除 test 题和答案被暴露的完整性风险。",
+    "license": "OpenAI/MMMLU 数据卡标注 MIT；底本来自原始 MMLU test。",
+    "scope": "转载时保留 OpenAI 和原 MMLU 作者引用及附带许可说明。",
     "boundaries": [
-      "此单条样例依据 OpenAI/MMMLU 数据卡 MIT 标记展示，并保留 OpenAI 与原始 MMLU 作者归属；公开 test 题和答案有污染风险，但该风险不等同于上游禁止再分发。Simple Evals 代码许可不用于推定数据许可。"
+      "Simple Evals 的代码许可不用于推定 MMMLU 数据许可。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/MMMLU",
@@ -203,7 +183,7 @@
           "D: 6"
         ],
         "answer": "B",
-        "explanation": "这是 ZH_CN locale 的公开 test 选择题；题干、选项、答案标签与官方 CSV 原文一致。公开测试题及答案会增加评测污染风险，这属于完整性风险说明，不是数据集禁止转载的声明。",
+        "explanation": "题目要求判断代数扩张的次数。需要识别根式之间的关系，再从 4 个选项中选择答案；它展示 MMMLU 如何以中文呈现学科题。",
         "raw": {
           "index": 0,
           "Question": "求 Q 上给定域扩张 Q(sqrt(2), sqrt(3), sqrt(18)) 的次数。",
@@ -221,5 +201,48 @@
         "excerpt": false
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "固定 revision 64d5b3a05a263d14426f109345c38abaa7c7948d 的 ZH_CN test CSV 首行已逐字核验；官方数据无稳定题目 ID，研究记录保存 0-based 行号与规范化行 SHA-256。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv"
+      ]
+    },
+    {
+      "text": "本轮仅逐行核验 ZH_CN test 第 0 行，没有对 14 个 locale 的每条记录作逐项内容审计。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU",
+        "https://huggingface.co/datasets/openai/MMMLU/tree/main/test"
+      ]
+    },
+    {
+      "text": "本次仅看到 HF metadata 的 MIT 声明；Simple Evals 代码条款与翻译/底本之间逐项权利链没有单独拆解。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU",
+        "https://github.com/openai/simple-evals"
+      ]
+    },
+    {
+      "text": "数据卡列出 14 个 locale，每个均为 MMLU test 翻译；逐 locale 固定行数及官方 CSV schema 本轮未核实。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU",
+        "https://huggingface.co/datasets/openai/MMMLU/tree/main/test"
+      ]
+    },
+    {
+      "text": "14 个 locale；本轮仅从固定 revision 的 ZH_CN test CSV 读取并复核首行。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU",
+        "https://huggingface.co/datasets/openai/MMMLU/tree/main/test"
+      ]
+    },
+    {
+      "text": "样例 mmmlu-zh-cn-test-row-0-2fba2ac8a8：这是 ZH_CN locale 的公开 test 选择题；题干、选项、答案标签与官方 CSV 原文一致。公开测试题及答案会增加评测污染风险，这属于完整性风险说明，不是数据集禁止转载的声明。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08"
 }

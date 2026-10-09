@@ -85,12 +85,12 @@
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "官方 README 可见 JSONL 结构与“专业能力”样例，但样例含问题、参考答案和外部证据摘录；未核实数据及第三方摘录再发布授权。",
-    "url": "https://github.com/THUDM/AlignBench#L204-L232",
+    "status": "local",
+    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
+    "url": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
     "sourceUrls": [
-      "https://github.com/THUDM/AlignBench#L204-L232",
-      "https://github.com/THUDM/AlignBench#L148-L164"
+      "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+      "https://github.com/THUDM/AlignBench"
     ]
   },
   "metric": {
@@ -108,13 +108,6 @@
       "sourceUrls": [
         "https://github.com/THUDM/AlignBench#L148-L164",
         "https://github.com/THUDM/AlignBench#L204-L232"
-      ]
-    },
-    {
-      "text": "data_release.jsonl 与 data_v1.1_release.jsonl 的逐条差异及字段演进尚未完成审计。",
-      "sourceUrls": [
-        "https://github.com/THUDM/AlignBench#L177-L180",
-        "https://github.com/THUDM/AlignBench#L190-L204"
       ]
     },
     {
@@ -159,6 +152,56 @@
       "label": "官方仓库文件清单",
       "url": "https://github.com/THUDM/AlignBench#L148-L164",
       "role": "code"
+    },
+    {
+      "label": "THUDM AlignBench v1.1 pinned JSONL",
+      "url": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "许可/访问范围核查来源",
+      "url": "https://github.com/THUDM/AlignBench",
+      "role": "readme"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "data_release.jsonl 与 data_v1.1_release.jsonl 的逐条差异及字段演进尚未完成审计。",
+      "sourceUrls": [
+        "https://github.com/THUDM/AlignBench#L177-L180",
+        "https://github.com/THUDM/AlignBench#L190-L204"
+      ]
+    },
+    {
+      "text": "官方 README 可见 JSONL 结构与“专业能力”样例，但样例含问题、参考答案和外部证据摘录；未核实数据及第三方摘录再发布授权。",
+      "sourceUrls": [
+        "https://github.com/THUDM/AlignBench#L204-L232",
+        "https://github.com/THUDM/AlignBench#L148-L164"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "alignbench-history-qid-8",
+        "title": "麦哲伦远航与六分仪的历史问题",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "AlignBench v1.1 的一条历史专业知识题：核实麦哲伦环球航行时是否能用六分仪测量经纬度，并说明判断依据。官方参考答案按年代关系解释该工具当时尚未出现。",
+        "raw": {
+          "question_id": 8,
+          "category": "专业能力",
+          "subcategory": "历史",
+          "question": "麦哲伦航队在全球旅行时使用了六分仪测量经纬度么？"
+        },
+        "explanation": "定位到官方 v1.1 JSONL 的 question_id=8，类别为专业能力、子类为历史。这里仅保留短词组并用中文概述；未转载完整参考答案或数据行中的第三方证据摘录。题目来自用户指令集合，数据许可未确认。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 reference、evidences。",
+        "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "license": "AlignBench 数据/问题未发现明确再发布许可；本站仅保留短词组与中文编辑性概述，不转载参考答案和外部证据。仓库可访问不代表数据已获再发布授权。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "AlignBench v1.1 · question_id=8 · 专业能力/历史",
+        "excerpt": true
+      }
+    ]
+  }
 }

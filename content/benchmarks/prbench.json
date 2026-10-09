@@ -1,0 +1,247 @@
+{
+  "id": "prbench",
+  "status": "published",
+  "order": 444,
+  "name": "PRBench",
+  "subtitle": "用专家准则评价金融与法律专业推理",
+  "category": "work",
+  "tags": [
+    "金融",
+    "法律",
+    "专业推理",
+    "专家评分",
+    "多轮任务"
+  ],
+  "publisher": "Scale AI / PRBench 作者团队",
+  "brandIds": [
+    "scale"
+  ],
+  "year": 2025,
+  "version": "2025 论文与公开数据；Finance / Legal 分域",
+  "kind": "suite",
+  "aliases": [
+    "Professional Reasoning Bench",
+    "Professional Reasoning Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "覆盖金融和法律开放式专业任务的专家 rubric 评测体系。",
+    "task": "在单轮或多轮专业情景中给出完整回答，按专家定义的标准评分。",
+    "sourceUrls": [
+      "https://labs.scale.com/papers/prbench"
+    ]
+  },
+  "taskContract": {
+    "input": "prompt_0–prompt_9、已有 response/model 历史和该轮 reference_texts；代码将参考文本前置到对应 user prompt。rubric 与 scratchpad 用于参考/评分，不作为末轮答题输入。",
+    "output": "针对给定单轮问题或多轮对话的最后一条助手回答；官方默认 sampled 模式只生成末轮，而非重新生成全部历史轮次。",
+    "environment": "evals.py 读取指定 HF split，拼接公开对话历史、生成末轮回答，再按 criterion 调 LLM judge；缓存回答/评分，最终保存 results 与逐题 outputs。",
+    "sourceUrls": [
+      "https://github.com/scaleapi/PRBench",
+      "https://arxiv.org/abs/2511.11562"
+    ]
+  },
+  "dataProfile": {
+    "summary": "1,100 个金融与法律专业任务；首发项目/论文统计 19,356 项准则，当前数据卡另报 18,692，两个快照分开。",
+    "disclosure": "complete",
+    "scale": [
+      "任务总计 1,100：Finance 600、Legal 500；Hard 是其中 550 题（300+250）。",
+      "首发项目/论文报告 19,356 项准则；当前 Hugging Face 数据卡报告 18,692。"
+    ],
+    "splits": [
+      "公开 finance、legal 及相应 Hard 分项；Hard 与原领域有包含关系。"
+    ],
+    "fields": [
+      "task、turns、field、topic、expert；逐轮 prompt_i、response_i、model_i 与 reference_texts_i（最多 10 个 user turn）。",
+      "scratchpad 与 rubric 是参考/评分材料；rubric 经执行器解析为 title、带正负号的 weight 与 criteria_category。另有 economic_pathway、decision_type 和 canary。"
+    ],
+    "files": [
+      "HF data/ 的 finance、legal、finance_hard、legal_hard 发布记录；evals.py 生成/评估，util.py 与 criteria.py 抽取标准和计算分数。",
+      "cache/ 保存模型末轮回答和裁判缓存；results/ 输出 mean_normalized、mean_clipped 和各任务 grades/points/weights 等诊断。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "https://github.com/scaleapi/PRBench/blob/main/util.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
+    "sourceUrls": [
+      "https://labs.scale.com/papers/prbench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "ScaleAI官方PRBench数据卡标注CC-BY-4.0。",
+    "scope": "仅该公开finance数据行Viewer字段按CC-BY-4.0署名使用；外部引用、模型回复、scratchpad、rubric和canary内容排除。",
+    "boundaries": [
+      "保留数据卡归属和来源。",
+      "不复制回复、scratchpad、rubric或canary值。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "https://datasets-server.huggingface.co/first-rows?dataset=ScaleAI%2FPRBench&config=default&split=finance",
+      "https://github.com/scaleapi/PRBench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方HF Viewer/Rows API公开finance任务行和10轮元数据；数据卡标CC-BY-4.0。本站只展示首轮问题事实。",
+    "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "https://datasets-server.huggingface.co/first-rows?dataset=ScaleAI%2FPRBench&config=default&split=finance",
+      "https://github.com/scaleapi/PRBench"
+    ]
+  },
+  "metric": {
+    "name": "Rubric score（分域）",
+    "description": "裁判对每条 criterion 判 true/false，再累加满足项的带符号权重。逐题 clipped_points=所得点数/正权重总和；mean_clipped=max(0,逐题 clipped_points 的均值)，并非逐题先截零。金融、法律与 Hard 分别报告，没有官方跨域合成权重。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "https://github.com/scaleapi/PRBench/blob/main/util.py",
+      "https://github.com/scaleapi/PRBench/blob/main/criteria.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "分域成绩和 Hard 子集分数有不同范围；LLM judge 的版本与配置会影响结果。",
+      "sourceUrls": [
+        "https://labs.scale.com/papers/prbench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://labs.scale.com/papers/prbench"
+      ]
+    },
+    {
+      "text": "公开介绍的 19,356 与当前数据卡的 18,692 为各自来源快照统计；本次未逐行重算或推断两个数值的差异原因。",
+      "sourceUrls": [
+        "https://labs.scale.com/papers/prbench",
+        "https://huggingface.co/datasets/ScaleAI/PRBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "PRBench 官方介绍",
+      "url": "https://labs.scale.com/papers/prbench",
+      "role": "definition"
+    },
+    {
+      "label": "PRBench 作者论文",
+      "url": "https://arxiv.org/abs/2511.11562",
+      "role": "paper"
+    },
+    {
+      "label": "PRBench 官方数据卡",
+      "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
+      "role": "data"
+    },
+    {
+      "label": "PRBench 官方评测仓库",
+      "url": "https://github.com/scaleapi/PRBench",
+      "role": "readme"
+    },
+    {
+      "label": "PRBench 官方末轮生成与汇总实现",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方权重和计分函数",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/util.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方 criterion 解析",
+      "url": "https://github.com/scaleapi/PRBench/blob/main/criteria.py",
+      "role": "code"
+    },
+    {
+      "label": "PRBench 官方任务 Explorer",
+      "url": "https://prbench-explorer.vercel.app/",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=ScaleAI%2FPRBench&config=default&split=finance",
+      "role": "data"
+    },
+    {
+      "label": "案例原始JSON精简字段来源",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "prbench-finance",
+      "label": "金融分项",
+      "detail": "600 项金融任务，含 300 项 Hard 子集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench",
+        "https://github.com/scaleapi/PRBench"
+      ]
+    },
+    {
+      "id": "prbench-legal",
+      "label": "法律分项",
+      "detail": "500 项法律任务，含 250 项 Hard 子集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench",
+        "https://github.com/scaleapi/PRBench"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "评委读取完整对话和标准，评的是最终助手回应；负权重会扣分，criterion 通过比例不等于论文 mean_clipped。",
+      "sourceUrls": [
+        "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+        "https://github.com/scaleapi/PRBench/blob/main/util.py"
+      ]
+    },
+    "comparison": {
+      "text": "固定 split、末轮生成或 prefilled 响应来源、评委、工具选项与 trial；官方另有 mean_normalized，不能把它与 mean_clipped 混称同一分数。",
+      "sourceUrls": [
+        "https://github.com/scaleapi/PRBench/blob/main/evals.py",
+        "https://github.com/scaleapi/PRBench/blob/main/util.py"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-prbench-finance-ccar-tail-risk",
+        "title": "公开任务行 · CCAR尾部损失低估与六周申报",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "PRBench finance任务 ea67e314b6c2e8fc70627c19 的首轮问题描述：CCAR信用损失模型对商业地产压力情景的尾部损失低估约15–20%，监管提交还有6周；提问者要比较保守overlay、重建模型或其他优先方案。本站只复述真实开场问题，不展示回复、scratchpad、rubric或canary字段。",
+        "explanation": "ScaleAI官方Viewer标出Finance、Risk Management & Stress Testing、Expert及10轮记录。公开数据卡标CC-BY-4.0；记录中的回答和评分字段没有用作答案。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略response_0、model_0、reference_texts_0、scratchpad、rubric、canary、prompt_1 through prompt_9。 原文只保留已核片段；具体字段截取范围见取证记录。",
+        "raw": {
+          "topic": "Risk Management & Stress Testing",
+          "turns": 10,
+          "expert": "Expert",
+          "field": "Finance",
+          "prompt_0": "hey, we've got a problem with our credit loss forecasting model that feeds into CCAR stress testing. during validaton, we found the model is systematically underestimating losses in the tail scenarios",
+          "task": "ea67e314b6c2e8fc70627c19"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=1",
+        "license": "ScaleAI官方PRBench数据卡标注CC-BY-4.0；本站按原始任务prompt作中文解读并注明来源。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "split": "config=default / split=finance / task ea67e314b6c2e8fc70627c19 / prompt_0；10-turn conversation",
+        "excerpt": true
+      }
+    ]
+  }
+}

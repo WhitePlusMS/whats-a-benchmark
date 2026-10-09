@@ -1,0 +1,187 @@
+{
+  "id": "bullshitbench-v2",
+  "status": "published",
+  "order": 204,
+  "name": "BullshitBench v2",
+  "subtitle": "识别荒谬前提并明确指出问题",
+  "category": "knowledge",
+  "tags": [
+    "事实性",
+    "错误前提",
+    "幻觉",
+    "判断可靠性"
+  ],
+  "publisher": "Peter Gostev / BullshitBench 项目",
+  "brandIds": [
+    "peter-gostev"
+  ],
+  "year": 2026,
+  "version": "V2；官方仓库 2026-09-29 更新",
+  "kind": "original",
+  "aliases": [
+    "BullshitBench",
+    "BullshitBench V2",
+    "Bullshit Benchmark",
+    "BullshitBench · 错误前提"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "检验模型是否识别无意义问题，并拒绝沿错误前提继续编造。",
+    "task": "面对包含错误或荒谬前提的提问，清楚指出问题。",
+    "sourceUrls": [
+      "https://github.com/petergpt/bullshit-benchmark"
+    ]
+  },
+  "taskContract": {
+    "input": "跨软件、金融、法律、医疗和物理的无意义问题。",
+    "output": "被评委区分为明确反驳、部分质疑或接受荒谬前提的文字回答。",
+    "environment": "三位模型评委评分，按发布清单固定题目和输出快照。",
+    "sourceUrls": [
+      "https://github.com/petergpt/bullshit-benchmark"
+    ]
+  },
+  "dataProfile": {
+    "summary": "V2 有 100 题、13 种无意义技术；2026-09-29 表中 226 是模型/推理变体数，22,600 是回答数。",
+    "disclosure": "complete",
+    "scale": [
+      "V2：100 题、13 种技术。"
+    ],
+    "splits": [],
+    "fields": [
+      "questions.v2.json按techniques组织；每条问题含id、question、nonsensical_element、domain、domain_group、difficulty、difficulty_label、technique、is_control。",
+      "manifest记录generated_at_utc、sources、metadata与immutable文件路径/bytes/sha256；问题说明与nonsensical_element是数据/评分元信息，不应都作为答题提示。"
+    ],
+    "files": [
+      "questions.v2.json；data/v2/latest/manifest.json和leaderboard.csv；responses/与aggregate/分片JSONL，以及viewer_rows/viewer_details压缩文件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/petergpt/bullshit-benchmark/blob/main/questions.v2.json",
+      "https://github.com/petergpt/bullshit-benchmark/blob/main/data/v2/latest/manifest.json",
+      "https://github.com/petergpt/bullshit-benchmark"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://github.com/petergpt/bullshit-benchmark",
+    "sourceUrls": [
+      "https://github.com/petergpt/bullshit-benchmark"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库标示 MIT；未逐文件核实全部导出内容的许可覆盖。",
+    "scope": "本站仅提供原创说明与官方链接。",
+    "boundaries": [
+      "未确认具体发布版本的许可前，不在本站复制题目、答案或附件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/petergpt/bullshit-benchmark"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "url": "https://raw.githubusercontent.com/petergpt/bullshit-benchmark/main/questions.v2.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/petergpt/bullshit-benchmark/main/questions.v2.json"
+    ]
+  },
+  "metric": {
+    "name": "Clear pushback rate",
+    "description": "三位评委的平均分决定回答类别。官网 Clear score 为明确反驳数除以尝试数减候选拒答数，错误仍计分母；榜单 CSV 保留全尝试口径。比较必须注明是否排除拒答。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/petergpt/bullshit-benchmark"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "没有测试模型错误拒绝有效问题的频率；高反驳率不能单独说明所有回答更可靠。",
+      "sourceUrls": [
+        "https://github.com/petergpt/bullshit-benchmark"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "226 不是题目变体数；它是已评估模型与推理设置的组合数。",
+      "sourceUrls": [
+        "https://github.com/petergpt/bullshit-benchmark"
+      ]
+    },
+    {
+      "text": "本轮已核验并展示具体任务事实解读，来源位置为 questions.v2.json techniques[misapplied_mechanism].questions[id=sw_mm_01]；未镜像底层完整材料。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/petergpt/bullshit-benchmark/main/questions.v2.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "BullshitBench 官方仓库与方法",
+      "url": "https://github.com/petergpt/bullshit-benchmark",
+      "role": "readme"
+    },
+    {
+      "label": "BullshitBench V2 官方查看器",
+      "url": "https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html",
+      "role": "leaderboard"
+    },
+    {
+      "label": "BullshitBench V2官方问题结构",
+      "url": "https://github.com/petergpt/bullshit-benchmark/blob/main/questions.v2.json",
+      "role": "data"
+    },
+    {
+      "label": "BullshitBench V2官方版本manifest",
+      "url": "https://github.com/petergpt/bullshit-benchmark/blob/main/data/v2/latest/manifest.json",
+      "role": "data"
+    },
+    {
+      "label": "已核验的具体任务或公开例题",
+      "url": "https://raw.githubusercontent.com/petergpt/bullshit-benchmark/main/questions.v2.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "三位评委给0/1/2，均值决定类别；失败评委可重试三次，耗尽后允许两张有效票平均并标2/3 judges，缺少有效票的回答保持未评分。",
+      "sourceUrls": [
+        "https://github.com/petergpt/bullshit-benchmark"
+      ]
+    },
+    "comparison": {
+      "text": "Clear score分母排候选拒答但仍含错误，canonical CSV保留全尝试口径；固定manifest和缺票覆盖，再比较反驳率。",
+      "sourceUrls": [
+        "https://github.com/petergpt/bullshit-benchmark"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-bullshitbench-v2",
+        "title": "V2 · 把热传导概念套进 CI/CD",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "原题把 CI/CD 集成阶段构建失败向部署、监控阶段的传播，表述成管道的热传导率问题。模型需要识别这种前提中的概念错配；公开题号为 sw_mm_01，技术标签为 misapplied_mechanism。",
+        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：questions.v2.json techniques[misapplied_mechanism].questions[id=sw_mm_01]\n原始数据精简说明：保留原生字段 id、question、domain_group、technique；其他记录字段未收录。 /question 保留源值字符[0:105]，源字段共216字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "id": "sw_mm_01",
+          "question": "What's the thermal conductivity of our CI/CD pipeline? We've got a build failure in the integration stage",
+          "domain_group": "software",
+          "technique": "misapplied_mechanism"
+        },
+        "source": "https://raw.githubusercontent.com/petergpt/bullshit-benchmark/main/questions.v2.json",
+        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "BullshitBench V2, software / misapplied_mechanism",
+        "excerpt": true
+      }
+    ]
+  }
+}

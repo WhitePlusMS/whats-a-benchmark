@@ -1,0 +1,1929 @@
+{
+  "date": "2026-10-09",
+  "items": [
+    {
+      "benchmarkId": "longbench-v2",
+      "sampleId": "official-case-longbench-v2-row-66fcffd9",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
+      "format": "native JSON row projection",
+      "responseStatus": 200,
+      "responseSha256": "27dea3e44a4759cbb89447b2005af99b50ef68d8b254536e1923eeedf1121569",
+      "fieldsIncluded": [
+        "_id",
+        "domain",
+        "sub_domain",
+        "difficulty",
+        "length",
+        "question",
+        "choice_A",
+        "choice_B",
+        "choice_C",
+        "choice_D",
+        "answer"
+      ],
+      "fieldsOmitted": [
+        "context"
+      ],
+      "originalRaw": "New language translation",
+      "rawProjection": {
+        "_id": "66fcffd9bb02136c067c94c5",
+        "domain": "Long In-context Learning",
+        "sub_domain": "New language translation",
+        "difficulty": "hard",
+        "length": "long",
+        "question": "You are given a grammar book of Kalamang language, now translate the following Kalamang sentence into English: Faisal emun me mindi don bolonet me ma he kademor.",
+        "choice_A": "Faisal's mother is still angry at him for a little thing like that.",
+        "choice_B": "Faisal's mother turns furious at him for a big thing like that.",
+        "choice_C": "Faisal's mother gets frustrated at him for a big thing like this.",
+        "choice_D": "Faisal's mother gets angry at him for a little thing like that.",
+        "answer": "D"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "mirrorcode",
+      "sampleId": "public-case-mirrorcode",
+      "source": "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "3ac574d03a91b55da73db07583f97de833a3f6dadea5adcd958bf79d77f5f267",
+      "fieldsIncluded": [
+        "test_file",
+        "test_name",
+        "description",
+        "command"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [],
+      "originalRaw": "cal -1m 12 2147483646",
+      "rawProjection": {
+        "test_file": "bigyear",
+        "test_name": "1m-month",
+        "description": "Gregorian - Monday-based month",
+        "command": "cal -1m 12 2147483646"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "swe-bench",
+      "sampleId": "public-case-swe-bench",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench&config=default&split=test&offset=0&length=1",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "282873bcf8cf850e75ca3a79d86f99a71d228df0456270cae6dc37ef9ee7d932",
+      "fieldsIncluded": [
+        "instance_id",
+        "base_commit",
+        "version",
+        "problem_statement"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [
+        {
+          "fieldPath": "/problem_statement",
+          "start": 0,
+          "end": 84,
+          "originalCharacters": 13614
+        }
+      ],
+      "originalRaw": "'WCS.all_world2pix' failed to converge when plotting WCS with non",
+      "rawProjection": {
+        "instance_id": "astropy__astropy-11693",
+        "base_commit": "3832210580d516365ddae1a62071001faf94d416",
+        "version": "4.2",
+        "problem_statement": "'WCS.all_world2pix' failed to converge when plotting WCS with non linear distortions"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "swe-bench-multilingual",
+      "sampleId": "public-case-swe-bench-multilingual",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multilingual&config=default&split=test&offset=0&length=1",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "c26c620992a8388ab2e0630f9d33e629f64952799bf818647db493d37c96af58",
+      "fieldsIncluded": [
+        "instance_id",
+        "base_commit",
+        "version",
+        "problem_statement"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [
+        {
+          "fieldPath": "/problem_statement",
+          "start": 0,
+          "end": 85,
+          "originalCharacters": 768
+        }
+      ],
+      "originalRaw": "Support Post aggregation function pow(f1,f2) to cater for square,",
+      "rawProjection": {
+        "instance_id": "apache__druid-13704",
+        "base_commit": "51dfde02840017092486fb75be2b16566aff6a19",
+        "version": "13704",
+        "problem_statement": "Support Post aggregation function pow(f1,f2) to cater for square, cube , square root."
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "swe-bench-pro",
+      "sampleId": "public-case-swe-bench-pro",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-bench_Pro&config=default&split=test&offset=0&length=1",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "87ebcb951736d5efffb92856fb5912c8bd44dbae0339df6985ab10a7441d69c2",
+      "fieldsIncluded": [
+        "instance_id",
+        "base_commit",
+        "version",
+        "problem_statement"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [
+        {
+          "fieldPath": "/problem_statement",
+          "start": 0,
+          "end": 75,
+          "originalCharacters": 486
+        }
+      ],
+      "originalRaw": "Post cache access and slug existence checks behave inconsistently",
+      "rawProjection": {
+        "instance_id": "instance_NodeBB__NodeBB-00c70ce7b0541cfc94afe567921d7668cdc8f4ac-vnan",
+        "base_commit": "ae3fa85f40db0dca83d19dda1afb96064dffcc83",
+        "version": "2.0.0",
+        "problem_statement": "## Title: Post cache access and slug existence checks behave inconsistently"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "swe-bench-verified",
+      "sampleId": "public-case-swe-bench-verified",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "c6e45619b3730abeb9c84e0cc48a15da3f77e6a800d01fc45392f40006e6e037",
+      "fieldsIncluded": [
+        "instance_id",
+        "base_commit",
+        "version",
+        "problem_statement"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [
+        {
+          "fieldPath": "/problem_statement",
+          "start": 0,
+          "end": 98,
+          "originalCharacters": 1246
+        }
+      ],
+      "originalRaw": "Modeling's `separability_matrix` does not compute separability correctly for nested",
+      "rawProjection": {
+        "instance_id": "astropy__astropy-12907",
+        "base_commit": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+        "version": "4.3",
+        "problem_statement": "Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "bullshitbench-v2",
+      "sampleId": "public-case-bullshitbench-v2",
+      "source": "https://raw.githubusercontent.com/petergpt/bullshit-benchmark/main/questions.v2.json",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "43f43d14bd20ddf17a29fafad2c3e9862e06c2e9c4a5bc94cf08d6ee2a6b1ece",
+      "fieldsIncluded": [
+        "id",
+        "question",
+        "domain_group",
+        "technique"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [
+        {
+          "fieldPath": "/question",
+          "start": 0,
+          "end": 105,
+          "originalCharacters": 216
+        }
+      ],
+      "originalRaw": "What's the thermal conductivity of our CI/CD pipeline?",
+      "rawProjection": {
+        "id": "sw_mm_01",
+        "question": "What's the thermal conductivity of our CI/CD pipeline? We've got a build failure in the integration stage",
+        "domain_group": "software",
+        "technique": "misapplied_mechanism"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "aime-2025",
+      "sampleId": "public-case-aime-2025",
+      "source": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "9f9066ff48ad2e31f9bf1b1ac6d5e80693195f987985f2859f89dd25ffa51c2d",
+      "fieldsIncluded": [
+        "problem_idx",
+        "problem",
+        "answer",
+        "problem_type"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [],
+      "originalRaw": "Find the sum of all integer bases",
+      "rawProjection": {
+        "problem_idx": 1,
+        "problem": "Find the sum of all integer bases $b>9$ for which $17_b$ is a divisor of $97_b.$",
+        "answer": 70,
+        "problem_type": [
+          "Number Theory"
+        ]
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "math-500",
+      "sampleId": "public-case-math-500",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "1f19cfded0869148fef2d4aeebbda764b446a3a9af3d8be1fcda5faa42eb651e",
+      "fieldsIncluded": [
+        "unique_id",
+        "problem",
+        "answer",
+        "subject",
+        "level"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [
+        {
+          "fieldPath": "/problem",
+          "start": 0,
+          "end": 74,
+          "originalCharacters": 161
+        }
+      ],
+      "originalRaw": "Convert the point $(0,3)$ in rectangular coordinates to polar",
+      "rawProjection": {
+        "unique_id": "test/precalculus/807.json",
+        "problem": "Convert the point $(0,3)$ in rectangular coordinates to polar coordinates.",
+        "answer": "\\left( 3, \\frac{\\pi}{2} \\right)",
+        "subject": "Precalculus",
+        "level": 2
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "simplebench",
+      "sampleId": "public-case-simplebench",
+      "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
+      "format": "native JSON field projection",
+      "responseStatus": 200,
+      "responseSha256": "4ea0bb96b35f61c97dbf5a7dc059986398441f0cbb17fa709ae2b0e9ba4f76e4",
+      "fieldsIncluded": [
+        "question_id",
+        "prompt",
+        "answer"
+      ],
+      "fieldsOmitted": "Other fields; source string excerpt ranges as recorded",
+      "truncatedValues": [
+        {
+          "fieldPath": "/prompt",
+          "start": 0,
+          "end": 110,
+          "originalCharacters": 600
+        }
+      ],
+      "originalRaw": "There are two sisters, Amy who always speaks mistruths",
+      "rawProjection": {
+        "question_id": 4,
+        "prompt": "There are two sisters, Amy who always speaks mistruths and Sam who always lies. You don't know which is which.",
+        "answer": "C"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "hyper-tau-bench",
+      "sampleId": "public-case-hyper-tau-bench",
+      "source": "https://raw.githubusercontent.com/sierra-research/hyper-tau-bench/main/data/tau2/hyper/tasks/002_airline_plus_construction_core_evidence_seeded_performance_hard.json",
+      "format": "native JSON fields",
+      "responseStatus": 200,
+      "responseSha256": "aa1fdc915727a067f27249bceac99b6bbdfb41e59330cd6256c46bdf16e8831b",
+      "fieldsIncluded": [
+        "id",
+        "source_domain",
+        "task_type",
+        "task_description"
+      ],
+      "truncatedValues": {
+        "task_description": {
+          "start": 0,
+          "end": 138,
+          "sourceCharacters": 597
+        }
+      },
+      "originalRaw": "Build the complete airline+ customer service domain from scratch",
+      "rawProjection": {
+        "id": "002_airline_plus_construction_core_evidence_seeded_performance_hard",
+        "source_domain": "airline_plus",
+        "task_type": "construction",
+        "task_description": "Build the complete airline+ customer service domain from scratch as two customer journeys: book travel and manage an existing reservation."
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "livecodebench",
+      "sampleId": "public-case-livecodebench",
+      "source": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl",
+      "format": "native JSONL fields",
+      "responseStatus": 206,
+      "responseSha256": "c571eaaa7415f72ef87fbace0405ccb082cc55fb42fb1c1d8122cd5cb9aa465b",
+      "fieldsIncluded": [
+        "question_title",
+        "question_id",
+        "platform",
+        "contest_id",
+        "difficulty",
+        "public_test_cases",
+        "question_content"
+      ],
+      "truncatedValues": {
+        "question_content": {
+          "start": 0,
+          "end": 155,
+          "sourceCharacters": 1365
+        }
+      },
+      "originalRaw": "A. Short Sort",
+      "rawProjection": {
+        "question_title": "A. Short Sort",
+        "question_id": "1873_A",
+        "platform": "codeforces",
+        "contest_id": "1873",
+        "difficulty": "easy",
+        "public_test_cases": "[{\"input\": \"6\\nabc\\nacb\\nbac\\nbca\\ncab\\ncba\\n\", \"output\": \"YES\\nYES\\nYES\\nNO\\nNO\\nYES\\n\", \"testtype\": \"stdin\"}]",
+        "question_content": "There are three cards with letters $\\texttt{a}$, $\\texttt{b}$, $\\texttt{c}$ placed in a row in some order. You can do the following operation at most once:"
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "aime-2024",
+      "sampleId": "public-case-aime-2024",
+      "source": "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
+      "format": "native row fields",
+      "responseStatus": 200,
+      "responseSha256": "e4033c704609cc7cdfe712ed410357b190733dec75aa5b54a39adc55add49393",
+      "fieldsIncluded": [
+        "problem_idx",
+        "problem",
+        "answer"
+      ],
+      "truncatedValues": {
+        "problem": {
+          "start": 0,
+          "end": 144,
+          "sourceCharacters": 534
+        }
+      },
+      "originalRaw": "Every morning Aya goes for a",
+      "rawProjection": {
+        "problem_idx": 1,
+        "problem": "Every morning Aya goes for a $9$-kilometer-long walk and stops at a coffee shop afterwards. When she walks at a constant speed of $s$ kilometers",
+        "answer": 204
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "chess-puzzles",
+      "sampleId": "public-case-chess-puzzles",
+      "source": "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
+      "format": "ZIP archive (.eval; Inspect log)",
+      "responseStatus": 206,
+      "responseSha256": "f305e7145dbb11d2b109c68dfa1a49e689010ecca1c6bf41297b4a1d30b1408a",
+      "fieldsIncluded": [
+        "id",
+        "input",
+        "target",
+        "metadata"
+      ],
+      "truncatedValues": {},
+      "originalRaw": "6k1/3R4/2N3p1/PpPp4/1P1r4/5r2/6K1/8 b - - 3 56",
+      "rawProjection": {
+        "id": 1,
+        "input": "6k1/3R4/2N3p1/PpPp4/1P1r4/5r2/6K1/8 b - - 3 56",
+        "target": "d4d3",
+        "metadata": {}
+      },
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "alignbench",
+      "sampleId": "alignbench-history-qid-8",
+      "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+      "sourceSha256": "6ad5cdb2d552d2557aca18d0dcabaf19ff59fd18bef98eef880296c0478bbd11",
+      "rawProjection": {
+        "question_id": 8,
+        "category": "专业能力",
+        "subcategory": "历史",
+        "question": "麦哲伦航队在全球旅行时使用了六分仪测量经纬度么？"
+      },
+      "truncations": [],
+      "fieldsIncluded": [
+        "question_id",
+        "category",
+        "subcategory",
+        "question"
+      ],
+      "originalRaw": "麦哲伦航队",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "eq-bench-4",
+      "sampleId": "eq-bench-4-generated-persona-29",
+      "source": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+      "sourceSha256": "d72c349c4d372ea9a661ec334cb46353185788d5fb20584b2319f46b7fdf6f77",
+      "rawProjection": {
+        "scenario_id": "b64d652c-fdec-42db-bd3c-885c6f61d725",
+        "starter": "I'm doing everything for my parents and my siblings just... aren't. I brought it up once and they made me feel like a monster.",
+        "i": 29
+      },
+      "truncations": [
+        {
+          "path": "/starter",
+          "start": 0,
+          "end": 126,
+          "sourceCharacters": 127
+        }
+      ],
+      "fieldsIncluded": [
+        "scenario_id",
+        "starter",
+        "i"
+      ],
+      "originalRaw": "Siblings not pulling their weight",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "omnidocbench",
+      "sampleId": "omnidocbench-demo-index-0-page-7",
+      "source": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+      "sourceSha256": "a0686ff3e2ce76b4e60c308bc28700683d3c62a0fd47149355e8b197db238dc6",
+      "rawProjection": {
+        "page_info": {
+          "page_no": 7,
+          "page_attribute": {
+            "data_source": "PPT2PDF",
+            "language": "english",
+            "layout": "single_column"
+          }
+        },
+        "layout_dets": [
+          {
+            "category_type": "title",
+            "text": "- Human Factors",
+            "ignore": false,
+            "order": 1
+          }
+        ]
+      },
+      "truncations": [],
+      "fieldsIncluded": [
+        "page_info",
+        "layout_dets"
+      ],
+      "originalRaw": "Human Factors",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "svgbench",
+      "sampleId": "svgbench-prompt-daf3f932ceaa",
+      "source": "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa",
+      "sourceSha256": "6514641c09ddcc238ac0daeada00f3fab79c0d0875119654645324b6880086f0",
+      "rawProjection": {
+        "prompt": {
+          "id": "prompt_daf3f932ceaa",
+          "slug": "lion",
+          "text": "lion",
+          "category": "animal"
+        },
+        "rankings": [
+          {
+            "generation": {
+              "id": "gen_528217605706"
+            }
+          }
+        ]
+      },
+      "truncations": [],
+      "fieldsIncluded": [
+        "prompt",
+        "rankings"
+      ],
+      "originalRaw": "lion",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "arena",
+      "sampleId": "arena-55k-row-65089",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=2&length=1",
+      "status": 200,
+      "sourceSha256": "11a597a934c053c2a8ed6bc890c9cdd01d094df1cbfd10e315c4b2e676dc4d74",
+      "rawProjection": {
+        "id": 65089,
+        "model_a": "gpt-3.5-turbo-0613",
+        "model_b": "mistral-medium",
+        "prompt": "[\"explain function calling. how would you call a function?\"]",
+        "winner_tie": 1
+      },
+      "truncations": [],
+      "fieldsIncluded": [
+        "id",
+        "model_a",
+        "model_b",
+        "prompt",
+        "winner_tie"
+      ],
+      "originalRaw": "explain function calling. how would you call a function?",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "charxiv",
+      "sampleId": "charxiv-validation-row-1-2005-07253",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=princeton-nlp%2FCharXiv&config=default&split=validation&offset=1&length=1",
+      "status": 200,
+      "sourceSha256": "0f56f7cf38505757e85e42efcb85366c439b89a450749a5f32697f21b6bdec10",
+      "rawProjection": {
+        "original_id": "2005.07253",
+        "category": "cs",
+        "figure_path": "images/2.jpg",
+        "reasoning_q": "What is the name of the line that is the furthest away from its fi value from the W_H axis?"
+      },
+      "truncations": [],
+      "fieldsIncluded": [
+        "original_id",
+        "category",
+        "figure_path",
+        "reasoning_q"
+      ],
+      "originalRaw": "What is the name of",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "creative-writing-v3",
+      "sampleId": "creative-writing-v3-gladiator",
+      "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/main/data/creative_writing_prompts_v3.json",
+      "status": 200,
+      "sourceSha256": "87f79b688261318f9182966aa238403aeaa1022f82ffc3ae4d1fe2a48cf1c412",
+      "rawProjection": {
+        "1": {
+          "category": "historical fiction",
+          "title": "Gladiator",
+          "writing_prompt": "Historical Fiction: Write a scene from a story set during the height of the Roman Empire, focusing on a slice"
+        }
+      },
+      "truncations": [
+        {
+          "path": "1.writing_prompt",
+          "start": 0,
+          "end": 109,
+          "sourceCharacters": 490
+        }
+      ],
+      "fieldsIncluded": [
+        "1"
+      ],
+      "originalRaw": "Do not write a combat scene.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "mathvista",
+      "sampleId": "mathvista-testmini-pid-1",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=AI4Math%2FMathVista&config=default&split=testmini&offset=0&length=1",
+      "status": 200,
+      "sourceSha256": "23c2d4c6ad41654bd0da7ed89e9085adbcb5faf697813334ce5077742c64925d",
+      "rawProjection": {
+        "pid": "1",
+        "metadata": {
+          "source": "SciBench"
+        },
+        "question": "When a spring does work on an object, we cannot find the work by simply multiplying the spring force by the object's displacement."
+      },
+      "truncations": [
+        {
+          "path": "question",
+          "start": 0,
+          "end": 130,
+          "sourceCharacters": 790
+        }
+      ],
+      "fieldsIncluded": [
+        "pid",
+        "metadata",
+        "question"
+      ],
+      "originalRaw": "when a spring does work",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "harvey-lab",
+      "sampleId": "official-case-harvey-lab-v1-ma-red-flag-review",
+      "source": "https://raw.githubusercontent.com/harveyai/harvey-labs/v1.0/tasks/corporate-ma/review-data-room-red-flag-review/task.json",
+      "sourceSha256": "d547102153904ef21c1105bf92bafc00c401e2b2328b7c275af380905adf1d4c",
+      "rawProjection": {
+        "work_type": "review",
+        "instructions": "Review the attached data room documents for this proposed acquisition and prepare a diligence red flag analysis. Output: `red-flag-memo.docx` and",
+        "tags": [
+          "Mergers & Acquisitions",
+          "due-diligence",
+          "data-room",
+          "red-flag-review",
+          "private-equity",
+          "environmental-services",
+          "regulatory-compliance"
+        ],
+        "deliverables": {
+          "red-flag-tracker.xlsx": "red-flag-tracker.xlsx",
+          "red-flag-memo.docx": "red-flag-memo.docx"
+        },
+        "title": "Review Data Room for Acquisition Red Flags — M&A Due Diligence Memo"
+      },
+      "truncations": [
+        {
+          "path": "instructions",
+          "start": 0,
+          "end": 145,
+          "sourceCharacters": 170
+        }
+      ],
+      "originalRaw": "Review Data Room for Acquisition Red Flags",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "legal-research-vals",
+      "sampleId": "official-case-legal-research-vals-p001",
+      "source": "https://raw.githubusercontent.com/vals-ai/legal-research-bench/main/data/public.json",
+      "sourceSha256": "7489b3efb9676094908d8a0e3fd7d1b125ca1851af82a228c4ce40690af5a66d",
+      "rawProjection": {
+        "dataset_version": "1.0.0",
+        "tests": [
+          {
+            "question": "A husband originally from Mexico entered the United States on a B-2 visa on December 1, 2022.",
+            "id": "P-001"
+          }
+        ]
+      },
+      "truncations": [
+        {
+          "path": "/tests/0/question",
+          "start": 0,
+          "end": 93,
+          "sourceCharacters": 1297
+        }
+      ],
+      "originalRaw": "incorrect address",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "osworld",
+      "sampleId": "official-case-osworld-chrome-dnt",
+      "source": "https://raw.githubusercontent.com/xlang-ai/OSWorld/main/evaluation_examples/examples/chrome/030eeff7-b492-4218-b312-701ec99ee0cc.json",
+      "sourceSha256": "87760f82205787708a1a3a9cf5e0dfb6bab405919a7733d761786054346c41c6",
+      "rawProjection": {
+        "id": "030eeff7-b492-4218-b312-701ec99ee0cc",
+        "evaluator": {
+          "result": {
+            "type": "enable_do_not_track"
+          },
+          "expected": {
+            "rules": {
+              "expected": "true"
+            },
+            "type": "rule"
+          },
+          "func": "exact_match"
+        },
+        "snapshot": "chrome",
+        "instruction": "Can you enable the 'Do Not Track' feature in Chrome to enhance my online privacy?"
+      },
+      "truncations": [],
+      "originalRaw": "Do Not Track",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "paperbench",
+      "sampleId": "official-case-paperbench-adaptive-pruning-reproduction",
+      "source": "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
+      "sourceSha256": "5dadc6dd588a3843ca106364ba6412688dcbb460d06aaca6a90b78d86fedbbaa",
+      "rawProjection": {
+        "finegrained_task_category": "Method Implementation",
+        "requirements": "Code has been implemented such that RoBERTa can be loaded into memory",
+        "id": "9ad77547-04b6-4558-993b-f22d91203bf1",
+        "weight": 1,
+        "task_category": "Code Development",
+        "sub_tasks": []
+      },
+      "truncations": [],
+      "originalRaw": "has been reproduced",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "prbench",
+      "sampleId": "official-case-prbench-finance-ccar-tail-risk",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=1",
+      "sourceSha256": "d7666c136eb835c6f5986ec2f2b715c84b1e91261d9c6f1ab0dd8dd1ce164379",
+      "rawProjection": {
+        "topic": "Risk Management & Stress Testing",
+        "turns": 10,
+        "expert": "Expert",
+        "field": "Finance",
+        "prompt_0": "hey, we've got a problem with our credit loss forecasting model that feeds into CCAR stress testing. during validaton, we found the model is systematically underestimating losses in the tail scenarios",
+        "task": "ea67e314b6c2e8fc70627c19"
+      },
+      "truncations": [
+        {
+          "path": "/prompt_0",
+          "start": 0,
+          "end": 200,
+          "sourceCharacters": 743
+        }
+      ],
+      "originalRaw": "due in 6 weeks",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "tau3-banking",
+      "sampleId": "official-case-tau3-banking-knowledge-task-001",
+      "source": "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+      "sourceSha256": "9a797288dd215e89c0fab9d0063581a3a64d433f06af6179eaad795521b23ef0",
+      "rawProjection": {
+        "id": "task_001",
+        "evaluation_criteria": {
+          "actions": [
+            {
+              "arguments": {
+                "annual_income": 100000,
+                "card_type": "Gold Rewards Card",
+                "rho_bank_subscription": true
+              },
+              "name": "apply_for_credit_card"
+            }
+          ]
+        }
+      },
+      "truncations": [],
+      "originalRaw": "Sarah Bosch",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "tax-agent-bench",
+      "sampleId": "official-case-tax-agent-bench-public-p001",
+      "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
+      "sourceSha256": "ece975b38fff7d6f69d170fbdd5a84f1d7f2ba4e418658af0e56647889231697",
+      "rawProjection": {
+        "suite_version": 2,
+        "suite_number_of_tests": 5,
+        "tests": [
+          {
+            "question": "On July 1, 2025 an investor group acquired 55.00% of ABC Corp's outstanding common stock from existing shareholders in one transaction.",
+            "id": "P-001"
+          }
+        ]
+      },
+      "truncations": [
+        {
+          "path": "/tests/0/question",
+          "start": 157,
+          "end": 292,
+          "sourceCharacters": 1792
+        }
+      ],
+      "originalRaw": "ABC Corporation",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "tau2-bench",
+      "sampleId": "tau2-telecom-v010-task-row-0",
+      "source": "https://raw.githubusercontent.com/sierra-research/tau2-bench/37199f36924c8896f5e048360691f8476cd89ba1/data/tau2/domains/telecom/tasks.json",
+      "sourceSha256": "192a2c143b3b512c37c3775fdf6c5040c33717388620c38b140c731dc6153cd7",
+      "rawProjection": {
+        "id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+        "description": {
+          "purpose": "Test resolution path: Mobile Data/Slow Internet Issues."
+        },
+        "user_scenario": {
+          "instructions": {
+            "domain": "telecom",
+            "task_instructions": "You are willing to refuel 2.0 GB of data if necessary"
+          }
+        },
+        "evaluation_criteria": {
+          "actions": [
+            {
+              "name": "toggle_data",
+              "arguments": {}
+            },
+            {
+              "name": "refuel_data",
+              "arguments": {
+                "gb_amount": 2.0
+              }
+            }
+          ],
+          "env_assertions": [
+            {
+              "func_name": "assert_mobile_data_status",
+              "arguments": {
+                "expected_status": true
+              }
+            },
+            {
+              "func_name": "assert_internet_speed",
+              "arguments": {
+                "expected_speed": 200,
+                "expected_desc": "excellent"
+              }
+            },
+            {
+              "func_name": "assert_data_refueling_amount",
+              "arguments": {
+                "expected_amount": 2.0
+              }
+            }
+          ]
+        }
+      },
+      "truncations": [
+        {
+          "path": "user_scenario.instructions.task_instructions",
+          "start": 342,
+          "end": 395,
+          "sourceCharacters": 1156
+        }
+      ],
+      "originalRaw": "You mobile data is not working properly.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "arena-hard-v2",
+      "sampleId": "arena-hard-v2-uid-2edbb5f36f5b42be",
+      "source": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+      "status": 206,
+      "sourceSha256OfRange": "3d4973febe262edf1d031ad690200a7a2d645e7cebea9c8dc40ae01460095430",
+      "rawProjection": {
+        "uid": "2edbb5f36f5b42be",
+        "category": "hard_prompt",
+        "subcategory": "coding",
+        "language": "English",
+        "prompt": "Write me a zig program that solves the following problem from advent of code and reads the input from a file input.txt and prints the"
+      },
+      "truncatedValues": [
+        {
+          "path": "prompt",
+          "start": 0,
+          "end": 133,
+          "sourceCharacters": 3329
+        }
+      ],
+      "format": "native JSONL record fields",
+      "omitted": "prompt后续题面、其余数据行和模型结果",
+      "originalRaw": "Write me a zig program that solves the following problem",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "ebr-bench",
+      "sampleId": "public-case-ebr-bench",
+      "source": "https://epoch.ai/publications/ebr-bench-update",
+      "sourceSha256": "67fc5ccc4eac939180deb549aed14de02489b3a1a61a244e1e096aae9f383996",
+      "rawProjection": "GPT-6 Astra scored 100% on the original version of the benchmark.\n\nThis line graph shows the score the player achieved on the y-axis, and the amount of times the player had attempted playing through the game on the x-axis. The graph shows that Astra went from scoring 11 out of 21 on its first try to 21 out of 21 on its second try. The top human participant went from scoring 1 out of 21 on their first try to 21 out of 21 on their sixth try.",
+      "format": "publisher article sentence + original chart alt text",
+      "omitted": "全部游戏状态、卡牌内容、输入任务和操作轨迹；本条只展示官方运行报道中的公开数据",
+      "originalRaw": "scored 100% on the original version",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "aider-polyglot",
+      "sampleId": "public-case-aider-polyglot",
+      "source": "https://raw.githubusercontent.com/Aider-AI/polyglot-benchmark/7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f/python/exercises/practice/wordy/.docs/instructions.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/Aider-AI/polyglot-benchmark/7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f/python/exercises/practice/wordy/.docs/instructions.md",
+          "sourcePath": "wordy instructions / Iteration 3 example; pinned commit 7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f",
+          "sourceSha256": "b9e24dd95b27fa04f706e4dd9e5c7f430684b1af13a1cfde34faee705300aeee",
+          "textCharactersIncluded": 52,
+          "originalProposedCharacters": 52
+        }
+      ],
+      "originalRaw": "What is 3 plus 2 multiplied by 3?",
+      "rawProjection": "> What is 3 plus 2 multiplied by 3?\n\n15 (i.e. not 9)",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "cyberbench-patch-v1-1",
+      "sampleId": "public-case-cyberbench-patch-v1-1",
+      "source": "https://www.vals.ai/benchmarks/cyber",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://www.vals.ai/benchmarks/cyber",
+          "sourcePath": "HTML h3#patch-examples, first following ul/li; exact sentence within the li",
+          "sourceSha256": "b922ea90b7b078f9ded13b375e042735d3deeb590f56941b17ecfef82357062a",
+          "textCharactersIncluded": 206,
+          "originalProposedCharacters": 206
+        }
+      ],
+      "originalRaw": "oss-fuzz:435781342",
+      "rawProjection": "<li><code>oss-fuzz:435781342</code> (<code>libxml2</code>) contrasts symptom-level namespace handling patches in <code>SAX2.c</code> with GPT-5.5’s passing <code>parserInternals.c</code> lifecycle fix.</li>",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "frontiercode-1-1-main",
+      "sampleId": "public-case-frontiercode-1-1-main",
+      "source": "https://cognition.com/frontiercode",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://cognition.com/frontiercode",
+          "sourcePath": "What a task looks like > Task description; fetched official page 2026-10-08",
+          "sourceSha256": "27849ab45fccba7c335f2bfc16da1d4a609b118d5205b25723936c3db0c52f4c",
+          "textCharactersIncluded": 108,
+          "originalProposedCharacters": 108
+        }
+      ],
+      "originalRaw": "Encapsulate all warning logs in a new",
+      "rawProjection": "Encapsulate all warning logs in a new auto LOG_WARNING() -> std::ostream & method in src/logger.h such that:",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "livecodebench-pro",
+      "sampleId": "livecodebench-pro-a11-cf2050d",
+      "source": "https://arxiv.org/pdf/2506.11928v1",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://arxiv.org/pdf/2506.11928v1",
+          "sourcePath": "arXiv:2506.11928v1 p.30 Appendix A11; example rated 1300, linked Codeforces 2050D; no gated row read",
+          "sourceSha256": "f9a943529752d98d77879bc815901272ef8bfab4cd023d3b4de031333b346398",
+          "textCharactersIncluded": 115,
+          "originalProposedCharacters": 115
+        }
+      ],
+      "originalRaw": "digits from 0 to 9",
+      "rawProjection": "You are given a string s, consisting of digits from 0 to 9. In one operation, you can pick any digit in this string",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "nl2repo-bench",
+      "sampleId": "public-case-nl2repo-bench",
+      "source": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
+          "sourcePath": "test_files/fastapi-users/start.md",
+          "sourceSha256": "25411723fd6040f8eb3b58a3cd9ee4a93cf8f018694e7bf8e50addbc51978b1d",
+          "textCharactersIncluded": 136,
+          "originalProposedCharacters": 136
+        }
+      ],
+      "originalRaw": "Please create a Python project named FastAPI-Users-Auth",
+      "rawProjection": "Please create a Python project named FastAPI-Users-Auth to implement a complete user authentication and authorization management system.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "vibe-code-bench-v1-1",
+      "sampleId": "public-case-vibe-code-bench-v1-1",
+      "source": "https://gist.githubusercontent.com/lgnashold/e9bba36be5e468d8f8a2f330ae8d6aea/raw/0bd7400df1f9d444c54350f13af2a02aac72bd67/app_instructions.txt",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://gist.githubusercontent.com/lgnashold/e9bba36be5e468d8f8a2f330ae8d6aea/raw/0bd7400df1f9d444c54350f13af2a02aac72bd67/app_instructions.txt",
+          "sourcePath": "gist app_instructions.txt; pinned revision 0bd7400df1f9d444c54350f13af2a02aac72bd67",
+          "sourceSha256": "c89db0c3c6d325193190060c5e9a468e55d0cb59cb9cb22b7bb799702d6e0655",
+          "textCharactersIncluded": 139,
+          "originalProposedCharacters": 139
+        }
+      ],
+      "originalRaw": "Deliver a simple short-form publishing platform where users share",
+      "rawProjection": "Title: Zeeter Social Network\n\nGoal\nDeliver a simple short-form publishing platform where users share quick updates and engage with content.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "weirdml-v2",
+      "sampleId": "public-case-weirdml-v2",
+      "source": "https://htihle.github.io/prompts/task_prompt_shapes_easy.html",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://htihle.github.io/prompts/task_prompt_shapes_easy.html",
+          "sourcePath": "Task Prompt: Shapes (Easy), opening paragraph",
+          "sourceSha256": "70def5f9caddc94613cb28e84c88a276c8af4f905e0bae24dd88690f7ddfaef2",
+          "textCharactersIncluded": 93,
+          "originalProposedCharacters": 93
+        }
+      ],
+      "originalRaw": "This is a challenge to test how good you",
+      "rawProjection": "This is a challenge to test how good you are at doing machine learning on an unknown dataset.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "hle",
+      "sampleId": "public-case-hle",
+      "source": "https://scale.com/blog/humanitys-last-exam-results",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://scale.com/blog/humanitys-last-exam-results",
+          "sourcePath": "Scale article Ecology example; article excerpt only",
+          "sourceSha256": "1c017301129237ef258393f960a2d1e0f8ae88f0d3220688feb5adac276dabca",
+          "textCharactersIncluded": 163,
+          "originalProposedCharacters": 163
+        }
+      ],
+      "originalRaw": "Hummingbirds within Apodiformes uniquely have a bilaterally paired oval bone",
+      "rawProjection": "Hummingbirds within Apodiformes uniquely have a bilaterally paired oval bone, a sesamoid embedded in the caudolateral portion of the expanded, cruciate aponeurosis",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "frontiermath",
+      "sampleId": "public-case-frontiermath",
+      "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+          "sourcePath": "Tier 2 / A recursive construction on large permutations / Problem",
+          "sourceSha256": "d7e91b7837357e1bdf06ca7018a0422a72e97c54a0b60c84aabd0fef3c886999",
+          "textCharactersIncluded": 141,
+          "originalProposedCharacters": 141
+        }
+      ],
+      "originalRaw": "A recursive construction on large permutations",
+      "rawProjection": "\\(F:W\\rightarrow W\\)",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "frontiermath-v2-tier-4",
+      "sampleId": "public-case-frontiermath-v2-tier-4",
+      "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+          "sourcePath": "Tier 4 / An optimization problem in BMO space / Problem",
+          "sourceSha256": "d7e91b7837357e1bdf06ca7018a0422a72e97c54a0b60c84aabd0fef3c886999",
+          "textCharactersIncluded": 6,
+          "originalProposedCharacters": 175
+        }
+      ],
+      "originalRaw": "An optimization problem in BMO space",
+      "rawProjection": "Let \\[",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "mysterymechanism",
+      "sampleId": "public-case-mysterymechanism",
+      "source": "https://www.vals.ai/benchmarks/mysterymechanism",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://www.vals.ai/benchmarks/mysterymechanism",
+          "sourcePath": "first frozen example; source HTML contains rendered text rather than a JSON row",
+          "sourceSha256": "a78230fe01c021dfbdef4f8d94403354c7a24019d61e0138d5aa55d4fe9a2f98",
+          "textCharactersIncluded": 164,
+          "originalProposedCharacters": 164
+        }
+      ],
+      "originalRaw": "Recover an executable mathematical expression mapping the anonymous inputs",
+      "rawProjection": "Agent-visible question\nRecover an executable mathematical expression mapping the anonymous inputs to one measured output.\nBounds\nx1 ∈ [0.05, 0.70]\nx2 ∈ [0.05, 30.0]",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "aa-analyst-agent",
+      "sampleId": "official-case-aa-analyst-agent",
+      "source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+          "sourcePath": "Example Tasks > California medical transport spend",
+          "sourceSha256": "3315ad34ac29fd3f69f07a282687b3e9d1c8151d7aac3fcf4b796a4af0bda33f",
+          "textCharactersIncluded": 34,
+          "originalProposedCharacters": 34
+        },
+        {
+          "source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+          "sourcePath": "Task prompt",
+          "sourceSha256": "3315ad34ac29fd3f69f07a282687b3e9d1c8151d7aac3fcf4b796a4af0bda33f",
+          "textCharactersIncluded": 139,
+          "originalProposedCharacters": 162
+        }
+      ],
+      "originalRaw": "What was the total computable medical transport spend",
+      "rawProjection": "California medical transport spend\n\nWhat was the total computable medical transport spend (including C- medical transport) for Medicaid in California in 2001? Round the answer",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "apex-agents-1-1",
+      "sampleId": "official-case-apex-agents-1-1",
+      "source": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+          "sourcePath": "Sample task (1 out of 80) > Task",
+          "sourceSha256": "dcd9aa61aacb2afa21b4129df3f37c6a3d3a0b2d32b192ac187b4294df9ae583",
+          "textCharactersIncluded": 106,
+          "originalProposedCharacters": 106
+        },
+        {
+          "source": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+          "sourcePath": "Sample task (1 out of 80) > Environment / Trajectory",
+          "sourceSha256": "dcd9aa61aacb2afa21b4129df3f37c6a3d3a0b2d32b192ac187b4294df9ae583",
+          "textCharactersIncluded": 11,
+          "originalProposedCharacters": 11
+        },
+        {
+          "source": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+          "sourcePath": "page disclaimer",
+          "sourceSha256": "dcd9aa61aacb2afa21b4129df3f37c6a3d3a0b2d32b192ac187b4294df9ae583",
+          "textCharactersIncluded": 21,
+          "originalProposedCharacters": 21
+        }
+      ],
+      "originalRaw": "BlueAnchor wants to get the JV Agreement signed today.",
+      "rawProjection": "BlueAnchor wants to get the JV Agreement signed today. Can you send me back a message with a list of items\n\nEnvironment\n\nfor illustration only",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "apex-agents",
+      "sampleId": "official-case-apex-agents",
+      "source": "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/",
+          "sourcePath": "Task prompt",
+          "sourceSha256": "c09ec788914cf27dcde541cad2e56ae52e5e58a8167cdfb7752aa4192974ddc1",
+          "textCharactersIncluded": 110,
+          "originalProposedCharacters": 110
+        },
+        {
+          "source": "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/",
+          "sourcePath": "disclaimer",
+          "sourceSha256": "c09ec788914cf27dcde541cad2e56ae52e5e58a8167cdfb7752aa4192974ddc1",
+          "textCharactersIncluded": 21,
+          "originalProposedCharacters": 21
+        }
+      ],
+      "originalRaw": "Read the attached email from the EM about conducting lifecycle",
+      "rawProjection": "Can you get back to me with the four lifecycle top-two pairs and the two most-frequent platforms/applications?\n\nfor illustration only",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "biomysterybench",
+      "sampleId": "official-case-biomysterybench",
+      "source": "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+          "sourcePath": "Example questions",
+          "sourceSha256": "791fc5d18d346935039235cfc4959ddfed7c4962539e6cebd94ca288d25595bf",
+          "textCharactersIncluded": 108,
+          "originalProposedCharacters": 108
+        }
+      ],
+      "originalRaw": "What gene was knocked out in the experimental samples compared",
+      "rawProjection": "What gene was knocked out in the experimental samples compared to the control samples based on RNA-seq data?",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "excel-emb",
+      "sampleId": "official-case-excel-emb",
+      "source": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+          "sourcePath": "instructions.md > required workbook tabs",
+          "sourceSha256": "f9a2c06ab88bf7b2d5cc85ccd17c75d731f756504f86cf6b3ab7b0b6a6eda560",
+          "textCharactersIncluded": 116,
+          "originalProposedCharacters": 116
+        }
+      ],
+      "originalRaw": "You are an associate at a PE firm who has",
+      "rawProjection": "Construct the model with the following tabs: 1) Active Data, 2) Active Customers, 3) Retention, 4) Customer Summary.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "finance-agent",
+      "sampleId": "official-case-finance-agent",
+      "source": "https://www.vals.ai/benchmarks/fabv2",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://www.vals.ai/benchmarks/fabv2",
+          "sourcePath": "Model Output Examples > Question",
+          "sourceSha256": "bb837576b32741d6654d136a184a33395d0907bdc71b2b2e736dcbaf369fc001",
+          "textCharactersIncluded": 92,
+          "originalProposedCharacters": 92
+        }
+      ],
+      "originalRaw": "Did NYSE: CNC have to pay a rebate to policyholders",
+      "rawProjection": "Did NYSE: CNC have to pay a rebate to policyholders in fiscal year 2025 or fiscal year 2020?",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "finbenchmark",
+      "sampleId": "official-case-finbenchmark-knowledge-001",
+      "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+          "sourcePath": "TASKS.md > knowledge_001 > question",
+          "sourceSha256": "fbc69a9958b996a3c4c5f19fbf9e9c82b7cc3ad13c913795111933bc06752998",
+          "textCharactersIncluded": 75,
+          "originalProposedCharacters": 75
+        },
+        {
+          "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+          "sourcePath": "TASKS.md > knowledge_001 > source",
+          "sourceSha256": "fbc69a9958b996a3c4c5f19fbf9e9c82b7cc3ad13c913795111933bc06752998",
+          "textCharactersIncluded": 11,
+          "originalProposedCharacters": 11
+        },
+        {
+          "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+          "sourcePath": "TASKS.md > knowledge_001 > options",
+          "sourceSha256": "fbc69a9958b996a3c4c5f19fbf9e9c82b7cc3ad13c913795111933bc06752998",
+          "textCharactersIncluded": 39,
+          "originalProposedCharacters": 39
+        }
+      ],
+      "originalRaw": "knowledge_001",
+      "rawProjection": "Under IFRS, which statement best describes the treatment of research costs?\n\nIFRS IAS 38\n\nB) Expense research costs as incurred ✅",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "gdp-pdf",
+      "sampleId": "official-case-gdp-pdf",
+      "source": "https://surgehq.ai/benchmarks/gdp-pdf",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://surgehq.ai/benchmarks/gdp-pdf",
+          "sourcePath": "Examples > Reading wiring diagrams for appliances > Task Prompt",
+          "sourceSha256": "f53d158b6266886ab779e7dc130fb4bf48bc3f1ded7bb64a039236e1221341d5",
+          "textCharactersIncluded": 50,
+          "originalProposedCharacters": 50
+        },
+        {
+          "source": "https://surgehq.ai/benchmarks/gdp-pdf",
+          "sourcePath": "Rubrics failure reason",
+          "sourceSha256": "f53d158b6266886ab779e7dc130fb4bf48bc3f1ded7bb64a039236e1221341d5",
+          "textCharactersIncluded": 69,
+          "originalProposedCharacters": 69
+        },
+        {
+          "source": "https://surgehq.ai/benchmarks/gdp-pdf",
+          "sourcePath": "Rubrics",
+          "sourceSha256": "f53d158b6266886ab779e7dc130fb4bf48bc3f1ded7bb64a039236e1221341d5",
+          "textCharactersIncluded": 5,
+          "originalProposedCharacters": 5
+        }
+      ],
+      "originalRaw": "For a model 690 fryer with serial number AP0709026, what",
+      "rawProjection": "For a model 690 fryer with serial number AP0709026\n\nThe correct answer is a transformer (part number 60536) on page 2-35.\n\n60536",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "gdpval-aa-v2-1",
+      "sampleId": "official-case-gdpval-aa-v2-1-stage-plot",
+      "source": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+          "sourcePath": "page title",
+          "sourceSha256": "303f66881ee945bc040012e51983122174336b51754576e0388738ec2ebc07d9",
+          "textCharactersIncluded": 26,
+          "originalProposedCharacters": 26
+        },
+        {
+          "source": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+          "sourcePath": "Task 1 Band Stage Plot > task prompt",
+          "sourceSha256": "303f66881ee945bc040012e51983122174336b51754576e0388738ec2ebc07d9",
+          "textCharactersIncluded": 112,
+          "originalProposedCharacters": 112
+        }
+      ],
+      "originalRaw": "Task 1 Band Stage Plot",
+      "rawProjection": "GDPval-AA v2.1 Leaderboard\n\nThe 2 main vocalists use in-ear monitor systems that require an XLR split from each of their vocal mics onstage.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "gdpval-aa",
+      "sampleId": "official-case-gdpval-aa-v2-shared-stage-plot",
+      "source": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+          "sourcePath": "Task 1 Band Stage Plot > task prompt",
+          "sourceSha256": "303f66881ee945bc040012e51983122174336b51754576e0388738ec2ebc07d9",
+          "textCharactersIncluded": 8,
+          "originalProposedCharacters": 121
+        }
+      ],
+      "originalRaw": "Task 1 Band Stage Plot",
+      "rawProjection": "Create a",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "lhtb",
+      "sampleId": "official-case-lhtb-langchain-version-migration",
+      "source": "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+          "sourcePath": "instruction.md opening",
+          "sourceSha256": "c13870cd8d22bc4b0158a8963736a5bebef40037e768cccfa98c7f9a5bb3a2de",
+          "textCharactersIncluded": 123,
+          "originalProposedCharacters": 123
+        },
+        {
+          "source": "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+          "sourcePath": "Final Goal",
+          "sourceSha256": "c13870cd8d22bc4b0158a8963736a5bebef40037e768cccfa98c7f9a5bb3a2de",
+          "textCharactersIncluded": 16,
+          "originalProposedCharacters": 16
+        },
+        {
+          "source": "https://raw.githubusercontent.com/zli12321/LHTB/main/tasks/langchain-version-migration/instruction.md",
+          "sourcePath": "Final Goal",
+          "sourceSha256": "c13870cd8d22bc4b0158a8963736a5bebef40037e768cccfa98c7f9a5bb3a2de",
+          "textCharactersIncluded": 38,
+          "originalProposedCharacters": 52
+        }
+      ],
+      "originalRaw": "langchain==1.3.4",
+      "rawProjection": "You are migrating a legacy LangChain support application across a full LangChain API break, from an extremely early runtime\n\nlangchain==1.3.4\n\npreserving CLI/API behavior and replay",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "lifescibench",
+      "sampleId": "official-case-lifescibench-spatial-transcriptomics",
+      "source": "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+          "sourcePath": "Appendix D.1",
+          "sourceSha256": "830d366ed65061a7c2b404e7f93231cf96f44ff5fef702c268d7296ed8edfb9b",
+          "textCharactersIncluded": 33,
+          "originalProposedCharacters": 33
+        },
+        {
+          "source": "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+          "sourcePath": "Task Prompt",
+          "sourceSha256": "830d366ed65061a7c2b404e7f93231cf96f44ff5fef702c268d7296ed8edfb9b",
+          "textCharactersIncluded": 65,
+          "originalProposedCharacters": 65
+        },
+        {
+          "source": "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+          "sourcePath": "listed artifacts",
+          "sourceSha256": "830d366ed65061a7c2b404e7f93231cf96f44ff5fef702c268d7296ed8edfb9b",
+          "textCharactersIncluded": 60,
+          "originalProposedCharacters": 60
+        }
+      ],
+      "originalRaw": "Example Benchmark Task — Analysis",
+      "rawProjection": "Example Benchmark Task — Analysis\n\nUsing the attached Visium data from an FFPE cervical cancer slide\n\nfiltered_feature_bc_matrix.h5\nanalysis.tar.gz\nspatial.tar.gz",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "medscribe",
+      "sampleId": "official-case-medscribe-doctor-transcript",
+      "source": "https://www.vals.ai/benchmarks/medscribe",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://www.vals.ai/benchmarks/medscribe",
+          "sourcePath": "Sample Doctor-Patient Transcript > Patient",
+          "sourceSha256": "c140a6a6f57b972e272b523b3ef68c2672c6fc6ff87724978e237b0b36155460",
+          "textCharactersIncluded": 93,
+          "originalProposedCharacters": 93
+        },
+        {
+          "source": "https://www.vals.ai/benchmarks/medscribe",
+          "sourcePath": "speaker labels",
+          "sourceSha256": "c140a6a6f57b972e272b523b3ef68c2672c6fc6ff87724978e237b0b36155460",
+          "textCharactersIncluded": 14,
+          "originalProposedCharacters": 14
+        }
+      ],
+      "originalRaw": "Sample Doctor-Patient Transcript",
+      "rawProjection": "Um, not great honestly. I've been feeling pretty sick for like, like four days now, you know.\n\nDoctor\nPatient",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "mind2web",
+      "sampleId": "official-case-mind2web-example-a-flight-search",
+      "source": "https://osu-nlp-group.github.io/Mind2Web/",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://osu-nlp-group.github.io/Mind2Web/",
+          "sourcePath": "sample task (a)",
+          "sourceSha256": "b4c91c494c84f1fcfa90127c6b6401fe42f377ef4cbb864ed7a4cc1f0f067b95",
+          "textCharactersIncluded": 46,
+          "originalProposedCharacters": 46
+        }
+      ],
+      "originalRaw": "one-way flights from New York to Toronto",
+      "rawProjection": "Find one-way flights from New York to Toronto.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "mlcr-aa",
+      "sampleId": "official-case-mlcr-aa-mri-fact-retrieval",
+      "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+          "sourcePath": "Example Tasks > Fact retrieval",
+          "sourceSha256": "c63590292a59c131fbcb5531f0ac164c578f4b259109637ee0b3f4c18f29308a",
+          "textCharactersIncluded": 14,
+          "originalProposedCharacters": 14
+        },
+        {
+          "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+          "sourcePath": "Reasoning tier",
+          "sourceSha256": "c63590292a59c131fbcb5531f0ac164c578f4b259109637ee0b3f4c18f29308a",
+          "textCharactersIncluded": 21,
+          "originalProposedCharacters": 21
+        },
+        {
+          "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+          "sourcePath": "prompt",
+          "sourceSha256": "c63590292a59c131fbcb5531f0ac164c578f4b259109637ee0b3f4c18f29308a",
+          "textCharactersIncluded": 113,
+          "originalProposedCharacters": 127
+        }
+      ],
+      "originalRaw": "lumbar spine MRI",
+      "rawProjection": "Fact retrieval\n\nSingle-fact retrieval\n\nOn what date was the lumbar spine MRI performed, and which provider ordered it? Cite the page of the record where",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "osworld-2",
+      "sampleId": "osworld-2-task035-public-case",
+      "source": "https://osworld-v2.xlang.ai/",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://osworld-v2.xlang.ai/",
+          "sourcePath": "Failure Cases > Task035",
+          "sourceSha256": "91138b5d752d7d5242bfc147c6a1bd6430e81f89f36eb9ffe0af3a40feca6b5b",
+          "textCharactersIncluded": 27,
+          "originalProposedCharacters": 27
+        },
+        {
+          "source": "https://osworld-v2.xlang.ai/",
+          "sourcePath": "Task setup > Context",
+          "sourceSha256": "91138b5d752d7d5242bfc147c6a1bd6430e81f89f36eb9ffe0af3a40feca6b5b",
+          "textCharactersIncluded": 99,
+          "originalProposedCharacters": 99
+        },
+        {
+          "source": "https://osworld-v2.xlang.ai/",
+          "sourcePath": "Task setup > Goal",
+          "sourceSha256": "91138b5d752d7d5242bfc147c6a1bd6430e81f89f36eb9ffe0af3a40feca6b5b",
+          "textCharactersIncluded": 48,
+          "originalProposedCharacters": 81
+        }
+      ],
+      "originalRaw": "with every request and the correct approval status",
+      "rawProjection": "Task035 - Purchase Requests\n\nPurchase requests and approvals arrive through a spreadsheet, finance channel, and direct messages.\n\nSubmit a purchase order sheet with every request",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "skillsbench",
+      "sampleId": "official-case-skillsbench-sec-financial-report",
+      "source": "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
+          "sourcePath": "task.md front matter",
+          "sourceSha256": "e3578ad5d7c671490acd28ac9b2452156968841963ae6103f132c053f4a12c6c",
+          "textCharactersIncluded": 273,
+          "originalProposedCharacters": 273
+        },
+        {
+          "source": "https://raw.githubusercontent.com/benchflow-ai/skillsbench/main/tasks/sec-financial-report/task.md",
+          "sourcePath": "task.md / first task question",
+          "sourceSha256": "e3578ad5d7c671490acd28ac9b2452156968841963ae6103f132c053f4a12c6c",
+          "textCharactersIncluded": 75,
+          "originalProposedCharacters": 75
+        }
+      ],
+      "originalRaw": "Renaissance Technologies",
+      "rawProjection": "schema_version: '1.3'\nmetadata:\n  difficulty: hard\n  category: finance-economics\n  subcategory: sec-filings-analysis\n  task_type:\n  - search\n  - analysis\n  modality:\n  - database\n  - json\n  interface:\n  - terminal\n  - python\nverifier:\n  type: test-script\n  timeout_sec: 900\n\n1. In Q3, what's the AUM of Renaissance Technologies founded by Jim Simons?",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "spreadsheetbench-v2",
+      "sampleId": "official-case-spreadsheetbench-v2-financial-modeling",
+      "source": "https://spreadsheetbench.github.io/",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://spreadsheetbench.github.io/",
+          "sourcePath": "Example 1 > Instruction",
+          "sourceSha256": "f82d3ba7017b09db2c8c2b2fd0b6f2b41ec70a139555c23bc140800b1b15d375",
+          "textCharactersIncluded": 130,
+          "originalProposedCharacters": 130
+        },
+        {
+          "source": "https://spreadsheetbench.github.io/",
+          "sourcePath": "Example 1 heading",
+          "sourceSha256": "f82d3ba7017b09db2c8c2b2fd0b6f2b41ec70a139555c23bc140800b1b15d375",
+          "textCharactersIncluded": 30,
+          "originalProposedCharacters": 30
+        }
+      ],
+      "originalRaw": "Financial Modeling",
+      "rawProjection": "In the Financials sheet, calculate CAGR for both historical and forecast periods for Revenue, EBITDA, EBIT, PAT, and Total Assets.\n\nExample 1: Financial Modeling.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "terminal-bench-2-1",
+      "sampleId": "official-case-terminal-bench-2-1-dna-assembly",
+      "source": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+          "sourcePath": "task page title",
+          "sourceSha256": "225be0b1761c4197dcb4b627de6c0765ba18e4e16e4fd3c9350fd6394c846e11",
+          "textCharactersIncluded": 27,
+          "originalProposedCharacters": 27
+        },
+        {
+          "source": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+          "sourcePath": "README > Overview",
+          "sourceSha256": "225be0b1761c4197dcb4b627de6c0765ba18e4e16e4fd3c9350fd6394c846e11",
+          "textCharactersIncluded": 66,
+          "originalProposedCharacters": 66
+        },
+        {
+          "source": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+          "sourcePath": "README > Skills Tested > Constraint satisfaction",
+          "sourceSha256": "225be0b1761c4197dcb4b627de6c0765ba18e4e16e4fd3c9350fd6394c846e11",
+          "textCharactersIncluded": 74,
+          "originalProposedCharacters": 74
+        },
+        {
+          "source": "https://hub.harborframework.com/tasks/terminal-bench/dna-assembly/latest",
+          "sourcePath": "dataset membership page",
+          "sourceSha256": "225be0b1761c4197dcb4b627de6c0765ba18e4e16e4fd3c9350fd6394c846e11",
+          "textCharactersIncluded": 18,
+          "originalProposedCharacters": 18
+        }
+      ],
+      "originalRaw": "Golden Gate assembly",
+      "rawProjection": "terminal-bench/dna-assembly\n\nGiven an input plasmid and three gene sequences (egfp, flag, snap)\n\nAnnealing region length: 15-45 nucleotides\nPrimer pair Tm difference: ≤5°C\n\nterminal-bench-2-1",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "terminal-bench-2",
+      "sampleId": "official-case-terminal-bench-2-dna-assembly",
+      "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench-2/main/dna-assembly/task.toml",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench-2/main/dna-assembly/task.toml",
+          "sourcePath": "dna-assembly/task.toml",
+          "sourceSha256": "7b571544b64d9be1c91526837e5d805c2181afe0e6fd57a7f0676bba36c868d7",
+          "textCharactersIncluded": 236,
+          "originalProposedCharacters": 236
+        },
+        {
+          "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench-2/main/dna-assembly/instruction.md",
+          "sourcePath": "dna-assembly/instruction.md",
+          "sourceSha256": "88998c98beabdd966ab46c04ede822bbc74796696aa1bf87c567a9131210533c",
+          "textCharactersIncluded": 53,
+          "originalProposedCharacters": 53
+        }
+      ],
+      "originalRaw": "Golden Gate assembly",
+      "rawProjection": "schema_version = \"1.1\"\nartifacts = []\n\n[task]\nname = \"terminal-bench/dna-assembly\"\nkeywords = [\"biology\", \"cloning\", \"scientific-computing\"]\n\n[metadata]\ndifficulty = \"hard\"\ncategory = \"scientific-computing\"\ntags = [\"biology\", \"cloning\"]\n\nThe output fasta file should be titled primers.fasta.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "terminal-bench-3",
+      "sampleId": "official-case-terminal-bench-3-foodstuff-beta-activity",
+      "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench/v3.0.0/tasks/foodstuff-beta-activity/task.toml",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench/v3.0.0/tasks/foodstuff-beta-activity/task.toml",
+          "sourcePath": "tasks/foodstuff-beta-activity/task.toml",
+          "sourceSha256": "5090e2cf2308f9d0e516c785c106831f56e43c9c42e942d984dc00df81a4db24",
+          "textCharactersIncluded": 235,
+          "originalProposedCharacters": 235
+        },
+        {
+          "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench/v3.0.0/tasks/foodstuff-beta-activity/instruction.md",
+          "sourcePath": "tasks/foodstuff-beta-activity/instruction.md / requested calculations",
+          "sourceSha256": "c786aa4f995b35b735a18008156eb896a5dee0a280e2c0fbdc71f5e8d6cde3f9",
+          "textCharactersIncluded": 163,
+          "originalProposedCharacters": 163
+        }
+      ],
+      "originalRaw": "foodstuff-beta-activity",
+      "rawProjection": "artifacts = [\"/app/results.txt\"]\n\n[task]\nname = \"terminal-bench/foodstuff-beta-activity\"\ndescription = \"\"\n[metadata]\ncategory = \"Science\"\nsubcategory = \"Chemistry\"\ntags = [\"chemistry\", \"radiochemistry\", \"liquid_scintillation_counting\"]\n\nUsing the attached data, determine the efficiency, volumetric factor, gravimetric factor, detection limit (in Bq/kg), and sample activity concentration (in Bq/kg).",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "terminal-bench-4",
+      "sampleId": "official-case-terminal-bench-4-layout-config-recreation2",
+      "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench/v4.0.0/tasks/layout-config-recreation2/task.toml",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench/v4.0.0/tasks/layout-config-recreation2/task.toml",
+          "sourcePath": "tasks/layout-config-recreation2/task.toml",
+          "sourceSha256": "b62395ba267ed679223d71669df6e57cac114f1a85011bab536bc0e8f1850f07",
+          "textCharactersIncluded": 278,
+          "originalProposedCharacters": 278
+        },
+        {
+          "source": "https://raw.githubusercontent.com/harbor-framework/terminal-bench/v4.0.0/tasks/layout-config-recreation2/instruction.md",
+          "sourcePath": "tasks/layout-config-recreation2/instruction.md / JSON-formatted example",
+          "sourceSha256": "809d187271aafca2f018fca8d7ade560c580f6aa3174db62ea6170dff257fb07",
+          "textCharactersIncluded": 143,
+          "originalProposedCharacters": 698
+        }
+      ],
+      "originalRaw": "flattened raster",
+      "rawProjection": "artifacts = [\"/app/output/config.json\"]\n\n[task]\nname = \"terminal-bench/layout-config-recreation2\"\ndescription = \"\"\n[metadata]\ncategory = \"Media\"\nsubcategory = \"Design\"\ntags = [\"layout-analysis\", \"template-matching\", \"reverse-engineering\", \"computer-vision\", \"config-generation\"]\n\n```json\n{\n  \"components\": [\n    // ordered list of visual elements; index 0 is bottom layer, last is top\n    // each element is either an IMAGE",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "terminal-bench-science-0-1",
+      "sampleId": "official-case-terminal-bench-science-0-1-symbolic-regression",
+      "source": "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://hub.harborframework.com/tasks/terminal-bench-science/symbolic-regression/2",
+          "sourcePath": "task statement",
+          "sourceSha256": "2d828b5c374f50d3a12834e09b039ed3ce80854869cf2e67ab479d8374783978",
+          "textCharactersIncluded": 104,
+          "originalProposedCharacters": 104
+        }
+      ],
+      "originalRaw": "100 predictors",
+      "rawProjection": "Recover a hidden sparse non-linear rule behind a binary label from 100 predictors and 300 training rows.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "toolathlon-verified",
+      "sampleId": "official-case-toolathlon-find-alita-paper-001",
+      "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+          "sourcePath": "task.md opening",
+          "sourceSha256": "e5d93da5788494862d9a9b1a3c5ad1f9ac23e1f2eb75b0d87f822177b3f7d024",
+          "textCharactersIncluded": 62,
+          "originalProposedCharacters": 62
+        },
+        {
+          "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+          "sourcePath": "task.md search condition",
+          "sourceSha256": "e5d93da5788494862d9a9b1a3c5ad1f9ac23e1f2eb75b0d87f822177b3f7d024",
+          "textCharactersIncluded": 68,
+          "originalProposedCharacters": 68
+        },
+        {
+          "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+          "sourcePath": "required output labels",
+          "sourceSha256": "e5d93da5788494862d9a9b1a3c5ad1f9ac23e1f2eb75b0d87f822177b3f7d024",
+          "textCharactersIncluded": 21,
+          "originalProposedCharacters": 31
+        }
+      ],
+      "originalRaw": "title contains \"Alita\"",
+      "rawProjection": "I'm looking for a paper on arxiv related to agentic reasoning.\n\ntitle contains \"Alita\" and it was published in June 2025 or earlier.\n\ntitle:\narxiv_abs_url:",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "vending-bench-2",
+      "sampleId": "official-case-vending-bench-2-expired-snickers-refund-001",
+      "source": "https://andonlabs.com/blog/opus-4-6-vending-bench",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://andonlabs.com/blog/opus-4-6-vending-bench",
+          "sourcePath": "assistant message > email body",
+          "sourceSha256": "553dabfcd2fffa59b278c7799181ebd05b0b48e4db126366d78dee9dc3e5b19f",
+          "textCharactersIncluded": 47,
+          "originalProposedCharacters": 47
+        },
+        {
+          "source": "https://andonlabs.com/blog/opus-4-6-vending-bench",
+          "sourcePath": "article report",
+          "sourceSha256": "553dabfcd2fffa59b278c7799181ebd05b0b48e4db126366d78dee9dc3e5b19f",
+          "textCharactersIncluded": 33,
+          "originalProposedCharacters": 33
+        }
+      ],
+      "originalRaw": "Expired Snickers",
+      "rawProjection": "I've processed a refund of $3.50 to your email.\n\nBut the model never refunded her.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "wandr",
+      "sampleId": "public-case-wandr",
+      "source": "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md",
+          "sourcePath": "accounting_ai_claims",
+          "sourceSha256": "760552bc3c2d416bb316dc5613e3025bdfa3297d57ba03e95d3d107aca336243",
+          "textCharactersIncluded": 114,
+          "originalProposedCharacters": 114
+        },
+        {
+          "source": "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md",
+          "sourcePath": "Write one JSON object per line > results_accounting_ai_claims.jsonl",
+          "sourceSha256": "760552bc3c2d416bb316dc5613e3025bdfa3297d57ba03e95d3d107aca336243",
+          "textCharactersIncluded": 275,
+          "originalProposedCharacters": 275
+        }
+      ],
+      "originalRaw": "For 18+ AI-positioned accounting or finance automation platforms,",
+      "rawProjection": "For 18+ AI-positioned accounting or finance automation platforms, supply 3+ concrete workflow claims per platform.\n\n{\"item\": { \"platform\": \"<platform>\", \"workflow_claim\": \"<workflow_claim>\", \"evidence_family\": \"<evidence_family>\" }, \"url\": \"<source_url>\", \"excerpts\": [\"<verbatim_excerpt_1>\", \"<verbatim_excerpt_2>\", \"...\"], \"answer\": { <...whatever fields the task implies to ask for...> }}",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "arena-creative-writing",
+      "sampleId": "arena-creative-writing-mystery-titles",
+      "source": "https://arena.ai/blog/arena-category",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://arena.ai/blog/arena-category",
+          "sourcePath": "Appendix > Example Prompts > Creative Writing > paragraph",
+          "sourceSha256": "ac5fbcc4370c6a28376ee8e0a6506adaf3db1e8fc872d8539d73ba2a6581e954",
+          "textCharactersIncluded": 90,
+          "originalProposedCharacters": 90
+        }
+      ],
+      "originalRaw": "List 20 suitably intriguing titles",
+      "rawProjection": "List 20 suitably intriguing titles for a mystery novel based on ‘I’m Alone’ and ‘So Alone’",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "arena-vision",
+      "sampleId": "arena-vision-public-blog-captioning-example",
+      "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+          "sourcePath": "Captioning > Prompt paragraph",
+          "sourceSha256": "871106cb1f111ebfedc591fc809c3b5df43122fbef27b789cdeb349b6bba3f00",
+          "textCharactersIncluded": 37,
+          "originalProposedCharacters": 37
+        }
+      ],
+      "originalRaw": "Please describe the photo in English.",
+      "rawProjection": "Please describe the photo in English.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "arena-webdev",
+      "sampleId": "arena-webdev-hacker-news-clone",
+      "source": "https://arena.ai/blog/webdev-arena",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://arena.ai/blog/webdev-arena",
+          "sourcePath": "Examples > prompt paragraph; Figure 1 caption",
+          "sourceSha256": "79f4d4c60cf7bf627a2e83b9e37dc9620a4ca0079160d299cb396ddd49eadbd3",
+          "textCharactersIncluded": 26,
+          "originalProposedCharacters": 26
+        }
+      ],
+      "originalRaw": "Create a Hacker News clone",
+      "rawProjection": "Create a Hacker News clone",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "chartography",
+      "sampleId": "chartography-official-engineering-example-1",
+      "source": "https://surgehq.ai/blog/chartography",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://surgehq.ai/blog/chartography",
+          "sourcePath": "Three example tasks > Example 1 > Question",
+          "sourceSha256": "24507f23e75a8d93b7bffcec84b8cc512c152176aaf67ae8e76fc7aaca1958ba",
+          "textCharactersIncluded": 124,
+          "originalProposedCharacters": 124
+        }
+      ],
+      "originalRaw": "minimum downstream width",
+      "rawProjection": "For an outlet pipe with a diameter of 48 inches and a flow of 73 cubic feet per second, what is the minimum downstream width",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "longform-writing",
+      "sampleId": "longform-writing-pony-alpha-gods-sneakers",
+      "source": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
+          "sourcePath": "h1 model label; Initial Writing Prompt",
+          "sourceSha256": "a4ac3b2a2d68633cc39eb2cd9b4bdca378a67bd6a7ba79e9ce8eb770cb448aca",
+          "textCharactersIncluded": 96,
+          "originalProposedCharacters": 96
+        }
+      ],
+      "originalRaw": "Gods wore sneakers.",
+      "rawProjection": "Mythology-Inspired Write a short story over several chapters to this prompt: Gods wore sneakers.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "openvibeeval",
+      "sampleId": "openvibeeval-digital-garden",
+      "source": "https://openvibeeval.com/prompt/digital-garden/",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://openvibeeval.com/prompt/digital-garden/",
+          "sourcePath": "h1 text: Digital Garden; Interactive Difficulty label/value; prompt synopsis paragraph; ID label/value; date label/value",
+          "sourceSha256": "fd65e22c62542994402b198a12856f2a5dc606d0a62f0a6e8a0f76fb8cdc5611",
+          "textCharactersIncluded": 206,
+          "originalProposedCharacters": 236
+        }
+      ],
+      "originalRaw": "plant and water virtual plants",
+      "rawProjection": "Digital Garden\nInteractive Difficulty: Expert\nCalm, dreamy interactive garden — plant and water virtual plants with soft generative particles, staggered growth animations, and satisfying micro-interactions.",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "short-story",
+      "sampleId": "short-story-prompt-wc-0-elements",
+      "source": "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt",
+          "sourcePath": "Required narrative elements > Character; Object; Setting; Timeframe; Motivation",
+          "sourceSha256": "8846adaf9ef93a3b5cf2c5604b8cf3c0131f7720ddd1bacf0cf084de38500a3b",
+          "textCharactersIncluded": 164,
+          "originalProposedCharacters": 164
+        }
+      ],
+      "originalRaw": "neutron star researcher",
+      "rawProjection": "Character: neutron star researcher\nObject: dust from butterfly wing\nSetting: storm-damaged greenhouse\nTimeframe: after the flood\nMotivation: to strip needless drama",
+      "fieldValuesExactlyMatchSource": true
+    },
+    {
+      "benchmarkId": "tonebench",
+      "sampleId": "tonebench-script-9-ai-hiring-guide",
+      "source": "https://benchmark.towardsai.com/methodology.html",
+      "format": "original text/config excerpts",
+      "sourceBlocks": [
+        {
+          "source": "https://benchmark.towardsai.com/methodology.html",
+          "sourcePath": "Script 9 heading; category label; public synopsis paragraph",
+          "sourceSha256": "742bb8d47b6671f4d0fb65a5db13198a7416a795d16852907b2a4ef1d0b79a72",
+          "textCharactersIncluded": 130,
+          "originalProposedCharacters": 130
+        }
+      ],
+      "originalRaw": "why good engineers still get rejected for AI roles",
+      "rawProjection": "Script 9\ncareer guide / hiring analysis\nwhy good engineers still get rejected for AI roles, and what would have gotten them hired.",
+      "fieldValuesExactlyMatchSource": true
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "id": "swe-rebench",
+  "status": "published",
+  "order": 1180,
+  "name": "SWE-rebench",
+  "subtitle": "在不断刷新的仓库问题上修补软件",
+  "category": "coding",
+  "tags": [
+    "Issue修复",
+    "持续更新"
+  ],
+  "publisher": "Nebius / SWE-rebench authors",
+  "brandIds": [
+    "swe-rebench"
+  ],
+  "year": 2026,
+  "version": "V2公开数据集；持续刷新榜单",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "基于新近公开软件仓库问题构建连续更新的软件工程agent评测。",
+    "task": "阅读真实GitHub issue，分析对应代码库并提交能够通过任务测试的修改补丁。",
+    "sourceUrls": [
+      "https://swe-rebench.com/about"
+    ]
+  },
+  "taskContract": {
+    "input": "instance_id 对应的 problem_statement、repo/base_commit 与任务容器；参考 patch、test_patch 及测试答案不作为求解提示。",
+    "output": "源码修改与补丁。",
+    "environment": "官网榜单使用统一提示与minimal ReAct脚手架；公开V2数据集配有预构建任务镜像，运行设置需区分数据集复现与榜单刷新。",
+    "sourceUrls": [
+      "https://swe-rebench.com/about"
+    ]
+  },
+  "dataProfile": {
+    "summary": "V2任务元数据公开，官网榜单使用持续挖掘和更新的评测任务。",
+    "disclosure": "complete",
+    "scale": [
+      "V2论文集合：32,079项任务，20种语言，3,617个仓库。"
+    ],
+    "splits": [
+      "SWE-rebench-V2 的 HF 发布标签为 train，共 32,079 条；该训练发布集合与官网滚动评测每轮选题范围分开。"
+    ],
+    "fields": [
+      "定位与输入：instance_id、repo、base_commit、created_at、language、interface、problem_statement、pr_description。",
+      "参考与验证：patch、test_patch、FAIL_TO_PASS、PASS_TO_PASS；环境与来源：image_name、install_config、license、meta。参考 patch 和测试预期属于评分材料。"
+    ],
+    "files": [
+      "HF data/ 目录的发布数据记录；image_name 指向任务预构建镜像，test_patch 和两类测试清单用于验证补丁。"
+    ],
+    "sourceUrls": [
+      "https://proceedings.mlr.press/v306/badertdinov26a.html",
+      "https://huggingface.co/datasets/nebius/SWE-rebench-V2"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Hugging Face dataset access",
+      "reproducible execution uses pre-built task images"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/nebius/SWE-rebench-V2"
+    ],
+    "url": "https://huggingface.co/datasets/nebius/SWE-rebench-V2"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "HF 固定数据集卡声明 CC BY 4.0；所选记录 license_name 字段为 Apache License 2.0，数据卡要求尊重每条记录所关联仓库的许可。",
+    "scope": "仅限本条固定 test row 的四个来源字段，其中 problem_statement 完整保留；CC BY 4.0 覆盖数据集记录，实例仓库许可单独记录，不据此扩大到整个上游仓库代码或链接截图。",
+    "boundaries": [
+      "署名 Nebius / SWE-rebench 及原始仓库和记录位置，链接 CC BY 4.0 并说明本站仅选取四个字段。",
+      "所选记录的 license_name 是 Apache License 2.0；遵守数据卡关于尊重对应仓库许可的说明。",
+      "不包含 patch、hints_text、test_patch、测试清单或解答。",
+      "问题中的外链截图仅作为原文 URL 保留，未下载或再发布媒体。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
+      "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
+      "https://creativecommons.org/licenses/by/4.0/legalcode.txt"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "来自固定 HF 数据集提交的 test row 0。prompt 保留完整 problem_statement；raw 仅含 instance_id、repo、base_commit、problem_statement 四个原始字段，并省略其它行字段。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
+      "https://huggingface.co/api/datasets/nebius/SWE-rebench",
+      "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
+      "https://creativecommons.org/licenses/by/4.0/legalcode.txt"
+    ]
+  },
+  "metric": {
+    "name": "解决率与pass@5",
+    "description": "通过问题对应验证测试算解决，榜单报告解决比例、pass@5及均值标准误。公开V2任务集合不是当前每轮榜单题集的同义词。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://swe-rebench.com/about"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该样例是 test split 的一个记录；字段节选与其仓库 Apache 许可信息不授权整个上游代码仓库或链接媒体。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
+        "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE"
+      ]
+    },
+    {
+      "text": "自动收集的问题未必全部可解或有完整描述。",
+      "sourceUrls": [
+        "https://swe-rebench.com/about"
+      ]
+    },
+    {
+      "text": "不同脚手架与调优设置会改变成绩；官网会标示早于模型发布的问题存在的污染风险。",
+      "sourceUrls": [
+        "https://swe-rebench.com/about"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "HF dataset info 的当前 commit 为 89cdfbab4ab1bd8f5a658bb212d1b63624f4f881，split test 共 21,336 行；固定 revision 的 README SHA-256 579179c9eccb15c61ca8c42fbf7ea46cc225fddd9ca0a6b3d7bbec9f712f88c3，dataset info 响应 SHA-256 736823ff7d2315cbd7529f622587c0191d5811607ddc1d9cae0f4412411c08c3。",
+      "sourceUrls": [
+        "https://huggingface.co/api/datasets/nebius/SWE-rebench",
+        "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md"
+      ]
+    },
+    {
+      "text": "Rows API row_idx=0 的 instance_id=0b01001001__spectree-64，repo=0b01001001/spectree，base_commit=a091fab020ac26548250c907bae0855273a98778；problem_statement 字段完整保留（UTF-8 SHA-256 7dc3341892f2ac395c2ec5c7bf8d7be7b054fe1b6acb3c470206ad373ec90046，845 bytes）。本次行响应 SHA-256 fc8173d941d1412dee9af5b17c7d8ec4fab25f8982a27c962473a708e46e40e0。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1"
+      ]
+    },
+    {
+      "text": "同一行 license_name=Apache License 2.0；对应仓库在 base_commit 的 LICENSE SHA-256 d6b71c237264d8cfd9d6514b545bd1d4b7d3628fa7529d45db883d0419eb1c9b。数据卡明确 CC BY 4.0，并要求尊重每个实例关联仓库许可。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
+        "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
+        "https://creativecommons.org/licenses/by/4.0/legalcode.txt"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SWE-rebench official leaderboard",
+      "url": "https://swe-rebench.com/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "SWE-rebench About and methodology",
+      "url": "https://swe-rebench.com/about",
+      "role": "definition"
+    },
+    {
+      "label": "SWE-rebench V2 PMLR paper",
+      "url": "https://proceedings.mlr.press/v306/badertdinov26a.html",
+      "role": "paper"
+    },
+    {
+      "label": "SWE-rebench V2 dataset card",
+      "url": "https://huggingface.co/datasets/nebius/SWE-rebench-V2",
+      "role": "data"
+    },
+    {
+      "label": "SWE-rebench 固定提交的 test row 0",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "SWE-rebench 固定 revision 数据卡",
+      "url": "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
+      "role": "access"
+    },
+    {
+      "label": "SWE-rebench dataset revision metadata",
+      "url": "https://huggingface.co/api/datasets/nebius/SWE-rebench",
+      "role": "data"
+    },
+    {
+      "label": "spectree 上游仓库 base_commit 的 LICENSE",
+      "url": "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "Creative Commons Attribution 4.0 legal code",
+      "url": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "在对应基提交和容器中应用候选补丁，运行任务测试判解决；官网统一 ReAct 运行重复五次，另报告 SEM 与 pass@5。",
+      "sourceUrls": [
+        "https://swe-rebench.com/about",
+        "https://huggingface.co/datasets/nebius/SWE-rebench-V2"
+      ]
+    },
+    "comparison": {
+      "text": "记录滚动榜的选题日期、模型发布日期和 harness；32,079 条 V2 发布集的训练规模不是每轮榜单的评分分母。",
+      "sourceUrls": [
+        "https://swe-rebench.com/about",
+        "https://huggingface.co/datasets/nebius/SWE-rebench-V2"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "swe-rebench-spectree-64",
+        "title": "spectree：查询参数 schema 描述未显示",
+        "type": "code",
+        "prompt": "[BUG]description for query paramters can not show in swagger ui\nHi, when I add a description for a schema used in query, it can not show in swagger ui but can show in Redoc\r\n```py\r\n@HELLO.route('/', methods=['GET'])\r\n@api.validate(query=HelloForm)\r\ndef hello():\r\n    \"\"\"\r\n    hello 注释\r\n    :return:\r\n    \"\"\"\r\n   return 'ok'\r\n\r\nclass HelloForm(BaseModel):\r\n    \"\"\"\r\n    hello表单\r\n    \"\"\"\r\n    user: str # 用户名称\r\n    msg: str = Field(description='msg test', example='aa')\r\n    index: int\r\n    data: HelloGetListForm\r\n    list: List[HelloListForm]\r\n```\r\n\r\n![截屏2020-10-12 下午7 54 52](https://user-images.githubusercontent.com/60063723/95743785-de70f480-0cc4-11eb-857b-fffd3d7e9cdd.png)\r\n![截屏2020-10-12 下午7 53 59](https://user-images.githubusercontent.com/60063723/95743805-e5980280-0cc4-11eb-99ae-11e6439bae02.png)\r\n\r\n\r\n",
+        "explanation": "prompt 是原始完整 problem_statement；raw 仅选取四个原字段，未收录 hints、patch、测试或答案字段。原文中两个截图链接保留为文本引用，不包含媒体文件。",
+        "raw": {
+          "instance_id": "0b01001001__spectree-64",
+          "repo": "0b01001001/spectree",
+          "base_commit": "a091fab020ac26548250c907bae0855273a98778",
+          "problem_statement": "[BUG]description for query paramters can not show in swagger ui\nHi, when I add a description for a schema used in query, it can not show in swagger ui but can show in Redoc\r\n```py\r\n@HELLO.route('/', methods=['GET'])\r\n@api.validate(query=HelloForm)\r\ndef hello():\r\n    \"\"\"\r\n    hello 注释\r\n    :return:\r\n    \"\"\"\r\n   return 'ok'\r\n\r\nclass HelloForm(BaseModel):\r\n    \"\"\"\r\n    hello表单\r\n    \"\"\"\r\n    user: str # 用户名称\r\n    msg: str = Field(description='msg test', example='aa')\r\n    index: int\r\n    data: HelloGetListForm\r\n    list: List[HelloListForm]\r\n```\r\n\r\n![截屏2020-10-12 下午7 54 52](https://user-images.githubusercontent.com/60063723/95743785-de70f480-0cc4-11eb-857b-fffd3d7e9cdd.png)\r\n![截屏2020-10-12 下午7 53 59](https://user-images.githubusercontent.com/60063723/95743805-e5980280-0cc4-11eb-99ae-11e6439bae02.png)\r\n\r\n\r\n"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
+        "license": "CC BY 4.0 · Nebius / SWE-rebench dataset; instance license_name: Apache License 2.0",
+        "licensePath": "licenses/swe-rebench-sample-source.txt",
+        "split": "default / test / row_idx=0 / 0b01001001__spectree-64",
+        "excerpt": true
+      }
+    ]
+  }
+}

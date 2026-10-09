@@ -1,8 +1,17 @@
 {
   "aliases": [],
-  "related": [],
+  "related": [
+    {
+      "id": "simpleqa-verified",
+      "label": "经修订的 Verified",
+      "detail": "Google 修订原始 SimpleQA 的题目与答案，须区分数据和评分协议。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified"
+      ]
+    }
+  ],
   "kind": "original",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "id": "simpleqa",
   "name": "SimpleQA",
   "subtitle": "简短事实问题，答对还是瞎猜",
@@ -26,24 +35,9 @@
   },
   "limitations": [
     {
-      "text": "官方 CSV 文件本体在本轮无法由可用读取工具解析；未核实实际 header、首尾行、记录数、字节数、ETag 或哈希。",
+      "text": "简短事实问题的成绩不直接代表长篇回答的事实可靠性。",
       "sourceUrls": [
-        "https://openai.com/index/introducing-simpleqa/",
-        "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
-      ]
-    },
-    {
-      "text": "官方 benchmark README 标注 MIT，但没有在 CSV 对象本体确认独立授权文件/元数据；外部 CSV 的授权范围需继续交叉核实。",
-      "sourceUrls": [
-        "https://openai.com/index/introducing-simpleqa/",
-        "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
-      ]
-    },
-    {
-      "text": "没有核验当前 CSV 是否与论文发布时版本逐行完全相同。",
-      "sourceUrls": [
-        "https://openai.com/index/introducing-simpleqa/",
-        "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+        "https://openai.com/index/introducing-simpleqa/"
       ]
     }
   ],
@@ -82,6 +76,21 @@
       "label": "OpenAI 官方 SimpleQA CSV",
       "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
       "role": "data"
+    },
+    {
+      "label": "SimpleQA Verified 官方数据卡",
+      "url": "https://huggingface.co/datasets/google/simpleqa-verified",
+      "role": "data"
+    },
+    {
+      "label": "固定数据快照与许可声明",
+      "url": "https://raw.githubusercontent.com/openai/simple-evals/main/README.md",
+      "role": "access"
+    },
+    {
+      "label": "MIT 许可原文",
+      "url": "https://raw.githubusercontent.com/openai/simple-evals/main/LICENSE",
+      "role": "access"
     }
   ],
   "status": "published",
@@ -89,9 +98,9 @@
   "brandIds": [
     "openai"
   ],
-  "researchStatus": "partial",
+  "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "SimpleQA 使用简短、可核查且预期有单一答案的事实查询。它以窄范围任务降低任意长篇回答中事实判断的复杂度；官方明确指出，短事实回答表现是否能代表长篇文本事实性尚未确定。",
+    "summary": "回答简短、可核查且预期只有一个答案的事实问题；其表现未必代表长篇文本事实性。",
     "task": "回答简短、可核查且通常预期只有一个答案的事实性问题。",
     "sourceUrls": [
       "https://cdn.openai.com/papers/simpleqa.pdf"
@@ -107,29 +116,29 @@
     ]
   },
   "dataProfile": {
-    "summary": "OpenAI 发布页报告 4,326 个问题；本轮未读取官方 CSV 本体。",
-    "disclosure": "partial",
+    "summary": "本轮直接读取 OpenAI 官方 CSV，确认 4,326 条记录及 metadata、problem、answer 三个原字段。",
+    "disclosure": "complete",
     "scale": [
-      "OpenAI 发布页报告 4,326 个问题；未独立核验当前 CSV 行数。"
+      "2026-10-08 读取官方 CSV：4,326 个问题。"
     ],
     "splits": [
-      "官方代码读取 simple_qa_test_set.csv；本轮未核验 split 标注或行数。"
+      "simple_qa_test_set.csv：test；本页取第 0 条数据记录。"
     ],
     "fields": [
-      "problem、answer（由官方评分实现读取；CSV 表头未独立核验）。"
+      "metadata（原字符串，包含 topic、answer_type、urls）、problem、answer。"
     ],
     "files": [
-      "simple_qa_test_set.csv（OpenAI Blob endpoint；本轮未读取文件内容）。"
+      "simple_qa_test_set.csv；ETag 0x8DCF8A3A46B4107；SHA-256 feee3f7e7db3617e94e8fcf1977b756ec420ef8568f4e0fcbbe0e92e9d5fc032。"
     ],
     "sourceUrls": [
-      "https://openai.com/index/introducing-simpleqa/",
-      "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+      "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+      "https://raw.githubusercontent.com/openai/simple-evals/main/README.md"
     ]
   },
   "dataAccess": {
-    "status": "partial",
+    "status": "public",
     "requirements": [
-      "官方发布页称数据已开放，参考代码指向 OpenAI 公共 Blob CSV；本轮未能读取 endpoint 响应或核验文件规模。"
+      "官方 CSV 可直接公开读取；复现请保存 ETag 和文件哈希。"
     ],
     "sourceUrls": [
       "https://openai.com/index/introducing-simpleqa/",
@@ -139,26 +148,57 @@
     "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "simple-evals 仓库代码为 MIT；README 将 SimpleQA benchmark 列为 MIT。CSV 本体的许可元数据未在本轮确认。",
-    "scope": "仓库 LICENSE 适用于相应代码；README 的 benchmark 许可声明单独记录，不将代码许可自动延伸到外部 CSV 文件。",
+    "status": "permitted",
+    "license": "MIT（固定公开数据快照的许可声明）",
+    "scope": "仅展示此官方公开数据快照中的 1 条记录；许可说明不延伸至其它第三方材料或未公开题集。",
     "boundaries": [
-      "上传数据者须具备充分权利；公开托管题目之前需固定 CSV 并核对其授权范围。",
-      "本轮没有核实真实数据行，本站不收录题目、答案或推测样例。"
+      "保留发布方、记录位置和许可原文；中文解读由本站撰写。"
     ],
     "sourceUrls": [
-      "https://github.com/openai/simple-evals/blob/main/README.md",
-      "https://github.com/openai/simple-evals/blob/main/LICENSE"
+      "https://raw.githubusercontent.com/openai/simple-evals/main/README.md",
+      "https://raw.githubusercontent.com/openai/simple-evals/main/LICENSE"
     ]
   },
   "sampleAccess": {
-    "status": "unverified",
-    "reason": "没有已核实的站内 SimpleQA 样例；官方 CSV 本体和真实数据行本轮无法读取，因此只保留官方发布页与入口链接。",
+    "status": "local",
+    "reason": "已从官方原文件核验并展示 1 条真实公开记录，原题、答案和许可可在本页查看。",
+    "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
     "sourceUrls": [
-      "https://openai.com/index/introducing-simpleqa/",
-      "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py",
-      "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
-    ],
-    "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
+      "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+      "https://raw.githubusercontent.com/openai/simple-evals/main/README.md"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "已读取固定原文件：test CSV data row 0；SHA-256 feee3f7e7db3617e94e8fcf1977b756ec420ef8568f4e0fcbbe0e92e9d5fc032。未运行模型评测，也未核验全部上游题目的逐题来源。",
+      "sourceUrls": [
+        "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "https://raw.githubusercontent.com/openai/simple-evals/main/README.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "test-csv-row-0",
+        "title": "短事实问答 · IEEE 奖项",
+        "type": "text",
+        "prompt": "Who received the IEEE Frank Rosenblatt Award in 2010?",
+        "answer": "Michio Sugeno",
+        "explanation": "模型需回答一个可核查的人名；此处答案直接取自 OpenAI 官方 CSV，未生成新的答案。CSV metadata 原字符串保留，含题目作者使用的参考链接。",
+        "raw": {
+          "metadata": "{'topic': 'Science and technology', 'answer_type': 'Person', 'urls': ['https://en.wikipedia.org/wiki/IEEE_Frank_Rosenblatt_Award', 'https://ieeexplore.ieee.org/author/37271220500', 'https://en.wikipedia.org/wiki/IEEE_Frank_Rosenblatt_Award', 'https://www.nxtbook.com/nxtbooks/ieee/awards_2010/index.php?startid=21#/p/20']}",
+          "problem": "Who received the IEEE Frank Rosenblatt Award in 2010?",
+          "answer": "Michio Sugeno"
+        },
+        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "license": "OpenAI · MIT",
+        "licensePath": "licenses/simpleqa-sample-source.txt",
+        "split": "test / simple_qa_test_set.csv",
+        "excerpt": false
+      }
+    ]
   }
 }

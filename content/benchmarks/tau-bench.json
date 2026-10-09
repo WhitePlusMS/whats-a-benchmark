@@ -19,7 +19,7 @@
   ],
   "kind": "original",
   "verifiedAt": "2026-09-23",
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-10-08",
   "id": "tau-bench",
   "name": "τ-bench",
   "subtitle": "边和用户聊天，边按业务规则办事",
@@ -145,7 +145,7 @@
         "title": "出行前取消待收货订单",
         "type": "record",
         "prompt": "Your name is Olivia Ito and your zip code is 80218. You are outgoing, flexible, pessimistic, organized, logical. You've ordered an item (#W5442520) from this shop. You've realized that you'll be traveling by the time the item arrives and you won't be able to receive it, so you'd want to not receive the item and you'll place a new order when you return. You do't want to place the new order right now, and you simply want to not receive the current order and get a full refund.",
-        "explanation": "这是官方 tasks_dev.py 中 TASKS_DEV 列表第 1 条，源文件没有独立 task id，因此用列表位置和 user_id 定位。官方已说明这批 retail 任务过时；源记录的 actions 是目标动作，没有在本站复制。",
+        "explanation": "用户希望出行前取消尚未收到的订单并退款，暂时不下新单。代理需识别具体订单、核对政策并执行合适操作；这是官方旧版 retail 任务。",
         "raw": {
           "user_id": "olivia_ito_3591",
           "instruction": "Your name is Olivia Ito and your zip code is 80218. You are outgoing, flexible, pessimistic, organized, logical. You've ordered an item (#W5442520) from this shop. You've realized that you'll be traveling by the time the item arrives and you won't be able to receive it, so you'd want to not receive the item and you'll place a new order when you return. You do't want to place the new order right now, and you simply want to not receive the current order and get a full refund."
@@ -159,7 +159,7 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "基准把每个任务建模为代理、模拟用户、业务数据库/API 和领域政策组成的交互环境。代理须从用户对话中获取信息、遵守政策、调用工具；结束时比较数据库最终状态与标注的目标状态，并检查必要的回复内容。用户模拟由语言模型生成，因此同一任务可以有不同对话轨迹，但仍对应唯一目标状态。",
+    "summary": "在客户服务对话中遵守政策并调用 API，按业务数据库最终状态和必要回复判断任务完成。",
     "task": "通过多轮客户服务对话和 API 工具调用，遵守领域政策并达到目标状态。",
     "sourceUrls": [
       "https://arxiv.org/html/2406.12045v1",
@@ -237,5 +237,13 @@
       "https://github.com/sierra-research/tau-bench/blob/main/LICENSE",
       "https://github.com/sierra-research/tau-bench"
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "样例 TASKS_DEV[0]:olivia_ito_3591：这是官方 tasks_dev.py 中 TASKS_DEV 列表第 1 条，源文件没有独立 task id，因此用列表位置和 user_id 定位。官方已说明这批 retail 任务过时；源记录的 actions 是目标动作，没有在本站复制。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py"
+      ]
+    }
+  ]
 }

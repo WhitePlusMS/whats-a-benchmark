@@ -1,0 +1,190 @@
+{
+  "id": "arena-webdev",
+  "status": "published",
+  "order": 664,
+  "name": "Arena WebDev",
+  "subtitle": "运行并比较 AI 生成的交互式网页",
+  "category": "writing",
+  "tags": [
+    "前端生成",
+    "交互网页",
+    "人类偏好",
+    "榜单子项"
+  ],
+  "publisher": "Arena / LMArena",
+  "brandIds": [
+    "arena"
+  ],
+  "year": 2024,
+  "version": "WebDev 专项实时榜",
+  "kind": "subset",
+  "aliases": [
+    "WebDev Arena",
+    "Code Arena WebDev",
+    "LMArena WebDev"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Arena 的网页开发专项，用户运行两份生成应用后比较偏好。",
+    "task": "按用户需求生成交互式网页应用，用户体验运行结果并投票。",
+    "sourceUrls": [
+      "https://arena.ai/blog/webdev-arena"
+    ]
+  },
+  "taskContract": {
+    "input": "用户的网页或应用开发请求。",
+    "output": "可运行网页应用及必要代码。",
+    "environment": "平台在隔离环境生成、运行并展示应用；当前榜单包含前端和 agentic 编码路线。",
+    "sourceUrls": [
+      "https://arena.ai/blog/webdev-arena"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公开任务形式、历史执行说明和实时专项榜；当前完整运行与票数据未确认全部公开。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arena.ai/faq"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "查看当前 WebDev 子榜与技术/领域过滤；旧发布流程不代表所有当前模型路线。"
+    ],
+    "url": "https://arena.ai/leaderboard/code/webdev",
+    "sourceUrls": [
+      "https://arena.ai/faq"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/faq"
+    ]
+  },
+  "sampleAccess": {
+    "url": "https://arena.ai/blog/webdev-arena",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "sourceUrls": [
+      "https://arena.ai/blog/webdev-arena"
+    ]
+  },
+  "metric": {
+    "name": "Bradley–Terry 偏好评级",
+    "description": "用户体验同提示应用后投票，拟合相对偏好及排名区间；不等同程序测试的任务成功率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arena.ai/faq",
+      "https://arena.ai/blog/ranking-method"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "界面偏好和可用性共同影响选择；harness、依赖、工具步骤和渲染环境会影响生成成果。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/code/webdev",
+        "https://arena.ai/faq"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 WebDev 定义与历史执行",
+      "url": "https://arena.ai/blog/webdev-arena",
+      "role": "definition"
+    },
+    {
+      "label": "当前官方 WebDev 子榜",
+      "url": "https://arena.ai/leaderboard/code/webdev",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方投票与数据 FAQ",
+      "url": "https://arena.ai/faq",
+      "role": "access"
+    },
+    {
+      "label": "官方排名不确定性方法",
+      "url": "https://arena.ai/blog/ranking-method",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "arena",
+      "label": "平台专项",
+      "detail": "Arena 平台的 WebDev 任务范围；不是独立固定网页题库。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/code/webdev",
+        "https://arena.ai/blog/webdev-arena"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "用户实际运行同提示应用后匿名投票；依赖构建和界面交互也影响偏好，不按函数单元测试正确率评分。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/code/webdev",
+        "https://arena.ai/blog/webdev-arena"
+      ]
+    },
+    "comparison": {
+      "text": "保留HTML/React、frontend/fullstack与agentic路线；历史Next.js单文件实现不能描述所有当前运行配置。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/code/webdev",
+        "https://arena.ai/blog/webdev-arena"
+      ]
+    },
+    "disclosure": {
+      "text": "官方公开任务形式、历史执行说明和实时专项榜；当前完整运行与票数据未确认全部公开。",
+      "sourceUrls": [
+        "https://arena.ai/faq"
+      ]
+    },
+    "versionChanges": {
+      "text": "官方文章说明 2024-12 已上线；历史单次生成实现与当前 agentic 子榜范围需分日期看。",
+      "sourceUrls": [
+        "https://arena.ai/blog/webdev-arena",
+        "https://arena.ai/leaderboard/code/webdev"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://arena.ai/blog/webdev-arena"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "arena-webdev-hacker-news-clone",
+        "title": "Hacker News 克隆应用任务",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "WebDev Arena 官方示例要求创建 Hacker News 克隆网页应用，属于可交互完整应用生成任务。本站只概述真实提示，不复制示例截图、HTML 或模型输出。",
+        "raw": "Create a Hacker News clone",
+        "explanation": "官方 WebDev Arena 文章列出该示例及对应生成应用截图；没有公开稳定 battle ID。截图和 HTML 均不复制，本文不把任何模型产物认作标准答案。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "source": "https://arena.ai/blog/webdev-arena",
+        "license": "未核实覆盖 prompt、截图及模型输出的统一再发布许可。本页仅保留提示短引和本站概述，不复制 HTML、截图或其他模型产物。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "WebDev Arena 官方文章示例 · 无稳定 battle ID",
+        "excerpt": true
+      }
+    ]
+  }
+}

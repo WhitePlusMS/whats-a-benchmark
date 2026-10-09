@@ -32,35 +32,10 @@
   },
   "limitations": [
     {
-      "text": "当前 CSV gated，本轮未取得许可或读取题目/答案键；未逐条核验题目与答案内容。",
+      "text": "2025 博客公开 Hard 例题与当前 Pro 133 题的成员关系未获公开来源确认；Hard 标签相同不足以证明旧例属于当前 Pro。",
       "sourceUrls": [
-        "https://github.com/databricks/officeqa",
-        "https://huggingface.co/datasets/databricks/officeqa",
-        "https://github.com/databricks/officeqa#data-access"
-      ]
-    },
-    {
-      "text": "未下载完整语料，也未按 NOTICE 对每份 PDF 和解析文件独立进行哈希及来源检查。",
-      "sourceUrls": [
-        "https://github.com/databricks/officeqa",
-        "https://huggingface.co/datasets/databricks/officeqa",
-        "https://github.com/databricks/officeqa#data-access"
-      ]
-    },
-    {
-      "text": "未重跑任何官方模型结果；未将不同 agent、oracle-page 设置或答案容差下的结果换算为等价成绩。",
-      "sourceUrls": [
-        "https://github.com/databricks/officeqa",
-        "https://huggingface.co/datasets/databricks/officeqa",
-        "https://github.com/databricks/officeqa#data-access"
-      ]
-    },
-    {
-      "text": "数据卡、仓库及 HF 授权状态可能更新；本轮未固定 revision。",
-      "sourceUrls": [
-        "https://github.com/databricks/officeqa",
-        "https://huggingface.co/datasets/databricks/officeqa",
-        "https://github.com/databricks/officeqa#data-access"
+        "https://www.databricks.com/blog/introducing-officeqa-benchmark-end-to-end-grounded-reasoning",
+        "https://github.com/databricks/officeqa"
       ]
     }
   ],
@@ -114,13 +89,23 @@
       "label": "OpenAI GPT-5.4 官方报告",
       "url": "https://openai.com/index/introducing-gpt-5-4/",
       "role": "vendor-report"
+    },
+    {
+      "label": "2025 OfficeQA 公开 Hard 例题（当前 Pro 归属未确认）",
+      "url": "https://www.databricks.com/blog/introducing-officeqa-benchmark-end-to-end-grounded-reasoning",
+      "role": "definition"
+    },
+    {
+      "label": "OfficeQA Pro 官方论文 Figure 3 / UID0013 公开例题",
+      "url": "https://arxiv.org/pdf/2603.08655v1#page=4",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-09-23",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "OfficeQA Pro 衡量模型或代理能否在真实、密集的美国财政部公报中找到并组合财务表格、图表和正文证据，完成端到端文档推理。问题需基于 1939–2025 年 Treasury Bulletin 语料作答；它测试检索、工具使用和多步计算/推理。",
+    "summary": "从美国财政部公报的表格、图表和正文中检索并组合证据，完成多步文档推理。",
     "task": "从 Treasury Bulletin 中检索并组合财务表格、图表和正文证据，回答多步文档推理问题。",
     "sourceUrls": [
       "https://huggingface.co/datasets/databricks/officeqa",
@@ -149,12 +134,14 @@
       "uid、question、answer、source_docs、source_files、difficulty。"
     ],
     "files": [
-      "officeqa_pro.csv；原始 PDF、解析 JSON 和转写 TXT 语料。"
+      "officeqa_pro.csv；原始 PDF、解析 JSON 和转写 TXT 语料。",
+      "本站案例是官方报告 Figure 3 的公开 UID0013 题目解读，未提取 gated CSV 或答案键。"
     ],
     "sourceUrls": [
       "https://github.com/databricks/officeqa",
       "https://huggingface.co/datasets/databricks/officeqa",
-      "https://github.com/databricks/officeqa#data-access"
+      "https://github.com/databricks/officeqa#data-access",
+      "https://arxiv.org/pdf/2603.08655v1#page=4"
     ]
   },
   "dataAccess": {
@@ -174,7 +161,7 @@
     "license": "数据卡将 benchmark dataset 标注 CC BY-SA 4.0；代码和脚本为 Apache-2.0。",
     "scope": "NOTICE 为政府来源 PDF 与解析文件列出逐文件公共领域依据；这些文件依据与数据集和代码许可证分别适用。",
     "boundaries": [
-      "Pro 题目与答案受 gated 访问控制；本站不转载题目、答案、源文件或截图。",
+      "Pro CSV 和答案键仍受 gated 访问控制，本站不转存其数据行、源文件或截图；独立公开论文例题仅作事实解读及必要短引。",
       "不把数据卡许可标签扩大解释为所有题面及来源材料均可无条件转载。"
     ],
     "sourceUrls": [
@@ -186,12 +173,80 @@
     ]
   },
   "sampleAccess": {
-    "status": "gated",
-    "reason": "Pro CSV 包含问题与 ground-truth answer，且需经 HF 授权访问；GitHub 仓库公开 schema、访问流程和评分接口。本站不展示任何真实问题、答案、来源页截图或 PDF 摘录，也不尝试从搜索结果重建答案键。只展示规模、字段名、任务说明和数据卡/仓库链接。",
-    "url": "https://github.com/databricks/officeqa#data-access",
+    "status": "local",
+    "reason": "本站展示 Databricks 官方 OfficeQA Pro 报告 Figure 3 明确公开的 UID0013 具体例题，标为中文案例解读；正式 Pro CSV 和答案键仍需授权访问，未读取或复制。",
+    "url": "https://arxiv.org/pdf/2603.08655v1#page=4",
     "sourceUrls": [
-      "https://github.com/databricks/officeqa#data-access",
-      "https://huggingface.co/datasets/databricks/officeqa"
+      "https://arxiv.org/pdf/2603.08655v1#page=4",
+      "https://github.com/databricks/officeqa#data-access"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "当前 CSV gated，本轮未取得许可或读取题目/答案键；未逐条核验题目与答案内容。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    },
+    {
+      "text": "未下载完整语料，也未按 NOTICE 对每份 PDF 和解析文件独立进行哈希及来源检查。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    },
+    {
+      "text": "未重跑任何官方模型结果；未将不同 agent、oracle-page 设置或答案容差下的结果换算为等价成绩。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    },
+    {
+      "text": "数据卡、仓库及 HF 授权状态可能更新；本轮未固定 revision。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa",
+        "https://github.com/databricks/officeqa#data-access"
+      ]
+    },
+    {
+      "text": "2026-10-08 公开来源复查确认博客存在 USDA 回归预测 Hard 示例；博客 Hard 为 113，当前 README 的 Pro 为 133 hard。匿名 Pro CSV 返回 401，未读取或申请访问。缺口仅指当前 Pro 案例归属未确认，不表示 OfficeQA 没有公开例题。",
+      "sourceUrls": [
+        "https://www.databricks.com/blog/introducing-officeqa-benchmark-end-to-end-grounded-reasoning",
+        "https://github.com/databricks/officeqa",
+        "https://huggingface.co/datasets/databricks/officeqa"
+      ]
+    },
+    {
+      "text": "2026-10-08 直接核对 arXiv v1 第4页 Figure 3，图注明确 Sample questions from OfficeQA Pro，UID0013 的回归任务可公开定位；本地登记它的事实解读，不将旧博客 USDA 示例混为这条题，也不宣称访问过当前 CSV 行。",
+      "sourceUrls": [
+        "https://arxiv.org/pdf/2603.08655v1#page=4",
+        "https://arxiv.org/abs/2603.08655"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "officeqa-pro-paper-uid0013",
+        "title": "UID0013：联邦所得税收入的线性回归",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "从美国 Treasury Bulletin 中取出1929–1942财年的联邦个人所得税收入（扣除退款，单位为十亿美元名义值）。以未经变换的数值年份为自变量、收入为因变量，拟合普通最小二乘线性回归。返回斜率和截距，各自四舍五入到小数点后三位，以方括号内用逗号分隔的两个数输出。",
+        "raw": "Sample Question UID0013",
+        "source": "https://arxiv.org/pdf/2603.08655v1#page=4",
+        "license": "本条仅对 Databricks 官方技术报告 v1 的 Figure 3 主动公开的 OfficeQA Pro 例题作中文事实解读和必要标题短引；报告保留版权所有声明。未复制论文题图或逐字完整题面，未读取 gated CSV、答案键或下载所需语料；数据卡许可不被扩展为对受控集合的无条件再发布授权。",
+        "split": "OfficeQA Pro 官方报告 · arXiv:2603.08655v1 · p.4 Figure 3 · UID0013 · 非 gated CSV 提取",
+        "excerpt": true,
+        "explanation": "论文 Figure 3 明确说明此图为 OfficeQA Pro 的示例问题，并给出 UID0013；第2.2节同时定义133道Pro题及另外113道Easy题。该题实际考察财政文档检索与线性回归，输入年份、净退款口径、单位、回归变量与输出格式均来自公开例题。图中没有公布本题答案，本站不自行填写答案；所需公报数据也未作为附件转存。"
+      }
     ]
   }
 }

@@ -29,22 +29,6 @@
   },
   "limitations": [
     {
-      "text": "未枚举 42 个上游仓库的许可证，也未逐条检查 issue 正文、PR patch、测试代码及其中可能引用的素材授权。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
-        "https://www.swebench.com/SWE-bench/guides/datasets/",
-        "https://www.swebench.com/multilingual.html"
-      ]
-    },
-    {
-      "text": "HF Viewer 公开 300 行；本轮未下载并锁定其全量 Parquet、记录哈希或完整复跑 harness。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
-        "https://www.swebench.com/SWE-bench/guides/datasets/",
-        "https://www.swebench.com/multilingual.html"
-      ]
-    },
-    {
       "text": "官方卡当前支持的模型榜单/模型成绩可能使用不同工具预算和 agent 设置；未做横向可比性审计。",
       "sourceUrls": [
         "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
@@ -78,6 +62,11 @@
       "label": "DeepSeek-V3.2-Exp 官方评测表",
       "url": "https://github.com/deepseek-ai/DeepSeek-V3.2-Exp",
       "role": "vendor-report"
+    },
+    {
+      "label": "已核验的具体任务或公开例题",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multilingual&config=default&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "related": [
@@ -92,10 +81,10 @@
       ]
     }
   ],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "评估模型/agent 能否在多种编程语言的真实软件仓库中，根据 GitHub issue 修改代码并修复问题。它沿用 SWE-bench 的实例格式和测试验证思路，规模刻意控制为 300 个精选任务，覆盖 42 个仓库和 9 种语言。",
+    "summary": "根据真实 GitHub issue 修复多语言仓库；300 个精选任务覆盖 42 个仓库和 9 种语言。",
     "task": "根据多语言真实软件仓库中的 GitHub issue 修改代码，提交修复补丁。",
     "sourceUrls": [
       "https://www.swebench.com/multilingual.html",
@@ -157,11 +146,66 @@
     ]
   },
   "sampleAccess": {
-    "status": "unverified",
-    "reason": "当前 本站 未保留该条目具体任务样例。本轮不新增 issue/PR 题面、patch、测试或截图样例：官方任务源链接公开可读，但问题正文及代码来自不同上游仓库，未逐条核验项目授权和再发布范围。可展示官方任务入口与原创协议摘要。",
+    "status": "local",
+    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multilingual&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://www.swebench.com/multilingual.html",
-      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual"
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multilingual&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "未枚举 42 个上游仓库的许可证，也未逐条检查 issue 正文、PR patch、测试代码及其中可能引用的素材授权。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+        "https://www.swebench.com/SWE-bench/guides/datasets/",
+        "https://www.swebench.com/multilingual.html"
+      ]
+    },
+    {
+      "text": "HF Viewer 公开 300 行；本轮未下载并锁定其全量 Parquet、记录哈希或完整复跑 harness。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+        "https://www.swebench.com/SWE-bench/guides/datasets/",
+        "https://www.swebench.com/multilingual.html"
+      ]
+    },
+    {
+      "text": "当前 本站 未保留该条目具体任务样例。本轮不新增 issue/PR 题面、patch、测试或截图样例：官方任务源链接公开可读，但问题正文及代码来自不同上游仓库，未逐条核验项目授权和再发布范围。可展示官方任务入口与原创协议摘要。",
+      "sourceUrls": [
+        "https://www.swebench.com/multilingual.html",
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual"
+      ]
+    },
+    {
+      "text": "本轮已核验并展示具体任务事实解读，来源位置为 default/test, row_idx=0, instance_id=apache__druid-13704, base_commit=51dfde02840017092486fb75be2b16566aff6a19；未镜像底层完整材料。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multilingual&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-swe-bench-multilingual",
+        "title": "Apache Druid · 添加幂运算聚合",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "任务 apache__druid-13704：原算术后聚合支持加减乘除等操作，实际需求是增加 pow(f1,f2)，以覆盖平方、立方和平方根等情况。任务来自 Apache Druid 的真实软件工程问题，不是自然语言翻译题。",
+        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：default/test, row_idx=0, instance_id=apache__druid-13704, base_commit=51dfde02840017092486fb75be2b16566aff6a19\n原始数据精简说明：保留原生字段 instance_id、base_commit、version、problem_statement；其他记录字段未收录。 /problem_statement 保留源值字符[0:85]，源字段共768字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "instance_id": "apache__druid-13704",
+          "base_commit": "51dfde02840017092486fb75be2b16566aff6a19",
+          "version": "13704",
+          "problem_statement": "Support Post aggregation function pow(f1,f2) to cater for square, cube , square root."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multilingual&config=default&split=test&offset=0&length=1",
+        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "SWE-bench Multilingual test split, row 0, Apache Druid task",
+        "excerpt": true
+      }
     ]
   }
 }

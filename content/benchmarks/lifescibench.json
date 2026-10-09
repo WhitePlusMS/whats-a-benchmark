@@ -47,12 +47,6 @@
         "https://openai.com/index/introducing-life-sci-bench/",
         "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
       ]
-    },
-    {
-      "text": "论文可公开任务示例中可见的具体内容仍应逐项遵循作者/原始材料的权利与安全限制；本站本记录不复刻这些内容。",
-      "sourceUrls": [
-        "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
-      ]
     }
   ],
   "sources": [
@@ -81,7 +75,7 @@
   "verifiedAt": "2026-09-23",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "LifeSciBench 由 OpenAI 与 Tacit Labs 研究人员提出，评估生命科学研究任务中的证据解读、分析、实验设计、验证和科学沟通能力；任务由领域专家撰写并审阅。",
+    "summary": "完成生命科学研究中的证据解读、分析、实验设计和科学沟通任务，按专家 rubric 评分。",
     "task": "模型完成单轮生命科学研究工作任务，结合上下文和可选附件作出分析或研究产物回答，并按任务专属专家 rubric 评分。",
     "sourceUrls": [
       "https://openai.com/index/introducing-life-sci-bench/",
@@ -128,23 +122,52 @@
     "url": "https://openai.com/index/introducing-life-sci-bench/"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "未发现全量任务数据或专属 harness 的公开许可；论文说明发布可能受许可、隐私、专有信息和生物安全限制。",
-    "scope": "可阅读论文不代表取得复制 benchmark 任务、附件、rubric 或第三方材料的许可。",
+    "status": "unknown",
+    "license": "OpenAI论文/介绍页未给任务文本或artifact单独再利用许可。",
+    "scope": "仅论文内可定位示例的原创解读与必要短引；任务、rubric、数据附件及第三方材料许可未查明。",
     "boundaries": [
-      "页面只用原创概述、聚合统计和官方链接；不转载题目全文、附件、详细 rubric 或可能受限的安全材料。"
+      "不复制Visium数据、附件或详细rubric。",
+      "论文公开示例不代表整套benchmark许可。"
     ],
     "sourceUrls": [
-      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+      "https://openai.com/index/introducing-life-sci-bench/"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "OpenAI 官方介绍页含 Eval Example。本按钮仅打开官方原文；本站不复制完整任务、附件、序列或 rubric，也不据此推定完整数据集可转载。",
+    "status": "local",
+    "reason": "OpenAI官方论文展示具体 Analysis 示例和附件名；本站不复制附件或扩展评分rubric，许可保持按范围说明。",
+    "url": "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
     "sourceUrls": [
-      "https://openai.com/index/introducing-life-sci-bench/",
-      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
-    ],
-    "url": "https://openai.com/index/introducing-life-sci-bench/"
+      "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+      "https://openai.com/index/introducing-life-sci-bench/"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "论文可公开任务示例中可见的具体内容仍应逐项遵循作者/原始材料的权利与安全限制；本站本记录不复刻这些内容。",
+      "sourceUrls": [
+        "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-lifescibench-spatial-transcriptomics",
+        "title": "论文示例 · 宫颈癌空间转录组分析",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方论文的 Analysis 示例要求分析一张 FFPE 宫颈癌 Visium 切片：将 spots 分为4个 k-means 群，标注主要细胞类型，比较肿瘤与非肿瘤抗原的流行度/比值和特异性，并建议1–2种靶向治疗。数据附件只在论文中列名，本页未复制或下载。",
+        "explanation": "Appendix D.1 / Figure 15 将其标为 benchmark task example。这里复述官方示例的实际分析目标，不把附件、扩展评分rubric或任何未给出的答案加入样例。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Example Benchmark Task — Analysis\n\nUsing the attached Visium data from an FFPE cervical cancer slide\n\nfiltered_feature_bc_matrix.h5\nanalysis.tar.gz\nspatial.tar.gz",
+        "source": "https://cdn.openai.com/pdf/b4299379-0a97-4ffa-8b9b-c3fbb299caa9/lifescibench_preprint.pdf",
+        "license": "本站原创论文示例解读与标签短引；论文未说明题目/附件单独复用许可，附件未复制。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Official preprint / Appendix D.1 / Analysis — Spatial Transcriptomics / Figure 15",
+        "excerpt": true
+      }
+    ]
   }
 }

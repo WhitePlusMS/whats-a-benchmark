@@ -1,0 +1,176 @@
+{
+  "id": "aa-briefcase",
+  "status": "published",
+  "order": 730,
+  "name": "AA-Briefcase v1.1",
+  "subtitle": "读取工作材料，提交专业交付物",
+  "category": "work",
+  "tags": [
+    "读取工作材料，提交专业交付物"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v1.1",
+  "kind": "original",
+  "aliases": [
+    "AA-Briefcase",
+    "AA Briefcase"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在商业工作场景中读取材料并生成成果文件，综合衡量任务达成、分析质量与呈现质量。",
+    "task": "工作要求和场景文件。 → 按要求提交的成果文件。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+    ]
+  },
+  "taskContract": {
+    "input": "工作要求和场景文件。",
+    "output": "按要求提交的成果文件。",
+    "environment": "Stirrup 离线沙箱；每个任务独立运行，最多 500 轮。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+    ]
+  },
+  "dataProfile": {
+    "summary": "完整评测与公开 Lite 示例场景不同，不能用 Lite 的规模代表正式题库。",
+    "disclosure": "partial",
+    "scale": [
+      "正式评测：4 个场景、91 项任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可查看 Lite 示例；正式评测不是完整公开集。"
+    ],
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0（选定公开任务的数据许可）",
+    "scope": "本页仅展示所选公开任务；未转载配套第三方文档、模型输出、参考作品或完整私有题库。",
+    "boundaries": [
+      "保留发布方、数据快照和来源；各第三方材料按原作者许可另行核对。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "此例直接保留官方 task brief，需制作 TikZ 市场图并提交 market_overview.tex/pdf；背景源文件未复制。它是官方公开第五场景的演示任务，不是四个私有计分场景。",
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/tasks/w1_t1.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/tasks/w1_t1.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/README.md"
+    ]
+  },
+  "metric": {
+    "name": "综合 Elo",
+    "description": "结合任务细则评分与分析、呈现质量的成对比较，拟合相对评级。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+    ]
+  },
+  "limitations": [],
+  "interpretation": {
+    "judge": {
+      "text": "模型评审组按细则或成对比较判分；不是人类专家逐项评阅的成绩。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+      ]
+    },
+    "comparison": {
+      "text": "核对正式集或 Lite、代理框架、轮数、评审配置及 Elo 拟合版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+      ]
+    },
+    "disclosure": {
+      "text": "公开方法、代理代码与 Lite 示例；不能据此复现完整私有题库的成绩。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+      ]
+    },
+    "versionChanges": {
+      "text": "v1.1 改用 Crowd-BT 拟合；原始 Elo 数值的变化不应直接解释为模型能力变化。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "AA 方法说明",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "公开 Lite 数据卡",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite",
+      "role": "data"
+    },
+    {
+      "label": "已核验的原始具体任务",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/tasks/w1_t1.md",
+      "role": "data"
+    },
+    {
+      "label": "数据许可及公开范围声明",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/README.md",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "researchNotes": [
+    {
+      "text": "已重新读取官方源文件并核对具体记录；SHA-256 9c81987ef22cea43c3eba7588d86321e2791122ac96e6c9ea11e7bf58abaf8d4。此例直接保留官方 task brief，需制作 TikZ 市场图并提交 market_overview.tex/pdf；背景源文件未复制。它是官方公开第五场景的演示任务，不是四个私有计分场景。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/tasks/w1_t1.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "lite-w1-t1",
+        "title": "Lite公开任务 · 新西兰鸡蛋市场结构图",
+        "type": "text",
+        "prompt": "# Task 1: Market Structure Map\n\n## Objective\n\nCreate a single-page LaTeX document containing a TikZ diagram that maps the structure of the New Zealand egg market. This diagram will serve as a visual aid for understanding production systems and channels in the sector.\n\n## Requirements\n\n- Map the structure of the NZ egg market.\n- Segment producers by production system.\n- Segment by market channel.\n- Visually indicate relative producer scale across the market.\n- Clearly annotate the cage-ban transition flow.\n- Depict the value chain end-to-end, with the target's positioning shown along it. Identify the relevant intermediaries.\n- Surface the cross-stage commercial dynamics that matter for a producer in Aurora's position.\n- Differentiate the named producers visually beyond volume share, reflecting the structural distinctions.\n\n## Deliverable\n\n**Filenames:** `market_overview.tex` and `market_overview.pdf`\n",
+        "explanation": "此例直接保留官方 task brief，需制作 TikZ 市场图并提交 market_overview.tex/pdf；背景源文件未复制。它是官方公开第五场景的演示任务，不是四个私有计分场景。",
+        "raw": "# Task 1: Market Structure Map\n\n## Objective\n\nCreate a single-page LaTeX document containing a TikZ diagram that maps the structure of the New Zealand egg market. This diagram will serve as a visual aid for understanding production systems and channels in the sector.\n\n## Requirements\n\n- Map the structure of the NZ egg market.\n- Segment producers by production system.\n- Segment by market channel.\n- Visually indicate relative producer scale across the market.\n- Clearly annotate the cage-ban transition flow.\n- Depict the value chain end-to-end, with the target's positioning shown along it. Identify the relevant intermediaries.\n- Surface the cross-stage commercial dynamics that matter for a producer in Aurora's position.\n- Differentiate the named producers visually beyond volume share, reflecting the structural distinctions.\n\n## Deliverable\n\n**Filenames:** `market_overview.tex` and `market_overview.pdf`\n",
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Briefcase-Lite/resolve/4dec557b47d43867a1648c0974db1d8208c8b677/tasks/w1_t1.md",
+        "license": "Artificial Analysis / Apache-2.0",
+        "licensePath": "licenses/aa-briefcase-sample-source.txt",
+        "split": "Lite 第五场景 / week 1 / w1_t1（不计入榜单）",
+        "excerpt": true
+      }
+    ]
+  }
+}

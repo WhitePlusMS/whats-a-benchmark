@@ -68,8 +68,7 @@
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "作者 GitHub 仓库公开；本地运行需 Docker 和 OpenHands runtime。",
-      "本轮未下载并逐项复核全量 task package。"
+      "作者 GitHub 仓库公开；本地运行需 Docker 和 OpenHands runtime。"
     ],
     "url": "https://github.com/multimodal-art-projection/NL2RepoBench",
     "sourceUrls": [
@@ -91,12 +90,11 @@
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "论文和 repo 有任务说明入口，但未找到对题面、测试、容器素材及图像适用的公开复用许可；不转载样例。",
-    "url": "https://github.com/multimodal-art-projection/NL2RepoBench",
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
     "sourceUrls": [
-      "https://github.com/multimodal-art-projection/NL2RepoBench",
-      "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
+      "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md"
     ]
   },
   "metric": {
@@ -108,19 +106,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "本轮未固定作者仓库 revision 或下载全量任务，未逐一确认论文 104-task 数据与当前分支文件映射。",
-      "sourceUrls": [
-        "https://github.com/multimodal-art-projection/NL2RepoBench",
-        "https://arxiv.org/abs/2512.12730"
-      ]
-    },
-    {
-      "text": "未核实 benchmark 数据、代码、媒体及第三方上游库素材的复用许可；官方 issue 对许可的询问仍开放。",
-      "sourceUrls": [
-        "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
-      ]
-    },
     {
       "text": "当前目录仅证实 repo 顶层结构，不能作为每个 task 的统一文件 schema。",
       "sourceUrls": [
@@ -178,8 +163,60 @@
       "label": "MiniMax M3 厂商评测方法",
       "url": "https://www.minimax.io/blog/minimax-m3",
       "role": "vendor-report"
+    },
+    {
+      "label": "已核验的具体公开任务",
+      "url": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23"
+  "verifiedAt": "2026-10-08",
+  "researchNotes": [
+    {
+      "text": "本轮未固定作者仓库 revision 或下载全量任务，未逐一确认论文 104-task 数据与当前分支文件映射。",
+      "sourceUrls": [
+        "https://github.com/multimodal-art-projection/NL2RepoBench",
+        "https://arxiv.org/abs/2512.12730"
+      ]
+    },
+    {
+      "text": "未核实 benchmark 数据、代码、媒体及第三方上游库素材的复用许可；官方 issue 对许可的询问仍开放。",
+      "sourceUrls": [
+        "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
+      ]
+    },
+    {
+      "text": "本轮未下载并逐项复核全量 task package。",
+      "sourceUrls": [
+        "https://github.com/multimodal-art-projection/NL2RepoBench",
+        "https://arxiv.org/abs/2512.12730"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：test_files/fastapi-users/start.md, section Natural Language Instruction (Prompt), opening lines；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-nl2repo-bench",
+        "title": "fastapi-users · 生成认证管理项目",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方 fastapi-users/start.md 的自然语言任务要求生成 FastAPI-Users-Auth Python 项目，包含用户创建、更新、删除、查询和异步数据库支持等认证管理功能。本页仅节选这一真实仓库级请求，不复制参考实现或将它描述为单函数题。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：test_files/fastapi-users/start.md, section Natural Language Instruction (Prompt), opening lines\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Please create a Python project named FastAPI-Users-Auth to implement a complete user authentication and authorization management system.",
+        "source": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "NL2RepoBench task directory fastapi-users; source is original benchmark repository start.md",
+        "excerpt": true
+      }
+    ]
+  }
 }

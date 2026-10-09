@@ -4,7 +4,7 @@
   "order": 504,
   "name": "AutomationBench",
   "subtitle": "跨应用业务流程自动化",
-  "category": "agents",
+  "category": "work",
   "tags": [
     "业务流程",
     "工具使用"
@@ -88,7 +88,7 @@
         "type": "record",
         "prompt": "Jordan Lee just emailed us with a new phone number. Can you find that email and update her phone number in Salesforce?",
         "answer": "salesforce contacts/003001.phone = +1-555-0101",
-        "explanation": "answer 展示的是官方任务断言要求的最终状态；任务是否通过由该断言检查，不是自由文本答案。",
+        "explanation": "任务要求先从邮件中找出联系人新号码，再更新 Salesforce。通过与否取决于联系人数据的最终状态；回复一段说明不能替代实际更新。",
         "raw": {
           "task": "simple.email_sf_contact_phone_update",
           "example_id": 3001,
@@ -223,5 +223,6 @@
       "url": "https://www.anthropic.com/claude-opus-5-5",
       "role": "vendor-report"
     }
-  ]
+  ],
+  "updatedAt": "2026-10-08"
 }

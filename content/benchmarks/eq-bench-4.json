@@ -1,0 +1,200 @@
+{
+  "id": "eq-bench-4",
+  "status": "published",
+  "order": 652,
+  "name": "EQ-Bench 4",
+  "subtitle": "在多轮互动里理解用户情绪与需求",
+  "category": "alignment",
+  "tags": [
+    "情绪理解",
+    "社会互动",
+    "多轮对话",
+    "模型裁判"
+  ],
+  "publisher": "Samuel J. Paech / EQ-bench",
+  "brandIds": [
+    "eq-bench"
+  ],
+  "year": null,
+  "version": "4",
+  "kind": "original",
+  "aliases": [
+    "EQBench4",
+    "EQ-Bench 4 · 情绪与人际理解"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "与模拟用户进行多轮互动，评估情绪和社会理解、适应与关系修复。",
+    "task": "根据有限线索理解不同用户的偏好与情绪，在八轮交流中建立信任并提供帮助。",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/eqbench4"
+    ]
+  },
+  "taskContract": {
+    "input": "模拟用户的可见消息；隐藏 persona 状态不提供给被测模型。",
+    "output": "连续多轮助手回应。",
+    "environment": "persona 模型每轮更新隐藏内心活动与状态，再给出可见回复；八轮助手互动共 16 条消息，成对裁判双向盲评同一 persona 的记录，行为倾向另作单篇评分。",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/eqbench4"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库提供 persona、代码和结果文件结构；模拟用户并非真实人类样本。",
+    "disclosure": "partial",
+    "scale": [
+      "120 个 persona，每段对话包含 8 轮助手互动。"
+    ],
+    "splits": [
+      "120 个 persona 各开展八轮助手互动；同一 persona 的不同模型对话配对比较，没有标准 train/dev/test 划分。"
+    ],
+    "fields": [
+      "test.json 顶层为 dataset_metadata 和 docs；每个 persona 记录 doc_id/id、source_type、assistant_relationship、presenting_issue、core_issue、core_adjacent_attributes、modifiers、sensitivities、preferences、persona 和 initial_state。",
+      "persona 包含 trust_style、defense_style、help_seeking_stance 与 verbal_sophistication；initial_state 包含 trust/respect、情绪和核心问题进展，供模拟器与裁判使用，不给被测模型。"
+    ],
+    "files": [
+      "src/eqbench/datasets/test.json 是 persona 数据；config.yaml.example 指定 persona、被测模型、成对/单篇裁判和摘要模型。",
+      "运行生成 results/r*.json（对话、隐藏状态和裁判输出）、elo_results.json、model_summaries.json 和 judge_bias_report.json。"
+    ],
+    "sourceUrls": [
+      "https://github.com/EQ-bench/eqbench4",
+      "https://github.com/EQ-bench/eqbench4/blob/main/src/eqbench/datasets/test.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "按官方配置设置 persona 模型、成对裁判、单篇裁判和摘要模型。"
+    ],
+    "url": "https://github.com/EQ-bench/eqbench4",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/eqbench4"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://github.com/EQ-bench/eqbench4"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
+    "url": "https://github.com/EQ-bench/EQ-bench-site/blob/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/EQ-bench-site/blob/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+      "https://github.com/EQ-bench/eqbench4"
+    ]
+  },
+  "metric": {
+    "name": "成对能力评级",
+    "description": "六项互动能力的成对差值拟合相对评级。验证、挑战、让步等行为倾向另列，不计入最终能力分数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/EQ-bench/eqbench4"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "仅英语纯文本模拟互动；官方尚未用人类专家评分验证，不能视为全面情商、真实共情或安全性结论。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/eqbench4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 EQ-Bench 4 仓库",
+      "url": "https://github.com/EQ-bench/eqbench4",
+      "role": "readme"
+    },
+    {
+      "label": "官方 EQ-Bench 4 榜单",
+      "url": "https://eqbench.com/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "EQ-Bench 4 官方 persona 数据结构",
+      "url": "https://github.com/EQ-bench/eqbench4/blob/main/src/eqbench/datasets/test.json",
+      "role": "data"
+    },
+    {
+      "label": "EQ-Bench 4 官方对话和 persona 查看入口",
+      "url": "https://eqbench.com/eqbench4/",
+      "role": "data"
+    },
+    {
+      "label": "EQ-Bench site pinned transcript #29",
+      "url": "https://github.com/EQ-bench/EQ-bench-site/blob/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+      "role": "data"
+    },
+    {
+      "label": "案例原始数据精简字段来源",
+      "url": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "多模型裁判盲评同一 persona 的对话；能力评级与中性行为倾向评分分开。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/eqbench4"
+      ]
+    },
+    "comparison": {
+      "text": "检查 persona、模拟器、裁判配置和置信区间，不能把行为倾向的高分直接理解为更好。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/eqbench4"
+      ]
+    },
+    "disclosure": {
+      "text": "官方仓库提供 persona、代码和结果文件结构；模拟用户并非真实人类样本。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/eqbench4"
+      ]
+    },
+    "versionChanges": {
+      "text": "4 的动态 persona 与八轮互动协议不同于 EQ-Bench 3；不合并旧版本成绩。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/eqbench4"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://github.com/EQ-bench/eqbench4"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "eq-bench-4-generated-persona-29",
+        "title": "模拟家庭责任关系情境",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "官方生成 persona 的关系情境：说话者称自己独自承担与父母有关的事务、手足没有分担；提起后，觉得自己反被指责。该记录标为模拟对话并报告八轮互动，不是真实用户经历。",
+        "raw": {
+          "scenario_id": "b64d652c-fdec-42db-bd3c-885c6f61d725",
+          "starter": "I'm doing everything for my parents and my siblings just... aren't. I brought it up once and they made me feel like a monster.",
+          "i": 29
+        },
+        "explanation": "固定 transcript 文件 i=29，evaluated_model=claude-fable-5，persona_model=google/gemini-3.1-pro-preview，source_type=generated，num_turns=8。仅概述开场情境；其余 user/assistant 对话、隐藏状态和 judge_analysis 均未复制。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 starter: retained the first 24 words; source value continues after monster.、turns、thinking/monologue、judge_analysis、scores。 保留文本字段的真实片段，范围为 [{\"path\": \"/starter\", \"start\": 0, \"end\": 126, \"sourceCharacters\": 127}]。",
+        "source": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+        "license": "该 transcript JSON 未找到明确的数据再发布许可；EQ-Bench 代码仓库许可证不自动覆盖网站仓库中的对话数据。本样例仅含标题短引与本站情境概要。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "official transcript · claude-fable-5/29.json · i=29 · generated persona · 8 turns",
+        "excerpt": true
+      }
+    ]
+  }
+}

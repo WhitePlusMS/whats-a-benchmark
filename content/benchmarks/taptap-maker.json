@@ -1,0 +1,156 @@
+{
+  "id": "taptap-maker",
+  "status": "published",
+  "order": 1160,
+  "name": "TapTap Maker Benchmark",
+  "subtitle": "让Lua游戏代码在真实引擎运行",
+  "category": "coding",
+  "tags": [
+    "游戏开发",
+    "确定性断言"
+  ],
+  "publisher": "易玩（上海）网络科技有限公司 / TapTap Maker",
+  "brandIds": [
+    "taptap-maker"
+  ],
+  "year": 2026,
+  "version": "edition 2026-09-10；dataset v0.2.3",
+  "kind": "original",
+  "aliases": [
+    "TapTap Maker"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "让 AI agent 使用 Lua 为 UrhoX 引擎编写或修改游戏功能，由真实引擎执行并按确定性断言判分。",
+    "task": "在提供UrhoX文档和辅助库的开发工作区中，以Lua实现或修改物理玩法、3D场景、UI、动画和网络等游戏功能。",
+    "sourceUrls": [
+      "https://maker.taptap.cn/leaderboard/methodology.html"
+    ]
+  },
+  "taskContract": {
+    "input": "任务需求、开发工作区、引擎文档与辅助库。",
+    "output": "Lua游戏代码及要求交付的文件或场景。",
+    "environment": "每次尝试使用隔离容器；先检查交付物及Lua静态分析，再由真实UrhoX无头执行确定性断言。",
+    "sourceUrls": [
+      "https://maker.taptap.cn/leaderboard/methodology.html"
+    ]
+  },
+  "dataProfile": {
+    "summary": "方法与版本快照公开，私有题面、答案、运行轨迹及题集构成不公开。",
+    "disclosure": "partial",
+    "scale": [
+      "涵盖多个游戏开发任务类别与3个难度层级；私有前沿题集规模不公开。"
+    ],
+    "splits": [
+      "公开题用于难度榜，私有held-out题用于前沿榜。"
+    ],
+    "fields": [],
+    "files": [
+      "方法、版本存档和榜单可浏览，完整任务数据入口未核实。"
+    ],
+    "sourceUrls": [
+      "https://maker.taptap.cn/leaderboard/editions.html",
+      "https://maker.taptap.cn/leaderboard/methodology.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可以阅读方法与版本快照；完整公开题下载和私有任务访问方式尚未核实。"
+    ],
+    "sourceUrls": [
+      "https://maker.taptap.cn/leaderboard/methodology.html"
+    ],
+    "url": "https://maker.taptap.cn/leaderboard/methodology.html"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "boundaries": [
+      "代码仓库的开源许可与底层任务数据授权需分别核对。",
+      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+    ],
+    "sourceUrls": [
+      "https://maker.taptap.cn/leaderboard/methodology.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "官方方法与edition archive公开执行和版本指纹；本次未找到具体公开题面或可下载任务包，不能把方法页当作样例。",
+    "sourceUrls": [
+      "https://maker.taptap.cn/leaderboard/methodology.html"
+    ]
+  },
+  "metric": {
+    "name": "L2引擎执行通过率",
+    "description": "主榜按每题多次独立重复的L2通过结果统计，并报告95%置信区间和排名可能范围。评判使用真实引擎与确定性断言。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://maker.taptap.cn/leaderboard/methodology.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "范围专注UrhoX与Lua，不能直接推广到其他引擎或技术栈。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/methodology.html"
+      ]
+    },
+    {
+      "text": "成绩包含模型与指定agent脚手架的组合效应。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/methodology.html"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本按官方edition archive记录；未推定未公开的任务总数。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/editions.html",
+        "https://maker.taptap.cn/leaderboard/methodology.html"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开材料，未实际运行评测或复核某个模型的成绩。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "TapTap Maker leaderboard",
+      "url": "https://maker.taptap.cn/leaderboard/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "TapTap Maker methodology",
+      "url": "https://maker.taptap.cn/leaderboard/methodology.html",
+      "role": "definition"
+    },
+    {
+      "label": "TapTap Maker editions archive",
+      "url": "https://maker.taptap.cn/leaderboard/editions.html",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-08",
+  "interpretation": {
+    "judge": {
+      "text": "先检查L0交付物、L1 Lua静态分析，再用真实UrhoX无头执行的L2断言判分；无LLM裁判，agent容器不能读取答案/断言。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/methodology.html"
+      ]
+    },
+    "comparison": {
+      "text": "主分是按题多次重复的L2通过率；固定edition、dataset版本与内容hash、engine commit和agent driver，再读bootstrap/边界Clopper–Pearson区间。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/methodology.html"
+      ]
+    }
+  }
+}

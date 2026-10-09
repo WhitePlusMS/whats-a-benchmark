@@ -5,7 +5,7 @@
   ],
   "related": [],
   "kind": "subset",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "id": "math-500",
   "name": "MATH-500",
   "subtitle": "从数学题库中抽出的 500 题",
@@ -33,20 +33,6 @@
         "https://github.com/hendrycks/math/blob/main/LICENSE",
         "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
         "https://github.com/openai/prm800k"
-      ]
-    },
-    {
-      "text": "本轮未将镜像 500 行与 PRM800K Git LFS 文件逐行比较，也未冻结 revision 或校验哈希。",
-      "sourceUrls": [
-        "https://github.com/openai/prm800k",
-        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
-      ]
-    },
-    {
-      "text": "不同公开报告采用的答案抽取器、符号等价规则和采样预算未逐一审计。",
-      "sourceUrls": [
-        "https://github.com/openai/prm800k",
-        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
       ]
     }
   ],
@@ -85,6 +71,11 @@
       "label": "MATH 论文",
       "url": "https://arxiv.org/abs/2103.03874",
       "role": "paper"
+    },
+    {
+      "label": "具体公开案例的原始来源",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -94,7 +85,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "MATH-500 通常指 OpenAI PRM800K 工作从 Hendrycks MATH test 均匀抽出的 500 道 held-out 题，是固定子集而非独立原始题库。",
+    "summary": "解答从 MATH test 均匀抽取的 500 道数学题；这是固定子集，题库来源与原 MATH 相同。",
     "task": "解答英语竞赛数学问题；相关研究可评价最终答案准确率，也可用该子集比较解题轨迹与过程监督方法。",
     "sourceUrls": [
       "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
@@ -156,11 +147,66 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "公开镜像虽展示题目，但派生数据门户未单列许可，来源仓库许可覆盖范围也未逐文件核实。公开页面不转载真实题文、答案或解答。",
+    "status": "local",
+    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://github.com/openai/prm800k",
-      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+      "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "本轮未将镜像 500 行与 PRM800K Git LFS 文件逐行比较，也未冻结 revision 或校验哈希。",
+      "sourceUrls": [
+        "https://github.com/openai/prm800k",
+        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+      ]
+    },
+    {
+      "text": "不同公开报告采用的答案抽取器、符号等价规则和采样预算未逐一审计。",
+      "sourceUrls": [
+        "https://github.com/openai/prm800k",
+        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+      ]
+    },
+    {
+      "text": "公开镜像虽展示题目，但派生数据门户未单列许可，来源仓库许可覆盖范围也未逐文件核实。公开页面不转载真实题文、答案或解答。",
+      "sourceUrls": [
+        "https://github.com/openai/prm800k",
+        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+      ]
+    },
+    {
+      "text": "本轮核对公开具体案例，定位 test/precalculus/807.json；正式训练/测试用途与本站展示范围不混用。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-math-500",
+        "title": "MATH-500 · 直角坐标转极坐标",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "公开题 test/precalculus/807.json 将直角坐标点 (0,3) 转为极坐标，要求 r>0 且 0≤θ<2π。数据中的参考结果为 (3,π/2)。本页采用该真实数学问题的事实解读，不将重新整理的求解说明冒作原始 solution 字段。",
+        "explanation": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。 定位：test/precalculus/807.json\n原始数据精简说明：保留原生字段 unique_id、problem、answer、subject、level；其他记录字段未收录。 /problem 保留源值字符[0:74]，源字段共161字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "raw": {
+          "unique_id": "test/precalculus/807.json",
+          "problem": "Convert the point $(0,3)$ in rectangular coordinates to polar coordinates.",
+          "answer": "\\left( 3, \\frac{\\pi}{2} \\right)",
+          "subject": "Precalculus",
+          "level": 2
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
+        "answer": "(3, π/2)",
+        "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "split": "test",
+        "excerpt": true
+      }
     ]
   }
 }

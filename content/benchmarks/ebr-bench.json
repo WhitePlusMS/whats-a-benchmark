@@ -1,0 +1,165 @@
+{
+  "id": "ebr-bench",
+  "status": "published",
+  "order": 322,
+  "name": "Earthborne Rangers (EBR-bench)",
+  "subtitle": "在重复游戏与笔记中学习复杂任务",
+  "category": "agents",
+  "tags": [
+    "在岗学习",
+    "长期记忆",
+    "重复尝试",
+    "游戏",
+    "长程执行"
+  ],
+  "publisher": "Epoch AI",
+  "brandIds": [
+    "epoch-ai"
+  ],
+  "year": 2026,
+  "version": "2026-09 当前方法；Card ban 设置",
+  "kind": "original",
+  "aliases": [
+    "EBR-bench",
+    "Earthborne Rangers"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "借重复尝试与笔记检验智能体学习陌生复杂任务的能力。",
+    "task": "反复游玩 Earthborne Rangers 前五个游戏日，学习策略并完成目标。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/ebr-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "游戏规则书、规则词汇表、数字接口差异指南、卡牌/地图和可读写notes目录；Card ban配置同时移除玩法及参考文件中的相应卡。",
+    "output": "游戏动作和达成的目标状态。",
+    "environment": "数字游戏、卡牌查询与寻路工具，ReAct 或 Deep Agent harness。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/ebr-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "只测五日片段，最多 21 项目标；当前每样本 10 局，前 8 局学习、后 2 局评分，每模型采样 5 次。",
+    "disclosure": "partial",
+    "scale": [
+      "5 个游戏日、21 个目标；每样本 10 局。"
+    ],
+    "splits": [
+      "前 8 局用于探索学习，最后 2 局为评分局。"
+    ],
+    "fields": [],
+    "files": [
+      "底层游戏受版权保护，Epoch 不分发或出售其访问。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/ebr-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "完整游戏材料并无官方公开分发入口。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/ebr-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "底层游戏内容受版权保护；评测代码的完整再发布许可未核实。",
+    "scope": "本站仅提供原创说明与官方链接。",
+    "boundaries": [
+      "未确认具体发布版本的许可前，不在本站复制题目、答案或附件。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/ebr-bench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "Specific official report of a model run under the original, card-unbanned EBR setting; not a current-default score, game-state replay, or per-objective record. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。",
+    "url": "https://epoch.ai/publications/ebr-bench-update",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/ebr-bench",
+      "https://epoch.ai/publications/ebr-bench-update"
+    ]
+  },
+  "metric": {
+    "name": "Topline score",
+    "description": "每样本取最后 2 局中的较高分，以达成目标占 21 个目标的比例表示；当前每模型采样 5 次。旧方法的采样、压缩阈值和 Card ban 设置不同。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/ebr-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "仅评估开头五日片段；Card ban 与上下文压缩等版本变化限制新旧结果可比性。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/ebr-bench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/ebr-bench"
+      ]
+    },
+    {
+      "text": "本轮已沿官方源定位具体公开例题/运行案例，保留层级和版本边界：Official update, Overview and section 'GPT-6 Astra scores perfectly on EBR-bench by exploiting a powerful combination of cards'; benchmark page, Methodology updates 2026-09-22.",
+      "sourceUrls": [
+        "https://epoch.ai/publications/ebr-bench-update"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "EBR-bench 官方定义与方法",
+      "url": "https://epoch.ai/benchmarks/ebr-bench",
+      "role": "definition"
+    },
+    {
+      "label": "已核验的官方公开例题或运行材料",
+      "url": "https://epoch.ai/publications/ebr-bench-update",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "每run前八局用于学习、末两局评分，取末两局较高目标分（最多21）；每局仅覆盖前五个游戏日，当前每模型采样五个run。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/ebr-bench"
+      ]
+    },
+    "comparison": {
+      "text": "当前默认是Card ban+single-agent，并固定上下文压缩；旧模型未全部重跑，不能将历史10样本、不同compaction或未禁卡结果直接与新默认拼接。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/ebr-bench"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-ebr-bench",
+        "title": "官方旧版运行 · 卡组实验突破回合限制",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "EBR官方公开运行例中，Astra在允许特定卡的原始设置里，通过试验组合卡牌获得不受上限约束的回合。公开图记录其第一轮完成11/21目标、第二轮完成21/21；默认设置随后禁用了该卡。该案例展示从游戏经验中改进策略的实际行为，不提供未公开的卡名、局面或完整轨迹。",
+        "explanation": "Specific official report of a model run under the original, card-unbanned EBR setting; not a current-default score, game-state replay, or per-objective record. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。\n原始数据精简说明：全部游戏状态、卡牌内容、输入任务和操作轨迹；本条只展示官方运行报道中的公开数据。格式为publisher article sentence + original chart alt text；保留源数据内容，不构造题库原始行。",
+        "raw": "GPT-6 Astra scored 100% on the original version of the benchmark.\n\nThis line graph shows the score the player achieved on the y-axis, and the amount of times the player had attempted playing through the game on the x-axis. The graph shows that Astra went from scoring 11 out of 21 on its first try to 21 out of 21 on its second try. The top human participant went from scoring 1 out of 21 on their first try to 21 out of 21 on their sixth try.",
+        "source": "https://epoch.ai/publications/ebr-bench-update",
+        "license": "本站原创事实与数学条件整理；来源标题或短语作必要短引，原题/游戏材料整体许可按原说明处理。 本条原文与图表替代文字来自 Benjamin Ou、Avery Yen 的 Epoch AI 2026-10-07 文章，按该页Creative Commons Attribution声明保留作者和出处；此声明不扩展为底层游戏材料授权。",
+        "split": "Official update, Overview and section 'GPT-6 Astra scores perfectly on EBR-bench by exploiting a powerful combination of cards'; benchmark page, Methodology updates 2026-09-22.",
+        "excerpt": true
+      }
+    ]
+  }
+}

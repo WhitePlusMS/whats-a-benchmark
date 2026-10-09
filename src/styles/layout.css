@@ -22,7 +22,7 @@
   color: var(--accent);
 }
 .brand > span {
-  color: #242438;
+  color: var(--brand-text);
   font-size: 21px;
   font-weight: 750;
   letter-spacing: -0.8px;
@@ -31,7 +31,7 @@
 .brand small {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 2px;
   font-weight: 450;
   margin-top: 3px;
@@ -53,7 +53,7 @@
 }
 .main-nav a.active,
 .main-nav a.router-link-exact-active {
-  color: #5847be;
+  color: var(--accent-text);
   font-weight: 650;
 }
 .main-nav a.active:after,
@@ -78,8 +78,8 @@
 .site-footer {
   margin-top: 55px;
   border-top: 1px solid var(--border);
-  padding: 30px 0 110px;
-  background: #f8f9fa;
+  padding: 30px 0 calc(var(--dock-clearance) + env(safe-area-inset-bottom, 0px));
+  background: var(--surface-subtle);
   color: var(--muted);
 }
 .footer-inner {
@@ -87,7 +87,7 @@
   align-items: center;
   justify-content: space-between;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 .footer-brand {
   font-size: 13px;
@@ -98,7 +98,7 @@
   gap: 15px;
 }
 .footer-brand > span {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
   color: var(--muted);
 }
@@ -108,15 +108,18 @@
 }
 .compare-dock {
   position: fixed;
-  bottom: 22px;
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
   background: var(--surface);
-  border: 1px solid #e0d8ee;
-  box-shadow: 0 8px 45px #352b4c20;
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 8px 45px var(--dock-shadow);
   border-radius: 12px;
-  max-width: calc(100% - 32px);
+  max-width: calc(
+    100% - 32px - env(safe-area-inset-left, 0px) -
+      env(safe-area-inset-right, 0px)
+  );
   width: max-content;
   display: flex;
   align-items: center;
@@ -148,7 +151,7 @@
   align-items: center;
   gap: 9px;
   font-size: 11px;
-  background: #f3eff9;
+  background: var(--accent-softer);
   color: var(--muted);
   padding: 6px 9px;
   border-radius: 6px;
@@ -161,7 +164,7 @@
   white-space: nowrap;
   padding: 7px 16px;
   border-radius: 7px;
-  background: #342a45;
+  background: var(--notice-bg);
   color: var(--text-inverse);
   font-size: 12px;
 }
@@ -205,7 +208,7 @@
     height: 32px;
   }
   .brand small {
-    font-size: 9px;
+    font-size: 10px;
   }
   .main-nav {
     width: 100%;
@@ -239,14 +242,19 @@
   .site-footer {
     margin-top: 35px;
     padding-top: 25px;
-    padding-bottom: 140px;
+    padding-bottom: calc(
+      var(--dock-clearance) + 20px + env(safe-area-inset-bottom, 0px)
+    );
   }
   .compare-dock {
-    bottom: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     padding: 12px;
     gap: 9px;
     flex-wrap: wrap;
-    width: calc(100% - 24px);
+    width: calc(
+      100% - 24px - env(safe-area-inset-left, 0px) -
+        env(safe-area-inset-right, 0px)
+    );
   }
   .dock-items {
     flex: 1 0 calc(100% - 34px);

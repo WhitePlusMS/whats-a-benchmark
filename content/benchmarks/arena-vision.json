@@ -1,0 +1,201 @@
+{
+  "id": "arena-vision",
+  "status": "published",
+  "order": 663,
+  "name": "Arena Vision",
+  "subtitle": "图像理解回答的人类偏好专项榜",
+  "category": "multimodal",
+  "tags": [
+    "视觉理解",
+    "人类偏好",
+    "榜单子项",
+    "匿名对战"
+  ],
+  "publisher": "Arena / LMArena",
+  "brandIds": [
+    "arena"
+  ],
+  "year": null,
+  "version": "Vision 专项实时榜",
+  "kind": "subset",
+  "aliases": [
+    "Vision Arena",
+    "LMArena Vision"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Arena 平台中对视觉输入回答的匿名人类偏好专项榜。",
+    "task": "回答包含视觉输入的用户问题，由社区比较模型回复。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/vision"
+    ]
+  },
+  "taskContract": {
+    "input": "用户图像和相关文本问题。",
+    "output": "对视觉输入的模型回答。",
+    "environment": "Arena 匿名匹配与投票流程；官网支持 captioning、OCR、diagram 等领域筛选。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/vision"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开专项榜和部分平台研究数据；本次未确认与当前 Vision 榜完全一致的全部图像、对话和投票快照。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arena.ai/faq",
+      "https://arena.ai/blog/policy"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "按视觉子榜、style control 和日期查看；公开历史平台数据不是当前 Vision 完整数据。"
+    ],
+    "url": "https://arena.ai/leaderboard/vision",
+    "sourceUrls": [
+      "https://arena.ai/faq"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
+    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "boundaries": [
+      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/faq"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站仅保留公开博客中一个真实 Captioning 提示的短引与编辑性说明。配套图片在原博客查看；该示例不来自 gated VisionArena-Chat/Battle，也未接受或访问其数据协议。",
+    "url": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+    "sourceUrls": [
+      "https://arena.ai/blog/re-introducing-vision-arena-categories",
+      "https://cdn.sanity.io/images/ybjf12mv/migration/89d69372d406f2a2be096ab5013eeebfcaafdb3b-512x339.png"
+    ]
+  },
+  "metric": {
+    "name": "Arena Rating / Rank Spread",
+    "description": "由成对人类偏好拟合相对评级，并展示分数区间与 rank spread；不是固定视觉题正确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arena.ai/faq",
+      "https://arena.ai/blog/ranking-method"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "用户偏好包含回答风格因素；视觉领域覆盖和当前匹配模型会影响结果。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/vision",
+        "https://arena.ai/faq"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 Vision 专项",
+      "url": "https://arena.ai/leaderboard/vision",
+      "role": "definition"
+    },
+    {
+      "label": "官方投票与数据 FAQ",
+      "url": "https://arena.ai/faq",
+      "role": "access"
+    },
+    {
+      "label": "官方排名不确定性方法",
+      "url": "https://arena.ai/blog/ranking-method",
+      "role": "definition"
+    },
+    {
+      "label": "官方公开数据政策",
+      "url": "https://arena.ai/blog/policy",
+      "role": "access"
+    },
+    {
+      "label": "官方公开 Captioning 示例",
+      "url": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+      "role": "data"
+    },
+    {
+      "label": "Captioning 示例文章所链原图（仅链接）",
+      "url": "https://cdn.sanity.io/images/ybjf12mv/migration/89d69372d406f2a2be096ab5013eeebfcaafdb3b-512x339.png",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "arena",
+      "label": "平台专项",
+      "detail": "同属 Arena；本条限定视觉输入任务，区别于平台通用文本榜。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/vision",
+        "https://arena.ai/faq"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "匿名真人比较视觉输入回答；style control调整风格特征，BT评级是偏好强度而非标准答案正确率。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/vision",
+        "https://arena.ai/faq"
+      ]
+    },
+    "comparison": {
+      "text": "固定Vision领域、style control、票数与日期；captioning/OCR/diagram等筛选改变范围，rank spread体现统计不确定性。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/vision",
+        "https://arena.ai/faq"
+      ]
+    },
+    "disclosure": {
+      "text": "公开专项榜和部分平台研究数据；本次未确认与当前 Vision 榜完全一致的全部图像、对话和投票快照。",
+      "sourceUrls": [
+        "https://arena.ai/faq",
+        "https://arena.ai/blog/policy"
+      ]
+    },
+    "versionChanges": {
+      "text": "Vision 是 Arena 平台专项范围，后续榜单与类别变化不等同固定题库版本。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/vision"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "本次核验官方说明与入口，没有运行评测或采集当前模型成绩。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/vision"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "samples": [
+      {
+        "explanation": "官方 Vision Arena Categories 文章将该提示和一张文章所链 PNG 图片并列展示；图片源 URL 为512×339、HTTP HEAD 200。该公站示例不是 gated VisionArena-Chat/Battle 数据行，也未读取或接受相关协议；未猜测图片内容，未镜像媒体。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "prompt": "Arena 官方公开文章中的 Captioning 示例要求用英文描述配套照片。照片需打开原文章查看；本地样例只呈现真实短提示，不包含图片或模型回答，因此不是完整视觉输入。",
+        "excerpt": true,
+        "id": "arena-vision-public-blog-captioning-example",
+        "title": "照片英文描述任务",
+        "raw": "Please describe the photo in English.",
+        "promptOrigin": "editorial",
+        "license": "此处仅保留官方公开文章中的必要短引与本站说明。文章所链图片的底层权利和再发布许可未确认；未复制图像或模型输出，也不据公开博客推定 gated Chat/Battle 数据授权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "type": "text",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "split": "official public blog · Captioning · first image example · no dataset row ID"
+      }
+    ],
+    "retrievedAt": "2026-10-09"
+  }
+}

@@ -10,26 +10,37 @@ The website's interface and editorial explanations are currently in **Simplified
 
 ## At a glance
 
-Catalog snapshot as of **September 24, 2026**:
+Catalog snapshot as of **October 8, 2026**:
 
-| Coverage                               | Count |
-| -------------------------------------- | ----: |
-| Benchmark entries                      |    84 |
-| Capability categories                  |     8 |
-| Real task examples                     |    27 |
-| Benchmarks with on-site examples       |    18 |
-| Official model release reports indexed |    17 |
+| Coverage                                           | Count |
+| -------------------------------------------------- | ----: |
+| Benchmark entries                                  |   151 |
+| Capability categories                              |    10 |
+| Source task records, including labeled excerpts     |    53 |
+| Official public cases explained on site             |    96 |
+| Stored case records                                |   149 |
+| Entries with their own on-site cases                |   138 |
+| Detail pages with cases, including a composite index|   139 |
+| Entries with unresolved case gaps                   |    12 |
+| Official model release reports indexed             |    17 |
 
-Categories cover coding, mathematics, knowledge, agents and tools, visual understanding, long context, instruction following, and professional tasks.
+Categories cover coding, mathematical and scientific reasoning, knowledge, agents and tools, multimodal understanding including audio, long context, instruction following and preferences, professional tasks, writing and design, and cross-capability evaluations and indices.
+
+The October 8 expansion adds 59 entries and maps all 90 sources and specializations on the reviewed AIHOT directory to benchmark families, named versions, subsets, or suites. Repeated institution runs and display slices are not counted as separate datasets. The [coverage review](docs/research/2026-10-08-aihot-coverage.md) records the exact mapping, first-party evidence and unresolved execution details.
+
+The subsequent [per-entry review](docs/reviews/2026-10-08-expansion-deep-audit.md) connects verified publisher/project identities for all 59 entries, expands task/data/scoring details, and adds nine permission-checked task records at fixed revisions through the existing sample pipeline.
+
+The [full case coverage audit](docs/reviews/2026-10-08-all-cases-coverage.md) lists every entry, case, source and remaining gap. The 53 source records cover 42 entries; the 96 public case explanations cover 96 further entries. One composite index displays a declared component's case. Public case explanations identify concrete official tasks or evaluation runs, label the site's own wording, and link to the original input when images or attachments are not republished. They are not presented as complete original dataset rows. The remaining 12 entries explain online disclosure restrictions, unavailable public task inputs, or missing evidence that a public example belongs to the indexed version.
 
 ## Features
 
 - **Find benchmarks:** search names, aliases, capabilities, or publishers; filter by category, publisher, example availability, and benchmark type. Switch between card and list views and sort by name or year.
 - **Recognize a list:** paste up to 60 names separated by newlines, commas, or semicolons. Version and year differences remain meaningful.
 - **Read the protocol:** inspect official definitions, inputs and outputs, execution requirements, data structure, scoring, limitations, and access conditions, with evidence links beside each section.
-- **Explore real examples:** view text, code, multiple-choice questions, long-context excerpts, structured records, ARC grids, and audio. Inspect original fields, reveal available reference answers, and read provenance and licensing notes.
+- **Explore real examples:** view text, code, multiple-choice questions, long-context excerpts, structured records, ARC grids, images and audio. Inspect original fields or labeled public-source excerpts, reveal available reference answers, and read provenance and licensing notes. Official public cases explained by the site are labeled separately.
 - **Compare and share:** compare two or three benchmarks side by side. Selection is encoded in the comparison URL; catalog filters, sorting, and view preferences are also reflected in the URL.
 - **Trace versions and sources:** distinguish originals, subsets, derivatives, suites, and internal evaluations. Follow supported relationships and official report references.
+- **Interpret scores:** selected entries explain judges, comparison conditions, disclosure and version changes. Composite indices show source-backed weights and links to their component evaluations. Task-oriented guide links reuse catalog categories.
 - **Browse on desktop or mobile:** responsive layouts and statically generated detail pages that support direct links and refreshes.
 
 This is a reading and discovery tool. It does not execute evaluations, call model APIs, or generate a unified model ranking. Entries without suitable on-site examples explain their availability and link to official resources.
@@ -150,7 +161,7 @@ For code changes, follow existing module and naming conventions, keep types stri
 
 Definitions are grounded in benchmark publishers' papers, repositories, project pages, and dataset cards. Model release reports document usage or reported results; they do not replace the benchmark's own definition. The catalog is a dated editorial snapshot, with verification dates recorded per entry.
 
-Original task material and this site's explanations are labeled separately. Sample attribution and reuse notes are attached to each record, with available license texts in [content/assets/licenses](content/assets/licenses/). Download access alone is not permission to redistribute a dataset or its third-party media. Restricted or unverified material is not added as a public sample.
+Original task material and this site's explanations are labeled separately. Sample attribution and reuse notes are attached to each record, with available license texts in [content/assets/licenses](content/assets/licenses/). Download access alone is not permission to redistribute a dataset or its third-party media. Source records and media require permission for the actual fields used. An independently published official case can be explained with a short source excerpt without changing the underlying dataset's access or reuse policy; full prompts, answers or media subject to an explicit online disclosure restriction are not mirrored.
 
 Logos retain their respective ownership and do not imply endorsement. Provenance is recorded in [content/brands.json](content/brands.json) and [logo sources](docs/LOGO_SOURCES.md). Third-party data and asset licenses apply to their respective material; they do not establish a license for this project's source code. A repository-wide source code license has not yet been specified.
 
@@ -162,5 +173,7 @@ The detailed guides are currently in Chinese.
 - [Content maintenance](docs/CONTENT_MAINTENANCE.md)
 - [Importing real examples](docs/LOCAL_SAMPLE_IMPORT.md)
 - [Official-source research workflow](docs/RESEARCH_WORKFLOW.md)
+- [AIHOT coverage and classification review](docs/research/2026-10-08-aihot-coverage.md)
+- [All 151 entries: case coverage and remaining gaps](docs/reviews/2026-10-08-all-cases-coverage.md)
 - [Product design](docs/PRODUCT_DESIGN.md)
 - [Update log](UPDATE_LOG.md)

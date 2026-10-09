@@ -28,10 +28,10 @@
       ]
     }
   ],
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "partial",
   "officialDefinition": {
-    "summary": "AIME 是 MAA American Mathematics Competitions 系列中面向符合资格学生的数学竞赛；MAA 未将 2024 年题目定义为独立 AI benchmark。",
+    "summary": "用 2024 年 AIME 竞赛题考查数学解题；具体试卷和模型评测协议由报告方决定。",
     "task": "作为模型评测标签，“AIME 2024”指评测方使用 2024 年 AIME 题目进行的测试；具体试卷和协议须由该报告说明。",
     "sourceUrls": [
       "https://maa.org/maa-invitational-competitions/#L105-L144",
@@ -72,7 +72,7 @@
   "dataAccess": {
     "status": "unknown",
     "requirements": [
-      "可查看 MAA 项目介绍和竞赛政策；本轮未核实到官方提供的 2024 原题、答案或机器可读 benchmark 文件下载入口。"
+      "官方题目、答案及机器可读文件的下载入口尚未确认；可查阅 MAA 项目和竞赛政策。"
     ],
     "url": "https://maa.org/maa-invitational-competitions/",
     "sourceUrls": [
@@ -92,13 +92,11 @@
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "本轮未核实到 MAA 官方托管的 AIME 2024 AI benchmark 样例或题目文件。只链接 MAA 项目与政策页面；转载原题或答案需先确认授权。",
-    "url": "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100",
+    "status": "local",
+    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "url": "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
     "sourceUrls": [
-      "https://maa.org/maa-invitational-competitions/#L105-L144",
-      "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=3",
-      "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet"
     ]
   },
   "metric": {
@@ -110,13 +108,6 @@
     ]
   },
   "limitations": [
-    {
-      "text": "2024 AIME 原题/答案在 MAA 域名的永久链接、准确文件名和公开许可未核实。",
-      "sourceUrls": [
-        "https://maa.org/maa-invitational-competitions/#L105-L144",
-        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
-      ]
-    },
     {
       "text": "2024 年各卷题数、题目范围、发布时间及字段 schema 未由 MAA 一手资料确认。",
       "sourceUrls": [
@@ -155,6 +146,65 @@
       "label": "MAA 2026-27 AIME 规则：题目传播限制",
       "url": "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=7",
       "role": "access"
+    },
+    {
+      "label": "具体公开案例的原始来源",
+      "url": "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
+      "role": "data"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "2024 AIME 原题/答案在 MAA 域名的永久链接、准确文件名和公开许可未核实。",
+      "sourceUrls": [
+        "https://maa.org/maa-invitational-competitions/#L105-L144",
+        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      ]
+    },
+    {
+      "text": "本轮未核实到 MAA 官方托管的 AIME 2024 AI benchmark 样例或题目文件。只链接 MAA 项目与政策页面；转载原题或答案需先确认授权。",
+      "sourceUrls": [
+        "https://maa.org/maa-invitational-competitions/#L105-L144",
+        "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=3",
+        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      ]
+    },
+    {
+      "text": "可查看 MAA 项目介绍和竞赛政策；本轮未核实到官方提供的 2024 原题、答案或机器可读 benchmark 文件下载入口。",
+      "sourceUrls": [
+        "https://maa.org/maa-invitational-competitions/#L105-L144",
+        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      ]
+    },
+    {
+      "text": "本轮核对公开具体案例，定位 MathArena train row_idx 0, problem_idx 1; independently cross-bound to AI-MO train row_idx/id 60, AoPS source URL identifies AIME I 2024 Problem 1；正式训练/测试用途与本站展示范围不混用。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-aime-2024",
+        "title": "AIME I 2024 第 1 题 · 步行与停留时间",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "真实公开题涉及每天 9 公里步行和固定 t 分钟的咖啡店停留：以 s 公里/小时走，合计 4 小时；以 s+2 公里/小时走，合计 2 小时 24 分钟。求以 s+1/2 公里/小时走时的合计分钟数。MathArena 公开第 1 题及独立 AI-MO/AoPS 题号映射一致，答案 204。",
+        "explanation": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。 定位：MathArena train row_idx 0, problem_idx 1; independently cross-bound to AI-MO train row_idx/id 60, AoPS source URL identifies AIME I 2024 Problem 1\n原始数据精简说明：保留原生字段 problem_idx、problem、answer；其他源字段省略。 文本字段按源值真实前缀精简，范围为{\"problem\": {\"start\": 0, \"end\": 144, \"sourceCharacters\": 534}}。",
+        "raw": {
+          "problem_idx": 1,
+          "problem": "Every morning Aya goes for a $9$-kilometer-long walk and stops at a coffee shop afterwards. When she walks at a constant speed of $s$ kilometers",
+          "answer": 204
+        },
+        "source": "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
+        "answer": "204",
+        "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据只展示所列真实字段、配置事实与必要原文节录；其格式不被解释为整套数据或其他材料的再发布授权。",
+        "split": "AIME I 2024 problem 1; official MathArena release row, cross-bound to AI-MO public validation row",
+        "excerpt": true
+      }
+    ]
+  }
 }

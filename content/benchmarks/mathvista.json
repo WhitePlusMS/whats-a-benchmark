@@ -29,20 +29,6 @@
       "sourceUrls": [
         "https://github.com/lupantech/MathVista"
       ]
-    },
-    {
-      "text": "本轮未固定 Hugging Face revision、校验图像包哈希或对每张图执行来源归属检查。",
-      "sourceUrls": [
-        "https://mathvista.github.io/",
-        "https://github.com/lupantech/MathVista"
-      ]
-    },
-    {
-      "text": "公开榜单/第三方报告的模型设置和评分差异未逐条复核。",
-      "sourceUrls": [
-        "https://mathvista.github.io/",
-        "https://github.com/lupantech/MathVista"
-      ]
     }
   ],
   "sources": [
@@ -69,6 +55,16 @@
     {
       "label": "AI4Math/MathVista 官方 Hugging Face",
       "url": "https://huggingface.co/datasets/AI4Math/MathVista",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/AI4Math/MathVista/viewer/default/testmini?row=0",
+      "label": "MathVista 官方 testmini row 0",
+      "role": "data"
+    },
+    {
+      "label": "案例原始数据精简字段来源",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=AI4Math%2FMathVista&config=default&split=testmini&offset=0&length=1",
       "role": "data"
     }
   ],
@@ -138,12 +134,52 @@
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "MathVista 官方主页展示例题并提供 Explorer。本按钮仅打开作者官方页面；本站不复制题文、图像或答案，题目及图像的各自来源权利仍须遵守。",
+    "url": "https://huggingface.co/datasets/AI4Math/MathVista/viewer/default/testmini?row=0",
+    "status": "local",
+    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
     "sourceUrls": [
-      "https://mathvista.github.io/",
-      "https://github.com/lupantech/MathVista"
-    ],
-    "url": "https://mathvista.github.io/"
+      "https://huggingface.co/datasets/AI4Math/MathVista/viewer/default/testmini?row=0"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "本轮未固定 Hugging Face revision、校验图像包哈希或对每张图执行来源归属检查。",
+      "sourceUrls": [
+        "https://mathvista.github.io/",
+        "https://github.com/lupantech/MathVista"
+      ]
+    },
+    {
+      "text": "公开榜单/第三方报告的模型设置和评分差异未逐条复核。",
+      "sourceUrls": [
+        "https://mathvista.github.io/",
+        "https://github.com/lupantech/MathVista"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "mathvista-testmini-pid-1",
+        "title": "SciBench 春簧与香料罐视觉题",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "MathVista testmini 的 SciBench 示例：观察官方行页中的香料罐图片，判断弹簧完成做功时的最大伸长量。原图需在官方行页查看；本站没有附图，文字概述不是完整视觉输入。",
+        "raw": {
+          "pid": "1",
+          "metadata": {
+            "source": "SciBench"
+          },
+          "question": "When a spring does work on an object, we cannot find the work by simply multiplying the spring force by the object's displacement."
+        },
+        "explanation": "官方 Viewer 的 default/testmini row_idx=0，pid=1，图像路径 images/1.jpg，metadata.source=SciBench。题目依赖原图；本地不提供图像或答案。数据卡说明 CC BY-SA 4.0 覆盖新建数据贡献和元数据，同时指出上游题图版权属于原来源，故保留 restricted。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 question: retained the first sentence (22 words); source value continues after displacement.、image / signed decoded_image URL、answer、query。 保留文本字段的真实片段，范围为 [{\"path\": \"question\", \"start\": 0, \"end\": 130, \"sourceCharacters\": 790}]。",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=AI4Math%2FMathVista&config=default&split=testmini&offset=0&length=1",
+        "license": "MathVista 卡声明 CC BY-SA 4.0 覆盖新建集合、筛选清理、标准化及元数据标注；所选上游题图及原始问题版权仍属各来源。本页仅展示本站编辑性概述和必要短引，不镜像图片或答案。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "split": "default · testmini · row_idx=0 · pid=1 · source=SciBench",
+        "excerpt": true
+      }
+    ]
   }
 }

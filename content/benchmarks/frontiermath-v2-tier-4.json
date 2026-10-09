@@ -1,0 +1,197 @@
+{
+  "id": "frontiermath-v2-tier-4",
+  "status": "published",
+  "order": 222,
+  "name": "FrontierMath v2 · Tier 4",
+  "subtitle": "更困难的研究级数学问题",
+  "category": "reasoning",
+  "tags": [
+    "专家数学",
+    "难度分层"
+  ],
+  "publisher": "Epoch AI / 数学专家",
+  "brandIds": [
+    "epoch-ai"
+  ],
+  "year": 2026,
+  "version": "v2；2026-06-12 修订",
+  "kind": "subset",
+  "aliases": [
+    "FrontierMath v2 Tier 4",
+    "FrontierMath Tier 4 (v2)"
+  ],
+  "related": [
+    {
+      "id": "frontiermath",
+      "label": "所属评测系列",
+      "detail": "此条只解释 v2 的指定难度组；系列历史范围在母条目说明。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/frontiermath-tier-4-v2",
+        "https://epoch.ai/frontiermath/tiers-1-4/about"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-08",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在修订后的 FrontierMath Tier 4 题集上求解更困难的研究级数学问题，由 verifier 核验精确答案。",
+    "task": "求解专家编写的数学问题，在允许的 Python 环境中探索，并提交题目要求的精确数学对象。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+    ]
+  },
+  "taskContract": {
+    "input": "数学问题、约束及预期 answer 类型。",
+    "output": "通过submit_answer提交一个无参数、无打印/注释的Python answer()函数，返回题目指定类型的对象；不是仅提交一段自然语言证明。",
+    "environment": "Epoch 实施允许 Python；公开方法设 100 万总 token 上限，66 万触发强制提交阶段，函数运行最多 30 秒。其他报告设置须另行注明。",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "v2 此难度组共 43 题，其中 2 个问题公开；完整题库未公开。",
+    "disclosure": "partial",
+    "scale": [
+      "此组 43 题；公开 2 题。",
+      "v2 全集为 338 题，295 题 Tiers 1–3 与 43 题 Tier 4 分开报告。"
+    ],
+    "splits": [
+      "公开示例与私有集合；Epoch 未另行说明时报告私有题集成绩。"
+    ],
+    "fields": [
+      "题目、预期答案类型与 verifier；完整机器可读 schema 未公开。"
+    ],
+    "files": [
+      "官网提供部分样题和解答，不提供完整题库/verifier 下载包。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方页面展示部分样题；完整 benchmark 任务和 verifier 未作为公开下载数据集提供。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/frontiermath/tiers-1-4/about",
+      "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
+    ],
+    "url": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "未核实覆盖全部问题与 verifier 的数据集许可证；页面内容许可声明不能自动覆盖题目、解答及嵌入媒体。",
+    "scope": "只提供概述和官方链接，不复制题面、答案、推导、verifier 或嵌入媒体。",
+    "boundaries": [
+      "官方页面提示 benchmark data 不应进入训练语料；不得用于训练抓取或参数拟合。",
+      "不得把 About 页面的页面级许可说明解释为逐题数据转载许可。"
+    ],
+    "sourceUrls": [
+      "https://epoch.ai/frontiermath/tiers-1-4/about",
+      "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "Official public Tier 4 problem with complete mathematical conditions; current v2 Tier 4 hub links to the shared public-sample page but does not identify a stable problem row for this title. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。 官方v2 Hub链接该层级公开样题页，未给本例的固定v2行号；本页不补造题集ID或当次成绩。",
+    "url": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+    "sourceUrls": [
+      "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+      "https://epoch.ai/benchmarks/frontiermath-tier-4-v2",
+      "https://epoch.ai/benchmarks/use-this-data"
+    ]
+  },
+  "metric": {
+    "name": "解题正确率",
+    "description": "提交的 answer() 经 verifier 判定，正确计 1，错误或未提交计 0；分别汇总该难度组的解题比例。必须注明 v2、Tier、工具及预算，不能混用 v1 的旧成绩。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "v2 修正并删除了有问题的任务，旧版成绩和此版本结果不能直接合并。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+      ]
+    },
+    {
+      "text": "公开样题只是该版本少量示例，不能替代私有全集评测。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Epoch AI: About FrontierMath",
+      "url": "https://epoch.ai/frontiermath/tiers-1-4/about",
+      "role": "definition"
+    },
+    {
+      "label": "Tiers 1–4 样题页",
+      "url": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+      "role": "definition"
+    },
+    {
+      "label": "FrontierMath v2 · Tier 4 官方方法与修订记录",
+      "url": "https://epoch.ai/benchmarks/frontiermath-tier-4-v2",
+      "role": "definition"
+    },
+    {
+      "label": "已核验的官方公开例题或运行材料",
+      "url": "https://epoch.ai/benchmarks/use-this-data",
+      "role": "access"
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本次核验官网 v2 方法和修订记录，没有复制题目、解答或 verifier。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+      ]
+    },
+    {
+      "text": "本轮已沿官方源定位具体公开例题/运行案例，保留层级和版本边界：Tier 4 / An optimization problem in BMO space; lines 152-167; no stable problem ID.",
+      "sourceUrls": [
+        "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "评分运行提交函数并由题目verifier接受精确对象，正确1、错误/未提交0；提交函数最多30秒，探索python工具也有独立30秒限时。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+      ]
+    },
+    "comparison": {
+      "text": "固定v2、难度组、私有/公开范围及预算；100万上限包含输入输出tokens，66万强制提交不保证能在总上限前成功。",
+      "sourceUrls": [
+        "https://epoch.ai/benchmarks/frontiermath-tier-4-v2"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-frontiermath-v2-tier-4",
+        "title": "Tier 4 · BMO 空间优化问题",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "设 f:[0,1]→R 可积，满足：\n∫₀¹f(t)dt = -10\n∫₀¹f(t)²dt = 100+1/12\n对每个子区间J，平均平方振荡 (1/|J|)∫_J|f(t)-(1/|J|)∫_Jf(s)ds|²dt ≤ 1/12。\n令 c 为所有满足条件的f的 ∫₀¹(f(t)³+|f(t)|)dt 的上确界，求 c+1985/2。",
+        "explanation": "Official public Tier 4 problem with complete mathematical conditions; current v2 Tier 4 hub links to the shared public-sample page but does not identify a stable problem row for this title. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。 官方v2 Hub链接该层级公开样题页，未给本例的固定v2行号；本页不补造题集ID或当次成绩。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Let \\[",
+        "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+        "license": "本站原创事实与数学条件整理；来源标题或短语作必要短引，原题/游戏材料整体许可按原说明处理。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "Tier 4 / An optimization problem in BMO space; lines 152-167; no stable problem ID.",
+        "excerpt": true,
+        "answer": "√3/36 + (√3/6)e^(−20√3−1/6)"
+      }
+    ]
+  }
+}

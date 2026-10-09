@@ -85,13 +85,13 @@
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "官方 HF 浏览器展示正式任务及图像；仓库演示集只有两个 dry-run dummy tasks。本站只链接官方数据页，不复制正式题目或图像。",
+    "status": "local",
+    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/surgeai/chartography",
-      "https://github.com/surge-ai/chartography"
+      "https://surgehq.ai/blog/chartography",
+      "https://huggingface.co/datasets/surgeai/chartography"
     ],
-    "url": "https://huggingface.co/datasets/surgeai/chartography"
+    "url": "https://surgehq.ai/blog/chartography"
   },
   "metric": {
     "name": "准确率",
@@ -103,22 +103,10 @@
   },
   "limitations": [
     {
-      "text": "100 张图表的来源及第三方转载权利未逐项审查，尤其是非 expert-created 图像。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/surgeai/chartography"
-      ]
-    },
-    {
       "text": "GitHub 中两个 sample charts 是 dummy 示例，不能代替 HF 正式 100 题数据。",
       "sourceUrls": [
         "https://github.com/surge-ai/chartography",
         "https://huggingface.co/datasets/surgeai/chartography"
-      ]
-    },
-    {
-      "text": "官方榜单主张未在本次逐题重跑；结果受 judge、运行次数与 Inspect 配置影响。",
-      "sourceUrls": [
-        "https://github.com/surge-ai/chartography"
       ]
     }
   ],
@@ -137,6 +125,45 @@
       "label": "Chartography: A Benchmark for Professional Chart Understanding",
       "url": "https://arxiv.org/abs/2608.10677",
       "role": "paper"
+    },
+    {
+      "label": "Surge AI Chartography official example task",
+      "url": "https://surgehq.ai/blog/chartography",
+      "role": "release"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "100 张图表的来源及第三方转载权利未逐项审查，尤其是非 expert-created 图像。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/chartography"
+      ]
+    },
+    {
+      "text": "官方榜单主张未在本次逐题重跑；结果受 judge、运行次数与 Inspect 配置影响。",
+      "sourceUrls": [
+        "https://github.com/surge-ai/chartography"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "chartography-official-engineering-example-1",
+        "title": "工程图表：下游防护宽度",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "官方博客 Example 1 是工程设计图表题：给定出水管直径 48 英寸、流量每秒 73 立方英尺，要求判断下游 riprap apron 的最小宽度。官方给出的答案为 30 feet；图表未随本站样例打包，完整视觉输入需打开原文。",
+        "raw": "For an outlet pipe with a diameter of 48 inches and a flow of 73 cubic feet per second, what is the minimum downstream width",
+        "answer": "30 feet",
+        "explanation": "官方文章明确将其列为 Example 1，并给出答案 30 feet、接受区间 29–31 feet及对应图像。图像链接 HEAD 为 200 image/webp，但没有下载/嵌入。本轮 HF dataset API 返回 401，故此样例许可范围按 unknown 记录，不依据旧卡信息宣布 CC BY。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "source": "https://surgehq.ai/blog/chartography",
+        "license": "本轮可读官方博客但无法读取数据卡（HF API 401），未确认博客题文/答案的再发布许可；原始图表图像未复制。仅含短文本摘录、答案和本站中文说明；不得将其理解为整套数据或图像的授权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "official blog Example 1 · engineering design chart · no dataset row id exposed",
+        "excerpt": true
+      }
+    ]
+  }
 }

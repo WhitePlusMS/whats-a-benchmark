@@ -1,0 +1,167 @@
+{
+  "id": "excel-emb",
+  "status": "published",
+  "order": 452,
+  "name": "Excel Modeling Benchmark (EMB)",
+  "subtitle": "在 Excel 中完成投行与私募建模",
+  "category": "work",
+  "tags": [
+    "Excel",
+    "金融建模",
+    "职业任务",
+    "文档交付",
+    "部分得分"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": null,
+  "version": "官方当前方法；Template / Scratch 双模式",
+  "kind": "original",
+  "aliases": [
+    "Excel EMB",
+    "Excel Modeling Benchmark",
+    "Excel · EMB"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "从业务指令和原始资料生成包含公式、数值和格式的完整金融模型。",
+    "task": "填充模板或从零构建 LBO、DCF、并购等 Excel 模型。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/emb"
+    ]
+  },
+  "taskContract": {
+    "input": "业务专家指令和源数据；Template给移除gold数值/公式后的工作簿骨架，Scratch不给模板。gold和评分rubric用于后续验证。",
+    "output": "包含可重算公式、数值和格式的.xlsx金融工作簿，部分题还须支持Base/Bull/Bear等情景开关。",
+    "environment": "bash 与 execute 等工具，Microsoft Excel 重算，每题上限 3.5 小时。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/emb"
+    ]
+  },
+  "dataProfile": {
+    "summary": "103 个专家题，涵盖 7 类模型；榜单只用 51 个私有测试题。",
+    "disclosure": "partial",
+    "scale": [
+      "103 个题、7 类模型。"
+    ],
+    "splits": [
+      "1 个公开任务；51 个许可验证任务；51 个私有测试任务。"
+    ],
+    "fields": [],
+    "files": [
+      "源文件、模板、gold 模型与 rubric。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/emb"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "验证集需许可，测试集保留。"
+    ],
+    "url": "https://www.vals.ai/benchmarks/emb",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/emb"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "检查的公开任务仓库未声明task-data复用许可；仓库代码许可不外推至任务/附件。",
+    "scope": "仅M003 scratch公开任务的事实解读；任务文件、客户表格和附件的许可范围未查明。",
+    "boundaries": [
+      "不复制客户表格、完整指令或附件。",
+      "不标成私有计分任务。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "Vals 官方 EMB public sample task 的 M003 scratch 变体；未转载客户表格或完整指令，不视作 51 个私有计分任务之一。",
+    "url": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy（类别等权）",
+    "description": "Template 按评分单元格与 gold 值的匹配比例计分；Scratch 按数值、公式和呈现准则的通过比例计分。先在每类内平均，再对 7 类等权平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/emb"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "部分得分不等于模型全部正确；两种模式的成绩须分别解释。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/emb"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/emb"
+      ]
+    },
+    {
+      "text": "本轮核对官方公开案例并以具体任务事实作本站解读；Vals 官方 EMB public sample task 的 M003 scratch 变体；未转载客户表格或完整指令，不视作 51 个私有计分任务之一。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "EMB 官方定义与方法",
+      "url": "https://www.vals.ai/benchmarks/emb",
+      "role": "definition"
+    },
+    {
+      "label": "已核验的官方具体案例",
+      "url": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "先用真实Microsoft Excel重算；Template比较被评分单元格值，Scratch由GPT5.4 Mini(xhigh)检查数值/公式/呈现rubric，多情景题需逐情景正确。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/emb"
+      ]
+    },
+    "comparison": {
+      "text": "先平均各模型家族内任务，再对七类等权；Template和Scratch分开报告，部分检查得分不能视为完整工作簿准确。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/emb"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-excel-emb",
+        "title": "M003 · SaaS 客户留存模型",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "以 2021 年 6 月为分析时点，从 Customer Data Raw.xlsx 中的 2018 年 1 月至 May-21 LTM 客户数据构建留存模型。工作簿应含 Active Data、Active Customers、Retention、Customer Summary 四张表，分析 ARR、新签、增购、交叉销售、降购、流失和净/毛留存。新客及流失按客户而不是产品统计。",
+        "explanation": "Vals 官方 EMB public sample task 的 M003 scratch 变体；未转载客户表格或完整指令，不视作 51 个私有计分任务之一。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "Construct the model with the following tabs: 1) Active Data, 2) Active Customers, 3) Retention, 4) Customer Summary.",
+        "source": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "官方公开演示 / 非已定位的计分数据行",
+        "excerpt": true
+      }
+    ]
+  }
+}

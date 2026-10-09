@@ -59,8 +59,9 @@
       "解密表格包含 Topic、Question、Answer 和 canary 字段。"
     ],
     "files": [
-      "仓库提供加密文件 data/browsecomp-zh-encrypted.xlsx。",
-      "data/browsecomp-zh-decrypt.py 提供官方解密流程；本次未解密并公开题面。"
+      "官方仓库提供加密文件 data/browsecomp-zh-encrypted.xlsx。",
+      "本地案例仅依据作者论文 Figure 1 中公开的题目样例；未解密该表格。",
+      "data/browsecomp-zh-decrypt.py 提供官方解密流程。"
     ],
     "sourceUrls": [
       "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
@@ -92,13 +93,13 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "仓库公开的是加密表格，明文题目按学术用途提供；候选不解密或转载单条题目，仅链接作者仓库。",
+    "status": "local",
+    "reason": "本站展示作者论文 Figure 1 主动公开的一条 BrowseComp-ZH 样例，以中文编辑性概述、必要短引和作者公布答案呈现；未解密加密题库，底层数据仍按学术研究用途限制。",
     "sourceUrls": [
-      "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
+      "https://arxiv.org/pdf/2504.19314v2#page=2",
       "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE"
     ],
-    "url": "https://github.com/PALIN2018/BrowseComp-ZH"
+    "url": "https://arxiv.org/pdf/2504.19314v2#page=2"
   },
   "metric": {
     "name": "准确率",
@@ -111,9 +112,10 @@
   },
   "limitations": [
     {
-      "text": "题目表格需通过官方解密脚本读取；本次未对全部明文题逐项检查。",
+      "text": "官方加密 XLSX 未解密，也未对全部题目逐项核验；本站登记的案例只来自论文已公开的 Figure 1。",
       "sourceUrls": [
-        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/data/browsecomp-zh-decrypt.py"
+        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
+        "https://arxiv.org/pdf/2504.19314v2#page=2"
       ]
     },
     {
@@ -169,6 +171,46 @@
       "label": "DeepSeek-V3.2-Exp 官方发布页",
       "url": "https://www.deepseek.com/",
       "role": "release"
+    },
+    {
+      "label": "作者论文 Figure 1 公开样例（第 2 页）",
+      "url": "https://arxiv.org/pdf/2504.19314v2#page=2",
+      "role": "data"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "作者论文 Figure 1 明确标注两条 BrowseComp-ZH 数据样例。本地仅采用其中 Art 样例的中文编辑性概述、必要短引及作者公布答案；未解密官方加密 xlsx。",
+      "sourceUrls": [
+        "https://arxiv.org/pdf/2504.19314v2#page=2"
+      ]
+    },
+    {
+      "text": "README 将数据集限定为学术研究用途，并说明加密目的为避免预训练滥用及保护任务原创性/评测有效性；仓库 MIT 声明未扩展为题库整体再发布授权。",
+      "sourceUrls": [
+        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE",
+        "https://github.com/PALIN2018/BrowseComp-ZH/blob/main/README-ZH.md#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-08",
+  "sampleSet": {
+    "retrievedAt": "2026-10-08",
+    "samples": [
+      {
+        "id": "browsecomp-zh-art-paper-figure1",
+        "title": "传统绘画形式的多线索检索题",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "请识别这种中国传统绘画形式：它起源于元代、盛行于清末，传说由一位古代知名画家酒后兴起创作，并于2010至2015年间列入某省级非物质文化遗产名录；绘制者需精通多种画法并善于书写多种字体。它是什么？",
+        "raw": "酒后兴起所创",
+        "answer": "锦灰堆",
+        "explanation": "作者论文 v2 第 2 页 Figure 1 将本题列为 BrowseComp-ZH 的两条数据样例之一（Topic: Art），并给出答案“锦灰堆”。本站用中文概述原题限定，保留六字原文短引；此例来自论文公开图示，不是从加密 xlsx 解密取得，也未复制题图、英文译文或模型输出。",
+        "source": "https://arxiv.org/pdf/2504.19314v2#page=2",
+        "license": "本条仅使用作者在论文 Figure 1 主动公开的一条题目事实、必要短引与其公布答案，采用编辑性中文概述；作者 README 将数据集限定为学术研究用途。仓库 MIT 声明不被解释为覆盖全部题目或其他数据的再发布许可。",
+        "split": "作者公开论文示例 · arXiv:2504.19314v2 · p.2 Figure 1 · Art · 非加密 xlsx 提取",
+        "excerpt": true
+      }
+    ]
+  }
 }

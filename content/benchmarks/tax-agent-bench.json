@@ -1,0 +1,199 @@
+{
+  "id": "tax-agent-bench",
+  "status": "published",
+  "order": 456,
+  "name": "Tax Agent Bench",
+  "subtitle": "查找税务权威依据并完成企业税研究",
+  "category": "work",
+  "tags": [
+    "税务",
+    "企业工作",
+    "研究检索",
+    "智能体",
+    "引用质量"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2026,
+  "version": "2026-09 发布；193 个私有测试题",
+  "kind": "original",
+  "aliases": [
+    "TaxAgentBench",
+    "Tax Agent Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体对复杂美国企业税问题的端到端研究。",
+    "task": "查找适用权威资料、结合事实推理，并提交有引用依据的税务研究答案。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/tax_agent_bench"
+    ]
+  },
+  "taskContract": {
+    "input": "专家税务问题和给定事实。",
+    "output": "最终书面答案及引用；工具轨迹留作分析。",
+    "environment": "搜索、法规定位、文档读取、检索和计算器工具；每题上限 3 小时，无固定步数。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/tax_agent_bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "391 个专家题，测试集覆盖规则查找、计算、申报、程序、时序和事实分析等 6 类。",
+    "disclosure": "partial",
+    "scale": [
+      "391 个题、6 类问题。"
+    ],
+    "splits": [
+      "5 个公开样本；193 个许可验证题；193 个私有测试题。"
+    ],
+    "fields": [
+      "公开文件有 dataset_name、suite_title、suite_version、suite_number_of_tests、suite_number_of_checks、tests；每项为 id、question、checks。",
+      "check 字段是 criteria、severity（1–3）及可选 category=must_pass；公开P-001–P-005不属于193题计分集。"
+    ],
+    "files": [
+      "data/public.json 保存五项公开问题及检查；tax_agent 目录实现检索/法规定位/计算器，logs/ 保存逐题工具和token日志。"
+    ],
+    "sourceUrls": [
+      "https://github.com/vals-ai/tax-agent-bench/blob/main/data/public.json",
+      "https://github.com/vals-ai/tax-agent-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "本地运行 harness 不需 Vals 账户；验证集许可与平台访问另行申请，测试集保留。"
+    ],
+    "url": "https://github.com/vals-ai/tax-agent-bench",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/tax_agent_bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "仓库MIT代码许可；question数据scope未单独声明。",
+    "scope": "仅suite v2公开非计分question的解读；完整question集许可范围未查明。",
+    "boundaries": [
+      "不把代码MIT视为题目许可。",
+      "不补造答案或复制外部税法原文。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/README.md",
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方public.json直接公开suite v2的P-001问题；README标为代表性public sample而非计分题。",
+    "url": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/README.md",
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy / All-Pass",
+    "description": "rubric 按 1–3 权重给部分得分，任一 must-pass 失败则该题归零；任务分= rubric分×(0.7+0.3×引用质量)，193 测试题等权平均。All-Pass 另统计全部检查通过比例。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/tax_agent_bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "主分可给部分得分，不能视为全部研究答案正确；超时未提交计 0。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/tax_agent_bench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/tax_agent_bench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Tax Agent Bench 官方定义与方法",
+      "url": "https://www.vals.ai/benchmarks/tax_agent_bench",
+      "role": "definition"
+    },
+    {
+      "label": "Tax Agent Bench 官方仓库",
+      "url": "https://github.com/vals-ai/tax-agent-bench",
+      "role": "readme"
+    },
+    {
+      "label": "Tax Agent官方公开题和检查结构",
+      "url": "https://github.com/vals-ai/tax-agent-bench/blob/main/data/public.json",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
+      "role": "data"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/README.md",
+      "role": "access"
+    },
+    {
+      "label": "已核验官方来源",
+      "url": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
+  "interpretation": {
+    "judge": {
+      "text": "先按severity加权rubric；任一must_pass失败则归零，再乘(0.7+0.3×可解析为权威文档的引用比例)。中间工具轨迹用于分析，不计主分。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/tax_agent_bench",
+        "https://github.com/vals-ai/tax-agent-bench"
+      ]
+    },
+    "comparison": {
+      "text": "官网当前方法是三小时、无固定步数；公开README的本地默认--max-time为两小时、--max-turns为50，复现须显式匹配榜单配置。法规as-of日期与法典release point也需固定。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/tax_agent_bench",
+        "https://github.com/vals-ai/tax-agent-bench"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "official-case-tax-agent-bench-public-p001",
+        "title": "公开样题 · §382股权变更与NOL限制",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Tax Agent Bench suite v2 的公开非计分样题P-001：ABC Corporation有300万美元2022–2024净经营亏损；投资人于2025-07-01收购55%股份；题面给出股票/资产公允价值、4%长期免税利率、2025分段应税收入及20万美元recognized built-in gain。问题要求判断§382所有权变更及年度/变更年度限制，并计算2025可用NOL与留存余额。官方公开文件未给该题gold答案。",
+        "explanation": "README称data/public.json收录5个代表性公开样题且不属于计分集；本页只整理P-001所列输入条件及所问税务计算，不给法律/税务答案。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略preceding and remaining question text、checks and reference criteria。 原文只保留已核片段；具体字段截取范围见取证记录。",
+        "raw": {
+          "suite_version": 2,
+          "suite_number_of_tests": 5,
+          "tests": [
+            {
+              "question": "On July 1, 2025 an investor group acquired 55.00% of ABC Corp's outstanding common stock from existing shareholders in one transaction.",
+              "id": "P-001"
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
+        "license": "本站原创公开样题解读与必要短引；仓库MIT仅按软件许可记录，question数据范围未单独声明。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "split": "data/public.json / suite_version 2 / P-001 / non-scored public sample",
+        "excerpt": true
+      }
+    ]
+  }
+}

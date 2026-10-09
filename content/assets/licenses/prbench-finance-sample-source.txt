@@ -1,0 +1,180 @@
+PRBench Finance 站内样例来源与许可证据
+固定记录来源：https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet
+数据许可：CC-BY-4.0
+署名：PRBench, Scale AI / PRBench authors, data_v2 snapshot 01947c6ef913df518e6e52626a7b29f132b12d4f, CC BY 4.0
+只展示所选官方记录；未复制外部网页、来源论文正文或媒体。
+
+原始许可证据：https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md
+---
+license: cc-by-4.0
+dataset_info:
+  features:
+  - name: task
+    dtype: string
+  - name: turns
+    dtype: int64
+  - name: field
+    dtype: string
+  - name: topic
+    dtype: string
+  - name: expert
+    dtype: string
+  - name: scratchpad
+    dtype: string
+  - name: rubric
+    list:
+    - name: annotations
+      struct:
+      - name: criteria_category
+        dtype: string
+      - name: criteria_description
+        dtype: string
+      - name: critically_detrimental_weight
+        dtype: int64
+      - name: critically_important_weight
+        dtype: int64
+      - name: detrimental_weight
+        dtype: int64
+      - name: field_for_category
+        dtype: string
+      - name: important_weight
+        dtype: int64
+      - name: slightly_detrimental_weight
+        dtype: int64
+      - name: slightly_important_weight
+        dtype: int64
+      - name: weight_class
+        dtype: string
+    - name: id
+      dtype: string
+    - name: title
+      dtype: string
+  - name: prompt_0
+    dtype: string
+  - name: response_0
+    dtype: string
+  - name: model_0
+    dtype: string
+  - name: reference_texts_0
+    list: string
+  - name: prompt_1
+    dtype: string
+  - name: response_1
+    dtype: string
+  - name: model_1
+    dtype: string
+  - name: reference_texts_1
+    list: string
+  - name: prompt_2
+    dtype: string
+  - name: response_2
+    dtype: string
+  - name: model_2
+    dtype: string
+  - name: reference_texts_2
+    list: string
+  - name: prompt_3
+    dtype: string
+  - name: response_3
+    dtype: string
+  - name: model_3
+    dtype: string
+  - name: reference_texts_3
+    list: string
+  - name: prompt_4
+    dtype: string
+  - name: response_4
+    dtype: string
+  - name: model_4
+    dtype: string
+  - name: reference_texts_4
+    list: string
+  - name: prompt_5
+    dtype: string
+  - name: response_5
+    dtype: string
+  - name: model_5
+    dtype: string
+  - name: reference_texts_5
+    list: string
+  - name: prompt_6
+    dtype: string
+  - name: response_6
+    dtype: string
+  - name: model_6
+    dtype: string
+  - name: reference_texts_6
+    list: string
+  - name: prompt_7
+    dtype: string
+  - name: response_7
+    dtype: string
+  - name: model_7
+    dtype: string
+  - name: reference_texts_7
+    list: string
+  - name: prompt_8
+    dtype: string
+  - name: response_8
+    dtype: string
+  - name: model_8
+    dtype: string
+  - name: reference_texts_8
+    list: string
+  - name: prompt_9
+    dtype: string
+  - name: reference_texts_9
+    list: string
+  - name: economic_pathway
+    dtype: string
+  - name: decision_type
+    dtype: string
+  - name: canary
+    dtype: string
+  splits:
+  - name: finance
+    num_bytes: 10514092
+    num_examples: 600
+  - name: legal
+    num_bytes: 9399518
+    num_examples: 500
+  - name: finance_hard
+    num_bytes: 5715732
+    num_examples: 300
+  - name: legal_hard
+    num_bytes: 4891364
+    num_examples: 250
+  download_size: 15682662
+  dataset_size: 30520706
+configs:
+- config_name: default
+  data_files:
+  - split: finance
+    path: data/finance-*
+  - split: legal
+    path: data/legal-*
+  - split: finance_hard
+    path: data/finance_hard-*
+  - split: legal_hard
+    path: data/legal_hard-*
+---
+
+# PRBench: Large-Scale Expert Rubrics for Evaluating High-Stakes Professional Reasoning
+
+PRBench consists of:
+* 1,100 expert-authored conversations across Finance and Legal domains
+* 18,692 expert-curated rubric criteria (10–30 per task)
+* Coverage of 114 countries, 47 U.S. jurisdictions, and 25 total professional topics.
+* Hard subsets (Finance-300, Legal-250) representing the most challenging tasks
+
+We release the Finance, Finance-Hard, Legal and Legal-Hard subsets in this release, along with our evaluation code at https://github.com/scaleapi/PRBench.
+
+See the release for full details at: https://scale.com/research/prbench
+
+![image](https://cdn-uploads.huggingface.co/production/uploads/617b009a7b4dce0224d6b8fb/9Gip9LfXUECzRMUy1kkyc.png)
+
+Explore our data using our visualizer at: https://prbench-explorer.vercel.app/
+
+
+![image](https://cdn-uploads.huggingface.co/production/uploads/617b009a7b4dce0224d6b8fb/LwsxCpmOrJCyI_SwD4e9I.png)
+

@@ -34,9 +34,8 @@ const compareUrl = computed(() => ({
             stroke-width="2"
             stroke-linejoin="round"
           /></svg
-        ><span
-          >what's a benchmark? <span aria-hidden="true">🚀</span
-          ><small>到底测什么？</small></span
+        ><span translate="no"
+          >what's a benchmark?<small>到底测什么？</small></span
         ></RouterLink
       >
       <nav class="main-nav" aria-label="主导航">
@@ -57,7 +56,7 @@ const compareUrl = computed(() => ({
   <main id="main-content"><RouterView /></main>
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="footer-brand">
+      <div class="footer-brand" translate="no">
         what's a benchmark?<span>到底测什么？</span>
       </div>
       <div>
@@ -80,7 +79,8 @@ const compareUrl = computed(() => ({
         @click="toggle(id)"
         :aria-label="`移出对比：${byId.get(id)?.name}`"
       >
-        {{ byId.get(id)?.name }}<Icon name="close" :size="14" />
+        <span translate="no">{{ byId.get(id)?.name }}</span
+        ><Icon name="close" :size="14" />
       </button>
     </div>
     <RouterLink

@@ -29,36 +29,7 @@
       "https://github.com/perplexityai/wandr"
     ]
   },
-  "limitations": [
-    {
-      "text": "未固定仓库 commit 或逐一统计 500 个 source task 的当前文件清单。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2608.14747",
-        "https://github.com/perplexityai/wandr"
-      ]
-    },
-    {
-      "text": "未逐 task 检查所有第三方来源、网页条款、授权和转载边界；README 已明确要求继承原始来源条款。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2608.14747",
-        "https://github.com/perplexityai/wandr"
-      ]
-    },
-    {
-      "text": "未找到公开 canary/训练排除政策；未据此推断许可训练或确认未污染。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2608.14747",
-        "https://github.com/perplexityai/wandr"
-      ]
-    },
-    {
-      "text": "未运行 benchmark 或付费 API 配置。",
-      "sourceUrls": [
-        "https://arxiv.org/abs/2608.14747",
-        "https://github.com/perplexityai/wandr"
-      ]
-    }
-  ],
+  "limitations": [],
   "sources": [
     {
       "label": "作者论文",
@@ -84,14 +55,19 @@
       "label": "Anthropic Opus 5.5 报告",
       "url": "https://www.anthropic.com/claude-opus-5-5",
       "role": "vendor-report"
+    },
+    {
+      "label": "已核验的具体公开任务",
+      "url": "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-08",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "WANDR 包含 500 个真实且具挑战性的数据收集任务，要求系统发现符合条件的大量实体（广度）、对每个实体进行多个协同网页搜索和信息补充（深度），并提交带有支持来源和摘录、可独立验证的记录。其 qualification key hierarchy 描述实体、关系、证据及各层数量要求，适用于市场地图、尽调、文献综述、产品比较和人才搜寻等流程。",
-    "task": "执行广度与深度兼备的网络研究，提交带有来源和摘录的可验证实体/关系记录。",
+    "summary": "执行广泛且深入的网络研究，提交带支持来源与摘录、可独立验证的实体和关系记录。",
+    "task": "发现符合条件的大量实体，并通过协同网页搜索补充关系与证据。按 qualification key hierarchy 给出的层级和数量要求，提交带来源和摘录的可验证记录。",
     "sourceUrls": [
       "https://arxiv.org/abs/2608.14747",
       "https://github.com/perplexityai/wandr"
@@ -127,7 +103,7 @@
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "作者公开 GitHub 仓库、技术报告和 Harbor-format 数据目录。运行可使用官方 wrapper 的本地 Docker 或可选 E2B 路径，并需要相关 provider credentials。本轮未克隆仓库、下载任务数据或运行 API 实验。"
+      "仓库提供技术报告和 Harbor-format 任务目录；可用本地 Docker 或 E2B 运行，需相关服务凭据。"
     ],
     "url": "https://github.com/perplexityai/wandr",
     "sourceUrls": [
@@ -149,10 +125,73 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "可介绍 WANDR 的结构、评测方式并链接官方仓库/论文。不要整体复制源 task configs 或 artifacts 到公开 GitHub Pages；特别是每项内容中引用的第三方页面、图文或记录，需先满足各自来源服务条款与版权条件。若展示自行整理的示例，应使用自创或已确认许可的来源，并标注其不是 WANDR 原始任务。",
+    "status": "local",
+    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "url": "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md",
     "sourceUrls": [
-      "https://github.com/perplexityai/wandr"
+      "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "未固定仓库 commit 或逐一统计 500 个 source task 的当前文件清单。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    },
+    {
+      "text": "未逐 task 检查所有第三方来源、网页条款、授权和转载边界；README 已明确要求继承原始来源条款。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    },
+    {
+      "text": "未找到公开 canary/训练排除政策；未据此推断许可训练或确认未污染。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    },
+    {
+      "text": "未运行 benchmark 或付费 API 配置。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.14747",
+        "https://github.com/perplexityai/wandr"
+      ]
+    },
+    {
+      "text": "作者公开 GitHub 仓库、技术报告和 Harbor-format 数据目录。运行可使用官方 wrapper 的本地 Docker 或可选 E2B 路径，并需要相关 provider credentials。本轮未克隆仓库、下载任务数据或运行 API 实验。",
+      "sourceUrls": [
+        "https://github.com/perplexityai/wandr",
+        "https://arxiv.org/abs/2608.14747"
+      ]
+    },
+    {
+      "text": "本轮已沿官方原文件/发布例题定位具体任务：datasets/wandr/accounting-ai-claims/instruction.md / accounting_ai_claims；本页为事实解读和来源短引。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-09",
+  "sampleSet": {
+    "retrievedAt": "2026-10-09",
+    "samples": [
+      {
+        "id": "public-case-wandr",
+        "title": "accounting_ai_claims · 财务平台主张取证",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方固定任务要求调查至少 18 个会计/财务自动化平台，每平台至少 3 条具体工作流能力主张；每条分别提供厂商发布变化与客户/生态使用两类公开证据。厂商变化需有 2024-01-01 之后的日期信号，结果写入 results_accounting_ai_claims.jsonl，每行附可核验 URL 和原文摘录。",
+        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：datasets/wandr/accounting-ai-claims/instruction.md / accounting_ai_claims\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "raw": "For 18+ AI-positioned accounting or finance automation platforms, supply 3+ concrete workflow claims per platform.\n\n{\"item\": { \"platform\": \"<platform>\", \"workflow_claim\": \"<workflow_claim>\", \"evidence_family\": \"<evidence_family>\" }, \"url\": \"<source_url>\", \"excerpts\": [\"<verbatim_excerpt_1>\", \"<verbatim_excerpt_2>\", \"...\"], \"answer\": { <...whatever fields the task implies to ask for...> }}",
+        "source": "https://raw.githubusercontent.com/perplexityai/wandr/ccb0baeb96f1c77a48e47f92122c57479ee99700/datasets/wandr/accounting-ai-claims/instruction.md",
+        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "split": "固定官方研究任务 / accounting_ai_claims",
+        "excerpt": true
+      }
     ]
   }
 }

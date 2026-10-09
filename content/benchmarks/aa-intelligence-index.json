@@ -1,0 +1,213 @@
+{
+  "id": "aa-intelligence-index",
+  "status": "published",
+  "order": 15,
+  "name": "Artificial Analysis Intelligence Index",
+  "subtitle": "看懂综合智能指数的组成与权重",
+  "category": "general",
+  "tags": [
+    "综合指数",
+    "加权",
+    "智能体",
+    "编程",
+    "科学推理"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "v4.3.2",
+  "kind": "suite",
+  "aliases": [
+    "AA Intelligence Index",
+    "Artificial Analysis 智能指数",
+    "AA 智能指数",
+    "AA Index"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "将多项评测按规则换算和加权，概括一组能力；总分不代表所有使用场景。",
+    "task": "运行组成评测后合成指数，各项的具体任务见组成表。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "十项评测各自的任务。",
+    "output": "分项结果及综合指数。",
+    "environment": "采用 AA 分项实施协议。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "综合指数没有一套独立原题；公开范围随组成项而异。",
+    "disclosure": "partial",
+    "scale": [
+      "10 项评测，4 个能力分组。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法公开；部分组成项含私有任务或答案。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "各组成项分别适用自己的数据与代码许可。",
+    "scope": "本站只概述方法。",
+    "boundaries": [
+      "指数公开不授予所有底层题目的再发布权。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "请沿组成表查看具体评测的样例与入口。",
+    "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "加权智能指数",
+    "description": "先按分项规则换算再加权，不能直接把 Elo 与正确率相加。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "主要覆盖英文文本相关能力；图像、语音和多语言另有评测。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "程序测试、模型裁判与官方评分服务并存，按分项核对。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "核对指数版本、分项协议、模型配置和日期；总分接近也可能单项差异很大。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "disclosure": {
+      "text": "方法公开，部分数据私有；有公开样例不表示能完整复现。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "versionChanges": {
+      "text": "v4.3 换入 Terminal-Bench 4.0 与 AutomationBench-AA；后续修订又调整 Elo 拟合。应保留对应版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  },
+  "composition": {
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ],
+    "items": [
+      {
+        "id": "aa-briefcase",
+        "group": "智能体",
+        "weight": 15,
+        "detail": "综合 Elo 经固定区间换算。"
+      },
+      {
+        "id": "gdpval-aa-v2-1",
+        "group": "智能体",
+        "weight": 10,
+        "detail": "Elo 经固定区间换算。"
+      },
+      {
+        "id": "automationbench-aa",
+        "group": "智能体",
+        "weight": 5,
+        "detail": "受安全约束的目标完成比例。"
+      },
+      {
+        "id": "terminal-bench-4",
+        "group": "编程",
+        "weight": 10,
+        "detail": "AA：66 任务，mini-swe-agent，每题 3 次。"
+      },
+      {
+        "id": "scicode",
+        "group": "编程",
+        "weight": 10,
+        "detail": "带科学背景提示的子问题得分。"
+      },
+      {
+        "id": "aa-omniscience",
+        "group": "通用",
+        "weight": 15,
+        "detail": "准确率占 10%，非幻觉率占 5%。"
+      },
+      {
+        "id": "gdp-pdf",
+        "group": "通用",
+        "weight": 10,
+        "detail": "采用 AA 文档输入与裁判协议。"
+      },
+      {
+        "id": "aa-lcr",
+        "group": "通用",
+        "weight": 5,
+        "detail": "v1.1 语义判分。"
+      },
+      {
+        "id": "hle",
+        "group": "科学推理",
+        "weight": 10,
+        "detail": "AA 采用 2,158 道纯文本题。"
+      },
+      {
+        "id": "critpt",
+        "group": "科学推理",
+        "weight": 10,
+        "detail": "70 道 challenge，每题 5 次。"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "label": "AA 官方方法与版本历史",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-multilingual-index",
+      "label": "另行报告的多语言指数",
+      "detail": "多语言能力单独报告，不进入此英文综合智能指数。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-09-28",
+  "updatedAt": "2026-10-08"
+}
