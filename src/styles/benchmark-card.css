@@ -1,7 +1,7 @@
 /* 评测卡片及列表模式；列表上下文由目录容器提供。 */
 
 .benchmark-card {
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   background: var(--surface);
   border-radius: 14px;
   padding: 24px 24px 0;
@@ -14,11 +14,11 @@
   contain-intrinsic-size: auto 400px;
   transition:
     border-color 0.15s,
-    box-shadow 0.15s;
+    transform 0.15s;
 }
 .benchmark-card:hover {
   border-color: var(--accent-border-strong);
-  box-shadow: 0 3px 12px #26334d08;
+  transform: translateY(-2px);
 }
 .card-top {
   display: flex;
@@ -42,7 +42,7 @@
   padding: 2px 6px;
   border-radius: 4px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 .card-title {
   display: flex;
@@ -76,8 +76,8 @@
 .card-summary {
   line-height: 1.8;
   margin: 8px 0 14px;
-  color: var(--muted);
-  font-size: 13px;
+  color: var(--text-secondary);
+  font-size: 14px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -93,7 +93,7 @@
   margin-top: auto;
   padding: 14px 0 12px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 .card-meta > span:first-child {
   white-space: nowrap;
@@ -102,18 +102,18 @@
   max-width: 85%;
 }
 .card-actions {
-  border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 46px;
+  margin-top: 4px;
 }
 .card-actions > a {
   display: flex;
   align-items: center;
   gap: 6px;
   color: var(--accent-text);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 550;
 }
 .card-actions > a > svg:last-child {
@@ -128,7 +128,7 @@
   border-radius: 5px;
   padding: 5px 8px;
   min-height: 40px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   white-space: nowrap;
 }
@@ -178,6 +178,18 @@
 }
 .benchmark-card:focus-within {
   border-color: var(--accent-border-strong);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .benchmark-card {
+    animation: card-in 0.45s ease-out both;
+    animation-delay: calc(var(--i, 0) * 45ms);
+  }
+  @keyframes card-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
 }
 @media (max-width: 900px) {
   .benchmark-card {

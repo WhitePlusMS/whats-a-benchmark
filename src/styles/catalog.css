@@ -1,9 +1,9 @@
 /* 目录搜索、筛选和结果布局；断点与所属规则共同维护。 */
 
 .hero {
-  background: linear-gradient(180deg, var(--accent-soft), transparent 70%);
-  padding-bottom: 8px;
-  margin-bottom: 6px;
+  background: var(--accent-softer);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
 }
 .catalog-header {
   display: flex;
@@ -14,8 +14,9 @@
   padding-bottom: 30px;
 }
 .catalog-header h1 {
-  font-size: 42px;
-  letter-spacing: -1.2px;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 .catalog-header p {
   margin-top: 10px;
@@ -54,7 +55,6 @@
   border-radius: 10px;
   padding: 0 19px;
   height: 52px;
-  box-shadow: 0 3px 12px -8px #c5bfdc;
   color: var(--muted);
 }
 .search-box:focus-within {
@@ -361,6 +361,22 @@
   padding: 35px 0;
   color: var(--muted);
 }
+/* 首屏与卡片的入场动效；reduced-motion 时 base.css 全局禁用。 */
+@media (prefers-reduced-motion: no-preference) {
+  .hero .catalog-header > div,
+  .hero .search-section {
+    animation: hero-in 0.5s ease-out both;
+  }
+  .hero .search-section {
+    animation-delay: 90ms;
+  }
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+}
 .mobile-filter-button {
   display: none;
 }
@@ -403,8 +419,8 @@
     padding-bottom: 20px;
   }
   .catalog-header h1 {
-    font-size: 30px;
-    letter-spacing: -0.8px;
+    font-size: 36px;
+    letter-spacing: -0.02em;
   }
   .catalog-header p {
     font-size: 13px;

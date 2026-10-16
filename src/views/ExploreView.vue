@@ -289,19 +289,20 @@ function setFilter(key: CatalogFilterKey, value: string) {
               }}
             </h3>
             <span>{{ group.items.length }} 个条目</span>
-            <button
+            <RouterLink
               class="text-link"
-              @click="setFilter('category', group.category.id)"
+              :to="{ path: '/', query: { category: group.category.id } }"
             >
               只看这一类 <Icon name="arrow" :size="14" />
-            </button>
+            </RouterLink>
           </div>
           <p class="category-group-desc">{{ group.category.description }}</p>
           <div class="cards">
             <BenchmarkCard
-              v-for="item in group.items"
+              v-for="(item, index) in group.items"
               :key="item.id"
               :item="item"
+              :style="{ '--i': index % 12 }"
             />
           </div>
         </section>
@@ -311,7 +312,12 @@ function setFilter(key: CatalogFilterKey, value: string) {
         class="cards"
         :class="{ 'list-view': query.view === 'list' }"
       >
-        <BenchmarkCard v-for="item in results" :key="item.id" :item="item" />
+        <BenchmarkCard
+          v-for="(item, index) in results"
+          :key="item.id"
+          :item="item"
+          :style="{ '--i': index % 12 }"
+        />
       </div>
       <div v-if="!results.length" class="empty-state">
         <Icon name="search" :size="34" />
