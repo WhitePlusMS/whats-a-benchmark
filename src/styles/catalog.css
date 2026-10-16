@@ -287,16 +287,50 @@
 .active-filters {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  flex-wrap: wrap;
   margin: -5px 0 18px;
-  color: var(--muted);
-  font-size: 11px;
 }
-.active-filters button {
-  display: flex;
+.filter-chip {
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  padding: 5px 6px 5px 10px;
+}
+.filter-chip b {
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.filter-chip button {
+  display: inline-flex;
   color: var(--muted);
+  padding: 2px;
+  border-radius: 3px;
+}
+.filter-chip button:hover {
+  color: var(--text);
+  background: var(--accent-softer);
+}
+.filter-count {
+  color: var(--muted);
+  font-size: 13px;
+  margin-left: 4px;
+}
+.clear-all {
+  color: var(--accent-text);
+  font-size: 13px;
+}
+.clear-all:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.search-kbd {
+  flex-shrink: 0;
 }
 .catalog-footnote {
   font-size: 11px;

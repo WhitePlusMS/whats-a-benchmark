@@ -18,7 +18,11 @@ const items = computed(() =>
     .map((id) => byId.get(id))
     .filter((item): item is Benchmark => !!item),
 );
-const rows: { label: string; value: (item: Benchmark) => string }[] = [
+const rows: {
+  label: string;
+  value: (item: Benchmark) => string;
+  mono?: boolean;
+}[] = [
   { label: "测什么", value: (item) => item.officialDefinition.summary },
   {
     label: "能力方向",
@@ -40,7 +44,7 @@ const rows: { label: string; value: (item: Benchmark) => string }[] = [
     label: "评分指标",
     value: (item) => `${item.metric.name}：${item.metric.description}`,
   },
-  { label: "具体版本", value: (item) => item.version },
+  { label: "具体版本", value: (item) => item.version, mono: true },
   { label: "发布方", value: (item) => item.publisher },
   {
     label: "样例方式",
@@ -102,7 +106,9 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
         <tbody>
           <tr v-for="row in rows" :key="row.label">
             <th scope="row">{{ row.label }}</th>
-            <td v-for="item in items" :key="item.id">{{ row.value(item) }}</td>
+            <td v-for="item in items" :key="item.id" :class="{ mono: row.mono }">
+              {{ row.value(item) }}
+            </td>
           </tr>
           <tr v-for="field in readingRows" :key="field.key">
             <th scope="row">{{ field.label }}</th>
@@ -162,6 +168,10 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
       <h2>选择至少两项评测</h2>
       <p>点击评测卡片上的“对比”按钮，最多可以选择 3 项。</p>
       <RouterLink to="/" class="primary-button">浏览评测</RouterLink>
+      <p class="empty-hint">
+        在目录卡片上点 <kbd>+ 对比</kbd> 凑够 2 个即可开始；按
+        <kbd>⌘K</kbd> 或 <kbd>Ctrl K</kbd> 可直接搜索评测名。
+      </p>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useHead } from "@unhead/vue";
 import { benchmarks, categories, kindLabels } from "../content/catalog";
 import { sampleAccessLabels } from "../content/labels";
@@ -12,6 +12,19 @@ import Icon from "../components/Icon.vue";
 import { formatCount } from "../lib/displayFormats";
 useHead({ title: "到底测什么？ · what's a benchmark?" });
 const showFilters = ref(false);
+const searchInput = ref<HTMLInputElement>();
+const isMac = ref(true);
+function onGlobalKeydown(event: KeyboardEvent) {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    searchInput.value?.focus();
+  }
+}
+onMounted(() => {
+  isMac.value = /mac/i.test(navigator.platform);
+  window.addEventListener("keydown", onGlobalKeydown);
+});
+onUnmounted(() => window.removeEventListener("keydown", onGlobalKeydown));
 const {
   query,
   results,
@@ -62,6 +75,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
     <section class="container search-section" aria-label="搜索评测">
       <div class="search-box">
         <Icon name="search" :size="20" /><input
+          ref="searchInput"
           aria-label="搜索评测"
           type="search"
           name="benchmark-search"
@@ -76,7 +90,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
           @click="setFilter('q', '')"
         >
           <Icon name="close" :size="18" /></button
-        ><span v-else class="search-hint">例如 GPQA / 数学 / OpenAI</span>
+        ><span v-else class="search-hint">例如 GPQA / 数学 / OpenAI</span
+        ><kbd class="search-kbd">{{ isMac ? "⌘K" : "Ctrl K" }}</kbd>
       </div>
     </section>
   </div>
@@ -220,12 +235,33 @@ function setFilter(key: CatalogFilterKey, value: string) {
         </div>
       </div>
       <div v-if="hasFilters" class="active-filters">
-        <span
-          >{{ query.q ? `搜索“${query.q}”` : "已应用筛选" }} ·
-          {{ results.length }} 项结果</span
-        ><button @click="reset">
-          清空筛选 <Icon name="close" :size="14" />
-        </button>
+        <span v-if="query.q" class="filter-chip"
+          >搜索：<b>{{ query.q }}</b
+          ><button aria-label="移除搜索词" @click="setFilter('q', '')"
+            ><Icon name="close" :size="13" /></button
+        ></span>
+        <span v-if="query.category" class="filter-chip"
+          >能力：<b>{{ currentCategory?.name }}</b
+          ><button aria-label="移除能力分类" @click="setFilter('category', '')"
+            ><Icon name="close" :size="13" /></button
+        ></span>
+        <span v-if="query.publisher" class="filter-chip"
+          >发布方：<b>{{ query.publisher }}</b
+          ><button aria-label="移除发布方筛选" @click="setFilter('publisher', '')"
+            ><Icon name="close" :size="13" /></button
+        ></span>
+        <span v-if="query.sample" class="filter-chip"
+          >样例：<b>{{ sampleAccessLabels[query.sample as keyof typeof sampleAccessLabels] }}</b
+          ><button aria-label="移除样例筛选" @click="setFilter('sample', '')"
+            ><Icon name="close" :size="13" /></button
+        ></span>
+        <span v-if="query.kind" class="filter-chip"
+          >类型：<b>{{ kindLabels[query.kind as keyof typeof kindLabels] }}</b
+          ><button aria-label="移除类型筛选" @click="setFilter('kind', '')"
+            ><Icon name="close" :size="13" /></button
+        ></span>
+        <span class="filter-count">{{ results.length }} 项结果</span>
+        <button class="clear-all" @click="reset">清空全部</button>
       </div>
       <template v-if="groupedResults.length">
         <section

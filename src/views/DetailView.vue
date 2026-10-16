@@ -33,6 +33,13 @@ const item = computed(() =>
 const category = computed(
   () => item.value && categoryById.get(item.value.category),
 );
+const statusTone = computed(() => {
+  const status = item.value?.researchStatus;
+  if (status === "blocked") return "bad";
+  if (status === "partial" || status === "pass-with-limitations")
+    return "warn";
+  return "ok";
+});
 const scoreInterpretation = computed(() => {
   const reading = item.value?.interpretation;
   return [
@@ -141,7 +148,9 @@ useHead(() => ({
           <div class="tags">
             <span>{{ kindLabels[item.kind] }}</span
             ><span>{{ category?.name }}</span
-            ><span>{{ researchStatusLabels[item.researchStatus] }}</span>
+            ><span class="status-dot" :class="statusTone">{{
+              researchStatusLabels[item.researchStatus]
+            }}</span>
           </div>
           <h1 translate="no">{{ item.name }}</h1>
           <p class="detail-subtitle">{{ item.subtitle }}</p>
@@ -181,11 +190,11 @@ useHead(() => ({
       </div>
       <div>
         <small>首次发布年份</small
-        ><strong>{{ item.year || "尚未核实" }}</strong>
+        ><strong class="num">{{ item.year || "尚未核实" }}</strong>
       </div>
       <div>
         <small>评测版本</small
-        ><strong translate="no">{{ item.version }}</strong>
+        ><strong class="mono" translate="no">{{ item.version }}</strong>
       </div>
       <div>
         <small>数据访问</small
@@ -194,7 +203,7 @@ useHead(() => ({
       <div>
         <small>资料核验日期</small
         ><strong
-          ><time :datetime="item.verifiedAt">{{
+          ><time class="mono" :datetime="item.verifiedAt">{{
             formatDate(item.verifiedAt)
           }}</time></strong
         >

@@ -19,7 +19,8 @@ const { selected, toggle } = useComparison();
             item.researchStatus === 'partial' ||
             item.researchStatus === 'blocked'
           "
-          class="kind-label evidence-state"
+          class="status-dot"
+          :class="item.researchStatus === 'blocked' ? 'bad' : 'warn'"
           >{{ researchStatusLabels[item.researchStatus] }}</span
         >
       </div>

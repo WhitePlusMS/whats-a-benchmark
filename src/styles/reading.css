@@ -63,6 +63,7 @@
 .comparison-scroll {
   overflow: auto;
   max-height: calc(100dvh - 190px);
+  scrollbar-gutter: stable;
   scroll-padding-inline-start: 150px;
   border: 1px solid var(--border);
   border-radius: 11px;
@@ -154,7 +155,22 @@
   background: var(--surface-subtle);
 }
 .comparison-table td {
-  color: var(--muted);
+  color: var(--text-secondary);
+}
+.comparison-table td.mono {
+  font-size: 12.5px;
+}
+/* 行 hover 微反馈（dense 操作台惯例）。 */
+.comparison-table tbody tr {
+  transition: background 80ms;
+}
+.comparison-table tbody tr:hover td,
+.comparison-table tbody tr:hover th {
+  background: var(--accent-softer);
+}
+.empty-hint {
+  margin-top: 18px;
+  font-size: 13px;
 }
 .lesson {
   display: flex;
