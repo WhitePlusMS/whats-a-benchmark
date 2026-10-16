@@ -1,17 +1,17 @@
 /* 目录搜索、筛选和结果布局；断点与所属规则共同维护。 */
 
 .hero {
-  background: linear-gradient(180deg, var(--accent-softer), transparent 82%);
+  background: linear-gradient(180deg, var(--accent-soft), transparent 70%);
   padding-bottom: 8px;
   margin-bottom: 6px;
 }
 .catalog-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   gap: 24px;
-  padding-top: 40px;
-  padding-bottom: 26px;
+  padding-top: 36px;
+  padding-bottom: 30px;
 }
 .catalog-header h1 {
   font-size: 42px;
@@ -24,15 +24,17 @@
 }
 .catalog-stats {
   display: flex;
+  align-items: baseline;
   gap: 26px;
   color: var(--muted);
   font-size: 12px;
   flex-wrap: wrap;
+  padding-bottom: 4px;
 }
 .catalog-stats b {
-  color: var(--text);
-  font-size: 26px;
-  font-weight: 650;
+  color: var(--accent-text);
+  font-size: 30px;
+  font-weight: 700;
   margin-right: 5px;
 }
 .search-section {
@@ -170,6 +172,9 @@
   margin-left: auto;
   font-size: 11px;
   color: var(--muted);
+  background: var(--surface-sunken);
+  border-radius: 8px;
+  padding: 1px 7px;
 }
 .category-filter.active {
   background: var(--accent-soft);
