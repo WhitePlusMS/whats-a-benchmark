@@ -92,7 +92,7 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
             <th v-for="item in items" :key="item.id" scope="col">
               <RouterLink :to="`/benchmarks/${item.id}/`"
                 ><span translate="no">{{ item.name }}</span
-                ><Icon name="arrow" :size="16" /></RouterLink
+              ></RouterLink
               ><span v-if="item.status === 'archived'" class="small-badge"
                 >本站已归档</span
               >
@@ -112,7 +112,7 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
                 <RouterLink
                   :to="`/benchmarks/${item.id}/#${readingAnchor(field.key)}`"
                   class="text-link"
-                  >详细说明与依据 <Icon name="arrow" :size="14" /></RouterLink
+                  >详细说明与依据</RouterLink
               ></template>
               <span v-else aria-label="本站尚未整理">—</span>
             </td>
@@ -132,16 +132,16 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
               <RouterLink
                 :to="`/benchmarks/${item.id}/#score`"
                 class="text-link"
-                >查看完整评分说明 <Icon name="arrow" :size="14"
-              /></RouterLink>
+                >查看完整评分说明
+              </RouterLink>
             </td>
           </tr>
           <tr>
             <th scope="row">数据与许可</th>
             <td v-for="item in items" :key="item.id">
               <RouterLink :to="`/benchmarks/${item.id}/#data`" class="text-link"
-                >查看获取方式与使用范围 <Icon name="arrow" :size="14"
-              /></RouterLink>
+                >查看获取方式与使用范围</RouterLink
+              >
             </td>
           </tr>
           <tr>
@@ -150,20 +150,18 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
               <RouterLink
                 :to="`/benchmarks/${item.id}/#sources`"
                 class="text-link"
-                >查看完整参考资料 <Icon name="arrow" :size="15"
-              /></RouterLink>
+                >查看完整参考资料</RouterLink
+              >
             </td>
           </tr>
         </tbody>
       </table>
     </div>
     <div v-else class="empty-state">
-      <Icon name="compare" :size="36" />
+      <Icon name="compare" :size="32" />
       <h2>选择至少两项评测</h2>
       <p>点击评测卡片上的“对比”按钮，最多可以选择 3 项。</p>
-      <RouterLink to="/" class="primary-button"
-        >浏览评测 <Icon name="arrow" :size="17"
-      /></RouterLink>
+      <RouterLink to="/" class="primary-button">浏览评测</RouterLink>
     </div>
   </div>
 </template>

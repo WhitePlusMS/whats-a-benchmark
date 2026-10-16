@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue";
-import Icon from "../components/Icon.vue";
 import { categoryById } from "../content/catalog";
 useHead({ title: "阅读指南 · what's a benchmark?" });
 // 直接进入现有目录分类，不创建第二套筛选状态或模型推荐规则。
@@ -160,8 +159,7 @@ const lessons = [
           <p>{{ task.detail }}</p>
           <span class="text-link"
             >{{ categoryById.get(task.category)?.name }}
-            <Icon name="arrow" :size="16"
-          /></span>
+          </span>
         </RouterLink>
       </div>
     </section>
@@ -182,8 +180,8 @@ const lessons = [
         <h3>{{ lesson.summary }}</h3>
         <p>{{ lesson.body }}</p>
         <RouterLink :to="lesson.link" class="text-link"
-          >{{ lesson.label }}<Icon name="arrow" :size="17"
-        /></RouterLink>
+          >{{ lesson.label }}</RouterLink
+        >
       </div>
     </article>
     <p class="muted">

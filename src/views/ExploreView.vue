@@ -44,8 +44,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
         <h1>到底测什么？</h1>
         <p>查询评测任务、真实样例、评分方法与版本关系。</p>
         <RouterLink to="/guide/#tasks" class="text-link"
-          >按工作任务找评测 <Icon name="arrow" :size="15"
-        /></RouterLink>
+          >按工作任务找评测</RouterLink
+        >
       </div>
       <div class="catalog-stats" aria-label="目录收录情况">
         <span
@@ -61,7 +61,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
     </section>
     <section class="container search-section" aria-label="搜索评测">
       <div class="search-box">
-        <Icon name="search" :size="23" /><input
+        <Icon name="search" :size="20" /><input
           aria-label="搜索评测"
           type="search"
           name="benchmark-search"
@@ -166,7 +166,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
       <RouterLink to="/guide/" class="sidebar-tip"
         ><Icon name="book" /><strong>评测阅读指南</strong
         ><span>指标、版本与评测条件</span
-        ><span class="tip-link">查看指南 <Icon name="arrow" :size="15" /></span
+        ><span class="tip-link">查看指南</span
       ></RouterLink>
     </aside>
     <section class="results-section">
@@ -207,14 +207,14 @@ function setFilter(key: CatalogFilterKey, value: string) {
               :aria-pressed="query.view === 'grid'"
               @click="setFilter('view', 'grid')"
             >
-              <Icon name="grid" :size="17" /></button
+              <Icon name="grid" :size="16" /></button
             ><button
               :class="{ active: query.view === 'list' }"
               aria-label="列表视图"
               :aria-pressed="query.view === 'list'"
               @click="setFilter('view', 'list')"
             >
-              <Icon name="list" :size="18" />
+              <Icon name="list" :size="16" />
             </button>
           </div>
         </div>
@@ -224,7 +224,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
           >{{ query.q ? `搜索“${query.q}”` : "已应用筛选" }} ·
           {{ results.length }} 项结果</span
         ><button @click="reset">
-          清空筛选 <Icon name="close" :size="13" />
+          清空筛选 <Icon name="close" :size="14" />
         </button>
       </div>
       <template v-if="groupedResults.length">
@@ -265,7 +265,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         />
       </div>
       <div v-if="!results.length" class="empty-state">
-        <Icon name="search" :size="34" />
+        <Icon name="search" :size="32" />
         <h3>未找到匹配的评测</h3>
         <p>试试英文简称，或放宽发布方和能力筛选。</p>
         <button class="primary-button" @click="reset">查看全部评测</button>

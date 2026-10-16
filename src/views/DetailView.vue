@@ -157,10 +157,10 @@ useHead(() => ({
           class="primary-button"
         >
           <Icon
-            :name="primaryAction.external ? 'external' : 'file'"
+            v-if="primaryAction.external"
+            name="up"
             :size="18"
-          />{{ primaryAction.label
-          }}<Icon :name="primaryAction.external ? 'up' : 'arrow'" :size="17" />
+          />{{ primaryAction.label }}
         </a>
         <button
           v-if="item.status === 'published'"
@@ -319,8 +319,7 @@ useHead(() => ({
             :key="component.id"
             :to="`/benchmarks/${component.id}/#samples`"
             ><span translate="no">{{ byId.get(component.id)?.name }}</span
-            ><Icon name="arrow" :size="15"
-          /></RouterLink>
+          ></RouterLink>
         </div>
       </template>
       <SampleViewer v-else :item="item" />
@@ -380,8 +379,8 @@ useHead(() => ({
         </div>
       </div>
       <RouterLink to="/guide/#metrics" class="text-link score-guide"
-        >了解不同评分指标 <Icon name="arrow" :size="16"
-      /></RouterLink>
+        >了解不同评分指标</RouterLink
+      >
     </section>
 
     <section id="data" class="detail-section">
@@ -453,7 +452,7 @@ useHead(() => ({
             target="_blank"
             rel="noreferrer"
             class="text-link"
-            >{{ dataAccessLinkLabel }} <Icon name="up" :size="15"
+            >{{ dataAccessLinkLabel }} <Icon name="up" :size="16"
           /></a>
         </article>
         <article>
@@ -510,8 +509,7 @@ useHead(() => ({
             <div>
               <h3 translate="no">{{ byId.get(relation.id)?.name }}</h3>
             </div>
-            <Icon name="arrow" :size="20"
-          /></RouterLink>
+          </RouterLink>
           <p>
             <CitedText
               :text="relation.detail"
@@ -544,8 +542,7 @@ useHead(() => ({
           :key="release.id"
           :to="`/releases/#${release.id}`"
           ><span translate="no">{{ release.title }}</span
-          ><Icon name="arrow" :size="13"
-        /></RouterLink>
+        ></RouterLink>
       </div>
       <details
         v-if="item.researchNotes?.length"

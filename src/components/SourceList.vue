@@ -26,7 +26,7 @@ const route = useRoute();
             · <span translate="no">{{ group.host }}</span></small
           >
         </span>
-        <Icon name="up" :size="19" />
+        <Icon name="up" :size="18" />
       </a>
       <details
         v-if="group.locations.length"
@@ -44,7 +44,7 @@ const route = useRoute();
           >
             <a :href="location.source.url" target="_blank" rel="noreferrer"
               >[{{ location.number }}] {{ location.source.label }}
-              <Icon name="up" :size="13"
+              <Icon name="up" :size="14"
             /></a>
           </li>
         </ul>

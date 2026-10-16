@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import {
   BookOpen,
   Code2,
@@ -10,7 +11,6 @@ import {
   BriefcaseBusiness,
   Search,
   ArrowUpRight,
-  ArrowRight,
   SlidersHorizontal,
   X,
   Plus,
@@ -18,12 +18,9 @@ import {
   ChevronDown,
   LayoutGrid,
   List,
-  Copy,
   GitCompareArrows,
   Sparkles,
-  FileText,
   ArrowLeft,
-  ExternalLink,
   CircleHelp,
   Compass,
   Sun,
@@ -44,7 +41,6 @@ const icons = {
   briefcase: BriefcaseBusiness,
   search: Search,
   up: ArrowUpRight,
-  arrow: ArrowRight,
   filter: SlidersHorizontal,
   close: X,
   plus: Plus,
@@ -52,22 +48,25 @@ const icons = {
   down: ChevronDown,
   grid: LayoutGrid,
   list: List,
-  copy: Copy,
   compare: GitCompareArrows,
   sparkle: Sparkles,
-  file: FileText,
   back: ArrowLeft,
-  external: ExternalLink,
   help: CircleHelp,
   compass: Compass,
   sun: Sun,
   moon: Moon,
   sunmoon: SunMoon,
 };
+// 未注册的图标名立刻暴露，不再静默渲染成问号圈。
+const resolved = computed(() => {
+  const icon = icons[props.name as keyof typeof icons];
+  if (!icon) console.warn(`[Icon] 未注册的图标名: ${props.name}`);
+  return icon || CircleHelp;
+});
 </script>
 <template>
   <component
-    :is="icons[props.name as keyof typeof icons] || CircleHelp"
+    :is="resolved"
     :size="size"
     :stroke-width="1.7"
     aria-hidden="true"

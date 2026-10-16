@@ -65,7 +65,7 @@ onMounted(() => {
       :href="externalUrl"
       target="_blank"
       rel="noreferrer"
-      >{{ externalLinkLabel }} <Icon name="up" :size="17"
+      >{{ externalLinkLabel }} <Icon name="up" :size="16"
     /></a>
     <details v-if="canSubmitDownloadedSample" class="downloaded-sample-note">
       <summary>向维护者提供真实样例</summary>
@@ -235,7 +235,7 @@ onMounted(() => {
           target="_blank"
           rel="noreferrer"
           class="text-link"
-          >查看原始来源 <Icon name="up" :size="15"
+          >查看原始来源 <Icon name="up" :size="16"
         /></a>
         <details :key="current.id" class="sample-provenance">
           <summary>记录与许可</summary>
@@ -263,7 +263,7 @@ onMounted(() => {
                 target="_blank"
                 rel="noreferrer"
                 class="text-link"
-                >阅读许可原文 <Icon name="up" :size="15"
+                >阅读许可原文 <Icon name="up" :size="16"
               /></a>
             </dd>
           </dl>

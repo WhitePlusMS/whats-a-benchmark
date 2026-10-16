@@ -66,8 +66,7 @@ const groups = [...grouped.values()];
               :key="id"
               :to="`/benchmarks/${id}/`"
               ><span translate="no">{{ byId.get(id)?.name }}</span
-              ><Icon name="arrow" :size="13"
-            /></RouterLink>
+            ></RouterLink>
           </div>
           <p class="release-note">{{ release.note }}</p>
           <a
@@ -75,7 +74,7 @@ const groups = [...grouped.values()];
             :href="release.url"
             target="_blank"
             rel="noreferrer"
-            >查看官方发布资料 <Icon name="external" :size="16"
+            >查看官方发布资料 <Icon name="up" :size="16"
           /></a>
           <a
             v-if="release.chartUrl"
@@ -83,7 +82,7 @@ const groups = [...grouped.values()];
             :href="release.chartUrl"
             target="_blank"
             rel="noreferrer"
-            >打开官方成绩图 <Icon name="image" :size="16"
+            >打开官方成绩图 <Icon name="up" :size="16"
           /></a>
         </article>
       </div>

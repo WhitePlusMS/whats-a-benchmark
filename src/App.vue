@@ -134,7 +134,7 @@ const compareUrl = computed(() => ({
       v-if="selected.length >= 2"
       :to="compareUrl"
       class="primary-button"
-      >开始对比 <Icon name="arrow" :size="16" /></RouterLink
+      >开始对比</RouterLink
     ><span v-else class="muted dock-instruction">再选择 1 个评测</span
     ><button class="icon-button" @click="clear" aria-label="清空对比">
       <Icon name="close" :size="18" />

@@ -38,13 +38,13 @@ const { selected, toggle } = useComparison();
     </div>
     <div class="card-actions">
       <RouterLink :to="`/benchmarks/${item.id}/#samples`"
-        ><Icon name="file" :size="15" />{{
+        >{{
           item.composition
             ? "查看组成样例"
             : item.sampleAccess.status === "local"
               ? "查看真实题目"
               : "查看样例获取方式"
-        }}<Icon name="arrow" :size="15" /></RouterLink
+        }}</RouterLink
       ><button
         class="compare-toggle"
         :class="{ chosen: selected.includes(item.id) }"
