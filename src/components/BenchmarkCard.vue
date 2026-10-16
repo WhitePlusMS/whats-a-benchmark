@@ -25,9 +25,8 @@ const { selected, toggle } = useComparison();
       </div>
     </div>
     <RouterLink :to="`/benchmarks/${item.id}/`" class="card-title"
-      ><h3 translate="no">{{ item.name }}</h3>
-      <Icon name="up" :size="18"
-    /></RouterLink>
+      ><h3 translate="no">{{ item.name }}</h3
+    ></RouterLink>
     <p class="card-tldr">{{ item.subtitle }}</p>
     <p class="card-summary">{{ item.officialDefinition.summary }}</p>
     <div class="tags">

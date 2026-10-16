@@ -139,7 +139,7 @@ function assetCaption(asset: SampleAsset) {
 .media-transcript summary {
   cursor: pointer;
   font-size: 12px;
-  font-weight: 550;
+  font-weight: 600;
 }
 .media-transcript pre {
   margin-top: 10px;

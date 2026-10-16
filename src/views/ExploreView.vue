@@ -3,7 +3,6 @@ import { computed, ref } from "vue";
 import { useHead } from "@unhead/vue";
 import { benchmarks, categories, kindLabels } from "../content/catalog";
 import { sampleAccessLabels } from "../content/labels";
-import { recognizeNames } from "../lib/search";
 import {
   useCatalogQuery,
   type CatalogFilterKey,
@@ -12,8 +11,6 @@ import BenchmarkCard from "../components/BenchmarkCard.vue";
 import Icon from "../components/Icon.vue";
 import { formatCount } from "../lib/displayFormats";
 useHead({ title: "到底测什么？ · what's a benchmark?" });
-const batchOpen = ref(false);
-const batchInput = ref("");
 const showFilters = ref(false);
 const {
   query,
@@ -25,7 +22,6 @@ const {
   reset,
 } = useCatalogQuery();
 const { publishers, localCount, sampleCount, categoryCounts } = stats;
-const batchResults = computed(() => recognizeNames(batchInput.value));
 // 未筛选的默认浏览状态按能力分类分组展示；筛选或列表视图回到平铺结果。
 const groupedResults = computed(() => {
   if (hasFilters.value || query.value.view === "list") return [];
@@ -81,51 +77,6 @@ function setFilter(key: CatalogFilterKey, value: string) {
         >
           <Icon name="close" :size="18" /></button
         ><span v-else class="search-hint">例如 GPQA / 数学 / OpenAI</span>
-      </div>
-      <button
-        class="batch-button"
-        :aria-expanded="batchOpen"
-        @click="batchOpen = !batchOpen"
-      >
-        <Icon name="copy" :size="18" />批量查询评测
-      </button>
-      <div v-if="batchOpen" class="batch-panel">
-        <div class="section-line">
-          <div>
-            <h3>批量查询评测</h3>
-            <p>每行一个，也可以用逗号或分号分隔。最多识别 60 项。</p>
-          </div>
-          <button
-            class="icon-button"
-            aria-label="关闭批量查询"
-            @click="batchOpen = false"
-          >
-            <Icon name="close" />
-          </button>
-        </div>
-        <textarea
-          aria-label="批量评测名称"
-          name="benchmark-names"
-          autocomplete="off"
-          spellcheck="false"
-          v-model="batchInput"
-          rows="3"
-          placeholder="SWE-bench Verified, GPQA Diamond, AIME 2025…"
-        ></textarea>
-        <div class="batch-results" aria-live="polite">
-          <div v-for="row in batchResults" :key="row.input">
-            <strong>{{ row.input }}</strong
-            ><span v-if="!row.matches.length" class="muted">暂未收录</span
-            ><span v-else-if="row.matches.length > 1" class="muted"
-              >请选择具体条目：</span
-            ><RouterLink
-              v-for="match in row.matches"
-              :key="match.id"
-              :to="`/benchmarks/${match.id}/`"
-              >{{ match.name }} <Icon name="up" :size="13"
-            /></RouterLink>
-          </div>
-        </div>
       </div>
     </section>
   </div>
@@ -289,12 +240,6 @@ function setFilter(key: CatalogFilterKey, value: string) {
               }}
             </h3>
             <span>{{ group.items.length }} 个条目</span>
-            <RouterLink
-              class="text-link"
-              :to="{ path: '/', query: { category: group.category.id } }"
-            >
-              只看这一类 <Icon name="arrow" :size="14" />
-            </RouterLink>
           </div>
           <p class="category-group-desc">{{ group.category.description }}</p>
           <div class="cards">

@@ -1,4 +1,5 @@
 import { ViteSSG } from "vite-ssg";
+import "@fontsource-variable/inter";
 import { ref } from "vue";
 import App from "./App.vue";
 import { allBenchmarks } from "./content/catalog";

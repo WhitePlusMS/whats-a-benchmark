@@ -47,27 +47,3 @@ export function searchBenchmarks(query: string): Benchmark[] {
     .sort((a, b) => b.score - a.score)
     .map((result) => result.item);
 }
-
-export function recognizeNames(
-  input: string,
-): { input: string; matches: Benchmark[] }[] {
-  const names = [
-    ...new Set(
-      input
-        .split(/[\n,，;；]+/)
-        .map((name) => name.trim())
-        .filter(Boolean),
-    ),
-  ];
-  return names.slice(0, 60).map((name) => {
-    const normalized = normalizeName(name);
-    if (!normalized) return { input: name, matches: [] };
-    const exact = searchIndex
-      .filter((entry) => entry.names.includes(normalized))
-      .map((entry) => entry.item);
-    return {
-      input: name,
-      matches: exact.length ? exact : searchBenchmarks(name).slice(0, 5),
-    };
-  });
-}

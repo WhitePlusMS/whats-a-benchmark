@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  normalizeName,
-  recognizeNames,
-  searchBenchmarks,
-} from "../src/lib/search";
+import { normalizeName, searchBenchmarks } from "../src/lib/search";
+
+function firstId(query: string) {
+  return searchBenchmarks(query)[0]?.id;
+}
 
 test("指数、AA实施与原版名称各自识别，Terminal-Bench版本不混合", () => {
   const expected = new Map([
@@ -20,11 +20,7 @@ test("指数、AA实施与原版名称各自识别，Terminal-Bench版本不混�
     ["Terminal-Bench 3.0", "terminal-bench-3"],
     ["Terminal-Bench 4.0", "terminal-bench-4"],
   ]);
-  for (const [label, id] of expected)
-    assert.deepEqual(
-      recognizeNames(label)[0]?.matches.map((item) => item.id),
-      [id],
-    );
+  for (const [label, id] of expected) assert.equal(firstId(label), id);
 });
 
 test("发布图中的大小写、空格和连字符差异不影响名称识别", () => {
@@ -32,42 +28,17 @@ test("发布图中的大小写、空格和连字符差异不影响名称识别",
     normalizeName("ＳＷＥ–bench Verified"),
     normalizeName("swe_bench verified"),
   );
-  assert.equal(searchBenchmarks("GPQA Diamond")[0]?.id, "gpqa-diamond");
-  assert.equal(searchBenchmarks("人类最后的考试")[0]?.id, "hle");
+  assert.equal(firstId("GPQA Diamond"), "gpqa-diamond");
+  assert.equal(firstId("人类最后的考试"), "hle");
 });
 test("保留年份和版本差异，不把不同考试混为一谈", () => {
-  assert.equal(recognizeNames("AIME 2024")[0]?.matches[0]?.id, "aime-2024");
-  assert.equal(recognizeNames("AIME 2025")[0]?.matches[0]?.id, "aime-2025");
+  assert.equal(firstId("AIME 2024"), "aime-2024");
+  assert.equal(firstId("AIME 2025"), "aime-2025");
   assert.notEqual(normalizeName("tau-bench"), normalizeName("tau2-bench"));
-  assert.equal(recognizeNames("OpenAI MRCR")[0]?.matches[0]?.id, "mrcr");
-  assert.equal(
-    recognizeNames("DeepMind MRCR v2")[0]?.matches[0]?.id,
-    "mrcr-v2",
-  );
-  assert.deepEqual(
-    recognizeNames("MRCR v2")[0]?.matches.map((item) => item.id),
-    ["mrcr-v2"],
-  );
-});
-test("批量粘贴能处理中文分隔符、重复值和未收录名称", () => {
-  const rows = recognizeNames("HLE，GPQA Diamond;HLE\n未收录的测试 xyz987");
-  assert.equal(rows.length, 3);
-  assert.equal(rows[0]?.matches[0]?.id, "hle");
-  assert.equal(rows[2]?.matches.length, 0);
-  assert.equal(
-    recognizeNames(Array.from({ length: 90 }, (_, i) => String(i)).join("\n"))
-      .length,
-    60,
-  );
-});
-
-test("批量识别忽略标准化后为空的名称，普通空搜索仍返回全部目录", () => {
-  const rows = recognizeNames("-;___");
-  assert.deepEqual(
-    rows.map((row) => row.input),
-    ["-", "___"],
-  );
-  assert.ok(rows.every((row) => row.matches.length === 0));
+  assert.equal(firstId("OpenAI MRCR"), "mrcr");
+  assert.equal(firstId("DeepMind MRCR v2"), "mrcr-v2");
+  assert.equal(firstId("MRCR v2"), "mrcr-v2");
+  // 普通空搜索返回全部目录。
   assert.ok(searchBenchmarks("").length > 0);
 });
 
@@ -95,18 +66,10 @@ test("官方 Opus 5.5 表中九个名称精确识别，旧版不替代新版本"
     "osworld-2",
     "chartography",
   ];
-  assert.deepEqual(
-    recognizeNames(labels.join("\n")).map((row) =>
-      row.matches.map((item) => item.id),
-    ),
-    ids.map((id) => [id]),
-  );
-  assert.equal(
-    recognizeNames("Terminal-Bench 2.0")[0]?.matches[0]?.id,
-    "terminal-bench-2",
-  );
-  assert.equal(recognizeNames("OSWorld")[0]?.matches[0]?.id, "osworld");
-  assert.equal(recognizeNames("GDPval-AA")[0]?.matches[0]?.id, "gdpval-aa");
+  labels.forEach((label, index) => assert.equal(firstId(label), ids[index]));
+  assert.equal(firstId("Terminal-Bench 2.0"), "terminal-bench-2");
+  assert.equal(firstId("OSWorld"), "osworld");
+  assert.equal(firstId("GDPval-AA"), "gdpval-aa");
 });
 
 test("国内模型发布页中的新增名称能唯一识别，版本不会串线", () => {
@@ -122,17 +85,7 @@ test("国内模型发布页中的新增名称能唯一识别，版本不会串�
     ["Terminal-Bench 2.1", "terminal-bench-2-1"],
     ["Vending Bench 2", "vending-bench-2"],
   ]);
-  for (const [label, id] of expected)
-    assert.deepEqual(
-      recognizeNames(label)[0]?.matches.map((item) => item.id),
-      [id],
-    );
-  assert.notEqual(
-    recognizeNames("Terminal-Bench 2.0")[0]?.matches[0]?.id,
-    recognizeNames("Terminal-Bench 2.1")[0]?.matches[0]?.id,
-  );
-  assert.notEqual(
-    recognizeNames("Terminal-Bench 2.1")[0]?.matches[0]?.id,
-    recognizeNames("Terminal-Bench 4.0")[0]?.matches[0]?.id,
-  );
+  for (const [label, id] of expected) assert.equal(firstId(label), id);
+  assert.notEqual(firstId("Terminal-Bench 2.0"), firstId("Terminal-Bench 2.1"));
+  assert.notEqual(firstId("Terminal-Bench 2.1"), firstId("Terminal-Bench 4.0"));
 });
