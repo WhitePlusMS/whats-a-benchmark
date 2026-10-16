@@ -26,6 +26,9 @@ import {
   ExternalLink,
   CircleHelp,
   Compass,
+  Sun,
+  Moon,
+  SunMoon,
 } from "@lucide/vue";
 const props = withDefaults(defineProps<{ name: string; size?: number }>(), {
   size: 20,
@@ -57,6 +60,9 @@ const icons = {
   external: ExternalLink,
   help: CircleHelp,
   compass: Compass,
+  sun: Sun,
+  moon: Moon,
+  sunmoon: SunMoon,
 };
 </script>
 <template>

@@ -23,9 +23,24 @@ export const THEME_PRESETS: ThemePreset[] = [
 ];
 
 const THEME_STORAGE_KEY = "wab-theme";
+const COLOR_MODE_KEY = "wab-color-mode";
 const DEFAULT_ID = THEME_PRESETS[0].id;
 
+export type ColorMode = "system" | "light" | "dark";
+const COLOR_MODE_CYCLE: ColorMode[] = ["system", "light", "dark"];
+export const COLOR_MODE_LABELS: Record<ColorMode, string> = {
+  system: "跟随系统",
+  light: "浅色",
+  dark: "深色",
+};
+const COLOR_MODE_ICONS: Record<ColorMode, string> = {
+  system: "sunmoon",
+  light: "sun",
+  dark: "moon",
+};
+
 const activeId = ref(DEFAULT_ID);
+const colorMode = ref<ColorMode>("system");
 
 function writeThemeVars(preset: ThemePreset) {
   const style = document.documentElement.style;
@@ -46,7 +61,32 @@ function persist(preset: ThemePreset) {
   );
 }
 
-/** Restore the selected id on startup; CSS variables were already applied inline. */
+function systemPrefersDark() {
+  return matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function syncThemeColor() {
+  const dark =
+    colorMode.value === "dark" ||
+    (colorMode.value === "system" && systemPrefersDark());
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", dark ? "#10131a" : "#f7f8fa");
+}
+
+function writeColorMode(mode: ColorMode) {
+  colorMode.value = mode;
+  if (mode === "system") {
+    document.documentElement.removeAttribute("data-color-mode");
+    localStorage.removeItem(COLOR_MODE_KEY);
+  } else {
+    document.documentElement.dataset.colorMode = mode;
+    localStorage.setItem(COLOR_MODE_KEY, mode);
+  }
+  syncThemeColor();
+}
+
+/** Restore state on startup; CSS variables and the mode attribute were applied inline. */
 export function initTheme() {
   // vite-ssg 在 Node 中执行 setup，没有 localStorage；变量由内联脚本兜底。
   if (typeof localStorage === "undefined") return;
@@ -59,16 +99,32 @@ export function initTheme() {
   } catch {
     /* 损坏的存储按默认主题处理 */
   }
+  const savedMode = localStorage.getItem(COLOR_MODE_KEY);
+  if (savedMode === "light" || savedMode === "dark") colorMode.value = savedMode;
+  syncThemeColor();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (colorMode.value === "system") syncThemeColor();
+  });
 }
 
 export function useTheme() {
   return {
     presets: THEME_PRESETS,
     activeId: computed(() => activeId.value),
+    colorMode: computed(() => colorMode.value),
+    colorModeIcon: computed(() => COLOR_MODE_ICONS[colorMode.value]),
+    colorModeLabel: computed(() => COLOR_MODE_LABELS[colorMode.value]),
     applyTheme(preset: ThemePreset) {
       writeThemeVars(preset);
       persist(preset);
       activeId.value = preset.id;
+    },
+    cycleColorMode() {
+      const next =
+        COLOR_MODE_CYCLE[
+          (COLOR_MODE_CYCLE.indexOf(colorMode.value) + 1) % COLOR_MODE_CYCLE.length
+        ];
+      writeColorMode(next);
     },
   };
 }

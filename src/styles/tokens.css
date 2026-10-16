@@ -42,8 +42,9 @@
   --dock-clearance: 170px;
 }
 
+/* 暗色令牌在两处保持一致：系统偏好（未手动选浅色）与手动选深色。 */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-color-mode="light"]) {
     color-scheme: dark;
     /* 暗色下按钮底色压深以保住白字对比度，文字链接直接用亮色变体。 */
     --accent: color-mix(in srgb, var(--theme-dark-brand) 62%, #000);
@@ -77,4 +78,37 @@
     --answer-bg: rgb(110 190 140 / 8%);
     --answer-border: rgb(110 190 140 / 25%);
   }
+}
+:root[data-color-mode="dark"] {
+  color-scheme: dark;
+  --accent: color-mix(in srgb, var(--theme-dark-brand) 62%, #000);
+  --accent-hover: color-mix(in srgb, var(--theme-dark-brand) 50%, #000);
+  --accent-text: var(--theme-dark-brand);
+  --focus-ring: var(--theme-dark-brand);
+  --accent-border-strong: color-mix(
+    in srgb,
+    var(--theme-dark-brand) 65%,
+    var(--surface)
+  );
+  --muted: #9aa1af;
+  --muted-tint: #b0a6c2;
+  --border: #2c313c;
+  --border-strong: #4a5160;
+  --surface: #1a1e26;
+  --surface-subtle: #161a21;
+  --surface-sunken: #12151c;
+  --text-inverse: #fff;
+  --text: #e4e7ee;
+  --text-strong: #eef0f5;
+  --text-secondary: #c3c9d4;
+  --page-background: #10131a;
+  --brand-text: #eceef4;
+  --selection: color-mix(in srgb, var(--theme-dark-brand) 30%, transparent);
+  --notice-bg: color-mix(in srgb, var(--theme-dark-brand) 30%, #221e30);
+  --dock-shadow: rgb(0 0 0 / 55%);
+  --evidence-bg: rgb(216 185 106 / 10%);
+  --evidence-border: rgb(216 185 106 / 32%);
+  --evidence-text: #d8b96a;
+  --answer-bg: rgb(110 190 140 / 8%);
+  --answer-border: rgb(110 190 140 / 25%);
 }

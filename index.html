@@ -4,29 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="#f7f8fa"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#10131a"
-    />
+    <meta name="theme-color" content="#f7f8fa" />
     <meta
       name="description"
       content="到底测什么？：读懂大模型 benchmark 的测试内容、真实样例、评分方法与版本关系。"
     />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <script>
-      // 防换肤闪烁：静态页面在绘制前应用 localStorage 中的主题变量。
+      // 防换肤闪烁：静态页面在绘制前应用 localStorage 中的主题变量与外观模式。
       (function () {
         try {
           var saved = JSON.parse(localStorage.getItem("wab-theme") || "null");
           if (saved)
             for (var key in saved)
               document.documentElement.style.setProperty(key, saved[key]);
+          var mode = localStorage.getItem("wab-color-mode");
+          if (mode === "light" || mode === "dark")
+            document.documentElement.setAttribute("data-color-mode", mode);
+          var dark =
+            mode === "dark" ||
+            (mode !== "light" &&
+              matchMedia("(prefers-color-scheme: dark)").matches);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.content = dark ? "#10131a" : "#f7f8fa";
         } catch (error) {}
       })();
     </script>
