@@ -1,0 +1,186 @@
+{
+  "id": "zerobench-main",
+  "status": "published",
+  "order": 740,
+  "name": "ZeroBench Main",
+  "subtitle": "图像输入的高难度多模态视觉推理主问题集",
+  "category": "multimodal",
+  "tags": ["视觉推理", "图像理解", "多模态", "大语言模型"],
+  "publisher": "Jonathan Roberts 等 ZeroBench 作者团队",
+  "brandIds": ["zerobench"],
+  "year": 2025,
+  "releaseDate": "2025-12-23",
+  "version": "v3",
+  "kind": "subset",
+  "aliases": ["ZeroBench-main", "ZeroBench (main)"],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "ZeroBench Main 以 100 道图文视觉推理题评测多模态模型。",
+    "task": "模型结合问题文本与一张或多张图像，完成视觉信息提取、空间关系、计数、测量或多步推理，并提交最终答案。",
+    "sourceUrls": [
+      "https://zerobench.github.io/",
+      "https://arxiv.org/abs/2502.09696"
+    ]
+  },
+  "taskContract": {
+    "input": "问题文本与一张或多张关联图像；标准答案保留给评分端，不属于模型输入。",
+    "output": "文本答案；官方 prompt 要求将最终答案置于花括号中，解析后与标准答案精确匹配。",
+    "environment": "官方论文描述零样本思维链提示；发布期主问题 pass@1 使用贪心单次采样，后续 pass@5/pass^5 使用五次采样。项目排行榜另行标示工具辅助结果，工具条件需独立记录。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jonathan-roberts1/zerobench/blob/main/README.md",
+      "https://arxiv.org/abs/2502.09696",
+      "https://zerobench.github.io/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "ZeroBench 数据集包含 100 道主问题及 334 道对应推理步骤的子问题；两者是单独 split，子问题不是主问题条数的另一种统计。",
+    "disclosure": "complete",
+    "scale": [
+      "zerobench split：100 道主问题。",
+      "zerobench_subquestions split：334 道主问题推理步骤子题。"
+    ],
+    "splits": [
+      "zerobench：主问题。",
+      "zerobench_subquestions：按主问题组织的较容易子问题。"
+    ],
+    "fields": [
+      "记录字段：question_id、question_text、question_images_decoded、question_answer、question_images、image_attribution。"
+    ],
+    "files": [
+      "Hugging Face 数据集提供两个 split；question_images 指向共享 images 目录中的媒体文件，另提供 images.zip。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jonathan-roberts1/zerobench/blob/main/README.md",
+      "https://huggingface.co/datasets/jonathan-roberts1/zerobench"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": ["访问 Hugging Face 数据集需登录并确认作者的使用提示。"],
+    "url": "https://huggingface.co/datasets/jonathan-roberts1/zerobench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jonathan-roberts1/zerobench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "GitHub 仓库 LICENSE 为 Jonathan Roberts 的 MIT 软件许可；Hugging Face 数据卡没有声明独立数据集许可证。数据卡要求不得公开分享 ZeroBench 答案或将数据用于训练。",
+    "scope": "仅记录官方研究说明及评测元数据；MIT 仓库许可不推定覆盖题面、答案和图像。",
+    "boundaries": [
+      "不得公开张贴、转发、再分发或披露 ZeroBench 答案。",
+      "不得将 ZeroBench 的任何部分用于训练。",
+      "不得依据代码仓库 MIT 许可推定数据题面、答案、图像或图像来源素材可转载。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jonathan-roberts1/zerobench",
+      "https://github.com/jonathan-roberts1/zerobench/blob/main/LICENSE",
+      "https://github.com/jonathan-roberts1/zerobench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "作者明确要求不得公开分享答案，也不得用于训练；本站不转载题面、答案或图像，仅提供官方数据集入口。",
+    "url": "https://huggingface.co/datasets/jonathan-roberts1/zerobench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jonathan-roberts1/zerobench"
+    ]
+  },
+  "metric": {
+    "name": "pass@1、pass@5、pass^5",
+    "description": "主问题以二元正确判定计算准确率。pass@1 表示单次采样正确率；排行榜的具体聚合随评测阶段变化：发布期为贪心单次结果，部分后续结果按五次采样的每题正确比例求均值。pass@5 表示五次采样中至少一次正确的题目比例；pass^5 表示五次采样全部正确的题目比例。排行榜把工具辅助结果单独标记，不能与无工具条件混作同一运行设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2502.09696",
+      "https://zerobench.github.io/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "主问题与子问题是不同评测集合；子问题用于刻画主问题推理步骤，成绩不应直接当作主问题分数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jonathan-roberts1/zerobench/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "官方说明题目经过社区 red teaming 及后续评测协议复核，但仍承认可能有题目或答案错误；v3 仅修改题文以减少歧义并澄清输出格式。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2502.09696",
+        "https://huggingface.co/datasets/jonathan-roberts1/zerobench/blob/main/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "数据卡将 v3 更新日期列为 2025-12-23；此处记录该版本日期，区别于论文首次公开日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jonathan-roberts1/zerobench/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "DeepSeek 2026-10-17 报告列出 ZeroBench-main（w/tools），官方更新日志注明 Pass@5；未披露具体数据修订、工具种类或采样参数，不能据此确认报告使用 v3。",
+      "sourceUrls": ["https://api-docs.deepseek.com/updates/#date-2026-10-17"]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "官方论文说明通常自动解析花括号中的最终答案并与标准答案精确匹配；少数不稳定遵循格式的模型改由语言模型解析最终答案。",
+      "sourceUrls": ["https://arxiv.org/abs/2502.09696"]
+    },
+    "comparison": {
+      "text": "主问题成绩需同时记录采样数、解码设置及工具条件；排行榜区分官方运行、外部报告和工具辅助结果。",
+      "sourceUrls": ["https://zerobench.github.io/"]
+    },
+    "disclosure": {
+      "text": "主问题与子问题的字段、split 和数量在数据卡公开；数据卡不声明独立数据许可，并明确禁止公开分享答案。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jonathan-roberts1/zerobench"
+      ]
+    },
+    "versionChanges": {
+      "text": "v3 于 2025-12-23 更新，修改两道主问题及三道子问题的措辞以减少歧义、明确答案格式；作者称对已报告分数影响极小或没有影响。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jonathan-roberts1/zerobench/blob/main/README.md"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "ZeroBench 官方项目页与排行榜",
+      "url": "https://zerobench.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "ZeroBench Hugging Face 数据卡",
+      "url": "https://huggingface.co/datasets/jonathan-roberts1/zerobench",
+      "role": "data"
+    },
+    {
+      "label": "ZeroBench 数据卡 README 与 v3 更新记录",
+      "url": "https://huggingface.co/datasets/jonathan-roberts1/zerobench/blob/main/README.md",
+      "role": "data"
+    },
+    {
+      "label": "ZeroBench 官方论文",
+      "url": "https://arxiv.org/abs/2502.09696",
+      "role": "paper"
+    },
+    {
+      "label": "ZeroBench 官方 GitHub 仓库",
+      "url": "https://github.com/jonathan-roberts1/zerobench",
+      "role": "code"
+    },
+    {
+      "label": "ZeroBench GitHub LICENSE",
+      "url": "https://github.com/jonathan-roberts1/zerobench/blob/main/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "DeepSeek 2026-10-17 官方更新日志与计分脚注",
+      "url": "https://api-docs.deepseek.com/updates/#date-2026-10-17",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-17",
+  "updatedAt": "2026-10-17"
+}

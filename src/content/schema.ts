@@ -293,6 +293,8 @@ export const entrySchema = z
     publisher: text,
     brandIds: ids,
     year: z.number().int().min(1900).max(2200).nullable(),
+    // 已核实的当前版本发布日期；未精确到日时不填写，也不使用核验日期补齐。
+    releaseDate: date.optional(),
     version: text,
     kind: z.enum(["original", "subset", "derivative", "suite", "internal"]),
     aliases: strings,

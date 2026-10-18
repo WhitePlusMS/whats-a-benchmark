@@ -35,6 +35,13 @@
   align-items: center;
   gap: 18px;
 }
+/* 标识保留实际宽度，标题在剩余空间换行，避免横向 Logo 与文字重叠。 */
+.detail-title-line > .publisher-marks {
+  flex-shrink: 0;
+}
+.detail-title-line > div {
+  min-width: 0;
+}
 .detail-heading h1 {
   font-size: 32px;
   letter-spacing: -0.8px;

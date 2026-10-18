@@ -49,6 +49,7 @@ npm run build
 - 情绪理解和多轮交流按任务目标归入 `alignment`，不因输出是文字就归为写作。长篇故事生成用 `writing`，长文检索和跨文档推理用 `context`；PDF 文件格式本身不能决定其是否属于多模态。中文、自然语言翻译和编程语言分别写明确标签，避免含糊的“多语言”。
 - `publisher`、`brandIds`：完整发布方文字和标识 ID 数组，联合发布可引用多个 Logo；没有核实 Logo 时用空数组。
 - `year`、`version`、`kind`：首次年份（未知填 `null`）、具体版本、独立/子集/衍生/体系/内部类型。
+- `releaseDate`：可选，已核实的当前版本发布日期，格式为 `YYYY-MM-DD`，目录卡片和详情按年月日展示；只有年份证据时不填写，不推定月日。厂商内部评测采用报告披露日期时，在版本与核验记录中说明，它不代表评测首次启用日期，也不能用 `verifiedAt` 替代。
 - `researchStatus`：本轮证据核验结论，取 `pass`、`pass-with-limitations`、`partial` 或 `blocked`；不能用文案完整度冒充资料完整度。
 - `officialDefinition`：摘要用一句任务加一项关键区别，目标不超过 80 个字符；版本历史、规模差异和核验过程归对应详情字段。官方任务定义及 `sourceUrls` 保留完整依据。
 - `taskContract`：模型收到的输入、应提交的输出、运行环境与官方依据，三项不能互相复制。

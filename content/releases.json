@@ -1,5 +1,42 @@
 [
   {
+    "id": "deepseek-v41-flash-1017",
+    "title": "DeepSeek-V4.1-Flash-1017",
+    "publisher": "DeepSeek / 深度求索",
+    "date": "2026-10-17",
+    "url": "https://api-docs.deepseek.com/updates/#date-2026-10-17",
+    "description": "官方发布表包含 11 项评测；本站关联其中已确认的 10 项，覆盖知识、代码、自动化与视觉推理。",
+    "benchmarkIds": [
+      "hle",
+      "terminal-bench-4",
+      "deep-swe-v1-1",
+      "programbench",
+      "nl2repo-bench",
+      "automationbench",
+      "agents-last-exam",
+      "chartography",
+      "babyvision",
+      "zerobench-main"
+    ],
+    "note": "HLE 不使用工具，星号值仅为纯文本子集；Terminal-Bench 4.0 使用 Claude Code，DeepSWE v1.1 使用 Mini-SWE-V2。Chartography、BabyVision、ZeroBench-main 均标注 w/tools，ZeroBench-main 使用 Pass@5，具体数据修订与工具配置未披露。Automation-Bench v1.0.6 按 Zapier 上游版本关联，不等同于 AutomationBench-AA 私有集。原表另一行 Apex Bench v1.1 尚无官方来源能确认对应 Mercor APEX-Agents 1.1，暂未建立关联。",
+    "chartUrl": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017/blob/1bae0e1088993b9b82de08f59de5be5a34e42170/README.md"
+  },
+  {
+    "id": "mai-base-2",
+    "title": "MAI-Base-2 预训练报告",
+    "publisher": "Microsoft AI / 微软",
+    "date": "2026-10-15",
+    "url": "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+    "description": "微软报告 MAI-Base-2 在内部留出 Code、QA、STEM、Math 四组文本上的预训练评测，指标为 BPB，越低越好。",
+    "benchmarkIds": [
+      "mai-held-out-code",
+      "mai-held-out-qa",
+      "mai-held-out-stem",
+      "mai-held-out-math"
+    ],
+    "note": "日期为官方报告披露日期，不代表内部评测首次启用时间。代码来自 MAI 自有代码库，其余三组由供应商制作；题集、样题和评估脚本未公开。部分比较对象只有后训练检查点，不能把图中 BPB 解释为解题正确率或独立复测结果。"
+  },
+  {
     "id": "glm53-flash",
     "title": "GLM-5.3-Flash",
     "publisher": "Z.ai / 智谱 AI",

@@ -298,9 +298,14 @@ test("更新只改变指定条目的日期与内容，样例不进入目录模�
     },
   });
   entry.verifiedAt = "2026-09-23";
+  entry.releaseDate = "2026-09-22";
   entry.officialDefinition.summary = "已更新的说明";
   await writeJson(path, entry);
   const projection = publicProjection(await generateContent(root));
+  assert.equal(
+    projection.catalog.find((item) => item.id === "mmlu-pro")?.releaseDate,
+    "2026-09-22",
+  );
   assert.equal(
     projection.catalog.find((item) => item.id === "mmlu-pro")?.verifiedAt,
     "2026-09-23",
@@ -430,6 +435,8 @@ test("严格校验未知字段、真实日期、重复品牌、资源缺失和�
   const { root, entry, path } = await fixture(t);
   await writeJson(path, { ...entry, verifiedAt: "2026-02-30" });
   await assert.rejects(loadContent(root), /verifiedAt/);
+  await writeJson(path, { ...entry, releaseDate: "2026-02-30" });
+  await assert.rejects(loadContent(root), /releaseDate/);
   await writeJson(path, { ...entry, summray: "拼写错误" });
   await assert.rejects(loadContent(root), /summray/);
   await writeJson(path, { ...entry, id: "other" });

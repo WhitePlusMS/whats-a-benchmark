@@ -189,8 +189,13 @@ useHead(() => ({
         ><strong translate="no">{{ item.publisher }}</strong>
       </div>
       <div>
-        <small>首次发布年份</small
-        ><strong class="num">{{ item.year || "尚未核实" }}</strong>
+        <small>{{ item.releaseDate ? "版本发布日期" : "首次发布年份" }}</small
+        ><strong class="num"
+          ><time v-if="item.releaseDate" :datetime="item.releaseDate">{{
+            formatDate(item.releaseDate)
+          }}</time
+          ><template v-else>{{ item.year || "尚未核实" }}</template></strong
+        >
       </div>
       <div>
         <small>评测版本</small
@@ -418,9 +423,11 @@ useHead(() => ({
         v-if="missingProfileLabels.length && !item.composition"
         class="profile-missing"
       >
-        本站尚未整理：{{
-          missingProfileLabels.join("、")
-        }}。可通过下方官方资料核对。
+        {{
+          item.dataProfile.disclosure === "not-public"
+            ? "官方未公开"
+            : "本站尚未整理"
+        }}：{{ missingProfileLabels.join("、") }}。可通过下方官方资料核对。
       </p>
       <div v-if="item.interpretation?.disclosure" class="data-disclosure">
         <h3>公开核验范围</h3>

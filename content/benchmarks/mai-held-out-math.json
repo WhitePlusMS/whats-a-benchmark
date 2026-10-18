@@ -1,0 +1,153 @@
+{
+  "id": "mai-held-out-math",
+  "status": "published",
+  "order": 1320,
+  "name": "Microsoft MAI Held-Out Math",
+  "subtitle": "微软内部评测 · 数学预训练留出文本 · 数据未公开",
+  "category": "reasoning",
+  "tags": ["数学", "预训练", "内部评测"],
+  "publisher": "Microsoft AI / 微软",
+  "brandIds": ["microsoft-ai"],
+  "year": 2026,
+  "releaseDate": "2026-10-15",
+  "version": "MAI-Base-2 报告（2026-10-15，题集版本未披露）",
+  "kind": "internal",
+  "aliases": ["Held-Out Math", "MAI Held-Out Math", "微软内部数学评测"],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在供应商制作的留出数学文本上衡量预测损失，属于微软内部预训练评测。",
+    "task": "微软在 受微软委托的供应商制作的数学数据上进行留出文本评估，以 BPB 比较预训练模型的预测表现。数学分支、难度分层和题目内容未披露。",
+    "sourceUrls": [
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+    ]
+  },
+  "taskContract": {
+    "input": "来自受微软委托的供应商制作的数学数据的留出文本。数学分支、难度分层和题目内容未披露。",
+    "output": "对留出文本计算 BPB（每字节比特数），数值越低越好；具体计分文本和目标范围未披露。",
+    "environment": "微软内部预训练评估流程。报告称已与训练数据去污染；上下文长度、文本处理配置及可复现评估脚本未披露。",
+    "sourceUrls": [
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "数据来自受微软委托的供应商制作的数学数据；官方报告公开了来源概述和汇总结果，未公开题集与结构。数学分支、难度分层和题目内容未披露。",
+    "disclosure": "not-public",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "截至 2026-10-16 核查，官方资料未提供该内部题集的下载地址或申请访问流程。"
+    ],
+    "sourceUrls": [
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到该评测数据或评估代码的公开许可。",
+    "scope": "本条整理官方公开的方法概述与来源；底层评测数据的复用授权未披露。",
+    "boundaries": [
+      "文章或论文公开不等于内部题集已开放复用。",
+      "本条不转载题目、代码片段或参考答案，也不提供自行编造的样例。"
+    ],
+    "sourceUrls": [
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "private",
+    "reason": "截至 2026-10-16，未在官方资料中找到可确认属于本评测的具体题目或真实样例，本站不提供样例。",
+    "sourceUrls": [
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+    ]
+  },
+  "metric": {
+    "name": "BPB（bits per byte）",
+    "description": "按字节衡量留出文本的预测损失，越低越好。微软用它跨 tokenizer 比较模型；它不是解题正确率或代码通过率。具体计算配置和汇总实现未披露。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "题量、语种、数据划分、记录字段、题目和评估脚本未公开，无法据公开资料完整复现。",
+      "sourceUrls": [
+        "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+        "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+      ]
+    },
+    {
+      "text": "结果由微软自行披露；比较中的 Kimi K3、Qwen3.8、MiMo 仅有后训练检查点，报告提醒后训练可能影响评测。",
+      "sourceUrls": [
+        "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "前代报告表 3 将 Math 数据类型举例为进阶数学题目的完整解答；本次未确认沿用同一数据版本或难度分布。",
+      "sourceUrls": [
+        "https://microsoft.ai/pdf/mai-thinking-1.pdf",
+        "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "微软运行内部文本预测评估并报告 BPB；未提供外部独立复测材料。",
+      "sourceUrls": [
+        "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+        "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+      ]
+    },
+    "disclosure": {
+      "text": "仅来源概述、指标及汇总成绩可公开核对；规模、划分、字段和文件未公开，不以训练语料总量替代评测题量。",
+      "sourceUrls": [
+        "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+        "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2"
+      ]
+    },
+    "versionChanges": {
+      "text": "版本发布日期 2026-10-15 取本次官方报告日期，不代表内部评测首次启用时间。前代报告也出现同名评测，但官方未确认本次与前代使用完全相同的题集版本。",
+      "sourceUrls": [
+        "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+        "https://microsoft.ai/pdf/mai-thinking-1.pdf"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "Microsoft AI 官方评测说明（2026-10-15）",
+      "url": "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "role": "definition"
+    },
+    {
+      "label": "MAI-Base-2 预训练报告：图 1 与评测方法",
+      "url": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+      "role": "paper"
+    },
+    {
+      "label": "前代 MAI-Thinking-1 技术报告（仅作背景，版本未确认）",
+      "url": "https://microsoft.ai/pdf/mai-thinking-1.pdf",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-16",
+  "updatedAt": "2026-10-16"
+}

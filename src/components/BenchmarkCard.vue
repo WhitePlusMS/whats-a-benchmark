@@ -3,6 +3,7 @@ import type { Benchmark } from "../types/benchmark";
 import { kindLabels } from "../content/catalog";
 import { researchStatusLabels } from "../content/labels";
 import { useComparison } from "../composables/compare";
+import { formatDate } from "../lib/displayFormats";
 import Icon from "./Icon.vue";
 import PublisherMarks from "./PublisherMarks.vue";
 defineProps<{ item: Benchmark }>();
@@ -35,7 +36,12 @@ const { selected, toggle } = useComparison();
     </div>
     <div class="card-meta">
       <span :title="item.publisher" translate="no">{{ item.publisher }}</span
-      ><span>{{ item.year || "年份待考" }}</span>
+      ><time
+        v-if="item.releaseDate"
+        :datetime="item.releaseDate"
+        title="版本发布日期"
+        >{{ formatDate(item.releaseDate) }}</time
+      ><span v-else>{{ item.year || "年份待考" }}</span>
     </div>
     <div class="card-actions">
       <RouterLink :to="`/benchmarks/${item.id}/#samples`"
