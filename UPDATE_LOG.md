@@ -1,5 +1,88 @@
 # 更新说明
 
+## 2026-10-18 — 授权提交并发布评测更新（发布前检查）
+
+- 原因与原则：用户明确授权将本次更新提交推送至 GitHub、等待自动部署并检查线上显示。遵循最简范围、保留既有历史与明确区分本机构建/实际上线的原则，不使用网页端 GPT。
+- 提交范围：四个 `content/benchmarks/mai-held-out-*.json`、`zerobench-main.json`、`automationbench.json`，共享 `content/brands.json` 与 `content/releases.json`，`content/assets/logos/microsoft-ai.svg` 与 `zerobench.png`，`src/content/schema.ts`、`src/components/BenchmarkCard.vue`、`src/views/DetailView.vue`、`src/styles/detail.css`、`tests/content.test.ts`、`docs/CONTENT_MAINTENANCE.md` 和 2026-10-16/17 两份研究记录，共 18 个内容/实现/研究文件；更新日志独立提交。保留 README、推广素材、技能目录及相关文件的未提交改动。
+- 分支与历史：目标为 `origin/main`（`https://github.com/WhitePlusMS/whats-a-benchmark.git`）。fetch 后本地领先 6、落后 0；e89dba6、1f3e823、6f8fe19、e456421、1433605、d0bdf75 为既有本地界面/主题/图标/字体/搜索提交，正常推送会包含这些祖先提交，不改写、不强推。
+- 验证：内容校验通过 156 项评测、149 条样例与 19 份发布资料；45 项测试全部通过。以 `BASE_PATH=/whats-a-benchmark/` 和真实站点地址执行严格 TypeScript 与完整生产构建，通过 161 个静态页面及 GitHub Pages 404 检查；保留既有 Vite 大包提示。Luna 只读盘点文件与证据，主任务复核范围；无新增依赖、工作流变更或开发服务。
+- 暂存检查：清理 DeepSeek 研究记录日期行的 Markdown 行尾空格，正文不变；对包括新增文件的暂存差异重新检查空白。
+- 发布步骤：先提交已核实的评测/显示更新及本日志，再正常推送 main；以该提交 SHA 对照 GitHub Actions 的 build/deploy 结果，成功后实际检查公开站点。此段只记录发布前结果，部署与线上显示结果待完成后补记。
+
+## 2026-10-18 — 核查 GitHub 推送与 Pages 部署状态
+
+- 原因与原则：用户要求确认新增评测是否已推送并自动部署。本轮只读核对本地 Git、远端分支、GitHub Actions 与线上地址，仅补记本日志，不执行提交、推送或部署。
+- 本地状态：`main` 的 HEAD 为 `d0bdf75fe9077e0c77c5e43e00c2a6b5cc68d8b6`；ZeroBench、微软四项内部评测、Logo、发布资料及相关页面改动仍有未提交文件。远端 `main` 为 `23074223169cd21e26b63b4ef695fc022007050d`，不能将本地构建通过视为已上线。
+- GitHub 证据：最新 main 工作流为 [run 37898607735](https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/37898607735)，对应远端上述提交。build 与 deploy 均成功，deploy 完成于北京时间 2026-10-09 15:22:46。现有 `.github/workflows/pages.yml` 配置为推送 main 后测试、构建并部署 Pages；本次新增内容尚未触发该流程。
+- 线上核验：远端 `content/benchmarks/zerobench-main.json`、Pages 的 `/benchmarks/zerobench-main/` 和 `/benchmarks/mai-held-out-code/` 均返回 HTTP 404，确认本批新增条目尚未上线。公开 REST 请求遇到限流后，使用现有 GitHub 连接只读取得工作流和任务结果。
+- 范围与影响：本轮仅更新本日志，无应用代码、评测内容或工作流改动；未启动服务，未重复运行编译或业务测试，保留所有既有工作区修改。
+
+## 2026-10-17 — 核查 DeepSeek 1017 评测并补录 ZeroBench Main
+
+- 原因与原则：用户要求确认并补齐截图中的评测。先按官方模型卡逐行对照，再核查评测发布者资料；沿用 JSON、共享品牌与发布索引，不凭近名合并、不编造样例，不调用网页端 GPT。
+- `content/benchmarks/zerobench-main.json`：新增 100 道主问题 split 的条目，与 334 道子问题区分；版本为数据卡 v3，版本日期 2025-12-23，核验日期 2026-10-17。记录图文输入、答案判定、pass@1/pass@5/pass^5 区别、受控访问与答案披露/训练限制，不包含 sampleSet 或题库附件。DeepSeek 只披露 main、w/tools、Pass@5，所用具体数据修订保持未知。
+- `content/assets/logos/zerobench.png`、`content/brands.json`：采用 ZeroBench 官方网页实际引用的 favicon/社交分享图，登记单一共享品牌和来源 URL，保留原始 PNG；图像未单独声明许可，不扩展为题库授权。
+- `content/benchmarks/automationbench.json`：将通用 1.0 说明更新为已核实的 1.0.6，版本日期 2026-07-31，增加截图名称别名、固定提交 CHANGELOG 与方法差异证据。保留现有真实 simple 样例；不修改 AutomationBench-AA 私有实施条目或把 DeepSeek 分数记为 AA 成绩。
+- `content/releases.json`：新增 DeepSeek-V4.1-Flash-1017（2026-10-17），链接 10 项已确认评测，保留 HLE 无工具/纯文本子集、TB4 Claude Code、DeepSWE Mini-SWE-V2、三项视觉评测 w/tools、ZeroBench Pass@5。Apex Bench v1.1 未确认对应 Mercor，发布卡如实注明未关联。
+- `docs/research/2026-10-17-deepseek-flash-1017-coverage.md` 与 `artifacts/candidates/2026-10-17-zerobench/`：保存 11 行原表、固定修订、版本及运行条件、候选来源与证据缺口；未将基础版技术报告当作 1017 版全部配置。
+- 影响：仅补充内容、品牌素材、研究记录与日志；不修改应用代码、依赖或部署配置，保留已有工作区改动。验证结果：严格 TypeScript、内容校验、全部 45 项测试和生产构建通过；156 项评测、149 条样例、19 份发布资料，构建核验 161 个静态页面及 GitHub Pages 404。保留既有 Vite 大包提示。
+- 专项核对：ZeroBench 的别名唯一命中，AutomationBench 与 AA 分开，Apex Bench v1.1 不误命中 Mercor；新条目无 sampleSet 或生成样例 JSON，发布 Logo 与候选及源文件字节一致。除 AutomationBench 外，原有 154 项评测源文件哈希不变；既有 README/推广封面不变。
+- 实际页面：临时生产预览 4181 检查 ZeroBench 1280px 桌面及 390px 手机详情、手机明暗外观、目录别名搜索、发布资料卡及 AutomationBench 日期/版本。Logo 加载、日期与 10 项关联正常，无整页横向溢出；手机标题与 Logo 间距 15px，控制台无警告或错误。恢复外观和视口、关闭检查标签并终止本轮临时预览；未启动开发服务、未提交推送或部署。
+
+## 2026-10-16 — 为微软四项内部评测补充官网共享 MAI 标识
+
+- 原因与原则：用户要求依据微软文章网页补齐 Logo，四项共用一个并检查显示。遵循最简、复用共享品牌和真实素材原则，增加官网标识及引用，并修复实际检查发现的详情标题布局问题；不更改评测内容、日期或样例。
+- `content/assets/logos/microsoft-ai.svg`：从用户指定官方文章页眉的 `Home MAI link` 内联 SVG 提取横向 MAI 字标，保留原始 viewBox（56×26）和全部三个 path。原标识通过 currentColor 继承颜色；为独立图片补充官网实际计算颜色 `#5d524b`，不重绘、不替换轮廓。官网页眉实际底色为 `#fef9ed`。
+- `content/brands.json`：登记唯一 `microsoft-ai` 共享品牌，使用 `wide: true` 和已核实的官网承载底色。`sourceUrl` 与 `assetUrl` 均指向原文，因为素材是页面内联 SVG，没有独立图片下载 URL；对应位置与取色依据在本日志记录。
+- `content/benchmarks/mai-held-out-code.json`、`mai-held-out-qa.json`、`mai-held-out-stem.json`、`mai-held-out-math.json`：仅将 `brandIds` 从空数组改为 `["microsoft-ai"]`。现有 PublisherMarks 组件、生成与静态资源校验流程负责目录和详情显示，不新增重复映射或单项专用样式。
+- `src/styles/detail.css`：390px 手机实际检查发现横向标识的外层可收缩、内层固定 84px，导致 Logo 越过容器与标题重叠。仅为详情标题行的标识设 `flex-shrink: 0`，为标题文字容器设 `min-width: 0`，让文字在剩余空间换行；复用所有品牌的公共详情布局，不改 Logo 组件及各项独立样式。
+- 验证结果：严格 TypeScript 与生产构建通过，继续生成 155 项评测并核验 160 个静态页面和 GitHub Pages 404。四项除 brandIds 外的全部解析字段 SHA-256 与本轮开始时一致；源素材、生成目录和 dist 中的 SVG SHA-256 均为 `3BB3A55071C74762ABB073A55DA2867FB8E7A00DC41D7B0B5F8F36031D543F98`。JSON 格式、引用与差异空白检查通过；CSS 只增加必要布局约束，不对旧样式全文重排。
+- 实际页面：复用已有 4173 本机预览服务，检查桌面与 390px 手机的卡片、列表、详情和浅/深色外观；四项图片均加载成功且指向同一路径，使用 contain 保持比例。修复后四项手机详情的标识与标题间距均为 13px，桌面为 18px，无重叠或横向溢出；CMMLU、GPQA Diamond 两个已有详情也通过手机布局回查，浏览器无警告或错误。临时视口与外观选择恢复后关闭检查标签。
+- 范围与收尾：仅增加共享素材/品牌、四项引用和上述详情公共布局修正；本轮未新增或运行重复的业务测试，验证覆盖编译、构建、资产一致性及实际浏览器显示。未调用网页端 GPT、提交推送或部署，未启动前后端开发服务，保留已有工作区修改。
+
+## 2026-10-16 — 收录微软四项内部预训练评测并显示版本发布日期
+
+- 原因与原则：用户授权收录 Held-Out Code、QA、STEM、Math，要求如实标明微软内部评测、未公开内容、不编造样例，并将发布日期精确到年月日。沿用单条 JSON 内容源、共享 schema 和现有页面，遵循最简、严格类型和有据表述原则。
+- `content/benchmarks/mai-held-out-code.json`、`mai-held-out-qa.json`、`mai-held-out-stem.json`、`mai-held-out-math.json`：新增四个 published / internal 条目，分别归入编程、知识、数理分类；发布方均为 Microsoft AI / 微软，指标为 BPB（越低越好）。数据访问和样例状态均为 private，结构为 not-public，题量、划分、字段和文件列表留空，复用许可记录为 unknown；不添加 `sampleSet`、样题、附件、虚构访问入口或模型分数。
+- 四项版本均限定为 MAI-Base-2 报告，`releaseDate` 为官方报告的 2026-10-15，`verifiedAt` / `updatedAt` 为实际核验编辑日 2026-10-16。版本说明明确报告日期不等于内部评测首次启用日期，前代同名评测的数据版本对应关系未确认；前代 YOLO / 题目解答类型仅放在核验背景，未冒充本次题集规范。复用现有发布方文字显示，未添加未经核验的 Logo。
+- `content/releases.json`：新增 MAI-Base-2 预训练报告资料，记录精确日期并关联上述四项，注明数据来源、后训练检查点比较及未公开边界。
+- `src/content/schema.ts`：新增可选 `releaseDate`，复用真实 ISO 日期校验；其语义为当前版本发布日期，只有年份证据的其他条目不补造月日。`src/components/BenchmarkCard.vue`、`src/views/DetailView.vue`：有日期时复用 `formatDate` 显示年月日和语义化 time，详情标签为“版本发布日期”；其他条目继续显示已有年份。对 not-public 数据画像的缺失栏目显示“官方未公开”，避免误写成本站尚未整理。
+- `docs/CONTENT_MAINTENANCE.md`：补充版本发布日期的填写、证据和展示规则。`tests/content.test.ts`：扩充原有更新投影与严格日期测试，检查精确日期在生成目录中保留，并拒绝 2026-02-30 等不存在的日期。
+- 验证结果：内容生成与完整 `npm run typecheck` 通过，公开条目为 155 项；全部 45 项测试通过；生产构建通过并核验 160 个静态页面及 GitHub Pages 404。首次检查出现的 V8 Zone 内存错误在单独编译与后续完整检查中均未复现；未修改运行时或系统配置。Vite 仍提示现有主包超过 500 kB，未扩大为本轮优化任务。
+- 专项核对：四项源文件均没有 `sampleSet`，生成目录均为 `sampleCount: 0` 且无对应样例 JSON；结构数组保持空值、许可 unknown、访问 private；原有 17 份发布资料的解析内容逐条未变，新增报告后为 18 份。只保留相关代码与文档的必要差异，撤销了格式化工具对旧内容的无关重排。
+- 实际页面：复用已在运行的本机 4173 预览服务检查生产构建；搜索 Microsoft MAI 恰有四项，卡片、四项详情与关联报告均显示 2026年10月15日。四个详情均显示题目未公开与官方未公开的结构栏目，桌面无横向溢出，当前应用页面无新增浏览器错误或警告；未进行手机专项或线上部署验收。
+- 范围与收尾：保留本轮之前的 README、推广素材等工作区修改；不调用网页端 GPT，不提交、推送或部署，不启动前后端开发服务。
+
+## 2026-10-16 — 微软 MAI 内部留出评测公开资料核查
+
+- 原因与原则：用户要求寻找 Frontier Pre-training at Microsoft AI 文章中四组 benchmark 的详细内容。遵循最简与可验证来源原则，区分新报告明确披露、前代报告补充和未公开信息；不据相似名称或二手报道推定题集身份。
+- `docs/research/2026-10-16-microsoft-mai-held-out-evaluations.md`：新增第一方来源研究记录，覆盖 Held-Out Code、QA、STEM、Math 的数据来源、BPB/NLL 评分、前代技术报告中的内容类型，以及题量、样例、许可、评估脚本和下载入口的检索边界；附官方链接、报告节号及页码。明确前代说明不能证明本次使用完全相同的数据版本，YOLO 指 MAI 自研训练框架。
+- 影响：仅新增研究记录并更新本日志，不新增正式评测条目或样例，不改应用代码、生成目录、依赖或部署配置；保留工作区已有修改。未找到公开入口表示本轮检索结果，不作为永久未公开的断言。
+- 核验：对照微软原文、13 页 PDF 与前代 MAI-Thinking-1 技术报告；检索对应评测名及微软官方 GitHub / Hugging Face 数据集入口。研究报告经 Prettier 整理并通过格式检查，日志差异空白检查通过。仅文档变更，未运行编译、业务测试或生产构建；未启动服务、调用网页端 GPT、提交或推送。
+
+## 2026-10-14 — oil-cover Agent 自主模式三画幅推广封面
+
+- 原因与原则：用户明确要求 oil-cover Agent 自主模式、复用现有素材、最小改动且不夸大功能。只新增推广图片和配套生成记录，保留已有 README、SVG、应用代码、内容与工作区修改。
+- 素材与表达：使用现有 `artifacts/screenshots/2026-10-09-readme-home.jpg`，以真实 HumanEval / SWE-bench Verified 任务卡片说明用途；项目原始书本标识从 `public/favicon.svg` 转成参考 PNG。主标题“到底测什么？”，副标题“任务 · 样例 · 评分”，不加入实测、跑分、排名或覆盖承诺；未启用创作者头像。
+- `artifacts/screenshots/2026-10-09-readme-home.oil-cover/`：新增分析、封面方案、三份完整提示词和 Logo 参考图；生图前先保存 sidecar，按 3:4、4:3、16:9 分别调用内置 imagegen，不使用外部服务 Key、不修改用户默认配置或全局技能文件。
+- 最终图片：在同一截图目录新增 `2026-10-09-readme-home_3x4.png`（1086×1448，1,773,631 字节）、`2026-10-09-readme-home_4x3.png`（1448×1086，1,699,730 字节）、`2026-10-09-readme-home_16x9.png`（1672×941，1,596,162 字节）；前两版比例精确，宽横版为内置工具的整数像素近似 16:9，原样交付，不本地裁切。
+- 生成记录：工作目录保留三张无人物底图和 `generation-record.json`，记录工具实际返回的保存路径提示、尺寸、来源、提示词哈希和逐图检查；`cover_plan.md` 列出最终图片、实际比例和使用范围。HumanEval 卡片保留截图内的发布方标识，不作为外层联合品牌；项目书本 Logo 由模型重绘，非像素级复制。
+- 检查结果：三张最终 PNG 完整解码，复制后的文件与原始工具输出/底图 SHA-256 一致。逐图查看确认主标题可读、任务名称和介绍对应现有截图、无人物、虚构成绩或功能夸大；两版 README、SVG、营销上下文和推广文稿哈希均未变化。严格 TypeScript、sidecar 文档/JSON 格式与 Git 差异空白检查通过，三张最终图、底图和提示词均存在。
+- 影响与边界：只新增推广封面及 sidecar，并更新本日志；生成图是推广重构图，不作为网站原始截图或模型实测证据。不使用本地贴字、贴 Logo、拼图、裁切或视觉修补；本轮不启动服务、不调用网页端 GPT、不提交、推送或外发。
+
+## 2026-10-14 — 项目定位、推广文稿与双语 README / SVG 封面完善
+
+- 原因与原则：用户要求使用 product-marketing 梳理定位、目标读者和核心卖点，再结合 oil-tone 优化推广文稿与 README/SVG。遵循最简、真实功能与文案一致、双语同步原则；必要的大量源码搜索与完整阅读由 GPT-6 LUNA 执行，仅收集描述，主代理复核最终表述。
+- `.agents/product-marketing.md`：新增 v1 营销上下文，记录中文 AI 评测资料库定位、主次目标读者、任务/评分条件/官方来源三个价值主题、使用场景、边界与证据。受众、痛点与传播目标明确标为工作假设；没有虚构客户、访谈、收入、口碑或增长数据。
+- `docs/PROMOTION.md`：项目没有现成独立推广稿，新增通用介绍与短版文稿。以阅读模型报告为场景，使用 HumanEval 说明实际功能，保留网站和仓库入口；按 oil-tone 避免夸大能力、虚构开发经历或贬低第三方产品。
+- `README.md`、`README_ZH.md`：同步增加目标读者和真实例子，按任务/评分条件/关系与来源组织价值说明，保留网站入口、真实首页截图、搜索与对比分享、来源及反馈。明确中文界面、按条目提供的样例、不执行评测和不生成统一模型排行榜，不加入开发命令或内部审计细节。
+- `assets/readme/hero.svg`：改为 1200×580 的静态资料页构图，复用书本轮廓和鸢尾紫，用 HumanEval/0 的输入、阈值、预期结果及 pass@k 表现阅读内容；包含 title/desc 与分组注释。两版 README 直接展示 SVG，使本轮文案与封面一致；既有 GIF 与动画规范作为历史素材保留，本轮未制作新动画。
+- 事实核对：当前作者源与生成目录一致，共 151 项已发布评测、10 类能力、149 条站内样例记录分布于 138 个条目、17 组发布资料；公开文稿不以易过期的数量为卖点。修改前严格 TypeScript 通过，公开页面可访问并显示同样的目录数量。
+- `docs/reviews/2026-10-14-marketing-readme-review.md`：保存定位与功能证据、数量口径、素材/链接验证、实际浏览器检查及交付边界；新增独立 HTML 预览与 PNG 仅保存在本轮 Codex 可视化目录，不进入应用或部署。
+- 验证结果：修改后严格 TypeScript、四份成稿 Markdown 格式、两版 README 与推广稿的 oil-tone、README 素材审计和 Git 差异空白检查通过。每版各 3 个本地引用存在，5 个外部地址 GET 均为 200；SVG XML、可访问名称、静态资源检查及 900/360 px 渲染通过。
+- 实际浏览器：中英文×桌面/手机×明暗共 8 组均为单 H1、图片加载成功、无横向溢出或意外 Markdown 标记；推广稿手机深色预览正常；控制台无警告/错误。正文完整提供封面例题细节，手机图片无需承担唯一说明。审核记录保留外部框/实际文档宽度，未将预览说成线上发布验收。
+- 环境收尾：临时服务已终止，端口 7350 无监听；浏览器检查标签已关闭、临时视口已恢复。未启动前后端开发服务、未调用网页端 GPT；本轮未重新执行完整业务测试或生产构建。范围仅为文案与视觉素材，未提交、推送或外发。
+
 ## 2026-10-09 — 授权提交与推送 README 更新
 
 - 原因与原则：用户明确要求“推送吧，到 git”；将已确认的中英文 README、真实截图、GIF Hero 及审核记录作为同一项文档更新提交，遵循最简、保留既有历史和明确授权原则。
