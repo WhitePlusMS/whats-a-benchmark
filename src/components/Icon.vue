@@ -26,6 +26,9 @@ import {
   Sun,
   Moon,
   SunMoon,
+  ZoomIn,
+  ZoomOut,
+  Maximize,
 } from "@lucide/vue";
 const props = withDefaults(defineProps<{ name: string; size?: number }>(), {
   size: 20,
@@ -56,6 +59,9 @@ const icons = {
   sun: Sun,
   moon: Moon,
   sunmoon: SunMoon,
+  zoomin: ZoomIn,
+  zoomout: ZoomOut,
+  fit: Maximize,
 };
 // 未注册的图标名立刻暴露，不再静默渲染成问号圈。
 const resolved = computed(() => {

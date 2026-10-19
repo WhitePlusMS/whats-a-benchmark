@@ -27,8 +27,8 @@ const { selected, toggle } = useComparison();
       </div>
     </div>
     <RouterLink :to="`/benchmarks/${item.id}/`" class="card-title"
-      ><h3 translate="no">{{ item.name }}</h3
-    ></RouterLink>
+      ><h3 translate="no">{{ item.name }}</h3></RouterLink
+    >
     <p class="card-tldr">{{ item.subtitle }}</p>
     <p class="card-summary">{{ item.officialDefinition.summary }}</p>
     <div class="tags">
@@ -44,14 +44,24 @@ const { selected, toggle } = useComparison();
       ><span v-else>{{ item.year || "年份待考" }}</span>
     </div>
     <div class="card-actions">
-      <RouterLink :to="`/benchmarks/${item.id}/#samples`"
-        >{{
+      <RouterLink
+        :to="`/benchmarks/${item.id}/#samples`"
+        :class="{ 'is-local': item.sampleAccess.status === 'local' }"
+        ><Icon
+          :name="item.sampleAccess.status === 'local' ? 'book' : 'up'"
+          :size="14"
+        />
+        {{
           item.composition
             ? "查看组成样例"
             : item.sampleAccess.status === "local"
-              ? "查看真实题目"
-              : "查看样例获取方式"
-        }}</RouterLink
+              ? "查看真实案例"
+              : "查看获取方式"
+        }}<span
+          v-if="!item.composition && item.sampleAccess.status === 'local'"
+          class="sample-link-count"
+          >{{ item.sampleCount }}</span
+        ></RouterLink
       ><button
         class="compare-toggle"
         :class="{ chosen: selected.includes(item.id) }"

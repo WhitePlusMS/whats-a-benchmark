@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-10-20 — 紧凑目录正式采用与浮现动效保留
+
+- 原因与授权：用户确认上一轮交互预览，授权应用正式页面、检查后提交推送GitHub并等待自动部署，再核验线上和手机；补充要求保留原版浮现小动画。
+- 界面范围：将候选13个文件应用到正式src，涵盖ExploreView、CatalogFilters、UiDialog、BenchmarkCard、SampleMedia、SampleImageDialog、SampleViewer、Icon以及base/catalog/benchmark-card/sample-viewer/layout五份样式；复用同一URL筛选、原生dialog、现有案例加载与Lucide图标，不改原始题目/媒体或引入依赖。
+- 动效原则：保留标题/搜索区和卡片淡入浮现，缩短位移和时长、限制卡片错开等待；保持原有减少动态效果规则，不屏蔽操作。具体检查和发布结果完成后补充。
+- 提交边界：main关联origin=https://github.com/WhitePlusMS/whats-a-benchmark.git；已有README、推广、品牌与5项资料条目等本地改动独立保留，只暂存本次UI与对应说明。artifacts/candidates/2026-10-20-compact-ui-release保存基线、计划和验证证据。
+- 发布前检查：正式源码类型与格式通过；准确暂存文件树46项测试、SSG构建和220个静态页/404核验通过。1280/768/844横屏/390/320实际CSS视口无整页横向溢出；组合筛选、条件移除、手机面板/Tab/Esc、9张原图150%滚动、精确位置恢复、换题重置与原始数据逐字一致均通过，页面控制台无警告/错误。浮现280ms、卡片200ms且错开最多120ms，减少动态效果实查关闭。
+
 ## 2026-10-19 — 原有评测多案例补核提交与上线验收
 
 - 授权与原因：用户明确要求提交推送GitHub，等待自动部署后检查线上案例、图片和音频。沿用main推送触发Pages流程，不改变部署配置。

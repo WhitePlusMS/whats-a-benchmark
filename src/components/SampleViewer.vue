@@ -97,26 +97,42 @@ onMounted(() => {
           :aria-pressed="mode === 'raw'"
           @click="setMode('raw')"
         >
-          原始数据<span
-            v-if="current.excerpt"
-            class="mode-note"
-            >节选</span
-          >
+          原始数据<span v-if="current.excerpt" class="mode-note">节选</span>
         </button>
       </div>
-      <select
-        :value="index"
-        @change="
-          selectSample(Number(($event.target as HTMLSelectElement).value))
-        "
-        aria-label="选择样例"
-        name="sample"
-        autocomplete="off"
-      >
-        <option v-for="(task, i) in data?.samples" :key="task.id" :value="i">
-          {{ i + 1 }}. {{ task.title }}
-        </option>
-      </select>
+      <div class="sample-picker">
+        <button
+          class="sample-step"
+          aria-label="上一个案例"
+          title="上一个案例"
+          :disabled="index === 0"
+          @click="selectSample(index - 1)"
+        >
+          <Icon name="back" :size="17" />
+        </button>
+        <select
+          :value="index"
+          @change="
+            selectSample(Number(($event.target as HTMLSelectElement).value))
+          "
+          aria-label="选择样例"
+          name="sample"
+          autocomplete="off"
+        >
+          <option v-for="(task, i) in data?.samples" :key="task.id" :value="i">
+            {{ i + 1 }}. {{ task.title }}
+          </option>
+        </select>
+        <button
+          class="sample-step sample-next"
+          aria-label="下一个案例"
+          title="下一个案例"
+          :disabled="index >= (data?.samples.length || 0) - 1"
+          @click="selectSample(index + 1)"
+        >
+          <Icon name="back" :size="17" />
+        </button>
+      </div>
     </div>
     <div class="sample-body">
       <div class="sample-question">
@@ -126,7 +142,9 @@ onMounted(() => {
           ><span class="small-badge">{{
             current.promptOrigin === "editorial"
               ? "官方公开案例 · 本站解读"
-              : current.excerpt ? "原始记录节选" : "公开样例"
+              : current.excerpt
+                ? "原始记录节选"
+                : "公开样例"
           }}</span>
         </div>
         <h3 translate="no">{{ current.title }}</h3>
@@ -135,7 +153,9 @@ onMounted(() => {
             {{
               current.promptOrigin === "editorial"
                 ? "具体任务 · 本站根据官方案例整理"
-                : current.gridTask ? "操作说明 · 本站整理" : "原题内容"
+                : current.gridTask
+                  ? "操作说明 · 本站整理"
+                  : "原题内容"
             }}
           </p>
           <pre
@@ -201,8 +221,8 @@ onMounted(() => {
               current.promptOrigin === "editorial"
                 ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
                 : current.excerpt
-                ? "本页节选不含参考答案，完整任务见原始来源。"
-                : "此公开记录未附参考答案，完成标准见评分方法。"
+                  ? "本页节选不含参考答案，完整任务见原始来源。"
+                  : "此公开记录未附参考答案，完成标准见评分方法。"
             }}
           </p></template
         >
@@ -240,7 +260,13 @@ onMounted(() => {
         <details :key="current.id" class="sample-provenance">
           <summary>记录与许可</summary>
           <dl>
-            <dt>{{ current.promptOrigin === "editorial" ? "本页案例编号" : "记录编号" }}</dt>
+            <dt>
+              {{
+                current.promptOrigin === "editorial"
+                  ? "本页案例编号"
+                  : "记录编号"
+              }}
+            </dt>
             <dd translate="no">{{ current.id }}</dd>
             <dt>数据划分</dt>
             <dd>{{ current.split }}</dd>
@@ -250,8 +276,8 @@ onMounted(() => {
                 current.promptOrigin === "editorial"
                   ? "任务说明由本站整理，原始数据保留来源格式及内容，删节范围另行说明"
                   : current.excerpt
-                  ? "节选，完整内容见来源"
-                  : "保留原题语言，中文解读由本站整理"
+                    ? "节选，完整内容见来源"
+                    : "保留原题语言，中文解读由本站整理"
               }}
             </dd>
             <dt>出处与许可</dt>
