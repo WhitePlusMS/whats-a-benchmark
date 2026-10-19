@@ -1,5 +1,164 @@
 # 更新说明
 
+## 2026-10-19 — 原有评测多案例补核提交与上线验收
+
+- 授权与原因：用户明确要求提交推送GitHub，等待自动部署后检查线上案例、图片和音频。沿用main推送触发Pages流程，不改变部署配置。
+- 提交范围：第一组为原156项评测数据、11个真实媒体/代码附件、32份许可、移除最多6例限制的schema、三份必要回归测试及多案例维护说明，共204个文件；第二组为156项核验报告、三份来源/撤回归档与UPDATE_LOG，共5个文件。README、推广素材和技能配置等既有本地修改按哈希保护。
+- 发布门槛：本地215项、573条展示记录、19份发布资料；严格类型、46项测试、生产构建及156项桌面/手机检查已通过。本轮再核对实际远端、提交清单和内容校验，仅在对应SHA的build/deploy成功并实查线上内容后记录上线成功。
+- 原文字节例外：暂存空白检查只提示`content/assets/licenses/longform-writing-license-notice.txt`末尾保留的原空行；与本轮已核对许可文件SHA-256一致，未裁剪原文。将该文件明确登记后，其余203个首组文件的暂存空白检查通过；没有跳过Git hook。
+
+
+## 2026-10-19 — 原有156项评测的公开数据与多案例补核
+
+- 原因与授权：用户要求把之前收录的评测全部重新核实，补充遗漏的官方公开数据或具体案例，保留真实原始记录并配简短解析；同一评测可以展示多条案例。本轮以原有156项为范围，不把站内没有记录、测试夹具为空或未发现下载按钮当成官方无数据的证据。
+- 原则与过程：复用现有`sampleSet.samples`和展示组件，按不同任务/子集选择真实代表记录，不以任意“一条”限制收录；保存官方原响应、ID/config/split、修订/响应哈希、许可和归属。GPT-6 LUNA负责描述第一方资料与候选数据，主任务核对后采用；明确内部、受控和未取得的具体原因，不编造样例、答案或虚假来源字段。
+- 本地跟踪：`artifacts/candidates/2026-10-19-legacy-sample-audit/PLAN.md`记录任务及检查进度，并保存本轮范围、原始内容和哈希基线；正式逐项核验报告为docs/research/2026-10-19-legacy-benchmark-sample-audit.md。保留README、推广素材和技能配置等既有改动，不调用网页端GPT，不启动前后端开发服务。
+- 多案例规则：`docs/LOCAL_SAMPLE_IMPORT.md`移除“只提取一条”的旧说明，改为按题型、子任务或输入格式收录多条真实代表记录并逐条解析；`src/content/schema.ts`移除每项最多6条的固定上限，保留最少一条、严格字段和ID去重。现有加载器和选择器均遍历完整样例数组，无需新增组件或分页。
+- 交互回归：`tests/sample-viewer.test.ts`增加9条合成记录的发布结构/加载/切到第9条的行为检查，验证前题答案展开状态会重置、原始记录和值保留，同时空数组和重复ID仍被拒绝；这些夹具不作为站点官方案例发布。
+- 首批边界修正：`content/benchmarks/mai-held-out-{code,math,qa,stem}.json`、`gpqa.json`、`gpqa-diamond.json`、`cursorbench-4.json`、`code-migration.json`、`mystery-game-puzzles.json`、`openai-internal-coding.json`和`taptap-maker.json`更新2026-10-19实际核查范围与来源；MAI训练诊断图不当作留出案例、CursorBench-3任务不冒充4.0、OpenAI精选能力演示不冒充成对偏好评测。TapTap沿真实公开脚本读取11个版本JSON，确认它们提供成绩而非题面；GPQA依据明确在线披露请求，不以canary或禁止训练概括访问限制。原发布日期、题集身份及样例数量未改。
+- 当前检查：移除样例数量上限后严格TypeScript与4项样例查看器测试通过；上述11项具体说明更新后再次严格TypeScript通过。后续真实记录补充及最终全量验收继续执行。
+- 首批真实多案例：`aa-lcr.json`新增4条（论文术语、季度利润、公开咨询和行业报告），`aa-briefcase.json`新增3项不同产物任务，`prbench.json`、`prbench-finance.json`、`prbench-legal.json`各新增4条，`human-eval.json`与`mbpp.json`各新增4条，共新增27条（196→223）。实际原始字段/文本独立对照本轮下载响应，去重保留旧ID；PRBench旧首轮题干补全同一官方记录原文，MBPP旧2条数据许可改为CC BY 4.0，不再误用代码Apache许可。逐条解析、缺少长输入或多轮上下文的边界、Lite非计分场景分别说明；本批严格TypeScript通过，完整证据与采用清单保存在本轮候选目录。
+- 第二批真实记录：为C-Eval、CMMLU、MMLU、MMLU-Pro、MMMLU、SimpleQA、SimpleQA Verified、AA-Omniscience、MathArena三项、CritPt、SciCode、BFCL、MCP-Atlas、CharXiv及AA Multilingual Index共17项新增67条，累计新增94条（全站290条）；每项实际增量与ID见`adoption-manifest.json`。MMLU-Pro现10条并覆盖八个新增领域；MathArena Lean含sorry的声明仅作为原始证明目标，不显示成完整参考证明；CritPt只收公开题面/模板/定位字段，不发布答案或测试秘密。保留MMLU-Pro源cot中的单位/寄存器笔误并在中文解析说明，未修改作者原值。
+- 原始结构修正：MMMLU首条恢复CSV空表头字段名和字符串行号；CharXiv同题合并到旧ID并补真实短答案与图表定位信息，不复制原论文图表。选择题展示直接复用raw内原选项，避免额外拼字母导致重复编号。第二批校验发现BFCL候选多出不支持的`promptOrigin: source`，立即移除多余标记，按既有schema以缺省表示原文，不扩大数据模型。
+- 第三批与配套输入：BenchCAD按4个不同零件完整保留48个真实QA及原code_path，补4份逐字节一致的CadQuery代码文本和MIT原文（`.txt`只供查看，未执行）；两条旧单QA投影合并回完整父记录。IFEval新增4种不同约束组合；OSWorld、τ-bench、τ²-bench各新增2条作者任务配置或源代码任务；τ²旧指令恢复完整字符串，SciCode旧Ewald恢复父记录/sub_steps原始层级。本批新增12条（累计106条，全站302条），编译通过。所选作者配置的仓库许可与第三方页面/媒体分别说明，不将仓库许可外推到外部资源。
+- 明确披露边界：HealthBench三项重新核对发布页脚注或Professional论文§8，Video-MME重新核对README已展示示例及其转载需批准条款；不以“不转载”误称“官方无公开案例”。ZeroBench Main纠正禁公开答案/禁训练被扩大为全面禁题干的问题，仅新增作者论文§3.2实际15词题文短引，不含图像、答案或受控数据行；标明非完整样例，不接受gated条款。新增该短引后全站303条；这五项与本批数据完成后均再次严格TypeScript通过。
+
+### 第四批：公开任务正文及旧记录结构修正
+
+- 修改 `automationbench`：4 条新增，恢复旧案例及新增案例的完整 Python 字面量记录（200 个定义仅做 AST 静态读取，不导入、不执行），保留 prompt/info.initial_state/info.assertions 层级。明确 simple 不计分，3021 的日期要求不等于其 assertion 验证了日期。
+- 修改 `terminal-bench-2`：DNA Assembly 旧拼接节选更换为完整 instruction.md，另增 WAL 恢复、Cython 兼容、压缩器 3 条完整指令，明确输入文件未随案例镜像。
+- 修改 `longbench-v2`：新增金融、政府多文档、小说检索 3 条，保留题目/选项/答案原值，不复制长 context；四条不能作为完整独立输入重跑。
+- 修改 `finbenchmark`：新增 CAPM、EBITDA、营运资本、CAGR 4 条完整任务目录块，纠正将根 MIT 自动排除作者文档的旧说法，第三方 IFRS 正文仍不复制。
+- 修改 `aider-polyglot`：补 4 个不同语言任务的完整官方指令，保留 Exercism 归属与各 track MIT 文件；不镜像外链图片。修改 `simplebench`：恢复旧 prompt 全文、6 条新增记录完整保留六选项与答案，并纠正旧解析把两个说谎者当不同类型的问题。
+- 修改 `facts-parametric`：3 条新增、旧记录改为连续原始论文表行，避免把编辑添加的字段标签冒充源格式。修改 `alignbench`：6 条真实短问题及原分类，仅必要短引，不复制参考作答和外部证据。
+- 修改 `rapidata-svg`：新增5条不同提示及原始模型名/加权事实值，署名 Yupp AI；旧 horse prompt 从固定历史 Parquet 仅用88,021字节 Range读取验证，源链接改为固定文件。保留大于1的原数值，不私自归一化；不镜像 SVG/PNG 或详细人口统计。
+- 新增许可文件 `automationbench-mit.txt`、`finbenchmark-mit.txt`、`simplebench-mit.txt`、`aider-exercism-{cpp,go,javascript,rust,python}-mit.txt`，随案例保留原版权及许可文本。该批净增38条案例，来源与结构逐一匹配后才写入；内容校验结果继续在本轮末记录。
+
+### 第五批：算术、网格、客服构建与评分函数
+
+- 修改 `gsm8k`：核对既有3条完整raw，新增官方test索引3/7/10/18四题（跑步、重启重下、下载量、鸡蛋换算），每条题目与完整解题answer保持源值。
+- 修改 `arc-agi-2`：新增3个公开training任务的完整train/test矩阵，原整数颜色值、示范对和测试对均保留，未编造规则或私有题。
+- 修改 `hyper-tau-bench`：新增航空、零售、电信、银行4条任务；旧task_description恢复全文，所选字段保留真实层级和环境参数，未镜像外部证据包、模型定价与完整测试场景。附Sierra Research原MIT许可。
+- 修改 `programbench`：新增3个实际测试函数片段；逐条说明命令、断言及检查范围，特别指出隐藏文件测试没有断言stdout触发次数，避免将注释当成已验证行为。4函数均未执行。
+- 该批净增14条案例；逐条匹配本轮官方文件后采用。
+- 编译校验发现 ProgramBench 新记录将可选 licensePath 写成null，已立即改为同一原始许可文件路径；不放宽schema。
+
+### 第六批：固定版本终端任务和可验证约束
+
+- 修改 `terminal-bench-2-1`、`terminal-bench-4`：各新增3项不同任务的完整官方instruction.md，并把原先的DNA/布局配置拼接片段更换为对应固定版本单文件全文；各条保留真实输入路径、交付格式、限制和缺附件边界。2.1新增Cython/棋局/财务文档，4新增CAD/Coq/跨文件匿名化。2.1与4的固定根Apache-2.0许可已保存。
+- 修改 `ifbench`：原key=5核验一致，新增1/17/19/22/42五条完整prompt及原kwargs、instruction_id_list；展示关键词频次、数字数量、多个约束及词数范围，未编参考回答，数据许可ODC-BY-1.0与代码Apache分开。
+- Git只读ls-remote核实Terminal v3.0.0→2b0442c、v4.0.0→452bf30；v3当时根目录未包含LICENSE，未把v4许可文件写成v3原有文件，该边界继续单独核查。
+- 该批净增11条案例，类型检查随批执行。
+- 校验发现新增许可文件名带点号不符合项目既有路径规范，已改为 apache-2-0.txt 并同步案例引用；不修改或放宽路径规则。
+
+### 第七批：完整长上下文、真实图表及版本边界
+
+- 修改 `mrcr`、`mrcr-v2`：分别新增2/3条完整原记录，旧prompt/queries/answer恢复官方全文，移除混入raw的中文省略说明。前者为本轮HF响应快照，后者固定GCS generation；源消息JSON字符串、原字段类型与标注答案均不改写。园艺例实际是第二篇故事，已修正初步解析中的“第一篇”。
+- 修改 `mmmu`：修复旧options漏美元金额前缀，新增2条完整会计任务字段和真实image_1图。新增 `content/assets/images/mmmu-dev-accounting-2.png`（58357字节）、`mmmu-dev-accounting-3.png`（54776字节），哈希逐字节匹配，不重画；题面与表格公司名不一致也如实说明。
+- 修改 `livebench`：补Zebra和空间推理2条完整公开Parquet记录，官方ground_truth保留；旧Web of Lies的2025-04-02移除日期明确为历史成员。
+- 修改 `terminal-bench-3`：旧复合片段更换为v3固定指令，补3项原指令。SATB是音乐转谱而非语音转文字，解析已纠正；当前v4 Apache-2.0与v3当时无根LICENSE分开说明，不伪造历史许可。
+- 该批净增12条案例。导入辅助在正式写入前用项目完整entrySchema校验内存对象；保留schema严格要求，不为候选错误放宽规则。
+
+- 修改 tests/content.test.ts：夹具从真实MMLU-Pro读取样例，旧断言写死2条与多案例收录冲突；改为核对原entry的实际样例数，继续保留第二条目为0及目录无sampleSet/raw的断言。变更只修正测试假设，不更改生成逻辑。
+
+### 第八批：代码任务、论文rubric与公开职业任务
+
+- 修改 `deep-swe-v1-1`：新增ABS模块加载、Bandit污点检查、FastAPI弃用头3份完整指令；旧ts-pattern固定commit实际重新取回且逐字匹配。依据PROVENANCE中明确的DataCurve原作者任务规格Apache-2.0范围，保留原文，不执行其中建分支/提交命令。FastAPI解析描述该题规定行为，不把题内RFC写法改称通用规范。
+- 修改 `paperbench`：补三篇论文完整所选rubric子树，保留公式、权重、null类别与嵌套；旧APT叶子只检查RoBERTa载入，纠正旧解析引用错误ID和扩大含义。附作者MIT许可，论文/实验附件不复制。
+- 修改 `mind2web`：增补官网查收据、往返航班、信息检索3条demo，明示无数据行/split，不转发README限制的解压文件或浏览器轨迹。
+- 修改 `gdpval`：完整220行实际读取核验后，选3个真实职业任务ID展示必要连续段落（租赁指南、分拣流程图、品牌收集表），不将180字符中断字段冒充完整prompt，不推定缺失的数据许可；旧网页电缆案例与HF行未强行映射。
+- 修改 `officeqa-pro`：新增论文UID0005的真实连续短语，保留PDF抽取换行，去掉编辑添加的Question/引号标签；不导出gated CSV或补答案。
+- 新增 `paperbench-mit.txt`、`deep-swe-original-apache-2-0.txt` 原许可文本。该批净增13条原始任务、评分配置或公开例题片段。
+- 预导入完整schema校验拦下OfficeQA候选的未知type和recordSha256字段，已改为既有record类型并将哈希保留在证据文件；校验通过后才写入该批案例。
+
+### 第九批：情绪对话、写作要求、表格任务与识别虚构前提
+
+- 修改 `eq-bench-4`、`creative-writing-v3`、`longform-writing`、`spreadsheetbench-v2`、`bullshitbench-v2`、`skillsbench`，分别新增4/4/4/2/3/3条，净增20条（全站411条）。恢复旧开场、提示、任务正文与源换行，不把编辑说明混入raw。
+- Creative Writing保留基础<SEED>而不伪造展开值；续写例仅引实际写作指令，未转载前置故事。Longform README明确MIT，Creative/EQ的所选数据许可未确认；分别按实际来源标注。
+- BullshitBench保留完整问题和官方nonsensical_element，SkillsBench保留原任务正文和格式示例并说明其不是实测答案，未执行其中命令。SpreadsheetBench补官网完整Instruction原句，工作簿未复制。
+- 新增 `longform-writing-license-notice.txt`、`bullshitbench-v2-mit.txt`、`skillsbench-v1-1-apache-2-0.txt` 原许可/声明；检索SHA仅存档在证据，不混入严格展示schema。
+
+### 第十批：恢复旧题原文、原始图像与更多任务类型
+
+- 修改MathVista、OmniDocBench、SVGBench、Short-Story、Agents’ Last Exam、AA-AnalystAgent、MMMU-Pro和Arena Vision八项，净增33条（全站444条）。每条raw独立对照本轮原始响应；旧MathVista恢复完整问题，ALE恢复被改写summary与taskPrompt，AA补回题干末尾的舍入要求。
+- 新增MathVista的CLEVR-Math原场景图和MMMU-Pro三幅原图，实际查看后逐字节保留；MMMU-Pro水库图最后表头670与题干700的差异如实说明。原图不重画，图中拼写/值不擅改。MathVista其余上游媒体未镜像，不以少数图像的许可外推全部题库。
+- OmniDocBench只取四条短标题的真实布局标注，不复制第三方整页；原page_no=1644与文件名后缀46分别保留。Short-Story新四例恢复各自完整十项叙事元素，纠正初步候选把Timeframe写成Setting、混入另一题场景的解析。
+- SVGBench采用8个不同主体的真实API提示；Arena Vision补8个公开分类提示并说明缺少配图。ALE三项新业务任务保留完整taskPrompt及CC BY 4.0数据声明；新增许可证文件agents-last-exam-data-cc-by-4-0.txt。AA两公开参考值不冒充整套私有答案。
+
+### 第十一批：真实数学题、棋局与完整软件问题
+
+- AIME 2024/2025、MATH-500分别新增3/2/2道不同题；重复的首题合并到原ID，旧题被截断的条件与官方短答案原值恢复，未复制解答。AIME2025九人冰淇淋题按三种口味人数严格递减的实际条件解析，不沿用初步错标题。
+- Chess Puzzles新增3个完整FEN与官方target；从48,757,423字节的公开.eval压缩包只解析任务字段，不复制模型输出/推理。按FEN修正g7/g8为黑车，黑王在e8，不采用初步候选的错误棋子解释。
+- FrontierSWE V2新增3项真实任务首段；SWE-bench/Verified/Pro/Multilingual/Rebench各新增3条，恢复旧完整problem_statement并保留Pro要求/interface与Rebench原meta/license_name。对应base_commit的Astropy、Druid、NodeBB、Spectree、Sepal UI原许可分别保存；评测器许可、数据卡和上游issue权利不混为一个结论。
+- 该批净增28条（全站472条）。原始诊断中的示例代码是题目输入，未执行；没有将修复补丁或评分当成原题。
+
+### 第十二批：公开专业预览与真实工具/游戏任务
+
+- BioMysteryBench新增preview v11全部5条原始任务行，保留官方rubric、allowed_domains和human_solvable原值；v11替换题目边界明确，发布文章原例单列。新增其CC BY 4.0原许可，不复制生物数据附件或受控90题集。
+- Finance Agent v2补6种public.csv问题，Arena Creative Writing补4种官方短提示；原字段与题目完整保留，均不编造答案或映射私有计分行。
+- Toolathlon补2份实际任务并恢复旧Alita完整正文；LHTB补2048/对弈2任务并恢复旧LangChain全文，新增Apache原许可。所有任务只作为数据读取，没有执行命令、玩游戏或安装依赖。
+- Excel-EMB完整核对scratch/template指令后仅补同题变体说明和固定入口，保持1条案例，不将初始化模式重复计题。
+- 本批净增19条（全站491条）。
+
+### 第十三批：法律、税务公开题与作者任务配置
+
+- Harvey LAB补CIM买方分析与诉讼特权审查2项，旧并购题补回完整red-flag-tracker交付要求；固定v1.0原task配置和MIT许可保存，事项附件与评分材料未镜像。
+- Tax Agent Bench、Vals Legal Research各新增4条并补全旧P-001。采用实际父级dataset/suite版本及tests嵌套结构，原问题完整保留，未把新建wrapper当源字段，也不把旧首题算成新增。两组public sample均明确不计分。
+- 逐题中文解析核对实际人物、时间和交易事实：法律P-001妻子是美国公民，P-005为融资租赁；税务P-002是2023收购在2025触发earn-out。仅解释题目任务，不编造法规答案。
+- 本批净增10条（全站501条），新增Harvey v1.0 MIT原许可文本。
+
+### 第十四批：数学公开面板、代码输入与来源通道补证
+
+- FrontierMath三项合计补5个页面案例位置，保留共享样题页实际Problem HTML和数学条件，恢复旧例原文；不编造固定v2行号，不把母项/版本的相同题计为不同题库。
+- CyberBench补OpenSC公开摘要；LiveCodeBench补3条完整实际question_content（含官方输入输出示例），纠正“恰好加一次”被写成“最多一次”；LiveCodeBench Pro补2个论文示例，采用HTMLParser按精确SVG元素边界保存每题源码，排除后续其他题和模型分析。
+- HLE补主页Classics转写例（原图未镜像）；MirrorCode补3个原命令，并纠正-j为年内日序号而不是儒略历。MysteryMechanism补2个冻结公开例，原始HTML替代自造JSON字段，旧官方公开示意公式来源逐项核对保留。NL2Repo补3类start.md真实请求。
+- FrontierCode只恢复同一公开任务原面板，不将指南或运行标题当新题。RWS旧句经独立web工具在官方2026-08-24新闻全文核实，curl空响应不再被误判为原文不存在；修正为语法判断任务，并补论文明确非live探针。
+- 本批净增21条（全站522条），新增MirrorCode MIT原许可；每个新增/更正raw均能在原始响应、解码字段或精确源元素中定位。
+
+### 第十五批：纠正同名混用、完整研究指令与第三段真实音频
+
+- NC Bench撤回误置的IBM Natural Conversation basic-0，明确它不是Novelcrafter写作评测；完整原样例另存docs/research/evidence/2026-10-19-withdrawn-nc-bench-example.json。替换为Novelcrafter三个官方run的真实输入片段，源HTML实体/换行保留，不复制模型作品；清除错误IBM许可/入口，目录身份保持不变。
+- GeneBench-Pro补4种公开包问题并保留实际任务全文、模板与元数据；synthetic-data声明与题面real experiment措辞并列说明，不伪装真实临床数据。
+- WANDR补2份不同研究任务并恢复旧完整instruction；采用Apache作者正文，结果、外部网页和测试未复制。
+- Small Overlapping Speech补clip_002真实音频与完整ground_truth。旧clip_000/001的audio_file是原生字段，已经与固定官方100行JSONL逐对象核对相等；不能因HF Rows解码列叫audio就错误删除它。
+- 本批新增10条、撤回1条错误关联，净增9条（全站531条）。
+
+### 第十六批：真实偏好任务、动态题面与写作输入
+
+- Arena新增3条真实投票任务，保留prompt原JSON字符串类型，说明winner表示该次偏好而不是题目正确性，未复制两模型回复。Arena-Hard V2补4条原问题，修正初步取行错位带来的其他题解析。
+- OpenVibeEval通过官方详情页Prompt Text标签读取并存档2条完整任务输入；静态HTML不含动态面板，不能因下载页面未见题面就认为官方未公开。仪表盘题没有单HTML约束，游戏题才有。
+- ToneBench恢复同一旧Script 9原文，并补2个不同输入；TubeLab恢复PFOA原卡片HTML，补JFK卡片，作者页面本身的截断不续写。新增共12条（全站543条），两条旧例纠正。
+- clip_002媒体来源改为固定版本原MP3；本地352557字节与官方响应SHA-256一致，未转码。旧两段音频的本轮检查范围单独说明。
+
+### 第十七至二十批：原案例逐项纠正与交互/专业案例补充
+
+- 恢复OpenVibeEval原Digital Garden完整题面；BrowseComp-ZH按实际渲染论文Figure 1逐字核对两条中文题目和公布答案，新增影视题，旧艺术题纠正错字；视觉转录证据与机器文本响应匹配分开记录。
+- Terminal-Bench-Science三条完整Hub instruction按实际响应保存，新增2条并替换旧概述；注明各Hub修订/version与固定0.1.0归档不同。Arena-Hard旧例只保留真实连续提示前缀，剔除截断字符串冒充完整字段的问题，不镜像嵌入的第三方AoC整题。
+- BabyVision补6种公开视觉题；RULER补4种作者表格示意；ScreenSpot-Pro补2条native标注，旧Blur Dissolve修正为源ui_type=text，bbox不改。GAIA恢复真实A4.T1表片段；EBR、OSWorld2、ARC3、Vending、MLCR逐项去除自建标签/跨块拼贴，恢复能在源响应定位的连续原文。原图、完整环境、回放帧或病历未附时逐题明确。
+- Roboflow通过官方页面逐个展开5个控件，实读题目及标准值，新增4条并补全旧图纸题；静态HTML未含动态控件不能作为未公开的判断。答案分别保留1、1/2、2.742、left、10，未猜测缺图条件或图纸单位。
+- LongBench补QASPER/2WikiMQA/TREC-E三条，保留原input/answers/元数据并注明未复制context；旧Multi-News的input实为空，改用真实context连续25词短引，保留原换行，不能把上下文句子改名为input。
+- τ³-Banking补2种用户情境并替换旧期望动作片段，完整保留作者id/user_scenario/user_tools/required_documents原值和层级；按根MIT保留Sierra归属及原许可，第三方知识正文未复制。MedScribe纠正为先出现的Doctor首轮，未编患者对话或SOAP答案。
+- LifeSciBench恢复旧空间转录组题实际连续片段，补官方AAV9网页演示；不采用只有五词通用开头的弱候选。AA AutomationBench补2种公开工作流并把旧Finance例改回真实请求，657私有题未公开，Zapier许可不外推至AA网页。
+- 本段净增27条（543→570），每条新增/纠正均以正式采用前的源匹配或单独视觉证据核查；各批严格TypeScript检查通过。
+
+### 最终来源复核与归档
+
+- 新增完整156项逐项报告及526条当前原评测展示记录的来源/原值SHA-256证据；全站573条，新增380个展示位置、撤回3条，净增377。共享版本/成员、论文示意和未配齐输入明确说明，不算作独立新题库。
+- 剩余旧例逐条补核：AA-Briefcase旧全文、AA-Multilingual固定Parquet17字段、MathArena额外offset响应、Rapidata历史Parquet prompt列、τ-bench AST和Short-Story元数据分别核对；两版Apex只有历史verifier线索，当前响应未重核，显著标注。
+- GDP.pdf撤下无法确认的旧炸锅例，改为CC BY 4.0论文Table5三条真实task sketch；Design Arena旧tournament归档并改为unverified入口，不断言其虚构。FinBenchmark旧题恢复全部四选项，GDPval/OfficeQA/SpreadsheetBench/BrowseComp去除标签拼贴，MLCR另补两段实际公开问题。
+- 所有原156项补充具体取样结论、公开/私有/访问/版本边界和2026-10-19核验日期；原发布日期、身份、版本、品牌不改，复合指数继续复用真实成员。未知许可状态不外推授权。
+
+### 最终验收与收尾
+
+- 测试夹具：`tests/sample-origin.test.ts`显式构造无选项的record片段，避免FinBenchmark恢复真实四选题后被首条题型偶然影响；未知许可下的选择题/媒体限制保持不变。`tests/content.test.ts`按真实样例数核对，不再写死MMLU-Pro为2条。未放宽正式内容schema或新增前端查看器。
+- 自动检查：`npm run validate`通过215项、573条展示记录和19份发布资料；严格TypeScript通过，46/46全量测试通过，生产构建生成221个路由并核验220个明确静态页面及Pages 404。保留既有Vite包体积提示，未调整依赖或部署配置。
+- 真实浏览器：原156项逐页完成1280px桌面和390px手机检查；案例数量、最后记录、Logo及整页宽度正常。桌面逐项核对最后一条raw显示值，百万字符记录分段读取后哈希一致，原始文本区高度保持540px内滚动。实际验证第10条切换、答案重置与原始数据按钮；指数借用成员案例、内部未公开和未核实入口显示正确，控制台无警告或错误。
+- 媒体与附件：8张现有/新增原图实载正常；新增clip_002实际播放并推进至7秒，无媒体错误。原ground_truth记为21.792秒，浏览器MP3容器显示21.892375秒，分别保留实际值。新增11个媒体/代码原文件与32份许可文本共43个资源均HTTP 200且逐字节一致，未执行CadQuery或题内命令。
+- 报告与证据：`docs/research/2026-10-19-legacy-benchmark-sample-audit.md`保存156项旧→新与来源/边界；`docs/research/evidence/2026-10-19-legacy-sample-provenance.json`保存526个原有评测当前展示位置的来源及raw规范化哈希；两份撤回/未核实归档保留原对象。最终检查记录与桌面/手机截图位置见本地候选目录`verification-summary.json`。
+- 范围保护：68个受保护文件哈希一致，包含上一轮59项和既有README/品牌/发布资料/查看器；原156项的id/name/kind/publisher/year/version/brandIds均与基线一致。本轮不更新发布身份或品牌，不把检查日期误写成发布日期。
+- 清理与交付：仅启动临时生产预览4187用于验收，现已停止且端口无监听；未启动开发服务。视口已恢复，本轮临时来源/预览标签已关闭。暂存区为空，未提交、未推送或部署本轮改动；保留原有推广和技能文件修改。
+
+
 ## 2026-10-19 — 发布评测扩充与真实案例补核结果
 
 - 授权与范围：用户明确要求推送Git。本次在`main`提交并推送本轮官方评测收录、真实案例、品牌/附件、最小展示支持及相关研究文档；以显式文件清单暂存，保留README、推广素材、技能配置等既有未提交改动。
@@ -1010,6 +1169,4 @@
 - GitHub Pages 已选择 GitHub Actions。首次构建与测试成功；空仓库初始化的 github-pages 环境规则仍指向不存在的 mater，已精确改为 main（仅允许该分支，未取消分支限制），重跑失败的部署任务后成功。
 - 验证记录：工作流 https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/35975671314 的第2次尝试为 Success；站点 https://whiteplusms.github.io/whats-a-benchmark/ 已用真实浏览器打开，84项目录、MMMLU详情及动态真实样例正常加载。
 - 后续 main 推送会自动执行测试、构建、部署。工作流仍有上游 Actions Node 20 运行时迁移警告，但本次已在平台提供的运行时成功执行；不将告警写成部署失败。本次未启动本地服务。
-
-
 
