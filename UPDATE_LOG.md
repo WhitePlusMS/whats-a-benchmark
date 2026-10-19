@@ -1,5 +1,73 @@
 # 更新说明
 
+## 2026-10-19 — 发布评测扩充与真实案例补核结果
+
+- 授权与范围：用户明确要求推送Git。本次在`main`提交并推送本轮官方评测收录、真实案例、品牌/附件、最小展示支持及相关研究文档；以显式文件清单暂存，保留README、推广素材、技能配置等既有未提交改动。
+- 提交组织：评测及真实案例、Logo、原始附件与许可、GDPval-AA引用修正、xlsx附件校验和复合指数空样例提示为一组；近半月官方来源研究、严格复核、逐项收录/案例报告及本更新记录为一组。无需改工作流，沿用`main`推送触发的Pages自动构建与部署。
+- 发布门槛：正式目录215项、样例196条（新增47条），前一轮严格TypeScript、45项测试、生产构建及59页桌面/手机检查均通过；发布前再次核对暂存差异、实际远端分支和内容校验。只有对应推送SHA的Actions构建/部署成功、线上数据与本地发布文件核对后才报告部署完成。
+- 原文空白检查：暂存检查仅发现AgentHarm与b3两份官方LICENSE原文各有一行行尾空格，源响应及SHA-256与取证原文件一致，因此保留原文字节；将这两个逐字复制文件单独登记，其余提交文件的`git diff --cached --check`通过。未跳过Git hook或改写全局Git设置。
+- 文档格式：`docs/research/2026-10-18-model-release-audit-media.md`仅去除文件末尾多余空行，研究正文、官方来源和证据内容未变。
+
+## 2026-10-19 — 逐项补核59项的官方真实数据与样例
+
+- 原因：用户指出上一轮新增59项只有定义、入口和“未附样例”，没有完成网站核心的真实数据展示与简短解析。此次以真实第一方记录为依据，逐项实际查询HF数据文件/真实rows、官方仓库任务、加载代码及文章/论文已公开案例，不从本地测试夹具或站内空状态推断官方无数据。
+- 范围与原则：沿用现有sampleSet、原始数据tab和媒体展示；能拿到已公开真实记录的就保留原字段、嵌套与值并配小解析，长输入/缺附件仅明确节选。内部/私有全集仍单独查公开代表案例，未知或访问受限需记录实际请求、来源和具体障碍，禁止编题或用一般方法说明充当样例。指数复用已明确成员的真实案例，不伪造独立题目。
+- 准备与证据：`artifacts/candidates/2026-10-19-real-sample-audit`锁定59项、保存当前条目快照与哈希，分三组用GPT-6 LUNA整理原始源响应、记录定位和许可依据；主任务核对后才采用。不调用网页端GPT，不启动开发服务，不提交推送或部署。
+- 首批实际补充：Harvey LAB-AA v1.1税务来源/提交/重大幻觉判定、Pronunciation Robustness两处St.的独立发音标注、Speech Agent Arena官方牙科预约场景；均保留真实短片段及中文解析，纠正将改写句当原文、将两种发音当任选的问题。Vals Index按官方v2公式完整登记七个组成项，复用成员真实案例，不增加指数独立题。
+- 附件支持：`src/content/schema.ts`仅给既有file附件增加xlsx扩展名，继续复用`SampleMedia`下载组件；`docs/LOCAL_SAMPLE_IMPORT.md`说明原始工作簿及HF完整rows与revision溯源区别。用于展示Finch实际输入及参考工作簿，不新增编辑器、不转换原始文件、不执行公式。
+- 核心样例：新增19项真实案例，逐项采用清单见本轮`core-adoption.json`。GraphWalks保留完整有向图、`answer_nodes`与源内计数字段；LoCoMo保留问答/证据会话及相对日期解析；LongMemEval保留oracle三段原会话，明确非完整干扰历史；LegalBench保留hearsay分类；MemoryArena保留原`questions/answers`并说明答案字段含生成响应；PersonaMem-v2保留偏好线索及正误候选。Finch提供原始输入/参考xlsx，并实际读取参考表的核对公式；ChartQAPro提供原图。其余安全、代码、视频与健康案例分别注明控制集、官方演示、文本标注或配置示例边界。JBB修正为judge_comparison真实来源；SWE-Atlas未获完整再分发许可时仅保留真实标识/操作节选与任务解读，不把自写答案当原始参考回答。
+- 额外公开例证：CWE-bench官网公开BlurHash解码器训练示例及8个真实输入，明确不是120道私有留出题；Riemann展示原图中的真实公式/数值条件节选及解读，完整原图保留出处链接，不冒用论文CC BY许可覆盖独立题图。首次整批校验暴露b3样例标题遗漏，已立即补齐再编译。
+- 专项与版本：补齐20项专项真实记录及AIME 2026、SciCode-Verified、SWE-bench Pro v2 Hard三项真实案例；API-Bank使用原始JSONL，ToolSandbox保留真实场景源码，PinchBench保留原任务及内嵌CSV，WebArena-Verified保留任务JSON与目标。SPEED的Go/27与固定HumanEvalPack Parquet逐字节一致并按上游MIT展示；BRIGHT改用examples配置并记录Stack Exchange原作者及CC BY-SA4归属，检索目标用真实gold_ids。Full-Duplex保留两份JSON和两段WAV；MAEB精确映射BirdCLEF成员、核对iNaturalist录音作者isa_piga及CC BY-NC；MIEB-lite排除错误Caltech101映射，采用确属lite的RESISC45标注，未复制许可未知原图。SWE-MM仅展示任务文字与原图出处，不将第三方截图许可推作已确认；τ-Voice展示任务与语音配置而非波形；SWE-Context明确base与related缺口。
+- 59项结果：47项各增1条真实记录/具体官方案例，样例149→196，目录215项及19份报告不变；6个复合指数不造独立题，3项直接复用composition成员案例，PSI/Jev/AA Cyber分别提供明确成员或上游入口及实施差异；其余6项保留具体缺口（2项gated、4项Meta内部评测未找到可归属题目），不借旧版/能力演示补位。逐项来源、ID/split和边界写入`docs/research/2026-10-19-real-benchmark-sample-audit.md`，最终采用清单为本轮`final-adoption-manifest.json`。
+- 一致性复核：完整读取59条后清理候选工作台措辞；多源JSON/JSONL保留独立来源并将主链接指向包含各文件的官方目录。CWE/Riemann的数据访问改为“部分公开”，同时明确全集私有；Riemann官网图版本未标，不冒称论文v1快照。原始字段不会因编辑文案而改值，旧149条样例继续保留。
+- 最终来源复查：`full-duplex-bench.json`移除误混入的MTEB总览链接，明确原始数据栏仅展示`output.json`的`text/chunks`对象，`pause.json`和`output.json`分别作为原文件附件；修正旧说明中“raw依次保留两个JSON”的错误表述，没有改动原始数据或媒体字节。修改后严格TypeScript编译通过。
+- 手机媒体说明：实际播放两段Full-Duplex WAV并展开作者转写，确认时长4.72/4.70秒、媒体无解码错误。将会在手机中被截断的64位哈希说明缩为语音用途/时长，完整源文件哈希继续保留在本轮证据中；未改通用组件或媒体文件。
+- 最终验证：内容校验通过215项、196条样例和19份发布资料；严格TypeScript通过，45项既有测试通过，最终生产构建核验220个静态页及Pages 404。沿用已有Vite大包提示；未调整依赖、构建或部署配置。逐一检查59页1280px桌面与390px手机布局，47项原始数据栏与正式JSON值一致，解析及Logo正常，无整页横向溢出；16个已提供参考答案实际展开并核对原值，指数与受控/未核实案例状态显示正确，控制台无警告或错误。
+- 附件及下载：9个新增附件及12份许可文件通过实际HTTP读取并与本地字节/取证副本哈希核对一致；4段音频可播放且无解码错误，ChartQAPro图像627×442正常显示。Finch输入通过页面真实下载，79,613 bytes及SHA-256与官方源文件一致；没有运行工作簿公式、模型、训练、benchmark任务或PoC。
+- 基线保护：原有156项及149条样例、brands/releases、README/宣传SVG和既有DetailView修改均与本轮开始的字节哈希一致。59项ID、名称、发布日期、年份、版本和品牌归属未变；本轮应用代码仅给schema已有附件增加xlsx扩展名，没有增加重复展示模块。
+- 验收与收尾：本轮候选目录保存完整逐项清单、来源响应、哈希、浏览器/媒体/下载记录和`verification-summary.json`；Codex可视化目录保存原始JSON、Finch下载及手机音频三张实际页面截图。已恢复视口、关闭检查标签，核对命令行后仅终止本轮4181预览PID23660，确认进程退出和端口释放；未启动开发服务，未调用网页端GPT，未提交、推送或部署，保留其他既有工作区修改。
+
+
+
+## 2026-10-19 — 收录官方评测、机构评测、复合指数及版本
+
+- 用户授权范围：严格复核确认的40项基准、8项机构评测、6项复合指数及6项已有系列版本/实施；共60项，不含另列的传统数据集或未确认候选。
+- 原则：沿用单条JSON、共享品牌和现有详情页，不编造样例、日期、题量、数据字段或许可；指数、内部与未公开情况分别说明，版本不覆盖母项。
+- 正式收录：新增59个 `content/benchmarks/*.json`（40项基准/套件、8项机构评测、6项复合指数、5项已有系列版本/实施），逐文件清单、日期依据及标识对应见 `docs/research/2026-10-19-official-benchmark-catalog-expansion.md`。补充任务契约、已披露规模/真实字段、指标、访问与许可、版本差异和一方资料，不创建任何新sampleSet。
+- 去重修正：`content/benchmarks/gdpval-aa.json`补充NVIDIA Bolt报告摘要的GDPVal v2简称与Figure 5/Table 7的GDPval-AA v2具名引用；不另建独立GDPVal v2，不推断AA v2与v2.1相同。旧复核中的Jet名称更正为Jev，按社区公开复现榜0.3记录，不冒称TypeSafe/Hugging Face官方榜单。
+- 品牌素材：`content/brands.json`登记30个项目、发布机构或正式维护账户标识；新增对应 `content/assets/logos/*` 原始素材，59条均关联可用标识。对无独立Logo的项目注明账户/机构归属，不生成Logo。SWE-ContextBench原GitHub头像全白，改用作者正式HF数据账户实际显示的SVG标识；JailbreakBench白色Logo配置深色底，宽版Full-Duplex-Bench使用已有wide配置。
+- 日期边界：57个新增条目有YYYY-MM-DD，并说明是论文首投、公开版本提交、正式公告或模型卡披露版。Coding Agent Index v1.5只披露2026年9月、Pronunciation Robustness未找到日级公告，两者不填假日期，版本文字明确说明；AA Speech-to-Speech固定v1.0首次公开定义日，后续v2.0的日期缺口另述。
+- 本轮证据：在 `artifacts/candidates/2026-10-19-official-expansion` 保存授权清单、三批候选、日期页面、标识原图/哈希、采用清单与基线哈希；GPT-6 LUNA整理及交叉描述证据，主任务复核采用，未调用网页端GPT。
+- 显示修正：`src/views/DetailView.vue`仅在指数确有组成项站内样例时提示“下面展示真实案例”；没有样例时提示通过组成项查看官方入口，避免空样例区作出不实承诺。JobBench发布方缩短为Meta模型卡披露；OSWorld2.1、SWE-bench Pro v2-Hard、SciCode-Verified改为实际作者/机构仓库样例入口，不因本站未转载而标为原题限制公开。
+- 身份与访问复核：清理EVA-A/EVA-X指标、SWE-ContextBench Lite Related子集及未证实τ²-Voice同义映射；SWE-ContextBench采用论文v3的2026-05-06日期，与1,100基础/376相关任务一致，v1日期另述。指数无独立题集与私有组成项分别解释；Speech Agent Arena的完整样例入口、PLawBench数据入口未确认时标为未知，不凭未转载推定发布方限制。
+- 最终验证：内容校验、严格TypeScript编译、45项既有测试与生产构建通过，目录156→215条，原有样例149条及19份发布资料不变，构建核验220个静态页面及Pages 404。保留既有Vite大包提示，没有调整依赖或构建配置。新增研究报告已运行Prettier，Git差异空白检查通过。
+- 实际页面：逐一检查59个新增详情页的390px手机与1280px桌面布局，另回归MAI Held-Out Code、ZeroBench Main；所有标识加载、日期/内部与未公开提示正常，无整页横向溢出，控制台无警告或错误。复查指数有/无真实组成案例两条显示分支，目录别名与年份搜索正确，“复合指数”独立返回本轮6项。
+- 验收证据：`browser-checks.json`、`browser-search-checks.json`与`verification-summary.json`保存在本轮候选目录；Codex可视化目录保存`2026-10-19-benchmark-expansion-desktop.jpg`和`2026-10-19-benchmark-expansion-mobile.jpg`。161个基线原始字节哈希仅GDPval-AA与brands变化，旧155项、README/推广SVG、releases未变；GDPval-AA原样例结构与HEAD一致，30标识与原取证副本SHA-256一致。
+- 收尾与影响：恢复浏览器视口和外观、关闭本轮检查标签，并终止4181生产预览进程40476；未启动前后端开发服务，未调用网页端GPT，未提交、推送或部署。应用代码仅修改上述空组成样例提示，不改样式、依赖或部署流程；保留其他既有工作区修改。
+
+## 2026-10-19 — 按官方机构来源严格复核模型与评测漏项
+
+- 原因与原则：用户质疑广泛发现清单是否混入个人练习模型或随意自编评测，要求重新确认实际漏项。按最简、第一方来源、身份去重与如实披露原则复核；GPT-6 LUNA只提供发布者/论文/目录证据，最终分组由主任务决定；未调用网页端GPT。
+- 新增 docs/research/2026-10-19-model-publisher-recheck.md、2026-10-19-core-benchmark-recheck.md、2026-10-19-specialist-benchmark-recheck.md：分别记录33条发布者/日期事件、36个核心名称和45个专项名称的出处、定义、公开性、相邻已有项与未决信息。ChartQAPro、CWE-bench v1、Riemann-bench、Full-Duplex-Bench等补回原发布者/论文来源，避免只凭模型图标签判定。
+- 新增 docs/research/2026-10-19-official-benchmark-recheck.md：以156项正式目录为基线，按规范身份确认40项基准/套件缺项，另列8项机构非公开或部分公开评测、10项传统数据任务；9项模型/日期边界、6项复合指数、6组已有系列版本/实施、8项定义待核分开记录，共87个规范复核记录。40项不等于本窗口新发布的40个benchmark，58项也不合称新公开题库。PinchBench明确为Kilo支持的行业/社区项目，不冒称同行评审基准。
+- 模型边界：严格主名单保留29条官方发布/披露记录，合并同次型号为27组事件。Step5、SemanTok按首次披露日期边界另列，Voxtral Arabic首次可用日仍待核，Iris保守移出重点统计但不定性为虚假或个人玩票；社区LoRA/量化不算新基础模型，MAI仅为研究披露。
+- docs/research/2026-10-18-model-release-benchmark-coverage.md：顶部增加更正，明确33条型号、129份图片、300条引用是广泛发现快照，以新复核为准。
+- artifacts/research/2026-10-18-model-release-audit/recheck/：新增三份证据JSON、strict-coverage.json/csv、静态HTML表、报告副本与build-recheck.mjs。每个确认项保留基准定义来源和合格模型引用；别名/复合安全表合并，版本差异独立记录。build-gallery.mjs及生成index.html仅在顶部增加严格复核入口与计数说明，原图/原表继续留存。同步汇总副本和原下载ZIP，避免旧包遗漏更正。
+- 静态检查：87个规范身份唯一、分组合计一致，所有确认项有定义及合格模型引用，395个本地HTML资源/文件链接有效；129份原图SHA-256均未变，原始33/129/300计数不变。两个研究脚本语法检查通过，Git差异空白检查通过。ZIP重建后逐文件CRC检查通过。
+- 显示边界：浏览器安全策略拒绝自动打开file协议本地页面，本轮没有绕过策略或声称完成浏览器显示回归；仅完成静态核验。原有截图/HTTP验证属于上一轮，不用来替代本轮验收。
+- 影响与收尾：正式content、src、tests、scripts及部署配置均无本轮差异，目录仍为156项。仅研究文档和离线取证材料变化，未自动收录、提交、推送、部署或启动服务；保留README、推广素材及其他既有工作区修改。
+
+## 2026-10-19 — 近半月模型发布成绩图与评测目录覆盖核查
+
+- 原因与范围：用户要求围绕 2026-10-18 检索近半月新模型，收集官方发布页的 benchmark 图片、逐图阅读并检查漏项。发布窗口固定为 2026-10-04—2026-10-18，跨至 10-19 凌晨完成取证；遵循最简、第一方事实与未披露内容保持未知的原则。
+- 研究文件：新增 `docs/research/2026-10-18-model-release-audit-china.md`、`2026-10-18-model-release-audit-global.md`、`2026-10-18-model-release-audit-media.md`、`2026-10-18-model-release-audit-specialist.md`，分别保存国内、海外、媒体/专项及决策/代码补漏证据；新增 `2026-10-18-model-release-benchmark-coverage.md` 汇总精确日期、来源、遗漏、已有版本、名称待确认和检索缺口。
+- 本地证据：`artifacts/research/2026-10-18-model-release-audit/` 保存四组 manifest、官方原图/SVG、官方 PDF 与渲染页、官方网页区域截图及源页面；`audit.json` 合并逐图元数据和 SHA-256，`coverage.csv` 保留逐次引用的名称/版本/工具/子集/框架条件与目录判断；`index.html` 是可离线打开、搜索和分组的图册。`decisions.json` 记录主任务的名称/版本判定，`supplements.json` 保存附加视觉证据，`build-gallery.mjs` 仅生成本地研究交付物，不进入站点构建。
+- 主要发现：PostTrainBench、LABBench 2、GraphWalks、多项记忆/法律/语音/嵌入/决策任务等目录未覆盖；OSWorld 2.1、SciCode-Verified、GDPVal v2、SWE Bench Pro v2-Hard、AIME 2026 及 Harvey LAB-AA 存在版本/实施差异。纠正 IFBench、AA-LCR、Terminal-Bench Science 0.1、Finance Agent v2、HealthBench Consensus 等误报风险；Apex/CMB/未标版 Vibe Code Bench 继续保留不确定性。图片文件名的 v3、bbox 和 Finch 不冒充正式版本号。
+- 日期与读图边界：区分初发、权重公开、GA、仓库创建、研究披露和产品提速。较早的 OpenAI Sol/Luna 博文图、Step 5、SemanTok 单列关联或日期边界，不与当期分数混算；Voxtral Arabic 仅证实仓库创建日期。Mistral 法律图 404、Step 完整评测页超时、未发现图表及尚未确证线索均如实说明。官方内部评测/延迟/价格/组合指标不伪装成独立公开题库，不编造样例或分数。
+- 验证与影响：四份 manifest 和合并 JSON 可解析；图像解码/原始 SVG XML、路径与内容校验另见交付清单。使用临时本地静态图册服务检查图片加载、搜索与分组，结束前关闭标签和该临时服务。仅研究资料/日志变动，不修改 `content/`、`src/`、测试、依赖或工作流，因此未重复运行应用编译/业务测试。没有启动前后端开发服务，没有调用网页端 GPT，没有提交、推送或部署本轮研究；保留原有 README、推广素材和技能目录的未提交改动。
+- 分发：仅将本次研究证据目录与报告副本打包为 `artifacts/2026-10-18-model-release-audit.zip`。该证据目录及 zip 沿用既有 Git 忽略规则，未强制暂存，也未改写 `.gitignore`。
+- 最终清单：33 条型号/披露记录、129 个图像文件、300 条评测引用记录；图像数包括时间边界关联图，不等于新 benchmark 数。129 张均有实际视觉查看记录，全部解码及本地 HTTP SHA-256 核验通过。图册搜索/分组、特殊字符文件路径、xAI 三张成绩表/图加载正常，无页面横向溢出和控制台警告/错误。内嵌 SVG 脱离官网上下文无法独立显示时保留源片段，改用官方网页截图作图册预览，未改造原成绩图。
+
 ## 2026-10-18 — 评测更新已推送并通过线上显示验收
 
 - 提交与推送：新增内容提交 `51974d8`（18 个已列明文件）及发布前日志提交 `95d593c`，已正常推送 `origin/main`；远端核对为 `95d593cf1b8c5cb79ff514ccf05c0e6843a76580`。既有 6 个界面提交随祖先历史正常发布，README/推广素材/技能配置的未提交改动继续留在本地。
