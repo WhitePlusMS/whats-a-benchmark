@@ -7,6 +7,10 @@
 - 发布门槛：正式目录215项、样例196条（新增47条），前一轮严格TypeScript、45项测试、生产构建及59页桌面/手机检查均通过；发布前再次核对暂存差异、实际远端分支和内容校验。只有对应推送SHA的Actions构建/部署成功、线上数据与本地发布文件核对后才报告部署完成。
 - 原文空白检查：暂存检查仅发现AgentHarm与b3两份官方LICENSE原文各有一行行尾空格，源响应及SHA-256与取证原文件一致，因此保留原文字节；将这两个逐字复制文件单独登记，其余提交文件的`git diff --cached --check`通过。未跳过Git hook或改写全局Git设置。
 - 文档格式：`docs/research/2026-10-18-model-release-audit-media.md`仅去除文件末尾多余空行，研究正文、官方来源和证据内容未变。
+- 已完成发布：内容提交`5c73407c8d563004b86f3c503bdb785cdc6f20b7`、研究文档提交`86999fd7d90d04f8185e3b6b87c6e685059f71d0`正常推送`origin/main`，远端SHA核对一致。对应[GitHub Actions 39201521277](https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/39201521277)的build/deploy均成功，部署于北京时间2026-10-19 12:51:45完成。
+- 线上内容核对：47份样例JSON、9个真实附件、30个Logo和12份许可文件共98个资源均HTTP 200，与实际发布Git版本逐字节一致；两份Full-Duplex JSON及八份许可相对Windows工作区仅有CRLF→LF归一化，JSON字段和值一致。工作簿、音频与图像字节保持一致；命令行直连受本机网络影响时使用现有本地代理读取，没有修改网络配置。
+- 线上页面验收：逐页检查59个详情页，47项原始记录与正式数据一致，解析与Logo正常、无整页横向溢出；390px手机抽查LoCoMo、Finch和Full-Duplex正常。Full-Duplex两段语音实际加载/播放，时长4.72/4.70秒，无媒体错误；首页显示215项评测、196条真实样例，浏览器控制台无警告或错误。
+- 交付证据：本轮候选目录保存`published-actions-verification.json`、`published-committed-verification.json`、`published-browser-checks.json`、手机/音频记录；可视化目录保存`2026-10-19-published-benchmark-catalog.jpg`正式站点截图。78个排除发布的本地文件哈希不变。本验收日志单独提交后会按现有工作流再次构建同一应用内容，最终流水线另行核对；没有启动本地服务。
 
 ## 2026-10-19 — 逐项补核59项的官方真实数据与样例
 
