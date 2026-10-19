@@ -65,8 +65,8 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "官方页面未为公开示例单独声明复用许可；完整题目集和参考答案未公开。",
-    "scope": "公开页面展示的案例事实；完整题库、参考答案及支持资料的许可范围未查明。",
+    "license": "官方未单列示例转载许可；80题及答案私有，但页面Example Tasks明确公开两道题和各自参考值。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "页面未说明该示例是否计分。",
       "不由公开展示推定完整题库、附件或模型输出可复用。"
@@ -77,7 +77,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方已公开的分析任务演示；没有下载配套表格，不声称该演示属于私有计分集。",
+    "reason": "2道官网主动公开的分析演示可切换，题干、精度要求及官网公开参考值保留；80题完整集仍私有，配套报表未镜像。",
     "url": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
@@ -111,6 +111,18 @@
       "sourceUrls": [
         "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 1 条，现有 2 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增1条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“公开任务 · 加州Medicaid处方药支出占比”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→2条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+      ]
     }
   ],
   "sources": [
@@ -131,8 +143,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "在agentic Python环境分析源文件；答案由LLM judge二元判正确，并有numeric pre-check override，五次运行独立重复。",
@@ -148,7 +160,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-aa-analyst-agent",
@@ -156,13 +168,27 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "依据官方所列 FMR1997through2001.xlsx，计算加州 Medicaid 在 2001 年的医疗交通总支出，包含 C- medical transport，按美元取整。官方页面给出的参考值为 115801。",
-        "explanation": "官方已公开的分析任务演示；没有下载配套表格，不声称该演示属于私有计分集。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "California medical transport spend\n\nWhat was the total computable medical transport spend (including C- medical transport) for Medicaid in California in 2001? Round the answer",
+        "explanation": "需协调医疗交通各组成项，包含C- medical transport，并按美元取整。官方公开答案115801保留；漏掉的原题末尾取整要求已补回。配套表格未镜像，尚不能在本站复算官方结果。",
+        "raw": "What was the total computable medical transport spend (including C- medical transport) for Medicaid in California in 2001? Round the answer to the nearest dollar.",
         "source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
         "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "官方公开演示 / 非已定位的计分数据行",
         "excerpt": true,
         "answer": "115801"
+      },
+      {
+        "excerpt": true,
+        "title": "公开任务 · 加州Medicaid处方药支出占比",
+        "split": "Artificial Analysis 官方 Example Tasks · task example / public example; not mapped to one of the private 80 question records",
+        "source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+        "prompt": "根据公开的加州Medicaid支出报表，计算1997年处方药支出占总净医疗援助项目支出的百分比，并四舍五入到两位小数。",
+        "promptOrigin": "editorial",
+        "explanation": "需要用处方药支出除以总净医疗援助支出，再按两位小数报告百分比；官方页面单独公开的参考答案是8.66%。没有配套支出表，本站未独立复算，公开演示也未映射到私有80题中的某一计分行。",
+        "id": "aa-analyst-agent-public-ca-medicaid-drug-share",
+        "license": "官方公开页未为题面另列再发布license；仅保留一个必要短问题记录其实际披露，不能据公开展示推断整套80题或参考文件可再发布。",
+        "type": "record",
+        "raw": "Prescribed drug expenditures accounted for what percent of total net medical assistance program expenditures for Medicaid in California in 1997? Round the answer to two decimal places.",
+        "answer": "8.66%"
       }
     ]
   }

@@ -68,9 +68,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "本站仅选取明确标注范围的公开输入片段；媒体、附件、参考内容和完整题库的权利分别核对。"
     ],
     "sourceUrls": [
       "https://github.com/lechmazur/writing"
@@ -79,10 +79,15 @@
   "sampleAccess": {
     "url": "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt"
+      "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt",
+      "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_1.txt",
+      "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_2.txt",
+      "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_3.txt",
+      "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_4.txt",
+      "https://github.com/lechmazur/writing"
     ],
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。"
+    "reason": "5个官方故事任务可切换；新增4个保留完整十项叙事元素原块，通用格式指令另行解析。字数模板参数不臆造，模型故事未收录。"
   },
   "metric": {
     "name": "Comparison Score",
@@ -115,11 +120,31 @@
       "role": "data",
       "label": "Lech Mazur Writing 官方 prompt_wc_0 模板",
       "url": "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_1.txt",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_2.txt",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_3.txt",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_4.txt",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "多个evaluator对匹配brief的故事双向比较；更换评委名单先用共同故事对和bridge matchups验证，文学偏好仍由模型裁判决定。",
@@ -152,10 +177,31 @@
       "sourceUrls": [
         "https://github.com/lechmazur/writing"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_1.txt",
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_2.txt",
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_3.txt",
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_4.txt",
+        "https://github.com/lechmazur/writing"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：旧五个元素各自在同一固定prompt文件唯一匹配，明确非连续元数据摘录；新四例恢复各自完整十项元素，不混用Setting/Timeframe。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/lechmazur/writing/main/prompts_wc/prompt_wc_0.txt",
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_1.txt",
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_2.txt",
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_3.txt",
+        "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_4.txt",
+        "https://github.com/lechmazur/writing"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "short-story-prompt-wc-0-elements",
@@ -169,6 +215,58 @@
         "license": "已查官方仓库与 data README，未发现 prompt/data 独立再发布许可。本页仅保留必要短引和本站概述；仓库公开不代表数据授权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "prompts_wc/prompt_wc_0.txt · Required narrative elements · main 可变分支 · min/max unresolved",
         "excerpt": true
+      },
+      {
+        "type": "record",
+        "id": "short-story-prompt-wc-1",
+        "title": "玻璃艺术家、账簿残条与星空峡谷",
+        "prompt": "按官方列出的十项叙事元素创作故事，并遵守原始入口中的格式与字数要求；本页保留实际元素原块。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": "Required narrative elements:\nCharacter: luminous glass artist\nObject: charcoal smuggler’s ledger strip\nCore Concept: scorched testament\nAttribute: steadily adaptive\nAction: retrace\nMethod: patterns in morning frost\nSetting: quiet canyon under stars\nTimeframe: after surviving the attempt\nMotivation: to discover purpose in the pauses\nTone: drifting resonance",
+        "explanation": "玻璃艺术家与走私者账簿残条需在星空峡谷中共同推动故事；晨霜图案是行动方法，动机是发现停顿的意义。 原始十项元素逐行保留；通用指令要求纯ASCII英文、story标签和逐句累计词数，min_count/max_count是作者模板参数，不编造具体字数。没有模型故事或参考答案。",
+        "split": "prompts_wc/prompt_wc_1.txt · Required narrative elements · fixed commit · row/file index 1",
+        "source": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_1.txt",
+        "license": "未在官方README或根路径中找到prompt数据专属许可证，且LICENSE路径返回404；只保留必要字段摘录和中文原创解析，许可范围待确认。"
+      },
+      {
+        "type": "record",
+        "id": "short-story-prompt-wc-2",
+        "title": "钟表匠、失落罗盘与地下瀑布",
+        "prompt": "按官方列出的十项叙事元素创作故事，并遵守原始入口中的格式与字数要求；本页保留实际元素原块。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": "Required narrative elements:\nCharacter: broken-clock tinkerer\nObject: admiral's lost compass rose\nCore Concept: beneath the ashes\nAttribute: uncertainly certain\nAction: improvise\nMethod: through the swirling leaves in a neglected greenhouse\nSetting: subterranean waterfall\nTimeframe: when coincidence becomes pattern\nMotivation: to befriend uncertainty in planning\nTone: None",
+        "explanation": "坏钟修理者要在地下瀑布场景中即兴行动；海军上将的失落罗盘与荒置温室叶片是不同叙事约束，不能合成一个道具。 原始十项元素逐行保留；通用指令要求纯ASCII英文、story标签和逐句累计词数，min_count/max_count是作者模板参数，不编造具体字数。没有模型故事或参考答案。",
+        "split": "prompts_wc/prompt_wc_2.txt · Required narrative elements · fixed commit · row/file index 2",
+        "source": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_2.txt",
+        "license": "未在官方README或根路径中找到prompt数据专属许可证，且LICENSE路径返回404；只保留必要字段摘录和中文原创解析，许可范围待确认。"
+      },
+      {
+        "type": "record",
+        "id": "short-story-prompt-wc-3",
+        "title": "楔形文字译者与云上磁性树篱",
+        "prompt": "按官方列出的十项叙事元素创作故事，并遵守原始入口中的格式与字数要求；本页保留实际元素原块。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": "Required narrative elements:\nCharacter: Cuneiform translator\nObject: Knowledge fruit seed\nCore Concept: Haunted ambitions\nAttribute: Kindly methodical\nAction: Reestablish\nMethod: Through analogical thinking\nSetting: Magnetic arbor above the clouds\nTimeframe: After the spirit leaves\nMotivation: To understand the physics of transition\nTone: Touching distance",
+        "explanation": "楔形文字译者、知识果种子和云上磁性树篱必须共同融入叙事；类比思考是方法，理解转变物理规律是动机。 原始十项元素逐行保留；通用指令要求纯ASCII英文、story标签和逐句累计词数，min_count/max_count是作者模板参数，不编造具体字数。没有模型故事或参考答案。",
+        "split": "prompts_wc/prompt_wc_3.txt · Required narrative elements · fixed commit · row/file index 3",
+        "source": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_3.txt",
+        "license": "未在官方README或根路径中找到prompt数据专属许可证，且LICENSE路径返回404；只保留必要字段摘录和中文原创解析，许可范围待确认。"
+      },
+      {
+        "type": "record",
+        "id": "short-story-prompt-wc-4",
+        "title": "档案员与工厂遗址后的薰衣草田",
+        "prompt": "按官方列出的十项叙事元素创作故事，并遵守原始入口中的格式与字数要求；本页保留实际元素原块。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": "Required narrative elements:\nCharacter: subtle puzzle archivist\nObject: dove gray map case\nCore Concept: collective healing\nAttribute: perceptively calm\nAction: linger\nMethod: via arcs in black-and-white photographs\nSetting: lavender field tucked behind rusted factory ruins\nTimeframe: as vines climb\nMotivation: to transmute pain into a masterpiece\nTone: earnest whimsy",
+        "explanation": "档案员的道具是灰色地图盒，方法是黑白照片中的弧线；薰衣草田位于生锈工厂遗址之后，动机是把痛苦化为作品。 原始十项元素逐行保留；通用指令要求纯ASCII英文、story标签和逐句累计词数，min_count/max_count是作者模板参数，不编造具体字数。没有模型故事或参考答案。",
+        "split": "prompts_wc/prompt_wc_4.txt · Required narrative elements · fixed commit · row/file index 4",
+        "source": "https://raw.githubusercontent.com/lechmazur/writing/8ba548d1cffefa5c472d3832e05f64e119a88fa4/prompts_wc/prompt_wc_4.txt",
+        "license": "未在官方README或根路径中找到prompt数据专属许可证，且LICENSE路径返回404；只保留必要字段摘录和中文原创解析，许可范围待确认。"
       }
     ]
   }

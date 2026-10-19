@@ -64,7 +64,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
-    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "代码仓库的开源许可与底层任务数据授权需分别核对。",
       "后续转载题目或媒体前，须核实对应材料的授权范围。"
@@ -75,7 +75,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "reason": "3个官方冻结公开例可切换，保留真实匿名输入范围和被动观测；既有答案栏仅为作者公开成功示意公式，不是本轮运行或隐藏测试答案。",
     "url": "https://www.vals.ai/benchmarks/mysterymechanism",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/mysterymechanism"
@@ -115,6 +115,18 @@
       "sourceUrls": [
         "https://www.vals.ai/benchmarks/mysterymechanism"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/mysterymechanism"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Stream-power incision”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/mysterymechanism"
+      ]
     }
   ],
   "sources": [
@@ -125,8 +137,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "执行提交表达式，在私有持续采样的structural probes上计算normalized error，低于noise-aware阈值才给二元成功；函数等价即可，不需猜机制名称。",
@@ -142,21 +154,47 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-mysterymechanism",
         "title": "冻结示例 · 血细胞比容与剪切黏度机制",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "官方冻结示例以两个匿名变量恢复可执行数学关系：x1 在 [0.05,0.70]，x2 在 [0.05,30.0]；已知 (0.5944,1.9188) 对应 12.2245，(0.5044,0.2068) 对应 10.3732。模型可提出实验，并根据新增观测寻找表达式。",
-        "explanation": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。 具体记录位置：First frozen example labeled Hematocrit-shear blood viscosity\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "Agent-visible question\nRecover an executable mathematical expression mapping the anonymous inputs to one measured output.\nBounds\nx1 ∈ [0.05, 0.70]\nx2 ∈ [0.05, 30.0]",
+        "prompt": "Recover an executable mathematical expression mapping the anonymous inputs to one measured output. Bounds: x1 ∈ [0.05, 0.70], x2 ∈ [0.05, 30.0]. Passive observations: (0.5944, 1.9188) → 12.2245; (0.5044, 0.2068) → 10.3732.",
+        "explanation": "血液黏度公开示例给出两维无名输入的物理范围和两条被动观测，要求从有限实验中恢复映射表达式；本站只保留提问、范围和初始观测，没有复制官方示意中的实验路径及拟合方程。 答案栏保留作者已公开的成功示意公式及系数，它不代表本轮求解结果，也不冒充隐藏计分机制。",
+        "raw": "<section class=\"min-w-0 p-4 lg:edge-r lg:edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nAgent-visible question\n</div> <p class=\"mt-2 font-serif text-base/6 font-medium foreground-primary\" data-astro-cid-cdxvoeg3>\nRecover an executable mathematical expression mapping the\n              anonymous inputs to one measured output.\n</p> <p class=\"mt-1 text-xs/5 foreground-secondary\" data-astro-cid-cdxvoeg3>\nTwo noisy passive observations · 5 additional\n              experiments · no domain context\n</p> <div class=\"mt-4 edge edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"grid gap-3 p-3 sm:grid-cols-2\" data-astro-cid-cdxvoeg3> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nBounds\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>x1 ∈ [0.05, 0.70]</li><li data-astro-cid-cdxvoeg3>x2 ∈ [0.05, 30.0]</li> </ul> </div> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nPassive observations\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>(0.5944, 1.9188) → 12.2245</li><li data-astro-cid-cdxvoeg3>(0.5044, 0.2068) → 10.3732</li> </ul> </div> </div> </div> </section>",
         "source": "https://www.vals.ai/benchmarks/mysterymechanism",
-        "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "license": "Vals公开冻结示例的必要任务条件、范围及观测数值；未确认独立数据许可。原始HTML保留，不新建假数据字段；没有抓取隐藏测试机制或模型逐字推理。",
         "split": "Public example Hematocrit-shear blood viscosity",
         "excerpt": true,
         "answer": "mu*(1+a*x1/(1-x1)**b)*(1+c/(1+sqrt(x2)))\nmu=1.7707; a=0.9128; b=1.9124; c=1.6447"
+      },
+      {
+        "id": "public-case-mysterymechanism-cylinder-nusselt",
+        "title": "Churchill-Bernstein cylinder Nusselt",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Recover an executable mathematical expression mapping the anonymous inputs to one measured output. Bounds: x1 ∈ [1, 300000], x2 ∈ [0.2, 10.0]. Passive observations: (63.5657, 1.2799) -> 3.3766; (4615.6906, 5.3388) -> 76.4846.",
+        "explanation": "两输入的公开范围为[1,300000]与[0.2,10.0]，仅给两条初始观测。需要设计后续实验识别映射；这里展示真实匿名输入条件，不把物理量名称补成源字段。",
+        "raw": "<section class=\"min-w-0 p-4 lg:edge-r lg:edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nAgent-visible question\n</div> <p class=\"mt-2 font-serif text-base/6 font-medium foreground-primary\" data-astro-cid-cdxvoeg3>\nRecover an executable mathematical expression mapping the\n              anonymous inputs to one measured output.\n</p> <p class=\"mt-1 text-xs/5 foreground-secondary\" data-astro-cid-cdxvoeg3>\nTwo noisy passive observations · 5 additional\n              experiments · no domain context\n</p> <div class=\"mt-4 edge edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"grid gap-3 p-3 sm:grid-cols-2\" data-astro-cid-cdxvoeg3> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nBounds\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>x1 ∈ [1, 300,000]</li><li data-astro-cid-cdxvoeg3>x2 ∈ [0.2, 10.0]</li> </ul> </div> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nPassive observations\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>(63.5657, 1.2799) → 3.3766</li><li data-astro-cid-cdxvoeg3>(4,615.6906, 5.3388) → 76.4846</li> </ul> </div> </div> </div> </section>",
+        "source": "https://www.vals.ai/benchmarks/mysterymechanism",
+        "license": "Vals公开冻结示例的必要任务条件、范围及观测数值；未确认独立数据许可。原始HTML保留，不新建假数据字段；没有抓取隐藏测试机制或模型逐字推理。",
+        "split": "One of three frozen public examples displayed on benchmark page; not a hidden validation/test mechanism",
+        "excerpt": true
+      },
+      {
+        "id": "public-case-mysterymechanism-stream-power-incision",
+        "title": "Stream-power incision",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Recover an executable mathematical expression mapping the anonymous inputs to one measured output. Bounds: x1 ∈ [0.1, 10000], x2 ∈ [0.001, 0.5]. Passive observations: (25.5646, 0.1859) -> 0.0012396; (0.1108, 0.0187) -> -0.0000064.",
+        "explanation": "河流下切公开示例给出侵蚀模型的两维输入范围和一条接近零的观测，展示科学发现中如何从稀疏数据识别幂律关系；未保留后续探测或拟合结果。",
+        "raw": "<section class=\"min-w-0 p-4 lg:edge-r lg:edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nAgent-visible question\n</div> <p class=\"mt-2 font-serif text-base/6 font-medium foreground-primary\" data-astro-cid-cdxvoeg3>\nRecover an executable mathematical expression mapping the\n              anonymous inputs to one measured output.\n</p> <p class=\"mt-1 text-xs/5 foreground-secondary\" data-astro-cid-cdxvoeg3>\nTwo noisy passive observations · 5 additional\n              experiments · no domain context\n</p> <div class=\"mt-4 edge edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"grid gap-3 p-3 sm:grid-cols-2\" data-astro-cid-cdxvoeg3> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nBounds\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>x1 ∈ [0.1, 10,000]</li><li data-astro-cid-cdxvoeg3>x2 ∈ [0.001, 0.5]</li> </ul> </div> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nPassive observations\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>(25.5646, 0.1859) → 0.0012396</li><li data-astro-cid-cdxvoeg3>(0.1108, 0.0187) → −0.0000064</li> </ul> </div> </div> </div> </section>",
+        "source": "https://www.vals.ai/benchmarks/mysterymechanism",
+        "license": "Vals公开冻结示例的必要任务条件、范围及观测数值；未确认独立数据许可。原始HTML保留，不新建假数据字段；没有抓取隐藏测试机制或模型逐字推理。",
+        "split": "One of three frozen public examples displayed on benchmark page; not a hidden validation/test mechanism",
+        "excerpt": true
       }
     ]
   }

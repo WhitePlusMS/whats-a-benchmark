@@ -5,8 +5,8 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "id": "mcp-atlas",
   "name": "MCP-Atlas",
   "subtitle": "面对很多工具，还能选对并用好吗",
@@ -91,6 +91,26 @@
       "label": "Creative Commons Attribution 4.0 International Legal Code",
       "url": "https://creativecommons.org/licenses/by/4.0/",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=1&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=2&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=4&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=5&length=1",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -163,16 +183,20 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示官方公开 release 中 TASK=\"689f4d693e212e8ef3390731\" 的 PROMPT 与 ENABLED_TOOLS，符合数据卡对模型输入字段的说明。CC BY 4.0 署名 Scale AI / MCP-Atlas 并标记本站选取字段的修改；明确排除 GTFA_CLAIMS、TRAJECTORY 及第三方工具/API 返回内容。HF Viewer 将 500 行公开子集标为 train，此标签不等于论文的 500 public / 500 private 范围划分。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
       "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet",
-      "https://creativecommons.org/licenses/by/4.0/"
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=1&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=2&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=4&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=5&length=1"
     ],
     "url": "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/viewer/default/train?p=0"
   },
   "sampleSet": {
-    "retrievedAt": "2026-09-23",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "689f4d693e212e8ef3390731",
@@ -190,6 +214,74 @@
         "licensePath": "licenses/cc-by-4-0.txt",
         "split": "train（Hugging Face Viewer 当前标签；公开 release 子集）",
         "excerpt": false
+      },
+      {
+        "id": "oncology-study-literature",
+        "title": "肿瘤学文献：检索、摘要与术语",
+        "type": "record",
+        "prompt": "找出 2024 年 11 月发布、标题含 cancer 的最近一篇机器学习肿瘤学研究；将标题译成西班牙语、保留原文摘要，并说明其癌症类型及该类文献的首次发表者与年份。",
+        "promptOrigin": "editorial",
+        "explanation": "这是多工具文献检索任务：需查询论文、摘要、翻译及临床/历史资料。本站只展示原始任务和工具列表，不复制文章摘要、外部网页文本或轨迹。",
+        "raw": {
+          "TASK": "688a441c1a0d2e5c93853e76",
+          "ENABLED_TOOLS": "[\"notion_API-get-user\",\"notion_API-get-users\",\"notion_API-get-self\",\"notion_API-retrieve-a-page\",\"arxiv_search_papers\",\"lara-translate_translate\",\"lara-translate_list_languages\",\"whois_whois_domain\",\"whois_whois_tld\",\"whois_whois_ip\",\"clinicaltrialsgov-mcp-server_clinicaltrials_get_study\",\"clinicaltrialsgov-mcp-server_clinicaltrials_list_studies\",\"fetch_fetch\",\"exa_web_search_exa\",\"ddg-search_search\",\"ddg-search_fetch_content\"]",
+          "PROMPT": "For a report I have to prepare on oncology with machine learning, help me identify the last related study published on november 2024 containing the word cancer in its title and retrieve the abstract of the article. Translate only the title of the study into spanish while keeping the abstract of the study in its original language. Find the type of cancer discussed in the article and tell me who published the first literature and in which year."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=1&length=1",
+        "license": "CC BY 4.0 · Scale AI / MCP-Atlas, task 688a441c1a0d2e5c93853e76. The public release metadata declares CC BY 4.0. Only TASK, ENABLED_TOOLS, and PROMPT are shown; GTFA_CLAIMS, TRAJECTORY, and any external service responses are omitted.",
+        "split": "config=default / split=train / row_idx=1 / TASK=688a441c1a0d2e5c93853e76",
+        "excerpt": true
+      },
+      {
+        "id": "spacex-product-sales",
+        "title": "商业表现数据：产品类别与车型",
+        "type": "record",
+        "prompt": "在 SpaceX 首次把汽车送入太空的同年同月，商业表现数据中领先的产品类别是什么？同一年全球该类别销量最高的车型是哪款？",
+        "promptOrigin": "editorial",
+        "explanation": "任务同时结合月份、历史事件和云端商业数据查询。这里仅保留提示与工具清单，没有添加查询结果或构造答案。",
+        "raw": {
+          "TASK": "68925f01db31fe35560e3e97",
+          "ENABLED_TOOLS": "[\"airtable_list_bases\",\"airtable_list_tables\",\"airtable_list_records\",\"airtable_search_records\",\"exa_web_search_exa\",\"git_git_status\",\"github_search_repositories\",\"google-maps_maps_geocode\",\"google-maps_maps_search_places\",\"google-maps_maps_place_details\",\"context7_resolve-library-id\",\"weather_get_current_weather\",\"open-library_get_book_by_title\",\"open-library_get_authors_by_name\",\"open-library_get_author_info\",\"pubmed_search_pubmed_key_words\",\"pubmed_search_pubmed_advanced\"]",
+          "PROMPT": "I was exploring product trends using the cloud database. In the same year and month that SpaceX launched the first car into space, which was the leading product type in commercial performance data? Which was the most sold vehicle in the world for that category in the same year that SpaceX launched the first car into space?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=2&length=1",
+        "license": "CC BY 4.0 · Scale AI / MCP-Atlas, task 68925f01db31fe35560e3e97. The public release metadata declares CC BY 4.0. Only TASK, ENABLED_TOOLS, and PROMPT are shown; GTFA_CLAIMS, TRAJECTORY, and any external service responses are omitted.",
+        "split": "config=default / split=train / row_idx=2 / TASK=68925f01db31fe35560e3e97",
+        "excerpt": true
+      },
+      {
+        "id": "local-project-dependency-version",
+        "title": "代码库检索：最短组件的依赖版本",
+        "type": "record",
+        "prompt": "针对一个本地故事创作项目，找出代码行数最少的 React 组件，并确认它所需的依赖版本。",
+        "promptOrigin": "editorial",
+        "explanation": "任务需要遍历本地 React 组件并读项目依赖配置。原始公开记录只提供任务提示和工具列表，本站没有复制任何用户代码、文件内容或工具结果。",
+        "raw": {
+          "TASK": "689e0b1d9c8e2ac413c1f25c",
+          "ENABLED_TOOLS": "[\"filesystem_read_multiple_files\",\"filesystem_directory_tree\",\"filesystem_list_allowed_directories\",\"git_git_status\",\"git_git_diff_unstaged\",\"git_git_diff_staged\",\"git_git_diff\",\"git_git_log\",\"git_git_show\",\"fetch_fetch\",\"cli-mcp-server_run_command\",\"cli-mcp-server_show_security_rules\",\"filesystem_search_files\",\"whois_whois_domain\",\"whois_whois_tld\",\"whois_whois_ip\",\"whois_whois_as\"]",
+          "PROMPT": "I've been working on a local project for telling stories where I've already built a few react components. I want to check the required dependency version for the component that has the fewest lines of code."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=4&length=1",
+        "license": "CC BY 4.0 · Scale AI / MCP-Atlas, task 689e0b1d9c8e2ac413c1f25c. The public release metadata declares CC BY 4.0. Only TASK, ENABLED_TOOLS, and PROMPT are shown; GTFA_CLAIMS, TRAJECTORY, and any external service responses are omitted.",
+        "split": "config=default / split=train / row_idx=4 / TASK=689e0b1d9c8e2ac413c1f25c",
+        "excerpt": true
+      },
+      {
+        "id": "book-author-and-medical-study",
+        "title": "文化与医学文献：作者生卒与研究检索",
+        "type": "record",
+        "prompt": "根据《The Sins of the Wolf》作者去世年份，检索该年一月第一周发表、标题同时含 cancer 与 checkpoint inhibitor 且期刊名含 immunology 的研究。",
+        "promptOrigin": "editorial",
+        "explanation": "这是以书目事实串联 PubMed 检索的多步骤任务。只保留任务提示，不含论文标题答案、摘要、第三方服务响应或外部 trajectory。",
+        "raw": {
+          "TASK": "68a398aa2f58036e8d45ede8",
+          "ENABLED_TOOLS": "[\"open-library_get_book_by_title\",\"open-library_get_authors_by_name\",\"open-library_get_author_info\",\"open-library_get_author_photo\",\"open-library_get_book_by_id\",\"pubmed_search_pubmed_key_words\",\"pubmed_search_pubmed_advanced\",\"pubmed_get_pubmed_article_metadata\",\"mongodb_list-collections\",\"mongodb_list-databases\",\"mongodb_collection-schema\",\"mongodb_collection-indexes\",\"context7_resolve-library-id\",\"context7_get-library-docs\",\"weather_find_weather_stations\"]",
+          "PROMPT": "I am exploring connections between cultural history and medical research timelines. in the first month of the year in which the author of the book the sins of the wolf passed away, what is the name of the study published in that month and year whose title contains both cancer and checkpoint inhibitor, and that appeared in a medical publication whose name includes immunology, considering only those published during the first week of that month?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=5&length=1",
+        "license": "CC BY 4.0 · Scale AI / MCP-Atlas, task 68a398aa2f58036e8d45ede8. The public release metadata declares CC BY 4.0. Only TASK, ENABLED_TOOLS, and PROMPT are shown; GTFA_CLAIMS, TRAJECTORY, and any external service responses are omitted.",
+        "split": "config=default / split=train / row_idx=5 / TASK=68a398aa2f58036e8d45ede8",
+        "excerpt": true
       }
     ]
   },
@@ -220,6 +312,28 @@
       "text": "样例 689f4d693e212e8ef3390731：这是官方公开任务中的一条自然语言请求。样例仅保留 TASK、PROMPT 和 ENABLED_TOOLS；不包含参考主张、TRAJECTORY 或任何第三方工具/API 返回内容。",
       "sourceUrls": [
         "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=1&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=2&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=4&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=5&length=1"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“文化与医学文献：作者生卒与研究检索”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas/blob/f7b28d11335d12047d843b3294a1b95c4ff42f35/MCP-Atlas.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=1&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=2&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=4&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FMCP-Atlas&config=default&split=train&offset=5&length=1",
+        "https://huggingface.co/datasets/ScaleAI/MCP-Atlas",
+        "https://creativecommons.org/licenses/by/4.0/",
+        "https://github.com/scaleapi/mcp-atlas"
       ]
     }
   ]

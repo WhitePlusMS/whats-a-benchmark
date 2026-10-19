@@ -81,10 +81,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/MathArena/arxivmath-0626/resolve/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/data/train-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md"
+      "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6"
     ]
   },
   "metric": {
@@ -129,6 +130,21 @@
         "https://huggingface.co/datasets/MathArena/arxivmath-0626/resolve/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/data/train-00000-of-00001.parquet",
         "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Stacking and Clearing in Directed Graph Pebbling · problem 6”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/arxivmath-0626/resolve/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/data/train-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6",
+        "https://huggingface.co/datasets/MathArena/arxivmath-0626/raw/dca0d771ab20c1b8e8c50d0921bf693f7bfe663d/README.md",
+        "https://huggingface.co/datasets/MathArena/arxivmath-0626"
+      ]
     }
   ],
   "sources": [
@@ -166,11 +182,16 @@
       "label": "所选材料的固定许可或来源证据",
       "url": "https://arxiv.org/abs/2606.02855v1",
       "role": "paper"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "抽取模型最终答案并对照 gold；不是对长篇推导的整体论文质量评分，论文检索实验也没有混入主榜协议。",
@@ -187,7 +208,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "3",
@@ -209,6 +230,90 @@
         "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
         "licensePath": "licenses/matharena-arxivmath-sample-source.txt",
         "answer": "\\frac{1}{2t(t-1)}"
+      },
+      {
+        "id": "2",
+        "title": "A Domatic Analogue of $χ$-Bounded Graph Classes and the Gyárfás-Sumner Conjecture · problem 2",
+        "type": "text",
+        "prompt": "The domatic number of a graph $G$, denoted ${\\rm dom}(G)$, is the maximum size of a partition of $V(G)$ into dominating sets. It has been proven that for any $P_4$-free graph (cograph) $G$ with minimum degree $\\delta$, the domatic number satisfies the lower bound ${\\rm dom}(G) \\ge a\\delta + b$, where $a$ and $b$ are real constants. Given that the expression $a\\delta + b$ is the best possible linear lower bound in terms of $\\delta$, what is the ordered pair $(a, b)$?\n",
+        "explanation": "给定 cograph 的最小度，题目要求最佳线性下界中的两个系数，而不是只报一个界。官方 answer 是有序对(1/2, 1)，原题和论文归属信息保留。",
+        "raw": {
+          "problem_idx": 2,
+          "answer": "(1/2, 1)",
+          "problem": "The domatic number of a graph $G$, denoted ${\\rm dom}(G)$, is the maximum size of a partition of $V(G)$ into dominating sets. It has been proven that for any $P_4$-free graph (cograph) $G$ with minimum degree $\\delta$, the domatic number satisfies the lower bound ${\\rm dom}(G) \\ge a\\delta + b$, where $a$ and $b$ are real constants. Given that the expression $a\\delta + b$ is the best possible linear lower bound in terms of $\\delta$, what is the ordered pair $(a, b)$?\n",
+          "source": "2606.02030",
+          "title": "A Domatic Analogue of $χ$-Bounded Graph Classes and the Gyárfás-Sumner Conjecture",
+          "authors": "Quentin Chuet; Selma Djelloul; Hoang La; François Pirot; Hossein Zaredehabadi"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=1 / problem_idx=2",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivmath-sample-source.txt",
+        "answer": "(1/2, 1)"
+      },
+      {
+        "id": "4",
+        "title": "Token-sliding realizability for complements, Cartesian-products, and grid graph families · problem 4",
+        "type": "text",
+        "prompt": "For an integer $k \\ge 0$ and a graph $G$, the token-sliding reconfiguration graph $\\mathsf{TS}_k(G)$ has the independent $k$-sets of $G$ as vertices. Two vertices are adjacent if one token can slide along an edge of $G$ and the resulting $k$-set is still independent. A graph $H$ is said to be $\\mathsf{TS}_k$-realizable if there exists a graph $G$ such that $H$ is isomorphic to $\\mathsf{TS}_k(G)$. What is the minimum integer $k \\ge 2$ such that the grid graph $P_3 \\square P_3$ (the Cartesian product of two paths on 3 vertices) is $\\mathsf{TS}_k$-realizable?\n",
+        "explanation": "问题先定义 token-sliding 重配置图，再问3×3网格可实现时的最小 token 数。原答案为4，本站没有把该数值扩写成来源未提供的构造证明。",
+        "raw": {
+          "problem_idx": 4,
+          "answer": "4",
+          "problem": "For an integer $k \\ge 0$ and a graph $G$, the token-sliding reconfiguration graph $\\mathsf{TS}_k(G)$ has the independent $k$-sets of $G$ as vertices. Two vertices are adjacent if one token can slide along an edge of $G$ and the resulting $k$-set is still independent. A graph $H$ is said to be $\\mathsf{TS}_k$-realizable if there exists a graph $G$ such that $H$ is isomorphic to $\\mathsf{TS}_k(G)$. What is the minimum integer $k \\ge 2$ such that the grid graph $P_3 \\square P_3$ (the Cartesian product of two paths on 3 vertices) is $\\mathsf{TS}_k$-realizable?\n",
+          "source": "2606.03765",
+          "title": "Token-sliding realizability for complements, Cartesian-products, and grid graph families",
+          "authors": "Duc A. Hoang"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=3 / problem_idx=4",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivmath-sample-source.txt",
+        "answer": "4"
+      },
+      {
+        "id": "5",
+        "title": "The 2-Twist Spun Trefoil Has Crossing Number Six · problem 5",
+        "type": "text",
+        "prompt": "In the theory of knotted surfaces in $S^4$, the tri-plane crossing number is defined as the minimal number of crossings in a tri-plane diagram for a bridge trisection of the surface. What is the exact value of the tri-plane crossing number of the 2-twist spun trefoil?\n",
+        "explanation": "题目要求特定 knotted surface 的 tri-plane crossing number，重点是对象与不变量的精确匹配。原 answer=6，与论文题名和来源元数据一同保留。",
+        "raw": {
+          "problem_idx": 5,
+          "answer": "6",
+          "problem": "In the theory of knotted surfaces in $S^4$, the tri-plane crossing number is defined as the minimal number of crossings in a tri-plane diagram for a bridge trisection of the surface. What is the exact value of the tri-plane crossing number of the 2-twist spun trefoil?\n",
+          "source": "2606.03799",
+          "title": "The 2-Twist Spun Trefoil Has Crossing Number Six",
+          "authors": "Sherry Gong; Samuel Lewis-Monkman; Jesse Osnes"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=4 / problem_idx=5",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivmath-sample-source.txt",
+        "answer": "6"
+      },
+      {
+        "id": "6",
+        "title": "Stacking and Clearing in Directed Graph Pebbling · problem 6",
+        "type": "text",
+        "prompt": "Suppose that pebbles are distributed on the vertices of a directed graph $D$. A directed pebbling step $u \\to v$ along an arc $u \\to v$ removes two pebbles from $u$ and places one pebble on $v$. The stacking number $\\text{stack}(D)$ is the least integer $t \\ge 2$ such that every configuration with $t$ pebbles can be transformed by a finite sequence of pebbling steps into a configuration with all remaining pebbles on a single vertex. Let $C_n$ be the directed $n$-cycle. For $n \\ge 2$, what is the exact formula for $\\text{stack}(C_n)$ as a function of $n$?\n",
+        "explanation": "有向 pebbling 每步消耗两个卵石、在后继处产生一个，问题要求有向环的 stacking number 闭式。官方公式 answer 原样保留；本站不把无向图的结论套进这道题。",
+        "raw": {
+          "problem_idx": 6,
+          "answer": "n(2^{n-1}-1)+1",
+          "problem": "Suppose that pebbles are distributed on the vertices of a directed graph $D$. A directed pebbling step $u \\to v$ along an arc $u \\to v$ removes two pebbles from $u$ and places one pebble on $v$. The stacking number $\\text{stack}(D)$ is the least integer $t \\ge 2$ such that every configuration with $t$ pebbles can be transformed by a finite sequence of pebbling steps into a configuration with all remaining pebbles on a single vertex. Let $C_n$ be the directed $n$-cycle. For $n \\ge 2$, what is the exact formula for $\\text{stack}(C_n)$ as a function of $n$?\n",
+          "source": "2606.04659",
+          "title": "Stacking and Clearing in Directed Graph Pebbling",
+          "authors": "Tamás Csernák; Lajos Soukup"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivmath-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=5 / problem_idx=6",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivmath-sample-source.txt",
+        "answer": "n(2^{n-1}-1)+1"
       }
     ]
   }

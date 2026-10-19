@@ -70,27 +70,29 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "Frontier Evals仓库MIT为代码许可；rubric任务内容、论文及素材未确立独立许可。",
-    "scope": "仅复现目标的原创解读和必要短引；MIT不外推到论文PDF、详细rubric或第三方资产。",
+    "status": "permitted",
+    "license": "MIT · 固定 frontier-evals 仓库 LICENSE.md；所选是作者原创的评分标准配置。",
+    "scope": "四个公开 rubric 子树/叶子，原始要求、权重、类别与嵌套 sub_tasks 保持不变；不复制论文正文或上游实验资料。",
     "boundaries": [
-      "不复制论文PDF、详细rubric、数据或素材。",
-      "不宣称已运行或复现任务。"
+      "评分标准对象用于理解检查项，不是模型复现结果或标准实现。",
+      "第三方论文、数据、实现代码和模型输出另行处理，没有被根 MIT 自动覆盖。"
     ],
     "sourceUrls": [
-      "https://github.com/openai/frontier-evals/blob/main/LICENSE.md",
-      "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md",
-      "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json"
+      "https://github.com/openai/frontier-evals/blob/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/LICENSE.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方rubric原始JSON公开具体论文复现目标；论文、数据素材和细粒度rubric未复制。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
     "sourceUrls": [
       "https://github.com/openai/frontier-evals/blob/main/LICENSE.md",
       "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md",
-      "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json"
+      "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
+      "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/all-in-one/rubric.json",
+      "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/fre/rubric.json",
+      "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/lca-on-the-line/rubric.json",
+      "https://github.com/openai/frontier-evals/blob/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/LICENSE.md"
     ]
   },
   "metric": {
@@ -162,10 +164,30 @@
       "label": "已核验官方来源",
       "url": "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/all-in-one/rubric.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/fre/rubric.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/lca-on-the-line/rubric.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/openai/frontier-evals/blob/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/LICENSE.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "逐文件数据许可、论文资产权利及第三方数据授权未完整核实，不能据代码仓库的许可提示推断数据可转载。",
@@ -179,19 +201,40 @@
       "sourceUrls": [
         "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/all-in-one/rubric.json",
+        "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/fre/rubric.json",
+        "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/lca-on-the-line/rubric.json",
+        "https://github.com/openai/frontier-evals/blob/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/LICENSE.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“PaperBench · LCA距离与对齐损失”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
+        "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/all-in-one/rubric.json",
+        "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/fre/rubric.json",
+        "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/lca-on-the-line/rubric.json",
+        "https://github.com/openai/frontier-evals/blob/main/LICENSE.md",
+        "https://github.com/openai/frontier-evals/blob/main/project/paperbench/README.md",
+        "https://github.com/openai/frontier-evals/blob/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/LICENSE.md"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-paperbench-adaptive-pruning-reproduction",
-        "title": "公开rubric目标 · APT论文复现",
+        "title": "APT：RoBERTa加载检查点",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "PaperBench官方adaptive-pruning任务要求复现 ICML 2024 论文《APT: Adaptive Pruning and Tuning Pretrained Language Models for Efficient Training and Inference》。这里只记录该具体复现目标，不提供论文正文、详细评分rubric或素材。",
-        "explanation": "公开rubric ID为40ff2859-e14d-46ba-af52-0ba4595e2bce，原句明确将该论文复现作为目标；没有把任意模型输出当作答案或复现结果。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略other sub_tasks、paper files and attachments。",
+        "prompt": "这条实际rubric叶子检查复现APT论文时，代码能否把RoBERTa载入内存。",
+        "explanation": "原始叶子ID为9ad77547-04b6-4558-993b-f22d91203bf1，权重1，类别为Code Development / Method Implementation，sub_tasks为空。它只覆盖模型加载检查，不能代表整篇论文复现已完成；新增三棵子树展示更完整的分层评分结构。",
         "raw": {
           "finegrained_task_category": "Method Implementation",
           "requirements": "Code has been implemented such that RoBERTa can be loaded into memory",
@@ -201,9 +244,298 @@
           "sub_tasks": []
         },
         "source": "https://raw.githubusercontent.com/openai/frontier-evals/main/project/paperbench/data/papers/adaptive-pruning/rubric.json",
-        "license": "本站原创任务解读与rubric必要短引；Frontier Evals代码MIT不延伸为第三方论文/素材授权。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
+        "license": "MIT · OpenAI frontier-evals作者评分rubric；论文正文与上游实验资源未复制。",
         "split": "OpenAI frontier-evals / PaperBench / adaptive-pruning / rubric id 40ff2859-e14d-46ba-af52-0ba4595e2bce",
-        "excerpt": true
+        "excerpt": true,
+        "licensePath": "licenses/paperbench-mit.txt"
+      },
+      {
+        "id": "paperbench-official-rubric-all-in-one",
+        "title": "PaperBench · All-in-one simulation-based inference",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Variance Exploding SDE (VESDE) is implemented, as described in A2.1",
+        "explanation": "该父项按论文附录A2.1检查VESDE实现，子项区分漂移、扩散、扰动核公式、sigma常量及采样时间区间，并分别给权重。完整所选子树保留原公式、数值、null类别及子项顺序；它是评分配置，不是本站推导的公式或复现成绩。",
+        "raw": {
+          "id": "8c706efd-f14e-4756-a8e9-303d747db56a",
+          "requirements": "Variance Exploding SDE (VESDE) is implemented, as described in A2.1",
+          "weight": 1,
+          "sub_tasks": [
+            {
+              "id": "0ac16f05-bdb9-48c8-9103-764068f5301a",
+              "requirements": "The drift term for Variance Exploding SDE is defined as $f(x, t)=0$",
+              "weight": 2,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Method Implementation"
+            },
+            {
+              "id": "1402caf0-ee17-48a4-b0f5-ee4523807747",
+              "requirements": "The diffusion term for Variance Exploding SDE is defined as $g(t)=\\sigma_{min} \\cdot (\\frac{\\sigma_{max}}{\\sigma_{min}})^t \\cdot \\sqrt{2 \\log \\frac{\\sigma_{max}}{\\sigma_{min}}}$",
+              "weight": 2,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Method Implementation"
+            },
+            {
+              "id": "396c0b27-9d8c-49d4-a9e8-667b7c1a9e5c",
+              "requirements": "The perturbation kernel for the Variance Exploding SDE is defined as $p(x_t|x_0) = \\mathcal{N}(x_t, x_t, \\sigma(t)I)$ where $\\sigma(t) = \\sigma_{min}^2\\left( \\frac{\\sigma_{max}}{\\sigma_{min}} \\right)^{2t}$",
+              "weight": 2,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Method Implementation"
+            },
+            {
+              "id": "07f7aac1-c623-46e0-b7cc-3991331cbd9c",
+              "requirements": "The constant $\\sigma_{max}$ for VESDE is set to 15",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Experimental Setup"
+            },
+            {
+              "id": "c6cd56ae-e565-4512-978e-80a8afaae037",
+              "requirements": "The constant $\\sigma_{min}$ for VESDE is set to 0.0001",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Experimental Setup"
+            },
+            {
+              "id": "ac3759f1-14f6-4859-a64f-84db470eb2db",
+              "requirements": "In VESDE, samples are drawn from the time interval [1e-5, 1]",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Experimental Setup"
+            }
+          ],
+          "task_category": null,
+          "finegrained_task_category": null
+        },
+        "source": "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/all-in-one/rubric.json",
+        "license": "MIT · OpenAI frontier-evals 作者发布的评分rubric；保留原许可，不覆盖所引用论文PDF、原实验数据或其他项目源码。",
+        "split": "PaperBench official rubric JSON / paper=all-in-one / sub_tasks index 0 / commit b78dab1da774a6456b1ed9c48c9ff194ee3ff36d (not a model-response split)",
+        "excerpt": true,
+        "licensePath": "licenses/paperbench-mit.txt"
+      },
+      {
+        "id": "paperbench-official-rubric-fre",
+        "title": "PaperBench · Functional Reward Encodings",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "The necessary agent datasets and environments have been setup",
+        "explanation": "这组评分项检查强化学习数据与环境是否搭好，覆盖D4RL AntMaze、ExORL cheetah/walker及Kitchen。子项分别检查离线训练数据可用与在线评估环境可用，权重和层级原样保留；没有把环境准备等同算法复现成功。",
+        "raw": {
+          "id": "138c5838-d020-487e-b442-83c0d5fdebcb",
+          "requirements": "The necessary agent datasets and environments have been setup",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "id": "6f646981-abbf-4660-bc48-68eacb3afee0",
+              "requirements": "The AntMaze dataset and environment have been setup",
+              "weight": 3,
+              "sub_tasks": [
+                {
+                  "id": "595c44a3-25a3-4f38-80d1-d3376b12476e",
+                  "requirements": "Code has been implemented such that the `antmaze-large-diverse-v2` dataset from D4RL can be used for offline training of sequential decision making agents",
+                  "weight": 1,
+                  "sub_tasks": [],
+                  "task_category": "Code Development",
+                  "finegrained_task_category": "Dataset and Model Acquisition"
+                },
+                {
+                  "id": "5b3ccceb-d946-4ce3-96f1-6cb9c3ef8030",
+                  "requirements": "Code has been implemented such that the D4RL Ant Maze environment (https://github.com/Farama-Foundation/D4RL/blob/71a9549f2091accff93eeff68f1f3ab2c0e0a288/d4rl/locomotion/ant.py or equivalent) can be used for online evaluation of sequential decision making agents",
+                  "weight": 1,
+                  "sub_tasks": [],
+                  "task_category": "Code Development",
+                  "finegrained_task_category": "Evaluation, Metrics & Benchmarking"
+                }
+              ],
+              "task_category": null,
+              "finegrained_task_category": null
+            },
+            {
+              "id": "d5ca20a0-0365-40c6-89f7-09e049284b31",
+              "requirements": "The ExORL datasets and environments have been setup",
+              "weight": 2,
+              "sub_tasks": [
+                {
+                  "id": "48fa5a73-3814-49f1-910e-184aec339801",
+                  "requirements": "The ExORL `cheetah` (RND) dataset and environment has been setup",
+                  "weight": 1,
+                  "sub_tasks": [
+                    {
+                      "id": "bccaf966-1315-49b8-9d49-df1b0f30d109",
+                      "requirements": "Code has been implemented such that the `cheetah` (RND) dataset from ExORL (https://github.com/denisyarats/exorl)  can be used for offline training of sequential decision making agents",
+                      "weight": 1,
+                      "sub_tasks": [],
+                      "task_category": "Code Development",
+                      "finegrained_task_category": "Method Implementation"
+                    },
+                    {
+                      "id": "15a0dc98-8a9f-4173-a7a0-ba07770200f2",
+                      "requirements": "Code has been implemented such that environments from the `cheetah` domain from the custom DeepMind Control Suite ExORL environments (https://github.com/denisyarats/exorl/tree/main/custom_dmc_tasks) can be used for online evaluation of sequential decision making agents",
+                      "weight": 1,
+                      "sub_tasks": [],
+                      "task_category": "Code Development",
+                      "finegrained_task_category": "Evaluation, Metrics & Benchmarking"
+                    }
+                  ],
+                  "task_category": null,
+                  "finegrained_task_category": null
+                },
+                {
+                  "id": "28a49106-74a0-4af1-ae55-24168c5de2c1",
+                  "requirements": "The ExORL `walker` (RND) dataset and environment has been setup",
+                  "weight": 1,
+                  "sub_tasks": [
+                    {
+                      "id": "2b14e66b-18a7-45ad-9dc9-94dd728cb448",
+                      "requirements": "Code has been implemented such that the `walker` (RND) dataset from ExORL (https://github.com/denisyarats/exorl) can be used for offline training of sequential decision making agents",
+                      "weight": 1,
+                      "sub_tasks": [],
+                      "task_category": "Code Development",
+                      "finegrained_task_category": "Method Implementation"
+                    },
+                    {
+                      "id": "534f0b86-f31e-4b6e-8bc3-50159bfdd0a3",
+                      "requirements": "Code has been implemented such that environments from the `walker` domain from custom DeepMind Control Suite ExORL environments (https://github.com/denisyarats/exorl/tree/main/custom_dmc_tasks) can be used for online evaluation of sequential decision making agents",
+                      "weight": 1,
+                      "sub_tasks": [],
+                      "task_category": "Code Development",
+                      "finegrained_task_category": "Evaluation, Metrics & Benchmarking"
+                    }
+                  ],
+                  "task_category": null,
+                  "finegrained_task_category": null
+                }
+              ],
+              "task_category": null,
+              "finegrained_task_category": null
+            },
+            {
+              "id": "25c0642c-b1a8-44dc-a6e3-97c5686482b8",
+              "requirements": "The Kitchen dataset and environment have been setup",
+              "weight": 1,
+              "sub_tasks": [
+                {
+                  "id": "4eb72ad4-06cc-48ee-891f-a3851d850ea0",
+                  "requirements": "Code has been implemented such that the \"kitchen-complete-v0\" dataset from D4RL can be used for offline training of sequential decision making agents",
+                  "weight": 1,
+                  "sub_tasks": [],
+                  "task_category": "Code Development",
+                  "finegrained_task_category": "Dataset and Model Acquisition"
+                },
+                {
+                  "id": "190df881-45b2-409f-a204-e924be3eab79",
+                  "requirements": "Code has been implemented such that the D4RL Kitchen environment (https://github.com/Farama-Foundation/D4RL/tree/71a9549f2091accff93eeff68f1f3ab2c0e0a288/d4rl/kitchen or equivalent) can be used for online evaluation of sequential decision making agents",
+                  "weight": 1,
+                  "sub_tasks": [],
+                  "task_category": "Code Development",
+                  "finegrained_task_category": "Evaluation, Metrics & Benchmarking"
+                }
+              ],
+              "task_category": null,
+              "finegrained_task_category": null
+            }
+          ],
+          "task_category": null,
+          "finegrained_task_category": null
+        },
+        "source": "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/fre/rubric.json",
+        "license": "MIT · OpenAI frontier-evals 作者发布的评分rubric；保留原许可，不覆盖所引用论文PDF、原实验数据或其他项目源码。",
+        "split": "PaperBench official rubric JSON / paper=fre / sub_tasks index 0 / commit b78dab1da774a6456b1ed9c48c9ff194ee3ff36d (not a model-response split)",
+        "excerpt": true,
+        "licensePath": "licenses/paperbench-mit.txt"
+      },
+      {
+        "id": "paperbench-official-rubric-lca-on-the-line",
+        "title": "PaperBench · LCA距离与对齐损失",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "The LCA distance has been implemented, as described in Section 2.",
+        "explanation": "该LCA距离父项展开为最近共同祖先、节点概率与信息量、树深度、两种距离及数据集平均等检查项。所选完整树保留每个真实ID、公式、权重和类别；这是作者评分标准的实际结构，未复制论文附件，也没有生成实现或模型得分。",
+        "raw": {
+          "id": "525020fa-cc8a-4dc5-ba5f-aca602ddc4d7",
+          "requirements": "The LCA distance has been implemented, as described in Section 2.",
+          "weight": 1,
+          "sub_tasks": [
+            {
+              "id": "4fe131d4-617e-4407-9aeb-fd4c9ee71939",
+              "requirements": "Code has been written to find the lowest common ancestor of two nodes, $N_{L C A}\\left(y^{\\prime}, y\\right)$.",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Method Implementation"
+            },
+            {
+              "id": "5caeb163-1384-45c1-930c-ff08994fa730",
+              "requirements": "Code has been written to compute the information content of a node.",
+              "weight": 1,
+              "sub_tasks": [
+                {
+                  "id": "b78b143f-cd83-43ef-a578-9b36e31ef873",
+                  "requirements": "Code to compute the probability of each node in a given class hierarchy, $p(y)$, has been written. The probability of a node is computed by summing the probabilities of its descendants where leaf nodes are assigned uniform probabilities, as described in the paper \"Hierarchical classification at multiple operating points\".",
+                  "weight": 1,
+                  "sub_tasks": [],
+                  "task_category": "Code Development",
+                  "finegrained_task_category": "Method Implementation"
+                },
+                {
+                  "id": "54f426ad-c2c8-48d1-83c7-911b447095f7",
+                  "requirements": "Code to compute the information content of a node, $y$, has been implemented via $-\\log_2 p(y)$.",
+                  "weight": 1,
+                  "sub_tasks": [],
+                  "task_category": "Code Development",
+                  "finegrained_task_category": "Method Implementation"
+                }
+              ],
+              "task_category": null,
+              "finegrained_task_category": null
+            },
+            {
+              "id": "339d75bc-44dc-454b-8ba3-876955340d44",
+              "requirements": "Code has been written to compute the depth of a node $x$ in a tree $T$.",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Method Implementation"
+            },
+            {
+              "id": "00438d76-0175-42b3-848b-a2f799e5d5d6",
+              "requirements": "Code has been written to compute the LCA distance between two nodes using information content, $D_{L C A}\\left(y^{\\prime}, y\\right) := f(y) - f\\left(N_{L C A}\\left(y, y^{\\prime}\\right)\\right)$, where $f$ is the information content.",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Method Implementation"
+            },
+            {
+              "id": "c7bc93bd-2786-4613-a563-d6d2fdd74938",
+              "requirements": "Code has been written to compute the LCA distance between two nodes using tree depth, $D_{L C A}^P\\left(y^{\\prime}, y\\right):=\\left(P(y)-P\\left(N_{L C A}\\left(y^{\\prime}, y\\right)\\right)\\right)+\\left(P\\left(y^{\\prime}\\right)-P\\left(N_{L C A}\\left(y^{\\prime}, y\\right)\\right)\\right)$, where $P$ is a function which retrieves the depth of node $x$ from a tree $T$.",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Method Implementation"
+            },
+            {
+              "id": "ca51e156-4e6f-4859-94ed-6db53ea1d978",
+              "requirements": "The LCA distance for a model on dataset $\\mathcal{M}:=X_1, \\ldots, X_n$ has been implemented as $D_{L C A}(\\text { model }, \\mathcal{M}) := \\frac{1}{n} \\sum_{i=1}^n D_{L C A}\\left(\\widehat{y}_i, y_i\\right) \\Longleftrightarrow y_i \\neq \\widehat{y}_i$ where $\\hat{y}_i$ is the predicted class for sample $X_i$ using the model, $y_i$ is the ground truth class for sample $X_i$, and $y_i \\neq \\hat{y}_i$.",
+              "weight": 1,
+              "sub_tasks": [],
+              "task_category": "Code Development",
+              "finegrained_task_category": "Evaluation, Metrics & Benchmarking"
+            }
+          ],
+          "task_category": null,
+          "finegrained_task_category": null
+        },
+        "source": "https://raw.githubusercontent.com/openai/frontier-evals/b78dab1da774a6456b1ed9c48c9ff194ee3ff36d/project/paperbench/data/papers/lca-on-the-line/rubric.json",
+        "license": "MIT · OpenAI frontier-evals 作者发布的评分rubric；保留原许可，不覆盖所引用论文PDF、原实验数据或其他项目源码。",
+        "split": "PaperBench official rubric JSON / paper=lca-on-the-line / sub_tasks index 0 / commit b78dab1da774a6456b1ed9c48c9ff194ee3ff36d (not a model-response split)",
+        "excerpt": true,
+        "licensePath": "licenses/paperbench-mit.txt"
       }
     ]
   }

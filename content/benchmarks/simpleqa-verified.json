@@ -79,7 +79,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
       "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md"
@@ -122,6 +122,20 @@
         "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
         "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“临时禁飞区的请求方”等案例；每条的附件缺口与取样范围单独说明。 展示记录2→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md",
+        "https://huggingface.co/datasets/google/simpleqa-verified"
+      ]
     }
   ],
   "sources": [
@@ -162,8 +176,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "使用官方 GPT-4.1 autorater 提示对照答案标签；作者改进的是标签质量、主题平衡与裁判提示，非新增搜索工具。",
@@ -180,7 +194,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "5",
@@ -227,6 +241,75 @@
         "license": "MIT · SimpleQA Verified by Lukas Haas, Gal Yona, Giovanni D'Antonio, Sasha Goldshtein and Dipanjan Das, Google DeepMind / Google Research; based on OpenAI SimpleQA",
         "licensePath": "licenses/simpleqa-verified-sample-source.txt",
         "answer": "Jóhanna Sigurðardóttir"
+      },
+      {
+        "id": "9",
+        "title": "2019 年选举中的对手",
+        "type": "text",
+        "prompt": "To whom did Mehbooba Mufti Sayed contest the 2019 Lok Sabha elections and lose?",
+        "explanation": "问题限定人物和2019年选举，并要求落败时的对手姓名；原题、答案和验证用来源 URL 来自同一 CSV 行。本站不把模型生成内容补进答案。",
+        "raw": {
+          "original_index": "9",
+          "problem": "To whom did Mehbooba Mufti Sayed contest the 2019 Lok Sabha elections and lose?",
+          "answer": "Hasnain Masoodi",
+          "topic": "Politics",
+          "answer_type": "Person",
+          "multi_step": "False",
+          "requires_reasoning": "False",
+          "urls": "https://www.indiatoday.in/elections/lok-sabha-2019/story/j-k-lok-sabha-results-2019-pdp-chief-mehbooba-mufti-loses-anantnag-seat-to-nc-hasnain-masoodi-1533245-2019-05-23,https://timesofindia.indiatimes.com/elections/lok-sabha-constituencies/jammu-kashmir/anantnag,https://en.wikipedia.org/wiki/Mehbooba_Mufti"
+        },
+        "source": "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "split": "test / CSV record",
+        "excerpt": false,
+        "license": "MIT · SimpleQA Verified by Lukas Haas, Gal Yona, Giovanni D'Antonio, Sasha Goldshtein and Dipanjan Das, Google DeepMind / Google Research; based on OpenAI SimpleQA",
+        "licensePath": "licenses/simpleqa-verified-sample-source.txt",
+        "answer": "Hasnain Masoodi"
+      },
+      {
+        "id": "13",
+        "title": "摄影博物馆更名年份",
+        "type": "text",
+        "prompt": "In which year did Melbourne's Monash Gallery of Art (MGA) rebrand and become the Museum of Australian Photography (MAPh)?",
+        "explanation": "需要区分 Monash Gallery of Art 的成立年份和改名为 Museum of Australian Photography 的年份。官方 answer=2023，原 topic 与来源链接一并保留。",
+        "raw": {
+          "original_index": "13",
+          "problem": "In which year did Melbourne's Monash Gallery of Art (MGA) rebrand and become the Museum of Australian Photography (MAPh)?",
+          "answer": "2023",
+          "topic": "Art",
+          "answer_type": "Date",
+          "multi_step": "False",
+          "requires_reasoning": "False",
+          "urls": "https://www.monash.vic.gov.au/About-Us/News/Monash-Gallery-of-Art-rebrands-as-MAPh-Museum-of-Australian-Photography,https://www.australianphotography.com/news/monash-gallery-of-art-to-rebrand-as-museum-of-australian-photography,https://maph.org.au/about/"
+        },
+        "source": "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "split": "test / CSV record",
+        "excerpt": false,
+        "license": "MIT · SimpleQA Verified by Lukas Haas, Gal Yona, Giovanni D'Antonio, Sasha Goldshtein and Dipanjan Das, Google DeepMind / Google Research; based on OpenAI SimpleQA",
+        "licensePath": "licenses/simpleqa-verified-sample-source.txt",
+        "answer": "2023"
+      },
+      {
+        "id": "14",
+        "title": "临时禁飞区的请求方",
+        "type": "text",
+        "prompt": "Who requested the Federal Aviation Administration (FAA) implement a 900 sq mi (2,300 km2) temporary flight restriction zone over the operations areas of the Deepwater Horizon?",
+        "explanation": "题目问谁请求 FAA 设立临时限制区，要区分提出请求的机构与实施限制的机构。官方答案为 The Coast Guard，面积和事故名仍按原题保留。",
+        "raw": {
+          "original_index": "14",
+          "problem": "Who requested the Federal Aviation Administration (FAA) implement a 900 sq mi (2,300 km2) temporary flight restriction zone over the operations areas of the Deepwater Horizon?",
+          "answer": "The Coast Guard",
+          "topic": "Politics",
+          "answer_type": "Other",
+          "multi_step": "False",
+          "requires_reasoning": "False",
+          "urls": "https://www.ensynox.com/the-true-story-of-deepwater-horizon,https://en.wikipedia.org/wiki/Deepwater_Horizon_oil_spill"
+        },
+        "source": "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+        "split": "test / CSV record",
+        "excerpt": false,
+        "license": "MIT · SimpleQA Verified by Lukas Haas, Gal Yona, Giovanni D'Antonio, Sasha Goldshtein and Dipanjan Das, Google DeepMind / Google Research; based on OpenAI SimpleQA",
+        "licensePath": "licenses/simpleqa-verified-sample-source.txt",
+        "answer": "The Coast Guard"
       }
     ]
   }

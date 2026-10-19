@@ -66,9 +66,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "本站仅选取明确标注范围的公开输入片段；媒体、附件、参考内容和完整题库的权利分别核对。"
     ],
     "sourceUrls": [
       "https://benchmark.towardsai.com/methodology.html"
@@ -79,7 +79,7 @@
     "sourceUrls": [
       "https://benchmark.towardsai.com/methodology.html"
     ],
-    "reason": "本站仅展示 Script 9 的官方公开主题概要短引和编辑性说明；完整 brief、research packet 与 reference script 不公开，也不作为完整测试输入。",
+    "reason": "3 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://benchmark.towardsai.com/methodology.html"
   },
   "metric": {
@@ -116,8 +116,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "四席裁判读brief、研究资料、reference与candidate；三家LLM评分前需引用证据，Jev逐指标选质量层级，长度代码计算，Slop混合代码与裁判。",
@@ -150,24 +150,62 @@
       "sourceUrls": [
         "https://benchmark.towardsai.com/methodology.html"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Script 4 · Short explainer”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://benchmark.towardsai.com/methodology.html"
+      ]
     }
   ],
   "sampleSet": {
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
-        "license": "本页仅保留官方公开概要的必要短引和本站编辑性说明；未确认覆盖题目、完整 brief、reference 或模型输出的统一再发布许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "excerpt": true,
-        "prompt": "ToneBench Script 9 是一篇从招聘方视角出发的职业指南：分析优秀工程师为什么仍会被 AI 岗位拒绝，并讨论哪些做法可能帮助他们获聘。这里仅呈现官方公开任务概要；完整 brief、research packet 和 reference script 均未公开，因此这不是完整测试输入。",
-        "split": "official methodology · Script 9 · career guide / hiring analysis · public synopsis only",
-        "title": "AI 岗位招聘与求职指南",
-        "explanation": "官方 Methodology 的 Script 9 标为 career guide / hiring analysis，并公开上述任务主题与写作方向。页面说明每项实际输入还包括风格指南、目标长度、brief 与 research packet；这些完整材料及 reference script 不在本站复现。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "promptOrigin": "editorial",
-        "type": "text",
-        "id": "tonebench-script-9-ai-hiring-guide",
+        "title": "Script 9 · Career guide / hiring analysis",
+        "split": "ToneBench official methodology page · public task-format table, Script 9",
         "source": "https://benchmark.towardsai.com/methodology.html",
-        "raw": "Script 9\ncareer guide / hiring analysis\nwhy good engineers still get rejected for AI roles, and what would have gotten them hired."
+        "explanation": "从招聘方视角解释优秀工程师为何被AI岗位拒绝，并讨论哪些经历可能改变结果，强调长篇职业分析。 官方方法页另称实际生成输入还含研究资料包、频道风格指南和目标时长；这些未在本站中收录，参考脚本也未复制。",
+        "prompt": "从招聘方视角解释优秀工程师为何被AI岗位拒绝，并讨论哪些经历可能改变结果，强调长篇职业分析。",
+        "id": "tonebench-script-9-ai-hiring-guide",
+        "license": "页面公开展示 brief/测试点描述；检查的官方方法页未找到该内容的再发布许可。长篇reference scripts及research packets未复制。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": "A long career guide from the hiring side: why capable engineers are rejected for AI roles and what would have changed the outcome."
+      },
+      {
+        "excerpt": true,
+        "title": "Script 1 · Opinion / warning explainer",
+        "split": "ToneBench official methodology page · public task-format table, Script 1",
+        "source": "https://benchmark.towardsai.com/methodology.html",
+        "explanation": "要求围绕明确观点给出证据，并采用紧迫警示式表达，区别于普通新闻摘要。 官方方法页另称实际生成输入还含研究资料包、频道风格指南和目标时长；这些未在本站中收录，参考脚本也未复制。",
+        "prompt": "要求围绕明确观点给出证据，并采用紧迫警示式表达，区别于普通新闻摘要。",
+        "id": "tonebench-script-1",
+        "license": "页面公开展示 brief/测试点描述；检查的官方方法页未找到该内容的再发布许可。长篇reference scripts及research packets未复制。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": "Argue one clear position with evidence, in the register of an urgent warning."
+      },
+      {
+        "excerpt": true,
+        "title": "Script 4 · Short explainer",
+        "split": "ToneBench official methodology page · public task-format table, Script 4",
+        "source": "https://benchmark.towardsai.com/methodology.html",
+        "explanation": "要求从贴近日常的问题讲到机制解释，再用一个类比收束；题型是完整概念教学。 官方方法页另称实际生成输入还含研究资料包、频道风格指南和目标时长；这些未在本站中收录，参考脚本也未复制。",
+        "prompt": "要求从贴近日常的问题讲到机制解释，再用一个类比收束；题型是完整概念教学。",
+        "id": "tonebench-script-4",
+        "license": "页面公开展示 brief/测试点描述；检查的官方方法页未找到该内容的再发布许可。长篇reference scripts及research packets未复制。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": "Teach one concept end to end: a relatable problem, the mechanism in plain English, one analogy and a warm close."
       }
-    ],
-    "retrievedAt": "2026-10-09"
+    ]
   }
 }

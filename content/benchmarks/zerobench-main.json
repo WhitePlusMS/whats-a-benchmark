@@ -5,14 +5,24 @@
   "name": "ZeroBench Main",
   "subtitle": "图像输入的高难度多模态视觉推理主问题集",
   "category": "multimodal",
-  "tags": ["视觉推理", "图像理解", "多模态", "大语言模型"],
+  "tags": [
+    "视觉推理",
+    "图像理解",
+    "多模态",
+    "大语言模型"
+  ],
   "publisher": "Jonathan Roberts 等 ZeroBench 作者团队",
-  "brandIds": ["zerobench"],
+  "brandIds": [
+    "zerobench"
+  ],
   "year": 2025,
   "releaseDate": "2025-12-23",
   "version": "v3",
   "kind": "subset",
-  "aliases": ["ZeroBench-main", "ZeroBench (main)"],
+  "aliases": [
+    "ZeroBench-main",
+    "ZeroBench (main)"
+  ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "ZeroBench Main 以 100 道图文视觉推理题评测多模态模型。",
@@ -56,7 +66,9 @@
   },
   "dataAccess": {
     "status": "gated",
-    "requirements": ["访问 Hugging Face 数据集需登录并确认作者的使用提示。"],
+    "requirements": [
+      "访问 Hugging Face 数据集需登录并确认作者的使用提示。"
+    ],
     "url": "https://huggingface.co/datasets/jonathan-roberts1/zerobench",
     "sourceUrls": [
       "https://huggingface.co/datasets/jonathan-roberts1/zerobench"
@@ -65,11 +77,11 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "GitHub 仓库 LICENSE 为 Jonathan Roberts 的 MIT 软件许可；Hugging Face 数据卡没有声明独立数据集许可证。数据卡要求不得公开分享 ZeroBench 答案或将数据用于训练。",
-    "scope": "仅记录官方研究说明及评测元数据；MIT 仓库许可不推定覆盖题面、答案和图像。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "不得公开张贴、转发、再分发或披露 ZeroBench 答案。",
-      "不得将 ZeroBench 的任何部分用于训练。",
-      "不得依据代码仓库 MIT 许可推定数据题面、答案、图像或图像来源素材可转载。"
+      "官方HF访问条件明确禁止公开ZeroBench答案，以及将任何部分用于训练。",
+      "该条款未写成全面禁止在线展示无答案题干；题图版权及数据再发布许可仍需分别核对。",
+      "本页仅含公开论文的短引，未接受访问确认或下载受控数据。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/jonathan-roberts1/zerobench",
@@ -78,11 +90,12 @@
     ]
   },
   "sampleAccess": {
-    "status": "restricted",
-    "reason": "作者明确要求不得公开分享答案，也不得用于训练；本站不转载题面、答案或图像，仅提供官方数据集入口。",
-    "url": "https://huggingface.co/datasets/jonathan-roberts1/zerobench",
+    "status": "local",
+    "reason": "本站仅展示1段官方论文已公开的题干短引，不是完整数据行，缺少题图且不含答案。HF访问条件明确禁止公开答案及将任何部分用于训练；没有写成全面禁止公开无答案题干。本站未接受gated条款、未读取受控数据行。",
+    "url": "https://arxiv.org/html/2502.09696v3",
     "sourceUrls": [
-      "https://huggingface.co/datasets/jonathan-roberts1/zerobench"
+      "https://arxiv.org/html/2502.09696v3",
+      "https://huggingface.co/api/datasets/jonathan-roberts1/zerobench"
     ]
   },
   "metric": {
@@ -118,17 +131,38 @@
     },
     {
       "text": "DeepSeek 2026-10-17 报告列出 ZeroBench-main（w/tools），官方更新日志注明 Pass@5；未披露具体数据修订、工具种类或采样参数，不能据此确认报告使用 v3。",
-      "sourceUrls": ["https://api-docs.deepseek.com/updates/#date-2026-10-17"]
+      "sourceUrls": [
+        "https://api-docs.deepseek.com/updates/#date-2026-10-17"
+      ]
+    },
+    {
+      "text": "2026-10-19 公开案例补核：HF公开API返回auto-gated及明确的禁公开答案/禁训练请求；公开论文§3.2与Figure 3确有具体案例。本站只保留论文正文的一句15词短引，不复印带答案的Figure 3，不将不完整片段称为完整任务。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2502.09696v3",
+        "https://huggingface.co/api/datasets/jonathan-roberts1/zerobench"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增1条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“公开论文题干片段 · 国际象棋（非完整样例）”等案例；每条的附件缺口与取样范围单独说明。 展示记录0→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2502.09696v3",
+        "https://huggingface.co/api/datasets/jonathan-roberts1/zerobench",
+        "https://huggingface.co/datasets/jonathan-roberts1/zerobench"
+      ]
     }
   ],
   "interpretation": {
     "judge": {
       "text": "官方论文说明通常自动解析花括号中的最终答案并与标准答案精确匹配；少数不稳定遵循格式的模型改由语言模型解析最终答案。",
-      "sourceUrls": ["https://arxiv.org/abs/2502.09696"]
+      "sourceUrls": [
+        "https://arxiv.org/abs/2502.09696"
+      ]
     },
     "comparison": {
       "text": "主问题成绩需同时记录采样数、解码设置及工具条件；排行榜区分官方运行、外部报告和工具辅助结果。",
-      "sourceUrls": ["https://zerobench.github.io/"]
+      "sourceUrls": [
+        "https://zerobench.github.io/"
+      ]
     },
     "disclosure": {
       "text": "主问题与子问题的字段、split 和数量在数据卡公开；数据卡不声明独立数据许可，并明确禁止公开分享答案。",
@@ -178,9 +212,37 @@
       "label": "DeepSeek 2026-10-17 官方更新日志与计分脚注",
       "url": "https://api-docs.deepseek.com/updates/#date-2026-10-17",
       "role": "vendor-report"
+    },
+    {
+      "label": "ZeroBench公开题文及准确访问条件",
+      "url": "https://arxiv.org/html/2502.09696v3",
+      "role": "paper"
+    },
+    {
+      "label": "ZeroBench公开题文及准确访问条件",
+      "url": "https://huggingface.co/api/datasets/jonathan-roberts1/zerobench",
+      "role": "access"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-17",
-  "updatedAt": "2026-10-17"
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "paper-chess-question-revision-excerpt",
+        "title": "公开论文题干片段 · 国际象棋（非完整样例）",
+        "type": "record",
+        "prompt": "在最后一步（第 45 步）中，黑方走了一枚此前未移动过的兵。",
+        "promptOrigin": "editorial",
+        "explanation": "作者在论文§3.2讨论Figure 3的国际象棋题时，逐字引用这句关于第45步和兵此前是否移动的补充条件，并对照前版措辞。它说明题目依赖棋盘和行动历史；本站只收这句公开题文，没有题图、完整提问或答案，不能据此独立作答。论文版本号不自动等同于数据集版本号。",
+        "raw": "In the last move (move 45), black moved a pawn that had not previously moved",
+        "source": "https://arxiv.org/html/2502.09696v3",
+        "license": "ZeroBench作者论文 arXiv:2502.09696v3 §3.2 的15词必要题文短引，注明原作者和出处；不宣称获得数据集整体许可，不含答案或图像。",
+        "split": "Author paper v3, §3.2 discussion of the Figure 3 chess example; narrative excerpt, not a dataset row",
+        "excerpt": true
+      }
+    ]
+  }
 }

@@ -4,7 +4,7 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "id": "mbpp",
   "name": "MBPP",
   "subtitle": "把一段小程序需求写成代码",
@@ -63,6 +63,11 @@
       "label": "官方站内样例记录",
       "url": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -71,7 +76,7 @@
     "google-research"
   ],
   "sampleSet": {
-    "retrievedAt": "2026-09-22",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "2",
@@ -93,9 +98,8 @@
         "prompt": "Write a function to find the shared elements from the given two lists.",
         "answer": "def similar_elements(test_tup1, test_tup2):\n  res = tuple(set(test_tup1) & set(test_tup2))\n  return (res) ",
         "explanation": "编写函数找出两个列表的共同元素。自然语言给出目标，test_list 中的断言检查程序行为。",
-        "source": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
-        "license": "Apache-2.0 · Google Research",
-        "licensePath": "licenses/google-research.txt",
+        "source": "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "license": "CC BY 4.0 · Google Research Datasets MBPP",
         "type": "text"
       },
       {
@@ -119,9 +123,107 @@
         "prompt": "Write a python function to identify non-prime numbers.",
         "answer": "import math\ndef is_not_prime(n):\n    result = False\n    for i in range(2,int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            result = True\n    return result",
         "explanation": "编写 Python 函数识别非质数。返回形式和边界情况由原始测试断言约束。",
-        "source": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
-        "license": "Apache-2.0 · Google Research",
-        "licensePath": "licenses/google-research.txt",
+        "source": "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "license": "CC BY 4.0 · Google Research Datasets MBPP",
+        "type": "text"
+      },
+      {
+        "id": "4",
+        "title": "MBPP task 4",
+        "raw": {
+          "source_file": "Benchmark Questions Verification V2.ipynb",
+          "task_id": 4,
+          "prompt": "Write a function to find the n largest integers from a given list of numbers, returned in descending order.",
+          "code": "import heapq as hq\ndef heap_queue_largest(nums,n):\n  largest_nums = hq.nlargest(n, nums)\n  return largest_nums",
+          "test_imports": [],
+          "test_list": [
+            "assert heap_queue_largest( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]",
+            "assert heap_queue_largest( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]",
+            "assert heap_queue_largest( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]"
+          ]
+        },
+        "split": "sanitized-mbpp / task_id=4",
+        "excerpt": false,
+        "prompt": "Write a function to find the n largest integers from a given list of numbers, returned in descending order.",
+        "answer": "import heapq as hq\ndef heap_queue_largest(nums,n):\n  largest_nums = hq.nlargest(n, nums)\n  return largest_nums",
+        "explanation": "从列表中选出最大的 n 个整数并按降序返回；官方测试分别取 2、3、5 个，检查数量与顺序。参考代码使用 heapq.nlargest，原代码和测试均保留。",
+        "source": "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "license": "CC BY 4.0 · Google Research Datasets MBPP",
+        "type": "text"
+      },
+      {
+        "id": "6",
+        "title": "MBPP task 6",
+        "raw": {
+          "source_file": "Benchmark Questions Verification V2.ipynb",
+          "task_id": 6,
+          "prompt": "Write a python function to check whether the two numbers differ at one bit position only or not.",
+          "code": "def is_Power_Of_Two (x): \n    return x and (not(x & (x - 1))) \ndef differ_At_One_Bit_Pos(a,b): \n    return is_Power_Of_Two(a ^ b)",
+          "test_imports": [],
+          "test_list": [
+            "assert differ_At_One_Bit_Pos(13,9) == True",
+            "assert differ_At_One_Bit_Pos(15,8) == False",
+            "assert differ_At_One_Bit_Pos(2,4) == False",
+            "assert differ_At_One_Bit_Pos(2, 3) == True",
+            "assert differ_At_One_Bit_Pos(5, 1) == True",
+            "assert differ_At_One_Bit_Pos(1, 5) == True"
+          ]
+        },
+        "split": "sanitized-mbpp / task_id=6",
+        "excerpt": false,
+        "prompt": "Write a python function to check whether the two numbers differ at one bit position only or not.",
+        "answer": "def is_Power_Of_Two (x): \n    return x and (not(x & (x - 1))) \ndef differ_At_One_Bit_Pos(a,b): \n    return is_Power_Of_Two(a ^ b)",
+        "explanation": "判断两个整数是否恰好有一位不同。官方参考代码先异或，再判断结果是否为 2 的幂；测试同时包含仅差一位和相差多位的输入。",
+        "source": "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "license": "CC BY 4.0 · Google Research Datasets MBPP",
+        "type": "text"
+      },
+      {
+        "id": "7",
+        "title": "MBPP task 7",
+        "raw": {
+          "source_file": "Benchmark Questions Verification V2.ipynb",
+          "task_id": 7,
+          "prompt": "Write a function to find all words which are at least 4 characters long in a string.",
+          "code": "import re\ndef find_char_long(text):\n  return (re.findall(r\"\\b\\w{4,}\\b\", text))",
+          "test_imports": [],
+          "test_list": [
+            "assert set(find_char_long('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])",
+            "assert set(find_char_long('Jing Eco and Tech')) == set(['Jing', 'Tech'])",
+            "assert set(find_char_long('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])"
+          ]
+        },
+        "split": "sanitized-mbpp / task_id=7",
+        "excerpt": false,
+        "prompt": "Write a function to find all words which are at least 4 characters long in a string.",
+        "answer": "import re\ndef find_char_long(text):\n  return (re.findall(r\"\\b\\w{4,}\\b\", text))",
+        "explanation": "从字符串中提取长度至少为 4 的单词；题意强调单词边界和最短长度。官方参考实现使用正则表达式，测试以集合比较结果，原始表达式与断言未改写。",
+        "source": "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "license": "CC BY 4.0 · Google Research Datasets MBPP",
+        "type": "text"
+      },
+      {
+        "id": "8",
+        "title": "MBPP task 8",
+        "raw": {
+          "source_file": "Benchmark Questions Verification V2.ipynb",
+          "task_id": 8,
+          "prompt": "Write a function to find squares of individual elements in a list.",
+          "code": "def square_nums(nums):\n square_nums = list(map(lambda x: x ** 2, nums))\n return square_nums",
+          "test_imports": [],
+          "test_list": [
+            "assert square_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]",
+            "assert square_nums([10,20,30])==([100,400,900])",
+            "assert square_nums([12,15])==([144,225])"
+          ]
+        },
+        "split": "sanitized-mbpp / task_id=8",
+        "excerpt": false,
+        "prompt": "Write a function to find squares of individual elements in a list.",
+        "answer": "def square_nums(nums):\n square_nums = list(map(lambda x: x ** 2, nums))\n return square_nums",
+        "explanation": "把列表中的每个数分别平方，保留输入顺序并返回新列表。官方测试包含连续整数、整十数以及非连续输入；参考实现与期望值直接来自该记录。",
+        "source": "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "license": "CC BY 4.0 · Google Research Datasets MBPP",
         "type": "text"
       }
     ]
@@ -178,7 +280,7 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "Google Research Datasets Hugging Face 数据卡将 MBPP 数据标为 CC BY 4.0；GitHub 源代码为 Apache-2.0。",
+    "license": "Google Research Datasets 官方数据卡标注 MBPP 数据为 CC BY 4.0；代码仓库 Apache-2.0 不替代数据许可。",
     "scope": "数据和代码分别遵循其发布许可；代码许可证不取代数据许可，也不意味着每段参考代码均为 Apache-2.0。",
     "boundaries": [
       "转载数据时署名 Austin 等作者、提供 CC BY 4.0 链接并标记修改；本轮未逐题核验潜在第三方来源。"
@@ -190,11 +292,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方数据卡将数据标为 CC BY 4.0；现有站内样例保留署名、许可链接和变更说明。此许可与 Google 仓库 Apache-2.0 代码许可分开处理。",
+    "reason": "6 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/google-research-datasets/mbpp",
       "https://github.com/google-research/google-research",
-      "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json"
+      "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
+      "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json"
     ]
   },
   "researchNotes": [
@@ -218,7 +321,29 @@
         "https://github.com/google-research/google-research/tree/master/mbpp",
         "https://huggingface.co/datasets/google-research-datasets/mbpp"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 6 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“MBPP task 8”等案例；每条的附件缺口与取样范围单独说明。 展示记录2→6条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/google-research/google-research/3ef52111c1fabc301880818f5a547570e926a76b/mbpp/sanitized-mbpp.json",
+        "https://huggingface.co/datasets/google-research-datasets/mbpp",
+        "https://github.com/google-research/google-research",
+        "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
+        "https://github.com/google-research/google-research/tree/master/mbpp"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

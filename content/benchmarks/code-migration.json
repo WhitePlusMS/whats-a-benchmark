@@ -73,9 +73,10 @@
   },
   "sampleAccess": {
     "status": "private",
-    "reason": "官方只公开迁移形式、方法与分项结果，未给完整任务目录或可下载题面；本条不把榜单页面当成公开代码任务包。",
+    "reason": "2026-10-19 重新读取 Vals 官方方法、榜单和页面嵌入数据：可取得迁移组别与分项分数，但未找到源仓库标识、具体任务指令或任务包。数值分布不是任务记录；其他机构的 MigrationBench 也不是本项。",
     "sourceUrls": [
-      "https://www.vals.ai/benchmarks/code-migration"
+      "https://www.vals.ai/benchmarks/code-migration",
+      "https://www.vals.ai/"
     ]
   },
   "metric": {
@@ -106,6 +107,20 @@
       "sourceUrls": [
         "https://www.vals.ai/benchmarks/code-migration"
       ]
+    },
+    {
+      "text": "2026-10-19 公开案例补核：检查了公开 HTML 的方法正文与 PassRateDistribution 组件序列化数据；其内容为模型 ID 和数值分布，不能反推出源仓库或补写迁移指令。首页将 Code Migration 称为 proprietary benchmark。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/code-migration",
+        "https://www.vals.ai/"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：核对Vals官方Migration入口与已披露评分；未取得实际待迁移仓库/输入案例，不能用产品说明或成绩代替任务。 展示记录0→0条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/code-migration",
+        "https://www.vals.ai/"
+      ]
     }
   ],
   "sources": [
@@ -113,11 +128,16 @@
       "label": "Code Migration methodology and leaderboard",
       "url": "https://www.vals.ai/benchmarks/code-migration",
       "role": "definition"
+    },
+    {
+      "label": "2026-10-19 公开数据与案例核查入口",
+      "url": "https://www.vals.ai/",
+      "role": "access"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "主要成绩是隐藏行为测试通过比例；评分还检查包装原实现、复制参考产物或硬编码等捷径，人工代码质量不参与通过率。",

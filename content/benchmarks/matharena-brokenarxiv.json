@@ -80,10 +80,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md"
+      "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6"
     ]
   },
   "metric": {
@@ -131,6 +132,21 @@
         "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
         "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：旧problem_idx=15另在offset10响应row14逐七字段核对，不因初次offset0未覆盖误判；新增破损题保留作者原文及边界。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6",
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/raw/73dd424784fbdeab599557fcba3d77559c89d1ee/README.md",
+        "https://huggingface.co/datasets/MathArena/brokenarxiv-0626"
+      ]
     }
   ],
   "sources": [
@@ -168,11 +184,16 @@
       "label": "所选材料的固定许可或来源证据",
       "url": "https://arxiv.org/abs/2606.10817v1",
       "role": "paper"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "Gemini-3.1-Pro 对照原/扰动命题与回答，识别盲证、静默修补或明确指出问题；减分只检查修补命题与原命题的直接矛盾，不审推导优雅或证明质量。",
@@ -188,7 +209,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "15",
@@ -207,6 +228,90 @@
         },
         "source": "https://huggingface.co/datasets/MathArena/brokenarxiv-0626/resolve/73dd424784fbdeab599557fcba3d77559c89d1ee/data/train-00000-of-00001.parquet",
         "split": "train",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-brokenarxiv-sample-source.txt"
+      },
+      {
+        "id": "2",
+        "title": "A ribbon knot which is not a symmetric union · problem 2",
+        "type": "text",
+        "prompt": "Every ribbon knot can be presented as a symmetric union.\n",
+        "explanation": "待检查的命题声称每个 ribbon knot 都可表示为 symmetric union。此基准要求审查命题而非直接接受它；raw 同时保留 original_problem 与评分点，不为源内没有的 answer 字段补写结论。",
+        "raw": {
+          "problem_idx": 2,
+          "points": 2,
+          "problem": "Every ribbon knot can be presented as a symmetric union.\n",
+          "original_problem": "There exists a ribbon Montesinos knot which does not admit a symmetric union presentation.\n",
+          "source": "2606.02968",
+          "title": "A ribbon knot which is not a symmetric union",
+          "authors": "Michel Boileau; Teruaki Kitano; Yuta Nozaki"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=1 / problem_idx=2",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-brokenarxiv-sample-source.txt"
+      },
+      {
+        "id": "3",
+        "title": "On the BNSR invariants of link groups · problem 3",
+        "type": "text",
+        "prompt": "Let $L$ be a link in $S^3$ with at least two components, and let $G = \\pi_1(S^3 \\setminus L)$ be its link group. The commutator subgroup $[G, G]$ is finitely generated if and only if $L$ is a fibered link.\n",
+        "explanation": "待检查的陈述把 link group 的交换子群有限生成与 fibered link 写成充要关系。需逐项核对假设和两个方向，原命题及评分点在 raw 中，不把题干直接宣称为数学事实。",
+        "raw": {
+          "problem_idx": 3,
+          "points": 2,
+          "problem": "Let $L$ be a link in $S^3$ with at least two components, and let $G = \\pi_1(S^3 \\setminus L)$ be its link group. The commutator subgroup $[G, G]$ is finitely generated if and only if $L$ is a fibered link.\n",
+          "original_problem": "Let $L$ be a link in $S^3$ with at least two components, and let $G = \\pi_1(S^3 \\setminus L)$ be its link group. The commutator subgroup $[G, G]$ is finitely generated if and only if $L$ is a Hopf link.\n",
+          "source": "2606.02978",
+          "title": "On the BNSR invariants of link groups",
+          "authors": "Yuta Nozaki"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=2 / problem_idx=3",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-brokenarxiv-sample-source.txt"
+      },
+      {
+        "id": "4",
+        "title": "To $1/2$-logconcavity and beyond: Geometric properties of Dirichlet eigenfunctions · problem 4",
+        "type": "text",
+        "prompt": "Let $\\Omega \\subset \\mathbb{R}^n$ be a bounded open convex domain and let $V$ be a smooth convex potential on $\\Omega$. Let $u$ be the first Dirichlet eigenfunction of the Schr\\u00f6dinger operator $-\\Delta + V$ on $\\Omega$, normalized such that $\\|u\\|_\\infty = 1$. Then $u$ is $1/2$-logconcave on $\\Omega$, meaning the function $\\sqrt{-\\log u(x)}$ is convex on $\\Omega$.\n",
+        "explanation": "陈述涉及凸域上 Schrödinger 算子的首个 Dirichlet 本征函数及1/2-logconcavity。需要检查条件与结论是否成立；原文本中的转义形式保留，没有修成整理者的新题。",
+        "raw": {
+          "problem_idx": 4,
+          "points": 2,
+          "problem": "Let $\\Omega \\subset \\mathbb{R}^n$ be a bounded open convex domain and let $V$ be a smooth convex potential on $\\Omega$. Let $u$ be the first Dirichlet eigenfunction of the Schr\\u00f6dinger operator $-\\Delta + V$ on $\\Omega$, normalized such that $\\|u\\|_\\infty = 1$. Then $u$ is $1/2$-logconcave on $\\Omega$, meaning the function $\\sqrt{-\\log u(x)}$ is convex on $\\Omega$.\n",
+          "original_problem": "There exist a bounded open convex domain $\\Omega \\subset \\mathbb{R}^n$ and a smooth convex potential $V$ on $\\Omega$ such that the first Dirichlet eigenfunction $u$ of the Schr\\u00f6dinger operator $-\\Delta + V$ on $\\Omega$, normalized by $\\|u\\|_\\infty = 1$, is not $1/2$-logconcave (i.e., the function $\\sqrt{-\\log u(x)}$ is not convex on $\\Omega$).\n",
+          "source": "2606.03684",
+          "title": "To $1/2$-logconcavity and beyond: Geometric properties of Dirichlet eigenfunctions",
+          "authors": "Lei Qin; Jin Sun; Kui Wang"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=3 / problem_idx=4",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-brokenarxiv-sample-source.txt"
+      },
+      {
+        "id": "5",
+        "title": "Incompressible planar surfaces in hyperbolic link exteriors in the 3-sphere · problem 5",
+        "type": "text",
+        "prompt": "Let $N \\ge 3$ be an integer. For any $N$-component hyperbolic link $L \\subset \\mathbb{S}^3$ with exterior $X_L = \\mathbb{S}^3 \\setminus \\text{int}(N(L))$ (where $N(L)$ is a regular neighborhood of $L$), if $P \\subset X_L$ is an incompressible spanning planar surface (i.e., a planar surface with exactly one boundary component on each boundary torus of $X_L$), then at least one boundary component of $P$ must have a slope $a/p$ (in standard meridian-longitude coordinates) that is either meridional or integral (i.e., $p \\in \\{0, 1\\}$).\n",
+        "explanation": "陈述限制双曲 link exterior 中平面曲面的边界斜率，量词和分量数都是关键条件。原 problem、original_problem 与评分点并列保留，本站没有构造官方参考证明。",
+        "raw": {
+          "problem_idx": 5,
+          "points": 2,
+          "problem": "Let $N \\ge 3$ be an integer. For any $N$-component hyperbolic link $L \\subset \\mathbb{S}^3$ with exterior $X_L = \\mathbb{S}^3 \\setminus \\text{int}(N(L))$ (where $N(L)$ is a regular neighborhood of $L$), if $P \\subset X_L$ is an incompressible spanning planar surface (i.e., a planar surface with exactly one boundary component on each boundary torus of $X_L$), then at least one boundary component of $P$ must have a slope $a/p$ (in standard meridian-longitude coordinates) that is either meridional or integral (i.e., $p \\in \\{0, 1\\}$).\n",
+          "original_problem": "For each integer $N \\ge 3$, there exists an $N$-component hyperbolic link $L \\subset \\mathbb{S}^3$ with exterior $X_L = \\mathbb{S}^3 \\setminus \\text{int}(N(L))$ (where $N(L)$ is a regular neighborhood of $L$) containing an incompressible spanning planar surface $P \\subset X_L$ (i.e., a planar surface with exactly one boundary component on each boundary torus of $X_L$), such that every boundary component of $P$ has a slope $a/p$ (in standard meridian-longitude coordinates) that is nonmeridional and nonintegral (i.e., $p \\ge 2$).\n",
+          "source": "2606.04201",
+          "title": "Incompressible planar surfaces in hyperbolic link exteriors in the 3-sphere",
+          "authors": "Luis G. Valdez-Sánchez"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Fbrokenarxiv-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=4 / problem_idx=5",
         "excerpt": false,
         "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
         "licensePath": "licenses/matharena-brokenarxiv-sample-source.txt"

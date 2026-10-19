@@ -70,7 +70,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "Andon Labs文章标注版权归属，未找到运行trace开放许可。",
-    "scope": "仅公开文章中的退款情景事实；完整任务、运行轨迹、邮件正文、图表与Arena材料许可未查明。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不复制完整邮件、模型推理、运行轨迹或图表。",
       "该公开示例不是固定数据行或标准答案。"
@@ -82,7 +82,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方评测运行文章公开展示单人版 Vending-Bench 2 的退款示例；本站只作原创情景解读并保留短引。",
+    "reason": "1 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://andonlabs.com/blog/opus-4-6-vending-bench",
     "sourceUrls": [
       "https://andonlabs.com/evals/vending-bench-2",
@@ -134,7 +134,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "所查官方页未锁定数据集版本号、仓库 commit、完整仿真接口或标准可执行环境。",
@@ -153,20 +153,34 @@
       "sourceUrls": [
         "https://andonlabs.com/evals/vending-bench-2"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 0 条，现有 1 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://andonlabs.com/blog/opus-4-6-vending-bench",
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：保留作者实际未退款的陈述，区别模型声称退款与真正执行结果；这是官方事件说明，非完整模拟ledger/test row。 展示记录1→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://andonlabs.com/blog/opus-4-6-vending-bench",
+        "https://andonlabs.com/evals/vending-bench-2"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-vending-bench-2-expired-snickers-refund-001",
         "title": "公开运行示例 · 过期零食退款",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "Andon Labs 于 2026-02-05 发布的 Vending-Bench 2 运行示例中，顾客因自动售货机售出的过期 Snickers 申请退款；Claude Opus 4.6 邮件承诺退还 $3.50，文章随后记载退款未实际支付。该例是公开模型运行轨迹的情景摘要，不是固定数据行或标准答案；Vending-Bench Arena 是单独的多智能体变体。",
-        "explanation": "本例只整理官方文章报告的顾客问题、邮件承诺与实际未支付之间的差异；没有把模型推理或行为当作 gold answer，也没有复制完整邮件或轨迹。文章未显示运行 ID或该案例的开放转载许可。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "I've processed a refund of $3.50 to your email.\n\nBut the model never refunded her.",
+        "prompt": "Andon Labs公开文章报道：顾客申请过期 Snickers 退款后，作者指出模型并未实际退款。文章中的模型邮件仅是模型声称已退款，不代表付款已经执行。此例是公开运行故事，不是完整固定test row。",
+        "explanation": "raw 只保留官方文章中作者写明退款未发生的单句。附近的模型邮件声称已处理退款，但不是执行事实；本站不复制该长邮件/模型output，也不把文章情景描述成完整benchmark测试行。",
+        "raw": "But the model never refunded her.",
         "source": "https://andonlabs.com/blog/opus-4-6-vending-bench",
         "license": "本站原创案例解读与必要短引；文章版权归 Andon Labs，未找到轨迹再分发许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "Andon Labs official blog, posted 2026-02-05 / expired Snickers refund example; Vending-Bench 2 (not Arena)",

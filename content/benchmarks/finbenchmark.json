@@ -74,25 +74,25 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "仓库标注MIT，但TASKS.md未单独说明题目文本/答案是否在许可范围内；IFRS原始来源另有权利边界。",
-    "scope": "仓库代码许可与题目目录/嵌入答案的适用范围未确立；外部IFRS资料不在此许可范围。",
+    "status": "permitted",
+    "license": "MIT · Copyright (c) 2026 Gideon Aschwanden；适用于官方仓库的作者原创任务文档。",
+    "scope": "所选 TASKS.md 中作者发布的合成数据任务及概念题；不转载 IFRS 等第三方标准正文。",
     "boundaries": [
-      "不把MIT代码许可外推至TASKS.md题目/答案。",
-      "不复制完整题干或IFRS材料。"
+      "原始目录的正确选项、数值与容差保持原值；不声称本次运行过评分器。"
     ],
     "sourceUrls": [
-      "https://github.com/gaschwanden/finbenchmark",
-      "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md"
+      "https://github.com/gaschwanden/finbenchmark/blob/cd6e04b41189f54b4195cea116486d2fef6ca70a/LICENSE"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已定位官方任务目录中的 knowledge_001，本站展示中文任务解读和一处短字段引文；这不是对目录或整套题目的许可声明。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
     "sourceUrls": [
       "https://github.com/gaschwanden/finbenchmark",
-      "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md"
+      "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+      "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+      "https://github.com/gaschwanden/finbenchmark/blob/cd6e04b41189f54b4195cea116486d2fef6ca70a/LICENSE"
     ]
   },
   "metric": {
@@ -116,6 +116,23 @@
     {
       "text": "身份由 finbenchmark.ai 的官方 GitHub 链接核实；与 FinanceBench 和 financebenchmark.ai 不是同一条目。",
       "sourceUrls": [
+        "https://finbenchmark.ai/methodology"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+        "https://github.com/gaschwanden/finbenchmark/blob/cd6e04b41189f54b4195cea116486d2fef6ca70a/LICENSE"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：旧知识题恢复作者MD完整四选项及原标记；新增参数化任务保留真实输入/参考值，不复制IAS标准正文。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+        "https://github.com/gaschwanden/finbenchmark",
+        "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
+        "https://github.com/gaschwanden/finbenchmark/blob/cd6e04b41189f54b4195cea116486d2fef6ca70a/LICENSE",
         "https://finbenchmark.ai/methodology"
       ]
     }
@@ -150,11 +167,21 @@
       "label": "已核验官方来源 · data",
       "url": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/gaschwanden/finbenchmark/blob/cd6e04b41189f54b4195cea116486d2fef6ca70a/LICENSE",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "按题型使用答案匹配、数值容差、参考函数或结构验证；每次 passed/score/error 单独保存，先区分 API 错误与答案失败。",
@@ -172,21 +199,84 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-finbenchmark-knowledge-001",
         "title": "公开任务 · IFRS 研究成本",
+        "type": "choice",
+        "promptOrigin": "editorial",
+        "prompt": "按该官方IFRS知识题，判断研究成本应采用哪种会计处理。",
+        "explanation": "作者TASKS.md完整列出这道选择题及四个选项，并用✅标记B为参考答案。raw恢复整个knowledge_001连续Markdown块，保留来源标签，不再跳过干扰项后拼接答案；未复制IAS 38原标准文档或把本题当作实际财务建议。",
+        "raw": "### `knowledge_001` — mcq (easy)\n\nUnder IFRS, which statement best describes the treatment of research costs?\n\n- A) Capitalize all research costs as intangible assets\n- B) Expense research costs as incurred ✅\n- C) Amortize research costs over 5 years\n- D) Defer research costs until commercial production begins\n\n*Source: IFRS IAS 38*\n\n",
+        "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+        "license": "MIT · FinBenchmark作者发布的TASKS.md题目清单及参考标注；原许可保留，不扩展到仅被引用的IFRS IAS 38标准正文。",
+        "split": "TASKS.md at commit cd6e04b41189f54b4195cea116486d2fef6ca70a / Knowledge (v1) / knowledge_001 / question line only",
+        "excerpt": true,
+        "options": [
+          "Capitalize all research costs as intangible assets",
+          "Expense research costs as incurred",
+          "Amortize research costs over 5 years",
+          "Defer research costs until commercial production begins"
+        ],
+        "answer": "B · Expense research costs as incurred",
+        "licensePath": "licenses/finbenchmark-mit.txt"
+      },
+      {
+        "raw": "### `knowledge_003` — mcq (easy)\n\nAccording to the Capital Asset Pricing Model, the expected return of an asset equals:\n\n- A) Risk-free rate + beta * market risk premium ✅\n- B) Risk-free rate + alpha\n- C) Beta * market return\n- D) Market return - risk-free rate\n\n*Source: Portfolio Theory*",
+        "title": "CAPM 预期收益率",
+        "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+        "excerpt": true,
+        "id": "finbenchmark-knowledge_003",
+        "license": "仓库根LICENSE为MIT；该样例直接取自作者仓库TASKS.md。README将其称为公开benchmark实际任务目录；未发现任务数据专门排除条款。仅此仓库内容范围，不包含外部题源或IFRS材料。",
+        "split": "TASKS.md at cd6e04b41189f54b4195cea116486d2fef6ca70a / knowledge_003",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "根据 IFRS 相关知识，判断研究成本应如何确认。官方任务目录把本题列为 FinanceBenchmark task set v2 的 Knowledge (v1) 多选题，并标记答案为 B：发生时费用化。",
-        "answer": "B：发生时费用化。",
-        "explanation": "对应官方 TASKS.md 中的 knowledge_001；这里仅复述题目目标及目录标记答案，不表示模型运行结果，也不据仓库 MIT 许可推定题目数据的单独授权。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "Under IFRS, which statement best describes the treatment of research costs?\n\nIFRS IAS 38\n\nB) Expense research costs as incurred ✅",
-        "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/main/TASKS.md",
-        "license": "本站原创任务解读与官方目录短引；仓库 MIT 许可不据此认定任务目录许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
-        "split": "TASKS.md / task set v2 / Knowledge (v1) / knowledge_001",
-        "excerpt": true
+        "explanation": "这是知识类多选题，考查 CAPM 中无风险利率、beta 与市场风险溢价的关系；源目录将 A 项标为正确项。这里只复现官方任务和官方标记， 原始数据保留 TASKS.md 中这一任务的完整 Markdown 块，含官方答案和容差。",
+        "prompt": "根据资本资产定价模型，资产的期望收益率等于什么？",
+        "licensePath": "licenses/finbenchmark-mit.txt"
+      },
+      {
+        "raw": "### `analysis_001` — numeric (easy)\n\n**Context:** Income Statement (USD millions):\nRevenue: 500\nCOGS: 300\nSG&A: 80\nDepreciation & Amortization: 20\nInterest Expense: 10\nTaxes: 22\n\nCalculate EBITDA in millions.\n\n**Gold answer:** `120`\n\n*Source: Synthetic financial statement* · *tolerance: 0.01*",
+        "title": "合成利润表计算 EBITDA",
+        "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+        "excerpt": true,
+        "id": "finbenchmark-analysis_001",
+        "license": "仓库根LICENSE为MIT；该样例直接取自作者仓库TASKS.md。README将其称为公开benchmark实际任务目录；未发现任务数据专门排除条款。仅此仓库内容范围，不包含外部题源或IFRS材料。",
+        "split": "TASKS.md at cd6e04b41189f54b4195cea116486d2fef6ca70a / analysis_001",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "explanation": "该题给出收入500、COGS 300、SG&A 80、折旧摊销20等合成报表数据，要求算EBITDA；官方目录答案为120且容差0.01。题目说明来源是 synthetic financial statement。 原始数据保留 TASKS.md 中这一任务的完整 Markdown 块，含官方答案和容差。",
+        "prompt": "根据给定的百万美元损益表，计算 EBITDA。",
+        "licensePath": "licenses/finbenchmark-mit.txt"
+      },
+      {
+        "raw": "### `analysis_003` — numeric (easy)\n\n**Context:** Balance Sheet (USD millions):\nCurrent Assets: 180\nCash: 40\nInventory: 60\nCurrent Liabilities: 110\nAccounts Payable: 70\n\nCalculate net working capital in millions.\n\n**Gold answer:** `70`\n\n*Source: Synthetic balance sheet* · *tolerance: 0.01*",
+        "title": "合成资产负债表计算营运资本",
+        "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+        "excerpt": true,
+        "id": "finbenchmark-analysis_003",
+        "license": "仓库根LICENSE为MIT；该样例直接取自作者仓库TASKS.md。README将其称为公开benchmark实际任务目录；未发现任务数据专门排除条款。仅此仓库内容范围，不包含外部题源或IFRS材料。",
+        "split": "TASKS.md at cd6e04b41189f54b4195cea116486d2fef6ca70a / analysis_003",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "explanation": "该题给出流动资产180和流动负债110，并另列现金、存货、应付账款，要求计算净营运资本；官方目录金标准为70、容差0.01。说明来源为 synthetic balance sheet。 原始数据保留 TASKS.md 中这一任务的完整 Markdown 块，含官方答案和容差。",
+        "prompt": "根据给定的百万美元资产负债表，计算净营运资本。",
+        "licensePath": "licenses/finbenchmark-mit.txt"
+      },
+      {
+        "raw": "### `analysis_005` — numeric (medium)\n\n**Context:** Revenue:\nYear 0: 100\nYear 3: 133.1\n\nCalculate the compound annual growth rate (CAGR) of revenue over 3 years as a decimal.\n\n**Gold answer:** `0.1`\n\n*Source: Growth metrics* · *tolerance: 0.01*",
+        "title": "三年收入复合增长率",
+        "source": "https://raw.githubusercontent.com/gaschwanden/finbenchmark/cd6e04b41189f54b4195cea116486d2fef6ca70a/TASKS.md",
+        "excerpt": true,
+        "id": "finbenchmark-analysis_005",
+        "license": "仓库根LICENSE为MIT；该样例直接取自作者仓库TASKS.md。README将其称为公开benchmark实际任务目录；未发现任务数据专门排除条款。仅此仓库内容范围，不包含外部题源或IFRS材料。",
+        "split": "TASKS.md at cd6e04b41189f54b4195cea116486d2fef6ca70a / analysis_005",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "explanation": "该记录给出Year 0=100与Year 3=133.1，要求报告三年CAGR的小数值；官方目录答案为0.1、容差0.01，来源标记为 Growth metrics。 原始数据保留 TASKS.md 中这一任务的完整 Markdown 块，含官方答案和容差。",
+        "prompt": "收入从第0年100增至第3年133.1，计算三年CAGR的小数值。",
+        "licensePath": "licenses/finbenchmark-mit.txt"
       }
     ]
   }

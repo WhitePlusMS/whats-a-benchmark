@@ -14,7 +14,7 @@
     }
   ],
   "kind": "derivative",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "id": "longbench-v2",
   "name": "LongBench v2",
   "subtitle": "长材料里找线索，并完成复杂推理",
@@ -84,6 +84,11 @@
       "label": "已核验官方来源 · data",
       "url": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -144,7 +149,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "官方HF数据卡标注Apache-2.0；已发布数据行字段在该数据集许可scope内，语法书context来源另行区分。",
-    "scope": "仅该公开数据行已发布字段按Apache-2.0处理；不包含未展示的语法书context或该上游文本权利，也不推及生成池整体。",
+    "scope": "所选四条公开记录的题目、选项、答案与任务元数据；不包含语法书、金融/政府报告、小说等长 context 正文。",
     "boundaries": [
       "保留数据卡的实际train标记，不推断其他split。",
       "不展示语法书context长文本或第三方上游全文。"
@@ -157,12 +162,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方数据卡标注Apache-2.0，Rows API可公开读取503行；本页只列一行题目字段和选项，省略长语法书上下文。",
+    "reason": "4 条真实记录覆盖语法书翻译、金融报告问答、政府多文档比较与侦探小说细节检索。各条保留题目、选项和官方答案；长 context 未复制，页面单条记录不能独立复现完整长上下文评测。",
     "url": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
     "sourceUrls": [
       "https://huggingface.co/datasets/zai-org/LongBench-v2",
       "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
-      "https://github.com/THUDM/LongBench"
+      "https://github.com/THUDM/LongBench",
+      "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5"
     ]
   },
   "researchNotes": [
@@ -183,13 +189,6 @@
       ]
     },
     {
-      "text": "未冻结数据仓库 revision；Hugging Face 发布页面及排行榜可能继续更新。",
-      "sourceUrls": [
-        "https://github.com/THUDM/LongBench",
-        "https://huggingface.co/datasets/THUDM/LongBench-v2"
-      ]
-    },
-    {
       "text": "本页只展示已核官方公开数据行的题目、四个选项、答案及任务元数据；context中的语法书长正文与第三方上下文材料未逐项核权且不复制。",
       "sourceUrls": [
         "https://github.com/THUDM/LongBench",
@@ -203,11 +202,30 @@
         "https://github.com/THUDM/LongBench/blob/main/LICENSE",
         "https://github.com/THUDM/LongBench"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5",
+        "https://huggingface.co/datasets/zai-org/LongBench-v2",
+        "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
+        "https://github.com/THUDM/LongBench"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“公开资料列 · 侦探小说人物居住楼层”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5",
+        "https://huggingface.co/datasets/zai-org/LongBench-v2",
+        "https://github.com/THUDM/LongBench",
+        "https://huggingface.co/datasets/THUDM/LongBench-v2"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-longbench-v2-row-66fcffd9",
@@ -233,6 +251,84 @@
         "source": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=0&length=1",
         "license": "原始数据为官方公开行字段的精简投影，按已核HF数据卡的Apache-2.0保存来源与归属；只省略context语法书全文，不改写所保留字段值。中文任务说明由本站整理，数据许可不扩展到第三方语法书内容。",
         "split": "config=default / split=train / row_idx=0 / _id=66fcffd9bb02136c067c94c5",
+        "excerpt": true
+      },
+      {
+        "title": "公开资料列 · 金融材料中的智能法院建设",
+        "promptOrigin": "editorial",
+        "answer": "D",
+        "raw": {
+          "_id": "66f36490821e116aacb2cc22",
+          "domain": "Single-Document QA",
+          "sub_domain": "Financial",
+          "difficulty": "easy",
+          "length": "short",
+          "question": "According to the report, how to promote the construction of smart courts?",
+          "choice_A": "Through technology empowerment, change the way of working and improve office efficiency.",
+          "choice_B": "Establish new types of courts, such as intellectual property courts, financial courts, and Internet courts, and accelerate the construction of intelligent courts.",
+          "choice_C": "Improve the work ability of office staff and strengthen the reserve of work knowledge.",
+          "choice_D": "Use advanced information systems to improve the level of information technology in case handling.",
+          "answer": "D"
+        },
+        "split": "config=default / split=train / row_idx=1 / _id=66f36490821e116aacb2cc22",
+        "type": "record",
+        "prompt": "来源题目：According to the report, how to promote the construction of smart courts?\n官方选项：A) Through technology empowerment, change the way of working and improve office efficiency.\nB) Establish new types of courts, such as intellectual property courts, financial courts, and Internet courts, and accelerate the construction of intelligent courts.\nC) Improve the work ability of office staff and strengthen the reserve of work knowledge.\nD) Use advanced information systems to improve the level of information technology in case handling.\n官方答案字段：D。该条完整输入依赖未复制的 context 文本。",
+        "explanation": "单文档金融类样例，问题询问报告提出的智能法院建设方式；四个选项都围绕法院改革，需依赖报告上下文区分。 官方原始context长度为 163356 个字符，本站未复制该上下文，因此本记录不能独立复现答案；字段和值为Rows API实录投影。",
+        "id": "official-case-longbench-v2-row-66f36490",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5",
+        "license": "HF数据卡标注Apache-2.0；本条仅保留官方行的题目、选项、答案及分类元数据原值，省略context原文。数据卡许可字段及具体第三方上下文权利范围仍由主任务复核。",
+        "excerpt": true
+      },
+      {
+        "title": "公开资料列 · 跨年度卫生战略演变",
+        "promptOrigin": "editorial",
+        "answer": "D",
+        "raw": {
+          "_id": "66f94f9ebb02136c067c4fde",
+          "domain": "Multi-Document QA",
+          "sub_domain": "Governmental",
+          "difficulty": "hard",
+          "length": "long",
+          "question": "The NSW Health Annual Reports for 2020-21 and 2022-23 reflect changes in strategic priorities, particularly regarding how the health system manages resource allocation in response to both emergent crises and long-term structural improvements. Given the dynamic pressures on the healthcare system, including the pandemic and ongoing structural reforms, which of the following statements best captures the ‘deeper strategic evolution’ between these two periods in how NSW Health addresses the tension between “immediate crisis management” and “sustainable healthcare innovation”?",
+          "choice_A": "The 2020-21 report focuses on “integrating emergency response tools”, like telehealth, into the broader healthcare system for short-term crisis management, while the 2022-23 report emphasizes a “permanent shift” toward embedding these tools into long-term digital health strategies to address both current needs and future resilience.",
+          "choice_B": "In 2020-21, NSW Health emphasized “crisis management” by rapidly deploying digital tools such as telehealth to handle COVID-19 pressures, but the 2022-23 report shows a “strategic evolution” where these tools became embedded in the broader healthcare system as part of a long-term plan to innovate and modernize patient care.",
+          "choice_C": "NSW Health’s 2020-21 report highlights the use of telehealth and digital platforms as “crisis-driven solutions” to address urgent public health needs, whereas the 2022-23 report represents a shift towards making these innovations a “core feature” of the healthcare system, embedding them into regular operations to ensure future sustainability.",
+          "choice_D": "Both reports emphasize “immediate crisis responses”, but the 2022-23 report signals a “shift towards embedding crisis management tools” (e.g., telehealth and digital platforms) as part of a broader, permanent healthcare innovation strategy, while the 2020-21 report treats such tools as temporary, emergency measures.",
+          "answer": "D"
+        },
+        "split": "config=default / split=train / row_idx=2 / _id=66f94f9ebb02136c067c4fde",
+        "type": "record",
+        "prompt": "来源题目：The NSW Health Annual Reports for 2020-21 and 2022-23 reflect changes in strategic priorities, particularly regarding how the health system manages resource allocation in response to both emergent crises and long-term structural improvements. Given the dynamic pressures on the healthcare system, including the pandemic and ongoing structural reforms, which of the following statements best captures the ‘deeper strategic evolution’ between these two periods in how NSW Health addresses the tension between “immediate crisis management” and “sustainable healthcare innovation”?\n官方选项：A) The 2020-21 report focuses on “integrating emergency response tools”, like telehealth, into the broader healthcare system for short-term crisis management, while the 2022-23 report emphasizes a “permanent shift” toward embedding these tools into long-term digital health strategies to address both current needs and future resilience.\nB) In 2020-21, NSW Health emphasized “crisis management” by rapidly deploying digital tools such as telehealth to handle COVID-19 pressures, but the 2022-23 report shows a “strategic evolution” where these tools became embedded in the broader healthcare system as part of a long-term plan to innovate and modernize patient care.\nC) NSW Health’s 2020-21 report highlights the use of telehealth and digital platforms as “crisis-driven solutions” to address urgent public health needs, whereas the 2022-23 report represents a shift towards making these innovations a “core feature” of the healthcare system, embedding them into regular operations to ensure future sustainability.\nD) Both reports emphasize “immediate crisis responses”, but the 2022-23 report signals a “shift towards embedding crisis management tools” (e.g., telehealth and digital platforms) as part of a broader, permanent healthcare innovation strategy, while the 2020-21 report treats such tools as temporary, emergency measures.\n官方答案字段：D。该条完整输入依赖未复制的 context 文本。",
+        "explanation": "政府多文档比较，问题要求综合2020-21与2022-23两份年报，判断危机响应与长期创新之间战略重心如何演进；不能只靠通用常识作答。 官方原始context长度为 2007494 个字符，本站未复制该上下文，因此本记录不能独立复现答案；字段和值为Rows API实录投影。",
+        "id": "official-case-longbench-v2-row-66f94f9e",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5",
+        "license": "HF数据卡标注Apache-2.0；本条仅保留官方行的题目、选项、答案及分类元数据原值，省略context原文。数据卡许可字段及具体第三方上下文权利范围仍由主任务复核。",
+        "excerpt": true
+      },
+      {
+        "title": "公开资料列 · 侦探小说人物居住楼层",
+        "promptOrigin": "editorial",
+        "answer": "D",
+        "raw": {
+          "_id": "670aac92bb02136c067d218a",
+          "domain": "Single-Document QA",
+          "sub_domain": "Detective",
+          "difficulty": "hard",
+          "length": "medium",
+          "question": "Which floor do Becca DiNuzio and Greg Barney live on?",
+          "choice_A": "The first floor",
+          "choice_B": "The second floor",
+          "choice_C": "The third floor",
+          "choice_D": "There are contradictory descriptions",
+          "answer": "D"
+        },
+        "split": "config=default / split=train / row_idx=5 / _id=670aac92bb02136c067d218a",
+        "type": "record",
+        "prompt": "来源题目：Which floor do Becca DiNuzio and Greg Barney live on?\n官方选项：A) The first floor\nB) The second floor\nC) The third floor\nD) There are contradictory descriptions\n官方答案字段：D。该条完整输入依赖未复制的 context 文本。",
+        "explanation": "侦探类单文档定位问题，要求从长篇叙事材料找出两个人共同居住的楼层，属于细节检索而非摘要复述。 官方原始context长度为 561248 个字符，本站未复制该上下文，因此本记录不能独立复现答案；字段和值为Rows API实录投影。",
+        "id": "official-case-longbench-v2-row-670aac92",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5",
+        "license": "HF数据卡标注Apache-2.0；本条仅保留官方行的题目、选项、答案及分类元数据原值，省略context原文。数据卡许可字段及具体第三方上下文权利范围仍由主任务复核。",
         "excerpt": true
       }
     ]

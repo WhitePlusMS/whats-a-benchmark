@@ -90,12 +90,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "完整 problem_description 来自固定 HF dataset revision 的公开 train row 0；答案与测试字段不收录。数据卡的 no-training 与不在线发布解答要求仍适用。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
     "sourceUrls": [
       "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
       "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/README.md",
-      "https://www.apache.org/licenses/LICENSE-2.0.txt"
+      "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6"
     ]
   },
   "metric": {
@@ -173,10 +174,15 @@
       "label": "Apache-2.0 许可证文本",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-28",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "固定 HF commit e0892bc952bd95cdd28f4c73c5f04d963243ed1a 的 train Parquet 已直接读取并核验 row_idx=0、problem_id=Challenge_1_main；文件 SHA-256 b082d3a8b27f22c76875ea57d43611842304e5da22e8989eb850290458d7771b，共 70 行。problem_description UTF-8 SHA-256 2b5e811d33edea503398fab93556b0bc493bc35afaf3d59995f84310d7496ca5。",
@@ -197,11 +203,29 @@
         "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
         "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“CritPt main · Challenge_13_main”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/README.md",
+        "https://www.apache.org/licenses/LICENSE-2.0.txt",
+        "https://github.com/CritPt-Benchmark/CritPt",
+        "https://huggingface.co/datasets/CritPt-Benchmark/CritPt",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "critpt-challenge-1-main",
@@ -220,6 +244,94 @@
         "licensePath": "licenses/critpt-sample-source.txt",
         "split": "default / train / row_idx=0 / Challenge_1_main",
         "excerpt": false
+      },
+      {
+        "id": "Challenge_10_main",
+        "title": "CritPt main · Challenge_10_main",
+        "type": "code",
+        "prompt": "# Problem setup:\nIn order to introduce torsion to the system, one can use the first-order formulation of general relativity. We define a local reference frame at each point of the $(3+1)$-dimensional manifold $\\mathcal{M}$, the tetrad $e^A_\\mu$, such that the metric can be written as $g_{\\mu\\nu}=e^A_\\mu e^B_\\nu \\eta_{AB}$, where $\\eta_{AB}$ is the flat Minkowski metric on the internal space of coordinates. The internal indices, denoted by the Latin alphabet, also run from $0$ to $3$ just like the spacetime ones. The metrics $g_{\\mu\\nu}$ and $\\eta_{AB}$ can raise or lower the spacetime and internal tangent-space indices, respectively. The Levi-Civita symbol shall be denoted by $\\epsilon_{ABCD}$.\n\nThe gravitational action can be reformulated in the first-order form as a function of the tetrad $(e^A)$ and spin-connection variables $(\\omega^{AB})$. Both of these are 1-forms on the manifold $\\mathcal{M}$. In this formalism, the curvature 2-form is\n\\begin{align}\nR^{AB} =d\\omega^{AB} + \\omega^A{}_C\\wedge\\omega^{CB}\\,.\n\\end{align}\n\nStart with the Einstein-Hilbert action $(\\mathcal{S}_{EH})$ in first-order Palatini form, and in first-order Palatini form, add an action term ($\\mathcal{S}_{\\vartheta}$) for a single scalar, $\\vartheta$, with an as-yet unspecified potential that depends on $\\vartheta$, $V(\\vartheta)$. Assume that the scalar $\\vartheta$ depends only on time, $\\vartheta(t)$, and take $c = 1$.\n\nWe add a Chern-Simons action, which we write as\n\\begin{align}\n\\mathcal{S}_{\\rm CS}=\\frac{\\alpha}{4}\\int d\\vartheta\\wedge \\left( \\omega^{AB} \\wedge d\\omega_{AB} +\\frac{2}{3}\\omega^A{}_B\\wedge\\omega^B{}_C\\wedge\\omega^C{}_A\\right),\n\\end{align}\nwhere we have dropped a boundary term.\n\nWe introduce the ansatz for the torsion 2-form:\n\\begin{align}\nT^0 =  0,\n\\\\\nT^i = h(t)e^0\\wedge e^i - \\phi(t)\\epsilon^i_{jk} e^j \\wedge e^k.\n\\end{align}\n\nWe split the spin connection into ''Torsion free\" and ''Torsion full\" parts:\n\n\\begin{equation}\n\\omega^{IJ} = \\bar{\\omega}^{IJ} + \\tilde{\\omega}^{IJ}\n\\end{equation}\n\nAssume a FRW geometry. The scale factor is denoted by $a(t)$, where $t$ is the cosmic time and the Hubble parameter is defined as $H(t)$.\n\n# Main problem:\n\nUse these values in the equations of motions: $\\alpha = 0.0001$, $V = \\frac{1}{2}m\\vartheta^2$, $M_{Pl} = 1$, $m = 10^{-6}$, $\\vartheta[t = 0] = 15$ and $\\dot{\\vartheta}[t = 0] = 0.1$, where $\\dot{\\vartheta} = d\\vartheta/dt$, $M_{Pl} = \\frac{1}{\\sqrt{8\\pi G}}$ and $G$ is the gravitational constant. Using these values, give me the number of e-folds achieved at $t = 25000$.",
+        "explanation": "该题设置含挠率与 Chern–Simons 项的 Palatini 引力及 FRW 背景，给定初值和势函数，要求在 t=25000 处求暴胀 e-fold 数。",
+        "raw": {
+          "problem_id": "Challenge_10_main",
+          "problem_type": "main",
+          "problem_index": null,
+          "problem_description": "# Problem setup:\nIn order to introduce torsion to the system, one can use the first-order formulation of general relativity. We define a local reference frame at each point of the $(3+1)$-dimensional manifold $\\mathcal{M}$, the tetrad $e^A_\\mu$, such that the metric can be written as $g_{\\mu\\nu}=e^A_\\mu e^B_\\nu \\eta_{AB}$, where $\\eta_{AB}$ is the flat Minkowski metric on the internal space of coordinates. The internal indices, denoted by the Latin alphabet, also run from $0$ to $3$ just like the spacetime ones. The metrics $g_{\\mu\\nu}$ and $\\eta_{AB}$ can raise or lower the spacetime and internal tangent-space indices, respectively. The Levi-Civita symbol shall be denoted by $\\epsilon_{ABCD}$.\n\nThe gravitational action can be reformulated in the first-order form as a function of the tetrad $(e^A)$ and spin-connection variables $(\\omega^{AB})$. Both of these are 1-forms on the manifold $\\mathcal{M}$. In this formalism, the curvature 2-form is\n\\begin{align}\nR^{AB} =d\\omega^{AB} + \\omega^A{}_C\\wedge\\omega^{CB}\\,.\n\\end{align}\n\nStart with the Einstein-Hilbert action $(\\mathcal{S}_{EH})$ in first-order Palatini form, and in first-order Palatini form, add an action term ($\\mathcal{S}_{\\vartheta}$) for a single scalar, $\\vartheta$, with an as-yet unspecified potential that depends on $\\vartheta$, $V(\\vartheta)$. Assume that the scalar $\\vartheta$ depends only on time, $\\vartheta(t)$, and take $c = 1$.\n\nWe add a Chern-Simons action, which we write as\n\\begin{align}\n\\mathcal{S}_{\\rm CS}=\\frac{\\alpha}{4}\\int d\\vartheta\\wedge \\left( \\omega^{AB} \\wedge d\\omega_{AB} +\\frac{2}{3}\\omega^A{}_B\\wedge\\omega^B{}_C\\wedge\\omega^C{}_A\\right),\n\\end{align}\nwhere we have dropped a boundary term.\n\nWe introduce the ansatz for the torsion 2-form:\n\\begin{align}\nT^0 =  0,\n\\\\\nT^i = h(t)e^0\\wedge e^i - \\phi(t)\\epsilon^i_{jk} e^j \\wedge e^k.\n\\end{align}\n\nWe split the spin connection into ''Torsion free\" and ''Torsion full\" parts:\n\n\\begin{equation}\n\\omega^{IJ} = \\bar{\\omega}^{IJ} + \\tilde{\\omega}^{IJ}\n\\end{equation}\n\nAssume a FRW geometry. The scale factor is denoted by $a(t)$, where $t$ is the cosmic time and the Hubble parameter is defined as $H(t)$.\n\n# Main problem:\n\nUse these values in the equations of motions: $\\alpha = 0.0001$, $V = \\frac{1}{2}m\\vartheta^2$, $M_{Pl} = 1$, $m = 10^{-6}$, $\\vartheta[t = 0] = 15$ and $\\dot{\\vartheta}[t = 0] = 0.1$, where $\\dot{\\vartheta} = d\\vartheta/dt$, $M_{Pl} = \\frac{1}{\\sqrt{8\\pi G}}$ and $G$ is the gravitational constant. Using these values, give me the number of e-folds achieved at $t = 25000$.",
+          "code_template": "def answer():\n    r\"\"\"\n    Return the number of e-folds achieved at $t = 25000$.\n\n    Inputs\n    ----------\n    None\n\n    Outputs\n    ----------\n    efolds: float, number of e-folds at $t = 25000$\n    \"\"\"\n\n    # ------------------ FILL IN YOUR RESULTS BELOW ------------------\n    efolds = ...\n    # ---------------------------------------------------------------\n\n    return efolds",
+          "metadata_notebook_path": "data/public_test_challenges/Challenge_10.ipynb",
+          "metadata_problem_setup": "# Problem setup:\nIn order to introduce torsion to the system, one can use the first-order formulation of general relativity. We define a local reference frame at each point of the $(3+1)$-dimensional manifold $\\mathcal{M}$, the tetrad $e^A_\\mu$, such that the metric can be written as $g_{\\mu\\nu}=e^A_\\mu e^B_\\nu \\eta_{AB}$, where $\\eta_{AB}$ is the flat Minkowski metric on the internal space of coordinates. The internal indices, denoted by the Latin alphabet, also run from $0$ to $3$ just like the spacetime ones. The metrics $g_{\\mu\\nu}$ and $\\eta_{AB}$ can raise or lower the spacetime and internal tangent-space indices, respectively. The Levi-Civita symbol shall be denoted by $\\epsilon_{ABCD}$.\n\nThe gravitational action can be reformulated in the first-order form as a function of the tetrad $(e^A)$ and spin-connection variables $(\\omega^{AB})$. Both of these are 1-forms on the manifold $\\mathcal{M}$. In this formalism, the curvature 2-form is\n\\begin{align}\nR^{AB} =d\\omega^{AB} + \\omega^A{}_C\\wedge\\omega^{CB}\\,.\n\\end{align}\n\nStart with the Einstein-Hilbert action $(\\mathcal{S}_{EH})$ in first-order Palatini form, and in first-order Palatini form, add an action term ($\\mathcal{S}_{\\vartheta}$) for a single scalar, $\\vartheta$, with an as-yet unspecified potential that depends on $\\vartheta$, $V(\\vartheta)$. Assume that the scalar $\\vartheta$ depends only on time, $\\vartheta(t)$, and take $c = 1$.\n\nWe add a Chern-Simons action, which we write as\n\\begin{align}\n\\mathcal{S}_{\\rm CS}=\\frac{\\alpha}{4}\\int d\\vartheta\\wedge \\left( \\omega^{AB} \\wedge d\\omega_{AB} +\\frac{2}{3}\\omega^A{}_B\\wedge\\omega^B{}_C\\wedge\\omega^C{}_A\\right),\n\\end{align}\nwhere we have dropped a boundary term.\n\nWe introduce the ansatz for the torsion 2-form:\n\\begin{align}\nT^0 =  0,\n\\\\\nT^i = h(t)e^0\\wedge e^i - \\phi(t)\\epsilon^i_{jk} e^j \\wedge e^k.\n\\end{align}\n\nWe split the spin connection into ''Torsion free\" and ''Torsion full\" parts:\n\n\\begin{equation}\n\\omega^{IJ} = \\bar{\\omega}^{IJ} + \\tilde{\\omega}^{IJ}\n\\end{equation}\n\nAssume a FRW geometry. The scale factor is denoted by $a(t)$, where $t$ is the cosmic time and the Hubble parameter is defined as $H(t)$.",
+          "metadata_tag": ""
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "license": "Apache-2.0 — fixed HF dataset revision metadata",
+        "licensePath": "licenses/critpt-sample-source.txt",
+        "split": "train / row_idx=1 / problem_idx=Challenge_10_main",
+        "excerpt": true
+      },
+      {
+        "id": "Challenge_11_main",
+        "title": "CritPt main · Challenge_11_main",
+        "type": "code",
+        "prompt": "\n\n# Problem setup:\nConsider a (1+1)-D Lagrangian that consists of a Majorana fermion $\\chi$ and boson $\\phi$ with compactification radius $\\sqrt{\\frac{K}{m}}$:\n\n$\\\\\nL=\\frac{i}{2}\\bar{\\chi}\\not\\!{\\partial}\\chi+\\frac{m}{2\\pi K}(\\partial_\\mu \\phi)^2+\\frac{\\Delta}{2}i\\bar{\\chi}\\chi\\cos(2m\\phi).\\\\\n$\n\nIn this problem, $x\\equiv [\\Delta]$, where $[\\Delta]$ is the scaling dimension of the coupling constant $\\Delta$\n\n# Main problem:\n\nFind the beta functions for coupling constants $\\Delta$ and $x$ at one-loop level, with the convention that a positive beta function means that the\nsystem flows to strong coupling in the IR.",
+        "explanation": "题面给出 Majorana 费米子与紧致玻色场的 (1+1) 维耦合拉氏量，要求按指定红外流向约定求 Δ 与其标度维数 x 的一圈 β 函数。",
+        "raw": {
+          "problem_id": "Challenge_11_main",
+          "problem_type": "main",
+          "problem_index": null,
+          "problem_description": "\n\n# Problem setup:\nConsider a (1+1)-D Lagrangian that consists of a Majorana fermion $\\chi$ and boson $\\phi$ with compactification radius $\\sqrt{\\frac{K}{m}}$:\n\n$\\\\\nL=\\frac{i}{2}\\bar{\\chi}\\not\\!{\\partial}\\chi+\\frac{m}{2\\pi K}(\\partial_\\mu \\phi)^2+\\frac{\\Delta}{2}i\\bar{\\chi}\\chi\\cos(2m\\phi).\\\\\n$\n\nIn this problem, $x\\equiv [\\Delta]$, where $[\\Delta]$ is the scaling dimension of the coupling constant $\\Delta$\n\n# Main problem:\n\nFind the beta functions for coupling constants $\\Delta$ and $x$ at one-loop level, with the convention that a positive beta function means that the\nsystem flows to strong coupling in the IR.",
+          "code_template": "import sympy as sp\n\nDelta, x, K, m = sp.symbols('Delta x K m')\n\ndef answer(Delta, x, K, m):\n    r\"\"\"\n    Return the expressions of the beta functions in Sympy format.\n\n    Inputs\n    ----------\n    Delta: sympy.Symbol, coupling constant $\\Delta$\n    x: sympy.Symbol, scaling dimension of $\\Delta$, $x\\equiv [\\Delta]$\n    K: sympy.Symbol, parameter $K$\n    m: sympy.Symbol, parameter $m$\n\n    Outputs\n    ----------\n    beta_Delta: sympy.Expr, beta function for coupling constant $\\Delta$, $\\beta(\\Delta)$\n    beta_x: sympy.Expr, beta function for $x$, $\\beta(x)$\n    \"\"\"\n\n    # ------------------ FILL IN YOUR RESULTS BELOW ------------------\n    beta_Delta = ...  # a SymPy expression of inputs\n    beta_x = ...      # a SymPy expression of inputs\n    # ---------------------------------------------------------------\n\n    return beta_Delta, beta_x",
+          "metadata_notebook_path": "data/public_test_challenges/Challenge_11.ipynb",
+          "metadata_problem_setup": "\n\n# Problem setup:\nConsider a (1+1)-D Lagrangian that consists of a Majorana fermion $\\chi$ and boson $\\phi$ with compactification radius $\\sqrt{\\frac{K}{m}}$:\n\n$\\\\\nL=\\frac{i}{2}\\bar{\\chi}\\not\\!{\\partial}\\chi+\\frac{m}{2\\pi K}(\\partial_\\mu \\phi)^2+\\frac{\\Delta}{2}i\\bar{\\chi}\\chi\\cos(2m\\phi).\\\\\n$\n\nIn this problem, $x\\equiv [\\Delta]$, where $[\\Delta]$ is the scaling dimension of the coupling constant $\\Delta$",
+          "metadata_tag": ""
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "license": "Apache-2.0 — fixed HF dataset revision metadata",
+        "licensePath": "licenses/critpt-sample-source.txt",
+        "split": "train / row_idx=2 / problem_idx=Challenge_11_main",
+        "excerpt": true
+      },
+      {
+        "id": "Challenge_12_main",
+        "title": "CritPt main · Challenge_12_main",
+        "type": "code",
+        "prompt": "\n\n# Problem setup:\nConsider $Z_N$ ($N$ is any integer) parafermion zero-mode operators on four sites $\\alpha_i$ with $i=1,2,3,4$ and a four-stage tunneling process described by\n\n$\nH_{34}\\rightarrow H_{23} \\rightarrow H_{12}\\rightarrow H_{13}\\rightarrow H_{34},\n$\n\nwhere\n$\nH_{ij}=t\\left(e^{-i\\phi_{ij}/N}\\alpha_i^\\dagger\\alpha_j+H.c.\\right)\n$, $\\phi_{ij}$ is a phase between sites $i$ and $j$, and $H.c.$ stands for Hermitian conjugate. This tunneling process is followed by a permutation between zero modes $(\\alpha_1,\\alpha_2)$ and $(\\alpha_3,\\alpha_4)$, respectively.\n\n# Main problem:\nFind the phase between the initial ground state of the process $|\\psi^i(q)\\rangle$ and final ground state of the process $|\\psi^f(q)\\rangle$, where $q$ is the fusion channel between the unpaired zero modes. Your answer should depend on $k_{ij}\\in Z_N$, where $k_{ij}<-\\frac{\\phi_{ij}}{2\\pi}<k_{ij}+1$. Note that, for a Josephson phase between sites i and j, k_ij is a ground-state fusion channel.",
+        "explanation": "题目描述 Z_N parafermion 四站点隧穿循环及随后的零模置换，要求给出初末基态间相位，并用各链接的整数融合通道和 q 表示。",
+        "raw": {
+          "problem_id": "Challenge_12_main",
+          "problem_type": "main",
+          "problem_index": null,
+          "problem_description": "\n\n# Problem setup:\nConsider $Z_N$ ($N$ is any integer) parafermion zero-mode operators on four sites $\\alpha_i$ with $i=1,2,3,4$ and a four-stage tunneling process described by\n\n$\nH_{34}\\rightarrow H_{23} \\rightarrow H_{12}\\rightarrow H_{13}\\rightarrow H_{34},\n$\n\nwhere\n$\nH_{ij}=t\\left(e^{-i\\phi_{ij}/N}\\alpha_i^\\dagger\\alpha_j+H.c.\\right)\n$, $\\phi_{ij}$ is a phase between sites $i$ and $j$, and $H.c.$ stands for Hermitian conjugate. This tunneling process is followed by a permutation between zero modes $(\\alpha_1,\\alpha_2)$ and $(\\alpha_3,\\alpha_4)$, respectively.\n\n# Main problem:\nFind the phase between the initial ground state of the process $|\\psi^i(q)\\rangle$ and final ground state of the process $|\\psi^f(q)\\rangle$, where $q$ is the fusion channel between the unpaired zero modes. Your answer should depend on $k_{ij}\\in Z_N$, where $k_{ij}<-\\frac{\\phi_{ij}}{2\\pi}<k_{ij}+1$. Note that, for a Josephson phase between sites i and j, k_ij is a ground-state fusion channel.",
+          "code_template": "import sympy as sp\n\nt, k_12, k_13, k_23, k_34, N, q = sp.symbols('t k_{12} k_{13} k_{23} k_{34} N q')\n\ndef answer(t, k_12, k_13, k_23, k_34, N, q):\n    r\"\"\"\n    Return the expression of the phase between $|\\psi^i(q)\\rangle$ and $|\\psi^f(q)\\rangle$ in Sympy format.\n\n    Inputs\n    ----------\n    t: sympy.Symbol, tunneling amplitude $t$\n    k_12, k_13, k_23, k_34: sympy.Symbol, ground-state fusion channels\n          $k_{ij}\\in Z_N$ with $k_{ij}<-\\frac{\\phi_{ij}}{2\\pi}<k_{ij}+1$\n    N: sympy.Symbol, integer N defining $Z_N$\n    q: sympy.Symbol, fusion channel between the unpaired zero modes\n\n    Outputs\n    ----------\n    phase: sympy.Expr, the expression of the phase between the initial ground state $|\\psi^i(q)\\rangle$\n          and final ground state $|\\psi^f(q)\\rangle$\n    \"\"\"\n\n    # ------------------ FILL IN YOUR RESULTS BELOW ------------------\n    phase = ...  # a SymPy expression of the inputs\n    # ---------------------------------------------------------------\n\n    return phase",
+          "metadata_notebook_path": "data/public_test_challenges/Challenge_12.ipynb",
+          "metadata_problem_setup": "\n\n# Problem setup:\nConsider $Z_N$ ($N$ is any integer) parafermion zero-mode operators on four sites $\\alpha_i$ with $i=1,2,3,4$ and a four-stage tunneling process described by\n\n$\nH_{34}\\rightarrow H_{23} \\rightarrow H_{12}\\rightarrow H_{13}\\rightarrow H_{34},\n$\n\nwhere\n$\nH_{ij}=t\\left(e^{-i\\phi_{ij}/N}\\alpha_i^\\dagger\\alpha_j+H.c.\\right)\n$, $\\phi_{ij}$ is a phase between sites $i$ and $j$, and $H.c.$ stands for Hermitian conjugate. This tunneling process is followed by a permutation between zero modes $(\\alpha_1,\\alpha_2)$ and $(\\alpha_3,\\alpha_4)$, respectively.",
+          "metadata_tag": ""
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "license": "Apache-2.0 — fixed HF dataset revision metadata",
+        "licensePath": "licenses/critpt-sample-source.txt",
+        "split": "train / row_idx=3 / problem_idx=Challenge_12_main",
+        "excerpt": true
+      },
+      {
+        "id": "Challenge_13_main",
+        "title": "CritPt main · Challenge_13_main",
+        "type": "code",
+        "prompt": "# Problem setup:\nConsider a (1+1)-D CFT on a torus that consists of right- and left-moving edges of a Moore-Read state at filling fraction $\\nu=1/k$. The primary fields are labeled by $(j_L,n_L,j_R,n_R)$, where $j_{L/R}=0,1/2,1$, $n_{L/R}\\in Z_{2k}$  and the electron operators in the theory are $(1,2k,0,0)$ and $(0,0,1,2k)$.\n\n# Main problem:\nGiven $k=2$, find the expectation values of Verlinde lines assuming the identity operator has expectation value 1. Return your answer as a tuple $(j_L,n_L,j_R,n_R,\\lambda_{(j_L,n_L,j_R,n_R)})$, where $\\lambda_{(j_L,n_L,j_R,n_R)}$ is the expectation value.",
+        "explanation": "题目给 Moore–Read 态边缘 CFT 的主场标签与电子算符，固定 k=2，要求列出各 Verlinde 线标签及其期望值。",
+        "raw": {
+          "problem_id": "Challenge_13_main",
+          "problem_type": "main",
+          "problem_index": null,
+          "problem_description": "# Problem setup:\nConsider a (1+1)-D CFT on a torus that consists of right- and left-moving edges of a Moore-Read state at filling fraction $\\nu=1/k$. The primary fields are labeled by $(j_L,n_L,j_R,n_R)$, where $j_{L/R}=0,1/2,1$, $n_{L/R}\\in Z_{2k}$  and the electron operators in the theory are $(1,2k,0,0)$ and $(0,0,1,2k)$.\n\n# Main problem:\nGiven $k=2$, find the expectation values of Verlinde lines assuming the identity operator has expectation value 1. Return your answer as a tuple $(j_L,n_L,j_R,n_R,\\lambda_{(j_L,n_L,j_R,n_R)})$, where $\\lambda_{(j_L,n_L,j_R,n_R)}$ is the expectation value.",
+          "code_template": "import sympy as sp\n\ndef answer():\n    r\"\"\"\n    Return the expectation values of Verlinde lines and corresponding labels.\n\n    Inputs\n    ----------\n    None\n\n    Outputs\n    ----------\n    values: set[tuple[float, int, float, int, complex]], a set of tuples $(j_L,n_L,j_R,n_R,\\lambda_{(j_L,n_L,j_R,n_R)})$\n        where $\\lambda_{(j_L,n_L,j_R,n_R)}$ is the expectation value of the Verlinde line operator.\n    \"\"\"\n\n    # ------------------ FILL IN YOUR RESULTS BELOW ------------------\n    values = ...\n    # ---------------------------------------------------------------\n\n    return values",
+          "metadata_notebook_path": "data/public_test_challenges/Challenge_13.ipynb",
+          "metadata_problem_setup": "# Problem setup:\nConsider a (1+1)-D CFT on a torus that consists of right- and left-moving edges of a Moore-Read state at filling fraction $\\nu=1/k$. The primary fields are labeled by $(j_L,n_L,j_R,n_R)$, where $j_{L/R}=0,1/2,1$, $n_{L/R}\\in Z_{2k}$  and the electron operators in the theory are $(1,2k,0,0)$ and $(0,0,1,2k)$.",
+          "metadata_tag": ""
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "license": "Apache-2.0 — fixed HF dataset revision metadata",
+        "licensePath": "licenses/critpt-sample-source.txt",
+        "split": "train / row_idx=4 / problem_idx=Challenge_13_main",
+        "excerpt": true
       }
     ]
   }

@@ -63,9 +63,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "本站仅选取明确标注范围的公开输入片段；媒体、附件、参考内容和完整题库的权利分别核对。"
     ],
     "sourceUrls": [
       "https://svgbench.ai/"
@@ -74,10 +74,12 @@
   "sampleAccess": {
     "url": "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa",
     "sourceUrls": [
-      "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa"
+      "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa",
+      "https://svgbench.ai/api/public/catalog",
+      "https://svgbench.ai/"
     ],
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。"
+    "reason": "9个真实公开提示可切换；保留catalog/详情接口的实际字段，不复制生成SVG或投票输出，也不补造绘图要求。"
   },
   "metric": {
     "name": "人类成对偏好评级",
@@ -110,11 +112,16 @@
       "role": "data",
       "label": "SVGBench 官方 lion prompt API",
       "url": "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://svgbench.ai/api/public/catalog",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "用户只看两个隐藏身份的SVG渲染并投票，比较构图、清晰和提示匹配；有效生成与覆盖门槛决定哪些模型进入展示。",
@@ -147,10 +154,25 @@
       "sourceUrls": [
         "https://svgbench.ai/"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 8 条，现有 9 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://svgbench.ai/api/public/catalog",
+        "https://svgbench.ai/"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增8条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“火箭飞船矢量图”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→9条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://svgbench.ai/api/prompt/prompt_daf3f932ceaa",
+        "https://svgbench.ai/api/public/catalog",
+        "https://svgbench.ai/"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "svgbench-prompt-daf3f932ceaa",
@@ -178,6 +200,150 @@
         "license": "未找到 prompt 或生成 SVG 的明确再发布许可。本页只保留单词短引和本站任务概述，不复制生成 SVG 或实时排名。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
         "split": "official live prompt API · prompt_daf3f932ceaa · slug=lion · generation ID only for locator",
         "excerpt": true
+      },
+      {
+        "type": "record",
+        "id": "prompt_strawberry",
+        "title": "草莓矢量图",
+        "prompt": "按官方主题词“strawberry”生成SVG；该提示在catalog中属于fruit类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_strawberry",
+          "text": "strawberry",
+          "shortText": "strawberry",
+          "category": "fruit"
+        },
+        "explanation": "官方catalog的真实提示是“strawberry”，类别为fruit；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_strawberry",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
+      },
+      {
+        "type": "record",
+        "id": "prompt_owl",
+        "title": "猫头鹰矢量图",
+        "prompt": "按官方主题词“owl”生成SVG；该提示在catalog中属于animal类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_owl",
+          "text": "owl",
+          "shortText": "owl",
+          "category": "animal"
+        },
+        "explanation": "官方catalog的真实提示是“owl”，类别为animal；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_owl",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
+      },
+      {
+        "type": "record",
+        "id": "prompt_lighthouse",
+        "title": "灯塔矢量图",
+        "prompt": "按官方主题词“lighthouse”生成SVG；该提示在catalog中属于architecture类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_lighthouse",
+          "text": "lighthouse",
+          "shortText": "lighthouse",
+          "category": "architecture"
+        },
+        "explanation": "官方catalog的真实提示是“lighthouse”，类别为architecture；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_lighthouse",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
+      },
+      {
+        "type": "record",
+        "id": "prompt_pirate_ship",
+        "title": "海盗船矢量图",
+        "prompt": "按官方主题词“pirate ship”生成SVG；该提示在catalog中属于vehicle类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_pirate_ship",
+          "text": "pirate ship",
+          "shortText": "pirate ship",
+          "category": "vehicle"
+        },
+        "explanation": "官方catalog的真实提示是“pirate ship”，类别为vehicle；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_pirate_ship",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
+      },
+      {
+        "type": "record",
+        "id": "prompt_potion_bottle",
+        "title": "药水瓶图标",
+        "prompt": "按官方主题词“potion bottle”生成SVG；该提示在catalog中属于object类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_potion_bottle",
+          "text": "potion bottle",
+          "shortText": "potion bottle",
+          "category": "object"
+        },
+        "explanation": "官方catalog的真实提示是“potion bottle”，类别为object；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_potion_bottle",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
+      },
+      {
+        "type": "record",
+        "id": "prompt_smiling_emoji",
+        "title": "微笑表情图标",
+        "prompt": "按官方主题词“smiling emoji”生成SVG；该提示在catalog中属于emoji类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_smiling_emoji",
+          "text": "smiling emoji",
+          "shortText": "smiling emoji",
+          "category": "emoji"
+        },
+        "explanation": "官方catalog的真实提示是“smiling emoji”，类别为emoji；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_smiling_emoji",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
+      },
+      {
+        "type": "record",
+        "id": "prompt_f23d5b9f3e9a",
+        "title": "乡间小屋插图",
+        "prompt": "按官方主题词“countryside house”生成SVG；该提示在catalog中属于place类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_f23d5b9f3e9a",
+          "text": "countryside house",
+          "shortText": "countryside house",
+          "category": "place"
+        },
+        "explanation": "官方catalog的真实提示是“countryside house”，类别为place；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_f23d5b9f3e9a",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
+      },
+      {
+        "type": "record",
+        "id": "prompt_fcf16c7fc880",
+        "title": "火箭飞船矢量图",
+        "prompt": "按官方主题词“rocket ship”生成SVG；该提示在catalog中属于object类别。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "id": "prompt_fcf16c7fc880",
+          "text": "rocket ship",
+          "shortText": "rocket ship",
+          "category": "object"
+        },
+        "explanation": "官方catalog的真实提示是“rocket ship”，类别为object；本条保留原始id、text、shortText和category。用于比较模型依据这个主体词生成SVG的能力，来源没有给标准SVG答案；本站没有另造画面要求或复制模型输出。",
+        "split": "live public prompt catalog · updatedAt=2026-10-19T09:18:30.723Z · id=prompt_fcf16c7fc880",
+        "source": "https://svgbench.ai/api/public/catalog",
+        "license": "官方主页/catalog未给出此prompt数据的再发布许可；本条只保留当前公开catalog中的原始提示字段和中文说明，不包含生成结果或SVG媒体。"
       }
     ]
   }

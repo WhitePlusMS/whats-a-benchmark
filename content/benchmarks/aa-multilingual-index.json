@@ -72,7 +72,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "Apache-2.0（选定公开任务的数据许可）",
-    "scope": "只采用 Global-MMLU-Lite Apache-2.0 数据快照的一条原题；不推及 AA 榜单结果和其它数据。",
+    "scope": "仅选取 Global-MMLU-Lite Apache-2.0 数据快照的多语言原始题目记录；不将许可外推到 AA 榜单结果及其他题集。",
     "boundaries": [
       "保留发布方、数据快照和来源；各第三方材料按原作者许可另行核对。"
     ],
@@ -82,11 +82,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "这是 AA 多语言指数所采用上游数据的真实中文行；四个选项和答案来自固定 Parquet。它展示题型，不声称复现 AA 某次模型成绩；与 OpenAI MMMLU 分开。",
+    "reason": "通过 5 条真实 Global-MMLU-Lite 记录展示组成题集的多语言输入；这些是成员题集案例，复合指数没有由本站另造的独立题库。",
     "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
     "sourceUrls": [
       "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=en&split=test&offset=0&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=fr&split=test&offset=0&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=hi&split=test&offset=0&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=ja&split=test&offset=0&length=1"
     ]
   },
   "metric": {
@@ -141,6 +145,26 @@
       "label": "数据许可及公开范围声明",
       "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=en&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=fr&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=hi&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=ja&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "related": [
@@ -154,8 +178,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "选择题通过正则提取答案并按标准答案计分，由 AA 独立执行。",
@@ -198,10 +222,31 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=en&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=fr&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=hi&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=ja&split=test&offset=0&length=1"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：通过真实Global-MMLU-Lite多语言成员记录说明指数；中文旧行另以固定Parquet核对17字段，不制造指数独立题库。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=en&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=fr&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=hi&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=ja&split=test&offset=0&length=1",
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/resolve/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "global-mmlu-lite-zh-business-ethics-57",
@@ -240,6 +285,122 @@
           "公司内部政策，《萨班斯-奥克斯利法案》",
           "立法，《不道德企业行为法》"
         ]
+      },
+      {
+        "id": "global-mmlu-lite-en-astronomy-test-58",
+        "title": "Global-MMLU-Lite · 英语天文学题",
+        "type": "choice",
+        "prompt": "When traveling north from the United States into Canada you’ll see the North Star (Polaris) getting _________.",
+        "options": [
+          "Brighter",
+          "Dimmer",
+          "Higher in the sky",
+          "Lower in the sky"
+        ],
+        "answer": "C",
+        "explanation": "这是 Global-MMLU-Lite 的真实 英语 测试题，sample_id=astronomy/test/58，考察向北旅行时北极星视高度的变化。此处仅中文说明题意；选项和答案均保留来源值。",
+        "raw": {
+          "sample_id": "astronomy/test/58",
+          "subject": "astronomy",
+          "subject_category": "STEM",
+          "question": "When traveling north from the United States into Canada you’ll see the North Star (Polaris) getting _________.",
+          "option_a": "Brighter",
+          "option_b": "Dimmer",
+          "option_c": "Higher in the sky",
+          "option_d": "Lower in the sky",
+          "answer": "C"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=en&split=test&offset=0&length=1",
+        "license": "Cohere Labs / Apache-2.0（Global-MMLU-Lite v3）；该数据卡为数据标注 Apache-2.0。",
+        "split": "config=en / split=test / row_idx=0 / sample_id=astronomy/test/58",
+        "excerpt": false
+      },
+      {
+        "id": "global-mmlu-lite-fr-astronomy-test-58",
+        "title": "Global-MMLU-Lite · 法语天文学题",
+        "type": "choice",
+        "prompt": "Lorsque vous voyagez vers le nord depuis les États-Unis vers le Canada, vous pouvez voir l’étoile polaire (Polaris) devenir _________.",
+        "options": [
+          "plus brillante",
+          "moins brillante",
+          "plus haute dans le ciel",
+          "plus basse dans le ciel"
+        ],
+        "answer": "C",
+        "explanation": "这是 Global-MMLU-Lite 的真实 法语 测试题，sample_id=astronomy/test/58，考察向北旅行时北极星视高度的变化。此处仅中文说明题意；选项和答案均保留来源值。",
+        "raw": {
+          "sample_id": "astronomy/test/58",
+          "subject": "astronomy",
+          "subject_category": "STEM",
+          "question": "Lorsque vous voyagez vers le nord depuis les États-Unis vers le Canada, vous pouvez voir l’étoile polaire (Polaris) devenir _________.",
+          "option_a": "plus brillante",
+          "option_b": "moins brillante",
+          "option_c": "plus haute dans le ciel",
+          "option_d": "plus basse dans le ciel",
+          "answer": "C"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=fr&split=test&offset=0&length=1",
+        "license": "Cohere Labs / Apache-2.0（Global-MMLU-Lite v3）；该数据卡为数据标注 Apache-2.0。",
+        "split": "config=fr / split=test / row_idx=0 / sample_id=astronomy/test/58",
+        "excerpt": false
+      },
+      {
+        "id": "global-mmlu-lite-hi-astronomy-test-58",
+        "title": "Global-MMLU-Lite · 印地语天文学题",
+        "type": "choice",
+        "prompt": "संयुक्त राज्य अमेरिका से कनाडा में उत्तर की यात्रा करते समय आपको नॉर्थ स्टार (पोलारिस) _________ होता हुआ दिखेगा।",
+        "options": [
+          "अधिक चमकदार",
+          "अधिक धुंधला",
+          "आकाश में और ऊपर",
+          "आकाश में और नीचे"
+        ],
+        "answer": "C",
+        "explanation": "这是 Global-MMLU-Lite 的真实 印地语 测试题，sample_id=astronomy/test/58，考察向北旅行时北极星视高度的变化。此处仅中文说明题意；选项和答案均保留来源值。",
+        "raw": {
+          "sample_id": "astronomy/test/58",
+          "subject": "astronomy",
+          "subject_category": "STEM",
+          "question": "संयुक्त राज्य अमेरिका से कनाडा में उत्तर की यात्रा करते समय आपको नॉर्थ स्टार (पोलारिस) _________ होता हुआ दिखेगा।",
+          "option_a": "अधिक चमकदार",
+          "option_b": "अधिक धुंधला",
+          "option_c": "आकाश में और ऊपर",
+          "option_d": "आकाश में और नीचे",
+          "answer": "C"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=hi&split=test&offset=0&length=1",
+        "license": "Cohere Labs / Apache-2.0（Global-MMLU-Lite v3）；该数据卡为数据标注 Apache-2.0。",
+        "split": "config=hi / split=test / row_idx=0 / sample_id=astronomy/test/58",
+        "excerpt": false
+      },
+      {
+        "id": "global-mmlu-lite-ja-astronomy-test-58",
+        "title": "Global-MMLU-Lite · 日语天文学题",
+        "type": "choice",
+        "prompt": "アメリカからカナダへ北へ旅行すると、北極星が _________ なっていくのが見える。",
+        "options": [
+          "より明るく",
+          "より薄暗く",
+          "空により高く",
+          "空により低く"
+        ],
+        "answer": "C",
+        "explanation": "这是 Global-MMLU-Lite 的真实 日语 测试题，sample_id=astronomy/test/58，考察向北旅行时北极星视高度的变化。此处仅中文说明题意；选项和答案均保留来源值。",
+        "raw": {
+          "sample_id": "astronomy/test/58",
+          "subject": "astronomy",
+          "subject_category": "STEM",
+          "question": "アメリカからカナダへ北へ旅行すると、北極星が _________ なっていくのが見える。",
+          "option_a": "より明るく",
+          "option_b": "より薄暗く",
+          "option_c": "空により高く",
+          "option_d": "空により低く",
+          "answer": "C"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=ja&split=test&offset=0&length=1",
+        "license": "Cohere Labs / Apache-2.0（Global-MMLU-Lite v3）；该数据卡为数据标注 Apache-2.0。",
+        "split": "config=ja / split=test / row_idx=0 / sample_id=astronomy/test/58",
+        "excerpt": false
       }
     ]
   }

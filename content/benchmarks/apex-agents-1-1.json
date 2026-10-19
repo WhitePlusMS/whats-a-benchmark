@@ -33,7 +33,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "从投行、咨询和法律项目材料中完成专业任务，提交工作成果；1.1 修订任务并惩罚含糊的多答案。",
@@ -84,7 +84,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "样例页标注“for illustration only”，未声明内容复用许可；JV Agreement附件和评分材料未公开。",
-    "scope": "仅该榜单展示的corporate-lawyer案例页；具体版本、附件及benchmark题集许可未查明。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不把示例页视作可再发布许可。",
       "不复制协议附件或评分材料。"
@@ -95,7 +95,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方 corporate-lawyer 演示页的真实协议检查任务，页面展示 1/80 样例；协议附件和评分材料未复制。",
+    "reason": "保留一条历史公开题句短引及来源说明；本轮未能重新取得匹配源响应，已显著标注待核，不当作完整任务或本次新验证的数据行。",
     "url": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
     "sourceUrls": [
       "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/"
@@ -175,9 +175,23 @@
       "sourceUrls": [
         "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/"
       ]
+    },
+    {
+      "text": "2026-10-19：仅纠正旧raw的非题面拼接标签；历史verifier的题句记录仍在，但旧响应体缺失、当前页面未匹配，HF请求401。没有用本次访问失败推断任务不存在，也未声称重新逐字节验证。",
+      "sourceUrls": [
+        "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+        "https://huggingface.co/datasets/mercor/apex-agents"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：旧raw的Environment/免责声明拼接已去除；历史短引可追溯，当前响应未重新匹配，不声称本次已完整验证。 展示记录1→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
+        "https://huggingface.co/datasets/mercor/apex-agents-v1.1"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "每项二元rubric独立判Met/Not met；1.1裁判对scattergunned条目计零，即便回答中包含正确候选也不自动通过。",
@@ -195,19 +209,19 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-apex-agents-1-1",
-        "title": "法律演示 · 合资协议签署检查",
+        "title": "合资协议签署待办清单",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "BlueAnchor 希望当天签署合资协议。任务仅检查顶层章节标题顺序、单条款中孤立的小节/段落标签，以及签字栏未填完的签署人姓名，并返回需增删改的事项清单；不审查条款定义、交叉引用或商业实质。",
-        "explanation": "官方 corporate-lawyer 演示页的真实协议检查任务，页面展示 1/80 样例；协议附件和评分材料未复制。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "BlueAnchor wants to get the JV Agreement signed today. Can you send me back a message with a list of items\n\nEnvironment\n\nfor illustration only",
+        "prompt": "BlueAnchor wants to get the JV Agreement signed today. Can you send me back a message with a list of items",
+        "explanation": "保留历史核验记录标记为逐字的英文题句，去掉原raw拼接的页面标签/免责声明。本轮旧响应体缺失、当前页面未匹配且HF请求401，因此标为历史短引，未完成当前源字节复核；不提供缺失工作区、附件或参考答案。",
+        "raw": "BlueAnchor wants to get the JV Agreement signed today. Can you send me back a message with a list of items",
         "source": "https://www.mercor.com/apex/apex-agents-leaderboard/corporate-lawyer-agent/",
-        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
-        "split": "官方公开演示 / 非已定位的计分数据行",
+        "license": "历史公开页题句的必要短引；未确认统一再发布许可，当前源响应未复核。受控HF文件未访问，未复制附件或模型输出。",
+        "split": "历史公开页面示例；本次响应未验证；来源定位与历史verifier见sample-evidence.json",
         "excerpt": true
       }
     ]

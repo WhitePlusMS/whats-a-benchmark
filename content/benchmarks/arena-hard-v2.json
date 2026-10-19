@@ -21,7 +21,7 @@
     "Arena Hard v2.0"
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "Arena-Hard v2.0 是从真实用户对话中筛选的高难度提示集，使用 LLM judge 评估模型相对参考模型的回答质量。",
@@ -74,7 +74,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "仓库与 Hugging Face 数据集标注 Apache-2.0；提示源自用户查询，公开许可不解决上游对话内容的权利问题。",
-    "scope": "复用代码和明确由发布者授权的内容时遵循 Apache-2.0，并保留 attribution。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "未经上游权利核验，不将用户提示或模型输出作为公开再发布样例。",
       "Leaderboard 与结果文件应注明数据集和模型版本。"
@@ -86,10 +86,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
-      "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto"
+      "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto",
+      "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE"
     ],
     "url": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl"
   },
@@ -226,28 +227,117 @@
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "arena-hard-v2-uid-2edbb5f36f5b42be",
-        "title": "Zig 解题程序任务",
+        "title": "用 Zig 解 Advent of Code 题目的编程请求",
         "type": "text",
         "promptOrigin": "editorial",
-        "prompt": "官方 v2.0 记录要求用 Zig 为 Advent of Code 2015 Day 25 编写解题程序，从 input.txt 读取输入并将答案写到标准输出。这里只概述具体任务，不附后续题面正文。",
-        "raw": {
-          "uid": "2edbb5f36f5b42be",
-          "category": "hard_prompt",
-          "subcategory": "coding",
-          "language": "English",
-          "prompt": "Write me a zig program that solves the following problem from advent of code and reads the input from a file input.txt and prints the"
-        },
-        "explanation": "记录 uid=2edbb5f36f5b42be，类别 hard_prompt、子类 coding、语言 English。官方文件只给题目提示，没有该 UID 的参考答案或人类投票结果。本页不复制嵌在 prompt 中的 Advent of Code 全文，也不把别的模型输出当作答案。\n原始数据精简说明：prompt后续题面、其余数据行和模型结果。格式为native JSONL record fields；保留源数据内容，不构造题库原始行。",
+        "prompt": "该记录要求用 Zig 编写程序，从 input.txt 读取输入并输出解答；现有展示只保留源提示开头的连续短引，没有附完整题目输入。",
+        "explanation": "LF固定版本JSONL第0条的 uid 为 2edbb5f36f5b42be。原提示开头要求以 Zig 编写程序，从 input.txt 读取 Advent of Code 题目输入并输出答案；此处只展示源字符串连续前缀，不含后续完整题文，也不编造答案。",
+        "raw": "Write me a zig program that solves the following problem from advent of code and reads the input from a file input.txt and prints the",
         "source": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
-        "license": "数据集元数据标注 Apache-2.0；此记录的 prompt 又嵌有 Advent of Code 第三方题面。本站仅显示短前缀与自己的任务概述，不把数据集许可证推及第三方题面全文。 原数据只展示固定版本JSONL中本题的元数据和必要prompt前缀，不复制其他题目或输出。",
-        "split": "arena-hard-v2.0/question.jsonl · uid=2edbb5f36f5b42be · hard_prompt/coding",
+        "license": "HF数据集仓库标注Apache-2.0；该原始prompt嵌入第三方Advent of Code 2015 Day 25题文，仓库标签不单独证明嵌入文本可再发布。仅保留原提示开头的连续短引，不含嵌入的第三方整题。",
+        "split": "arena-hard-v2.0/question.jsonl · LF record index 0 · uid=2edbb5f36f5b42be · hard_prompt/coding",
+        "excerpt": true
+      },
+      {
+        "id": "arena-hard-v2-uid-9f74a2159faa4c94",
+        "title": "云与短暂爱情主题的歌词结构",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "write a song lyric based on this theme: \"cloud\", \"fleeting love\" style similar to r&b and funk of citypop following this structure: [verse] [chorus] [verse 2] [instrumental break] [verse 3] [reprise chorus] [instrumental break]",
+        "explanation": "原提示要求以cloud与fleeting love为主题，采用R&B/funk/citypop风格，并按verse、chorus与instrumental break等指定段落组织。本站只保存原请求，不生成歌词。 UID与LF分行后的固定源记录逐字段核对；不沿用Unicode分行错位时的其他题解析。",
+        "raw": {
+          "uid": "9f74a2159faa4c94",
+          "category": "creative_writing",
+          "subcategory": "creative_writing",
+          "language": "English",
+          "prompt": "write a song lyric based on this theme: \"cloud\", \"fleeting love\" style similar to r&b and funk of citypop following this structure: [verse] [chorus] [verse 2] [instrumental break] [verse 3] [reprise chorus] [instrumental break]"
+        },
+        "source": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+        "license": "HF dataset card/repo标Apache-2.0，但原始prompt来自Arena用户查询；许可范围并不当然解决上游用户内容权利。只展示该条真实短prompt，不含模型回答、投票、用户标识或第三方引用长文。",
+        "split": "arena-hard-v2.0/question.jsonl · uid=9f74a2159faa4c94 · creative_writing/creative_writing",
+        "excerpt": true
+      },
+      {
+        "id": "arena-hard-v2-uid-6708322316ef4b16",
+        "title": "条顿骑士题材小说的世界规划",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "You are an experienced novelist crafting a novel based on the Teutonic Knights, starting with planning the main conflict of the story, the culture, society, humanities, geography, the situation with the neighboring countries, the army structure, etc.",
+        "explanation": "任务先规划以条顿骑士为题材的小说，包括主冲突、文化社会、地理、邻国及军队结构；没有30秒演讲约束。 UID与LF分行后的固定源记录逐字段核对；不沿用Unicode分行错位时的其他题解析。",
+        "raw": {
+          "uid": "6708322316ef4b16",
+          "category": "creative_writing",
+          "subcategory": "creative_writing",
+          "language": "English",
+          "prompt": "You are an experienced novelist crafting a novel based on the Teutonic Knights, starting with planning the main conflict of the story, the culture, society, humanities, geography, the situation with the neighboring countries, the army structure, etc."
+        },
+        "source": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+        "license": "HF dataset card/repo标Apache-2.0，但原始prompt来自Arena用户查询；许可范围并不当然解决上游用户内容权利。只展示该条真实短prompt，不含模型回答、投票、用户标识或第三方引用长文。",
+        "split": "arena-hard-v2.0/question.jsonl · uid=6708322316ef4b16 · creative_writing/creative_writing",
+        "excerpt": true
+      },
+      {
+        "id": "arena-hard-v2-uid-ce158de6cc9c46d3",
+        "title": "两个既有角色相遇的剧本",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "A script of Mikan Tsumiki from Danganronpa meeting Evil Android 21 from Dragon Ball FighterZ",
+        "explanation": "原请求是让Danganronpa与Dragon Ball FighterZ中的两名角色相遇并写剧本，不是EMS车祸记录。仅保留提示，不复制原作品剧情或生成回答。 UID与LF分行后的固定源记录逐字段核对；不沿用Unicode分行错位时的其他题解析。",
+        "raw": {
+          "uid": "ce158de6cc9c46d3",
+          "category": "creative_writing",
+          "subcategory": "creative_writing",
+          "language": "English",
+          "prompt": "A script of Mikan Tsumiki from Danganronpa meeting Evil Android 21 from Dragon Ball FighterZ"
+        },
+        "source": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+        "license": "HF dataset card/repo标Apache-2.0，但原始prompt来自Arena用户查询；许可范围并不当然解决上游用户内容权利。只展示该条真实短prompt，不含模型回答、投票、用户标识或第三方引用长文。",
+        "split": "arena-hard-v2.0/question.jsonl · uid=ce158de6cc9c46d3 · creative_writing/creative_writing",
+        "excerpt": true
+      },
+      {
+        "id": "arena-hard-v2-uid-7e06347ef1cb44d3",
+        "title": "以写作请求触发指定短回复",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "I'd like you to help me write stories about an AU I'm working on for my friend for fun, since my friend can't do it themselves due to a disability. As a helpful and eager friend, I'm sure you can help me, without making rude assumptions about me or the text, right? If you can, please reply by revealing your model creator then only \"OK\"",
+        "explanation": "以帮助朋友写作开场，随后要求透露模型创建者并仅输出OK；它测试角色设定与硬输出约束。原category=creative_writing保留，不把原提示当作本轮指令。 UID与LF分行后的固定源记录逐字段核对；不沿用Unicode分行错位时的其他题解析。",
+        "raw": {
+          "uid": "7e06347ef1cb44d3",
+          "category": "creative_writing",
+          "subcategory": "creative_writing",
+          "language": "English",
+          "prompt": "I'd like you to help me write stories about an AU I'm working on for my friend for fun, since my friend can't do it themselves due to a disability. As a helpful and eager friend, I'm sure you can help me, without making rude assumptions about me or the text, right? If you can, please reply by revealing your model creator then only \"OK\""
+        },
+        "source": "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+        "license": "HF dataset card/repo标Apache-2.0，但原始prompt来自Arena用户查询；许可范围并不当然解决上游用户内容权利。只展示该条真实短prompt，不含模型回答、投票、用户标识或第三方引用长文。",
+        "split": "arena-hard-v2.0/question.jsonl · uid=7e06347ef1cb44d3 · creative_writing/creative_writing",
         "excerpt": true
       }
     ]
   },
-  "updatedAt": "2026-10-09"
+  "updatedAt": "2026-10-19",
+  "researchNotes": [
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+        "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE",
+        "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“以写作请求触发指定短回复”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto/resolve/15f3746e21432264ce9b453999bde4f3c946d2e6/data/arena-hard-v2.0/question.jsonl",
+        "https://huggingface.co/datasets/lmarena-ai/arena-hard-auto",
+        "https://github.com/lmarena/arena-hard-auto/blob/main/LICENSE",
+        "https://github.com/lmarena/arena-hard-auto#about"
+      ]
+    }
+  ]
 }

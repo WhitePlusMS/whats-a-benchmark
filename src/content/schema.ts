@@ -166,7 +166,7 @@ export const sampleSetSchema = z.strictObject({
   samples: z
     .array(sampleSchema)
     .min(1)
-    .max(6)
+    // 根据可核实的真实案例数量收录，不用固定条数上限截断不同题型。
     .refine(
       (samples) => new Set(samples.map((s) => s.id)).size === samples.length,
       "样例 ID 不能重复",

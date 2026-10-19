@@ -48,7 +48,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "Chatbot Arena 是由 LMSYS 维护的在线匿名人类偏好评测平台，访客比较两个模型回复并可提交投票。",
@@ -105,7 +105,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "不同快照的许可标注不一致：55k 数据集页面标注 Apache-2.0，历史对话快照未确认相同许可；平台整体没有单一数据许可。",
-    "scope": "只按指定数据快照各自声明的许可证处理记录；不将某一快照许可外推至平台全部对话。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "公开前移除个人信息并评估模型输出、用户提示及第三方内容权利。",
       "请保留数据集版本与来源；不得把平台实时数据描述为已公开数据。"
@@ -117,10 +117,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k/viewer/default/train?row=2",
-      "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
+      "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k",
+      "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=3&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=10&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=16&length=1",
+      "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations"
     ],
     "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k/viewer/default/train?row=2"
   },
@@ -312,6 +316,21 @@
       "label": "案例原始数据精简字段来源",
       "url": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=2&length=1",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=3&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=10&length=1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=16&length=1",
+      "role": "data"
     }
   ],
   "interpretation": {
@@ -340,9 +359,9 @@
       ]
     }
   },
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "arena-55k-row-65089",
@@ -362,7 +381,98 @@
         "license": "该 55K 发布版元数据标注 Apache-2.0；本样例只呈现该发布版的短用户提示及对战元数据，不含模型输出。许可不扩展至另一个需协议访问的 33K 数据集或实时平台记录。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
         "split": "arena-human-preference-55k train · row_idx=2 · id=65089 · revision 18c298340948c0e7f7727399fd459cca6ce0ca6f",
         "excerpt": true
+      },
+      {
+        "excerpt": true,
+        "title": "控制数据集拆分",
+        "split": "arena-human-preference-55k / default / train / row_idx=3 / id=96401 / observed dataset sha=18c298340948c0e7f7727399fd459cca6ce0ca6f",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=3&length=1",
+        "explanation": "用户询问极少数类别如何构建分类器测试集，属于类别不平衡下的评估设计。 prompt原值是JSON序列化的消息数组字符串，raw未改类型。winner标签表示该次人类偏好，不是题目正确答案；本条没有附两模型回复，不能独立复判该投票。",
+        "prompt": "How can I create a test set for a very rare category? I want to build a classifier.",
+        "id": "arena-55k-row-96401",
+        "license": "该数据集数据卡标注 Apache-2.0；本站只保留上述记录字段，不收录模型回答字段 response_a/response_b。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": {
+          "id": 96401,
+          "model_a": "llama-2-13b-chat",
+          "model_b": "mistral-7b-instruct",
+          "prompt": "[\"How can I create a test set for a very rare category? I want to build a classifier.\"]",
+          "winner_model_a": 1,
+          "winner_model_b": 0,
+          "winner_tie": 0
+        }
+      },
+      {
+        "excerpt": true,
+        "title": "云文件上传脚本",
+        "split": "arena-human-preference-55k / default / train / row_idx=10 / id=497862 / observed dataset sha=18c298340948c0e7f7727399fd459cca6ce0ca6f",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=10&length=1",
+        "explanation": "要求编写 Python 函数，将本地文件夹全部文件上传到 S3 目标目录，属于具体云存储自动化任务。 prompt原值是JSON序列化的消息数组字符串，raw未改类型。winner标签表示该次人类偏好，不是题目正确答案；本条没有附两模型回复，不能独立复判该投票。",
+        "prompt": "write a python function to upload all the files from one local folder to one directory of an S3 bucket",
+        "id": "arena-55k-row-497862",
+        "license": "该数据集数据卡标注 Apache-2.0；本站只保留上述记录字段，不收录模型回答字段 response_a/response_b。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": {
+          "id": 497862,
+          "model_a": "vicuna-7b",
+          "model_b": "guanaco-33b",
+          "prompt": "[\"write a python function to upload all the files from one local folder to one directory of an S3 bucket\"]",
+          "winner_model_a": 0,
+          "winner_model_b": 1,
+          "winner_tie": 0
+        }
+      },
+      {
+        "excerpt": true,
+        "title": "字母不重复的句子",
+        "split": "arena-human-preference-55k / default / train / row_idx=16 / id=887722 / observed dataset sha=18c298340948c0e7f7727399fd459cca6ce0ca6f",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=16&length=1",
+        "explanation": "要求写出不重复使用任一字母的语法正确句子，考察文字约束与生成。 prompt原值是JSON序列化的消息数组字符串，raw未改类型。winner标签表示该次人类偏好，不是题目正确答案；本条没有附两模型回复，不能独立复判该投票。",
+        "prompt": "Write a grammatically correct sentence without reusing any letter more than once",
+        "id": "arena-55k-row-887722",
+        "license": "该数据集数据卡标注 Apache-2.0；本站只保留上述记录字段，不收录模型回答字段 response_a/response_b。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": {
+          "id": 887722,
+          "model_a": "gpt-4-1106-preview",
+          "model_b": "wizardlm-70b",
+          "prompt": "[\"Write a grammatically correct sentence without reusing any letter more than once\"]",
+          "winner_model_a": 1,
+          "winner_model_b": 0,
+          "winner_tie": 0
+        }
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=3&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=10&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=16&length=1",
+        "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations",
+        "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“字母不重复的句子”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=2&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=3&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=10&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=lmarena-ai%2Farena-human-preference-55k&config=default&split=train&offset=16&length=1",
+        "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k/viewer/default/train?row=2",
+        "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k",
+        "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations",
+        "https://arena.ai/faq#supporting--contributing",
+        "https://arena.ai/blog/policy#sharing-data",
+        "https://huggingface.co/datasets/lmsys/chatbot_arena_conversations#L70-L85",
+        "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-55k#L74-L90"
+      ]
+    }
+  ]
 }

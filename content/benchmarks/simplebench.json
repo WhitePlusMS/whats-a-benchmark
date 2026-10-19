@@ -68,24 +68,22 @@
     "url": "https://github.com/simple-bench/SimpleBench/blob/main/simple_bench_public.json"
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "仓库代码标注MIT；本轮未确认单独覆盖完整问题数据的许可证。",
-    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
-    "boundaries": [
-      "代码仓库的开源许可与底层任务数据授权需分别核对。",
-      "后续转载题目或媒体前，须核实对应材料的授权范围。"
-    ],
+    "status": "permitted",
+    "license": "MIT · Copyright (c) 2024 simple-bench；固定版本仓库没有对公开 eval_data 题目另列排除条款。",
+    "scope": "官方 simple_bench_public.json 中所选完整公开记录，保留原 prompt（含选项）和 answer；不把公开子集当作完整私有评测集。",
+    "boundaries": [],
     "sourceUrls": [
-      "https://github.com/simple-bench/SimpleBench",
-      "https://simple-bench.com/"
+      "https://github.com/simple-bench/SimpleBench/blob/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/LICENSE"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "reason": "7 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json"
+      "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
+      "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+      "https://github.com/simple-bench/SimpleBench/blob/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/LICENSE"
     ]
   },
   "metric": {
@@ -126,6 +124,23 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 6 条，现有 7 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "https://github.com/simple-bench/SimpleBench/blob/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/LICENSE"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增6条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“桥梁、车速与水流参照系”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→7条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
+        "https://github.com/simple-bench/SimpleBench/blob/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/LICENSE",
+        "https://simple-bench.com/",
+        "https://github.com/simple-bench/SimpleBench"
+      ]
     }
   ],
   "sources": [
@@ -153,11 +168,21 @@
       "label": "已核验的具体公开任务",
       "url": "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/simple-bench/SimpleBench/blob/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/LICENSE",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "公开 runner 按选项键判定，重复回复可采用多数投票；官网 AVG@5 是五次运行均分，不是多数票结果。",
@@ -174,25 +199,133 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-simplebench",
         "title": "公开第 4 题 · 两个都说假话的姐妹",
         "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "公开 question_id=4 中，Amy 和 Sam 都说假话。只能向一人问一个问题，以确定通往宝藏的路；数据给出六种候选问法，多种可行时选最短者。官方答案为 C，即直接询问哪条路通往宝藏。",
-        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：eval_data[question_id=4]\n原始数据精简说明：保留原生字段 question_id、prompt、answer；其他记录字段未收录。 /prompt 保留源值字符[0:110]，源字段共600字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "prompt": "There are two sisters, Amy who always speaks mistruths and Sam who always lies. You don't know which is which. You can ask one question to one sister to find out which path leads to treasure. Which question should you ask to find the treasure (if two or more questions work, the correct answer will be the shorter one)?\nA. \"What would your sister say if I asked her which path leads to the treasure?\"\nB. \"What is your sister’s name?”\nC. \"What path leads to the treasure?\"\nD. \"What path do you think I will take, if you were to guess?\"\nE. \"What is in the treasure?\"\nF. “What is your sister’s number?”\n",
+        "explanation": "Amy 说不实话、Sam 也说谎，两人的描述都表示说假话；这并不是常见的一真一假谜题。官方选择 C，直接问宝藏路径后利用回答的反向信息，并遵守多个可行问句中取最短的条件。 原始题面、六个选项和官方字母答案均完整保留；解析由本站整理。",
         "raw": {
           "question_id": 4,
-          "prompt": "There are two sisters, Amy who always speaks mistruths and Sam who always lies. You don't know which is which.",
+          "prompt": "There are two sisters, Amy who always speaks mistruths and Sam who always lies. You don't know which is which. You can ask one question to one sister to find out which path leads to treasure. Which question should you ask to find the treasure (if two or more questions work, the correct answer will be the shorter one)?\nA. \"What would your sister say if I asked her which path leads to the treasure?\"\nB. \"What is your sister’s name?”\nC. \"What path leads to the treasure?\"\nD. \"What path do you think I will take, if you were to guess?\"\nE. \"What is in the treasure?\"\nF. “What is your sister’s number?”\n",
           "answer": "C"
         },
-        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/main/simple_bench_public.json",
-        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "license": "MIT · simple-bench；公开子集固定版本原始记录，版权及许可文本随案例保留。",
         "split": "SimpleBench official public test, eval_data question 4",
-        "excerpt": true,
-        "answer": "C（原公开数据答案；直接询问路径）"
+        "excerpt": false,
+        "answer": "C",
+        "licensePath": "licenses/simplebench-mit.txt"
+      },
+      {
+        "id": "simplebench-public-1",
+        "title": "平均数约束下的数量推理",
+        "type": "record",
+        "prompt": "Beth places four whole ice cubes in a frying pan at the start of the first minute, then five at the start of the second minute and some more at the start of the third minute, but none in the fourth minute. If the average number of ice cubes per minute placed in the pan while it was frying a crispy egg was five, how many whole ice cubes can be found in the pan at the end of the third minute?\nA. 30\nB. 0\nC. 20\nD. 10\nE. 11\nF. 5\n",
+        "explanation": "问题把平均每分钟放入数量与锅里实际剩下的完整冰块数混在一起。题面明确正在煎蛋，官方答案为 B（0）；只算累计投入量会忽略冰块融化。 原始题面、六个选项和官方字母答案均完整保留；解析由本站整理。",
+        "raw": {
+          "question_id": 1,
+          "prompt": "Beth places four whole ice cubes in a frying pan at the start of the first minute, then five at the start of the second minute and some more at the start of the third minute, but none in the fourth minute. If the average number of ice cubes per minute placed in the pan while it was frying a crispy egg was five, how many whole ice cubes can be found in the pan at the end of the third minute?\nA. 30\nB. 0\nC. 20\nD. 10\nE. 11\nF. 5\n",
+          "answer": "B"
+        },
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "license": "MIT · simple-bench；公开子集固定版本原始记录，版权及许可文本随案例保留。",
+        "licensePath": "licenses/simplebench-mit.txt",
+        "split": "official public eval_data / question_id=1",
+        "excerpt": false,
+        "answer": "B"
+      },
+      {
+        "id": "simplebench-public-2",
+        "title": "抛球与高度比较",
+        "type": "record",
+        "prompt": "A juggler throws a solid blue ball a meter in the air and then a solid purple ball (of the same size) two meters in the air. She then climbs to the top of a tall ladder carefully, balancing a yellow balloon on her head. Where is the purple ball most likely now, in relation to the blue ball?\nA. at the same height as the blue ball\nB. at the same height as the yellow balloon\nC. inside the blue ball\nD. above the yellow balloon\nE. below the blue ball\nF. above the blue ball\n",
+        "explanation": "抛球后叙述又经历爬梯等过程，问的是“现在”两球的相对位置。官方答案 A，不能把最初抛出的不同高度直接当作最后位置。 原始题面、六个选项和官方字母答案均完整保留；解析由本站整理。",
+        "raw": {
+          "question_id": 2,
+          "prompt": "A juggler throws a solid blue ball a meter in the air and then a solid purple ball (of the same size) two meters in the air. She then climbs to the top of a tall ladder carefully, balancing a yellow balloon on her head. Where is the purple ball most likely now, in relation to the blue ball?\nA. at the same height as the blue ball\nB. at the same height as the yellow balloon\nC. inside the blue ball\nD. above the yellow balloon\nE. below the blue ball\nF. above the blue ball\n",
+          "answer": "A"
+        },
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "license": "MIT · simple-bench；公开子集固定版本原始记录，版权及许可文本随案例保留。",
+        "licensePath": "licenses/simplebench-mit.txt",
+        "split": "official public eval_data / question_id=2",
+        "excerpt": false,
+        "answer": "A"
+      },
+      {
+        "id": "simplebench-public-3",
+        "title": "含干扰行为的赛跑判断",
+        "type": "record",
+        "prompt": "Jeff, Jo and Jim are in a 200m men's race, starting from the same position. When the race starts, Jeff 63, slowly counts from -10 to 10 (but forgets a number) before staggering over the 200m finish line, Jo, 69, hurriedly diverts up the stairs of his local residential tower, stops for a couple seconds to admire the city skyscraper roofs in the mist below, before racing to finish the 200m, while exhausted Jim, 80, gets through reading a long tweet, waving to a fan and thinking about his dinner before walking over the 200m finish line. [ _ ] likely finished last.\nA. Jo likely finished last\nB. Jeff and Jim likely finished last, at the same time\nC. Jim likely finished last\nD. Jeff likely finished last\nE. All of them finished simultaneously\nF. Jo and Jim likely finished last, at the same time\n",
+        "explanation": "三人虽同跑 200 米，Jo 还绕上住宅楼的楼梯、登高再返回完成比赛。官方答案 A；应关注绕行距离，而非只按年龄或“匆忙”等词判断。 原始题面、六个选项和官方字母答案均完整保留；解析由本站整理。",
+        "raw": {
+          "question_id": 3,
+          "prompt": "Jeff, Jo and Jim are in a 200m men's race, starting from the same position. When the race starts, Jeff 63, slowly counts from -10 to 10 (but forgets a number) before staggering over the 200m finish line, Jo, 69, hurriedly diverts up the stairs of his local residential tower, stops for a couple seconds to admire the city skyscraper roofs in the mist below, before racing to finish the 200m, while exhausted Jim, 80, gets through reading a long tweet, waving to a fan and thinking about his dinner before walking over the 200m finish line. [ _ ] likely finished last.\nA. Jo likely finished last\nB. Jeff and Jim likely finished last, at the same time\nC. Jim likely finished last\nD. Jeff likely finished last\nE. All of them finished simultaneously\nF. Jo and Jim likely finished last, at the same time\n",
+          "answer": "A"
+        },
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "license": "MIT · simple-bench；公开子集固定版本原始记录，版权及许可文本随案例保留。",
+        "licensePath": "licenses/simplebench-mit.txt",
+        "split": "official public eval_data / question_id=3",
+        "excerpt": false,
+        "answer": "A"
+      },
+      {
+        "id": "simplebench-public-8",
+        "title": "水果与围巾颜色对应",
+        "type": "record",
+        "prompt": "On a shelf, there is only a green apple, red pear, and pink peach. Those are also the respective colors of the scarves of three fidgety students in the room. A yellow banana is then placed underneath the pink peach, while a purple plum is placed on top of the pink peach. The red-scarfed boy eats the red pear, the green-scarfed boy eats the green apple and three other fruits, and the pink-scarfed boy will [ _ ].\nA. eat just the yellow banana\nB. eat the pink, yellow and purple fruits\nC. eat just the purple plum\nD. eat the pink peach\nE. eat two fruits\nF. eat no fruits\n",
+        "explanation": "架上和后来加入的水果一共五个，红围巾学生吃一个，绿围巾学生吃一个再加另外三个，已全部吃完。官方答案 F（粉围巾学生不再吃水果），颜色对应是干扰信息。 原始题面、六个选项和官方字母答案均完整保留；解析由本站整理。",
+        "raw": {
+          "question_id": 8,
+          "prompt": "On a shelf, there is only a green apple, red pear, and pink peach. Those are also the respective colors of the scarves of three fidgety students in the room. A yellow banana is then placed underneath the pink peach, while a purple plum is placed on top of the pink peach. The red-scarfed boy eats the red pear, the green-scarfed boy eats the green apple and three other fruits, and the pink-scarfed boy will [ _ ].\nA. eat just the yellow banana\nB. eat the pink, yellow and purple fruits\nC. eat just the purple plum\nD. eat the pink peach\nE. eat two fruits\nF. eat no fruits\n",
+          "answer": "F"
+        },
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "license": "MIT · simple-bench；公开子集固定版本原始记录，版权及许可文本随案例保留。",
+        "licensePath": "licenses/simplebench-mit.txt",
+        "split": "official public eval_data / question_id=8",
+        "excerpt": false,
+        "answer": "F"
+      },
+      {
+        "id": "simplebench-public-9",
+        "title": "胶带粘接与物体完整性",
+        "type": "record",
+        "prompt": "Agatha makes a stack of 5 cold, fresh single-slice ham sandwiches (with no sauces or condiments) in Room A, then immediately uses duct tape to stick the top surface of the uppermost sandwich to the bottom of her walking stick. She then walks to Room B, with her walking stick, so how many whole sandwiches are there now, in each room?\nA. 4 whole sandwiches in room A, 0 whole sandwiches in Room B\nB. no sandwiches anywhere\nC. 4 whole sandwiches in room B, 1 whole sandwich in Room A\nD. All 5 whole sandwiches in Room B\nE. 4 whole sandwiches in Room B, 1 whole sandwiches in room A\nF. All 5 whole sandwiches in Room A\n",
+        "explanation": "胶带只粘住最上面三明治的顶面，冷的单层三明治又没有酱料黏合。官方答案 A；带走面包片并不等于带走完整三明治，需区分物体部件与完整数量。 原始题面、六个选项和官方字母答案均完整保留；解析由本站整理。",
+        "raw": {
+          "question_id": 9,
+          "prompt": "Agatha makes a stack of 5 cold, fresh single-slice ham sandwiches (with no sauces or condiments) in Room A, then immediately uses duct tape to stick the top surface of the uppermost sandwich to the bottom of her walking stick. She then walks to Room B, with her walking stick, so how many whole sandwiches are there now, in each room?\nA. 4 whole sandwiches in room A, 0 whole sandwiches in Room B\nB. no sandwiches anywhere\nC. 4 whole sandwiches in room B, 1 whole sandwich in Room A\nD. All 5 whole sandwiches in Room B\nE. 4 whole sandwiches in Room B, 1 whole sandwiches in room A\nF. All 5 whole sandwiches in Room A\n",
+          "answer": "A"
+        },
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "license": "MIT · simple-bench；公开子集固定版本原始记录，版权及许可文本随案例保留。",
+        "licensePath": "licenses/simplebench-mit.txt",
+        "split": "official public eval_data / question_id=9",
+        "excerpt": false,
+        "answer": "A"
+      },
+      {
+        "id": "simplebench-public-10",
+        "title": "桥梁、车速与水流参照系",
+        "type": "record",
+        "prompt": "A luxury sports-car is traveling north at 30km/h over a roadbridge, 250m long, which runs over a river that is flowing at 5km/h eastward. The wind is blowing at 1km/h westward, slow enough not to bother the pedestrians snapping photos of the car from both sides of the roadbridge as the car passes. A glove was stored in the trunk of the car, but slips out of a hole and drops out when the car is half-way over the bridge. Assume the car continues in the same direction at the same speed, and the wind and river continue to move as stated. 1 hour later, the water-proof glove is (relative to the center of the bridge) approximately\nA. 4km eastward\nB. <1 km northward\nC. >30km away north-westerly\nD. 30 km northward\nE. >30 km away north-easterly.\nF. 5 km+ eastward\n",
+        "explanation": "手套在车经过公路桥中点时掉落；问题没有说它穿过桥面进入水里。官方答案 B，不能直接把河流速度当作手套漂流速度。 原始题面、六个选项和官方字母答案均完整保留；解析由本站整理。",
+        "raw": {
+          "question_id": 10,
+          "prompt": "A luxury sports-car is traveling north at 30km/h over a roadbridge, 250m long, which runs over a river that is flowing at 5km/h eastward. The wind is blowing at 1km/h westward, slow enough not to bother the pedestrians snapping photos of the car from both sides of the roadbridge as the car passes. A glove was stored in the trunk of the car, but slips out of a hole and drops out when the car is half-way over the bridge. Assume the car continues in the same direction at the same speed, and the wind and river continue to move as stated. 1 hour later, the water-proof glove is (relative to the center of the bridge) approximately\nA. 4km eastward\nB. <1 km northward\nC. >30km away north-westerly\nD. 30 km northward\nE. >30 km away north-easterly.\nF. 5 km+ eastward\n",
+          "answer": "B"
+        },
+        "source": "https://raw.githubusercontent.com/simple-bench/SimpleBench/fbc2e429085bdedad7d1a236d2bc9bc18c95f16e/simple_bench_public.json",
+        "license": "MIT · simple-bench；公开子集固定版本原始记录，版权及许可文本随案例保留。",
+        "licensePath": "licenses/simplebench-mit.txt",
+        "split": "official public eval_data / question_id=10",
+        "excerpt": false,
+        "answer": "B"
       }
     ]
   }

@@ -316,7 +316,7 @@ test("更新只改变指定条目的日期与内容，样例不进入目录模�
   );
   assert.equal(
     projection.catalog.find((item) => item.id === "mmlu-pro")?.sampleCount,
-    2,
+    entry.sampleSet?.samples.length,
   );
   assert.equal(
     projection.catalog.find((item) => item.id === "second")?.sampleCount,

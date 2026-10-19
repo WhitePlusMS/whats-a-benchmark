@@ -63,9 +63,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "本站仅选取明确标注范围的公开输入片段；媒体、附件、参考内容和完整题库的权利分别核对。"
     ],
     "sourceUrls": [
       "https://arena.ai/faq"
@@ -73,11 +73,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站仅保留公开博客中一个真实 Captioning 提示的短引与编辑性说明。配套图片在原博客查看；该示例不来自 gated VisionArena-Chat/Battle，也未接受或访问其数据协议。",
+    "reason": "9条官方分类文章中的实际提示可切换，涵盖OCR、图表、创作、识别和幽默；配图未镜像，文本片段不能代替完整视觉输入。",
     "url": "https://arena.ai/blog/re-introducing-vision-arena-categories",
     "sourceUrls": [
       "https://arena.ai/blog/re-introducing-vision-arena-categories",
-      "https://cdn.sanity.io/images/ybjf12mv/migration/89d69372d406f2a2be096ab5013eeebfcaafdb3b-512x339.png"
+      "https://cdn.sanity.io/images/ybjf12mv/migration/89d69372d406f2a2be096ab5013eeebfcaafdb3b-512x339.png",
+      "https://arena.ai/faq"
     ]
   },
   "metric": {
@@ -141,8 +142,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "匿名真人比较视觉输入回答；style control调整风格特征，BT评级是偏好强度而非标准答案正确率。",
@@ -178,9 +179,25 @@
       "sourceUrls": [
         "https://arena.ai/leaderboard/vision"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 8 条，现有 9 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "https://arena.ai/faq"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增8条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“OCR · 文章文本提取”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→9条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "https://cdn.sanity.io/images/ybjf12mv/migration/89d69372d406f2a2be096ab5013eeebfcaafdb3b-512x339.png",
+        "https://arena.ai/faq"
+      ]
     }
   ],
   "sampleSet": {
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "explanation": "官方 Vision Arena Categories 文章将该提示和一张文章所链 PNG 图片并列展示；图片源 URL 为512×339、HTTP HEAD 200。该公站示例不是 gated VisionArena-Chat/Battle 数据行，也未读取或接受相关协议；未猜测图片内容，未镜像媒体。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
@@ -194,8 +211,111 @@
         "type": "text",
         "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
         "split": "official public blog · Captioning · first image example · no dataset row ID"
+      },
+      {
+        "id": "arena-vision-public-blog-ocr-document-translation",
+        "title": "OCR · 文档翻译分析总结",
+        "type": "text",
+        "prompt": "该博客把此提示列于 OCR 类别，要求对配套文件内容进行翻译、分析和总结。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "该博客把此提示列于 OCR 类别，要求对配套文件内容进行翻译、分析和总结。源文章中的文件图未作为候选媒体复制，所以本站只保留实际提示文本，并明确不是完整视觉输入。",
+        "raw": "Translate, analyze, and summarize the contents of this document.",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / OCR / second public example / text-only excerpt; blog image omitted",
+        "excerpt": true
+      },
+      {
+        "id": "arena-vision-public-blog-creative-ulysses",
+        "title": "Creative Writing · 抽象作品命名",
+        "type": "text",
+        "prompt": "此提示位于 Creative Writing 类别，围绕表现 Ulysses 情感意识的抽象作品，要求回顾性给出四个标题；配套作品图未复制，不能据文本推测作品内容。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "此提示位于 Creative Writing 类别，围绕表现 Ulysses 情感意识的抽象作品，要求回顾性给出四个标题；配套作品图未复制，不能据文本推测作品内容。",
+        "raw": "give 4 titles retrospectively to the abstract pieces depicting the emotional consciousness of Ulysses",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / Creative Writing / first public example / text-only excerpt; blog image omitted",
+        "excerpt": true
+      },
+      {
+        "id": "arena-vision-public-blog-creative-wabi-sabi",
+        "title": "Creative Writing · 空间感官描述",
+        "type": "text",
+        "prompt": "源提示要求对 Wabi sabi 空间做感官丰富的描述。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "源提示要求对 Wabi sabi 空间做感官丰富的描述。博客配图缺席，因此仅用于展示真实任务文字，不代表完整输入。",
+        "raw": "Give a sensory rich description of this Wabi sabi space",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / Creative Writing / second public example / text-only excerpt; blog image omitted",
+        "excerpt": true
+      },
+      {
+        "id": "arena-vision-public-blog-diagram-function-family",
+        "title": "Diagrams · 函数族选择",
+        "type": "text",
+        "prompt": "该图表题要求依据 parent function 的图像辨认同一函数族；问题同时提供 A–D 四个公式。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "该图表题要求依据 parent function 的图像辨认同一函数族；问题同时提供 A–D 四个公式。博客未给可独立解题的图像副本，因此只记录提示和选项文本，不推断答案。",
+        "raw": "The graph of a parent function is shown. Which function belongs to the same function family as the graphed function? A f\\left ( x \\right ): =: 5^{x}: - : 4 B f\\left ( x \\right ): =: \\frac{1}{5}\\sqrt[3]{x: +: 4} C f\\left ( x \\right ): =: 5x^{2}: +: 4 D f\\left ( x \\right ): =: 5\\sqrt{x}: -: 4",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / Diagrams / first public example / text-only excerpt; blog image omitted",
+        "excerpt": true
+      },
+      {
+        "id": "arena-vision-public-blog-entity-pokemon",
+        "title": "Entity Recognition · 图像实体识别",
+        "type": "text",
+        "prompt": "此提示位于 Entity Recognition 类别，要求识别配图中的宝可梦类型。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "此提示位于 Entity Recognition 类别，要求识别配图中的宝可梦类型。配图未复制，候选明确不含识别结果。",
+        "raw": "What kind of pokemon is this",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / Entity Recognition / first public example / text-only excerpt; blog image omitted",
+        "excerpt": true
+      },
+      {
+        "id": "arena-vision-public-blog-homework-answer",
+        "title": "Homework · 图片作业答题",
+        "type": "text",
+        "prompt": "该提示用于作业图片类别，只要求正确作答；文章没有在此处公布参考答案。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "该提示用于作业图片类别，只要求正确作答；文章没有在此处公布参考答案。题目图片未复制，因此不能把这段文本当作完整作业题。",
+        "raw": "answer this correctly",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / Homework / first public example / text-only excerpt; blog image omitted",
+        "excerpt": true
+      },
+      {
+        "id": "arena-vision-public-blog-humor-weekdays-fridays",
+        "title": "Humor · 工作日与周五梗图",
+        "type": "text",
+        "prompt": "此提示要求为“工作日的我们”与“周五的我们”配图寻找更好的caption，任务类型是图文幽默改写；未复制图片，也没有来源给出的标准答案。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "此提示要求为“工作日的我们”与“周五的我们”配图寻找更好的caption，任务类型是图文幽默改写；未复制图片，也没有来源给出的标准答案。",
+        "raw": "whats a better caption to write for us on weekdays vs us on fridays?",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / Humor / first public example / text-only excerpt; blog image omitted",
+        "excerpt": true
+      },
+      {
+        "id": "arena-vision-public-blog-ocr-article-text",
+        "title": "OCR · 文章文本提取",
+        "type": "text",
+        "prompt": "该提示位于 OCR 类别，任务是从配图中提取文章文本。原始提示保留在raw，配套图片需打开官方来源查看。",
+        "promptOrigin": "editorial",
+        "explanation": "该提示位于 OCR 类别，任务是从配图中提取文章文本。原图缺席，所以本站只展示提示，不包含OCR输出。",
+        "raw": "extract the article text",
+        "source": "https://arena.ai/blog/re-introducing-vision-arena-categories",
+        "license": "仅记录官方公开博客提示文本短引；博客配套图片未复制，图片再分发许可未核实。原始提示只代表源文本，不将配图省略包装为完整视觉任务。",
+        "split": "official public blog / OCR / first public example / text-only excerpt; blog image omitted",
+        "excerpt": true
       }
-    ],
-    "retrievedAt": "2026-10-09"
+    ]
   }
 }

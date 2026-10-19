@@ -73,10 +73,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "检查的官方示例页和仓库README未声明任务文本或工作簿专属许可；HF镜像MIT元数据未用于推定官网素材许可。",
-    "scope": "仅Example 1任务事实的原创概述；任务文本、工作簿、图像与答案文件的独立许可未查明。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "不复制工作簿、图像或单元格答案。",
-      "不将示例映射为特定split或行ID。"
+      "未找到任务数据/工作簿的明确统一许可，保留unknown；不将非官方HF镜像MIT标签外推。"
     ],
     "sourceUrls": [
       "https://spreadsheetbench.github.io/",
@@ -86,7 +85,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方Version 2 Example 1公开了具体财务建模步骤；本站只展示原创解读和短字段引文，不附工作簿。",
+    "reason": "3 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://spreadsheetbench.github.io/",
     "sourceUrls": [
       "https://spreadsheetbench.github.io/",
@@ -117,6 +116,22 @@
       "sourceUrls": [
         "https://arxiv.org/html/2606.29955v1",
         "https://github.com/RUCKBReasoning/SpreadsheetBench-2"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://spreadsheetbench.github.io/",
+        "https://github.com/RUCKBReasoning/SpreadsheetBench-2",
+        "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Example 3：财务数据双图表交付”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://spreadsheetbench.github.io/",
+        "https://github.com/RUCKBReasoning/SpreadsheetBench-2",
+        "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2"
       ]
     }
   ],
@@ -153,23 +168,49 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-spreadsheetbench-v2-financial-modeling",
         "title": "公开任务示例 · 多表财务建模",
-        "type": "record",
+        "type": "text",
         "promptOrigin": "editorial",
-        "prompt": "SpreadsheetBench 2 的 Example 1 要求在保持工作簿结构/格式的前提下完成财务模型：在 Financials 表计算 Revenue、EBITDA、EBIT、PAT 和 Total Assets 的历史与预测 CAGR；在 Assumptions 表按前两年均值算2014F–2018F库存天数，并在2015F–2018F每年减少0.5天后推算库存；再算总资产周转率、EV/EBITDA及终值。官网没有提供该展示例的记录ID。",
-        "explanation": "项目页将其标为Version 2 / Example 1 / Financial Modeling；未下载工作簿，也未从图像或不可见输出推定数值答案。任务文本或工作簿的单独许可未在检查的官方页面/README中声明。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "In the Financials sheet, calculate CAGR for both historical and forecast periods for Revenue, EBITDA, EBIT, PAT, and Total Assets.\n\nExample 1: Financial Modeling.",
+        "prompt": "V2 Example 1 的Financial Modeling任务要求对Financials工作表的历史期和预测期指标计算CAGR。",
+        "explanation": "既有 raw 将连续任务指令和页面上的独立Example 1标题合并。更正只保留官方页面中连续的任务指令，不把展示标题伪装成题面字段；工作簿与参考结果未下载或展示。",
+        "raw": "In the Financials sheet, calculate CAGR for both historical and forecast periods for Revenue, EBITDA, EBIT, PAT, and Total Assets.",
         "source": "https://spreadsheetbench.github.io/",
-        "license": "本站原创任务解读与官网必要短引；官方示例文本和工作簿未发现单独许可声明。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
-        "split": "SpreadsheetBench 2 / Version 2 / Example 1 / Financial Modeling；无数据行ID",
+        "license": "官方页面/作者仓库未声明此示例任务或工作簿的单独再利用许可；只保留必要连续任务指令短引，未确认完整任务或工作簿统一再发布许可。",
+        "split": "SpreadsheetBench 2 / Version 2 homepage / Example 1 Financial Modeling / contiguous prompt only",
         "excerpt": true
+      },
+      {
+        "type": "record",
+        "id": "sb2-web-example-2-debugging",
+        "title": "Example 2：多表工作簿公式与结构审计",
+        "prompt": "排查并修复工作簿错误，覆盖公式逻辑、硬编码值、断裂引用、数据验证及格式/命名一致性。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": "Instruction: Please audit and fix this file thoroughly. Errors may include but are not limited to: formula logic errors or inconsistencies, hardcoded values that should be formulas, broken cell references, data validation issues, potential calculation errors, inconsistent formatting or naming conventions, best practice violations, and any other issues that could affect accuracy or maintainability.",
+        "explanation": "网站V2 Example 2实际任务要求通盘审计并修复工作簿，页面进一步列出公式逻辑、不应硬编码、断裂引用、数据验证和格式/命名等问题类型。这里仅保留官网完整指令段；没有复制实际工作簿、参考答案或作者的示例图片。 标题和中文说明不塞入raw，电子表格与参考产物未镜像；原文的格式要求保留。",
+        "split": "SpreadsheetBench 2 · official website · Version 2 · Example 2（public example, no dataset row ID）",
+        "source": "https://spreadsheetbench.github.io/",
+        "license": "未发现官网任务文本或工作簿专属许可；仅必要短引与原创中文解读，HF镜像MIT元数据没有作为官网任务材料的授权依据。"
+      },
+      {
+        "type": "record",
+        "id": "sb2-web-example-3-visualization",
+        "title": "Example 3：财务数据双图表交付",
+        "prompt": "根据 Surprise 工作表第50–71行制作两张EPS图：季度组合图与价格影响率发散柱形图，并遵循指定系列、轴、标题和季度范围。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": "Instruction: Create 2 Earnings Per Share charts using the provided dataset in the Surprise sheet (rows 50-71). The first chart is a multi-series combo chart shown by quarter. The primary Y-axis tracks EPS values and the secondary Y-axis tracks Price. Title the chart \"Quarterly Price Impact Analysis\" at the top center. Display 4 series: Differential (as overlay floating bars spanning from Mean to After Event for each period), After Event (line), Mean (Estimated Value) (markers only), and Price (line on secondary axis). The second chart is a diverging vertical column chart showing Price Impact (%) by quarter, titled \"Earnings Per Share: Actual vs. Estimated Performance\" at the top center. Both charts should display quarters from Q3 2020 to Q3 2025 on the X-axis.",
+        "explanation": "网站V2 Example 3是实际图表生成任务：指定Surprise!第50–71行，且官方完整说明要求一张多系列组合图和一张发散柱形图，分别设置系列、次轴、标题与季度区间。raw保留官网该公开案例的完整指令段；未复制电子表格、图表图片、参考结果或其余逐项格式规格。 标题和中文说明不塞入raw，电子表格与参考产物未镜像；原文的格式要求保留。",
+        "split": "SpreadsheetBench 2 · official website · Version 2 · Example 3（public example, no dataset row ID）",
+        "source": "https://spreadsheetbench.github.io/",
+        "license": "未发现官网任务文本或工作簿专属许可；仅必要短引与原创中文解读，HF镜像MIT元数据没有作为官网任务材料的授权依据。"
       }
     ]
   }

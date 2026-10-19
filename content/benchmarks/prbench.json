@@ -75,7 +75,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "ScaleAI官方PRBench数据卡标注CC-BY-4.0。",
-    "scope": "仅该公开finance数据行Viewer字段按CC-BY-4.0署名使用；外部引用、模型回复、scratchpad、rubric和canary内容排除。",
+    "scope": "所选公开 finance / legal 首轮任务字段按CC-BY-4.0署名使用；外部引用、模型回复、scratchpad、rubric和canary内容排除。",
     "boundaries": [
       "保留数据卡归属和来源。",
       "不复制回复、scratchpad、rubric或canary值。"
@@ -88,12 +88,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方HF Viewer/Rows API公开finance任务行和10轮元数据；数据卡标CC-BY-4.0。本站只展示首轮问题事实。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。保留单轮或多轮记录的首轮问题及标签，未重放全部历史；模型回答不作为参考答案。",
     "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
     "sourceUrls": [
       "https://huggingface.co/datasets/ScaleAI/PRBench",
       "https://datasets-server.huggingface.co/first-rows?dataset=ScaleAI%2FPRBench&config=default&split=finance",
-      "https://github.com/scaleapi/PRBench"
+      "https://github.com/scaleapi/PRBench",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100"
     ]
   },
   "metric": {
@@ -126,6 +128,24 @@
       "sourceUrls": [
         "https://labs.scale.com/papers/prbench",
         "https://huggingface.co/datasets/ScaleAI/PRBench"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Regulatory & Administrative Law · Expert”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "https://huggingface.co/datasets/ScaleAI/PRBench",
+        "https://datasets-server.huggingface.co/first-rows?dataset=ScaleAI%2FPRBench&config=default&split=finance",
+        "https://github.com/scaleapi/PRBench",
+        "https://labs.scale.com/papers/prbench"
       ]
     }
   ],
@@ -179,6 +199,16 @@
       "label": "案例原始JSON精简字段来源",
       "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+      "role": "data"
     }
   ],
   "related": [
@@ -201,8 +231,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "评委读取完整对话和标准，评的是最终助手回应；负权重会扣分，criterion 通过比例不等于论文 mean_clipped。",
@@ -220,26 +250,106 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-prbench-finance-ccar-tail-risk",
         "title": "公开任务行 · CCAR尾部损失低估与六周申报",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "PRBench finance任务 ea67e314b6c2e8fc70627c19 的首轮问题描述：CCAR信用损失模型对商业地产压力情景的尾部损失低估约15–20%，监管提交还有6周；提问者要比较保守overlay、重建模型或其他优先方案。本站只复述真实开场问题，不展示回复、scratchpad、rubric或canary字段。",
-        "explanation": "ScaleAI官方Viewer标出Finance、Risk Management & Stress Testing、Expert及10轮记录。公开数据卡标CC-BY-4.0；记录中的回答和评分字段没有用作答案。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略response_0、model_0、reference_texts_0、scratchpad、rubric、canary、prompt_1 through prompt_9。 原文只保留已核片段；具体字段截取范围见取证记录。",
+        "prompt": "PRBench finance 任务 ea67e314b6c2e8fc70627c19 的首轮问题：信用损失预测模型用于 CCAR 压力测试，商业地产组合尾部损失被低估约 15–20%，监管提交还有 6 周；提问者在考虑保守 overlay、重建模型或其他办法，并询问优先级。这里只展示原始十轮对话的首轮用户提示；其余九轮对话未在此重放。",
+        "explanation": "原始记录为 10 轮对话。raw.prompt_0 已用官方当前 HF /rows 返回的完整字符串替换此前截断前缀；这是首轮问题，实际评测任务还包括后续九轮历史，本站未展示那些轮次、模型回答或reference，不把首轮单独包装为完整的末轮评测上下文，也不补参考答案。",
         "raw": {
           "topic": "Risk Management & Stress Testing",
           "turns": 10,
           "expert": "Expert",
           "field": "Finance",
-          "prompt_0": "hey, we've got a problem with our credit loss forecasting model that feeds into CCAR stress testing. during validaton, we found the model is systematically underestimating losses in the tail scenarios",
+          "prompt_0": "hey, we've got a problem with our credit loss forecasting model that feeds into CCAR stress testing. during validaton, we found the model is systematically underestimating losses in the tail scenarios by about 15-20%, particularly for our commercial real state portfolio. the regulatory submission is due in 6 weeks ans we're tryong to figure out if we should, apply a conservative overlay  adjustment factor, rebuild the key components of the model, or maybe there's some other approach we're missing. The model was performing fine until we started seeing these newer macro scenarios with simultaneous interest rate spikes and credit spread widening. thoughts on how to approach this? what would you prioritize given the timeline constraints?",
           "task": "ea67e314b6c2e8fc70627c19"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=1",
-        "license": "ScaleAI官方PRBench数据卡标注CC-BY-4.0；本站按原始任务prompt作中文解读并注明来源。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
-        "split": "config=default / split=finance / task ea67e314b6c2e8fc70627c19 / prompt_0；10-turn conversation",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0；本站仅保留该记录的实际字段，不扩展到被省略的历史回复、评分rubric或参考文本。",
+        "split": "config=default / split=finance / row_idx=0 / task_id=ea67e314b6c2e8fc70627c19",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-finance-ed36da8e8736016b46097546",
+        "title": "Market Microstructure, Trading & Liquidity · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问交易流动性与执行策略问题，要求结合题目中的市场情景分析。",
+        "explanation": "该金融专家任务来自 Market Microstructure, Trading & Liquidity：市场深度突然消失而跨场所失衡指标仍中性时，询问如何调节算法以降低逆向选择。源记录是4轮对话；本站只保留开场提示和任务标签。官方记录另含各轮模型回答及专家评分rubric，但没有唯一标准答案字段；模型回答不作为参考答案。",
+        "raw": {
+          "task": "ed36da8e8736016b46097546",
+          "turns": 4,
+          "field": "Finance",
+          "topic": "Market Microstructure, Trading & Liquidity",
+          "expert": "Expert",
+          "prompt_0": "How to tweak the algorithm to prevent adverse selection when depth vanishes but cross venue imbalance looks neutral?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=finance / row_idx=2 / task_id=ed36da8e8736016b46097546",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-finance-4d8572153bf1cf6c0484b643",
+        "title": "Wealth Management, Financial Planning & Advice · Non-Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问个人财富管理与投资规划问题，要求结合具体财务约束分析。",
+        "explanation": "该财富管理任务给出银行误转 £3,455 而非 £345.50、用户已花 £650 的情境，询问银行要求退款时如何处理。源记录是一轮、非专家问题。官方数据另有模型回复与 rubric，不是官方唯一标准答案；候选不摘录这些内容。",
+        "raw": {
+          "task": "4d8572153bf1cf6c0484b643",
+          "turns": 1,
+          "field": "Finance",
+          "topic": "Wealth Management, Financial Planning & Advice",
+          "expert": "Non-Expert",
+          "prompt_0": "I got a credit alert on my bank app and I assumed it was the interest on my savings so I used £650 for the balance on my holiday trip. The bank just called requesting a refund because it was a wrong amount, they sent £3,455 instead of £ 345.5, but I've already spent part of the money. I don't mind they taking the rest but i won't pay for what i already spent. Is that ok? "
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=finance / row_idx=4 / task_id=4d8572153bf1cf6c0484b643",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-legal-e6d074eb6486a518673769d3",
+        "title": "Labor & Employment Law · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问跨州远程雇佣、员工分类及迁居后的劳动法问题。",
+        "explanation": "跨州远程雇佣情景同时涉及搬到纽约后的员工豁免分类、孕期安排、用餐休息和加州加班规则是否适用。需要分别识别工作地点与公司总部的关系，不能把它简化为税务问题。这里保留官方一轮任务的开场问题；模型回复和评分准则没有当作参考答案。",
+        "raw": {
+          "task": "e6d074eb6486a518673769d3",
+          "turns": 1,
+          "field": "Legal",
+          "topic": "Labor & Employment Law",
+          "expert": "Expert",
+          "prompt_0": "got a software engineer with a currently exmpt 180k salary who's been remote in texas since covide working for our CA based company. he's moving to NYc next month and wants to stay remote, he's also pregnant he's a transgender male. HR is worried aobut changing his exempt status when he moves to NY and whether we need to do anything different becausse of the pregnancy. Also not sure if we need to follow NY meal break rules for remote workers or if CA overtime laws still apply since we're headquartered here. what's our exposure here?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=legal / row_idx=0 / task_id=e6d074eb6486a518673769d3",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-legal-740a326c927c1ce16ffee6b8",
+        "title": "Regulatory & Administrative Law · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问居家血液检测产品面向消费者销售时的监管审批路径。",
+        "explanation": "该监管法任务询问小型生物科技初创企业将居家血液检测盒直接销售给消费者时的 FDA 流程，以及可能适用 510(k) 或 De Novo 的问题。源记录为四轮专家对话；数据含模型回复和rubric评分条件，不含单一标准答案字段，本站只留首轮用户问题。",
+        "raw": {
+          "task": "740a326c927c1ce16ffee6b8",
+          "turns": 4,
+          "field": "Legal",
+          "topic": "Regulatory & Administrative Law",
+          "expert": "Expert",
+          "prompt_0": "client's a small biotech startup, we wanna sell a new at-home blood test kit directly to customers. What's the fda process look like for this? Do we need 510(k) or de novo? kinda lost on where to even start."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=legal / row_idx=1 / task_id=740a326c927c1ce16ffee6b8",
         "excerpt": true
       }
     ]

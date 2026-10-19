@@ -30,7 +30,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "partial",
   "officialDefinition": {
     "summary": "用 2024 年 AIME 竞赛题考查数学解题；具体试卷和模型评测协议由报告方决定。",
@@ -84,21 +84,23 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "未找到 AIME 2024 题目或答案的公开再发布许可证。",
-    "scope": "MAA 现行规则对竞赛窗口内题目传播设有限制；窗口结束不等同于取得公开网站转载授权。",
+    "license": "本次取得官方公开问题及标注，竞赛原题/解答整体复用许可未确认。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "未取得明确题面许可前，不复制竞赛原题、答案或第三方解析。"
+      "题目可能来自上游竞赛；数据托管不等于整体版权转移。",
+      "HF /rows为本次响应快照，不把另行观察的HEAD冒充它的固定修订。"
     ],
     "sourceUrls": [
-      "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=3"
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "reason": "4道真实公开数学题可切换，原问题、标识和官方短答案保留；旧题遗漏条件已恢复，中文解析与源数据分开。",
     "url": "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
     "sourceUrls": [
-      "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet"
+      "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6"
     ]
   },
   "metric": {
@@ -153,6 +155,11 @@
       "label": "具体公开案例的原始来源",
       "url": "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6",
+      "role": "data"
     }
   ],
   "researchNotes": [
@@ -183,11 +190,26 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“aime-2024 · 彩票组合概率”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6",
+        "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
+        "https://maa.org/maa-invitational-competitions/#L105-L144",
+        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-aime-2024",
@@ -195,17 +217,71 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "真实公开题涉及每天 9 公里步行和固定 t 分钟的咖啡店停留：以 s 公里/小时走，合计 4 小时；以 s+2 公里/小时走，合计 2 小时 24 分钟。求以 s+1/2 公里/小时走时的合计分钟数。MathArena 公开第 1 题及独立 AI-MO/AoPS 题号映射一致，答案 204。",
-        "explanation": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。 定位：MathArena train row_idx 0, problem_idx 1; independently cross-bound to AI-MO train row_idx/id 60, AoPS source URL identifies AIME I 2024 Problem 1\n原始数据精简说明：保留原生字段 problem_idx、problem、answer；其他源字段省略。 文本字段按源值真实前缀精简，范围为{\"problem\": {\"start\": 0, \"end\": 144, \"sourceCharacters\": 534}}。",
+        "explanation": "分别用两种速度的总用时建立关于步速和固定停留时间的方程，再代入新速度求总分钟数；完整题面与官方数值答案204保留。",
         "raw": {
           "problem_idx": 1,
-          "problem": "Every morning Aya goes for a $9$-kilometer-long walk and stops at a coffee shop afterwards. When she walks at a constant speed of $s$ kilometers",
+          "problem": "Every morning Aya goes for a $9$-kilometer-long walk and stops at a coffee shop afterwards. When she walks at a constant speed of $s$ kilometers per hour, the walk takes her $4$ hours, including $t$ minutes spent in the coffee shop. When she walks at $s + 2$ kilometers per hour, the walk takes her $2$ hours and $24$ minutes, including $t$ minutes spent in the coffee shop. Suppose Aya walks at $s + \\frac{1}{2}$\nkilometers per hour. Find the number of minutes the walk takes her, including the $t$ minutes spent in the coffee shop.\n",
           "answer": 204
         },
-        "source": "https://huggingface.co/datasets/MathArena/aime_2024_I/resolve/ea5b061c3e8039dc9858defaafc407d04b995e9f/data/train-00000-of-00001.parquet",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6",
         "answer": "204",
-        "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据只展示所列真实字段、配置事实与必要原文节录；其格式不被解释为整套数据或其他材料的再发布授权。",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
         "split": "AIME I 2024 problem 1; official MathArena release row, cross-bound to AI-MO public validation row",
         "excerpt": true
+      },
+      {
+        "id": "public-case-aime-2024-extra-2",
+        "title": "aime-2024 · 对数等式与乘积",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开问题的原题与标注见raw：aime-2024 · 对数等式与乘积。",
+        "explanation": "官方 rows 响应 row_idx=1，原始识别字段为 2。题目给出两个互相耦合的对数值，要求变量乘积；侧重把对数幂表达式改写为指数关系。 原记录的 answer 未复制；raw 保留题面及必要标识/学科/难度字段的原值。",
+        "raw": {
+          "problem_idx": 2,
+          "problem": "There exist real numbers $x$ and $y$, both greater than 1, such that $$\\log_x(y^x) = \\log_y(x^{4y}) = 10.$$ Find $xy$.\n",
+          "answer": 25
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
+        "split": "aime-2024 official HF rows / train row_idx=1",
+        "excerpt": true,
+        "answer": "25"
+      },
+      {
+        "id": "public-case-aime-2024-extra-3",
+        "title": "aime-2024 · 轮流取石的必胜保证计数",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开问题的原题与标注见raw：aime-2024 · 轮流取石的必胜保证计数。",
+        "explanation": "Alice and Bob 轮流取 1 枚或 4 枚，问题统计保证 Bob 获胜的初始正整数堆数；这是对取石状态与必胜/必败周期的组合计数。 原记录的 answer/solution 未复制；raw 保留题面与对应元数据原值。",
+        "raw": {
+          "problem_idx": 3,
+          "problem": "Alice and Bob play the following game. A stack of $n$ tokens lies before them. The players take turns with Alice going first. On each turn, the player removes $1$ token or $4$ tokens from the stack. The player who removes the last token wins. Find the number of positive integers $n$ less than or equal to $2024$ such that there is a strategy that guarantees that Bob wins, regardless of Alice’s moves.\n",
+          "answer": 809
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
+        "split": "aime-2024 official HF rows / train row_idx=2",
+        "excerpt": true,
+        "answer": "809"
+      },
+      {
+        "id": "public-case-aime-2024-extra-4",
+        "title": "aime-2024 · 彩票组合概率",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开问题的原题与标注见raw：aime-2024 · 彩票组合概率。",
+        "explanation": "官方 rows 响应 row_idx=3，原始识别字段为 4。抽取4个互异号码并给定随机机制，要求计算中奖结构的概率；原始题面中的随机实验与组合计数是核心。 原记录的 answer 未复制；raw 保留题面及必要标识/学科/难度字段的原值。",
+        "raw": {
+          "problem_idx": 4,
+          "problem": "Jen enters a lottery by picking $4$ distinct numbers from $S=\\{1,2,3,\\cdots,9,10\\}.$ $4$ numbers are randomly chosen from $S.$ She wins a prize if at least two of her numbers were $2$ of the randomly chosen numbers, and wins the grand prize if all four of her numbers were the randomly chosen numbers. The probability of her winning the grand prize given that she won a prize is $\\tfrac{m}{n}$ where $m$ and $n$ are relatively prime positive integers. Find $m+n$.\n",
+          "answer": 116
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2024_I&config=default&split=train&offset=0&length=6",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
+        "split": "aime-2024 official HF rows / train row_idx=3",
+        "excerpt": true,
+        "answer": "116"
       }
     ]
   }

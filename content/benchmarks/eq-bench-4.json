@@ -73,9 +73,10 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "未找到覆盖全部网站对话数据的许可，不用代码许可替代。",
+      "开场是评测情境，不推断为真实个人经历，也不编造参考回应。"
     ],
     "sourceUrls": [
       "https://github.com/EQ-bench/eqbench4"
@@ -83,11 +84,16 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
+    "reason": "5条案例保留官方场景开场消息及已披露元数据；它们不是完整对话、隐藏角色卡或评分过程。",
     "url": "https://github.com/EQ-bench/EQ-bench-site/blob/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
     "sourceUrls": [
       "https://github.com/EQ-bench/EQ-bench-site/blob/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
-      "https://github.com/EQ-bench/eqbench4"
+      "https://github.com/EQ-bench/eqbench4",
+      "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+      "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/0.json",
+      "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/1.json",
+      "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/10.json",
+      "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/100.json"
     ]
   },
   "metric": {
@@ -136,11 +142,31 @@
       "label": "案例原始数据精简字段来源",
       "url": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/0.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/1.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/10.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/100.json",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "多模型裁判盲评同一 persona 的对话；能力评级与中性行为倾向评分分开。",
@@ -173,10 +199,33 @@
       "sourceUrls": [
         "https://github.com/EQ-bench/eqbench4"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/0.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/1.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/10.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/100.json",
+        "https://github.com/EQ-bench/eqbench4"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“聚会未邀的解释与关系修复”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/0.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/1.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/10.json",
+        "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/100.json",
+        "https://github.com/EQ-bench/EQ-bench-site/blob/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
+        "https://github.com/EQ-bench/eqbench4"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "eq-bench-4-generated-persona-29",
@@ -186,14 +235,102 @@
         "prompt": "官方生成 persona 的关系情境：说话者称自己独自承担与父母有关的事务、手足没有分担；提起后，觉得自己反被指责。该记录标为模拟对话并报告八轮互动，不是真实用户经历。",
         "raw": {
           "scenario_id": "b64d652c-fdec-42db-bd3c-885c6f61d725",
-          "starter": "I'm doing everything for my parents and my siblings just... aren't. I brought it up once and they made me feel like a monster.",
-          "i": 29
+          "starter": "I'm doing everything for my parents and my siblings just... aren't. I brought it up once and they made me feel like a monster.\n",
+          "i": 29,
+          "source_type": "generated",
+          "num_turns": 8,
+          "relationship": "chatbot",
+          "task_type": null
         },
-        "explanation": "固定 transcript 文件 i=29，evaluated_model=claude-fable-5，persona_model=google/gemini-3.1-pro-preview，source_type=generated，num_turns=8。仅概述开场情境；其余 user/assistant 对话、隐藏状态和 judge_analysis 均未复制。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 starter: retained the first 24 words; source value continues after monster.、turns、thinking/monologue、judge_analysis、scores。 保留文本字段的真实片段，范围为 [{\"path\": \"/starter\", \"start\": 0, \"end\": 126, \"sourceCharacters\": 127}]。",
+        "explanation": "说话者承担父母事务，认为手足没有分担，提出后反而遭到指责。starter末尾的源换行已恢复，保留实际场景ID与八轮配置，不复制其后模型对话、隐藏状态或裁判分析。 原始开场、元数据与本站解析分开；这是官方发布的评测场景，不是真实用户经历证明。",
         "source": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/29.json",
-        "license": "该 transcript JSON 未找到明确的数据再发布许可；EQ-Bench 代码仓库许可证不自动覆盖网站仓库中的对话数据。本样例仅含标题短引与本站情境概要。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "license": "所选官方transcript的统一数据再发布许可未查明；仅为解释任务引用简短starter及元数据，未复制模型输出、隐藏persona或评分。",
         "split": "official transcript · claude-fable-5/29.json · i=29 · generated persona · 8 turns",
         "excerpt": true
+      },
+      {
+        "type": "record",
+        "id": "eqbench4-claude-fable5-0",
+        "title": "工作晋升落差",
+        "prompt": "同事以较少资历获晋升，当事人表达失望并对结果感到无奈。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "scenario_id": "7c1ccaaa-865e-4932-8053-12b41a4c945c",
+          "starter": "They gave the promotion to someone with half my experience. I don't know why I'm surprised anymore.\n",
+          "i": 0,
+          "source_type": "generated",
+          "num_turns": 8,
+          "relationship": "partner",
+          "task_type": null
+        },
+        "explanation": "说话者因资历较浅者获得晋升而失望。开场语句呈现挫败与无奈，后续对话应怎样发展并未由这个短输入给出唯一答案。 原始开场、元数据与本站解析分开；这是官方发布的评测场景，不是真实用户经历证明。",
+        "split": "official transcript · claude-fable-5/0.json · i=0 · generated persona",
+        "source": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/0.json",
+        "license": "所选官方transcript的统一数据再发布许可未查明；仅为解释任务引用简短starter及元数据，未复制模型输出、隐藏persona或评分。"
+      },
+      {
+        "type": "record",
+        "id": "eqbench4-claude-fable5-1",
+        "title": "亲子沟通挫折",
+        "prompt": "家长列举多种管教尝试无效，反映与孩子相处中的挫败感。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "scenario_id": "39e61933-e10b-4474-a97f-8ec6f7cb9474",
+          "starter": "I've tried everything with my kid. Consequences, rewards, talking it through. Nothing works. Everything the books say just makes it worse.\n",
+          "i": 1,
+          "source_type": "generated",
+          "num_turns": 8,
+          "relationship": "partner",
+          "task_type": null
+        },
+        "explanation": "家长列举惩罚、奖励和沟通等尝试均未见效，并称书上建议反而让情况变糟。它提供的是开场情境，不能从这一句话诊断孩子或补造家庭背景。 原始开场、元数据与本站解析分开；这是官方发布的评测场景，不是真实用户经历证明。",
+        "split": "official transcript · claude-fable-5/1.json · i=1 · generated persona",
+        "source": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/1.json",
+        "license": "所选官方transcript的统一数据再发布许可未查明；仅为解释任务引用简短starter及元数据，未复制模型输出、隐藏persona或评分。"
+      },
+      {
+        "type": "record",
+        "id": "eqbench4-claude-fable5-10",
+        "title": "持续压力与社交后的疲惫",
+        "prompt": "对方描述社交后尤为明显的持续疲倦，助手需要先澄清体验而非直接归因。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "scenario_id": "d50dd97d-ee7d-4003-82cb-361f5b770057",
+          "starter": "I have an immense amount of pressure on me. It feels like a weight, all the time. I'm always exhausted but especially after being around people.\n",
+          "i": 10,
+          "source_type": "generated",
+          "num_turns": 8,
+          "relationship": "friend",
+          "task_type": null
+        },
+        "explanation": "当事人描述持续压力、疲惫以及与人相处后尤其疲倦。完整starter中的后两句现已保留，不能只凭第一句把它归为某一种原因。 原始开场、元数据与本站解析分开；这是官方发布的评测场景，不是真实用户经历证明。",
+        "split": "official transcript · claude-fable-5/10.json · i=10 · generated persona",
+        "source": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/10.json",
+        "license": "所选官方transcript的统一数据再发布许可未查明；仅为解释任务引用简短starter及元数据，未复制模型输出、隐藏persona或评分。"
+      },
+      {
+        "type": "record",
+        "id": "eqbench4-claude-fable5-100",
+        "title": "聚会未邀的解释与关系修复",
+        "prompt": "朋友解释没有邀请并非刻意排斥，场景涉及对社交线索的理解及关系修复。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "scenario_id": "hand_se_006_work_clique_assumed_busy_fcc88b0c",
+          "starter": "I promise it was not meant as a snub. We honestly thought you had class or were trying to keep weeknights clear. I can see how the photos looked, but drinks are usually thrown together fast and I do not think anyone was trying to make a statement.",
+          "i": 100,
+          "source_type": "hand_authored",
+          "num_turns": 8,
+          "relationship": "work_colleague",
+          "task_type": "social_exclusion_ambiguous_rejection"
+        },
+        "explanation": "说话者解释聚会未邀请对方并非排斥，以为对方有课或不想工作日晚间外出，并承认照片造成了观感。它涉及意图、影响和关系修复；原文没有唯一参考回应。 原始开场、元数据与本站解析分开；这是官方发布的评测场景，不是真实用户经历证明。",
+        "split": "official transcript · claude-fable-5/100.json · i=100 · generated persona",
+        "source": "https://raw.githubusercontent.com/EQ-bench/EQ-bench-site/108382e3f5017dce6f90c643e6bb4842825f62df/eqbench4/eqbench4_docs/transcripts/claude-fable-5/100.json",
+        "license": "所选官方transcript的统一数据再发布许可未查明；仅为解释任务引用简短starter及元数据，未复制模型输出、隐藏persona或评分。"
       }
     ]
   }

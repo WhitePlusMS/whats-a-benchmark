@@ -81,7 +81,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "官方仓库根目录未显示 LICENSE，且作者仓库存在未获答复的许可问题；论文说明公开发布不等同于授予复用权。",
-    "scope": "取得作者明确许可前仅链接官方来源并使用自写概述，不复制题目、测试、环境镜像或媒体。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "任务对应的上游开源项目有各自独立许可，不能由 benchmark repo 状态替代。",
       "不得把公开可访问误解为允许镜像或再分发。"
@@ -93,10 +93,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md"
+      "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
+      "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/aiofiles/start.md",
+      "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/arxiv-mcp-server/start.md",
+      "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/pytz/start.md",
+      "https://github.com/multimodal-art-projection/NL2RepoBench",
+      "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
     ]
   },
   "metric": {
@@ -170,10 +175,25 @@
       "label": "已核验的具体公开任务",
       "url": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/aiofiles/start.md",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/arxiv-mcp-server/start.md",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/pytz/start.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "本轮未固定作者仓库 revision 或下载全量任务，未逐一确认论文 104-task 数据与当前分支文件映射。",
@@ -200,11 +220,33 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/aiofiles/start.md",
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/arxiv-mcp-server/start.md",
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/pytz/start.md",
+        "https://github.com/multimodal-art-projection/NL2RepoBench",
+        "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“NL2Repo task · pytz”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/aiofiles/start.md",
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/arxiv-mcp-server/start.md",
+        "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/pytz/start.md",
+        "https://github.com/multimodal-art-projection/NL2RepoBench",
+        "https://github.com/multimodal-art-projection/NL2RepoBench/issues/18",
+        "https://arxiv.org/abs/2512.12730"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-nl2repo-bench",
@@ -217,6 +259,45 @@
         "source": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/main/test_files/fastapi-users/start.md",
         "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "NL2RepoBench task directory fastapi-users; source is original benchmark repository start.md",
+        "excerpt": true
+      },
+      {
+        "id": "public-case-nl2repo-aiofiles",
+        "title": "NL2Repo task · aiofiles",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "从自然语言规格生成 aiofiles 异步文件操作库，核心是把阻塞文件读写委派给线程池以避免阻塞 asyncio 事件循环。原文节选见raw，完整任务在官方start.md。",
+        "explanation": "从自然语言规格生成 aiofiles 异步文件操作库，核心是把阻塞文件读写委派给线程池以避免阻塞 asyncio 事件循环。",
+        "raw": "Please create a Python project named aiofiles to implement an asynchronous file operation library.",
+        "source": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/aiofiles/start.md",
+        "license": "官方固定任务start.md的真实请求短引；根LICENSE路径本次404，未确认任务整体许可。保留对应完整官方入口，不复制参考实现、测试或目标项目。",
+        "split": "test_files start.md under NL2RepoBench repository at commit 781a1da1ee41fb8edb0bed22f586d69111610edf",
+        "excerpt": true
+      },
+      {
+        "id": "public-case-nl2repo-arxiv-mcp-server",
+        "title": "NL2Repo task · arxiv-mcp-server",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "任务要求从零构建 arXiv MCP 服务，涵盖论文检索、PDF下载转Markdown、已下载论文管理和研究分析流程。原文节选见raw，完整任务在官方start.md。",
+        "explanation": "任务要求从零构建 arXiv MCP 服务，涵盖论文检索、PDF下载转Markdown、已下载论文管理和研究分析流程。",
+        "raw": "Please create a Python project named ArXiv MCP Server to implement an academic paper search and analysis service.",
+        "source": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/arxiv-mcp-server/start.md",
+        "license": "官方固定任务start.md的真实请求短引；根LICENSE路径本次404，未确认任务整体许可。保留对应完整官方入口，不复制参考实现、测试或目标项目。",
+        "split": "test_files start.md under NL2RepoBench repository at commit 781a1da1ee41fb8edb0bed22f586d69111610edf",
+        "excerpt": true
+      },
+      {
+        "id": "public-case-nl2repo-pytz",
+        "title": "NL2Repo task · pytz",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "任务是复现时区库核心能力：IANA 数据库加载、名称查询、时区对象及 DST/localized time 处理。原文节选见raw，完整任务在官方start.md。",
+        "explanation": "任务是复现时区库核心能力：IANA 数据库加载、名称查询、时区对象及 DST/localized time 处理。",
+        "raw": "Please create a Python project named pytz to implement a complete timezone handling library.",
+        "source": "https://raw.githubusercontent.com/multimodal-art-projection/NL2RepoBench/781a1da1ee41fb8edb0bed22f586d69111610edf/test_files/pytz/start.md",
+        "license": "官方固定任务start.md的真实请求短引；根LICENSE路径本次404，未确认任务整体许可。保留对应完整官方入口，不复制参考实现、测试或目标项目。",
+        "split": "test_files start.md under NL2RepoBench repository at commit 781a1da1ee41fb8edb0bed22f586d69111610edf",
         "excerpt": true
       }
     ]

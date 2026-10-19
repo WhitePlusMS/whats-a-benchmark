@@ -85,10 +85,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。保留单轮或多轮记录的首轮问题及标签，未重放全部历史；模型回答不作为参考答案。",
     "sourceUrls": [
       "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/legal-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100"
     ]
   },
   "metric": {
@@ -121,6 +122,21 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/legal-00000-of-00001.parquet",
         "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Family Law · Non-Expert”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/legal-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
+        "https://labs.scale.com/papers/prbench"
       ]
     }
   ],
@@ -179,6 +195,11 @@
       "label": "所选数据快照的许可说明",
       "url": "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+      "role": "data"
     }
   ],
   "related": [
@@ -192,8 +213,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "评委读取完整对话和标准，评的是最终助手回应；负权重会扣分，criterion 通过比例不等于论文 mean_clipped。",
@@ -211,7 +232,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "88707440664b79c6b4448135",
@@ -429,6 +450,86 @@
         "excerpt": true,
         "license": "CC-BY-4.0 · PRBench, Scale AI / PRBench authors, data_v2 snapshot 01947c6ef913df518e6e52626a7b29f132b12d4f, CC BY 4.0",
         "licensePath": "licenses/prbench-legal-sample-source.txt"
+      },
+      {
+        "id": "prbench-legal-e6d074eb6486a518673769d3",
+        "title": "Labor & Employment Law · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问跨州远程雇佣、员工分类及迁居后的劳动法问题。",
+        "explanation": "跨州远程雇佣情景同时涉及搬到纽约后的员工豁免分类、孕期安排、用餐休息和加州加班规则是否适用。需要分别识别工作地点与公司总部的关系，不能把它简化为税务问题。这里保留官方一轮任务的开场问题；模型回复和评分准则没有当作参考答案。",
+        "raw": {
+          "task": "e6d074eb6486a518673769d3",
+          "turns": 1,
+          "field": "Legal",
+          "topic": "Labor & Employment Law",
+          "expert": "Expert",
+          "prompt_0": "got a software engineer with a currently exmpt 180k salary who's been remote in texas since covide working for our CA based company. he's moving to NYc next month and wants to stay remote, he's also pregnant he's a transgender male. HR is worried aobut changing his exempt status when he moves to NY and whether we need to do anything different becausse of the pregnancy. Also not sure if we need to follow NY meal break rules for remote workers or if CA overtime laws still apply since we're headquartered here. what's our exposure here?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=legal / row_idx=0 / task_id=e6d074eb6486a518673769d3",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-legal-740a326c927c1ce16ffee6b8",
+        "title": "Regulatory & Administrative Law · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问居家血液检测产品面向消费者销售时的监管审批路径。",
+        "explanation": "该监管法任务询问小型生物科技初创企业将居家血液检测盒直接销售给消费者时的 FDA 流程，以及可能适用 510(k) 或 De Novo 的问题。源记录为四轮专家对话；数据含模型回复和rubric评分条件，不含单一标准答案字段，本站只留首轮用户问题。",
+        "raw": {
+          "task": "740a326c927c1ce16ffee6b8",
+          "turns": 4,
+          "field": "Legal",
+          "topic": "Regulatory & Administrative Law",
+          "expert": "Expert",
+          "prompt_0": "client's a small biotech startup, we wanna sell a new at-home blood test kit directly to customers. What's the fda process look like for this? Do we need 510(k) or de novo? kinda lost on where to even start."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=legal / row_idx=1 / task_id=740a326c927c1ce16ffee6b8",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-legal-6006d849e6366ea0734578bd",
+        "title": "Corporate & Transactional Law · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问并购交易中知识产权、监管合规和对价安排的法律风险。",
+        "explanation": "该公司与交易法任务描述一项收购：目标有部分清晰知识产权但也有欧美监管合规缺口，董事会出于税务原因偏好股票对价，同时希望避免承接风险。源数据是一轮专家任务；评分rubric和模型答复不是唯一参考答案，本站不展示。",
+        "raw": {
+          "task": "6006d849e6366ea0734578bd",
+          "turns": 1,
+          "field": "Legal",
+          "topic": "Corporate & Transactional Law",
+          "expert": "Expert",
+          "prompt_0": "target company we're acquiring has some clean IP but also regulatory compliance gaps in EU and US. ther board wants stock considerafton for tax reasons but we can't risk inheriting the compliance liabilities. deal size is \\~$500M, what structure options do we have that could work for both sides? Need to move quicly here."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=legal / row_idx=4 / task_id=6006d849e6366ea0734578bd",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-legal-744a80be6643e7685d6639d4",
+        "title": "Family Law · Non-Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问跨境分居家庭中携子迁居及相关法律选项。",
+        "explanation": "该家庭法任务设定父母在意大利分居、有7岁和10岁子女，其中一方获得荷兰工作并希望带孩子迁居，另一方反对；询问可采取的法律选项。官方记录为10轮非专家对话，包含模型回复和评分rubric但无唯一标准答案字段，本站只保留首轮问题。",
+        "raw": {
+          "task": "744a80be6643e7685d6639d4",
+          "turns": 10,
+          "field": "Legal",
+          "topic": "Family Law",
+          "expert": "Non-Expert",
+          "prompt_0": "we're separating in italy. two kids (7 and 10). i just got a job offer in the netherlands starting soon and i want to move with the kids. my spouse says i can't. what are my options and what should i do first? school starts in about 6 weeks."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=legal / row_idx=7 / task_id=744a80be6643e7685d6639d4",
+        "excerpt": true
       }
     ]
   }

@@ -65,23 +65,25 @@
     "url": "https://github.com/epoch-research/MirrorCode"
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "公开仓库标注MIT；底层第三方目标程序的许可需单独核对。",
-    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "status": "permitted",
+    "license": "MIT · 固定MirrorCode根LICENSE；作者发布的输入fixture。",
+    "scope": "四条cal真实命令输入及原元数据，不包含目标程序或模型输出。",
     "boundaries": [
-      "代码仓库的开源许可与底层任务数据授权需分别核对。",
-      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+      "命令参数作为数据，不执行。",
+      "-j代表年内日序号；未将其误解为儒略历切换。"
     ],
     "sourceUrls": [
-      "https://github.com/epoch-research/MirrorCode"
+      "https://github.com/epoch-research/MirrorCode/blob/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/LICENSE"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "据官方公开记录或明确刊载的具体示例整理任务事实；原文只保留必要短引用。未复制参考补丁、隐藏测试、模型输出或完整题库，未运行该评测。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl"
+      "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
+      "https://raw.githubusercontent.com/epoch-research/MirrorCode/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/mc/cal/cal_util_linux.jsonl",
+      "https://github.com/epoch-research/MirrorCode/blob/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/LICENSE"
     ]
   },
   "metric": {
@@ -127,6 +129,22 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/epoch-research/MirrorCode/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/mc/cal/cal_util_linux.jsonl",
+        "https://github.com/epoch-research/MirrorCode/blob/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/LICENSE"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“极大跨度的纵向日历”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
+        "https://raw.githubusercontent.com/epoch-research/MirrorCode/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/mc/cal/cal_util_linux.jsonl",
+        "https://github.com/epoch-research/MirrorCode/blob/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/LICENSE",
+        "https://github.com/epoch-research/MirrorCode"
+      ]
     }
   ],
   "sources": [
@@ -149,11 +167,21 @@
       "label": "已核验的具体任务或公开例题",
       "url": "https://raw.githubusercontent.com/epoch-research/MirrorCode/main/mc/cal/cal_util_linux.jsonl",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/epoch-research/MirrorCode/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/mc/cal/cal_util_linux.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/epoch-research/MirrorCode/blob/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/LICENSE",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "在没有参考二进制的评分沙箱重建候选实现；所有端到端测试的stdout/stderr都一致才算100%solve，隐藏测试阻止查表式实现。",
@@ -169,7 +197,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-mirrorcode",
@@ -188,6 +216,60 @@
         "license": "本站原创任务解读与必要来源短引用；底层原题、代码、第三方材料的授权按原数据许可说明分别处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
         "split": "MirrorCode public cal target input case",
         "excerpt": true
+      },
+      {
+        "id": "mirrorcode-month-3mjw",
+        "title": "年内日序号、多月视图与周编号",
+        "type": "record",
+        "prompt": "cal -3mjw 27 09 2006",
+        "explanation": "-j请求Julian日序号（年内第几天），不是切换为儒略历。其余选项结合三个月视图、周一为周首和周编号；实际命令参数保留，未编造stdout。",
+        "raw": {
+          "test_file": "month",
+          "test_name": "3mjw",
+          "description": "Julian - Monday-based week with week numbers",
+          "command": "cal -3mjw 27 09 2006"
+        },
+        "source": "https://raw.githubusercontent.com/epoch-research/MirrorCode/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/mc/cal/cal_util_linux.jsonl",
+        "license": "MIT · MirrorCode作者测试fixture，原许可已附；所选cal命令与元数据原值不变，未执行命令或复制目标程序/模型输出。",
+        "split": "mc/cal/cal_util_linux.jsonl row 30",
+        "excerpt": false,
+        "licensePath": "licenses/mirrorcode-mit.txt"
+      },
+      {
+        "id": "mirrorcode-colorw-reformation-corner-cases-1-week-numbers",
+        "title": "1752 年历法改革边界",
+        "type": "record",
+        "prompt": "cal --color=always -w 2 9 1752",
+        "explanation": "该输入请求 1752 年 9 月日历并启用颜色与周编号，覆盖历法改革导致的日期缺口边界。",
+        "raw": {
+          "test_file": "colorw",
+          "test_name": "reformation-corner-cases-1-week-numbers",
+          "description": "reformation-corner-cases-1-week-numbers",
+          "command": "cal --color=always -w 2 9 1752"
+        },
+        "source": "https://raw.githubusercontent.com/epoch-research/MirrorCode/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/mc/cal/cal_util_linux.jsonl",
+        "license": "MIT · MirrorCode作者测试fixture，原许可已附；所选cal命令与元数据原值不变，未执行命令或复制目标程序/模型输出。",
+        "split": "mc/cal/cal_util_linux.jsonl row 70",
+        "excerpt": false,
+        "licensePath": "licenses/mirrorcode-mit.txt"
+      },
+      {
+        "id": "mirrorcode-vertical-vSn51",
+        "title": "极大跨度的纵向日历",
+        "type": "record",
+        "prompt": "cal -vSn 51 27 09 2006",
+        "explanation": "该条使用 very-large-span 测试名及 `-vSn` 选项，覆盖跨大跨度输出和日期参数的解析。",
+        "raw": {
+          "test_file": "vertical",
+          "test_name": "vSn51",
+          "description": "Very Large span",
+          "command": "cal -vSn 51 27 09 2006"
+        },
+        "source": "https://raw.githubusercontent.com/epoch-research/MirrorCode/5c9d7b00b0c6d7609003e33896cd41d28f092fcb/mc/cal/cal_util_linux.jsonl",
+        "license": "MIT · MirrorCode作者测试fixture，原许可已附；所选cal命令与元数据原值不变，未执行命令或复制目标程序/模型输出。",
+        "split": "mc/cal/cal_util_linux.jsonl row 170",
+        "excerpt": false,
+        "licensePath": "licenses/mirrorcode-mit.txt"
       }
     ]
   }

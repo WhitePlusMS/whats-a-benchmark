@@ -31,7 +31,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "partial",
   "officialDefinition": {
     "summary": "用 2025 年 AIME 竞赛题考查数学解题；具体试卷和模型评测协议由报告方决定。",
@@ -83,21 +83,23 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "未核实到 MAA 为 AIME 2025 题目或答案发布的开放再发布许可证。",
-    "scope": "现行规则中的考试期传播限制不构成考试结束后的普遍转载授权。",
+    "license": "本次取得官方公开问题及标注，竞赛原题/解答整体复用许可未确认。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "未确认权利前，不复制题面、答案或第三方解析。"
+      "题目可能来自上游竞赛；数据托管不等于整体版权转移。",
+      "HF /rows为本次响应快照，不把另行观察的HEAD冒充它的固定修订。"
     ],
     "sourceUrls": [
-      "https://maa.org/wp-content/uploads/2026/08/2026-27-AIME-Policies.pdf#page=3"
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "reason": "3道真实公开数学题可切换，原问题、标识和官方短答案保留；旧题遗漏条件已恢复，中文解析与源数据分开。",
     "url": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
     "sourceUrls": [
-      "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet"
+      "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6"
     ]
   },
   "metric": {
@@ -164,6 +166,11 @@
       "label": "具体公开案例的原始来源",
       "url": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
+      "role": "data"
     }
   ],
   "researchNotes": [
@@ -192,11 +199,26 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“aime-2025 · 代数方程求值”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
+        "https://maa.org/news/aime-thresholds-are-available/#L83-L94",
+        "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-aime-2025",
@@ -218,6 +240,48 @@
         "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
         "split": "MathArena AIME 2025 dataset problem_idx 1; 2025 I/II sub-contest not identified in this dataset row",
         "excerpt": true
+      },
+      {
+        "id": "public-case-aime-2025-extra-3",
+        "title": "九人选择冰淇淋口味的组合计数",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开问题的原题与标注见raw：九人选择冰淇淋口味的组合计数。",
+        "explanation": "九名有区别的队员各选三种口味之一，三个口味人数均须为正且巧克力>香草>草莓。需按可行人数分配累加多项式系数，最后取模1000；原题的singlescoop拼写与官方数值答案保留。",
+        "raw": {
+          "problem_idx": 3,
+          "problem": "The 9 members of a baseball team went to an ice-cream parlor after their game. Each player had a singlescoop cone of chocolate, vanilla, or strawberry ice cream. At least one player chose each flavor, and the number of players who chose chocolate was greater than the number of players who chose vanilla, which was greater than the number of players who chose strawberry. Let $N$ be the number of different assignments of flavors to players that meet these conditions. Find the remainder when $N$ is divided by $1000.$",
+          "problem_type": [
+            "Combinatorics"
+          ],
+          "answer": 16
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
+        "split": "aime-2025 official HF rows / train row_idx=2",
+        "excerpt": true,
+        "answer": "16"
+      },
+      {
+        "id": "public-case-aime-2025-extra-4",
+        "title": "aime-2025 · 代数方程求值",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开问题的原题与标注见raw：aime-2025 · 代数方程求值。",
+        "explanation": "题目统计区间内满足指定二次型等式的有序整数对，重点是将二次型分解并处理有序对及闭区间边界。 原记录的 answer/solution 未复制；raw 保留题面与对应元数据原值。",
+        "raw": {
+          "problem_idx": 4,
+          "problem": "Find the number of ordered pairs $(x,y)$, where both $x$ and $y$ are integers between $-100$ and $100$, inclusive, such that $12x^2-xy-6y^2=0$.",
+          "problem_type": [
+            "Algebra"
+          ],
+          "answer": 117
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
+        "split": "aime-2025 official HF rows / train row_idx=3",
+        "excerpt": true,
+        "answer": "117"
       }
     ]
   }

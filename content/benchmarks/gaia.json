@@ -18,7 +18,7 @@
   "kind": "original",
   "aliases": [],
   "related": [],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "GAIA 以现实问题评估助手的推理、多模态信息处理、网页浏览与工具使用能力，预期答案通常简短并可核验。",
@@ -71,7 +71,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "arXiv论文条款适用于论文；检查的页面未确立论文内示例与GAIA数据集记录的单独许可关系。",
-    "scope": "仅论文创题示例；其是否属于后续benchmark split及数据集记录许可均未查明。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不称论文示例为validation/test数据行。",
       "不复制gated数据集或附件。"
@@ -82,7 +82,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "仅采用原论文独立公开的创题/验证示例；未复制 gated 数据集，也未将此问题推断为特定 validation/test 行。",
+    "reason": "1 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://arxiv.org/html/2311.12983",
     "sourceUrls": [
       "https://arxiv.org/html/2311.12983"
@@ -151,20 +151,33 @@
       "sourceUrls": [
         "https://arxiv.org/html/2311.12983"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 0 条，现有 1 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2311.12983"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：恢复论文A4.T1实际表片段，保留公开问题/作者标注；不是新取得的计分行，未执行检索步骤。 展示记录1→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2311.12983",
+        "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-gaia",
         "title": "论文公开例题 · 临床试验人数",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "在 NIH 网站查找 2018 年 1—5 月关于痤疮患者 H. pylori 的临床试验，返回实际入组人数。GAIA 原论文公开的 Level 1 例题给出结果 90。",
-        "explanation": "仅采用原论文独立公开的创题/验证示例；未复制 gated 数据集，也未将此问题推断为特定 validation/test 行。\n原始数据精简说明：保留官方来源实际公开的题目、配置或表格标签片段；其余完整题面、长正文、附件、数据池及未公开参考答案省略。原始资料与本站中文说明分开，未通过格式包装补造记录。",
-        "raw": "Question: actual enrollment count of the clinical trial on H. pylori in acne vulgaris patients\nLevel: 1\nNumber of steps: 8\nAnswer: 90",
+        "prompt": "论文附录表 A4.T1 所列示例问题，官方表格标注的答案为 90。此处是论文公开的创题示例，不代表已重做外部检索。",
+        "explanation": "raw 是官方 arXiv HTML 中 A4.T1 表格的连续原文片段（从 id=\"A4.T1\" 到该 figure 的闭合标签），包括题干、File、Level、steps、步数、Answer、作答时间和工具字段。它是论文创题阶段公开示例，不是计分数据行；步骤是论文标注内容，并未执行 NIH 检索。",
+        "raw": "<figure id=\"A4.T1\" class=\"ltx_table\">\n<table id=\"A4.T1.2\" class=\"ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle\">\n<thead class=\"ltx_thead\">\n<tr id=\"A4.T1.2.1\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.1.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt\"><span id=\"A4.T1.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Question</span></th>\n<th id=\"A4.T1.2.1.2\" class=\"ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt\">\n<span id=\"A4.T1.2.1.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.T1.2.1.2.1.1\" class=\"ltx_p\"><span id=\"A4.T1.2.1.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">What was the actual enrollment count of the clinical trial on H. pylori in acne vulgaris patients from Jan-May 2018 as listed on the NIH website?</span></span>\n</span></th></tr>\n</thead>\n<tbody class=\"ltx_tbody\">\n<tr id=\"A4.T1.2.2\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.2.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t\"><span id=\"A4.T1.2.2.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">File</span></th>\n<td id=\"A4.T1.2.2.2\" class=\"ltx_td ltx_align_left ltx_border_t\">\n<span id=\"A4.T1.2.2.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.T1.2.2.2.1.1\" class=\"ltx_p\"><span id=\"A4.T1.2.2.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">None</span></span>\n</span></td></tr>\n<tr id=\"A4.T1.2.3\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.3.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t\"><span id=\"A4.T1.2.3.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Level</span></th>\n<td id=\"A4.T1.2.3.2\" class=\"ltx_td ltx_align_left ltx_border_t\">\n<span id=\"A4.T1.2.3.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.T1.2.3.2.1.1\" class=\"ltx_p\"><span id=\"A4.T1.2.3.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">1</span></span>\n</span></td></tr>\n<tr id=\"A4.T1.2.4\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.4.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t\"><span id=\"A4.T1.2.4.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Steps</span></th>\n<td id=\"A4.T1.2.4.2\" class=\"ltx_td ltx_align_left ltx_border_t\">\n<span id=\"A4.T1.2.4.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.I2\" class=\"ltx_itemize\">\n<span id=\"A4.I2.ix1\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix1.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix1.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix1.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Searched “nih” on Google search.</span></span>\n</span></span>\n<span id=\"A4.I2.ix2\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix2.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix2.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix2.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Clicked the top link to nih.gov.</span></span>\n</span></span>\n<span id=\"A4.I2.ix3\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix3.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix3.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix3.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Searched “h pylori acne” in the search box.</span></span>\n</span></span>\n<span id=\"A4.I2.ix4\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix4.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix4.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix4.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Clicked “More” and selected “Clinical Trials”.</span></span>\n</span></span>\n<span id=\"A4.I2.ix5\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix5.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix5.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix5.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Clicked the result about H. Pylori and acne.</span></span>\n</span></span>\n<span id=\"A4.I2.ix6\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix6.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix6.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix6.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Checked the date to confirm it was January to May 2018.</span></span>\n</span></span>\n<span id=\"A4.I2.ix7\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix7.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix7.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix7.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Opened “Tabular View”.</span></span>\n</span></span>\n<span id=\"A4.I2.ix8\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I2.ix8.p1\" class=\"ltx_para\">\n<span id=\"A4.I2.ix8.p1.1\" class=\"ltx_p\"><span id=\"A4.I2.ix8.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Scrolled down to Actual Enrollment and recorded the number.</span></span>\n</span></span>\n</span>\n</span></td></tr>\n<tr id=\"A4.T1.2.5\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.5.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t\"><span id=\"A4.T1.2.5.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Number of steps</span></th>\n<td id=\"A4.T1.2.5.2\" class=\"ltx_td ltx_align_left ltx_border_t\">\n<span id=\"A4.T1.2.5.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.T1.2.5.2.1.1\" class=\"ltx_p\"><span id=\"A4.T1.2.5.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">8</span></span>\n</span></td></tr>\n<tr id=\"A4.T1.2.6\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.6.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t\"><span id=\"A4.T1.2.6.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Answer</span></th>\n<td id=\"A4.T1.2.6.2\" class=\"ltx_td ltx_align_left ltx_border_t\">\n<span id=\"A4.T1.2.6.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.T1.2.6.2.1.1\" class=\"ltx_p\"><span id=\"A4.T1.2.6.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">90</span></span>\n</span></td></tr>\n<tr id=\"A4.T1.2.7\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.7.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t\"><span id=\"A4.T1.2.7.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Time to answer</span></th>\n<td id=\"A4.T1.2.7.2\" class=\"ltx_td ltx_align_left ltx_border_t\">\n<span id=\"A4.T1.2.7.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.T1.2.7.2.1.1\" class=\"ltx_p\"><span id=\"A4.T1.2.7.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">8 minutes</span></span>\n</span></td></tr>\n<tr id=\"A4.T1.2.8\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.8.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t\"><span id=\"A4.T1.2.8.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Tools</span></th>\n<td id=\"A4.T1.2.8.2\" class=\"ltx_td ltx_align_left ltx_border_t\">\n<span id=\"A4.T1.2.8.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.I3\" class=\"ltx_itemize\">\n<span id=\"A4.I3.ix1\" class=\"ltx_item\" style=\"list-style-type:none;\"><span class=\"ltx_tag ltx_tag_item\">-</span> \n<span id=\"A4.I3.ix1.p1\" class=\"ltx_para\">\n<span id=\"A4.I3.ix1.p1.1\" class=\"ltx_p\"><span id=\"A4.I3.ix1.p1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Web browser</span></span>\n</span></span>\n</span>\n</span></td></tr>\n<tr id=\"A4.T1.2.9\" class=\"ltx_tr\">\n<th id=\"A4.T1.2.9.1\" class=\"ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb ltx_border_t\"><span id=\"A4.T1.2.9.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">Number of tools</span></th>\n<td id=\"A4.T1.2.9.2\" class=\"ltx_td ltx_align_left ltx_border_bb ltx_border_t\">\n<span id=\"A4.T1.2.9.2.1\" class=\"ltx_inline-block ltx_align_top\">\n<span id=\"A4.T1.2.9.2.1.1\" class=\"ltx_p\"><span id=\"A4.T1.2.9.2.1.1.1\" class=\"ltx_text\" style=\"font-size:90%;\">1</span></span>\n</span></td></tr>\n</tbody>\n</table>\n<figcaption class=\"ltx_caption ltx_centering\" style=\"font-size:90%;\"><span class=\"ltx_tag ltx_tag_table\">Table 1: </span>An annotated question during the question creation phase.</figcaption>\n</figure>",
         "source": "https://arxiv.org/html/2311.12983",
         "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据只显示上述已公开源字段、事实配置与必要原文节录，不扩展为受控题库、第三方完整正文或附件的公开再发布授权。",
         "split": "官方公开演示 / 非已定位的计分数据行",

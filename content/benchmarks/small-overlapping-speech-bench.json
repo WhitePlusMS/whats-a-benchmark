@@ -68,12 +68,22 @@
       "label": "`metrics.json`",
       "url": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/metrics.json",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/ground_truth.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "固定官方版本的原始clip_002.mp3",
+      "url": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/data/clip_002.mp3",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-09-23",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "clip_000",
@@ -196,6 +206,68 @@
             "source": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/main/data/clip_001.mp3"
           }
         ]
+      },
+      {
+        "id": "clip_002",
+        "title": "重叠语音 clip_002 · dutch, italian, portuguese",
+        "type": "audio",
+        "promptOrigin": "editorial",
+        "prompt": "听取三语重叠音频，区分荷兰语、意大利语和葡萄牙语三名说话人，并恢复各自的时间段和转写。",
+        "raw": {
+          "clip_id": "clip_002",
+          "duration": 21.792,
+          "num_speakers": 3,
+          "languages": [
+            "dutch",
+            "italian",
+            "portuguese"
+          ],
+          "speakers": [
+            {
+              "id": "S1",
+              "language": "dutch",
+              "code": "nl",
+              "src_speaker_id": 3034,
+              "start_time": 0,
+              "end_time": 10.11,
+              "transcript": "dan zei de boom altijd arme kleine slechts een enkelen dag duurt uw geheele leven wat is dat kort het is toch treurig"
+            },
+            {
+              "id": "S2",
+              "language": "italian",
+              "code": "it",
+              "src_speaker_id": 4009,
+              "start_time": 4.974,
+              "end_time": 17.834,
+              "transcript": "signori miei il vostro piacevole ridere m'indica manifestamente che voi istimate il nostro enimma esser sporco anzi sporchissimo ma nel vero se con le orecchie attenderete"
+            },
+            {
+              "id": "S3",
+              "language": "portuguese",
+              "code": "pt",
+              "src_speaker_id": 13063,
+              "start_time": 8.452,
+              "end_time": 21.792,
+              "transcript": "o movimento a expressão de uma intensa atividade interior eu tinha caminhado para ele com um um riso mofador com pretensões a observá-lo este casquilho em quinta mão"
+            }
+          ],
+          "audio_file": "data/clip_002.mp3"
+        },
+        "explanation": "21.792秒混音包含三名说话人，S2于4.974秒加入、S3于8.452秒加入，因此存在三人同时发声区间。原ground_truth所有字段、逐人转写与实际音频字节保留；不是生成音频或本站运行结果。",
+        "source": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/ground_truth.jsonl",
+        "license": "CC BY 4.0 · LAION Small Overlapping Speech Bench / Multilingual LibriSpeech，官方README声明继承MLS许可。原ground_truth记录与关联音频，未改写转写。",
+        "split": "test row_idx=2 / clip_id=clip_002 / observed HEAD ff83755c3dc4967732956337e4c5036070a5f68e",
+        "excerpt": true,
+        "answer": "S1 · dutch · 0–10.11 s\ndan zei de boom altijd arme kleine slechts een enkelen dag duurt uw geheele leven wat is dat kort het is toch treurig\n\nS2 · italian · 4.974–17.834 s\nsignori miei il vostro piacevole ridere m'indica manifestamente che voi istimate il nostro enimma esser sporco anzi sporchissimo ma nel vero se con le orecchie attenderete\n\nS3 · portuguese · 8.452–21.792 s\no movimento a expressão de uma intensa atividade interior eu tinha caminhado para ele com um um riso mofador com pretensões a observá-lo este casquilho em quinta mão",
+        "licensePath": "licenses/small-overlapping-speech-bench.txt",
+        "assets": [
+          {
+            "kind": "audio",
+            "path": "audio/small-overlapping-speech-clip-002.mp3",
+            "caption": "官方原始 clip_002.mp3 · 21.792秒 · 荷兰语、意大利语、葡萄牙语",
+            "source": "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/data/clip_002.mp3"
+          }
+        ]
       }
     ]
   },
@@ -265,21 +337,17 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站提供 clip_000 与 clip_001 两段真实混音和公开参考转写，署名与许可见记录详情。",
+    "reason": "3段真实三语重叠音频及完整ground_truth可切换；旧两条连同audio_file已逐对象核对为官方原行，新增clip_002配实际源音频。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/laion/small-overlapping-speech-bench"
+      "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
+      "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/ground_truth.jsonl",
+      "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md",
+      "https://huggingface.co/datasets/facebook/multilingual_librispeech"
     ]
   },
   "researchNotes": [
     {
       "text": "本轮逐条核对了已收录 clip_000、clip_001 的记录字段与官方公开源；没有对 100 条记录全部独立校验。",
-      "sourceUrls": [
-        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
-        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
-      ]
-    },
-    {
-      "text": "未为音频文件记录哈希或核对每字节媒体内容；当前本地文件命名/链接与源记录对应。",
       "sourceUrls": [
         "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
         "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md"
@@ -309,7 +377,30 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/laion/small-overlapping-speech-bench"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 1 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/ground_truth.jsonl",
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md",
+        "https://huggingface.co/datasets/facebook/multilingual_librispeech"
+      ]
+    },
+    {
+      "text": "2026-10-19：新增clip_002的原MP3与固定官方版本下载逐字节一致，SHA-256=8f78458f6ddb79b607b972bd49e769c308424a3961e03f5ea0067132a6463921，未剪辑或转码；旧clip_000/001本轮只核对ground_truth字段，未重新下载比对媒体字节。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/data/clip_002.mp3"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增1条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“重叠语音 clip_002 · dutch, italian, portuguese”等案例；每条的附件缺口与取样范围单独说明。 展示记录2→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/resolve/ff83755c3dc4967732956337e4c5036070a5f68e/ground_truth.jsonl",
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench",
+        "https://huggingface.co/datasets/laion/small-overlapping-speech-bench/blob/main/README.md",
+        "https://huggingface.co/datasets/facebook/multilingual_librispeech"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

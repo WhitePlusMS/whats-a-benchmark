@@ -4,7 +4,7 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "id": "ifeval",
   "name": "IFEval",
   "subtitle": "“写三段、不要用这个词”也要做到",
@@ -98,6 +98,11 @@
       "label": "官方站内样例记录",
       "url": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -106,7 +111,7 @@
     "google-research"
   ],
   "sampleSet": {
-    "retrievedAt": "2026-09-22",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "1001",
@@ -153,6 +158,124 @@
         "license": "Apache-2.0 · Google Research",
         "licensePath": "licenses/google-research.txt",
         "type": "text"
+      },
+      {
+        "id": "ifeval-1000",
+        "title": "无逗号、三节标题与300词摘要",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "该记录要求围绕所给 Raymond III, Count of Tripoli Wikipedia URL 写至少 300 词摘要，不用逗号，并以 Markdown 标题标出至少三个部分。",
+        "explanation": "该条把长度、标点和结构三种约束组合在一个任务里；URL是被总结对象的输入引用。 raw含完整官方prompt及3项instruction ID/参数；不包含外部Wikipedia正文、参考答案输出或模型答案。 raw保留该官方数据行的prompt、instruction_id_list与kwargs；不包含模型回答。",
+        "raw": {
+          "key": 1000,
+          "prompt": "Write a 300+ word summary of the wikipedia page \"https://en.wikipedia.org/wiki/Raymond_III,_Count_of_Tripoli\". Do not use any commas and highlight at least 3 sections that has titles in markdown format, for example *highlighted section part 1*, *highlighted section part 2*, *highlighted section part 3*.",
+          "instruction_id_list": [
+            "punctuation:no_comma",
+            "detectable_format:number_highlighted_sections",
+            "length_constraints:number_words"
+          ],
+          "kwargs": [
+            {},
+            {
+              "num_highlights": 3
+            },
+            {
+              "relation": "at least",
+              "num_words": 300
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research repository root LICENSE; official IFEval README says repository contains source code and data. Prompts selected from the official input_data.jsonl; no reference model responses or evaluation outputs are included.",
+        "split": "input_data.jsonl / key=1000",
+        "excerpt": true
+      },
+      {
+        "id": "ifeval-1012",
+        "title": "辞职邮件：原样复述并加标题",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "该记录要求写辞职邮件，标题须用双尖括号包裹；先逐字重复请求主体，再给答复，附有重复范围和开头位置的限制。",
+        "explanation": "这是一个多重输出次序约束：需要先复述prompt的特定部分，再输出有<<title>>格式的邮件标题。raw保留源给的prompt_to_repeat参数；数据行没有参考答案邮件答案。 raw保留该官方数据行的prompt、instruction_id_list与kwargs；不包含模型回答。",
+        "raw": {
+          "key": 1012,
+          "prompt": "Write an email to my boss telling him that I am quitting. The email must contain a title wrapped in double angular brackets, i.e. <<title>>.\nFirst repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)",
+          "instruction_id_list": [
+            "combination:repeat_prompt",
+            "detectable_format:title"
+          ],
+          "kwargs": [
+            {
+              "prompt_to_repeat": "Write an email to my boss telling him that I am quitting. The email must contain a title wrapped in double angular brackets, i.e. <<title>>."
+            },
+            {}
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research repository root LICENSE; official IFEval README says repository contains source code and data. Prompts selected from the official input_data.jsonl; no reference model responses or evaluation outputs are included.",
+        "split": "input_data.jsonl / key=1012",
+        "excerpt": true
+      },
+      {
+        "id": "ifeval-1021",
+        "title": "全大写两段式批评",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "该记录要求对给定句子作两段批评，所有字母大写，并用 PARAGRAPH X 标记段落。",
+        "explanation": "此题同时检查英文字母大小写与两段结构；引文句子本身含法律主张，本站只保留原始任务，不评价法律准确性。官方 kwargs 将段数设为2并要求PARAGRAPH分节。 raw保留该官方数据行的prompt、instruction_id_list与kwargs；不包含模型回答。",
+        "raw": {
+          "key": 1021,
+          "prompt": "Write a 2 paragraph critique of the following sentence in all capital letters, no lowercase letters allowed: \"If the law is bad, you should not follow it\". Label each paragraph with PARAGRAPH X.",
+          "instruction_id_list": [
+            "change_case:english_capital",
+            "detectable_format:multiple_sections"
+          ],
+          "kwargs": [
+            {},
+            {
+              "section_spliter": "PARAGRAPH",
+              "num_sections": 2
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research repository root LICENSE; official IFEval README says repository contains source code and data. Prompts selected from the official input_data.jsonl; no reference model responses or evaluation outputs are included.",
+        "split": "input_data.jsonl / key=1021",
+        "excerpt": true
+      },
+      {
+        "id": "ifeval-1069",
+        "title": "无逗号且含指定词的500词邮件模板",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "该记录要求写至少500词的会议邀请邮件模板，包含 correlated 和 experiencing 两个关键词，且不使用逗号。",
+        "explanation": "该题的评测约束同时涉及长文本、两个指定词及无逗号；raw保留这些真实要求和500词下限，不代写邮件或把模型产物当参考答案。 raw保留该官方数据行的prompt、instruction_id_list与kwargs；不包含模型回答。",
+        "raw": {
+          "key": 1069,
+          "prompt": "Write a long email template that invites a group of participants to a meeting, with at least 500 words. The email must include the keywords \"correlated\" and \"experiencing\" and should not use any commas.",
+          "instruction_id_list": [
+            "keywords:existence",
+            "length_constraints:number_words",
+            "punctuation:no_comma"
+          ],
+          "kwargs": [
+            {
+              "keywords": [
+                "correlated",
+                "experiencing"
+              ]
+            },
+            {
+              "relation": "at least",
+              "num_words": 500
+            },
+            {}
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+        "license": "Apache-2.0 · Google Research repository root LICENSE; official IFEval README says repository contains source code and data. Prompts selected from the official input_data.jsonl; no reference model responses or evaluation outputs are included.",
+        "split": "input_data.jsonl / key=1069",
+        "excerpt": true
       }
     ]
   },
@@ -219,11 +342,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "论文与官方仓库公开示例；现有站内样例保留官方来源并作少量展示，不批量转载 541 个 prompt 或作者回答，也不以论文 CC BY 条款替代仓库数据许可。",
+    "reason": "6 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://arxiv.org/html/2311.07911#S2.SS1",
       "https://arxiv.org/html/2311.07911",
-      "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl"
+      "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
+      "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl"
     ]
   },
   "researchNotes": [
@@ -234,7 +358,23 @@
         "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
         "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 6 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“无逗号且含指定词的500词邮件模板”等案例；每条的附件缺口与取样范围单独说明。 展示记录2→6条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
+        "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+        "https://arxiv.org/html/2311.07911#S2.SS1",
+        "https://arxiv.org/html/2311.07911",
+        "https://github.com/google-research/google-research/tree/master/instruction_following_eval"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

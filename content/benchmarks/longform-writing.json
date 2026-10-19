@@ -69,22 +69,25 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "仓库声明 MIT；本次未逐项核验模型输出与第三方文本的权利范围。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "status": "permitted",
+    "license": "MIT · 官方固定README的License章节明确声明；未发现将作者提示文件排除在外的条款。",
+    "scope": "所选五条作者原创极简提示，保留类别、标题、原始短种子与换行；不覆盖生成故事或外部模型报告。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "仓库根LICENSE单文件请求404，许可依据是实际README声明，二者不混淆。",
+      "官方报告中的生成章节没有镜像。"
     ],
     "sourceUrls": [
-      "https://github.com/EQ-bench/longform-writing-bench"
+      "https://github.com/EQ-bench/longform-writing-bench/blob/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/README.md"
     ]
   },
   "sampleAccess": {
     "url": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "reason": "5条固定版本的完整短写作提示及原始换行可切换；README明确MIT许可，不包含模型生成故事或评分报告。",
     "sourceUrls": [
-      "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html"
+      "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
+      "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+      "https://github.com/EQ-bench/longform-writing-bench/blob/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/README.md"
     ]
   },
   "metric": {
@@ -128,11 +131,21 @@
       "url": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
       "label": "EQ-Bench Longform 官方模型报告",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/EQ-bench/longform-writing-bench/blob/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/README.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "官方活页 v1.11（2026-02-19）使用 Claude Sonnet 4.6，逐章与整篇按 14 项文学 rubric 评价；不能沿用仓库旧 README 的 Sonnet 4 标签。",
@@ -167,10 +180,26 @@
       "sourceUrls": [
         "https://github.com/EQ-bench/longform-writing-bench"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+        "https://github.com/EQ-bench/longform-writing-bench/blob/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/README.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“末日生存：食物短缺下的选择”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+        "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
+        "https://github.com/EQ-bench/longform-writing-bench/blob/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/README.md",
+        "https://github.com/EQ-bench/longform-writing-bench"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "longform-writing-pony-alpha-gods-sneakers",
@@ -178,12 +207,99 @@
         "type": "text",
         "promptOrigin": "editorial",
         "prompt": "EQ-Bench Longform 报告中的初始故事种子要求围绕“诸神穿上运动鞋”展开多章节短篇创作。这里仅记录初始种子，不含规划、章节正文、评分或模型回答。",
-        "raw": "Mythology-Inspired Write a short story over several chapters to this prompt: Gods wore sneakers.",
-        "explanation": "官方报告对应模型 openrouter/pony-alpha，任务标题 Mythology-Inspired；该短句是初始任务提示的一部分。本条只概述该真实 report 的 seed，不把报告正文或模型产出当作可复制题库内容。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "source": "https://eqbench.com/results/creative-writing-longform/openrouter__pony-alpha_longform_report.html",
-        "license": "未逐项确认报告题目、模型输出及第三方内容的再发布范围。Longform 仓库 MIT 声明不自动覆盖报告输出。本页仅保留短种子引文和本站概述，不复制故事正文或评分。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "raw": {
+          "1": {
+            "category": "Mythology-Inspired",
+            "title": "Gods Wore Sneakers",
+            "writing_prompt": "Mythology-Inspired\nWrite a short story over several chapters to this prompt: Gods wore sneakers."
+          }
+        },
+        "explanation": "原始种子要求以“Gods wore sneakers”写跨章节短篇；恢复类别后的原始换行，不复制报告中的规划、章节正文或模型评分。 原始记录完整保留category/title/writing_prompt三个字段及换行；没有模型回答、后续生成指令或评分。",
+        "source": "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+        "license": "官方固定README License章节明确MIT；所选为作者原创极简提示，不涉及报告中的模型故事。",
         "split": "EQ-Bench Longform report · openrouter/pony-alpha · Mythology-Inspired · initial prompt",
-        "excerpt": true
+        "excerpt": true,
+        "licensePath": "licenses/longform-writing-license-notice.txt"
+      },
+      {
+        "type": "record",
+        "id": "longform-writing-key-2",
+        "title": "首次接触：海上巨型建筑降临",
+        "prompt": "描述巨型结构抵达地球后海洋生物异常的科幻首次接触开篇。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "2": {
+            "category": "Sci-Fi First Contact",
+            "title": "First Contact",
+            "writing_prompt": "Sci-Fi First Contact\nWrite a short story over several chapters to this prompt: A month ago the megastructures arrived. First, the fish started dying. Then they spoke."
+          }
+        },
+        "explanation": "巨型结构抵达、鱼群死亡又开始说话，构成首次接触科幻的初始种子；只给故事开头和跨章节要求，没有标准剧情或结局。 原始记录完整保留category/title/writing_prompt三个字段及换行；没有模型回答、后续生成指令或评分。",
+        "split": "longform_creative_writing_prompts_minimalist.json · key=2 · Sci-Fi First Contact · First Contact",
+        "source": "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+        "license": "官方固定README License章节明确MIT；所选为作者原创极简提示，不涉及报告中的模型故事。",
+        "licensePath": "licenses/longform-writing-license-notice.txt"
+      },
+      {
+        "type": "record",
+        "id": "longform-writing-key-4",
+        "title": "太空西部片：货物箱中的异动",
+        "prompt": "太空西部片设定中，船员发现收运货箱内有东西在移动。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "4": {
+            "category": "Space Western",
+            "title": "Cargo Unknown",
+            "writing_prompt": "Space Western\nWrite a short story over several chapters to this prompt: Captain, something's... moving in that crate we picked up."
+          }
+        },
+        "explanation": "太空西部片的货箱中有物体在动，要求发展成多章节短篇。它是实际极简种子，不能把任一生成作品当成固定答案。 原始记录完整保留category/title/writing_prompt三个字段及换行；没有模型回答、后续生成指令或评分。",
+        "split": "longform_creative_writing_prompts_minimalist.json · key=4 · Space Western · Cargo Unknown",
+        "source": "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+        "license": "官方固定README License章节明确MIT；所选为作者原创极简提示，不涉及报告中的模型故事。",
+        "licensePath": "licenses/longform-writing-license-notice.txt"
+      },
+      {
+        "type": "record",
+        "id": "longform-writing-key-5",
+        "title": "附身恐怖：她以为我睡着了",
+        "prompt": "以被观察者怀疑他人趁自己入睡时盯着自己的视角构造附身恐怖故事。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "5": {
+            "category": "Possession Horror",
+            "title": "Different Eyes",
+            "writing_prompt": "Possession Horror\nWrite a short story over several chapters to this prompt: I caught her staring at me again. She thought I'd been sleeping."
+          }
+        },
+        "explanation": "“她以为我睡着了”的被窥视场景被标为Possession Horror；原始类别与一句悬念种子共同约束续写方向，本站不补情节。 原始记录完整保留category/title/writing_prompt三个字段及换行；没有模型回答、后续生成指令或评分。",
+        "split": "longform_creative_writing_prompts_minimalist.json · key=5 · Possession Horror · Different Eyes",
+        "source": "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+        "license": "官方固定README License章节明确MIT；所选为作者原创极简提示，不涉及报告中的模型故事。",
+        "licensePath": "licenses/longform-writing-license-notice.txt"
+      },
+      {
+        "type": "record",
+        "id": "longform-writing-key-9",
+        "title": "末日生存：食物短缺下的选择",
+        "prompt": "以食物匮乏引出幸存者的绝境选择，属于带温暖/恐怖混合类型的末日生存题。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "9": {
+            "category": "Cozy-Horror Post Apocalyptic Survival",
+            "title": "Mushroom Season",
+            "writing_prompt": "Cozy-Horror Post Apocalypse Survival\nWrite a short story over several chapters to this prompt: When you're out of food, you get desperate. Who would have thought the spore mutants -- the things trying to kill us -- would be delicious?"
+          }
+        },
+        "explanation": "缺粮的末日幸存者发现威胁他们的孢子变异体可以食用，类型为Cozy-Horror Post Apocalyptic Survival。源category与prompt中类型措辞略有不同，均按原值保留。 原始记录完整保留category/title/writing_prompt三个字段及换行；没有模型回答、后续生成指令或评分。",
+        "split": "longform_creative_writing_prompts_minimalist.json · key=9 · Cozy-Horror Post Apocalyptic Survival · Mushroom Season",
+        "source": "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
+        "license": "官方固定README License章节明确MIT；所选为作者原创极简提示，不涉及报告中的模型故事。",
+        "licensePath": "licenses/longform-writing-license-notice.txt"
       }
     ]
   }

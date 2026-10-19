@@ -75,7 +75,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "AA评测页未为示例问题声明单独复用许可；链接的Wisedocs数据集不证明与AA样例相同。",
-    "scope": "仅AA页面公开问题事实；病历、答案、私有held-out数据的许可和映射未查明。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不复制或推测病历内容、答案或记录页码。",
       "不将示例映射到Wisedocs记录或AA held-out评分集。"
@@ -87,7 +87,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "AA官方页面公开具体事实检索题，但未公开其病历附件或答案；本站只展示任务目标。",
+    "reason": "3种官方公开问题可切换，MRI日期/跨文档时间线/因果评议各有原题文；病历、答案和AA私有数据行未附。",
     "url": "https://artificialanalysis.ai/evaluations/mlcr-aa",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/mlcr-aa",
@@ -117,6 +117,20 @@
       "sourceUrls": [
         "https://artificialanalysis.ai/evaluations/mlcr-aa"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mlcr-aa",
+        "https://huggingface.co/datasets/Wisedocs/mlcr-dataset"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：三种官方问题已逐段定位：MRI事实检索、右膝时间线、腰椎因果评议；底层病历/答案未附，未映射AA私有行。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mlcr-aa",
+        "https://huggingface.co/datasets/Wisedocs/mlcr-dataset"
+      ]
     }
   ],
   "sources": [
@@ -142,8 +156,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "先用参考答案字符长度的五倍作简洁门槛，再以三裁判多数票分别检查准确和完整；过长/空回答在总体中计失败，而不进入judged-only分项分母。",
@@ -161,19 +175,45 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-mlcr-aa-mri-fact-retrieval",
         "title": "官方任务演示 · 腰椎MRI日期与开立者",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "在一份病历中定位腰椎MRI的检查日期、开立该检查的医疗服务提供者，并指出证据所在页。AA将此示例归为单事实检索；页面没有附上病例文件或答案。",
-        "explanation": "这是AA评测页面公开的具体Example Task；AA说明其评分集包含独立的private held-out最难样本，页面示例并未标明属于计分集，也未与Wisedocs公开数据建立记录映射。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "Fact retrieval\n\nSingle-fact retrieval\n\nOn what date was the lumbar spine MRI performed, and which provider ordered it? Cite the page of the record where",
+        "prompt": "官方 MLCR-AA 页面展示的 single-fact retrieval 示例，要求从记录中找出腰椎 MRI 日期和开立医生并注明页码。页面未展示底层记录或gold答案。",
+        "explanation": "raw 是官方示例题的完整连续HTML段落，已恢复被旧raw截断的题干结尾。页面可核对题干，但没有公开本例的病历输入或参考答案；本站不补造答案。",
+        "raw": "<p>On what date was the lumbar spine MRI performed, and which provider ordered it? Cite the page of the record where this appears.</p>",
         "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
         "license": "本站原创任务解读及AA页面必要短引；示例题文本与底层病历没有单独许可说明。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "AA MLCR-AA / Example Tasks / Fact retrieval；未给记录ID或split",
+        "excerpt": true
+      },
+      {
+        "id": "mlcr-aa-chronology",
+        "title": "右膝伤情的跨文档治疗时间线",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "结合骨科、物理治疗和影像记录，按日期重建右膝伤情的治疗经过，并列出每次就诊采取的治疗。",
+        "raw": "<p>Reconstruct the treatment timeline for the right knee injury across the orthopedic, physical therapy, and imaging notes. List each encounter in date order with the treatment provided.</p>",
+        "explanation": "作者公开示例要求跨多份就诊材料合成时间线，而非只找一个日期。 raw为AA公开页的实际题文段落；该页未附底层病历或参考答案，不能独立重做完整评测，也不映射为AA私有计分行。",
+        "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+        "license": "官方公开示例的必要题文片段与本站事实解析；未确认完整病历/题目统一再发布许可，不含患者材料、参考答案或模型输出。",
+        "split": "MLCR-AA official example panel / public question only / no released row ID",
+        "excerpt": true
+      },
+      {
+        "id": "mlcr-aa-clinical-reasoning",
+        "title": "腰椎间盘突出与工作事故的因果评议",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "结合受伤机制、既往病情与诊疗顺序，判断腰椎间盘突出更可能与工作事故还是既往退变有关，并指出支持判断的病历。",
+        "raw": "<p>Based on the documented mechanism of injury, prior conditions, and the sequence of care, is the lumbar disc herniation more likely causally related to the workplace incident or to pre-existing degenerative disease? Explain which records support your conclusion.</p>",
+        "explanation": "作者公开示例属于复合专家推理，需要基于病历比较两种因果解释；本站没有补造患者资料或给出诊断结论。 raw为AA公开页的实际题文段落；该页未附底层病历或参考答案，不能独立重做完整评测，也不映射为AA私有计分行。",
+        "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
+        "license": "官方公开示例的必要题文片段与本站事实解析；未确认完整病历/题目统一再发布许可，不含患者材料、参考答案或模型输出。",
+        "split": "MLCR-AA official example panel / public question only / no released row ID",
         "excerpt": true
       }
     ]

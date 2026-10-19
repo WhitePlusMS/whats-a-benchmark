@@ -82,24 +82,27 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "官方task.md未单列数据许可，仓库根LICENSE路径返回404；轨迹数据卡条件与任务文本分开。",
-    "scope": "仅公开main上的find-alita-paper任务事实；main未固定release，不推断完整taskpool、evaluator、附件或轨迹许可。",
+    "license": "固定Toolathlon任务仓库根LICENSE路径404；独立数据条款未确认。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "不以仓库公开/README示例推定完整任务集授权。",
-      "不复制论文PDF、完整任务文件、evaluator或轨迹。"
+      "源任务中的示例命令、棋局/2048输出是作者给出的格式说明，不是本站执行结果。",
+      "读取任务文本不等于执行迁移、检索、写文件或游戏操作。"
     ],
     "sourceUrls": [
-      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/README.md",
-      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md"
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/academic-pdf-report/docs/task.md",
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/add-bibtex/docs/task.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已定位官方 Quick Example 指向的公开 find-alita-paper 任务文本；本站只展示原创解读和真实短引，不提供答案或完整题库。",
+    "reason": "3份官方实际任务指令可切换，旧Alita任务恢复全文，另补作者/机构表格整理与五篇论文BibTeX任务；未执行任务或编造结果。",
     "url": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
     "sourceUrls": [
       "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/README.md",
-      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md"
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/academic-pdf-report/docs/task.md",
+      "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/add-bibtex/docs/task.md"
     ]
   },
   "metric": {
@@ -168,10 +171,20 @@
       "label": "Toolathlon 官方 find-alita-paper 任务文本",
       "url": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/academic-pdf-report/docs/task.md",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/add-bibtex/docs/task.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "原论文 108-task count 属于论文实验版口径，未确认等于 2026 Verified finalpool 的准确任务数。",
@@ -199,11 +212,30 @@
         "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
         "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+        "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/academic-pdf-report/docs/task.md",
+        "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/add-bibtex/docs/task.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“公开任务 · 为五篇论文补 BibTeX”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
+        "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/academic-pdf-report/docs/task.md",
+        "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/add-bibtex/docs/task.md",
+        "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/README.md",
+        "https://github.com/hkust-nlp/Toolathlon/blob/main/README.md",
+        "https://huggingface.co/datasets/hkust-nlp/Toolathlon-Verified_Trajectories"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-toolathlon-find-alita-paper-001",
@@ -211,11 +243,37 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "Toolathlon 官方 README 的 Quick Example 指向 finalpool/find-alita-paper。任务要求查找一篇与 agentic reasoning 相关、标题含 Alita 且发表于 2025 年 6 月或更早的 arXiv 论文；下载最新版本 PDF，命名为 alita_{arxiv_id}.pdf，并返回标题、arXiv 摘要页 URL 和代码仓库链接。官方任务文本没有指定唯一答案。",
-        "explanation": "任务来自官方仓库 Quick Example 所指向的公开 task.md。这里概述搜索条件和交付字段，不提供论文答案，不声称任务已运行或属于已固定版本的评分行。Task.md 未单列数据许可；仓库根路径 LICENSE 检查返回 404，不能据此推断任务文本许可。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "I'm looking for a paper on arxiv related to agentic reasoning.\n\ntitle contains \"Alita\" and it was published in June 2025 or earlier.\n\ntitle:\narxiv_abs_url:",
+        "explanation": "逐字保留官方 tasks/finalpool/find-alita-paper/docs/task.md 的任务说明；该文件要求检索、下载并输出三个字段。此处不执行外部搜索或下载任务，也不编造唯一答案。README Quick Example 将该任务作为公开示例；没有定位到评分数据行。",
+        "raw": "I'm looking for a paper on arxiv related to agentic reasoning. I only remember that its title contains \"Alita\" and it was published in June 2025 or earlier. Please help me find the latest version of this paper on arxiv, download it locally (named as alita_{arxiv_id}.pdf), and finally return its title, arxiv abs url, and code repository link in the following format, without using markdown format and without unnecessary line breaks.\n\ntitle: {title}\narxiv_abs_url: {arxiv_abs_url}\ncode_url: {code_url}",
         "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/main/tasks/finalpool/find-alita-paper/docs/task.md",
-        "license": "本站原创中文任务解读及必要短引；任务文本未见单独许可声明，仓库代码许可范围未确认。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "license": "Toolathlon官方公开任务正文；固定根LICENSE路径本次404，未确认独立任务许可。只保留所选真实指令及中文解读，附件、作者主页和答案未复制，任务未执行。",
         "split": "official main checked 2026-10-08 / tasks/finalpool/find-alita-paper/docs/task.md; README Quick Example",
+        "excerpt": true
+      },
+      {
+        "id": "official-case-toolathlon-academic-pdf-report-001",
+        "title": "公开任务 · 论文作者与机构信息整理",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方任务要求针对 AI Conference 论文查找第一作者全名、论文中原样呈现的完整机构隶属（含多机构及院系层级）和 Google Scholar 主页链接，并填写工作区电子表格。",
+        "explanation": "该任务是 Toolathlon finalpool 中的 academic-pdf-report/doc任务文本。其要求检索并把结果写入工作区表格；本样例没有访问外部资料、作者个人主页或修改表格，也未给出答案。 来源任务本身没有提供唯一答案或模型输出。原始数据精简说明：完整保留任务文件正文，不替换源字段。",
+        "raw": "I am conducting research on papers for an AI Conference. For each paper, please help me find the full name of the first author, the complete institutional affiliation of the first author exactly as it appears in the paper (including all institutions if multiple are listed, and specifying down to the department level when provided), and the link to the first author’s Google Scholar profile. You need to fill them in the corresponding excel sheet under my workspace.",
+        "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/academic-pdf-report/docs/task.md",
+        "license": "Toolathlon官方公开任务正文；固定根LICENSE路径本次404，未确认独立任务许可。只保留所选真实指令及中文解读，附件、作者主页和答案未复制，任务未执行。",
+        "split": "fixed commit 9be8d8fe07a497b18ee61e3f2ae694e9797f39eb / tasks/finalpool/academic-pdf-report/docs/task.md / README identifies Toolathlon-Verified final release",
+        "excerpt": true
+      },
+      {
+        "id": "official-case-toolathlon-add-bibtex-001",
+        "title": "公开任务 · 为五篇论文补 BibTeX",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方任务要求将五篇指定论文加入工作区 ref.bib，沿用既有格式；若有会议版本，从 OpenReview 对应会议主页复制 BibTeX。题名与条目顺序见 raw。",
+        "explanation": "此任务要求编辑工作区 bibliography；raw 完整保留五个官方列举题名及会议版本规则，没有自行猜测 BibTeX 字段或完成状态，也没有修改文件。 来源任务本身没有提供唯一答案或模型输出。原始数据精简说明：完整保留任务文件正文，不替换源字段。",
+        "raw": "Please help me add the following article to the ref.bib file in the workspace. Please keep the format consistent with the existing article. If there is a conference version, please copy the bibtex file from the corresponding conference homepage on OpenReview.\n\n1. Scaling relationship on learning mathematical reasoning with large language models\n2. Qwen2.5-math technical report\n3. Lemur: Harmonizing Natural Language and Code for Language Agents\n4. Codellama\n5. mmlu",
+        "source": "https://raw.githubusercontent.com/hkust-nlp/Toolathlon/9be8d8fe07a497b18ee61e3f2ae694e9797f39eb/tasks/finalpool/add-bibtex/docs/task.md",
+        "license": "Toolathlon官方公开任务正文；固定根LICENSE路径本次404，未确认独立任务许可。只保留所选真实指令及中文解读，附件、作者主页和答案未复制，任务未执行。",
+        "split": "fixed commit 9be8d8fe07a497b18ee61e3f2ae694e9797f39eb / tasks/finalpool/add-bibtex/docs/task.md / README identifies Toolathlon-Verified final release",
         "excerpt": true
       }
     ]

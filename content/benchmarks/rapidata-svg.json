@@ -73,21 +73,29 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "数据卡明确将该发布集 prompt set 标注为 CC BY 4.0；SVG/PNG 输出分别受模型提供方条款约束。",
-    "scope": "仅复用该固定 revision 的单条 prompt set 内容；保留数据卡来源并遵守 CC BY 4.0 署名条款。",
+    "scope": "CC BY 4.0 提示文本，含创建者 seed 与数据卡注明来源为 Yupp AI 的提示；另保留公开记录的模型名和加权比较事实值，不镜像生成 SVG/PNG、详细投票或人口统计。",
     "boundaries": [
-      "本许可不覆盖数据卡说明受模型提供方条款约束的 SVG/PNG 输出，也不表示人工标注的许可范围。",
+      "模型输出适用各模型提供方条款；本页不复制输出，也不将 prompt 许可外推到全部人工标注。",
       "不把 prompt set 的许可外推到其他 Rapidata 数据集、榜单、实时投票或第三方材料。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark",
+      "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示 HF 固定 revision 的 train row 0 原始 seed prompt。原行中的 SVG、PNG 生成候选未在本站镜像；完整官方记录可从数据卡查看。",
+    "reason": "6 条真实案例可切换：首条由固定 f5c382c 版 Parquet 的 prompt 列验证；另五条来自更名后数据集的本轮 Rows API 响应。二者分别标明快照，模型名及比较值是原记录事实，不是参考答案或模型总分。",
     "url": "https://huggingface.co/datasets/Rapidata/svg-benchmark/viewer/default/train?row=0",
     "sourceUrls": [
-      "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark",
+      "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=5000",
+      "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=10000",
+      "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=15000",
+      "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=20000",
+      "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=50000",
+      "https://huggingface.co/datasets/Rapidata/svg-benchmark/resolve/f5c382c80029a2b8f9a58ab0056515471cbb4599/data/train-00000-of-00082.parquet",
+      "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark"
     ]
   },
   "metric": {
@@ -127,11 +135,51 @@
       "label": "官方 SVG live 榜单",
       "url": "https://www.benchmark.ai/svg",
       "role": "leaderboard"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=5000",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=10000",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=15000",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=20000",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=50000",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/Rapidata/svg-benchmark/resolve/f5c382c80029a2b8f9a58ab0056515471cbb4599/data/train-00000-of-00082.parquet",
+      "label": "旧版 seed prompt 的固定 Parquet 文件",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark",
+      "label": "更名后的官方数据卡及归属说明",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/yupp-ai/yupp-svg-20251204",
+      "label": "非 seed 提示的 Yupp AI 来源",
+      "role": "access"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "合格真人标注者提供成对比较；反馈按可靠性加权，区间由 bootstrap 估计。",
@@ -165,10 +213,41 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/Rapidata/svg-benchmark"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 5 条，现有 6 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=5000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=10000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=15000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=20000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=50000",
+        "https://huggingface.co/datasets/Rapidata/svg-benchmark"
+      ]
+    },
+    {
+      "text": "2026-10-19：仅用 HTTP 206 Range 读取旧固定 Parquet 的元数据与 prompt 列，首条原文与既有 horse riding an astronaut 一致；没有下载 455 MB 全文件或图片。新快照部分 weighted_results 值大于 1，按响应原值保留，不自行归一化，也不套用旧说明将其解释为概率。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Rapidata/svg-benchmark/resolve/f5c382c80029a2b8f9a58ab0056515471cbb4599/data/train-00000-of-00082.parquet",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：旧horse题按固定历史Parquet只读prompt列核实；新当前行和历史行分别定位，未复制SVG产物/媒体/人口字段。 展示记录1→6条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Rapidata/svg-benchmark/resolve/f5c382c80029a2b8f9a58ab0056515471cbb4599/data/train-00000-of-00082.parquet",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=5000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=10000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=15000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=20000",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=50000",
+        "https://huggingface.co/datasets/Rapidata/svg-benchmark",
+        "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "train-0",
@@ -179,11 +258,126 @@
         "raw": {
           "prompt": "Make an SVG of a horse riding an astronaut"
         },
-        "source": "https://huggingface.co/datasets/Rapidata/svg-benchmark/viewer/default/train?row=0",
+        "source": "https://huggingface.co/datasets/Rapidata/svg-benchmark/resolve/f5c382c80029a2b8f9a58ab0056515471cbb4599/data/train-00000-of-00082.parquet",
         "license": "CC BY 4.0 · 数据卡明确授权 prompt set；模型生成的 SVG/PNG 输出另受各提供方条款约束，本站不展示",
         "licensePath": "licenses/rapidata-svg-sample-source.txt",
         "split": "train / row 0 · source revision f5c382c80029a2b8f9a58ab0056515471cbb4599",
         "excerpt": true
+      },
+      {
+        "prompt": "Rapidata 公开 prompt row 5000：A set of 10 crayons in rainbow order as an SVG",
+        "excerpt": true,
+        "raw": {
+          "prompt": "A set of 10 crayons in rainbow order as an SVG",
+          "model1": "gpt-5.6-terra-high",
+          "model2": "recraft-v4.1-pro-vector",
+          "weighted_results_image1_preference": null,
+          "weighted_results_image2_preference": null,
+          "weighted_results_image1_coherence": 1.9088040590286255,
+          "weighted_results_image2_coherence": 1.0486701726913452,
+          "weighted_results_image1_alignment": null,
+          "weighted_results_image2_alignment": null
+        },
+        "promptOrigin": "editorial",
+        "split": "default/train / row_idx=5000 / observed HEAD 6cc53afc6f98c1a333dc077e2211849245c55225",
+        "title": "蜡笔彩虹序列 SVG",
+        "source": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=5000",
+        "license": "Prompt：CC BY 4.0 · Rapidata；数据卡说明非 seed 提示来自 Yupp AI，保留 Yupp AI 归属。模型名与加权比较值为公开记录的事实字段；生成 SVG/PNG 的提供方条款另行适用，本页未转载这些输出。",
+        "explanation": "该提示要求把十支蜡笔按彩虹顺序排列为SVG图像；考察的是多对象和顺序关系的图形表达。raw 同时保留对比模型名称及公开的三维加权比较结果，都是这一对模型输出的标注，不能当作参考答案或整个模型的总分。源行 svg1/svg2 为 null，本站未镜像图片、详细投票与人口统计。",
+        "type": "record",
+        "id": "svgbench-row-5000"
+      },
+      {
+        "prompt": "Rapidata 公开 prompt row 10000：An SVG file representing a temperature drop: a thermometer with mercury descending from +5 degrees to -2 degrees",
+        "excerpt": true,
+        "raw": {
+          "prompt": "An SVG file representing a temperature drop: a thermometer with mercury descending from +5 degrees to -2 degrees",
+          "model1": "quiver-arrow-1.1-max",
+          "model2": "quiver-arrow-2",
+          "weighted_results_image1_preference": 2.4127490520477295,
+          "weighted_results_image2_preference": 0.7001696825027466,
+          "weighted_results_image1_coherence": 2.7595372200012207,
+          "weighted_results_image2_coherence": 3.638066291809082,
+          "weighted_results_image1_alignment": 1.8133243322372437,
+          "weighted_results_image2_alignment": 1.085097312927246
+        },
+        "promptOrigin": "editorial",
+        "split": "default/train / row_idx=10000 / observed HEAD 6cc53afc6f98c1a333dc077e2211849245c55225",
+        "title": "温度计由 +5 降至 −2 的 SVG",
+        "source": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=10000",
+        "license": "Prompt：CC BY 4.0 · Rapidata；数据卡说明非 seed 提示来自 Yupp AI，保留 Yupp AI 归属。模型名与加权比较值为公开记录的事实字段；生成 SVG/PNG 的提供方条款另行适用，本页未转载这些输出。",
+        "explanation": "该提示给定温度从+5度降到−2度，要求用温度计SVG表示下降过程；本站只保留任务文字，数字符号和方向来自提示本身，不展示模型输出或投票。raw 同时保留对比模型名称及公开的三维加权比较结果，都是这一对模型输出的标注，不能当作参考答案或整个模型的总分。源行 svg1/svg2 为 null，本站未镜像图片、详细投票与人口统计。",
+        "type": "record",
+        "id": "svgbench-row-10000"
+      },
+      {
+        "prompt": "Rapidata 公开 prompt row 15000：An SVG of a simple histogram with evenly spaced bins, titled 'Simple Histogram with Evenly Spaced Bins'",
+        "excerpt": true,
+        "raw": {
+          "prompt": "An SVG of a simple histogram with evenly spaced bins, titled 'Simple Histogram with Evenly Spaced Bins'",
+          "model1": "nvidia-nemotron-3-ultra-550b-a55b-nvfp4",
+          "model2": "kimi-k3",
+          "weighted_results_image1_preference": 2.049257278442383,
+          "weighted_results_image2_preference": 0,
+          "weighted_results_image1_coherence": null,
+          "weighted_results_image2_coherence": null,
+          "weighted_results_image1_alignment": 1.712609887123108,
+          "weighted_results_image2_alignment": 0
+        },
+        "promptOrigin": "editorial",
+        "split": "default/train / row_idx=15000 / observed HEAD 6cc53afc6f98c1a333dc077e2211849245c55225",
+        "title": "等间隔分箱直方图",
+        "source": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=15000",
+        "license": "Prompt：CC BY 4.0 · Rapidata；数据卡说明非 seed 提示来自 Yupp AI，保留 Yupp AI 归属。模型名与加权比较值为公开记录的事实字段；生成 SVG/PNG 的提供方条款另行适用，本页未转载这些输出。",
+        "explanation": "该提示要求创建一个简单、等间隔分箱并有指定标题的直方图SVG；重点是图表结构与标题呈现。raw 同时保留对比模型名称及公开的三维加权比较结果，都是这一对模型输出的标注，不能当作参考答案或整个模型的总分。源行 svg1/svg2 为 null，本站未镜像图片、详细投票与人口统计。",
+        "type": "record",
+        "id": "svgbench-row-15000"
+      },
+      {
+        "prompt": "Rapidata 公开 prompt row 20000：An SVG picture of a coffee cup with a cute writing \"Hello gorgeous\" on it",
+        "excerpt": true,
+        "raw": {
+          "prompt": "An SVG picture of a coffee cup with a cute writing \"Hello gorgeous\" on it",
+          "model1": "mistral-small-4",
+          "model2": "claude-opus-5",
+          "weighted_results_image1_preference": null,
+          "weighted_results_image2_preference": null,
+          "weighted_results_image1_coherence": null,
+          "weighted_results_image2_coherence": null,
+          "weighted_results_image1_alignment": 0.5763325691223145,
+          "weighted_results_image2_alignment": 1.2588448524475098
+        },
+        "promptOrigin": "editorial",
+        "split": "default/train / row_idx=20000 / observed HEAD 6cc53afc6f98c1a333dc077e2211849245c55225",
+        "title": "印有问候语的咖啡杯 SVG",
+        "source": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=20000",
+        "license": "Prompt：CC BY 4.0 · Rapidata；数据卡说明非 seed 提示来自 Yupp AI，保留 Yupp AI 归属。模型名与加权比较值为公开记录的事实字段；生成 SVG/PNG 的提供方条款另行适用，本页未转载这些输出。",
+        "explanation": "该提示要求描绘咖啡杯，并把“Hello gorgeous”字样呈现在杯身；检验图像对象与精确文字的共同呈现。raw 同时保留对比模型名称及公开的三维加权比较结果，都是这一对模型输出的标注，不能当作参考答案或整个模型的总分。源行 svg1/svg2 为 null，本站未镜像图片、详细投票与人口统计。",
+        "type": "record",
+        "id": "svgbench-row-20000"
+      },
+      {
+        "prompt": "Rapidata 公开 prompt row 50000：Create a svg of house having garden and cars parked in front of house",
+        "excerpt": true,
+        "raw": {
+          "prompt": "Create a svg of house having garden and cars parked in front of house",
+          "model1": "gemini-3.1-pro-preview",
+          "model2": "gpt-5.6-terra-high",
+          "weighted_results_image1_preference": null,
+          "weighted_results_image2_preference": null,
+          "weighted_results_image1_coherence": 1.3450098037719727,
+          "weighted_results_image2_coherence": 0.7009422779083252,
+          "weighted_results_image1_alignment": null,
+          "weighted_results_image2_alignment": null
+        },
+        "promptOrigin": "editorial",
+        "split": "default/train / row_idx=50000 / observed HEAD 6cc53afc6f98c1a333dc077e2211849245c55225",
+        "title": "带花园和车辆的房屋 SVG",
+        "source": "https://huggingface.co/datasets/Rapidata/text-to-svg-human-feedback-benchmark/viewer/default/train?row=50000",
+        "license": "Prompt：CC BY 4.0 · Rapidata；数据卡说明非 seed 提示来自 Yupp AI，保留 Yupp AI 归属。模型名与加权比较值为公开记录的事实字段；生成 SVG/PNG 的提供方条款另行适用，本页未转载这些输出。",
+        "explanation": "该提示指定房屋、花园和停在房前的汽车，涉及多个场景元素及空间关系。raw 同时保留对比模型名称及公开的三维加权比较结果，都是这一对模型输出的标注，不能当作参考答案或整个模型的总分。源行 svg1/svg2 为 null，本站未镜像图片、详细投票与人口统计。",
+        "type": "record",
+        "id": "svgbench-row-50000"
       }
     ]
   }

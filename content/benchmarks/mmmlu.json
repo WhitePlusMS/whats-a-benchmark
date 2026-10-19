@@ -21,7 +21,7 @@
     }
   ],
   "kind": "derivative",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "id": "mmmlu",
   "name": "MMMLU",
   "subtitle": "同一套知识问题，换成多种语言",
@@ -90,6 +90,11 @@
     {
       "label": "MMMLU ZH-CN test 官方 CSV 固定 revision",
       "url": "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
       "role": "data"
     }
   ],
@@ -160,16 +165,17 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示 OpenAI 官方 CSV 的 ZH_CN test 首行；保留题干、四个选项、答案标签和学科字段，并注明 OpenAI MMMLU 数据卡的 MIT 标记及 MMLU 底本归属。公开 test 题及答案可能增加训练/评测污染风险；数据卡没有禁止再分发声明。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/MMMLU",
       "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
-      "https://arxiv.org/abs/2009.03300"
+      "https://arxiv.org/abs/2009.03300",
+      "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv"
     ],
     "url": "https://huggingface.co/datasets/openai/MMMLU/viewer/default/test"
   },
   "sampleSet": {
-    "retrievedAt": "2026-09-23",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "mmmlu-zh-cn-test-row-0-2fba2ac8a8",
@@ -177,27 +183,114 @@
         "type": "choice",
         "prompt": "求 Q 上给定域扩张 Q(sqrt(2), sqrt(3), sqrt(18)) 的次数。",
         "options": [
-          "A: 0",
-          "B: 4",
-          "C: 2",
-          "D: 6"
+          "0",
+          "4",
+          "2",
+          "6"
         ],
         "answer": "B",
-        "explanation": "题目要求判断代数扩张的次数。需要识别根式之间的关系，再从 4 个选项中选择答案；它展示 MMMLU 如何以中文呈现学科题。",
+        "explanation": "这条中文人工翻译的抽象代数题给出 Q(√2,√3,√18)，要求判断扩张次数；需要识别 √18 与 √2 的依赖关系，避免把三个根式误当成三个独立二次扩张。raw 的首列按原CSV保留为空字符串表头，值为字符串“0”。",
         "raw": {
-          "index": 0,
           "Question": "求 Q 上给定域扩张 Q(sqrt(2), sqrt(3), sqrt(18)) 的次数。",
           "A": "0",
           "B": "4",
           "C": "2",
           "D": "6",
           "Answer": "B",
-          "Subject": "abstract_algebra"
+          "Subject": "abstract_algebra",
+          "": "0"
         },
         "source": "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
         "license": "MIT · OpenAI/MMMLU 数据卡声明；底本 MMLU MIT 许可及归属见附带文本",
         "licensePath": "licenses/mmlu.txt",
         "split": "test / ZH_CN",
+        "excerpt": false
+      },
+      {
+        "id": "mmmlu-zh-cn-test-row-1",
+        "title": "中文代数题 · 置换与子群",
+        "type": "choice",
+        "prompt": "设 S_5 中 p = (1, 2, 5, 4)(2, 3)。求 S_5 中 <p> 的幂。",
+        "options": [
+          "8",
+          "2",
+          "24",
+          "120"
+        ],
+        "answer": "C",
+        "explanation": "原始中文题干使用“幂”这一表述，选项为8、2、24、120，原答案C。本站保留原翻译和选项，不替作者改成另一道群论题；原 Subject 标明所属学科。",
+        "raw": {
+          "": "1",
+          "Question": "设 S_5 中 p = (1, 2, 5, 4)(2, 3)。求 S_5 中 <p> 的幂。",
+          "A": "8",
+          "B": "2",
+          "C": "24",
+          "D": "120",
+          "Answer": "C",
+          "Subject": "abstract_algebra"
+        },
+        "source": "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+        "license": "MIT · OpenAI/MMMLU 数据卡声明；底本 MMLU MIT 许可及归属见附带文本",
+        "licensePath": "licenses/mmlu.txt",
+        "split": "test / mmlu_ZH-CN.csv / row_idx=1",
+        "excerpt": false
+      },
+      {
+        "id": "mmmlu-zh-cn-test-row-2",
+        "title": "中文代数题 · 有限域多项式",
+        "type": "choice",
+        "prompt": "求系数在该域中的给定多项式的所示有限域的所有零。Z_5 中：x^5 + 3x^3 + x^2 + 2x",
+        "options": [
+          "0",
+          "1",
+          "0,1",
+          "0,4"
+        ],
+        "answer": "D",
+        "explanation": "在 Z_5 中找给定多项式的零点，候选答案可能含一个或多个域元素。原始答案 D 对应0和4，题面中的系数和选项顺序保持原值。",
+        "raw": {
+          "": "2",
+          "Question": "求系数在该域中的给定多项式的所示有限域的所有零。Z_5 中：x^5 + 3x^3 + x^2 + 2x",
+          "A": "0",
+          "B": "1",
+          "C": "0,1",
+          "D": "0,4",
+          "Answer": "D",
+          "Subject": "abstract_algebra"
+        },
+        "source": "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+        "license": "MIT · OpenAI/MMMLU 数据卡声明；底本 MMLU MIT 许可及归属见附带文本",
+        "licensePath": "licenses/mmlu.txt",
+        "split": "test / mmlu_ZH-CN.csv / row_idx=2",
+        "excerpt": false
+      },
+      {
+        "id": "mmmlu-zh-cn-test-row-3",
+        "title": "中文代数题 · 两个群论陈述",
+        "type": "choice",
+        "prompt": "陈述 1 | 非阿贝尔群的因子群是非阿贝尔的。陈述 2 | 若 K 是 H 的正规子群，H 是 G 的正规子群，则 K 是 G 的正规子群。",
+        "options": [
+          "真，真",
+          "假，假",
+          "真，假",
+          "假，真"
+        ],
+        "answer": "B",
+        "explanation": "题目要求分别判断关于因子群与正规子群的两个陈述，选项编码为真假组合。官方答案B表示两者均假；原记录与 Subject 字段保留，本站没有补造证明。",
+        "raw": {
+          "": "3",
+          "Question": "陈述 1 | 非阿贝尔群的因子群是非阿贝尔的。陈述 2 | 若 K 是 H 的正规子群，H 是 G 的正规子群，则 K 是 G 的正规子群。",
+          "A": "真，真",
+          "B": "假，假",
+          "C": "真，假",
+          "D": "假，真",
+          "Answer": "B",
+          "Subject": "abstract_algebra"
+        },
+        "source": "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+        "license": "MIT · OpenAI/MMMLU 数据卡声明；底本 MMLU MIT 许可及归属见附带文本",
+        "licensePath": "licenses/mmlu.txt",
+        "split": "test / mmlu_ZH-CN.csv / row_idx=3",
         "excerpt": false
       }
     ]
@@ -242,7 +335,23 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+        "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“中文代数题 · 两个群论陈述”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+        "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+        "https://huggingface.co/datasets/openai/MMMLU",
+        "https://arxiv.org/abs/2009.03300"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

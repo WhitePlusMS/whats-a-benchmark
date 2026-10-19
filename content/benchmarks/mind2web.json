@@ -78,7 +78,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "根据真实网站快照和人工轨迹，预测网页操作的目标元素与动作；原版侧重离线动作预测。",
@@ -143,7 +143,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "Mind2Web官方项目页公开具体任务目标；README将dataset标为CC BY 4.0并另列MIT代码许可。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://osu-nlp-group.github.io/Mind2Web/",
     "sourceUrls": [
       "https://osu-nlp-group.github.io/Mind2Web/",
@@ -164,11 +164,28 @@
       "sourceUrls": [
         "https://github.com/OSU-NLP-Group/Mind2Web"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://osu-nlp-group.github.io/Mind2Web/",
+        "https://raw.githubusercontent.com/OSU-NLP-Group/Mind2Web/main/README.md",
+        "https://github.com/OSU-NLP-Group/Mind2Web/blob/main/LICENSE"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Mind2Web demo · 查询布洛芬与阿司匹林相互作用”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://osu-nlp-group.github.io/Mind2Web/",
+        "https://raw.githubusercontent.com/OSU-NLP-Group/Mind2Web/main/README.md",
+        "https://github.com/OSU-NLP-Group/Mind2Web/blob/main/LICENSE",
+        "https://github.com/OSU-NLP-Group/Mind2Web"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-mind2web-example-a-flight-search",
@@ -181,6 +198,45 @@
         "source": "https://osu-nlp-group.github.io/Mind2Web/",
         "license": "Mind2Web数据集CC BY 4.0；代码MIT。本站保留归属和来源；不复制第三方航班网站内容。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "Mind2Web官方项目页 / 示例(a)；未提供数据行ID或split",
+        "excerpt": true
+      },
+      {
+        "id": "mind2web-official-page-example-c",
+        "title": "Mind2Web demo · 按电子客票号查收据",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方项目页公开演示目标：依据电子客票号与预订人查收据。原始数据保留页面实际短指令。",
+        "explanation": "官方项目页演示中给出指定电子客票号，要求寻找Jason Two预订行程的收据；它是公开页面示例，不含完整task行或网站操作轨迹。 该条文字从官方项目页示例段落逐字提取；不复制测试集解压数据、浏览器状态或第三方网站内容。",
+        "raw": "(c) Search receipt with the eTicket 12345678 for the trip reserved by Jason Two",
+        "source": "https://osu-nlp-group.github.io/Mind2Web/",
+        "license": "官方项目页展示的公开演示文字；Mind2Web README明确禁止在线再分发解压后的数据文件。这里只记录公开项目页示例短文本，不包含数据包、轨迹或网站素材；许可范围由主任务复核。",
+        "split": "official project page demo paragraph (c); no dataset split or row ID",
+        "excerpt": true
+      },
+      {
+        "id": "mind2web-official-page-example-d",
+        "title": "Mind2Web demo · 芝加哥往返伦敦航班",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方项目页公开演示目标：指定去返日期的芝加哥至伦敦航班检索。原始数据保留页面实际短指令。",
+        "explanation": "官方项目页演示一项航班搜索，给出Chicago到London的去程4月20日和返程4月23日；没有提供完整任务记录和网页状态。 该条文字从官方项目页示例段落逐字提取；不复制测试集解压数据、浏览器状态或第三方网站内容。",
+        "raw": "(d) Find a flight from Chicago to London on 20 April and return on 23 April.",
+        "source": "https://osu-nlp-group.github.io/Mind2Web/",
+        "license": "官方项目页展示的公开演示文字；Mind2Web README明确禁止在线再分发解压后的数据文件。这里只记录公开项目页示例短文本，不包含数据包、轨迹或网站素材；许可范围由主任务复核。",
+        "split": "official project page demo paragraph (d); no dataset split or row ID",
+        "excerpt": true
+      },
+      {
+        "id": "mind2web-official-page-example-e",
+        "title": "Mind2Web demo · 查询布洛芬与阿司匹林相互作用",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方项目页公开演示目标：在网站检索两种药物的相互作用信息。原始数据保留页面实际短指令。",
+        "explanation": "官方项目页演示一个药物相互作用查询请求。页面没有附完整任务行或浏览器轨迹；这里只保留公开demo文本，不给出医学建议或答案。",
+        "raw": "(e) Search for the interactions between ibuprofen and aspirin.",
+        "source": "https://osu-nlp-group.github.io/Mind2Web/",
+        "license": "官方页面公开演示文本。README明确不允许在线再分发解压后的数据文件；本站不复制数据集文件、轨迹或第三方页面素材。",
+        "split": "official project page demo paragraph (e); no dataset split or row ID",
         "excerpt": true
       }
     ]

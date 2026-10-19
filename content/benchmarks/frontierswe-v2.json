@@ -64,7 +64,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
-    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "代码仓库的开源许可与底层任务数据授权需分别核对。",
       "后续转载题目或媒体前，须核实对应材料的授权范围。"
@@ -76,10 +76,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "reason": "4项官方实际任务的原文片段与中文解析可切换，新增天文定位、编译代码优化和XML解析器三种任务；环境与评测器未镜像。",
     "url": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md"
+      "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md",
+      "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/astronomy-toolkit/instruction.md",
+      "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/cranelift-codegen-opt/instruction.md",
+      "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/libexpat-optimization/instruction.md",
+      "https://www.frontierswe.com/blog/v2",
+      "https://www.frontierswe.com/"
     ]
   },
   "metric": {
@@ -125,6 +130,27 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/astronomy-toolkit/instruction.md",
+        "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/cranelift-codegen-opt/instruction.md",
+        "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/libexpat-optimization/instruction.md",
+        "https://www.frontierswe.com/blog/v2",
+        "https://www.frontierswe.com/"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“汇编实现 Expat 兼容 XML 解析器”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md",
+        "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/astronomy-toolkit/instruction.md",
+        "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/cranelift-codegen-opt/instruction.md",
+        "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/libexpat-optimization/instruction.md",
+        "https://www.frontierswe.com/blog/v2",
+        "https://www.frontierswe.com/"
+      ]
     }
   ],
   "sources": [
@@ -142,11 +168,26 @@
       "label": "已核验的具体公开任务",
       "url": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/main/tasks/sglang-inference-system-optimization/instruction.md",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/astronomy-toolkit/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/cranelift-codegen-opt/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/libexpat-optimization/instruction.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "每个任务以各自验证器对代码、研究模型或优化产物评分，v2统一至0–1；Proximus允许持续提交，完成声明或生成文字不直接得分。",
@@ -162,7 +203,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-frontierswe-v2",
@@ -176,6 +217,45 @@
         "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
         "split": "FrontierSWE V2 task 27, SGLang Inference System Optimization",
         "excerpt": true
+      },
+      {
+        "id": "frontierswe-v2-astronomy-toolkit",
+        "title": "Astronomy Toolkit 离线星图定位",
+        "type": "code",
+        "prompt": "任务要求在离线条件下从FITS影像恢复天球WCS、配准重叠观测并输出巡天拼图，考察端到端天文影像定位流程。",
+        "explanation": "任务要求在离线条件下从FITS影像恢复天球WCS、配准重叠观测并输出巡天拼图，考察端到端天文影像定位流程。",
+        "raw": "Build a reliable, general-purpose offline astrometry package that localizes astronomical FITS images, recovers celestial WCS metadata, registers overlapping observations, and writes a sky mosaic for each campaign.",
+        "source": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/astronomy-toolkit/instruction.md",
+        "license": "固定官方任务文件的首段实际功能要求；根LICENSE本次请求404，未确认整套任务的复用许可。只引该短任务片段，不复制环境、程序或评测器。",
+        "split": "FrontierSWE V2 / tasks/astronomy-toolkit/instruction.md",
+        "excerpt": true,
+        "promptOrigin": "editorial"
+      },
+      {
+        "id": "frontierswe-v2-cranelift-codegen-opt",
+        "title": "Cranelift 生成代码优化",
+        "type": "code",
+        "prompt": "任务以WebAssembly生成机器码的运行速度为目标，同时将编译器自身编译开销设为约束，包含单线程性能评测。",
+        "explanation": "任务以WebAssembly生成机器码的运行速度为目标，同时将编译器自身编译开销设为约束，包含单线程性能评测。",
+        "raw": "Make the native code that Cranelift generates run faster — without making the compiler itself do materially more work to compile. Cranelift is the compiler backend inside Wasmtime, and what matters here is the machine code it emits for a WebAssembly module, not how fast Wasmtime itself runs. Compile time is a constraint, not free: a runtime win bought by a much slower compile does not count. The performance requirement is fully modeled into `/app/perf-check`; optimize for what it reports (single-threaded).",
+        "source": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/cranelift-codegen-opt/instruction.md",
+        "license": "固定官方任务文件的首段实际功能要求；根LICENSE本次请求404，未确认整套任务的复用许可。只引该短任务片段，不复制环境、程序或评测器。",
+        "split": "FrontierSWE V2 / tasks/cranelift-codegen-opt/instruction.md",
+        "excerpt": true,
+        "promptOrigin": "editorial"
+      },
+      {
+        "id": "frontierswe-v2-libexpat-optimization",
+        "title": "汇编实现 Expat 兼容 XML 解析器",
+        "type": "code",
+        "prompt": "任务要求以x86-64汇编实现遵循System V ABI的共享库，分块解析也须复现libexpat事件顺序与错误状态。",
+        "explanation": "任务要求以x86-64汇编实现遵循System V ABI的共享库，分块解析也须复现libexpat事件顺序与错误状态。",
+        "raw": "Build an XML parser in hand-written x86-64 assembly that reproduces libexpat's parse behaviour while being more performant than libexpat's own C, and ship it as a shared library at `/app/asm-port/libexpat.so` (System V AMD64 C ABI; the interface is in `/app/tests/expat.h`). Fed a document whole or in chunks, it must report the same parse events in the same order, with the same final status and error code libexpat produces. libc can be (`malloc`, `memcpy`, …) used from your assembly. The performance requirement is fully modeled into `/app/perf-check`; optimize for what it reports (single-threaded).",
+        "source": "https://raw.githubusercontent.com/Proximal-Labs/frontier-swe-v2/da83f84f8fbcec3cbf0f2b17c98ebc811355c2df/tasks/libexpat-optimization/instruction.md",
+        "license": "固定官方任务文件的首段实际功能要求；根LICENSE本次请求404，未确认整套任务的复用许可。只引该短任务片段，不复制环境、程序或评测器。",
+        "split": "FrontierSWE V2 / tasks/libexpat-optimization/instruction.md",
+        "excerpt": true,
+        "promptOrigin": "editorial"
       }
     ]
   }

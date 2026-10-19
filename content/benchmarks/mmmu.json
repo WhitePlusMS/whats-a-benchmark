@@ -14,7 +14,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-19",
   "id": "mmmu",
   "name": "MMMU",
   "subtitle": "先看懂图，再回答专业问题",
@@ -87,6 +87,16 @@
       "label": "官网、示例与论文",
       "url": "https://mmmu-benchmark.github.io/",
       "role": "paper"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/MMMU/MMMU/viewer/Accounting/dev?row=0",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -149,7 +159,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "Apache-2.0 · MMMU 数据卡对该数据集的声明；本页展示固定 revision 中的一条真实记录。",
-    "scope": "仅用于 MMMU revision 876ce5cb130f7f7e290ce4d9984357737d4db5cf 的 Accounting/dev 记录 dev_Accounting_1 及其关联 image_1；不延伸到其他题目、图片或未逐项核对的来源材料。",
+    "scope": "所选 Accounting/dev 三条公开题目字段及明确关联的 image_1；原数据许可与上游图表版权声明并列保留，未外推到全题集素材。",
     "boundaries": [
       "数据卡要求标注遵守初始数据来源的版权和许可规则，并避免来自禁止复制与再分发网站的材料；如发现可能违规样本，核实后会移除。",
       "数据卡未提供逐题来源许可清单；此处依其 Apache-2.0 数据集声明记录选定样例，不表示已逐项核清全数据集的上游媒体权利。"
@@ -161,10 +171,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本页展示 MMMU 数据卡 Apache-2.0 声明 revision 中的真实 Accounting/dev 记录及原始 image_1。数据卡仍要求遵守初始数据来源版权与许可；本样例的许可范围限于上述版本中的单条记录，不表示全库每题和图片均已逐项核查。",
+    "reason": "3 条 Accounting/dev 真实题目均配关联的官方原始表格图，可切换查看题目、选项、答案、原始字段和逐题解析；没有用编辑绘制的图代替源数据。",
     "sourceUrls": [
       "https://huggingface.co/datasets/MMMU/MMMU",
-      "https://github.com/MMMU-Benchmark/MMMU#disclaimers"
+      "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "https://huggingface.co/datasets/MMMU/MMMU/viewer/Accounting/dev?row=0",
+      "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3"
     ]
   },
   "researchNotes": [
@@ -191,11 +203,31 @@
         "https://huggingface.co/datasets/MMMU/MMMU",
         "https://github.com/MMMU-Benchmark/MMMU#news"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MMMU/MMMU/viewer/Accounting/dev?row=0",
+        "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3",
+        "https://huggingface.co/datasets/MMMU/MMMU",
+        "https://github.com/MMMU-Benchmark/MMMU#disclaimers"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“MMMU Accounting · 现金流三项计算”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MMMU/MMMU/viewer/Accounting/dev?row=0",
+        "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3",
+        "https://huggingface.co/datasets/MMMU/MMMU",
+        "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+        "https://github.com/MMMU-Benchmark/MMMU#news",
+        "https://github.com/MMMU-Benchmark/MMMU#evaluation"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "dev_Accounting_1",
@@ -209,11 +241,11 @@
           "$77,490"
         ],
         "answer": "D",
-        "explanation": "这条会计题要求依据表格为公司 B 找出缺失金额。原记录的 explanation 字段为空，因此本页不补写官方解题过程；答案保留原记录中的选项键 D。",
+        "explanation": "根据表格补全公司B的金额，原始 explanation 为空，官方答案为D。本轮发现旧raw.options漏了美元符号和金额前缀，已恢复为完整原选项；表格图和答案均保持官方值，中文解析不冒充源解题过程。",
         "raw": {
           "id": "dev_Accounting_1",
           "question": "Each of the following situations relates to a different company. <image 1> For company B, find the missing amounts.",
-          "options": "[',020', ',410', ',320', ',490']",
+          "options": "['$63,020', '$58,410', '$71,320', '$77,490']",
           "explanation": "",
           "img_type": "['Tables']",
           "answer": "D",
@@ -235,6 +267,78 @@
             "height": 289,
             "caption": "原记录 image_1（Tables）；按公开 rows API 返回的 PNG 字节保存。",
             "source": "https://huggingface.co/datasets/MMMU/MMMU/viewer/Accounting/dev?row=0"
+          }
+        ]
+      },
+      {
+        "id": "official-case-mmmu-accounting-dev-2",
+        "title": "MMMU Accounting · Hudson Roofing业主资本余额",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Here are facts for the Hudson Roofing Company for December. <image 1> Assuming no investments or withdrawals, what is the ending balance in the owners' capital account?\nOptions (official string): ['$171,900', '$170,000', '$172,500', '$181,900']",
+        "answer": "A",
+        "explanation": "需要用月初资本加本月收入、减本月费用得到月末资本。原图给出175,300、56,400和59,800，计算得到171,900，对应官方A；题面称 Hudson Roofing，图中写 Hudson Alexander，两处源文本均保持原样。完整原图、问题、选项和答案均保留。",
+        "raw": {
+          "id": "dev_Accounting_2",
+          "question": "Here are facts for the Hudson Roofing Company for December. <image 1> Assuming no investments or withdrawals, what is the ending balance in the owners' capital account?",
+          "options": "['$171,900', '$170,000', '$172,500', '$181,900']",
+          "explanation": "",
+          "img_type": "['Tables']",
+          "answer": "A",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Financial Accounting"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3",
+        "license": "Apache-2.0 · MMMU 官方数据卡；所选原题及关联 image_1 原图，沿用数据卡的上游版权声明。来源响应与原PNG字节已核对，未重画。",
+        "split": "config=Accounting / split=dev / row_idx=1 / id=dev_Accounting_2",
+        "excerpt": true,
+        "licensePath": "licenses/mmmu-sample-source.txt",
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/mmmu-dev-accounting-2.png",
+            "alt": "Hudson Alexander 12月初资本175300、12月收入56400、费用59800的原始财务表。",
+            "width": 694,
+            "height": 139,
+            "caption": "dev_Accounting_2 的官方 image_1 原图；未重画或改写数值。",
+            "source": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3"
+          }
+        ]
+      },
+      {
+        "id": "official-case-mmmu-accounting-dev-3",
+        "title": "MMMU Accounting · 现金流三项计算",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "For 2015, calculate the cash flow from assets(1) ________, cash flow to creditors(2) ________, and cash flow to stockholders(3) ________.<image 1>\nOptions (official string): ['1): -$493.02 (2):-$2,384 (3):$1,890.98', '1): $1843.98 (2): -$2,384 (3):$493.02', '1): -$493.02 (2):  -$2,384 (3):-$1,890.98']",
+        "answer": "C",
+        "explanation": "需要结合两年财务表区分经营现金流、净资本支出和营运资本变动，再推导债权人与股东的现金流。原始三个数值组合选项及官方C保持原值，负号和不同现金流方向不能省略；实际图表已附带，未另造报表或官方解题过程。",
+        "raw": {
+          "id": "dev_Accounting_3",
+          "question": "For 2015, calculate the cash flow from assets(1) ________, cash flow to creditors(2) ________, and cash flow to stockholders(3) ________.<image 1>",
+          "options": "['1): -$493.02 (2):-$2,384 (3):$1,890.98', '1): $1843.98 (2): -$2,384 (3):$493.02', '1): -$493.02 (2):  -$2,384 (3):-$1,890.98']",
+          "explanation": "OCF = EBIT + Depreciation - Taxes= $4,427 + 1,351 - 1,259.02= $4,518.98\nChange in NWC = ($25,522 - 5,917) - ($23,062 - 6,132)= $2,675\nNet capital spending = $42,332 - 41,346 + 1,351= $2,337\nCash flow from assets = $4,518.98 - 2,675 - 2,337= -$493.02\nCash flow to creditors = Interest - Net new LTD= $724 - ($19,260 - 16,152)= -$2,384\nCash flow to stockholders = Dividends - Net new equity= $1,261- (-$629.98)= $1,890.98\nCash flow from assets = Cash flow from creditors + Cash flow to stockholders = -$2,384+ 1,890.98 = -$493.02",
+          "img_type": "['Tables']",
+          "answer": "C",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Financial Accounting"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3",
+        "license": "Apache-2.0 · MMMU 官方数据卡；所选原题及关联 image_1 原图，沿用数据卡的上游版权声明。来源响应与原PNG字节已核对，未重画。",
+        "split": "config=Accounting / split=dev / row_idx=2 / id=dev_Accounting_3",
+        "excerpt": true,
+        "licensePath": "licenses/mmmu-sample-source.txt",
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/mmmu-dev-accounting-3.png",
+            "alt": "2014和2015年的销售、折旧、成本、利息、资产、负债和股利对照表。",
+            "width": 451,
+            "height": 415,
+            "caption": "dev_Accounting_3 的官方 image_1 原图；未重画或改写数值。",
+            "source": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU&config=Accounting&split=dev&offset=0&length=3"
           }
         ]
       }

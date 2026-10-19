@@ -76,7 +76,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "原题需根据约 94,494 token 的多份文档给行业排序。这里只展示官方问题、参考答案和文档来源元信息，未包含文档正文；不把缺少长输入的页面当作完整可运行题。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。只展示官方问题、答案和文档定位信息；未复制约十万 token 的长文档，不代表完整可运行输入。",
     "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
     "sourceUrls": [
       "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
@@ -154,7 +154,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "可查看官方题目、文档和方法说明；本站未逐项审计第三方文档授权。",
@@ -168,11 +168,26 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：原CSV空表头/字符串和字面量换行保留；题目/短答案/文档定位可查看，十万token级长资料未镜像。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/README.md",
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "test-question-1",
@@ -197,6 +212,102 @@
         "split": "test / question_id=1 / document_set_id=ac_markets",
         "excerpt": true,
         "answer": "1. Airline Industry (12)\n2. Accommodation Industry (4)"
+      },
+      {
+        "id": "ac-hack-q4",
+        "title": "Academia · ac_hack / question_id=4",
+        "type": "record",
+        "prompt": "综合多份论文材料：识别 Baum 参与的一篇论文反复讨论的两类 LLM 威胁，并判断 Liu 与 Hu 将它们归入什么术语。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 CSV 的 question_id=4、document_set_id=ac_hack。问题引用多篇论文，答案字段为“Prompt Hacking”。本站保留 question set 的原始问答和来源定位元数据，不包含列出的论文全文。",
+        "raw": {
+          "": "3",
+          "document_category": "Academia",
+          "document_set_id": "ac_hack",
+          "question_id": "4",
+          "question": "Throughout all the documents, there are two main LLM threats that are discussed recurrently. These issues are clearly stated in a paper where Baum is one of the authors. In a different paper by Liu and Hu, these two threats are categorised under what umbrella term?",
+          "answer": "Prompt Hacking",
+          "data_source_filenames": "2406.14048v1.txt;2406.00199v2.txt;2311.16119v3.txt;2407.03391v1.txt;2308.10819v3.txt;2402.13457v2.txt;2406.00240v1.txt;2402.16914v2.txt;2401.07612v1.txt",
+          "data_source_urls": "https://arxiv.org/pdf/2406.14048;https://arxiv.org/pdf/2406.00199;https://arxiv.org/pdf/2311.16119v3;https://arxiv.org/pdf/2407.03391;https://arxiv.org/pdf/2308.10819;https://arxiv.org/pdf/2402.13457;https://arxiv.org/pdf/2406.00240v1;https://arxiv.org/pdf/2402.16914;https://arxiv.org/pdf/2401.07612",
+          "input_tokens": "113263"
+        },
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+        "license": "Apache License 2.0 applies to the dataset card’s “Question set” (question and answer records). The cited document set is described separately; the publisher disclaims copyright and places no license over that content. This record includes only the AA-LCR CSV fields, including source filenames/URLs, and no cited document body.",
+        "split": "AA-LCR_Dataset.csv · row_idx=3 · document_set_id=ac_hack · question_id=4; config=default / split=test (HF repo metadata)",
+        "excerpt": true,
+        "answer": "Prompt Hacking"
+      },
+      {
+        "id": "data-center-q9",
+        "title": "Company_Documents · co_dc_2Q23 / question_id=9",
+        "type": "record",
+        "prompt": "根据多份公司季度披露，求出题目所指公司第二季度利润高于另一公司的金额，并以千美元报告。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 CSV 的 question_id=9、document_set_id=co_dc_2Q23。答案列原样给出 91366；该题的单位要求保留在原始 question 字段中。季度披露正文未复制。",
+        "raw": {
+          "": "8",
+          "document_category": "Company_Documents",
+          "document_set_id": "co_dc_2Q23",
+          "question_id": "9",
+          "question": "How much more profit did the more profitable company make in the second quarter of 2023? Report your answer in thousands of dollars",
+          "answer": "91366",
+          "data_source_filenames": "Copy of Digital-Realty-2Q23-Earnings-Supplemental.txt;Copy of Digital-Realty-2Q23-Earnings-Press-Release-FINAL.txt;Copy of Equinix Q2 2023 Press Release and Financials.txt",
+          "data_source_urls": "https://s29.q4cdn.com/106493612/files/doc_financials/2023/q2/Digital-Realty-2Q23-Earnings-Supplemental.pdf;https://s29.q4cdn.com/106493612/files/doc_financials/2023/q2/Digital-Realty-2Q23-Earnings-Press-Release-FINAL.pdf;https://d1io3yog0oux5.cloudfront.net/_7d21ae8f93fa6eb7c686ed6c0c1aa7ed/equinix/db/2183/23185/earnings_release/Equinix+Q2+2023+Press+Release+and+Financials.pdf",
+          "input_tokens": "71691"
+        },
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+        "license": "Apache License 2.0 applies to the dataset card’s “Question set” (question and answer records). The cited document set is described separately; the publisher disclaims copyright and places no license over that content. This record includes only the AA-LCR CSV fields, including source filenames/URLs, and no cited document body.",
+        "split": "AA-LCR_Dataset.csv · row_idx=8 · document_set_id=co_dc_2Q23 · question_id=9; config=default / split=test (HF repo metadata)",
+        "excerpt": true,
+        "answer": "91366"
+      },
+      {
+        "id": "bnpl-submissions-q69",
+        "title": "Government_Consultations · gc_bnpl / question_id=69",
+        "type": "record",
+        "prompt": "从澳大利亚财政部公开咨询材料中找出所有提交意见的“先买后付”公司，并按字母顺序列出应阅读的文件。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 CSV 的 question_id=69、document_set_id=gc_bnpl。答案列原样列出 Afterpay 与 Zip。题目需比对多份咨询提交材料，这些正文未复制。",
+        "raw": {
+          "": "68",
+          "document_category": "Government_Consultations",
+          "document_set_id": "gc_bnpl",
+          "question_id": "69",
+          "question": "I am looking to read the submissions made by Buy Now, Pay Later companies. Please provide a list of these companies in alphabetical order of who's documents I should read.",
+          "answer": "Afterpay, Zip",
+          "data_source_filenames": "c2024-504798-financial-counselling-victoria.txt;c2024-504798-mfaa.txt;c2024-504798-epa.txt;c2024-504798-equifax.txt;c2024-504798-hamilton-locke.txt;c2024-504798-fintech-australia.txt;c2024-504798-nab.txt;c2024-504798-ara.txt;c2024-504798-ed-em.txt;c2024-504798-earg.txt;c2024-504798-ed-es.txt;c2024-504798-ed-bill.txt;c2024-504798-asic.txt;c2024-504798-afca.txt;c2024-504798-oaic.txt;c2024-504798-afterpay.txt;c2024-504798-s-nla.txt;c2024-504798-law-council-of-australia.txt;c2024-504798-ncpa.txt;c2024-504798-ed-regs.txt;c2024-504798-fbaa.txt;c2024-504798-zip.txt;c2024-504798-joint-consumer-group.txt;c2024-504798-good-shepherd.txt",
+          "data_source_urls": "https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-financial-counselling-victoria.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-mfaa.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-epa.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-equifax.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-hamilton-locke.pdf;https://treasury.gov.au/sites/default/files/2024-04/c2023-436961-fintech-australia.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-nab.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-ara.pdf;https://treasury.gov.au/sites/default/files/2024-03/c2024-504798-ed-em.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-earg.pdf;https://treasury.gov.au/sites/default/files/2024-03/c2024-504798-ed-es.pdf;https://treasury.gov.au/sites/default/files/2024-03/c2024-504798-ed-bill.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-asic.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-afca.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-oaic.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-afterpay.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-s-nla.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-law-council-of-australia.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-ncpa.pdf;https://treasury.gov.au/sites/default/files/2024-03/c2024-504798-ed-regs.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-fbaa.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-zip.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-joint-consumer-group.pdf;https://treasury.gov.au/sites/default/files/2024-05/c2024-504798-good-shepherd.pdf",
+          "input_tokens": "114563"
+        },
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+        "license": "Apache License 2.0 applies to the dataset card’s “Question set” (question and answer records). The cited document set is described separately; the publisher disclaims copyright and places no license over that content. This record includes only the AA-LCR CSV fields, including source filenames/URLs, and no cited document body.",
+        "split": "AA-LCR_Dataset.csv · row_idx=68 · document_set_id=gc_bnpl · question_id=69; config=default / split=test (HF repo metadata)",
+        "excerpt": true,
+        "answer": "Afterpay, Zip"
+      },
+      {
+        "id": "construction-outlook-q100",
+        "title": "Survey_Reports · sur_con / question_id=100",
+        "type": "record",
+        "prompt": "从建筑行业材料中筛选研究范围包括 2022 年展望的文件，并列出完整标题和发布组织。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 CSV 的 question_id=100、document_set_id=sur_con。答案列列出两份展望报告。此条未复制报告正文，不能作为独立可运行题。",
+        "raw": {
+          "": "99",
+          "document_category": "Survey_Reports",
+          "document_set_id": "sur_con",
+          "question_id": "100",
+          "question": "I am researching construction trends. I am looking for documents that provide outlooks for the year 2022 within their scope. Which documents should I read? Please outline the full title of the document and which organisation it is from.",
+          "answer": "Deloitte: 2022 Engineering and Construction Industry Outlook, ACEC Research Institute: 2021-2025 Engineering Industry Forecast.",
+          "data_source_filenames": "construction-in-2030.txt;2021_Global-Construction-Survey.txt;2024 engineering and construction industry outlook _ Deloitte Insights.txt;us-2020-engineering-construction-outlook.txt;2021-2025-Engineering-Industry-Forecast-(1).txt;us-eri-outlook-engineering-and-construction-2023.txt;executive-summary_the-next-normal-in-construction.txt;from-start-up-to-scale-up-accelerating-growth-in-construction-technology-vf.txt;us-2022-outlook-engineering-and-construction (1).txt;us-2021-engineering-construction-industry-outlook.txt;familiar-challenges-new-solutions.txt",
+          "data_source_urls": "https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2023/02/construction-in-2030.pdf;https://assets.kpmg.com/content/dam/kpmg/be/pdf/2022/2021_Global-Construction-Survey.pdf;https://www2.deloitte.com/us/en/insights/industry/engineering-and-construction/engineering-and-construction-industry-outlook.html;https://www2.deloitte.com/content/dam/Deloitte/us/Documents/energy-resources/us-2020-engineering-construction-outlook.pdf;https://www.esmagazine.com/ext/resources/images/2021/2021-2025-Engineering-Industry-Forecast-(1).pdf;resources/us-eri-outlook-engineering-and-construction-2023.pdf;https://www.mckinsey.com/~/media/McKinsey/Industries/Capital%20Projects%20and%20Infrastructure/Our%20Insights/The%20next%20normal%20in%20construction/executive-summary_the-next-normal-in-construction.pdf;https://www.mckinsey.com/~/media/mckinsey/industries/private%20equity%20and%20principal%20investors/our%20insights/from%20start%20up%20to%20scale%20up%20accelerating%20growth%20in%20construction%20technology/from-start-up-to-scale-up-accelerating-growth-in-construction-technology-vf.pdf?shouldIndex=false;https://www2.deloitte.com/content/dam/Deloitte/us/Documents/energy-resources/us-2022-outlook-engineering-and-construction.pdf;https://www2.deloitte.com/content/dam/Deloitte/us/Documents/energy-resources/us-2021-engineering-construction-industry-outlook.pdf;https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2023/06/familiar-challenges-new-solutions.pdf",
+          "input_tokens": "94652"
+        },
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-LCR/resolve/9a77ef56b717057ade24ceab4d273712a0b4f19e/AA-LCR_Dataset.csv",
+        "license": "Apache License 2.0 applies to the dataset card’s “Question set” (question and answer records). The cited document set is described separately; the publisher disclaims copyright and places no license over that content. This record includes only the AA-LCR CSV fields, including source filenames/URLs, and no cited document body.",
+        "split": "AA-LCR_Dataset.csv · row_idx=99 · document_set_id=sur_con · question_id=100; config=default / split=test (HF repo metadata)",
+        "excerpt": true,
+        "answer": "Deloitte: 2022 Engineering and Construction Industry Outlook, ACEC Research Institute: 2021-2025 Engineering Industry Forecast."
       }
     ]
   }

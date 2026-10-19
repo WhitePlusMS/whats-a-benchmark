@@ -14,7 +14,7 @@
     }
   ],
   "kind": "derivative",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "id": "mmlu-pro",
   "name": "MMLU-Pro",
   "subtitle": "更多干扰项，更强调推理",
@@ -61,6 +61,11 @@
       "label": "官方站内样例记录",
       "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -69,7 +74,7 @@
     "tiger-lab"
   ],
   "sampleSet": {
-    "retrievedAt": "2026-09-22",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "1",
@@ -162,6 +167,374 @@
         "license": "MIT · TIGER-Lab",
         "licensePath": "licenses/mmlu-pro.txt",
         "type": "choice"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-5",
+        "title": "MMLU-Pro 健康科学：垂体解剖 · validation 5",
+        "type": "choice",
+        "prompt": "Which of the following is the body cavity that contains the pituitary gland?",
+        "options": [
+          "Ventral",
+          "Dorsal",
+          "Buccal",
+          "Thoracic",
+          "Pericardial",
+          "Abdominal",
+          "Spinal",
+          "Pelvic",
+          "Pleural",
+          "Cranial"
+        ],
+        "answer": "J. Cranial",
+        "explanation": "这道健康科学题问垂体所在的体腔，要求区分颅内解剖腔与胸腹等体腔。",
+        "raw": {
+          "question_id": 5,
+          "question": "Which of the following is the body cavity that contains the pituitary gland?",
+          "options": [
+            "Ventral",
+            "Dorsal",
+            "Buccal",
+            "Thoracic",
+            "Pericardial",
+            "Abdominal",
+            "Spinal",
+            "Pelvic",
+            "Pleural",
+            "Cranial"
+          ],
+          "answer": "J",
+          "answer_index": 9,
+          "cot_content": "A: Let's think step by step. We refer to Wikipedia articles on anatomy for help. Let’s solve this problem step by step. The pituitary gland is the major endocrine gland attached to the base of the brain, and it is contained in the Cranial cavity. The answer is (J).",
+          "category": "health",
+          "src": "cot_lib-anatomy"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / health / row_idx=5",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-10",
+        "title": "物理 · 望远镜集光能力",
+        "type": "choice",
+        "prompt": "Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?",
+        "options": [
+          "1000 times more",
+          "50 times more",
+          "5000 times more",
+          "500 times more",
+          "10000 times more",
+          "20000 times more",
+          "2000 times more",
+          "100 times more",
+          "10 times more",
+          "N/A"
+        ],
+        "answer": "E. 10000 times more",
+        "explanation": "题目比较集光量，使用口径对应的面积比，不是角分辨率或放大倍数。50厘米需与5毫米统一单位后平方比较；raw 中保留官方原解读，包括其中50mm的单位笔误，没有替作者改写。",
+        "raw": {
+          "question_id": 10,
+          "question": "Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?",
+          "options": [
+            "1000 times more",
+            "50 times more",
+            "5000 times more",
+            "500 times more",
+            "10000 times more",
+            "20000 times more",
+            "2000 times more",
+            "100 times more",
+            "10 times more",
+            "N/A"
+          ],
+          "answer": "E",
+          "answer_index": 4,
+          "cot_content": "A: Let's think step by step. The amount of light is proportional to the aperture area $A = \\pi D^2/4$ for a lens with diameter $D$, so the relative amounts of light between the eye with diameter 5mm and the telescope with diameter 50mm is $(50 cm)^2/(5mm)^2 = 10000$. The answer is (E).",
+          "category": "physics",
+          "src": "cot_lib-astronomy"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / physics / row_idx=10",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-15",
+        "title": "MMLU-Pro 商业：伦理管理 · validation 15",
+        "type": "choice",
+        "prompt": "In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .",
+        "options": [
+          "Boycotts, Buyalls, Blockchain technology, Increased Sales",
+          "Buycotts, Boycotts, Digital technology, Decreased Sales",
+          "Boycotts, Buycotts, Digital technology, Decreased Sales",
+          "Buycotts, Boycotts, Blockchain technology, Charitable donations",
+          "Boycotts, Buyalls, Blockchain technology, Charitable donations",
+          "Boycotts, Buycotts, Digital technology, Increased Sales",
+          "Buycotts, Boycotts, Digital technology, Increased Sales",
+          "Boycotts, Buycotts, Physical technology, Increased Sales",
+          "Buycotts, Buyalls, Blockchain technology, Charitable donations",
+          "Boycotts, Buycotts, Blockchain technology, Decreased Sales"
+        ],
+        "answer": "F. Boycotts, Buycotts, Digital technology, Increased Sales",
+        "explanation": "商业伦理题比较管理伦理的不同机制，需辨析题干中“奖励有利行为”的组织做法。",
+        "raw": {
+          "question_id": 15,
+          "question": "In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .",
+          "options": [
+            "Boycotts, Buyalls, Blockchain technology, Increased Sales",
+            "Buycotts, Boycotts, Digital technology, Decreased Sales",
+            "Boycotts, Buycotts, Digital technology, Decreased Sales",
+            "Buycotts, Boycotts, Blockchain technology, Charitable donations",
+            "Boycotts, Buyalls, Blockchain technology, Charitable donations",
+            "Boycotts, Buycotts, Digital technology, Increased Sales",
+            "Buycotts, Boycotts, Digital technology, Increased Sales",
+            "Boycotts, Buycotts, Physical technology, Increased Sales",
+            "Buycotts, Buyalls, Blockchain technology, Charitable donations",
+            "Boycotts, Buycotts, Blockchain technology, Decreased Sales"
+          ],
+          "answer": "F",
+          "answer_index": 5,
+          "cot_content": "A: Let's think step by step. We refer to Wikipedia articles on business ethics for help. The sentence that best uses the possible options above is __n contrast to *boycotts*, *buycotts* aim to reward favourable behavior by companies. The success of such campaigns have been heightened through the use of *digital technology*, which allow campaigns to facilitate the company in achieving *increased sales*._ The answer is (F).",
+          "category": "business",
+          "src": "cot_lib-business_ethics"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / business / row_idx=15",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-20",
+        "title": "MMLU-Pro 生物：节肢动物 · validation 20",
+        "type": "choice",
+        "prompt": "Which of the following represents an accurate statement concerning arthropods?",
+        "options": [
+          "They possess an exoskeleton composed primarily of peptidoglycan.",
+          "They possess an open circulatory system with a dorsal heart.",
+          "They are members of a biologically unsuccessful phylum incapable of exploiting diverse habitats and nutrition sources.",
+          "They lack paired, jointed appendages.",
+          "N/A",
+          "N/A",
+          "N/A",
+          "N/A",
+          "N/A",
+          "N/A"
+        ],
+        "answer": "B. They possess an open circulatory system with a dorsal heart.",
+        "explanation": "生物题考察节肢动物相关陈述的准确性，需要从多项生态/生理描述中找出符合事实的一项。",
+        "raw": {
+          "question_id": 20,
+          "question": "Which of the following represents an accurate statement concerning arthropods?",
+          "options": [
+            "They possess an exoskeleton composed primarily of peptidoglycan.",
+            "They possess an open circulatory system with a dorsal heart.",
+            "They are members of a biologically unsuccessful phylum incapable of exploiting diverse habitats and nutrition sources.",
+            "They lack paired, jointed appendages.",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A"
+          ],
+          "answer": "B",
+          "answer_index": 1,
+          "cot_content": "A: Let's think step by step. Peptidoglycan is known to comprise the plasma membrane of most bacteria, rather than the exoskeleton of arthropods, which is made of chitin, which rules out (A). The answer (C) is false because arthropods are a highly successful phylum. Likewise, arthropods have paired, jointed appendages, which rules out (D). The only remaining option is (B), as arthropods have an open circulatory system with a dorsal tubular heart. The answer is (B).",
+          "category": "biology",
+          "src": "cot_lib-college_biology"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / biology / row_idx=20",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-25",
+        "title": "MMLU-Pro 化学：EPR 谱线 · validation 25",
+        "type": "choice",
+        "prompt": "Predict the number of lines in the EPR spectrum of a solution of 13C-labelled methyl radical (13CH3•), assuming the lines do not overlap.",
+        "options": [
+          "10",
+          "8",
+          "4",
+          "20",
+          "12",
+          "3",
+          "16",
+          "5",
+          "24",
+          "6"
+        ],
+        "answer": "B. 8",
+        "explanation": "化学题问含¹³C标记化合物的 EPR 谱线数，核心是把核自旋耦合与超精细分裂数联系起来。",
+        "raw": {
+          "question_id": 25,
+          "question": "Predict the number of lines in the EPR spectrum of a solution of 13C-labelled methyl radical (13CH3•), assuming the lines do not overlap.",
+          "options": [
+            "10",
+            "8",
+            "4",
+            "20",
+            "12",
+            "3",
+            "16",
+            "5",
+            "24",
+            "6"
+          ],
+          "answer": "B",
+          "answer_index": 1,
+          "cot_content": "A: Let's think step by step. The electron paramagnetic resonance spectrum will be split by two forms of interactions. The first is the hyperfine interaction with the 13C (nuclear spin $I = \n\\frac{1}{2}$) which will split the spectrum into 2 lines. This will be further split into 4 lines by the interaction with three equivalent 1H nuclei. The total number of lines is therefore $2 \\cdot 4 = 8$. The answer is (B).",
+          "category": "chemistry",
+          "src": "cot_lib-college_chemistry"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / chemistry / row_idx=25",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-30",
+        "title": "计算机 · 流水线指令调度",
+        "type": "choice",
+        "prompt": "A certain pipelined RISC machine has 8 general-purpose registers R0, R1, . . . , R7 and supports the following operations:\nADD Rs1, Rs2, Rd (Add Rs1 to Rs2 and put the sum in Rd)\nMUL Rs1, Rs2, Rd (Multiply Rs1 by Rs2 and put the product in Rd)\nAn operation normally takes one cycle; however, an operation takes two cycles if it produces a result required by the immediately following operation in an operation sequence.\nConsider the expression AB + ABC + BC, where variables A, B, C are located in registers R0, R1, R2. If the contents of these three registers must not be modified, what is the minimum number of clock cycles required for an operation sequence that computes the value of AB + ABC + BC?",
+        "options": [
+          "10",
+          "6",
+          "9",
+          "5",
+          "12",
+          "4",
+          "7",
+          "8",
+          "N/A",
+          "N/A"
+        ],
+        "answer": "B. 6",
+        "explanation": "需在不改写 A、B、C 所在寄存器的条件下安排乘加操作，并计算相邻数据依赖带来的周期代价。源答案标为6；原 cot 中把 ABC 写成 R3×R4（AB×BC），与题面不一致，本站保留该原文，不把它当作已验证的正确推导。",
+        "raw": {
+          "question_id": 30,
+          "question": "A certain pipelined RISC machine has 8 general-purpose registers R0, R1, . . . , R7 and supports the following operations:\nADD Rs1, Rs2, Rd (Add Rs1 to Rs2 and put the sum in Rd)\nMUL Rs1, Rs2, Rd (Multiply Rs1 by Rs2 and put the product in Rd)\nAn operation normally takes one cycle; however, an operation takes two cycles if it produces a result required by the immediately following operation in an operation sequence.\nConsider the expression AB + ABC + BC, where variables A, B, C are located in registers R0, R1, R2. If the contents of these three registers must not be modified, what is the minimum number of clock cycles required for an operation sequence that computes the value of AB + ABC + BC?",
+          "options": [
+            "10",
+            "6",
+            "9",
+            "5",
+            "12",
+            "4",
+            "7",
+            "8",
+            "N/A",
+            "N/A"
+          ],
+          "answer": "B",
+          "answer_index": 1,
+          "cot_content": "A: Let's think step by step. First, we are given that A is in R0, B is in R1, and C is in R2.\nNext, we can see that we must compute three multiplies (AB, BC, and ABC) and two adds (AB + ABC, (AB + ABC) + BC) to compute our final answer, resulting in a minimum of five clock cycles.\nNext, we can see that there is no way to avoid at least one pipeline stall when computing our final answer, because to compute our final sum we must wait at least one cycle for the results from the previous stage to be ready. Thus, our minimum number of cycles must be 6.\nWe can verify that we can create a solution that requires only six cycles as follows:\ncompute AB: MUL R0, R1, R3\ncompute BC: MUL R1, R2, R4\ncompute ABC: MUL R3, R4, R5\ncompute AB + BC: ADD R3, R4, R6\nSTALL\ncompute AB + ABC + BC: ADD R5, R6, R7\nSo there are 6 cycles. The answer is (B).",
+          "category": "computer science",
+          "src": "cot_lib-college_computer_science"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / computer science / row_idx=30",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-55",
+        "title": "MMLU-Pro 历史：俄国史料 · validation 55",
+        "type": "choice",
+        "prompt": "This question refers to the following information.\nIn Russia there was nothing going on well, and [Souvarine] was in despair over the news he had received. His old companions were all turning to the politicians; the famous Nihilists who made Europe tremble-sons of village priests, of the lower middle class, of tradesmen-could not rise above the idea of national liberation, and seemed to believe that the world would be delivered-when they had killed their despot&…\n\"Foolery! They'll never get out of it with their foolery.\"\nThen, lowering his voice still more, in a few bitter words he described his old dream of fraternity. He had renounced his rank and his fortune; he had gone among workmen, only in the hope of seeing at last the foundation of a new society of labour in common. All the sous in his pockets had long gone to the urchins of the settlement; he had been as tender as a brother with the colliers, smiling at their suspicion, winning them over by his quiet workmanlike ways and his dislike of chattering. But decidedly the fusion had not taken place.\nHis voice changed, his eyes grew bright, he fixed them on étienne, directly addressing him:\n\"Now, do you understand that? These hatworkers at Marseilles who have won the great lottery prize of a hundred thousand francs have gone off at once and invested it, declaring that they are going to live without doing anything! Yes, that is your idea, all of you French workmen; you want to unearth a treasure in order to devour it alone afterwards in some lazy, selfish corner. You may cry out as much as you like against the rich, you haven't got courage enough to give back to the poor the money that luck brings you. You will never be worthy of happiness as long as you own anything, and your hatred of the bourgeois proceeds solely from an angry desire to be bourgeois yourselves in their place.\"\némile Zola, French writer, Germinal, 1885\nThe passage displays the direct concern for the welfare of the working classes that was typically a part of which movement?",
+        "options": [
+          "Communist",
+          "Anarchist",
+          "Feminist",
+          "Fascist",
+          "Imperialist",
+          "Nationalist",
+          "Enlightenment",
+          "Existentialist",
+          "N/A",
+          "N/A"
+        ],
+        "answer": "A. Communist",
+        "explanation": "历史题先提供关于俄国局势的史料片段，再要求据材料判断历史语境，属于材料解读而非孤立年代记忆。",
+        "raw": {
+          "question_id": 55,
+          "question": "This question refers to the following information.\nIn Russia there was nothing going on well, and [Souvarine] was in despair over the news he had received. His old companions were all turning to the politicians; the famous Nihilists who made Europe tremble-sons of village priests, of the lower middle class, of tradesmen-could not rise above the idea of national liberation, and seemed to believe that the world would be delivered-when they had killed their despot&…\n\"Foolery! They'll never get out of it with their foolery.\"\nThen, lowering his voice still more, in a few bitter words he described his old dream of fraternity. He had renounced his rank and his fortune; he had gone among workmen, only in the hope of seeing at last the foundation of a new society of labour in common. All the sous in his pockets had long gone to the urchins of the settlement; he had been as tender as a brother with the colliers, smiling at their suspicion, winning them over by his quiet workmanlike ways and his dislike of chattering. But decidedly the fusion had not taken place.\nHis voice changed, his eyes grew bright, he fixed them on étienne, directly addressing him:\n\"Now, do you understand that? These hatworkers at Marseilles who have won the great lottery prize of a hundred thousand francs have gone off at once and invested it, declaring that they are going to live without doing anything! Yes, that is your idea, all of you French workmen; you want to unearth a treasure in order to devour it alone afterwards in some lazy, selfish corner. You may cry out as much as you like against the rich, you haven't got courage enough to give back to the poor the money that luck brings you. You will never be worthy of happiness as long as you own anything, and your hatred of the bourgeois proceeds solely from an angry desire to be bourgeois yourselves in their place.\"\némile Zola, French writer, Germinal, 1885\nThe passage displays the direct concern for the welfare of the working classes that was typically a part of which movement?",
+          "options": [
+            "Communist",
+            "Anarchist",
+            "Feminist",
+            "Fascist",
+            "Imperialist",
+            "Nationalist",
+            "Enlightenment",
+            "Existentialist",
+            "N/A",
+            "N/A"
+          ],
+          "answer": "A",
+          "answer_index": 0,
+          "cot_content": "A: Let's think step by step. We refer to Wikipedia articles on european history for help. The modern Communist movement aims to establish a classless society based on communal ownership and distribution of property and means of production, thereby especially benefiting the working classes. The answer is (A).",
+          "category": "history",
+          "src": "cot_lib-high_school_european_history"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / history / row_idx=55",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
+      },
+      {
+        "id": "mmlu-pro-validation-diverse-65",
+        "title": "MMLU-Pro 法律：ad hoc 法官 · validation 65",
+        "type": "choice",
+        "prompt": "What is the judge ad hoc?",
+        "options": [
+          "Judge ad hoc is the president of the ICJ",
+          "Judge ad hoc is a temporary judge appointed for a specific period of time",
+          "Judge ad hoc is the judge that each party will always nominate in every contentious case",
+          "Judge ad hoc is the member of the bench of the ICJ with a casting vote",
+          "Judge ad hoc is a judge who is nominated by the parties involved in a contentious case, irrespective of their nationality",
+          "Judge ad hoc is a judge who decides on the admissibility of cases before the ICJ",
+          "Judge ad hoc is a judge appointed by the Security Council of the United Nations",
+          "Judge ad hoc is a surrogate judge, in case a judge is disqualified or passes away",
+          "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
+          "N/A"
+        ],
+        "answer": "I. If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
+        "explanation": "法学题询问 ad hoc 法官的含义，考察国际司法中的临时法官制度及其适用语境。",
+        "raw": {
+          "question_id": 65,
+          "question": "What is the judge ad hoc?",
+          "options": [
+            "Judge ad hoc is the president of the ICJ",
+            "Judge ad hoc is a temporary judge appointed for a specific period of time",
+            "Judge ad hoc is the judge that each party will always nominate in every contentious case",
+            "Judge ad hoc is the member of the bench of the ICJ with a casting vote",
+            "Judge ad hoc is a judge who is nominated by the parties involved in a contentious case, irrespective of their nationality",
+            "Judge ad hoc is a judge who decides on the admissibility of cases before the ICJ",
+            "Judge ad hoc is a judge appointed by the Security Council of the United Nations",
+            "Judge ad hoc is a surrogate judge, in case a judge is disqualified or passes away",
+            "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
+            "N/A"
+          ],
+          "answer": "I",
+          "answer_index": 8,
+          "cot_content": "A: Let's think step by step. We refer to Wikipedia articles on international law for help. As \"ad hoc\" implies, a judge ad hoc is appointed only for a specific case or period, when a party to a contentious case before the International Court of Justice does not have a regular national sitting as judge. The answer is (I).",
+          "category": "law",
+          "src": "cot_lib-international_law"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "split": "validation / law / row_idx=65",
+        "excerpt": false,
+        "license": "MIT · TIGER-Lab",
+        "licensePath": "licenses/mmlu-pro.txt"
       }
     ]
   },
@@ -228,11 +601,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "现有样例来自公开 validation，并非 test；样例字段与答案映射见当前已保存快照。转载时按 MIT 许可保留来源，锁定 HF revision，不公开 cot_content 以外不必要的推理内容。",
+    "reason": "10 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
       "https://arxiv.org/abs/2406.01574",
-      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation"
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
+      "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100"
     ]
   },
   "researchNotes": [
@@ -255,7 +629,22 @@
         "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
         "https://arxiv.org/abs/2406.01574"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 8 条，现有 10 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：多领域真实行可切换；源cot中的50mm/50cm、寄存器等错误原样保留并在解析指出，不擅自改原标注。 展示记录2→10条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
+        "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+        "https://arxiv.org/abs/2406.01574"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

@@ -115,7 +115,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "在真实桌面环境中完成长时程、端到端工作流，由任务评估器核验最终状态。",
@@ -176,7 +176,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "OSWorld-V2 仓库代码标注 Apache-2.0；完整任务和 assets 需 gated 访问。",
-    "scope": "Apache-2.0 仅按 LICENSE 用于受其覆盖的仓库文件，不自动覆盖 gated 数据或第三方网站材料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "本站不复制 task instructions、task classes、assets、ground truth、评估器或轨迹。",
       "模拟网站、应用 UI 和截图的媒体转载权未确认，需逐项核验。"
@@ -189,11 +189,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示 OSWorld 2.0 官方项目站公开 Task035 的具体任务背景与完成目标，标为编辑性解读；正式 task classes、完整 assets 仍需授权访问，未复制其任务包或轨迹。",
+    "reason": "1 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://osworld-v2.xlang.ai/",
     "sourceUrls": [
       "https://osworld-v2.xlang.ai/",
-      "https://huggingface.co/datasets/xlangai/osworld_v2_tasks"
+      "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+      "https://github.com/xlang-ai/OSWorld-V2/blob/main/LICENSE",
+      "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
+      "https://github.com/xlang-ai/OSWorld-V2"
     ]
   },
   "researchNotes": [
@@ -231,24 +234,46 @@
         "https://osworld-v2.xlang.ai/",
         "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 0 条，现有 1 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://osworld-v2.xlang.ai/",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/LICENSE",
+        "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
+        "https://github.com/xlang-ai/OSWorld-V2"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：恢复官方Task035的实际Goal元素，公开失败案例页与2.1任务包不混同；不复制轨迹或隐藏评估器。 展示记录1→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://osworld-v2.xlang.ai/",
+        "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/LICENSE",
+        "https://github.com/xlang-ai/OSWorld-V2/releases/tag/v2026.06.24",
+        "https://github.com/xlang-ai/OSWorld-V2",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/docs/MIGRATING_FROM_OSWORLD_V1.md",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/benchmark_releases/README.md",
+        "https://huggingface.co/datasets/xlangai/osworld_v2_assets_gated"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "osworld-2-task035-public-case",
         "title": "Task035：汇总采购请求与动态审批",
         "type": "text",
         "promptOrigin": "editorial",
-        "prompt": "采购请求和审批信息分散在一张表格、财务频道以及私信中。请汇总全部请求，核对每项的审批状态，并提交完整的采购单表格；期间到来的审批更新也需要反映在最终表格中。",
-        "raw": "Task035 - Purchase Requests\n\nPurchase requests and approvals arrive through a spreadsheet, finance channel, and direct messages.\n\nSubmit a purchase order sheet with every request",
+        "prompt": "官方 Task035 public-case 页面给出的Goal是提交包含全部请求及正确审批状态的采购单。页面中情境背景未纳入此 raw，因此本条只呈现目标句，不是完整任务输入。",
+        "raw": "<dd>Submit a purchase order sheet with every request and the correct approval status.</dd>",
         "source": "https://osworld-v2.xlang.ai/",
         "license": "本条是本站对官方 OSWorld 2.0 项目站主动公开的 Task035 Task setup 的中文事实解读，仅保留必要短引。未复制原始任务包、操作轨迹、截图、模拟网站或隐藏评估器；仓库 Apache-2.0 不被扩展解释为 gated 数据及第三方媒体的再发布许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "OSWorld 2.0 项目站公开案例 · Failure Cases / Task035 / Task setup · 非 v2.1 任务包行记录",
         "excerpt": true,
-        "explanation": "官方案例编号为 Task035（Purchase Requests），公开 Context 和 Goal 指明输入分散在表格、财务频道与私信，输出是包含每一项请求及正确审批状态的采购单。页面另说明该任务检查晚到消息能否更新工作表。这里只概述公开任务条件和目标，不把失败轨迹中的模型输出当成参考答案，也不推断它在 v2.1 的成员身份。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。"
+        "explanation": "raw 是官方 OSWorld 2.0 Task035 public-case HTML中连续的Goal节点。旧raw拼接了kicker、Context和Goal，现收窄到一个原生DOM节点。该页面是公开失败案例说明，不是OSWorld 2.1任务配置行，也不包含完成任务所需的请求数据。"
       }
     ]
   }

@@ -77,7 +77,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "官方 README 只称 released for research purposes；没有明确标准再分发许可。",
-    "scope": "代码、数据、图片、标注与评测结果的权利范围尚不明确；不得将研究用途说明等同于内容可转载授权。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "未取得明确许可前不复制数据样例、题图、答案或结果图。"
     ],
@@ -87,7 +87,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
+    "reason": "7个作者公开视觉例的题文和答案可切换；原HTML及图像入口保留，本地没有题图像素，需官网查看完整输入。",
     "url": "https://www.unipat.ai/blog/BabyVision",
     "sourceUrls": [
       "https://www.unipat.ai/blog/BabyVision",
@@ -172,7 +172,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "完整任务 split、字段 schema、每个类别/子类项目计数未核实。",
@@ -188,24 +188,123 @@
         "https://huggingface.co/collections/UnipatAI/babyvision",
         "https://unipat.ai/blog/BabyVision"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 6 条，现有 7 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://www.unipat.ai/blog/BabyVision",
+        "https://github.com/UniPat-AI/BabyVision"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：七个实际公开卡片含题文和作者答案；raw保留源HTML及图像定位，未镜像题图，不冒称完整视觉输入。 展示记录1→7条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.unipat.ai/blog/BabyVision",
+        "https://github.com/UniPat-AI/BabyVision",
+        "https://huggingface.co/collections/UnipatAI/babyvision"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "babyvision-gallery-count-3d-blocks-4597",
         "title": "堆叠立方体的最少计数",
         "type": "text",
         "promptOrigin": "editorial",
-        "prompt": "官方 Gallery 的空间感知示例要求观察堆叠立方体的三维形状，并判断至少包含多少个小方块。原始图像需在官方文章查看；本站没有附图，这段文字不能独立作为完整视觉输入。",
-        "raw": "The image shows a 3D shape made of stacked cubes. None are suspended. How many cubes are there at least?\nAnswer: 13",
+        "prompt": "官方 Gallery 的空间感知示例要求观察堆叠立方体的三维形状，并判断至少包含多少个小方块。原始图像需在官方文章查看；本站没有附图，这段文字不能独立作为完整视觉输入。 raw 字段是该官方页面中的连续 HTML 卡片片段，包含图片 URL/alt 与相邻题目、答案节点；未包含图片像素。",
+        "raw": "<div class=\"bv-qa-card\">\n<img src=\"https://cdn.unipat.ai/static/images/babyvision/gallery_4597_input.png\" alt=\"Count 3D Blocks\">\n<div class=\"bv-qa-content\">\n<div class=\"bv-qa-type\">Spatial Perception / Count 3D Blocks</div>\n<div class=\"bv-qa-question\">The image shows a 3D shape made of stacked cubes. None are suspended. How many cubes are there at least?</div>\n<div class=\"bv-qa-answer\">Answer: <strong>13</strong></div>\n</div>\n</div>",
         "answer": "13",
-        "explanation": "对应官方 gallery_4597_input.png，题目类型为 Spatial Perception / Count 3D Blocks，页面答案字段为 13。图像 URL 当前 HEAD 返回 200 image/png，但图像未下载或本地展示；请打开官方文章查看原图。\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。",
+        "explanation": "对应官方 gallery_4597_input.png，题目类型为 Spatial Perception / Count 3D Blocks，连续HTML原卡片保留实际question和answer节点。图像 URL 当前 HEAD 返回 200 image/png，但图像未下载或本地展示；请打开官方文章查看原图。\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。",
         "source": "https://www.unipat.ai/blog/BabyVision",
         "license": "官方仓库仅声明 research purposes，未找到数据/图像再发布许可。本页只保留图题短标签、答案数字和本站说明；没有复制图像或完整原题。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
         "split": "official article gallery · gallery_4597_input.png · Spatial Perception / Count 3D Blocks",
+        "excerpt": true
+      },
+      {
+        "id": "babyvision-gallery-362",
+        "title": "依据图形变化规律补问号",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "BabyVision 官方Gallery的 Pattern Recognition 示例：要求在三幅候选图形中依据模式选择补入问号的位置内容。原图 gallery_362_input.jpg 未复制；没有图像就不能把本条视为完整视觉题。 raw 字段是该官方页面中的连续 HTML 卡片片段，包含图片 URL/alt 与相邻题目、答案节点；未包含图片像素。",
+        "answer": "the left one",
+        "explanation": "官方文章图像alt标签为“Pattern Recognition”，原图入口为 gallery_362_input.jpg；raw直接保存对应连续HTML卡片，可在源文件中逐字定位题干和答案节点。没有下载/复制原图，页面文字不构成完整视觉输入。",
+        "raw": "<div class=\"bv-qa-card\">\n<img src=\"https://cdn.unipat.ai/static/images/babyvision/gallery_362_input.jpg\" alt=\"Pattern Recognition\">\n<div class=\"bv-qa-content\">\n<div class=\"bv-qa-type\">Visual Pattern Recognition</div>\n<div class=\"bv-qa-question\">Which of the three graphics below should be filled in the question mark according to the pattern?</div>\n<div class=\"bv-qa-answer\">Answer: <strong>the left one</strong></div>\n</div>\n</div>",
+        "source": "https://www.unipat.ai/blog/BabyVision",
+        "license": "官方页面公开展示该问题、答案标签和图片URL；未找到该Gallery样例/图片的独立再发布许可。这里只保留具体短文字记录供核对，不复制图片。",
+        "split": "official article gallery_362_input / category=Pattern Recognition / question-answer blocks",
+        "excerpt": true
+      },
+      {
+        "id": "babyvision-gallery-431",
+        "title": "立体物体的正视图",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "BabyVision 官方Gallery的 3D Views 示例：要求从四个选项识别立体图形的正视图。原图 gallery_431_input.jpg 未复制；答案A为页面标注。 raw 字段是该官方页面中的连续 HTML 卡片片段，包含图片 URL/alt 与相邻题目、答案节点；未包含图片像素。",
+        "answer": "A",
+        "explanation": "官方文章图像alt标签为“3D Views”，原图入口为 gallery_431_input.jpg；raw直接保存对应连续HTML卡片，可在源文件中逐字定位题干和答案节点。没有下载/复制原图，页面文字不构成完整视觉输入。",
+        "raw": "<div class=\"bv-qa-card\">\n<img src=\"https://cdn.unipat.ai/static/images/babyvision/gallery_431_input.jpg\" alt=\"3D Views\">\n<div class=\"bv-qa-content\">\n<div class=\"bv-qa-type\">Spatial Perception / 3D Views</div>\n<div class=\"bv-qa-question\">Which of the following 4 options is the front view of this 3D figure?</div>\n<div class=\"bv-qa-answer\">Answer: <strong>A</strong></div>\n</div>\n</div>",
+        "source": "https://www.unipat.ai/blog/BabyVision",
+        "license": "官方页面公开展示该问题、答案标签和图片URL；未找到该Gallery样例/图片的独立再发布许可。这里只保留具体短文字记录供核对，不复制图片。",
+        "split": "official article gallery_431_input / category=3D Views / question-answer blocks",
+        "excerpt": true
+      },
+      {
+        "id": "babyvision-gallery-437",
+        "title": "寻找相同鞋纹编号配对",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "BabyVision 官方Gallery的 Find the Same 示例：页面给出五对鞋纹编号。原图 gallery_437_input.jpg 未复制，本条只展示实际题干和页面答案。 raw 字段是该官方页面中的连续 HTML 卡片片段，包含图片 URL/alt 与相邻题目、答案节点；未包含图片像素。",
+        "answer": "1-7, 2-9, 3-10, 4-8, 6-11",
+        "explanation": "官方文章图像alt标签为“Find the Same”，原图入口为 gallery_437_input.jpg；raw直接保存对应连续HTML卡片，可在源文件中逐字定位题干和答案节点。没有下载/复制原图，页面文字不构成完整视觉输入。",
+        "raw": "<div class=\"bv-qa-card\">\n<img src=\"https://cdn.unipat.ai/static/images/babyvision/gallery_437_input.jpg\" alt=\"Find the Same\">\n<div class=\"bv-qa-content\">\n<div class=\"bv-qa-type\">Fine-grained Discrimination / Find the Same</div>\n<div class=\"bv-qa-question\">In the image, there are five pairs of identical shoe patterns. Find the pairs of numbers for these identical shoes.</div>\n<div class=\"bv-qa-answer\">Answer: <strong>1-7, 2-9, 3-10, 4-8, 6-11</strong></div>\n</div>\n</div>",
+        "source": "https://www.unipat.ai/blog/BabyVision",
+        "license": "官方页面公开展示该问题、答案标签和图片URL；未找到该Gallery样例/图片的独立再发布许可。这里只保留具体短文字记录供核对，不复制图片。",
+        "split": "official article gallery_437_input / category=Find the Same / question-answer blocks",
+        "excerpt": true
+      },
+      {
+        "id": "babyvision-gallery-817",
+        "title": "迷宫入口与出口连通性",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "BabyVision 官方Gallery的 Maze 示例：需要看迷宫图判断三个入口中哪个通向出口。原图 gallery_817_input.jpg 未复制；答案A为页面标注。 raw 字段是该官方页面中的连续 HTML 卡片片段，包含图片 URL/alt 与相邻题目、答案节点；未包含图片像素。",
+        "answer": "A",
+        "explanation": "官方文章图像alt标签为“Maze”，原图入口为 gallery_817_input.jpg；raw直接保存对应连续HTML卡片，可在源文件中逐字定位题干和答案节点。没有下载/复制原图，页面文字不构成完整视觉输入。",
+        "raw": "<div class=\"bv-qa-card\">\n<img src=\"https://cdn.unipat.ai/static/images/babyvision/gallery_817_input.jpg\" alt=\"Maze\">\n<div class=\"bv-qa-content\">\n<div class=\"bv-qa-type\">Visual Tracking / Maze</div>\n<div class=\"bv-qa-question\">The image is a maze; find which of the three entrances connects to the exit.</div>\n<div class=\"bv-qa-answer\">Answer: <strong>A</strong></div>\n</div>\n</div>",
+        "source": "https://www.unipat.ai/blog/BabyVision",
+        "license": "官方页面公开展示该问题、答案标签和图片URL；未找到该Gallery样例/图片的独立再发布许可。这里只保留具体短文字记录供核对，不复制图片。",
+        "split": "official article gallery_817_input / category=Maze / question-answer blocks",
+        "excerpt": true
+      },
+      {
+        "id": "babyvision-gallery-4552",
+        "title": "数图中的黑色方格",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "BabyVision 官方Gallery的 Count Patterns 示例：图像计数问题，页面标注54个黑色方格。原图 gallery_4552_input.png 未复制，缺少它就不能核算计数。 raw 字段是该官方页面中的连续 HTML 卡片片段，包含图片 URL/alt 与相邻题目、答案节点；未包含图片像素。",
+        "answer": "54",
+        "explanation": "官方文章图像alt标签为“Count Patterns”，原图入口为 gallery_4552_input.png；raw直接保存对应连续HTML卡片，可在源文件中逐字定位题干和答案节点。没有下载/复制原图，页面文字不构成完整视觉输入。",
+        "raw": "<div class=\"bv-qa-card\">\n<img src=\"https://cdn.unipat.ai/static/images/babyvision/gallery_4552_input.png\" alt=\"Count Patterns\">\n<div class=\"bv-qa-content\">\n<div class=\"bv-qa-type\">Fine-grained Discrimination / Counting</div>\n<div class=\"bv-qa-question\">How many black squares are there in the picture?</div>\n<div class=\"bv-qa-answer\">Answer: <strong>54</strong></div>\n</div>\n</div>",
+        "source": "https://www.unipat.ai/blog/BabyVision",
+        "license": "官方页面公开展示该问题、答案标签和图片URL；未找到该Gallery样例/图片的独立再发布许可。这里只保留具体短文字记录供核对，不复制图片。",
+        "split": "official article gallery_4552_input / category=Count Patterns / question-answer blocks",
+        "excerpt": true
+      },
+      {
+        "id": "babyvision-gallery-4330",
+        "title": "沿图中连线匹配垃圾类别与桶色",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "BabyVision 官方Gallery的 Line Tracking 示例：任务要求按连线追踪三种垃圾对应的桶色。原图 gallery_4330_input.jpg 未复制；答案仅为页面标注。 raw 字段是该官方页面中的连续 HTML 卡片片段，包含图片 URL/alt 与相邻题目、答案节点；未包含图片像素。",
+        "answer": "A-blue, B-yellow, C-green",
+        "explanation": "官方文章图像alt标签为“Line Tracking”，原图入口为 gallery_4330_input.jpg；raw直接保存对应连续HTML卡片，可在源文件中逐字定位题干和答案节点。没有下载/复制原图，页面文字不构成完整视觉输入。",
+        "raw": "<div class=\"bv-qa-card\">\n<img src=\"https://cdn.unipat.ai/static/images/babyvision/gallery_4330_input.jpg\" alt=\"Line Tracking\">\n<div class=\"bv-qa-content\">\n<div class=\"bv-qa-type\">Visual Tracking / Connect the Lines</div>\n<div class=\"bv-qa-question\">In the picture, into which color of trash can will \"plastic cup\", \"newspaper\", and \"apple core\" go respectively?</div>\n<div class=\"bv-qa-answer\">Answer: <strong>A-blue, B-yellow, C-green</strong></div>\n</div>\n</div>",
+        "source": "https://www.unipat.ai/blog/BabyVision",
+        "license": "官方页面公开展示该问题、答案标签和图片URL；未找到该Gallery样例/图片的独立再发布许可。这里只保留具体短文字记录供核对，不复制图片。",
+        "split": "official article gallery_4330_input / category=Line Tracking / question-answer blocks",
         "excerpt": true
       }
     ]

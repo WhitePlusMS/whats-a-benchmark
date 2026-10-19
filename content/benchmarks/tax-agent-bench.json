@@ -72,26 +72,25 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "仓库MIT代码许可；question数据scope未单独声明。",
-    "scope": "仅suite v2公开非计分question的解读；完整question集许可范围未查明。",
+    "license": "官方public sample公开可读且不计分；仓库MIT措辞与平台Proprietary分别保留，数据未单列许可。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "不把代码MIT视为题目许可。",
-      "不补造答案或复制外部税法原文。"
+      "公开样题不作为私有计分集行，suite规模与所选单条问题分开。",
+      "中文解析解释任务事实与考查边界，不编造法律/税务结论。"
     ],
     "sourceUrls": [
-      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
-      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/README.md",
-      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE"
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方public.json直接公开suite v2的P-001问题；README标为代表性public sample而非计分题。",
+    "reason": "5条官方不计分public sample可切换，原完整question与父级版本层级保留；旧P-001复原至同一ID，checks/rubric没有转载。",
     "url": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
     "sourceUrls": [
       "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
       "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/README.md",
-      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE"
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE",
+      "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json"
     ]
   },
   "metric": {
@@ -114,6 +113,22 @@
     {
       "text": "本条按所列官方页面整理，未实际运行评测；完整复现仍需固定任务快照和运行配置。",
       "sourceUrls": [
+        "https://www.vals.ai/benchmarks/tax_agent_bench"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“审计中的利息净额请求”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json",
+        "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
+        "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/README.md",
+        "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE",
         "https://www.vals.ai/benchmarks/tax_agent_bench"
       ]
     }
@@ -148,11 +163,16 @@
       "label": "已核验官方来源",
       "url": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/LICENSE",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "先按severity加权rubric；任一must_pass失败则归零，再乘(0.7+0.3×可解析为权威文档的引用比例)。中间工具轨迹用于分析，不计主分。",
@@ -170,28 +190,121 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-tax-agent-bench-public-p001",
-        "title": "公开样题 · §382股权变更与NOL限制",
+        "title": "股权变更与NOL限额",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "Tax Agent Bench suite v2 的公开非计分样题P-001：ABC Corporation有300万美元2022–2024净经营亏损；投资人于2025-07-01收购55%股份；题面给出股票/资产公允价值、4%长期免税利率、2025分段应税收入及20万美元recognized built-in gain。问题要求判断§382所有权变更及年度/变更年度限制，并计算2025可用NOL与留存余额。官方公开文件未给该题gold答案。",
-        "explanation": "README称data/public.json收录5个代表性公开样题且不属于计分集；本页只整理P-001所列输入条件及所问税务计算，不给法律/税务答案。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略preceding and remaining question text、checks and reference criteria。 原文只保留已核片段；具体字段截取范围见取证记录。",
+        "prompt": "题设给出2025年55%股权交易、三百万NOL、估值、4%利率及交易前后所得，要求组合年度限额、变更年比例和内含收益条件；不是只算一个固定税率。",
+        "explanation": "题设给出2025年55%股权交易、三百万NOL、估值、4%利率及交易前后所得，要求组合年度限额、变更年比例和内含收益条件；不是只算一个固定税率。 原始id、完整question及父级版本结构保留，checks/rubric没有收录；公开sample不计分，不映射平台私有行。",
         "raw": {
+          "dataset_name": "public",
+          "suite_title": "Tax Agent Bench public sample",
           "suite_version": 2,
-          "suite_number_of_tests": 5,
           "tests": [
             {
-              "question": "On July 1, 2025 an investor group acquired 55.00% of ABC Corp's outstanding common stock from existing shareholders in one transaction.",
-              "id": "P-001"
+              "id": "P-001",
+              "question": "ABC Corporation is a domestic C corporation on a calendar year basis that has accumulated a net operating loss of $3,000,000.00 from tax years 2022 to 2024. On July 1, 2025 an investor group acquired 55.00% of ABC Corp's outstanding common stock from existing shareholders in one transaction. ABC Corp. has made the closing of the books election under Treas Reg §1.382-6(d) for the 2025 tax year.\nThe following has occurred before the acquisition:\nThe fair market value of all outstanding ABC Corp stock is $6,000,000.00;\nLong term tax exempt rate for the month is 4.00%;\nThe fair market value of ABC Corp's assets is $4,800,000.00; and\nThe total adjusted basis of all ABC Corporation assets is $4,000,000.00.\nDuring 2025:\nJan 1 to July 1 - taxable income of $150,000.00;\nJuly 2 to Dec 31 - taxable income of $500,000.00;\nTotal taxable income before net operating loss is $650,000.00;\nAfter the acquisition ABC Corp recognized $200,000.00 of gain on the sale of an investment property that is a recognized built-in gain under Internal Revenue Code §382(h)(2)(A).\nHas an ownership change occurred, when, and under what guidance? What is ABC Corp’s annual limitation under Internal Revenue Code §382(b)(1) and what is their limitation applying the change year proportion rule under Internal Revenue Code §382(b)(3)? Does ABC Corp have a recognized net unrealized built in gain under Internal Revenue Code §382(h)(3)? If so, does the threshold apply and how does the $200,000.00 affect the tax §382 limitation for 2025? After the closing of the books election and all relevant limitations that can be applied, what is the maximum amount of the $3,000,000.00 net operating loss carryforward that ABC Corp may use in 2025, and what net operating loss carryforward balance remains for 2026, if any?"
             }
           ]
         },
-        "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/main/data/public.json",
-        "license": "本站原创公开样题解读与必要短引；仓库MIT仅按软件许可记录，question数据范围未单独声明。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
-        "split": "data/public.json / suite_version 2 / P-001 / non-scored public sample",
+        "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json",
+        "license": "Vals官方public sample真实问题与父级版本字段；仓库MIT与平台Proprietary分开记录，题目数据未单列许可。仅采用公开样题及本站解析，不复制checks、标准答案或外部法律/税务资料。",
+        "split": "data/public.json · P-001 · README表明此为非计分公开sample",
+        "excerpt": true
+      },
+      {
+        "id": "tax-agent-bench-P-002",
+        "title": "收购后跨期earn-out申报",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "2023年收购在2025年触发earn-out，题设将5300千元分为5000本金调整和300视同利息；需区分跨期资产分配与申报位置，千美元单位保持。",
+        "explanation": "2023年收购在2025年触发earn-out，题设将5300千元分为5000本金调整和300视同利息；需区分跨期资产分配与申报位置，千美元单位保持。 原始id、完整question及父级版本结构保留，checks/rubric没有收录；公开sample不计分，不映射平台私有行。",
+        "raw": {
+          "dataset_name": "public",
+          "suite_title": "Tax Agent Bench public sample",
+          "suite_version": 2,
+          "tests": [
+            {
+              "id": "P-002",
+              "question": "For calendar tax year 2025, Company A is a domestic C corporation that acts as the purchasing corporation in a qualified stock purchase (QSP). Company A is the common parent of a consolidated group that includes Target Corporation as the new target, and Company A will attach Target Corporation’s supplemental Form 8883 to the group’s 2025 consolidated Form 1120. Company A and the selling consolidated group's common parent timely filed a joint Internal Revenue Service Form 8023 to make an irrevocable election under Internal Revenue Code (I.R.C.) § 338(h)(10) regarding the acquisition of Target Corporation on June 1, 2023. All dollar values are stated in thousands. During the current 2025 tax year, the following subsequent events occurred:\n\n+ A milestone event specified in the initial acquisition agreement was achieved, triggering a mandatory contingent earn-out payment of $5,300.00 thousand from Company A to the sellers on September 1, 2025.\n+ Company A's tax committee determined that under the contingent-payment interest rules of § 1274, this $5,300.00 thousand outlay must be bifurcated into a $5,000.00 thousand principal adjustment and $300.00 thousand of imputed interest.\n+ The historic Class I through Class VI asset allocation limits from the initial 2023 IRS Form 8883 filing were already fully exhausted at their maximum fair market values on the acquisition date.\n \nDraft a comprehensive, structured technical text block for Company A's 2025 tax compliance files that explicitly details the form-filling and reporting requirements for this cross-period adjustment. In the text block, answer the following: In exactly which Part of IRS Form 8883 must the $5,000.00 thousand principal adjustment be reported under the residual method, and on precisely which tax reporting form, schedule, and line must the isolated $300.00 thousand imputed interest portion be reported?"
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json",
+        "license": "Vals官方public sample真实问题与父级版本字段；仓库MIT与平台Proprietary分开记录，题目数据未单列许可。仅采用公开样题及本站解析，不复制checks、标准答案或外部法律/税务资料。",
+        "split": "data/public.json · P-002 · README表明此为非计分公开sample",
+        "excerpt": true
+      },
+      {
+        "id": "tax-agent-bench-P-003",
+        "title": "太阳能施工中断与连续性条件",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "设施2025年开工后停工八个月、2026年复工、计划2029年投用；任务要求判断连续性条件与截止日，本站只解释需要核对的时间线。",
+        "explanation": "设施2025年开工后停工八个月、2026年复工、计划2029年投用；任务要求判断连续性条件与截止日，本站只解释需要核对的时间线。 原始id、完整question及父级版本结构保留，checks/rubric没有收录；公开sample不计分，不映射平台私有行。",
+        "raw": {
+          "dataset_name": "public",
+          "suite_title": "Tax Agent Bench public sample",
+          "suite_version": 2,
+          "tests": [
+            {
+              "id": "P-003",
+              "question": "During the 2025 tax year, Solar Co began construction on a 3-megawatt (MW) solar facility on March 1, 2025, and satisfied the physical work test for beginning construction. On June 1, 2025, Solar Co suspended construction for eight months after its financing became unavailable. Construction resumed in February 2026. Solar Co intends to rely on the continuity safe harbor described in IRS Notice 2022-61 and plans to place the facility in service during 2029.\nHow does the eight-month construction suspension affect Solar Co's eligibility for the Internal Revenue Code § 48E Clean Electricity Investment Credit? Specifically, does the interruption prevent Solar Co from relying on the continuity safe harbor, and what is the applicable placed-in-service deadline for maintaining eligibility under Notice 2022-61?"
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json",
+        "license": "Vals官方public sample真实问题与父级版本字段；仓库MIT与平台Proprietary分开记录，题目数据未单列许可。仅采用公开样题及本站解析，不复制checks、标准答案或外部法律/税务资料。",
+        "split": "data/public.json · P-003 · README表明此为非计分公开sample",
+        "excerpt": true
+      },
+      {
+        "id": "tax-agent-bench-P-004",
+        "title": "纽约/加州PTET抵免差异",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "比较同一2025税年下纽约与加州PTET抵免是否在超出个人州税负后可退；任务考察退款和流动性机制，题面没有给答案。",
+        "explanation": "比较同一2025税年下纽约与加州PTET抵免是否在超出个人州税负后可退；任务考察退款和流动性机制，题面没有给答案。 原始id、完整question及父级版本结构保留，checks/rubric没有收录；公开sample不计分，不映射平台私有行。",
+        "raw": {
+          "dataset_name": "public",
+          "suite_title": "Tax Agent Bench public sample",
+          "suite_version": 2,
+          "tests": [
+            {
+              "id": "P-004",
+              "question": "For calendar tax year 2025, how do the tax credit allocation and liquidity mechanics differ between New York State's pass-through entity tax (PTET) and California's pass-through entity tax (PTET) regarding whether the resulting credit passed through to an individual partner is fully refundable if it exceeds that partner's personal state income tax liability for the year?"
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json",
+        "license": "Vals官方public sample真实问题与父级版本字段；仓库MIT与平台Proprietary分开记录，题目数据未单列许可。仅采用公开样题及本站解析，不复制checks、标准答案或外部法律/税务资料。",
+        "split": "data/public.json · P-004 · README表明此为非计分公开sample",
+        "excerpt": true
+      },
+      {
+        "id": "tax-agent-bench-P-005",
+        "title": "审计中的利息净额请求",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "题设在IRS审计中仅留语音请求net rate netting，需核对书面提交、关联表格及程序时点；本页不臆测应填的表格号。",
+        "explanation": "题设在IRS审计中仅留语音请求net rate netting，需核对书面提交、关联表格及程序时点；本页不臆测应填的表格号。 原始id、完整question及父级版本结构保留，checks/rubric没有收录；公开sample不计分，不映射平台私有行。",
+        "raw": {
+          "dataset_name": "public",
+          "suite_title": "Tax Agent Bench public sample",
+          "suite_version": 2,
+          "tests": [
+            {
+              "id": "P-005",
+              "question": "A domestic corporation timely filed its 2025 Form 1120 by April 15, 2026.\n\nDuring an Internal Revenue Service Large Business and International examination, the corporation’s representative left the examiner a voicemail requesting net rate netting under Internal Revenue Code § 6621(d).\n\nIs the oral request sufficient to establish a valid net rate netting claim?\n\nIf not, what written submission must the corporation make, which form must the examiner include in the case file, which form must the corporation file, and by what point in the examination must the request be submitted?"
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/vals-ai/tax-agent-bench/ef60e440b2fe0ae65228895a7e91f421f3c87865/data/public.json",
+        "license": "Vals官方public sample真实问题与父级版本字段；仓库MIT与平台Proprietary分开记录，题目数据未单列许可。仅采用公开样题及本站解析，不复制checks、标准答案或外部法律/税务资料。",
+        "split": "data/public.json · P-005 · README表明此为非计分公开sample",
         "excerpt": true
       }
     ]

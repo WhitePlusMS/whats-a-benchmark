@@ -61,22 +61,29 @@
     ]
   },
   "reusePolicy": {
-    "status": "permitted",
-    "license": "HF 数据卡将该公开 NC-Bench 数据集标注为 Apache-2.0；IBM Research 代码仓库许可不用于推定数据许可。",
-    "scope": "仅复用 Hugging Face 上 ibm-research/nc-bench 数据集的 basic split row 0，并保留数据卡署名与许可证来源。",
+    "status": "unknown",
+    "license": "Novelcrafter公开run未单列题面复用许可；IBM同名数据集的Apache声明已从本条撤回。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "本许可说明不延伸到 Novelcrafter 网站上的其它题目、模型输出或资料。"
+      "原IBM样例单独留证，不能用于解释Novelcrafter的任务或许可。",
+      "部分run输入包含更长系统/codex/原故事，本条仅取实际任务指令，未重现完整运行。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/ibm-research/nc-bench"
+      "https://www.nc-bench.com/tests",
+      "https://www.nc-bench.com/runs/2026-10-05-01M46BPGN0GVMFXMR2R8Q73BH1",
+      "https://www.nc-bench.com/runs/2026-10-05-01M46BNZ55F798GWCGHHN8063P",
+      "https://www.nc-bench.com/runs/2026-10-05-01M46B4A622Q5FSJW1FWNX2CNH"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示 IBM Research NC-Bench basic split 的完整 row 0 对话，不包含参考答案。",
-    "url": "https://huggingface.co/datasets/ibm-research/nc-bench/viewer/default/basic?row=0",
+    "reason": "3个Novelcrafter真实公开run输入可切换；原IBM同名自然对话样例已撤回并留证，不再混用其题目与许可。未复制模型生成作品，部分角色/故事上下文未转载。",
+    "url": "https://www.nc-bench.com/tests",
     "sourceUrls": [
-      "https://huggingface.co/datasets/ibm-research/nc-bench"
+      "https://www.nc-bench.com/tests",
+      "https://www.nc-bench.com/runs/2026-10-05-01M46BPGN0GVMFXMR2R8Q73BH1",
+      "https://www.nc-bench.com/runs/2026-10-05-01M46BNZ55F798GWCGHHN8063P",
+      "https://www.nc-bench.com/runs/2026-10-05-01M46B4A622Q5FSJW1FWNX2CNH"
     ]
   },
   "metric": {
@@ -112,14 +119,24 @@
       "role": "leaderboard"
     },
     {
-      "role": "data",
-      "label": "IBM Research NC-Bench 数据集卡",
-      "url": "https://huggingface.co/datasets/ibm-research/nc-bench"
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://www.nc-bench.com/runs/2026-10-05-01M46BPGN0GVMFXMR2R8Q73BH1",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://www.nc-bench.com/runs/2026-10-05-01M46BNZ55F798GWCGHHN8063P",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://www.nc-bench.com/runs/2026-10-05-01M46B4A622Q5FSJW1FWNX2CNH",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "平台强调客观场景条件检查，覆盖编辑、生成、提取、摘要与多语言；它不使用统一AI文学质量裁判。",
@@ -152,44 +169,73 @@
       "sourceUrls": [
         "https://www.nc-bench.com/about"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/runs/2026-10-05-01M46BPGN0GVMFXMR2R8Q73BH1",
+        "https://www.nc-bench.com/runs/2026-10-05-01M46BNZ55F798GWCGHHN8063P",
+        "https://www.nc-bench.com/runs/2026-10-05-01M46B4A622Q5FSJW1FWNX2CNH",
+        "https://www.nc-bench.com/tests"
+      ]
+    },
+    {
+      "text": "2026-10-19纠正同名混用：原basic-0实际来自IBM自然对话数据集，与Novelcrafter无等价证据，已撤回其站内展示。原记录完整保存在审计证据，改为三个Novelcrafter官方run实际输入片段。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/tests"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：撤回与Novelcrafter无关的IBM basic-0错配，保留完整原档；改取Novelcrafter三个官方run的真实写作输入片段。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.nc-bench.com/runs/2026-10-05-01M46BPGN0GVMFXMR2R8Q73BH1",
+        "https://www.nc-bench.com/runs/2026-10-05-01M46BNZ55F798GWCGHHN8063P",
+        "https://www.nc-bench.com/runs/2026-10-05-01M46B4A622Q5FSJW1FWNX2CNH",
+        "https://www.nc-bench.com/tests"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
-        "id": "basic-0",
-        "title": "Definition request · Index fund vs. mutual fund",
+        "id": "nc-bench-novelcrafter-fantasy-ruin-run",
+        "title": "Bad Writing Habits · 古代遗迹奇幻章节",
         "type": "record",
-        "prompt": "system: Let’s do some roleplaying today! We’re just gonna have an ordinary conversation. But keep your turn short, about one sentence.\n\nuser: What's the difference between an index fund and a mutual fund?\n\nassistant: Index funds are passively managed, while most other mutual funds are actively managed.\n\nuser: What does passively managed mean?",
-        "explanation": "完整保留 basic split 的四条对话消息。中间的 assistant 回复属于上下文，不是本题参考答案；本记录没有提供 gold answer。",
-        "raw": {
-          "id": 0,
-          "task": "definition request",
-          "chat_prompt": [
-            {
-              "role": "system",
-              "content": "Let’s do some roleplaying today! We’re just gonna have an ordinary conversation. But keep your turn short, about one sentence."
-            },
-            {
-              "role": "user",
-              "content": "What's the difference between an index fund and a mutual fund?"
-            },
-            {
-              "role": "assistant",
-              "content": "Index funds are passively managed, while most other mutual funds are actively managed."
-            },
-            {
-              "role": "user",
-              "content": "What does passively managed mean?"
-            }
-          ]
-        },
-        "source": "https://huggingface.co/datasets/ibm-research/nc-bench/viewer/default/basic?row=0",
-        "license": "Apache-2.0 · IBM Research 数据卡对该数据集的声明；详见本条目来源说明",
-        "licensePath": "licenses/nc-bench-sample-source.txt",
-        "split": "basic / row 0",
-        "excerpt": false
+        "promptOrigin": "editorial",
+        "prompt": "该公开运行样例要求依角色与世界观上下文创作一篇至少1000词的奇幻场景；官方模型输入同时含多项文风、视角、角色设定与禁用写法规则。",
+        "explanation": "NC Bench 的实际公开run输入包括系统风格规则、世界观/角色codex和“首次进入古代异界遗迹”的写作任务，远不只是列表页的场景标题。本条只保留用户任务提示的一小段，不能重现完整run上下文；模型生成小说和分项评分都没有放入raw，也不是参考答案。",
+        "raw": "Write a chapter based on the following instructions:\n&lt;instructions&gt;\nWrite a fully fleshed out scene of at least 1000 words in the fantasy genre.\n\nA small group enters an ancient, otherworldly place for the first time. The environment is alien and wondrous. Describe their exploration — what they see, hear, and feel as they move deeper. Include moments of discovery, unease, and wonder. Let the world-building emerge through the characters&#39; experience rather than exposition.\n\nUse the codex entries above as your world reference for characters, setting, and lore.\nOnly include the prose of the scene without any markdown or commentary.\n&lt;/instructions&gt;",
+        "source": "https://www.nc-bench.com/runs/2026-10-05-01M46BPGN0GVMFXMR2R8Q73BH1",
+        "license": "Novelcrafter官方公开run的必要输入片段，HTML实体/换行保持；网页©2026且未单列题面许可。不复制模型作品、评分或完整角色codex；IBM同名数据的Apache许可不适用于本条。",
+        "split": "Novelcrafter NC Bench / Bad Writing Habits / public run / 2026-10-05-01M46BPGN0GVMFXMR2R8Q73BH1",
+        "excerpt": true
+      },
+      {
+        "id": "nc-bench-dialogue-ratio-run",
+        "title": "Dialogue tags · 固定词数与对白比例",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开运行要求生成200词喜剧劫案场景，并将对白词数比例控制在10%；页面按词数和对白占比单独评分。",
+        "explanation": "这是固定输出长度+对白比例的规则遵循样例，任务对象为两名窃贼策划闯入儿童派对偷礼物。页面显示评估目标是200词以及对白占比，没有把此模型响应转成任务答案。本站仅引用实际用户prompt开头，完整生成场景未复制。",
+        "raw": "You are a author of comedic heist books.\n\nPlease write a 200 word scene that has 10% words of dialogue between two thieves named Molly and Bill who are planning to break into a children&#39;s party to steal all the presents.\n\nOnly include the prose of the scene without any markdown or commentary.",
+        "source": "https://www.nc-bench.com/runs/2026-10-05-01M46BNZ55F798GWCGHHN8063P",
+        "license": "Novelcrafter官方公开run的必要输入片段，HTML实体/换行保持；网页©2026且未单列题面许可。不复制模型作品、评分或完整角色codex；IBM同名数据的Apache许可不适用于本条。",
+        "split": "Novelcrafter NC Bench / Dialogue tags / public run / 2026-10-05-01M46BNZ55F798GWCGHHN8063P",
+        "excerpt": true
+      },
+      {
+        "id": "nc-bench-text-replacement-run",
+        "title": "Text Replacement · 避免指定对白动词",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "该run测试在不改变故事内容的前提下，去除 said/asked/replied/answered 等指定词，并检查语义锚点与原文结构是否保留。",
+        "explanation": "这是文本编辑子测：真实输入是一段381词市场交易场景，任务要求移除指定对白归因词，同时保留内容和写作风格。本条不展示原文全文，也不复制模型改写稿或评估明细；它不是相邻benchmark的例题。",
+        "raw": "You are an expert prose editor.\n\nWhenever you&#39;re given text, rephrase it using the following instructions: &lt;instructions&gt;Remove all instances of &#39;said&#39;, &#39;asked&#39;, &#39;replied&#39;, and &#39;answered&#39;, replacing them with alternative dialogue attributions.&lt;/instructions&gt;\n\nImitate and keep the current writing style, and leave mannerisms, word choice and sentence structure intact.\nKeep the same stylistic writing choices. Use English spelling and grammar.\n\nOnly return the rephrased text, nothing else.",
+        "source": "https://www.nc-bench.com/runs/2026-10-05-01M46B4A622Q5FSJW1FWNX2CNH",
+        "license": "Novelcrafter官方公开run的必要输入片段，HTML实体/换行保持；网页©2026且未单列题面许可。不复制模型作品、评分或完整角色codex；IBM同名数据的Apache许可不适用于本条。",
+        "split": "Novelcrafter NC Bench / Text Replacement / public run / 2026-10-05-01M46B4A622Q5FSJW1FWNX2CNH",
+        "excerpt": true
       }
     ]
   }

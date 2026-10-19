@@ -82,10 +82,20 @@
       "label": "GeneBench-Pro 固定 revision 公开案例 eval_config",
       "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/README.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "OpenAI GeneBench-Pro 是计算生物学研究任务基准，侧重模型在真实分析流程中的检查、判断和迭代，不是单项生物学知识问答。",
@@ -137,26 +147,30 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "官方 Hugging Face 将 10 案例公开包标为 MIT；该结论只适用于该发布包。",
-    "scope": "许可不自动扩展到完整未公开基准、网页 UI 或嵌入的第三方材料。",
+    "license": "MIT · 官方README明确public package available under MIT。",
+    "scope": "四条公开release任务的实际id/title/domain/question；不含实验表、reference answers或grader。",
     "boundaries": [
-      "复用公开包文件时保留 MIT 许可和归属，并确认文件未含另行受限素材。"
+      "synthetic-data声明与题面real experiment字样的差异如实保留，不擅自调和。",
+      "原模板占位值不是数据答案；没有实验文件不能独立求数值。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/openai/genebench-pro-public-package"
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/README.md",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示官方公开包 txr1_mtb_causal_sv 案例的题面；数据文件、参考答案和评分器请查看原始来源。",
+    "reason": "5条公开包实际任务可切换，原问题、模板和标识保留；synthetic-data标签与题面real experiment措辞的差异明确，不据此声称真实患者数据。实验附件与参考答案未镜像。",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/genebench-pro-public-package",
-      "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json"
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+      "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/README.md"
     ],
     "url": "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json"
   },
   "sampleSet": {
-    "retrievedAt": "2026-09-23",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "txr1_mtb_causal_sv",
@@ -174,6 +188,82 @@
         "licensePath": "licenses/genebench-pro.txt",
         "split": "release（官方 10 个公开案例包）",
         "excerpt": false
+      },
+      {
+        "id": "genebench-pro-multiparent_qtl_hmm_lmm",
+        "title": "八创始亲本群体的QTL定位",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "八创始亲本群体的QTL定位：题目要求在八创始亲本群体中报告染色体1的QTL位置（cM）和携带高效应等位基因的创始系。官方字段还要求 high_founder 位于 F1–F8；本记录只展示题面，不含用于定位的基因型/表型附件，因此这里不能自行给出位置或创始系答案。",
+        "explanation": "题目要求在八创始亲本群体中报告染色体1的QTL位置（cM）和携带高效应等位基因的创始系。官方字段还要求 high_founder 位于 F1–F8；本记录只展示题面，不含用于定位的基因型/表型附件，因此这里不能自行给出位置或创始系答案。 源题面“came from a real experiment”与公开包synthetic-data声明并列保留，本站不据此断言它来自真实患者或实际临床研究；输出模板的<int>/<float>不是答案。",
+        "raw": {
+          "id": "multiparent_qtl_hmm_lmm",
+          "title": "Multi-parent QTL mapping with founder reconstruction",
+          "domain": "Statistical genetics",
+          "question": "Map the chromosome 1 QTL in an 8-founder multi-parent population. Report the position (cM) and which founder carries the high-effect allele.\nReport high_founder as \"F1\"..\"F8\".\nThese data came from a real experiment; you will be graded not just on numerical correctness but the quality of analytical reasoning you exhibit; do not attempt to take any shortcuts.\nReturn your final answer as exactly one JSON object.\nDo not wrap the JSON in markdown.\nDo not add prose before or after the JSON.\nDo not omit any keys shown in the example.\nReturn the JSON object in your final answer:\n{\n\"answer\": {\n\"high_founder\": \"<string>\",\n\"qtl_pos_cM\": <float>\n},\n\"reasoning\": \"<description of method and QC>\"\n}"
+        },
+        "source": "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+        "license": "OpenAI GeneBench-Pro public package 数据卡标注 MIT；README 将该公开案例包及 release-facing assets 描述为 public distribution，限于该公开包内任务字段。未复制目录中的 input data、report PDF、eval_config内参考答案或grader。",
+        "split": "problems / release / row id=multiparent_qtl_hmm_lmm",
+        "excerpt": true,
+        "licensePath": "licenses/genebench-pro.txt"
+      },
+      {
+        "id": "genebench-pro-statgen_cis_mvmr_winnerscurse_scaling_ldaware",
+        "title": "考虑LD与赢家诅咒的双蛋白多变量遗传分析",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "考虑LD与赢家诅咒的双蛋白多变量遗传分析：题面指定 PROTA、PROTB 两种邻近蛋白、二元疾病结局及位点相关性参考，估计相互条件化后的 log-odds/SD 效应。区别于单蛋白关联，它要求处理LD、赢家诅咒和蛋白测量尺度；此候选没有附上九个分析文件，也不补数值答案。",
+        "explanation": "题面指定 PROTA、PROTB 两种邻近蛋白、二元疾病结局及位点相关性参考，估计相互条件化后的 log-odds/SD 效应。区别于单蛋白关联，它要求处理LD、赢家诅咒和蛋白测量尺度；此本站没有附上九个分析文件，也不补数值答案。 源题面“came from a real experiment”与公开包synthetic-data声明并列保留，本站不据此断言它来自真实患者或实际临床研究；输出模板的<int>/<float>不是答案。",
+        "raw": {
+          "id": "statgen_cis_mvmr_winnerscurse_scaling_ldaware",
+          "title": "LD-aware cis-MVMR with winner's-curse correction",
+          "domain": "Proteomics / statistical genetics",
+          "question": "You are given association summary statistics and metadata for two nearby proteins (PROTA and PROTB), a binary disease outcome, a locus correlation reference, and protein measurement records.\nGoal: estimate the direct log-odds effect of each protein on the disease outcome per +1 SD increase in log10 concentration, conditional on the other protein.\nInterpretation: theta_PROTA and theta_PROTB use the same log-odds per-SD scale defined in the goal.\nThese data came from a real experiment; you will be graded not just on numerical correctness but the quality of analytical reasoning you exhibit; do not attempt to take any shortcuts.\nReturn your final answer as exactly one JSON object.\nDo not wrap the JSON in markdown.\nDo not add prose before or after the JSON.\nDo not omit any keys shown in the example.\nReturn the JSON object in your final answer:\n{\n  \"answer\": {\n    \"theta_PROTA\": <float>,\n    \"theta_PROTB\": <float>\n  },\n  \"reasoning\": \"<description of method and QC>\"\n}"
+        },
+        "source": "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+        "license": "OpenAI GeneBench-Pro public package 数据卡标注 MIT；README 将该公开案例包及 release-facing assets 描述为 public distribution，限于该公开包内任务字段。未复制目录中的 input data、report PDF、eval_config内参考答案或grader。",
+        "split": "problems / release / row id=statgen_cis_mvmr_winnerscurse_scaling_ldaware",
+        "excerpt": true,
+        "licensePath": "licenses/genebench-pro.txt"
+      },
+      {
+        "id": "genebench-pro-structural_inversion_subhap_expression_risk",
+        "title": "嵌套结构变异单倍型与表达/疾病风险",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "嵌套结构变异单倍型与表达/疾病风险：问题以匿名 Locus Q 为对象，要求把嵌套 segment-B 拷贝剂量与较宽的外层方向剂量分开，并同时估计临床总效应、表达效应及可靠载体数。只看题面无法判断被支持基因或效应方向；官方任务所需表型、表达和断点面板文件未随候选复制。",
+        "explanation": "问题以匿名 Locus Q 为对象，要求把嵌套 segment-B 拷贝剂量与较宽的外层方向剂量分开，并同时估计临床总效应、表达效应及可靠载体数。只看题面无法判断被支持基因或效应方向；官方任务所需表型、表达和断点面板文件未随本站复制。 源题面“came from a real experiment”与公开包synthetic-data声明并列保留，本站不据此断言它来自真实患者或实际临床研究；输出模板的<int>/<float>不是答案。",
+        "raw": {
+          "id": "structural_inversion_subhap_expression_risk",
+          "title": "Structural inversion subhaplotype expression and disease risk",
+          "domain": "Clinical genomics",
+          "question": "Analyze the released files for anonymous Locus Q. Estimate the full-cohort source-population clinical association and molecular expression support for the calibrated nested segment-B structural copy dosage, separating the nested segment-B dosage from the broader outer-orientation dosage. Report subhap_log_or as the natural-log source-population total-effect odds ratio for case status per additional calibrated segment-B copy. Report expression_log_fc as the natural-log expression fold-change per calibrated segment-B copy for the expression-supported gene. Report target_support_code as 1 if the supported gene has a positive expression_log_fc and the clinical association is protective (subhap_log_or < 0), otherwise 0. Report n_calibrated_carriers as the number of reliable breakpoint-panel samples carrying at least one segment-B copy.\nThese data came from a real experiment; you will be graded not just on numerical correctness but the quality of analytical reasoning you exhibit; do not attempt to take any shortcuts.\nReturn your final answer as exactly one JSON object.\nDo not wrap the JSON in markdown.\nDo not add prose before or after the JSON.\nDo not omit any keys shown in the example.\nReturn the JSON object in your final answer:\n{\n  \"answer\": {\n    \"n_calibrated_carriers\": <int>,\n    \"target_support_code\": <int>,\n    \"expression_log_fc\": <float>,\n    \"subhap_log_or\": <float>\n  },\n  \"reasoning\": \"<description of method and QC>\"\n}"
+        },
+        "source": "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+        "license": "OpenAI GeneBench-Pro public package 数据卡标注 MIT；README 将该公开案例包及 release-facing assets 描述为 public distribution，限于该公开包内任务字段。未复制目录中的 input data、report PDF、eval_config内参考答案或grader。",
+        "split": "problems / release / row id=structural_inversion_subhap_expression_risk",
+        "excerpt": true,
+        "licensePath": "licenses/genebench-pro.txt"
+      },
+      {
+        "id": "genebench-pro-crispri_casrx_transcript_vs_locus",
+        "title": "CRISPRi筛查与CasRx后续验证的靶点决策",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "CRISPRi筛查与CasRx后续验证的靶点决策：此任务要求综合 pooled CRISPRi、guide级局部表达、转录本CasRx后续实验和单guide生长数据，区分 LINC473 与邻近编码基因 KIN1 的效应；题面还说明这些名称是合成标签，不应映射为真实基因。候选仅保留真实题面，不含实验表格或模型/参考答案。",
+        "explanation": "此任务要求综合 pooled CRISPRi、guide级局部表达、转录本CasRx后续实验和单guide生长数据，区分 LINC473 与邻近编码基因 KIN1 的效应；题面还说明这些名称是合成标签，不应映射为真实基因。本站仅保留真实题面，不含实验表格或模型/参考答案。 源题面“came from a real experiment”与公开包synthetic-data声明并列保留，本站不据此断言它来自真实患者或实际临床研究；输出模板的<int>/<float>不是答案。",
+        "raw": {
+          "id": "crispri_casrx_transcript_vs_locus",
+          "title": "Transcript-vs-locus CRISPRi decision with CasRx follow-up",
+          "domain": "Functional genomics",
+          "question": "You are given pooled CRISPRi screening data, guide-level local expression measurements, transcript-targeting CasRx follow-up data, and single-guide follow-up growth measurements for a nominated lncRNA program (LINC473) and a nearby coding gene (KIN1). The identifiers LINC473, KIN1, and ANKRD42 are synthetic benchmark labels; any resemblance to real human genes is coincidental.\nEstimate the requested quantities.\nDefinitions:\nlncrna_specific_lfc: the pooled-screen matched-control day-10 log2 growth effect expected at 100% effective knockdown of the dominant LINC473 transcript, not local DNA-locus effects.\nneighbor_mediated_lfc: the pooled-screen matched-control day-10 log2 growth effect expected at 100% KIN1 repression in the local LINC473-locus model after accounting for concomitant LINC473 transcript knockdown.\nadvance_target: 1 if the evidence supports advancing LINC473 as a transcript-directed target, else 0.\nConventions:\nall growth effects are log2(day10/day0) competitive-growth effects relative to matched controls;\nmore negative numbers indicate stronger loss of fitness;\nset advance_target to 1 only if lncrna_specific_lfc <= -0.08 and neighbor_mediated_lfc > -0.25; otherwise 0.\nThese data came from a real experiment; you will be graded not just on numerical correctness but the quality of analytical reasoning you exhibit; do not attempt to take any shortcuts.\nReturn your final answer as exactly one JSON object.\nDo not wrap the JSON in markdown.\nDo not add prose before or after the JSON.\nDo not omit any keys shown in the example.\nReturn the JSON object in your final answer:\n{\n  \"answer\": {\n    \"advance_target\": <int>,\n    \"lncrna_specific_lfc\": <float>,\n    \"neighbor_mediated_lfc\": <float>\n  },\n  \"reasoning\": \"<description of method and QC>\"\n}"
+        },
+        "source": "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+        "license": "OpenAI GeneBench-Pro public package 数据卡标注 MIT；README 将该公开案例包及 release-facing assets 描述为 public distribution，限于该公开包内任务字段。未复制目录中的 input data、report PDF、eval_config内参考答案或grader。",
+        "split": "problems / release / row id=crispri_casrx_transcript_vs_locus",
+        "excerpt": true,
+        "licensePath": "licenses/genebench-pro.txt"
       }
     ]
   },
@@ -205,7 +295,24 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/README.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“CRISPRi筛查与CasRx后续验证的靶点决策”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package/blob/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems/txr1_mtb_causal_sv/eval_config.json",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/problems.csv",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package",
+        "https://huggingface.co/datasets/openai/genebench-pro-public-package/resolve/eb75a3c0996b3cedcc9af685bad02fd166848fa2/README.md",
+        "https://openai.com/index/genebench-pro/case-studies/"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

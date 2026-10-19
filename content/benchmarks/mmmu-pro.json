@@ -16,7 +16,7 @@
     }
   ],
   "kind": "derivative",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-19",
   "id": "mmmu-pro",
   "name": "MMMU-Pro",
   "subtitle": "进一步排除“没看图也能猜对”",
@@ -90,6 +90,11 @@
       "label": "官方项目与 Pro 入口",
       "url": "https://mmmu-benchmark.github.io/",
       "role": "definition"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -164,10 +169,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本页展示 MMMU-Pro 数据卡 Apache-2.0 声明 revision 中的真实 standard (10 options)/test 记录及原始 image_1。数据卡仍要求遵守初始数据来源版权与许可；本样例的许可范围限于上述版本中的单条记录，不表示全库每题和图片均已逐项核查。",
+    "reason": "4条真实十选项题目均配关联image_1原图，保留原始答案、元数据与空explanation值；中文解读单独呈现。图中数值或拼写异常不擅改。",
     "sourceUrls": [
       "https://huggingface.co/datasets/MMMU/MMMU_Pro",
-      "https://github.com/MMMU-Benchmark/MMMU#disclaimers"
+      "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+      "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8"
     ]
   },
   "researchNotes": [
@@ -194,11 +200,29 @@
         "https://arxiv.org/html/2409.02813#S2",
         "https://arxiv.org/html/2409.02813#S3"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8",
+        "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+        "https://github.com/MMMU-Benchmark/MMMU#disclaimers"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：三幅实际原图保留；水库图最后表头670与题干700冲突如实注明，不重画或修正原图。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8",
+        "https://huggingface.co/datasets/MMMU/MMMU_Pro",
+        "https://github.com/MMMU-Benchmark/MMMU#disclaimers",
+        "https://arxiv.org/html/2409.02813#S3",
+        "https://arxiv.org/html/2409.02813#S2"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "test_History_1",
@@ -243,6 +267,162 @@
             "height": 269,
             "caption": "原记录 image_1.bytes（Diagrams）；从固定 revision 官方 Parquet 中按 HTTP Range 原字节读取。",
             "source": "https://huggingface.co/datasets/MMMU/MMMU_Pro/viewer/standard%20%2810%20options%29/test?row=0"
+          }
+        ]
+      },
+      {
+        "id": "validation_Architecture_and_Engineering_17",
+        "title": "Architecture_and_Engineering · validation_Architecture_and_Engineering_17",
+        "type": "choice",
+        "prompt": "A dam is to be constructed across a valley to form a reservoir, and the areas in the following table enclosed by contour loops were obtained from a plan of the area involved.If the 660 m level represents the level floor of the reservoir, use the prismoidal formula to calculate the volume of water impounded when the water level reaches 700 m.<image 1>",
+        "options": [
+          "29.193 * 106 $m^{3}$",
+          "28.893 * 106 $m^{3}$",
+          "28.493 * 106 $m^{3}$",
+          "29.293 * 106 $m^{3}$",
+          "30.393 * 106 $m^{3}$",
+          "30.093 * 106 $m^{3}$",
+          "29.493 * 106 $m^{3}$",
+          "29.893 * 106 $m^{3}$",
+          "29.793 * 106 $m^{3}$",
+          "29.693 * 106 $m^{3}$"
+        ],
+        "answer": "J",
+        "explanation": "按题意需用等高线面积表和棱柱公式求蓄水量，官方答案J。原图最后一列表头写670，题干却要求到700米，两处均保留不擅改；源explanation为空，因此不把这里的读表说明说成官方完整解题过程。",
+        "raw": {
+          "id": "validation_Architecture_and_Engineering_17",
+          "question": "A dam is to be constructed across a valley to form a reservoir, and the areas in the following table enclosed by contour loops were obtained from a plan of the area involved.If the 660 m level represents the level floor of the reservoir, use the prismoidal formula to calculate the volume of water impounded when the water level reaches 700 m.<image 1>",
+          "options": "['29.193 * 106 $m^{3}$', '28.893 * 106 $m^{3}$', '28.493 * 106 $m^{3}$', '29.293 * 106 $m^{3}$', '30.393 * 106 $m^{3}$', '30.093 * 106 $m^{3}$', '29.493 * 106 $m^{3}$', '29.893 * 106 $m^{3}$', '29.793 * 106 $m^{3}$', '29.693 * 106 $m^{3}$']",
+          "explanation": "",
+          "image_2": null,
+          "image_3": null,
+          "image_4": null,
+          "image_5": null,
+          "image_6": null,
+          "image_7": null,
+          "img_type": "['Tables']",
+          "answer": "J",
+          "topic_difficulty": "Hard",
+          "subject": "Architecture_and_Engineering"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8",
+        "license": "Apache-2.0 · MMMU-Pro官方数据卡；原始题目及对应image_1来自固定快照。保留上游版权声明，行内未提供独立图像作者映射。",
+        "licensePath": "licenses/mmmu-pro-sample-source.txt",
+        "split": "standard (10 options) / test / row_idx=11 / id=validation_Architecture_and_Engineering_17",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/mmmu-pro-validation-architecture-and-engineering-17.png",
+            "alt": "A dam is to be constructed across a valley to form a reservoir, and the areas in the following table enclosed by contour loops were obtained from a plan of the area involved.If the 660 m level represents the level floor of the reservoir, use the prismoidal formula to calculate the volume of water impounded when the water level reaches 700 m.",
+            "width": 889,
+            "height": 101,
+            "caption": "对应固定官方Parquet记录的image_1原始字节；未重画。官方数据卡Apache-2.0及上游版权声明分别保留。",
+            "source": "https://huggingface.co/datasets/MMMU/MMMU_Pro/resolve/0d7426df4ccb3d8704a992fe6850abee7c262127/standard%20%2810%20options%29/test-00000-of-00002.parquet"
+          }
+        ]
+      },
+      {
+        "id": "validation_Sociology_29",
+        "title": "Sociology · validation_Sociology_29",
+        "type": "choice",
+        "prompt": "Which statement represents stratification from the perspective of <image 1>?",
+        "options": [
+          "Teachers continue to struggle to keep benefits such as good retirement plans.",
+          "Wealthy individuals often have better access to educational opportunities.",
+          "An office worker might feel out of place in a blue-collar pub.",
+          "Doctors earn more money because their job is more highly valued.",
+          "Men often earn more than women, even working the same job.",
+          "Fast food employees are not respected as much as gourmet chefs.",
+          "Lawyers typically choose to live in upscale neighborhoods.",
+          "Factory workers often don't have access to the same healthcare benefits as corporate executives.",
+          "After work, Pat, a janitor, feels more comfortable eating in a truck stop than a French restaurant.",
+          "Professional athletes often earn more than teachers and nurses."
+        ],
+        "answer": "I",
+        "explanation": "图示明确为Symbolic Interactionism，关注人如何在互动中建立意义。本站解读：清洁工在卡车休息站比法式餐厅更自在，符合身份与日常互动的题意，对应官方I；原explanation为空，本站说明单独呈现。",
+        "raw": {
+          "id": "validation_Sociology_29",
+          "question": "Which statement represents stratification from the perspective of <image 1>?",
+          "options": "['Teachers continue to struggle to keep benefits such as good retirement plans.', 'Wealthy individuals often have better access to educational opportunities.', 'An office worker might feel out of place in a blue-collar pub.', 'Doctors earn more money because their job is more highly valued.', 'Men often earn more than women, even working the same job.', 'Fast food employees are not respected as much as gourmet chefs.', 'Lawyers typically choose to live in upscale neighborhoods.', \"Factory workers often don't have access to the same healthcare benefits as corporate executives.\", 'After work, Pat, a janitor, feels more comfortable eating in a truck stop than a French restaurant.', 'Professional athletes often earn more than teachers and nurses.']",
+          "explanation": "",
+          "image_2": null,
+          "image_3": null,
+          "image_4": null,
+          "image_5": null,
+          "image_6": null,
+          "image_7": null,
+          "img_type": "['Diagrams']",
+          "answer": "I",
+          "topic_difficulty": "Medium",
+          "subject": "Sociology"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8",
+        "license": "Apache-2.0 · MMMU-Pro官方数据卡；原始题目及对应image_1来自固定快照。保留上游版权声明，行内未提供独立图像作者映射。",
+        "licensePath": "licenses/mmmu-pro-sample-source.txt",
+        "split": "standard (10 options) / test / row_idx=13 / id=validation_Sociology_29",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/mmmu-pro-validation-sociology-29.png",
+            "alt": "Which statement represents stratification from the perspective of ?",
+            "width": 1282,
+            "height": 1180,
+            "caption": "对应固定官方Parquet记录的image_1原始字节；未重画。官方数据卡Apache-2.0及上游版权声明分别保留。",
+            "source": "https://huggingface.co/datasets/MMMU/MMMU_Pro/resolve/0d7426df4ccb3d8704a992fe6850abee7c262127/standard%20%2810%20options%29/test-00000-of-00002.parquet"
+          }
+        ]
+      },
+      {
+        "id": "validation_Physics_7",
+        "title": "Physics · validation_Physics_7",
+        "type": "choice",
+        "prompt": "<image 1> The elliptical orbit of a planet around the Sun is shown on the diagram. Which of the following statements is true?",
+        "options": [
+          "the planet's orbit is a perfect circle",
+          "the eccentricity of the orbit is greater than 1",
+          "the eccentricity of the orbit is equal to 1",
+          "the sun might be at point E",
+          "the sun might be at point C",
+          "the sun might be at point A",
+          "the eccentricity of the orbit is less thatn zero",
+          "the sun might be at point B",
+          "the sun might be at point D",
+          "the eccentricity of the orbit is zero"
+        ],
+        "answer": "H",
+        "explanation": "椭圆的太阳应在长轴焦点，图中B位于水平长轴内部，官方答案H即“the sun might be at point B”。原图与十个选项保留，包括原拼写“thatn”；本站图意说明不填入源explanation字段。",
+        "raw": {
+          "id": "validation_Physics_7",
+          "question": "<image 1> The elliptical orbit of a planet around the Sun is shown on the diagram. Which of the following statements is true?",
+          "options": "[\"the planet's orbit is a perfect circle\", 'the eccentricity of the orbit is greater than 1', 'the eccentricity of the orbit is equal to 1', 'the sun might be at point E', 'the sun might be at point C', 'the sun might be at point A', 'the eccentricity of the orbit is less thatn zero', 'the sun might be at point B', 'the sun might be at point D', 'the eccentricity of the orbit is zero']",
+          "explanation": "",
+          "image_2": null,
+          "image_3": null,
+          "image_4": null,
+          "image_5": null,
+          "image_6": null,
+          "image_7": null,
+          "img_type": "['Diagrams', 'Geometric Shapes']",
+          "answer": "H",
+          "topic_difficulty": "Medium",
+          "subject": "Physics"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8",
+        "license": "Apache-2.0 · MMMU-Pro官方数据卡；原始题目及对应image_1来自固定快照。保留上游版权声明，行内未提供独立图像作者映射。",
+        "licensePath": "licenses/mmmu-pro-sample-source.txt",
+        "split": "standard (10 options) / test / row_idx=17 / id=validation_Physics_7",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/mmmu-pro-validation-physics-7.png",
+            "alt": "The elliptical orbit of a planet around the Sun is shown on the diagram. Which of the following statements is true?",
+            "width": 302,
+            "height": 208,
+            "caption": "对应固定官方Parquet记录的image_1原始字节；未重画。官方数据卡Apache-2.0及上游版权声明分别保留。",
+            "source": "https://huggingface.co/datasets/MMMU/MMMU_Pro/resolve/0d7426df4ccb3d8704a992fe6850abee7c262127/standard%20%2810%20options%29/test-00000-of-00002.parquet"
           }
         ]
       }

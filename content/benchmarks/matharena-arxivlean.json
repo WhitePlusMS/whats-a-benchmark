@@ -80,10 +80,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md"
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6"
     ]
   },
   "metric": {
@@ -129,6 +130,21 @@
         "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
         "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“An Improved Lower Bound for the Three-Dimensional Blaschke--Lebesgue Problem from Spectral and Dual Perspectives · problem 5”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6",
+        "https://huggingface.co/datasets/MathArena/arxivlean-0626/raw/1ced46a1d45d57c6de242d51c0baf574b96022ea/README.md",
+        "https://huggingface.co/datasets/MathArena/arxivlean-0626"
+      ]
     }
   ],
   "sources": [
@@ -166,11 +182,16 @@
       "label": "所选材料的固定许可或来源证据",
       "url": "https://arxiv.org/abs/2606.00316v1",
       "role": "paper"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "验证最终 Lean 文件与原声明及公理信任边界，能编译但改写原定理的输出不计正确；所需辅助结果未必已存在于 Mathlib。",
@@ -188,7 +209,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "1",
@@ -207,6 +228,90 @@
         "source": "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet",
         "split": "train",
         "excerpt": true,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivlean-sample-source.txt"
+      },
+      {
+        "id": "2",
+        "title": "Exact values of rainbow Turán numbers for fan graphs and even wheel graphs · problem 2",
+        "type": "text",
+        "prompt": "For integers $n$ and $t$ with $t \\geq 2$ and $n > 230t$, the rainbow Turán number $\\text{ex}^*(n, F_t)$ is equal to $\\lfloor n^2/4 \\rfloor + (t-1)\\lfloor n/2 \\rfloor - D_n$, where $D_n = 1$ if $n \\equiv 2 \\pmod 4$ and $D_n = 0$ otherwise. Here, a $t$-fan $F_t$ is a graph formed by $t$ triangles sharing exactly one common vertex, and the rainbow Turán number $\\text{ex}^*(n, H)$ is defined as the maximum number of edges in a properly edge-colored graph with $n$ vertices that does not contain a rainbow subgraph isomorphic to $H$ (a subgraph where all edges have distinct colors).\n",
+        "explanation": "自然语言给出彩虹 Turán 数的精确公式，formal_statement 将最大性、适当边着色和排除彩虹子图写成 Lean 目标。源内名为 answer 的字段仍含 sorry，只有待补证明声明，不能当作完整证明。",
+        "raw": {
+          "problem_idx": 2,
+          "problem": "For integers $n$ and $t$ with $t \\geq 2$ and $n > 230t$, the rainbow Turán number $\\text{ex}^*(n, F_t)$ is equal to $\\lfloor n^2/4 \\rfloor + (t-1)\\lfloor n/2 \\rfloor - D_n$, where $D_n = 1$ if $n \\equiv 2 \\pmod 4$ and $D_n = 0$ otherwise. Here, a $t$-fan $F_t$ is a graph formed by $t$ triangles sharing exactly one common vertex, and the rainbow Turán number $\\text{ex}^*(n, H)$ is defined as the maximum number of edges in a properly edge-colored graph with $n$ vertices that does not contain a rainbow subgraph isomorphic to $H$ (a subgraph where all edges have distinct colors).\n",
+          "answer": "theorem rainbow_turan_fan_statement (n t : ℕ) (ht : 2 ≤ t) (hn : 230 * t < n) :\n    IsGreatest\n      {m : ℕ |\n        ∃ (G : SimpleGraph (Fin n)) (c : Sym2 (Fin n) → ℕ),\n          (∀ (v : Fin n) (e₁ e₂ : Sym2 (Fin n)),\n              e₁ ∈ G.incidenceSet v → e₂ ∈ G.incidenceSet v →\n                e₁ ≠ e₂ → c e₁ ≠ c e₂) ∧\n          (¬ ∃ (x : Fin n) (w : Fin t × Fin 2 → Fin n),\n              Function.Injective w ∧\n              (∀ p : Fin t × Fin 2, w p ≠ x) ∧\n              (∀ i : Fin t,\n                G.Adj x (w (i, 0)) ∧\n                G.Adj x (w (i, 1)) ∧\n                G.Adj (w (i, 0)) (w (i, 1))) ∧\n              Set.InjOn c\n                {e : Sym2 (Fin n) |\n                  ∃ i : Fin t,\n                    e = s(x, w (i, 0)) ∨\n                    e = s(x, w (i, 1)) ∨\n                    e = s(w (i, 0), w (i, 1))}) ∧\n          m = Nat.card G.edgeSet}\n      (n ^ 2 / 4 + (t - 1) * (n / 2) - if n % 4 = 2 then 1 else 0) := by\n  sorry\n",
+          "formal_statement": "theorem rainbow_turan_fan_statement (n t : ℕ) (ht : 2 ≤ t) (hn : 230 * t < n) :\n    IsGreatest\n      {m : ℕ |\n        ∃ (G : SimpleGraph (Fin n)) (c : Sym2 (Fin n) → ℕ),\n          (∀ (v : Fin n) (e₁ e₂ : Sym2 (Fin n)),\n              e₁ ∈ G.incidenceSet v → e₂ ∈ G.incidenceSet v →\n                e₁ ≠ e₂ → c e₁ ≠ c e₂) ∧\n          (¬ ∃ (x : Fin n) (w : Fin t × Fin 2 → Fin n),\n              Function.Injective w ∧\n              (∀ p : Fin t × Fin 2, w p ≠ x) ∧\n              (∀ i : Fin t,\n                G.Adj x (w (i, 0)) ∧\n                G.Adj x (w (i, 1)) ∧\n                G.Adj (w (i, 0)) (w (i, 1))) ∧\n              Set.InjOn c\n                {e : Sym2 (Fin n) |\n                  ∃ i : Fin t,\n                    e = s(x, w (i, 0)) ∨\n                    e = s(x, w (i, 1)) ∨\n                    e = s(w (i, 0), w (i, 1))}) ∧\n          m = Nat.card G.edgeSet}\n      (n ^ 2 / 4 + (t - 1) * (n / 2) - if n % 4 = 2 then 1 else 0) := by\n  sorry\n",
+          "source": "2606.00976",
+          "title": "Exact values of rainbow Turán numbers for fan graphs and even wheel graphs",
+          "authors": "Xinmin Hou; Daoguang Xiong"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=1 / problem_idx=2",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivlean-sample-source.txt"
+      },
+      {
+        "id": "3",
+        "title": "A construction of spherical $5$-designs with $O(d^2)$ points · problem 3",
+        "type": "text",
+        "prompt": "For every integer $d \\ge 1$, there exists an equal-weight spherical $5$-design in the unit sphere $\\mathbb{S}^{d-1} \\subset \\mathbb{R}^d$ consisting of at most $72d^2$ points.\n",
+        "explanation": "任务是形式化证明存在至多72d²个点的等权球面5-design，Lean 声明把它写成有限点集及低阶矩等式。原 answer 含 sorry，本站保留原字段而不将其显示为已完成的参考证明。",
+        "raw": {
+          "problem_idx": 3,
+          "problem": "For every integer $d \\ge 1$, there exists an equal-weight spherical $5$-design in the unit sphere $\\mathbb{S}^{d-1} \\subset \\mathbb{R}^d$ consisting of at most $72d^2$ points.\n",
+          "answer": "theorem exists_equal_weight_spherical_five_design (d : ℕ) (hd : 1 ≤ d) :\n    ∃ X : Finset (Metric.sphere (0 : EuclideanSpace ℝ (Fin d)) (1 : ℝ)),\n      X.card ≤ 72 * d ^ 2 ∧\n        ∀ α : Fin d → ℕ,\n          Finset.univ.sum α ≤ 5 →\n            (X.card : ℝ)⁻¹ *\n                (X.sum fun x =>\n                  Finset.univ.prod fun i : Fin d =>\n                    ((x : EuclideanSpace ℝ (Fin d)) i) ^ (α i)) =\n              if h : ∀ i : Fin d, Even (α i) then\n                (Finset.univ.prod fun i : Fin d =>\n                    ((Nat.factorial (α i) : ℝ) /\n                      ((2 : ℝ) ^ (α i / 2) * (Nat.factorial (α i / 2) : ℝ)))) /\n                  ((Finset.range (Finset.univ.sum α / 2)).prod fun j : ℕ =>\n                    (d : ℝ) + 2 * (j : ℝ))\n              else\n                0 := by\n  sorry\n",
+          "formal_statement": "theorem exists_equal_weight_spherical_five_design (d : ℕ) (hd : 1 ≤ d) :\n    ∃ X : Finset (Metric.sphere (0 : EuclideanSpace ℝ (Fin d)) (1 : ℝ)),\n      X.card ≤ 72 * d ^ 2 ∧\n        ∀ α : Fin d → ℕ,\n          Finset.univ.sum α ≤ 5 →\n            (X.card : ℝ)⁻¹ *\n                (X.sum fun x =>\n                  Finset.univ.prod fun i : Fin d =>\n                    ((x : EuclideanSpace ℝ (Fin d)) i) ^ (α i)) =\n              if h : ∀ i : Fin d, Even (α i) then\n                (Finset.univ.prod fun i : Fin d =>\n                    ((Nat.factorial (α i) : ℝ) /\n                      ((2 : ℝ) ^ (α i / 2) * (Nat.factorial (α i / 2) : ℝ)))) /\n                  ((Finset.range (Finset.univ.sum α / 2)).prod fun j : ℕ =>\n                    (d : ℝ) + 2 * (j : ℝ))\n              else\n                0 := by\n  sorry\n",
+          "source": "2606.01376",
+          "title": "A construction of spherical $5$-designs with $O(d^2)$ points",
+          "authors": "Andrii Arman; Andriy Bondarenko; Andriy Prymak; Danylo Radchenko"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=2 / problem_idx=3",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivlean-sample-source.txt"
+      },
+      {
+        "id": "4",
+        "title": "Real Matrices as Linear Combinations of Three Orthogonal Matrices · problem 4",
+        "type": "text",
+        "prompt": "For any positive integer n and any n x n matrix A over the real numbers, there exist real numbers c_1, c_2, c_3 and orthogonal n x n real matrices O_1, O_2, O_3 such that A = c_1 O_1 + c_2 O_2 + c_3 O_3.\n",
+        "explanation": "需要证明任意实方阵可写成三个正交矩阵的实线性组合；形式化目标同时约束正交性和线性组合等式。原 answer 只有含 sorry 的声明，没有可核验的完整 Lean 证明。",
+        "raw": {
+          "problem_idx": 4,
+          "problem": "For any positive integer n and any n x n matrix A over the real numbers, there exist real numbers c_1, c_2, c_3 and orthogonal n x n real matrices O_1, O_2, O_3 such that A = c_1 O_1 + c_2 O_2 + c_3 O_3.\n",
+          "answer": "theorem matrix_as_sum_three_orthogonal (n : ℕ) (hn : 0 < n) (A : Matrix (Fin n) (Fin n) ℝ) :\n    ∃ (c₁ c₂ c₃ : ℝ) (O₁ O₂ O₃ : Matrix (Fin n) (Fin n) ℝ),\n      Matrix.transpose O₁ * O₁ = 1 ∧\n        Matrix.transpose O₂ * O₂ = 1 ∧\n          Matrix.transpose O₃ * O₃ = 1 ∧\n            A = c₁ • O₁ + c₂ • O₂ + c₃ • O₃ := by\n  sorry\n",
+          "formal_statement": "theorem matrix_as_sum_three_orthogonal (n : ℕ) (hn : 0 < n) (A : Matrix (Fin n) (Fin n) ℝ) :\n    ∃ (c₁ c₂ c₃ : ℝ) (O₁ O₂ O₃ : Matrix (Fin n) (Fin n) ℝ),\n      Matrix.transpose O₁ * O₁ = 1 ∧\n        Matrix.transpose O₂ * O₂ = 1 ∧\n          Matrix.transpose O₃ * O₃ = 1 ∧\n            A = c₁ • O₁ + c₂ • O₂ + c₃ • O₃ := by\n  sorry\n",
+          "source": "2606.01519",
+          "title": "Real Matrices as Linear Combinations of Three Orthogonal Matrices",
+          "authors": "Zhekai Pang"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=3 / problem_idx=4",
+        "excerpt": false,
+        "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
+        "licensePath": "licenses/matharena-arxivlean-sample-source.txt"
+      },
+      {
+        "id": "5",
+        "title": "An Improved Lower Bound for the Three-Dimensional Blaschke--Lebesgue Problem from Spectral and Dual Perspectives · problem 5",
+        "type": "text",
+        "prompt": "Let K be a convex body in \\mathbb{R}^3$ having constant width $d$. Then the volume of $K$ is bounded below by $\\frac{4\\pi}{33}d^3$.\n",
+        "explanation": "任务将三维等宽凸体的体积下界写成 Lean 定理，条件包括紧致、凸性、非空内部与各方向宽度。原 answer 含 sorry；本站展示真实证明目标，不补写证明。",
+        "raw": {
+          "problem_idx": 5,
+          "problem": "Let K be a convex body in \\mathbb{R}^3$ having constant width $d$. Then the volume of $K$ is bounded below by $\\frac{4\\pi}{33}d^3$.\n",
+          "answer": "theorem constant_width_convex_body_volume_lower_bound\n    (K : Set (EuclideanSpace ℝ (Fin 3))) (d : ℝ)\n    (hK_compact : IsCompact K)\n    (hK_convex : Convex ℝ K)\n    (hK_body : (interior K).Nonempty)\n    (h_width : ∀ u : EuclideanSpace ℝ (Fin 3), ‖u‖ = 1 →\n      sSup ((fun x : EuclideanSpace ℝ (Fin 3) => inner ℝ u x) '' K) -\n        sInf ((fun x : EuclideanSpace ℝ (Fin 3) => inner ℝ u x) '' K) = d) :\n    (MeasureTheory.volume K).toReal ≥ (4 * Real.pi / 33) * d ^ 3 := by\n  sorry\n",
+          "formal_statement": "theorem constant_width_convex_body_volume_lower_bound\n    (K : Set (EuclideanSpace ℝ (Fin 3))) (d : ℝ)\n    (hK_compact : IsCompact K)\n    (hK_convex : Convex ℝ K)\n    (hK_body : (interior K).Nonempty)\n    (h_width : ∀ u : EuclideanSpace ℝ (Fin 3), ‖u‖ = 1 →\n      sSup ((fun x : EuclideanSpace ℝ (Fin 3) => inner ℝ u x) '' K) -\n        sInf ((fun x : EuclideanSpace ℝ (Fin 3) => inner ℝ u x) '' K) = d) :\n    (MeasureTheory.volume K).toReal ≥ (4 * Real.pi / 33) * d ^ 3 := by\n  sorry\n",
+          "source": "2606.01754",
+          "title": "An Improved Lower Bound for the Three-Dimensional Blaschke--Lebesgue Problem from Spectral and Dual Perspectives",
+          "authors": "Akatsuki Nishioka"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Farxivlean-0626&config=default&split=train&offset=0&length=6",
+        "split": "train / row_idx=4 / problem_idx=5",
+        "excerpt": false,
         "license": "CC-BY-SA-4.0 · MathArena June 2026 dataset by Jasper Dekoninck et al.; source paper authors retained in sourcePaper; redistributed record under CC BY-SA 4.0",
         "licensePath": "licenses/matharena-arxivlean-sample-source.txt"
       }

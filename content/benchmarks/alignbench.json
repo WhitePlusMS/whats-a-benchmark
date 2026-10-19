@@ -21,7 +21,7 @@
     "ALIGNBENCH"
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "AlignBench 是 THUDM 提出的中文大语言模型多维度对齐评测基准，结合开放式中文指令、参考答案和 LLM-as-Judge 评分。",
@@ -74,9 +74,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未找到覆盖 AlignBench 整体数据与代码的官方许可证声明。",
-    "scope": "仓库可访问及论文可下载不等于数据集再发布授权；evidences 中的外部网页摘录也有各自权利。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "明确许可前，仅链接官方数据文件；不复制原题、参考答案或外部证据摘录。"
+      "未找到整套数据的明确再发布许可；页面展示范围只是所注明的必要短引及原始事实。"
     ],
     "sourceUrls": [
       "https://github.com/THUDM/AlignBench#L148-L164",
@@ -86,11 +86,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站保存一条官方公开记录的编辑性中文概述和必要短引；原始答案/媒体/输出的展示范围以样例许可说明为准。",
+    "reason": "7 条公开短指令可切换，原文和本站解析分开；不把公开例题等同完整可复现题集。",
     "url": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
     "sourceUrls": [
       "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
-      "https://github.com/THUDM/AlignBench"
+      "https://github.com/THUDM/AlignBench",
+      "https://github.com/THUDM/AlignBench#L148-L164",
+      "https://arxiv.org/abs/2311.18743#L3-L6",
+      "https://github.com/THUDM/AlignBench#L204-L232"
     ]
   },
   "metric": {
@@ -178,11 +181,31 @@
         "https://github.com/THUDM/AlignBench#L204-L232",
         "https://github.com/THUDM/AlignBench#L148-L164"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 6 条，现有 7 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "https://github.com/THUDM/AlignBench#L148-L164",
+        "https://arxiv.org/abs/2311.18743#L3-L6",
+        "https://github.com/THUDM/AlignBench#L204-L232"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增6条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“从唐诗三百首推荐诗篇”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→7条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "https://github.com/THUDM/AlignBench",
+        "https://github.com/THUDM/AlignBench#L148-L164",
+        "https://arxiv.org/abs/2311.18743#L3-L6",
+        "https://github.com/THUDM/AlignBench#L204-L232",
+        "https://github.com/THUDM/AlignBench#L190-L204"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "alignbench-history-qid-8",
@@ -200,6 +223,114 @@
         "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
         "license": "AlignBench 数据/问题未发现明确再发布许可；本站仅保留短词组与中文编辑性概述，不转载参考答案和外部证据。仓库可访问不代表数据已获再发布授权。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
         "split": "AlignBench v1.1 · question_id=8 · 专业能力/历史",
+        "excerpt": true
+      },
+      {
+        "id": "alignbench-qid-238",
+        "title": "颜文字表达笑哭情绪",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这条真实中文指令用于颜文字表达笑哭情绪，下面保留官方 question_id、分类和短问题原文。",
+        "explanation": "这条基本任务让模型用颜文字表达“笑哭”，考察的是简短情绪表达而非事实问答。原始记录还有官方参考答案，此本条只收 question/category/subcategory/question_id。 官方短问题和分类原值保留；未复制参考作答或外部 evidences。未找到整体数据再发布许可，这里只用必要短引说明具体任务。",
+        "raw": {
+          "question_id": 238,
+          "category": "基本任务",
+          "subcategory": "常识知识",
+          "question": "请用颜文字表示出“笑哭”的情绪"
+        },
+        "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "license": "AlignBench README将数据描述为主要来自ChatGLM在线服务的真实用户指令，数据文件含reference与evidences；未找到对数据/问题的单独再发布许可。仅拟显示所列真实短问题和分类字段；reference及其中第三方百度百科引文/链接全部省略，许可仍为unknown。",
+        "split": "AlignBench v1.1 / question_id=238 / 基本任务 / 常识知识",
+        "excerpt": true
+      },
+      {
+        "id": "alignbench-qid-344",
+        "title": "符号证明概率独立关系",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这条真实中文指令用于符号证明概率独立关系，下面保留官方 question_id、分类和短问题原文。",
+        "explanation": "这条逻辑类任务要求用符号证明“必然事件与任何事件独立”，要求形式化论证；此处不提供数学解答或官方参考答案。 官方短问题和分类原值保留；未复制参考作答或外部 evidences。未找到整体数据再发布许可，这里只用必要短引说明具体任务。",
+        "raw": {
+          "question_id": 344,
+          "category": "逻辑推理",
+          "subcategory": "证明",
+          "question": "用符号证明必然事件与任何事件独立"
+        },
+        "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "license": "AlignBench README将数据描述为主要来自ChatGLM在线服务的真实用户指令，数据文件含reference与evidences；未找到对数据/问题的单独再发布许可。仅拟显示所列真实短问题和分类字段；reference及其中第三方百度百科引文/链接全部省略，许可仍为unknown。",
+        "split": "AlignBench v1.1 / question_id=344 / 逻辑推理 / 证明",
+        "excerpt": true
+      },
+      {
+        "id": "alignbench-qid-164",
+        "title": "斤与千克换算问题",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这条真实中文指令用于斤与千克换算问题，下面保留官方 question_id、分类和短问题原文。",
+        "explanation": "这条数学类输入只问201斤换算成多少千克，本条保留真实单位和值；此处不补换算答案。 官方短问题和分类原值保留；未复制参考作答或外部 evidences。未找到整体数据再发布许可，这里只用必要短引说明具体任务。",
+        "raw": {
+          "question_id": 164,
+          "category": "数学计算",
+          "subcategory": "初等数学",
+          "question": "201斤等于多少千克"
+        },
+        "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "license": "AlignBench README将数据描述为主要来自ChatGLM在线服务的真实用户指令，数据文件含reference与evidences；未找到对数据/问题的单独再发布许可。仅拟显示所列真实短问题和分类字段；reference及其中第三方百度百科引文/链接全部省略，许可仍为unknown。",
+        "split": "AlignBench v1.1 / question_id=164 / 数学计算 / 初等数学",
+        "excerpt": true
+      },
+      {
+        "id": "alignbench-qid-439",
+        "title": "雪景七言绝句写作",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这条真实中文指令用于雪景七言绝句写作，下面保留官方 question_id、分类和短问题原文。",
+        "explanation": "这条文本写作题指定“雪景”和“七言绝句”两个内容/形式条件；没有摘录参考作答。 官方短问题和分类原值保留；未复制参考作答或外部 evidences。未找到整体数据再发布许可，这里只用必要短引说明具体任务。",
+        "raw": {
+          "question_id": 439,
+          "category": "文本写作",
+          "subcategory": "创意文体写作",
+          "question": "以雪景为题写一首七言绝句"
+        },
+        "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "license": "AlignBench README将数据描述为主要来自ChatGLM在线服务的真实用户指令，数据文件含reference与evidences；未找到对数据/问题的单独再发布许可。仅拟显示所列真实短问题和分类字段；reference及其中第三方百度百科引文/链接全部省略，许可仍为unknown。",
+        "split": "AlignBench v1.1 / question_id=439 / 文本写作 / 创意文体写作",
+        "excerpt": true
+      },
+      {
+        "id": "alignbench-qid-526",
+        "title": "用汉字表达0至10",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这条真实中文指令用于用汉字表达0至10，下面保留官方 question_id、分类和短问题原文。",
+        "explanation": "这条中文理解类任务要求用汉字写出数字0到10，考察数字文字转换；未附答案字段。 官方短问题和分类原值保留；未复制参考作答或外部 evidences。未找到整体数据再发布许可，这里只用必要短引说明具体任务。",
+        "raw": {
+          "question_id": 526,
+          "category": "中文理解",
+          "subcategory": "字词理解",
+          "question": "请用汉字写出数字0-10"
+        },
+        "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "license": "AlignBench README将数据描述为主要来自ChatGLM在线服务的真实用户指令，数据文件含reference与evidences；未找到对数据/问题的单独再发布许可。仅拟显示所列真实短问题和分类字段；reference及其中第三方百度百科引文/链接全部省略，许可仍为unknown。",
+        "split": "AlignBench v1.1 / question_id=526 / 中文理解 / 字词理解",
+        "excerpt": true
+      },
+      {
+        "id": "alignbench-qid-651",
+        "title": "从唐诗三百首推荐诗篇",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这条真实中文指令用于从唐诗三百首推荐诗篇，下面保留官方 question_id、分类和短问题原文。",
+        "explanation": "这条综合问答/寻求建议记录要求从《唐诗三百首》中推荐若干诗篇；本条不生成推荐内容，也不声称存在唯一参考答案。 官方短问题和分类原值保留；未复制参考作答或外部 evidences。未找到整体数据再发布许可，这里只用必要短引说明具体任务。",
+        "raw": {
+          "question_id": 651,
+          "category": "综合问答",
+          "subcategory": "寻求建议",
+          "question": "从唐诗三百首中推荐一些唐诗给我"
+        },
+        "source": "https://raw.githubusercontent.com/THUDM/AlignBench/5b79d4a84e566db26e755c719935c62a0e1b0527/data/data_v1.1_release.jsonl",
+        "license": "AlignBench README将数据描述为主要来自ChatGLM在线服务的真实用户指令，数据文件含reference与evidences；未找到对数据/问题的单独再发布许可。仅拟显示所列真实短问题和分类字段；reference及其中第三方百度百科引文/链接全部省略，许可仍为unknown。",
+        "split": "AlignBench v1.1 / question_id=651 / 综合问答 / 寻求建议",
         "excerpt": true
       }
     ]

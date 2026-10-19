@@ -63,22 +63,28 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "license": "官方详情页主动公开题面；本轮方法页/FAQ未找到覆盖题目文本的统一再发布许可证。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "本站展示的是任务输入，公开性与整套内容的再利用许可分别记录。",
+      "原Prompt Text通过浏览器实读存档，未将本轮浏览器观察日期当成题目发布日期。"
     ],
     "sourceUrls": [
-      "https://openvibeeval.com/methodology/"
+      "https://openvibeeval.com/prompt/analytics-dashboard/",
+      "https://openvibeeval.com/prompt/retro-arcade-game/",
+      "https://openvibeeval.com/prompt/digital-garden/"
     ]
   },
   "sampleAccess": {
     "url": "https://openvibeeval.com/prompt/digital-garden/",
     "sourceUrls": [
-      "https://openvibeeval.com/prompt/digital-garden/"
+      "https://openvibeeval.com/prompt/digital-garden/",
+      "https://openvibeeval.com/prompt/analytics-dashboard/",
+      "https://openvibeeval.com/prompt/retro-arcade-game/",
+      "https://openvibeeval.com/methodology/"
     ],
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。"
+    "reason": "3 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。"
   },
   "metric": {
     "name": "Adjusted Accessibility Score",
@@ -117,11 +123,21 @@
       "role": "data",
       "label": "OpenVibeEval Digital Garden prompt 与 run 页面",
       "url": "https://openvibeeval.com/prompt/digital-garden/"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://openvibeeval.com/prompt/analytics-dashboard/",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://openvibeeval.com/prompt/retro-arcade-game/",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "主榜由 axe-core 自动审计；Arena 另由访客盲选外观偏好。",
@@ -154,23 +170,67 @@
       "sourceUrls": [
         "https://openvibeeval.com/methodology/"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://openvibeeval.com/prompt/digital-garden/",
+        "https://openvibeeval.com/prompt/analytics-dashboard/",
+        "https://openvibeeval.com/prompt/retro-arcade-game/"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Retro Arcade Game & Physics Engine”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://openvibeeval.com/prompt/digital-garden/",
+        "https://openvibeeval.com/prompt/analytics-dashboard/",
+        "https://openvibeeval.com/prompt/retro-arcade-game/",
+        "https://openvibeeval.com/methodology/",
+        "https://openvibeeval.com/faq/"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "openvibeeval-digital-garden",
         "title": "Digital Garden 交互网页生成任务",
         "type": "text",
         "promptOrigin": "editorial",
-        "prompt": "OpenVibeEval 的真实网页任务要求构建平静、梦幻的互动花园，让用户种植并浇灌虚拟植物，并呈现柔和粒子、渐进生长动画和细腻交互。运行截图需在官方页面查看；本站不附生成作品。",
-        "raw": "Digital Garden\nInteractive Difficulty: Expert\nCalm, dreamy interactive garden — plant and water virtual plants with soft generative particles, staggered growth animations, and satisfying micro-interactions.",
-        "explanation": "官方 prompt ID=digital-garden，页面展示 2026-08-22 的运行历史（45/45）及预览；此处仅留任务短引和中文概述，不镜像 preview PNG 或完整 index.html，也不把作品当作答案。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "prompt": "在单个HTML文件中实现可种植、浇水和生长的互动数字花园；题面还约束柔和配色、有机形状、动画、粒子、悬停/点击反馈与手机布局。",
+        "raw": "Build a creative, delightful interactive experience in a single HTML file.\n\nTheme: \"Digital Garden\" — a calm, beautiful page where the user can plant and grow virtual plants by interacting with the page.\n\nRequirements:\n\n- Soft, dreamy visual design with gentle colors and organic shapes\n- Smooth, satisfying animations when planting or watering\n- Particles or subtle generative elements\n- Hover and click interactions that feel magical\n- Responsive and works well on mobile\n- Feels artistic and intentional, not just technical\n\nThis should showcase creativity and interaction design, not just layout skill.",
+        "explanation": "本轮在官方Prompt Text标签读取完整原始请求，替换旧raw中拼接的标题/难度/摘要。作者明确要求单文件HTML及艺术性互动；这里只展示输入，不提供模型作品或将可访问性分数当答案。",
         "source": "https://openvibeeval.com/prompt/digital-garden/",
-        "license": "未确认 prompt、截图或生成 HTML 的统一再发布许可。本页只保留短引及编辑性概述，不复制运行产物。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
-        "split": "official prompt ID=digital-garden · run page dated 2026-08-22 · GPT-6 Astra/Codex preview 2026-09-07 仅作为定位来源",
+        "license": "官方页面主动公开的任务文本；未确认统一再发布许可，不扩展到截图、生成作品或结果源码。",
+        "split": "官方Prompt Text · RES-DIGI · 2026-08-22 · 页面观察2026-10-19",
         "excerpt": true
+      },
+      {
+        "excerpt": true,
+        "title": "Interactive Analytics Dashboard",
+        "split": "OpenVibeEval official prompt page; page ID RES-ANAL; displayed date 2026-08-22",
+        "source": "https://openvibeeval.com/prompt/analytics-dashboard/",
+        "explanation": "实际题面要求侧栏、日期范围、4个KPI卡、Chart.js折线/柱状图、动态感活动流、深色设计和手机布局；这条题面没有指定单HTML交付，不能把游戏题的约束搬到此题。未生成页面或把模型产物当答案。",
+        "prompt": "Build a beautiful, fully interactive analytics dashboard for a fictional product analytics tool.\n\nRequirements:\n\n- Clean sidebar navigation (links: Overview, Analytics, Users, Reports, Settings)\n- Top header with user menu and date range selector\n- 4 KPI cards with subtle entrance animations and hover states\n- Line chart and bar chart (use Chart.js via CDN)\n- Recent activity feed that feels live\n- Smooth transitions between sections\n- Dark theme with excellent typography and spacing\n- Fully responsive (works well on mobile — sidebar collapses, charts resize)\n\nMake it feel like a real production dashboard, not a toy.",
+        "id": "openvibeeval-analytics-dashboard",
+        "license": "任务详情页公开显示完整 prompt；本次查看的方法页未找到覆盖题目文本的再发布许可声明，许可未确认。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": "Build a beautiful, fully interactive analytics dashboard for a fictional product analytics tool.\n\nRequirements:\n\n- Clean sidebar navigation (links: Overview, Analytics, Users, Reports, Settings)\n- Top header with user menu and date range selector\n- 4 KPI cards with subtle entrance animations and hover states\n- Line chart and bar chart (use Chart.js via CDN)\n- Recent activity feed that feels live\n- Smooth transitions between sections\n- Dark theme with excellent typography and spacing\n- Fully responsive (works well on mobile — sidebar collapses, charts resize)\n\nMake it feel like a real production dashboard, not a toy."
+      },
+      {
+        "excerpt": true,
+        "title": "Retro Arcade Game & Physics Engine",
+        "split": "OpenVibeEval official prompt page; page ID RES-RETR; displayed date 2026-08-22",
+        "source": "https://openvibeeval.com/prompt/retro-arcade-game/",
+        "explanation": "实际题面要求单文件 HTML 的完整 2D 街机游戏，强调 60FPS 动画循环、Canvas 粒子、键盘与触屏控制、记分/生命状态和 Web Audio 音效，覆盖游戏逻辑与可访问设备交互。",
+        "prompt": "Build a complete, polished 2D arcade game (e.g. Space Invaders or Asteroids) with a modern neon/synthwave aesthetic, in a single HTML file.\n\nRequirements:\n\n- Smooth 60FPS requestAnimationFrame game loop\n- Canvas-based rendering with particle explosion effects on hits\n- Score tracking, high score (kept in-memory for the session), lives indicator, and a game over screen\n- Smooth keyboard (Arrow keys / WASD + Space) and touch/on-screen controls for mobile\n- Simple sound effects generated dynamically using the Web Audio API (no external audio files)\n- Dark synthwave visual polish with neon glow effects\n- Responsive canvas that scales to fit the screen\n\nOutput only a single self-contained index.html file.",
+        "id": "openvibeeval-retro-arcade-game",
+        "license": "任务详情页公开显示完整 prompt；本次查看的方法页未找到覆盖题目文本的再发布许可声明，许可未确认。",
+        "promptOrigin": "editorial",
+        "type": "record",
+        "raw": "Build a complete, polished 2D arcade game (e.g. Space Invaders or Asteroids) with a modern neon/synthwave aesthetic, in a single HTML file.\n\nRequirements:\n\n- Smooth 60FPS requestAnimationFrame game loop\n- Canvas-based rendering with particle explosion effects on hits\n- Score tracking, high score (kept in-memory for the session), lives indicator, and a game over screen\n- Smooth keyboard (Arrow keys / WASD + Space) and touch/on-screen controls for mobile\n- Simple sound effects generated dynamically using the Web Audio API (no external audio files)\n- Dark synthwave visual polish with neon glow effects\n- Responsive canvas that scales to fit the screen\n\nOutput only a single self-contained index.html file."
       }
     ]
   }

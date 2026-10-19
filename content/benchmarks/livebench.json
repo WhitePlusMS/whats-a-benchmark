@@ -99,10 +99,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "reason": "3 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
-      "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md"
+      "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md",
+      "https://github.com/LiveBench/LiveBench/blob/main/docs/DATASHEET.md"
     ]
   },
   "metric": {
@@ -140,6 +141,23 @@
       "text": "2026-10-08 在真实浏览器读取官网，当前 release 为 2026-06-25、7 类/23 任务、每六个月更新；没有提取当前完整私有题集或重算模型成绩。站内合成逻辑样例仍明确使用首发公开快照。",
       "sourceUrls": [
         "https://livebench.ai/"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+        "https://github.com/LiveBench/LiveBench/blob/main/docs/DATASHEET.md",
+        "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Spatial reasoning · 三角形平行切割”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+        "https://raw.githubusercontent.com/LiveBench/LiveBench/24364d65076429adfcba7be18af4d44fddc43dce/docs/DATASHEET.md",
+        "https://github.com/LiveBench/LiveBench/blob/main/docs/DATASHEET.md",
+        "https://github.com/livebench/livebench"
       ]
     }
   ],
@@ -191,8 +209,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "按任务使用规则、标准答案或代码执行评分，不由统一 LLM 裁判判断回答风格；任务聚合后再按类别求均值。",
@@ -211,14 +229,14 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "0daa7ca38beec4441b9d5c04d0b98912322926f0a3ac28a5097889d4ed83506f",
         "title": "合成逻辑：谁在说真话",
         "type": "text",
         "prompt": "In this question, assume each person either always tells the truth or always lies. Tala is at the movie theater. The person at the restaurant says the person at the aquarium lies. Ayaan is at the aquarium. Ryan is at the botanical garden. The person at the park says the person at the art gallery lies. The person at the museum tells the truth. Zara is at the museum. Jake is at the art gallery. The person at the art gallery says the person at the theater lies. Beatriz is at the park. The person at the movie theater says the person at the train station lies. Nadia is at the campground. The person at the campground says the person at the art gallery tells the truth. The person at the theater lies. The person at the amusement park says the person at the aquarium tells the truth. Grace is at the restaurant. The person at the aquarium thinks their friend is lying. Nia is at the theater. Kehinde is at the train station. The person at the theater thinks their friend is lying. The person at the botanical garden says the person at the train station tells the truth. The person at the aquarium says the person at the campground tells the truth. The person at the aquarium saw a firetruck. The person at the train station says the person at the amusement park lies. Mateo is at the amusement park. Does the person at the train station tell the truth? Does the person at the amusement park tell the truth? Does the person at the aquarium tell the truth? Think step by step, and then put your answer in **bold** as a list of three words, yes or no (for example, **yes, no, yes**). If you don't know, guess.",
-        "explanation": "这是 Web of Lies V2 的纯合成逻辑题，需要追踪真假陈述并按顺序回答。记录属于 2024-06-24 公开 release，后来已从评测中移除，仅说明题型，不代表当前榜单题集。",
+        "explanation": "这是 Web of Lies V2 的纯合成逻辑题，需要追踪真假陈述并按顺序回答。记录属于 2024-06-24 公开 release，后来已从评测中移除，仅说明题型，不代表当前榜单题集。 官方记录的 livebench_removal_date 为 2025-04-02；它是历史题，不能解释为当前活跃题集成员。新增两条取自同一 reasoning 快照的其他题型。",
         "raw": {
           "question_id": "0daa7ca38beec4441b9d5c04d0b98912322926f0a3ac28a5097889d4ed83506f",
           "category": "reasoning",
@@ -237,6 +255,56 @@
         "license": "Apache-2.0 · LiveBench by Colin White et al.; public reasoning snapshot, synthetic web_of_lies_v2 task, Apache License 2.0 as stated in official DATASHEET Dataset Distribution",
         "licensePath": "licenses/livebench-sample-source.txt",
         "answer": "no, yes, yes"
+      },
+      {
+        "excerpt": true,
+        "prompt": "给定两位排成一列的人，以及职业、爱好、电影类型之间的两条关系线索，确定指定属性对应的位置和组合。",
+        "explanation": "row_idx=0 的 zebra_puzzle 记录包含两个人、三类属性和两条约束：记者在喜欢 adventure 的人右侧，警察与喜欢 filmmaking 的人不是同一人。问题要求依次判断 adventure 的位置、记者的爱好及两种电影类型对应的职业；官方 ground_truth 保留原顺序，未自行补充推理过程。 raw保留公开parquet的完整记录字段，包括官方ground_truth；未调用评分器或模型。",
+        "raw": {
+          "question_id": "bd14ba82d1fe813dcdf6c16f0f868e5f3fe92e4cee9cf5eb3fd5cb6f03d68517",
+          "category": "reasoning",
+          "ground_truth": "1, filmmaking, police-officer, journalist",
+          "turns": [
+            "There are 2 people standing in a line. From left to right, they are numbered 1 to 2.\nEach person has a set of attributes: Hobby, Job, Movie-Genre.\nThe attributes have the following possible values:\nHobby: filmmaking, collecting\nJob: journalist, police-officer\nMovie-Genre: adventure, thriller\nEach person has a unique value for each attribute.\nYou know the following about the people:\nThe person who is a journalist is somewhere to the right of the person who watches adventure\nThe person who is a police-officer is not the same as the person who likes filmmaking\n\nGiven this information, answer the following questions:\nAt what position is the person who watches adventure?\nWhat hobby does the person who is a journalist do?\nWhat is the job of the person who watches adventure?\nWhat is the job of the person who watches thriller?\nThink step by step and explain your reasoning, then output your answers in order in the format:\n<solution>answer1, answer2, answer3, ...</solution>\nFor instance, if there were 3 questions and the answers were A, B, and C, the output would be:\n<solution>A, B, C</solution>\nIf the answer to a question is a number, be sure to put it in numerical form (e.g. '3' instead of 'three').\n"
+          ],
+          "task": "zebra_puzzle",
+          "livebench_release_date": "2024-11-25T00:00:00",
+          "livebench_removal_date": "",
+          "level": 15
+        },
+        "type": "record",
+        "split": "reasoning / test / test-00000-of-00001.parquet / row_idx=0 / task=zebra_puzzle / question_id=bd14ba82d1fe813dcdf6c16f0f868e5f3fe92e4cee9cf5eb3fd5cb6f03d68517",
+        "license": "Apache-2.0 · LiveBench pinned datasheet 明确声明公开benchmark suite以Apache License 2.0分发；这些样例均来自官方reasoning文件。",
+        "source": "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+        "title": "Zebra puzzle · 两人属性排列",
+        "promptOrigin": "editorial",
+        "id": "bd14ba82d1fe813dcdf6c16f0f868e5f3fe92e4cee9cf5eb3fd5cb6f03d68517",
+        "licensePath": "licenses/livebench-sample-source.txt"
+      },
+      {
+        "excerpt": true,
+        "prompt": "实体等边三角形被两条平行且都穿过内部的直线切割后，询问所得部分数。",
+        "explanation": "row_idx=50 的 spatial 记录只给出实体等边三角形和两条平行、穿过内部的切线条件，要求回答最终块数；该行没有图示或额外几何条件，ground_truth 是数据提供的整数3。 raw保留公开parquet的完整记录字段，包括官方ground_truth；未调用评分器或模型。",
+        "raw": {
+          "question_id": "59979242f2437bc604ba87e9af3dd80878837a3ad01436d110fca1191f1dc0bb",
+          "category": "reasoning",
+          "ground_truth": "3",
+          "turns": [
+            "Suppose I have a physical, solid, equilateral triangle, and I make two cuts. The two cuts are from two parallel lines, and both cuts pass through the interior of the triangle. How many pieces are there after the cuts? Think step by step, and then put your answer in **bold** as a single integer (for example, **0**). If you don't know, guess."
+          ],
+          "task": "spatial",
+          "livebench_release_date": "2024-07-26T00:00:00",
+          "livebench_removal_date": "",
+          "level": null
+        },
+        "type": "record",
+        "split": "reasoning / test / test-00000-of-00001.parquet / row_idx=50 / task=spatial / question_id=59979242f2437bc604ba87e9af3dd80878837a3ad01436d110fca1191f1dc0bb",
+        "license": "Apache-2.0 · LiveBench pinned datasheet 明确声明公开benchmark suite以Apache License 2.0分发；这些样例均来自官方reasoning文件。",
+        "source": "https://huggingface.co/datasets/livebench/reasoning/resolve/6fc6498a5dfba553f69f4413feabade1f1a2d384/data/test-00000-of-00001.parquet",
+        "title": "Spatial reasoning · 三角形平行切割",
+        "promptOrigin": "editorial",
+        "id": "59979242f2437bc604ba87e9af3dd80878837a3ad01436d110fca1191f1dc0bb",
+        "licensePath": "licenses/livebench-sample-source.txt"
       }
     ]
   }

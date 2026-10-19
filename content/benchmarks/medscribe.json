@@ -65,7 +65,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "Vals MedScribe页面标为Proprietary；示例transcript未见单独复用许可，真实/模拟状态未说明。",
-    "scope": "完整MedScribe评测为Proprietary；公开transcript示例的来源及单独许可未查明。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不复制完整对话、SOAP输出、患者身份信息或rubric。",
       "不推断示例是真实或模拟病例。"
@@ -76,7 +76,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "Vals官方页面公开一段示例医患对话；本站只提供病情事实与任务目标的原创摘要，不展示完整对话或记录。",
+    "reason": "1 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://www.vals.ai/benchmarks/medscribe",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/medscribe"
@@ -104,6 +104,18 @@
       "sourceUrls": [
         "https://www.vals.ai/benchmarks/medscribe"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 0 条，现有 1 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medscribe"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：同ID改为源HTML先出现的Doctor首轮，Patient事实只作解析；逐例真实/模拟类型与再利用许可未确认，没有编SOAP答案。 展示记录1→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/medscribe"
+      ]
     }
   ],
   "sources": [
@@ -114,8 +126,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "模型只读模拟医患对话及统一SOAP模板生成记录，LLM judge对照专家逐项标准；真实脱敏SOAP记录用于构造对话而非作为输出答案给模型。",
@@ -131,19 +143,19 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-medscribe-doctor-transcript",
-        "title": "官方示例 · 咽痛与耳痛就诊对话",
+        "title": "官方示例纠正 · 原始发言顺序中的医生首轮",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "Vals MedScribe 页面展示一段医患对话：患者称咽痛、双耳痛、鼻塞和疲倦约4天，并提到兄弟约一个月前患过单核细胞增多症。任务是根据就诊对话形成临床记录；此处仅概述公开示例事实，不复制完整对话、SOAP输出或医疗记录。",
-        "explanation": "页面将该部分标为Sample Doctor-Patient Transcript，并把MedScribe标为Proprietary。页面未标明这段示例属于真实还是模拟，因此不由全体样本比例推断该段类别。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
-        "raw": "Um, not great honestly. I've been feeling pretty sick for like, like four days now, you know.\n\nDoctor\nPatient",
+        "prompt": "Vals页面的公开示例是一段医患对话，后续用于生成SOAP记录。",
+        "explanation": "保留原样本ID，将raw纠正为官方HTML中先出现的Doctor完整首轮发言；下一轮确实是Patient，报告持续四天的身体不适，并提到咽部、双耳和鼻塞等症状。该公开片段未标为真实或模拟，未见逐条再利用许可；这里不复制Patient发言、SOAP输出或rubric，也不作诊断。",
+        "raw": "<div class=\"max-w-[80%] px-3 py-2 text-sm/5 edge edge-primary self-start background-secondary\"><span class=\"block font-mono text-[10px]/3 uppercase foreground-secondary\">Doctor</span><span class=\"mt-1 block foreground-primary\">Good morning! Um, I&#x27;m, I&#x27;m Doctor Axon. How are you, how are you doing today?</span></div>",
         "source": "https://www.vals.ai/benchmarks/medscribe",
-        "license": "本站原创案例解读与Vals页面必要短引；底层transcript/完整评测Proprietary，未确认独立转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
-        "split": "Vals官方 MedScribe / Methodology / Sample Doctor-Patient Transcript；单例类别未标明",
+        "license": "页面标为Proprietary；transcript示例没有单独再利用许可。本站只保留Doctor首轮的必要连续短引，Patient事实仅中文转述，不推定完整对话或SOAP记录可再发布。",
+        "split": "Vals MedScribe / Methodology / Sample Doctor-Patient Transcript / first source turn (Doctor); same ID corrects prior misordered raw",
         "excerpt": true
       }
     ]

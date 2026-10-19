@@ -2,7 +2,7 @@
   "aliases": [],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-19",
   "id": "omnidocbench",
   "name": "OmniDocBench",
   "subtitle": "把复杂 PDF 读成结构化内容",
@@ -70,6 +70,16 @@
       "url": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
       "label": "OmniDocBench 官方 demo JSON",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/opendatalab/OmniDocBench#data-license",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -127,24 +137,25 @@
   },
   "reusePolicy": {
     "status": "restricted",
-    "license": "GitHub 仓库代码标注 Apache-2.0；数据页声明数据仅供研究、不可商用。",
-    "scope": "Apache-2.0 仅按仓库 LICENSE 用于受其覆盖的代码/文件；PDF、图片和标注的统一再发布许可未确认。",
+    "license": "官方README：demo仅供研究、不可商用；第三方原页权利另计。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "PDF 来自公开网络和社区贡献，底层作品的逐项授权未核实。",
-      "本站只链接官方数据与展示页，不转载 PDF 页面、截图、题目材料或逐样本标注。"
+      "页面元数据page_no与文件名页号有差异时均保留原值。",
+      "所展示的是原始标注结构片段；无原图，不能视为完整视觉输入。"
     ],
     "sourceUrls": [
-      "https://github.com/opendatalab/OmniDocBench/blob/main/LICENSE",
-      "https://huggingface.co/datasets/opendatalab/OmniDocBench",
-      "https://github.com/opendatalab/OmniDocBench"
+      "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+      "https://github.com/opendatalab/OmniDocBench#data-license"
     ]
   },
   "sampleAccess": {
     "url": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "reason": "4条真实页面标题与布局标注可查看；没有对应第三方整页图像，不能独立复核整页文档解析。",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json"
+      "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+      "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+      "https://github.com/opendatalab/OmniDocBench#data-license"
     ]
   },
   "researchNotes": [
@@ -170,40 +181,318 @@
         "https://github.com/opendatalab/OmniDocBench",
         "https://huggingface.co/datasets/opendatalab/OmniDocBench"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "https://github.com/opendatalab/OmniDocBench#data-license"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“政府公报页面 · 签署姓名标注”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "https://github.com/opendatalab/OmniDocBench#data-license",
+        "https://github.com/opendatalab/OmniDocBench",
+        "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+        "https://github.com/opendatalab/OmniDocBench#updates"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "omnidocbench-demo-index-0-page-7",
         "title": "PPT 转 PDF 第 7 页文档解析",
-        "type": "text",
+        "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "OmniDocBench 官方 demo 的 PPT 转 PDF 页面解析实例：读取第 7 页并按原结构输出 Markdown，保留标题与正文顺序。原始页图需在官方 demo 查看；本站不附图，因此不是完整视觉输入。",
+        "prompt": "查看官方PPT页面中一条真实标题标注，了解文字、类别、多边形与阅读顺序如何记录。",
         "raw": {
           "page_info": {
-            "page_no": 7,
             "page_attribute": {
               "data_source": "PPT2PDF",
               "language": "english",
-              "layout": "single_column"
-            }
+              "layout": "single_column",
+              "special_issue": [
+                "colorful_backgroud"
+              ]
+            },
+            "page_no": 7,
+            "height": 1500,
+            "width": 2000,
+            "image_path": "yanbaopptmerge_SE05.pdf_7.jpg"
           },
           "layout_dets": [
             {
               "category_type": "title",
-              "text": "- Human Factors",
+              "poly": [
+                76.5902382428661,
+                240.68154019093993,
+                631.8766521510723,
+                240.68154019093993,
+                631.8766521510723,
+                293.39002540571187,
+                76.5902382428661,
+                293.39002540571187
+              ],
               "ignore": false,
-              "order": 1
+              "order": 1,
+              "anno_id": 2,
+              "text": "- Human Factors",
+              "line_with_spans": [
+                {
+                  "category_type": "text_span",
+                  "poly": [
+                    73.47010192216815,
+                    238.0795314554676,
+                    634.4119348185968,
+                    238.0795314554676,
+                    634.4119348185968,
+                    294.81590629109365,
+                    73.47010192216815,
+                    294.81590629109365
+                  ],
+                  "text": "- Human Factors"
+                }
+              ],
+              "attribute": {
+                "text_language": "text_english",
+                "text_background": "white",
+                "text_rotate": "normal"
+              }
             }
           ]
         },
-        "explanation": "官方 demo JSON index=0，page_no=7，source=PPT2PDF，language=English，layout=single_column，原始 name 字段为“Human Factors”。官方仓库声明数据仅供研究且不可商用；来源页面/图片权利未逐项核实。Apache-2.0 仅按其范围适用于代码，不扩展到数据/图片。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 image content、other detections and annotations、source document page。",
-        "source": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
-        "license": "官方说明 demo 数据仅供研究、不可商用；来源页面/图片的逐项权利未核实。本页只保留原始 name 字段短引和本站任务概述，不复制页面图像、PDF 或标注。Apache-2.0 代码许可不扩展至数据。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "explanation": "原标注文本是“- Human Factors”，类别为title，保留anno_id=2、order=1以及原始多边形和字跨度；这是一条文档解析标注，而非本站编造的OCR题。页面图未复制，不能在本站核对完整页面解析。",
+        "source": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "license": "官方README标注demo仅供研究、不可商用；这里只引页面元数据和一条短标题标注，不复制第三方页面/图片或整页标注。Apache代码许可未外推到数据。",
         "split": "官方 demo JSON · index=0 · page_no=7 · source=PPT2PDF · English · single_column",
+        "excerpt": true
+      },
+      {
+        "id": "omnidocbench-official-demo-index-2-page-4",
+        "title": "学术论文 · 章节标题标注",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "页面文档类型：academic_literature；布局：double_column。请关注所选标注框中的原始文字及其版面类别。",
+        "explanation": "此页原标注将“3. Results and discussion”识别为 title，保留其原始多边形坐标、order、anno_id 和文本；论文来源页面不作为本站媒体复制。该标题表示结果讨论章节的起点。",
+        "raw": {
+          "page_info": {
+            "page_attribute": {
+              "data_source": "academic_literature",
+              "language": "english",
+              "layout": "double_column",
+              "special_issue": [
+                "table_fewer_line",
+                "table_horizontal",
+                "table_span",
+                "table_with_formula"
+              ]
+            },
+            "page_no": 4,
+            "height": 2206,
+            "width": 1653,
+            "image_path": "docstructbench_llm-raw-scihub-o.O-j.chroma.2005.05.085.pdf_4.jpg"
+          },
+          "layout_dets": [
+            {
+              "category_type": "title",
+              "poly": [
+                137.670105,
+                1083.32248,
+                443.80901099999994,
+                1083.32248,
+                443.80901099999994,
+                1117.339,
+                137.670105,
+                1117.339
+              ],
+              "ignore": false,
+              "order": 5,
+              "anno_id": 3,
+              "text": "3. Results and discussion",
+              "line_with_spans": [
+                {
+                  "category_type": "text_span",
+                  "poly": [
+                    138.8888849001994,
+                    1086.1110799195592,
+                    438.8888762846301,
+                    1086.1110799195592,
+                    438.8888762846301,
+                    1113.8888568995992,
+                    138.8888849001994,
+                    1113.8888568995992
+                  ],
+                  "text": "3. Results and discussion"
+                }
+              ],
+              "attribute": {
+                "text_language": "text_english",
+                "text_background": "white",
+                "text_rotate": "normal"
+              }
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "license": "官方README标注demo仅供研究、不可商用；这里只引页面元数据和一条短标题标注，不复制第三方页面/图片或整页标注。Apache代码许可未外推到数据。",
+        "split": "OmniDocBench official demo JSON / index=2 / page_no=4 / source=academic_literature / english / double_column",
+        "excerpt": true
+      },
+      {
+        "id": "omnidocbench-official-demo-index-8-exam-title",
+        "title": "练习试卷 · 页面标题",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "查看官方试卷页面的一条真实标题标注；原布局值为1andmore_column。",
+        "explanation": "该页原始title标注是练习册的页面标题“ISAT Practice Cumulative, Chapters 1-9”，显示累计练习卷的章节范围；只保留这个短标题标注及其真实bbox元数据，不复制整页考试图或题目正文。",
+        "raw": {
+          "page_info": {
+            "page_attribute": {
+              "data_source": "exam_paper",
+              "language": "english",
+              "layout": "1andmore_column",
+              "special_issue": [
+                "table_horizontal",
+                "colorful_backgroud",
+                "table_wireless_line",
+                "table_span"
+              ]
+            },
+            "page_no": 1644,
+            "height": 1700,
+            "width": 2178,
+            "image_path": "jiaocaineedrop_Chapter9.pdf_46.jpg"
+          },
+          "layout_dets": [
+            {
+              "category_type": "title",
+              "poly": [
+                154.36449351548742,
+                116.27446696058871,
+                871.4135056358854,
+                116.27446696058871,
+                871.4135056358854,
+                253.29683570585394,
+                154.36449351548742,
+                253.29683570585394
+              ],
+              "ignore": false,
+              "order": 1,
+              "anno_id": 18,
+              "text": "ISAT Practice Cumulative, Chapters 1-9",
+              "line_with_spans": [
+                {
+                  "category_type": "text_span",
+                  "poly": [
+                    382.3212502216729,
+                    117.19458201443854,
+                    877.6066831066815,
+                    117.19458201443854,
+                    877.6066831066815,
+                    190.80581148909096,
+                    382.3212502216729,
+                    190.80581148909096
+                  ],
+                  "text": "ISAT Practice"
+                },
+                {
+                  "category_type": "text_span",
+                  "poly": [
+                    325.0680717413875,
+                    201.71117881866928,
+                    777.6408159188817,
+                    201.71117881866928,
+                    777.6408159188817,
+                    254.4204542449636,
+                    325.0680717413875,
+                    254.4204542449636
+                  ],
+                  "text": "Cumulative, Chapters 1-9"
+                }
+              ],
+              "attribute": {
+                "text_language": "text_english",
+                "text_background": "multi_colored",
+                "text_rotate": "normal"
+              }
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "license": "官方README标注demo仅供研究、不可商用；这里只引页面元数据和一条短标题标注，不复制第三方页面/图片或整页标注。Apache代码许可未外推到数据。",
+        "split": "官方demo JSON / index=8 / page_info.page_no=1644 / image_path后缀_46 / exam_paper / 1andmore_column",
+        "excerpt": true
+      },
+      {
+        "id": "omnidocbench-official-demo-index-15-page-4",
+        "title": "政府公报页面 · 签署姓名标注",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "页面文档类型：newspaper；布局：three_column。请关注所选标注框中的原始文字及其版面类别。",
+        "explanation": "该页layout_dets[10]的原始title标注为“Robbie McAboy.”，位于该页公告文本末尾署名位置；候选仅保留这条短标签和原始坐标/anno元数据，不复制包含公告全文的报纸整页图。",
+        "raw": {
+          "page_info": {
+            "page_attribute": {
+              "data_source": "newspaper",
+              "language": "english",
+              "layout": "three_column",
+              "special_issue": []
+            },
+            "page_no": 4,
+            "height": 612,
+            "width": 792,
+            "image_path": "newspaper_5e266dfd9c498cab274e12a7b4a75755_4.jpg"
+          },
+          "layout_dets": [
+            {
+              "category_type": "title",
+              "poly": [
+                221.33154975063968,
+                74.40211578688661,
+                283.14358530507513,
+                74.40211578688661,
+                283.14358530507513,
+                84.27624287225973,
+                221.33154975063968,
+                84.27624287225973
+              ],
+              "ignore": false,
+              "order": 11,
+              "anno_id": 12,
+              "text": "Robbie McAboy.",
+              "line_with_spans": [
+                {
+                  "category_type": "text_span",
+                  "poly": [
+                    221.33333333333323,
+                    74.28821586916956,
+                    284.25813755972695,
+                    74.28821586916956,
+                    284.25813755972695,
+                    83.68170582138794,
+                    221.33333333333323,
+                    83.68170582138794
+                  ],
+                  "text": "Robbie McAboy."
+                }
+              ],
+              "attribute": {
+                "text_language": "text_english",
+                "text_background": "white",
+                "text_rotate": "normal"
+              }
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/f133a71e9e91c3621c7ce8994200a7b394a06eb3/demo_data/omnidocbench_demo/OmniDocBench_demo.json",
+        "license": "官方README标注demo仅供研究、不可商用；这里只引页面元数据和一条短标题标注，不复制第三方页面/图片或整页标注。Apache代码许可未外推到数据。",
+        "split": "OmniDocBench official demo JSON / index=15 / page_no=4 / source=newspaper / english / three_column",
         "excerpt": true
       }
     ]

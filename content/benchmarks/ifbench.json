@@ -83,11 +83,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "在回答圆轨道量子力学问题的同时，要求使用至少五种不同并列连词。规则名称来自原行 count:conjunctions；公开行没有参考回答，本页不编造标准答案。未展示第三方模型输出。",
+    "reason": "6 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl",
     "sourceUrls": [
       "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl",
-      "https://raw.githubusercontent.com/allenai/IFBench/main/README.md"
+      "https://raw.githubusercontent.com/allenai/IFBench/main/README.md",
+      "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl"
     ]
   },
   "metric": {
@@ -143,6 +144,11 @@
       "label": "数据许可及公开范围声明",
       "url": "https://raw.githubusercontent.com/allenai/IFBench/main/README.md",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+      "role": "data"
     }
   ],
   "related": [
@@ -156,7 +162,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchNotes": [
     {
       "text": "模型厂商 benchmark 表可能省略 strict/loose、温度及 thinking token 上限等设置；本候选不复算厂商分数。",
@@ -170,11 +176,28 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 5 条，现有 6 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+        "https://raw.githubusercontent.com/allenai/IFBench/main/README.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增5条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“词数范围 · 特征集合相似度”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→6条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/allenai/IFBench/main/ifbench/data/IFBench_test.jsonl",
+        "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+        "https://raw.githubusercontent.com/allenai/IFBench/main/README.md",
+        "https://github.com/allenai/IFBench/blob/main/README.md",
+        "https://huggingface.co/datasets/allenai/IFBench_test"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "test-key-5",
@@ -230,7 +253,7 @@
               "relation": null,
               "section_spliter": null,
               "sep": null,
-              "small_n": 5.0,
+              "small_n": 5,
               "word": null
             }
           ]
@@ -240,6 +263,376 @@
         "licensePath": "licenses/ifbench-sample-source.txt",
         "split": "official single-turn test / key=5",
         "excerpt": false
+      },
+      {
+        "license": "ODC-BY-1.0 · Ai2 官方 README 明确称 data licensed under ODC-BY-1.0，并表明用于 research and educational use；样例仅含 prompt约束记录，不含第三方模型生成输出。",
+        "title": "关键词精确频次 · chivalry解释",
+        "prompt": "解释 chivalry 的女性对应概念，并按源任务精确使用五个指定词，频次分别为1、2、3、5、7次。",
+        "split": "IFBench_test.jsonl / row_idx=1 / key=1",
+        "source": "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+        "explanation": "key=1要求解释“female equivalent to chivalry”，同时分别精确控制 meridian、gossamer、eclipse、threshold、cascade 的出现次数；原kwargs的 keyword1–keyword5 保存这些目标词，且instruction标记为count:keywords_multiple。源行没有参考回答。 原始记录保留 key/prompt/instruction_id_list/kwargs；不含模型输出或答案。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "key": "1",
+          "prompt": "What is the female equivalent to chivalry? Include keyword meridian once in your response, keyword gossamer twice in your response, keyword eclipse three times in your response, keyword threshold five times in your response, and keyword cascade seven times in your response.",
+          "instruction_id_list": [
+            "count:keywords_multiple"
+          ],
+          "kwargs": [
+            {
+              "N": null,
+              "capital_frequency": null,
+              "capital_relation": null,
+              "end_phrase": null,
+              "first_word": null,
+              "forbidden_words": null,
+              "frequency": null,
+              "keyword": null,
+              "keyword1": "meridian",
+              "keyword2": "gossamer",
+              "keyword3": "eclipse",
+              "keyword4": "threshold",
+              "keyword5": "cascade",
+              "keywords": null,
+              "language": null,
+              "let_frequency": null,
+              "let_relation": null,
+              "letter": null,
+              "m": null,
+              "max_words": null,
+              "min_words": null,
+              "n": null,
+              "n_end": null,
+              "n_start": null,
+              "nth_paragraph": null,
+              "num_bullets": null,
+              "num_highlights": null,
+              "num_paragraphs": null,
+              "num_placeholders": null,
+              "num_sections": null,
+              "num_sentences": null,
+              "num_words": null,
+              "options": null,
+              "percentage": null,
+              "postscript_marker": null,
+              "prompt_to_repeat": null,
+              "reference_text": null,
+              "relation": null,
+              "section_spliter": null,
+              "sep": null,
+              "small_n": null,
+              "word": null
+            }
+          ]
+        },
+        "type": "record",
+        "id": "ifbench-key-1",
+        "excerpt": true
+      },
+      {
+        "license": "ODC-BY-1.0 · Ai2 官方 README 明确称 data licensed under ODC-BY-1.0，并表明用于 research and educational use；样例仅含 prompt约束记录，不含第三方模型生成输出。",
+        "title": "数字数量约束 · 社会韧性",
+        "prompt": "讨论频繁困境是否可能提升社会韧性，并确保回复恰好包含两个数字。",
+        "split": "IFBench_test.jsonl / row_idx=17 / key=17",
+        "source": "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+        "explanation": "key=17把一个开放讨论问题与 exactly 2 numbers 约束组合；官方 instruction_id 为count:numbers，kwargs.N=2。数据没有给观点或标准答案，只验证数字数量。 原始记录保留 key/prompt/instruction_id_list/kwargs；不含模型输出或答案。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "key": "17",
+          "prompt": "Is it plausible that frequent hardship can make a society more resilient? Include exactly 2 numbers in the response.",
+          "instruction_id_list": [
+            "count:numbers"
+          ],
+          "kwargs": [
+            {
+              "N": 2,
+              "capital_frequency": null,
+              "capital_relation": null,
+              "end_phrase": null,
+              "first_word": null,
+              "forbidden_words": null,
+              "frequency": null,
+              "keyword": null,
+              "keyword1": null,
+              "keyword2": null,
+              "keyword3": null,
+              "keyword4": null,
+              "keyword5": null,
+              "keywords": null,
+              "language": null,
+              "let_frequency": null,
+              "let_relation": null,
+              "letter": null,
+              "m": null,
+              "max_words": null,
+              "min_words": null,
+              "n": null,
+              "n_end": null,
+              "n_start": null,
+              "nth_paragraph": null,
+              "num_bullets": null,
+              "num_highlights": null,
+              "num_paragraphs": null,
+              "num_placeholders": null,
+              "num_sections": null,
+              "num_sentences": null,
+              "num_words": null,
+              "options": null,
+              "percentage": null,
+              "postscript_marker": null,
+              "prompt_to_repeat": null,
+              "reference_text": null,
+              "relation": null,
+              "section_spliter": null,
+              "sep": null,
+              "small_n": null,
+              "word": null
+            }
+          ]
+        },
+        "type": "record",
+        "id": "ifbench-key-17",
+        "excerpt": true
+      },
+      {
+        "license": "ODC-BY-1.0 · Ai2 官方 README 明确称 data licensed under ODC-BY-1.0，并表明用于 research and educational use；样例仅含 prompt约束记录，不含第三方模型生成输出。",
+        "title": "创意文案 · 时间跳跃连环案",
+        "prompt": "为一部现代FBI特工回到1960年代追查时间跳跃连环杀手的假想惊悚片写封底简介，并恰好出现13个数字。",
+        "split": "IFBench_test.jsonl / row_idx=19 / key=19",
+        "source": "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+        "explanation": "key=19要求写虚构惊悚小说封底简介：现代FBI特工回到1960年代，利用未来法证知识留下线索，并同时满足回复恰含13个数字；source约束标签为count:numbers，未附样例答案。 原始记录保留 key/prompt/instruction_id_list/kwargs；不含模型输出或答案。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "key": "19",
+          "prompt": "Include exactly 13 numbers in the response. In the context of a hypothetical, write the jacket blurb for a thriller where a modern day operative of the FBI, ends up back in the early 1960's having to use her knowledge of \"future\" forensics to leave clues to enable her modern colleagues to catch a time-hopping serial-killer, before he dies.  ",
+          "instruction_id_list": [
+            "count:numbers"
+          ],
+          "kwargs": [
+            {
+              "N": 13,
+              "capital_frequency": null,
+              "capital_relation": null,
+              "end_phrase": null,
+              "first_word": null,
+              "forbidden_words": null,
+              "frequency": null,
+              "keyword": null,
+              "keyword1": null,
+              "keyword2": null,
+              "keyword3": null,
+              "keyword4": null,
+              "keyword5": null,
+              "keywords": null,
+              "language": null,
+              "let_frequency": null,
+              "let_relation": null,
+              "letter": null,
+              "m": null,
+              "max_words": null,
+              "min_words": null,
+              "n": null,
+              "n_end": null,
+              "n_start": null,
+              "nth_paragraph": null,
+              "num_bullets": null,
+              "num_highlights": null,
+              "num_paragraphs": null,
+              "num_placeholders": null,
+              "num_sections": null,
+              "num_sentences": null,
+              "num_words": null,
+              "options": null,
+              "percentage": null,
+              "postscript_marker": null,
+              "prompt_to_repeat": null,
+              "reference_text": null,
+              "relation": null,
+              "section_spliter": null,
+              "sep": null,
+              "small_n": null,
+              "word": null
+            }
+          ]
+        },
+        "type": "record",
+        "id": "ifbench-key-19",
+        "excerpt": true
+      },
+      {
+        "license": "ODC-BY-1.0 · Ai2 官方 README 明确称 data licensed under ODC-BY-1.0，并表明用于 research and educational use；样例仅含 prompt约束记录，不含第三方模型生成输出。",
+        "title": "双重约束 · 人生意义",
+        "prompt": "回答“生命的意义是什么”，同时恰含15个数字及至少5种不同并列连词。",
+        "split": "IFBench_test.jsonl / row_idx=22 / key=22",
+        "source": "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+        "explanation": "key=22把宽泛哲学问题与两项可验证限制合并：数字总数恰为15，且使用至少5种不同并列连词；源行的instruction_id_list有两项，kwargs分别存N=15与small_n=5。未提供参考答案回答。 原始记录保留 key/prompt/instruction_id_list/kwargs；不含模型输出或答案。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "key": "22",
+          "prompt": "Include exactly 15 numbers in the response. Use at least 5 different coordinating conjunctions in the response. what is the meaning of life?",
+          "instruction_id_list": [
+            "count:numbers",
+            "count:conjunctions"
+          ],
+          "kwargs": [
+            {
+              "N": 15,
+              "capital_frequency": null,
+              "capital_relation": null,
+              "end_phrase": null,
+              "first_word": null,
+              "forbidden_words": null,
+              "frequency": null,
+              "keyword": null,
+              "keyword1": null,
+              "keyword2": null,
+              "keyword3": null,
+              "keyword4": null,
+              "keyword5": null,
+              "keywords": null,
+              "language": null,
+              "let_frequency": null,
+              "let_relation": null,
+              "letter": null,
+              "m": null,
+              "max_words": null,
+              "min_words": null,
+              "n": null,
+              "n_end": null,
+              "n_start": null,
+              "nth_paragraph": null,
+              "num_bullets": null,
+              "num_highlights": null,
+              "num_paragraphs": null,
+              "num_placeholders": null,
+              "num_sections": null,
+              "num_sentences": null,
+              "num_words": null,
+              "options": null,
+              "percentage": null,
+              "postscript_marker": null,
+              "prompt_to_repeat": null,
+              "reference_text": null,
+              "relation": null,
+              "section_spliter": null,
+              "sep": null,
+              "small_n": null,
+              "word": null
+            },
+            {
+              "N": null,
+              "capital_frequency": null,
+              "capital_relation": null,
+              "end_phrase": null,
+              "first_word": null,
+              "forbidden_words": null,
+              "frequency": null,
+              "keyword": null,
+              "keyword1": null,
+              "keyword2": null,
+              "keyword3": null,
+              "keyword4": null,
+              "keyword5": null,
+              "keywords": null,
+              "language": null,
+              "let_frequency": null,
+              "let_relation": null,
+              "letter": null,
+              "m": null,
+              "max_words": null,
+              "min_words": null,
+              "n": null,
+              "n_end": null,
+              "n_start": null,
+              "nth_paragraph": null,
+              "num_bullets": null,
+              "num_highlights": null,
+              "num_paragraphs": null,
+              "num_placeholders": null,
+              "num_sections": null,
+              "num_sentences": null,
+              "num_words": null,
+              "options": null,
+              "percentage": null,
+              "postscript_marker": null,
+              "prompt_to_repeat": null,
+              "reference_text": null,
+              "relation": null,
+              "section_spliter": null,
+              "sep": null,
+              "small_n": 5,
+              "word": null
+            }
+          ]
+        },
+        "type": "record",
+        "id": "ifbench-key-22",
+        "excerpt": true
+      },
+      {
+        "license": "ODC-BY-1.0 · Ai2 官方 README 明确称 data licensed under ODC-BY-1.0，并表明用于 research and educational use；样例仅含 prompt约束记录，不含第三方模型生成输出。",
+        "title": "词数范围 · 特征集合相似度",
+        "prompt": "构思一种用于多个特征集合相似度评分的新代价函数，回复需在57至61词之间。",
+        "split": "IFBench_test.jsonl / row_idx=42 / key=42",
+        "source": "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
+        "explanation": "key=42询问如何设计新的相似度代价函数，同时要求57到61词；源行标签为word_count_range，kwargs保留min_words=57/max_words=61。未包含参考实现或标准答案。 原始记录保留 key/prompt/instruction_id_list/kwargs；不含模型输出或答案。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "key": "42",
+          "prompt": "I want to create a new cost function to calculate the similarity score of n number of set of features The response must contain between 57 and 61 words.",
+          "instruction_id_list": [
+            "count:word_count_range"
+          ],
+          "kwargs": [
+            {
+              "N": null,
+              "capital_frequency": null,
+              "capital_relation": null,
+              "end_phrase": null,
+              "first_word": null,
+              "forbidden_words": null,
+              "frequency": null,
+              "keyword": null,
+              "keyword1": null,
+              "keyword2": null,
+              "keyword3": null,
+              "keyword4": null,
+              "keyword5": null,
+              "keywords": null,
+              "language": null,
+              "let_frequency": null,
+              "let_relation": null,
+              "letter": null,
+              "m": null,
+              "max_words": 61,
+              "min_words": 57,
+              "n": null,
+              "n_end": null,
+              "n_start": null,
+              "nth_paragraph": null,
+              "num_bullets": null,
+              "num_highlights": null,
+              "num_paragraphs": null,
+              "num_placeholders": null,
+              "num_sections": null,
+              "num_sentences": null,
+              "num_words": null,
+              "options": null,
+              "percentage": null,
+              "postscript_marker": null,
+              "prompt_to_repeat": null,
+              "reference_text": null,
+              "relation": null,
+              "section_spliter": null,
+              "sep": null,
+              "small_n": null,
+              "word": null
+            }
+          ]
+        },
+        "type": "record",
+        "id": "ifbench-key-42",
+        "excerpt": true
       }
     ]
   }

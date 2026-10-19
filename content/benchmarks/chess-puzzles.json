@@ -60,7 +60,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
-    "scope": "本站只整理评测概述并链接官方材料，不在本条目复制题目、答案或媒体。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "代码仓库的开源许可与底层任务数据授权需分别核对。",
       "后续转载题目或媒体前，须核实对应材料的授权范围。"
@@ -71,10 +71,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "reason": "4个真实FEN局面与官方target可切换，保留原始任务字段，不含模型输出/推理；棋子与着法按FEN解释，未运行Stockfish。",
     "url": "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
     "sourceUrls": [
-      "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval"
+      "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
+      "https://epoch.ai/benchmarks/chess-puzzles"
     ]
   },
   "metric": {
@@ -111,6 +112,20 @@
       "sourceUrls": [
         "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
+        "https://epoch.ai/benchmarks/chess-puzzles"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“白方第31回合：车横移”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
+        "https://epoch.ai/benchmarks/chess-puzzles"
+      ]
     }
   ],
   "sources": [
@@ -126,8 +141,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "从最终文本抽取起点/终点着法并对唯一最佳答案键；Stockfish用于生成筛选题，不意味着答题模型可调用该引擎。",
@@ -143,7 +158,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-chess-puzzles",
@@ -163,6 +178,66 @@
         "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据只展示所列真实字段、配置事实与必要原文节录；其格式不被解释为整套数据或其他材料的再发布授权。",
         "split": "官方公开 GPT-5 评测日志 / 单条真实棋局状态",
         "excerpt": true
+      },
+      {
+        "id": "public-case-chess-puzzles-2",
+        "title": "黑方第27回合：车从g7移至g6",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "公开日志中的 FEN：\n8/p1k2pr1/Ppp1bN1b/5p2/7P/2P2RPB/P1P1P3/3K4 b - - 2 27\n原记录的 target 为 g7g6。此处保留棋局状态与原目标字段，不附模型输出或推理。",
+        "explanation": "FEN第7横线的g7为黑车r，当前轮到黑方；日志target=g7g6表示黑车沿同一纵线移动一格。原局面、回合和目标保留，不附模型推理或把它误认为兵的推进。",
+        "raw": {
+          "id": 2,
+          "epoch": 1,
+          "input": "8/p1k2pr1/Ppp1bN1b/5p2/7P/2P2RPB/P1P1P3/3K4 b - - 2 27",
+          "target": "g7g6",
+          "metadata": {}
+        },
+        "source": "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
+        "license": "Epoch官方公开评测日志中的棋局状态与目标着法；整体日志复用许可本次未确认。仅保留任务字段，不复制模型输出、思维过程、事件或成绩。",
+        "split": "官方公开 GPT-5 评测日志 / 单条真实棋局状态",
+        "excerpt": true,
+        "answer": "g7g6"
+      },
+      {
+        "id": "public-case-chess-puzzles-3",
+        "title": "黑方第27回合：车从g8移至g7",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "公开日志中的 FEN：\n3rk1r1/1pq5/1n3p1p/p1b4P/P1PNPPb1/3QB1P1/R4KB1/7R b - - 4 27\n原记录的 target 为 g8g7。此处保留棋局状态与原目标字段，不附模型输出或推理。",
+        "explanation": "第8横线3rk1r1表示黑王在e8、黑车在d8与g8；target=g8g7移动的是车。FEN与UCI目标原值保留，本地没有运行Stockfish重新求解。",
+        "raw": {
+          "id": 3,
+          "epoch": 1,
+          "input": "3rk1r1/1pq5/1n3p1p/p1b4P/P1PNPPb1/3QB1P1/R4KB1/7R b - - 4 27",
+          "target": "g8g7",
+          "metadata": {}
+        },
+        "source": "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
+        "license": "Epoch官方公开评测日志中的棋局状态与目标着法；整体日志复用许可本次未确认。仅保留任务字段，不复制模型输出、思维过程、事件或成绩。",
+        "split": "官方公开 GPT-5 评测日志 / 单条真实棋局状态",
+        "excerpt": true,
+        "answer": "g8g7"
+      },
+      {
+        "id": "public-case-chess-puzzles-4",
+        "title": "白方第31回合：车横移",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "公开日志中的 FEN：\n4k3/1p1r4/1n1q3p/p1b2p1P/P1PNPPr1/3QB1P1/1R3KB1/8 w - - 0 31\n原记录的 target 为 b2d2。此处保留棋局状态与原目标字段，不附模型输出或推理。",
+        "explanation": "定位：samples/4_epoch_1.json / id=4 / epoch=1。此局面轮到白方第31回合，目标着法是 b2 到 d2 的车移动；原始 FEN 与 UCI 着法保留，未带入模型的解释或得分。 原记录另含模型对话、输出和评分；本站仅投影 id、epoch、input、target、metadata。",
+        "raw": {
+          "id": 4,
+          "epoch": 1,
+          "input": "4k3/1p1r4/1n1q3p/p1b2p1P/P1PNPPr1/3QB1P1/1R3KB1/8 w - - 0 31",
+          "target": "b2d2",
+          "metadata": {}
+        },
+        "source": "https://epoch-benchmarks-staging-public.s3.us-east-2.amazonaws.com/inspect_ai_logs/6DcmBdRZz57U5cusZNBeGW.eval",
+        "license": "Epoch官方公开评测日志中的棋局状态与目标着法；整体日志复用许可本次未确认。仅保留任务字段，不复制模型输出、思维过程、事件或成绩。",
+        "split": "官方公开 GPT-5 评测日志 / 单条真实棋局状态",
+        "excerpt": true,
+        "answer": "b2d2"
       }
     ]
   }

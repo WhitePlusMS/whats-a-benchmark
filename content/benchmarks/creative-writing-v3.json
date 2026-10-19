@@ -72,9 +72,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "本轮固定README没有明确数据许可，LICENSE路径404；不据旧记录中未证实的MIT说法宣称整套题库可再发布。"
     ],
     "sourceUrls": [
       "https://github.com/EQ-bench/creative-writing-bench"
@@ -83,9 +83,11 @@
   "sampleAccess": {
     "url": "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json",
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "reason": "5条官方写作要求可切换；基础提示中的<SEED>保持字面原值，未冒充展开后的随机运行输入。续写例仅引实际Writing Instructions，前置故事未转载。",
     "sourceUrls": [
-      "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json"
+      "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json",
+      "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+      "https://github.com/EQ-bench/creative-writing-bench"
     ]
   },
   "metric": {
@@ -135,11 +137,16 @@
       "label": "案例原始数据精简字段来源",
       "url": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/main/data/creative_writing_prompts_v3.json",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "指定 LLM 进行单篇 rubric 与双向成对比较；裁判配置要随榜单版本记录。",
@@ -172,14 +179,29 @@
       "sourceUrls": [
         "https://github.com/EQ-bench/creative-writing-bench"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+        "https://github.com/EQ-bench/creative-writing-bench"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“白帽黑客：约会中的内心独白”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+        "https://github.com/EQ-bench/creative-writing-bench/blob/main/data/creative_writing_prompts_v3.json",
+        "https://github.com/EQ-bench/creative-writing-bench"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "creative-writing-v3-gladiator",
-        "title": "罗马角斗士日常片段写作",
+        "title": "角斗士：第一人称日常场景",
         "type": "text",
         "promptOrigin": "editorial",
         "prompt": "Creative Writing v3 的历史小说提示要求描写罗马帝国时期一名角斗士的一段日常，聚焦感官细节、内心情绪和时代背景，避免写战斗场面，并采用第一人称过去时。",
@@ -187,14 +209,84 @@
           "1": {
             "category": "historical fiction",
             "title": "Gladiator",
-            "writing_prompt": "Historical Fiction: Write a scene from a story set during the height of the Roman Empire, focusing on a slice"
+            "writing_prompt": "Historical Fiction: Write a scene from a story set during the height of the Roman Empire, focusing on a slice of a day in the life of a gladiator. Do not write a combat scene. Use sensory details to capture the sights, sounds, and smells of ancient Rome. Explore the gladiator's thoughts and emotions. The story should also touch on the larger political and social issues of the time period. The piece should feel like a slice of a larger story. <SEED> First person, past tense, 1000 words."
           }
         },
-        "explanation": "官方提示 JSON key=1，category=historical fiction，title=Gladiator。仓库路径指向可变 main 分支，本记录不声称固定 commit；未复制完整 prompt、seed modifiers、评分 rubric 或生成作品。\n原始数据精简说明：保留实际源数据字段和嵌套结构；省略 1.writing_prompt: retained only its opening sentence; source value continues after this sentence、seed_modifiers、model outputs。 保留文本字段的真实片段，范围为 [{\"path\": \"1.writing_prompt\", \"start\": 0, \"end\": 109, \"sourceCharacters\": 490}]。",
-        "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/main/data/creative_writing_prompts_v3.json",
-        "license": "官方仓库可见 MIT 声明，但本次未确认其对提示文本和评分/模型输出数据的具体覆盖。本页仅保留必要短引和本站中文概述，不据仓库代码许可宣称题库整体授权。 原始数据仅显示上述源字段、事实元数据与必要原文节选，不推及未展示的媒体、模型回答或完整材料；中文任务说明另行整理。",
+        "explanation": "要求写罗马帝国时期角斗士的日常片段，明确不要战斗场面，采用第一人称过去时并约1000词；原始<SEED>占位符保留，未自行填入种子。 原始提示与本站说明分开，seed_modifiers、rubric和模型作品未复制；所选是官方基础提示，不冒称某次已展开随机种子的完整运行输入。",
+        "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+        "license": "官方提示原文的必要任务引用；未找到覆盖整套数据的明确许可，不转载模型作品或给定长故事。",
         "split": "creative_writing_prompts_v3.json · key=1 · historical fiction · Gladiator",
         "excerpt": true
+      },
+      {
+        "type": "record",
+        "id": "creative-writing-v3-key-2",
+        "title": "灯塔守夜人：跨月或跨年的书信叙事",
+        "prompt": "围绕偏远灯塔值守者，以跨越数月或数年的多封通信逐步揭示故事，并区分通信双方的声音。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "2": {
+            "category": "epistolary",
+            "title": "The Lighthouse Keeper",
+            "writing_prompt": "The Lighthouse Keeper\n\nEpistolary Narrative: Write a story told entirely through a series of brief correspondences: telegrams or letters or emails between two characters. The correspondence should span several months or years, and reveal a gradually unfolding plot. Use distinct voices for each character, and include details that provide insight into their personalities and motivations. The story should build to an emotional climax, and the final letter should provide a satisfying resolution. The setting is a lighthouse keeper writing to his mother. He is working class and Scottish. He is struggling with the isolation of his posting. Write naturally and without cliches. <SEED> 1000 words."
+          }
+        },
+        "explanation": "要求用两人短通信串联数月或数年的情节，核心是苏格兰工薪阶层灯塔守夜人与母亲通信；需有不同声音、情感高潮和结尾回应，原文还要求自然、避免俗套。 原始提示与本站说明分开，seed_modifiers、rubric和模型作品未复制；所选是官方基础提示，不冒称某次已展开随机种子的完整运行输入。",
+        "split": "creative_writing_prompts_v3.json · key=2 · epistolary · The Lighthouse Keeper",
+        "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+        "license": "官方提示原文的必要任务引用；未找到覆盖整套数据的明确许可，不转载模型作品或给定长故事。"
+      },
+      {
+        "type": "record",
+        "id": "creative-writing-v3-key-3",
+        "title": "威尔士书店：明星与店主的对话场景",
+        "prompt": "英国威尔士小镇的书店里，虚构明星为躲避媒体进入店内，与店主展开一段重要相遇场景。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "3": {
+            "category": "romance",
+            "title": "Love in the Limelight",
+            "writing_prompt": "Romance: Love in the Limelight. Write one scene within a larger story set in Wales. A famous (fictional) actor ducks into a small-town bookstore to escape paparazzi. The scene takes us through the characters meeting in this odd circumstance. Over the course of the scene, the actor and the bookstore owner have a conversation charged by an undercurrent of unspoken chemistry. Write the actor as somewhat of a rogue with a fragile ego, which needs to be fed by having everyone like him. He is thoroughly charming, but the bookstore owner seems (at least superficially) immune to this; which paradoxically provokes a genuine attraction and derails the charm offensive. The bookstore owner, despite the superficial rebuffs of the actor's charm, is inwardly more than a little charmed and flustered despite themselves. Write primarily in dialogue, in the distinct voices of each character. <SEED> 1000 words."
+          }
+        },
+        "explanation": "任务要求把虚构明星躲避狗仔进入书店的偶遇写成大故事中的一幕，主要通过角色有区别的对话表现相互吸引及心理反差；未生成任何故事。 原始提示与本站说明分开，seed_modifiers、rubric和模型作品未复制；所选是官方基础提示，不冒称某次已展开随机种子的完整运行输入。",
+        "split": "creative_writing_prompts_v3.json · key=3 · romance · Love in the Limelight",
+        "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+        "license": "官方提示原文的必要任务引用；未找到覆盖整套数据的明确许可，不转载模型作品或给定长故事。"
+      },
+      {
+        "type": "record",
+        "id": "creative-writing-v3-key-5",
+        "title": "山中旅馆：延续给定恐怖故事",
+        "prompt": "以秋日抵达山间旅馆的开篇营造熟悉环境与异常感，属于超现实恐怖题型。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": "Writing Instructions:\nContinue with the next chapter of the story, maintaining a style reminiscent of Stephen King—grounded realism blended seamlessly with unsettling surrealism. The atmosphere should convey subtle dread, isolation, and psychological ambiguity. JT's perspective is crucial, yet he is an unreliable narrator, caught in uncertainty about what he's perceiving. <SEED> Establish an undertone of creeping dread, establishing the isolation of JT's perspective, which he largely keeps to himself. Incorporate some dialogue. Build tension towards a payoff. 1000 words.",
+        "explanation": "源记录包含一段已写好的故事作为续写输入。这里仅引用Writing Instructions的连续完整指令段；前置故事没有镜像，因此不是完整独立续写输入，也没有补写它的续篇。 原始提示与本站说明分开，seed_modifiers、rubric和模型作品未复制；所选是官方基础提示，不冒称某次已展开随机种子的完整运行输入。",
+        "split": "creative_writing_prompts_v3.json · key=5 · surreal horror · Caribou Season at the Lodge",
+        "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+        "license": "官方提示原文的必要任务引用；未找到覆盖整套数据的明确许可，不转载模型作品或给定长故事。"
+      },
+      {
+        "type": "record",
+        "id": "creative-writing-v3-key-10",
+        "title": "白帽黑客：约会中的内心独白",
+        "prompt": "从改过自新的白帽安全研究者视角写作，呈现其在日常环境中观察系统与人际弱点的习惯。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "raw": {
+          "10": {
+            "category": "first-person unique perspective",
+            "title": "Hacker Mindset",
+            "writing_prompt": "Hacker Mindset\n\nWrite a first-person narrative from the perspective of a reformed (now) white hat hacker who cannot help but notice exploitable weaknesses in both systems and people they encounter. They habitually look for vulnerabilities and exploit vectors. The narrative takes place during a first date at a restaurant, where they're trying to focus on human connection. It's going surprisingly well due to a discovered shared nerd-fandom (magic the gathering). Things go a little sideways when the date reveals a noticeably insecure phone unlock pattern, which protagonist can't help but comment on. They are then left to negotiate the fallout of this faux pas and attempt to salvage (or perhaps sabotage) the remainder of the date. Write almost entirely in internal monologue. <SEED> 1000 words."
+          }
+        },
+        "explanation": "题目指定已改行的白帽黑客在餐厅初次约会时忍不住注意安全弱点，因为评论手机解锁图案而造成尴尬；写作主要用内心独白，保留<SEED>和1000词要求，不产生攻击代码或故事回答。 原始提示与本站说明分开，seed_modifiers、rubric和模型作品未复制；所选是官方基础提示，不冒称某次已展开随机种子的完整运行输入。",
+        "split": "creative_writing_prompts_v3.json · key=10 · first-person unique perspective · Hacker Mindset",
+        "source": "https://raw.githubusercontent.com/EQ-bench/creative-writing-bench/c7c3ceef54c40a8ae02dc1c2e1a5e40970fe5c0b/data/creative_writing_prompts_v3.json",
+        "license": "官方提示原文的必要任务引用；未找到覆盖整套数据的明确许可，不转载模型作品或给定长故事。"
       }
     ]
   }

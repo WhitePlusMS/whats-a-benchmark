@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { effectScope, nextTick, ref } from "vue";
 import { useSampleViewer } from "../src/composables/sampleViewer";
+import { sampleSetSchema } from "../src/content/schema";
 import type { SampleFile } from "../src/types/benchmark";
 
 // 仅用于交互生命周期的合成夹具，不作为站点正式样例发布。
@@ -33,6 +34,60 @@ async function settle() {
   await new Promise<void>((resolve) => setImmediate(resolve));
   await nextTick();
 }
+
+test("more than six source records remain selectable without leaking the previous answer", async (t) => {
+  // 合成数据只验证数量与切换行为；不会作为官方案例进入内容目录。
+  const samples = Array.from({ length: 9 }, (_, index) => ({
+    id: `case-${index + 1}`,
+    title: `Case ${index + 1}`,
+    type: "text" as const,
+    prompt: `Question ${index + 1}`,
+    answer: `Answer ${index + 1}`,
+    explanation: "Interaction test only",
+    raw: { record_id: index + 1 },
+    source: "https://example.com/interaction-fixture",
+    license: "Test fixture",
+    split: "test",
+    excerpt: false,
+  }));
+  const sampleSet = sampleSetSchema.parse({
+    retrievedAt: "2026-10-19",
+    samples,
+  });
+  assert.equal(sampleSet.samples.length, 9);
+  assert.equal(
+    sampleSetSchema.safeParse({ ...sampleSet, samples: [] }).success,
+    false,
+  );
+  assert.equal(
+    sampleSetSchema.safeParse({
+      ...sampleSet,
+      samples: [...samples, samples[0]],
+    }).success,
+    false,
+  );
+  t.mock.method(globalThis, "fetch", async () =>
+    Response.json({ benchmarkId: "multiple", ...sampleSet }),
+  );
+  const scope = effectScope();
+  t.after(() => scope.stop());
+  const viewer = scope.run(() =>
+    useSampleViewer(
+      () => "multiple",
+      () => true,
+      "/",
+    ),
+  )!;
+  await settle();
+  viewer.showAnswer.value = true;
+  viewer.mode.value = "raw";
+  viewer.index.value = 8;
+  assert.equal(viewer.current.value?.id, "case-9");
+  assert.deepEqual(viewer.current.value?.raw, { record_id: 9 });
+  assert.equal(viewer.current.value?.answer, "Answer 9");
+  assert.equal(viewer.showAnswer.value, false);
+  assert.equal(viewer.mode.value, "read");
+});
 
 test("sample viewer preserves interaction across modes and resets when selecting another task", async (t) => {
   t.mock.method(globalThis, "fetch", async () =>

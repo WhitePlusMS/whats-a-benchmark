@@ -14,7 +14,7 @@
     }
   ],
   "kind": "suite",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "id": "longbench",
   "name": "LongBench",
   "subtitle": "读长材料，还能回答、总结和推理吗",
@@ -139,7 +139,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "作者仓库根目录标注 MIT；这属于仓库级代码许可，不能统一覆盖各上游数据和嵌入材料。",
-    "scope": "21 项任务复用多种数据集、长文、新闻、政府文件、Wikipedia 和代码来源；逐项再发布权利未清。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不复制任务原文、长上下文、文章、答案、代码片段或截图；转载前固定 revision 并核验具体来源及许可。"
     ],
@@ -150,11 +150,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "基于固定版本 Multi-News test row 0 做原创中文事件概述，仅保留一条短原文引用；未复制新闻正文或参考摘要，亦不据此推定题库许可。",
+    "reason": "4个真实来源案例可查看；原问题/参考值/定位与旧context短引保留，长context及多新闻正文未镜像，不能完整复现评测。",
     "url": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
     "sourceUrls": [
       "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
-      "https://huggingface.co/datasets/THUDM/LongBench/blob/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/README.md"
+      "https://huggingface.co/datasets/THUDM/LongBench/blob/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/README.md",
+      "https://github.com/THUDM/LongBench/tree/main/LongBench",
+      "https://github.com/THUDM/LongBench/blob/main/LICENSE"
     ]
   },
   "researchNotes": [
@@ -176,26 +178,164 @@
       "sourceUrls": [
         "https://github.com/THUDM/LongBench/tree/main/LongBench"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+        "https://github.com/THUDM/LongBench/tree/main/LongBench",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：三条新记录保留真实问题/参考值/元数据，context未复制；旧Multi-News的input实为空，改用context原文连续短引，未重命名字段。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+        "https://huggingface.co/datasets/THUDM/LongBench/blob/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/README.md",
+        "https://github.com/THUDM/LongBench/tree/main/LongBench",
+        "https://github.com/THUDM/LongBench/blob/main/LICENSE",
+        "https://huggingface.co/datasets/THUDM/LongBench"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "longbench-multi-news-row-0",
         "title": "Multi-News：占领运动新闻摘要主题",
         "type": "text",
         "promptOrigin": "editorial",
-        "prompt": "LongBench v1 的 Multi-News 测试集 row 0 是多篇新闻摘要任务。该记录涉及洛杉矶 Occupy 营地在警方清场前获暂缓、公园外发生逮捕，以及费城抗议者在截止时间后仍留守、警方当时不计划强制驱离。请概括报道涉及的事件与两地处置情况。此处为原创中文事实解读；原文新闻和参考摘要均未复制。",
-        "explanation": "定位为 THUDM/LongBench 固定 revision 的 test split、data/multi_news.jsonl 第 1 行（_id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8）。source input 字段为空，记录类型为 Multi-News 摘要任务。原新闻上下文和作者 gold 摘要均未复制；单句 raw 是 context 的短引。\n原始数据精简说明：保留原生_id和input实际前缀；省略input其余长新闻正文、answers及其他字段。原始资料与本站中文说明分开，未通过格式包装补造记录。",
-        "raw": {
-          "_id": "e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
-          "input": "About 100 Occupy Philly protesters sat down"
-        },
+        "prompt": "LongBench v1 Multi-News row 0 的context开头提到 Occupy Philadelphia 成员在11月28日傍晚仍留在市政厅。这里只展示其前25词；缺少余下长文与官方摘要，不能独立复现完整摘要任务。",
+        "explanation": "官方固定归档的Multi-News第0行input确为空，旧例曾把context短句误填为input。本次raw只保留context开头25词的连续原文（含源换行和标点）；_id与字段位置写在来源说明，不把截短字符串当作完整原字段。未复制其余多篇新闻或参考摘要，不能独立复现完整长文摘要任务。",
+        "raw": "Passage 1:\nMembers of Occupy Philadelphia remain on site at City Hall into the evening of Nov. 28. (David M Warren / Staff Photographer) NEWLINE_CHAR",
         "source": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
         "license": "本站原创中文解读与必要短引；LongBench 数据卡未声明 license 值，未推定整条记录的再发布许可。 原始数据只显示上述已公开源字段、事实配置与必要原文节录，不扩展为受控题库、第三方完整正文或附件的公开再发布授权。",
-        "split": "LongBench v1 / test / multi_news.jsonl row 0; _id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
+        "split": "LongBench v1 / config=default / test / data/multi_news.jsonl row 0 / context field / _id=e45abfcb82a3c862c0f772e6f461866839955c11ea2f46a8",
+        "excerpt": true
+      },
+      {
+        "id": "official-case-longbench-qasper-row-0-3ac3eef6",
+        "title": "QASPER · fake news ground-truth methodology",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "QASPER row 0 问论文如何建立 fake news 的 ground truth；raw保留官方input和answers字段投影。完整论文 context 未复制，因此当前展示不能独立回答原任务。",
+        "answer": "Ground truth is not established in the paper",
+        "explanation": "问题与官方答案字段可在固定revision qasper.jsonl row 0 精确定位；当前raw仅投影input、answers及所列元数据，context没有复制。answers是数据集提供的参考答案，不是模型输出。",
+        "raw": {
+          "input": "How is the ground truth for fake news established?",
+          "answers": [
+            "Ground truth is not established in the paper"
+          ],
+          "length": 3141,
+          "dataset": "qasper",
+          "language": "en",
+          "all_classes": null,
+          "_id": "3ac3eef636db11635a21a61804cb28e92c546a5686dd1e12"
+        },
+        "source": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+        "license": "HF API当前数据卡没有声明 license 值；此处记录固定revision公开 data.zip 中的原始行，具体数据行及所含论文/网页文本的再发布权范围待主任务复核，不把仓库代码许可外推到内容。",
+        "split": "config=default / source file=data/qasper.jsonl / source line index=0 / dataset=qasper / _id=3ac3eef636db11635a21a61804cb28e92c546a5686dd1e12",
+        "excerpt": true
+      },
+      {
+        "id": "official-case-longbench-2wikimqa-row-0-41ac2a4b",
+        "title": "2WikiMQA · Francis I Rákóczi 妻子的出生地",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "2WikiMQA row 0 问 Francis I Rákóczi 的妻子出生地；raw保留官方问题和答案字段。作为multi-hop任务所需的context未复制，当前展示不能独立回答。",
+        "answer": "Ozalj",
+        "explanation": "固定revision 2wikimqa.jsonl row 0 的input、answers和列示元数据逐字段核对一致；完整context字段省略，因而本条不是完整可作答任务。答案Ozalj来自官方answers字段。",
+        "raw": {
+          "input": "Where was the wife of Francis I Rákóczi born?",
+          "answers": [
+            "Ozalj"
+          ],
+          "length": 4696,
+          "dataset": "2wikimqa",
+          "language": "en",
+          "all_classes": null,
+          "_id": "41ac2a4beb0af8f58d01863a62b90692f7c7d74b5e3a58d9"
+        },
+        "source": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+        "license": "HF API当前数据卡没有声明 license 值；此处记录固定revision公开 data.zip 中的原始行，具体数据行及所含论文/网页文本的再发布权范围待主任务复核，不把仓库代码许可外推到内容。",
+        "split": "config=default / source file=data/2wikimqa.jsonl / source line index=0 / dataset=2wikimqa / _id=41ac2a4beb0af8f58d01863a62b90692f7c7d74b5e3a58d9",
+        "excerpt": true
+      },
+      {
+        "id": "official-case-longbench-trec_e-row-0-37ada5a3",
+        "title": "TREC-E · nanotechnology 问题类型",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "TREC-E row 0 要求将 “What is nanotechnology?” 分类；官方答案为 “Definition of something”。raw保留input/answers及所列元数据，few-shot context未复制，不能独立复现任务。",
+        "answer": "Definition of something",
+        "explanation": "固定revision trec_e.jsonl row 0 的input、answers和所列元数据逐字段核对一致；context包含分类示例，但没有复制。answers为官方标签，候选不生成模型输出。",
+        "raw": {
+          "input": "Question: What is nanotechnology ?\nType:",
+          "answers": [
+            "Definition of something"
+          ],
+          "length": 1093,
+          "dataset": "trec_e",
+          "language": "en",
+          "all_classes": [
+            "Food",
+            "Date",
+            "Order, rank",
+            "Speed",
+            "Disease and medicine",
+            "Word with a special property",
+            "Abbreviation",
+            "Language",
+            "Letter like a-z",
+            "Other entity",
+            "Animal",
+            "Expression abbreviated",
+            "Price",
+            "Techniques and method",
+            "Musical instrument",
+            "Mountain",
+            "Currency name",
+            "Event",
+            "Product",
+            "State",
+            "Individual",
+            "Organ of body",
+            "Reason",
+            "Manner of an action",
+            "City",
+            "Religion",
+            "Invention, book and other creative piece",
+            "Distance, linear measure",
+            "Temperature",
+            "Postcode or other code",
+            "Size, area and volume",
+            "Sport",
+            "Country",
+            "Other location",
+            "Lasting time of somethin",
+            "Equivalent term",
+            "Description of something",
+            "Weight",
+            "Vehicle",
+            "Color",
+            "Other number",
+            "Definition of something",
+            "Element and substance",
+            "Description of a person",
+            "Symbols and sign",
+            "Number of something",
+            "Plant",
+            "Percent, fraction",
+            "Group or organization of person",
+            "Title of a person"
+          ],
+          "_id": "37ada5a32aa71f2b906e18d53a6b0e82ab87ba4590b65583"
+        },
+        "source": "https://huggingface.co/datasets/THUDM/LongBench/resolve/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/data.zip",
+        "license": "HF API当前数据卡没有声明 license 值；此处记录固定revision公开 data.zip 中的原始行，具体数据行及所含论文/网页文本的再发布权范围待主任务复核，不把仓库代码许可外推到内容。",
+        "split": "config=default / source file=data/trec_e.jsonl / source line index=0 / dataset=trec_e / _id=37ada5a32aa71f2b906e18d53a6b0e82ab87ba4590b65583",
         "excerpt": true
       }
     ]

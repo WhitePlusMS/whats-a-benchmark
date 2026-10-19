@@ -12,7 +12,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "id": "mmlu",
   "name": "MMLU",
   "subtitle": "一张覆盖很多学科的知识试卷",
@@ -82,6 +82,11 @@
       "label": "MIT 许可原文",
       "url": "https://raw.githubusercontent.com/hendrycks/test/master/LICENSE",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -142,7 +147,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "MIT（固定公开数据快照的许可声明）",
-    "scope": "仅展示此官方公开数据快照中的 1 条记录；许可说明不延伸至其它第三方材料或未公开题集。",
+    "scope": "仅展示此官方公开数据快照中的 多条记录；许可说明不延伸至其它第三方材料或未公开题集。",
     "boundaries": [
       "保留发布方、记录位置和许可原文；中文解读由本站撰写。"
     ],
@@ -153,11 +158,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从官方原文件核验并展示 1 条真实公开记录，原题、答案和许可可在本页查看。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
     "sourceUrls": [
       "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md"
+      "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5"
     ]
   },
   "researchNotes": [
@@ -167,11 +173,26 @@
         "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
         "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“解剖学 · 外胚间充质来源”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/anatomy/test-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5",
+        "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/README.md",
+        "https://github.com/hendrycks/test"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "anatomy-test-row-0",
@@ -201,6 +222,96 @@
           "paralysis of the facial muscles and loss of taste.",
           "paralysis of the facial muscles, loss of taste and lacrimation.",
           "paralysis of the facial muscles, loss of taste, lacrimation and decreased salivation."
+        ]
+      },
+      {
+        "id": "mmlu-anatomy-test-1",
+        "title": "解剖学 · 凹面型侧貌",
+        "type": "choice",
+        "prompt": "A \"dished face\" profile is often associated with",
+        "answer": "B. a recessive maxilla due to failure of elongation of the cranial base.",
+        "explanation": "根据侧貌描述区分下颌突出、上颌后缩、额骨增大及上颌窦发育异常。raw.answer=1 是从0开始的选项索引，对应展示选项 B；这是数据集的标注。",
+        "raw": {
+          "question": "A \"dished face\" profile is often associated with",
+          "subject": "anatomy",
+          "choices": [
+            "a protruding mandible due to reactivation of the condylar cartilage by acromegaly.",
+            "a recessive maxilla due to failure of elongation of the cranial base.",
+            "an enlarged frontal bone due to hydrocephaly.",
+            "defective development of the maxillary air sinus."
+          ],
+          "answer": 1
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5",
+        "license": "Dan Hendrycks 等研究者 · MIT",
+        "licensePath": "licenses/mmlu-sample-source.txt",
+        "split": "anatomy / test / row_idx=1",
+        "excerpt": false,
+        "options": [
+          "a protruding mandible due to reactivation of the condylar cartilage by acromegaly.",
+          "a recessive maxilla due to failure of elongation of the cranial base.",
+          "an enlarged frontal bone due to hydrocephaly.",
+          "defective development of the maxillary air sinus."
+        ]
+      },
+      {
+        "id": "mmlu-anatomy-test-2",
+        "title": "解剖学 · 储尿结构",
+        "type": "choice",
+        "prompt": "Which of the following best describes the structure that collects urine in the body?",
+        "answer": "A. Bladder",
+        "explanation": "题目在膀胱、肾、输尿管和尿道之间区分储存与输送功能。原始 answer=0 对应 A，原 choices 的顺序保持不变。",
+        "raw": {
+          "question": "Which of the following best describes the structure that collects urine in the body?",
+          "subject": "anatomy",
+          "choices": [
+            "Bladder",
+            "Kidney",
+            "Ureter",
+            "Urethra"
+          ],
+          "answer": 0
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5",
+        "license": "Dan Hendrycks 等研究者 · MIT",
+        "licensePath": "licenses/mmlu-sample-source.txt",
+        "split": "anatomy / test / row_idx=2",
+        "excerpt": false,
+        "options": [
+          "Bladder",
+          "Kidney",
+          "Ureter",
+          "Urethra"
+        ]
+      },
+      {
+        "id": "mmlu-anatomy-test-3",
+        "title": "解剖学 · 外胚间充质来源",
+        "type": "choice",
+        "prompt": "Which of the following structures is derived from ectomesenchyme?",
+        "answer": "C. Melanocytes",
+        "explanation": "要按胚胎组织来源区分运动神经元、骨骼肌、黑素细胞与汗腺。官方 answer=2 对应 C；此处说明如何读原索引，没有另造医学题或参考答案。",
+        "raw": {
+          "question": "Which of the following structures is derived from ectomesenchyme?",
+          "subject": "anatomy",
+          "choices": [
+            "Motor neurons",
+            "Skeletal muscles",
+            "Melanocytes",
+            "Sweat glands"
+          ],
+          "answer": 2
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5",
+        "license": "Dan Hendrycks 等研究者 · MIT",
+        "licensePath": "licenses/mmlu-sample-source.txt",
+        "split": "anatomy / test / row_idx=3",
+        "excerpt": false,
+        "options": [
+          "Motor neurons",
+          "Skeletal muscles",
+          "Melanocytes",
+          "Sweat glands"
         ]
       }
     ]

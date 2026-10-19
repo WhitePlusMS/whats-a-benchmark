@@ -5,7 +5,7 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "id": "human-eval",
   "name": "HumanEval",
   "subtitle": "按说明补全一个 Python 函数",
@@ -90,6 +90,11 @@
       "label": "官方站内样例记录",
       "url": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -98,7 +103,7 @@
     "openai"
   ],
   "sampleSet": {
-    "retrievedAt": "2026-09-22",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "HumanEval/0",
@@ -136,6 +141,86 @@
         "answer": "    result = []\n    current_string = []\n    current_depth = 0\n\n    for c in paren_string:\n        if c == '(':\n            current_depth += 1\n            current_string.append(c)\n        elif c == ')':\n            current_depth -= 1\n            current_string.append(c)\n\n            if current_depth == 0:\n                result.append(''.join(current_string))\n                current_string.clear()\n\n    return result\n",
         "explanation": "把平衡括号文本拆成互不嵌套的组，并忽略空格。任务需要返回字符串列表，测试会检查分组边界。",
         "source": "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      },
+      {
+        "id": "HumanEval/2",
+        "title": "HumanEval/2 · truncate_number",
+        "raw": {
+          "task_id": "HumanEval/2",
+          "prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+          "entry_point": "truncate_number",
+          "canonical_solution": "    return number % 1.0\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n"
+        },
+        "split": "official HumanEval.jsonl / HumanEval/2",
+        "excerpt": false,
+        "prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+        "answer": "    return number % 1.0\n",
+        "explanation": "取正浮点数的小数部分，函数返回一个小于 1 的数。官方测试用容差比较 1.33 和 123.456 的小数结果，说明不能依赖浮点数的完全相等；参考实现与测试原样保留。",
+        "source": "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      },
+      {
+        "id": "HumanEval/3",
+        "title": "HumanEval/3 · below_zero",
+        "raw": {
+          "task_id": "HumanEval/3",
+          "prompt": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n",
+          "entry_point": "below_zero",
+          "canonical_solution": "    balance = 0\n\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n\n    return False\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate([]) == False\n    assert candidate([1, 2, -3, 1, 2, -3]) == False\n    assert candidate([1, 2, -4, 5, 6]) == True\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\n    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True\n"
+        },
+        "split": "official HumanEval.jsonl / HumanEval/3",
+        "excerpt": false,
+        "prompt": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n",
+        "answer": "    balance = 0\n\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n\n    return False\n",
+        "explanation": "从余额 0 开始依次累计存取款，判断任意中间时刻是否出现负余额；只比较最终余额会漏掉途中透支再补回的情况。raw 同时保留官方参考实现和边界测试。",
+        "source": "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      },
+      {
+        "id": "HumanEval/4",
+        "title": "HumanEval/4 · mean_absolute_deviation",
+        "raw": {
+          "task_id": "HumanEval/4",
+          "prompt": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+          "entry_point": "mean_absolute_deviation",
+          "canonical_solution": "    mean = sum(numbers) / len(numbers)\n    return sum(abs(x - mean) for x in numbers) / len(numbers)\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6\n\n"
+        },
+        "split": "official HumanEval.jsonl / HumanEval/4",
+        "excerpt": false,
+        "prompt": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+        "answer": "    mean = sum(numbers) / len(numbers)\n    return sum(abs(x - mean) for x in numbers) / len(numbers)\n",
+        "explanation": "先求列表均值，再计算每个元素与均值的绝对偏差并取平均；这里要求平均绝对偏差，不是方差。原始函数签名、参考实现和浮点误差测试均来自官方记录。",
+        "source": "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz",
+        "license": "MIT · OpenAI",
+        "licensePath": "licenses/human-eval.txt",
+        "type": "code"
+      },
+      {
+        "id": "HumanEval/5",
+        "title": "HumanEval/5 · intersperse",
+        "raw": {
+          "task_id": "HumanEval/5",
+          "prompt": "from typing import List\n\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n",
+          "entry_point": "intersperse",
+          "canonical_solution": "    if not numbers:\n        return []\n\n    result = []\n\n    for n in numbers[:-1]:\n        result.append(n)\n        result.append(delimeter)\n\n    result.append(numbers[-1])\n\n    return result\n",
+          "test": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate([], 7) == []\n    assert candidate([5, 6, 3, 2], 8) == [5, 8, 6, 8, 3, 8, 2]\n    assert candidate([2, 2, 2], 2) == [2, 2, 2, 2, 2]\n"
+        },
+        "split": "official HumanEval.jsonl / HumanEval/5",
+        "excerpt": false,
+        "prompt": "from typing import List\n\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n",
+        "answer": "    if not numbers:\n        return []\n\n    result = []\n\n    for n in numbers[:-1]:\n        result.append(n)\n        result.append(delimeter)\n\n    result.append(numbers[-1])\n\n    return result\n",
+        "explanation": "在相邻两个元素之间插入分隔数，不能在列表两端多插；空列表仍应返回空列表。原题参数名 delimeter 的拼写和官方实现保持不变。",
+        "source": "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz",
         "license": "MIT · OpenAI",
         "licensePath": "licenses/human-eval.txt",
         "type": "code"
@@ -204,9 +289,10 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方 README 提供样本格式和 debug 示例。现有站内样例按仓库许可保留来源；不从论文图表另行复制内容，运行代码仍须隔离。",
+    "reason": "6 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
-      "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz"
+      "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+      "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz"
     ]
   },
   "researchNotes": [
@@ -218,7 +304,21 @@
         "https://arxiv.org/html/2107.03374#S2.SS1",
         "https://github.com/openai/human-eval#usage"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 6 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“HumanEval/5 · intersperse”等案例；每条的附件缺口与取样范围单独说明。 展示记录2→6条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://github.com/openai/human-eval/blob/master/data/HumanEval.jsonl.gz",
+        "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz",
+        "https://github.com/openai/human-eval"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

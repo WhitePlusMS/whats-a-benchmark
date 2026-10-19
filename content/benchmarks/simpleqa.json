@@ -11,7 +11,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "id": "simpleqa",
   "name": "SimpleQA",
   "subtitle": "简短事实问题，答对还是瞎猜",
@@ -150,7 +150,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "MIT（固定公开数据快照的许可声明）",
-    "scope": "仅展示此官方公开数据快照中的 1 条记录；许可说明不延伸至其它第三方材料或未公开题集。",
+    "scope": "仅展示此官方公开数据快照中的 多条记录；许可说明不延伸至其它第三方材料或未公开题集。",
     "boundaries": [
       "保留发布方、记录位置和许可原文；中文解读由本站撰写。"
     ],
@@ -161,7 +161,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从官方原文件核验并展示 1 条真实公开记录，原题、答案和许可可在本页查看。",
+    "reason": "7 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
     "sourceUrls": [
       "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
@@ -175,11 +175,26 @@
         "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
         "https://raw.githubusercontent.com/openai/simple-evals/main/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 6 条，现有 7 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增6条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“访谈引语对应的年月”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→7条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "https://raw.githubusercontent.com/openai/simple-evals/main/README.md",
+        "https://openai.com/index/introducing-simpleqa/",
+        "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "test-csv-row-0",
@@ -197,6 +212,114 @@
         "license": "OpenAI · MIT",
         "licensePath": "licenses/simpleqa-sample-source.txt",
         "split": "test / simple_qa_test_set.csv",
+        "excerpt": false
+      },
+      {
+        "id": "csv-row-1",
+        "title": "2018 年 Jerlov 奖得主",
+        "type": "text",
+        "prompt": "Who was awarded the Oceanography Society's Jerlov Award in 2018?",
+        "answer": "Annick Bricaud",
+        "explanation": "问题同时限定奖项与年份，要求一个精确人名。answer 来自官方 CSV；metadata 中的作者参考链接仍保留为原字符串，没有复制链接页面正文。",
+        "raw": {
+          "metadata": "{'topic': 'Science and technology', 'answer_type': 'Person', 'urls': ['https://en.wikipedia.org/wiki/The_Oceanography_Society', 'https://en.wikipedia.org/wiki/The_Oceanography_Society', 'https://tos.org/jerlov-medal', 'https://www.eurekalert.org/news-releases/490504']}",
+          "problem": "Who was awarded the Oceanography Society's Jerlov Award in 2018?",
+          "answer": "Annick Bricaud"
+        },
+        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "license": "OpenAI · MIT",
+        "licensePath": "licenses/simpleqa-sample-source.txt",
+        "split": "test / CSV record",
+        "excerpt": false
+      },
+      {
+        "id": "csv-row-2",
+        "title": "剑桥的女子文理学院",
+        "type": "text",
+        "prompt": "What's the name of the women's liberal arts college in Cambridge, Massachusetts?",
+        "answer": "Radcliffe College",
+        "explanation": "这是以地点和学院类型定位机构名称的短事实题，容易与同城其他学院混淆。本站按原题与答案展示，不将历史机构名称改写为当前校名。",
+        "raw": {
+          "metadata": "{'topic': 'Geography', 'answer_type': 'Place', 'urls': ['https://en.wikipedia.org/wiki/Radcliffe_College', 'https://en.wikipedia.org/wiki/Radcliffe_College', 'https://www.braingainmag.com/7-historic-liberal-arts-colleges-in-the-us.htm', 'https://thepeoplesarchive.dclibrary.org/repositories/2/resources/2228']}",
+          "problem": "What's the name of the women's liberal arts college in Cambridge, Massachusetts?",
+          "answer": "Radcliffe College"
+        },
+        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "license": "OpenAI · MIT",
+        "licensePath": "licenses/simpleqa-sample-source.txt",
+        "split": "test / CSV record",
+        "excerpt": false
+      },
+      {
+        "id": "csv-row-3",
+        "title": "1877 年莱比锡赛事纪念对象",
+        "type": "text",
+        "prompt": "In whose honor was the Leipzig 1877 tournament organized?",
+        "answer": "Adolf Anderssen",
+        "explanation": "题目问赛事为纪念谁而举办，需要区分纪念对象、参赛者和获胜者。官方 answer 字符串原样保留，本站没有补写新的赛事结果。",
+        "raw": {
+          "metadata": "{'topic': 'Sports', 'answer_type': 'Person', 'urls': ['https://en.wikipedia.org/wiki/Adolf_Anderssen', 'https://www.chessgames.com/perl/chess.pl?tid=79429', 'https://en.wikipedia.org/wiki/Adolf_Anderssen']}",
+          "problem": "In whose honor was the Leipzig 1877 tournament organized?",
+          "answer": "Adolf Anderssen"
+        },
+        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "license": "OpenAI · MIT",
+        "licensePath": "licenses/simpleqa-sample-source.txt",
+        "split": "test / CSV record",
+        "excerpt": false
+      },
+      {
+        "id": "csv-row-4",
+        "title": "Achilleion 别墅的雕像人物",
+        "type": "text",
+        "prompt": "According to Karl Küchler, what did Empress Elizabeth of Austria's favorite sculpture depict, which was made for her villa Achilleion at Corfu?",
+        "answer": "Poet Henrich Heine.",
+        "explanation": "题目把归属限定为 Karl Küchler 的描述，要求指出雕塑表现的对象。原 answer 的姓名拼写也保留在数据中，避免将整理者的修订混入原始记录。",
+        "raw": {
+          "metadata": "{'topic': 'Art', 'answer_type': 'Person', 'urls': ['https://www.gutenberg.org/files/60408/60408-h/60408-h.htm\\nhttps://en.wikipedia.org/wiki/Achilleion_(Corfu)', 'https://www.gutenberg.org/cache/epub/60408/pg60408-images.html', 'https://archive.org/stream/elizabethempres01burggoog/elizabethempres01burggoog_djvu.txt', 'https://www.habsburger.net/en/chapter/achilleion-corfu-elisabeths-flight-antiquity']}",
+          "problem": "According to Karl Küchler, what did Empress Elizabeth of Austria's favorite sculpture depict, which was made for her villa Achilleion at Corfu?",
+          "answer": "Poet Henrich Heine."
+        },
+        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "license": "OpenAI · MIT",
+        "licensePath": "licenses/simpleqa-sample-source.txt",
+        "split": "test / CSV record",
+        "excerpt": false
+      },
+      {
+        "id": "csv-row-5",
+        "title": "历史判决的赔偿金额",
+        "type": "text",
+        "prompt": "How much money, in euros, was the surgeon held responsible for Stella Obasanjo's death ordered to pay her son?",
+        "answer": "120,000",
+        "explanation": "题目要求给出以欧元计的赔偿数额，数额与币种都属于答题约束。官方 answer 只写120,000，币种来自原题，本站不改写该字段。",
+        "raw": {
+          "metadata": "{'topic': 'Politics', 'answer_type': 'Number', 'urls': ['https://en.wikipedia.org/wiki/Stella_Obasanjo#Death', 'https://en.wikipedia.org/wiki/Stella_Obasanjo', 'https://www.independent.co.uk/news/world/africa/surgeon-jailed-over-death-of-first-lady-1791712.html)', 'https://www.abc.net.au/news/2009-09-22/doctor-jailed-over-former-first-ladys-lipo-death/1437416)']}",
+          "problem": "How much money, in euros, was the surgeon held responsible for Stella Obasanjo's death ordered to pay her son?",
+          "answer": "120,000"
+        },
+        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "license": "OpenAI · MIT",
+        "licensePath": "licenses/simpleqa-sample-source.txt",
+        "split": "test / CSV record",
+        "excerpt": false
+      },
+      {
+        "id": "csv-row-6",
+        "title": "访谈引语对应的年月",
+        "type": "text",
+        "prompt": "What were the month and year when Obama told Christianity Today, \"I am a Christian, and I am a devout Christian. I believe in the redemptive death and resurrection of Jesus Christ\"?",
+        "answer": "January 2008",
+        "explanation": "需要根据指定媒体和引语定位月份及年份，而不是只答年份。官方答案字段保留 January 2008；这展示了短事实题对时间粒度的要求。",
+        "raw": {
+          "metadata": "{'topic': 'Politics', 'answer_type': 'Date', 'urls': ['https://en.wikipedia.org/wiki/Barack_Obama', 'https://will-lover-32-wikia.fandom.com/wiki/Barack_obama', 'https://people.wikimedia.org/~ori/mod_pagespeed_tests/obama-modpagespeed.html', 'https://www.dreame.com/story/2723094784-beyond-the-crust/0196694272-a-new-passenger.html']}",
+          "problem": "What were the month and year when Obama told Christianity Today, \"I am a Christian, and I am a devout Christian. I believe in the redemptive death and resurrection of Jesus Christ\"?",
+          "answer": "January 2008"
+        },
+        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "license": "OpenAI · MIT",
+        "licensePath": "licenses/simpleqa-sample-source.txt",
+        "split": "test / CSV record",
         "excerpt": false
       }
     ]

@@ -18,7 +18,7 @@
   "kind": "original",
   "aliases": [],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "CursorBench 4.0 是 Cursor 用于评估其编码智能体在真实软件开发任务中表现的内部 benchmark。",
@@ -82,10 +82,11 @@
   },
   "sampleAccess": {
     "status": "private",
-    "reason": "官网公布基准结果，但没有发布可复用的逐题任务样例或题目包。",
+    "reason": "2026-10-19 复核当前 4.0 页面及官方报告后，仍未找到可确认属于 4.0 的真实题目。Composer 2 报告图 8、图 12 公开了 CursorBench 的脱敏任务节录，但报告结果对应 CursorBench-3，不能直接标成 4.0 样例。",
     "sourceUrls": [
       "https://cursor.com/cursorbench",
-      "https://cursor.com/blog/cursorbench"
+      "https://cursor.com/blog/cursorbench",
+      "https://cursor.com/resources/Composer2.pdf"
     ],
     "url": "https://cursor.com/cursorbench"
   },
@@ -129,6 +130,30 @@
       "label": "Cursor 官方研究博文",
       "url": "https://cursor.com/blog/cursorbench",
       "role": "definition"
+    },
+    {
+      "label": "2026-10-19 公开数据与案例核查入口",
+      "url": "https://cursor.com/resources/Composer2.pdf",
+      "role": "paper"
     }
-  ]
+  ],
+  "researchNotes": [
+    {
+      "text": "2026-10-19 公开案例补核：Composer 2 报告第 7 页图 8 展示重试循环与构建工具错误，第 22 页图 12 展示流式前缀检测任务；它们是官方真实脱敏节录，但报告第 13 页说明结果为 CursorBench-3。本站保留该公开案例入口，并明确它不证明 4.0 的题目内容。",
+      "sourceUrls": [
+        "https://cursor.com/cursorbench",
+        "https://cursor.com/blog/cursorbench",
+        "https://cursor.com/resources/Composer2.pdf"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮官方Composer 2论文提供的是CursorBench 3材料，无法证明它是4.0的任务；保持版本分离，不拿前代题冒充。 展示记录0→0条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://cursor.com/cursorbench",
+        "https://cursor.com/blog/cursorbench",
+        "https://cursor.com/resources/Composer2.pdf"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-19"
 }

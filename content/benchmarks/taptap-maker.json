@@ -77,9 +77,12 @@
   },
   "sampleAccess": {
     "status": "unverified",
-    "reason": "官方方法与edition archive公开执行和版本指纹；本次未找到具体公开题面或可下载任务包，不能把方法页当作样例。",
+    "reason": "2026-10-19 已沿官网公开脚本读取 latest、edition index 及 11 份版本 JSON。它们提供版本指纹、模型成绩、成本、速度、分类和难度汇总，未提供具体 task prompt、输入文件或答案。方法中的 public tasks 不等于该页面已经发布题目包；held-out 题面和轨迹则明确保密。",
     "sourceUrls": [
-      "https://maker.taptap.cn/leaderboard/methodology.html"
+      "https://maker.taptap.cn/leaderboard/methodology.html",
+      "https://maker.taptap.cn/leaderboard/editions.html",
+      "https://maker.taptap.cn/leaderboard/data/editions/index.json",
+      "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json"
     ]
   },
   "metric": {
@@ -117,6 +120,24 @@
       "sourceUrls": [
         "https://maker.taptap.cn/leaderboard/"
       ]
+    },
+    {
+      "text": "2026-10-19 公开案例补核：本次沿公开 JS 中实际链接读取 11 份 edition JSON，包括现条目 2026-09-10 快照和最新 2026-10-18 快照。JSON 是榜单与统计数据，不含任务指令/输入/答案。本条继续提供完整官方入口，不把题集 hash、类别名或模型分数当成案例。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/methodology.html",
+        "https://maker.taptap.cn/leaderboard/editions.html",
+        "https://maker.taptap.cn/leaderboard/data/editions/index.json",
+        "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：沿官网真实JS读取11个版本JSON，它们包含成绩/分类/fingerprint而没有任务输入；不把榜单行充作案例。 展示记录0→0条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/methodology.html",
+        "https://maker.taptap.cn/leaderboard/editions.html",
+        "https://maker.taptap.cn/leaderboard/data/editions/index.json",
+        "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json"
+      ]
     }
   ],
   "sources": [
@@ -134,11 +155,21 @@
       "label": "TapTap Maker editions archive",
       "url": "https://maker.taptap.cn/leaderboard/editions.html",
       "role": "release"
+    },
+    {
+      "label": "2026-10-19 公开数据与案例核查入口",
+      "url": "https://maker.taptap.cn/leaderboard/data/editions/index.json",
+      "role": "access"
+    },
+    {
+      "label": "2026-10-19 公开数据与案例核查入口",
+      "url": "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json",
+      "role": "access"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "先检查L0交付物、L1 Lua静态分析，再用真实UrhoX无头执行的L2断言判分；无LLM裁判，agent容器不能读取答案/断言。",

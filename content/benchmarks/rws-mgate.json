@@ -65,7 +65,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖公开示例、测试项与模型输出的再发布许可证；论文的存档许可不能外推至这些内容。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "方法和示例公开不等于取得内容转载许可；实时题目保持私有，本站只链接官方入口。"
     ],
@@ -75,10 +75,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。",
+    "reason": "2条官方主动公开原句：RWS新闻语法难句及论文明确non-live探针；语法例的官方判定保留，不编造翻译语言或live题号。",
     "url": "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
     "sourceUrls": [
-      "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/"
+      "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
+      "https://arxiv.org/html/2608.03803v1#Ax6.SSx3",
+      "https://arxiv.org/html/2608.03803v1"
     ]
   },
   "metric": {
@@ -128,11 +130,16 @@
       "label": "RWS 官方发布说明",
       "url": "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
       "role": "release"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://arxiv.org/html/2608.03803v1#Ax6.SSx3",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "语法先去除首尾空白、转小写并解析首词 Yes/No；失败时 Claude Haiku 4.5 只把已有回答归为二元标签，不判断句子语法。标签对照语言学家标准答案计分；翻译由三家裁判比较原始与往返英语文本。",
@@ -177,22 +184,53 @@
       "sourceUrls": [
         "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 1 条，现有 2 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
+        "https://arxiv.org/html/2608.03803v1#Ax6.SSx3",
+        "https://arxiv.org/html/2608.03803v1"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增1条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Appendix F.3 · non-live negation-scope probe”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→2条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
+        "https://arxiv.org/html/2608.03803v1#Ax6.SSx3",
+        "https://arxiv.org/html/2608.03803v1",
+        "https://www.rws.com/artificial-intelligence/train-ai-data-services/research/m-gate-access/"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-rws-mgate",
         "title": "官方难句 · 多层嵌套转述",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "RWS 公布的 M-GATE 难句包含 told、thought、had said、would 多层嵌套转述。翻译时需保留指代、时态及省略关系。原句完整保存在来源短摘录中；发布页没有说明本句对应的目标语言、题号或标准译文。",
-        "explanation": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 来源位置：Example stumper under Four patterns stood out\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。",
-        "raw": "Everything I told you is what I thought I had said I would.",
+        "prompt": "判断这句多层嵌套的英文在语法上是否成立；这是RWS新闻主动公开的stumper例，不是本站推测的翻译任务。",
+        "explanation": "官方2026-08-24新闻Four patterns stood out第1项直接引用此句，并说明它虽拗口但语法没有错。raw保留引句正文，不额外造句号；旧told/thought/had said/would层次可帮助理解难点，但不能据此假定目标语言或题号。",
+        "raw": "Everything I told you is what I thought I had said I would",
         "source": "https://www.rws.com/about/news/2026/TrainAI-launches-m-gate/",
-        "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
-        "split": "M-GATE publisher stumper; row and language unidentified",
+        "license": "官方主动公开的必要原句短引；完整live题目保持私有，未确认题库整体复用许可。公开新闻例与论文明确non-live探针分别标注，无目标语言/题号时不补造。",
+        "split": "RWS官方新闻2026-08-24 · 公开语法stumper例 · 计分行号未披露",
+        "excerpt": true,
+        "answer": "语法正确（官方新闻明确说明）"
+      },
+      {
+        "id": "public-nonlive-mgate-negation-scope",
+        "title": "Appendix F.3 · non-live negation-scope probe",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "He didn’t leave because he was angry.",
+        "explanation": "论文把这条英语句标为非 live 探针：because 从句与否定的作用域关系带来歧义，作者观察到多数目标语言保留表层结构，因此其round-trip结果对当前模型缺乏区分度；它不是计分集条目。",
+        "raw": "He didn’t leave because he was angry.",
+        "source": "https://arxiv.org/html/2608.03803v1#Ax6.SSx3",
+        "license": "官方主动公开的必要原句短引；完整live题目保持私有，未确认题库整体复用许可。公开新闻例与论文明确non-live探针分别标注，无目标语言/题号时不补造。",
+        "split": "Appendix F.3, explicitly labeled “Illustrative non-promoted probe item (non-live)”",
         "excerpt": true
       }
     ]

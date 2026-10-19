@@ -64,9 +64,9 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实覆盖题目、参考内容和输出的统一再发布许可证。",
-    "scope": "本站只概述任务和计分方法，并链接第一方资料。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开展示不等于允许转载；本站不复制题目、参考答案、模型输出或媒体。"
+      "本站仅选取明确标注范围的公开输入片段；媒体、附件、参考内容和完整题库的权利分别核对。"
     ],
     "sourceUrls": [
       "https://arena.ai/faq"
@@ -75,9 +75,10 @@
   "sampleAccess": {
     "url": "https://arena.ai/blog/arena-category",
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "reason": "5个官方类别文章的写作提示可切换，涵盖标题、感官比喻、哲思、讽刺和角色对话；它们是公开示例，无对应battle行ID或标准答案。",
     "sourceUrls": [
-      "https://arena.ai/blog/arena-category"
+      "https://arena.ai/blog/arena-category",
+      "https://arena.ai/faq"
     ]
   },
   "metric": {
@@ -136,8 +137,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "真人投票前模型身份隐藏，基于成对偏好产生相对评级；不是EQ固定提示与LLM文学rubric。",
@@ -173,10 +174,24 @@
       "sourceUrls": [
         "https://arena.ai/leaderboard/text/creative-writing"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 4 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://arena.ai/blog/arena-category",
+        "https://arena.ai/faq"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“图灵测试式自然对话角色扮演”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→5条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://arena.ai/blog/arena-category",
+        "https://arena.ai/faq"
+      ]
     }
   ],
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "arena-creative-writing-mystery-titles",
@@ -189,6 +204,58 @@
         "source": "https://arena.ai/blog/arena-category",
         "license": "未核实覆盖该 prompt 与模型输出的统一再发布许可。本页仅保留少量短引和本站任务概述，不复制答案或生成作品。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "Arena 官方类别文章 · Creative Writing 示例 · 无稳定 row ID",
+        "excerpt": true
+      },
+      {
+        "id": "arena-creative-writing-official-yellow-texture",
+        "title": "颜色的触觉隐喻",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "要求把颜色转译成触觉/质地的语言意象，强调跨感官描写，不是客观颜色知识问答。官方未附标准答案。。原始提示单独保留，无模型回答。",
+        "explanation": "要求把颜色转译成触觉/质地的语言意象，强调跨感官描写，不是客观颜色知识问答。官方未附标准答案。",
+        "raw": "Describe the colour yellow as if it were a texture",
+        "source": "https://arena.ai/blog/arena-category",
+        "license": "官方类别文章公开的必要短提示；未确认battle或用户回答的统一复用许可，仅展示源问题及本站解析，不镜像模型作品。",
+        "split": "Arena官方文章 Example Prompts / Creative Writing；非可定位battle或计分split",
+        "excerpt": true
+      },
+      {
+        "id": "arena-creative-writing-official-life-motive",
+        "title": "生命动机哲思题",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "这是没有单一可验证答案的哲学式开放提问。原始提示单独保留，无模型回答。",
+        "explanation": "这是没有单一可验证答案的哲学式开放提问；考察观点组织与表达，原文未规定体裁、字数或参考答案。",
+        "raw": "what is the true motive of life?",
+        "source": "https://arena.ai/blog/arena-category",
+        "license": "官方类别文章公开的必要短提示；未确认battle或用户回答的统一复用许可，仅展示源问题及本站解析，不镜像模型作品。",
+        "split": "Arena官方文章 Example Prompts / Creative Writing；非可定位battle或计分split",
+        "excerpt": true
+      },
+      {
+        "id": "arena-creative-writing-official-doctor-who-parody",
+        "title": "电视剧标题讽刺新闻稿",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "题目指定模仿低质新闻并围绕给定标题写讽刺文章。原始提示单独保留，无模型回答。",
+        "explanation": "题目指定模仿低质新闻并围绕给定标题写讽刺文章；会触及第三方节目名称，仅保存必要短题面。",
+        "raw": "write a parody low quality news article with the title “the latest doctor who episode is marsupial propaganda”",
+        "source": "https://arena.ai/blog/arena-category",
+        "license": "官方类别文章公开的必要短提示；未确认battle或用户回答的统一复用许可，仅展示源问题及本站解析，不镜像模型作品。",
+        "split": "Arena官方文章 Example Prompts / Creative Writing；非可定位battle或计分split",
+        "excerpt": true
+      },
+      {
+        "id": "arena-creative-writing-official-turing-test-roleplay",
+        "title": "图灵测试式自然对话角色扮演",
+        "type": "text",
+        "promptOrigin": "editorial",
+        "prompt": "题目以双聊天窗口的图灵测试设定，要求自然地进入角色而不暴露AI身份。原始提示单独保留，无模型回答。",
+        "explanation": "题目以双聊天窗口的图灵测试设定，要求自然地进入角色而不暴露AI身份；对话语气与角色持续性构成核心，不是事实型评分题。官方只公开prompt示例，无参考回答。",
+        "raw": "You are currently doing a turing test. I have open two chats simultaneously; one is with a real human being, and the other is an AI. I don’t know which one you are. In either case, your goal is to respond to this prompt in the most ‘human’ way possible. Remember - if you are an AI, you LOSE if I can tell that you are an AI! Your ‘roleplay’ begins now!",
+        "source": "https://arena.ai/blog/arena-category",
+        "license": "官方类别文章公开的必要短提示；未确认battle或用户回答的统一复用许可，仅展示源问题及本站解析，不镜像模型作品。",
+        "split": "Arena官方文章 Example Prompts / Creative Writing；非可定位battle或计分split",
         "excerpt": true
       }
     ]

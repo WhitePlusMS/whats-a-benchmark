@@ -22,7 +22,7 @@
     "Agents' Last Exam"
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "在沙箱中完成专业工作流并提交可核验产物；覆盖 55 个子领域和 13 个行业簇。",
@@ -73,45 +73,112 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "框架代码 Apache-2.0；指定 benchmark 内容 CC BY 4.0。",
-    "scope": "官方将代码与任务内容分开许可。仅可复用 CC BY 4.0 覆盖且未标为 unlicensed 的内容，须署名、链接许可并标明修改；该许可不自动覆盖未单列授权的媒体或第三方素材。",
+    "license": "CC BY 4.0 · 固定官方LICENSE-DATA，明确覆盖tasks/、prompts及元数据；Apache仅指代码。",
+    "scope": "四条作者公开任务卡原字段，不复制第三方附件、测试或答案。",
     "boundaries": [
-      "不要转载被标为 unlicensed 的任务；图片和截图的独立权利未确认。"
+      "demo/hello是公开GUI演示，与其他业务任务分开标注。",
+      "保留归属和原文；任务中命令仅作数据展示，未执行。"
     ],
     "sourceUrls": [
-      "https://github.com/rdi-berkeley/agents-last-exam#L258-L263",
-      "https://agents-last-exam.org/docs#L18-L20"
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/LICENSE-DATA"
     ]
   },
   "sampleSet": {
-    "retrievedAt": "2026-09-23",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "demo/hello",
         "title": "Demo: Acme Code Generator (GUI)",
         "type": "record",
-        "prompt": "A single-screen web app takes an input/order JSON, generates code, and writes output/result.txt.",
-        "explanation": "任务卡描述一个单屏 Web 应用：读取输入 JSON，生成代码并写出结果文件。此处仅展示摘要，完整步骤与环境需查看原始任务卡。",
+        "prompt": "在Chrome打开指定单屏应用，读取Order ID、生成并读取确认码，写入output/result.txt。",
+        "explanation": "这是官方GUI演示：先从order.json读取订单号，再通过浏览器输入并生成确认码，最后保存文本文件。旧raw中的summary是改写，现恢复源summary及实际taskPrompt；只展示任务卡，未启动服务器、运行命令或复制附件。",
         "raw": {
           "taskId": "demo/hello",
           "title": "Demo: Acme Code Generator (GUI)",
-          "summary": "A single-screen web app takes an input/order JSON, generates code, and writes output/result.txt.",
+          "summary": "Minimal GUI demo. The agent opens a single-screen web app (input/app.html) in Chrome, types the Order ID from input/order.json, clicks Generate Code, reads the in-browser confirmation code and writes it to output/result.txt. Exercises the input/software/reference/output surface and the desktop GUI bridge in a few steps.",
           "category": "demo"
         },
-        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/main/tasks/demo/hello/task_card.json",
-        "license": "CC BY 4.0 · Agents’ Last Exam task data",
+        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/demo/hello/task_card.json",
+        "license": "CC BY 4.0 · UC Berkeley RDI / RDI Foundation，LICENSE-DATA明确覆盖tasks和任务提示。仅筛选实际任务卡字段，原值不改；附件、参考输出与评测器未复制。",
         "split": "official demo task · demo/hello",
-        "excerpt": true
+        "excerpt": true,
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/agents-last-exam-data-cc-by-4-0.txt"
+      },
+      {
+        "excerpt": true,
+        "title": "美国W-2到Form 1040报税工作流",
+        "split": "官方发布任务 / taskId=business_finance/taxform_4_1 / variant(s)=variant_1",
+        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/business_finance/taxform_4_1/task_card.json",
+        "explanation": "这条任务卡要求从预置W-2工资表中提取事实，在浏览器填写Form 1040并保存JSON。它体现跨文档读取、表单填写和指定交付格式；这里只保留公开task_card字段，不收录纳税人附件、reference输出或评测器。",
+        "id": "ale-business_finance-taxform_4_1",
+        "license": "CC BY 4.0 · UC Berkeley RDI / RDI Foundation，LICENSE-DATA明确覆盖tasks和任务提示。仅筛选实际任务卡字段，原值不改；附件、参考输出与评测器未复制。",
+        "type": "record",
+        "raw": {
+          "taskId": "business_finance/taxform_4_1",
+          "title": "Taxform 4 1",
+          "summary": "Prepare a U.S. tax return from staged wage documents and instructions, then save the required JSON outputs.",
+          "category": "business_finance",
+          "taskPrompt": "You are preparing a U.S. tax return inside a browser-based local task environment.\n\n## Variant\n`variant_1`: W-2 income with a single Form 1040 output.\n\n## Runtime Entry Points\n- Start the local HTTP server by running: `variant_1\\software\\start_http_server.bat`\n- Read the taxpayer instructions at: `variant_1\\input\\instruction.txt`\n\n## Source Forms To Read\nThese pages are prefilled reference documents. Read them, but do not edit them.\n- Form W-2 — Wage and Tax Statement: `http://localhost:8080/forms/formw2.html?data=/`\n\n## Output Forms To Complete\nFill these blank return pages in the browser, then click `Save Results` on each one.\n- Form 1040 — U.S. Individual Income Tax Return: `http://localhost:8080/forms/form1040.html`\n\n## What You Must Do\n1. Run `variant_1\\software\\start_http_server.bat` to serve the staged `input/` directory on `http://localhost:8080`.\n2. Read `variant_1\\input\\instruction.txt` carefully.\n3. Open every source form listed above and extract the needed values.\n4. Open every output form listed above and complete the tax return.\n5. Click `Save Results` on each required output form.\n6. Move the downloaded JSON file(s) into `variant_1\\output`.\n\n## Required Final Output Files\nPlace these exact files in `variant_1\\output`:\n- `form1040_output.json`"
+        },
+        "prompt": "在给定的本地环境中阅读预置W-2工资表，填写单份Form 1040并保存指定JSON。",
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/agents-last-exam-data-cc-by-4-0.txt"
+      },
+      {
+        "excerpt": true,
+        "title": "北京仲裁委五案收费核算",
+        "split": "官方发布任务 / taskId=legal/legal_dr_fees_01 / variant(s)=base",
+        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/legal/legal_dr_fees_01/task_card.json",
+        "explanation": "该任务限定只使用随任务提供的北京仲裁委材料，逐案计算机构费、仲裁员报酬与总费用，并对第四案和解条件作处理。此处展示具体输入/交付要求，不包含PDF费率表或官方参考结果，也不提供外部法律结论。",
+        "id": "ale-legal-legal_dr_fees_01",
+        "license": "CC BY 4.0 · UC Berkeley RDI / RDI Foundation，LICENSE-DATA明确覆盖tasks和任务提示。仅筛选实际任务卡字段，原值不改；附件、参考输出与评测器未复制。",
+        "type": "record",
+        "raw": {
+          "taskId": "legal/legal_dr_fees_01",
+          "title": "BAC Arbitration Fee Calculation",
+          "summary": "Calculate Beijing Arbitration Commission institution fees, arbitrator remuneration, and total fees for five arbitration cases using staged Chinese PDF fee schedules.",
+          "category": "legal",
+          "taskPrompt": "You are calculating arbitration fees under the staged Beijing Arbitration Commission (BAC) materials.\n\n## Closed-Book Rule\n\n- Use only the staged materials under `base/input`.\n- Do not use outside web search or external regulatory knowledge.\n\n## Inputs\n\n- Task brief: `base/input/task_brief.md`\n- Case facts: `base/input/cases.json`\n- Output contract: `base/input/output_contract.json`\n- Document manifest: `base/input/document_manifest.json`\n- BAC PDF documents: `base/input/documents`\n- Optional Python runtime manifest: `base/input/runtime_env/pyproject.toml`\n- Python 3.12 entry point: `base/software/python3.12`\n\n## Your Task\n\nCalculate, for each of the five listed cases:\n\n- institution fee in RMB;\n- arbitrator remuneration in RMB;\n- total fee in RMB.\n\nAll values must be accurate to two decimal places. Case 4 has a special condition: the parties reached a settlement agreement regarding the dispute before applying for arbitration.\n\nIf you want Python PDF tooling, install/use the package manifest under `input/runtime_env/`; do not modify files under `input/`.\n\n## Deliverable\n\nWrite exactly one JSON file here:\n\n`base/output/arbitration_fee_results.json`\n\nFollow the schema in `base/input/output_contract.json`. The evaluated numeric fields for each case are:\n\n- `institution_fee_rmb`\n- `arbitrator_remuneration_rmb`\n- `total_fee_rmb`\n"
+        },
+        "prompt": "只按题目提供的北京仲裁委员会费率资料与五案事实，计算每案机构费、仲裁员报酬及总额，按JSON契约提交。",
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/agents-last-exam-data-cc-by-4-0.txt"
+      },
+      {
+        "excerpt": true,
+        "title": "Kubernetes支付API事故根因分析",
+        "split": "官方发布任务 / taskId=computing_math/k8s_payment_api_root_cause_analysis / variant(s)=base",
+        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/computing_math/k8s_payment_api_root_cause_analysis/task_card.json",
+        "explanation": "真实任务要求基于固定的集群状态、Deployment/HPA配置和故障Pod日志，提交有逐字证据支撑的根因JSON、资源清单、修复计划及回滚安全判断。本站只有task_card题目字段，不含事故附件和答案。",
+        "id": "ale-computing_math-k8s_payment_api_root_cause_analysis",
+        "license": "CC BY 4.0 · UC Berkeley RDI / RDI Foundation，LICENSE-DATA明确覆盖tasks和任务提示。仅筛选实际任务卡字段，原值不改；附件、参考输出与评测器未复制。",
+        "type": "record",
+        "raw": {
+          "taskId": "computing_math/k8s_payment_api_root_cause_analysis",
+          "title": "Kubernetes Payment API Root Cause Analysis",
+          "summary": "Analyze static Kubernetes incident artifacts for a flapping payment-api deployment and produce a grounded JSON root-cause report.",
+          "category": "computing_math",
+          "taskPrompt": "You are the on-call SRE for a Kubernetes production incident.\n\n## Task Directory\n`base`\n\n## Visible Inputs\n- Task prompt: `base/input/task_prompt.md`\n- Cluster state capture: `base/input/cluster_state.txt`\n- Current Deployment and HPA YAML: `base/input/deployment.yaml`\n- Crashing pod log: `base/input/failing_pod.log`\n\n## Your Task\nAnalyze the supplied static evidence and write a complete root-cause analysis\nreport for the `payment-api` incident, including why the HPA reports memory\nutilization above target. Ground every root cause in literal\nevidence from the visible files, list affected Kubernetes resources, propose a\nprioritized remediation plan, and state whether rollback is safe.\n\n## Required Output\nWrite exactly one JSON file:\n\n```text\nbase/output/root_cause_analysis.json\n```\n\nThe JSON must include these top-level keys:\n\n```text\nincident_metadata, root_causes, affected_resources, remediation_plan, summary\n```\n\n### Schema details\n\n**`incident_metadata`** — object with at least:\n- `safe_to_rollback` (boolean): whether rolling back to the previous ReplicaSet revision is safe.\n\n**`root_causes`** — array of objects, each with at least:\n- `type` (string): short classification label, e.g. `\"OOMKilled\"`, `\"liveness_probe_too_aggressive\"`, `\"missing_metrics_port_env\"`.\n- `severity` (string): one of `\"critical\"`, `\"high\"`, `\"medium\"`, `\"low\"`.\n- `description` (string): explanation of the root cause.\n- `evidence` (array of strings): each item must be a verbatim text string copied from one of the visible input files (not a file-name citation — the actual text that appears in the file).\n\n**`affected_resources`** — array of objects, each with `kind`, `name`, and `namespace`.\n\n**`remediation_plan`** — array of objects, each with at least an `action` (string).\n\n**`summary`** — string summarizing the incident and recommended path forward.\n\n## Constraints\n- Treat `base/input` as read-only.\n- Keep generated files inside `base/output`.\n- Do not use external web sources or invent resource names, metrics, commit SHAs, or timestamps.\n"
+        },
+        "prompt": "根据静态Kubernetes现场证据分析payment-api事故，逐项用原始日志/配置片段支撑根因，并给出资源影响、修复顺序与回滚安全性。",
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/agents-last-exam-data-cc-by-4-0.txt"
       }
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "候选站内样例对应官方公开任务卡 tasks/demo/hello/task_card.json；Task Gallery 提供 ALE-V1 样例。仅按 CC BY 4.0 标注后复用明确获许可的文本，并排除标记为 unlicensed 的内容；媒体权利需逐项核验。",
+    "reason": "4条真实任务卡可切换，覆盖GUI演示、报税、仲裁收费和Kubernetes根因分析。旧summary恢复原文并补任务正文，任务命令仅展示未执行。",
     "url": "https://agents-last-exam.org/demo",
     "sourceUrls": [
       "https://agents-last-exam.org/demo#L4-L8",
-      "https://github.com/rdi-berkeley/agents-last-exam#L258-L263"
+      "https://github.com/rdi-berkeley/agents-last-exam#L258-L263",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/demo/hello/task_card.json",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/business_finance/taxform_4_1/task_card.json",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/legal/legal_dr_fees_01/task_card.json",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/computing_math/k8s_payment_api_root_cause_analysis/task_card.json",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/LICENSE-DATA"
     ]
   },
   "metric": {
@@ -161,6 +228,31 @@
       "label": "官方 Docs 许可说明",
       "url": "https://agents-last-exam.org/docs#L18-L20",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/demo/hello/task_card.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/business_finance/taxform_4_1/task_card.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/legal/legal_dr_fees_01/task_card.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/computing_math/k8s_payment_api_root_cause_analysis/task_card.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/LICENSE-DATA",
+      "role": "data"
     }
   ],
   "researchNotes": [
@@ -183,7 +275,30 @@
         "https://agents-last-exam.org/demo#L4-L8",
         "https://github.com/rdi-berkeley/agents-last-exam#L258-L263"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/demo/hello/task_card.json",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/business_finance/taxform_4_1/task_card.json",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/legal/legal_dr_fees_01/task_card.json",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/computing_math/k8s_payment_api_root_cause_analysis/task_card.json",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/LICENSE-DATA"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Kubernetes支付API事故根因分析”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/demo/hello/task_card.json",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/business_finance/taxform_4_1/task_card.json",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/legal/legal_dr_fees_01/task_card.json",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/tasks/computing_math/k8s_payment_api_root_cause_analysis/task_card.json",
+        "https://agents-last-exam.org/demo#L4-L8",
+        "https://github.com/rdi-berkeley/agents-last-exam#L258-L263",
+        "https://github.com/rdi-berkeley/agents-last-exam/blob/9ed80be9c79bf8a5ea29d33730952d548ab95e33/LICENSE-DATA",
+        "https://github.com/rdi-berkeley/agents-last-exam#L185-L196"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-10-19"
 }

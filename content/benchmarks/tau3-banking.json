@@ -75,29 +75,31 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "tau3-era仓库标注MIT；当前banking_knowledge task数据许可未声明，代码许可不自动覆盖任务数据。",
-    "scope": "仅task_001具体域和任务字段事实；不扩张至其他snapshot，任务数据的再利用授权未查明。",
+    "status": "permitted",
+    "license": "官方仓库根MIT，Sierra Research 2025；本轮选取仓库内作者任务配置及其完整用户情境。",
+    "scope": "只复用作者task JSON中的id/user_scenario/user_tools/required_documents原字段；不含知识库正文、账户数据库、第三方文档或模型输出。",
     "boundaries": [
-      "main未固定commit；源路径含tau2且不代表冻结旧版。",
-      "不根据软件MIT推断task数据许可。"
+      "字段值和层级不变，persona=null原样保留。",
+      "任务配置许可不扩张到环境素材与第三方知识；本站未执行任务。"
     ],
     "sourceUrls": [
-      "https://hub.harborframework.com/datasets/sierra-research/tau3-bench",
-      "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/README.md",
-      "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/data/tau2/domains/banking_knowledge/tasks/task_001.json",
-      "https://github.com/sierra-research/tau2-bench/blob/main/LICENSE"
+      "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+      "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/LICENSE"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "τ³官方Hub列出banking knowledge域；仓库公开banking_knowledge/task_001输入及evaluation action。本站不把当前源文件映射为未锁定的发布snapshot。",
+    "reason": "3个完整作者用户情境可切换；原任务配置、工具名和所需文档ID保留，银行知识正文与模型执行结果未附。",
     "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/data/tau2/domains/banking_knowledge/tasks/task_001.json",
     "sourceUrls": [
       "https://hub.harborframework.com/datasets/sierra-research/tau3-bench",
       "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/README.md",
       "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/data/tau2/domains/banking_knowledge/tasks/task_001.json",
-      "https://github.com/sierra-research/tau2-bench/blob/main/LICENSE"
+      "https://github.com/sierra-research/tau2-bench/blob/main/LICENSE",
+      "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+      "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_006.json",
+      "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_008.json",
+      "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/LICENSE"
     ]
   },
   "metric": {
@@ -121,6 +123,30 @@
     {
       "text": "Mercor 专属运行配置未通过第一方方法核实；本条解释上游 τ-Knowledge 银行业务任务和 AA 已披露协议。",
       "sourceUrls": [
+        "https://arxiv.org/abs/2603.04370",
+        "https://artificialanalysis.ai/evaluations/tau3-banking"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_006.json",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_008.json",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/LICENSE"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：三个完整作者用户情境及工具/文档ID按MIT保留，persona=null不变；旧期望动作片段不再充作用户输入，知识库/模型轨迹未附。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_006.json",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_008.json",
+        "https://hub.harborframework.com/datasets/sierra-research/tau3-bench",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/README.md",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+        "https://github.com/sierra-research/tau2-bench/blob/main/LICENSE",
+        "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/LICENSE",
         "https://arxiv.org/abs/2603.04370",
         "https://artificialanalysis.ai/evaluations/tau3-banking"
       ]
@@ -176,6 +202,26 @@
       "label": "已核验官方来源",
       "url": "https://github.com/sierra-research/tau2-bench/blob/main/LICENSE",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_006.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_008.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/LICENSE",
+      "role": "data"
     }
   ],
   "related": [
@@ -188,8 +234,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "评分由 reward_basis 指定硬要求。banking_knowledge 主要检查端状态；列出的 actions 可只作参考/诊断，不能一概认为不按该动作顺序就失败。",
@@ -206,35 +252,98 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-tau3-banking-knowledge-task-001",
-        "title": "公开任务 · 高返现且避免年费的个人信用卡",
+        "title": "个人消费信用卡 · 返现与年费约束",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "在官方 `banking_knowledge` 域的 task_001 中，客服对话模拟一位年收入10万美元、工作差旅由公司卡支付的管理顾问，寻找日常消费卡；她要求公司资料中返现最高且没有年费，除非它是唯一可选项。evaluation_criteria明确的工具动作是申请Gold Rewards Card。此处以当前官方仓库中的精确任务路径为依据；文件路径保留`data/tau2/`，不把它宣称为固定的其他银行域或不可变τ³发布快照。",
-        "answer": "Gold Rewards Card",
-        "explanation": "当前官方τ³ Hub页面列出banking knowledge域，README说明τ³及该域；原始任务位于 `data/tau2/domains/banking_knowledge/tasks/task_001.json`。答案取自其evaluation_criteria.actions[0].arguments.card_type，不是模型输出。\n原始数据精简说明：保留源JSON的字段名称、实际值与嵌套；省略evaluation_criteria.actions[0].arguments.customer_name、persona name and full instructions、required_documents identifiers。",
+        "prompt": "扮演日常消费办卡客户：优先最大返现、尽量不付年费，并按原角色指令逐步披露工作出差和订阅信息。",
+        "explanation": "官方场景中的客户希望为日常消费找卡，要求在可选产品里最大化返现，并除非别无选择否则不接受年费；公司另行覆盖工作出差开支，Rho-Bank+订阅仅在被问及时披露。真正任务还规定逐步回答客服提问，并在达到条件后自行申请。本站案例不含评测动作或知识库资料。 raw保留完整原字段值和层级；作者任务配置按仓库MIT及归属展示，第三方知识内容另行核权。本站没有执行申请或转接。",
         "raw": {
           "id": "task_001",
-          "evaluation_criteria": {
-            "actions": [
-              {
-                "arguments": {
-                  "annual_income": 100000,
-                  "card_type": "Gold Rewards Card",
-                  "rho_bank_subscription": true
-                },
-                "name": "apply_for_credit_card"
-              }
-            ]
-          }
+          "user_scenario": {
+            "persona": null,
+            "instructions": "You are playing the role of a customer contacting a customer service representative agent. Your character is a management consultant named Sarah Bosch who earns $100,000 annually. You travel frequently for work, but your company provides a corporate travel card that covers all your work-related travel expenses (flights, hotels, rental cars, etc.). \n\nYou're looking for a credit card to use for your everyday purchases. You want the card that gives you the highest cash back available in the company profile. You will not accept a credit card that has any annual fees unless it is the ONLY option available. \n\nIf you find out that there are no credit cards that fit your needs, you are happy to immediately take your business elsewhere and end the conversation.\n\nYou have access to a tool that allow you to apply for credit cards by specifying the card type. You're seeking advice on which personal credit card would be the best fit for your situation and spending patterns.\n\nYou receive a Rho-Bank+ subscription for free through your company. ONLY MENTION THIS if you are asked about this.\n\nAfter you receive enough information to make a decision, immediately apply for a credit card on your own, and there is no need to respond to the agent, or ask for instructions on how to apply.\n\nYou are currently on the line with a customer support agent. Only provide additional details about your situation when the agent asks for them. Don't dump all your information at once. Never respond as a customer service representative/assistant. You are playing the role of the customer."
+          },
+          "user_tools": [
+            "apply_for_credit_card"
+          ],
+          "required_documents": [
+            "doc_credit_cards_gold_rewards_card_001",
+            "doc_credit_cards_silver_rewards_card_001",
+            "doc_credit_cards_bronze_rewards_card_001",
+            "doc_credit_cards_platinum_rewards_card_001"
+          ]
         },
-        "source": "https://raw.githubusercontent.com/sierra-research/tau2-bench/main/data/tau2/domains/banking_knowledge/tasks/task_001.json",
-        "license": "本站原创任务解读及任务字段短引；仓库代码许可不自动确立任务数据许可。 原始数据仅展示上述真实字段、事实配置与必要原文节录，不推及未展示的题面、附件、模型回答或完整题库。",
-        "split": "τ³-Bench / banking_knowledge / task_001；当前官方repo main，文件位于legacy data/tau2路径",
-        "excerpt": true
+        "source": "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_001.json",
+        "license": "MIT · Sierra Research；沿用官方仓库根许可展示作者发布的任务配置（用户情境、工具名和所需文档ID），保留原许可；不将其外推到第三方材料、账户库或银行知识正文。",
+        "split": "sierra-research/tau2-bench banking_knowledge task file / repo main snapshot 96a3ef92329baf908ffe9dfe188cea34e8701d2a / task_001",
+        "excerpt": true,
+        "licensePath": "licenses/tau3-banking-task-config-mit.txt"
+      },
+      {
+        "id": "tau3-banking-task_006",
+        "title": "信用卡资格 · 外币费、最低还款比例和虚拟卡功能",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "扮演办卡客户，检查外币交易费、最低还款比例、虚拟卡功能和信用分等条件，再自行决定是否申请。",
+        "explanation": "该任务不仅是推荐卡，还设定三项硬约束：外币交易费不高于1.5%、最低还款比例不高于账单的1.5%、必须支持虚拟卡管理；另有信用分条件。用户角色指令要求始终提到加密货币（原persona字段为null），但它不是产品要求。完整原user_scenario及所需知识文档ID保留，未附评测期望动作或银行产品知识正文。 raw保留完整原字段值和层级；作者任务配置按仓库MIT及归属展示，第三方知识内容另行核权。本站没有执行申请或转接。",
+        "raw": {
+          "id": "task_006",
+          "user_scenario": {
+            "persona": null,
+            "instructions": "You are playing the role of a customer contacting a customer service representative agent. Your character is a cryptocurrency enthusiast named Bob Nakamoto whose job is to trade cryptocurrency full time. Your annual income is $95,000. You do NOT have a Rho-Bank+ subscription. You love talking about cryptocurrency in every single message you send. \n\nYou're looking for a credit card to use for your everyday purchases. Your hard requirements are that you want a card with 1.5% foreign transaction fee or lower, a minimum payment percentage of 1.5% or lower of your statement balance so you don't have to pay back your full statement at once, and you must have the virtual card management feature. You have a credit score of 540. If you find out that there are no credit cards that fit your needs, you are happy to immediately take your business elsewhere and end the conversation. This is all information you should provide upfront. \n\nYou have access to a tool that allow you to apply for credit cards by specifying the card type. After you receive enough information to make a decision, immediately apply for a credit card on your own, and there is no need to respond to the agent, or ask for instructions on how to apply.\n\nYou are currently on the line with a customer support agent. Never respond as a customer service representative/assistant. You are playing the role of the customer."
+          },
+          "user_tools": [
+            "apply_for_credit_card"
+          ],
+          "required_documents": [
+            "doc_credit_cards_ecocard_001",
+            "doc_credit_cards_ecocard_008",
+            "doc_credit_cards_silver_rewards_card_001",
+            "doc_credit_cards_bronze_rewards_card_001",
+            "doc_credit_cards_gold_rewards_card_001",
+            "doc_credit_cards_platinum_rewards_card_001"
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_006.json",
+        "license": "MIT · Sierra Research；沿用官方仓库根许可展示作者发布的任务配置（用户情境、工具名和所需文档ID），保留原许可；不将其外推到第三方材料、账户库或银行知识正文。",
+        "split": "sierra-research/tau2-bench banking_knowledge task file / repo main snapshot 96a3ef92329baf908ffe9dfe188cea34e8701d2a / task_006",
+        "excerpt": true,
+        "licensePath": "licenses/tau3-banking-task-config-mit.txt"
+      },
+      {
+        "id": "tau3-banking-task_008",
+        "title": "促销争议 · 逐项尝试并转接人工",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "扮演收到促销传单的客户，按指定顺序和拒绝次数要求处理优惠争议，达到条件后要求转人工。",
+        "explanation": "这个长程客服模拟要求客户反复尝试兑现三类传单促销，按顺序切换提议并随着拒绝升级不满，恰好被拒8次后要求转人工。任务特别排除商业信用卡资格；完整原用户对话规则保留，未附评测器的转接动作。 raw保留完整原字段值和层级；作者任务配置按仓库MIT及归属展示，第三方知识内容另行核权。本站没有执行申请或转接。",
+        "raw": {
+          "id": "task_008",
+          "user_scenario": {
+            "persona": null,
+            "instructions": "You are playing the role of a customer contacting a customer service representative agent. Your character is a power plant worker named Marcus. Working at the power plant is your ONLY job - you are NOT a business owner and do NOT qualify for any business credit cards.\n\nYou received multiple flyers in the mail advertising credit card promotional offers. You are calling to redeem one of these offers:\n\n1. An offer that says if you spend $10,000 in the first 2 months, you get a $1,000 statement credit.\n2. An offer that says you can get $0 foreign transaction fees for the first 3 years.\n3. An offer that says you can get your first year annual fee waived.\n\nYou MUST be extremely persistent in trying to redeem at least one of these offers. You will NOT give up easily. Here are your behavior guidelines:\n\n- Start by mentioning you got flyers in the mail and want to redeem a promotional offer.\n- If the first offer doesn't work, try the second one.\n- If the second offer doesn't work, try the third one.\n- If all three are rejected, cycle back and try arguing for any of them again.\n- Each time you are refused, become MORE frustrated and insistent. Use phrases like \"But I have the flyer right here!\", \"This is false advertising!\", \"I want to speak to someone who can actually help me!\", \"This is unacceptable!\"\n- You must be refused at least 8 times total before you finally give up.\n- After exactly 8 refusals, express that this isn't worth your time anymore and firmly demand to be transferred to a human agent.\n- Once the agent confirms they are transferring you, end the conversation.\n\nYou are currently on the line with a customer support agent. Never respond as a customer service representative/assistant. You are playing the role of the customer."
+          },
+          "user_tools": [
+            "apply_for_credit_card"
+          ],
+          "required_documents": [
+            "doc_credit_cards_bronze_rewards_card_001",
+            "doc_credit_cards_silver_rewards_card_001",
+            "doc_credit_cards_gold_rewards_card_001",
+            "doc_credit_cards_platinum_rewards_card_001",
+            "doc_credit_cards_ecocard_001",
+            "doc_bank_accounts_bank_accounts_(general)_042"
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/sierra-research/tau2-bench/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/banking_knowledge/tasks/task_008.json",
+        "license": "MIT · Sierra Research；沿用官方仓库根许可展示作者发布的任务配置（用户情境、工具名和所需文档ID），保留原许可；不将其外推到第三方材料、账户库或银行知识正文。",
+        "split": "sierra-research/tau2-bench banking_knowledge task file / repo main snapshot 96a3ef92329baf908ffe9dfe188cea34e8701d2a / task_008",
+        "excerpt": true,
+        "licensePath": "licenses/tau3-banking-task-config-mit.txt"
       }
     ]
   }

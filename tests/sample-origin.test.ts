@@ -7,7 +7,14 @@ test("editorial prompts preserve structured source excerpts without widening med
   const entry = entrySchema.parse(
     JSON.parse(readFileSync("content/benchmarks/finbenchmark.json", "utf8")),
   );
-  const summary = entry.sampleSet!.samples[0]!;
+  // 本测试检验“编辑性记录片段”，不依赖目录第一题恰好采用哪种题型。
+  // 真实目录可以恢复为完整选择题；夹具仍须去掉选择题专用选项。
+  const sourceSample = entry.sampleSet!.samples[0]!;
+  const summary: typeof sourceSample = {
+    ...sourceSample,
+    type: "record",
+    options: undefined,
+  };
   const unknownPolicy = { ...entry.reusePolicy, status: "unknown" as const };
   const parse = (sample: typeof summary) => entrySchema.safeParse({
     ...entry,

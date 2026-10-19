@@ -70,7 +70,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "检查的公开任务仓库未声明task-data复用许可；仓库代码许可不外推至任务/附件。",
-    "scope": "仅M003 scratch公开任务的事实解读；任务文件、客户表格和附件的许可范围未查明。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不复制客户表格、完整指令或附件。",
       "不标成私有计分任务。"
@@ -81,7 +81,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "Vals 官方 EMB public sample task 的 M003 scratch 变体；未转载客户表格或完整指令，不视作 51 个私有计分任务之一。",
+    "reason": "确认官方仅公开M003一项，scratch/template两种起始状态分别说明并保留入口；同题不因变体而增加案例数。",
     "url": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
     "sourceUrls": [
       "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md"
@@ -115,6 +115,20 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md"
       ]
+    },
+    {
+      "text": "2026-10-19复查固定M003两版完整instructions与README：1个公开任务，不是2道独立问题。原始任务句保持，具体起始工作簿差异说明在解析。",
+      "sourceUrls": [
+        "https://github.com/vals-ai/emb-public-dataset/blob/da1fcaedb0a0a2a7c28e16b42de9d0cf025003c3/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+        "https://github.com/vals-ai/emb-public-dataset/blob/da1fcaedb0a0a2a7c28e16b42de9d0cf025003c3/problems/06%20Dataroom%20Summaries/M003-template/instructions.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：官方M003 scratch/template是同一任务的两种初始化模式；完整指令核对后保持一个案例，不重复计数。 展示记录1→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+        "https://www.vals.ai/benchmarks/emb"
+      ]
     }
   ],
   "sources": [
@@ -127,11 +141,21 @@
       "label": "已核验的官方具体案例",
       "url": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
       "role": "definition"
+    },
+    {
+      "label": "M003固定官方任务变体",
+      "url": "https://github.com/vals-ai/emb-public-dataset/blob/da1fcaedb0a0a2a7c28e16b42de9d0cf025003c3/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
+      "role": "data"
+    },
+    {
+      "label": "M003固定官方任务变体",
+      "url": "https://github.com/vals-ai/emb-public-dataset/blob/da1fcaedb0a0a2a7c28e16b42de9d0cf025003c3/problems/06%20Dataroom%20Summaries/M003-template/instructions.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "先用真实Microsoft Excel重算；Template比较被评分单元格值，Scratch由GPT5.4 Mini(xhigh)检查数值/公式/呈现rubric，多情景题需逐情景正确。",
@@ -155,7 +179,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "以 2021 年 6 月为分析时点，从 Customer Data Raw.xlsx 中的 2018 年 1 月至 May-21 LTM 客户数据构建留存模型。工作簿应含 Active Data、Active Customers、Retention、Customer Summary 四张表，分析 ARR、新签、增购、交叉销售、降购、流失和净/毛留存。新客及流失按客户而不是产品统计。",
-        "explanation": "Vals 官方 EMB public sample task 的 M003 scratch 变体；未转载客户表格或完整指令，不视作 51 个私有计分任务之一。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "explanation": "现有原句在官方M003两版指令中均逐字匹配。scratch从空submission.xlsx起步，template提供已有结构；它们属于同一个公开任务的两种初始化，本站不重复计算成两道题。需构建ARR/客户留存、季度cohort与客户分析，客户表、模板和参考工作簿未镜像。",
         "raw": "Construct the model with the following tabs: 1) Active Data, 2) Active Customers, 3) Retention, 4) Customer Summary.",
         "source": "https://raw.githubusercontent.com/vals-ai/emb-public-dataset/main/problems/06%20Dataroom%20Summaries/M003-scratch/instructions.md",
         "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",

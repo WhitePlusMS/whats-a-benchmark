@@ -67,30 +67,35 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "HF 固定数据集卡声明 CC BY 4.0；所选记录 license_name 字段为 Apache License 2.0，数据卡要求尊重每条记录所关联仓库的许可。",
-    "scope": "仅限本条固定 test row 的四个来源字段，其中 problem_statement 完整保留；CC BY 4.0 覆盖数据集记录，实例仓库许可单独记录，不据此扩大到整个上游仓库代码或链接截图。",
+    "license": "CC BY 4.0 · 官方SWE-rebench数据卡；上游许可按每条license_name与实际LICENSE分别保留。",
+    "scope": "四条真实公开任务的problem_statement及定位/实际可见要求字段，保留源值。中文解析单列，不包含patch、test_patch、hints、参考实现或外链图片。",
     "boundaries": [
-      "署名 Nebius / SWE-rebench 及原始仓库和记录位置，链接 CC BY 4.0 并说明本站仅选取四个字段。",
-      "所选记录的 license_name 是 Apache License 2.0；遵守数据卡关于尊重对应仓库许可的说明。",
-      "不包含 patch、hints_text、test_patch、测试清单或解答。",
-      "问题中的外链截图仅作为原文 URL 保留，未下载或再发布媒体。"
+      "每条base_commit、repo及对应上游许可保存，不把一个项目的许可外推所有仓库。",
+      "源码问题中原有示例代码/输出是问题输入；没有执行这些命令或断言任务已通过。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
+      "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/10483de0f50fe5da545942705a76c6150171af7f/README.md",
       "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
-      "https://creativecommons.org/licenses/by/4.0/legalcode.txt"
+      "https://raw.githubusercontent.com/12rambau/sepal_ui/4554f35da3fab21c32c35c4bd557ecfdec9c60c5/LICENSE.txt",
+      "https://raw.githubusercontent.com/12rambau/sepal_ui/179bd8d089275c54e94a7614be7ed03d298ef532/LICENSE.txt",
+      "https://raw.githubusercontent.com/12rambau/sepal_ui/8b76805db051d6d15024bd9ec2d78502cd92132e/LICENSE.txt"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "来自固定 HF 数据集提交的 test row 0。prompt 保留完整 problem_statement；raw 仅含 instance_id、repo、base_commit、problem_statement 四个原始字段，并省略其它行字段。",
+    "reason": "4条实际公开任务可切换，保留完整problem_statement与原定位字段；Pro另保留requirements/interface。补丁、隐藏测试和参考实现未复制，任务未执行。",
     "url": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
       "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
       "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
       "https://huggingface.co/api/datasets/nebius/SWE-rebench",
       "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
-      "https://creativecommons.org/licenses/by/4.0/legalcode.txt"
+      "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+      "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+      "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/10483de0f50fe5da545942705a76c6150171af7f/README.md",
+      "https://raw.githubusercontent.com/12rambau/sepal_ui/4554f35da3fab21c32c35c4bd557ecfdec9c60c5/LICENSE.txt",
+      "https://raw.githubusercontent.com/12rambau/sepal_ui/179bd8d089275c54e94a7614be7ed03d298ef532/LICENSE.txt",
+      "https://raw.githubusercontent.com/12rambau/sepal_ui/8b76805db051d6d15024bd9ec2d78502cd92132e/LICENSE.txt"
     ]
   },
   "metric": {
@@ -143,6 +148,33 @@
         "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
         "https://creativecommons.org/licenses/by/4.0/legalcode.txt"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+        "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/10483de0f50fe5da545942705a76c6150171af7f/README.md",
+        "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
+        "https://raw.githubusercontent.com/12rambau/sepal_ui/4554f35da3fab21c32c35c4bd557ecfdec9c60c5/LICENSE.txt",
+        "https://raw.githubusercontent.com/12rambau/sepal_ui/179bd8d089275c54e94a7614be7ed03d298ef532/LICENSE.txt",
+        "https://raw.githubusercontent.com/12rambau/sepal_ui/8b76805db051d6d15024bd9ec2d78502cd92132e/LICENSE.txt"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“sepal_ui navigation drawer状态同步”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+        "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
+        "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/89cdfbab4ab1bd8f5a658bb212d1b63624f4f881/README.md",
+        "https://huggingface.co/api/datasets/nebius/SWE-rebench",
+        "https://raw.githubusercontent.com/0b01001001/spectree/a091fab020ac26548250c907bae0855273a98778/LICENSE",
+        "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+        "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/10483de0f50fe5da545942705a76c6150171af7f/README.md",
+        "https://raw.githubusercontent.com/12rambau/sepal_ui/4554f35da3fab21c32c35c4bd557ecfdec9c60c5/LICENSE.txt",
+        "https://raw.githubusercontent.com/12rambau/sepal_ui/179bd8d089275c54e94a7614be7ed03d298ef532/LICENSE.txt",
+        "https://raw.githubusercontent.com/12rambau/sepal_ui/8b76805db051d6d15024bd9ec2d78502cd92132e/LICENSE.txt",
+        "https://huggingface.co/datasets/nebius/SWE-rebench-V2"
+      ]
     }
   ],
   "sources": [
@@ -190,11 +222,36 @@
       "label": "Creative Commons Attribution 4.0 legal code",
       "url": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/nebius/SWE-rebench/resolve/10483de0f50fe5da545942705a76c6150171af7f/README.md",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/12rambau/sepal_ui/4554f35da3fab21c32c35c4bd557ecfdec9c60c5/LICENSE.txt",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/12rambau/sepal_ui/179bd8d089275c54e94a7614be7ed03d298ef532/LICENSE.txt",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://raw.githubusercontent.com/12rambau/sepal_ui/8b76805db051d6d15024bd9ec2d78502cd92132e/LICENSE.txt",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "在对应基提交和容器中应用候选补丁，运行任务测试判解决；官网统一 ReAct 运行重复五次，另报告 SEM 与 pass@5。",
@@ -212,25 +269,156 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "swe-rebench-spectree-64",
-        "title": "spectree：查询参数 schema 描述未显示",
+        "title": "Spectree query schema 描述",
         "type": "code",
-        "prompt": "[BUG]description for query paramters can not show in swagger ui\nHi, when I add a description for a schema used in query, it can not show in swagger ui but can show in Redoc\r\n```py\r\n@HELLO.route('/', methods=['GET'])\r\n@api.validate(query=HelloForm)\r\ndef hello():\r\n    \"\"\"\r\n    hello 注释\r\n    :return:\r\n    \"\"\"\r\n   return 'ok'\r\n\r\nclass HelloForm(BaseModel):\r\n    \"\"\"\r\n    hello表单\r\n    \"\"\"\r\n    user: str # 用户名称\r\n    msg: str = Field(description='msg test', example='aa')\r\n    index: int\r\n    data: HelloGetListForm\r\n    list: List[HelloListForm]\r\n```\r\n\r\n![截屏2020-10-12 下午7 54 52](https://user-images.githubusercontent.com/60063723/95743785-de70f480-0cc4-11eb-857b-fffd3d7e9cdd.png)\r\n![截屏2020-10-12 下午7 53 59](https://user-images.githubusercontent.com/60063723/95743805-e5980280-0cc4-11eb-99ae-11e6439bae02.png)\r\n\r\n\r\n",
-        "explanation": "prompt 是原始完整 problem_statement；raw 仅选取四个原字段，未收录 hints、patch、测试或答案字段。原文中两个截图链接保留为文本引用，不包含媒体文件。",
+        "prompt": "用户在 query schema 上为字段添加描述后，Swagger UI 不显示、Redoc 显示；任务涉及 Spectree 参数描述文档输出。",
+        "explanation": "用户在 query schema 上为字段添加描述后，Swagger UI 不显示、Redoc 显示；任务涉及 Spectree 参数描述文档输出。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
         "raw": {
           "instance_id": "0b01001001__spectree-64",
           "repo": "0b01001001/spectree",
           "base_commit": "a091fab020ac26548250c907bae0855273a98778",
-          "problem_statement": "[BUG]description for query paramters can not show in swagger ui\nHi, when I add a description for a schema used in query, it can not show in swagger ui but can show in Redoc\r\n```py\r\n@HELLO.route('/', methods=['GET'])\r\n@api.validate(query=HelloForm)\r\ndef hello():\r\n    \"\"\"\r\n    hello 注释\r\n    :return:\r\n    \"\"\"\r\n   return 'ok'\r\n\r\nclass HelloForm(BaseModel):\r\n    \"\"\"\r\n    hello表单\r\n    \"\"\"\r\n    user: str # 用户名称\r\n    msg: str = Field(description='msg test', example='aa')\r\n    index: int\r\n    data: HelloGetListForm\r\n    list: List[HelloListForm]\r\n```\r\n\r\n![截屏2020-10-12 下午7 54 52](https://user-images.githubusercontent.com/60063723/95743785-de70f480-0cc4-11eb-857b-fffd3d7e9cdd.png)\r\n![截屏2020-10-12 下午7 53 59](https://user-images.githubusercontent.com/60063723/95743805-e5980280-0cc4-11eb-99ae-11e6439bae02.png)\r\n\r\n\r\n"
+          "version": "0.3",
+          "problem_statement": "[BUG]description for query paramters can not show in swagger ui\nHi, when I add a description for a schema used in query, it can not show in swagger ui but can show in Redoc\r\n```py\r\n@HELLO.route('/', methods=['GET'])\r\n@api.validate(query=HelloForm)\r\ndef hello():\r\n    \"\"\"\r\n    hello 注释\r\n    :return:\r\n    \"\"\"\r\n   return 'ok'\r\n\r\nclass HelloForm(BaseModel):\r\n    \"\"\"\r\n    hello表单\r\n    \"\"\"\r\n    user: str # 用户名称\r\n    msg: str = Field(description='msg test', example='aa')\r\n    index: int\r\n    data: HelloGetListForm\r\n    list: List[HelloListForm]\r\n```\r\n\r\n![截屏2020-10-12 下午7 54 52](https://user-images.githubusercontent.com/60063723/95743785-de70f480-0cc4-11eb-857b-fffd3d7e9cdd.png)\r\n![截屏2020-10-12 下午7 53 59](https://user-images.githubusercontent.com/60063723/95743805-e5980280-0cc4-11eb-99ae-11e6439bae02.png)\r\n\r\n\r\n",
+          "meta": {
+            "commit_name": "head_commit",
+            "failed_lite_validators": [
+              "has_hyperlinks",
+              "has_media",
+              "has_many_modified_files",
+              "has_many_hunks"
+            ],
+            "has_test_patch": true,
+            "is_lite": false,
+            "llm_score": {
+              "difficulty_score": 1,
+              "issue_text_score": 2,
+              "test_score": 0
+            },
+            "num_modified_files": 2
+          },
+          "license_name": "Apache License 2.0"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=1",
-        "license": "CC BY 4.0 · Nebius / SWE-rebench dataset; instance license_name: Apache License 2.0",
-        "licensePath": "licenses/swe-rebench-sample-source.txt",
-        "split": "default / test / row_idx=0 / 0b01001001__spectree-64",
-        "excerpt": true
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+        "license": "CC BY 4.0 · Nebius SWE-rebench数据卡；本条上游0b01001001/spectree为Apache License 2.0，对应base_commit许可已附。原问题和meta保留，外链截图未镜像。",
+        "split": "default / test / 0b01001001__spectree-64 / repo=0b01001001/spectree / base_commit=a091fab020ac26548250c907bae0855273a98778",
+        "excerpt": true,
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/0b01001001-spectree-d6b71c2372.txt"
+      },
+      {
+        "id": "12rambau__sepal_ui-347",
+        "title": "sepal_ui 图层加载状态",
+        "type": "record",
+        "prompt": "地图图层加载期间应显示 loading statebar；原 issue 指出用户反复缩放会影响慢加载图层的状态。",
+        "explanation": "地图图层加载期间应显示 loading statebar；原 issue 指出用户反复缩放会影响慢加载图层的状态。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
+        "raw": {
+          "instance_id": "12rambau__sepal_ui-347",
+          "repo": "12rambau/sepal_ui",
+          "base_commit": "4554f35da3fab21c32c35c4bd557ecfdec9c60c5",
+          "version": "2.9",
+          "problem_statement": "display a loading statebar when a layer is loading in the map \n## issue \r\nI experienced some issues with the FCDM module as the map is super slow to load (it uses a adaptative buffer, the more you zoom the slower it gets it's a nightmare). The consequence is that the user clicks frantically on the `zoom` `unzoom` btn and the layer never fully loads and they eventually break the app.\r\n\r\nI've looked into the loading widgets that exists in ipyleaflet and that's not very elegant (from my perspective).\r\n\r\n## current implementation\r\n\r\nI came up with the idea of overwriting the `add_layer` method to add a `StateBar` at the top left corner for every layer and dynamically show them when the tile are reloading. overwritting the `add_layer` method is super versatile as it's the basic function called by all the others (`add_ee_layer`, `addLayer`, `add_raster_layer` ... etc). \r\n\r\n- user doesn't change anything in the way object are added to the map\r\n- each time you add a layer, it adds a statebar writting \"loading \\<whatever\\>\"\r\n- the statebare is shown whenever the layer is loading (thank you traitlets)\r\n\r\n## questions\r\n\r\n- should we remove them when the layer is removed (overwritting remove_layer as well) ?\r\n- should the statebar always be displayed (and instead of changing viz, we could change loading trait) ?\r\n- do you think it could be useful in general ? \r\n\r\n## demo \r\n\r\nHere is a gif demo and the the code I used. \r\n\r\n\r\n![feature_demo](https://user-images.githubusercontent.com/12596392/142245503-4b78f635-9700-468c-9202-fa04a13de4b8.gif)\r\n\r\n```python\r\nfrom sepal_ui.mapping import SepalMap\r\nfrom sepal_ui import sepalwidgets as sw \r\nfrom ipyleaflet import WidgetControl\r\nimport ee\r\n\r\nee.Initialize()\r\n\r\n# create a custom statebar\r\nclass StateBar(sw.StateBar):\r\n    \r\n    def __init__(self, **kwargs):\r\n        \r\n        name = kwargs.pop(\"layer\", \"layer\")\r\n        kwargs[\"_metadata\"] = {\"layer\": name} \r\n        \r\n        super().__init__(**kwargs)\r\n        \r\n        self.msg = f\"Loading {name}\"\r\n        self.loading = True\r\n        \r\n    def activate(self, change):\r\n        \r\n        if change['new']:\r\n            self.show()\r\n        else:\r\n            self.hide()\r\n            \r\n        return\r\n\r\n# define a custom Map class\r\nclass Map(SepalMap):\r\n    \r\n    layer_state_list = []\r\n    \r\n    def add_layer(self, l):\r\n        \r\n        # call the original function\r\n        super().add_layer(l)\r\n        \r\n        # add a layer state object \r\n        state = StateBar(layer=l.name)\r\n        self.layer_state_list += [state]\r\n        self.add_control(WidgetControl(widget=state, position='topleft'))\r\n        \r\n        # link it to the layer state\r\n        #layer = next(l for l in self.layers if l.name == name)\r\n        l.observe(state.activate, \"loading\")\r\n        \r\n        return\r\n\r\n# create the map and zoom on congo\r\ntest_map = Map()\r\ntest_map.zoom = 10\r\ntest_map.center = [5.703447982149503, 28.32275390625] \r\n\r\n# load hansen & al ddataset\r\ndataset = ee.Image('UMD/hansen/global_forest_change_2020_v1_8')\r\ntreeCoverVisParam = {\r\n  \"bands\": ['treecover2000'],\r\n  \"min\": 0,\r\n  \"max\": 100,\r\n  \"palette\": ['black', 'green']\r\n}\r\ntest_map.addLayer(dataset, treeCoverVisParam, 'tree cover')\r\n\r\n# load the S2 RGB product (SR)\r\ndef maskS2clouds(image):\r\n\r\n    qa = image.select('QA60');\r\n    \r\n    # Bits 10 and 11 are clouds and cirrus, respectively.\r\n    cloudBitMask = 1 << 10;\r\n    cirrusBitMask = 1 << 11;\r\n\r\n    # Both flags should be set to zero, indicating clear conditions.\r\n    mask = (\r\n        qa\r\n        .bitwiseAnd(cloudBitMask).eq(0)\r\n        .And(qa.bitwiseAnd(cirrusBitMask).eq(0))\r\n    )\r\n\r\n    return image.updateMask(mask).divide(10000)\r\n\r\ndataset = (\r\n    ee.ImageCollection('COPERNICUS/S2_SR')\r\n    .filterDate('2020-01-01', '2020-01-30')\r\n    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20))\r\n    .map(maskS2clouds)\r\n)\r\n\r\nvisualization = {\r\n  \"min\": 0.0,\r\n  \"max\": 0.3,\r\n  \"bands\": ['B4', 'B3', 'B2'],\r\n}\r\n\r\ntest_map.addLayer(dataset.mean(), visualization, 'RGB')\r\n\r\n# display the map\r\ntest_map\r\n```\r\n",
+          "meta": {
+            "commit_name": "head_commit",
+            "failed_lite_validators": [
+              "has_hyperlinks",
+              "has_media",
+              "has_added_files",
+              "has_many_modified_files",
+              "has_many_hunks"
+            ],
+            "has_test_patch": true,
+            "is_lite": false,
+            "llm_score": {
+              "difficulty_score": 2,
+              "issue_text_score": 1,
+              "test_score": 3
+            },
+            "num_modified_files": 3
+          },
+          "license_name": "MIT License"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+        "license": "CC BY 4.0 · Nebius SWE-rebench数据卡；本条上游12rambau/sepal_ui为MIT License，对应base_commit许可已附。原问题和meta保留，外链截图未镜像。",
+        "split": "default / test / 12rambau__sepal_ui-347 / repo=12rambau/sepal_ui / base_commit=4554f35da3fab21c32c35c4bd557ecfdec9c60c5",
+        "excerpt": true,
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/12rambau-sepal-ui-bca6a309d4.txt"
+      },
+      {
+        "id": "12rambau__sepal_ui-411",
+        "title": "sepal_ui 日期选择禁用trait",
+        "type": "record",
+        "prompt": "请求为 DatePicker 增加 disabled trait，使调用方可从内置 widget 控制日期选择器启停。",
+        "explanation": "请求为 DatePicker 增加 disabled trait，使调用方可从内置 widget 控制日期选择器启停。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
+        "raw": {
+          "instance_id": "12rambau__sepal_ui-411",
+          "repo": "12rambau/sepal_ui",
+          "base_commit": "179bd8d089275c54e94a7614be7ed03d298ef532",
+          "version": "2.6",
+          "problem_statement": "add a disabled trait on the datepicker\nI'm currently coding it in a module and the process of disabling a datepicker is uterly boring. I think we could add an extra trait to the layout and pilot the enabling and disabling directly from the built-in widget\r\n\r\n\r\n```python\r\nself.w_start = sw.DatePicker(label=\"start\", v_model=None)\r\n\r\n# disable both the slots (hidden to everyone) and the menu \r\nself.w_start.menu.v_slots[0][\"children\"].disabled = True\r\nself.w_start.menu.disabled = True\r\n```\r\n",
+          "meta": {
+            "commit_name": "head_commit",
+            "failed_lite_validators": [
+              "has_many_modified_files",
+              "has_many_hunks"
+            ],
+            "has_test_patch": true,
+            "is_lite": false,
+            "llm_score": {
+              "difficulty_score": 1,
+              "issue_text_score": 0,
+              "test_score": 2
+            },
+            "num_modified_files": 2
+          },
+          "license_name": "MIT License"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+        "license": "CC BY 4.0 · Nebius SWE-rebench数据卡；本条上游12rambau/sepal_ui为MIT License，对应base_commit许可已附。原问题和meta保留，外链截图未镜像。",
+        "split": "default / test / 12rambau__sepal_ui-411 / repo=12rambau/sepal_ui / base_commit=179bd8d089275c54e94a7614be7ed03d298ef532",
+        "excerpt": true,
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/12rambau-sepal-ui-bca6a309d4.txt"
+      },
+      {
+        "id": "12rambau__sepal_ui-416",
+        "title": "sepal_ui navigation drawer状态同步",
+        "type": "record",
+        "prompt": "请求导航抽屉向应用环境暴露更新状态的方法，以便模块模型更新图标、徽标等状态。",
+        "explanation": "请求导航抽屉向应用环境暴露更新状态的方法，以便模块模型更新图标、徽标等状态。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
+        "raw": {
+          "instance_id": "12rambau__sepal_ui-416",
+          "repo": "12rambau/sepal_ui",
+          "base_commit": "8b76805db051d6d15024bd9ec2d78502cd92132e",
+          "version": "2.6",
+          "problem_statement": "Interact with navigation drawers\nSometimes is useful to pass some data from the module model to the app environment and so far we do not have this implementation.\r\n\r\nWe can add two simple methods to the drawers so they can update their state with icons, badges, and so.\r\n",
+          "meta": {
+            "commit_name": "head_commit",
+            "failed_lite_validators": [
+              "has_many_modified_files",
+              "has_many_hunks"
+            ],
+            "has_test_patch": true,
+            "is_lite": false,
+            "llm_score": {
+              "difficulty_score": 1,
+              "issue_text_score": 2,
+              "test_score": 3
+            },
+            "num_modified_files": 2
+          },
+          "license_name": "MIT License"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nebius%2FSWE-rebench&config=default&split=test&offset=0&length=6",
+        "license": "CC BY 4.0 · Nebius SWE-rebench数据卡；本条上游12rambau/sepal_ui为MIT License，对应base_commit许可已附。原问题和meta保留，外链截图未镜像。",
+        "split": "default / test / 12rambau__sepal_ui-416 / repo=12rambau/sepal_ui / base_commit=8b76805db051d6d15024bd9ec2d78502cd92132e",
+        "excerpt": true,
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/12rambau-sepal-ui-bca6a309d4.txt"
       }
     ]
   }

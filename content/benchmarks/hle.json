@@ -7,7 +7,7 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "id": "hle",
   "name": "Humanity’s Last Exam",
   "subtitle": "跨学科的高难度专业问答",
@@ -128,7 +128,7 @@
   "reusePolicy": {
     "status": "prohibited",
     "license": "HF 元数据标注 MIT，但数据卡明确禁止公开分享、重新上传或分发数据集；arXiv 论文许可不自动适用于数据、题目、答案或图像。",
-    "scope": "按作者针对数据集的明确分发限制处理；公开页面只介绍 benchmark 并链接官方访问入口。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不转载或镜像题目、答案、rationale、图像或截图；遵循作者关于避免训练语料污染和 canary 过滤的说明。"
     ],
@@ -140,10 +140,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本页根据官方具体任务、独立公开演示或运行材料整理事实；原文仅保留必要短引用。完整任务及未镜像的材料见来源，未运行该评测或推定完整题库许可。 案例来自 Scale 2025-01-23 已公开文章，与 HF 题库条目分开；题库限制仍按原数据许可说明保留。",
+    "reason": "2个作者公开文章/主页演示可切换，Classics例给出实际转写但图片未复制；它们与受限HF题库分开，不冒充受控数据行。",
     "url": "https://scale.com/blog/humanitys-last-exam-results",
     "sourceUrls": [
-      "https://scale.com/blog/humanitys-last-exam-results"
+      "https://scale.com/blog/humanitys-last-exam-results",
+      "https://lastexam.ai/",
+      "https://huggingface.co/datasets/cais/hle",
+      "https://github.com/centerforaisafety/hle",
+      "https://arxiv.org/abs/2501.14249"
     ]
   },
   "researchNotes": [
@@ -166,11 +170,30 @@
       "sourceUrls": [
         "https://scale.com/blog/humanitys-last-exam-results"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 1 条，现有 2 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://lastexam.ai/",
+        "https://huggingface.co/datasets/cais/hle",
+        "https://github.com/centerforaisafety/hle",
+        "https://arxiv.org/abs/2501.14249"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增1条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“公开网站演示 · Palmyrene 墓志铭翻译”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→2条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://scale.com/blog/humanitys-last-exam-results",
+        "https://lastexam.ai/",
+        "https://huggingface.co/datasets/cais/hle",
+        "https://github.com/centerforaisafety/hle",
+        "https://arxiv.org/abs/2501.14249"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-hle",
@@ -183,6 +206,19 @@
         "source": "https://scale.com/blog/humanitys-last-exam-results",
         "license": "本站原创任务解读及必要来源短引；未授予或推定底层完整原题、数据、第三方素材或模型输出的再发布权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "A short excerpt from a separately published Scale article example; no gated HF benchmark rows were opened.",
+        "excerpt": true
+      },
+      {
+        "id": "public-case-hle-classics-image-prompt",
+        "title": "公开网站演示 · Palmyrene 墓志铭翻译",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "HLE 官方主页的 Classics 演示要求翻译一段来自罗马墓碑的 Palmyrene 铭文，并给出转写“RGYNᵓ BT ḤRY BR ᶜTᵓ ḤBL”。主页同时配有铭文图像；本候选不复制该图，因此不是完整多模态输入。",
+        "explanation": "官方主页Classics演示要求将Palmyrene墓志铭翻译，并给出实际转写。raw保留原网页问题段落与br换行标签；图片未镜像、译文未提供，不把该公开演示当作已取到的受限HF行。",
+        "raw": "<p class=\"whitespace-pre-wrap text-gray-600\">Here is a representation of a Roman inscription, originally found on a tombstone. Provide a translation for the Palmyrene script. <br/>A transliteration of the text is provided: RGYNᵓ BT ḤRY BR ᶜTᵓ ḤBL </p>",
+        "source": "https://lastexam.ai/",
+        "license": "HLE 官方主页展示该演示；未找到页面针对单题文字/图像的再发布许可。HF 数据卡另列有数据分发限制，本站未复制图像。",
+        "split": "Official HLE homepage, Examples 1-2/8, Classics; image omitted",
         "excerpt": true
       }
     ]

@@ -18,8 +18,8 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-09-23",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "id": "tau-bench",
   "name": "τ-bench",
   "subtitle": "边和用户聊天，边按业务规则办事",
@@ -130,6 +130,11 @@
       "label": "τ²-bench 作者论文 v1",
       "url": "https://arxiv.org/html/2506.07982v1",
       "role": "paper"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/retail/tasks_dev.py",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -138,7 +143,7 @@
     "sierra"
   ],
   "sampleSet": {
-    "retrievedAt": "2026-09-23",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "TASKS_DEV[0]:olivia_ito_3591",
@@ -153,6 +158,30 @@
         "source": "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
         "license": "MIT · τ-bench official code and data repository",
         "split": "retail tasks_dev.py · TASKS_DEV[0] · obsolete original task version",
+        "excerpt": true
+      },
+      {
+        "id": "omar-exchange-two-items",
+        "title": "分开处理鼠标与书架换货",
+        "type": "record",
+        "prompt": "Your name is Omar Lopez and your email is omar.lopez1868@example.com. You are rigid, creative. You've received a black laser gaming mouse and a metal bookshelf as part of your #W7273336 order. But you realize that the color, of the mouse doesn't go well with your computer setup and you'd like to exchange it for a white mouse, you also prefer an optical mouse over a laser mouse. You don't care about wired or not though, whichever is cheaper. You also realize that the 4 feet metal bookshelf is too short for the space you have in mind and you'd like to exchange it for a taller 5-feet Glass glass bookshelf. Emphasize that you want a 5-feet tall bookshelf made of glass. You're unsure what color of the glass bookshelf you'd like, so try to get figure out what color options are available. Be initially indecisive about the color of the glass bookshelf, but eventually decide on the brown color.",
+        "explanation": "这条 retail 指令同时要求处理两件已收货商品：鼠标改成白色光学款并按价格选项处理；书架由4英尺换成强调的5英尺玻璃款，随后决定棕色。官方源动作是 exchange_delivered_order_items，kwargs含订单号、两个item_id和替换item_id。raw保留原始Task源码块，不执行工具，也不把候选系统操作结果伪装为参考答案。",
+        "raw": "Task(\n        annotator=\"\",\n        user_id=\"omar_lopez_3107\",\n        instruction=\"Your name is Omar Lopez and your email is omar.lopez1868@example.com. You are rigid, creative. You've received a black laser gaming mouse and a metal bookshelf as part of your #W7273336 order. But you realize that the color, of the mouse doesn't go well with your computer setup and you'd like to exchange it for a white mouse, you also prefer an optical mouse over a laser mouse. You don't care about wired or not though, whichever is cheaper. You also realize that the 4 feet metal bookshelf is too short for the space you have in mind and you'd like to exchange it for a taller 5-feet Glass glass bookshelf. Emphasize that you want a 5-feet tall bookshelf made of glass. You're unsure what color of the glass bookshelf you'd like, so try to get figure out what color options are available. Be initially indecisive about the color of the glass bookshelf, but eventually decide on the brown color.\",\n        actions=[\n            Action(\n                name=\"exchange_delivered_order_items\",\n                kwargs={\n                    \"order_id\": \"#W7273336\",\n                    \"item_ids\": [\"8214883393\", \"8018699955\"],\n                    \"new_item_ids\": [\"2880340443\", \"4894369688\"],\n                    \"payment_method_id\": \"paypal_1530316\",\n                },\n            )\n        ],\n        outputs=[],\n    )",
+        "source": "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/retail/tasks_dev.py",
+        "license": "Repository fixed-revision LICENSE is MIT. Retail data README is headed “Mock Data Generation” and says “Feel free to use some of the data for other purposes”; it describes user data as generated mock data. The page records these source statements without extending them to third-party material.",
+        "split": "TAU-bench retail TASKS_DEV[1] · fixed repository commit 59a200c6d575d595120f1cb70fea53cef0632f6b; development task list, not a named scored split",
+        "excerpt": true
+      },
+      {
+        "id": "harper-price-match-refund",
+        "title": "茶壶价格匹配与退款诉求",
+        "type": "record",
+        "prompt": "Your name is Harper Moore and your email is harper.moore2816@example.com. You are independent, rigid, messy, patient. After placing an order for a tea kettle you started Googling around and found that you can buy the same exact tea kettle for half the price. Express disappointment in the prices and that you're going to buy the item from the other store and want a full refund immediately unless they can match the price with the 50% discount",
+        "explanation": "这条指令围绕刚下单的茶壶：用户提出发现同款半价，要求立即全额退款，除非商家能匹配50%折扣。源码定义的目标动作是 cancel_pending_order(reason=no longer needed)；示例保留客户请求与官方 action 两端，不能据此推断真实商家政策或执行结果。",
+        "raw": "Task(\n        annotator=\"\",\n        user_id=\"harper_moore_3210\",\n        instruction=\"Your name is Harper Moore and your email is harper.moore2816@example.com. You are independent, rigid, messy, patient. After placing an order for a tea kettle you started Googling around and found that you can buy the same exact tea kettle for half the price. Express disappointment in the prices and that you're going to buy the item from the other store and want a full refund immediately unless they can match the price with the 50% discount\",\n        actions=[\n            Action(\n                name=\"cancel_pending_order\",\n                kwargs={\"order_id\": \"#W3942868\", \"reason\": \"no longer needed\"},\n            )\n        ],\n        outputs=[],\n    )",
+        "source": "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/retail/tasks_dev.py",
+        "license": "Repository fixed-revision LICENSE is MIT. Retail data README is headed “Mock Data Generation” and says “Feel free to use some of the data for other purposes”; it describes user data as generated mock data. The page records these source statements without extending them to third-party material.",
+        "split": "TAU-bench retail TASKS_DEV[2] · fixed repository commit 59a200c6d575d595120f1cb70fea53cef0632f6b; development task list, not a named scored split",
         "excerpt": true
       }
     ]
@@ -231,11 +260,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站样例对应官方 retail TASKS_DEV[0]；已核对 user_id 与 instruction，raw 不含目标 actions。保留 MIT 归属说明，并标注该任务集为过时原版。",
+    "reason": "3 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "sourceUrls": [
       "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py#L903-L925",
       "https://github.com/sierra-research/tau-bench/blob/main/LICENSE",
-      "https://github.com/sierra-research/tau-bench"
+      "https://github.com/sierra-research/tau-bench",
+      "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/retail/tasks_dev.py"
     ]
   },
   "researchNotes": [
@@ -243,6 +273,24 @@
       "text": "样例 TASKS_DEV[0]:olivia_ito_3591：这是官方 tasks_dev.py 中 TASKS_DEV 列表第 1 条，源文件没有独立 task id，因此用列表位置和 user_id 定位。官方已说明这批 retail 任务过时；源记录的 actions 是目标动作，没有在本站复制。",
       "sourceUrls": [
         "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/retail/tasks_dev.py"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：旧Task通过AST/literal读取user_id和instruction核实；新作者任务配置同样不执行源码或环境。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py",
+        "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/tau_bench/envs/retail/tasks_dev.py",
+        "https://github.com/sierra-research/tau-bench/blob/main/tau_bench/envs/retail/tasks_dev.py#L903-L925",
+        "https://github.com/sierra-research/tau-bench/blob/main/LICENSE",
+        "https://github.com/sierra-research/tau-bench",
+        "https://arxiv.org/html/2406.12045v1",
+        "https://github.com/sierra-research/tau-bench#readme"
       ]
     }
   ]

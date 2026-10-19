@@ -31,7 +31,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "在修订后的 FrontierMath Tiers 1–3 题集上求解从高年级本科到早期科研的数学问题，由 verifier 核验精确答案。",
@@ -80,26 +80,27 @@
     "url": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "未核实覆盖全部问题与 verifier 的数据集许可证；页面内容许可声明不能自动覆盖题目、解答及嵌入媒体。",
-    "scope": "只提供概述和官方链接，不复制题面、答案、推导、verifier 或嵌入媒体。",
+    "status": "unknown",
+    "license": "Epoch通用数据CC BY条款另行保留各题作者权利；所选公开题未定位独立许可。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "官方页面提示 benchmark data 不应进入训练语料；不得用于训练抓取或参数拟合。",
-      "不得把 About 页面的页面级许可说明解释为逐题数据转载许可。"
+      "共享样题不据此宣称是固定v2行；母项与版本页面的相同案例不当作独立题集。",
+      "raw保留原HTML数学条件，页面按文本显示，不执行HTML。"
     ],
     "sourceUrls": [
-      "https://epoch.ai/frontiermath/tiers-1-4/about",
-      "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
+      "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+      "https://epoch.ai/use-data"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "Official public Tier 1 problem; the current v2 hub confirms ten public examples for Tiers 1-3 and links to the shared sample page, but does not identify this title as a fixed v2 row. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。 官方v2 Hub链接该层级公开样题页，未给本例的固定v2行号；本页不补造题集ID或当次成绩。",
+    "reason": "3个共享官方样题页案例可切换；原Problem面板和数学条件保留，不宣称是固定v2题集行。母项/版本页复用的同一例不当作独立题集。",
     "url": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
     "sourceUrls": [
       "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
       "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2",
-      "https://epoch.ai/benchmarks/use-this-data"
+      "https://epoch.ai/benchmarks/use-this-data",
+      "https://epoch.ai/use-data"
     ]
   },
   "metric": {
@@ -144,6 +145,11 @@
       "label": "已核验的官方公开例题或运行材料",
       "url": "https://epoch.ai/benchmarks/use-this-data",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://epoch.ai/use-data",
+      "role": "data"
     }
   ],
   "researchNotes": [
@@ -158,9 +164,26 @@
       "sourceUrls": [
         "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+        "https://epoch.ai/use-data"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“Enumerative geometry over finite fields”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+        "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2",
+        "https://epoch.ai/benchmarks/use-this-data",
+        "https://epoch.ai/use-data",
+        "https://epoch.ai/frontiermath/tiers-1-4/about"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "评分运行提交函数并由题目verifier接受精确对象，正确1、错误/未提交0；提交函数最多30秒，探索python工具也有独立30秒限时。",
@@ -176,7 +199,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-frontiermath-v2-tiers-1-3",
@@ -184,13 +207,39 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "在有限域 F_(5^18) 上，求齐次方程 x³y+y³z+z³x=0 的非零射影点数量。三个坐标同时乘任意非零标量视为同一点；(0,0,0)不计入。",
-        "explanation": "Official public Tier 1 problem; the current v2 hub confirms ten public examples for Tiers 1-3 and links to the shared sample page, but does not identify this title as a fixed v2 row. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。 官方v2 Hub链接该层级公开样题页，未给本例的固定v2行号；本页不补造题集ID或当次成绩。\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。",
-        "raw": "How many nonzero points are there on [x^3y+y^3z+z^3x=0] over \\mathbb{F}_{5^{18}} up to scaling?",
+        "explanation": "Official public Tier 1 problem; the current v2 hub confirms ten public examples for Tiers 1-3 and links to the shared sample page, but does not identify this title as a fixed v2 row. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。 官方v2 Hub链接该层级公开样题页，未给本例的固定v2行号；本页不补造题集ID或当次成绩。\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。 Source check: official public page label/statement located; no stable dataset row ID or precise version mapping is published there. 这是共享官方样题页的页面级案例，没有稳定题号或固定v2成员映射；raw保留连续原HTML，中文解析/可读题面分列。",
+        "raw": "<p>How many nonzero points are there on\n[x^3y+y^3z+z^3x=0]</p>\n<p>over <span class=\"mjx-inline\">\\(\\mathbb{F}_{5^{18}}\\)</span> up to scaling?</p>",
         "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
-        "license": "本站原创事实与数学条件整理；来源标题或短语作必要短引，原题/游戏材料整体许可按原说明处理。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
+        "license": "Epoch官方公开样题Problem面板的原始HTML及数学条件，未复制隐藏Solution正文。Epoch数据通用CC BY声明将题目/答案权利保留给各创作者，本次未定位逐题单独许可；不外推私有完整题集。",
         "split": "Tier 1 / Counting nonzero solutions of homogeneous equations; lines 876-884; no stable problem ID.",
         "excerpt": true,
         "answer": "3814708984376"
+      },
+      {
+        "id": "public-page-frontiermath-v2-tiers-1-3-asymptotic-equation",
+        "title": "Asymptotics of solutions of a 5-variable equation",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "There are unique constants \\(C, \\alpha, \\beta\\) such that the number of solutions to the equation\n\\(ab+1=cde\\)\nwith \\(a, b, c, d, e \\in \\mathbb{N}\\) with \\(ab \\le x\\) is asymptotic to \\(Cx^{\\alpha}\\log^{\\beta}x\\) as \\(x\\rightarrow\\infty.\\)\nCompute \\(\\lfloor 1000C\\rfloor.\\)",
+        "explanation": "计数满足 ab+1=cde、ab≤x 的五元自然数解，问题要求由渐近主项常数求取整值。 这是共享官方样题页的页面级案例，没有稳定题号或固定v2成员映射；raw保留连续原HTML，中文解析/可读题面分列。",
+        "raw": "<p>There are unique constants <span class=\"mjx-inline\">\\(C, \\alpha, \\beta\\)</span> such that the number of solutions to the equation</p>\n<p>\\(ab+1=cde\\)</p>\n<p>with <span class=\"mjx-inline\">\\(a, b, c, d, e \\in \\mathbb{N}\\)</span> with <span class=\"mjx-inline\">\\(ab \\le x\\)</span> is asymptotic to <span class=\"mjx-inline\">\\(Cx^{\\alpha}\\log^{\\beta}x\\)</span> as <span class=\"mjx-inline\">\\(x\\rightarrow\\infty.\\)</span>\nCompute <span class=\"mjx-inline\">\\(\\lfloor 1000C\\rfloor.\\)</span></p>",
+        "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+        "license": "Epoch官方公开样题Problem面板的原始HTML及数学条件，未复制隐藏Solution正文。Epoch数据通用CC BY声明将题目/答案权利保留给各创作者，本次未定位逐题单独许可；不外推私有完整题集。",
+        "split": "Tier 2 / official public-samples page; exact dataset-version membership not identified",
+        "excerpt": true
+      },
+      {
+        "id": "public-page-frontiermath-v2-tiers-1-3-finite-field-conics",
+        "title": "Enumerative geometry over finite fields",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Let \\(U\\subset\\mathbb{P}H^0(\\mathbb{P}^2_{\\mathbb{Z}}, \\mathcal{O}(2))\\) be the space of smooth conics in \\(\\mathbb{P}^2_{\\mathbb{Z}}\\), and let\n\\(Z\\subset U^6\\) be the closed subscheme parametrizing \\(6\\)-tuples \\((C_1, \\cdots, C_6)\\) with \\(C_1\\) tangent to \\(C_2, \\cdots, C_6\\). Let \\(\\pi: Z\\to U^5\\)\nbe the map induced by the projection onto the last \\(5\\) coordinates, and let \\(V\\subset U^5\\) be the dense open subscheme over which \\(\\pi\\) is finite étale.\nLet\n\\(L=\\lim_{p\\to \\infty} \\frac{1}{\\#V(\\mathbb{F}_p)}\\sum_{x\\in V(\\mathbb{F}_p)} \\#\\pi^{-1}(x),\\)\nthat is, the limit of the average number of components of the space of conics tangent to 5 smooth conics over \\(\\mathbb{F}_p\\), as \\(p\\) tends to infinity.\nFind \\(\\lfloor 100L \\rfloor.\\)",
+        "explanation": "题目要求对有限域上的相切圆锥曲线问题计算解数平均极限并取整。 这是共享官方样题页的页面级案例，没有稳定题号或固定v2成员映射；raw保留连续原HTML，中文解析/可读题面分列。",
+        "raw": "<p>Let <span class=\"mjx-inline\">\\(U\\subset\\mathbb{P}H^0(\\mathbb{P}^2_{\\mathbb{Z}}, \\mathcal{O}(2))\\)</span> be the space of smooth conics in <span class=\"mjx-inline\">\\(\\mathbb{P}^2_{\\mathbb{Z}}\\)</span>, and let\n<span class=\"mjx-inline\">\\(Z\\subset U^6\\)</span> be the closed subscheme parametrizing <span class=\"mjx-inline\">\\(6\\)</span>-tuples <span class=\"mjx-inline\">\\((C_1, \\cdots, C_6)\\)</span> with <span class=\"mjx-inline\">\\(C_1\\)</span> tangent to <span class=\"mjx-inline\">\\(C_2, \\cdots, C_6\\)</span>. Let <span class=\"mjx-inline\">\\(\\pi: Z\\to U^5\\)</span>\nbe the map induced by the projection onto the last <span class=\"mjx-inline\">\\(5\\)</span> coordinates, and let <span class=\"mjx-inline\">\\(V\\subset U^5\\)</span> be the dense open subscheme over which <span class=\"mjx-inline\">\\(\\pi\\)</span> is finite étale.\nLet</p>\n<p>\\(L=\\lim_{p\\to \\infty} \\frac{1}{\\#V(\\mathbb{F}_p)}\\sum_{x\\in V(\\mathbb{F}_p)} \\#\\pi^{-1}(x),\\)</p>\n<p>that is, the limit of the average number of components of the space of conics tangent to 5 smooth conics over <span class=\"mjx-inline\">\\(\\mathbb{F}_p\\)</span>, as <span class=\"mjx-inline\">\\(p\\)</span> tends to infinity.\nFind <span class=\"mjx-inline\">\\(\\lfloor 100L \\rfloor.\\)</span></p>",
+        "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
+        "license": "Epoch官方公开样题Problem面板的原始HTML及数学条件，未复制隐藏Solution正文。Epoch数据通用CC BY声明将题目/答案权利保留给各创作者，本次未定位逐题单独许可；不外推私有完整题集。",
+        "split": "Tier 3 / official public-samples page; exact dataset-version membership not identified",
+        "excerpt": true
       }
     ]
   }

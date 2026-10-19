@@ -21,7 +21,7 @@
     "CEval"
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "C-Eval 以中文考试式选择题评估模型在 STEM、社会科学、人文与其他领域的知识和推理能力。",
@@ -82,7 +82,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "CC BY-NC-SA 4.0（固定公开数据快照的许可声明）",
-    "scope": "本页按 CC BY-NC-SA 4.0 非商业方式展示 1 条 dev 示例及原选项/答案/解析；保留归属与相同方式共享条件。",
+    "scope": "本页按 CC BY-NC-SA 4.0 非商业方式展示 多条 dev 示例及原选项/答案/解析；保留归属与相同方式共享条件。",
     "boundaries": [
       "保留发布方、记录位置和许可原文；中文解读由本站撰写。",
       "此数据许可含非商业和相同方式共享条件，不依据仓库 MIT 代码许可扩大题目使用范围。"
@@ -94,11 +94,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从官方原文件核验并展示 1 条真实公开记录，原题、答案和许可可在本页查看。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
     "sourceUrls": [
       "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md"
+      "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=ceval%2Fceval-exam&config=computer_network&split=dev&offset=0&length=5"
     ]
   },
   "metric": {
@@ -173,6 +174,11 @@
       "label": "CC BY-NC-SA 4.0 许可原文",
       "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt",
       "role": "access"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ceval%2Fceval-exam&config=computer_network&split=dev&offset=0&length=5",
+      "role": "data"
     }
   ],
   "researchNotes": [
@@ -182,11 +188,28 @@
         "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
         "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ceval%2Fceval-exam&config=computer_network&split=dev&offset=0&length=5"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“协议约束的通信实体”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/computer_network/dev-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=ceval%2Fceval-exam&config=computer_network&split=dev&offset=0&length=5",
+        "https://huggingface.co/datasets/ceval/ceval-exam/resolve/617524a00b307ff6f9933702f724131fe12ca7ce/README.md",
+        "https://github.com/hkust-nlp/ceval",
+        "https://github.com/hkust-nlp/ceval#news",
+        "https://huggingface.co/datasets/ceval/ceval-exam"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "computer-network-dev-0",
@@ -215,6 +238,93 @@
           "网桥",
           "交换机",
           "路由器"
+        ]
+      },
+      {
+        "id": "computer-network-dev-1",
+        "title": "滑动窗口的作用",
+        "type": "choice",
+        "prompt": "滑动窗口的作用是____。",
+        "answer": "A",
+        "explanation": "要区分流量控制、拥塞控制、路由和差错控制。原 dev 行同时提供答案 A 与官方解释，可对照滑动窗口限制发送方未确认数据量的作用；这里展示的是公开 few-shot 示例。",
+        "raw": {
+          "id": 1,
+          "question": "滑动窗口的作用是____。",
+          "A": "流量控制",
+          "B": "拥塞控制",
+          "C": "路由控制",
+          "D": "差错控制",
+          "answer": "A",
+          "explanation": "1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ceval%2Fceval-exam&config=computer_network&split=dev&offset=0&length=5",
+        "license": "C-Eval 研究团队 · CC BY-NC-SA 4.0",
+        "licensePath": "licenses/ceval-sample-source.txt",
+        "split": "computer_network / dev / row_idx=1",
+        "excerpt": false,
+        "options": [
+          "流量控制",
+          "拥塞控制",
+          "路由控制",
+          "差错控制"
+        ]
+      },
+      {
+        "id": "computer-network-dev-2",
+        "title": "OSI 会话层的下层服务",
+        "type": "choice",
+        "prompt": "在OSI参考模型中，直接为会话层提供服务的是____。",
+        "answer": "C",
+        "explanation": "题目问谁直接为会话层提供服务，需要区分相邻层次与一般网络传输功能。四个原选项及答案 C、源内说明均保留，没有改写为新的问题。",
+        "raw": {
+          "id": 2,
+          "question": "在OSI参考模型中，直接为会话层提供服务的是____。",
+          "A": "应用层",
+          "B": "表示层",
+          "C": "传输层",
+          "D": "网络层",
+          "answer": "C",
+          "explanation": "1. 直接为会话层提供服务的是会话层的下一层，即传输层。"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ceval%2Fceval-exam&config=computer_network&split=dev&offset=0&length=5",
+        "license": "C-Eval 研究团队 · CC BY-NC-SA 4.0",
+        "licensePath": "licenses/ceval-sample-source.txt",
+        "split": "computer_network / dev / row_idx=2",
+        "excerpt": false,
+        "options": [
+          "应用层",
+          "表示层",
+          "传输层",
+          "网络层"
+        ]
+      },
+      {
+        "id": "computer-network-dev-3",
+        "title": "协议约束的通信实体",
+        "type": "choice",
+        "prompt": "协议是指在____之间进行通信的规则或约定。",
+        "answer": "D",
+        "explanation": "重点是协议作用于不同结点的对等实体，而不是同一结点的上下层接口。选项、答案 D 和原说明来自同一 dev 记录。",
+        "raw": {
+          "id": 3,
+          "question": "协议是指在____之间进行通信的规则或约定。",
+          "A": "同一结点的上下层",
+          "B": "不同结点",
+          "C": "相邻实体",
+          "D": "不同结点对等实体",
+          "answer": "D",
+          "explanation": "1. 协议是指在不同结点对等实体之间进行通信的规则或约定。"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ceval%2Fceval-exam&config=computer_network&split=dev&offset=0&length=5",
+        "license": "C-Eval 研究团队 · CC BY-NC-SA 4.0",
+        "licensePath": "licenses/ceval-sample-source.txt",
+        "split": "computer_network / dev / row_idx=3",
+        "excerpt": false,
+        "options": [
+          "同一结点的上下层",
+          "不同结点",
+          "相邻实体",
+          "不同结点对等实体"
         ]
       }
     ]

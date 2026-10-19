@@ -4,7 +4,7 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-10-19",
   "id": "screenspot-pro",
   "name": "ScreenSpot-Pro",
   "subtitle": "在复杂屏幕上找到要点的位置",
@@ -57,6 +57,16 @@
       "url": "https://arxiv.org/html/2504.07981v1",
       "label": "ScreenSpot-Pro 官方论文 HTML v1",
       "role": "paper"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/vscode_macos.json",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -118,7 +128,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "作者 Hugging Face 数据卡和代码项目标注 MIT。",
-    "scope": "MIT 声明按发布仓库/数据集元数据记录；未发现覆盖逐张截图、软件界面或图标的权利清单。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "截图中的第三方 UI、图标、商标和内容权利未逐项核实，不能由 MIT 标签推定可复制托管。",
       "本站只链接作者资料，不镜像截图或摘录界面内容。"
@@ -131,9 +141,13 @@
   "sampleAccess": {
     "url": "https://arxiv.org/html/2504.07981v1",
     "status": "local",
-    "reason": "本站保存真实公开案例的短引与编辑性中文概述；许可状态和媒体/输出范围按条目原复用政策及样例说明保留。",
+    "reason": "3条真实native定位标注可切换，bbox/图像尺寸/原文件名保留；第三方软件截图未本地展示。",
     "sourceUrls": [
-      "https://arxiv.org/html/2504.07981v1"
+      "https://arxiv.org/html/2504.07981v1",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/vscode_macos.json",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+      "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding/blob/main/LICENSE"
     ]
   },
   "researchNotes": [
@@ -163,23 +177,129 @@
         "https://gui-agent.github.io/grounding-leaderboard/",
         "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2504.07981v1",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/vscode_macos.json",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding/blob/main/LICENSE"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：保留三条native annotation字段及bbox，旧Blur Dissolve的ui_type纠正为text；第三方软件截图未作为许可已确认媒体发布。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2504.07981v1",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/vscode_macos.json",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
+        "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding/blob/main/LICENSE",
+        "https://gui-agent.github.io/grounding-leaderboard/",
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+        "https://arxiv.org/abs/2504.07981"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "screenspot-pro-davinci-blur-dissolve",
         "title": "DaVinci Resolve 图标定位任务",
         "type": "text",
         "promptOrigin": "editorial",
-        "prompt": "ScreenSpot-Pro 论文附录中的真实 GUI 定位示例：在 DaVinci 界面截图中定位 Blur Dissolve 图标。截图需在论文附录查看；本站没有附图，文字概述不是完整视觉输入。",
-        "raw": "Instruction: Blur Dissolve.\nApplication: davinci\nType: icon\nBounding Box: [460, 1344, 709, 1375]",
-        "explanation": "定位于论文 v1 Appendix D Figure 5，标注 Application=DaVinci、Type=icon、Bounding Box=[460,1344,709,1375]。论文 CC BY 4.0 不自动消除截图内第三方软件界面权利；此处只保留短标签和编辑性任务概述。\n原始数据精简说明：保留上述来源的实际任务输入、原表格列/数值或公开页面标签；其他正文、模型生成内容、媒体、附件及未公开字段省略。并非为源数据新建一套JSON结构。",
+        "prompt": "ScreenSpot-Pro 的 DaVinci annotation 指令为 “Blur Dissolve”，bbox 和屏幕尺寸按原记录展示；没有把对应截图像素放入本候选，因此缺图时不能完成实际定位任务。",
+        "raw": {
+          "img_filename": "davinci_mac/screenshot_2024-12-05_23-12-15.png",
+          "bbox": [
+            460,
+            1344,
+            709,
+            1375
+          ],
+          "instruction": "Blur Dissolve",
+          "instruction_cn": "模糊溶解",
+          "id": "davinci_macos_10",
+          "application": "davinci",
+          "platform": "macos",
+          "img_size": [
+            3456,
+            2234
+          ],
+          "ui_type": "text",
+          "group": "Creative"
+        },
+        "explanation": "raw 是官方 revision annotation JSON 中 id=davinci_macos_10 的完整原生对象。原站内raw曾把字段改写为标签行，且把ui_type记作icon；官方记录的ui_type实际为text，bbox为[460,1344,709,1375]。对应截图文件名在img_filename字段中，但此样例未复制截图。",
         "source": "https://arxiv.org/html/2504.07981v1",
         "license": "论文页面标注 CC BY 4.0；该截图包含第三方软件界面，界面元素及商标的逐项权利未核实。本页仅保留短标签和本站概述，不复制截图，也不把论文许可扩展到界面素材。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
         "split": "论文 v1 · Appendix D · Figure 5 · Application=DaVinci · Type=icon",
+        "excerpt": true
+      },
+      {
+        "id": "screenspot-pro-davinci_macos_0",
+        "title": "davinci / linked selection",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在 davinci macOS 截图中定位“linked selection”，官方标注框为像素坐标。截图原始入口见证据；候选页没有嵌入截图。",
+        "raw": {
+          "img_filename": "davinci_mac/screenshot_2024-12-01_19-58-24.png",
+          "bbox": [
+            2042,
+            1153,
+            2067,
+            1182
+          ],
+          "instruction": "linked selection",
+          "instruction_cn": "联动选择",
+          "id": "davinci_macos_0",
+          "application": "davinci",
+          "platform": "macos",
+          "img_size": [
+            3456,
+            2234
+          ],
+          "ui_type": "icon",
+          "group": "Creative"
+        },
+        "explanation": "这是 ScreenSpot-Pro 官方 davinci macOS 标注文件中的实际记录：目标是“linked selection”，bbox=[2042, 1153, 2067, 1182]，图像尺寸=[3456, 2234]，类型=icon，所属组=Creative。原始截图已作为本地取证文件保存并记录 SHA-256；截图含第三方软件界面，故权利待逐项审查，不作为已获准转载的网页媒体。",
+        "source": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json",
+        "license": "HF 数据卡在观察 HEAD 210e78d3844251110bff86c95835ebd37a6930fa 标注 license=MIT；具体截图的第三方软件界面权利未据此推定，图像仅本地取证。仅此条实际annotation对象及其ID/坐标字段，不含图像字节。",
+        "split": "官方 annotations/davinci_macos.json · davinci_macos_0 · application=davinci · platform=macos",
+        "excerpt": true
+      },
+      {
+        "id": "screenspot-pro-vscode_macos_0",
+        "title": "vscode / Refresh the file explorer.",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在 vscode macOS 截图中定位“Refresh the file explorer.”，官方标注框为像素坐标。截图原始入口见证据；候选页没有嵌入截图。",
+        "raw": {
+          "img_filename": "vscode_mac/screenshot_2024-12-03_15-15-02.png",
+          "bbox": [
+            473,
+            183,
+            503,
+            219
+          ],
+          "instruction": "Refresh the file explorer.",
+          "instruction_cn": "刷新文件资源管理器。",
+          "id": "vscode_macos_0",
+          "application": "vscode",
+          "platform": "macos",
+          "img_size": [
+            2560,
+            1664
+          ],
+          "ui_type": "icon",
+          "group": "Dev"
+        },
+        "explanation": "这是 ScreenSpot-Pro 官方 vscode macOS 标注文件中的实际记录：目标是“Refresh the file explorer.”，bbox=[473, 183, 503, 219]，图像尺寸=[2560, 1664]，类型=icon，所属组=Dev。原始截图已作为本地取证文件保存并记录 SHA-256；截图含第三方软件界面，故权利待逐项审查，不作为已获准转载的网页媒体。",
+        "source": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/vscode_macos.json",
+        "license": "HF 数据卡在观察 HEAD 210e78d3844251110bff86c95835ebd37a6930fa 标注 license=MIT；具体截图的第三方软件界面权利未据此推定，图像仅本地取证。仅此条实际annotation对象及其ID/坐标字段，不含图像字节。",
+        "split": "官方 annotations/vscode_macos.json · vscode_macos_0 · application=vscode · platform=macos",
         "excerpt": true
       }
     ]

@@ -68,7 +68,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "底层游戏内容受版权保护；评测代码的完整再发布许可未核实。",
-    "scope": "本站仅提供原创说明与官方链接。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "未确认具体发布版本的许可前，不在本站复制题目、答案或附件。"
     ],
@@ -78,7 +78,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "Specific official report of a model run under the original, card-unbanned EBR setting; not a current-default score, game-state replay, or per-objective record. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。",
+    "reason": "1 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://epoch.ai/publications/ebr-bench-update",
     "sourceUrls": [
       "https://epoch.ai/benchmarks/ebr-bench",
@@ -113,6 +113,20 @@
       "sourceUrls": [
         "https://epoch.ai/publications/ebr-bench-update"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 0 条，现有 1 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://epoch.ai/publications/ebr-bench-update",
+        "https://epoch.ai/benchmarks/ebr-bench"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：raw恢复为官方文章连续陈述；属于公开运行说明，不是完整棋盘、动作或可复现test row。 展示记录1→1条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://epoch.ai/publications/ebr-bench-update",
+        "https://epoch.ai/benchmarks/ebr-bench"
+      ]
     }
   ],
   "sources": [
@@ -128,8 +142,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "每run前八局用于学习、末两局评分，取末两局较高目标分（最多21）；每局仅覆盖前五个游戏日，当前每模型采样五个run。",
@@ -145,16 +159,16 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-ebr-bench",
         "title": "官方旧版运行 · 卡组实验突破回合限制",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "EBR官方公开运行例中，Astra在允许特定卡的原始设置里，通过试验组合卡牌获得不受上限约束的回合。公开图记录其第一轮完成11/21目标、第二轮完成21/21；默认设置随后禁用了该卡。该案例展示从游戏经验中改进策略的实际行为，不提供未公开的卡名、局面或完整轨迹。",
-        "explanation": "Specific official report of a model run under the original, card-unbanned EBR setting; not a current-default score, game-state replay, or per-objective record. 本页数学定义或运行事实由本站整理，来源原文只保留必要短引；未镜像完整题库、游戏卡牌或模型推理。\n原始数据精简说明：全部游戏状态、卡牌内容、输入任务和操作轨迹；本条只展示官方运行报道中的公开数据。格式为publisher article sentence + original chart alt text；保留源数据内容，不构造题库原始行。",
-        "raw": "GPT-6 Astra scored 100% on the original version of the benchmark.\n\nThis line graph shows the score the player achieved on the y-axis, and the amount of times the player had attempted playing through the game on the x-axis. The graph shows that Astra went from scoring 11 out of 21 on its first try to 21 out of 21 on its second try. The top human participant went from scoring 1 out of 21 on their first try to 21 out of 21 on their sixth try.",
+        "prompt": "Epoch AI 的更新文章写道，GPT-6 Astra 在原版 EBR-bench 达到满分；作者同时说明其使用了一张后来决定禁用的卡。这里是文章中的单个连续列表项，不是benchmark原题、评测记录或用户样例。",
+        "explanation": "raw 是官方更新页面连续HTML列表项的原文片段。旧raw把该列表句与后文图表说明拼接，因此不是连续原文。该条只证明作者公开了这段文章陈述，不应作为一条真实benchmark test record。",
+        "raw": "<li><strong>GPT-6 Astra scored 100% on the original version of the benchmark.</strong> We found it did so using a card that allows it to bypass the game’s basic time-constraint expectations, and we have decided to ban that card moving forward.</li>",
         "source": "https://epoch.ai/publications/ebr-bench-update",
         "license": "本站原创事实与数学条件整理；来源标题或短语作必要短引，原题/游戏材料整体许可按原说明处理。 本条原文与图表替代文字来自 Benjamin Ou、Avery Yen 的 Epoch AI 2026-10-07 文章，按该页Creative Commons Attribution声明保留作者和出处；此声明不扩展为底层游戏材料授权。",
         "split": "Official update, Overview and section 'GPT-6 Astra scores perfectly on EBR-bench by exploiting a powerful combination of cards'; benchmark page, Methodology updates 2026-09-22.",

@@ -85,10 +85,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示经许可与固定版本核验的精选原始记录；不代表完整题集。",
+    "reason": "6 条真实案例可在本站切换查看，原字段及数据入口保留。保留单轮或多轮记录的首轮问题及标签，未重放全部历史；模型回答不作为参考答案。",
     "sourceUrls": [
       "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
-      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+      "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100"
     ]
   },
   "metric": {
@@ -128,6 +129,21 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
         "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 4 条，现有 6 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增4条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“International Finance & FX Hedging · Non-Expert”等案例；每条的附件缺口与取样范围单独说明。 展示记录2→6条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench/resolve/01947c6ef913df518e6e52626a7b29f132b12d4f/data/finance-00000-of-00001.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
+        "https://labs.scale.com/papers/prbench"
       ]
     }
   ],
@@ -186,6 +202,11 @@
       "label": "所选数据快照的许可说明",
       "url": "https://huggingface.co/datasets/ScaleAI/PRBench/raw/01947c6ef913df518e6e52626a7b29f132b12d4f/README.md",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+      "role": "data"
     }
   ],
   "related": [
@@ -199,8 +220,8 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "评委读取完整对话和标准，评的是最终助手回应；负权重会扣分，criterion 通过比例不等于论文 mean_clipped。",
@@ -218,7 +239,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "643796de687003869b5de46a",
@@ -733,6 +754,86 @@
         "excerpt": true,
         "license": "CC-BY-4.0 · PRBench, Scale AI / PRBench authors, data_v2 snapshot 01947c6ef913df518e6e52626a7b29f132b12d4f, CC BY 4.0",
         "licensePath": "licenses/prbench-finance-sample-source.txt"
+      },
+      {
+        "id": "prbench-finance-ed36da8e8736016b46097546",
+        "title": "Market Microstructure, Trading & Liquidity · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问交易流动性与执行策略问题，要求结合题目中的市场情景分析。",
+        "explanation": "该金融专家任务来自 Market Microstructure, Trading & Liquidity：市场深度突然消失而跨场所失衡指标仍中性时，询问如何调节算法以降低逆向选择。源记录是4轮对话；本站只保留开场提示和任务标签。官方记录另含各轮模型回答及专家评分rubric，但没有唯一标准答案字段；模型回答不作为参考答案。",
+        "raw": {
+          "task": "ed36da8e8736016b46097546",
+          "turns": 4,
+          "field": "Finance",
+          "topic": "Market Microstructure, Trading & Liquidity",
+          "expert": "Expert",
+          "prompt_0": "How to tweak the algorithm to prevent adverse selection when depth vanishes but cross venue imbalance looks neutral?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=finance / row_idx=2 / task_id=ed36da8e8736016b46097546",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-finance-4d8572153bf1cf6c0484b643",
+        "title": "Wealth Management, Financial Planning & Advice · Non-Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问个人财富管理与投资规划问题，要求结合具体财务约束分析。",
+        "explanation": "该财富管理任务给出银行误转 £3,455 而非 £345.50、用户已花 £650 的情境，询问银行要求退款时如何处理。源记录是一轮、非专家问题。官方数据另有模型回复与 rubric，不是官方唯一标准答案；候选不摘录这些内容。",
+        "raw": {
+          "task": "4d8572153bf1cf6c0484b643",
+          "turns": 1,
+          "field": "Finance",
+          "topic": "Wealth Management, Financial Planning & Advice",
+          "expert": "Non-Expert",
+          "prompt_0": "I got a credit alert on my bank app and I assumed it was the interest on my savings so I used £650 for the balance on my holiday trip. The bank just called requesting a refund because it was a wrong amount, they sent £3,455 instead of £ 345.5, but I've already spent part of the money. I don't mind they taking the rest but i won't pay for what i already spent. Is that ok? "
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=finance / row_idx=4 / task_id=4d8572153bf1cf6c0484b643",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-finance-fcaeeb66362e80e270cc9711",
+        "title": "Accounting & Financial Statement Analysis · Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问财务报表或会计分析问题，要求解释给定业务数据。",
+        "explanation": "该会计分析任务给出成本函数 C(x)=(x³+1)/(x²+1)，询问成本与边际成本的关系及满足条件的 x 值。源记录是一轮专家任务；官方数据提供评分rubric和模型回复，不提供唯一 参考答案 字段。",
+        "raw": {
+          "task": "fcaeeb66362e80e270cc9711",
+          "turns": 1,
+          "field": "Finance",
+          "topic": "Accounting & Financial Statement Analysis",
+          "expert": "Expert",
+          "prompt_0": "I am researching a company whose cost function is given by C(x)=(x^3+1)/(x^2+1). What is the relationship between the cost and the marginal cost in this case? For how many values of x does it happen that the cost and the marginal cost are equal?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=finance / row_idx=8 / task_id=fcaeeb66362e80e270cc9711",
+        "excerpt": true
+      },
+      {
+        "id": "prbench-finance-01c29e32c8c6c176e7e60afb",
+        "title": "International Finance & FX Hedging · Non-Expert",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "询问跨币种收支或外汇套期保值问题。",
+        "explanation": "该国际金融与外汇任务描述公司以欧元取得收入、以美元支付供应商，询问如何防范汇率突变并管理两币种现金。官方记录是一轮非专家任务，未附唯一标准答案字段；数据中的模型回答与评分rubric不纳入本站。",
+        "raw": {
+          "task": "01c29e32c8c6c176e7e60afb",
+          "turns": 1,
+          "field": "Finance",
+          "topic": "International Finance & FX Hedging",
+          "expert": "Non-Expert",
+          "prompt_0": "If my company earns money in euros, but we pay our supplies in dollars, how can we protect ourselves if the exchange rate suddenly changes a lot? Should we keep cash in both currencies?"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
+        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
+        "split": "config=default / split=finance / row_idx=9 / task_id=01c29e32c8c6c176e7e60afb",
+        "excerpt": true
       }
     ]
   }

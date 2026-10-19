@@ -21,7 +21,7 @@
     "Chinese Massive Multitask Language Understanding"
   ],
   "related": [],
-  "verifiedAt": "2026-09-23",
+  "verifiedAt": "2026-10-19",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "CMMLU 通过中文选择题评估模型在中国语境下的知识与推理能力，覆盖中学、大学、职业考试和日常知识等领域。",
@@ -91,7 +91,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从 CMMLU 原作者仓库 dev/agronomy.csv 首条数据记录逐字段核验；原始空首列表头保留为 raw 的空字符串键。",
+    "reason": "4 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
     "url": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
     "sourceUrls": [
       "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
@@ -167,11 +167,27 @@
         "https://raw.githubusercontent.com/haonan-li/CMMLU/master/README.md",
         "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 4 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增3条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“农学 · 牛的发情周期”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→4条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+        "https://raw.githubusercontent.com/haonan-li/CMMLU/master/README.md",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt",
+        "https://github.com/haonan-li/CMMLU",
+        "https://huggingface.co/datasets/haonan-li/cmmlu"
+      ]
     }
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-08",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "cmmlu-dev-agronomy-row-0",
@@ -199,6 +215,90 @@
         "license": "CC BY-NC-SA 4.0",
         "licensePath": "licenses/cmmlu-sample-source.txt",
         "split": "dev / agronomy / CSV data row 0",
+        "excerpt": false
+      },
+      {
+        "id": "cmmlu-dev-agronomy-row-1",
+        "title": "农学 · 鸭的产蛋品种",
+        "type": "choice",
+        "prompt": "下列鸭品种中，产蛋量最高的品种是",
+        "options": [
+          "高邮鸭",
+          "北京鸭",
+          "樱桃谷鸭",
+          "绍鸭"
+        ],
+        "answer": "D",
+        "explanation": "在高邮鸭、北京鸭、樱桃谷鸭和绍鸭之间比较产蛋表现，考察农学领域的品种知识。官方 Answer=D 原样保留；这是一条 dev 选择题，不是本站新出的题。",
+        "raw": {
+          "": "1",
+          "Question": "下列鸭品种中，产蛋量最高的品种是",
+          "A": "高邮鸭",
+          "B": "北京鸭",
+          "C": "樱桃谷鸭",
+          "D": "绍鸭",
+          "Answer": "D"
+        },
+        "source": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+        "license": "CC BY-NC-SA 4.0",
+        "licensePath": "licenses/cmmlu-sample-source.txt",
+        "split": "dev / agronomy / CSV data row 1",
+        "excerpt": false
+      },
+      {
+        "id": "cmmlu-dev-agronomy-row-2",
+        "title": "农学 · 家畜生殖解剖",
+        "type": "choice",
+        "prompt": "常见家畜中输精管不形成输精管壶腹的是",
+        "options": [
+          "马",
+          "猪",
+          "牛",
+          "羊"
+        ],
+        "answer": "B",
+        "explanation": "题目要求识别不形成输精管壶腹的家畜，区别马、猪、牛、羊的解剖特征。官方答案为 B，原 CSV 未附推导，本站不补造来源解析。",
+        "raw": {
+          "": "2",
+          "Question": "常见家畜中输精管不形成输精管壶腹的是",
+          "A": "马",
+          "B": "猪",
+          "C": "牛",
+          "D": "羊",
+          "Answer": "B"
+        },
+        "source": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+        "license": "CC BY-NC-SA 4.0",
+        "licensePath": "licenses/cmmlu-sample-source.txt",
+        "split": "dev / agronomy / CSV data row 2",
+        "excerpt": false
+      },
+      {
+        "id": "cmmlu-dev-agronomy-row-3",
+        "title": "农学 · 牛的发情周期",
+        "type": "choice",
+        "prompt": "牛的发情周期平均为",
+        "options": [
+          "16～17天",
+          "21天",
+          "28天",
+          "19～20天"
+        ],
+        "answer": "B",
+        "explanation": "这是带时间单位的生理知识题，四个选项均为天数，需要选择平均周期。官方 Answer=B，对应原选项21天；题面、选项和值保持不变。",
+        "raw": {
+          "": "3",
+          "Question": "牛的发情周期平均为",
+          "A": "16～17天",
+          "B": "21天",
+          "C": "28天",
+          "D": "19～20天",
+          "Answer": "B"
+        },
+        "source": "https://raw.githubusercontent.com/haonan-li/CMMLU/master/data/dev/agronomy.csv",
+        "license": "CC BY-NC-SA 4.0",
+        "licensePath": "licenses/cmmlu-sample-source.txt",
+        "split": "dev / agronomy / CSV data row 3",
         "excerpt": false
       }
     ]

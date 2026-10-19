@@ -5,7 +5,7 @@
   ],
   "related": [],
   "kind": "subset",
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "id": "math-500",
   "name": "MATH-500",
   "subtitle": "从数学题库中抽出的 500 题",
@@ -76,6 +76,11 @@
       "label": "具体公开案例的原始来源",
       "url": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -133,25 +138,24 @@
     "url": "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "MATH-500 HF 镜像未显示明确数据许可；PRM800K 与 Hendrycks MATH 仓库有 MIT LICENSE。",
-    "scope": "仓库中的 MIT 文件不能在未核验具体覆盖范围和题目来源权利链时自动作为派生题库再发布授权。",
+    "status": "unknown",
+    "license": "本次取得官方公开问题及标注，竞赛原题/解答整体复用许可未确认。",
+    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "公开页面只介绍并链接来源；不复制题目、答案、解答或截图，除非固定文件并核实相应许可。"
+      "题目可能来自上游竞赛；数据托管不等于整体版权转移。",
+      "HF /rows为本次响应快照，不把另行观察的HEAD冒充它的固定修订。"
     ],
     "sourceUrls": [
-      "https://github.com/openai/prm800k/blob/main/LICENSE",
-      "https://github.com/hendrycks/math/blob/main/LICENSE",
-      "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
-      "https://github.com/openai/prm800k"
+      "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。",
+    "reason": "3道真实公开数学题可切换，原问题、标识和官方短答案保留；旧题遗漏条件已恢复，中文解析与源数据分开。",
     "url": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6"
     ]
   },
   "researchNotes": [
@@ -181,11 +185,26 @@
       "sourceUrls": [
         "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：本轮新增2条、撤回0条；已采用的原始字段/连续源片段按证据逐项核对，分别配中文解析。可查看“math-500 · 复合分数运算”等案例；每条的附件缺口与取样范围单独说明。 展示记录1→3条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6",
+        "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
+        "https://huggingface.co/datasets/HuggingFaceH4/MATH-500",
+        "https://github.com/openai/prm800k"
+      ]
     }
   ],
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-19",
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-math-500",
@@ -193,19 +212,59 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "公开题 test/precalculus/807.json 将直角坐标点 (0,3) 转为极坐标，要求 r>0 且 0≤θ<2π。数据中的参考结果为 (3,π/2)。本页采用该真实数学问题的事实解读，不将重新整理的求解说明冒作原始 solution 字段。",
-        "explanation": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。 定位：test/precalculus/807.json\n原始数据精简说明：保留原生字段 unique_id、problem、answer、subject、level；其他记录字段未收录。 /problem 保留源值字符[0:74]，源字段共161字符。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "explanation": "点(0,3)位于正纵轴，半径为3、主辐角为π/2；完整题面中r>0与0≤θ<2π限制已补回，原answer字段保持公式字符串。",
         "raw": {
-          "unique_id": "test/precalculus/807.json",
-          "problem": "Convert the point $(0,3)$ in rectangular coordinates to polar coordinates.",
+          "problem": "Convert the point $(0,3)$ in rectangular coordinates to polar coordinates.  Enter your answer in the form $(r,\\theta),$ where $r > 0$ and $0 \\le \\theta < 2 \\pi.$",
           "answer": "\\left( 3, \\frac{\\pi}{2} \\right)",
           "subject": "Precalculus",
-          "level": 2
+          "level": 2,
+          "unique_id": "test/precalculus/807.json"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=1",
-        "answer": "(3, π/2)",
-        "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6",
+        "answer": "\\left( 3, \\frac{\\pi}{2} \\right)",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
         "split": "test",
         "excerpt": true
+      },
+      {
+        "id": "public-case-math-500-extra-test/intermediate_algebra/1994.json",
+        "title": "math-500 · 双重级数改写",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开问题的原题与标注见raw：math-500 · 双重级数改写。",
+        "explanation": "官方 rows 响应 row_idx=1，原始识别字段为 test/intermediate_algebra/1994.json。定义 p、q 为两个不同次数的 zeta 型级数，再把双重和用 p、q 表示，主要考查按 j+k 分组计数。 原记录的 answer 与 solution 未复制；raw 保留题面及必要标识/学科/难度字段的原值。",
+        "raw": {
+          "unique_id": "test/intermediate_algebra/1994.json",
+          "problem": "Define\n\\[p = \\sum_{k = 1}^\\infty \\frac{1}{k^2} \\quad \\text{and} \\quad q = \\sum_{k = 1}^\\infty \\frac{1}{k^3}.\\]Find a way to write\n\\[\\sum_{j = 1}^\\infty \\sum_{k = 1}^\\infty \\frac{1}{(j + k)^3}\\]in terms of $p$ and $q.$",
+          "subject": "Intermediate Algebra",
+          "level": 5,
+          "answer": "p - q"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
+        "split": "math-500 official HF rows / test row_idx=1",
+        "excerpt": true,
+        "answer": "p - q"
+      },
+      {
+        "id": "public-case-math-500-extra-test/algebra/2584.json",
+        "title": "math-500 · 复合分数运算",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方公开问题的原题与标注见raw：math-500 · 复合分数运算。",
+        "explanation": "代入三个给定自变量，分别计算有理函数值并求和，要求用既约分数表达；该样例属于 Algebra，level=3。 原记录的 answer/solution 未复制；raw 保留题面与对应元数据原值。",
+        "raw": {
+          "unique_id": "test/algebra/2584.json",
+          "problem": "If $f(x) = \\frac{3x-2}{x-2}$, what is the value of $f(-2) +f(-1)+f(0)$? Express your answer as a common fraction.",
+          "subject": "Algebra",
+          "level": 3,
+          "answer": "\\frac{14}{3}"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=HuggingFaceH4%2FMATH-500&config=default&split=test&offset=0&length=6",
+        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
+        "split": "math-500 official HF rows / test row_idx=2",
+        "excerpt": true,
+        "answer": "\\frac{14}{3}"
       }
     ]
   }

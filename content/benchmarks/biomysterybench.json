@@ -68,23 +68,27 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "Anthropic文章未为示例prompt或数据材料声明单独复用许可。",
-    "scope": "仅文章中可定位的公开示例说明；RNA-seq输入、答案和数据集的许可范围未查明。",
+    "status": "permitted",
+    "license": "Anthropic LICENSE明确题面、answer rubrics和task formulation为CC BY 4.0；上游生物资料权利另行说明。",
+    "scope": "公开preview v11五行原始任务字段与rubric；保留原有发布文章的基因敲除例，不冒充preview成员。",
     "boundaries": [
-      "不补造题号、输入文件或gold答案。",
-      "不复制附件或完整题目。"
+      "v11以hb024/hb035替代hb022/hb053，不将旧版条目混入当前预览。",
+      "未获取完整90题受控集、数据附件或用其训练模型；human_solvable保留作者标注，非本站独立验证。"
     ],
     "sourceUrls": [
-      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/LICENSE",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "真实官方公开例题；文章未附这道题的原始 RNA-seq 文件、题号或金标准答案，因此本页不补造这些数据。",
+    "reason": "6条可切换：5条公开preview v11完整任务行，加1条发布文章的RNA-seq基因敲除演示。原rubric与human_solvable标注保留，未将文章演示映射成预览行；结构/测序附件没有镜像。",
     "url": "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
     "sourceUrls": [
-      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
+      "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/LICENSE",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/README.md"
     ]
   },
   "metric": {
@@ -115,6 +119,23 @@
       "sourceUrls": [
         "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench"
       ]
+    },
+    {
+      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 5 条，现有 6 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/LICENSE",
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/README.md"
+      ]
+    },
+    {
+      "text": "2026-10-19 全量补核结论：preview v11五条原行及rubric/allowed_domains等全字段保留；旧公开文章例单列，未复制受控90题附件。 展示记录1→6条；核验日期不是发布日期。",
+      "sourceUrls": [
+        "https://www.anthropic.com/research/Evaluating-Claude-For-Bioinformatics-With-BioMysteryBench",
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/LICENSE",
+        "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/README.md"
+      ]
     }
   ],
   "sources": [
@@ -127,11 +148,26 @@
       "label": "BioMysteryBench 官方完整数据卡",
       "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full",
       "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/LICENSE",
+      "role": "data"
+    },
+    {
+      "label": "2026-10-19 核验的官方原始记录",
+      "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/README.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-08",
-  "updatedAt": "2026-10-09",
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
   "interpretation": {
     "judge": {
       "text": "按可验证的最终结论与answer_rubric判正确，分析路线不评分；首发每题五次试验，分人可解/困难报告。",
@@ -148,7 +184,7 @@
     }
   },
   "sampleSet": {
-    "retrievedAt": "2026-10-09",
+    "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "official-case-biomysterybench",
@@ -162,6 +198,106 @@
         "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
         "split": "官方公开演示 / 非已定位的计分数据行",
         "excerpt": true
+      },
+      {
+        "id": "biomysterybench-preview-hb020",
+        "title": "晶体结构物种识别",
+        "type": "record",
+        "prompt": "What organism does this crystal structure belong to? Provide the answer using binomial nomenclature (e.g. Canis lupus, Mus musculus, Danio rerio, etc).",
+        "explanation": "题目要求从晶体结构数据辨认物种并以双名法给出学名；该预览行human_solvable=yes。raw保留官方answer_rubric的Homo sapiens与评分条件，实际结构数据未复制/解析。",
+        "raw": {
+          "id": "hb020",
+          "question": "What organism does this crystal structure belong to? Provide the answer using binomial nomenclature (e.g. Canis lupus, Mus musculus, Danio rerio, etc).",
+          "answer_rubric": "The answer is Homo sapiens Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+          "allowed_domains": "conda.anaconda.org, repo.anaconda.com, ncbi.nlm.nih.gov, ftp.ncbi.nlm.nih.gov, ensembl.org, ftp.ensembl.org, hgdownload.soe.ucsc.edu, uniprot.org, bioconductor.org, pypi.org, bioconda.github.io, cran.r-project.org, cran.rstudio.com, ftp.ebi.ac.uk",
+          "human_solvable": "yes"
+        },
+        "source": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+        "license": "CC BY 4.0 · Anthropic题面、rubric及任务表述；固定preview v11原始五字段保留。生物数据附件受原库条款约束且未镜像。README声明只供评估、禁止训练/微调/强化/蒸馏；本轮仅核对公开资料，没有用其训练或运行模型。",
+        "split": "BioMysteryBench-preview / problems.csv · id=hb020",
+        "excerpt": true,
+        "answer": "The answer is Homo sapiens Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+        "licensePath": "licenses/biomysterybench-preview-cc-by-4-0.txt"
+      },
+      {
+        "id": "biomysterybench-preview-hb002",
+        "title": "测序样本细菌识别",
+        "type": "record",
+        "prompt": "What bacteria is found in this sequenced dataset? Provide the bacteria's scientific name as the answer.",
+        "explanation": "题目要求依据测序数据识别细菌学名；这是预览标注human_solvable=yes的一题。官方rubric给出Bacillus licheniformis，raw保留原评分规则；没有把示例答案当作模型输出。",
+        "raw": {
+          "id": "hb002",
+          "question": "What bacteria is found in this sequenced dataset? Provide the bacteria's scientific name as the answer.",
+          "answer_rubric": "The answer is Bacillus licheniformis. Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+          "allowed_domains": "conda.anaconda.org, repo.anaconda.com, ncbi.nlm.nih.gov, ftp.ncbi.nlm.nih.gov, ensembl.org, ftp.ensembl.org, hgdownload.soe.ucsc.edu, uniprot.org, bioconductor.org, pypi.org, bioconda.github.io, cran.r-project.org, cran.rstudio.com, ftp.ebi.ac.uk",
+          "human_solvable": "yes"
+        },
+        "source": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+        "license": "CC BY 4.0 · Anthropic题面、rubric及任务表述；固定preview v11原始五字段保留。生物数据附件受原库条款约束且未镜像。README声明只供评估、禁止训练/微调/强化/蒸馏；本轮仅核对公开资料，没有用其训练或运行模型。",
+        "split": "BioMysteryBench-preview / problems.csv · id=hb002",
+        "excerpt": true,
+        "answer": "The answer is Bacillus licheniformis. Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+        "licensePath": "licenses/biomysterybench-preview-cc-by-4-0.txt"
+      },
+      {
+        "id": "biomysterybench-preview-recqgsfxqqodhjens",
+        "title": "ChIP-seq peak转录因子识别",
+        "type": "record",
+        "prompt": "Identify the transcription factor whose binding sites are represented by the provided peaks data. Provide the transcription factor's gene symbol.",
+        "explanation": "任务从peak数据识别DNA结合位点对应转录因子基因符号，覆盖ChIP-seq类分析；human_solvable=yes。rubric写明CTCF和不得作弊的得分条件，原始生物文件没有收录。",
+        "raw": {
+          "id": "recqgsfxqqodhjens",
+          "question": "Identify the transcription factor whose binding sites are represented by the provided peaks data. Provide the transcription factor's gene symbol.",
+          "answer_rubric": "Expected answer is CTCF Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+          "allowed_domains": "conda.anaconda.org, repo.anaconda.com, ncbi.nlm.nih.gov, ftp.ncbi.nlm.nih.gov, ensembl.org, ftp.ensembl.org, hgdownload.soe.ucsc.edu, uniprot.org, bioconductor.org, pypi.org, bioconda.github.io, cran.r-project.org, cran.rstudio.com, ftp.ebi.ac.uk",
+          "human_solvable": "yes"
+        },
+        "source": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+        "license": "CC BY 4.0 · Anthropic题面、rubric及任务表述；固定preview v11原始五字段保留。生物数据附件受原库条款约束且未镜像。README声明只供评估、禁止训练/微调/强化/蒸馏；本轮仅核对公开资料，没有用其训练或运行模型。",
+        "split": "BioMysteryBench-preview / problems.csv · id=recqgsfxqqodhjens",
+        "excerpt": true,
+        "answer": "Expected answer is CTCF Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+        "licensePath": "licenses/biomysterybench-preview-cc-by-4-0.txt"
+      },
+      {
+        "id": "biomysterybench-preview-hb024",
+        "title": "微生物组组织与宿主物种统计",
+        "type": "record",
+        "prompt": "This dataset involves microbial communities from tissues of non-human species. How many tissue groups are collected, and from how many different species? Name the host species (scientific names) and the tissues. Provide counts as integers.",
+        "explanation": "问题要求按非人宿主组织统计组织组与物种数并列蛇类学名；官方标记human_solvable=no，并给出两类组织、三种蛇的rubric。仅展示题目及评测元数据，不复现源生物数据。",
+        "raw": {
+          "id": "hb024",
+          "question": "This dataset involves microbial communities from tissues of non-human species. How many tissue groups are collected, and from how many different species? Name the host species (scientific names) and the tissues. Provide counts as integers.",
+          "answer_rubric": "The answer is: 2 different tissues (mouth and gut) from 3 different species (3 snakes: Boiga dendrophila, Trimeresurus flavomaculatus, Laticauda laticauda) Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+          "allowed_domains": "conda.anaconda.org, repo.anaconda.com, ncbi.nlm.nih.gov, ftp.ncbi.nlm.nih.gov, ensembl.org, ftp.ensembl.org, hgdownload.soe.ucsc.edu, uniprot.org, bioconductor.org, pypi.org, bioconda.github.io, cran.r-project.org, cran.rstudio.com, ftp.ebi.ac.uk",
+          "human_solvable": "no"
+        },
+        "source": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+        "license": "CC BY 4.0 · Anthropic题面、rubric及任务表述；固定preview v11原始五字段保留。生物数据附件受原库条款约束且未镜像。README声明只供评估、禁止训练/微调/强化/蒸馏；本轮仅核对公开资料，没有用其训练或运行模型。",
+        "split": "BioMysteryBench-preview / problems.csv · id=hb024",
+        "excerpt": true,
+        "answer": "The answer is: 2 different tissues (mouth and gut) from 3 different species (3 snakes: Boiga dendrophila, Trimeresurus flavomaculatus, Laticauda laticauda) Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+        "licensePath": "licenses/biomysterybench-preview-cc-by-4-0.txt"
+      },
+      {
+        "id": "biomysterybench-preview-hb035",
+        "title": "microRNA家族识别",
+        "type": "record",
+        "prompt": "What is the name of the most common microRNA associated with the genes given in this data? (Give the name using the microRNA nomenclature which adheres to the following form: 1. species, 2. miRNA family and member, and 3. strand, e.g 5’ , 3’ specific to precursor hairpin, e.g. hsa-miR-102b-3p).",
+        "explanation": "题目让根据给定基因关联数据找最常见microRNA，并明确物种/家族成员/3′或5′链命名格式；human_solvable=no。rubric接受多个hsa-let-7家族成员；source data archive未下载，不将可接受答案写成唯一结果。",
+        "raw": {
+          "id": "hb035",
+          "question": "What is the name of the most common microRNA associated with the genes given in this data? (Give the name using the microRNA nomenclature which adheres to the following form: 1. species, 2. miRNA family and member, and 3. strand, e.g 5’ , 3’ specific to precursor hairpin, e.g. hsa-miR-102b-3p).",
+          "answer_rubric": "Accept any hsa-let-7 family member: hsa-let-7a-5p, hsa-let-7b-5p, hsa-let-7c-5p, hsa-let-7d-5p, hsa-let-7e-5p, hsa-let-7f-5p, hsa-let-7g-5p, or hsa-let-7i-5p Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+          "allowed_domains": "conda.anaconda.org, repo.anaconda.com, ncbi.nlm.nih.gov, ftp.ncbi.nlm.nih.gov, ensembl.org, ftp.ensembl.org, hgdownload.soe.ucsc.edu, uniprot.org, bioconductor.org, pypi.org, bioconda.github.io, cran.r-project.org, cran.rstudio.com, ftp.ebi.ac.uk",
+          "human_solvable": "no"
+        },
+        "source": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/resolve/51c9024021b8989a0cb06ae623b02f90d14c2da3/problems.csv",
+        "license": "CC BY 4.0 · Anthropic题面、rubric及任务表述；固定preview v11原始五字段保留。生物数据附件受原库条款约束且未镜像。README声明只供评估、禁止训练/微调/强化/蒸馏；本轮仅核对公开资料，没有用其训练或运行模型。",
+        "split": "BioMysteryBench-preview / problems.csv · id=hb035",
+        "excerpt": true,
+        "answer": "Accept any hsa-let-7 family member: hsa-let-7a-5p, hsa-let-7b-5p, hsa-let-7c-5p, hsa-let-7d-5p, hsa-let-7e-5p, hsa-let-7f-5p, hsa-let-7g-5p, or hsa-let-7i-5p Score 1.0 if the model did not cheat AND got the answer correct. Score 0 otherwise.",
+        "licensePath": "licenses/biomysterybench-preview-cc-by-4-0.txt"
       }
     ]
   }
