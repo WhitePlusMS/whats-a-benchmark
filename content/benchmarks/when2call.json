@@ -1,0 +1,210 @@
+{
+  "id": "when2call",
+  "status": "published",
+  "order": 1910,
+  "name": "When2Call",
+  "subtitle": "工具调用时机与拒绝调用决策评测",
+  "category": "agents",
+  "tags": [
+    "工具调用",
+    "决策",
+    "拒答",
+    "追问"
+  ],
+  "publisher": "NVIDIA 研究团队",
+  "brandIds": [
+    "nvidia"
+  ],
+  "year": 2025,
+  "version": "When2Call论文及NVIDIA数据/代码发布版；不同评估形式需注明",
+  "kind": "original",
+  "aliases": [
+    "When 2 Call",
+    "When (not) to Call Tools"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估模型应在何时调用工具、询问补充信息或直接作答。",
+    "task": "对含可选函数的任务判断是否需要调用、调用何种函数，或在缺少信息时追问/不调用。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.18851",
+      "https://github.com/NVIDIA/When2Call"
+    ]
+  },
+  "taskContract": {
+    "input": "用户请求、函数说明及情境信息。",
+    "output": "工具调用决定、追问或直接回答；按任务标注和论文评估形式判分。",
+    "environment": "论文定义的调用决策任务；其不同子集可采用选择题或模型评审，需明确评估路径。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.18851",
+      "https://github.com/NVIDIA/When2Call"
+    ]
+  },
+  "dataProfile": {
+    "summary": "NVIDIA 固定 revision 的数据卡公开 train/test 文件及工具调用/不调用/澄清任务字段；test 与 llm_judge 的显示行数属于不同拆分视图。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [
+      "The pinned NVIDIA dataset card exposes train/test data and an llm_judge subset; viewer row counts depend on subset/split."
+    ],
+    "fields": [
+      "uuid",
+      "source",
+      "source_id",
+      "question",
+      "correct_answer",
+      "answers",
+      "target_tool",
+      "tools",
+      "held_out_param"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.18851",
+      "https://github.com/NVIDIA/When2Call",
+      "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7",
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.18851",
+      "https://github.com/NVIDIA/When2Call",
+      "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7",
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1"
+    ],
+    "url": "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "The pinned NVIDIA Hugging Face dataset card declares CC-BY-4.0.",
+    "scope": "The declaration is attached to this pinned dataset revision; it does not establish the license of unrelated code or third-party materials.",
+    "boundaries": [
+      "Retain the attribution required by CC-BY-4.0.",
+      "Model report results still need the exact subset and evaluation setting."
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.18851",
+      "https://github.com/NVIDIA/When2Call",
+      "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "Decision accuracy",
+    "description": "评估调用/不调用/澄清等决策是否适当；不同子集的评估方法不同。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.18851",
+      "https://github.com/NVIDIA/When2Call"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该基准核心是调用决策，不等同于函数执行后端到端成功率。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.18851",
+        "https://github.com/NVIDIA/When2Call"
+      ]
+    },
+    {
+      "text": "多选题式和LLM裁判式评估不可不加区分地合并成绩。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.18851",
+        "https://github.com/NVIDIA/When2Call"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "When2Call 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2504.18851",
+      "role": "paper"
+    },
+    {
+      "label": "NVIDIA 官方代码仓库",
+      "url": "https://github.com/NVIDIA/When2Call",
+      "role": "code"
+    },
+    {
+      "label": "NVIDIA 官方数据集卡",
+      "url": "https://huggingface.co/datasets/nvidia/When2Call",
+      "role": "data"
+    },
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7",
+      "label": "huggingface.co - When2Call"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "When2Call论文及NVIDIA数据/代码发布版；不同评估形式需注明",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.18851",
+        "https://github.com/NVIDIA/When2Call"
+      ]
+    }
+  },
+  "releaseDate": "2025-04-26",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1",
+        "explanation": "NVIDIA When2Call test/mcq首行来自 BFCL v2 Live Multiple。正确答案为cannot_answer，因为工具列表仅提供ChaFod（修改食物），没有候选参考调用中的ChaDri.change_drink；不能用不可用工具修改拿铁。",
+        "raw": {
+          "uuid": "5ce19067-938e-41f5-acd5-0e8e66683f62",
+          "source": "BFCL v2 Live Multiple",
+          "source_id": "live_multiple_0-0-0",
+          "question": "update my latte to a large size with coconut milk and make it extra sweet? make it served boiling hot.",
+          "correct_answer": "cannot_answer",
+          "answers": {
+            "direct": "Your large latte with coconut milk, extra sweet, and served boiling hot is on its way. Enjoy!",
+            "tool_call": "{\"name\": \"ChaDri.change_drink\", \"arguments\": {\"drink_id\": \"latte\", \"new_preferences\": {\"size\": [\"large\"], \"milk_type\": [\"coconut\"], \"sweetness_level\": [\"extra\"], \"temperature\": [\"hot\"], \"special_instructions\": [\"served boiling hot\", \"serve boiling hot\", \"boiling hot\"]}}}",
+            "request_for_info": "Sure, I can help with that. Just to confirm, what is the unique identifier for your drink order?",
+            "cannot_answer": "I'm sorry for the inconvenience, but I'm unable to process your request as I'm designed to provide information and assistance, not to prepare or modify beverages."
+          },
+          "target_tool": null,
+          "tools": [
+            "{\"name\": \"ChaFod\", \"description\": \"Changes the food item based on the customer's request, allowing for modifications to the ingredients or preparation method.\", \"parameters\": {\"type\": \"dict\", \"required\": [\"foodItem\"], \"properties\": {\"foodItem\": {\"type\": \"string\", \"description\": \"The name of the food item to be modified as requested by the customer.\"}, \"newIngredients\": {\"type\": \"string\", \"description\": \"A comma-separated list of new ingredients to include in the food item, if any.\", \"default\": \"\"}, \"removeIngredients\": {\"type\": \"string\", \"description\": \"A comma-separated list of ingredients to remove from the food item, if any.\", \"default\": \"\"}, \"specialInstructions\": {\"type\": \"string\", \"description\": \"Special preparation instructions provided by the customer, such as 'extra spicy' or 'no salt'.\", \"default\": \"\"}}}}"
+          ],
+          "held_out_param": null
+        },
+        "split": "test/mcq row_idx=0 uuid=5ce19067-938e-41f5-acd5-0e8e66683f62",
+        "answer": "cannot_answer",
+        "license": "HF卡声明 CC-BY-4.0；BFCL来源权利另行核对。",
+        "prompt": "update my latte to a large size with coconut milk and make it extra sweet? make it served boiling hot.",
+        "type": "record",
+        "title": "拿铁定制的工具选择",
+        "excerpt": true,
+        "id": "when2call-5ce19067"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录when2call-5ce19067；已核对来源文件、版本或响应快照、记录定位与哈希。NVIDIA When2Call test/mcq首行来自 BFCL v2 Live Multiple。正确答案为cannot_answer，因为工具列表仅提供ChaFod（修改食物），没有候选参考调用中的ChaDri.change_drink；不能用不可用工具修改拿铁。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1"
+      ]
+    }
+  ]
+}

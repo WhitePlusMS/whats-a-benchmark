@@ -85,7 +85,8 @@ export const sampleAssetSchema = z.discriminatedUnion("kind", [
   }),
   z.strictObject({
     kind: z.literal("file"),
-    path: z.string().regex(/^files\/[a-z0-9-]+\.(json|jsonl|csv|txt|pdf|zip)$/),
+    // 财务任务保留原始工作簿，只提供文件下载，不转换或执行其中的公式。
+    path: z.string().regex(/^files\/[a-z0-9-]+\.(json|jsonl|csv|txt|pdf|zip|xlsx)$/),
     label: text,
     description: text.optional(),
     source: assetSource,

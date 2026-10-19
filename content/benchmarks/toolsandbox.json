@@ -1,0 +1,179 @@
+{
+  "id": "toolsandbox",
+  "status": "published",
+  "order": 1870,
+  "name": "ToolSandbox",
+  "subtitle": "有状态、多轮交互式工具使用评测",
+  "category": "agents",
+  "tags": [
+    "工具调用",
+    "智能体",
+    "多轮对话",
+    "状态跟踪"
+  ],
+  "publisher": "Apple AIML Research",
+  "brandIds": [
+    "apple-ai-research"
+  ],
+  "year": 2024,
+  "version": "ToolSandbox论文与框架；实际成绩的框架commit和模型配置未核",
+  "kind": "original",
+  "aliases": [
+    "Tool Sandbox"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过有状态工具执行与多轮对话，评估语言模型的工具使用能力。",
+    "task": "模型与模拟用户进行对话并调用工具，处理隐含状态依赖、信息不足等情形；评估中间与最终里程碑。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2408.04682",
+      "https://github.com/apple-aiml-research/ToolSandbox"
+    ]
+  },
+  "taskContract": {
+    "input": "用户对话、可调用工具定义及可变状态环境。",
+    "output": "对话回复、工具调用序列及环境状态变化；由里程碑与最终状态评估。",
+    "environment": "论文描述的交互式有状态工具沙箱和内置用户模拟器。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2408.04682",
+      "https://github.com/apple-aiml-research/ToolSandbox"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者公开仓库将各场景写为 Python 扩展，并提供框架代码、工具和场景定义；每个场景的状态与里程碑依执行环境判定，不能视作统一表格数据。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2408.04682",
+      "https://github.com/apple-aiml-research/ToolSandbox",
+      "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/tool_sandbox/scenarios/single_tool_call_scenarios.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2408.04682",
+      "https://github.com/apple-aiml-research/ToolSandbox",
+      "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/tool_sandbox/scenarios/single_tool_call_scenarios.py"
+    ],
+    "url": "https://github.com/apple-aiml-research/ToolSandbox"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apple license grants a personal, non-exclusive license to use, reproduce, modify and redistribute the Apple Software in source or binary form. The sampled wifi_off definition is repository code; attribution and no-endorsement boundaries retained.",
+    "scope": "Only the exact Apple-authored scenario code excerpt in this candidate; no Apple marks or endorsement.",
+    "boundaries": [
+      "The repository LICENSE excludes implied patent grants and prohibits use of Apple name/marks for endorsement; separate third-party notices remain separate."
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2408.04682",
+      "https://github.com/apple-aiml-research/ToolSandbox",
+      "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/tool_sandbox/scenarios/single_tool_call_scenarios.py",
+    "sourceUrls": [
+      "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/tool_sandbox/scenarios/single_tool_call_scenarios.py"
+    ]
+  },
+  "metric": {
+    "name": "Milestone / task success",
+    "description": "依据任务执行过程中间及最终里程碑判定；不同任务和模型报告的汇总口径需查对应实验。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2408.04682",
+      "https://github.com/apple-aiml-research/ToolSandbox"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "模型行为受用户模拟器、工具环境和轨迹执行配置影响。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2408.04682",
+        "https://github.com/apple-aiml-research/ToolSandbox"
+      ]
+    },
+    {
+      "text": "单轮静态 API 调用集合不能完整代表该基准所考察的状态依赖和多轮互动。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2408.04682",
+        "https://github.com/apple-aiml-research/ToolSandbox"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "ToolSandbox 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2408.04682",
+      "role": "paper"
+    },
+    {
+      "label": "Apple AIML Research 官方实现",
+      "url": "https://github.com/apple-aiml-research/ToolSandbox",
+      "role": "code"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/tool_sandbox/scenarios/single_tool_call_scenarios.py",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "ToolSandbox论文与框架；实际成绩的框架commit和模型配置未核",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2408.04682",
+        "https://github.com/apple-aiml-research/ToolSandbox"
+      ]
+    }
+  },
+  "releaseDate": "2024-08-08",
+  "researchNotes": [
+    {
+      "text": "运行论文场景可能依赖模型服务凭证、RapidAPI 等外部服务；仓库可见不等于无需凭证即可复现实验。",
+      "sourceUrls": [
+        "https://github.com/apple-aiml-research/ToolSandbox"
+      ]
+    },
+    {
+      "text": "2026-10-19直接取得实际记录wifi-off；已核对来源文件、版本或响应快照、记录定位与哈希。官方源码要求智能体使用允许的 set_wifi_status 工具，将 setting 命名空间中的 wifi 设为 false，并回复“Wifi is turned off”。两个里程碑都需通过；候选只展示真实 Python 定义，不执行框架。",
+      "sourceUrls": [
+        "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/tool_sandbox/scenarios/single_tool_call_scenarios.py"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "wifi-off",
+        "title": "wifi_off 官方场景代码",
+        "type": "code",
+        "prompt": "Turn off wifi",
+        "promptOrigin": "editorial",
+        "raw": "        ScenarioExtension(\n            name=\"wifi_off\",\n            base_scenario=base_scenarios[\"base\"],\n            messages=[\n                {\n                    \"sender\": RoleType.SYSTEM,\n                    \"recipient\": RoleType.USER,\n                    \"content\": USER_INSTRUCTION + \"Turn off wifi\",\n                },\n                {\n                    \"sender\": RoleType.USER,\n                    \"recipient\": RoleType.AGENT,\n                    \"content\": \"Turn off wifi\",\n                },\n            ],\n            tool_allow_list=[\"set_wifi_status\"],\n            milestones=[\n                Milestone(\n                    snapshot_constraints=[\n                        SnapshotConstraint(\n                            database_namespace=DatabaseNamespace.SETTING,\n                            snapshot_constraint=snapshot_similarity,\n                            target_dataframe=pl.DataFrame(\n                                {\n                                    \"wifi\": False,\n                                }\n                            ),\n                        )\n                    ]\n                ),\n                Milestone(\n                    snapshot_constraints=[\n                        SnapshotConstraint(\n                            database_namespace=DatabaseNamespace.SANDBOX,\n                            snapshot_constraint=snapshot_similarity,\n                            target_dataframe=pl.DataFrame(\n                                {\n                                    \"sender\": RoleType.AGENT,\n                                    \"recipient\": RoleType.USER,\n                                    \"content\": \"Wifi is turned off\",\n                                }\n                            ),\n                        )\n                    ]\n                ),\n            ],",
+        "source": "https://github.com/apple-aiml-research/ToolSandbox/blob/c8571d7854316d2e1c5f288e59fe1e34e53f6dd1/tool_sandbox/scenarios/single_tool_call_scenarios.py",
+        "license": "Apple license grants a personal, non-exclusive license to use, reproduce, modify and redistribute the Apple Software in source or binary form. The sampled wifi_off definition is repository code; attribution and no-endorsement boundaries retained.",
+        "split": "官方源码 single_tool_call_scenarios.py 中 wifi_off 场景",
+        "excerpt": true,
+        "explanation": "官方wifi_off场景要求调用允许的set_wifi_status工具，将setting命名空间中的wifi设为false，并回复Wifi is turned off。两个milestone分别检查状态改变与消息，所以仅声称“已关闭”不等于完成；raw保留原始Python场景定义，未运行框架或实际切换网络。",
+        "licensePath": "licenses/toolsandbox-sample-source.txt"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  }
+}

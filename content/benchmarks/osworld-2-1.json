@@ -1,0 +1,155 @@
+{
+  "id": "osworld-2-1",
+  "status": "published",
+  "order": 1690,
+  "name": "OSWorld 2.1",
+  "subtitle": "在Ubuntu桌面虚拟机中完成108项真实长程GUI工作流。",
+  "category": "agents",
+  "tags": [
+    "computer-use",
+    "agent",
+    "benchmark"
+  ],
+  "publisher": "OSWorld项目维护团队（xlang-ai）",
+  "brandIds": [
+    "osworld"
+  ],
+  "year": 2026,
+  "version": "osworld-v2.1",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "官方bug-fix版本，更新代理、评测流程、任务快照和固定环境资产。",
+    "task": "在真实桌面长程任务环境中评估computer-use代理。",
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld-V2/releases"
+    ]
+  },
+  "taskContract": {
+    "input": "Ubuntu桌面VM屏幕截图及点击、键入、滚动、按键等GUI动作。",
+    "output": "通过程序grader判定的桌面任务执行轨迹。",
+    "environment": "Ubuntu桌面虚拟机；需固定系统镜像、任务快照与GUI动作协议。厂商offline子集须单独核对。",
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld-V2/releases"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方bug-fix版本，更新代理、评测流程、任务快照和固定环境资产。",
+    "disclosure": "partial",
+    "scale": [
+      "release说明108个任务文件"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld-V2/releases"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "url": "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+    "requirements": [
+      "按官方说明分别申请任务类与完整资产的HF访问，并固定osworld-v2.1任务、资产、网站和镜像。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+      "https://github.com/xlang-ai/OSWorld-V2/blob/main/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld-V2/releases"
+    ]
+  },
+  "sampleAccess": {
+    "status": "gated",
+    "url": "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+    "reason": "2.1任务类与完整资产从官方gated HF仓库分发；本次未取得。项目页可见的Task035采购单和Task008报销轨迹标为2.0，不能拿它们冒充2.1；轨迹查看器本次访问失败，不据此断言绝无其他公开案例。",
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld-V2/blob/main/README.md",
+      "https://osworld-v2.xlang.ai/"
+    ]
+  },
+  "metric": {
+    "name": "每任务平均partial reward",
+    "description": "Meta报告OSWorld v2.1的主指标为每任务平均partial reward，strict binary completion为次指标；厂商offline subset不是完整108项配置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/xlang-ai/OSWorld-V2/releases",
+      "https://research.meta.ai/static/muse-wonder-model-card"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "厂商offline subset与完整108工作流不是同一运行配置。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/releases"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "github.com 官方资料",
+      "url": "https://github.com/xlang-ai/OSWorld-V2/releases",
+      "role": "readme"
+    },
+    {
+      "label": "Meta Muse Wonder模型卡 · OSWorld v2.1运行口径",
+      "url": "https://research.meta.ai/static/muse-wonder-model-card",
+      "role": "vendor-report"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://huggingface.co/datasets/xlangai/osworld_v2_tasks",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://github.com/xlang-ai/OSWorld-V2/blob/main/README.md",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://osworld-v2.xlang.ai/",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "osworld-2",
+      "label": "OSWorld 2母系列",
+      "detail": "此条目按来源所述版本/子集关系单独记录。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/releases"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-09-16",
+  "interpretation": {
+    "versionChanges": {
+      "text": "官方tag release为2026-09-16。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/releases"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "researchNotes": [
+    {
+      "text": "已实际核对2.1 README、Public Evaluation Guideline、2.0项目案例及轨迹入口。官方说明2.1任务实现不在公开GitHub checkout；公开2.0演示不证明其内容与2.1逐项一致，因此保留真实版本与访问边界。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/blob/main/README.md",
+        "https://osworld-v2.xlang.ai/"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "cwe-bench-v1",
+  "status": "published",
+  "order": 1430,
+  "name": "CWE-bench v1",
+  "subtitle": "在真实开源仓库中审计并修复漏洞；Collinear披露120项、73类CWE。",
+  "category": "coding",
+  "tags": [
+    "cybersecurity",
+    "coding"
+  ],
+  "publisher": "Collinear AI",
+  "brandIds": [
+    "cwe-bench"
+  ],
+  "year": 2026,
+  "version": "v1",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "私有网络安全防御审计与修复基准，官方说明含120项、覆盖73种CWE。",
+    "task": "审计代码并完成漏洞修复。",
+    "sourceUrls": [
+      "https://blog.collinear.ai/p/cwe-bench-v1"
+    ]
+  },
+  "taskContract": {
+    "input": "含指定关注范围的开源代码仓库及审计修复指令。",
+    "output": "漏洞发现与修补提交；现有公开材料未给可独立复算的总分公式。",
+    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "sourceUrls": [
+      "https://blog.collinear.ai/p/cwe-bench-v1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "私有网络安全防御审计与修复基准，官方说明含120项、覆盖73种CWE。 官方另展示具体案例；全集私有不表示没有公开样例。",
+    "disclosure": "partial",
+    "scale": [
+      "120项任务",
+      "73种CWE"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://blog.collinear.ai/p/cwe-bench-v1"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://cwe-bench.com/",
+    "requirements": [
+      "120道留出评测题仍私有；官网另公开BlurHash训练示例，本站展示其实际验证输入。"
+    ],
+    "sourceUrls": [
+      "https://cwe-bench.com/",
+      "https://blog.collinear.ai/p/cwe-bench-v1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://blog.collinear.ai/p/cwe-bench-v1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "完整留出题集私有，但官方另有具体公开演示；本站展示真实任务事实、原始数据节选与解析。",
+    "url": "https://cwe-bench.com/",
+    "sourceUrls": [
+      "https://cwe-bench.com/"
+    ]
+  },
+  "metric": {
+    "name": "漏洞审计与修复任务结果",
+    "description": "官方v1公告披露任务规模、CWE覆盖和私有题集；不同实现/harness结果不应直接视为同一运行。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://blog.collinear.ai/p/cwe-bench-v1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "具体任务不可公开逐项检查；不同harness结果不能直接等同。",
+      "sourceUrls": [
+        "https://blog.collinear.ai/p/cwe-bench-v1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "blog.collinear.ai 官方资料",
+      "url": "https://blog.collinear.ai/p/cwe-bench-v1",
+      "role": "definition"
+    },
+    {
+      "label": "CWE-bench官方实际训练示例",
+      "url": "https://cwe-bench.com/",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-09-28",
+  "interpretation": {
+    "versionChanges": {
+      "text": "Collinear v1公告日期。",
+      "sourceUrls": [
+        "https://blog.collinear.ai/p/cwe-bench-v1"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "public-training-example-blurhash-decoder",
+        "title": "BlurHash 解码器：八个实际验证输入",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "审计Rust blurhash-rs的解码入口，使任何字符串输入都返回正常结果或可处理的错误，不能panic；合法BlurHash的像素输出必须保持不变，已有调用仍须编译。官方公开演示分别用多字节字符、越界数值和正常输入检查修补是否完整。",
+        "explanation": "这是官网明确标为training example的CVE-2023-42447公开任务，不是私有120道留出题中的已定位行。前三个输入检查UTF-8字符边界，接着两个检查解析数值导致的越界，最后三个检查正常行为。只拒绝非ASCII字符仍会在数值路径失败；同时验证字符和范围、保留合法像素输出，才满足官方通过条件。原始数据保留官网实际列出的八个输入，未编写或执行补丁/漏洞代码。",
+        "raw": "\"ıABCDE\"\n\"€ABCDE\"\n\"😀ABCDEF\"\n\n\"00~~~~\"\n\"00}}}}\"\n\n\"LBAdAqof00WCqZj[PDay0.WB}pof\"\n\"LEHV6nWB2yk8pyo0adR*.7kCMdnj\"\n\"abc\"",
+        "source": "https://cwe-bench.com/",
+        "license": "官方公开训练示例中实际测试字符串及任务事实的必要节选；不转载私有评测集或训练语料全集。",
+        "split": "官方Sample task / training example / blurhash-rs / CVE-2023-42447",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "这是官网明确标为training example的CVE-2023-42447公开任务，不是私有120道留出题中的已定位行。前三个输入检查UTF-8字符边界，接着两个检查解析数值导致的越界，最后三个检查正常行为。只拒绝非ASCII字符仍会在数值路径失败；同时验证字符和范围、保留合法像素输出，才满足官方通过条件。原始数据保留官网实际列出的八个输入，未编写或执行补丁/漏洞代码。",
+      "sourceUrls": [
+        "https://cwe-bench.com/"
+      ]
+    }
+  ]
+}

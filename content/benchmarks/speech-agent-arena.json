@@ -1,0 +1,151 @@
+{
+  "id": "speech-agent-arena",
+  "status": "published",
+  "order": 1780,
+  "name": "Speech Agent Arena",
+  "subtitle": "以35个实时语音对话场景比较偏好与任务表现，含15个工具型和20个非工具型场景。",
+  "category": "agents",
+  "tags": [
+    "speech",
+    "arena",
+    "agent"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA于2026-08-24公告的初始Speech Agent Arena；其后纳入Speech-to-Speech Index v1.1的确切日未披露",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "实时语音对话模型盲测偏好评测，含agentic及非agentic情景。",
+    "task": "评估语音对话中的用户偏好和任务表现。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/articles/announcing-the-speech-agent-arena"
+    ]
+  },
+  "taskContract": {
+    "input": "实时语音对话场景；部分场景提供工具及调用schema。",
+    "output": "对话偏好评价与场景任务表现。",
+    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/articles/announcing-the-speech-agent-arena"
+    ]
+  },
+  "dataProfile": {
+    "summary": "实时语音对话模型盲测偏好评测，含agentic及非agentic情景。",
+    "disclosure": "partial",
+    "scale": [
+      "35场景：15 agentic、20 non-agentic"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已核对并展示官方公开案例的真实片段与解析；这不是完整私有题集。",
+    "url": "https://artificialanalysis.ai/speech-to-speech/arena/overview",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/speech-to-speech/arena/overview"
+    ]
+  },
+  "metric": {
+    "name": "Arena偏好Elo及任务表现",
+    "description": "AA于2026-08-24公告Arena；35场景由15 agentic、20 non-agentic组成。纳入Speech-to-Speech Index v1.1的具体日期未披露，完整提示/对话不公开。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "Artificial Analysis于2026-08-24发布Speech Agent Arena公告；其后方法页称该Arena在2026年8月加入指数v1.1，但未给指数切换日。场景提示、工具schema及完整对话记录未全面公开。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+        "https://artificialanalysis.ai/articles/announcing-the-speech-agent-arena"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "artificialanalysis.ai 官方资料",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "Artificial Analysis Speech Agent Arena announcement",
+      "url": "https://artificialanalysis.ai/articles/announcing-the-speech-agent-arena",
+      "role": "release"
+    },
+    {
+      "label": "AA官方牙科预约场景、示例提示与工具签名",
+      "url": "https://artificialanalysis.ai/speech-to-speech/arena/overview",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-08-24",
+  "interpretation": {
+    "versionChanges": {
+      "text": "发布日期采用AA于2026-08-24对Speech Agent Arena本身的首次公告；方法页仅称其于2026年8月纳入Speech-to-Speech Index v1.1，未给日级指数版本切换日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+        "https://artificialanalysis.ai/articles/announcing-the-speech-agent-arena"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "overview-public-dental-booking-example",
+        "title": "牙科预约：首选时间与替代条件",
+        "type": "record",
+        "prompt": "新患者希望预约周二上午9:30的牙科检查；若该时段已满，改约最早可用的上午时段。官方完整演示还要求核对注册记录，并让接待员复述预约日期和时间。",
+        "promptOrigin": "editorial",
+        "explanation": "这条场景需要先查询账户和可用时段，再按用户条件调用预约工具。只有说“预约成功”不能证明完成；官方另行检查最终工具调用和参数。来源页同时公开示例系统提示与工具签名，但演示录音不计入排行榜结果；本站没有将其冒称为计分对话行。",
+        "raw": "Book a new-patient dental check-up for Tuesday at 9:30am, or the earliest available morning if that time is taken.",
+        "source": "https://artificialanalysis.ai/speech-to-speech/arena/overview",
+        "license": "官方公开场景句的必要短引；未确认完整提示、工具材料和录音的统一再分发许可。",
+        "split": "官方overview / New Patient Dental Booking公开演示 / 未披露稳定行ID",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接核对官方原文，保留页面实际展示的短片段；任务说明及解析由本站整理，未将文字节选包装为完整题库行。源页面与响应哈希保存在本轮逐项核验资料中。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/speech-to-speech/arena/overview"
+      ]
+    }
+  ]
+}

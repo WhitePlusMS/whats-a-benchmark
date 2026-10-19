@@ -1,0 +1,184 @@
+{
+  "id": "chartqapro",
+  "status": "published",
+  "order": 1420,
+  "name": "ChartQAPro",
+  "subtitle": "针对真实图表进行多种形式的问答与推理。",
+  "category": "multimodal",
+  "tags": [],
+  "publisher": "Vis+NLP（York University）及论文所列多机构合作者",
+  "brandIds": [
+    "vis-nlp"
+  ],
+  "year": 2025,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [
+    "ChartQA Pro"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "根据图表回答选择、对话、假设或不可回答类问题。",
+    "summary": "在多来源图表上评估视觉问答与分析推理。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.05506"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.05506"
+    ],
+    "environment": "视觉语言模型评测；具体解码参数未在候选中统一。",
+    "input": "图表图像与对应问题。",
+    "output": "问题答案；按论文评估口径评分。"
+  },
+  "dataProfile": {
+    "summary": "基准含1,341张来自157个来源的图表和1,948个问题；样本由图表、问题、答案及可选上下文段组成。",
+    "scale": [
+      "1,341张图表，来自157个来源；1,948个问题"
+    ],
+    "splits": [],
+    "fields": [
+      "Question",
+      "Answer",
+      "Question Type",
+      "Year",
+      "Paragraph"
+    ],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.05506",
+      "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "ChartQAPro数据集卡标注MIT；仅展示此记录随数据发布的原始图像与标注，保留作者及来源。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/ahmed-masry/ChartQAPro"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "Accuracy（按提示类型及问题类型分项）",
+    "description": "论文按 direct、chain-of-thought、program-of-thought 提示方式和各问题类型报告准确率；不是单一跨任务复合评分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.05506"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.05506"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2504.05506",
+      "label": "arxiv.org - ChartQAPro"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/vis-nlp/ChartQAPro",
+      "label": "github.com - ChartQAPro"
+    },
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+      "label": "huggingface.co - ChartQAPro"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2025-04-07",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期依据：2025-04-07，arXiv v1首次提交日（论文公开日期；不等同数据开放日）。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.05506"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "test-0",
+        "title": "读取原图 · 风电容量超过100 GW",
+        "type": "image",
+        "prompt": "根据随附的原始图表，估计风电装机容量首次超过 100 GW 的年份。",
+        "explanation": "这张原图是堆叠柱状图：问题问的是绿色Wind分量本身何时超过100 GW，不能把整根柱子的总高度当作风电容量。原始标注答案是2037-38。raw保留Question/Answer等实际字段，图像单列为本地附件；原始行中的image传输字段未混入文字数据。",
+        "raw": {
+          "Question": [
+            "estimate the year in which wind capacity first exceeds 100 gw based on the trend shown in the chart."
+          ],
+          "Answer": [
+            "2037-38"
+          ],
+          "Question Type": "Factoid",
+          "Year": [
+            "NO"
+          ],
+          "Paragraph": ""
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1",
+        "license": "Hugging Face 数据集卡标注 MIT；图表来源素材的权利另未逐项核验。",
+        "split": "test",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/chartqapro-test-0.jpg",
+            "alt": "ChartQAPro 原始题目图像",
+            "width": 627,
+            "height": 442,
+            "source": "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1"
+          }
+        ],
+        "answer": "2037-38",
+        "promptOrigin": "editorial"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录test-0；来源响应SHA-256 e2450221d9234f6ca29277005ca1eacb048bc531580796b3ec68ebd1ab71ca52。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ahmed-masry%2FChartQAPro&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ]
+}

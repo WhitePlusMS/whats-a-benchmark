@@ -1,0 +1,231 @@
+{
+  "id": "webarena-verified",
+  "status": "published",
+  "order": 1900,
+  "name": "WebArena Verified",
+  "subtitle": "WebArena 任务与评测器的验证版",
+  "category": "agents",
+  "tags": [
+    "网页智能体",
+    "浏览器",
+    "任务完成",
+    "评测器"
+  ],
+  "publisher": "ServiceNow Research 及合作研究团队",
+  "brandIds": [
+    "servicenow"
+  ],
+  "year": 2026,
+  "version": "ServiceNow 官方仓库记载的 PyPI 公开包（2026-01-07）；2024-11-12 为协作者早期反馈发布，README 曾计划 2025-12-04 公布，日期含义需区分",
+  "kind": "derivative",
+  "aliases": [
+    "WebArena-Verified",
+    "Verified WebArena"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "对 WebArena 网页任务和自动评测进行审计与验证的复现版本。",
+    "task": "智能体在网页应用环境中完成 WebArena 任务，并使用经审计的判定流程核验任务完成状态。",
+    "sourceUrls": [
+      "https://openreview.net/forum?id=94tlGxmqkN",
+      "https://github.com/ServiceNow/webarena-verified"
+    ]
+  },
+  "taskContract": {
+    "input": "浏览器任务指令、网页应用环境与对应任务目标。",
+    "output": "浏览器操作轨迹及最终应用状态，由确定性评测器验证。",
+    "environment": "WebArena 的网页应用环境和 Verified 项目提供的容器化运行器/评测器。",
+    "sourceUrls": [
+      "https://openreview.net/forum?id=94tlGxmqkN",
+      "https://github.com/ServiceNow/webarena-verified"
+    ]
+  },
+  "dataProfile": {
+    "summary": "ServiceNow 当前仓库发布完整任务 JSON，并列出812项 full set 与258项 Hard 子集；这是当前仓库版本计数，不应倒推到2026-01-07首个 PyPI 包。",
+    "disclosure": "partial",
+    "scale": [
+      "当前官方仓库：完整集812项；Hard子集258项（仓库当前版本）"
+    ],
+    "splits": [
+      "Current repository full set: 812 tasks.",
+      "Current repository Hard subset: 258 tasks.",
+      "Counts are tied to current repository data and are not back-projected to the initial package release."
+    ],
+    "fields": [
+      "sites",
+      "task_id",
+      "intent_template_id",
+      "start_urls",
+      "intent",
+      "intent_template",
+      "instantiation_dict",
+      "eval",
+      "revision"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/ServiceNow/webarena-verified",
+      "https://openreview.net/forum?id=94tlGxmqkN",
+      "https://github.com/ServiceNow/webarena-verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/assets/dataset/webarena-verified.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://openreview.net/forum?id=94tlGxmqkN",
+      "https://github.com/ServiceNow/webarena-verified",
+      "https://github.com/ServiceNow/webarena-verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/assets/dataset/webarena-verified.json"
+    ],
+    "url": "https://github.com/ServiceNow/webarena-verified"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache License 2.0 in the sampled ServiceNow WebArena-Verified repository; selected task JSON is in the repository.",
+    "scope": "Selected task record fields from the official dataset file only.",
+    "boundaries": [
+      "The repository license does not automatically cover the live websites or environment snapshots used by tasks."
+    ],
+    "sourceUrls": [
+      "https://openreview.net/forum?id=94tlGxmqkN",
+      "https://github.com/ServiceNow/webarena-verified",
+      "https://github.com/ServiceNow/WebArena-Verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://github.com/ServiceNow/webarena-verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/assets/dataset/webarena-verified.json",
+    "sourceUrls": [
+      "https://github.com/ServiceNow/webarena-verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/assets/dataset/webarena-verified.json"
+    ]
+  },
+  "metric": {
+    "name": "Task success rate",
+    "description": "以任务是否通过验证评测器衡量；需注明使用的 WebArena-Verified 任务/评测器版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://openreview.net/forum?id=94tlGxmqkN",
+      "https://github.com/ServiceNow/webarena-verified"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "它是 WebArena 的复核版本/实现，不是与母基准无关的新任务领域。",
+      "sourceUrls": [
+        "https://openreview.net/forum?id=94tlGxmqkN",
+        "https://github.com/ServiceNow/webarena-verified"
+      ]
+    },
+    {
+      "text": "该仓库当前列出完整集812项和258项Hard子集；论文/早期公开计划与仓库包版本应分开引用。",
+      "sourceUrls": [
+        "https://openreview.net/forum?id=94tlGxmqkN",
+        "https://github.com/ServiceNow/webarena-verified"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "WebArena Verified 原论文（OpenReview）",
+      "url": "https://openreview.net/forum?id=94tlGxmqkN",
+      "role": "paper"
+    },
+    {
+      "label": "ServiceNow Research 官方实现",
+      "url": "https://github.com/ServiceNow/webarena-verified",
+      "role": "code"
+    },
+    {
+      "label": "WebArena-Verified v1.0.0 GitHub Release",
+      "url": "https://github.com/ServiceNow/webarena-verified/releases/tag/v1.0.0",
+      "role": "release"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/ServiceNow/webarena-verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/assets/dataset/webarena-verified.json",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/ServiceNow/WebArena-Verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "README记载协作者早期版本始于2024-11-12，并计划2025-12-04公开；该仓库另记载 PyPI 包于2026-01-07上线。条目的 releaseDate 采用可确认的公开包日期，不能据计划发布日期声称当日已公开。当前仓库任务数为812，Hard子集258。",
+      "sourceUrls": [
+        "https://github.com/ServiceNow/webarena-verified",
+        "https://github.com/ServiceNow/webarena-verified/releases/tag/v1.0.0",
+        "https://openreview.net/forum?id=94tlGxmqkN"
+      ]
+    }
+  },
+  "releaseDate": "2026-01-07",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://github.com/ServiceNow/webarena-verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/assets/dataset/webarena-verified.json",
+        "id": "webarena-verified-shopping-admin-0",
+        "explanation": "ServiceNow官方webarena-verified.json第0任务：在shopping_admin网站查询2022年销量第1的产品名称，评估目标明确为Quest Lumaflex™ Band。此行包含任务/预期结果，但未附网站容器实例、数据库快照与浏览器环境，不能单独执行复现。",
+        "title": "Shopping Admin 年度畅销产品查询",
+        "split": "assets/dataset/webarena-verified.json task_id=0 revision=2",
+        "prompt": "Get the top-1 best-selling product name(s) in 2022",
+        "excerpt": true,
+        "license": "Apache License 2.0 in the sampled ServiceNow WebArena-Verified repository; selected task JSON is in the repository.",
+        "type": "record",
+        "raw": {
+          "sites": [
+            "shopping_admin"
+          ],
+          "task_id": 0,
+          "intent_template_id": 279,
+          "start_urls": [
+            "__SHOPPING_ADMIN__"
+          ],
+          "intent": "Get the top-1 best-selling product name(s) in 2022",
+          "intent_template": "Get the top-{{n}} best-selling {{entity}} in {{period}}",
+          "instantiation_dict": {
+            "n": 1,
+            "entity": "product name(s)",
+            "period": "2022"
+          },
+          "eval": [
+            {
+              "evaluator": "AgentResponseEvaluator",
+              "results_schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "expected": {
+                "task_type": "retrieve",
+                "status": "SUCCESS",
+                "retrieved_data": [
+                  "Quest Lumaflex™ Band"
+                ]
+              }
+            }
+          ],
+          "revision": 2
+        },
+        "answer": "Quest Lumaflex™ Band",
+        "licensePath": "licenses/webarena-verified-sample-source.txt"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录webarena-verified-shopping-admin-0；已核对来源文件、版本或响应快照、记录定位与哈希。ServiceNow官方webarena-verified.json第0任务：在shopping_admin网站查询2022年销量第1的产品名称，评估目标明确为Quest Lumaflex™ Band。此行包含任务/预期结果，但未附网站容器实例、数据库快照与浏览器环境，不能单独执行复现。",
+      "sourceUrls": [
+        "https://github.com/ServiceNow/webarena-verified/blob/6473f72db5dcefc97b5725b59e734504edc28a21/assets/dataset/webarena-verified.json"
+      ]
+    }
+  ]
+}

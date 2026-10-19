@@ -1,0 +1,170 @@
+{
+  "id": "graphwalks",
+  "status": "published",
+  "order": 1510,
+  "name": "GraphWalks",
+  "subtitle": "在长上下文有向图中执行广度优先搜索及父节点查询。",
+  "category": "reasoning",
+  "tags": [],
+  "publisher": "OpenAI 发布数据；NVIDIA NeMo Gym提供运行封装",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2025,
+  "version": "2025-04-12公开定义版",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "两类任务为指定深度的广度优先搜索（BFS）与节点父节点集合预测；答案要求返回节点集合。",
+    "summary": "在长上下文图推理任务中，模型读取有向边列表并执行图操作。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/graphwalks",
+      "https://huggingface.co/datasets/openai/graphwalks/raw/main/README.md"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/graphwalks",
+      "https://huggingface.co/datasets/openai/graphwalks/raw/main/README.md"
+    ],
+    "environment": "长上下文提示；官方数据以不同上下文规模分文件，具体运行上下文应随报告说明。",
+    "input": "图的有向边列表及操作描述（BFS深度或目标节点父节点）。",
+    "output": "按要求格式给出的节点 ID 列表；BFS 仅返回指定深度可达节点，parents 仅返回指向目标节点的节点。"
+  },
+  "dataProfile": {
+    "summary": "数据由有向边列表图操作提示组成，记录提示文本、答案节点集合、提示字符数及任务类型。",
+    "scale": [],
+    "splits": [],
+    "fields": [
+      "prompt",
+      "answer_nodes",
+      "prompt_chars",
+      "problem_type",
+      "date_added"
+    ],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/graphwalks",
+      "https://huggingface.co/datasets/openai/graphwalks/raw/main/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/openai/graphwalks",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "OpenAI GraphWalks数据集MIT。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1",
+      "https://huggingface.co/datasets/openai/graphwalks"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "sourceUrls": [
+      "https://huggingface.co/datasets/openai/graphwalks/raw/main/README.md"
+    ],
+    "description": "官方 README 按预测节点集合与答案集合计算 precision、recall 和 F1；解析失败记零，空集合与空答案均为空时记满分。",
+    "name": "节点集合 Precision / Recall / F1",
+    "direction": "higher"
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/graphwalks/raw/main/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/openai/graphwalks",
+      "label": "huggingface.co - GraphWalks"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/NVIDIA-NeMo/Gym/blob/main/benchmarks/graphwalks/README.md",
+      "label": "github.com - GraphWalks"
+    },
+    {
+      "url": "https://huggingface.co/datasets/openai/graphwalks/raw/main/README.md",
+      "role": "readme",
+      "label": "OpenAI Hugging Face dataset README - GraphWalks"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2025-04-12",
+  "interpretation": {
+    "versionChanges": {
+      "text": "OpenAI数据README记录初次发布日为2025-04-12；HF提交历史显示2025-04-11 23:29 UTC的提交，因时区导致日历日期相邻。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/graphwalks/raw/main/README.md"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "train-0",
+        "title": "有向图 · 找到目标节点的父节点",
+        "type": "text",
+        "prompt": "\nYou will be given a graph as a list of directed edges. All nodes are at least degree 1. You will also get a description of an operation to perform on the graph.\nYour job is to execute the operation on the graph and return the set of nodes that the operation results in. If asked for a breadth-first search (BFS), only return the nodes that are both reachable and exactly at that depth (not nodes at intermediate depths), and do not return the starting node. If asked for the parents of a node, only return the nodes that have an edge leading to the given node, do not return the given node itself.\n\nHere is an example:\n<begin example>\n\nThe graph has the following edges:\nuvwx -> alke\nabcd -> uvwx\nabcd -> efgh\nefgh -> uvwx\n\nExample 1:\nOperation:\nPerform a BFS from node abcd with depth 1.\nFinal Answer: [uvwx, efgh]\n\nExample 2:\nOperation:\nPerform a BFS from node alke with depth 1.\nFinal Answer: []\n\nExample 3:\nOperation:\nFind the parents of node uvwx.\nFinal Answer: [abcd, efgh]\n\nExample 4:\nOperation:\nFind the parents of node abcd.\nFinal Answer: []\n\n<end example>\nHere is the graph to operate on:\nThe graph has the following edges:\ncfcd208495 -> cfcd208495\ncfcd208495 -> 1679091c5a\ncfcd208495 -> c81e728d9d\ncfcd208495 -> c4ca4238a0\nc4ca4238a0 -> c9f0f895fb\nc4ca4238a0 -> 45c48cce2e\nc4ca4238a0 -> eccbc87e4b\nc4ca4238a0 -> c9f0f895fb\nc81e728d9d -> 45c48cce2e\nc81e728d9d -> eccbc87e4b\nc81e728d9d -> eccbc87e4b\nc81e728d9d -> c9f0f895fb\neccbc87e4b -> d3d9446802\neccbc87e4b -> d3d9446802\neccbc87e4b -> a87ff679a2\neccbc87e4b -> c4ca4238a0\na87ff679a2 -> 1679091c5a\na87ff679a2 -> eccbc87e4b\na87ff679a2 -> cfcd208495\na87ff679a2 -> e4da3b7fbb\ne4da3b7fbb -> c4ca4238a0\ne4da3b7fbb -> 1679091c5a\ne4da3b7fbb -> 1679091c5a\ne4da3b7fbb -> 45c48cce2e\n1679091c5a -> 8f14e45fce\n1679091c5a -> 8f14e45fce\n1679091c5a -> e4da3b7fbb\n1679091c5a -> a87ff679a2\n8f14e45fce -> 45c48cce2e\n8f14e45fce -> e4da3b7fbb\n8f14e45fce -> 8f14e45fce\n8f14e45fce -> cfcd208495\nc9f0f895fb -> eccbc87e4b\nc9f0f895fb -> cfcd208495\nc9f0f895fb -> eccbc87e4b\nc9f0f895fb -> 8f14e45fce\n45c48cce2e -> cfcd208495\n45c48cce2e -> 1679091c5a\n45c48cce2e -> a87ff679a2\n45c48cce2e -> a87ff679a2\nd3d9446802 -> 8f14e45fce\nd3d9446802 -> d3d9446802\nd3d9446802 -> 45c48cce2e\nd3d9446802 -> e4da3b7fbb\n\n\nOperation:\nFind the parents of node 8f14e45fce.\n\nYou should reason through the operation step by step, and then return the set of nodes that the operation results in. Return your final answer as a list of nodes in the very last line of your response. For example, if the operation returns the set of nodes [node1, node2, node3], your response should be:\nFinal Answer: [node1, node2, node3]\nIf the operation returns the empty set, your response should be:\nFinal Answer: []\n",
+        "explanation": "题目要求找所有指向8f14e45fce的边，再将起点去重。1679091c5a出现重复边，目标也有自环；原指令明确不返回目标本身，因此得到1679091c5a、c9f0f895fb、d3d9446802三个父节点。raw保留完整原始行，包括answer_nodes和源数据自己的prompt_chars，不重算或改写原字段。",
+        "raw": {
+          "prompt": "\nYou will be given a graph as a list of directed edges. All nodes are at least degree 1. You will also get a description of an operation to perform on the graph.\nYour job is to execute the operation on the graph and return the set of nodes that the operation results in. If asked for a breadth-first search (BFS), only return the nodes that are both reachable and exactly at that depth (not nodes at intermediate depths), and do not return the starting node. If asked for the parents of a node, only return the nodes that have an edge leading to the given node, do not return the given node itself.\n\nHere is an example:\n<begin example>\n\nThe graph has the following edges:\nuvwx -> alke\nabcd -> uvwx\nabcd -> efgh\nefgh -> uvwx\n\nExample 1:\nOperation:\nPerform a BFS from node abcd with depth 1.\nFinal Answer: [uvwx, efgh]\n\nExample 2:\nOperation:\nPerform a BFS from node alke with depth 1.\nFinal Answer: []\n\nExample 3:\nOperation:\nFind the parents of node uvwx.\nFinal Answer: [abcd, efgh]\n\nExample 4:\nOperation:\nFind the parents of node abcd.\nFinal Answer: []\n\n<end example>\nHere is the graph to operate on:\nThe graph has the following edges:\ncfcd208495 -> cfcd208495\ncfcd208495 -> 1679091c5a\ncfcd208495 -> c81e728d9d\ncfcd208495 -> c4ca4238a0\nc4ca4238a0 -> c9f0f895fb\nc4ca4238a0 -> 45c48cce2e\nc4ca4238a0 -> eccbc87e4b\nc4ca4238a0 -> c9f0f895fb\nc81e728d9d -> 45c48cce2e\nc81e728d9d -> eccbc87e4b\nc81e728d9d -> eccbc87e4b\nc81e728d9d -> c9f0f895fb\neccbc87e4b -> d3d9446802\neccbc87e4b -> d3d9446802\neccbc87e4b -> a87ff679a2\neccbc87e4b -> c4ca4238a0\na87ff679a2 -> 1679091c5a\na87ff679a2 -> eccbc87e4b\na87ff679a2 -> cfcd208495\na87ff679a2 -> e4da3b7fbb\ne4da3b7fbb -> c4ca4238a0\ne4da3b7fbb -> 1679091c5a\ne4da3b7fbb -> 1679091c5a\ne4da3b7fbb -> 45c48cce2e\n1679091c5a -> 8f14e45fce\n1679091c5a -> 8f14e45fce\n1679091c5a -> e4da3b7fbb\n1679091c5a -> a87ff679a2\n8f14e45fce -> 45c48cce2e\n8f14e45fce -> e4da3b7fbb\n8f14e45fce -> 8f14e45fce\n8f14e45fce -> cfcd208495\nc9f0f895fb -> eccbc87e4b\nc9f0f895fb -> cfcd208495\nc9f0f895fb -> eccbc87e4b\nc9f0f895fb -> 8f14e45fce\n45c48cce2e -> cfcd208495\n45c48cce2e -> 1679091c5a\n45c48cce2e -> a87ff679a2\n45c48cce2e -> a87ff679a2\nd3d9446802 -> 8f14e45fce\nd3d9446802 -> d3d9446802\nd3d9446802 -> 45c48cce2e\nd3d9446802 -> e4da3b7fbb\n\n\nOperation:\nFind the parents of node 8f14e45fce.\n\nYou should reason through the operation step by step, and then return the set of nodes that the operation results in. Return your final answer as a list of nodes in the very last line of your response. For example, if the operation returns the set of nodes [node1, node2, node3], your response should be:\nFinal Answer: [node1, node2, node3]\nIf the operation returns the empty set, your response should be:\nFinal Answer: []\n",
+          "answer_nodes": [
+            "1679091c5a",
+            "c9f0f895fb",
+            "d3d9446802"
+          ],
+          "prompt_chars": 2638,
+          "problem_type": "parents",
+          "date_added": "02-27-2026"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1",
+        "license": "Hugging Face 数据集卡标注 MIT。",
+        "split": "train",
+        "excerpt": false,
+        "answer": "[\"1679091c5a\", \"c9f0f895fb\", \"d3d9446802\"]"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录train-0；来源响应SHA-256 0aec0e15522165f35da1182c374a7a19a1954c8375db0201a0d86714d8b1b141。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=openai%2Fgraphwalks&config=default&split=train&offset=0&length=1"
+      ]
+    }
+  ]
+}

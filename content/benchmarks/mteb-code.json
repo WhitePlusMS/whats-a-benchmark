@@ -1,0 +1,230 @@
+{
+  "id": "mteb-code",
+  "status": "published",
+  "order": 1670,
+  "name": "MTEB Code",
+  "subtitle": "代码与文本检索嵌入模型评测子套件",
+  "category": "knowledge",
+  "tags": [
+    "文本嵌入",
+    "代码检索",
+    "检索",
+    "文本到SQL"
+  ],
+  "publisher": "MTEB 维护组织及 MMTEB 论文作者团队",
+  "brandIds": [
+    "mteb"
+  ],
+  "year": 2025,
+  "version": "MTEB(Code, v1)；MMTEB 原论文在该日首次公开并列出该代码检索套件，具体运行仍需固定任务清单/commit",
+  "kind": "suite",
+  "aliases": [
+    "Code (MTEB Code, v1)",
+    "MTEB-Code",
+    "MTEB(Code)"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MTEB 中面向代码相关检索与文本代码任务的具名评测套件。",
+    "task": "比较嵌入模型对代码检索、代码搜索及相关代码文本任务的表示与检索表现。",
+    "sourceUrls": [
+      "https://leaderboard.mteb.org/",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://arxiv.org/abs/2502.13595",
+      "https://arxiv.org/html/2502.13595"
+    ]
+  },
+  "taskContract": {
+    "input": "代码片段、自然语言查询及任务定义的候选库。",
+    "output": "查询/候选项嵌入或排序结果，由各任务的检索指标评价。",
+    "environment": "MTEB benchmark suite 的任务加载与标准评估实现；需固定代码commit和任务版本。",
+    "sourceUrls": [
+      "https://leaderboard.mteb.org/",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://arxiv.org/abs/2502.13595",
+      "https://arxiv.org/html/2502.13595"
+    ]
+  },
+  "dataProfile": {
+    "summary": "MTEB 官方套件、API、排行榜与运行器公开；MTEB(Code) 子任务的数据字段、拆分、访问方式和许可由各自上游数据集维护。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://leaderboard.mteb.org/",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://arxiv.org/abs/2502.13595",
+      "https://arxiv.org/html/2502.13595",
+      "https://github.com/embeddings-benchmark/mteb",
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-queries&split=test&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "The suite definition and runner are public; constituent task datasets are hosted upstream and their access/license conditions vary by task."
+    ],
+    "sourceUrls": [
+      "https://leaderboard.mteb.org/",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://arxiv.org/abs/2502.13595",
+      "https://arxiv.org/html/2502.13595",
+      "https://github.com/embeddings-benchmark/mteb",
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-queries&split=test&offset=0&length=1"
+    ],
+    "url": "https://docs.mteb.org/api/benchmark/"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未确认数据集各组成部分适用的许可。",
+    "scope": "许可说明仅适用于明确列出的数据对象；代码、题集及引用的上游材料须分别依据各自来源条款判断。",
+    "boundaries": [
+      "代码仓库许可不能自动视为题集、图片、音频或上游数据许可。",
+      "具体发布、商用和再分发权限须按各数据源条款另行核对。"
+    ],
+    "sourceUrls": [
+      "https://leaderboard.mteb.org/",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://arxiv.org/abs/2502.13595",
+      "https://arxiv.org/html/2502.13595"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://huggingface.co/datasets/mteb/CodeSearchNetCCRetrieval",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-queries&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/mteb/CodeSearchNetCCRetrieval"
+    ]
+  },
+  "metric": {
+    "name": "任务级检索指标；排行榜提供 Borda 聚合",
+    "description": "各代码检索任务按其定义的相关性/检索指标评分；MTEB leaderboard 提供 Borda 汇总，须标明任务及聚合版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://leaderboard.mteb.org/",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://arxiv.org/abs/2502.13595",
+      "https://arxiv.org/html/2502.13595"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "MTEB Code 是具名套件，不等同于整个 MTEB，也不等同于单一 CodeSearchNet 任务。",
+      "sourceUrls": [
+        "https://leaderboard.mteb.org/",
+        "https://docs.mteb.org/api/benchmark/",
+        "https://arxiv.org/abs/2502.13595",
+        "https://arxiv.org/html/2502.13595"
+      ]
+    },
+    {
+      "text": "模型卡泛称“code”不足以证明其使用该版本任务集。",
+      "sourceUrls": [
+        "https://leaderboard.mteb.org/",
+        "https://docs.mteb.org/api/benchmark/",
+        "https://arxiv.org/abs/2502.13595",
+        "https://arxiv.org/html/2502.13595"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MTEB 官方排行榜",
+      "url": "https://leaderboard.mteb.org/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "MTEB 官方 Benchmark API 文档",
+      "url": "https://docs.mteb.org/api/benchmark/",
+      "role": "definition"
+    },
+    {
+      "label": "MTEB 维护代码仓库",
+      "url": "https://github.com/embeddings-benchmark/mteb",
+      "role": "code"
+    },
+    {
+      "label": "MMTEB 原论文（arXiv v1，含 MTEB(Code) 定义）",
+      "url": "https://arxiv.org/abs/2502.13595",
+      "role": "paper"
+    },
+    {
+      "label": "MMTEB 原论文 HTML（MTEB(Code) 任务表）",
+      "url": "https://arxiv.org/html/2502.13595",
+      "role": "paper"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-queries&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "包含本页各原始记录/文件的官方数据目录",
+      "url": "https://huggingface.co/datasets/mteb/CodeSearchNetCCRetrieval",
+      "role": "data"
+    },
+    {
+      "label": "实际qrels记录 q265734 -> c265734, score 1",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-qrels&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "实际corpus记录 c265734",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-corpus&split=test&offset=265734&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "arXiv v1 的 MMTEB 论文于 2025-02-19 首次提交，正文明确列出 MTEB(Code) 套件；此日期是论文公开日，不等同于每个底层任务数据集的发布时间。",
+      "sourceUrls": [
+        "https://leaderboard.mteb.org/",
+        "https://docs.mteb.org/api/benchmark/",
+        "https://arxiv.org/abs/2502.13595",
+        "https://arxiv.org/html/2502.13595"
+      ]
+    }
+  },
+  "releaseDate": "2025-02-19",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "python-test-q265734",
+        "title": "Python query q265734 with positive corpus item",
+        "type": "record",
+        "prompt": "给定sina_xml_to_url_list的代码前缀，从候选语料中检索正确的代码续段。真实query为q265734，相关corpus记录为c265734，qrel分值为1。",
+        "promptOrigin": "editorial",
+        "raw": "{\n  \"id\": \"q265734\",\n  \"text\": \"def sina_xml_to_url_list(xml_data):\\n    \\\"\\\"\\\"str->list\\n    Convert XML to URL List.\\n    From Biligrab.\\n    \\\"\\\"\\\"\\n    rawurl = []\\n    dom = parseString(xml_data)\\n    for node in dom.getElementsByTagName('durl'):\\n      \"\n}\n\n{\n  \"id\": \"c265734\",\n  \"text\": \"  url = node.getElementsByTagName('url')[0]\\n        rawurl.append(url.childNodes[0].data)\\n    return rawurl\",\n  \"title\": \"\"\n}\n\n{\n  \"query-id\": \"q265734\",\n  \"corpus-id\": \"c265734\",\n  \"score\": 1\n}",
+        "source": "https://huggingface.co/datasets/mteb/CodeSearchNetCCRetrieval",
+        "license": "MTEB mirror card and CodeSearchNet-derived query/code licensing were not independently confirmed; permissions remain unknown.",
+        "split": "python-queries/test row_idx=0 q265734; paired positive c265734 and qrel score 1",
+        "excerpt": true,
+        "explanation": "这个CodeSearchNetCCRetrieval例子是代码续段检索：query在遍历durl节点的循环处结束，正例继续读取url子节点、收集文本并返回列表。它不是检索英文函数说明，也不是运行代码验证输出。raw依次保留query、corpus和qrel三条真实记录的原字段；不添加query/positive_corpus_item/qrel这样的来源外包装，不附其他代码库。"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录python-test-q265734；已核对来源文件、版本或响应快照、记录定位与哈希。这个CodeSearchNetCCRetrieval例子是代码续段检索：query在遍历durl节点的循环处结束，正例继续读取url子节点、收集文本并返回列表。它不是检索英文函数说明，也不是运行代码验证输出。raw依次保留query、corpus和qrel三条真实记录的原字段；不添加query/positive_corpus_item/qrel这样的来源外包装，不附其他代码库。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-queries&split=test&offset=0&length=1"
+      ]
+    },
+    {
+      "text": "原始数据依次为python-queries第0行q265734、python-corpus第265734行c265734、python-qrels第0行score=1；分别保存三个完整rows响应与哈希，不是一个官方包装行。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-queries&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-qrels&split=test&offset=0&length=1",
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2FCodeSearchNetCCRetrieval&config=python-corpus&split=test&offset=265734&length=1"
+      ]
+    }
+  ]
+}

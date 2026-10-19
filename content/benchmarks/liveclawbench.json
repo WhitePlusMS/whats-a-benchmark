@@ -1,0 +1,184 @@
+{
+  "id": "liveclawbench",
+  "status": "published",
+  "order": 1580,
+  "name": "LiveClawBench",
+  "subtitle": "复杂真实助理任务中的智能体执行评测",
+  "category": "agents",
+  "tags": [
+    "智能体",
+    "多工具",
+    "长程任务",
+    "状态变化"
+  ],
+  "publisher": "Mosi AI 与 LiveClawBench 论文作者团队",
+  "brandIds": [
+    "mosi-ai"
+  ],
+  "year": 2026,
+  "version": "论文公开定义版；v0.2.1数据与轨迹另述",
+  "kind": "original",
+  "aliases": [
+    "LiveClaw",
+    "LiveClaw Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以可复现的全栈模拟应用评估智能体完成复杂现实助理工作流的能力。",
+    "task": "智能体在多服务、有状态的模拟环境中完成需要跨服务依赖、隐含目标处理、运行时状态适应或结果核验的任务。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.13072",
+      "https://github.com/Mosi-AI/LiveClawBench"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令、模拟应用初始状态、可执行的服务与操作界面。",
+    "output": "智能体执行轨迹及环境终态；按任务结果和复杂度因素进行诊断评估。",
+    "environment": "论文定义的全栈模拟应用和OpenClaw风格智能体环境；具体公开版本需固定。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.13072",
+      "https://github.com/Mosi-AI/LiveClawBench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库当前列出134个经验证任务、10个领域和22个模拟服务；HF 发布的6,834条 v0.2.1 轨迹对应17个模型×134任务×3次运行，另有早期630条试运行轨迹。",
+    "disclosure": "partial",
+    "scale": [
+      "Current project version v0.2.1: 134 tasks, 10 domains, and 22 simulated services; HF lists 6,834 v0.2.1 trajectories and 630 earlier pilot trajectories."
+    ],
+    "splits": [
+      "Current v0.2.1: 6,834 trajectories (17 models × 134 tasks × 3 runs).",
+      "Earlier pilot: 630 trajectories.",
+      "Current task inventory: 134 tasks across 10 domains and 22 simulated services."
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.13072",
+      "https://github.com/Mosi-AI/LiveClawBench",
+      "https://github.com/Mosi-AI/LiveClawBench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/tasks/ai-copyright-international-jurisprudence/instruction.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.13072",
+      "https://github.com/Mosi-AI/LiveClawBench",
+      "https://github.com/Mosi-AI/LiveClawBench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/tasks/ai-copyright-international-jurisprudence/instruction.md"
+    ],
+    "url": "https://github.com/Mosi-AI/LiveClawBench"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT License in the sampled LiveClawBench repository, copyright Mosi AI (2026); selected task instruction is an authored file in that repository.",
+    "scope": "Selected AI-copyright research task Markdown from the pinned repository.",
+    "boundaries": [
+      "External legal sources referenced by the task are not copied into this sample and retain their own rights."
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.13072",
+      "https://github.com/Mosi-AI/LiveClawBench",
+      "https://github.com/liveclaw/liveclaw-bench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://github.com/Mosi-AI/LiveClawBench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/tasks/ai-copyright-international-jurisprudence/instruction.md",
+    "sourceUrls": [
+      "https://github.com/Mosi-AI/LiveClawBench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/tasks/ai-copyright-international-jurisprudence/instruction.md"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率 / Avg@3（榜单配置）",
+    "description": "论文评估任务完成结果；官方榜单的Avg@3是特定版本榜单聚合口径，不等同于所有论文结果。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.13072",
+      "https://github.com/Mosi-AI/LiveClawBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "这是持续演进的任务、环境与轨迹基准，必须记录榜单所对应的任务和环境版本。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.13072",
+        "https://github.com/Mosi-AI/LiveClawBench"
+      ]
+    },
+    {
+      "text": "可复现模拟环境仍是对现实服务执行的模型化近似。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.13072",
+        "https://github.com/Mosi-AI/LiveClawBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "LiveClawBench 原论文（arXiv v1及修订记录）",
+      "url": "https://arxiv.org/abs/2604.13072",
+      "role": "paper"
+    },
+    {
+      "label": "LiveClawBench 官方仓库与当前任务定义",
+      "url": "https://github.com/Mosi-AI/LiveClawBench",
+      "role": "code"
+    },
+    {
+      "label": "LiveClawBench 官方榜单",
+      "url": "https://mosi-ai.github.io/LiveClawBench/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/Mosi-AI/LiveClawBench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/tasks/ai-copyright-international-jurisprudence/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/liveclaw/liveclaw-bench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "arXiv v1 首次提交日为2026-03-20（ID月份虽为2604，但以官方提交历史为准）；当前页面 v2 于2026-06-25 修订，规模数据对应当前修订，不与v1日期混为一个版本。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.13072",
+        "https://github.com/Mosi-AI/LiveClawBench"
+      ]
+    }
+  },
+  "releaseDate": "2026-03-20",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://github.com/Mosi-AI/LiveClawBench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/tasks/ai-copyright-international-jurisprudence/instruction.md",
+        "id": "liveclaw-ai-copyright-research",
+        "title": "多法域AI著作权研究任务",
+        "split": "tasks/ai-copyright-international-jurisprudence/instruction.md",
+        "prompt": "# Research Task\r\n\r\n## Research Question\r\n\r\nHow are AI-generated works treated under copyright law across different jurisdictions, and what are the emerging international jurisprudence trends regarding authorship, infringement, and fair use?\r\n\r\n## Your Task\r\n\r\nConduct deep, independent research on this topic using the browser and any available tools. Your goal is to produce a comprehensive, well-structured markdown report that thoroughly answers the research question.\r\n\r\n## Initial Research Materials\r\n\r\nIn `~/.openclaw/research/`, you will find some preliminary research documents related to this topic. These documents represent prior investigation efforts and may include background information, sub-topic analyses, and various perspectives. You may refer to them selectively.\r\n\r\n## Report Requirements\r\n\r\n1. **Comprehensiveness**: Cover the major theoretical frameworks, empirical evidence, and key perspectives related to the topic.\r\n2. **Structure**: Organize the report with clear sections, subsections, and logical flow. Use markdown formatting (headers, lists, tables, code blocks) where appropriate.\r\n3. **Sources**: Include a \"Sources\" section at the end of the report listing all references, URLs, and materials you consulted.\r\n4. **Critical Analysis**: Go beyond summarization — evaluate the strengths and limitations of different approaches, and identify open questions or recent developments.\r\n5. **Length**: The report should be substantive (at least 2000 words) to demonstrate thorough research.\r\n\r\n## Output\r\n\r\nWrite your final report to: `~/.openclaw/output/report.md`\r\n",
+        "excerpt": true,
+        "license": "MIT License in the sampled LiveClawBench repository, copyright Mosi AI (2026); selected task instruction is an authored file in that repository.",
+        "type": "text",
+        "raw": "# Research Task\r\n\r\n## Research Question\r\n\r\nHow are AI-generated works treated under copyright law across different jurisdictions, and what are the emerging international jurisprudence trends regarding authorship, infringement, and fair use?\r\n\r\n## Your Task\r\n\r\nConduct deep, independent research on this topic using the browser and any available tools. Your goal is to produce a comprehensive, well-structured markdown report that thoroughly answers the research question.\r\n\r\n## Initial Research Materials\r\n\r\nIn `~/.openclaw/research/`, you will find some preliminary research documents related to this topic. These documents represent prior investigation efforts and may include background information, sub-topic analyses, and various perspectives. You may refer to them selectively.\r\n\r\n## Report Requirements\r\n\r\n1. **Comprehensiveness**: Cover the major theoretical frameworks, empirical evidence, and key perspectives related to the topic.\r\n2. **Structure**: Organize the report with clear sections, subsections, and logical flow. Use markdown formatting (headers, lists, tables, code blocks) where appropriate.\r\n3. **Sources**: Include a \"Sources\" section at the end of the report listing all references, URLs, and materials you consulted.\r\n4. **Critical Analysis**: Go beyond summarization — evaluate the strengths and limitations of different approaches, and identify open questions or recent developments.\r\n5. **Length**: The report should be substantive (at least 2000 words) to demonstrate thorough research.\r\n\r\n## Output\r\n\r\nWrite your final report to: `~/.openclaw/output/report.md`\r\n",
+        "explanation": "Mosi-AI官方LiveClawBench真实任务文件：要求通过浏览器研究多个法域的AI生成作品作者身份、侵权与合理使用趋势，产出有来源的Markdown报告；它还引用任务环境中的先行research docs。本次只读取题目，不访问任务沙箱、不运行被要求的工具操作。",
+        "licensePath": "licenses/liveclawbench-sample-source.txt"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录liveclaw-ai-copyright-research；已核对来源文件、版本或响应快照、记录定位与哈希。Mosi-AI官方LiveClawBench真实任务文件：要求通过浏览器研究多个法域的AI生成作品作者身份、侵权与合理使用趋势，产出有来源的Markdown报告；它还引用任务环境中的先行research docs。本次只读取题目，不访问任务沙箱、不运行被要求的工具操作。",
+      "sourceUrls": [
+        "https://github.com/Mosi-AI/LiveClawBench/blob/303dc77ea8d8b6c5b6fc561348b24d13f0c4e448/tasks/ai-copyright-international-jurisprudence/instruction.md"
+      ]
+    }
+  ]
+}

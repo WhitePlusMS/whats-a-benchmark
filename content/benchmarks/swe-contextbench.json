@@ -1,0 +1,210 @@
+{
+  "id": "swe-contextbench",
+  "status": "published",
+  "order": 1840,
+  "name": "SWE-ContextBench",
+  "subtitle": "代码智能体跨问题上下文复用评测",
+  "category": "coding",
+  "tags": [
+    "代码",
+    "软件工程",
+    "上下文",
+    "检索"
+  ],
+  "publisher": "论文作者团队（作者署名机构包括 Oxford、Edinburgh、TUM、MemoraX AI、NUS、MBZUAI、CMU 等）",
+  "brandIds": [
+    "swe-context-maintainer"
+  ],
+  "year": 2026,
+  "version": "论文v3（1,100基础任务＋376相关任务）",
+  "kind": "original",
+  "aliases": [
+    "SWE Context Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估代码智能体能否从相关历史问题中检索和复用上下文。",
+    "task": "智能体解决存在依赖或引用关系的 GitHub issues/PR 任务，并在不同上下文提供与检索设置下比较完成质量和效率。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2602.08316",
+      "https://arxiv.org/abs/2602.08316",
+      "https://huggingface.co/datasets/jiayuanz3/SWEContextBench"
+    ]
+  },
+  "taskContract": {
+    "input": "GitHub 软件工程任务及同仓库/跨任务的历史关联案例上下文。",
+    "output": "对目标任务的代码修复或解决结果；论文分析解决准确性与执行效率。",
+    "environment": "基于软件仓库任务序列及上下文检索配置运行；实际检索器、摘要器与执行预算需单独记录。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2602.08316",
+      "https://arxiv.org/abs/2602.08316",
+      "https://huggingface.co/datasets/jiayuanz3/SWEContextBench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文 v3 报告1,100个基础任务及376个相关任务；HF 数据卡列出 SWE issue、补丁和测试元数据。viewer约2.13k行是多个文件合并展示，不能当作任务总数。",
+    "disclosure": "partial",
+    "scale": [
+      "Paper v3 (2026-05-06): 1,100 base tasks plus 376 related tasks.",
+      "HF viewer currently reports about 2.13k rows across parquet files; this viewer total is not the benchmark task count."
+    ],
+    "splits": [],
+    "fields": [
+      "repo",
+      "instance_id",
+      "base_commit",
+      "problem_statement",
+      "FAIL_TO_PASS",
+      "PASS_TO_PASS",
+      "environment_setup_commit"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.08316",
+      "https://huggingface.co/datasets/jiayuanz3/SWEContextBench",
+      "https://arxiv.org/html/2602.08316",
+      "https://datasets-server.huggingface.co/rows?dataset=jiayuanz3%2FSWEContextBench&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.08316",
+      "https://huggingface.co/datasets/jiayuanz3/SWEContextBench",
+      "https://arxiv.org/html/2602.08316",
+      "https://datasets-server.huggingface.co/rows?dataset=jiayuanz3%2FSWEContextBench&config=default&split=train&offset=0&length=1"
+    ],
+    "url": "https://huggingface.co/datasets/jiayuanz3/SWEContextBench"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "SWEContextBench作者HF数据卡明确MIT；本例只展示其公开任务说明、标识及测试名称，不复制patch/test_patch。",
+    "scope": "该公开base issue的真实字段投影，保留SWE-bench/Astropy来源。",
+    "boundaries": [
+      "代码仓库许可不能自动视为题集、图片、音频或上游数据许可。",
+      "具体发布、商用和再分发权限须按各数据源条款另行核对。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.08316",
+      "https://huggingface.co/datasets/jiayuanz3/SWEContextBench",
+      "https://arxiv.org/html/2602.08316"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=jiayuanz3%2FSWEContextBench&config=default&split=train&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=jiayuanz3%2FSWEContextBench&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "任务解决准确性与效率",
+    "description": "按论文报告的解决准确性以及运行时间/令牌成本等效率结果解读；具体聚合值和配置须对应论文版本。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.08316",
+      "https://huggingface.co/datasets/jiayuanz3/SWEContextBench",
+      "https://arxiv.org/html/2602.08316"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "评测目标是历史经验复用与上下文管理，不等同于独立任务修复能力。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.08316",
+        "https://huggingface.co/datasets/jiayuanz3/SWEContextBench",
+        "https://arxiv.org/html/2602.08316"
+      ]
+    },
+    {
+      "text": "v1与后续论文修订所报告任务规模不同；引用模型结果时需核实采用版本。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.08316",
+        "https://huggingface.co/datasets/jiayuanz3/SWEContextBench",
+        "https://arxiv.org/html/2602.08316"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SWE Context Bench 原论文（arXiv v1，含当前修订记录）",
+      "url": "https://arxiv.org/abs/2602.08316",
+      "role": "paper"
+    },
+    {
+      "label": "作者发布的数据集",
+      "url": "https://huggingface.co/datasets/jiayuanz3/SWEContextBench",
+      "role": "data"
+    },
+    {
+      "label": "SWE-ContextBench 原论文 HTML（含作者机构署名与定义）",
+      "url": "https://arxiv.org/html/2602.08316",
+      "role": "paper"
+    },
+    {
+      "label": "第一作者 Jiayuan Zhu 官方 GitHub 项目",
+      "url": "https://github.com/jiayuanz3/SWEContextBench",
+      "role": "code"
+    },
+    {
+      "label": "SWE-ContextBench论文v3 · 2026-05-06",
+      "url": "https://arxiv.org/abs/2602.08316v3",
+      "role": "paper"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=jiayuanz3%2FSWEContextBench&config=default&split=train&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "本页版本日期为论文v3修订日2026-05-06，对应1,100项基础任务和376项相关任务。论文v1首次公开于2026-02-09；仓库的Lite Related是子集，不将其成绩等同全量结果。HF viewer多文件行数也不等于任务总数。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.08316v3",
+        "https://arxiv.org/html/2602.08316",
+        "https://arxiv.org/abs/2602.08316",
+        "https://huggingface.co/datasets/jiayuanz3/SWEContextBench"
+      ]
+    }
+  },
+  "releaseDate": "2026-05-06",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://datasets-server.huggingface.co/rows?dataset=jiayuanz3%2FSWEContextBench&config=default&split=train&offset=0&length=1",
+        "explanation": "这条base issue展示nested CompoundModels的separability_matrix异常：平行拼接的独立模型应保持相应可分离结构，嵌套组合后结果却不同。raw保留实际复现代码、repo/commit与测试名称。它确实属于SWE-ContextBench公开基础任务，但未取得它对应的related-task/context配对，不能用这一条宣称展示了相关任务学习或Lite Related子集；补丁未复制，代码未执行。",
+        "raw": {
+          "repo": "astropy/astropy",
+          "instance_id": "astropy__astropy-12907",
+          "base_commit": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+          "problem_statement": "Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels\nConsider the following model:\r\n\r\n```python\r\nfrom astropy.modeling import models as m\r\nfrom astropy.modeling.separable import separability_matrix\r\n\r\ncm = m.Linear1D(10) & m.Linear1D(5)\r\n```\r\n\r\nIt's separability matrix as you might expect is a diagonal:\r\n\r\n```python\r\n>>> separability_matrix(cm)\r\narray([[ True, False],\r\n       [False,  True]])\r\n```\r\n\r\nIf I make the model more complex:\r\n```python\r\n>>> separability_matrix(m.Pix2Sky_TAN() & m.Linear1D(10) & m.Linear1D(5))\r\narray([[ True,  True, False, False],\r\n       [ True,  True, False, False],\r\n       [False, False,  True, False],\r\n       [False, False, False,  True]])\r\n```\r\n\r\nThe output matrix is again, as expected, the outputs and inputs to the linear models are separable and independent of each other.\r\n\r\nIf however, I nest these compound models:\r\n```python\r\n>>> separability_matrix(m.Pix2Sky_TAN() & cm)\r\narray([[ True,  True, False, False],\r\n       [ True,  True, False, False],\r\n       [False, False,  True,  True],\r\n       [False, False,  True,  True]])\r\n```\r\nSuddenly the inputs and outputs are no longer separable?\r\n\r\nThis feels like a bug to me, but I might be missing something?\n",
+          "FAIL_TO_PASS": "[\"astropy/modeling/tests/test_separable.py::test_separable[compound_model6-result6]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model9-result9]\"]",
+          "PASS_TO_PASS": "[\"astropy/modeling/tests/test_separable.py::test_coord_matrix\", \"astropy/modeling/tests/test_separable.py::test_cdot\", \"astropy/modeling/tests/test_separable.py::test_cstack\", \"astropy/modeling/tests/test_separable.py::test_arith_oper\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model0-result0]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model1-result1]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model2-result2]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model3-result3]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model4-result4]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model5-result5]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model7-result7]\", \"astropy/modeling/tests/test_separable.py::test_separable[compound_model8-result8]\", \"astropy/modeling/tests/test_separable.py::test_custom_model_separable\"]",
+          "environment_setup_commit": "298ccb478e6bf092953bca67a3d29dc6c35f6752"
+        },
+        "split": "train row_idx=0 astropy__astropy-12907",
+        "license": "HF卡声明 MIT；不推及上游Astropy内容。",
+        "prompt": "Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels\nConsider the following model:\r\n\r\n```python\r\nfrom astropy.modeling import models as m\r\nfrom astropy.modeling.separable import separability_matrix\r\n\r\ncm = m.Linear1D(10) & m.Linear1D(5)\r\n```\r\n\r\nIt's separability matrix as you might expect is a diagonal:\r\n\r\n```python\r\n>>> separability_matrix(cm)\r\narray([[ True, False],\r\n       [False,  True]])\r\n```\r\n\r\nIf I make the model more complex:\r\n```python\r\n>>> separability_matrix(m.Pix2Sky_TAN() & m.Linear1D(10) & m.Linear1D(5))\r\narray([[ True,  True, False, False],\r\n       [ True,  True, False, False],\r\n       [False, False,  True, False],\r\n       [False, False, False,  True]])\r\n```\r\n\r\nThe output matrix is again, as expected, the outputs and inputs to the linear models are separable and independent of each other.\r\n\r\nIf however, I nest these compound models:\r\n```python\r\n>>> separability_matrix(m.Pix2Sky_TAN() & cm)\r\narray([[ True,  True, False, False],\r\n       [ True,  True, False, False],\r\n       [False, False,  True,  True],\r\n       [False, False,  True,  True]])\r\n```\r\nSuddenly the inputs and outputs are no longer separable?\r\n\r\nThis feels like a bug to me, but I might be missing something?\n",
+        "type": "code",
+        "title": "Astropy base issue：nested CompoundModels",
+        "excerpt": true,
+        "id": "swe-context-astropy-12907"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录swe-context-astropy-12907；已核对来源文件、版本或响应快照、记录定位与哈希。这条base issue展示nested CompoundModels的separability_matrix异常：平行拼接的独立模型应保持相应可分离结构，嵌套组合后结果却不同。raw保留实际复现代码、repo/commit与测试名称。它确实属于SWE-ContextBench公开基础任务，但未取得它对应的related-task/context配对，不能用这一条宣称展示了相关任务学习或Lite Related子集；补丁未复制，代码未执行。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=jiayuanz3%2FSWEContextBench&config=default&split=train&offset=0&length=1"
+      ]
+    }
+  ]
+}

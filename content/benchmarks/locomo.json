@@ -1,0 +1,270 @@
+{
+  "id": "locomo",
+  "status": "published",
+  "order": 1590,
+  "name": "LoCoMo",
+  "subtitle": "根据长时多会话对话回答问题、总结事件及生成多模态对话。",
+  "category": "context",
+  "tags": [],
+  "publisher": "Snap Research 与论文作者团队",
+  "brandIds": [
+    "snap-research"
+  ],
+  "year": 2024,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "基于跨会话对话回答问题、总结事件或生成多模态对话。",
+    "summary": "基于长期多轮对话评估对话记忆能力。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2402.17753"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2402.17753"
+    ],
+    "environment": "依赖对话窗口/检索和具体任务评估配置。",
+    "input": "长期多会话对话上下文。",
+    "output": "回答、事件摘要或对话生成结果。"
+  },
+  "dataProfile": {
+    "summary": "数据集包含50段长时多会话对话；每段平均约19.3个会话、约305轮和9,209个token，最多35个会话。",
+    "scale": [
+      "50段对话；平均19.3个会话/段",
+      "平均约305轮、9,209 tokens；最多35个会话"
+    ],
+    "splits": [],
+    "fields": [
+      "sample_id",
+      "qa",
+      "conversation"
+    ],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2402.17753",
+      "https://github.com/snap-research/locomo",
+      "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Snap Research LoCoMo数据采用CC BY-NC 4.0；本页仅作非商业评测研究展示。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json"
+    ]
+  },
+  "metric": {
+    "name": "QA F1、上下文检索准确率、FactScore与MM-Relevance等分项",
+    "description": "QA使用exact-match/partial-match F1，RAG另报上下文检索准确率；事件摘要报告FactScore precision/recall/F1；多模态对话生成报告MM-Relevance及其他生成指标。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2402.17753"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2402.17753"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2402.17753",
+      "label": "arxiv.org - LoCoMo"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/snap-research/locomo",
+      "label": "github.com - LoCoMo"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2024-02-27",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期依据：2024-02-27，arXiv v1首次提交日（论文公开日期；不等同数据开放日）。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2402.17753"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "conv-26-qa-0",
+        "title": "conv-26 · 昨天参加小组是哪一天",
+        "type": "record",
+        "prompt": "When did Caroline go to the LGBTQ support group?",
+        "answer": "7 May 2023",
+        "explanation": "QA明确引用证据D1:3。该轮的会话日期为2023年5月8日，Caroline说昨天参加了支持小组，所以原始答案是2023年5月7日。raw只保留该问答与session_1；其他会话和样例不纳入本页，也不下载会话内引用的第三方图片。",
+        "raw": {
+          "sample_id": "conv-26",
+          "qa": [
+            {
+              "question": "When did Caroline go to the LGBTQ support group?",
+              "answer": "7 May 2023",
+              "evidence": [
+                "D1:3"
+              ],
+              "category": 2
+            }
+          ],
+          "conversation": {
+            "session_1_date_time": "1:56 pm on 8 May, 2023",
+            "session_1": [
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:1",
+                "text": "Hey Mel! Good to see you! How have you been?"
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:2",
+                "text": "Hey Caroline! Good to see you! I'm swamped with the kids & work. What's up with you? Anything new?"
+              },
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:3",
+                "text": "I went to a LGBTQ support group yesterday and it was so powerful."
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:4",
+                "text": "Wow, that's cool, Caroline! What happened that was so awesome? Did you hear any inspiring stories?"
+              },
+              {
+                "speaker": "Caroline",
+                "img_url": [
+                  "https://i.redd.it/l7hozpetnhlb1.jpg"
+                ],
+                "blip_caption": "a photo of a dog walking past a wall with a painting of a woman",
+                "query": "transgender pride flag mural",
+                "dia_id": "D1:5",
+                "text": "The transgender stories were so inspiring! I was so happy and thankful for all the support."
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:6",
+                "text": "Wow, love that painting! So cool you found such a helpful group. What's it done for you?"
+              },
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:7",
+                "text": "The support group has made me feel accepted and given me courage to embrace myself."
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:8",
+                "text": "That's really cool. You've got guts. What now?"
+              },
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:9",
+                "text": "Gonna continue my edu and check out career options, which is pretty exciting!"
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:10",
+                "text": "Wow, Caroline! What kinda jobs are you thinkin' of? Anything that stands out?"
+              },
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:11",
+                "text": "I'm keen on counseling or working in mental health - I'd love to support those with similar issues."
+              },
+              {
+                "speaker": "Melanie",
+                "img_url": [
+                  "http://candicealexander.com/cdn/shop/products/IMG_7269_a49d5af8-c76c-4ecd-ae20-48c08cb11dec.jpg"
+                ],
+                "blip_caption": "a photo of a painting of a sunset over a lake",
+                "query": "painting sunrise",
+                "dia_id": "D1:12",
+                "text": "You'd be a great counselor! Your empathy and understanding will really help the people you work with. By the way, take a look at this."
+              },
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:13",
+                "text": "Thanks, Melanie! That's really sweet. Is this your own painting?"
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:14",
+                "text": "Yeah, I painted that lake sunrise last year! It's special to me."
+              },
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:15",
+                "text": "Wow, Melanie! The colors really blend nicely. Painting looks like a great outlet for expressing yourself."
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:16",
+                "text": "Thanks, Caroline! Painting's a fun way to express my feelings and get creative. It's a great way to relax after a long day."
+              },
+              {
+                "speaker": "Caroline",
+                "dia_id": "D1:17",
+                "text": "Totally agree, Mel. Relaxing and expressing ourselves is key. Well, I'm off to go do some research."
+              },
+              {
+                "speaker": "Melanie",
+                "dia_id": "D1:18",
+                "text": "Yep, Caroline. Taking care of ourselves is vital. I'm off to go swimming with the kids. Talk to you soon!"
+              }
+            ]
+          }
+        },
+        "source": "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json",
+        "license": "CC BY-NC 4.0；来源及商业使用限制见 https://github.com/snap-research/locomo/blob/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/LICENSE.txt；当前仅节选且需保留署名/非商业限制。",
+        "split": "locomo10.json / first conversation QA[0]",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录conv-26-qa-0；来源响应SHA-256 79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4。来源文件commit/revision及原始字节哈希见本轮逐项取证。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/snap-research/locomo/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376/data/locomo10.json"
+      ]
+    }
+  ]
+}

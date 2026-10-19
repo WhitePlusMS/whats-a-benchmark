@@ -1,0 +1,203 @@
+{
+  "id": "tau-voice",
+  "status": "published",
+  "order": 1850,
+  "name": "τ-Voice",
+  "subtitle": "真实领域全双工语音智能体基准",
+  "category": "agents",
+  "tags": [
+    "语音智能体",
+    "全双工",
+    "任务完成",
+    "真实音频"
+  ],
+  "publisher": "Sierra Research 与研究合作者",
+  "brandIds": [
+    "sierra"
+  ],
+  "year": 2026,
+  "version": "τ-Voice 原论文（arXiv v1，2026-03-14）；实现与语音接口版本需另行记录",
+  "kind": "original",
+  "aliases": [
+    "tau-Voice",
+    "τ Voice"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在真实领域任务与真实音频的全双工交互中评估语音智能体。",
+    "task": "语音智能体通过多轮对话和环境工具完成可验证任务，同时接受全双工交互及音频条件检验。",
+    "sourceUrls": [
+      "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+      "https://github.com/sierra-research/tau2-bench",
+      "https://arxiv.org/abs/2603.13686"
+    ]
+  },
+  "taskContract": {
+    "input": "用户语音、对话上下文、领域策略和环境工具。",
+    "output": "语音回复与工具操作轨迹；通过任务状态验证完成情况，并分析交互表现。",
+    "environment": "τ-Voice论文和 Sierra tau2-bench 的语音交互扩展；外部语音接口和仿真条件需与官方默认协议核对。",
+    "sourceUrls": [
+      "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+      "https://github.com/sierra-research/tau2-bench",
+      "https://arxiv.org/abs/2603.13686"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文将其描述为结合复杂有据任务、全双工交互和真实音频的基准；训练/评估资源的具体开放边界需逐项核实。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [
+      "tasks.json：id、description、user_scenario、evaluation_criteria",
+      "tasks_voice.json：对应任务24的configs.control及各类语音/通道设置"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+      "https://github.com/sierra-research/tau2-bench",
+      "https://arxiv.org/abs/2603.13686",
+      "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline/tasks.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline/tasks.json",
+    "requirements": [
+      "已实际取得固定commit的领域任务与配对control语音配置。",
+      "任务JSON和语音条件可以核对；本页没有预先生成的音频波形或完整评测轨迹。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline/tasks.json",
+      "https://github.com/sierra-research/tau2-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT License in the sampled tau2-bench repository, copyright Sierra Research (2025). The sampled task and voice-configuration JSON are files in this repository.",
+    "scope": "Only the selected task/config JSON fields from the pinned repository; does not cover any separate generated or third-party audio.",
+    "boundaries": [
+      "No generated audio is included; other separately licensed repository assets retain their own terms."
+    ],
+    "sourceUrls": [
+      "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+      "https://github.com/sierra-research/tau2-bench",
+      "https://arxiv.org/abs/2603.13686",
+      "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://github.com/sierra-research/tau2-bench/tree/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline",
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline/tasks.json",
+      "https://github.com/sierra-research/tau2-bench/tree/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline"
+    ]
+  },
+  "metric": {
+    "name": "任务完成率（pass@1）与语音交互质量分项",
+    "description": "论文报告278项任务的 pass@1 任务完成率，并分别分析全双工语音交互质量；语音质量不是一个可与任务完成率互换的单一准确率。引用结果时需注明任务版本和具体质量分项。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+      "https://github.com/sierra-research/tau2-bench",
+      "https://arxiv.org/abs/2603.13686"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该语音扩展与文本 tau²-bench 的环境定义相关，但评测输入/执行形态不同。",
+      "sourceUrls": [
+        "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+        "https://github.com/sierra-research/tau2-bench",
+        "https://arxiv.org/abs/2603.13686"
+      ]
+    },
+    {
+      "text": "外部服务供应商语音与 Sierra 内部语音配置可能导致不可比；需记录运行接口和语音设定。",
+      "sourceUrls": [
+        "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+        "https://github.com/sierra-research/tau2-bench",
+        "https://arxiv.org/abs/2603.13686"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "τ-Voice 原论文（Sierra 官方PDF）",
+      "url": "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "Sierra Research 官方 tau2-bench 实现",
+      "url": "https://github.com/sierra-research/tau2-bench",
+      "role": "code"
+    },
+    {
+      "label": "τ-Voice 原论文（arXiv v1 日期、定义及指标）",
+      "url": "https://arxiv.org/abs/2603.13686",
+      "role": "paper"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline/tasks.json",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/LICENSE",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline/tasks_voice.json",
+      "role": "data"
+    },
+    {
+      "label": "包含本页各原始记录/文件的官方数据目录",
+      "url": "https://github.com/sierra-research/tau2-bench/tree/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "论文 arXiv v1 首次提交于 2026-03-14；τ-Voice扩展τ²-bench的领域任务和工具环境，并使用全双工音频评测。",
+      "sourceUrls": [
+        "https://sierra.ai/-/cdn/document?src=https%3A%2F%2Fcdn.sanity.io%2Ffiles%2Fca4jck6w%2Fproduction%2F534fa64bf36e1d8334bd39efad568ab6d4ec43bc.pdf",
+        "https://github.com/sierra-research/tau2-bench",
+        "https://arxiv.org/abs/2603.13686"
+      ]
+    }
+  },
+  "releaseDate": "2026-03-14",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "airline-task-24-control",
+        "title": "τ² airline task 24 + control voice configuration",
+        "type": "record",
+        "prompt": "实际任务24要求处理原预订中的乘客移除/取消限制，并预订纽约至西海岸的最便宜直达往返航班：5月20日去、5月25日回，先用小额礼品卡、再用大额礼品卡，使用免费行李额度且不买保险。原始任务与配对control语音配置可切换查看；未附音频波形。",
+        "promptOrigin": "editorial",
+        "raw": "{\n  \"id\": \"24\",\n  \"description\": {\n    \"purpose\": \"Testing rather open flight search with payment constraints. Testing that agent doesn't cancel flight that doesn't meet criteria.\",\n    \"relevant_policies\": null,\n    \"notes\": null\n  },\n  \"user_scenario\": {\n    \"persona\": null,\n    \"instructions\": {\n      \"task_instructions\": \"You want to remove Ethan from you reservation H9ZU1C.\\n\\nIf change is not possible, you want the agent to cancel, and you can rebook yourself later.\\n\\nIf agent says cancellation is not possible, accept it and move on.\\n\\nYou are also looking for the cheapest direct flight round trip from New York (either EWR or JFK) to anywhere West Coast, with departure date May 20 and return date May 25. \\n\\nYou are fine with basic economy class (if cheaper), and you want the agent to book it.\\n\\nYou want to first use up your smaller GC and then the larger one. \\n\\nYou want to make sure to use all your free baggage allowance but don't want insurance. \\n\\nYour DOB is in your user profile and you want the agent to look it up.\",\n      \"domain\": \"airline\",\n      \"reason_for_call\": \"You need to remove a passenger from one of your reservation.\\n\\nYou are also looking to book a flight form NY to go explore the West Coast.\",\n      \"known_info\": \"Your name is Mia Kim.\\nYour user id is mia_kim_4397.\",\n      \"unknown_info\": null\n    }\n  },\n  \"evaluation_criteria\": {\n    \"actions\": [\n      {\n        \"action_id\": \"24_0\",\n        \"name\": \"book_reservation\",\n        \"arguments\": {\n          \"user_id\": \"mia_kim_4397\",\n          \"origin\": \"JFK\",\n          \"destination\": \"SEA\",\n          \"flight_type\": \"round_trip\",\n          \"cabin\": \"basic_economy\",\n          \"flights\": [\n            {\n              \"flight_number\": \"HAT069\",\n              \"date\": \"2024-05-20\"\n            },\n            {\n              \"flight_number\": \"HAT276\",\n              \"date\": \"2024-05-25\"\n            }\n          ],\n          \"passengers\": [\n            {\n              \"first_name\": \"Mia\",\n              \"last_name\": \"Kim\",\n              \"dob\": \"1965-06-09\"\n            }\n          ],\n          \"payment_methods\": [\n            {\n              \"payment_id\": \"gift_card_7359776\",\n              \"amount\": 39\n            },\n            {\n              \"payment_id\": \"gift_card_7773485\",\n              \"amount\": 67\n            }\n          ],\n          \"total_baggages\": 1,\n          \"nonfree_baggages\": 0,\n          \"insurance\": \"no\"\n        },\n        \"info\": null\n      }\n    ],\n    \"communicate_info\": [],\n    \"nl_assertions\": [\n      \"Agent does not cancel reservation H9ZU1C because it doesn't meet criteria set by policy.\",\n      \"Agent books basic economy round trip from JFK to SEA leaving 2024-05-20 (flight HAT069) and returning 2024-05-25 (flight HAT276), with 1 free bag.\",\n      \"Agent charges $67 to gift_card_7773485 and $39 to gift_card_7359776.\"\n    ],\n    \"reward_basis\": [\n      \"DB\",\n      \"COMMUNICATE\"\n    ]\n  }\n}\n\n{\n  \"persona_name\": \"lisa_brenner\",\n  \"background_noise_file\": null,\n  \"burst_noise_files\": [],\n  \"environment\": null,\n  \"backchannel_min_threshold\": null,\n  \"use_llm_backchannel\": false,\n  \"enable_interruptions\": false,\n  \"telephony_enabled\": true,\n  \"channel_effects_config\": {\n    \"enable_frame_drops\": false,\n    \"frame_drop_rate\": 0,\n    \"frame_drop_burst_duration_ms\": 200,\n    \"frame_drop_count\": 1,\n    \"frame_drop_duration_ms\": 150\n  },\n  \"source_effects_config\": {\n    \"enable_background_noise\": false,\n    \"noise_snr_db\": 15,\n    \"noise_snr_drift_db\": 3,\n    \"noise_variation_speed\": 0.5,\n    \"enable_burst_noise\": false,\n    \"burst_noise_events_per_minute\": 0,\n    \"burst_snr_range_db\": [\n      -5,\n      10\n    ]\n  },\n  \"speech_effects_config\": {\n    \"enable_dynamic_muffling\": false,\n    \"muffle_probability\": 0,\n    \"muffle_segment_count\": 1,\n    \"muffle_segment_duration_ms\": 500,\n    \"muffle_cutoff_freq\": 1500,\n    \"muffle_transition_ms\": 100,\n    \"enable_vocal_tics\": false,\n    \"vocal_tics\": [\n      {\n        \"text\": \".[cough][cough][cough]\",\n        \"type\": \"vocal_tic\"\n      },\n      {\n        \"text\": \".[sneeze][sneeze][sneeze]\",\n        \"type\": \"vocal_tic\"\n      },\n      {\n        \"text\": \".[sniffle][sniffle][sniffle]\",\n        \"type\": \"vocal_tic\"\n      }\n    ],\n    \"min_words_for_vocal_tics\": 3,\n    \"enable_non_directed_phrases\": false,\n    \"non_directed_phrases\": [\n      {\n        \"text\": \"Not now.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"Hold on a second.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"I'm on the phone.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"Just a minute.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"I don't know.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"Give me a moment.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"One second.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"I'll be right with you.\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"Can you wait?\",\n        \"type\": \"non_directed_phrase\"\n      },\n      {\n        \"text\": \"Shh, quiet.\",\n        \"type\": \"non_directed_phrase\"\n      }\n    ],\n    \"speech_insert_events_per_minute\": 0\n  },\n  \"persona_config\": {\n    \"verbosity\": \"minimal\",\n    \"interrupt_tendency\": \"waits\"\n  },\n  \"complexity\": \"control\"\n}",
+        "source": "https://github.com/sierra-research/tau2-bench/tree/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline",
+        "license": "MIT License in the sampled tau2-bench repository, copyright Sierra Research (2025). The sampled task and voice-configuration JSON are files in this repository.",
+        "split": "airline/tasks.json id=24; paired with tasks_voice.json configs[24].configs.control",
+        "excerpt": true,
+        "explanation": "真实任务涉及预约 H9ZU1C 取消限制及另订纽约至西海岸往返，标准断言包括不应取消原预订、指定日期与舱位完成新预订及礼品卡付款顺序。voice_config 是官方 control 配置；这些 JSON 不含生成的音频波形。 raw依次展示airline任务24的原字段投影与tasks_voice.json中对应control配置原值，来自两个源记录；没有添加voice_config这样的假原始字段，也未附生成语音。",
+        "licensePath": "licenses/tau-voice-sample-source.txt"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录airline-task-24-control；已核对来源文件、版本或响应快照、记录定位与哈希。真实任务涉及预约 H9ZU1C 取消限制及另订纽约至西海岸往返，标准断言包括不应取消原预订、指定日期与舱位完成新预订及礼品卡付款顺序。voice_config 是官方 control 配置；这些 JSON 不含生成的音频波形。 raw依次展示airline任务24的原字段投影与tasks_voice.json中对应control配置原值，来自两个源记录；没有添加voice_config这样的假原始字段，也未附生成语音。",
+      "sourceUrls": [
+        "https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/data/tau2/domains/airline/tasks.json"
+      ]
+    }
+  ]
+}

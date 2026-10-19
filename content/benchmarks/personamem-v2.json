@@ -1,0 +1,192 @@
+{
+  "id": "personamem-v2",
+  "status": "published",
+  "order": 1710,
+  "name": "PersonaMem-v2",
+  "subtitle": "从多会话历史推断隐式用户偏好并作出个性化回答。",
+  "category": "context",
+  "tags": [],
+  "publisher": "PersonaMem-v2 论文作者团队",
+  "brandIds": [
+    "personamem-maintainer"
+  ],
+  "year": 2025,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "derivative",
+  "aliases": [
+    "PersonaMem v2"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "从多会话对话历史推断用户未必明说的偏好，并据此回答个性化问题。",
+    "summary": "PersonaMem-v2聚焦隐式用户persona与偏好；多数偏好从日常任务对话中的间接线索呈现，也包含偏好变化、归属和隐私边界。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.06688",
+      "https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.06688"
+    ],
+    "environment": "需明确使用PersonaMem-v2而非未声明版本的PersonaMem。",
+    "input": "用户交互记录与后续查询。",
+    "output": "个性化响应。"
+  },
+  "dataProfile": {
+    "summary": "论文报告1,000个用户persona、300余种日常场景、20,000余项偏好及最多128k token上下文；benchmark含5,000个问答对。",
+    "scale": [
+      "1,000个persona；300余场景；20,000余偏好",
+      "5,000个benchmark QA对；最多128k token上下文"
+    ],
+    "splits": [],
+    "fields": [
+      "persona_id",
+      "user_query",
+      "correct_answer",
+      "incorrect_answers",
+      "topic_query",
+      "preference",
+      "topic_preference",
+      "conversation_scenario",
+      "pref_type",
+      "related_conversation_snippet",
+      "who",
+      "updated",
+      "prev_pref",
+      "total_tokens_in_chat_history_32k",
+      "distance_from_related_snippet_to_query_32k",
+      "chat_history_32k_link"
+    ],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.06688",
+      "https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2",
+      "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "PersonaMem-v2作者数据集CC BY 4.0；本页保留评测查询、偏好线索及答案字段投影。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1",
+      "https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "隐式个性化 accuracy（MCQ与open-ended分别评估）",
+    "description": "论文对选择题按正确性计分；开放回答由LLM-as-a-judge评估是否符合用户偏好。隐式偏好推断是主要任务，不是显式persona检索。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.06688"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2512.06688"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2512.06688",
+      "label": "arxiv.org - PersonaMem-v2"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/bowen-upenn/PersonaMem-v2",
+      "label": "github.com - PersonaMem-v2"
+    },
+    {
+      "url": "https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2",
+      "role": "data",
+      "label": "huggingface.co - PersonaMem-v2"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2025-12-07",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期依据：2025-12-07，arXiv v1首次提交日（论文公开日期；不等同数据开放日）。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2512.06688"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "521",
+        "title": "persona 521 · 从历史线索选择晨间建议",
+        "type": "record",
+        "prompt": "What are some calming morning routines that can help set a positive tone for the rest of the day?",
+        "explanation": "用户询问舒缓的晨间安排，历史邮件里已有早晨瑜伽垫、伸展和呼吸的线索。正确回答利用这一偏好；错误候选包括按政治身份推断喜好、套用其他偏好或只给泛泛建议。raw保留真实查询、偏好、相关对话片段与正确/错误答案；省略与此题无关的人设及长历史文件本体，不能把这些字符串字段擅自改造成JSON对象。",
+        "raw": {
+          "persona_id": 521,
+          "user_query": "{'role': 'user', 'content': 'What are some calming morning routines that can help set a positive tone for the rest of the day?'}",
+          "correct_answer": "Since you already practice yoga and meditation daily, you might enjoy starting your mornings with a gentle sun salutation flow, followed by ten minutes of mindful breathing while enjoying a cup of herbal tea. Afterwards, consider a brief gratitude journaling session to set an intentional, positive outlook for your day.",
+          "incorrect_answers": "[\"Since you enjoy experimenting with new vegetarian recipes, you might start your mornings by preparing a colorful, nutrient-rich smoothie, followed by a quick garden stroll to gather fresh herbs. Afterwards, consider jotting down a recipe idea or two, setting a creative and uplifting tone for your day.\", \"As a Midwestern liberal Democrat with a love for community engagement, you might enjoy starting your mornings with a short walk around your neighborhood to greet neighbors, followed by reading a thoughtful political column over coffee. Afterwards, jotting a couple of reflections in a journal can help you center your perspective for the day ahead.\", \"You might enjoy starting your mornings with a few minutes of light stretching, followed by a quiet cup of tea or coffee while listening to calming music. Afterwards, writing down a couple of intentions for the day can help create a focused and positive start.\"]",
+          "topic_query": "Health",
+          "preference": "Practices yoga and meditation daily",
+          "topic_preference": "Health",
+          "conversation_scenario": "personal_email",
+          "pref_type": "anti_stereotypical_pref",
+          "related_conversation_snippet": "[{\"role\": \"user\", \"content\": \"Can you help me improve the wording in this personal email?\\n\\nHi Jenna,\\n\\nThanks for checking in—it’s been a full couple of weeks here. Between grading essays on the Federalist Papers and helping out at the food bank, I’ve been trying to keep my mornings grounded. I still start the day with twenty quiet minutes on the mat, some slow stretches, and a few deep breaths before the kids tumble into the kitchen. It helps me carry a bit of calm through the rest of the day.\\n\\nWe should catch up soon—maybe coffee next weekend?\\n\\nBest,\\nDaniel\"}, {\"role\": \"assistant\", \"content\": \"Here’s a refined version of your email that keeps the friendly, warm tone while smoothing the flow:\\n\\n---\\n\\nHi Jenna,\\n\\nThanks for checking in—it’s been a busy stretch lately. Between grading essays on the Federalist Papers and volunteering at the food bank, I’ve been making it a point to start my mornings on a centered note. I still spend about twenty quiet minutes on the mat, easing through gentle stretches and steady breathing before the kids come bounding into the kitchen. It really helps me carry some calm into the rest of the day.\\n\\nLet’s catch up soon—how about coffee next weekend?\\n\\nBest,\\nDaniel\\n\\n---\"}, {\"role\": \"user\", \"content\": \"Thanks, I like this revision. Could you also suggest a slightly warmer closing line to make the email feel more personal?\"}, {\"role\": \"assistant\", \"content\": \"Sure! Here’s the same version with a warmer closing line:\\n\\n---\\n\\nHi Jenna,\\n\\nThanks for checking in—it’s been a busy stretch lately. Between grading essays on the Federalist Papers and volunteering at the food bank, I’ve been making it a point to start my mornings on a centered note. I still spend about twenty quiet minutes on the mat, easing through gentle stretches and steady breathing before the kids come bounding into the kitchen. It really helps me carry some calm into the rest of the day.\\n\\nLet’s catch up soon—how about coffee next weekend? I’d really love to hear what you’ve been up to.\\n\\nTake care,\\nDaniel\\n\\n---\\n\\nThis keeps the connection warm while inviting more personal sharing.\"}]",
+          "who": "self",
+          "updated": false,
+          "prev_pref": null,
+          "total_tokens_in_chat_history_32k": 31842,
+          "distance_from_related_snippet_to_query_32k": 28768,
+          "chat_history_32k_link": "data/chat_history_32k/chat_history_250913_163134_persona521.json"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1",
+        "license": "cc-by-4.0; 数据题目/媒体许可范围需按原始数据卡与仓库进一步核实。",
+        "split": "benchmark_text",
+        "excerpt": true,
+        "answer": "Since you already practice yoga and meditation daily, you might enjoy starting your mornings with a gentle sun salutation flow, followed by ten minutes of mindful breathing while enjoying a cup of herbal tea. Afterwards, consider a brief gratitude journaling session to set an intentional, positive outlook for your day."
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录521；来源响应SHA-256 fef91bbe17463c588978850c703d657f9ca6bce7c03f479c5c6ff30520f6f0f3。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=bowen-upenn%2FPersonaMem-v2&config=benchmark&split=benchmark_text&offset=0&length=1"
+      ]
+    }
+  ]
+}

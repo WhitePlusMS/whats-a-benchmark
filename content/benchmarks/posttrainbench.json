@@ -1,0 +1,160 @@
+{
+  "id": "posttrainbench",
+  "status": "published",
+  "order": 1740,
+  "name": "PostTrainBench",
+  "subtitle": "在固定GPU和时间预算内开展自主模型后训练实验。",
+  "category": "agents",
+  "tags": [],
+  "publisher": "aisa-group与论文所列合作机构作者团队",
+  "brandIds": [
+    "posttrainbench"
+  ],
+  "year": 2026,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "执行论文定义的LLM后训练实验与研发任务。",
+    "summary": "评估代理自动化大语言模型后训练研究任务的能力。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.08640"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.08640"
+    ],
+    "environment": "研究代理、训练资源及任务配置；版本按官网记录。",
+    "input": "后训练任务目标与可用实验资源。",
+    "output": "实验/研究产物及任务分数。"
+  },
+  "dataProfile": {
+    "summary": "在单张H100 GPU、10小时计算预算内执行自主LLM后训练研究任务；将基础模型后训练后在目标任务上评估。",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.08640",
+      "https://posttrainbench.com/",
+      "https://github.com/aisa-group/PostTrainBench",
+      "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "PostTrainBench作者仓库MIT；仅展示作者编写的具体单任务配置命令，不复制下游GSM8K题库。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md",
+      "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md"
+    ]
+  },
+  "metric": {
+    "name": "目标基准任务表现（按任务与配置报告）",
+    "description": "评测比较代理后训练后的模型在目标下游任务上的表现；需要保留目标基准和计算配置，不将不同任务结果命名为单一通用分数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.08640",
+      "https://posttrainbench.com/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2603.08640"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2603.08640",
+      "label": "arxiv.org - PostTrainBench"
+    },
+    {
+      "role": "definition",
+      "url": "https://posttrainbench.com/",
+      "label": "posttrainbench.com - PostTrainBench"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/aisa-group/PostTrainBench",
+      "label": "github.com - PostTrainBench"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md",
+      "role": "data"
+    },
+    {
+      "label": "所选数据/文件固定版本LICENSE原文",
+      "url": "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-03-09",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期依据：2026-03-09，arXiv v1首次提交日（论文公开日期；不等同数据开放日）。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2603.08640"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "gsm8k-qwen3-4b-base-10h",
+        "title": "真实配置 · 10小时后训练Qwen3-4B-Base",
+        "type": "record",
+        "prompt": "在官方单任务配置示例中，代理以 codex scaffold 在 10 小时内对 Qwen/Qwen3-4B-Base 进行后训练，目标是在 GSM8K 上提升分数；最终提交微调模型目录。",
+        "promptOrigin": "editorial",
+        "explanation": "这是真实仓库中提供的具体单任务命令：以Qwen/Qwen3-4B-Base为待训练模型、GSM8K为目标评测、时间预算10小时，agent为codex。它展示PostTrainBench评估的训练研究任务，而不是虚构模型分数或把GSM8K的一道算术题冒称为PostTrainBench独立题。命令仅按原文显示，未提交作业或运行训练。",
+        "raw": "condor_submit_bid 100 -a \"agent=codex\" -a \"agent_config=gpt-5.1-codex-max\" -a \"eval=gsm8k\" -a \"model_to_train=Qwen/Qwen3-4B-Base\" -a \"num_hours=10\" src/commit_utils/single_task.sub",
+        "source": "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md",
+        "license": "PostTrainBench repository materials are covered by the repository MIT license; downstream GSM8K test data retains its own source terms.",
+        "split": "Official AGENTS.md single-task invocation example",
+        "excerpt": true,
+        "licensePath": "licenses/posttrainbench-sample-source.txt"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录gsm8k-qwen3-4b-base-10h；来源响应SHA-256 CF756B6960F0A02DA67C38D6F6FF53B5F11CA6A4A186F54FAB3EEF99D98C7B07。来源文件commit/revision及原始字节哈希见本轮逐项取证。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/aisa-group/PostTrainBench/ea8d65bc375e61c8ac77a7aea86effcc995378fb/AGENTS.md"
+      ]
+    }
+  ]
+}

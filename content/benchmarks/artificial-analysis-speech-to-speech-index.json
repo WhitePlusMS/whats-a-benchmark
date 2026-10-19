@@ -1,0 +1,149 @@
+{
+  "id": "artificial-analysis-speech-to-speech-index",
+  "status": "published",
+  "order": 1380,
+  "name": "Artificial Analysis Speech-to-Speech Index",
+  "subtitle": "v1.0等权汇总语音推理、对话动态与语音代理能力；当前方法已演进。",
+  "category": "general",
+  "tags": [
+    "复合指数",
+    "speech",
+    "index"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v1.0（后续v2.0的具体发布日期未披露）",
+  "kind": "suite",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "v1.0以Big Bench Audio、Full Duplex Bench及τ-Voice三项组成语音到语音模型综合指数。",
+    "task": "对语音理解、对话动态和agentic表现三个维度等权汇总。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "原生语音模型对Big Bench Audio、Full Duplex Bench子集和τ-Voice的输出。",
+    "output": "三个组成评测结果及Speech-to-Speech Index v1.0综合分。",
+    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index"
+    ]
+  },
+  "dataProfile": {
+    "summary": "v1.0为三个公开评测的等权指数；v2.0后来替换Full Duplex Bench为Task Success Rate并纳入Speech Agent Arena的分项。",
+    "disclosure": "partial",
+    "scale": [
+      "v1.0三项等权，各33.3%。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "指数本身没有独立题集；组成评测的真实样例与官方获取方式见下方，本站未创建指数题目。",
+    "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "三项等权Speech-to-Speech指数",
+    "description": "v1.0三项各占33.3%；后续v1.1/v2.0变为四项并调整组成，2026-06-23仅指v1.0首次公开公告。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "此条按首个公开方法版v1.0记录。AA方法页当前展示v2.0；采用该指数的近期模型结果需按v2.0组件解释，且准确切换日期未披露到日。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index",
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "artificialanalysis.ai 官方资料",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "AA Speech-to-Speech Index首次公开公告",
+      "url": "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "composition": {
+    "items": [
+      {
+        "id": "big-bench-audio",
+        "group": "语音推理",
+        "weight": 33.333333,
+        "detail": "v1.0组成项，等权。"
+      },
+      {
+        "id": "full-duplex-bench",
+        "group": "对话动态",
+        "weight": 33.333333,
+        "detail": "v1.0组成项，采用Full Duplex Bench子集。"
+      },
+      {
+        "id": "tau-voice",
+        "group": "Agentic表现",
+        "weight": 33.333334,
+        "detail": "τ-Voice 的 AA 运行实施；v1.0 等权组件，须区别原始评测与 AA 的具体协议。"
+      }
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index",
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "此处日期采用AA于2026-06-23首次公开介绍v1.0的公告。方法页记载v1.1在2026年8月加入Speech Agent Arena，v2.0同月将Full Duplex Bench换成Task Success Rate；日级版更日期未找到，不能将v1.0日期套用于v2.0或后续模型报告。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index",
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    }
+  },
+  "releaseDate": "2026-06-23",
+  "updatedAt": "2026-10-19"
+}

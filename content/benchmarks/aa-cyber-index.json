@@ -1,0 +1,145 @@
+{
+  "id": "aa-cyber-index",
+  "status": "published",
+  "order": 1330,
+  "name": "AA Cyber Index",
+  "subtitle": "评估代理发现、复现并修补开源代码漏洞的Cyber Index v1。",
+  "category": "general",
+  "tags": [
+    "复合指数",
+    "cybersecurity",
+    "index"
+  ],
+  "publisher": "Artificial Analysis / Cyber Index Alliance",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v1",
+  "kind": "suite",
+  "aliases": [
+    "Artificial Analysis Cyber Index"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "三项网络安全评测等权合成的AA指数，不属于AA Intelligence Index。",
+    "task": "聚合网络安全任务评测分数形成指数。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+    ]
+  },
+  "taskContract": {
+    "input": "开源项目源代码与漏洞审计任务；三个AA实施分别测试漏洞审计修复、专家确认漏洞发现、内存安全漏洞端到端复现修复。",
+    "output": "漏洞发现/修复任务结果及Cyber Index v1综合分。",
+    "environment": "三个AA实施均运行于Stirrup代理环境；任务来源、样本筛选与验证分别按AA方法固定。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "三项网络安全评测等权合成的AA指数，不属于AA Intelligence Index。",
+    "disclosure": "partial",
+    "scale": [
+      "CWE-Bench-AA、DeepsecBench-AA、CyberGym-E2E-AA三项等权。",
+      "CWE-Bench-AA：120项私有审计/修补任务；DeepsecBench-AA：对照专家确认漏洞集评分；CyberGym-E2E-AA：920项母集筛出的131项、每项目1题，使用Stirrup执行。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "url": "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/",
+    "reason": "指数汇总CWE-Bench-AA、DeepsecBench-AA、CyberGym-E2E-AA三种AA实施；本次未取到AA专属计分行。下方上游评测有公开案例，但不能冒充AA修改子集的记录。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+    ]
+  },
+  "metric": {
+    "name": "Cyber Index v1三评测综合分",
+    "description": "AA v1对CWE-Bench-AA、DeepsecBench-AA、CyberGym-E2E-AA三项等权汇总；子项使用各自成功率或F2，安全拒绝单独报告。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "三项是Artificial Analysis的AA评测实施版本；不与同名上游数据集或本目录中的独立母项ID等同。漏洞发现、复现和修补均在范围内，exploit realization不在防御指数范围内。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+      ]
+    },
+    {
+      "text": "AA实施与原始题集分开理解：CyberGym-E2E-AA选用131题，主分要求通过S1至S3，S4仅另行记录；DeepsecBench-AA使用专家核验漏洞集的F2，不能按普通任务通过率解释。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "artificialanalysis.ai 官方资料",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/",
+      "role": "release"
+    }
+  ],
+  "related": [
+    {
+      "id": "cwe-bench-v1",
+      "label": "上游评测",
+      "detail": "这是原始上游项目的公开案例；AA采用带有AA后缀的修改实施/子集，不能将上游案例说成AA实际计分任务。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+      ]
+    },
+    {
+      "id": "cybergym-e2e",
+      "label": "上游评测",
+      "detail": "这是原始上游项目的公开案例；AA采用带有AA后缀的修改实施/子集，不能将上游案例说成AA实际计分任务。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-09-28",
+  "interpretation": {
+    "versionChanges": {
+      "text": "AA官方公告日；非组成基准首发日。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "researchNotes": [
+    {
+      "text": "Article identifies CWE-Bench-AA, DeepsecBench-AA and CyberGym-E2E-AA; CyberGym-AA selects 131 tasks (one/project) from 920 upstream. The three index implementations use Stirrup; tasks test vulnerability discovery/reproduction/patching. Do not claim upstream records represent the AA index.",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/"
+      ]
+    }
+  ]
+}

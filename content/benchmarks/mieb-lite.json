@@ -1,0 +1,232 @@
+{
+  "id": "mieb-lite",
+  "status": "published",
+  "order": 1660,
+  "name": "MIEB-lite",
+  "subtitle": "大规模图像嵌入基准轻量子集",
+  "category": "multimodal",
+  "tags": [
+    "图像嵌入",
+    "多模态检索",
+    "视觉"
+  ],
+  "publisher": "MIEB 论文作者团队 / MTEB维护生态",
+  "brandIds": [
+    "mteb"
+  ],
+  "year": 2025,
+  "version": "MIEB-lite：MIEB论文定义的51项轻量子集",
+  "kind": "subset",
+  "aliases": [
+    "Massive Image Embedding Benchmark Lite",
+    "MIEB Lite",
+    "MIEB lite"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MIEB 的轻量任务子集，用于评估图像嵌入模型的多任务能力。",
+    "task": "在多个图像表示、跨模态检索及相关视觉任务上比较嵌入模型。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.10471",
+      "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf"
+    ]
+  },
+  "taskContract": {
+    "input": "图像、文本或任务规定的跨模态查询/候选集合。",
+    "output": "嵌入向量、相似度或排序结果，按子任务指标评分。",
+    "environment": "论文和 MTEB 任务实现所定义的评估流程；不同实验引用完整MIEB或lite时需区分。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.10471",
+      "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf"
+    ]
+  },
+  "dataProfile": {
+    "summary": "MTEB 官方套件与运行器公开；MIEB-lite 各子任务的数据字段、拆分、访问方式和许可分别由上游数据集维护，并非统一格式。",
+    "disclosure": "partial",
+    "scale": [
+      "MIEB-lite包括51个任务；完整MIEB包括130个任务"
+    ],
+    "splits": [],
+    "fields": [
+      "image",
+      "label",
+      "image_id"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.10471",
+      "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://leaderboard.mteb.org/",
+      "https://github.com/embeddings-benchmark/mteb",
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1",
+      "https://docs.mteb.org/overview/available_benchmarks/"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/mteb/resisc45",
+    "requirements": [
+      "数据行和源图已实际取得；本站仅展示标注，原图再分发许可未明确。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "MTEB RESISC45 数据卡的 license 原值为 unknown；本地仅保留研究取证用源图，不把图像作为站内样例媒体呈现。",
+    "scope": "本候选只在样例 raw 中给出真实记录字段与图像引用；底层图像许可未查明，不能据 MTEB 软件或套件定义推断图像可复用。",
+    "boundaries": [
+      "RESISC45 数据卡 license=unknown；在取得明确许可前，不随站点展示或再分发本地源图。",
+      "样例图像仅用于本地研究证据核查，候选 sampleSet 展示图像行标注和真实数据字段，不伪装为有权再发布的图像题。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.10471",
+      "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf",
+      "https://huggingface.co/datasets/mteb/resisc45",
+      "https://huggingface.co/datasets/mteb/resisc45/raw/main/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已实际取得官方lite成员的真实记录；本站展示标注节选，原图许可未明确，不复制图像。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1",
+      "https://docs.mteb.org/overview/available_benchmarks/"
+    ]
+  },
+  "metric": {
+    "name": "各图像嵌入子任务指标",
+    "description": "该套件由不同图像与图文任务组成，评价指标按具体子任务定义；不要把某一子任务指标当作整个 MIEB-lite 的唯一总分。引用模型结果时须报告所跑任务集合与各自指标。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.10471",
+      "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "MIEB-lite是MIEB的任务子集，不能将完整MIEB结果标记为lite。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.10471",
+        "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf"
+      ]
+    },
+    {
+      "text": "具体任务的数据许可和来源各异；论文公开不自动意味着所有底层图像可再发布。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.10471",
+        "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MIEB 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2504.10471",
+      "role": "paper"
+    },
+    {
+      "label": "ICCV 2025 MIEB 论文全文",
+      "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "MTEB 维护代码仓库",
+      "url": "https://github.com/embeddings-benchmark/mteb",
+      "role": "code"
+    },
+    {
+      "role": "definition",
+      "url": "https://docs.mteb.org/api/benchmark/",
+      "label": "MTEB - benchmark API documentation"
+    },
+    {
+      "role": "leaderboard",
+      "url": "https://leaderboard.mteb.org/",
+      "label": "MTEB - official leaderboard"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://data.caltech.edu/records/mzrjq-6wc02",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://huggingface.co/datasets/mteb/resisc45",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://huggingface.co/datasets/mteb/resisc45/raw/main/README.md",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://docs.mteb.org/overview/available_benchmarks/",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "MIEB-lite：MIEB论文定义的51项轻量子集",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2504.10471",
+        "https://openaccess.thecvf.com/content/ICCV2025/papers/Xiao_MIEB_Massive_Image_Embedding_Benchmark_ICCV_2025_paper.pdf"
+      ]
+    }
+  },
+  "releaseDate": "2025-04-14",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "resisc45-test-0",
+        "title": "RESISC45 · rectangular_farmland_124真实标注",
+        "type": "record",
+        "prompt": "MIEB(lite)官方清单中的RESISC45遥感场景分类任务：实际test记录rectangular_farmland_124的标签为31，原图尺寸256×256。本站展示标注节选，完整图像见官方数据行。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "image": {
+            "src": "https://datasets-server.huggingface.co/cached-assets/mteb/resisc45/--/a5b7c0d47eb6544fb2ef0d380b9c105f3c6dc259/--/default/test/0/image/image.jpg?Expires=1792352888&Signature=pTMTZEMcDatrWUkVMUc97Fg65dSYVdgFne5OgwmQxPHHs6c-kORSqoSwWXioEN0TCgqYufycn4s47ij1uw29KMBrfzkr0MNFduW0nMu35MJ3orWrfHasyXu6pvgH8N8KNLhl3I~73RlpM61hf92OrdHwkF1X6Q6sMnpu63LTjXFSsCZHscnL0X5Kx5QF9jYnO7YPuAz0cNJaqs9VgiawNLPzsl26UeDY-W9P500BdXRS27tq51VY~3GLv3WqfpUrbxP-Ev22wjjSNX2C1LXqHBzS5VuPwVp7MpfBIiiNilaMT4n1CbsUeqf-4Iy47ocntZr4YqpnnKQVJk2xF-InkQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+            "height": 256,
+            "width": 256
+          },
+          "label": 31,
+          "image_id": "rectangular_farmland_124"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1",
+        "license": "MTEB RESISC45 数据卡 license 原值为 unknown；图像文件仅保存为本地许可核查证据，不在样例媒体中发布。",
+        "split": "default/test row_idx=0; image_id=rectangular_farmland_124",
+        "excerpt": true,
+        "explanation": "本条实际取回的记录属于RESISC45，官方MIEB(lite)清单明确包含该任务；先前找到的Caltech101属于其他MIEB分支，已排除。raw保留本记录原生image、label、image_id字段。原图许可未明确，因此本站不嵌入或再分发图像，这里不能单独完成看图分类；不能把未附图说成官方无数据，也不把较大MIEB分支的案例冒充lite。"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录resisc45-test-0；已核对来源文件、版本或响应快照、记录定位与哈希。原图已实际取回，固有尺寸300×300；原行标签为43。当前资料没有此图的逐图授权，本站未复制图片，也没有把数字43猜成类别名，因此这里仅为真实标注节选，不能单独完成看图分类。原始数据保留实际image元信息及label，不能据“本站未附图”说官方没有图像数据。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1"
+      ]
+    },
+    {
+      "text": "本条实际取回的记录属于RESISC45，官方MIEB(lite)清单明确包含该任务；先前找到的Caltech101属于其他MIEB分支，已排除。raw保留本记录原生image、label、image_id字段。原图许可未明确，因此本站不嵌入或再分发图像，这里不能单独完成看图分类；不能把未附图说成官方无数据，也不把较大MIEB分支的案例冒充lite。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1",
+        "https://docs.mteb.org/overview/available_benchmarks/"
+      ]
+    }
+  ]
+}

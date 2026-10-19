@@ -1,0 +1,213 @@
+{
+  "id": "finch-finworkbench",
+  "status": "published",
+  "order": 1480,
+  "name": "Finch (FinWorkBench)",
+  "subtitle": "完成以电子表格为中心、跨多个文件的财务与会计工作流。",
+  "category": "work",
+  "tags": [],
+  "publisher": "FinWorkBench 作者团队；ACL Findings 2026论文作者",
+  "brandIds": [
+    "finworkbench"
+  ],
+  "year": 2025,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [
+    "Finch",
+    "FinWorkBench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "完成交织的数据录入、结构化、格式化、网页检索、跨文件检索、计算、建模、校验、翻译、可视化和报告任务。",
+    "summary": "评估代理在真实企业财务与会计工作流中处理电子表格及相关文件的能力。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.13168"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.13168"
+    ],
+    "environment": "电子表格及 PDF 等文件构成的企业工作区，具体执行配置以论文/官方仓库为准。",
+    "input": "由真实企业邮件线程、电子表格版本历史及相关文件构成的复合工作流与任务。",
+    "output": "工作流执行结果；论文同时报告人工和自动评测。"
+  },
+  "dataProfile": {
+    "summary": "Finch包含172个复合工作流、384项任务、1,710份电子表格（约2,700万单元格）及PDF等企业工作区文件。",
+    "scale": [
+      "172个复合工作流；384项任务",
+      "1,710份电子表格，约2,700万单元格"
+    ],
+    "splits": [],
+    "fields": [
+      "id",
+      "instruction_en",
+      "source_files",
+      "source_files_urls",
+      "reference_outputs",
+      "reference_file_urls",
+      "task_type",
+      "business_type",
+      "task_constraints"
+    ],
+    "files": [
+      "spreadsheet files",
+      "PDF and other workspace artifacts"
+    ],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.13168",
+      "https://huggingface.co/datasets/FinWorkBench/Finch",
+      "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/FinWorkBench/Finch",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "FinWorkBench/Finch数据集CC BY 3.0；保留署名、原始任务和随该记录公开的输入/参考工作簿。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/FinWorkBench/Finch"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2512.13168"
+    ],
+    "description": "论文包含人工与自动评测；不同报告需保留各自评测口径，不把二者合并为单一分数。",
+    "name": "工作流通过率 / 自动评测分数",
+    "direction": "higher"
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2512.13168"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://aclanthology.org/2026.findings-acl.523.pdf",
+      "label": "aclanthology.org - Finch (FinWorkBench)"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/FinWorkBench/Finch",
+      "label": "github.com - Finch (FinWorkBench)"
+    },
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/FinWorkBench/Finch",
+      "label": "huggingface.co - Finch (FinWorkBench)"
+    },
+    {
+      "url": "https://arxiv.org/abs/2512.13168",
+      "role": "paper",
+      "label": "arxiv.org - Finch (FinWorkBench)日期依据"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2025-12-15",
+  "interpretation": {
+    "versionChanges": {
+      "text": "2025-12-15是论文arXiv v1首投日；作者仓库说明论文于2026-04-06被ACL 2026 Findings接收。论文日期不等同数据首次开放日。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2512.13168",
+        "https://github.com/FinWorkBench/Finch"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "0",
+        "title": "Finch 0 · 资产负债与权益滚动核对",
+        "type": "record",
+        "prompt": "Complete the validation and indicator calculations as follows: on the Balance Sheet, add a control to ensure TOTAL ASSETS equals TOTAL LIABILITIES AND EQUITY; on the Income Statement (Revenue & Expenses), add an Equity Roll Forward Test to reconcile equity movement and highlight any differences.",
+        "explanation": "这条真实任务要求直接修改已有工作簿，保留原来的工作表。参考结果在Balance Sheet的H126加入=+H62-H124，核对资产与负债加权益；Income Statement新增Equity Roll Forward Test，例如H130=+H128-H129，用权益变动计算值与资产负债表对应值相减找差异。这些是实际参考工作簿中的公式，本站只读取核对，没有执行公式；下方可下载原始输入和参考结果。raw保留任务行字段，工作簿内容通过原文件提供。",
+        "raw": {
+          "id": "0",
+          "instruction_en": "Complete the validation and indicator calculations as follows: on the Balance Sheet, add a control to ensure TOTAL ASSETS equals TOTAL LIABILITIES AND EQUITY; on the Income Statement (Revenue & Expenses), add an Equity Roll Forward Test to reconcile equity movement and highlight any differences.",
+          "source_files": [
+            "0_src_0.xlsx"
+          ],
+          "source_files_urls": [
+            "https://huggingface.co/datasets/FinWorkBench/Finch/resolve/main/files/0/0_src_0.xlsx"
+          ],
+          "reference_outputs": {
+            "files": [
+              "0_ref_0.xlsx"
+            ],
+            "text": ""
+          },
+          "reference_file_urls": [
+            "https://huggingface.co/datasets/FinWorkBench/Finch/resolve/main/files/0/0_ref_0.xlsx"
+          ],
+          "task_type": "Validation / Review, Calculation, Structuring / Formatting",
+          "business_type": "Report",
+          "task_constraints": "You will be given an Excel file as input. Please perform all required operations by modifying the existing workbook. You may add new sheets if necessary, but you must preserve all original sheets and their contents. Do not replace the workbook with a new file that contains only the results. Return the full updated workbook, including all original sheets plus any newly added sheets."
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1",
+        "license": "FinWorkBench/Finch数据集CC BY 3.0；保留署名、原始任务和随该记录公开的输入/参考工作簿。",
+        "split": "test",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "file",
+            "path": "files/finch-0-input.xlsx",
+            "label": "下载官方输入工作簿",
+            "description": "Finch test记录0的输入，保留原始xlsx字节。",
+            "source": "https://huggingface.co/datasets/FinWorkBench/Finch/resolve/530700c28f7eb68a66c7753d7857c5be80ca274d/files/0/0_src_0.xlsx"
+          },
+          {
+            "kind": "file",
+            "path": "files/finch-0-reference.xlsx",
+            "label": "下载官方参考工作簿",
+            "description": "Finch test记录0的参考结果，保留原始xlsx字节。",
+            "source": "https://huggingface.co/datasets/FinWorkBench/Finch/resolve/530700c28f7eb68a66c7753d7857c5be80ca274d/files/0/0_ref_0.xlsx"
+          }
+        ]
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录0；来源响应SHA-256 caccb4095d492cb38da2dda0455f9a19af83657c0b68472f91c1b0935fa04dca。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=FinWorkBench%2FFinch&config=Finch_Dataset_All&split=test&offset=0&length=1"
+      ]
+    }
+  ]
+}

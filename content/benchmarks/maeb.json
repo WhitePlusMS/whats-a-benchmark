@@ -1,0 +1,272 @@
+{
+  "id": "maeb",
+  "status": "published",
+  "order": 1620,
+  "name": "MAEB",
+  "subtitle": "大规模音频嵌入基准",
+  "category": "multimodal",
+  "tags": [
+    "音频嵌入",
+    "多语言",
+    "音频检索",
+    "音频理解"
+  ],
+  "publisher": "MAEB 论文作者团队 / MTEB维护生态",
+  "brandIds": [
+    "mteb"
+  ],
+  "year": 2026,
+  "version": "MAEB（30项任务）；MAEB+为更大任务集合，需区分",
+  "kind": "original",
+  "aliases": [
+    "Massive Audio Embedding Benchmark",
+    "MAEB+（相关更大集合，不是同一版本）"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估音频嵌入模型在语音、音乐、环境声与音频文本任务中的表现。",
+    "task": "在音频表示、跨模态音频文本推理及其他嵌入任务上比较模型。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.16008",
+      "https://github.com/embeddings-benchmark/mteb"
+    ]
+  },
+  "taskContract": {
+    "input": "音频样本和部分任务对应的文本、标签或查询候选。",
+    "output": "音频/文本嵌入或任务排序结果，由各子任务指标评价。",
+    "environment": "论文与 MTEB 实现提供的统一评测入口；需固定任务和数据版本。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.16008",
+      "https://github.com/embeddings-benchmark/mteb"
+    ]
+  },
+  "dataProfile": {
+    "summary": "MTEB 官方套件与运行器公开；MAEB 子任务的数据字段、拆分、访问方式和许可分别由上游数据集维护，并非统一格式。",
+    "disclosure": "partial",
+    "scale": [
+      "MAEB涵盖30个任务和100多种语言；MAEB+为98项任务集合"
+    ],
+    "splits": [],
+    "fields": [
+      "primary_label",
+      "secondary_labels",
+      "type",
+      "recording",
+      "collection",
+      "rating",
+      "url",
+      "scientific_name",
+      "common_name",
+      "author",
+      "license",
+      "inat_taxon_id",
+      "class_name"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.16008",
+      "https://github.com/embeddings-benchmark/mteb",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://leaderboard.mteb.org/",
+      "https://docs.mteb.org/overview/available_benchmarks/",
+      "https://docs.mteb.org/overview/available_tasks/classification/",
+      "https://huggingface.co/datasets/mteb/birdclef25-mini",
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fbirdclef25-mini&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "The suite definition and runner are public; constituent task datasets are hosted upstream and their access/license conditions vary by task."
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.16008",
+      "https://github.com/embeddings-benchmark/mteb",
+      "https://docs.mteb.org/api/benchmark/",
+      "https://leaderboard.mteb.org/"
+    ],
+    "url": "https://docs.mteb.org/api/benchmark/"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MTEB 官方 BirdCLEF 行逐条标记 cc-by-nc 4.0；iNaturalist Observation 141081033 的 sounds 列表将 sound 559075 标记 cc-by-nc，attribution 原值为 “(c) isa_piga, some rights reserved (CC BY-NC)”。",
+    "scope": "仅在署名及非商业条件下复用该条 BirdCLEF 记录与录音；该逐条许可信息不推及 MAEB 的其他上游任务。",
+    "boundaries": [
+      "复用录音应按 iNaturalist 声音记录给出原始署名“(c) isa_piga”，并遵守 CC BY-NC 条款。",
+      "MTEB 行的 author 原值仍是 Unknown；单独保留来源观察记录提供的 sound attribution，不覆盖或改写上游行字段。",
+      "此样本属于 MAEB 的 BirdCLEF 音频分类子任务，不是 Clotho 检索子任务，也不代表整个 MAEB 的统一输入格式。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.16008",
+      "https://github.com/embeddings-benchmark/mteb",
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fbirdclef25-mini&config=default&split=train&offset=0&length=1",
+      "https://huggingface.co/datasets/mteb/birdclef25-mini",
+      "https://static.inaturalist.org/sounds/559075.wav",
+      "https://creativecommons.org/licenses/by-nc/4.0/",
+      "https://api.inaturalist.org/v1/observations/141081033"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得官方成员/版本的真实记录与原始媒体，保留字段、出处、许可及简短解析。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fbirdclef25-mini&config=default&split=train&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fbirdclef25-mini&config=default&split=train&offset=0&length=1",
+      "https://docs.mteb.org/overview/available_benchmarks/"
+    ]
+  },
+  "metric": {
+    "name": "各音频嵌入子任务指标",
+    "description": "该套件覆盖多类音频任务，评价指标由各子任务定义；没有将不同任务的原始分数折算为单一通用指标。引用结果时应列出任务集合及对应指标。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.16008",
+      "https://github.com/embeddings-benchmark/mteb"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "MAEB与MAEB+的任务规模不同，不可依据简称将二者等同。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.16008",
+        "https://github.com/embeddings-benchmark/mteb"
+      ]
+    },
+    {
+      "text": "来源数据的许可和可下载状态应分别以每项任务的原始数据说明为准。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.16008",
+        "https://github.com/embeddings-benchmark/mteb"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MAEB 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2602.16008",
+      "role": "paper"
+    },
+    {
+      "label": "MTEB 官方维护仓库",
+      "url": "https://github.com/embeddings-benchmark/mteb",
+      "role": "code"
+    },
+    {
+      "role": "definition",
+      "url": "https://docs.mteb.org/api/benchmark/",
+      "label": "MTEB - benchmark API documentation"
+    },
+    {
+      "role": "leaderboard",
+      "url": "https://leaderboard.mteb.org/",
+      "label": "MTEB - official leaderboard"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fbirdclef25-mini&config=default&split=train&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://docs.mteb.org/overview/available_benchmarks/",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://docs.mteb.org/overview/available_tasks/classification/",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://huggingface.co/datasets/mteb/birdclef25-mini",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://static.inaturalist.org/sounds/559075.wav",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "role": "data"
+    },
+    {
+      "label": "本轮实际核对的官方资料",
+      "url": "https://api.inaturalist.org/v1/observations/141081033",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "MAEB（30项任务）；MAEB+为更大任务集合，需区分",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.16008",
+        "https://github.com/embeddings-benchmark/mteb"
+      ]
+    }
+  },
+  "releaseDate": "2026-02-17",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "birdclef25-mini-train-0",
+        "title": "BirdCLEF · American Kestrel真实鸟类录音",
+        "type": "audio",
+        "prompt": "听取这条MAEB(v1)明确成员BirdCLEF中的真实录音，识别其鸟类类别；原始标注为amekes，物种字段给出Falco sparverius / American Kestrel。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "primary_label": "amekes",
+          "secondary_labels": [
+            ""
+          ],
+          "type": [
+            ""
+          ],
+          "recording": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/mteb/birdclef25-mini/--/582215665b247604b555da7ff4e071f82d3617db/--/default/train/0/recording/audio.wav?Expires=1792352626&Signature=q-y7LdXwpGMMrWrLZgrCsnsQO5FcyCuKNeelev~3Ft9L~0PqxthjJNWEgt-oq4WC8LOziHGk7poXklTZ45ht~9ckfrqcCiRv8unwFfio0AnTBDLpdf4wxQpYhiezqx9v3EkeS~2VP75MPetfJf8zLTT2WgWPDR4xD8kSlzicX9EgSYPLWgHfNW~gUdzdul5DUAE3vwjG42RuE~2tEzY~T1EgD3T1qeJm-zatxAuHYdOYuNDKaPuVhkAlYh7Gz650Yn9VgzBjUtoztcJRQ-TM1xjGIif4mQNVl3lIrdkfageQEayK7T0kSDke1n32qv06QDvn3I-da11uNRuIpjWj1g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "collection": "iNat",
+          "rating": 0,
+          "url": "https://static.inaturalist.org/sounds/559075.wav",
+          "scientific_name": "Falco sparverius",
+          "common_name": "American Kestrel",
+          "author": "Unknown",
+          "license": "cc-by-nc 4.0",
+          "inat_taxon_id": 4665,
+          "class_name": "Aves"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fbirdclef25-mini&config=default&split=train&offset=0&length=1",
+        "license": "MTEB 行 license 原值 cc-by-nc 4.0；iNaturalist Observation 141081033 对 sound 559075 的 attribution 原值为“(c) isa_piga, some rights reserved (CC BY-NC)”。MTEB 行 author 仍原样为 Unknown。",
+        "split": "default/train row_idx=0; url=https://static.inaturalist.org/sounds/559075.wav",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "audio",
+            "path": "audio/maeb-birdclef25-mini-train-0.wav",
+            "caption": "原始录音：isa_piga，CC BY-NC；iNaturalist sound 559075。分类标注来自MTEB BirdCLEF。",
+            "source": "https://static.inaturalist.org/sounds/559075.wav"
+          }
+        ],
+        "explanation": "MAEB(v1)官方成员清单明确列出BirdCLEF，任务定义绑定mteb/birdclef25-mini。此真实行的primary_label为amekes，并给出物种名；这里展示录音与原始分类标注，未运行嵌入模型或认证分数。MTEB原行author=Unknown保持不变，另从同一声音559075的iNaturalist观察记录核对到署名isa_piga及CC BY-NC许可；只投影该音频相关字段，省略地理坐标。",
+        "answer": "amekes · Falco sparverius / American Kestrel（原始标注）"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  },
+  "researchNotes": [
+    {
+      "text": "MAEB(v1)官方成员清单明确列出BirdCLEF，任务定义绑定mteb/birdclef25-mini。此真实行的primary_label为amekes，并给出物种名；这里展示录音与原始分类标注，未运行嵌入模型或认证分数。MTEB原行author=Unknown保持不变，另从同一声音559075的iNaturalist观察记录核对到署名isa_piga及CC BY-NC许可；只投影该音频相关字段，省略地理坐标。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fbirdclef25-mini&config=default&split=train&offset=0&length=1",
+        "https://docs.mteb.org/overview/available_benchmarks/"
+      ]
+    }
+  ]
+}

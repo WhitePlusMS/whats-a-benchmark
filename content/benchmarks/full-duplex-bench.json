@@ -1,0 +1,353 @@
+{
+  "id": "full-duplex-bench",
+  "status": "published",
+  "order": 1500,
+  "name": "Full-Duplex-Bench",
+  "subtitle": "全双工口语对话模型轮次管理评测",
+  "category": "multimodal",
+  "tags": [
+    "语音",
+    "全双工",
+    "对话",
+    "轮次切换"
+  ],
+  "publisher": "Full-Duplex-Bench 论文作者团队",
+  "brandIds": [
+    "full-duplex-bench"
+  ],
+  "year": 2025,
+  "version": "原始论文v1；另有v1.5、v2、v3后续版本，任务与协议有变化",
+  "kind": "original",
+  "aliases": [
+    "Full Duplex Bench",
+    "FDB",
+    "Full-Duplex-Bench v1"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估全双工口语对话模型处理对话时序与轮次协调的能力。",
+    "task": "在可重叠的双向语音互动中评估暂停、反馈、轮次转换及用户打断等行为。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2503.04721",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench"
+    ]
+  },
+  "taskContract": {
+    "input": "模拟用户语音和对话上下文；具体样本集与运行协议随论文版本而异。",
+    "output": "模型的流式语音响应及轮次行为。",
+    "environment": "作者论文与官方代码所定义的全双工语音模型交互环境；版本需固定。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2503.04721",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者仓库区分离线静态 v1/v1.5 数据评测与实时 v2、含真实口语不流畅语音的 v3；后续版在任务和协议上有扩展。数据入口与论文 v1 首发日期不是同一版本锚点。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [
+      "官方仓库列出 v1/v1.5 离线数据目录，另记录 v1.5 数据发布。",
+      "官方仓库称 v3 代码及数据于 2026-05-20 公开；v3 不是原论文 v1 数据。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2503.04721",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/main/v1_v1.5/dataset",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/pause.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开数据按版本分别发布；引用结果时需注明采用 v1、v1.5 或 v3 任务与评分实现。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2503.04721",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/main/v1_v1.5/dataset",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/pause.json"
+    ],
+    "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/main/v1_v1.5/dataset"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者仓库在固定 commit 的 LICENSE 明示 Creative Commons Attribution-NonCommercial 4.0 International；本例两段 WAV 和 JSON 均来自同一许可仓库目录。",
+    "scope": "仅在遵守署名及非商业条款的范围内复用所选 pause-handling example JSON 与 WAV；该许可不覆盖仓库未标示为作者所有的第三方材料。",
+    "boundaries": [
+      "须署名并遵守 CC BY-NC 4.0 非商业条件。",
+      "此样例对应 v1/v1.5 离线示例，不代表 v2/v3 动态评测协议。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2503.04721",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得官方成员/版本的真实记录与原始媒体，保留字段、出处、许可及简短解析。",
+    "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1",
+    "sourceUrls": [
+      "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/pause.json",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1"
+    ]
+  },
+  "metric": {
+    "name": "轮次协调与重叠处理指标",
+    "description": "v1衡量停顿处理、附和反馈、平滑轮次转换和用户打断；v1.5扩展重叠场景，v2/v3又改变交互/评分协议。各版结果须分别按对应论文和代码解释。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2503.04721",
+      "https://github.com/DanielLin94144/Full-Duplex-Bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "v1、v1.5、v2和v3是演进版本，后续版任务和协议有实质变化，不能仅以简称认定同一配置。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2503.04721",
+        "https://github.com/DanielLin94144/Full-Duplex-Bench"
+      ]
+    },
+    {
+      "text": "Artificial Analysis 的 Conversational Dynamics 采用特定子集/实现，不等同于自动覆盖作者完整基准。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2503.04721",
+        "https://github.com/DanielLin94144/Full-Duplex-Bench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Full-Duplex-Bench 原始论文（v1）",
+      "url": "https://arxiv.org/abs/2503.04721",
+      "role": "paper"
+    },
+    {
+      "label": "作者官方实现",
+      "url": "https://github.com/DanielLin94144/Full-Duplex-Bench",
+      "role": "code"
+    },
+    {
+      "label": "后续版本v1.5论文",
+      "url": "https://arxiv.org/abs/2507.23159",
+      "role": "paper"
+    },
+    {
+      "label": "后续版本v2论文",
+      "url": "https://arxiv.org/abs/2510.07838",
+      "role": "paper"
+    },
+    {
+      "label": "后续版本v3论文",
+      "url": "https://arxiv.org/abs/2604.04847",
+      "role": "paper"
+    },
+    {
+      "label": "Full-Duplex-Bench v1/v1.5 数据目录",
+      "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/main/v1_v1.5/dataset",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/pause.json",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/LICENSE",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/output.json",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://raw.githubusercontent.com/DanielLin94144/Full-Duplex-Bench/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/input.wav",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://raw.githubusercontent.com/DanielLin94144/Full-Duplex-Bench/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/output.wav",
+      "role": "data"
+    },
+    {
+      "label": "包含本页各原始记录/文件的官方数据目录",
+      "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "原始论文v1；另有v1.5、v2、v3后续版本，任务与协议有变化",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2503.04721",
+        "https://github.com/DanielLin94144/Full-Duplex-Bench"
+      ]
+    }
+  },
+  "releaseDate": "2025-03-06",
+  "researchNotes": [
+    {
+      "text": "官方仓库说明 v1.0/v1.5 是静态离线评测，v2为实时动态评测，v3测试真实不流畅语音下的工具调用；不要把各版合并成同一个固定数据矩阵。",
+      "sourceUrls": [
+        "https://github.com/DanielLin94144/Full-Duplex-Bench",
+        "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/main/v1_v1.5/dataset"
+      ]
+    },
+    {
+      "text": "2026-10-19直接取得实际记录pause-handling-example-1；已核对固定commit、记录目录及文件哈希。原始数据栏展示output.json的原始对象；pause.json和output.json另以独立文件附件保留，未构造合并包装字段。示例语音输出来自作者仓库，不是本站生成，也不代表正确答案或本站重跑分数。",
+      "sourceUrls": [
+        "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/pause.json"
+      ]
+    },
+    {
+      "text": "pause.json 将 [PAUSE] 标记于 3.319999999999993–4.0 秒。原始数据栏保留 output.json 的 text/chunks 对象及逐词时间戳；附件分别提供未改写的 pause.json、output.json，以及同目录的 input.wav 和 output.wav。可以结合输入/输出语音查看停顿窗口附近的响应。输出是作者发布的示例运行产物，不是标准答案；本站未运行模型。",
+      "sourceUrls": [
+        "https://github.com/DanielLin94144/Full-Duplex-Bench/blob/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/pause.json"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "pause-handling-example-1",
+        "title": "pause-handling example annotations",
+        "type": "audio",
+        "prompt": "官方 pause-handling example 的时间对齐停顿标注、输入语音与输出语音。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "text": " A [UH] abert because you actually got a question. But you had.",
+          "chunks": [
+            {
+              "text": " A",
+              "timestamp": [
+                0,
+                1.64
+              ]
+            },
+            {
+              "text": " [UH]",
+              "timestamp": [
+                1.64,
+                2.14
+              ]
+            },
+            {
+              "text": " abert",
+              "timestamp": [
+                2.14,
+                2.58
+              ]
+            },
+            {
+              "text": " because",
+              "timestamp": [
+                2.58,
+                2.88
+              ]
+            },
+            {
+              "text": " you",
+              "timestamp": [
+                2.88,
+                3.3
+              ]
+            },
+            {
+              "text": " actually",
+              "timestamp": [
+                3.3,
+                3.58
+              ]
+            },
+            {
+              "text": " got",
+              "timestamp": [
+                3.58,
+                3.74
+              ]
+            },
+            {
+              "text": " a",
+              "timestamp": [
+                3.74,
+                3.92
+              ]
+            },
+            {
+              "text": " question.",
+              "timestamp": [
+                3.92,
+                4.02
+              ]
+            },
+            {
+              "text": " But",
+              "timestamp": [
+                4.02,
+                4.06
+              ]
+            },
+            {
+              "text": " you",
+              "timestamp": [
+                4.06,
+                4.18
+              ]
+            },
+            {
+              "text": " had.",
+              "timestamp": [
+                4.18,
+                4.68
+              ]
+            }
+          ]
+        },
+        "source": "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1",
+        "license": "Full-Duplex-Bench 作者仓库 LICENSE：CC BY-NC 4.0；本例 JSON 和 WAV 来自该仓库固定 commit。",
+        "split": "v1_v1.5/evaluation/example_data/pause_handling_example/1",
+        "excerpt": true,
+        "explanation": "pause.json 将 [PAUSE] 标记于 3.319999999999993–4.0 秒。原始数据栏保留 output.json 的 text/chunks 对象及逐词时间戳；附件分别提供未改写的 pause.json、output.json，以及同目录的 input.wav 和 output.wav。可以结合输入/输出语音查看停顿窗口附近的响应。输出是作者发布的示例运行产物，不是标准答案；本站未运行模型。",
+        "assets": [
+          {
+            "kind": "file",
+            "path": "files/fdb-pause-annotation.json",
+            "label": "pause.json 原始停顿标注",
+            "description": "作者仓库示例原文件；另见原始 JSON 证据文件及 SHA-256。",
+            "source": "https://raw.githubusercontent.com/DanielLin94144/Full-Duplex-Bench/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/pause.json"
+          },
+          {
+            "kind": "file",
+            "path": "files/fdb-output-annotation.json",
+            "label": "output.json 原始语音输出转写及时间戳",
+            "source": "https://raw.githubusercontent.com/DanielLin94144/Full-Duplex-Bench/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/output.json"
+          },
+          {
+            "kind": "audio",
+            "path": "audio/fdb-pause-input.wav",
+            "caption": "官方 pause-handling 输入语音（WAV，4.72秒）。",
+            "source": "https://raw.githubusercontent.com/DanielLin94144/Full-Duplex-Bench/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/input.wav"
+          },
+          {
+            "kind": "audio",
+            "path": "audio/fdb-pause-output.wav",
+            "caption": "官方 pause-handling 输出语音（WAV，4.70秒）；下方可展开原始转写。",
+            "transcript": " A [UH] abert because you actually got a question. But you had.",
+            "source": "https://raw.githubusercontent.com/DanielLin94144/Full-Duplex-Bench/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1/output.wav"
+          }
+        ],
+        "licensePath": "licenses/full-duplex-bench-sample-source.txt"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  }
+}

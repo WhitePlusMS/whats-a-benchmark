@@ -1,0 +1,194 @@
+{
+  "id": "deepsearchqa",
+  "status": "published",
+  "order": 1460,
+  "name": "DeepSearchQA",
+  "subtitle": "多步骤、综合性网页研究任务评测",
+  "category": "agents",
+  "tags": [
+    "深度研究",
+    "网页搜索",
+    "多步骤推理",
+    "综合回答"
+  ],
+  "publisher": "Google DeepMind / Google Research",
+  "brandIds": [
+    "google-deepmind"
+  ],
+  "year": 2025,
+  "version": "Google DeepSearchQA 技术报告与公开数据/榜单；模型报告所用pass和judge设置未必相同",
+  "kind": "original",
+  "aliases": [
+    "DeepSearch QA"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用多步网页研究问题评估智能体检索并综合充分答案的能力。",
+    "task": "智能体针对问题开展多步网页研究，找出多个必要事实并组织覆盖要求的回答。",
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+    ]
+  },
+  "taskContract": {
+    "input": "需要综合多项证据的研究问题。",
+    "output": "含必要答案要点及依据的综合回答。",
+    "environment": "官方技术报告定义的深度研究任务；榜单、裁判、pass设置与生成模型执行配置需分别核实。",
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Google DeepMind 报告由900个人工构建问题组成，覆盖17个领域；数据从官方评测页链接至 Kaggle，访问条款和数据许可仍待核实。",
+    "disclosure": "partial",
+    "scale": [
+      "官方技术报告称900个问题，覆盖17个领域"
+    ],
+    "splits": [],
+    "fields": [
+      "problem",
+      "problem_category",
+      "answer",
+      "answer_type"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/",
+      "https://deepmind.google/research/evals/",
+      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "Kaggle account and dataset terms have not been independently confirmed; no additional gate is inferred."
+    ],
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/",
+      "https://www.kaggle.com/datasets/deepmind/deepsearchqa/data",
+      "https://deepmind.google/research/evals/",
+      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1"
+    ],
+    "url": "https://www.kaggle.com/datasets/deepmind/deepsearchqa/data"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Google DeepSearchQA Hugging Face 数据卡声明 Apache-2.0；本样例只取该行文本字段。",
+    "scope": "仅覆盖数据卡所声明的 DeepSearchQA 数据行；本记录涉及的外部网页来源不由此许可覆盖。",
+    "boundaries": [
+      "不得将数据许可扩展到题目引用的第三方网页、外部来源或在线检索结果。",
+      "复现实验需另固定搜索工具、可访问网页范围和答案判分设置。"
+    ],
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "F1（集合式答案）；另报分项状态指标",
+    "description": "Google DeepMind报告以F1评价集合式答案，并另列答案状态分布；不得把状态分类指标混称为主准确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "多步骤研究结果受搜索索引、可访问网页、检索过程和答案评分器影响。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+        "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+      ]
+    },
+    {
+      "text": "模型发布文案中笼统引用DeepSearchQA，不能推定其严格复现了官方默认配置。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+        "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "DeepSearchQA 官方技术报告",
+      "url": "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "Google 官方发布公告",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/",
+      "role": "release"
+    },
+    {
+      "role": "data",
+      "url": "https://www.kaggle.com/datasets/deepmind/deepsearchqa/data",
+      "label": "Kaggle - DeepSearchQA dataset"
+    },
+    {
+      "role": "definition",
+      "url": "https://deepmind.google/research/evals/",
+      "label": "Google DeepMind - Evals / DeepSearchQA"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "Google DeepSearchQA 技术报告与公开数据/榜单；模型报告所用pass和judge设置未必相同",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
+        "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+      ]
+    }
+  },
+  "releaseDate": "2025-12-11",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "excerpt": true,
+        "license": "官方HF数据卡声明 Apache-2.0。",
+        "raw": {
+          "problem": "Consider the OECD countries whose total population was composed of at least 20% of foreign-born populations as of 2023 (according to the Observatory of Migration at the university of Oxford). Amongst them, which country saw their overall criminality score increase by at least +0.2 point between 2021 and 2023 and their resilience score decrease by more than 0.3 between these same dates (according to the Organised Crime Index)?",
+          "problem_category": "Politics & Government",
+          "answer": "New Zealand",
+          "answer_type": "Single Answer"
+        },
+        "prompt": "Consider the OECD countries whose total population was composed of at least 20% of foreign-born populations as of 2023 (according to the Observatory of Migration at the university of Oxford). Amongst them, which country saw their overall criminality score increase by at least +0.2 point between 2021 and 2023 and their resilience score decrease by more than 0.3 between these same dates (according to the Organised Crime Index)?",
+        "type": "text",
+        "answer": "New Zealand",
+        "split": "deepsearchqa/eval row_idx=0",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
+        "explanation": "Google DeepMind官方DeepSearchQA eval首行：要求筛选2023年外来人口比例至少20%的OECD国家，再按2021至2023有组织犯罪指数变化筛出 criminality 上升至少0.2且resilience下降超过0.3的国家。该行答案为New Zealand；样例不包括网络搜索轨迹。",
+        "id": "deepsearchqa-eval-0",
+        "title": "DeepSearchQA 多步国家指标检索题"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录deepsearchqa-eval-0；已核对来源文件、版本或响应快照、记录定位与哈希。Google DeepMind官方DeepSearchQA eval首行：要求筛选2023年外来人口比例至少20%的OECD国家，再按2021至2023有组织犯罪指数变化筛出 criminality 上升至少0.2且resilience下降超过0.3的国家。该行答案为New Zealand；样例不包括网络搜索轨迹。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1"
+      ]
+    }
+  ]
+}

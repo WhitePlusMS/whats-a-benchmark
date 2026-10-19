@@ -1,0 +1,174 @@
+{
+  "id": "vals-index",
+  "status": "published",
+  "order": 1880,
+  "name": "Vals Index",
+  "subtitle": "以金融、编码、法律代理任务评估潜在经济影响的Vals Index v2。",
+  "category": "general",
+  "tags": [
+    "复合指数",
+    "index",
+    "finance",
+    "coding",
+    "legal"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2026,
+  "version": "v2",
+  "kind": "suite",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "按Finance、Coding、Legal聚合七项基准的v2指数。",
+    "task": "聚合七项专业基准分数计算总指数。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "taskContract": {
+    "input": "Finance Agent v2、Excel Modeling Benchmark、Terminal-Bench 2.1、Vibe Code Bench、Code Migration、Legal Research Bench、HLAB分项结果。",
+    "output": "按行业GDP份额加权的总指数准确率。",
+    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "按Finance、Coding、Legal聚合七项基准的v2指数。",
+    "disclosure": "partial",
+    "scale": [
+      "Finance：Finance Agent v2与Excel Modeling Benchmark两项均分；行业权重8.0。",
+      "Coding：Terminal-Bench 2.1、Vibe Code Bench、Code Migration三项均分；行业权重5.6。",
+      "Legal：Legal Research Bench与HLAB两项均分；行业权重1.2。",
+      "Vals Index = (8.0 × Finance + 5.6 × Coding + 1.2 × Legal) / 14.8。",
+      "Code Migration使用50/120项CLI迁移任务及全部10项COBOL任务，子集权重为75% CLI / 25% COBOL。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "指数没有独立题目；下方复用明确组成评测的站内真实案例，并保留各自题集、版本与公开示例边界。",
+    "url": "https://www.vals.ai/benchmarks/vals_index_v2",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "metric": {
+    "name": "GDP行业权重归一化的Vals Index准确率",
+    "description": "Finance/Coding/Legal域均分后按8.0/5.6/1.2权重归一化。Code Migration只用50/120 CLI任务及全部10项COBOL任务，子集内CLI/COBOL按75%/25%加权。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "固定为2026-08-13发布的v2；Code Migration使用官方说明的固定子集，其他组成分数采用各自发布的standalone score。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/vals_index_v2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "www.vals.ai 官方资料",
+      "url": "https://www.vals.ai/benchmarks/vals_index_v2",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-08-13",
+  "interpretation": {
+    "versionChanges": {
+      "text": "官方方法页版本历史明确标记v2 Released 8/13/2026。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/vals_index_v2"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "composition": {
+    "items": [
+      {
+        "id": "finance-agent",
+        "group": "金融",
+        "weight": 27.027027027027025,
+        "detail": "Finance域两项均分；Finance Agent v2的独立成绩。"
+      },
+      {
+        "id": "excel-emb",
+        "group": "金融",
+        "weight": 27.027027027027025,
+        "detail": "Finance域两项均分；Excel Modeling Benchmark的独立成绩。"
+      },
+      {
+        "id": "terminal-bench-2-1",
+        "group": "编码",
+        "weight": 12.612612612612612,
+        "detail": "Coding域三项均分；明确使用Terminal-Bench 2.1。"
+      },
+      {
+        "id": "vibe-code-bench-v1-1",
+        "group": "编码",
+        "weight": 12.612612612612612,
+        "detail": "Coding域三项均分；链接官方Vibe Code Bench独立成绩，本站按已收录v1.1展示公开示例。"
+      },
+      {
+        "id": "code-migration",
+        "group": "编码",
+        "weight": 12.612612612612612,
+        "detail": "使用50/120个CLI任务及全部10个COBOL任务；该项内部按75% CLI、25% COBOL计算。"
+      },
+      {
+        "id": "legal-research-vals",
+        "group": "法律",
+        "weight": 4.0540540540540535,
+        "detail": "Legal域两项均分；Legal Research Bench的独立成绩。"
+      },
+      {
+        "id": "harvey-lab",
+        "group": "法律",
+        "weight": 4.0540540540540535,
+        "detail": "Legal域两项均分；方法页链接的HLAB独立成绩。公开任务不代表指数实际计分行。"
+      }
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/vals_index_v2"
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "按官方v2公式将8.0、5.6、1.2行业权重归一化并在域内均分，完整登记七个组成项。成员的公开示例不证明它就是指数选取的计分行；Code Migration固定子集另述，不虚构指数题目。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/vals_index_v2"
+      ]
+    }
+  ]
+}

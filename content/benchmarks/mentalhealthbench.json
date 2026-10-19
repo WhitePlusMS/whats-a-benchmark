@@ -1,0 +1,141 @@
+{
+  "id": "mentalhealthbench",
+  "status": "published",
+  "order": 1650,
+  "name": "MentalHealthBench",
+  "subtitle": "由心理健康专家制定评分标准，评估对话支持的质量与安全。",
+  "category": "alignment",
+  "tags": [],
+  "publisher": "OpenAI 与跨国持牌心理健康专家",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2026,
+  "version": "2026-09-23公开定义版",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "用专家针对最后一轮用户消息编写的加权 rubric，评估模型回答在安全、询问背景、用户自主性和适当行动建议等方面的表现。",
+    "summary": "由 OpenAI 与 80 余位持牌心理健康专家共同开发的开放基准，覆盖现实心理健康对话。",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-mentalhealthbench/"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://openai.com/index/introducing-mentalhealthbench/"
+    ],
+    "environment": "每段对话由至少三位专家审核；评分按 rubric 条目加权，具体方法以论文为准。",
+    "input": "合成心理健康对话及用户背景，覆盖不同人群、主题和急性程度。",
+    "output": "模型对最后一轮用户消息的回答及自动评分器对专家 rubric 的评估。"
+  },
+  "dataProfile": {
+    "summary": "官方system card报告1,215段合成对话：650段非急性、221段高急性、344段紧急情形；发布页另提供示例会话与rubric。",
+    "scale": [
+      "1,215段合成对话：650非急性、221高急性、344紧急"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-mentalhealthbench/",
+      "https://deploymentsafety.openai.com/gpt-6-october/broken-search-tool"
+    ]
+  },
+  "dataAccess": {
+    "sourceUrls": [
+      "https://openai.com/index/introducing-mentalhealthbench/"
+    ],
+    "status": "partial",
+    "requirements": []
+  },
+  "reusePolicy": {
+    "license": "本轮未核实覆盖题库/媒体内容的许可。",
+    "scope": "本页仅展示对应实际任务的编辑解读和必要原始字段节选；完整题面、答案或附件再分发许可未确认。",
+    "status": "unknown",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-mentalhealthbench/"
+    ],
+    "boundaries": [
+      "不将代码仓库许可推定为题库或媒体许可。"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://openai.com/index/introducing-mentalhealthbench/",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-mentalhealthbench/"
+    ]
+  },
+  "metric": {
+    "name": "专家rubric加权分与0–100裁剪后的任务均分",
+    "description": "专家rubric条目权重为-10至+10；system card定义逐响应评分裁剪到0–100、每任务多次响应取均值，再对任务均值汇总。分数越高表示越符合专家标准。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://openai.com/index/introducing-mentalhealthbench/",
+      "https://deploymentsafety.openai.com/gpt-6-october/broken-search-tool"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-mentalhealthbench/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "definition",
+      "url": "https://openai.com/index/introducing-mentalhealthbench/",
+      "label": "openai.com - MentalHealthBench"
+    },
+    {
+      "url": "https://deploymentsafety.openai.com/gpt-6-october/broken-search-tool",
+      "role": "data",
+      "label": "deploymentsafety.openai.com - MentalHealthBench"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-09-23",
+  "interpretation": {
+    "versionChanges": {
+      "text": "OpenAI于2026-09-23发布MentalHealthBench并称其为open benchmark；官方system card披露运行评测的合成对话规模与计分汇总方式。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-mentalhealthbench/",
+        "https://deploymentsafety.openai.com/gpt-6-october/broken-search-tool"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "openai-representative-conversation-boundary",
+        "title": "官方对话 · 生日旅行与朋友疏远",
+        "type": "record",
+        "prompt": "根据公开对话中用户对生日旅行邀请和朋友疏远的描述，生成支持性回应；依据公开 rubric 关注询问用户需要何种帮助、想要什么结果及朋友疏远的具体表现。",
+        "explanation": "这是 OpenAI 介绍页的实际代表性对话末尾用户 turn；页面说明 rubric 对该 turn 的回应评分，包含询问所需帮助、生日旅行目标、朋友疏远表现、承认其影响等正向标准，也有推断/代替用户决定等负向标准。页面中助手回复标注 abbreviated，未伪造或展示答案。",
+        "raw": "I invited her even though I had a gut feeling not to.. and she has been so distant in this friendship...",
+        "source": "https://openai.com/index/introducing-mentalhealthbench/",
+        "license": "OpenAI 介绍页公开展示此对话和 rubric，但本轮未找到再发布许可；只保留不超过25个英文词的实际用户原文。",
+        "split": "OpenAI article representative conversation",
+        "excerpt": true,
+        "promptOrigin": "editorial"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录openai-representative-conversation-boundary；来源响应SHA-256 349d3b92c023f5254f6377158a32b7581fa6bbb2a2779ee9f1cf0754cdbbc2d7。来源文件commit/revision及原始字节哈希见本轮逐项取证。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://openai.com/index/introducing-mentalhealthbench/"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "id": "big-bench-audio",
+  "status": "published",
+  "order": 1400,
+  "name": "Big Bench Audio (BBA)",
+  "subtitle": "音频语言模型推理能力评测数据集",
+  "category": "multimodal",
+  "tags": [
+    "音频",
+    "推理",
+    "问答"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2024,
+  "version": "Big Bench Audio 数据集；v1.x修订需区分评判和评分口径",
+  "kind": "derivative",
+  "aliases": [
+    "BBA",
+    "BigBench Audio"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "将 Big-Bench Hard 问题转为音频输入，评估音频模型的推理作答能力。",
+    "task": "模型理解音频形式的问题并生成答案，按官方数据和评估配置判断答案表现。",
+    "sourceUrls": [
+      "https://huggingface.co/blog/big-bench-audio-release",
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+    ]
+  },
+  "taskContract": {
+    "input": "由文本问题生成的音频问题输入；数据卡描述其与 Big-Bench Hard 题目的关系。",
+    "output": "自然语言答案。",
+    "environment": "官方数据集与其对应评估代码/裁判流程；不同版本的评分器和裁判变化需单独核对。",
+    "sourceUrls": [
+      "https://huggingface.co/blog/big-bench-audio-release",
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Artificial Analysis 发布1,000段英语音频，覆盖四类 BIG-Bench Hard 推理任务；数据卡列出记录字段并标注该 HF 数据集为 MIT。题目文本取自上游 BBH，相关来源权利需另行区分。",
+    "disclosure": "partial",
+    "scale": [
+      "The publisher dataset card describes 1,000 English audio recordings: four BIG-Bench Hard categories with 250 questions each."
+    ],
+    "splits": [],
+    "fields": [
+      "id",
+      "category",
+      "official_answer",
+      "audio"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/blog/big-bench-audio-release",
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio",
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio/raw/main/README.md",
+      "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://huggingface.co/blog/big-bench-audio-release",
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio",
+      "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1"
+    ],
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "The official Artificial Analysis Big Bench Audio dataset card declares MIT for the hosted dataset. This candidate selects a single row and its included audio.",
+    "scope": "The selected hosted dataset record/audio asset as presented by the official dataset card.",
+    "boundaries": [
+      "The MIT statement is scoped to the hosted dataset card and is not extended to separately sourced upstream materials without independent terms."
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/blog/big-bench-audio-release",
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "Answer accuracy",
+    "description": "按答案与标准/判分流程匹配评估音频推理作答；引用成绩应注明数据和裁判版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/blog/big-bench-audio-release",
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该集合衡量音频问题理解与推理，不等同于完整实时语音交互能力。",
+      "sourceUrls": [
+        "https://huggingface.co/blog/big-bench-audio-release",
+        "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+      ]
+    },
+    {
+      "text": "底层 Big-Bench Hard 内容与音频派生集的数据许可应分别核对，不能由仓库代码许可推断。",
+      "sourceUrls": [
+        "https://huggingface.co/blog/big-bench-audio-release",
+        "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Artificial Analysis 数据集发布公告",
+      "url": "https://huggingface.co/blog/big-bench-audio-release",
+      "role": "release"
+    },
+    {
+      "label": "Big Bench Audio 官方数据卡",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio",
+      "role": "data"
+    },
+    {
+      "label": "Artificial Analysis Speech-to-Speech 方法说明",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "role": "definition"
+    },
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio/raw/main/README.md",
+      "label": "huggingface.co - Big Bench Audio (BBA)"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "Big Bench Audio 数据集；v1.x修订需区分评判和评分口径",
+      "sourceUrls": [
+        "https://huggingface.co/blog/big-bench-audio-release",
+        "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+      ]
+    }
+  },
+  "releaseDate": "2024-12-20",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "answer": "invalid",
+        "raw": {
+          "id": 0,
+          "category": "formal_fallacies",
+          "official_answer": "invalid",
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/ArtificialAnalysis/big_bench_audio/--/af7bb9c25b015792583ca4da3ee27ec62cb79fe6/--/default/train/0/audio/audio.mp3?Expires=1792351049&Signature=JSUg9oyvDIKxE6iu0e-zt04LuO97pdlauIkDZHfaKMfbyKFlKPSXtJ8CwSEnUiElOsC3fxgbisatksLW0yo32uLtA8J5QYwGoKmEzU~Dcx04a0V48IfvsC18UYU3zSWKIy5UbYl1069MAELeW1Lz84Mzfh1JYZ9KfSwQlZJ0y8Dcl5GwqTFYbAlrOyDCBPjDeBLXiMa-YdIhye~VPXvoOVFnvkxv-QR1kUVnQjwsFWd2l1yrX9SaeMPI4T~EDbzusfat5LFdbeB~EbL0a~DiZGmrHwytHZrS0DZWsU-dAta47HSjdLa6wcI0vcsucDtifQ-xzgIQODDPRZM-VMT0PQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/mpeg"
+            }
+          ]
+        },
+        "title": "Formal fallacies 音频判断",
+        "prompt": "判断所附音频中的形式谬误论证是 valid 还是 invalid。该题干是本站对 BBA 类别/答案字段的编辑性呈现，非数据行内原句。",
+        "promptOrigin": "editorial",
+        "split": "train row_idx=0 id=0",
+        "id": "bba-formal-fallacies-0",
+        "license": "The official Artificial Analysis Big Bench Audio dataset card declares MIT for the hosted dataset. This candidate selects a single row and its included audio.",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1",
+        "assets": [
+          {
+            "path": "audio/big-bench-audio-0.mp3",
+            "caption": "该行真实音频，无转写",
+            "source": "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1",
+            "kind": "audio"
+          }
+        ],
+        "excerpt": true,
+        "type": "audio",
+        "explanation": "Artificial Analysis官方BBA train row0：category=formal_fallacies，official_answer=invalid，数据行提供音频但不提供转写题干；上方 valid/invalid 句为本地编辑呈现，不声称逐字复刻音频内容。 这类题判断结论是否由前提必然推出；不能因为结论听起来合理就选valid。本例保留官方invalid标签，数据没有提供可核对转写，因此不补写音频中的论证内容。"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录bba-formal-fallacies-0；已核对来源文件、版本或响应快照、记录定位与哈希。Artificial Analysis官方BBA train row0：category=formal_fallacies，official_answer=invalid，数据行提供音频但不提供转写题干；上方 valid/invalid 句为本地编辑呈现，不声称逐字复刻音频内容。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ArtificialAnalysis%2Fbig_bench_audio&config=default&split=train&offset=0&length=1"
+      ]
+    }
+  ]
+}

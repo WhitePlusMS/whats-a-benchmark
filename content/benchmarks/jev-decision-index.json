@@ -1,0 +1,208 @@
+{
+  "id": "jev-decision-index",
+  "status": "published",
+  "order": 1540,
+  "name": "Jev Decision Index · 公开复现榜0.3",
+  "subtitle": "multimodalart社区维护的Jev公开复现榜0.3；公开榜37项，Full另含私测。",
+  "category": "general",
+  "tags": [
+    "复合指数",
+    "decision",
+    "index",
+    "community"
+  ],
+  "publisher": "multimodalart（社区复现榜维护者）",
+  "brandIds": [
+    "jev-maintainer"
+  ],
+  "year": 2026,
+  "version": "公开复现榜0.3",
+  "kind": "suite",
+  "aliases": [
+    "Jev Index",
+    "Decision Index 0.3"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "对TypeSafe Jev开放复现运行公开基准及私有测试，并展示公开分与Full榜单。",
+    "task": "决策模型按state及typed choice/noul问题输出选择或是非答案和概率；排行榜综合公开基准与私有任务。",
+    "sourceUrls": [
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/README.md",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/methodology.html",
+      "https://github.com/apolinario/decision-index"
+    ]
+  },
+  "taskContract": {
+    "input": "Jev公开复现suite各项任务及模型选择/回答输出。",
+    "output": "按五个领域汇总的公开榜分；Full分另合并私有任务。",
+    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "sourceUrls": [
+      "https://github.com/apolinario/decision-index",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/README.md",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/methodology.html"
+    ]
+  },
+  "dataProfile": {
+    "summary": "排行榜公开复现部分与私有榜单部分并存；不同edition的公开组件与处理方式不同。",
+    "disclosure": "partial",
+    "scale": [
+      "v0.3公开部分含37项基准、五个领域。",
+      "Full分：20%公开基准、50%同技能私有测试、30%新领域私有任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/apolinario/decision-index",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/README.md",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/methodology.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "各上游基准按其许可及访问条款获取；私有榜单部分不可由公开复现套件重建。"
+    ],
+    "url": "https://github.com/apolinario/decision-index",
+    "sourceUrls": [
+      "https://github.com/apolinario/decision-index",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://github.com/apolinario/decision-index"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f03e5a6bcd25828757da1bedc899239f99d9ec11",
+    "reason": "社区公开复现指数0.3没有独立原题；可核对上游成员及加载/重建规则。成员原题不等于Jev改为多选后的完整题，完整分数还含私有部分。",
+    "sourceUrls": [
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f03e5a6bcd25828757da1bedc899239f99d9ec11"
+    ]
+  },
+  "metric": {
+    "name": "公开榜分（不等同Full分）",
+    "description": "公开榜37项；Full的权重为20%公开基准、50%同技能私测、30%新领域私测。Full及私有任务不能从公榜分替代。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/apolinario/decision-index",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/README.md",
+      "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/methodology.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "这是社区维护的Jev开放复现排行榜，不是TypeSafe官方发布的模型评测榜；Space当前描述0.3.x，复现工具包README说明0.3公榜37项及Full榜单私有部分。",
+      "sourceUrls": [
+        "https://github.com/apolinario/decision-index",
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/README.md",
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/methodology.html"
+      ]
+    },
+    {
+      "text": "公开工具包说明上游测试许可不一，且Full榜单私有部分不在复现套件中；故此条目不称为完整公开独立题库。",
+      "sourceUrls": [
+        "https://github.com/apolinario/decision-index"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Jev Index reproduction kit README",
+      "url": "https://github.com/apolinario/decision-index",
+      "role": "readme"
+    },
+    {
+      "label": "multimodalart HF Space index page",
+      "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/index.html",
+      "role": "leaderboard"
+    },
+    {
+      "label": "multimodalart HF Space README: public and Full score scope",
+      "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "multimodalart HF Space methodology",
+      "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/methodology.html",
+      "role": "definition"
+    },
+    {
+      "label": "HF Space 0.3 edition commit",
+      "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f03e5a6bcd25828757da1bedc899239f99d9ec11",
+      "role": "release"
+    },
+    {
+      "label": "HF Space 0.2.1 edition commit",
+      "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f4e3cd0cc75e4f037a3cf5a77cc791cdbc9d3e11",
+      "role": "release"
+    },
+    {
+      "label": "TypeSafe official Jev launch announcement",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "role": "release"
+    },
+    {
+      "label": "Perplexity official model card",
+      "url": "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Liquid AI D1 release page",
+      "url": "https://www.liquid.ai/blog/d1-open",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [
+    {
+      "id": "gsm8k",
+      "label": "上游评测",
+      "detail": "公开复现套件的上游GSM8K；本站示例保留原题/答案。Jev 0.3另行重建多选干扰项，不能把此原始例题当成Jev完整计分行。",
+      "sourceUrls": [
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f03e5a6bcd25828757da1bedc899239f99d9ec11"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-10-06",
+  "interpretation": {
+    "versionChanges": {
+      "text": "发布日期采用multimodalart维护的HF Space公开提交中首次标题为“Decision Index 0.3”的版本提交日2026-10-06；Space记录的0.2.1 edition commit为2026-09-26。此日期证据仅定位该社区Space的公开版本，不代表TypeSafe官方榜单或独立机构发布日期；TypeSafe官方2026-09-15公告是Jev模型/产品发布日。Space随后又有0.3.1/0.3.2提交。",
+      "sourceUrls": [
+        "https://github.com/apolinario/decision-index",
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/index.html",
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f03e5a6bcd25828757da1bedc899239f99d9ec11",
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f4e3cd0cc75e4f037a3cf5a77cc791cdbc9d3e11",
+        "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+        "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b",
+        "https://www.liquid.ai/blog/d1-open"
+      ]
+    }
+  },
+  "researchNotes": [
+    {
+      "text": "Space页面由multimodalart维护；公开commits记录Decision Index 0.3版于2026-10-06提交、0.3.1及0.3.2于后续日期更新，并记录0.2.1版于2026-09-26提交。本页日期仅取该公开复现Space版本日；Space和作者README均不能据此代表TypeSafe官方排行发布。",
+      "sourceUrls": [
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/blob/main/index.html",
+        "https://github.com/apolinario/decision-index",
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f03e5a6bcd25828757da1bedc899239f99d9ec11",
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f4e3cd0cc75e4f037a3cf5a77cc791cdbc9d3e11"
+      ]
+    },
+    {
+      "text": "The first public Space 0.3 commit is f03e5a6bcd25828757da1bedc899239f99d9ec11 at 2026-10-06 16:35:20Z. The board/reproduction is community maintained by multimodalart, not claimed as HF/TypeSafe official. Its README gives Full score = 20% public, 50% private tests of same skills, 30% private decision tasks; public-only reproduction covers 37 benchmark components. Public suite not redistributed. README pins GSM8K upstream to openai/gsm8k @740312a and license MIT, and documents 0.3 distractor rebuilding; the existing formal GSM8K sample is therefore a real upstream member prompt only, not a complete Jev row.",
+      "sourceUrls": [
+        "https://huggingface.co/spaces/multimodalart/jev-decision-index/commit/f03e5a6bcd25828757da1bedc899239f99d9ec11"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-19"
+}

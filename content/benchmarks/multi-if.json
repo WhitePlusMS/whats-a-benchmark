@@ -1,0 +1,212 @@
+{
+  "id": "multi-if",
+  "status": "published",
+  "order": 1680,
+  "name": "Multi-IF",
+  "subtitle": "多轮、多语言指令遵循评测",
+  "category": "alignment",
+  "tags": [
+    "指令遵循",
+    "多轮对话",
+    "多语言"
+  ],
+  "publisher": "Meta GenAI 论文署名团队；Facebook Research 仓库与 HF 数据卡是代码/数据分发渠道。",
+  "brandIds": [
+    "meta"
+  ],
+  "year": 2024,
+  "version": "论文与 Facebook Research 官方提示/评估代码及数据；引用时注明语言与轮次配置",
+  "kind": "original",
+  "aliases": [
+    "Multi-IF: Benchmarking LLMs on Multi-Turn and Multilingual Instructions Following"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在多轮对话和多语言提示中评估模型持续遵循指令约束的能力。",
+    "task": "模型逐轮回复多语言对话中的指令，并满足每轮约束及跨轮累积的要求。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.15553",
+      "https://github.com/facebookresearch/Multi-IF",
+      "https://huggingface.co/datasets/facebook/Multi-IF"
+    ]
+  },
+  "taskContract": {
+    "input": "多轮自然语言指令对话；论文从英语提示扩展到其他语言版本。",
+    "output": "逐轮文本回复，按指令约束遵循情况评分。",
+    "environment": "论文定义的提示集合和评估代码；模型提示模板、语言与生成配置需随结果披露。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.15553",
+      "https://github.com/facebookresearch/Multi-IF",
+      "https://huggingface.co/datasets/facebook/Multi-IF"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文报告4,501条三轮对话、覆盖8种语言；当前 HF viewer 显示约4.5k行并列出数据列。HF 数据卡声明 CC-BY-NC-2.0。",
+    "disclosure": "partial",
+    "scale": [
+      "arXiv v1 describes 4,501 dialogue instances with three turns; the current HF viewer shows about 4.5k rows across eight languages."
+    ],
+    "splits": [],
+    "fields": [
+      "key",
+      "language",
+      "turn_index",
+      "turn_1_prompt",
+      "turn_1_instruction_id_list",
+      "turn_1_kwargs",
+      "turn_2_prompt",
+      "turn_2_instruction_id_list",
+      "turn_2_kwargs",
+      "turn_3_prompt",
+      "turn_3_instruction_id_list",
+      "turn_3_kwargs",
+      "responses"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.15553",
+      "https://github.com/facebookresearch/Multi-IF",
+      "https://huggingface.co/datasets/facebook/Multi-IF",
+      "https://arxiv.org/html/2410.15553v1",
+      "https://datasets-server.huggingface.co/rows?dataset=facebook%2FMulti-IF&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.15553",
+      "https://github.com/facebookresearch/Multi-IF",
+      "https://huggingface.co/datasets/facebook/Multi-IF",
+      "https://datasets-server.huggingface.co/rows?dataset=facebook%2FMulti-IF&config=default&split=train&offset=0&length=1"
+    ],
+    "url": "https://huggingface.co/datasets/facebook/Multi-IF"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "The HF dataset card declares CC-BY-NC-2.0.",
+    "scope": "本非商业评测说明页展示单条Multi-IF记录，遵守CC BY-NC 2.0署名与非商业条件。",
+    "boundaries": [
+      "Non-commercial license terms apply as stated on the card.",
+      "The Facebook Research code/data distribution role does not establish other coauthor affiliations."
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.15553",
+      "https://github.com/facebookresearch/Multi-IF",
+      "https://huggingface.co/datasets/facebook/Multi-IF"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=facebook%2FMulti-IF&config=default&split=train&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=facebook%2FMulti-IF&config=default&split=train&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "指令级/对话级 strict 与 loose accuracy",
+    "description": "论文定义四项指令遵循准确率：instruction-level strict、conversation-level strict、instruction-level loose、conversation-level loose；论文最终分数为四项平均。引用成绩需按语言、轮次与 strict/loose 口径报告。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.15553",
+      "https://github.com/facebookresearch/Multi-IF"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "与 IFEval 单轮英文设置存在任务范围差异，不能视作同一数据配置。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2410.15553",
+        "https://github.com/facebookresearch/Multi-IF"
+      ]
+    },
+    {
+      "text": "自动可验证约束不能覆盖指令遵循的全部语用质量。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2410.15553",
+        "https://github.com/facebookresearch/Multi-IF"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Multi-IF 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2410.15553",
+      "role": "paper"
+    },
+    {
+      "label": "Facebook 官方 Multi-IF 数据集卡",
+      "url": "https://huggingface.co/datasets/facebook/Multi-IF",
+      "role": "data"
+    },
+    {
+      "role": "code",
+      "url": "https://github.com/facebookresearch/Multi-IF",
+      "label": "Facebook Research - official code repository"
+    },
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/html/2410.15553v1",
+      "label": "arxiv.org - Multi-IF"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=facebook%2FMulti-IF&config=default&split=train&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "论文及 Facebook Research 官方数据和评估代码；该代码仓库于 2025-12-01 被所有者归档为只读；引用时需说明语言与轮次配置。",
+      "sourceUrls": [
+        "https://github.com/facebookresearch/Multi-IF",
+        "https://huggingface.co/datasets/facebook/Multi-IF",
+        "https://arxiv.org/abs/2410.15553"
+      ]
+    }
+  },
+  "releaseDate": "2024-10-21",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://datasets-server.huggingface.co/rows?dataset=facebook%2FMulti-IF&config=default&split=train&offset=0&length=1",
+        "explanation": "三轮约束逐次累积：第一轮要求英文且全小写，第二轮要求结尾精确为what are they doing?，第三轮要求至少801词。只满足最后一轮的长度仍会漏掉先前约束。raw保留原始各轮提示、检查器ID与kwargs；responses在原记录中为空，没有补写模型回答或“标准答案”。",
+        "raw": {
+          "key": "1019:16:en",
+          "language": "English",
+          "turn_index": 0,
+          "turn_1_prompt": "{\"role\": \"user\", \"content\": \"Given the sentence \\\"Two young boys with toy guns and horns.\\\" can you ask a question? Please ensure that your response is in English, and in all lowercase letters. No capital letters are allowed.\"}",
+          "turn_1_instruction_id_list": "[\"change_case:english_lowercase\"]",
+          "turn_1_kwargs": "[\"{}\"]",
+          "turn_2_prompt": "{\"role\": \"user\", \"content\": \"Your response should end with the exact phrase: \\\"what are they doing?\\\" No other words should follow this phrase.\"}",
+          "turn_2_instruction_id_list": "[\"change_case:english_lowercase\", \"startend:end_checker\"]",
+          "turn_2_kwargs": "[\"{}\", \"{\\\"end_phrase\\\": \\\"what are they doing?\\\"}\"]",
+          "turn_3_prompt": "{\"role\": \"user\", \"content\": \"The result should contain at least 801 words.\"}",
+          "turn_3_instruction_id_list": "[\"change_case:english_lowercase\", \"startend:end_checker\", \"length_constraints:number_words\"]",
+          "turn_3_kwargs": "[\"{}\", \"{\\\"end_phrase\\\": \\\"what are they doing?\\\"}\", \"{\\\"relation\\\": \\\"at least\\\", \\\"num_words\\\": 801}\"]",
+          "responses": null
+        },
+        "split": "train row_idx=0 key=1019:16:en",
+        "license": "HF卡声明 CC-BY-NC-2.0；上游素材权利需单独核验。",
+        "prompt": "{\"role\": \"user\", \"content\": \"Given the sentence \\\"Two young boys with toy guns and horns.\\\" can you ask a question? Please ensure that your response is in English, and in all lowercase letters. No capital letters are allowed.\"}\n{\"role\": \"user\", \"content\": \"Your response should end with the exact phrase: \\\"what are they doing?\\\" No other words should follow this phrase.\"}\n{\"role\": \"user\", \"content\": \"The result should contain at least 801 words.\"}",
+        "type": "text",
+        "title": "多轮英语约束累积",
+        "excerpt": true,
+        "id": "multi-if-1019-16-en"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录multi-if-1019-16-en；已核对来源文件、版本或响应快照、记录定位与哈希。三轮约束逐次累积：第一轮要求英文且全小写，第二轮要求结尾精确为what are they doing?，第三轮要求至少801词。只满足最后一轮的长度仍会漏掉先前约束。raw保留原始各轮提示、检查器ID与kwargs；responses在原记录中为空，没有补写模型回答或“标准答案”。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=facebook%2FMulti-IF&config=default&split=train&offset=0&length=1"
+      ]
+    }
+  ]
+}

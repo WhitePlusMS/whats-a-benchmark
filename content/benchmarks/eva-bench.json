@@ -1,0 +1,242 @@
+{
+  "id": "eva-bench",
+  "status": "published",
+  "order": 1470,
+  "name": "EVA-Bench",
+  "subtitle": "在模拟电话任务中评估语音智能体的任务完成、事实忠实与对话体验",
+  "category": "agents",
+  "tags": [
+    "语音智能体",
+    "端到端评测",
+    "鲁棒性",
+    "交互质量"
+  ],
+  "publisher": "ServiceNow Research",
+  "brandIds": [
+    "eva-bench"
+  ],
+  "year": 2026,
+  "version": "EVA-Bench论文公开版；实验框架与数据需匹配具体修订",
+  "kind": "original",
+  "aliases": [
+    "EVA Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "EVA以可复现的用户目标、用户角色、场景数据库和目标数据库状态评估语音智能体的端到端任务执行，并提供准确性与体验复合指标。",
+    "task": "语音智能体通过模拟多轮电话对话、按需调用场景数据库工具完成用户目标；发布方测量任务准确性、回答忠实度和语音交互体验。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.13841",
+      "https://github.com/ServiceNow/eva",
+      "https://github.com/ServiceNow/eva/blob/main/docs/data.md"
+    ]
+  },
+  "taskContract": {
+    "input": "企业领域对话场景及由模拟用户生成的语音对话。",
+    "output": "智能体语音回复与任务处理结果；评价包含EVA-A（准确性）和EVA-X（体验）复合指标。",
+    "environment": "论文端到端语音智能体评测框架；需依照其对话模拟、验证和评分实现运行。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.13841",
+      "https://github.com/ServiceNow/eva"
+    ]
+  },
+  "dataProfile": {
+    "summary": "ServiceNow 数据文档定义场景记录包含 User Goal、User Persona、Scenario Database 和 Ground Truth。当前可见数据文件确认 airline 子域；论文报告的三域场景是否完整公开，无法由已检查的文件树确认。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告213个场景与3个企业领域"
+    ],
+    "splits": [],
+    "fields": [
+      "id",
+      "user_goal",
+      "expected_flow"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.13841",
+      "https://github.com/ServiceNow/eva",
+      "https://github.com/ServiceNow/eva/blob/main/docs/data.md",
+      "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/data/airline_dataset.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.13841",
+      "https://github.com/ServiceNow/eva",
+      "https://github.com/ServiceNow/eva/tree/main/data",
+      "https://github.com/ServiceNow/eva/blob/main/docs/data.md",
+      "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/data/airline_dataset.json"
+    ],
+    "url": "https://github.com/ServiceNow/eva/tree/main/data"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT License in the sampled ServiceNow/eva repository, copyright ServiceNow (2026). The sampled airline task JSON is distributed in this repository.",
+    "scope": "Only the selected airline_dataset task fields; no voice recordings or third-party assets are included.",
+    "boundaries": [
+      "The actual task scenario database, trace and fields not needed for the example are omitted; no separate audio license is inferred."
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.13841",
+      "https://github.com/ServiceNow/eva",
+      "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/data/airline_dataset.json",
+    "sourceUrls": [
+      "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/data/airline_dataset.json"
+    ]
+  },
+  "metric": {
+    "name": "EVA-A（准确性）与 EVA-X（体验）复合分数",
+    "description": "EVA-A 汇总任务完成、信息忠实度与关键实体语音保真；EVA-X 汇总简洁度、对话推进与轮次时序。论文将各维度归一化后按阈值计算 pass@1、pass@k、pass^k，三者均为越高越好。诊断指标（例如 STT WER、耗时、完成轮数）另行报告，不应套用复合分数方向。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.13841",
+      "https://arxiv.org/html/2605.13841",
+      "https://github.com/ServiceNow/eva",
+      "https://github.com/ServiceNow/eva/blob/main/docs/metrics/README.md",
+      "https://github.com/ServiceNow/eva/blob/main/docs/metrics/task_completion.md",
+      "https://github.com/ServiceNow/eva/blob/main/docs/metrics/stt_wer.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "EVA-A与EVA-X是指标而不是可独立视作基准的名称。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2605.13841",
+        "https://github.com/ServiceNow/eva"
+      ]
+    },
+    {
+      "text": "模拟语音对话与扰动设置影响结果；论文结果需注明模型架构、复测次数和指标统计口径。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2605.13841",
+        "https://github.com/ServiceNow/eva"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "EVA-Bench 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2605.13841",
+      "role": "paper"
+    },
+    {
+      "label": "ServiceNow Research 官方EVA项目仓库",
+      "url": "https://github.com/ServiceNow/eva",
+      "role": "code"
+    },
+    {
+      "role": "data",
+      "url": "https://github.com/ServiceNow/eva/tree/main/data",
+      "label": "ServiceNow EVA - visible data directory"
+    },
+    {
+      "role": "definition",
+      "url": "https://github.com/ServiceNow/eva/blob/main/docs/data.md",
+      "label": "ServiceNow EVA - data record structure"
+    },
+    {
+      "role": "data",
+      "url": "https://github.com/ServiceNow/eva/blob/main/data/airline_dataset.json",
+      "label": "ServiceNow EVA - airline-domain data"
+    },
+    {
+      "role": "definition",
+      "url": "https://github.com/ServiceNow/eva/blob/main/docs/metrics/README.md",
+      "label": "ServiceNow EVA 指标定义文档"
+    },
+    {
+      "role": "definition",
+      "url": "https://github.com/ServiceNow/eva/blob/main/docs/metrics/task_completion.md",
+      "label": "ServiceNow EVA - task-completion metric"
+    },
+    {
+      "role": "definition",
+      "url": "https://github.com/ServiceNow/eva/blob/main/docs/metrics/stt_wer.md",
+      "label": "ServiceNow EVA - STT WER diagnostic metric"
+    },
+    {
+      "role": "definition",
+      "url": "https://github.com/ServiceNow/eva/blob/main/docs/metrics/faithfulness.md",
+      "label": "ServiceNow EVA - faithfulness metric"
+    },
+    {
+      "label": "EVA-Bench HTML 正文与附录",
+      "url": "https://arxiv.org/html/2605.13841",
+      "role": "paper"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/data/airline_dataset.json",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "EVA-Bench论文公开版；实验框架与数据需匹配具体修订",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2605.13841",
+        "https://github.com/ServiceNow/eva"
+      ]
+    }
+  },
+  "releaseDate": "2026-05-13",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "eva-airline-1-1-2",
+        "title": "EVA airline scenario 1.1.2",
+        "type": "record",
+        "prompt": "You want to move your AUS to LAX flight from March 20 to March 25, arriving by 4:00 PM Pacific, keeping the total rebooking cost under $120, and keeping your window seat.",
+        "promptOrigin": "editorial",
+        "raw": {
+          "id": "1.1.2",
+          "user_goal": {
+            "high_level_user_goal": "You want to move your AUS to LAX flight from March 20 to March 25, arriving by 4:00 PM Pacific, keeping the total rebooking cost under $120, and keeping your window seat.",
+            "decision_tree": {
+              "must_have_criteria": [
+                "New travel date is 2026-03-25 for AUS→LAX (no alternate airports).",
+                "Arrival time in LAX is no later than 4:00 PM Pacific on 2026-03-25.",
+                "Total out-of-pocket cost to rebook (change fee + fare difference + any additional charges the agent states) is $120 or less.",
+                "After rebooking, you have a window seat assigned (agent confirms a specific seat number that is a window seat)."
+              ],
+              "resolution_condition": "The agent has completed the rebooking to an AUS→LAX flight on 2026-03-25 that arrives by 4:00 PM Pacific, confirmed the total amount charged is $120 or less, and confirmed a specific window seat assignment; the agent also confirms the booking is ticketed/confirmed and provides a confirmation reference (your confirmation code ZK3FFW is acceptable if they confirm it remains the same). End the call."
+            }
+          },
+          "expected_flow": "Passenger wants to move their flight to a later date. Agent authenticates, searches for available flights on the new date, presents options with fare differences and change fees, and rebooks after passenger confirmation."
+        },
+        "source": "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/data/airline_dataset.json",
+        "license": "MIT License in the sampled ServiceNow/eva repository, copyright ServiceNow (2026). The sampled airline task JSON is distributed in this repository.",
+        "split": "airline_dataset.json row 0, id=1.1.2",
+        "excerpt": true,
+        "explanation": "任务要求将 AUS→LAX 航班改到 3 月 25 日、当地 16:00 前抵达、总改签成本不超过 120 美元并保留靠窗座位。保留目标、必要条件与完成条件；场景数据库、期望对话轨迹及含合成个人信息字段未复制。该 JSON 不是语音录音。",
+        "licensePath": "licenses/eva-bench-sample-source.txt"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录eva-airline-1-1-2；已核对来源文件、版本或响应快照、记录定位与哈希。任务要求将 AUS→LAX 航班改到 3 月 25 日、当地 16:00 前抵达、总改签成本不超过 120 美元并保留靠窗座位。保留目标、必要条件与完成条件；场景数据库、期望对话轨迹及含合成个人信息字段未复制。该 JSON 不是语音录音。",
+      "sourceUrls": [
+        "https://github.com/ServiceNow/eva/blob/2918ca6ef5cd1726143e0c6da785058a4420303a/data/airline_dataset.json"
+      ]
+    }
+  ]
+}

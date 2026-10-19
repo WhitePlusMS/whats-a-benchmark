@@ -1,0 +1,172 @@
+{
+  "id": "swe-atlas-qna",
+  "status": "published",
+  "order": 1810,
+  "name": "SWE-Atlas-QnA",
+  "subtitle": "通过代码检视与运行分析回答真实软件仓库问题。",
+  "category": "coding",
+  "tags": [],
+  "publisher": "Scale AI Research Team",
+  "brandIds": [
+    "scale"
+  ],
+  "year": 2026,
+  "version": "2026-03-04公开定义版",
+  "kind": "subset",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "通过运行时分析、多文件推理及代码库检视，回答工程师式代码理解问题。",
+    "summary": "SWE Atlas 首个已发布子基准，评估代理在真实软件仓库中理解代码库的能力。",
+    "sourceUrls": [
+      "https://scale.com/blog/swe-atlas",
+      "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://scale.com/blog/swe-atlas",
+      "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA"
+    ],
+    "environment": "可在可复现沙盒内检查代码、运行命令并执行系统；官方推荐 SWE-Agent scaffold。",
+    "input": "代码仓库、固定基础提交和关于系统架构、根因、onboarding、安全或 API 集成的问题。",
+    "output": "代码库分析答案，按专家定义的 rubric 评审；官方发布页的主指标为 Task Resolve Rate。"
+  },
+  "dataProfile": {
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA",
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1"
+    ],
+    "fields": [
+      "task_id",
+      "repository_url",
+      "repository_base_commit",
+      "language",
+      "category",
+      "docker_image",
+      "prompt"
+    ],
+    "disclosure": "partial",
+    "splits": [],
+    "files": [],
+    "summary": "官方数据页显示 test split 124 行，覆盖 11 个开源仓库；包含 prompt、reference_answer、repository_url、固定基础提交、语言、类别、rubric 与 docker_image 字段。",
+    "scale": [
+      "官方数据页显示 124 条 test 任务",
+      "覆盖 11 个代码仓库"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "license": "本轮未核实覆盖题库/媒体内容的许可。",
+    "scope": "本页仅展示对应实际任务的编辑解读和必要原始字段节选；完整题面、答案或附件再分发许可未确认。",
+    "status": "unknown",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA"
+    ],
+    "boundaries": [
+      "不将代码仓库许可推定为题库或媒体许可。"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "sourceUrls": [
+      "https://scale.com/blog/swe-atlas"
+    ],
+    "description": "Scale 定义为所有 rubric 条目均满足的任务占比。",
+    "name": "Task Resolve Rate",
+    "direction": "higher"
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://scale.com/blog/swe-atlas",
+        "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA",
+      "label": "huggingface.co - SWE-Atlas-QnA"
+    },
+    {
+      "role": "leaderboard",
+      "url": "https://scale.com/leaderboard/sweatlas-qna",
+      "label": "scale.com - SWE-Atlas-QnA"
+    },
+    {
+      "url": "https://scale.com/blog/swe-atlas",
+      "role": "release",
+      "label": "scale.com - SWE-Atlas-QnA日期依据"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-03-04",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期依据：2026-03-04，Scale AI官方SWE Atlas发布文章发布日期（文章称Codebase QnA当日已可用）。",
+      "sourceUrls": [
+        "https://scale.com/blog/swe-atlas"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "6905333b74f22949d97ba9e3",
+        "title": "kitty · 远程控制命令的端到端追踪",
+        "type": "code",
+        "prompt": "在指定commit的kitty仓库中，追踪kitten @ ls如何找到正在运行的kitty、通过socket或TTY传输、解析协议并路由到ls处理器，同时解释日志、shell integration及真实返回JSON。原任务要求不能修改仓库代码，并清理临时脚本。",
+        "explanation": "这是一条实际代码库问答行，重点是从客户端、传输、分派到响应的端到端证据；只读某个函数名不能完整回答。raw保留真实task_id、repo/commit、语言/分类、镜像和提问中的操作片段；完整prompt、rubric及约1万字的reference_answer可在来源核对。数据卡未声明数据再分发许可，本页不转载完整参考回答，也没有自写答案冒充原始标注。",
+        "raw": {
+          "task_id": "6905333b74f22949d97ba9e3",
+          "repository_url": "kovidgoyal/kitty",
+          "repository_base_commit": "815df1e210e0a9ab4622f5c7f2d6891d7dbeddf1",
+          "language": "c",
+          "category": "Architecture & system design",
+          "docker_image": "ghcr.io/scaleapi/swe-atlas:swe_atlas_QnA_kovidgoyal_kitty_1.0",
+          "prompt": "When I run something like kitten @ ls from another terminal"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
+        "license": "The Scale AI dataset README at the observed revision documents the public 124-row test set but does not state a data license; that revision has no LICENSE file. Public access is not a reuse license.",
+        "split": "test",
+        "excerpt": true,
+        "promptOrigin": "editorial"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录6905333b74f22949d97ba9e3；来源响应SHA-256 6d601de2ca270e331c09c28eb3d6381cfe36101aae89932c28618d95e5e984ce。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "id": "labbench2",
+  "status": "published",
+  "order": 1560,
+  "name": "LABBench2",
+  "subtitle": "在更贴近实际研究的生物学任务中评估AI系统。",
+  "category": "work",
+  "tags": [],
+  "publisher": "Edison Scientific / FutureHouse 与合作者",
+  "brandIds": [
+    "edison-scientific"
+  ],
+  "year": 2026,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "derivative",
+  "aliases": [
+    "LABBench 2"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "完成论文定义的科学研究任务；新版约 1,900 项，延续 LAB-Bench 能力类别但采用更真实的任务情境。",
+    "summary": "LAB-Bench 的演进基准，评估 AI 系统在真实情境中执行有用生物学研究任务的能力。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09554",
+      "https://openreview.net/pdf?id=owvCKDejrX"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09554"
+    ],
+    "environment": "以论文和官方harness的版本为准。",
+    "input": "约 1,900 项生物研究任务记录，按各子任务要求提供信息与问题。",
+    "output": "按子任务要求提交答案或研究产物，并按对应任务评测。"
+  },
+  "dataProfile": {
+    "summary": "LABBench2用于评估科学研究任务；论文报告约1,900项任务。官方数据仓库持续修订，包含论文发布后的任务和答案更新。",
+    "scale": [
+      "约1,900项科学任务（论文报告）"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09554",
+      "https://huggingface.co/datasets/EdisonScientific/labbench2",
+      "https://github.com/EdisonScientific/labbench2"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "url": "https://huggingface.co/datasets/EdisonScientific/labbench2",
+    "requirements": [
+      "登录并接受数据访问条件"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/EdisonScientific/labbench2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "官方HF数据卡明确CC BY-SA 4.0；数据访问还须满足gated条件。",
+    "scope": "许可信息已核实；本次未取得受控任务文件，不复制未访问到的题目或媒体。",
+    "boundaries": [
+      "不使用相邻LAB-Bench初版题目或论文占位符冒充LABBench2实际记录。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/EdisonScientific/labbench2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "gated",
+    "url": "https://huggingface.co/datasets/EdisonScientific/labbench2",
+    "reason": "官方HF数据页明确要求登录并同意共享联系信息后访问文件；本次真实rows请求返回401，未取得题目行。已检查论文、公告、代码及数据卡；占位模板不当作真实样例，也不把访问受限说成没有数据。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/EdisonScientific/labbench2",
+      "https://github.com/EdisonScientific/labbench2"
+    ]
+  },
+  "metric": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09554"
+    ],
+    "description": "论文报告按子任务划分的模型准确率；不同子任务不可直接合并理解为同一能力维度。",
+    "name": "子任务准确率",
+    "direction": "higher"
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.09554"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://openreview.net/pdf?id=owvCKDejrX",
+      "label": "openreview.net - LABBench2"
+    },
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/EdisonScientific/labbench2",
+      "label": "huggingface.co - LABBench2"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/EdisonScientific/labbench2",
+      "label": "github.com - LABBench2"
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.09554",
+      "role": "paper",
+      "label": "arxiv.org - LABBench2日期依据"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-02-04",
+  "interpretation": {
+    "versionChanges": {
+      "text": "论文v1首投日为2026-02-04；官方数据仓库记录2026-03-13新增150项并修订sourcequality，之后还有任务答案更新，当前仓库不等同论文初版。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.09554",
+        "https://github.com/EdisonScientific/labbench2"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际检查官方HF卡及rows访问条件。公开卡记录2026-10-08修正tableqa2任务ac4dee87-fa10-40bb-a393-4d985779e63f的ideal answer，但没有给该题正文；因此此ID只能作为已发生的数据修订证据，不能作为题目样例。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/EdisonScientific/labbench2"
+      ]
+    }
+  ]
+}

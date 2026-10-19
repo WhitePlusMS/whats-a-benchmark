@@ -1,0 +1,204 @@
+{
+  "id": "speed-bench",
+  "status": "published",
+  "order": 1790,
+  "name": "SPEED-Bench",
+  "subtitle": "推测解码评测数据集与基准",
+  "category": "agents",
+  "tags": [
+    "推理性能",
+    "推测解码",
+    "吞吐量",
+    "服务评测"
+  ],
+  "publisher": "SPEED-Bench 论文作者团队；NVIDIA AIPerf 提供集成支持",
+  "brandIds": [
+    "nvidia"
+  ],
+  "year": 2026,
+  "version": "arXiv v1 首次提交日为2026-02-10（ID月份虽为2604，但以官方提交历史为准）；当前页面 v2 于2026-05-28 修订，论文与 AIPerf 集成版本需分别记录。",
+  "kind": "original",
+  "aliases": [
+    "SPEED-Bench (AIPerf dataset)",
+    "AIPerf SPEED-Bench（集成称呼，不是独立基准）"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以多样请求数据评测推测解码在模型推理服务中的性能表现。",
+    "task": "在目标模型及服务配置下运行推测解码，比较其输出质量约束下的吞吐等推理性能表现。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09557",
+      "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+    ]
+  },
+  "taskContract": {
+    "input": "SPEED-Bench请求数据及目标模型/推测解码配置。",
+    "output": "生成结果及服务性能测量；结果受硬件、批量、服务栈与推测解码策略影响。",
+    "environment": "可通过 NVIDIA AIPerf 集成执行；AIPerf 是基准运行/剖析工具，不能与数据集名称合并成新评测。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09557",
+      "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文提出用于推测解码评估的数据集；NVIDIA 文档说明其 AIPerf 数据集使用方式。具体数据字段、许可和固定数据revision须看原始数据源。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [
+      "question_id",
+      "category",
+      "sub_category",
+      "turns",
+      "source",
+      "src_id",
+      "difficulty",
+      "multiturn"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09557",
+      "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset",
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "Accept the NVIDIA Evaluation Dataset License Agreement; some upstream Hugging Face datasets require access approval and authentication."
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09557",
+      "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset",
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1"
+    ],
+    "url": "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "本例Go/27代码前缀按HumanEvalPack固定版本MIT许可展示；实际解码该版本Parquet的Go/27，prompt与SPEED-Bench该行turns[0]逐字节一致（187字符）。NVIDIA数据集整体的Evaluation Dataset License Agreement另行适用，不扩大此例许可。",
+    "scope": "只展示已核对属于MIT上游HumanEvalPack的Go/27前缀及SPEED来源标识。",
+    "boundaries": [
+      "不宣称SPEED-Bench全部数据都采用MIT，不将此代码补全例当作性能测量结果。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/bigcode/humanevalpack/resolve/9a41762f73a8cb23bb5811b73d5aab164efcf378/go/test-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/bigcode/humanevalpack/raw/9a41762f73a8cb23bb5811b73d5aab164efcf378/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "Throughput / speedup",
+    "description": "以目标服务配置下的推理吞吐或加速表现衡量；硬件与服务负载条件不可省略。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.09557",
+      "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "SPEED-Bench 是基准数据集/评测，不是 AIPerf 工具本身。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.09557",
+        "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+      ]
+    },
+    {
+      "text": "不同服务器、推测解码实现及性能配置下的数值不可直接横向比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.09557",
+        "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SPEED-Bench 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2604.09557",
+      "role": "paper"
+    },
+    {
+      "label": "NVIDIA AIPerf 的 SPEED-Bench 数据集说明",
+      "url": "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset",
+      "role": "definition"
+    },
+    {
+      "label": "NVIDIA AIPerf 集成文档",
+      "url": "https://github.com/ai-dynamo/aiperf/blob/main/docs/tutorials/speed-bench.md",
+      "role": "readme"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://huggingface.co/datasets/bigcode/humanevalpack/resolve/9a41762f73a8cb23bb5811b73d5aab164efcf378/go/test-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://huggingface.co/datasets/bigcode/humanevalpack/raw/9a41762f73a8cb23bb5811b73d5aab164efcf378/README.md",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "arXiv v1 首次提交日为2026-02-10（ID月份虽为2604，但以官方提交历史为准）；当前页面 v2 于2026-05-28 修订，论文与 AIPerf 集成版本需分别记录。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.09557",
+        "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+      ]
+    }
+  },
+  "releaseDate": "2026-02-10",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1",
+        "explanation": "原前缀要求FlipCase反转字母大小写，示例Hello对应hELLO；函数体待补全。SPEED-Bench将它用作qualitative/coding工作负载，该记录没有参考实现，本站没有补写答案。raw保留原始turns、source与src_id=Go/27；已对照固定HumanEvalPack原文件确认该187字符前缀完全一致。",
+        "raw": {
+          "question_id": "0daf539b787c4dccbb547330a8b4c3d7",
+          "category": "coding",
+          "sub_category": null,
+          "turns": [
+            "import (\n    \"strings\"\n)\n\n// For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n// >>> FlipCase('Hello')\n// 'hELLO'\nfunc FlipCase(str string) string {\n"
+          ],
+          "source": "https://huggingface.co/datasets/bigcode/humanevalpack/tree/9a41762f73a8cb23bb5811b73d5aab164efcf378",
+          "src_id": "Go/27",
+          "difficulty": null,
+          "multiturn": false
+        },
+        "split": "qualitative/test row_idx=0 src_id=Go/27",
+        "license": "本例Go/27代码前缀按HumanEvalPack固定版本MIT许可展示；实际解码该版本Parquet的Go/27，prompt与SPEED-Bench该行turns[0]逐字节一致（187字符）。NVIDIA数据集整体的Evaluation Dataset License Agreement另行适用，不扩大此例许可。",
+        "prompt": "import (\n    \"strings\"\n)\n\n// For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n// >>> FlipCase('Hello')\n// 'hELLO'\nfunc FlipCase(str string) string {\n",
+        "type": "code",
+        "title": "Go FlipCase代码补全",
+        "excerpt": true,
+        "id": "speed-bench-go-27"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录speed-bench-go-27；已核对来源文件、版本或响应快照、记录定位与哈希。原前缀要求FlipCase反转字母大小写，示例Hello对应hELLO；函数体待补全。SPEED-Bench将它用作qualitative/coding工作负载，该记录没有参考实现，本站没有补写答案。raw保留原始turns、source与src_id=Go/27；已对照固定HumanEvalPack原文件确认该187字符前缀完全一致。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1"
+      ]
+    }
+  ]
+}

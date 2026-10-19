@@ -1,0 +1,181 @@
+{
+  "id": "legalbench",
+  "status": "published",
+  "order": 1570,
+  "name": "LegalBench",
+  "subtitle": "涵盖162项任务的法律推理评测集合。",
+  "category": "work",
+  "tags": [],
+  "publisher": "Stanford Hazy Research 与跨学科贡献者",
+  "brandIds": [
+    "hazy-research"
+  ],
+  "year": 2023,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "完成多种法律推理任务。",
+    "summary": "以法律专业人员构造的任务衡量法律推理。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2308.11462"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2308.11462"
+    ],
+    "environment": "任务子集和评分脚本需明确标注。",
+    "input": "法律任务提示及材料。",
+    "output": "法律推理答案。"
+  },
+  "dataProfile": {
+    "summary": "LegalBench收录162项法律推理任务，由40名贡献者构建；不同任务的数据来源和许可各异，部分开放式生成任务使用人工评分表。",
+    "scale": [
+      "162项任务；40名贡献者"
+    ],
+    "splits": [],
+    "fields": [
+      "index",
+      "answer",
+      "text",
+      "slice"
+    ],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://hazyresearch.stanford.edu/legalbench/",
+      "https://hazyresearch.stanford.edu/legalbench/getting-started/",
+      "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "LegalBench hearsay任务README明确CC BY 4.0，来源Neel Guha。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1",
+      "https://github.com/HazyResearch/legalbench/blob/main/tasks/hearsay/README.md",
+      "https://github.com/HazyResearch/legalbench/tree/main/tasks/hearsay"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "按任务定义的正确率、F1及人工评分表等",
+    "description": "LegalBench由不同来源和任务组成，不规定单一全局分数；逐任务采用对应论文/实现中的指标，部分开放生成任务需人工评分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://hazyresearch.stanford.edu/legalbench/getting-started/",
+      "https://hazyresearch.stanford.edu/legalbench/tasks/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2308.11462"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2308.11462",
+      "label": "arxiv.org - LegalBench"
+    },
+    {
+      "role": "definition",
+      "url": "https://hazyresearch.stanford.edu/legalbench/",
+      "label": "hazyresearch.stanford.edu - LegalBench"
+    },
+    {
+      "url": "https://hazyresearch.stanford.edu/legalbench/getting-started/",
+      "role": "data",
+      "label": "hazyresearch.stanford.edu - LegalBench"
+    },
+    {
+      "url": "https://hazyresearch.stanford.edu/legalbench/tasks/",
+      "role": "definition",
+      "label": "hazyresearch.stanford.edu - LegalBench"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "数据卡、任务或许可依据",
+      "url": "https://github.com/HazyResearch/legalbench/blob/main/tasks/hearsay/README.md",
+      "role": "data"
+    },
+    {
+      "label": "数据卡、任务或许可依据",
+      "url": "https://github.com/HazyResearch/legalbench/tree/main/tasks/hearsay",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2023-08-20",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期依据：2023-08-20，arXiv v1首次提交日（论文公开日期；不等同数据开放日）。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2308.11462"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "hearsay-test-0",
+        "title": "hearsay/test · 行为事实是否构成传闻",
+        "type": "record",
+        "prompt": "On the issue of whether James is an smart individual, the fact that James came first in his class in law school.",
+        "answer": "No",
+        "explanation": "题面只给“James在法学院名列全班第一”这一行为事实，用它证明James聪明。原始slice是Non-assertive conduct，answer为No：它不是为主张某个命题而作出的陈述，因此本题不落入传闻陈述这一类别。raw保留原题、切片及标注；这是数据集分类标签的解释。",
+        "raw": {
+          "index": 0,
+          "answer": "No",
+          "text": "On the issue of whether James is an smart individual, the fact that James came first in his class in law school.",
+          "slice": "Non-assertive conduct"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1",
+        "license": "CC BY 4.0（任务 README 标注，具体样本注明 Source Neel Guha）。",
+        "split": "hearsay/test",
+        "excerpt": false
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录hearsay-test-0；来源响应SHA-256 65fa79adb9410e65051a94823f6e5be29e6bddf3d8d79d7a8f69ac033a3c60f0。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=nguha%2Flegalbench&config=hearsay&split=test&offset=0&length=1"
+      ]
+    }
+  ]
+}

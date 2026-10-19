@@ -1,0 +1,214 @@
+{
+  "id": "bright",
+  "status": "published",
+  "order": 1410,
+  "name": "BRIGHT",
+  "subtitle": "高推理需求信息检索基准",
+  "category": "knowledge",
+  "tags": [
+    "信息检索",
+    "复杂查询",
+    "段落检索"
+  ],
+  "publisher": "BRIGHT 论文作者团队",
+  "brandIds": [
+    "bright"
+  ],
+  "year": 2024,
+  "version": "论文与作者网站公开版本；查询/语料版本需按数据文件固定",
+  "kind": "original",
+  "aliases": [
+    "BRIGHT: A Realistic and Challenging Benchmark for Reasoning-Intensive Retrieval"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估检索系统处理需要多步推理的真实复杂查询的能力。",
+    "task": "针对信息需求从领域语料中检索支持回答复杂问题的相关段落。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2407.12883",
+      "https://brightbenchmark.github.io/"
+    ]
+  },
+  "taskContract": {
+    "input": "跨领域自然语言查询及对应的检索语料。",
+    "output": "按相关性排序的段落列表；依基准的相关性判断评价检索质量。",
+    "environment": "作者项目提供的查询、语料和评估资源；须固定子领域和检索设置。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2407.12883",
+      "https://brightbenchmark.github.io/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者项目报告1,385条高推理需求查询，并关联检索文档语料；HF 数据卡列出 query、reasoning、gold 与 exclusion 等字段。当前 viewer 行数为约数，不代表语料文档数量。",
+    "disclosure": "partial",
+    "scale": [
+      "The author project reports 1,385 queries. HF viewer currently shows about 1.38k query rows; this is not a count of corpus documents."
+    ],
+    "splits": [],
+    "fields": [
+      "query",
+      "id",
+      "excluded_ids",
+      "gold_ids_long",
+      "gold_ids"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2407.12883",
+      "https://brightbenchmark.github.io/",
+      "https://huggingface.co/datasets/xlangai/BRIGHT",
+      "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2407.12883",
+      "https://brightbenchmark.github.io/",
+      "https://huggingface.co/datasets/xlangai/BRIGHT",
+      "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1"
+    ],
+    "url": "https://huggingface.co/datasets/xlangai/BRIGHT"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "BRIGHT数据卡CC BY 4.0；本条查询原文来自Quinn Culver于2024-02-15的Biology Stack Exchange问题，按CC BY-SA 4.0保留该原文的署名、来源及相同方式共享条件。相关文档ID保留发布者标注；未转载文档全文。",
+    "scope": "该真实查询与相关文档标注的字段投影；查询原文仍按CC BY-SA 4.0提供。",
+    "boundaries": [
+      "不把数据卡的CC BY 4.0替代Stack Exchange原文的CC BY-SA条件，也不推定其他语料均适用同一许可。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1",
+      "https://biology.stackexchange.com/questions/114098/claim-in-article-about-why-insects-are-attracted-to-light",
+      "https://stackoverflow.com/help/licensing",
+      "https://huggingface.co/datasets/xlangai/BRIGHT"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "nDCG@10",
+    "description": "按相关性排序质量衡量；必须说明查询/语料版本和检索设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2407.12883",
+      "https://brightbenchmark.github.io/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该基准突出需要推理的检索查询，不能据此概括普通关键词检索或开放域问答的全部能力。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2407.12883",
+        "https://brightbenchmark.github.io/"
+      ]
+    },
+    {
+      "text": "论文摘要与当前项目页公布的查询数有轻微差异；精确计数需锁定数据revision。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2407.12883",
+        "https://brightbenchmark.github.io/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "BRIGHT 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2407.12883",
+      "role": "paper"
+    },
+    {
+      "label": "BRIGHT 作者官方项目页与资源入口",
+      "url": "https://brightbenchmark.github.io/",
+      "role": "definition"
+    },
+    {
+      "role": "data",
+      "url": "https://huggingface.co/datasets/xlangai/BRIGHT",
+      "label": "huggingface.co - BRIGHT"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://biology.stackexchange.com/questions/114098/claim-in-article-about-why-insects-are-attracted-to-light",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://stackoverflow.com/help/licensing",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=Gemini-1.0_reason&split=biology&offset=0&length=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "论文与作者网站公开版本；查询/语料版本需按数据文件固定",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2407.12883",
+        "https://brightbenchmark.github.io/"
+      ]
+    }
+  },
+  "releaseDate": "2024-07-16",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1",
+        "explanation": "用户质疑“LED几乎不发热却仍吸引昆虫，因此不是趋热”这一推论。检索需要区分即时行为机制与演化层面的原因，并找到趋光性的相关资料；gold_ids标注的正是Proximate_and_ultimate_causation与Phototaxis文档。这里展示原始examples配置的查询及相关文档ID，不用Gemini增广推理替代查询；省略辅助reasoning和gold_answer，因为BRIGHT计分目标是检索相关文档。原问题作者为Quinn Culver（Biology Stack Exchange，2024-02-15）；只对数据字段作投影。",
+        "raw": {
+          "query": "Claim in article about why insects are attracted to light\nIn this article they are addressing the reason insects are attracted to light when they say\nHeat radiation as an attractive component is refuted by the effect of LED lighting, which supplies negligible infrared radiation yet still entraps vast numbers of insects.\nI don't see why attraction to LEDs shows they're not seeking heat. Could they for example be evolutionarily programmed to associate light with heat? So that even though they don't encounter heat near/on the LEDs they still \"expect\" to?",
+          "id": "0",
+          "excluded_ids": [
+            "N/A"
+          ],
+          "gold_ids_long": [
+            "insects_attracted_to_light/Proximate_and_ultimate_causation.txt",
+            "insects_attracted_to_light/Phototaxis.txt"
+          ],
+          "gold_ids": [
+            "insects_attracted_to_light/Proximate_and_ultimate_causation_0.txt",
+            "insects_attracted_to_light/Proximate_and_ultimate_causation_1.txt",
+            "insects_attracted_to_light/Phototaxis_0.txt",
+            "insects_attracted_to_light/Phototaxis_3.txt",
+            "insects_attracted_to_light/Phototaxis_4.txt"
+          ]
+        },
+        "split": "examples/biology row_idx=0 id=0 (原始示例配置)",
+        "answer": "[\n  \"insects_attracted_to_light/Proximate_and_ultimate_causation_0.txt\",\n  \"insects_attracted_to_light/Proximate_and_ultimate_causation_1.txt\",\n  \"insects_attracted_to_light/Phototaxis_0.txt\",\n  \"insects_attracted_to_light/Phototaxis_3.txt\",\n  \"insects_attracted_to_light/Phototaxis_4.txt\"\n]",
+        "license": "BRIGHT数据卡CC BY 4.0；本条查询原文来自Quinn Culver于2024-02-15的Biology Stack Exchange问题，按CC BY-SA 4.0保留该原文的署名、来源及相同方式共享条件。相关文档ID保留发布者标注；未转载文档全文。",
+        "prompt": "Claim in article about why insects are attracted to light\nIn this article they are addressing the reason insects are attracted to light when they say\nHeat radiation as an attractive component is refuted by the effect of LED lighting, which supplies negligible infrared radiation yet still entraps vast numbers of insects.\nI don't see why attraction to LEDs shows they're not seeking heat. Could they for example be evolutionarily programmed to associate light with heat? So that even though they don't encounter heat near/on the LEDs they still \"expect\" to?",
+        "type": "text",
+        "title": "BRIGHT 原始 biology query 示例",
+        "excerpt": true,
+        "id": "bright-biology-0"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录bright-biology-0；已核对来源文件、版本或响应快照、记录定位与哈希。用户质疑“LED几乎不发热却仍吸引昆虫，因此不是趋热”这一推论。检索需要区分即时行为机制与演化层面的原因，并找到趋光性的相关资料；gold_ids标注的正是Proximate_and_ultimate_causation与Phototaxis文档。这里展示原始examples配置的查询及相关文档ID，不用Gemini增广推理替代查询；省略辅助reasoning和gold_answer，因为BRIGHT计分目标是检索相关文档。原问题作者为Quinn Culver（Biology Stack Exchange，2024-02-15）；只对数据字段作投影。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=xlangai%2FBRIGHT&config=examples&split=biology&offset=0&length=1"
+      ]
+    }
+  ]
+}

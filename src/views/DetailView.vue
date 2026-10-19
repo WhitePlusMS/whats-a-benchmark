@@ -312,8 +312,15 @@ useHead(() => ({
         }}</span>
       </div>
       <template v-if="item.composition">
+        <!-- 组成项没有站内样例时，只展示入口，不承诺下方存在真实案例。 -->
         <p class="task-description">
-          指数汇总多个评测，本身没有独立题库。下面展示一个组成评测的真实案例；各项任务和执行协议分别核对。
+          指数汇总多个评测，本身没有独立题库。
+          <template v-if="constituentSample"
+            >下面展示一个组成评测的真实案例；各项任务和执行协议分别核对。</template
+          >
+          <template v-else
+            >可通过下方组成项查看官方样例入口及获取方式。</template
+          >
         </p>
         <template v-if="constituentSample">
           <p class="task-description">

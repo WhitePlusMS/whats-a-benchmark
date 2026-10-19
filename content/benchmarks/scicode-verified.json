@@ -1,0 +1,227 @@
+{
+  "id": "scicode-verified",
+  "status": "published",
+  "order": 1770,
+  "name": "SciCode-Verified",
+  "subtitle": "对SciCode科学编程任务作人工核验修订的派生版本。",
+  "category": "coding",
+  "tags": [
+    "science",
+    "coding",
+    "derived"
+  ],
+  "publisher": "SciCode-Verified作者团队",
+  "brandIds": [
+    "scicode"
+  ],
+  "year": 2026,
+  "version": "论文定义版（v2数据的具体发布日期未披露）",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "作者维护的SciCode校正派生数据，README称v2；不是SciCode上游官方版本。",
+    "task": "执行科学编程任务并按程序结果验证。",
+    "sourceUrls": [
+      "https://github.com/flyingwagner/scicode-verified"
+    ]
+  },
+  "taskContract": {
+    "input": "SciCode科学问题、代码实现及可执行验证材料。",
+    "output": "代码和相应科学计算结果，由核验数据评估。",
+    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "sourceUrls": [
+      "https://github.com/flyingwagner/scicode-verified"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开人工核验校正数据：64个主问题、287个计分子问题；v2提供题目JSONL、manifest及独立HDF5评分目标。",
+    "disclosure": "complete",
+    "scale": [
+      "64个主问题",
+      "287个计分子问题",
+      "上游65题中排除1个无法唯一验证的问题"
+    ],
+    "splits": [
+      "test；本例problem_id=5 / step_number=5.1"
+    ],
+    "fields": [
+      "problem_name",
+      "problem_id",
+      "problem_description_main",
+      "problem_background_main",
+      "problem_io",
+      "required_dependencies",
+      "sub_steps",
+      "general_solution",
+      "general_tests"
+    ],
+    "files": [
+      "data/problems_test.jsonl",
+      "manifest.json",
+      "test_data_cleaned.h5"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/shhu2001/SciCode-Verified",
+      "https://huggingface.co/datasets/shhu2001/SciCode-Verified/resolve/eea11a866be6860725258702b39ef8651ed26abd/data/problems_test.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/shhu2001/SciCode-Verified",
+    "requirements": [
+      "可用datasets加载公开test题目；实际执行评分另需HDF5目标文件与官方harness。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/shhu2001/SciCode-Verified"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "SciCode-Verified作者数据卡明确Apache-2.0，并要求引用SciCode及该校正版。",
+    "scope": "本页展示固定revision v2的公开问题说明、函数接口和真实测试字段。",
+    "boundaries": [
+      "不将未取得的HDF5目标值或自行实现的代码当作官方参考答案。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/shhu2001/SciCode-Verified/resolve/eea11a866be6860725258702b39ef8651ed26abd/data/problems_test.jsonl",
+      "https://huggingface.co/datasets/shhu2001/SciCode-Verified"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已核对并展示此版本的真实问题、原始数据节选及简短解析；未生成参考答案或运行评测。",
+    "url": "https://huggingface.co/datasets/shhu2001/SciCode-Verified/resolve/eea11a866be6860725258702b39ef8651ed26abd/data/problems_test.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/shhu2001/SciCode-Verified/resolve/eea11a866be6860725258702b39ef8651ed26abd/data/problems_test.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "科学编程任务验证结果",
+    "description": "日期限定论文v1定义披露版；作者仓库称v2数据于2026年8月可用但未给准确日。不是SciCode上游官方版本，维护者机构身份未核实。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/flyingwagner/scicode-verified"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本日期指论文v1定义版；作者仓库仅称v2数据在2026年8月可用，v2日级发布日期与报告采用版本仍未核实。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.04975",
+        "https://github.com/flyingwagner/scicode-verified"
+      ]
+    },
+    {
+      "text": "该项目为独立人工核验修订的SciCode派生版本，不是SciCode上游官方版本。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.04975",
+        "https://github.com/flyingwagner/scicode-verified"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "github.com 官方资料",
+      "url": "https://github.com/flyingwagner/scicode-verified",
+      "role": "readme"
+    },
+    {
+      "label": "SciCode-Verified论文v1",
+      "url": "https://arxiv.org/abs/2608.04975",
+      "role": "paper"
+    },
+    {
+      "label": "已实际核对的任务数据或许可依据",
+      "url": "https://huggingface.co/datasets/shhu2001/SciCode-Verified/resolve/eea11a866be6860725258702b39ef8651ed26abd/data/problems_test.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "已实际核对的任务数据或许可依据",
+      "url": "https://huggingface.co/datasets/shhu2001/SciCode-Verified",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "scicode",
+      "label": "SciCode上游",
+      "detail": "此条目按来源所述版本/子集关系单独记录。",
+      "sourceUrls": [
+        "https://github.com/flyingwagner/scicode-verified"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期取arXiv论文v1于2026-08-05提交，限定为论文定义披露版。作者仓库另称v2版数据于2026年8月发布，但没有准确日期，因此不能把该日视为v2数据发布日期。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.04975",
+        "https://github.com/flyingwagner/scicode-verified"
+      ]
+    }
+  },
+  "releaseDate": "2026-08-05",
+  "updatedAt": "2026-10-19",
+  "researchNotes": [
+    {
+      "text": "标识沿用 SciCode 上游项目；SciCode-Verified 是作者维护的校正派生评测，不表示上游团队发布了此版本。",
+      "sourceUrls": [
+        "https://github.com/flyingwagner/scicode-verified"
+      ]
+    },
+    {
+      "text": "实际下载固定revision eea11a866be6860725258702b39ef8651ed26abd的数据文件，SHA-256 427771cb8bceb5058e8b510af0ee2c8210827a1491e0cdf8e6db56d4ed1440ba；manifest的MD5一致，解析得到64个对象，首条problem_id=5有1个子步骤和3个测试。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/shhu2001/SciCode-Verified/resolve/eea11a866be6860725258702b39ef8651ed26abd/data/problems_test.jsonl"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "scicode-v2-test-problem-5-lanczos",
+        "title": "SciCode-Verified v2：Lanczos 迭代",
+        "type": "code",
+        "prompt": "实现原题给定的lanczos(A, b, m)：输入对称矩阵A、起始向量b与迭代数m，返回形状M×(m+1)、列正交归一的Q。原始数据完整保留背景、输入输出、NumPy依赖、函数头及3条真实测试断言。",
+        "promptOrigin": "editorial",
+        "explanation": "Lanczos是Hermitian情形下的Arnoldi迭代，任务把对称矩阵上的迭代实现成数值代码。原题测试并非只检查矩阵大小，而是用np.allclose比较结果与官方target；target来自另外的HDF5评分文件，本页未下载该大型目标包或执行测试。raw保留problem_id=5的完整主问题字段及唯一子步骤5.1，含3个真实测试；ground_truth_code和general_solution在源中均为null，没有补写答案。数据是作者人工核验的v2派生发布，不是上游SciCode官方改名。",
+        "raw": {
+          "problem_name": "Lanczos",
+          "problem_id": "5",
+          "problem_description_main": "Create a function performing Lanczos Iteration. It takes a symmetric matrix A a number of iterations m and outputs a new matrix Q with orthonomal columns.",
+          "problem_background_main": "Background:\nThe Lanczos iteration is the Arnoldi iteration specialized to the hermitian case. The Lanczos iteration performs a \nreduction procedure of matrix $A$ to Hessenberg form by an orthogonal similarity transformation. This similarity \ntransformation can be written as:\n\\begin{equation*}\nA = QHQ^{*} \n\\end{equation*}\nIn the Lanzcos iteration case, the Hessenberg matrix $H$ is now a tridiagonal hermitian matrix \n\\begin{equation*}\nT_n = \\begin{bmatrix}\n\\alpha_1 & \\beta_1  & \\quad    & \\quad  & \\quad \\\\\n\\beta_1  & \\alpha_2 & \\beta_2  & \\quad  & \\quad \\\\\n\\quad    & \\beta_2  & \\alpha_3 & \\ddots & \\quad \\\\\n\\quad    & \\quad    & \\ddots   & \\ddots & \\beta_{n-1}\\\\\n\\quad    & \\quad    & \\quad    & \\beta_{n-1} & \\alpha_n\n\\end{bmatrix}\n\\end{equation*}\nwhere $\\alpha$ and $\\beta$ can be written as:\n$$\n\\alpha_n = h_{n,n} = q_n^TAq_n \n$$\n$$\n\\beta_n = h_{n+1,n} = q_{n+1}^T A q_n\n$$\nwhere $q_n$ are the column vector of the needed $Q$ matrix.",
+          "problem_io": "\"\"\"\nInputs:\nA : Matrix, 2d array of arbitrary size M * M\nb : Vector, 1d array of arbitrary size M * 1\nm : integer, m < M\n\nOutputs:\nQ : Matrix, 2d array of size M*(m+1)\n\"\"\"",
+          "required_dependencies": "import numpy as np",
+          "sub_steps": [
+            {
+              "step_number": "5.1",
+              "step_description_prompt": "Create a function performing Lanczos Iteration. It takes a symmetric matrix A a number of iterations m and outputs a new matrix Q with orthonomal columns.",
+              "step_background": "Background:\nThe Lanczos iteration is the Arnoldi iteration specialized to the hermitian case. The Lanczos iteration performs a \nreduction procedure of matrix $A$ to Hessenberg form by an orthogonal similarity transformation. This similarity \ntransformation can be written as:\n\\begin{equation*}\nA = QHQ^{*} \n\\end{equation*}\nIn the Lanzcos iteration case, the Hessenberg matrix $H$ is now a tridiagonal hermitian matrix \n\\begin{equation*}\nT_n = \\begin{bmatrix}\n\\alpha_1 & \\beta_1  & \\quad    & \\quad  & \\quad \\\\\n\\beta_1  & \\alpha_2 & \\beta_2  & \\quad  & \\quad \\\\\n\\quad    & \\beta_2  & \\alpha_3 & \\ddots & \\quad \\\\\n\\quad    & \\quad    & \\ddots   & \\ddots & \\beta_{n-1}\\\\\n\\quad    & \\quad    & \\quad    & \\beta_{n-1} & \\alpha_n\n\\end{bmatrix}\n\\end{equation*}\nwhere $\\alpha$ and $\\beta$ can be written as:\n$$\n\\alpha_n = h_{n,n} = q_n^TAq_n \n$$\n$$\n\\beta_n = h_{n+1,n} = q_{n+1}^T A q_n\n$$\nwhere $q_n$ are the column vector of the needed $Q$ matrix.",
+              "ground_truth_code": null,
+              "function_header": "def lanczos(A, b, m):\n    '''Inputs:\n    A : Matrix, 2d array of arbitrary size M * M\n    b : Vector, 1d array of arbitrary size M * 1\n    m : integer, m < M\n    Outputs:\n    Q : Matrix, 2d array of size M*(m+1)\n    '''",
+              "test_cases": [
+                "n = 7\nh = 1.0/n\ndiagonal = [2/h for i in range(n)]\ndiagonal_up = [-1/h for i in range(n-1)]\ndiagonal_down = [-1/h for i in range(n-1)]\nA = np.diag(diagonal) + np.diag(diagonal_up, 1) + np.diag(diagonal_down, -1)\nb = np.array([0.1,0.2,0.0,0.1,0.0,0.3,0.1])\nm = 5\nassert np.allclose(lanczos(A,b,m), target)",
+                "n = 7\nh = 1.0/n\ndiagonal = [1/h for i in range(n)]\ndiagonal_up = [-0.9/h for i in range(n-1)]\ndiagonal_down = [-0.9/h for i in range(n-1)]\nA = np.diag(diagonal) + np.diag(diagonal_up, 1) + np.diag(diagonal_down, -1)\nb = np.array([0.1,10.1,0.0,0.5,0.2,0.3,0.5])\nm = 5\nassert np.allclose(lanczos(A,b,m), target)",
+                "n = 7\nh = 1.0/n\ndiagonal = [1/h for i in range(n)]\ndiagonal_up = [-9/h for i in range(n-1)]\ndiagonal_down = [-9/h for i in range(n-1)]\nA = np.diag(diagonal) + np.diag(diagonal_up, 1) + np.diag(diagonal_down, -1)\nA[:, 0] = 0\nA[0, :] = 0\nA[0, 0] = 1/h\nb = np.array([0.1,0.1,0.0,10,0.0,0.1,0.1])\nm = 4\nassert np.allclose(lanczos(A,b,m), target)"
+              ],
+              "return_line": "    return Q"
+            }
+          ],
+          "general_solution": null,
+          "general_tests": [
+            "n = 7\nh = 1.0/n\ndiagonal = [2/h for i in range(n)]\ndiagonal_up = [-1/h for i in range(n-1)]\ndiagonal_down = [-1/h for i in range(n-1)]\nA = np.diag(diagonal) + np.diag(diagonal_up, 1) + np.diag(diagonal_down, -1)\nb = np.array([0.1,0.2,0.0,0.1,0.0,0.3,0.1])\nm = 5\nassert np.allclose(lanczos(A,b,m), target)",
+            "n = 7\nh = 1.0/n\ndiagonal = [1/h for i in range(n)]\ndiagonal_up = [-0.9/h for i in range(n-1)]\ndiagonal_down = [-0.9/h for i in range(n-1)]\nA = np.diag(diagonal) + np.diag(diagonal_up, 1) + np.diag(diagonal_down, -1)\nb = np.array([0.1,10.1,0.0,0.5,0.2,0.3,0.5])\nm = 5\nassert np.allclose(lanczos(A,b,m), target)",
+            "n = 7\nh = 1.0/n\ndiagonal = [1/h for i in range(n)]\ndiagonal_up = [-9/h for i in range(n-1)]\ndiagonal_down = [-9/h for i in range(n-1)]\nA = np.diag(diagonal) + np.diag(diagonal_up, 1) + np.diag(diagonal_down, -1)\nA[:, 0] = 0\nA[0, :] = 0\nA[0, 0] = 1/h\nb = np.array([0.1,0.1,0.0,10,0.0,0.1,0.1])\nm = 4\nassert np.allclose(lanczos(A,b,m), target)"
+          ]
+        },
+        "source": "https://huggingface.co/datasets/shhu2001/SciCode-Verified/resolve/eea11a866be6860725258702b39ef8651ed26abd/data/problems_test.jsonl",
+        "license": "HF 官方卡声明 Apache-2.0；此候选保留实际题目字段、函数签名与测试代码，按照 Apache-2.0 数据许可记录并注明上游 SciCode 归属。",
+        "split": "test / problem_id=5 / revision eea11a866be6860725258702b39ef8651ed26abd / v2",
+        "excerpt": true
+      }
+    ]
+  }
+}

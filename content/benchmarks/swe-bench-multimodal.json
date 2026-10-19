@@ -1,0 +1,242 @@
+{
+  "id": "swe-bench-multimodal",
+  "status": "published",
+  "order": 1820,
+  "name": "SWE-bench Multimodal",
+  "subtitle": "可视化前端软件问题修复评测",
+  "category": "coding",
+  "tags": [
+    "代码",
+    "软件工程",
+    "视觉输入",
+    "JavaScript"
+  ],
+  "publisher": "SWE-bench Multimodal 论文作者团队",
+  "brandIds": [
+    "swe-bench"
+  ],
+  "year": 2024,
+  "version": "论文与数据集公开版本；模型成绩所用具体commit未核",
+  "kind": "original",
+  "aliases": [
+    "SWE-bench M",
+    "SWE-bench-Multimodal",
+    "SWE-bench M (SWE-bench Multimodal)"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "SWE-bench 的视觉软件工程扩展，评测系统修复含视觉上下文的 JavaScript 问题。",
+    "task": "模型依据 GitHub issue 描述、相关图像与代码仓库上下文，提交软件修复补丁；论文以测试验证修复结果。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.03859",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal"
+    ]
+  },
+  "taskContract": {
+    "input": "带视觉内容的问题描述及对应 JavaScript 项目仓库。",
+    "output": "对目标仓库的代码修改/补丁，并由项目测试判定是否解决任务。",
+    "environment": "论文所述 JavaScript 软件项目与测试环境；实际模型运行器会影响结果，不能将单一系统成绩视作基准定义。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.03859",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文报告617个多模态软件缺陷修复任务；官方 HF 数据卡记录 issue、补丁、测试补丁和图像资产等字段，当前可见 dev split 为100行，不等于论文总量。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告617个任务实例，涉及17个JavaScript库"
+    ],
+    "splits": [
+      "The paper reports 617 task instances across 17 JavaScript repositories.",
+      "The current HF viewer shows a 100-row dev split; this is not the paper total."
+    ],
+    "fields": [
+      "instance_id",
+      "repo",
+      "base_commit",
+      "version",
+      "eval_type",
+      "problem_statement",
+      "FAIL_TO_PASS",
+      "PASS_TO_PASS"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.03859",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal",
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.03859",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal",
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1"
+    ],
+    "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "SWE-bench官方仓库在Code and data项目说明的Citation & license部分声明MIT；本页采用公开任务文字与标注，不据此给上游截图授权。",
+    "scope": "仅展示Automattic__wp-calypso-21409的文字记录；两张原issue截图没有逐图许可声明，未复制到站点。",
+    "boundaries": [
+      "论文CC BY 4.0不自动扩展至数据或上游截图。原issue由timmyc/Timmy Crawford公开附图，原图可在出处核对。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1",
+      "https://github.com/SWE-bench/SWE-bench",
+      "https://github.com/Automattic/wp-calypso/issues/20877"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "已解决任务数 / 解决率",
+    "description": "以补丁是否通过规定测试衡量问题解决；引用成绩应说明分母、任务split、运行器与仓库提交版本，不能把已解决绝对数量当作不同测试集间可直接比较的比例。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2410.03859",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该集合聚焦含视觉元素的用户界面 JavaScript 软件问题，不能代表一般代码生成或所有软件工程任务。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2410.03859",
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal"
+      ]
+    },
+    {
+      "text": "不同 agent harness、依赖与测试执行配置可能影响复现结果。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2410.03859",
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "SWE-bench Multimodal 原论文（arXiv v1）",
+      "url": "https://arxiv.org/abs/2410.03859",
+      "role": "paper"
+    },
+    {
+      "label": "SWE-bench Multimodal 官方数据集",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal",
+      "role": "data"
+    },
+    {
+      "label": "SWE-bench 官方项目主页",
+      "url": "https://www.swebench.com/",
+      "role": "definition"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/SWE-bench/SWE-bench",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://github.com/Automattic/wp-calypso/issues/20877",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "论文与数据集公开版本；模型成绩所用具体commit未核",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2410.03859",
+        "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal"
+      ]
+    }
+  },
+  "releaseDate": "2024-10-04",
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "source": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1",
+        "explanation": "这道多模态任务把截图中的验证邮箱提示与注册/授权行为联系起来：显示一条“请验证邮箱”的notice并不等于流程已正确要求验证。raw保留完整problem_statement及原始测试标识，其中含原图URL；本页只发布文字标注，没有复制两张截图或完整环境，因此不是完整可执行的多模态任务。原issue #20877和解决PR #21409对应，不能混淆issue号与instance_id。",
+        "raw": {
+          "instance_id": "Automattic__wp-calypso-21409",
+          "repo": "Automattic/wp-calypso",
+          "base_commit": "91b73692253827a03cfbd98411a5d809b46a776b",
+          "version": "8.9.3",
+          "eval_type": "pass_and_fail",
+          "problem_statement": "Store: Signup Flow needs to require email verification\nBackground p90Yrv-sE-p2\r\n\r\nIn order to allow for countries that are not supported by Store on wpcom to flow properly through the signup -> AT site/wp-admin, new user's email addresses must be verified for their WPCOM session to be valid to auth against their `wp-admin`.\r\n\r\nThere is one notice shown during the signup flow that prompts the user to verify their email address, but it does not prevent them from proceeding prior to doing so:\r\n\r\n![notice-verify](https://user-images.githubusercontent.com/22080/34058152-cf2dccfa-e18e-11e7-99f6-8a6f1f7a2dc4.png)\r\n\r\n__Current Thinking__\r\nThe idea right now is to create a new verification step after the user completes the Address Page form:\r\n\r\n![address-page](https://user-images.githubusercontent.com/22080/34058228-0f78b5f4-e18f-11e7-8133-e57bceea7374.png)\r\n\r\nBased on the user input here, we will have a fork in the flow:\r\n\r\n_Supported Countries ( US, CA )_\r\nIf the store address entered is a supported country, the next step will be the current flow - showing the dashboard setup checklist.\r\n\r\n_Non-Supported Countries_\r\nThese users will need to have a verified email address before proceeding/being directed to the WC setup page in `wp-admin`. Looks like we should be able to leverage [`isCurrentUserEmailVerified`](https://github.com/Automattic/wp-calypso/blob/master/client/state/current-user/selectors.js#L157) to quickly sniff this out - but we might have to do some polling, or add a button for the user to say \"Yes I have verified my email\".\r\n\r\nMaybe we could even use that cool fake browser frame to show them what the email subject line looks like @allendav!\r\n\r\nTODO: Need a design for this portion of the signup flow.\n",
+          "FAIL_TO_PASS": [
+            "selectors - #getCountriesWithStates - should return the countries with states, sorted",
+            "selectors - #getCountriesWithStates - should return an empty list if the locations are not loaded",
+            "selectors - #getCountriesWithStates - should return an empty list if the locations are being loaded"
+          ],
+          "PASS_TO_PASS": [
+            "selectors - #hasStates - should return true if the country has states",
+            "selectors - #areLocationsLoaded - should return true when locations are loaded.",
+            "selectors - #getStates - should return an empty list if the locations are being loaded",
+            "selectors - #getCountryName - should fallback to the country code if the locations are not loaded",
+            "selectors - #getStates - should return an empty list if the country does not exist",
+            "selectors - #hasStates - should return false if the locations are not loaded",
+            "selectors - #hasStates - should return false if the country does not exist",
+            "selectors - #getCountries - should return an empty list if the locations are being loaded",
+            "selectors - #getCountries - should return an empty list if the locations are not loaded",
+            "selectors - #areLocationsLoading - should return false when locations are loaded.",
+            "selectors - #hasStates - should return false if the country does not have states",
+            "selectors - #areLocationsLoaded - should return false when locations are loaded only for a different site.",
+            "selectors - #hasStates - should return false if the locations are being loaded",
+            "selectors - #areLocationsLoaded - should return false when locations are currently being fetched.",
+            "selectors - #areLocationsLoaded - should get the siteId from the UI tree if not provided.",
+            "selectors - #areLocationsLoading - should get the siteId from the UI tree if not provided.",
+            "selectors - #getContinents - should return the continents, sorted by name",
+            "selectors - #getCountryName - should fallback to the country code if the country does not exist",
+            "selectors - #getContinents - should return an empty list if the locations are being loaded",
+            "selectors - #areLocationsLoading - should return true when locations are currently being fetched.",
+            "selectors - #getCountryName - should return the country name",
+            "selectors - #getContinents - should return an empty list if the locations are not loaded",
+            "selectors - #getStates - should return the states from a country, sorted by name",
+            "selectors - #getCountries - should return an empty list if the continent does not exist",
+            "selectors - #getStates - should return an empty list if the locations are not loaded",
+            "selectors - #areLocationsLoading - should return false when locations are loaded only for a different site.",
+            "selectors - #areLocationsLoading - should return false when woocommerce state is not available.",
+            "selectors - #areLocationsLoaded - should return false when woocommerce state is not available.",
+            "selectors - #getCountries - should return the countries from a continent, sorted by name",
+            "selectors - #getStates - should return an empty list if the country does not have states"
+          ]
+        },
+        "split": "dev row_idx=0 Automattic__wp-calypso-21409",
+        "license": "HF卡未声明数据许可；源图片独立许可未核实，作为研究节选。",
+        "prompt": "WordPress.com注册流程需要真正实施邮箱验证要求，使后续AT站点/wp-admin授权流程正确工作。官方issue给出注册页与完成页两张截图，并讨论已有验证提示与实际流程行为；原始问题文字可切换到raw查看，原图见原issue。",
+        "type": "record",
+        "title": "Signup Flow 邮箱验证 issue",
+        "excerpt": true,
+        "id": "swe-mm-21409",
+        "promptOrigin": "editorial"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接取得实际记录swe-mm-21409；已核对来源文件、版本或响应快照、记录定位与哈希。这道多模态任务把截图中的验证邮箱提示与注册/授权行为联系起来：显示一条“请验证邮箱”的notice并不等于流程已正确要求验证。raw保留完整problem_statement及原始测试标识，其中含原图URL；本页只发布文字标注，没有复制两张截图或完整环境，因此不是完整可执行的多模态任务。原issue #20877和解决PR #21409对应，不能混淆issue号与instance_id。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1"
+      ]
+    }
+  ]
+}

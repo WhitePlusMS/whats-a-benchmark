@@ -1,0 +1,148 @@
+{
+  "id": "pronunciation-robustness",
+  "status": "published",
+  "order": 1750,
+  "name": "Pronunciation Robustness",
+  "subtitle": "按固定句集中的发音挑战类别评估TTS语音的可接受发音。",
+  "category": "multimodal",
+  "tags": [
+    "speech",
+    "tts",
+    "robustness"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "AA公开方法版（发布日期未披露）",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以固定句集和发音挑战类别测量TTS发音鲁棒性；完整句集未公开。",
+    "task": "人工判断合成语音的发音是否可接受。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+    ]
+  },
+  "taskContract": {
+    "input": "由TTS模型朗读包含语境消歧、简写扩展、序列保真等挑战的句子。",
+    "output": "人工评审对发音可接受性的判断。",
+    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+    ]
+  },
+  "dataProfile": {
+    "summary": "以固定句集和发音挑战类别测量TTS发音鲁棒性；完整句集未公开。",
+    "disclosure": "partial",
+    "scale": [
+      "四类挑战",
+      "多数样本由至少3名评审判断"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可浏览公开例句与音频；完整固定句集未公开。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+    ],
+    "url": "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已核对并展示官方公开案例的真实片段与解析；这不是完整私有题集。",
+    "url": "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+    ]
+  },
+  "metric": {
+    "name": "人工发音正确判断占比",
+    "description": "人工逐个判断标记文本片段是否自然且发音正确，得分为“是”占“是＋否”的比例，“无法判断”不计入分母。发布成绩须至少95%的样本获得三名及以上评审覆盖。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "AA方法页未提供日级首发日期；核查官方Changelog未找到该评测的上线公告，因此不填releaseDate。公开例句不代表全集。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview",
+        "https://artificialanalysis.ai/changelog"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "artificialanalysis.ai 官方资料",
+      "url": "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview",
+      "role": "definition"
+    },
+    {
+      "label": "Artificial Analysis 官方 Changelog（未找到该项日级首发公告）",
+      "url": "https://artificialanalysis.ai/changelog",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "updatedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "官方方法页未给出发布日期；本次核对官方Changelog亦未找到日级首发公告，因此保留日期未知，不用核验日或模型发布日期替代。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview",
+        "https://artificialanalysis.ai/changelog"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "methodology-public-example-st-mary",
+        "title": "同一缩写 St. 的两种语境",
+        "type": "record",
+        "prompt": "朗读“St. Mary’s is on Church St.”，分别判断两处 St. 应如何发音。",
+        "promptOrigin": "editorial",
+        "answer": "第一处：Saint；第二处：Street。",
+        "explanation": "这是真正列入官方固定公开子集的例句。第一处 St. 位于 Mary’s 之前，官方标注为 Saint；第二处跟在 Church 后，标注为 Street。评审逐个检查标记片段，不能把两种读音视为每一处都可任选。本站展示文本与官方标注，没有生成或仿制语音。",
+        "raw": "St. Mary’s is on Church St.\n\nSt.\nAccepted:\nSaint\n\nSt.\nAccepted:\nStreet",
+        "source": "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview",
+        "license": "官方公开例句及发音标签的必要短引；未确认完整句集或音频的再分发许可。",
+        "split": "官方固定公开子集 / Contextually Appropriate / 未披露稳定行ID",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接核对官方原文，保留页面实际展示的短片段；任务说明及解析由本站整理，未将文字节选包装为完整题库行。源页面与响应哈希保存在本轮逐项核验资料中。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech/pronunciation-robustness-overview"
+      ]
+    }
+  ]
+}

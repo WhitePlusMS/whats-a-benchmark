@@ -1,0 +1,163 @@
+{
+  "id": "harvey-lab-aa-v1-1",
+  "status": "published",
+  "order": 1520,
+  "name": "Harvey LAB-AA v1.1",
+  "subtitle": "法律代理生成法律工作成果；v1.1新增来源核验式幻觉检查与三评审人评分。",
+  "category": "work",
+  "tags": [
+    "legal",
+    "agent",
+    "evaluation"
+  ],
+  "publisher": "Harvey 与 Artificial Analysis",
+  "brandIds": [
+    "harvey",
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "LAB-AA v1.1",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AA与Harvey合作的LAB实现；v1.1加入hallucination audit/gate并更新裁判流程。",
+    "task": "评估法律工作任务的完成质量与幻觉控制。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+    ]
+  },
+  "taskContract": {
+    "input": "Harvey制作的120项私有法律工作任务及案件材料。",
+    "output": "法律交付物的rubric判定和Hallucination-Gated All-Pass Rate。",
+    "environment": "AA Stirrup代理环境，提供代码执行；不用Harvey专用工具或文档生成脚本，交付文件名须精确匹配。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA与Harvey合作的LAB实现；v1.1加入hallucination audit/gate并更新裁判流程。",
+    "disclosure": "partial",
+    "scale": [
+      "120项私有法律工作任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法与评测结果公开，完整任务及案件材料未公开下载。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实题库与媒体的统一再发布许可。",
+    "scope": "仅记录官方定义和已披露范围。",
+    "boundaries": [
+      "不将代码许可推定为题库、素材或媒体再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已核对并展示官方公开案例的真实片段与解析；这不是完整私有题集。",
+    "url": "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+    ]
+  },
+  "metric": {
+    "name": "Hallucination-Gated All-Pass Rate",
+    "description": "逐任务统计三位评审判定全部rubric标准通过的比例；存在实质性幻觉时，该任务主分归零，再跨任务平均。v1.1与v1.0的评分流程不同，成绩不能直接比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "AA于2026-10-08发布v1.1公告；Meta模型卡10-12披露该版是另一报告日期，不是此版本首发日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/changelog",
+        "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1",
+        "https://research.meta.ai/static/muse-wonder-model-card"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "artificialanalysis.ai 官方资料",
+      "url": "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1",
+      "role": "release"
+    },
+    {
+      "label": "Artificial Analysis Changelog（2026-10-08）",
+      "url": "https://artificialanalysis.ai/changelog",
+      "role": "release"
+    },
+    {
+      "label": "Meta Muse Wonder model card (v1.1披露日期)",
+      "url": "https://research.meta.ai/static/muse-wonder-model-card",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [
+    {
+      "id": "harvey-lab",
+      "label": "Harvey LAB原系列",
+      "detail": "此条目按来源所述版本/子集关系单独记录。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-10-08",
+  "interpretation": {
+    "versionChanges": {
+      "text": "发布日期采用AA Changelog中2026-10-08的Harvey LAB-AA v1.1公告；公告说明新增幻觉检查、三评审人rubric评分及Hallucination-Gated All-Pass Rate。Meta于10-12模型卡亦披露v1.1，但该日为报告披露而非首发。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/changelog",
+        "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1",
+        "https://research.meta.ai/static/muse-wonder-model-card"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "tax-compliance-publicly-illustrated-evidence",
+        "title": "税务审查：同一贷款是否被重复计数",
+        "type": "record",
+        "prompt": "官方税务案例的来源记载：2023年偿还600万美元本金，使同一笔贷款从2.20亿美元降至2.14亿美元。提交物却把两个金额并列为两笔债务。对照来源，判断这种写法的问题。",
+        "promptOrigin": "editorial",
+        "explanation": "2.20亿和2.14亿是同一贷款的期初、期末余额；并列相加会重复计算债务。AA将这处来源矛盾确认为重大幻觉，按v1.1规则该任务的幻觉门控分数归零。此处仅展示文章公开的来源、提交与判定短片段，不包含私有120题中的完整输入、附件或交付物。",
+        "raw": "Scheduled principal amortization of $6,000,000 was made during 2023\n\ndebt schedule $220M term loan + $214M notes\n\nConfirmed hallucination (material)",
+        "source": "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1",
+        "license": "AA官方文章公开案例的必要短引；完整任务、来源附件及模型交付物未确认再分发许可。",
+        "split": "2026-10-08官方文章 / 同一税务任务的公开判定案例 / 未披露私有任务ID",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19直接核对官方原文，保留页面实际展示的短片段；任务说明及解析由本站整理，未将文字节选包装为完整题库行。源页面与响应哈希保存在本轮逐项核验资料中。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1"
+      ]
+    }
+  ]
+}

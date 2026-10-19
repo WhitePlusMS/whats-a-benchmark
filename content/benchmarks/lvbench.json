@@ -1,0 +1,185 @@
+{
+  "id": "lvbench",
+  "status": "published",
+  "order": 1610,
+  "name": "LVBench",
+  "subtitle": "围绕最长约两小时的视频评估长视频理解与问答。",
+  "category": "multimodal",
+  "tags": [],
+  "publisher": "Zhipu AI 与清华大学作者团队",
+  "brandIds": [
+    "zai"
+  ],
+  "year": 2024,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "根据超长视频回答理解问题。",
+    "summary": "评估模型对超长视频内容的理解能力。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.08035"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.08035"
+    ],
+    "environment": "视频采样、帧率与上下文设置影响结果。",
+    "input": "长视频及自然语言问题。",
+    "output": "视频理解答案。"
+  },
+  "dataProfile": {
+    "summary": "长视频问答基准覆盖六种长视频理解能力，视频时长可达约两小时；官方仓库提供元数据与获取脚本，原视频托管于YouTube。",
+    "scale": [
+      "视频最长约2小时；覆盖六种长视频理解能力"
+    ],
+    "splits": [],
+    "fields": [
+      "key",
+      "type",
+      "video_info",
+      "uid",
+      "question",
+      "answer",
+      "question_type",
+      "time_reference"
+    ],
+    "files": [
+      "视频元数据及YouTube获取脚本；原视频由第三方托管"
+    ],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.08035",
+      "https://github.com/zai-org/LVBench",
+      "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://huggingface.co/datasets/DongfuJiang/LVBench",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "LVBench数据集卡标注MIT；本页仅展示任务标注，不下载或再分发YouTube视频。",
+    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "boundaries": [
+      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+    ],
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/DongfuJiang/LVBench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "Question-answer accuracy",
+    "description": "论文以问答准确率衡量模型对长视频问题的回答表现。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.08035",
+      "https://github.com/zai-org/LVBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2406.08035"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2406.08035",
+      "label": "arxiv.org - LVBench"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/zai-org/LVBench",
+      "label": "github.com - LVBench"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "数据卡、任务或许可依据",
+      "url": "https://huggingface.co/datasets/DongfuJiang/LVBench",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2024-06-12",
+  "interpretation": {
+    "versionChanges": {
+      "text": "官方仓库README记载项目发布日为2024-06-11；论文arXiv v1于2024-06-12提交，发布日期采用论文v1日期。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2406.08035",
+        "https://github.com/zai-org/LVBench"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "55",
+        "title": "uid 55 · 视频开头字幕年份",
+        "type": "record",
+        "prompt": "What year appears in the opening caption of the video?\n(A) 1636\n(B) 1366\n(C) 1363\n(D) 1633",
+        "explanation": "数据行定位到视频00:15–00:19，要求读开头字幕中的年份；原始答案D对应1633。raw保留四个选项、时间段、视频key与规格。本站未附61分钟原视频，因而这是一条可核对的真实题目标注，不是站内可完整播放的视频任务。",
+        "raw": {
+          "key": "Cm73ma6Ibcs",
+          "type": "cartoon",
+          "video_info": {
+            "duration_minutes": 61.09166666666667,
+            "fps": 24,
+            "resolution": {
+              "height": 720,
+              "width": 1280
+            }
+          },
+          "uid": 55,
+          "question": "What year appears in the opening caption of the video?\n(A) 1636\n(B) 1366\n(C) 1363\n(D) 1633",
+          "answer": "D",
+          "question_type": [
+            "key information retrieval"
+          ],
+          "time_reference": "00:15-00:19"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1",
+        "license": "mit; 数据题目/媒体许可范围需按原始数据卡与仓库进一步核实。",
+        "split": "test",
+        "excerpt": true,
+        "answer": "D"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录55；来源响应SHA-256 524a1623dcec0502a8a82a5e0486dce6fc0287d177422b17d352b726e11dd132。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ]
+}

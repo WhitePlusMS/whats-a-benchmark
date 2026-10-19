@@ -1,0 +1,169 @@
+{
+  "id": "plawbench",
+  "status": "published",
+  "order": 1730,
+  "name": "PLawBench",
+  "subtitle": "用细粒度评分标准评估法律咨询、案件分析和文书任务。",
+  "category": "work",
+  "tags": [],
+  "publisher": "Alibaba Group / Qwen Team主导的多机构作者团队",
+  "brandIds": [
+    "qwen"
+  ],
+  "year": 2026,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "根据法律实务场景完成咨询、分析或文书任务。",
+    "summary": "以评分rubric评估模型处理真实法律实践任务的表现。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.16669"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.16669"
+    ],
+    "environment": "需按论文rubric和评估设置运行。",
+    "input": "法律实践场景与任务要求。",
+    "output": "法律实务文本结果。"
+  },
+  "dataProfile": {
+    "summary": "论文定义850道法律实务问题，覆盖13种场景并含约12,500项rubric检查点，分属法律咨询、案件分析及法律文书任务。",
+    "scale": [
+      "850道问题；13种法律实务场景；约12,500项rubric"
+    ],
+    "splits": [],
+    "fields": [
+      "label",
+      "question",
+      "rubrics"
+    ],
+    "files": [],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.16669",
+      "https://aclanthology.org/2026.acl-long.458/",
+      "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl",
+    "requirements": [
+      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl"
+    ]
+  },
+  "reusePolicy": {
+    "license": "本轮未核实覆盖题库/媒体内容的许可。",
+    "scope": "本页仅展示对应实际任务的编辑解读和必要原始字段节选；完整题面、答案或附件再分发许可未确认。",
+    "status": "unknown",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.16669"
+    ],
+    "boundaries": [
+      "不将代码仓库许可推定为题库或媒体许可。"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "Rubric item-level evaluation",
+    "description": "论文以细粒度rubric检查项评估模型回答，并报告与专家判断的一致性；没有将不同法律任务假定为统一客观答案分数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.16669",
+      "https://aclanthology.org/2026.acl-long.458/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.16669"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2601.16669",
+      "label": "arxiv.org - PLawBench"
+    },
+    {
+      "role": "paper",
+      "url": "https://aclanthology.org/2026.acl-long.458/",
+      "label": "aclanthology.org - PLawBench"
+    },
+    {
+      "url": "https://arxiv.org/html/2601.16669v1",
+      "label": "arXiv v1 HTML affiliations",
+      "role": "paper"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-01-23",
+  "interpretation": {
+    "versionChanges": {
+      "text": "日期依据：2026-01-23，arXiv v1首次提交日（论文公开日期；不等同数据开放日）。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2601.16669"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "practical-case-analysis-250-line-0",
+        "title": "婚庆录像丢失 · 原始问题与评分项",
+        "type": "record",
+        "prompt": "某甲已付清婚庆合同费用，服务商未经告知将摄像转包，录像因重大过失全部丢失；合同附件含全程跟拍记录，其他服务已完成。该真实案例要求按结论、案情、分析和法条的顺序，讨论能否向合同服务商主张精神损害赔偿。",
+        "explanation": "原始评分量表的结论项明确给出可主张精神损害赔偿、分值5分；完整量表还分别检查合同违约、录像的人身意义及法条依据。本页用中文整理案情，只保留真实question和首个rubric字段，省略长context及其余量表，不编写替代标准答案。",
+        "raw": {
+          "label": "个人生活",
+          "question": "以【结论 + 案情简述 + 分析过程+依据法条】的逻辑回答以下问题：在上述案例中，某甲能否向某摄影服务公司主张精神损害赔偿？",
+          "rubrics": [
+            {
+              "criterion": "【结论得分】\n(+5分) 某甲有权向某摄影服务公司主张精神损害赔偿。",
+              "points": "5",
+              "tags": "结论得分"
+            }
+          ]
+        },
+        "source": "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl",
+        "license": "仓库未发现明确覆盖问题/评分量表的数据许可；仅作节选候选，需人工确认展示权限。",
+        "split": "practical_case_analysis_250.jsonl / line 0",
+        "excerpt": true,
+        "promptOrigin": "editorial",
+        "answer": "原始rubric结论项：某甲有权向某摄影服务公司主张精神损害赔偿（5分）。"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录practical-case-analysis-250-line-0；来源响应SHA-256 44a69190ba08f0a4b68ea208b57b403e6b7f9aa01b105cf0fc3a34c06f4a832e。来源文件commit/revision及原始字节哈希见本轮逐项取证。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl"
+      ]
+    }
+  ]
+}

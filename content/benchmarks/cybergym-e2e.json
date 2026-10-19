@@ -1,0 +1,158 @@
+{
+  "id": "cybergym-e2e",
+  "status": "published",
+  "order": 1450,
+  "name": "CyberGym-E2E",
+  "subtitle": "在真实代码库中发现、复现并修补内存安全漏洞。",
+  "category": "coding",
+  "tags": [],
+  "publisher": "UC Berkeley RDI 与合作研究团队",
+  "brandIds": [
+    "sunblaze-ucb"
+  ],
+  "year": 2026,
+  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "kind": "original",
+  "aliases": [
+    "CyberGym E2E"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "task": "在真实代码库中发现漏洞、生成可触发漏洞的 PoC，并提交修复补丁。",
+    "summary": "CyberGym-E2E覆盖漏洞发现与利用验证、补丁修复和项目功能测试；S1至S4分层报告端到端能力，S4为漏洞诊断层。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.04460",
+      "https://rdi.berkeley.edu/blog/cybergym-e2e/"
+    ]
+  },
+  "taskContract": {
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.04460"
+    ],
+    "environment": "代码执行代理环境；具体任务和harness版本需分别记录。",
+    "input": "代码仓库与任务说明。",
+    "output": "代理生成的修复/安全任务结果。"
+  },
+  "dataProfile": {
+    "summary": "任务覆盖139个项目中的920个真实漏洞；评测材料包括易受攻击的源代码仓库及构建、测试脚本。",
+    "scale": [
+      "920个漏洞；分布于139个项目"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [
+      "易受攻击的源代码仓库、构建脚本与测试脚本。"
+    ],
+    "disclosure": "partial",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.04460",
+      "https://github.com/sunblaze-ucb/cybergym-e2e",
+      "https://www.cybergym.io/cybergym-e2e/"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "url": "https://github.com/sunblaze-ucb/cybergym-e2e",
+    "requirements": [],
+    "sourceUrls": [
+      "https://github.com/sunblaze-ucb/cybergym-e2e"
+    ]
+  },
+  "reusePolicy": {
+    "license": "本轮未核实覆盖题库/媒体内容的许可。",
+    "scope": "本页仅展示对应实际任务的编辑解读和必要原始字段节选；完整题面、答案或附件再分发许可未确认。",
+    "status": "unknown",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.04460"
+    ],
+    "boundaries": [
+      "不将代码仓库许可推定为题库或媒体许可。"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "url": "https://www.cybergym.io/cybergym-e2e/",
+    "sourceUrls": [
+      "https://www.cybergym.io/cybergym-e2e/"
+    ]
+  },
+  "metric": {
+    "name": "Cumulative success rates S1–S4",
+    "description": "S1至S4是顺序累积的端到端成功率：S1生成PoC触发崩溃，S2补丁消除生成PoC的崩溃，S3修补版本通过项目测试，S4补丁也消除原始真实漏洞PoC的崩溃，用于判断是否修复目标漏洞。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.04460",
+      "https://rdi.berkeley.edu/blog/cybergym-e2e/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2606.04460"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/abs/2606.04460",
+      "label": "arxiv.org - CyberGym-E2E"
+    },
+    {
+      "role": "definition",
+      "url": "https://rdi.berkeley.edu/blog/cybergym-e2e/",
+      "label": "rdi.berkeley.edu - CyberGym-E2E"
+    },
+    {
+      "role": "readme",
+      "url": "https://github.com/sunblaze-ucb/cybergym-e2e",
+      "label": "github.com - CyberGym-E2E"
+    },
+    {
+      "label": "已实际读取的原始任务记录",
+      "url": "https://www.cybergym.io/cybergym-e2e/",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "releaseDate": "2026-06-03",
+  "interpretation": {
+    "versionChanges": {
+      "text": "论文 v1 于2026-06-03提交；Berkeley RDI 于2026-06-18发布项目/数据公告，二者是不同日期口径。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2606.04460",
+        "https://rdi.berkeley.edu/blog/cybergym-e2e/"
+      ]
+    }
+  },
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "cybergym-e2e-graphicsmagick-case",
+        "title": "公开案例 · GraphicsMagick MNG解析路径",
+        "type": "record",
+        "prompt": "官方E2E案例中，代理拿到GraphicsMagick代码库及构建、测试条件，自行定位MNG解析器问题并尝试修复。页面叙述其最终追踪到ReadMNGImage()/mng_LOOP；这不是已公开的完整原始任务提示。",
+        "explanation": "该页面案例描述沿 `ReadMNGImage()` 跟踪 `mng_LOOP` chunk，检查样例 MNG 字节布局并构造触发 heap-buffer-overflow 的最小 malformed 输入，再逐轮修补直至验证通过。这里是官方案例摘要，不是公开题库任务；网页没有提供可下载的输入文件或完整补丁，未下载或运行 PoC。",
+        "raw": "uses targeted search to home in on `ReadMNGImage()` in `coders/png.c`.",
+        "source": "https://www.cybergym.io/cybergym-e2e/",
+        "license": "官方案例页只公开此案例叙述；该页面未说明案例文字的再发布许可，仅保留不超过25个英文词的原文节选。",
+        "split": "Official page example / GraphicsMagick",
+        "excerpt": true,
+        "promptOrigin": "editorial"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-19实际取得记录cybergym-e2e-graphicsmagick-case；来源响应SHA-256 627b31e2a2112f89eec254ba30b2c0cffbb9b83d117faf29ffb6a708059ee8ff。来源文件commit/revision及原始字节哈希见本轮逐项取证。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+      "sourceUrls": [
+        "https://www.cybergym.io/cybergym-e2e/"
+      ]
+    }
+  ]
+}

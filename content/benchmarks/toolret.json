@@ -1,0 +1,253 @@
+{
+  "id": "toolret",
+  "status": "published",
+  "order": 1860,
+  "name": "ToolRet",
+  "subtitle": "大语言模型工具检索能力评测",
+  "category": "agents",
+  "tags": [
+    "工具检索",
+    "检索",
+    "工具调用"
+  ],
+  "publisher": "ToolRet论文作者团队（山东大学、百度、莱顿大学）",
+  "brandIds": [
+    "toolret-maintainer"
+  ],
+  "year": 2025,
+  "version": "ToolRet 原论文 arXiv v1（2025-03-03）；ACL 2025 Findings 版本与官方代码/数据项目后续更新",
+  "kind": "original",
+  "aliases": [
+    "Tool Retrieval Benchmark",
+    "Retrieval Models Aren’t Tool-Savvy"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估检索模型为语言模型从工具集合中找出合适工具的能力。",
+    "task": "根据用户请求或任务描述，从候选工具描述中检索相关工具。",
+    "sourceUrls": [
+      "https://github.com/mangopy/tool-retrieval-benchmark",
+      "https://aclanthology.org/2025.findings-acl.1258/",
+      "https://arxiv.org/abs/2503.01763",
+      "https://arxiv.org/html/2503.01763",
+      "https://mangopy.github.io/tool-retrieval-benchmark/"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言查询和候选工具文档/描述。",
+    "output": "排序后的相关工具列表，依据论文检索指标评估。",
+    "environment": "论文与作者仓库所提供的工具检索数据及评估实现。",
+    "sourceUrls": [
+      "https://github.com/mangopy/tool-retrieval-benchmark",
+      "https://arxiv.org/abs/2503.01763",
+      "https://arxiv.org/html/2503.01763",
+      "https://mangopy.github.io/tool-retrieval-benchmark/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者项目说明完整评测数据与训练资源均已发布，并提供 Hugging Face 资源集合；论文将约7.6k检索任务、约43k工具语料与超过200k训练实例区分。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告约7.6k检索任务与43k工具语料；另有超过200k实例的训练集"
+    ],
+    "splits": [],
+    "fields": [
+      "id",
+      "labels"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/mangopy/tool-retrieval-benchmark",
+      "https://aclanthology.org/2025.findings-acl.1258/",
+      "https://arxiv.org/abs/2503.01763",
+      "https://arxiv.org/html/2503.01763",
+      "https://mangopy.github.io/tool-retrieval-benchmark/",
+      "https://huggingface.co/collections/mangopy/tool-retrieval-67becd739af04daa71c88db0",
+      "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "sourceUrls": [
+      "https://github.com/mangopy/tool-retrieval-benchmark",
+      "https://aclanthology.org/2025.findings-acl.1258/",
+      "https://arxiv.org/abs/2503.01763",
+      "https://arxiv.org/html/2503.01763",
+      "https://mangopy.github.io/tool-retrieval-benchmark/",
+      "https://huggingface.co/collections/mangopy/tool-retrieval-67becd739af04daa71c88db0"
+    ],
+    "url": "https://huggingface.co/collections/mangopy/tool-retrieval-67becd739af04daa71c88db0"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未确认数据集各组成部分适用的许可。",
+    "scope": "许可说明仅适用于明确列出的数据对象；代码、题集及引用的上游材料须分别依据各自来源条款判断。",
+    "boundaries": [
+      "代码仓库许可不能自动视为题集、图片、音频或上游数据许可。",
+      "具体发布、商用和再分发权限须按各数据源条款另行核对。"
+    ],
+    "sourceUrls": [
+      "https://github.com/mangopy/tool-retrieval-benchmark",
+      "https://aclanthology.org/2025.findings-acl.1258/",
+      "https://arxiv.org/abs/2503.01763",
+      "https://arxiv.org/html/2503.01763",
+      "https://mangopy.github.io/tool-retrieval-benchmark/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
+    "url": "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md"
+    ]
+  },
+  "metric": {
+    "name": "nDCG@K、Recall@K、Precision@K、Completeness@K",
+    "description": "论文分别用 NDCG@K 评价相关工具排序、Recall@K 评价召回目标工具的比例、Precision@K 评价检索结果准确性，并采用 Completeness@K 补充衡量目标工具集合覆盖；应注明 K 和检索设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/mangopy/tool-retrieval-benchmark",
+      "https://aclanthology.org/2025.findings-acl.1258/",
+      "https://arxiv.org/abs/2503.01763",
+      "https://arxiv.org/html/2503.01763",
+      "https://mangopy.github.io/tool-retrieval-benchmark/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该基准关注工具检索排序，不覆盖端到端工具调用是否正确执行。",
+      "sourceUrls": [
+        "https://github.com/mangopy/tool-retrieval-benchmark",
+        "https://aclanthology.org/2025.findings-acl.1258/",
+        "https://arxiv.org/abs/2503.01763",
+        "https://arxiv.org/html/2503.01763",
+        "https://mangopy.github.io/tool-retrieval-benchmark/"
+      ]
+    },
+    {
+      "text": "工具描述库与候选范围变化可能影响结果；必须标明模型使用的数据和检索器版本。",
+      "sourceUrls": [
+        "https://github.com/mangopy/tool-retrieval-benchmark",
+        "https://aclanthology.org/2025.findings-acl.1258/",
+        "https://arxiv.org/abs/2503.01763",
+        "https://arxiv.org/html/2503.01763",
+        "https://mangopy.github.io/tool-retrieval-benchmark/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "ToolRet 作者官方代码与资源",
+      "url": "https://github.com/mangopy/tool-retrieval-benchmark",
+      "role": "code"
+    },
+    {
+      "label": "ACL Anthology Findings of ACL 2025 论文记录",
+      "url": "https://aclanthology.org/2025.findings-acl.1258/",
+      "role": "paper"
+    },
+    {
+      "label": "ToolRet 原论文（arXiv v1 日期、机构署名与评测定义）",
+      "url": "https://arxiv.org/abs/2503.01763",
+      "role": "paper"
+    },
+    {
+      "label": "ToolRet 原论文 HTML（机构署名、任务数及nDCG@10）",
+      "url": "https://arxiv.org/html/2503.01763",
+      "role": "paper"
+    },
+    {
+      "label": "作者官方项目页",
+      "url": "https://mangopy.github.io/tool-retrieval-benchmark/",
+      "role": "definition"
+    },
+    {
+      "label": "ToolRet Hugging Face 数据资源集合",
+      "url": "https://huggingface.co/collections/mangopy/tool-retrieval-67becd739af04daa71c88db0",
+      "role": "data"
+    },
+    {
+      "label": "实际原始任务、数据或许可依据",
+      "url": "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-19",
+  "interpretation": {
+    "versionChanges": {
+      "text": "arXiv v1 于 2025-03-03 首次提交；作者仓库记录同日发布论文、3月5日发布代码、5月20日论文被 ACL 2025 接收。工具库和检索任务应按引用版本固定。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2503.01763",
+        "https://arxiv.org/html/2503.01763",
+        "https://github.com/mangopy/tool-retrieval-benchmark",
+        "https://mangopy.github.io/tool-retrieval-benchmark/",
+        "https://aclanthology.org/2025.findings-acl.1258/"
+      ]
+    }
+  },
+  "releaseDate": "2025-03-03",
+  "researchNotes": [
+    {
+      "text": "README 公开展示的 JSON 示例可核对字段结构；语料由多个既有数据源汇集，项目仓库 Apache-2.0 不能自动覆盖所有上游数据许可。",
+      "sourceUrls": [
+        "https://github.com/mangopy/tool-retrieval-benchmark",
+        "https://huggingface.co/collections/mangopy/tool-retrieval-67becd739af04daa71c88db0"
+      ]
+    },
+    {
+      "text": "2026-10-19直接取得实际记录apigen_query_5；已核对来源文件、版本或响应快照、记录定位与哈希。HF作者数据卡明确称此为评测集的具体示例apigen_query_5，相关工具是apigen_tool_272/bacterial_growth，relevance=1。raw保留真实工具名、参数名/类型/默认值与相关性，省略自然语言长描述和完整查询原句；默认值20保留源数据原值，不擅自“修正”为查询中的500或0.3。模型检索到相关工具才是此例目标，本站未计算或伪造工具输出。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md"
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-19",
+  "sampleSet": {
+    "samples": [
+      {
+        "id": "apigen_query_5",
+        "title": "ToolRet concrete evaluation example",
+        "type": "record",
+        "prompt": "实际查询给出初始500个细菌、生长率每分钟0.3、倍增时间20分钟，询问45分钟后的数量。ToolRet此例要求从工具库召回可处理这些参数的工具，而不是只计算一个数字。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "id": "apigen_query_5",
+          "labels": [
+            {
+              "id": "apigen_tool_272",
+              "doc": {
+                "name": "bacterial_growth",
+                "parameters": {
+                  "initial_population": {
+                    "type": "int",
+                    "default": 20
+                  },
+                  "growth_rate": {
+                    "type": "float",
+                    "default": 20
+                  },
+                  "time": {
+                    "type": "float"
+                  },
+                  "doubling_time": {
+                    "type": "float, optional"
+                  }
+                }
+              },
+              "relevance": 1
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md",
+        "license": "HF 页面公开一条明确的评测示例，但未找到覆盖该记录的独立许可声明；复用权限待核验。",
+        "split": "HF README 明示 Concrete example for our evaluation dataset; not a row from the gated evaluation endpoint",
+        "excerpt": true,
+        "explanation": "HF作者数据卡明确称此为评测集的具体示例apigen_query_5，相关工具是apigen_tool_272/bacterial_growth，relevance=1。raw保留真实工具名、参数名/类型/默认值与相关性，省略自然语言长描述和完整查询原句；默认值20保留源数据原值，不擅自“修正”为查询中的500或0.3。模型检索到相关工具才是此例目标，本站未计算或伪造工具输出。"
+      }
+    ],
+    "retrievedAt": "2026-10-19"
+  }
+}
