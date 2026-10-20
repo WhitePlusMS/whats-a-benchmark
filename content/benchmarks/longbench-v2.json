@@ -17,7 +17,7 @@
   "verifiedAt": "2026-10-19",
   "id": "longbench-v2",
   "name": "LongBench v2",
-  "subtitle": "长材料里找线索，并完成复杂推理",
+  "subtitle": "真实长上下文任务的理解与复杂推理能力",
   "category": "context",
   "tags": [
     "长上下文",
@@ -89,6 +89,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=zai-org%2FLongBench-v2&config=default&split=train&offset=1&length=5",
       "role": "data"
+    },
+    {
+      "label": "LongBench v2",
+      "url": "https://github.com/THUDM/LongBench/blob/main/README.md",
+      "role": "readme"
     }
   ],
   "status": "published",
@@ -98,11 +103,12 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "LongBench v2 是 THUDM 发布的长上下文理解与推理基准，包含六类真实长上下文任务，并与 LongBench v1 的任务集和统计口径分开。",
+    "summary": "评估模型在真实长上下文任务中的理解与推理能力，以选择题覆盖单文档问答、多文档问答、长上下文学习、长对话历史理解、代码仓库理解和长结构化数据理解六类场景；与原版LongBench分别记录。",
     "task": "模型基于长文档、对话、代码仓库或结构化材料回答多项选择题。",
     "sourceUrls": [
       "https://github.com/THUDM/LongBench",
-      "https://huggingface.co/datasets/THUDM/LongBench-v2"
+      "https://huggingface.co/datasets/THUDM/LongBench-v2",
+      "https://github.com/THUDM/LongBench/blob/main/README.md"
     ]
   },
   "taskContract": {
@@ -223,7 +229,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [

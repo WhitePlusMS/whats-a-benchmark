@@ -3,7 +3,7 @@
   "status": "published",
   "order": 1190,
   "name": "Long-Horizon Terminal-Bench (LHTB)",
-  "subtitle": "在终端里持续推进长程任务",
+  "subtitle": "有状态终端中的长程任务持续执行能力",
   "category": "agents",
   "tags": [
     "长程任务",
@@ -25,7 +25,8 @@
     "summary": "测量 LLM agents 能否在有状态容器终端中持续数百步完成多类长程任务，并由隐藏验证器评分。",
     "task": "在有状态容器终端中持续完成跨游戏、分析、软件工程、科学计算和专业工作流的长程任务，由产物验证器评分。",
     "sourceUrls": [
-      "https://github.com/zli12321/LHTB"
+      "https://github.com/zli12321/LHTB",
+      "https://github.com/zli12321/LHTB/blob/main/README.md"
     ]
   },
   "taskContract": {
@@ -195,11 +196,16 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://raw.githubusercontent.com/zli12321/LHTB/7ca0cacea9bf6a0694eaad7306bed794eaaaabce/tasks/chess-mate/instruction.md",
       "role": "data"
+    },
+    {
+      "label": "Long-Horizon Terminal-Bench (LHTB)",
+      "url": "https://github.com/zli12321/LHTB/blob/main/README.md",
+      "role": "readme"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "隐藏 verifier 根据产物重建并计算 partial reward；continue-until-timeout 的中间反馈不公开奖励数值、失败路径或测试输出。",

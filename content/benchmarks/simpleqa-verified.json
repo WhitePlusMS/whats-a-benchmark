@@ -3,7 +3,7 @@
   "status": "published",
   "order": 208,
   "name": "SimpleQA Verified",
-  "subtitle": "用重新核验的短事实题测内部知识",
+  "subtitle": "重新核验题集上的短答案事实准确性",
   "category": "knowledge",
   "tags": [
     "事实性",
@@ -24,10 +24,11 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "在 OpenAI SimpleQA 基础上重新核验标签、去重、平衡主题并改进评委提示的事实性评测。",
+    "summary": "以OpenAI SimpleQA为基础，通过去重、主题平衡、来源核对和裁判提示改进，评估模型内部知识的短答案事实性；修订后保留1000个问题。",
     "task": "不用检索或搜索，根据模型内部知识直接回答短事实题。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/google/simpleqa-verified"
+      "https://huggingface.co/datasets/google/simpleqa-verified",
+      "https://arxiv.org/html/2509.07968"
     ]
   },
   "taskContract": {
@@ -163,6 +164,11 @@
       "label": "所选数据快照的许可说明",
       "url": "https://huggingface.co/datasets/google/simpleqa-verified/raw/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/README.md",
       "role": "data"
+    },
+    {
+      "label": "SimpleQA Verified paper",
+      "url": "https://arxiv.org/html/2509.07968",
+      "role": "paper"
     }
   ],
   "related": [
@@ -177,7 +183,7 @@
     }
   ],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "使用官方 GPT-4.1 autorater 提示对照答案标签；作者改进的是标签质量、主题平衡与裁判提示，非新增搜索工具。",

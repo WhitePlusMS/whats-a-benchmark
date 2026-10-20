@@ -15,7 +15,7 @@
   "verifiedAt": "2026-10-19",
   "id": "healthbench-hard",
   "name": "HealthBench Hard",
-  "subtitle": "医疗对话评测中的困难部分",
+  "subtitle": "困难医疗对话中的专业表现与安全性",
   "category": "work",
   "tags": [
     "医疗健康",
@@ -72,6 +72,11 @@
       "label": "模型发布报告",
       "url": "https://openai.com/index/introducing-gpt-5/",
       "role": "vendor-report"
+    },
+    {
+      "label": "HealthBench: Evaluating Large Language Models Towards Improved Human Health",
+      "url": "https://arxiv.org/html/2505.08775",
+      "role": "paper"
     }
   ],
   "status": "published",
@@ -81,11 +86,12 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "回答健康相关对话并按医生 rubric 评分；从 HealthBench 中筛选 1,000 个较难任务。",
+    "summary": "HealthBench中针对前沿模型筛选出的1000项困难对话子集，评估健康回应的专业表现与安全性；沿用对话专属医生评分标准，结果仅代表该困难子集。",
     "task": "回答健康相关多轮对话的最后一条用户消息，由 grader 按该对话的医生撰写 rubric criteria 评分。",
     "sourceUrls": [
       "https://openai.com/index/healthbench/",
-      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py"
+      "https://github.com/openai/simple-evals/blob/main/healthbench_eval.py",
+      "https://arxiv.org/html/2505.08775"
     ]
   },
   "taskContract": {
@@ -175,5 +181,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19"
+  "updatedAt": "2026-10-20"
 }

@@ -3,91 +3,124 @@
   "status": "published",
   "order": 1550,
   "name": "JobBench",
-  "subtitle": "用65项、35种白领职业任务评估代理生成实用工作成果的质量。",
+  "subtitle": "职业工作中希望委托给AI的任务完成能力",
   "category": "work",
   "tags": [
     "work",
     "agent",
-    "internal"
+    "职业任务"
   ],
-  "publisher": "Meta（模型卡披露）",
+  "publisher": "JobBench研究团队（多机构合作）",
   "brandIds": [
-    "meta"
+    "jobbench"
   ],
   "year": 2026,
-  "version": "Muse Wonder披露版",
-  "kind": "internal",
+  "version": "公开main/easy；Meta Muse Wonder引用版",
+  "kind": "original",
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "Meta报告65项跨35职业任务并以rubric评价工作产物。",
-    "task": "以职业任务产物评估白领工作能力。",
+    "summary": "JobBench研究团队提出的职业代理任务评测，源于专业人士希望交由AI处理的工作。",
+    "task": "读取职业任务说明和材料，核对多来源数据并提交可检查的工作成果。",
     "sourceUrls": [
-      "https://research.meta.ai/static/muse-wonder-model-card"
+      "https://job-bench.github.io/",
+      "https://arxiv.org/abs/2605.26329"
     ]
   },
   "taskContract": {
-    "input": "来自35种白领职业的工作任务说明与所需材料。",
-    "output": "实际工作成果并按每项任务专属rubric评分。",
-    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "input": "任务prompt、配套工作目录和参考文件；部分main任务还要求搜索取得外部材料。",
+    "output": "按任务要求提交表格、报告、备忘录等工作产物，再按加权rubric评阅。",
+    "environment": "官方评测仓库支持CLI代理与Harbor两条运行路径，main和easy应明确选择；具体代理、工具和judge配置随报告注明。",
     "sourceUrls": [
-      "https://research.meta.ai/static/muse-wonder-model-card"
+      "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md",
+      "https://github.com/Job-Bench/job-bench-eval/blob/main/README.md"
     ]
   },
   "dataProfile": {
-    "summary": "Meta报告65项跨35职业任务并以rubric评价工作产物。",
-    "disclosure": "not-public",
+    "summary": "公开HF固定修订提供65项main与63项easy任务，覆盖约35种职业；Meta卡报告65项但没有注明文件revision。",
+    "disclosure": "complete",
     "scale": [
-      "65项任务",
-      "35类职业"
+      "固定数据卡：main 65项、easy 63项，约35种职业。",
+      "论文首次版本描述65 main + 65 easy；本页当前文件规模以固定数据卡/实际main Parquet为准。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "main：tasks.parquet，已实际读取65行；easy：easy.parquet，数据卡声明63行，本轮未逐行读取easy。",
+      "两split并行选择，任务槽位的内容可能不同，不应假定同ID就是逐题简化关系。"
+    ],
+    "fields": [
+      "task_id / occupation / task_num",
+      "prompt",
+      "reference_files / reference_file_urls / reference_file_hf_uris",
+      "rubric_json（原始JSON字符串） / task_card（Markdown字符串）"
+    ],
+    "files": [
+      "tasks.parquet：固定修订下65行、9列，已按任务ID提取两条完整记录。",
+      "dataset/<occupation>/taskN/：任务说明、rubric、task card及配套工作文件；附件未在本站镜像。"
+    ],
     "sourceUrls": [
+      "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md",
+      "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/tasks.parquet",
+      "https://arxiv.org/abs/2605.26329",
       "https://research.meta.ai/static/muse-wonder-model-card"
     ]
   },
   "dataAccess": {
-    "status": "private",
-    "requirements": [],
+    "status": "public",
+    "url": "https://huggingface.co/datasets/JobBench/job-bench",
+    "requirements": [
+      "HF数据仓库公开，无需接受gated条款即可读取所选固定文件。",
+      "复跑需按任务下载配套输入、准备CLI代理与judge；本站没有运行任务。"
+    ],
     "sourceUrls": [
-      "https://research.meta.ai/static/muse-wonder-model-card"
+      "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md",
+      "https://github.com/Job-Bench/job-bench-eval/blob/main/README.md"
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "未核实题库与媒体的统一再发布许可。",
-    "scope": "仅记录官方定义和已披露范围。",
+    "status": "permitted",
+    "license": "HF数据卡明确声明MIT；评测代码仓库另用Apache-2.0，不混为数据许可。",
+    "scope": "本站仅展示两条公开任务的原始文本、任务卡、rubric字符串、身份字段及附件路径/URL。",
     "boundaries": [
-      "不将代码许可推定为题库、素材或媒体再发布许可。"
+      "保留JobBench团队归属、固定revision、来源与数据卡原文。",
+      "根目录独立LICENSE本次未找到；不将数据卡仓库级声明外推为所有外部文件的单独许可，未复制配套工作簿、扫描图或数据库。"
     ],
     "sourceUrls": [
-      "https://research.meta.ai/static/muse-wonder-model-card"
+      "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md"
     ]
   },
   "sampleAccess": {
-    "status": "unverified",
-    "reason": "已检查Meta官方模型卡、研究博客和发布文；确认内部评测定义，但本次未找到可归属此评测的具体题面、输入/答案或稳定任务ID。公开跑步计划、礼物、座位表、保险理赔等能力演示未被官方标成该评测题，不能拿来补位。",
+    "status": "local",
+    "reason": "两条公开main记录保留完整原始字段、任务指令与rubric，并配中文解析；配套附件仅保留来源路径/URL，未在本站镜像。Meta模型卡直链同一项目，但未指明其运行使用的文件修订。",
+    "url": "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/dataset/data_entry_keyers/task1/task_folder/TASK_INSTRUCTIONS.txt",
     "sourceUrls": [
       "https://research.meta.ai/static/muse-wonder-model-card",
-      "https://research.meta.ai/blog/muse-wonder",
-      "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/"
+      "https://job-bench.github.io/",
+      "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md",
+      "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/tasks.parquet"
     ]
   },
   "metric": {
-    "name": "跨任务平均reward",
-    "description": "Meta模型卡报告65项任务并以任务rubric求平均reward；题目和rubric未公开。",
+    "name": "跨任务平均加权得分",
+    "description": "官方代码先按任务rubric块的通过/失败及权重归一化，再对任务等权求均值；不把不同任务的原始点数直接混加。Meta报告mean reward，比较时还须核对数据revision、split、覆盖任务、代理工具和judge。",
     "direction": "higher",
     "sourceUrls": [
+      "https://github.com/Job-Bench/job-bench-eval/blob/main/README.md",
       "https://research.meta.ai/static/muse-wonder-model-card"
     ]
   },
   "limitations": [
     {
-      "text": "题目/rubrics未公开；名称可能与其他项目重名。",
+      "text": "Meta模型卡链接JobBench公开项目，但未披露实际运行的dataset revision、split或harness版本；本站两例不能证明该次成绩使用了这两个具体任务。",
       "sourceUrls": [
-        "https://research.meta.ai/static/muse-wonder-model-card"
+        "https://research.meta.ai/static/muse-wonder-model-card",
+        "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md"
+      ]
+    },
+    {
+      "text": "所选公开数据行完整保留；配套输入文件未镜像，没有标准交付物或模型运行轨迹，本站没有复跑该评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md",
+        "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/tasks.parquet"
       ]
     }
   ],
@@ -106,28 +139,201 @@
       "label": "本轮实际核对的官方资料",
       "url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
       "role": "data"
+    },
+    {
+      "label": "JobBench官方项目主页",
+      "url": "https://job-bench.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "JobBench作者论文及首次提交日期",
+      "url": "https://arxiv.org/abs/2605.26329",
+      "role": "paper"
+    },
+    {
+      "label": "公开数据卡与MIT声明（固定修订）",
+      "url": "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md",
+      "role": "access"
+    },
+    {
+      "label": "已实际核验的main Parquet（固定修订）",
+      "url": "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/tasks.parquet",
+      "role": "data"
+    },
+    {
+      "label": "官方评测与计分方法",
+      "url": "https://github.com/Job-Bench/job-bench-eval/blob/main/README.md",
+      "role": "code"
+    },
+    {
+      "label": "公开main原始任务说明",
+      "url": "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/dataset/data_entry_keyers/task1/task_folder/TASK_INSTRUCTIONS.txt",
+      "role": "data"
+    },
+    {
+      "label": "公开main原始任务说明",
+      "url": "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/TASK_INSTRUCTIONS.txt",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "releaseDate": "2026-10-12",
+  "releaseDate": "2026-05-25",
   "interpretation": {
     "versionChanges": {
-      "text": "Meta模型卡披露日；非首次启用日。",
+      "text": "2026-05-25为作者论文首次提交日；Meta于2026-10-12的模型卡引用此项目。本站案例固定到HF修订d43a66575635da0d3f6cb9a20976dc1a60f3ffc9，不将引用日、文件更新日或核验日当成首发日。",
       "sourceUrls": [
-        "https://research.meta.ai/static/muse-wonder-model-card"
+        "https://arxiv.org/abs/2605.26329",
+        "https://research.meta.ai/static/muse-wonder-model-card",
+        "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md"
       ]
     }
   },
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "researchNotes": [
     {
-      "text": "本轮补查第一方具体演示及题目归属；“未找到”限定于已检查资料，不断言发布者从未公开过。内部全集、能力演示和benchmark真实题目分别记录，不生成对话、rubric或标准答案。",
+      "text": "2026-10-19复核Meta模型卡第5页JobBench名称的PDF链接注释，目标为https://job-bench.github.io/；项目/评测仓库再链接JobBench/job-bench，建立直接项目来源链，不能再将其笼统记为Meta内部未公开题集。",
       "sourceUrls": [
         "https://research.meta.ai/static/muse-wonder-model-card",
-        "https://research.meta.ai/blog/muse-wonder",
-        "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/"
+        "https://job-bench.github.io/",
+        "https://github.com/Job-Bench/job-bench-eval/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "固定修订d43a66575635da0d3f6cb9a20976dc1a60f3ffc9的tasks.parquet实际为545,449字节，SHA-256 985f5581f665e73bd4a3e21441219e5ebf306ed99a457c8f66880b71ede05f78，65行9列。按稳定ID提取两条完整记录；prompt分别与同revision的TASK_INSTRUCTIONS逐字节相等。rubric_json、task_card及原有main/@main文件URL不改写。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/tasks.parquet",
+        "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/README.md"
       ]
     }
-  ]
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-19",
+    "samples": [
+      {
+        "id": "data_entry_keyers__task1",
+        "title": "销售订单三方核对 · Data Entry task1",
+        "type": "text",
+        "prompt": "As Senior Data Entry Keyer at Global Trade Solutions Inc., reconcile Q3 2025 sales order data across the CRM export (Source_Sales_Orders_Q3_2025.xlsx), scanned handwritten order forms for orders 0001-0010, and ERP data entry records (Data_Entry_Records_Q3_2025.xlsx) before the quarterly compliance audit.\n\nIdentify all discrepancies where values differ between sources. For orders with scanned originals available, treat these as the authoritative source; otherwise rely on CRM data over ERP entries. Document each discrepancy in the provided error log template, including which source system introduced the error and whether the error represents a systematic pattern or random occurrence. Revenue calculation deviations should include the expected formula and variance amount.\n\nValidate customer information against Global Trade Solutions Inc.'s registered customer master data in Customer_Master_List.csv, which covers 35 registered customers (CUST-001 through CUST-035). Orders from unregistered entities require flagging for follow-up.\n\nProduce a reconciled master dataset indicating each record's verification status and any source conflicts. Prepare an executive audit findings report covering data quality metrics, identified systematic error patterns, and process improvement recommendations. Complete the compliance checklist with pass/fail assessments based on your verification results.\n\nLocal Reference Files:\n- Compliance_Checklist.xlsx\n- Customer_Master_List.csv\n- Data_Entry_Records_Q3_2025.xlsx\n- Error_Log_Template.xlsx\n- Order_Form_ORD_202507_0001.png\n- Order_Form_ORD_202507_0002.png\n- Order_Form_ORD_202507_0003.png\n- Order_Form_ORD_202507_0004.png\n- Order_Form_ORD_202507_0005.png\n- Order_Form_ORD_202508_0006.png\n- Order_Form_ORD_202508_0007.png\n- Order_Form_ORD_202508_0008.png\n- Order_Form_ORD_202509_0009.png\n- Order_Form_ORD_202509_0010.png\n- Source_Sales_Orders_Q3_2025.xlsx\n",
+        "explanation": "关键是按扫描原单、CRM、ERP的来源优先级核对订单，同时校验客户主表、收入计算和系统性错误；产物包括差异日志、核对总表、审计报告及合规清单。 原始数据保留固定快照的全部9个字段及12条评分rubric，rubric_json仍为来源原字符串；15份输入附件只保留原路径和URL，未镜像文件本体，不能据此独立重跑。URL中的main/@main也是原值，需固定文件时另按所选revision获取。未生成模型作答或参考交付物；公开任务不等同于Meta成绩运行的具体修订。",
+        "raw": {
+          "task_id": "data_entry_keyers__task1",
+          "occupation": "data_entry_keyers",
+          "task_num": 1,
+          "prompt": "As Senior Data Entry Keyer at Global Trade Solutions Inc., reconcile Q3 2025 sales order data across the CRM export (Source_Sales_Orders_Q3_2025.xlsx), scanned handwritten order forms for orders 0001-0010, and ERP data entry records (Data_Entry_Records_Q3_2025.xlsx) before the quarterly compliance audit.\n\nIdentify all discrepancies where values differ between sources. For orders with scanned originals available, treat these as the authoritative source; otherwise rely on CRM data over ERP entries. Document each discrepancy in the provided error log template, including which source system introduced the error and whether the error represents a systematic pattern or random occurrence. Revenue calculation deviations should include the expected formula and variance amount.\n\nValidate customer information against Global Trade Solutions Inc.'s registered customer master data in Customer_Master_List.csv, which covers 35 registered customers (CUST-001 through CUST-035). Orders from unregistered entities require flagging for follow-up.\n\nProduce a reconciled master dataset indicating each record's verification status and any source conflicts. Prepare an executive audit findings report covering data quality metrics, identified systematic error patterns, and process improvement recommendations. Complete the compliance checklist with pass/fail assessments based on your verification results.\n\nLocal Reference Files:\n- Compliance_Checklist.xlsx\n- Customer_Master_List.csv\n- Data_Entry_Records_Q3_2025.xlsx\n- Error_Log_Template.xlsx\n- Order_Form_ORD_202507_0001.png\n- Order_Form_ORD_202507_0002.png\n- Order_Form_ORD_202507_0003.png\n- Order_Form_ORD_202507_0004.png\n- Order_Form_ORD_202507_0005.png\n- Order_Form_ORD_202508_0006.png\n- Order_Form_ORD_202508_0007.png\n- Order_Form_ORD_202508_0008.png\n- Order_Form_ORD_202509_0009.png\n- Order_Form_ORD_202509_0010.png\n- Source_Sales_Orders_Q3_2025.xlsx\n",
+          "reference_files": [
+            "dataset/data_entry_keyers/task1/task_folder/Compliance_Checklist.xlsx",
+            "dataset/data_entry_keyers/task1/task_folder/Customer_Master_List.csv",
+            "dataset/data_entry_keyers/task1/task_folder/Data_Entry_Records_Q3_2025.xlsx",
+            "dataset/data_entry_keyers/task1/task_folder/Error_Log_Template.xlsx",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0001.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0002.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0003.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0004.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0005.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0006.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0007.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0008.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202509_0009.png",
+            "dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202509_0010.png",
+            "dataset/data_entry_keyers/task1/task_folder/Source_Sales_Orders_Q3_2025.xlsx"
+          ],
+          "reference_file_urls": [
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Compliance_Checklist.xlsx",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Customer_Master_List.csv",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Data_Entry_Records_Q3_2025.xlsx",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Error_Log_Template.xlsx",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0001.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0002.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0003.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0004.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0005.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0006.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0007.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0008.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202509_0009.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202509_0010.png",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/data_entry_keyers/task1/task_folder/Source_Sales_Orders_Q3_2025.xlsx"
+          ],
+          "reference_file_hf_uris": [
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Compliance_Checklist.xlsx",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Customer_Master_List.csv",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Data_Entry_Records_Q3_2025.xlsx",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Error_Log_Template.xlsx",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0001.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0002.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0003.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0004.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202507_0005.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0006.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0007.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202508_0008.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202509_0009.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Order_Form_ORD_202509_0010.png",
+            "hf://datasets/JobBench/job-bench@main/dataset/data_entry_keyers/task1/task_folder/Source_Sales_Orders_Q3_2025.xlsx"
+          ],
+          "rubric_json": "{\n  \"rubrics\": [\n    {\n      \"rubric\": \"Does the Error Log correctly document the calculation error for ORD-202507-0002 where ERP shows Total_Revenue of $6794.25 instead of the correct $6749.25?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202507-0002, ERP shows Total_Revenue as $6794.25 while the correct calculation is 75 × $89.99 = $6749.25 (matching CRM and scanned form).\",\n        \"The error type must be classified as 'Calculation' with the source system identified as 'ERP'.\",\n        \"The reconciled value must be recorded as $6749.25.\",\n        \"Root cause notes should show the expected formula (75 × $89.99) and the $45.00 deviation.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log document the customer name typo for ORD-202507-0004 where ERP has 'Pacific Rim Export' instead of 'Pacific Rim Exports'?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202507-0004, ERP has Customer_Name as 'Pacific Rim Export' (missing 's') while CRM and scanned form have 'Pacific Rim Exports'.\",\n        \"The error type must be classified as 'Typo' with the source system identified as 'ERP'.\",\n        \"The reconciled value must be 'Pacific Rim Exports', confirmed by Customer_Master_List.csv where CUST-004 is registered as 'Pacific Rim Exports'.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log identify the digit transposition error for ORD-202507-0005 where ERP shows 1020 units sold instead of the correct 1200 units?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202507-0005, ERP shows Units_Sold as 1020 while CRM and scanned form show 1200.\",\n        \"The error type must be classified as 'Transposition' (digits 0 and 2 swapped) with the source system identified as 'ERP'.\",\n        \"The reconciled value must be 1200.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log correctly flag the country naming inconsistency for ORD-202508-0006 where CRM shows 'Italia' instead of 'Italy'?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202508-0006, CRM shows Country as 'Italia' while ERP and scanned form show 'Italy'.\",\n        \"The Error Log must reference Customer_Master_List.csv to confirm CUST-006 (Mediterranean Trade Co) is registered with Country 'Italy'.\",\n        \"The error type must be classified as 'Format' (non-standard naming) with the source system identified as 'CRM'.\",\n        \"The reconciled value must be 'Italy'.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log identify the Unit Price discrepancy for ORD-202508-0008 where ERP shows $5.05 instead of $5.50?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202508-0008, ERP shows Unit_Price as $5.05 while CRM and scanned form show $5.50.\",\n        \"The log should note that ERP Total_Revenue of $4400.00 matches 800 × $5.50, indicating the ERP Unit_Price field is internally inconsistent with its own revenue.\",\n        \"The error type may be classified as either 'Transposition' or 'Typo', with the source system identified as 'ERP'.\",\n        \"The reconciled value must be $5.50.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log correctly identify the date error for ORD-202509-0009 where CRM shows 09/30/2025 but ERP and scanned form show 09/03/2025?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202509-0009, CRM shows Order_Date as '09/30/2025' while ERP shows '09/03/2025' and scanned form confirms '09/03/2025'.\",\n        \"Per source priority (scanned highest), the reconciled date must be 09/03/2025.\",\n        \"The error type must be classified as 'Transposition' (day digits 03 vs 30 swapped) with the source system identified as 'CRM'.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log document the country name typo for ORD-202509-0010 where ERP has 'Canda' instead of 'Canada'?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202509-0010, ERP has Country as 'Canda' while CRM and scanned form show 'Canada'.\",\n        \"The Error Log must reference Customer_Master_List.csv to confirm CUST-010 (Canadian Wholesale Inc) is registered with Country 'Canada'.\",\n        \"The error type must be classified as 'Typo' with the source system identified as 'ERP' and the reconciled value as 'Canada'.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log identify the Item Type typo for ORD-202508-0018 where ERP has 'Houshold' instead of 'Household'?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202508-0018, ERP has Item_Type as 'Houshold' (missing 'e') while CRM shows 'Household'.\",\n        \"The error type must be classified as 'Typo' with the source system identified as 'ERP'.\",\n        \"The reconciled value must be 'Household'.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log identify the Unit Price transposition for ORD-202509-0023 where ERP shows $108.00 instead of $180.00?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202509-0023, ERP shows Unit_Price as $108.00 while CRM shows $180.00.\",\n        \"The Error Log must use Total_Revenue of $8100.00 to validate the CRM price (45 × $180.00 = $8100.00), not the ERP price (45 × $108.00 = $4860.00).\",\n        \"The error type must be classified as 'Transposition' with the source system identified as 'ERP'.\",\n        \"The reconciled value must be $180.00.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Error Log document the Sales Channel discrepancy for ORD-202509-0026 where ERP shows 'Online' but CRM shows 'Offline'?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The Error Log must document that for ORD-202509-0026, ERP has Sales_Channel as 'Online' while CRM shows 'Offline'.\",\n        \"Since no scanned form exists for this order, CRM takes priority; the source system causing the error must be identified as 'ERP' with the reconciled value as 'Offline'.\",\n        \"The error pattern should be classified as 'Systematic' as multiple Sales Channel errors from ERP exist (e.g., ORD-202508-0007).\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Audit Findings Report include at least one clearly labeled, correctly calculated data quality metric with a reproducible methodology?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The Audit Findings Report includes at least one clearly labeled quantitative data quality metric, such as clean-record rate, record compliance rate, field accuracy, or reconciliation rate.\",\n        \"The metric is calculated from the reconciled dataset using correct source counts for the chosen unit of analysis; if clean-record rate is used, it is based on 30 total records and 17 discrepant orders (13 clean records, or approximately 43.3%).\",\n        \"The reported value is mathematically correct for its stated numerator, denominator, and unit of analysis and is not mislabeled as a different metric.\",\n        \"The report clearly states enough methodology, including the formula or numerator and denominator, for the metric to be reproduced.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the Compliance Checklist correctly assess CRT-005 (Total Revenue Calculation Accuracy) as 'Fail'?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The Compliance_Checklist.xlsx must mark CRT-005 'Total Revenue calculations are accurate (Units x Unit Price)' as 'Fail'.\",\n        \"The Compliance_Checklist.xlsx must justify the failure by referencing ORD-202507-0002 (ERP: $6794.25 vs correct $6749.25) having a calculation error exceeding the ±$0.01 tolerance.\",\n        \"The Compliance_Checklist.xlsx must also reference ORD-202508-0015 (ERP: $4480.00 vs correct $4880.00) as an additional calculation error exceeding the ±$0.01 tolerance.\"\n      ]\n    }\n  ]\n}\n",
+          "task_card": "# Data Entry Keyers — Task 1\n\n\nThis task asks the agent to act as Senior Data Entry Keyer at Global Trade Solutions, three-way reconciling Q3 2025 sales orders across the CRM export, ten scanned handwritten order forms, and the ERP entry records ahead of a quarterly compliance audit — producing a discrepancy log, a reconciled master, an executive findings report, and a completed compliance checklist.\n\n---\n\n## 1. Capability Professionals Want Agents to Handle\n\n**ONET Task Summary:** *Compare data with source documents, or re-enter data in verification format to detect errors.*\n\n**Expert Reported Automation Desire:** 3.50 (scale: 0–5, from WorkBank)\n\nIn practice this means OCR-reading the ten scanned PNG order forms (orders 0001–0010), comparing them against `Source_Sales_Orders_Q3_2025.xlsx` and `Data_Entry_Records_Q3_2025.xlsx`, validating customer entities against the 35 registered customers in `Customer_Master_List.csv`, applying source priority (scans > CRM > ERP) to each conflict, and tagging each error as systematic vs random in the error log template.\n\n**Why desired:** A keyer's pre-audit day is dominated by line-by-line comparison across three formats and by mechanical checks like Total = Units × Price and country-name normalization — not the audit judgment. Automating the three-way diff, the calculation reverse-validation, and the master-list cross-check lets the keyer focus on the systematic-pattern findings and the process-improvement recommendations the audit committee actually reads.\n\n---\n\n## 2. Reasoning Challenges by Design\n\n- **Three-way reconciliation with missing sources**\n  Only orders 0001–0010 have scanned originals. For orders 0011–0030 the agent must fall back to CRM-vs-ERP with CRM as priority, applying the source hierarchy correctly when the authoritative source is absent.\n\n- **Reverse-validation of calculation errors**\n  Some records have correct Total_Revenue but wrong Unit_Price or Units_Sold. The agent must apply Total = Units × Price bidirectionally to identify which component field is in error rather than flagging the total.\n\n- **Unregistered customer detection**\n  Two orders (ORD-202507-0021 and ORD-202508-0022) name \"Unknown Supplier Co\" and \"Mystery Trading LLC\" — neither in the 35-customer master. The agent must cross-reference all 30 orders against the master to surface them.\n\n- **Country naming standardization**\n  \"Italia\" vs \"Italy\" is only catchable by anchoring against the registered country list in `Customer_Master_List.csv`, not by a CRM-vs-ERP diff alone.\n\n- **Systematic vs random error classification**\n  The agent must aggregate individual findings into pattern categories — transposition errors (IDs, digits, dates), calculation errors, Sales Channel encoding errors, typos — and report frequencies, not just a flat list of discrepancies.\n\n---\n\n## 3. Files Requiring Search\n\nNone — all required references are provided in `task_folder/`.\n"
+        },
+        "source": "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/dataset/data_entry_keyers/task1/task_folder/TASK_INSTRUCTIONS.txt",
+        "license": "JobBench研究团队 / 数据卡声明MIT；仅展示公开任务文本与记录字段，不外推到第三方附件",
+        "licensePath": "licenses/jobbench-data-card.txt",
+        "split": "main / data_entry_keyers__task1 / revision d43a66575635da0d3f6cb9a20976dc1a60f3ffc9",
+        "excerpt": true
+      },
+      {
+        "id": "purchasing_agents_except_wholesale_retail_and_farm_products__task3",
+        "title": "办公家具采购审查 · Purchasing task3",
+        "type": "text",
+        "prompt": "You are a Purchasing Agent at Greenfield Technologies Inc. in Austin, TX. The Facilities Manager submitted PR-2025-0042 for a 150-employee office furniture refresh across three floors. Three vendors responded with quotations. After initial approval at $350,000, Finance issued a budget amendment (budget_amendment_memo.txt) reducing the cap to $310,000 (pre-tax, installation inclusive, no contingency). The company maintains a procurement compliance checklist (\"compliance_requirements.csv\") and a historical vendor performance database (\"vendor_history.db\") for use in your analysis.\n\nProduce four deliverables:\n\nA discrepancy and compliance audit as a CSV covering all three quotations checked against the purchase requisition and applicable compliance requirements. Flag quantity mismatches, arithmetic errors, specification gaps against mandatory requirements (reference each Requirement_ID), and items requiring verification. Include severity classification and recommended actions.\n\nAn adjusted bid tabulation in Excel using the provided template. Consolidate all three quotations side by side and present three scenarios: original totals, adjusted totals reflecting the budget amendment's permitted quantity reductions, and adjusted totals inclusive of installation and freight. Derive installation rates from each vendor's quotation notes. Add comparative columns showing lowest price per item and savings spread across vendors.\n\nA vendor evaluation scorecard in Excel using the provided template. Score each vendor 1–5 across these weighted criteria: Unit Pricing (20%), Total Cost with Installation (15%) benchmarked against the budget cap, Delivery Lead Time & Phased Capability (15%), Warranty Coverage (10%), Past Performance (20%) drawn from historical order data including delivery reliability and any open warranty claims, Compliance Pass Rate (10%) based on your audit findings, and Payment Terms & Financial Risk (10%). Calculate weighted totals and rank.\n\nA purchase recommendation memo addressed to the Procurement Manager. Include a budget analysis against the $310,000 cap with installation and freight, a compliance summary table showing pass/fail per vendor for each mandatory requirement CR-001 through CR-010, a risk assessment covering vendor-specific concerns, a negotiation counter-offer for the recommended vendor specifying 2–3 line items or terms with target prices and fallback positions, and the applicable escalation path if the cap cannot be met post-negotiation.\n\nAll calculations must be cross-referenced between deliverables and traceable to source data.\n\nLocal Reference Files:\n- bid_tabulation_template.xlsx\n- budget_amendment_memo.txt\n- compliance_requirements.csv\n- purchase_requisition_PR2025_0042.csv\n- quotation_vendor_A_meridian_office.csv\n- quotation_vendor_B_atlas_furnishings.csv\n- quotation_vendor_C_pinnacle_workspace.csv\n- vendor_evaluation_template.xlsx\n- vendor_history.db\n",
+        "explanation": "预算已从350,000美元改为310,000美元，需要联合核对三家报价、安装运费、采购要求与供应商历史；产物是审查CSV、比价表、评分卡和采购建议，不能只选最低报价。 原始数据保留固定快照的全部9个字段及11条评分rubric，rubric_json仍为来源原字符串；9份输入附件只保留原路径和URL，未镜像文件本体，不能据此独立重跑。URL中的main/@main也是原值，需固定文件时另按所选revision获取。未生成模型作答或参考交付物；公开任务不等同于Meta成绩运行的具体修订。",
+        "raw": {
+          "task_id": "purchasing_agents_except_wholesale_retail_and_farm_products__task3",
+          "occupation": "purchasing_agents_except_wholesale_retail_and_farm_products",
+          "task_num": 3,
+          "prompt": "You are a Purchasing Agent at Greenfield Technologies Inc. in Austin, TX. The Facilities Manager submitted PR-2025-0042 for a 150-employee office furniture refresh across three floors. Three vendors responded with quotations. After initial approval at $350,000, Finance issued a budget amendment (budget_amendment_memo.txt) reducing the cap to $310,000 (pre-tax, installation inclusive, no contingency). The company maintains a procurement compliance checklist (\"compliance_requirements.csv\") and a historical vendor performance database (\"vendor_history.db\") for use in your analysis.\n\nProduce four deliverables:\n\nA discrepancy and compliance audit as a CSV covering all three quotations checked against the purchase requisition and applicable compliance requirements. Flag quantity mismatches, arithmetic errors, specification gaps against mandatory requirements (reference each Requirement_ID), and items requiring verification. Include severity classification and recommended actions.\n\nAn adjusted bid tabulation in Excel using the provided template. Consolidate all three quotations side by side and present three scenarios: original totals, adjusted totals reflecting the budget amendment's permitted quantity reductions, and adjusted totals inclusive of installation and freight. Derive installation rates from each vendor's quotation notes. Add comparative columns showing lowest price per item and savings spread across vendors.\n\nA vendor evaluation scorecard in Excel using the provided template. Score each vendor 1–5 across these weighted criteria: Unit Pricing (20%), Total Cost with Installation (15%) benchmarked against the budget cap, Delivery Lead Time & Phased Capability (15%), Warranty Coverage (10%), Past Performance (20%) drawn from historical order data including delivery reliability and any open warranty claims, Compliance Pass Rate (10%) based on your audit findings, and Payment Terms & Financial Risk (10%). Calculate weighted totals and rank.\n\nA purchase recommendation memo addressed to the Procurement Manager. Include a budget analysis against the $310,000 cap with installation and freight, a compliance summary table showing pass/fail per vendor for each mandatory requirement CR-001 through CR-010, a risk assessment covering vendor-specific concerns, a negotiation counter-offer for the recommended vendor specifying 2–3 line items or terms with target prices and fallback positions, and the applicable escalation path if the cap cannot be met post-negotiation.\n\nAll calculations must be cross-referenced between deliverables and traceable to source data.\n\nLocal Reference Files:\n- bid_tabulation_template.xlsx\n- budget_amendment_memo.txt\n- compliance_requirements.csv\n- purchase_requisition_PR2025_0042.csv\n- quotation_vendor_A_meridian_office.csv\n- quotation_vendor_B_atlas_furnishings.csv\n- quotation_vendor_C_pinnacle_workspace.csv\n- vendor_evaluation_template.xlsx\n- vendor_history.db\n",
+          "reference_files": [
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/bid_tabulation_template.xlsx",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/budget_amendment_memo.txt",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/compliance_requirements.csv",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/purchase_requisition_PR2025_0042.csv",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_A_meridian_office.csv",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_B_atlas_furnishings.csv",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_C_pinnacle_workspace.csv",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/vendor_evaluation_template.xlsx",
+            "dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/vendor_history.db"
+          ],
+          "reference_file_urls": [
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/bid_tabulation_template.xlsx",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/budget_amendment_memo.txt",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/compliance_requirements.csv",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/purchase_requisition_PR2025_0042.csv",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_A_meridian_office.csv",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_B_atlas_furnishings.csv",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_C_pinnacle_workspace.csv",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/vendor_evaluation_template.xlsx",
+            "https://huggingface.co/datasets/JobBench/job-bench/resolve/main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/vendor_history.db"
+          ],
+          "reference_file_hf_uris": [
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/bid_tabulation_template.xlsx",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/budget_amendment_memo.txt",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/compliance_requirements.csv",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/purchase_requisition_PR2025_0042.csv",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_A_meridian_office.csv",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_B_atlas_furnishings.csv",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/quotation_vendor_C_pinnacle_workspace.csv",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/vendor_evaluation_template.xlsx",
+            "hf://datasets/JobBench/job-bench@main/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/vendor_history.db"
+          ],
+          "rubric_json": "{\n  \"rubrics\": [\n    {\n      \"rubric\": \"Does the compliance audit correctly identify that Atlas fails CR-005 (commercial-grade fabric rated minimum 80,000 double rubs) because Atlas's reception seating fabric is rated at only 60,000 double rubs, and that Pinnacle also fails CR-005 with only 45,000 double rubs?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The compliance audit flags Atlas's Haven 410 lounge seating as failing mandatory requirement CR-005, which requires a minimum 80,000 double rubs Wyzenbeek rating, because Atlas's fabric is rated at only 60,000 double rubs.\",\n        \"The compliance audit flags Pinnacle's Metro 300 reception seating as failing mandatory requirement CR-005, because Pinnacle's fabric is rated at only 45,000 double rubs against the 80,000 minimum.\",\n        \"The compliance audit confirms that Meridian's Atrium 8200 reception seating at 100,000 double rubs passes the CR-005 requirement.\",\n        \"Both the Atlas and Pinnacle CR-005 failures are classified as Critical severity since CR-005 is a mandatory requirement.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the compliance audit correctly identify that Atlas and Pinnacle fail CR-006 (ADA desk height adjustment minimum low position of 27 inches) because Atlas's desk minimum is 27.5 inches and Pinnacle's minimum is 28 inches, while Meridian's adjusts down to 25.5 inches?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The compliance audit identifies that CR-006 requires desks to have a height adjustment range including a minimum low position of 27 inches for ADA seated use.\",\n        \"The compliance audit flags Atlas's Elevate 550 as failing CR-006 because its low position is 27.5 inches, which exceeds the 27-inch maximum low-position threshold.\",\n        \"The compliance audit flags Pinnacle's LiftPro 100 as failing CR-006 because its low position is 28 inches, which exceeds the 27-inch maximum low-position threshold.\",\n        \"The compliance audit confirms Meridian's ErgoFlex Pro 7200E passes CR-006 with a low position of 25.5 inches.\",\n        \"Both the Atlas and Pinnacle CR-006 failures are classified as Critical severity since this is a mandatory ADA accessibility requirement.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the compliance audit correctly identify that Pinnacle fails CR-008 (minimum 275 lbs weight capacity for seating) because Pinnacle's ErgoPoint 250 task chair is rated at only 250 lbs?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The compliance audit identifies that CR-008 mandates a minimum weight capacity of 275 lbs for all seating (task chairs and conference chairs).\",\n        \"The compliance audit flags Pinnacle's ErgoPoint 250 task chair as failing CR-008, noting it is rated at only 250 lbs — 25 lbs below the mandatory minimum.\",\n        \"The compliance audit confirms that Meridian's Apex 4500 (300 lbs) and Atlas's Momentum 320 (275 lbs) meet the CR-008 weight capacity requirement.\",\n        \"The Pinnacle CR-008 failure is classified as a Critical mandatory compliance failure.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the compliance audit correctly identify that Pinnacle fails CR-010 (phased delivery capability) because Pinnacle explicitly states 'partial shipments not available,' while the PR requires 3 phased deliveries per floor schedule?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The compliance audit identifies that CR-010 requires the vendor to provide phased delivery capability with 3 separate deliveries over 6 weeks, per the PR floor schedule (Floor 3 first in Feb, Floor 2 early March, Floor 1 mid-March).\",\n        \"The compliance audit flags Pinnacle's quotation as explicitly stating 'Partial shipments not available' and requiring 8-10 weeks lead time with overseas sourcing, directly failing CR-010.\",\n        \"The Pinnacle CR-010 failure is classified as Critical severity since phased delivery is a mandatory logistical requirement.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the vendor evaluation correctly query and incorporate Pinnacle's historical performance data showing a 20% on-time delivery rate (1 out of 5 orders), average quality score of 3.18, and two pending structural or safety-related warranty claims?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The evaluation references Pinnacle's delivery record from vendor_history.db: only 1 of 5 past orders was delivered on time (20% on-time rate); listing the exact delay for every late order is not required.\",\n        \"The evaluation references Pinnacle's average quality score of approximately 3.18/5.0 and identifies its weaker quality performance; exact damaged-item and wrong-item subtotals are not required.\",\n        \"The evaluation identifies that Pinnacle has two unresolved warranty claims involving structural or safety concerns; exact claim numbers, filing dates, and incident wording are not required.\",\n        \"The unresolved structural and safety concerns are identified as serious product risks that factor into the vendor evaluation.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the vendor evaluation correctly contrast Meridian's strong historical performance (85.7% on-time rate, average quality score of 4.53, only 2 warranty claims both resolved within 10 days) against the other vendors' weaker records?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The evaluation references Meridian's vendor_history.db data: 6 of 7 orders on time (85.7%), average quality score of approximately 4.53/5.0, and 2 warranty claims both resolved within 10 days; the exact damaged-item count and damage-rate calculation are not required.\",\n        \"The evaluation references Atlas's vendor_history.db data for contrast: 66.7% on-time rate (4 of 6 orders), quality score of 3.9/5.0, and 4 warranty claims including 1 denied.\",\n        \"Pinnacle's poor historical record (20% on-time, 3.18 quality score, pending safety claims) is contrasted against Meridian's strong performance.\",\n        \"The Past Performance criterion (weighted at 20%) is identified as strongly favoring Meridian based on the comparative historical data.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the recommendation memo correctly identify that Pinnacle's 50% deposit payment terms present a financial risk that conflicts with Finance's Net 30/Net 45 preference, and would require CFO review potentially delaying the project by 2-3 weeks?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The recommendation memo identifies that Pinnacle requires a 50% deposit upon PO acceptance with the remaining 50% upon delivery, and that the deposit is non-refundable once production begins (typically 2 weeks after PO acceptance).\",\n        \"The recommendation memo identifies that the budget amendment memo states Finance strongly prefers Net 30 or Net 45 payment terms, and vendors requiring deposits must be flagged for CFO review.\",\n        \"The recommendation memo flags that CFO review for Pinnacle's deposit terms could delay the project by 2-3 weeks.\",\n        \"Pinnacle's payment terms are identified as presenting both a cash-flow risk (non-refundable 50% deposit) and a procedural risk (required CFO approval delay).\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the recommendation memo address Meridian's budget exceedance of $68,940 (22.2%) over the $310,000 cap even after applying quantity reductions, and identify specific negotiation strategies or line items to reduce costs?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The recommendation memo identifies Meridian's adjusted total with installation as $378,940, exceeding the $310,000 cap by $68,940 (22.2%).\",\n        \"The recommendation memo notes Meridian's available 5% conference furniture discount (saving approximately $3,027 on $60,540 of conference items) but acknowledges this barely reduces the overage.\",\n        \"The recommendation memo either proposes specific negotiation targets with realistic price reductions on high-value line items (desks at $1,189/each and chairs at $625/each), or acknowledges that bringing Meridian within budget is not feasible.\",\n        \"The recommendation memo references the escalation path to the VP of Operations per the budget amendment for cases where the recommended vendor exceeds the budget cap.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the recommendation memo include a compliance summary table showing pass/fail status per vendor for each mandatory compliance requirement (CR-001 through CR-010), correctly reflecting that Meridian has the highest compliance while Atlas and Pinnacle each have multiple critical failures?\",\n      \"weight\": 8,\n      \"criterion\": [\n        \"The compliance summary shows Atlas failing CR-005 (60,000 double rubs vs. 80,000 required), CR-006 (27.5-inch minimum vs. 27-inch required), and CR-009 (dual cable grommets instead of integrated power/data module).\",\n        \"The compliance summary shows Pinnacle failing CR-005 (45,000 double rubs), CR-006 (28-inch minimum), CR-008 (250 lbs vs. 275 lbs required), CR-009 (cable access door instead of integrated power/data module), and CR-010 (no partial shipments).\",\n        \"The compliance summary shows Meridian meeting or exceeding CR-004 through CR-010 specifications (10-year warranty, 100,000 double rubs, 25.5-inch low height, 300 lbs capacity, integrated power/data with 2 AC + 2 USB-C, phased delivery capable).\",\n        \"CR-001 (GREENGUARD Gold) is noted as requiring verification from all vendors since none explicitly confirm certification in their quotations.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the risk assessment specifically address Pinnacle's two pending safety warranty claims — the desk leg joint weld crack causing instability (claim #9) and the ergonomic chair gas cylinder sudden drop while occupied (claim #10) — as indicators of potential product safety liability?\",\n      \"weight\": 10,\n      \"criterion\": [\n        \"The risk assessment identifies Pinnacle's pending warranty claim #9 (PO-2024-0205, filed June 10, 2024): desk leg joint weld cracked causing desk instability, classified as structural, still pending.\",\n        \"The risk assessment identifies Pinnacle's pending warranty claim #10 (PO-2024-0680, filed October 25, 2024): ergonomic chair gas cylinder sudden drop while occupied, classified as safety, still pending.\",\n        \"The risk assessment explains the safety implications: a chair gas cylinder failure could cause occupant injury, and an unstable desk is a workplace hazard.\",\n        \"Both pending safety claims are identified as significant risk factors that must weigh heavily in the vendor evaluation and recommendation.\"\n      ]\n    },\n    {\n      \"rubric\": \"Does the response correctly identify that all three vendors quote 2-drawer lateral filing cabinets rather than the 3-drawer units specified in the purchase requisition PR-2025-0042, flagging this as a specification mismatch?\",\n      \"weight\": 6,\n      \"criterion\": [\n        \"The response identifies that PR-2025-0042 Line 3 specifies 3-drawer lateral filing cabinets.\",\n        \"The response identifies that all three vendors quote 2-drawer units: Meridian's ProVault 2100, Atlas's Sentinel 210, and Pinnacle's SecureStore 080.\",\n        \"The specification mismatch (3-drawer required vs. 2-drawer quoted) is flagged in the discrepancy audit for all three vendors.\",\n        \"The response notes the need for clarification with the Facilities Manager on whether 2-drawer units are acceptable substitutes.\"\n      ]\n    }\n  ]\n}\n",
+          "task_card": "# Purchasing Agents, Except Wholesale, Retail, and Farm Products — Task 3\n\n\nThis task asks the agent to act as a Greenfield Technologies purchasing agent on a 150-employee office furniture refresh, auditing three vendor quotations against PR-2025-0042 and a 10-item compliance checklist, re-running the bid math under a Finance-imposed $310,000 cap, and producing a recommendation memo with a concrete negotiation counter-offer.\n\n---\n\n## 1. Capability Professionals Want Agents to Handle\n\n**ONET Task Summary:** *Prepare purchase orders, solicit bid proposals, and review requisitions for goods and services.*\n\n**Expert Reported Automation Desire:** 3.00 (scale: 0–5, from WorkBank)\n\nIn practice this means cross-checking every quote line against the requisition spec and the CR-001 through CR-010 compliance list, recomputing three scenario totals (original / quantity-adjusted / fully-loaded with installation and freight), pulling vendor history from the SQLite database for past performance and warranty claims, and rolling everything into a weighted scorecard plus a memo with a defensible negotiation position.\n\n**Why desired:** Furniture procurement audits are heavy on detail-level verification — drawer counts, fabric double-rub ratings, weight capacities, ADA heights, deposit terms — that an agent can mechanize. The buyer is then free to focus on the negotiation strategy and the escalation decision when the cap cannot be met.\n\n---\n\n## 2. Reasoning Challenges by Design\n\n- **Razor-thin Atlas margin breaks under quantity correction**\n  Atlas's adjusted total with freight and installation is $309,510 — only $490 under the $310,000 cap. Correcting Atlas's conference-chair quantity from 84 to the PR-specified 88 adds $1,140, breaching the cap. The audit and budget analysis must connect.\n\n- **Meridian overage too large to negotiate away**\n  Meridian's adjusted total with installation is $378,940 — $68,940 (22.2%) over cap. The 5% conference-furniture discount saves only ~$3,027, far short of closing the gap. The agent must conclude this requires VP-of-Operations escalation rather than treat it as a normal counter-offer.\n\n- **Pinnacle phased-delivery failure**\n  PR specifies 3 phased deliveries (Floor 3 Feb, Floor 2 early March, Floor 1 mid-March) and CR-010 mandates phased capability. Pinnacle's quote states \"partial shipments not available\" with 8–10 week overseas lead time — a logistics failure the agent must surface from connecting the PR Notes, CR-010, and the quotation terms.\n\n- **Pinnacle safety-claim risk from vendor history**\n  `vendor_history.db` shows two pending warranty claims against Pinnacle: a desk-leg weld crack causing instability and a chair gas-cylinder sudden drop while occupied. Combined with 20% on-time delivery, this builds a multi-source safety-and-reliability profile.\n\n- **Spec-vs-quote discrepancies**\n  PR specifies 3-drawer lateral filing cabinets; all three vendors quote 2-drawer units. CR-006 requires ADA seated-use minimum 27\" — Atlas (27.5\") and Pinnacle (28\") fail. CR-005 requires 80,000 double rubs — Atlas (60,000) and Pinnacle (45,000) fail. CR-008 requires 275 lb seating capacity — Pinnacle's ErgoPoint 250 is only 250 lb.\n\n- **GREENGUARD Gold unverifiable**\n  CR-001 requires GREENGUARD Gold but no vendor explicitly confirms it. The agent must mark this an unverifiable item requiring vendor follow-up — not a pass and not a fail.\n\n- **Pinnacle 50% non-refundable deposit**\n  Pinnacle's payment terms conflict with Finance's stated Net 30/Net 45 preference. The agent must flag the deposit as a CFO-level financial-risk indicator, not just a payment-term annotation.\n\n---\n\n## 3. Files Requiring Search\n\nNone — all required references are provided in `task_folder/`.\n"
+        },
+        "source": "https://huggingface.co/datasets/JobBench/job-bench/resolve/d43a66575635da0d3f6cb9a20976dc1a60f3ffc9/dataset/purchasing_agents_except_wholesale_retail_and_farm_products/task3/task_folder/TASK_INSTRUCTIONS.txt",
+        "license": "JobBench研究团队 / 数据卡声明MIT；仅展示公开任务文本与记录字段，不外推到第三方附件",
+        "licensePath": "licenses/jobbench-data-card.txt",
+        "split": "main / purchasing_agents_except_wholesale_retail_and_farm_products__task3 / revision d43a66575635da0d3f6cb9a20976dc1a60f3ffc9",
+        "excerpt": true
+      }
+    ]
+  }
 }

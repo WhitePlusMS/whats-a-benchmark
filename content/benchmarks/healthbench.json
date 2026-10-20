@@ -15,7 +15,7 @@
   "verifiedAt": "2026-10-19",
   "id": "healthbench",
   "name": "HealthBench",
-  "subtitle": "医疗对话里，回答是否完整且合适",
+  "subtitle": "医疗对话中的专业表现与安全性",
   "category": "work",
   "tags": [
     "医疗健康",
@@ -95,10 +95,11 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "回答健康对话的最后一条消息，按医生撰写的加权 rubric 评分；共 5,000 段对话。",
+    "summary": "通过5000段面向普通用户或医疗专业人员的多轮健康对话，评估模型在不同医疗情境中的准确性、安全性、沟通及指令遵循等表现；使用医生编写的对话专属评分标准。",
     "task": "生成健康相关对话回复，并由 grader 对每例 rubric criteria 逐项判定后汇总得分。",
     "sourceUrls": [
-      "https://openai.com/index/healthbench/"
+      "https://openai.com/index/healthbench/",
+      "https://arxiv.org/abs/2505.08775"
     ]
   },
   "taskContract": {
@@ -196,5 +197,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19"
+  "updatedAt": "2026-10-20"
 }

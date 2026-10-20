@@ -8,7 +8,7 @@
   "verifiedAt": "2026-10-19",
   "id": "human-eval",
   "name": "HumanEval",
-  "subtitle": "按说明补全一个 Python 函数",
+  "subtitle": "Python函数生成的功能正确性",
   "category": "coding",
   "tags": [
     "函数生成",
@@ -229,10 +229,11 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "按函数签名和 docstring 补全 Python 函数，再用单元测试检查功能；题目由人工编写。",
-    "task": "根据函数签名和自然语言说明补全独立 Python 函数，并通过题目测试。",
+    "summary": "用164道人工编写的Python编程题评估模型理解功能说明并生成正确代码的能力，覆盖语言理解、算法、推理和基础数学；通过执行单元测试统计pass@k。",
+    "task": "根据函数签名与自然语言功能说明生成Python函数实现，并在整套问题上检验生成代码的功能正确性。",
     "sourceUrls": [
-      "https://arxiv.org/html/2107.03374#S2.SS2"
+      "https://arxiv.org/html/2107.03374#S2.SS2",
+      "https://arxiv.org/html/2107.03374#S2.SS1"
     ]
   },
   "taskContract": {
@@ -320,5 +321,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19"
+  "updatedAt": "2026-10-20"
 }

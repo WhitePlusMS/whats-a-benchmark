@@ -20,7 +20,7 @@
   "verifiedAt": "2026-10-19",
   "id": "mrcr-v2",
   "name": "MRCR v2（DeepMind）",
-  "subtitle": "在相似回答中定位指定的那一次",
+  "subtitle": "长上下文中的指代消解与相似片段检索能力",
   "category": "context",
   "tags": [
     "多轮指代",
@@ -80,6 +80,11 @@
       "label": "DeepMind MRCR v2 固定代次 GCS CSV",
       "url": "https://storage.googleapis.com/download/storage/v1/b/mrcr_v2/o/mrcr_v2p1_2needle_in_(4096%2C8192)_dynamic_fewshot_text_style_fast.csv?generation=1752091035115105&alt=media",
       "role": "data"
+    },
+    {
+      "label": "Google DeepMind eval_hub: MRCR V2 README",
+      "url": "https://raw.githubusercontent.com/google-deepmind/eval_hub/master/eval_hub/mrcr_v2/README.md",
+      "role": "readme"
     }
   ],
   "status": "published",
@@ -89,11 +94,12 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "从长对话中按出现次序找回指定回答并输出专属前缀，观察上下文增长时的区分与定位能力。",
+    "summary": "Google DeepMind的MRCR v2评估模型在含相似、重复写作请求的长对话中区分并找回指定回答的能力；通过固定任务复杂度、增加上下文长度观察检索泛化，任务并非评价写作质量。",
     "task": "多轮对话中，格式、主题和风格相似的写作请求会重复出现。模型按出现次序找回指定助手回答，先输出专属随机字符串，再复现内容；任务复杂度固定，用于观察上下文增长时的泛化。",
     "sourceUrls": [
       "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2",
-      "https://deepmind.google/research/evals/"
+      "https://deepmind.google/research/evals/",
+      "https://raw.githubusercontent.com/google-deepmind/eval_hub/master/eval_hub/mrcr_v2/README.md"
     ]
   },
   "taskContract": {
@@ -155,7 +161,7 @@
       "https://github.com/google-deepmind/eval_hub/tree/master/eval_hub/mrcr_v2"
     ]
   },
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [

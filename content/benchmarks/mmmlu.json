@@ -24,7 +24,7 @@
   "verifiedAt": "2026-10-19",
   "id": "mmmlu",
   "name": "MMMLU",
-  "subtitle": "同一套知识问题，换成多种语言",
+  "subtitle": "跨14种语言的学科知识与推理表现",
   "category": "knowledge",
   "tags": [
     "多语言",
@@ -96,6 +96,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
       "role": "data"
+    },
+    {
+      "label": "gpt-oss-120b & gpt-oss-20b Model Card - OpenAI Deployment Safety Hub",
+      "url": "https://deploymentsafety.openai.com/gpt-oss/multilingual-performance",
+      "role": "definition"
     }
   ],
   "status": "published",
@@ -105,10 +110,11 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "MMMLU 是 OpenAI 发布的 MMLU test 人工翻译版本，覆盖 14 个 locale；此缩写不同于视觉语言基准 MMMU。",
+    "summary": "OpenAI将MMLU人工专业翻译为14种语言，用于比较跨语言学科知识和问题求解表现；保留原有学科框架，不等同于针对各地文化另建的知识测试。",
     "task": "以某一 locale 的 MMLU 选择题考查跨语言学科知识；它保留原学科框架，不等同各语言地区文化知识的本地化测试。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/openai/MMMLU"
+      "https://huggingface.co/datasets/openai/MMMLU",
+      "https://deploymentsafety.openai.com/gpt-oss/multilingual-performance"
     ]
   },
   "taskContract": {
@@ -353,5 +359,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19"
+  "updatedAt": "2026-10-20"
 }

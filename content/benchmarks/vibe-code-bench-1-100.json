@@ -3,7 +3,7 @@
   "status": "published",
   "order": 1130,
   "name": "Vibe Code Bench 1–100",
-  "subtitle": "让已工作的应用连续演进",
+  "subtitle": "Web应用连续迭代与既有行为保持能力",
   "category": "coding",
   "tags": [
     "应用迭代",
@@ -19,10 +19,11 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "对已工作的 web 应用连续实现最多十个相互依赖的产品请求，并保留先前行为。",
+    "summary": "评估模型在已可运行的Web应用上持续实现相互依赖的产品需求、同时保留既有行为的能力；同一代码库最多连续接受十轮请求，按新功能及回归流程检查推进程度。",
     "task": "从已通过Vibe Code Bench v1.1测试的应用出发，依次实现最多10条相互依赖的产品请求，同时保留应继续工作的既有行为。",
     "sourceUrls": [
-      "https://www.vals-ai.com/benchmarks/vcb-1-100"
+      "https://www.vals-ai.com/benchmarks/vcb-1-100",
+      "https://www.vals.ai/benchmarks/vcb-1-100"
     ]
   },
   "taskContract": {
@@ -133,6 +134,11 @@
       "label": "Vals Vibe Code Bench v1.1",
       "url": "https://www.vals-ai.com/benchmarks/vibe-code",
       "role": "definition"
+    },
+    {
+      "label": "Vibe Code Bench 1-100 Leaderboard and Methodology | Vals AI",
+      "url": "https://www.vals.ai/benchmarks/vcb-1-100",
+      "role": "definition"
     }
   ],
   "related": [
@@ -146,7 +152,7 @@
     }
   ],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "每个工作流的全部步骤均须成功；当一轮新功能或选定回归检查失败时停止连续迭代计数，不把后续修复视作该轮通过。",

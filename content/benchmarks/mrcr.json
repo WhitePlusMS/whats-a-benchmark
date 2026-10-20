@@ -19,7 +19,7 @@
   "verifiedAt": "2026-10-19",
   "id": "mrcr",
   "name": "MRCR（OpenAI 公开集）",
-  "subtitle": "长对话里，找回指定的那一次回答",
+  "subtitle": "长对话中的多轮指代消解与定向检索能力",
   "category": "context",
   "tags": [
     "多轮检索",
@@ -83,7 +83,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "在含重复写作请求的长对话中找回第几次对应的回答，并先输出指定随机前缀。",
+    "summary": "OpenAI的多轮指代消解评测，通过长对话中的相似写作请求，测试模型能否按条件和出现次序定位指定助手回答并准确复现；评价重点是信息区分与检索。",
     "task": "合成多轮对话中，同一写作请求会重复出现。模型按指定次序找回对应的助手回答，先输出随机前缀，再复现要求的内容。",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/mrcr"
@@ -147,7 +147,7 @@
       "https://datasets-server.huggingface.co/rows?dataset=openai%2Fmrcr&config=default&split=train&offset=0&length=3"
     ]
   },
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [

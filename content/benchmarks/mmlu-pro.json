@@ -17,7 +17,7 @@
   "verifiedAt": "2026-10-19",
   "id": "mmlu-pro",
   "name": "MMLU-Pro",
-  "subtitle": "更多干扰项，更强调推理",
+  "subtitle": "更高推理要求的跨学科知识与问题求解能力",
   "category": "knowledge",
   "tags": [
     "多学科",
@@ -66,6 +66,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
       "role": "data"
+    },
+    {
+      "label": "MMLU-Pro paper",
+      "url": "https://arxiv.org/html/2406.01574",
+      "role": "paper"
     }
   ],
   "status": "published",
@@ -540,11 +545,12 @@
   },
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "回答多学科选择题；在 MMLU 等题源基础上增加推理要求与干扰项，通常采用十选一。",
+    "summary": "在MMLU等题源基础上，用更困难、偏重推理的多学科问题评估模型，并扩大选择项、清除简单或有噪声的问题，以提升区分度和提示变化下的稳定性。",
     "task": "回答学科题干和通常为十选一的选项；少数经审核的题目选项少于十个。",
     "sourceUrls": [
       "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
-      "https://arxiv.org/abs/2406.01574"
+      "https://arxiv.org/abs/2406.01574",
+      "https://arxiv.org/html/2406.01574"
     ]
   },
   "taskContract": {
@@ -646,5 +652,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19"
+  "updatedAt": "2026-10-20"
 }

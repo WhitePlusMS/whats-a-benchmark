@@ -3,7 +3,7 @@
   "status": "published",
   "order": 1110,
   "name": "ProgramBench",
-  "subtitle": "从黑盒可执行程序重建完整软件",
+  "subtitle": "黑盒完整程序的自主构建与行为复现能力",
   "category": "coding",
   "tags": [
     "黑盒重建",
@@ -19,7 +19,7 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "从可执行程序及其文档重建程序，不提供实现源码。",
+    "summary": "评估智能体只依据编译后的程序及文档，从零设计并实现完整代码库的能力；不提供原始源码，以隐藏行为测试检验重建程序是否复现目标功能。",
     "task": "在只能执行原程序、无法读取源码的条件下，为命令行工具及大型软件实现行为相同的代码库。",
     "sourceUrls": [
       "https://programbench.com/"
@@ -210,7 +210,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "独立评分镜像对候选实现执行行为测试；先检查 error_code 与 test_branch_errors，再按 programbench info 的忽略规则读分。",

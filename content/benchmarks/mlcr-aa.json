@@ -3,7 +3,7 @@
   "status": "published",
   "order": 404,
   "name": "MLCR-AA",
-  "subtitle": "在长篇医疗记录中完成多文档综合推理",
+  "subtitle": "碎片化长篇医疗记录的综合临床推理能力",
   "category": "context",
   "tags": [
     "长文本",
@@ -25,7 +25,7 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "AA 使用 MLCR 的私有高难题，衡量长篇碎片化医疗记录的综合推理。",
+    "summary": "AA使用MLCR的私有高难留出集，评估模型跨长篇、碎片化病历重建时序、理解因果和治疗模式并综合结论的能力；答案需简洁、准确且完整。",
     "task": "重建时序、分析因果和治疗模式，完整回答跨记录问题。",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/mlcr-aa"
@@ -157,7 +157,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "先用参考答案字符长度的五倍作简洁门槛，再以三裁判多数票分别检查准确和完整；过长/空回答在总体中计失败，而不进入judged-only分项分母。",

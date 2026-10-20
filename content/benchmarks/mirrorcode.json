@@ -3,7 +3,7 @@
   "status": "published",
   "order": 1150,
   "name": "MirrorCode",
-  "subtitle": "端到端重建现有程序",
+  "subtitle": "黑盒程序的长程重建与行为复现能力",
   "category": "coding",
   "tags": [
     "黑盒重建",
@@ -19,7 +19,7 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "在无原始源码条件下端到端重建现有程序，要求匹配隐藏测试输出。",
+    "summary": "评估智能体在无法读取原始源码的条件下，端到端重建完整程序的长程编程能力；可通过执行目标程序探索行为，重建结果须在包括留出测试的端到端检查中精确匹配输出。",
     "task": "在无法读取原始实现源码的条件下，根据程序行为和规格重建完整目标程序。",
     "sourceUrls": [
       "https://epoch.ai/benchmarks/mirrorcode"
@@ -181,7 +181,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "在没有参考二进制的评分沙箱重建候选实现；所有端到端测试的stdout/stderr都一致才算100%solve，隐藏测试阻止查表式实现。",

@@ -3,7 +3,7 @@
   "status": "published",
   "order": 662,
   "name": "RWS M-GATE",
-  "subtitle": "直接检查语法、往返翻译和多语言效率",
+  "subtitle": "多语言语法掌握、翻译准确性与处理效率",
   "category": "knowledge",
   "tags": [
     "多语言",
@@ -24,10 +24,11 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "检查多语言语法、往返翻译语义保持及 tokenizer 效率。",
+    "summary": "评估模型对30种类型多样语言本身的掌握程度，包含语言特有语法错误检测、往返翻译的意义保持，以及辅助的分词效率指标，区分流畅表达与语言熟练度。",
     "task": "识别语言特有的语法问题，将英语译成目标语言再译回，另记录处理效率。",
     "sourceUrls": [
-      "https://arxiv.org/abs/2608.03803"
+      "https://arxiv.org/abs/2608.03803",
+      "https://arxiv.org/html/2608.03803"
     ]
   },
   "taskContract": {
@@ -135,11 +136,16 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://arxiv.org/html/2608.03803v1#Ax6.SSx3",
       "role": "data"
+    },
+    {
+      "label": "M-GATE: Multilingual Grammar, Accuracy in Translation, and Efficiency Benchmark for Large Language Models",
+      "url": "https://arxiv.org/html/2608.03803",
+      "role": "paper"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "语法先去除首尾空白、转小写并解析首词 Yes/No；失败时 Claude Haiku 4.5 只把已有回答归为二元标签，不判断句子语法。标签对照语言学家标准答案计分；翻译由三家裁判比较原始与往返英语文本。",

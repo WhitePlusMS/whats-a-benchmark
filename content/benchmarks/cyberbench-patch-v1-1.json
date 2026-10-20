@@ -3,7 +3,7 @@
   "status": "published",
   "order": 1140,
   "name": "CyberBench Patch v1.1",
-  "subtitle": "消除真实漏洞并保持正确行为",
+  "subtitle": "真实漏洞补丁的安全修复与行为保持能力",
   "category": "coding",
   "tags": [
     "安全修补",
@@ -19,7 +19,7 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "在 OSS-Fuzz 真实漏洞任务上提交代码修补，需消除已知崩溃并通过隐藏 holdout。",
+    "summary": "CyberBench v1.1的Patch轨道，评估模型修补真实原生代码漏洞的能力；既要阻止给定PoC触发的崩溃，也要通过隐藏检查保持正常程序行为，与漏洞发现的PoC轨道分别计分。",
     "task": "给定漏洞项目源码、触发崩溃的PoC及sanitizer报告，修补源码并通过维护者参考行为的隐藏检查。",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/cyber"
@@ -142,7 +142,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "依次构建候选补丁、重跑原PoC检查sanitizer、在隐藏输入比对维护者参考行为；Patch全条件通过才成功。",

@@ -3,7 +3,7 @@
   "status": "published",
   "order": 1120,
   "name": "Vibe Code Bench v1.1",
-  "subtitle": "从产品规格构建完整Web应用",
+  "subtitle": "从自然语言规格构建完整Web应用的能力",
   "category": "coding",
   "tags": [
     "应用开发",
@@ -19,10 +19,11 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "从自然语言产品规格构建可工作的完整 web 应用，并由浏览器流程检查功能。",
+    "summary": "评估模型在完整开发环境中依据自然语言产品规格，从零构建符合用户要求的可运行Web应用的能力；通过浏览器交互流程检查核心功能、边界情况与用户工作流。",
     "task": "根据自然语言产品规格，在完整开发环境中从零构建可工作的Web应用，再由浏览器操作测试验收。",
     "sourceUrls": [
-      "https://www.vals-ai.com/benchmarks/vibe-code"
+      "https://www.vals-ai.com/benchmarks/vibe-code",
+      "https://www.vals.ai/benchmarks/vibe-code"
     ]
   },
   "taskContract": {
@@ -139,11 +140,16 @@
       "label": "已核验的具体公开任务",
       "url": "https://gist.githubusercontent.com/lgnashold/e9bba36be5e468d8f8a2f330ae8d6aea/raw/0bd7400df1f9d444c54350f13af2a02aac72bd67/app_instructions.txt",
       "role": "data"
+    },
+    {
+      "label": "Vibe Code Bench Leaderboard and Methodology | Vals AI",
+      "url": "https://www.vals.ai/benchmarks/vibe-code",
+      "role": "definition"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "浏览器 agent 执行 UI 流程；每个测试至少 90% 子步骤成功才通过，先算应用内测试通过率，再平均应用分。",

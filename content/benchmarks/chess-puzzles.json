@@ -3,7 +3,7 @@
   "status": "published",
   "order": 1230,
   "name": "Chess Puzzles",
-  "subtitle": "从FEN棋局选出最佳一步",
+  "subtitle": "国际象棋局面中的空间推理与最佳着法选择",
   "category": "reasoning",
   "tags": [
     "棋局推理",
@@ -19,7 +19,7 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "模型读取棋局FEN并选出当前玩家唯一最佳下一步。",
+    "summary": "用引擎程序生成的新颖棋局评估模型选择唯一最佳下一步的能力，作为空间推理与规划的轻量测试；依据Stockfish判定的最佳着法检查答案。",
     "task": "在由棋类引擎生成的国际象棋局面中找出唯一最佳下一步。",
     "sourceUrls": [
       "https://epoch.ai/benchmarks/chess-puzzles"
@@ -142,7 +142,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
       "text": "从最终文本抽取起点/终点着法并对唯一最佳答案键；Stockfish用于生成筛选题，不意味着答题模型可调用该引擎。",

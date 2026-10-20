@@ -17,7 +17,7 @@
   "verifiedAt": "2026-10-19",
   "id": "longbench",
   "name": "LongBench",
-  "subtitle": "读长材料，还能回答、总结和推理吗",
+  "subtitle": "中英文长上下文的多任务理解能力",
   "category": "context",
   "tags": [
     "长上下文",
@@ -82,6 +82,11 @@
       "label": "LongBench dataset card at fixed HF revision",
       "url": "https://huggingface.co/datasets/THUDM/LongBench/blob/5e628be450b7e67fb7ae6e201bd6d8f7056f7672/README.md",
       "role": "data"
+    },
+    {
+      "label": "LongBench/LongBench/README.md",
+      "url": "https://github.com/THUDM/LongBench/blob/main/LongBench/README.md",
+      "role": "readme"
     }
   ],
   "status": "published",
@@ -91,10 +96,12 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "从中英文长上下文中完成问答、摘要、少样本、合成或代码任务，按任务分别计分。",
+    "summary": "通过中英文长文本任务评估模型的长上下文理解能力，覆盖单文档和多文档问答、摘要、少样本学习、合成任务及代码补全；各任务使用相应的自动评分方法。",
     "task": "根据长上下文完成问答、摘要、少样本、合成或代码补全等任务，按数据集使用各自评分指标。",
     "sourceUrls": [
-      "https://github.com/THUDM/LongBench/tree/main/LongBench"
+      "https://github.com/THUDM/LongBench/tree/main/LongBench",
+      "https://arxiv.org/abs/2308.14508",
+      "https://github.com/THUDM/LongBench/blob/main/LongBench/README.md"
     ]
   },
   "taskContract": {
@@ -198,7 +205,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [

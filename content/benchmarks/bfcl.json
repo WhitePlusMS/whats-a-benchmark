@@ -3,7 +3,7 @@
   "status": "published",
   "order": 260,
   "name": "BFCL",
-  "subtitle": "该调用哪个函数，参数填得对不对",
+  "subtitle": "函数选择、参数生成与多轮工具调用能力",
   "category": "agents",
   "tags": [
     "函数调用",
@@ -29,7 +29,8 @@
     "task": "模型接收用户请求和函数 schema，输出函数调用及参数；部分任务需执行调用或在无法作答时拒绝。",
     "sourceUrls": [
       "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
-      "https://openreview.net/pdf?id=2GmDdhBdDk"
+      "https://openreview.net/pdf?id=2GmDdhBdDk",
+      "https://raw.githubusercontent.com/ShishirPatil/gorilla/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md"
     ]
   },
   "taskContract": {
@@ -531,9 +532,14 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
       "role": "data"
+    },
+    {
+      "label": "Berkeley Function Calling Leaderboard data README",
+      "url": "https://raw.githubusercontent.com/ShishirPatil/gorilla/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
+      "role": "readme"
     }
   ],
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "researchNotes": [
     {
       "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",

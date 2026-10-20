@@ -3,7 +3,7 @@
   "status": "published",
   "order": 661,
   "name": "Roboflow Vision Evals",
-  "subtitle": "六种真实图片任务上的统一视觉评测",
+  "subtitle": "真实图像上的多任务视觉能力",
   "category": "multimodal",
   "tags": [
     "视觉理解",
@@ -16,32 +16,32 @@
     "roboflow"
   ],
   "year": null,
-  "version": "当前六任务协议 · 与 legacy 区分",
+  "version": "当前五任务协议 · 与 legacy 区分",
   "kind": "suite",
   "aliases": [
     "Vision Evals"
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "对相同真实图片任务测目标检测、计数、识别、OCR、提取和推理。",
-    "task": "六项任务分别提交目标框、数量、实体名称、文本或视觉问题答案。",
+    "summary": "在统一真实图像样本上评估视觉语言模型的目标检测、计数、实体识别、OCR和视觉推理能力，对照标准答案评分；当前协议为五类任务，结构化文字提取归入OCR。",
+    "task": "按五类任务提交检测框及类别、对象数量、实体名称、OCR结果或视觉问题答案；OCR涵盖单值、完整转录、结构化字段和文本定位。",
     "sourceUrls": [
       "https://playground.roboflow.com/evals"
     ]
   },
   "taskContract": {
-    "input": "相同样本集中的图像与专项要求：定位物体、计数、识别实体、全图转录、提取指定信息或解释视觉问题；ground truth 留给评分端。",
-    "output": "检测返回类别和边界框；计数返回指定对象数；识别返回实体名；OCR 转录所有可见文字；提取返回指定字段值；推理返回问题答案。",
-    "environment": "每专项分别运行 low/high 两个 benchmark effort tier，每配置重复 3 次；tier 映射到各模型原生推理机制。总榜使用 low effort，专项页同时展示 strict 与 judged 结果。",
+    "input": "相同样本集中的图像与专项要求：目标检测、计数、实体识别、OCR或视觉推理；ground truth 留给评分端。",
+    "output": "检测返回类别和边界框；计数返回对象数；识别返回实体名；OCR返回单值、转录、结构化字段或带位置的文本；推理返回问题答案。",
+    "environment": "当前协议每专项分别运行low/high两个benchmark effort tier，每配置重复三次，正在重跑的旧结果及OCR初步结果可能只有单次；总榜使用low effort，部分专项另列strict与judged结果。",
     "sourceUrls": [
       "https://playground.roboflow.com/evals"
     ]
   },
   "dataProfile": {
-    "summary": "官网公开六项任务与逐项结果入口，旧版本保留在 legacy；本次未确认完整图片和标准答案统一下载。",
+    "summary": "官网公开五类任务与逐项结果入口，旧版本保留在legacy；本次未确认完整图片和标准答案的统一下载。",
     "disclosure": "partial",
     "scale": [
-      "6 项任务：检测、计数、识别、OCR、数据提取、推理。"
+      "5类任务：目标检测、计数、实体识别、OCR、视觉推理。"
     ],
     "splits": [],
     "fields": [],
@@ -83,8 +83,8 @@
     "reason": "5个官方展开案例的实际题文及标准值可切换；未镜像题图，展示序号不冒充后端行ID。"
   },
   "metric": {
-    "name": "六任务平均分",
-    "description": "总分为六项 headline score 的无权重平均；检测用 mAP@50、OCR 用平均相似度，其他项用对标准答案的裁判准确率。± 为重复运行半极差，不是置信区间。",
+    "name": "五任务平均分",
+    "description": "总体为五项headline score的无权重平均；缺OCR的模型只计算四项并标明。检测用mAP@50，OCR依问题形式使用精确匹配、转录相似度、字段匹配或位置与文本匹配；其余三项以对照标准答案的裁判准确率为主。±为重复运行半极差。",
     "direction": "higher",
     "sourceUrls": [
       "https://playground.roboflow.com/evals"
@@ -122,22 +122,22 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
-      "text": "检测用 mAP@50、OCR 用与标准转录的平均相似度；其他四项由温度 0 的 Gemini 3.5 Flash 对照 ground truth 判正确，strict exact-match 另列。",
+      "text": "检测使用mAP@50；OCR使用与标准答案的确定性检查，依单值、转录、JSON字段或文本定位分别计分；计数、实体识别和推理由温度0的Gemini 3.5 Flash对照ground truth判正确，另列strict exact-match。",
       "sourceUrls": [
         "https://playground.roboflow.com/evals"
       ]
     },
     "comparison": {
-      "text": "总体为六个 headline score 等权均值，统一用 low effort；± 是三次运行半极差，不能当 95% 区间或用 high 专项分替代总体分。",
+      "text": "总体按五个headline score等权平均，缺OCR的模型只计四项并标明，统一使用low effort；±为三次运行的半极差，不是置信区间，OCR当前为单次初步结果。",
       "sourceUrls": [
         "https://playground.roboflow.com/evals"
       ]
     },
     "disclosure": {
-      "text": "官网公开六项任务与逐项结果入口，旧版本保留在 legacy；本次未确认完整图片和标准答案统一下载。",
+      "text": "官网公开五类任务与逐项结果入口，旧版本保留在legacy；本次未确认完整图片和标准答案的统一下载。",
       "sourceUrls": [
         "https://playground.roboflow.com/evals"
       ]

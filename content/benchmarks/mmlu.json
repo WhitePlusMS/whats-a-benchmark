@@ -15,7 +15,7 @@
   "verifiedAt": "2026-10-19",
   "id": "mmlu",
   "name": "MMLU",
-  "subtitle": "一张覆盖很多学科的知识试卷",
+  "subtitle": "跨57个学科的知识与问题求解能力",
   "category": "knowledge",
   "tags": [
     "多学科",
@@ -87,6 +87,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=cais%2Fmmlu&config=anatomy&split=test&offset=0&length=5",
       "role": "data"
+    },
+    {
+      "label": "Measuring Massive MultitaskLanguage Understanding",
+      "url": "https://arxiv.org/html/2009.03300",
+      "role": "paper"
     }
   ],
   "status": "published",
@@ -96,10 +101,11 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "回答 57 个学科的四选一文本题，考查广域知识与问题求解能力。",
+    "summary": "通过57个学科的文本选择题，评估模型学术与专业知识的广度、深度和问题求解能力，范围从基础数学到历史、计算机、法律等领域。",
     "task": "输入每科题目和四个候选答案，模型按 zero-shot 或使用该科 development 示例的 few-shot 提示选择答案。",
     "sourceUrls": [
-      "https://arxiv.org/abs/2009.03300"
+      "https://arxiv.org/abs/2009.03300",
+      "https://arxiv.org/html/2009.03300"
     ]
   },
   "taskContract": {
@@ -190,7 +196,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-10-20",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
