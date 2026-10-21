@@ -11,7 +11,7 @@
     }
   ],
   "kind": "original",
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "id": "gpqa",
   "name": "GPQA",
   "subtitle": "生物、物理与化学的专家级知识与推理",
@@ -67,6 +67,16 @@
       "role": "access"
     },
     {
+      "label": "作者公开数据包与密码说明（固定修订）",
+      "url": "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/README.md#dataset-download",
+      "role": "data"
+    },
+    {
+      "label": "作者 dataset.zip（固定修订，已核对结构）",
+      "url": "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip",
+      "role": "data"
+    },
+    {
       "label": "GPQA: A Graduate-Level Google-Proof Q&amp;A Benchmark",
       "url": "https://arxiv.org/html/2311.12022",
       "role": "paper"
@@ -96,40 +106,55 @@
     ]
   },
   "dataProfile": {
-    "summary": "GPQA Main 有 448 题；数据卡另列 546 题 Extended、198 题 Diamond 和 Experts 配置。",
+    "summary": "GPQA Main有448道科学选择题，Diamond为其中198道筛选子集，Extended含546道题；另有60条专家资料，不能计入题目数量。",
     "disclosure": "complete",
     "scale": [
       "Main：448 题；Extended：546 题；Diamond：198 题。"
     ],
     "splits": [
-      "HF 配置包括 gpqa_main、gpqa_extended、gpqa_diamond 和 gpqa_experts；配置之间可能重叠，不是互斥切分。"
+      "固定公开包中Diamond是Main的子集，Main是Extended的子集；三种题目配置不是互斥切分，题数不能相加。",
+      "HF另提供gpqa_experts配置，对应专家资料表，不是额外的问题集。"
     ],
-    "fields": [],
+    "fields": [
+      "Question",
+      "Correct Answer",
+      "Incorrect Answer 1 / Incorrect Answer 2 / Incorrect Answer 3",
+      "Explanation",
+      "Record ID",
+      "Subdomain / High-level domain",
+      "Canary String（以上为已核对 CSV 的部分真实列名，不含题目值）"
+    ],
     "files": [
-      "HF 各配置的 CSV；作者仓库提供数据下载指引和评测代码。"
+      "作者 GitHub 固定修订 56686c06f5e19865c153de0fdb11be3890014df7 的 dataset.zip；README 同页公开解压密码。",
+      "dataset/gpqa_main.csv：448 行、78 列；gpqa_diamond.csv：198 行、78 列；gpqa_extended.csv：546 行、78 列；gpqa_experts.csv：60 行、11 列。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/Idavidrein/gpqa",
-      "https://github.com/idavidrein/gpqa"
+      "https://github.com/idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip",
+      "https://huggingface.co/api/datasets/Idavidrein/gpqa"
     ]
   },
   "dataAccess": {
-    "status": "gated",
+    "status": "public",
     "requirements": [
-      "Hugging Face 数据集需接受访问条件；GitHub 的 dataset.zip 需要密码，仓库公开基线代码。"
+      "作者 GitHub 公开 dataset.zip，README 同页公开解压密码；本次已用公开密码读取 CSV 结构和行数，无需向作者申请。",
+      "Hugging Face 是另一路入口，仍需登录并接受访问条件；这不代表 GitHub 数据包也需申请。",
+      "作者明确请求不要在线以文字或图片展示数据集样例，本站保留入口与字段说明，不转载题目和答案。"
     ],
     "sourceUrls": [
       "https://github.com/idavidrein/gpqa",
-      "https://huggingface.co/datasets/Idavidrein/gpqa"
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/README.md#dataset-download"
     ],
-    "url": "https://huggingface.co/datasets/Idavidrein/gpqa"
+    "url": "https://github.com/idavidrein/gpqa#dataset-download"
   },
   "reusePolicy": {
     "status": "restricted",
     "license": "作者 Hugging Face 数据卡标注题目数据为 CC BY 4.0；GitHub MIT 许可适用于仓库代码。",
     "scope": "数据卡明确要求访问者不要在线以纯文本或图片披露数据集样例，旨在减少题目进入训练语料。",
     "boundaries": [
-      "不得在公开网站复制题目或答案；代码许可不能替代题目数据许可或作者的样例披露要求。"
+      "本站遵循作者的明确请求，不在公开网站复制题目或答案；代码许可不能替代题目数据许可或作者的样例披露请求。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/Idavidrein/gpqa",
@@ -145,6 +170,13 @@
     ]
   },
   "researchNotes": [
+    {
+      "text": "2026-10-19 剩余无案例复核：GitHub 固定修订 56686c06f5e19865c153de0fdb11be3890014df7 的 dataset.zip 为 2,348,038 字节，SHA-256 461ae7329f15a3e35f8184d2dac24b990f34fdf12f366ca4062d8e6638cd08dc。按作者公开密码读取 ZIP 内四份 CSV 的完整列头与行数；Main CSV 的 SHA-256 为 acdeeac8f622267f2cd727d7d474202ea08dec80f7d3c3593b3ef8644f19b8e3。此次核验的是 GitHub 发行文件，未接受 HF 条件，也未把题目值加入站点或新增样例。",
+      "sourceUrls": [
+        "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/README.md#dataset-download",
+        "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip"
+      ]
+    },
     {
       "text": "HF 文件精确版本、hash 与每个 split 的字段 schema 未固定到 commit 核验。",
       "sourceUrls": [

@@ -43,30 +43,28 @@
     ]
   },
   "dataProfile": {
-    "summary": "论文报告617个多模态软件缺陷修复任务；官方 HF 数据卡记录 issue、补丁、测试补丁和图像资产等字段，当前可见 dev split 为100行，不等于论文总量。",
+    "summary": "论文报告617项、17个JavaScript库；本次实际读取的固定HF修订中，dev为100行、test为480行。论文、指南和实际文件的数量分别说明。",
     "disclosure": "partial",
     "scale": [
       "论文报告617个任务实例，涉及17个JavaScript库"
     ],
     "splits": [
-      "The paper reports 617 task instances across 17 JavaScript repositories.",
-      "The current HF viewer shows a 100-row dev split; this is not the paper total."
+      "论文口径：617项；官方指南另列dev 100/test 500。",
+      "固定HF修订实际文件：dev 100、test 480，共580行；与论文和指南的差额原因未核实，不补造删题或版本迁移解释。"
     ],
     "fields": [
-      "instance_id",
-      "repo",
-      "base_commit",
-      "version",
-      "eval_type",
-      "problem_statement",
-      "FAIL_TO_PASS",
-      "PASS_TO_PASS"
+      "固定发布包含instance_id、repo、base_commit、version、problem_statement、patch、test_patch、FAIL_TO_PASS、PASS_TO_PASS等任务/评分字段。",
+      "image_assets按patch、problem_statement与test_patch组织图像资源信息；另有image等环境字段。"
     ],
-    "files": [],
+    "files": [
+      "核对的HF修订：4e6662d51c48e475f7f346e4fa09a6f8b31fcaa5；计数来自该修订下的dev与test Parquet文件。"
+    ],
     "sourceUrls": [
       "https://arxiv.org/abs/2410.03859",
       "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal",
-      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Multimodal&config=default&split=dev&offset=0&length=1",
+      "https://www.swebench.com/SWE-bench/guides/datasets/",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal/resolve/4e6662d51c48e475f7f346e4fa09a6f8b31fcaa5/data/test-00000-of-00001.parquet"
     ]
   },
   "dataAccess": {
@@ -160,10 +158,20 @@
       "label": "SWE-bench Multimodal: Do AI SystemsGeneralize to Visual Software Domains?",
       "url": "https://arxiv.org/html/2410.03859",
       "role": "paper"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://www.swebench.com/SWE-bench/guides/datasets/",
+      "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal/resolve/4e6662d51c48e475f7f346e4fa09a6f8b31fcaa5/data/test-00000-of-00001.parquet",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "interpretation": {
     "versionChanges": {
       "text": "论文与数据集公开版本；模型成绩所用具体commit未核",

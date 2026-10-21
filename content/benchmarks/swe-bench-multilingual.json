@@ -97,6 +97,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://raw.githubusercontent.com/apache/druid/1df53d6eb30a019fff69a5ff7533ebbd998a438d/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/846e647b9f33c0b51b739d005d13d85493c9af09/data/test-00000-of-00001.parquet",
+      "role": "data"
     }
   ],
   "related": [
@@ -111,7 +116,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "评估模型在九种编程语言、42个真实仓库中的软件工程能力；由GitHub问题与拉取请求构成300项任务，检验对不同语言和项目领域的代码理解与修复。",
@@ -141,13 +146,15 @@
       "test。"
     ],
     "fields": [
-      "instance_id、repo、issue_id、base_commit、problem_statement、version、issue_url、pr_url、patch、test_patch、FAIL_TO_PASS、PASS_TO_PASS。"
+      "固定HF修订846e647b9f33c0b51b739d005d13d85493c9af09的实际15列：base_commit、created_at、eval_type、image、instance_id、log_parser、repo、version、patch、test_patch、eval_script、problem_statement、hints_text、FAIL_TO_PASS、PASS_TO_PASS。",
+      "该发布文件没有issue_id、issue_url或pr_url列；另行构造的链接必须与原字段区分。"
     ],
     "files": [],
     "sourceUrls": [
       "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
       "https://www.swebench.com/SWE-bench/guides/datasets/",
-      "https://www.swebench.com/multilingual.html"
+      "https://www.swebench.com/multilingual.html",
+      "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/846e647b9f33c0b51b739d005d13d85493c9af09/data/test-00000-of-00001.parquet"
     ]
   },
   "dataAccess": {

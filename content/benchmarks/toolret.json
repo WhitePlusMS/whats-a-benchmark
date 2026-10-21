@@ -50,10 +50,11 @@
     "scale": [
       "论文报告约7.6k检索任务与43k工具语料；另有超过200k实例的训练集"
     ],
-    "splits": [],
+    "splits": [
+      "当前公开ToolRet-Queries的35个配置合计7961条queries记录；与论文约7.6k检索任务的范围/版本关系尚未核定，不与约43k工具或超过200k训练实例相加。"
+    ],
     "fields": [
-      "id",
-      "labels"
+      "当前官方ToolRet-Queries各query配置字段为id、query、instruction、labels、category；labels与检索输入分别说明。工具语料和训练实例由各自数据资源定义，不套用这五列。"
     ],
     "files": [],
     "sourceUrls": [
@@ -63,7 +64,8 @@
       "https://arxiv.org/html/2503.01763",
       "https://mangopy.github.io/tool-retrieval-benchmark/",
       "https://huggingface.co/collections/mangopy/tool-retrieval-67becd739af04daa71c88db0",
-      "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md"
+      "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md",
+      "https://huggingface.co/api/datasets/hugFu/ToolRet-Queries"
     ]
   },
   "dataAccess": {
@@ -172,10 +174,15 @@
       "label": "实际原始任务、数据或许可依据",
       "url": "https://huggingface.co/datasets/hugFu/ToolRet-Queries/raw/main/README.md",
       "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/api/datasets/hugFu/ToolRet-Queries",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "interpretation": {
     "versionChanges": {
       "text": "arXiv v1 于 2025-03-03 首次提交；作者仓库记录同日发布论文、3月5日发布代码、5月20日论文被 ACL 2025 接收。工具库和检索任务应按引用版本固定。",

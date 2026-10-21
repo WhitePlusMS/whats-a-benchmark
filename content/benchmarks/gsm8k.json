@@ -2,7 +2,7 @@
   "aliases": [],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "id": "gsm8k",
   "name": "GSM8K",
   "subtitle": "基础数学应用题中的多步算术推理",
@@ -78,6 +78,16 @@
     {
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/test.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/api/datasets/openai/gsm8k",
+      "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/README.md",
       "role": "data"
     }
   ],
@@ -229,10 +239,11 @@
     ]
   },
   "dataProfile": {
-    "summary": "作者 README 以约数报告约 8.5K 题；当前 HF main 配置显示约 8.79K 行，train 约 7.47K。另有 socratic 配置。",
+    "summary": "作者旧README约称8.5K题；当前官方HF main配置实际为7473条train、1319条test，共8792条。socratic是另一个格式变体，不与main相加。",
     "disclosure": "complete",
     "scale": [
-      "作者口径：约 8.5K（约 7.5K train、约 1K test）；当前 HF main：8.79K 行，train 约 7.47K。"
+      "当前HF固定修订740312add88f781978c0658806c59bc2815b9866：main为train 7473、test 1319，共8792条；socratic同样各7473/1319。",
+      "旧README约8.5K的概述与当前文件精确计数分别标明；当前文件的划分名以元数据/文件中的test为准。"
     ],
     "splits": [
       "main 配置包括 train 和 test；socratic 是加入自动生成子问题的变体，不应与论文使用的 main 混称。"
@@ -245,7 +256,9 @@
     ],
     "sourceUrls": [
       "https://github.com/openai/grade-school-math#dataset-details",
-      "https://huggingface.co/datasets/openai/gsm8k"
+      "https://huggingface.co/datasets/openai/gsm8k",
+      "https://huggingface.co/api/datasets/openai/gsm8k",
+      "https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/README.md"
     ]
   },
   "dataAccess": {

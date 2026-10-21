@@ -16,7 +16,7 @@
     }
   ],
   "kind": "derivative",
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "id": "mmmu-pro",
   "name": "MMMU-Pro",
   "subtitle": "更依赖视觉信息的多学科专业理解与推理",
@@ -95,6 +95,16 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=MMMU%2FMMMU_Pro&config=standard%20%2810%20options%29&split=test&offset=10&length=8",
       "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/MMMU/MMMU_Pro/resolve/0d7426df4ccb3d8704a992fe6850abee7c262127/README.md",
+      "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/api/datasets/MMMU/MMMU_Pro",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -124,34 +134,39 @@
     ]
   },
   "dataProfile": {
-    "summary": "MMMU-Pro 发布 Standard 与 Vision-only 两种输入设置；当前 Viewer 仅显示 Standard 10-option test split。",
+    "summary": "MMMU-Pro提供Standard与Vision两类主要输入形式；固定公开修订实际包含standard (10 options)、standard (4 options)和vision三个配置。",
     "disclosure": "partial",
     "scale": [
-      "1,730 道筛选题；Standard 与 Vision-only 两种主要形式共 3,460 个输入实例。"
+      "1730道筛选题；三个公开配置的test各1730行，分别是十选项、四选项对照和Vision输入包装，不按配置行数相加为独立题数。"
     ],
     "splits": [
-      "Viewer：standard (10 options) 的 test；论文另报告 Vision-only，并以 Standard 4-option 作对照。"
+      "固定修订0d7426df4ccb3d8704a992fe6850abee7c262127：standard (10 options)、standard (4 options)、vision各有test划分，每个1730行。"
     ],
     "fields": [
-      "id、question、options、explanation、image_1–image_7、img_type、answer、topic_difficulty、subject。"
+      "Standard配置：id、question、options、explanation、image_1至image_7、img_type、answer、topic_difficulty、subject。",
+      "Vision配置：id、image、options、answer、subject；不套用Standard的question/image_1等列。"
     ],
     "files": [],
     "sourceUrls": [
       "https://huggingface.co/datasets/MMMU/MMMU_Pro",
       "https://arxiv.org/html/2409.02813#S2",
-      "https://arxiv.org/html/2409.02813#S3"
+      "https://arxiv.org/html/2409.02813#S3",
+      "https://huggingface.co/datasets/MMMU/MMMU_Pro/resolve/0d7426df4ccb3d8704a992fe6850abee7c262127/README.md",
+      "https://huggingface.co/api/datasets/MMMU/MMMU_Pro"
     ]
   },
   "dataAccess": {
     "status": "public",
     "requirements": [
-      "官方数据卡及代码仓库公开；Standard 10-option 测试记录可从 Hugging Face 浏览。论文报告 Standard 和 Vision 两个主要设置及 4-option 对照，但浏览器核验到的 Hugging Face Viewer 只显示 Standard 10-option，不据此推断所有官方评测包装都已在该 Viewer 发布。"
+      "三个配置在同一官方公开HF修订中提供；页面默认显示的十选项配置不代表另两个配置未公开。数据与上游图像的使用边界仍按对应许可说明处理。"
     ],
     "url": "https://huggingface.co/datasets/MMMU/MMMU_Pro",
     "sourceUrls": [
       "https://huggingface.co/datasets/MMMU/MMMU_Pro",
       "https://arxiv.org/html/2409.02813#S3",
-      "https://arxiv.org/html/2409.02813#S2"
+      "https://arxiv.org/html/2409.02813#S2",
+      "https://huggingface.co/datasets/MMMU/MMMU_Pro/resolve/0d7426df4ccb3d8704a992fe6850abee7c262127/README.md",
+      "https://huggingface.co/api/datasets/MMMU/MMMU_Pro"
     ]
   },
   "reusePolicy": {
@@ -194,7 +209,7 @@
       ]
     },
     {
-      "text": "本轮仅核验 Standard 10-option Viewer；其余数据包装和榜单快照未固定。",
+      "text": "2026-10-21已核对固定HF修订0d7426df4ccb3d8704a992fe6850abee7c262127的三个公开配置、各1730条test记录和对应字段；Standard与Vision输入结构分别记录。",
       "sourceUrls": [
         "https://huggingface.co/datasets/MMMU/MMMU_Pro",
         "https://arxiv.org/html/2409.02813#S2",

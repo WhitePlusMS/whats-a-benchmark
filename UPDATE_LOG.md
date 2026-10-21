@@ -1,5 +1,16 @@
 # 更新说明
 
+## 2026-10-21 — 应用24项数据集说明修订并授权发布
+
+- 手机检查修正：SWE-bench Multimodal摘要中的完整HF修订哈希在窄屏撑宽段落；将该哈希移到已有换行样式的dataProfile.files，摘要保留计数与固定版本范围。只改变说明组织，不改案例或原始数据。
+
+- 用户授权：将确认的6项问题改正、18项说明补清，依据已经核实的官方资料；检查后提交推送GitHub，等待自动部署并检查线上，原始数据和案例保持。
+- 内容文件：修改`content/benchmarks/`下personal-superintelligence-index、video-mme、gpqa、gpqa-diamond、cmmlu、mmmu-pro、excel-emb、swe-bench-multilingual、aa-lcr、ifbench、gsm8k、matharena-arxivlean、swe-bench-multimodal、finance-agent、jailbreakbench、maeb、mieb-lite、legalbench、toolret、memoryarena、longmemeval、locomo、when2call、screenspot-pro，共24份JSON。应用52项已审定说明字段，补登记精确来源并更新核验日；同步修正MMMU-Pro/ScreenSpot-Pro旧核查范围及PSI限制说明，避免前后冲突。
+- 原则与影响：沿用现有schema和呈现组件；只改整体定义、数据概况、版本、访问/复用说明及对应来源。CMMLU发布用语去掉旧说明对比和语病，When2Call保留真实可选字段；题面、答案、原始记录、逐题解析和全部附件不改。保留未知差额和版本映射边界，不编造缺失内容。
+- 既有四项补充：GPQA两项公开GitHub入口、固定ZIP结构与字段、Video-MME官方样例直达入口、PSI的JobBench关联已核实，与本轮24项一并提交；不增加或复制案例。README、Hero、Logo候选、推广文档和技能文件不纳入此发布。
+- 文档：`docs/research/2026-10-21-dataset-description-audit.md`保留原审阅对照并指向实施记录；`docs/reviews/2026-10-21-dataset-description-release.md`记录本轮文件、检查和发布状态。忽略目录`artifacts/research/2026-10-21-dataset-description-release/`保留24份原文件、215个案例集合哈希、218个公开/附件文件哈希、实际应用清单及检查证据。
+- 本地检查：补登记20个引用来源后内容生成与严格TypeScript检查通过；46/46项现有测试通过；最终正式路径构建通过220个静态页与Pages 404检查。24页桌面/375与305像素CSS窄屏共72次检查，引用完整，版本和新字段正确显示；SWE-bench Multimodal摘要长哈希撑宽已修正并复测。53个说明字段（原52项及1处哈希位置调整）在静态HTML出现。215个sampleSet、218个附件哈希和24项外191份JSON均与本轮基线一致。Git推送、Pages部署和线上实际结果完成后补入发布记录；不调用网页端GPT，不启动前后端开发服务。
+
 ## 2026-10-20 — 简介上线与响应式验收完成
 
 - 发布结果：简介提交`d83d18a9fab5bef7fcc5bb33999ef61408b83495`已正常推送`origin/main`；[GitHub Actions 39359671996](https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/39359671996)的测试、生产构建与Pages部署均成功，实际检查站点为`https://whiteplusms.github.io/whats-a-benchmark/`。

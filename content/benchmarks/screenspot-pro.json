@@ -4,7 +4,7 @@
   ],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "id": "screenspot-pro",
   "name": "ScreenSpot-Pro",
   "subtitle": "高分辨率专业界面中的GUI元素定位能力",
@@ -67,6 +67,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/vscode_macos.json",
       "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/tree/210e78d3844251110bff86c95835ebd37a6930fa/annotations",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -95,21 +100,25 @@
     ]
   },
   "dataProfile": {
-    "summary": "数据卡按应用组织截图标注文件，但未提供可确认的完整 schema、split 或精确条目数。",
+    "summary": "ScreenSpot-Pro按应用/平台提供公开截图标注JSON；即使Viewer未配置，也可以从实际文件检查字段和标注条数。",
     "disclosure": "partial",
     "scale": [
-      "覆盖 23 个应用、5 个行业和 3 种操作系统；数据卡仅给出 1K<n<10K 的样本范围。"
+      "论文/数据卡报告23个应用、5个行业、3种操作系统；对应分组与文件数不是同一个单位。",
+      "固定HF修订210e78d3844251110bff86c95835ebd37a6930fa共有26个annotations JSON，逐文件解析共1581条标注对象；未据此宣称1581个去重独立任务。"
     ],
     "splits": [],
-    "fields": [],
+    "fields": [
+      "固定公开annotations文件的字段并集：application、bbox、group、id、img_filename、img_size、instruction、instruction_cn、platform、ui_type；具体记录的可选字段以原文件为准。"
+    ],
     "files": [
-      "按应用组织的 annotations JSON 与图片目录；Dataset Viewer 未配置。"
+      "annotations/*.json保存应用/平台标注，screenshots/保存关联截图；Dataset Viewer没有配置不会阻止读取这些公开JSON。"
     ],
     "sourceUrls": [
       "https://arxiv.org/abs/2504.07981",
       "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
       "https://gui-agent.github.io/grounding-leaderboard/",
-      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro"
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+      "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/tree/210e78d3844251110bff86c95835ebd37a6930fa/annotations"
     ]
   },
   "dataAccess": {
@@ -152,7 +161,7 @@
   },
   "researchNotes": [
     {
-      "text": "未通过作者原始文件逐项统计精确截图/指令记录数及 splits；本记录只用作者论文确认的 23 应用、5 行业、3 OS。",
+      "text": "已逐文件统计固定HF修订210e78d3844251110bff86c95835ebd37a6930fa的26个标注JSON，共1581条标注对象；未据此推断去重后的任务数、独立截图数或标准train/dev/test划分。",
       "sourceUrls": [
         "https://arxiv.org/abs/2504.07981",
         "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",
@@ -170,7 +179,7 @@
       ]
     },
     {
-      "text": "未复核 annotations JSON 所有字段，也未下载截图文件。",
+      "text": "已核对26个annotations JSON的字段并集；本轮未下载截图或新增媒体授权。",
       "sourceUrls": [
         "https://arxiv.org/abs/2504.07981",
         "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/main/README.md",

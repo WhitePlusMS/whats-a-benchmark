@@ -45,25 +45,20 @@
     "disclosure": "partial",
     "scale": [],
     "splits": [
-      "The pinned NVIDIA dataset card exposes train/test data and an llm_judge subset; viewer row counts depend on subset/split."
+      "固定HF修订ca9b4b48225b8236ed7a3d3bc0b78986c19991d7：when2call_test_llm_judge.jsonl有300行，when2call_test_mcq.jsonl有3652行；这是两种评估文件，重叠/派生关系未按ID逐条核实，不将3952行说成去重后的独立题数。"
     ],
     "fields": [
-      "uuid",
-      "source",
-      "source_id",
-      "question",
-      "correct_answer",
-      "answers",
-      "target_tool",
-      "tools",
-      "held_out_param"
+      "共同字段：uuid、source、source_id、question、correct_answer、answers、target_tool、tools。",
+      "可选字段：orig_tools、orig_question、held_out_param；这些字段只在部分记录中出现。"
     ],
     "files": [],
     "sourceUrls": [
       "https://arxiv.org/abs/2504.18851",
       "https://github.com/NVIDIA/When2Call",
       "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7",
-      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1",
+      "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_llm_judge.jsonl",
+      "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_mcq.jsonl"
     ]
   },
   "dataAccess": {
@@ -149,10 +144,20 @@
       "label": "实际原始任务、数据或许可依据",
       "url": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_llm_judge.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_mcq.jsonl",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "interpretation": {
     "versionChanges": {
       "text": "When2Call论文及NVIDIA数据/代码发布版；不同评估形式需注明",

@@ -2,7 +2,7 @@
   "aliases": [],
   "related": [],
   "kind": "original",
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "id": "video-mme",
   "name": "Video-MME",
   "subtitle": "不同时间跨度与模态设置下的视频理解能力",
@@ -44,6 +44,16 @@
       "label": "官方任务与示例",
       "url": "https://video-mme.github.io/home_page.html",
       "role": "definition"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/datasets/lmms-lab/Video-MME",
+      "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/api/datasets/lmms-lab/Video-MME",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -76,14 +86,29 @@
       "900 段视频、744 份字幕、2,700 个 QA；总时长 254 小时。"
     ],
     "splits": [
-      "官方未报告 train/validation/test；short、medium、long 是视频时长类别。"
+      "官方README链接的LMMS-Lab分发版本使用videomme配置，test划分包含2700条问答记录；该分发版本未列出train或validation。",
+      "short、medium、long是视频时长分组，不是train/validation/test划分。"
     ],
-    "fields": [],
+    "fields": [
+      "video_id",
+      "duration",
+      "domain",
+      "sub_category",
+      "url",
+      "videoID",
+      "question_id",
+      "task_type",
+      "question",
+      "options",
+      "answer"
+    ],
     "files": [
       "视频、字幕、问答标注；预测提交采用 JSON。"
     ],
     "sourceUrls": [
-      "https://github.com/MME-Benchmarks/Video-MME"
+      "https://github.com/MME-Benchmarks/Video-MME",
+      "https://huggingface.co/datasets/lmms-lab/Video-MME",
+      "https://huggingface.co/api/datasets/lmms-lab/Video-MME"
     ]
   },
   "dataAccess": {
@@ -110,6 +135,7 @@
   },
   "sampleAccess": {
     "status": "restricted",
+    "url": "https://github.com/MME-Benchmarks/Video-MME#-dataset-examples",
     "reason": "2026-10-19 复核：官方 README 的 Dataset Examples 已公开展示示例，但 Dataset 许可段要求转载任何部分前先获得批准；有公开展示不等于本站可复制。本站保留官方示例入口，不复制视频、题目、字幕或标注。",
     "sourceUrls": [
       "https://github.com/MME-Benchmarks/Video-MME"

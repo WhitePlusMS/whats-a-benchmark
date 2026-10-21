@@ -13,7 +13,7 @@
     }
   ],
   "kind": "subset",
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "id": "gpqa-diamond",
   "name": "GPQA Diamond",
   "subtitle": "专家级科学知识与推理的高质量子集",
@@ -69,9 +69,24 @@
       "role": "access"
     },
     {
+      "label": "作者公开数据包与密码说明（固定修订）",
+      "url": "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/README.md#dataset-download",
+      "role": "data"
+    },
+    {
+      "label": "作者 dataset.zip（固定修订，已核对结构）",
+      "url": "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip",
+      "role": "data"
+    },
+    {
       "label": "Idavidrein/gpqa · Datasets at Hugging Face",
       "url": "https://arxiv.org/html/2311.12022",
       "role": "paper"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://github.com/idavidrein/gpqa#dataset-download",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -108,36 +123,50 @@
     "splits": [
       "HF 数据卡以 gpqa_diamond 等配置发布；Diamond 与 Main 是嵌套/筛选关系，不应相加。"
     ],
-    "fields": [],
+    "fields": [
+      "Question",
+      "Correct Answer",
+      "Incorrect Answer 1 / Incorrect Answer 2 / Incorrect Answer 3",
+      "Explanation",
+      "Record ID",
+      "Subdomain / High-level domain",
+      "Canary String（以上为已核对 CSV 的部分真实列名，不含题目值）"
+    ],
     "files": [
-      "按配置提供的 CSV；本轮未按固定 revision 核实具体列名。"
+      "作者 GitHub 固定修订 56686c06f5e19865c153de0fdb11be3890014df7 的 dataset.zip；README 同页公开解压密码。",
+      "包内 dataset/gpqa_diamond.csv 已核对为 198 行、78 列；包内同时包含 Main、Extended、Experts CSV，不把各配置行数相加。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/Idavidrein/gpqa",
-      "https://arxiv.org/abs/2311.12022"
+      "https://arxiv.org/abs/2311.12022",
+      "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip"
     ]
   },
   "dataAccess": {
-    "status": "gated",
+    "status": "public",
     "requirements": [
-      "Hugging Face 数据集需接受访问条件；作者 GitHub 公开基线代码，dataset.zip 需密码。"
+      "作者 GitHub 公开 dataset.zip，README 同页公开解压密码；本次已用公开密码读取 Diamond CSV 结构和行数，无需向作者申请。",
+      "Hugging Face 是另一路入口，仍需登录并接受访问条件；这不代表 GitHub 数据包也需申请。",
+      "作者明确请求不要在线以文字或图片展示数据集样例，本站保留入口与字段说明，不转载题目和答案。"
     ],
     "sourceUrls": [
       "https://github.com/idavidrein/gpqa",
-      "https://huggingface.co/datasets/Idavidrein/gpqa"
+      "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/README.md#dataset-download"
     ],
-    "url": "https://huggingface.co/datasets/Idavidrein/gpqa"
+    "url": "https://github.com/idavidrein/gpqa#dataset-download"
   },
   "reusePolicy": {
     "status": "restricted",
     "license": "Hugging Face 数据卡标注题目数据为 CC BY 4.0；GitHub MIT 许可针对代码。",
     "scope": "作者数据卡要求不要在线以纯文本或图片披露任何题目样例；该公开披露限制不由可访问性或代码许可覆盖。",
     "boundaries": [
-      "公开网站不转载题目、选项、答案或截图；其他用途应同时遵守 HF 数据访问条件和 CC BY 4.0。"
+      "本站遵循作者不在线展示样例的请求，不转载题目、选项、答案或截图。通过Hugging Face获取文件时，须遵守该入口的访问条件；使用数据应遵守适用的数据许可。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/Idavidrein/gpqa",
-      "https://github.com/idavidrein/gpqa/blob/main/LICENSE"
+      "https://github.com/idavidrein/gpqa/blob/main/LICENSE",
+      "https://github.com/idavidrein/gpqa#dataset-download"
     ]
   },
   "sampleAccess": {
@@ -150,6 +179,13 @@
     ]
   },
   "researchNotes": [
+    {
+      "text": "2026-10-19 剩余无案例复核：GitHub 固定修订 56686c06f5e19865c153de0fdb11be3890014df7 的 dataset.zip 为 2,348,038 字节，SHA-256 461ae7329f15a3e35f8184d2dac24b990f34fdf12f366ca4062d8e6638cd08dc。按作者公开密码读取包内 Diamond CSV 的完整列头与 198 行记录计数，CSV SHA-256 为 41d1213cd7a4998605a26c2798500652572007161b3a92817ba46b35befcd305。此次核验的是 GitHub 文件，未接受 HF 条件，也未把题目值加入站点或新增样例。",
+      "sourceUrls": [
+        "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/README.md#dataset-download",
+        "https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip"
+      ]
+    },
     {
       "text": "此轮未逐列核验 HF 固定 revision 的题目 CSV schema 与题目/答案文件哈希。",
       "sourceUrls": [

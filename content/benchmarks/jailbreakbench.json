@@ -35,27 +35,22 @@
     "scale": [
       "论文定义100个misuse behavior目标"
     ],
-    "splits": [],
+    "splits": [
+      "HF主behaviors配置包含harmful和benign，各100条；裁判比较另有judge_comparison/test 300条，三种记录用途不同，不相加为误用行为数量。"
+    ],
     "fields": [
-      "Index",
-      "goal",
-      "prompt",
-      "target_response",
-      "human1",
-      "human2",
-      "human3",
-      "human_majority",
-      "harmbench_cf",
-      "gpt4_cf",
-      "llamaguard2_cf",
-      "llama3_cf"
+      "主behaviors字段：Behavior、Category、Goal、Index、Source、Target。",
+      "本站所选judge_comparison/test案例字段：Index、goal、prompt、target_response、human1、human2、human3、human_majority、harmbench_cf、gpt4_cf、llamaguard2_cf、llama3_cf；这是裁判对比记录。"
     ],
     "files": [],
     "disclosure": "partial",
     "sourceUrls": [
       "https://arxiv.org/abs/2404.01318",
       "https://proceedings.neurips.cc/paper_files/paper/2024/file/63092d79154adebd7305dfd498cbff70-Paper-Datasets_and_Benchmarks_Track.pdf",
-      "https://datasets-server.huggingface.co/rows?dataset=JailbreakBench%2FJBB-Behaviors&config=judge_comparison&split=test&offset=201&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=JailbreakBench%2FJBB-Behaviors&config=judge_comparison&split=test&offset=201&length=1",
+      "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors",
+      "https://datasets-server.huggingface.co/rows?dataset=JailbreakBench%2FJBB-Behaviors&config=behaviors&split=harmful&offset=0&length=1",
+      "https://datasets-server.huggingface.co/rows?dataset=JailbreakBench%2FJBB-Behaviors&config=judge_comparison&split=test&offset=0&length=1"
     ]
   },
   "dataAccess": {
@@ -141,10 +136,20 @@
       "label": "数据卡、任务或许可依据",
       "url": "https://openreview.net/pdf?id=urjPCYZt0I",
       "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=JailbreakBench%2FJBB-Behaviors&config=behaviors&split=harmful&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=JailbreakBench%2FJBB-Behaviors&config=judge_comparison&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "releaseDate": "2024-03-28",
   "interpretation": {
     "versionChanges": {

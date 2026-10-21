@@ -41,21 +41,24 @@
     "summary": "测试部分由 58 个 OOD constraint 类型构成；官方另发多轮测试和 IF-RLVR 训练数据。",
     "disclosure": "partial",
     "scale": [
-      "58 个新的 OOD 测试约束及相应验证函数。",
-      "IF-RLVR 另有 29 个训练约束，不计作 IFBench 测试约束。"
+      "58类OOD测试约束及相应验证函数；当前HF公开测试发布包含300条prompt记录，两种计数单位不同。",
+      "IF-RLVR另有29类训练约束，不与IFBench测试约束或测试题数相加。"
     ],
     "splits": [
-      "官方提供单轮测试、多轮测试及独立 IF-RLVR 训练数据。"
+      "官方提供单轮测试、多轮约束隔离设置及独立IF-RLVR训练资源；HF IFBench_test的当前文件标签为train（300行），不把存储标签当作模型训练协议。"
     ],
     "fields": [
-      "README 要求测试 JSONL 与 prompt/completion 回复 JSONL；未在本候选中断言统一完整字段 schema。"
+      "公开测试输入：key、prompt、instruction_id_list、kwargs；kwargs保存各约束参数。",
+      "模型回复文件中的prompt/completion与上述测试输入schema分别说明。"
     ],
     "files": [
       "测试文件名为 IFBench_test.jsonl；示例回复文件名为 sample_output.jsonl。"
     ],
     "sourceUrls": [
       "https://github.com/allenai/IFBench/blob/main/README.md",
-      "https://huggingface.co/datasets/allenai/IFBench_test"
+      "https://huggingface.co/datasets/allenai/IFBench_test",
+      "https://huggingface.co/api/datasets/allenai/IFBench_test",
+      "https://raw.githubusercontent.com/allenai/IFBench/main/README.md"
     ]
   },
   "dataAccess": {
@@ -149,6 +152,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://raw.githubusercontent.com/allenai/IFBench/1c40f0c10d9b5c5c2f10a175a28007ebb64f7f4d/ifbench/data/IFBench_test.jsonl",
       "role": "data"
+    },
+    {
+      "label": "已核对的数据结构与版本来源（2026-10-21）",
+      "url": "https://huggingface.co/api/datasets/allenai/IFBench_test",
+      "role": "data"
     }
   ],
   "related": [
@@ -162,7 +170,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "researchNotes": [
     {
       "text": "模型厂商 benchmark 表可能省略 strict/loose、温度及 thinking token 上限等设置；本候选不复算厂商分数。",

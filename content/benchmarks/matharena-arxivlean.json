@@ -46,13 +46,15 @@
       "Hugging Face以train标签存放46条记录；该存储标签不代表可用作训练的官方评测协议。"
     ],
     "fields": [
-      "固定六月数据的实际字段为 problem_idx、problem、formal_statement、source、title、authors；formal_statement 含待完成证明的 sorry，不是完整答案。"
+      "固定六月数据实际7列：problem_idx、problem、answer、formal_statement、source、title、authors。",
+      "answer与formal_statement是不同字段；formal_statement中待完成的证明位置不能当作模型已获完整证明，字段具体语义按官方工具协议解释。"
     ],
     "files": [
       "arxivlean-0626 的 HF data/ Parquet 发布 46 条 train 记录；README_arxivlean.md 说明 Lean 工具与验证协议。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/MathArena/arxivlean-0626"
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626",
+      "https://huggingface.co/datasets/MathArena/arxivlean-0626/resolve/1ced46a1d45d57c6de242d51c0baf574b96022ea/data/train-00000-of-00001.parquet"
     ]
   },
   "dataAccess": {
@@ -190,7 +192,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-10-21",
   "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
