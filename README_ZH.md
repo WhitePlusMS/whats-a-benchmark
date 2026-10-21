@@ -76,4 +76,4 @@
 
 项目由 [WhitePlusMS](https://github.com/WhitePlusMS) 维护。
 
-[Logo 与品牌素材](assets/brand/README.md)
+[Logo 与品牌素材](assets/brand/README.md) · [页面截图与宣传配图](assets/README.md)

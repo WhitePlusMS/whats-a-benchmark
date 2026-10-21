@@ -76,4 +76,4 @@ Corrections, suggestions for new benchmarks, and clearer sources are welcome thr
 
 Maintained by [WhitePlusMS](https://github.com/WhitePlusMS).
 
-[Logo and brand assets](assets/brand/README.md)
+[Logo and brand assets](assets/brand/README.md) · [Screenshots and promotional images](assets/README.md)

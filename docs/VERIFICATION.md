@@ -1,5 +1,7 @@
 # BenchAtlas 本地验收记录
 
+> 历史记录：以下保留当时的名称、数据与验收边界。2026-10-21 已将旧截图原件归入本地 `artifacts/archive/2026-10-21-old-brand/`，不上传 GitHub；当前页面另见[新版截图](../assets/screenshots/README.md)。
+
 日期：2026-09-23。当前为可构建、可运行的静态网站，尚未绑定远程仓库或完成线上 Pages 发布。
 
 ## 最新验收：无站内样例入口修复与五条官方数据接入（2026-09-23）
@@ -95,7 +97,7 @@
 - 最新桌面首页 45 个 Logo 图片实例全部加载。子路径下 MMMLU 样例、`/benchmark-show/logos/openai.png` 和 `/benchmark-show/licenses/mmlu.txt` 路径正确；刷新后搜索和列表视图保留。
 - 上述正常流程中浏览器警告、错误记录为空。本轮未重复前阶段的网络故障注入，也未重新审计全部外部来源。
 
-截图：`artifacts/screenshots/ux-desktop.png`、`ux-mobile.png`、`ux-detail.png`。本轮生产预览已全部停止，4173/4174 无监听；未启动开发服务，临时视口覆盖已恢复。
+历史截图 `ux-desktop.png`、`ux-mobile.png`、`ux-detail.png` 仅保留于本地归档的 `screenshots/`。本轮生产预览已全部停止，4173/4174 无监听；未启动开发服务，临时视口覆盖已恢复。
 
 ## 实际交付
 
@@ -133,7 +135,7 @@
 - 未知地址显示独立未找到页面；正常流程未发现浏览器错误。故障模拟产生的错误日志为预期行为。
 - 桌面与手机首页、详情、列表没有整页横向溢出。
 
-截图见 `artifacts/screenshots/desktop.png`、`artifacts/screenshots/mobile-check.png` 与 `artifacts/screenshots/sample-arc.png`。没有用截图替代交互检查。
+历史截图 `desktop.png`、`mobile-check.png` 与 `sample-arc.png` 仅保留于本地归档的 `screenshots/`。没有用截图替代交互检查。
 
 - 最终增量验收：MRCR v2 搜索显示 OpenAI 与 DeepMind 两个来源；ARC 读题页显示“本站操作提示”，原始格式显示包含答案的提示。
 - 最终子路径下实际点击“阅读许可原文”，打开 `/benchmark-show/licenses/arc-agi-2.txt` 并读到 Apache License 正文；正常控制台无错误。
@@ -163,7 +165,7 @@ Pages 工作流准备就绪，实际远程部署需要用户指定仓库及其 P
 - 浏览器确认首页 47 个图片实例全部加载；390px 卡片与 SWE-bench Verified 双标识详情无整页溢出。列表首轮仅检查溢出，漏掉容器被压窄的问题；专项复审发现后已修复并量测实际宽度。
 - 模拟两张图片被阻止，联合标识正确回退发布方文字；测试后恢复正常加载。
 - 子路径下所有 Logo src 以 /benchmark-show/logos/ 开头，图片成功解码。
-- 截图：artifacts/screenshots/publisher-logos-desktop.png 与 publisher-logos-mobile.png。
+- 历史截图 `publisher-logos-desktop.png` 与 `publisher-logos-mobile.png` 仅保留于本地归档的 `screenshots/`。
 
 - Logo 专项复审指出列表 scoped CSS 选择器被错误转换、单图失败丢失联合方名称、静态图片在 Vue 接管前失败漏回退，三项已修正。
 - 最终列表实际宽度：桌面 1081px、390px 视口下 335.2px，均与父结果区一致，联合 Logo 在列表中纵向排列。

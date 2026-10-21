@@ -1,5 +1,25 @@
 # 更新说明
 
+## 2026-10-21 — 提交现用品牌素材，旧图与设计过程仅保留本地
+
+- 用户授权：提交推送本次旧 Logo 清理、新截图、宣传图及归档说明，明确要求旧东西不要上传 GitHub。按一个文档与品牌素材语义组交付，保持最简和精确范围，不混入指南、样例、测试或技能的其他工作区修改。
+- 发布内容：README.md、README_ZH.md、assets/brand/README.md 的当前素材入口；assets/README.md；assets/screenshots/ 的 16 张真实截图、README.md、capture-manifest.json；assets/promotion/ 的三比例 PNG/SVG、README.md、source-manifest.json；docs/PROMOTION.md、docs/VERIFICATION.md、两份历史审阅说明、docs/reviews/2026-10-21-brand-sweep.md；artifacts/README.md；.gitignore 与本日志的本次两节。
+- 本地归档：artifacts/archive/ 中的 32 个旧原件和随附记录不加入索引、不上传 GitHub；全部归档校验值与原件一致。artifacts/logo-design/ 的本地文件保留，原已跟踪的 41 份设计过程图像、矢量、记录与预览仅取消跟踪。19 张原已跟踪的旧站点截图从仓库当前版本移除；不重写既有提交历史。
+- 忽略与链接：.gitignore 增加 artifacts/archive/、artifacts/logo-design/、artifacts/screenshots/；候选、旧封面、底图、提示词及生成记录均留在本地。公开素材目录和审阅说明改为本地归档文字，不嵌入旧图、不链接未发布的归档路径；历史事实和日期保留，现用素材继续可点击查看。
+- 检查与提交范围：严格类型检查通过，生成 215 个公开条目；复核现用素材和相应本地链接，提交前检查整个索引只含明确清单，并检查新增图像没有混入旧归档。共享 UPDATE_LOG.md 仅暂存本节及上一节整体清理记录，其余既有内容按字节保留在工作区。
+- 推送方式与边界：远端 main 起点与本地 383e895 一致，使用正常 commit 与 push，不强推、不变基、不跳过检查；推送后核验远端 ref、提交文件树、README 图片与 Actions 测试/构建/Pages 结果。本次未启动开发服务或操作用户服务，未调用网页端 GPT。
+
+## 2026-10-21 — 整体清理旧 Logo 截图与推广图遗漏
+
+- 用户要求与原则：整体检查页面、README、GIF 和图片；用户选择重新截取新版、旧图单独归档。按最简、复用与证据准确原则处理，现有正式题卡对号和主题联动保持，不重做已经正确的图像，不修改上游标识。
+- 页面与动画检查：核对 index.html 单一带内容版本的 favicon、src/App.vue 共享页眉，以及主要页面实际展示；现有 222 份 HTML 均使用新入口，public/.generated/dist SVG 字节一致。两份 README GIF 各 64 帧、5.6 秒，完整解码并逐帧核对标识区一致、首尾相同，未发现旧图形，保留原文件；本轮没有应用源代码修改或重复生产构建。
+- 新版截图：assets/screenshots/ 新增 16 张实际已发布网页截图、README.md 与 capture-manifest.json；覆盖卡片/列表/手机/深色目录、指南、HumanEval 详情/代码/手机案例/评分/来源、ARC-AGI-2 图形案例、DeepSWE v1.1、对比、发布资料、关于和 404。记录来源、时间、视口、favicon、页眉及 SHA-256，桌面 1440×960、手机 390×844。仅呈现已发布版本，不将本地未发布指南改动当作线上展示。
+- 宣传图：assets/promotion/ 新增 cover-16x9、cover-3x4、cover-4x3 的 PNG 与独立 SVG，以及 README.md、source-manifest.json；尺寸为 1600×900、1200×1600、1600×1200。正式 Logo 与真实目录截图原生排版，4:3 保留上半部分，不生成虚构网页或模型成绩；内嵌截图与正式矢量图形逐项核对。
+- 旧图归档：artifacts/screenshots/ 全目录和 artifacts 顶层 7 张旧图移至 artifacts/archive/2026-10-21-old-brand/，共 32 个原文件（26 张图片、6 份随附记录），包含旧推广导出、生成底图、标识参考、提示词和生成记录。新增归档 README.md 与 manifest.json，逐文件 SHA-256 校验移动前后相同；原现用位置不再保留旧图片。
+- 引用与说明：新增 assets/README.md、artifacts/README.md；README.md、README_ZH.md 与 assets/brand/README.md 增加现用素材入口，docs/PROMOTION.md 增加三比例链接。docs/VERIFICATION.md 的 8 张截图、docs/reviews/2026-10-08-uiux-fixes.md 的嵌入图改指归档；该审阅文档与 docs/reviews/2026-10-09-readme-review.md 增加历史说明，保留原事实。完整范围和验证写入 docs/reviews/2026-10-21-brand-sweep.md。
+- 验证与影响：npm run typecheck 通过；README 素材审计、oil-tone、本地链接检查、格式与差异空白检查通过。10 个实际文档预览状态覆盖双语、桌面、360px 手机和深色背景，所有图片加载且无整页横向溢出；独立 SVG 浏览器显示通过。保留 279 个原品牌/README/上游资源与备份，既有指南、样例、测试等无关改动按哈希保持。设计候选是明确的历史记录；功能性书本图标和紫色主题继续保留。
+- 执行边界：临时只读预览已终止，测试标签与视口覆盖清理，网站恢复深海蓝及跟随系统；没有运行 npm dev/start:dev、没有操作用户服务、没有调用网页端 GPT。既有 UPDATE_LOG.md 内容按字节保留，本轮未提交、推送或部署。
+
 ## 2026-10-21 — 修复浏览器标签图标更新地址
 
 - 用户反馈与定位：已发布后浏览器标签仍显示紫色旧标识；核对 index.html 仅有一个 rel=icon，线上 favicon.svg 已为正式题卡对号，HTTP 200、image/svg+xml，SHA-256 与 public/favicon.svg 一致，但标签仍沿用此前未变更的文件地址。先核对生成和构建链路，不把编译问题归因为缓存。

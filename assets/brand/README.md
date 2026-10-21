@@ -49,3 +49,5 @@
 [中文封面](../readme/hero.svg)与[英文封面](../readme/hero-en.svg)复用同一组正式图形，分别提供 [中文 GIF](../readme/hero.gif) 与[英文 GIF](../readme/hero-en.gif)。封面以 HumanEval/0 的真实题目节选说明任务、样例和评分，保持原题预期结果与模型实际成绩的区别。
 
 站点的[目录](../readme/catalog.png)、[手机](../readme/catalog-mobile.png)、[案例](../readme/example.png)和[主题](../readme/appearance.png)预览来自实际网页截图。品牌图形与宣传封面使用固定蓝橙配色，界面截图保留所展示的主题。
+
+[当前素材目录](../README.md)集中提供[主要页面截图](../screenshots/README.md)和[三种比例宣传图](../promotion/README.md)。宣传图使用本标识与实际目录截图排版，PNG 用于分享，SVG 保留可编辑原稿。旧截图、旧封面和设计候选仅保留在本地归档。
