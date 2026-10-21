@@ -1,5 +1,33 @@
 # 更新说明
 
+## 2026-10-21 — 发布 C 方案 Logo 与主题换色
+
+- 用户授权：仅提交并推送本次选定 Logo 与主题联动，按一个完整语义组交付到 main；沿用仓库既有 GitHub Pages 构建发布流程，不更改工作流、依赖或业务内容。
+- 运行文件：public/favicon.svg、src/App.vue、src/lib/theme.ts、src/styles/layout.css、src/styles/tokens.css；效果为默认深蓝题卡与橙色对号，七种主题切换时题卡跟色，对号固定，独立 favicon 保持默认标识。
+- 随附素材与证据：assets/brand/ 正式文件，artifacts/logo-design/2026-10-21-selected-c/ 与 2026-10-21-theme-c/ 的几何、渲染、浏览器截图与记录，以及 2026-10-21-check-v12/c-task-check-v1.png 所选原图。assets/brand/README.md 删除过期的“仅本地工作区”状态句，保留使用说明。
+- 日志与范围：只暂存本节及前两节 C 定稿/主题联动记录；其余工作区代码、推广 README、指南/案例工作、技能安装元数据与早期淘汰候选留在本地。共享 UPDATE_LOG.md 的其他未提交内容按字节保留，通过独立索引版本精确暂存。
+- 验证依据：本轮前已通过严格类型检查、221路由静态构建与产物核验；七种主题×浅色/深色、刷新恢复、手机32px、图标实际颜色和无横向溢出均有记录。本次提交前核对暂存清单、diff空白、资源引用和非目标文件哈希，推送后核对远端提交及仓库自动检查状态。
+
+## 2026-10-21 — C 方案 Logo 随主题换色并统一默认蓝橙配色
+
+- 问题与原因：用户指出固定蓝橙图标与项目换色功能脱节；核对确认按钮、链接、选中态和焦点仍使用主题变量，只有上一轮的外部 img 无法继承页面主题。按最简、复用和单一职责原则修复此关系，不删除现有换色功能。
+- 共享图形：public/favicon.svg 增加 brand-mark 分组，两个题卡路径改为 var(--theme-brand, #092D56)，橙色对号与白底、全部坐标保持；src/App.vue 通过原 BASE_URL 的 SVG use 引用同一片段，恢复主题变量继承，不复制路径、不新增组件或换色监听器。独立 favicon 继续采用默认蓝橙标识。
+- 主题与布局：src/lib/theme.ts 在色板首项增加深海蓝 navy（#092d56 / #062344 / #8cb6e2），原有六种主题及持久化流程保留；src/styles/tokens.css 三个首屏默认变量同步为深海蓝，使默认页面与 C 方案一致；src/styles/layout.css 的防挤压和手机 32px 规则从 img 转为 SVG，桌面仍为 36px。
+- 记录与文件：更新 assets/brand/README.md 的运行时/独立素材规则；新增 artifacts/logo-design/2026-10-21-theme-c/RESULTS.md、svg-audit.json、browser-checks.json、pixel-checks.json、lifecycle-checks.json，14份主题图标截图、桌面深蓝/绿色深浅色页眉、刷新截图、手机深浅色截图与图标截图、theme-picker-teal.png。上一轮候选和导出固定色素材保持。
+- 编译与结构：npm run typecheck 成功；tsx scripts/build-site.ts 成功，221个路由渲染完成，220个普通静态页面及 GitHub Pages 404核验通过。SVG XML、共享分组、原有几何一致性及源/构建副本哈希通过，结构审核无问题；保留原有 chunk 大小提示，不扩展打包优化。
+- 交互验证：真实浏览器逐一选择7种主题×浅色/深色，共14种状态，核对当前菜单、变量和实际36px图标；截图的主题色题卡与橙色对号均可见。截图存在压缩色差，采用每通道24的RGB容差验证画面，不将严格像素相等失败误判为应用问题。玫红深色刷新恢复、390px手机深浅色32px图标与无溢出检查均通过；新默认色对比度检查通过。
+- 影响与边界：仅调整品牌与已有主题的联动，无业务/接口/依赖变更，不编写镜像式单元测试。未编辑既有案例、指南或根README工作区改动；未调用网页端GPT、未提交推送或发布。没有运行npm dev/start:dev；临时只读静态服务、测试标签与视口覆盖已清理，用户已有服务未操作。既有日志按字节保留。
+
+## 2026-10-21 — 选定 C 题卡对号 Logo 并接入本地站点
+
+- 用户选择与原因：用户回复「C 吧」，选定题卡与大对号；保留题干短线、深蓝与橙色，用纯色矢量重新构造生成图几何，去除色面杂质，维持一眼可辨的轮廓，遵循最简、单一职责和复用原则。
+- 图形资源：新增 assets/brand/benchmark-symbol.svg、benchmark-symbol-black.svg、benchmark-symbol-white.svg 三份透明 SVG，benchmark-symbol.png 透明彩色 PNG、benchmark-icon.png 白底 PNG（均 512×512 RGBA）、favicon.ico（16/32/48px）和 README.md 使用说明。图形采用填充路径与真实几何留白，无字体、描边、位图、滤镜或脑形细节。
+- 正式入口：public/favicon.svg 替换为 C 方案并保留白色圆角底；src/App.vue 删除旧书本内嵌图形，页眉通过 BASE_URL 复用同一 favicon 地址，保持首页可访问名称和装饰图像语义；src/styles/layout.css 将移动端 32px 规则由 svg 转为 img，并禁止图片 flex 收缩，桌面仍为 36px。不新增组件、依赖或资源生成分支，不改全站主题。
+- 记录与预览：artifacts/logo-design/2026-10-21-selected-c/ 新增 symbol-v1.svg/png、preview.html/png、audit.json、browser-checks.json、桌面与手机浅色/深色四份 header-*.png 截图、RESULTS.md；保留上一轮所选原图和其他候选。
+- 编译与结构检查：npm run typecheck 成功；随后 tsx scripts/build-site.ts 构建成功，生成 221 个路由，既有脚本核验 220 个普通静态页面和 GitHub Pages 404；已有 chunk 大小提示不扩展为本轮优化。四份正式 SVG XML/结构审核无问题，查看 16–256px 尺寸梯度和单色/灰度/镜像/旋转预览，PNG 透明通道及 ICO 尺寸检查通过。未添加针对图形实现的重复测试。
+- 浏览器验证：对构建后的临时本机静态预览实际检查 1280px 桌面与 390px 手机、浅色与深色共四种状态；图标均加载成功、无横向溢出，实际为 36×36 / 32×32。首次预览因本机 Python 的 image/svg MIME 映射失败，仅修正临时进程为 image/svg+xml 后重验成功，不归因缓存、不修改系统设置。
+- 修改影响与边界：本轮只接入所选标识，未编辑既有 README/指南/案例改动或业务接口；不调用网页端 GPT、不提交推送、不发布。未运行 npm dev/start:dev；临时静态验证服务和浏览器标签已清理，用户已有服务未操作。追加本条按字节保留既有日志。
+
 ## 2026-10-21 — 移除发布资料的全站导航入口
 
 - 用户授权与原因：发布资料只选择归档了部分模型报告，不作为完整模型栏目维护；移除顶部和页脚的“发布资料”入口，让主要导航聚焦评测目录和阅读指南。

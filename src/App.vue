@@ -8,6 +8,8 @@ import Icon from "./components/Icon.vue";
 import ThemeSwitcher from "./components/ThemeSwitcher.vue";
 import { initTheme, useTheme } from "./lib/theme";
 import { useCatalogNavigation } from "./composables/catalogNavigation";
+// 引用同一份 SVG 的图形片段，使页眉可继承主题变量；独立 favicon 使用默认配色。
+const brandLogoUrl = `${import.meta.env.BASE_URL}favicon.svg`;
 const route = useRoute();
 const { catalogLocation } = useCatalogNavigation();
 initTheme();
@@ -29,15 +31,14 @@ const compareUrl = computed(() => ({
   <header class="site-header">
     <div class="container header-inner">
       <RouterLink to="/" class="brand" aria-label="what's a benchmark? 首页"
-        ><svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
-          <rect width="40" height="40" rx="11" fill="currentColor" />
-          <path
-            d="M10 12h7l3 3 3-3h7v17h-7l-3 3-3-3h-7zM20 15v16"
-            fill="none"
-            stroke="white"
-            stroke-width="2"
-            stroke-linejoin="round"
-          /></svg
+        ><svg
+          viewBox="0 0 256 256"
+          width="36"
+          height="36"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <use :href="`${brandLogoUrl}#brand-mark`" /></svg
         ><span translate="no"
           >what's a benchmark?<small>到底测什么？</small></span
         ></RouterLink

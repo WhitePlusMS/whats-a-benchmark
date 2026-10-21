@@ -14,6 +14,8 @@ export interface ThemePreset {
 }
 
 export const THEME_PRESETS: ThemePreset[] = [
+  // 默认与 C 方案的深蓝题卡一致，橙色对号作为固定识别点。
+  { id: "navy", name: "深海蓝", brand: "#092d56", hover: "#062344", darkBrand: "#8cb6e2" },
   { id: "violet", name: "鸢尾紫", brand: "#6957d4", hover: "#5845ba", darkBrand: "#a08ef0" },
   { id: "indigo", name: "靛蓝", brand: "#3b56d9", hover: "#3147b8", darkBrand: "#93a5f0" },
   { id: "teal", name: "黛绿", brand: "#0e8465", hover: "#0b6d53", darkBrand: "#4cc9a5" },
