@@ -1,5 +1,25 @@
 # 更新说明
 
+## 2026-10-21 — 提交推送 README、GIF 与界面图片
+
+- 用户授权：将这次 README、GIF 和图片修改提交推送到 main；按一个文档语义组交付，遵循最简与范围隔离原则，不变更应用功能或发布流程。
+- 提交文件：README.md、README_ZH.md、assets/brand/README.md 与 preview.svg；assets/readme/ 下的 hero.svg、hero-en.svg、hero.gif、hero-en.gif、hero-motion.json、catalog.png、catalog-mobile.png、example.png、appearance.png；.agents/product-marketing.md；docs/reviews/2026-10-21-readme-brand-refresh.md；本 UPDATE_LOG.md，共 16 个文件。
+- 文档状态：验收记录的末段改为说明提交前验收与发布记录的关系，避免把当前交付永久标注为未提交。品牌、GIF、真实截图、双语内容和已有功能边界不改变。
+- 范围隔离：只暂存本节及上一节 README 更新说明，其他既有日志按字节保留在工作区；指南、案例查看器、测试、技能安装和历史候选素材不混入提交，记录其文件哈希以便提交后核对。
+- 验证依据：前轮严格类型检查与九种浏览器文档状态通过；本次复核三份 README 图片引用、格式、SVG 几何、两份 GIF 解码/时长/循环与配图文件，提交前检查索引范围和差异空白。远端 main 与本地提交基线一致。
+- 发布方式：使用常规 commit 和 push，不使用强制推送、变基或跳过检查；沿用仓库现有自动测试、构建和 Pages 流程，推送后核对远端 ref、README 展示和自动检查结果。没有启动开发服务或调用网页端 GPT。
+
+## 2026-10-21 — 全部项目 README 与 GIF、图片同步正式 Logo
+
+- 用户要求：更新全部 README，包括 GIF 和图片；范围为仓库自有 README.md、README_ZH.md、assets/brand/README.md。排除第三方技能副本、上游评测原图与历史审阅截图，避免改变资料来源证据；按最简、复用和事实准确原则处理。
+- 双语介绍：保留既有任务、样例、评分、版本、官方来源、读者、使用方式与贡献结构，将 AI 与大模型评测定位、主题外观说明和品牌入口同步到两版；保留之前未提交的文案内容。中文标题使用“到底测什么？”，避免手机拆词；不添加虚构模型排名、运行成绩或用户数据。
+- 封面与动图：更新 assets/readme/hero.svg、hero.gif、hero-motion.json，新增 hero-en.svg、hero-en.gif；紫色书本替换为正式深蓝题卡与橙色对号，三个路径与 assets/brand/benchmark-symbol.svg 逐条相同。沿用 HumanEval/0 真实节选，原预期 False 与 pass@k 说明保持，任务/样例/评分依次出现，提供对应语言的静态封面链接。
+- 实际图片：新增 assets/readme/catalog.png（1440×900）、catalog-mobile.png（390×844）、example.png（1280×900）、appearance.png（1280×430）；来自已发布站点的目录、手机、HumanEval 案例和深色黛绿七色菜单，替换 README 对旧首页截图的引用。拍摄后恢复网站原有深海蓝与跟随系统外观；历史截图和生成封面原件保留。
+- 品牌与定位：assets/brand/README.md 增加 preview.svg 彩色/黑白并排预览、白底图标及当前配图入口，保留几何和主题使用规则，精简历史交付说明和手机表格描述；新增 assets/brand/preview.svg。.agents/product-marketing.md 更新为 v2，修正旧配色并核对当前内容快照为 215 项、10 类、575 条案例、186 个含案例条目、19 组发布资料，保留 v1 记录；公开正文不依赖易过期数字。
+- 动图质量：两份成品均为 1200×580、5.60 秒、64 个编码帧（源时间线 30 FPS / 168 帧，合并相同帧），完整画面静止 3.16 秒；中文 541130 字节、英文 461926 字节。逐帧重开检查进入、停留、退出和循环，首尾 RGBA 完全一致，圆角透明。检测并修正原编码无变化帧右下角的单像素透明问题，使用固定色板和透明索引重新编码。
+- 检查与记录：npm run typecheck 成功；三份 README 的素材审计通过，26 个本地链接/图片引用无缺失；oil-tone、Prettier、本轮文件差异空白检查通过。九个浏览器预览状态覆盖中英文、品牌说明、桌面 900px 内容宽度、360px 手机和深色背景，图片全部加载，无横向溢出。查看完整页面过渡及贡献入口；详细文件与验证摘要写入 docs/reviews/2026-10-21-readme-brand-refresh.md。
+- 影响与清理：仅文档、品牌预览和 README 素材；未修改应用代码、接口、依赖、评测数据或上游标识，既有指南/样例/测试工作区文件按 SHA-256 核对保持。临时本机只读预览已停止，未启动前后端开发服务，未操作用户服务，未调用网页端 GPT；本轮未提交、推送或发布。既有 UPDATE_LOG.md 内容按字节保留。
+
 ## 2026-10-21 — 发布 C 方案 Logo 与主题换色
 
 - 用户授权：仅提交并推送本次选定 Logo 与主题联动，按一个完整语义组交付到 main；沿用仓库既有 GitHub Pages 构建发布流程，不更改工作流、依赖或业务内容。

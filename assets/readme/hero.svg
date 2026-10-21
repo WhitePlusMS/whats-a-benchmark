@@ -1,63 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="1200" height="420" viewBox="0 0 1200 420"
+     width="1200" height="580" viewBox="0 0 1200 580"
      role="img" aria-labelledby="hero-title hero-desc"
      font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif">
   <title id="hero-title">what's a benchmark? · 到底测什么？</title>
-  <desc id="hero-desc">中文 AI 评测资料站。沿用项目的紫色书本标识，以 HumanEval/0 的真实题目节选说明任务、样例与 pass@k 评分方法。静态源文件展示完整内容，GIF 依次展开三个说明层，不表示运行评测或模型生成。</desc>
+  <desc id="hero-desc">面向中文读者的 AI 评测资料库，帮助理解模型发布报告里的任务与分数。下方以 HumanEval/0 的题目节选说明任务、样例和 pass@k 评分：数字为 1.0、2.0、3.0，阈值为 0.5，题目给出的预期结果为 False。这是资料阅读示意，不是模型运行结果。</desc>
 
-  <!-- 两页手册是既有书本标识的延伸；背景固定，保证循环和透明边界稳定。 -->
-  <rect width="1200" height="420" rx="24" fill="#f7f8fa"/>
-  <g id="book-pages">
-    <path d="M24 30 Q332 14 646 34 V384 Q332 370 24 390 Z" fill="#ffffff"/>
-    <path d="M654 34 Q918 14 1176 30 V390 Q918 370 654 384 Z" fill="#ffffff"/>
-    <path d="M650 42 V376" fill="none" stroke="#e2e5e9" stroke-width="2"/>
-    <path d="M610 32 V85 L624 76 L638 85 V33" fill="#6957d4"/>
-  </g>
+  <!-- 复用正式题卡对号标识和默认深蓝橙色；背景保证明暗 README 页面均可阅读。 -->
+  <rect width="1200" height="580" rx="24" fill="#f4f7fa"/>
+  <rect x="28" y="28" width="1144" height="524" rx="16" fill="#ffffff"/>
 
-  <!-- 复用 public/favicon.svg 的书本轮廓；主色取 tokens.css 的默认主题。 -->
-  <g id="identity" transform="translate(56 52)">
-    <rect width="44" height="44" rx="12" fill="#6957d4"/>
-    <g transform="scale(1.1)">
-      <path d="M10 12h7l3 3 3-3h7v17h-7l-3 3-3-3h-7z"
-            fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/>
-      <path d="M20 15v16M14 17h3M23 17h3M14 22h3M23 22h3"
-            fill="none" stroke="#ffffff" stroke-width="2"/>
+  <g id="identity" transform="translate(64 52)">
+    <!-- 几何与 assets/brand/benchmark-symbol.svg 一致，静态宣传使用固定品牌色。 -->
+    <g transform="scale(0.21875)">
+      <path fill="#092D56" d="M44 28H194L176 46H44A10 10 0 0 0 34 56V196A10 10 0 0 0 44 206H204A10 10 0 0 0 214 196V106L232 88V196A28 28 0 0 1 204 224H44A28 28 0 0 1 16 196V56A28 28 0 0 1 44 28Z"/>
+      <path fill="#092D56" d="M55 64H125A5 5 0 0 1 130 69V74A5 5 0 0 1 125 79H55A5 5 0 0 1 50 74V69A5 5 0 0 1 55 64Z"/>
+      <path fill="#F58A08" d="M50 144Q42 136 50 128L62 116Q70 108 78 116L102 140L210 32Q214 28 220 28H234Q240 28 240 34V52Q240 58 236 62L114 184Q102 196 90 184Z"/>
     </g>
-    <text x="60" y="33" fill="#252932" font-size="31" font-weight="700">what's a benchmark?</text>
+    <text x="72" y="40" fill="#182738" font-size="31" font-weight="700">what's a benchmark?</text>
   </g>
 
-  <!-- 项目定位始终可读；动画只负责说明条目内容的阅读次序。 -->
-  <g id="project-introduction" fill="#252932">
-    <text x="56" y="203" font-size="92" font-weight="800" letter-spacing="-3">到底测什么？</text>
-    <text x="60" y="256" font-size="36" fill="#606773">看懂 AI 评测分数背后的</text>
-    <text x="58" y="309" font-size="40" font-weight="700" fill="#6957d4">任务 · 样例 · 评分</text>
-    <text x="60" y="361" font-size="20" fill="#606773">whiteplusms.github.io/whats-a-benchmark</text>
+  <!-- 主信息由大标题和完整定位组成；可复制的详情保留在 README 正文中。 -->
+  <g id="project-introduction">
+    <text x="64" y="150" fill="#626d7d" font-size="24">中文 AI 与大模型评测资料库</text>
+    <text x="60" y="243" fill="#092D56" font-size="88" font-weight="800" letter-spacing="-2">到底测什么？</text>
+    <text x="64" y="298" fill="#092D56" font-size="36" font-weight="600">看懂模型发布报告里的任务与分数</text>
   </g>
+  <path d="M64 334 H1136" fill="none" stroke="#dce3ec" stroke-width="2"/>
 
-  <!-- 以下是条目内容的示意排版，文字和例子均能回到仓库中的真实字段。 -->
+  <!-- 来自仓库 HumanEval/0 的真实 doctest；False 标注为题目预期结果，避免冒充跑分。 -->
   <g id="benchmark-record">
-    <text x="704" y="82" fill="#252932" font-size="32" font-weight="700">HumanEval / 0</text>
-    <text x="704" y="111" fill="#606773" font-size="20">真实题目节选</text>
-    <path d="M704 183 H1136 M704 307 H1136" fill="none" stroke="#e2e5e9" stroke-width="2"/>
+    <text x="64" y="380" fill="#182738" font-size="26" font-weight="700">HumanEval / 0</text>
+    <text x="280" y="380" fill="#626d7d" font-size="22">真实题目节选</text>
+    <path d="M410 410 V516 M836 410 V516" fill="none" stroke="#dce3ec" stroke-width="2"/>
 
     <g id="task-detail">
-      <text x="704" y="139" fill="#6957d4" font-size="20" font-weight="600">任务</text>
-      <text x="704" y="170" fill="#252932" font-size="30" font-weight="600">补全一个 Python 函数</text>
+      <text x="64" y="432" fill="#092D56" font-size="22" font-weight="600">任务</text>
+      <text x="64" y="473" fill="#182738" font-size="30" font-weight="600">补全 Python 函数</text>
+      <text x="64" y="510" fill="#626d7d" font-size="23">判断是否有两个数足够接近</text>
     </g>
 
-    <!-- 原始 prompt 第一条 doctest：has_close_elements([1.0, 2.0, 3.0], 0.5) 为 False。 -->
     <g id="sample-detail">
-      <text x="704" y="215" fill="#6957d4" font-size="20" font-weight="600">判断两个数是否足够接近</text>
-      <text x="704" y="254" fill="#252932" font-size="32"
+      <text x="450" y="432" fill="#092D56" font-size="22" font-weight="600">样例</text>
+      <text x="450" y="473" fill="#182738" font-size="30"
             font-family="Consolas, Cascadia Code, ui-monospace, monospace">[1.0, 2.0, 3.0]</text>
-      <text x="704" y="291" fill="#606773" font-size="26"
-            font-family="Consolas, Cascadia Code, ui-monospace, monospace">threshold = 0.5<tspan fill="#6957d4" font-weight="700"> → False</tspan></text>
+      <text x="450" y="510" fill="#626d7d" font-size="23">阈值 0.5 · 预期结果 <tspan fill="#182738" font-weight="700">False</tspan></text>
     </g>
 
     <g id="score-detail">
-      <text x="704" y="349" fill="#606773" font-size="24">评分方法</text>
-      <text x="864" y="352" fill="#6957d4" font-size="36" font-weight="700"
+      <text x="876" y="432" fill="#092D56" font-size="22" font-weight="600">评分</text>
+      <text x="876" y="475" fill="#182738" font-size="40" font-weight="700"
             font-family="Consolas, Cascadia Code, ui-monospace, monospace">pass@k</text>
+      <text x="876" y="510" fill="#626d7d" font-size="23">结合采样与测试条件阅读</text>
     </g>
   </g>
 </svg>
