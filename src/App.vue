@@ -49,7 +49,6 @@ const compareUrl = computed(() => ({
             active: route.path === '/' || route.path.startsWith('/benchmarks/'),
           }"
           >评测目录</RouterLink
-        ><RouterLink to="/releases/">发布资料</RouterLink
         ><RouterLink to="/guide/">阅读指南</RouterLink>
       </nav>
       <div class="header-actions">
@@ -87,7 +86,6 @@ const compareUrl = computed(() => ({
       </div>
       <nav class="footer-links" aria-label="页脚导航">
         <RouterLink to="/guide/">阅读指南</RouterLink>
-        <RouterLink to="/releases/">发布资料</RouterLink>
         <RouterLink to="/about/">来源与收录规范</RouterLink>
         <a
           href="https://github.com/WhitePlusMS/whats-a-benchmark"
