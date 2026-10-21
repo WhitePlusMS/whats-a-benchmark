@@ -10,7 +10,7 @@
 | `content/benchmarks/video-mme.json` | 纠正：dataProfile.splits, dataProfile.fields, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/gpqa.json` | 补清：dataProfile.summary, dataProfile.splits, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/gpqa-diamond.json` | 补清：reusePolicy.boundaries, verifiedAt；登记所引官方来源。 |
-| `content/benchmarks/cmmlu.json` | 纠正：version, dataProfile.summary, dataProfile.scale, dataProfile.splits, dataProfile.fields, dataProfile.files, verifiedAt；登记所引官方来源。 |
+| `content/benchmarks/cmmlu.json` | 纠正：version, dataProfile.summary, dataProfile.scale, dataProfile.splits, dataProfile.fields, dataProfile.files, taskContract.output, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/mmmu-pro.json` | 纠正：dataProfile.summary, dataProfile.scale, dataProfile.splits, dataProfile.fields, dataAccess.requirements, verifiedAt, researchNotes.2.text；登记所引官方来源。 |
 | `content/benchmarks/excel-emb.json` | 纠正：version, dataProfile.summary, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/swe-bench-multilingual.json` | 纠正：dataProfile.fields, verifiedAt；登记所引官方来源。 |
@@ -53,3 +53,12 @@
 - 本地证据：`artifacts/research/2026-10-21-dataset-description-release/`中的`browser-checks.json`、`integrity.json`、日志和截图。
 
 Git提交、Pages自动部署和线上验收待实际完成后补充。
+
+- 线上一致性复核补充：CMMLU具体任务中残留的subject/answer表述已按同一固定官方CSV包同步为Answer字段和文件名学科信息；不改样例的题面、答案或原始记录。
+
+## 首次提交与一致性补充
+
+- 内容提交：`85826ee2b27e29ef89d7292606f0193e87d76655`，远端main已核对一致。
+- [Pages工作流39527486053](https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/39527486053)的build与deploy均为success（2026-10-21T01:29:03Z完成）。
+- 线上复核发现并修正同一CMMLU条目中的旧taskContract.output字段说明，同时补入同一固定官方ZIP引用；补充后严格类型与220页构建再通过。54个修订说明字段在静态HTML存在，全部案例/附件和非目标文件仍与基线相同。
+- 一致性补充的推送、部署及最终线上检查待实际结果补充。

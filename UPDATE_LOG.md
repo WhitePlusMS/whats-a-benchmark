@@ -10,6 +10,8 @@
 - 既有四项补充：GPQA两项公开GitHub入口、固定ZIP结构与字段、Video-MME官方样例直达入口、PSI的JobBench关联已核实，与本轮24项一并提交；不增加或复制案例。README、Hero、Logo候选、推广文档和技能文件不纳入此发布。
 - 文档：`docs/research/2026-10-21-dataset-description-audit.md`保留原审阅对照并指向实施记录；`docs/reviews/2026-10-21-dataset-description-release.md`记录本轮文件、检查和发布状态。忽略目录`artifacts/research/2026-10-21-dataset-description-release/`保留24份原文件、215个案例集合哈希、218个公开/附件文件哈希、实际应用清单及检查证据。
 - 本地检查：补登记20个引用来源后内容生成与严格TypeScript检查通过；46/46项现有测试通过；最终正式路径构建通过220个静态页与Pages 404检查。24页桌面/375与305像素CSS窄屏共72次检查，引用完整，版本和新字段正确显示；SWE-bench Multimodal摘要长哈希撑宽已修正并复测。53个说明字段（原52项及1处哈希位置调整）在静态HTML出现。215个sampleSet、218个附件哈希和24项外191份JSON均与本轮基线一致。Git推送、Pages部署和线上实际结果完成后补入发布记录；不调用网页端GPT，不启动前后端开发服务。
+- 线上一致性复核：`content/benchmarks/cmmlu.json`的taskContract.output仍写subject/answer，与固定公开包的真实表头不一致；同步改为A–D选项答案、Answer字段及CSV文件名区分学科，并给该段补入固定官方包引用。依据仍为本轮同一固定官方包，仅改说明，案例不动。
+- 首次发布：提交85826ee已推送且Pages工作流39527486053的build/deploy均成功；线上复核触发的CMMLU同项文字同步后，严格类型与220页正式构建再通过，54个修订说明字段出现在静态HTML，案例/附件哈希仍全部一致。
 
 ## 2026-10-20 — 简介上线与响应式验收完成
 
@@ -1229,4 +1231,3 @@
 - GitHub Pages 已选择 GitHub Actions。首次构建与测试成功；空仓库初始化的 github-pages 环境规则仍指向不存在的 mater，已精确改为 main（仅允许该分支，未取消分支限制），重跑失败的部署任务后成功。
 - 验证记录：工作流 https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/35975671314 的第2次尝试为 Success；站点 https://whiteplusms.github.io/whats-a-benchmark/ 已用真实浏览器打开，84项目录、MMMLU详情及动态真实样例正常加载。
 - 后续 main 推送会自动执行测试、构建、部署。工作流仍有上游 Actions Node 20 运行时迁移警告，但本次已在平台提供的运行时成功执行；不将告警写成部署失败。本次未启动本地服务。
-
