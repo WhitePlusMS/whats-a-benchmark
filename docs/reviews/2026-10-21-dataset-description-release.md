@@ -25,7 +25,7 @@
 | `content/benchmarks/mieb-lite.json` | 补清：dataProfile.fields, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/legalbench.json` | 补清：dataProfile.fields, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/toolret.json` | 补清：dataProfile.fields, dataProfile.splits, verifiedAt；登记所引官方来源。 |
-| `content/benchmarks/memoryarena.json` | 补清：dataProfile.summary, dataProfile.splits, dataProfile.fields, dataProfile.files, verifiedAt；登记所引官方来源。 |
+| `content/benchmarks/memoryarena.json` | 补清：dataProfile.summary, dataProfile.splits, dataProfile.fields, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/longmemeval.json` | 补清：dataProfile.fields, dataProfile.files, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/locomo.json` | 补清：dataProfile.files, verifiedAt；登记所引官方来源。 |
 | `content/benchmarks/when2call.json` | 补清：dataProfile.splits, dataProfile.fields, verifiedAt；登记所引官方来源。 |
