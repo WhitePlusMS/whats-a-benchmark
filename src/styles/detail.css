@@ -13,13 +13,13 @@
 }
 .detail-page {
   max-width: 1180px;
-  padding-top: 30px;
+  padding-top: 32px;
 }
 .breadcrumbs {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 12px;
   flex-wrap: wrap;
   color: var(--muted);
 }
@@ -27,7 +27,7 @@
   color: var(--accent-text);
 }
 .detail-heading {
-  padding: 24px 0;
+  padding: 28px 0 24px;
   max-width: 960px;
 }
 .detail-title-line {
@@ -43,9 +43,10 @@
   min-width: 0;
 }
 .detail-heading h1 {
-  font-size: 32px;
-  letter-spacing: -0.8px;
-  margin-top: 6px;
+  font-size: clamp(30px, 3.2vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin-top: 10px;
   overflow-wrap: anywhere;
 }
 .detail-subtitle {
@@ -58,21 +59,24 @@
 .detail-summary {
   font-size: 15px;
   line-height: 1.9;
-  margin-top: 12px;
-  max-width: 720px;
+  margin-top: 16px;
+  max-width: 760px;
   color: var(--text-secondary);
 }
 .detail-cta {
   display: flex;
   gap: 12px;
-  margin-top: 25px;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 .detail-facts {
   display: grid;
   grid-template-columns: 1.25fr 0.7fr 1.35fr 0.8fr 0.85fr;
-  gap: 16px;
-  padding: 16px 0;
-  border-top: 1px solid var(--border);
+  gap: 20px;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
 }
 .detail-facts > div {
   min-width: 0;
@@ -84,9 +88,11 @@
   color: var(--muted);
 }
 .detail-facts strong {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
+  display: block;
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 600;
+  color: var(--text-strong);
   overflow-wrap: anywhere;
 }
 .detail-nav {
@@ -94,11 +100,13 @@
   top: 72px;
   z-index: 20;
   display: flex;
-  gap: 26px;
-  padding: 14px 0;
+  gap: 28px;
+  padding: 18px 0 15px;
+  margin-top: 12px;
   background: var(--page-background);
   border-bottom: 1px solid var(--border);
   font-size: 13px;
+  font-weight: 600;
   overflow: auto;
   white-space: nowrap;
 }
@@ -106,14 +114,16 @@
   color: var(--accent-text);
 }
 .detail-section {
-  padding: 28px 0;
+  padding: 32px 0;
   border-bottom: 1px solid var(--border);
   scroll-margin-top: var(--anchor-offset);
 }
 .detail-section h2 {
-  font-size: 21px;
-  color: var(--text);
-  margin-bottom: 16px;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  margin-bottom: 18px;
 }
 .section-title-row {
   display: flex;
@@ -123,6 +133,10 @@
 }
 .section-title-row > h2 {
   margin-bottom: 0;
+}
+/* 样例标题行之后可能直接是查看器，保持与其他章节一致的间距。 */
+#samples > .section-title-row {
+  margin-bottom: 18px;
 }
 .section-title-row + .task-description {
   margin-top: 16px;
@@ -142,12 +156,16 @@
 }
 .contract-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
 }
 .profile-grid,
 .policy-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.contract-grid > article,
 .profile-grid > article,
 .policy-grid > article {
   min-width: 0;
@@ -155,6 +173,14 @@
   border: 1px solid var(--border);
   border-radius: 9px;
   background: var(--surface);
+}
+/* 任务三要素共用一组容器，以分隔线保持阅读顺序。 */
+.contract-grid > article {
+  min-width: 0;
+  padding: 22px;
+}
+.contract-grid > article + article {
+  border-left: 1px solid var(--border);
 }
 .contract-grid small,
 .profile-grid small {
@@ -170,8 +196,8 @@
 .profile-grid li,
 .policy-grid li,
 .policy-definition dd {
-  color: var(--muted);
-  font-size: 13px;
+  color: var(--text-secondary);
+  font-size: 14px;
   line-height: 1.85;
   overflow-wrap: anywhere;
 }
@@ -242,8 +268,9 @@
 }
 .score-layout {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 25px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
 }
 .metric-panel {
   padding: 28px;
@@ -267,13 +294,13 @@
   font-size: 11px;
 }
 .metric-panel p {
-  font-size: 12px;
-  line-height: 1.9;
+  font-size: 14px;
+  line-height: 1.85;
   margin-top: 19px;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 .caveat-panel {
-  padding: 25px;
+  padding: 4px 0;
 }
 .caveat-panel h3 {
   font-size: 15px;
@@ -281,9 +308,9 @@
 }
 .caveat-panel ul {
   padding-left: 18px;
-  font-size: 13px;
-  line-height: 1.9;
-  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--text-secondary);
 }
 .caveat-panel li {
   margin-bottom: 12px;
@@ -429,8 +456,8 @@
 .data-disclosure,
 .version-reading,
 .score-reading {
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 14px;
+  color: var(--text-secondary);
   line-height: 1.85;
   overflow-wrap: anywhere;
   margin-top: 18px;
@@ -493,7 +520,7 @@
     grid-template-columns: 1fr;
   }
   .caveat-panel {
-    padding: 12px 6px;
+    padding: 0;
   }
   .detail-facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -501,6 +528,10 @@
   }
   .contract-grid {
     grid-template-columns: 1fr;
+  }
+  .contract-grid > article + article {
+    border-left: 0;
+    border-top: 1px solid var(--border);
   }
 }
 @media (max-width: 700px) {
@@ -535,21 +566,21 @@
     padding: 10px 13px;
   }
   .detail-facts {
-    padding: 16px 0;
+    padding: 18px;
     gap: 18px 20px;
   }
   .detail-facts strong {
-    font-size: 12px;
+    font-size: 13px;
   }
   .detail-nav {
-    gap: 18px 22px;
+    gap: 14px 20px;
     flex-wrap: wrap;
     white-space: normal;
-    margin-top: 22px;
+    margin-top: 10px;
     position: static;
   }
   .detail-nav a {
-    font-size: 12px;
+    font-size: 13px;
   }
   .detail-section {
     padding: 30px 0;
@@ -578,5 +609,20 @@
   }
   .metric-panel {
     padding: 23px;
+  }
+}
+
+/* 极窄屏将标识放到标题上方，长版本独占一行。 */
+@media (max-width: 360px) {
+  .detail-title-line {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .detail-heading h1 {
+    word-break: keep-all;
+  }
+  .detail-facts > div:nth-child(3) {
+    grid-column: 1 / -1;
   }
 }
