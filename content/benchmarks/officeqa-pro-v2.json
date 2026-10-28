@@ -1,0 +1,176 @@
+{
+  "id": "officeqa-pro-v2",
+  "status": "published",
+  "order": 2719,
+  "name": "OfficeQA Pro V2",
+  "subtitle": "使用新财务语料的文档溯源推理",
+  "category": "work",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "Databricks",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Pro V2（2026）",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "OfficeQA Pro V2 是基于另一套美国联邦财政文件的独立问答评测。",
+    "task": "从大量文件中检索证据并回答需要计算和综合的问题。",
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa"
+    ]
+  },
+  "taskContract": {
+    "input": "美国联邦收支账目文件与问题。",
+    "output": "有证据支持的答案。",
+    "environment": "评测主体需取得受控题目并使用文档检索和计算工具。",
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "90 道问题，语料覆盖 1793—2024 年。",
+    "disclosure": "partial",
+    "scale": [
+      "90 道问题，语料覆盖 1793—2024 年。"
+    ],
+    "splits": [],
+    "fields": [
+      "问题、参考答案和证据；完整字段须获授权核验。"
+    ],
+    "files": [
+      "officeqa_pro_v2.csv"
+    ],
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa",
+      "https://huggingface.co/datasets/databricks/officeqa-pro-v2"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/databricks/officeqa-pro-v2",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/databricks/officeqa-pro-v2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "数据 CC BY-SA 4.0；评测代码 Apache 2.0。",
+    "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
+    "boundaries": [
+      "V2 使用另一套语料，不能与 133 题的原版 OfficeQA Pro 成绩当作同题比较。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/databricks/officeqa-pro-v2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方发布文章公开了 3 个 V2 例题；本站保留少量原文短引与中文解读。受控 CSV 和答案键未取得。",
+    "url": "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
+    "sourceUrls": [
+      "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
+      "https://huggingface.co/datasets/databricks/officeqa-pro-v2"
+    ]
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "按官方评测流程对问题答案计分，具体运行条件应随成绩核对。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/databricks/officeqa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "V2 使用另一套语料，不能与 133 题的原版 OfficeQA Pro 成绩当作同题比较。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Databricks 官方仓库",
+      "url": "https://github.com/databricks/officeqa",
+      "role": "definition"
+    },
+    {
+      "label": "官方发布说明",
+      "url": "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
+      "role": "release"
+    },
+    {
+      "label": "V2 数据集与申请入口",
+      "url": "https://huggingface.co/datasets/databricks/officeqa-pro-v2",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "officeqa-pro",
+      "label": "OfficeQA Pro 原版",
+      "detail": "原版为 133 道问题，V2 为另一套 90 题及不同语料。",
+      "sourceUrls": [
+        "https://github.com/databricks/officeqa"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "chief-justice",
+        "title": "低难度：最高法院首席法官收入",
+        "type": "record",
+        "prompt": "根据 1793 年下半年的财政记录，汇总 John Jay 作为首席法官的名义收入并列出相关付款凭证编号。",
+        "promptOrigin": "editorial",
+        "raw": "the warrant numbers in calendar year order",
+        "explanation": "来源是 Databricks 官方发布页公开例题；本条仅摘录原文短语，未读取受控 CSV、原始答案或财政文档。",
+        "source": "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
+        "license": "Databricks 发布文章；仅为说明公开例题而摘录必要短语，完整题目和附件请访问原文。",
+        "split": "官方发布页 Example Questions",
+        "excerpt": true
+      },
+      {
+        "id": "medicare",
+        "title": "中难度：Medicare 支出线性回归",
+        "type": "record",
+        "prompt": "对 1990 至 1994 财年 Medicare 年度支出拟合普通最小二乘回归，计算年均增长，使用最新修订数据。",
+        "promptOrigin": "editorial",
+        "raw": "Fitting an OLS linear regression",
+        "explanation": "来源是 Databricks 官方发布页公开例题；本条仅摘录原文短语，未读取受控 CSV、原始答案或财政文档。",
+        "source": "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
+        "license": "Databricks 发布文章；仅为说明公开例题而摘录必要短语，完整题目和附件请访问原文。",
+        "split": "官方发布页 Example Questions",
+        "excerpt": true
+      },
+      {
+        "id": "forecast",
+        "title": "高难度：多机构支出预测",
+        "type": "record",
+        "prompt": "汇总五个机构 1981 至 1988 财年的净支出，并使用题目指定的 Theta 方法预测 1989 财年支出。",
+        "promptOrigin": "editorial",
+        "raw": "the FY1989 forecast in millions of dollars",
+        "explanation": "来源是 Databricks 官方发布页公开例题；本条仅摘录原文短语，未读取受控 CSV、原始答案或财政文档。",
+        "source": "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
+        "license": "Databricks 发布文章；仅为说明公开例题而摘录必要短语，完整题目和附件请访问原文。",
+        "split": "官方发布页 Example Questions",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "已直接核验官方发布页三道不同难度例题；完整 90 题 CSV 仍需获准访问。",
+      "sourceUrls": [
+        "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "id": "global-mmlu",
+  "status": "published",
+  "order": 2203,
+  "name": "Global-MMLU",
+  "subtitle": "跨语言和文化视角的 MMLU 知识评估。",
+  "category": "knowledge",
+  "tags": [],
+  "publisher": "Cohere Labs",
+  "brandIds": [],
+  "year": 2024,
+  "version": "Global-MMLU 完整集",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "跨语言和文化视角的 MMLU 知识评估。",
+    "task": "回答多语言专业知识选择题。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+    ]
+  },
+  "taskContract": {
+    "input": "多语言问题与四个选项",
+    "output": "答案选项",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+    ]
+  },
+  "dataProfile": {
+    "summary": "跨语言和文化视角的 MMLU 知识评估。",
+    "disclosure": "partial",
+    "scale": [
+      "42 种语言配置；英语 dev 为 285 题，test 为 14042 题。"
+    ],
+    "splits": [],
+    "fields": [
+      "sample_id",
+      "subject",
+      "question",
+      "option_a",
+      "option_b",
+      "option_c",
+      "option_d",
+      "answer",
+      "culture",
+      "region",
+      "country"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者数据卡标注 Apache-2.0；转载须保留许可及来源。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已读取固定版本的真实记录，展示原始字段节选。",
+    "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU/resolve/0e619dbeb34206cd48705a1a0ea7fb21cae09993/en/dev-00000-of-00001.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU/resolve/0e619dbeb34206cd48705a1a0ea7fb21cae09993/en/dev-00000-of-00001.parquet"
+    ]
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "准确率；比较时需记录数据子集、版本及运行条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定版本 0e619dbeb34206cd48705a1a0ea7fb21cae09993，实际读取英语 dev 全部 285 行。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本实际读取的记录",
+      "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU/resolve/0e619dbeb34206cd48705a1a0ea7fb21cae09993/en/dev-00000-of-00001.parquet",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "abstract_algebra/dev/0",
+        "title": "抽象代数 · 官方 dev 记录",
+        "type": "choice",
+        "prompt": "Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.",
+        "explanation": "这是实际读取的原始数据记录，来源与划分见链接；其余记录未经逐条审查。",
+        "raw": {
+          "sample_id": "abstract_algebra/dev/0",
+          "subject": "abstract_algebra",
+          "question": "Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.",
+          "option_a": "0",
+          "option_b": "1",
+          "option_c": "2",
+          "option_d": "3",
+          "answer": "B"
+        },
+        "source": "https://huggingface.co/datasets/CohereLabs/Global-MMLU/resolve/0e619dbeb34206cd48705a1a0ea7fb21cae09993/en/dev-00000-of-00001.parquet",
+        "license": "Apache-2.0；Cohere Labs, Global-MMLU",
+        "split": "作者公开数据的所示划分",
+        "excerpt": true,
+        "answer": "B",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "licensePath": "licenses/mmlu-pro.txt"
+      }
+    ]
+  }
+}

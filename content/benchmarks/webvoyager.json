@@ -1,0 +1,135 @@
+{
+  "id": "webvoyager",
+  "status": "published",
+  "order": 2725,
+  "name": "WebVoyager",
+  "subtitle": "真实网站上的多模态网页代理任务",
+  "category": "agents",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "WebVoyager 作者团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "WebVoyager 评估智能体在真实网站完成用户任务。",
+    "task": "根据网页截图和交互状态导航并完成任务。",
+    "sourceUrls": [
+      "https://github.com/MinorJerry/WebVoyager"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令、网站地址与实时网页。",
+    "output": "完成网页任务并返回结果。",
+    "environment": "使用浏览器与 Selenium 的在线环境。",
+    "sourceUrls": [
+      "https://github.com/MinorJerry/WebVoyager"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者公开真实网站任务 JSONL；网站和网页状态会随时间变化。",
+    "disclosure": "partial",
+    "scale": [
+      "作者公开真实网站任务 JSONL；网站和网页状态会随时间变化。"
+    ],
+    "splits": [],
+    "fields": [
+      "web_name",
+      "id",
+      "ques",
+      "web"
+    ],
+    "files": [
+      "data/WebVoyager_data.jsonl"
+    ],
+    "sourceUrls": [
+      "https://github.com/MinorJerry/WebVoyager",
+      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
+    "sourceUrls": [
+      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者仓库 Apache 2.0；外部网站内容遵守各网站条款。",
+    "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
+    "boundaries": [
+      "在线网站内容随时间变化，历史任务结果可能无法直接重现。"
+    ],
+    "sourceUrls": [
+      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已读取官方 JSONL 的 Google Search--1 原始记录；不复制第三方网页内容。",
+    "url": "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
+    "sourceUrls": [
+      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "原论文使用多模态自动评估并进行人工验证，运行设置应单独报告。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/MinorJerry/WebVoyager"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "在线网站内容随时间变化，历史任务结果可能无法直接重现。",
+      "sourceUrls": [
+        "https://github.com/MinorJerry/WebVoyager"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者官方仓库",
+      "url": "https://github.com/MinorJerry/WebVoyager",
+      "role": "definition"
+    },
+    {
+      "label": "官方任务 JSONL",
+      "url": "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "Google Search--1",
+        "title": "真实网页任务：Google Search--1",
+        "type": "record",
+        "prompt": "Find Kevin Durant's bio",
+        "explanation": "这是官方任务记录；目标网站实时内容及答案不固定。",
+        "raw": {
+          "web_name": "Google Search",
+          "id": "Google Search--1",
+          "ques": "Find Kevin Durant's bio",
+          "web": "https://www.google.com/"
+        },
+        "source": "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
+        "license": "Apache-2.0（作者仓库）；外部网站内容另受其条款约束",
+        "split": "官方任务文件",
+        "excerpt": false,
+        "licensePath": "licenses/lhtb-apache-2-0.txt"
+      }
+    ]
+  }
+}

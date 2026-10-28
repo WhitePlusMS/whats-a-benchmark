@@ -1,0 +1,104 @@
+{
+  "id": "kimi-hallu-bench",
+  "status": "published",
+  "order": 3022,
+  "name": "Kimi Hallu Bench",
+  "subtitle": "Moonshot 内部事实性压力测试",
+  "category": "knowledge",
+  "tags": [
+    "内部评测"
+  ],
+  "publisher": "Moonshot AI / Kimi",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Kimi K3.1 Pro 发布页披露版本（具体题集版本未披露）",
+  "kind": "internal",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "对来自真实工作任务的去标识化高难度提示进行事实性压力测试。",
+    "task": "事实核查 Agent 审核回答中的事实性声明，统计幻觉率。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "taskContract": {
+    "input": "来自工作任务的去标识化高难提示；完整提示未公开。",
+    "output": "模型回答中的事实声明及核查结果。",
+    "environment": "按无工具与 Hard 带工具等配置分开评估。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公开评测用途及部分设置和成绩；未找到可下载的完整题集、题目样例或评分数据。",
+    "disclosure": "not-public",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "官方称为内部评测；截至核验日未找到公开数据下载地址或申请流程。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到评测题集的公开许可。",
+    "scope": "仅整理官方公开的方法和结果，不复制未公开的题目。",
+    "boundaries": [
+      "发布模型展示材料不等于测试题集可以下载或再发布。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "未找到可定位的真实评测案例；官方演示不能自动视作该内部题集中的样本。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "metric": {
+    "name": "声明级幻觉率",
+    "description": "错误事实声明所占比例越低越好。官方报告 Hard 带工具 K3.1 Pro 8.3%、K3 23.4%；无工具 K3.1 Pro 5.4%，不与 Hard 带工具混算。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "厂商自行设计并报告成绩，完整题集和实现未公开，外部尚无法据此独立复现。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "官方强调这是刻意挑选易错问题的压力测试，不能当作日常使用整体错误率。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Kimi K3.1 Pro 发布页及评测脚注",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

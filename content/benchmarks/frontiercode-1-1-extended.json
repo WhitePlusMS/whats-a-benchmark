@@ -1,0 +1,137 @@
+{
+  "id": "frontiercode-1-1-extended",
+  "status": "published",
+  "order": 2211,
+  "name": "FrontierCode 1.1 Extended",
+  "subtitle": "评测代码变更能否达到真实项目的合并标准。",
+  "category": "coding",
+  "tags": [],
+  "publisher": "Cognition",
+  "brandIds": [],
+  "year": 2026,
+  "version": "1.1 Extended",
+  "kind": "subset",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评测代码变更能否达到真实项目的合并标准。",
+    "task": "完成维护者设计的真实代码任务。",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1"
+    ]
+  },
+  "taskContract": {
+    "input": "代码仓库和任务需求",
+    "output": "代码修改",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "评测代码变更能否达到真实项目的合并标准。",
+    "disclosure": "partial",
+    "scale": [
+      "Extended 为完整 150 题；Main 为其中最难的 100 题。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方 1.0 发布页表示不计划公开完整题目以避免污染；1.1 发布页公开一条任务演示。"
+    ],
+    "url": "https://cognition.com/blog/frontier-code",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方未公开完整题库的转载授权。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1",
+      "https://cognition.com/blog/frontier-code"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "1.1 官方页面展示一条联网规则演示，但未确认它属于 Extended 的 150 道题；完整题面、评分细则与私有题集未取得。",
+    "url": "https://cognition.com/blog/frontier-code-1.1",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1"
+    ]
+  },
+  "metric": {
+    "name": "加权评分与通过率",
+    "description": "加权评分与通过率；比较时需记录数据子集、版本及运行条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://cognition.com/blog/frontier-code-1.1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://cognition.com/blog/frontier-code-1.1"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "1.1 使用更明确的互联网使用规则并修订评分标准；完整私有任务未取得，不以展示样例代替题库。",
+      "sourceUrls": [
+        "https://cognition.com/blog/frontier-code"
+      ]
+    },
+    {
+      "text": "1.1 发布页示范 Ellipsis on long emails 任务中访问上游 PR diff 的违规联网；未披露其完整题面及榜单子集归属。",
+      "sourceUrls": [
+        "https://cognition.com/blog/frontier-code-1.1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://cognition.com/blog/frontier-code-1.1",
+      "role": "definition"
+    },
+    {
+      "label": "作者数据入口",
+      "url": "https://cognition.com/blog/frontier-code",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "releaseDate": "2026-07-07",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "1-1-internet-use-ellipsis-example",
+        "title": "官方 1.1 演示：长邮件省略号（Extended 归属未确认）",
+        "type": "record",
+        "prompt": "这是作者在 1.1 发布页用来演示公平联网检查的任务：运行过程打开上游补丁，被判作不公平联网。",
+        "promptOrigin": "editorial",
+        "raw": "Ellipsis on long emails",
+        "explanation": "原文公开了任务名称、联网行为和演示轨迹，不包含可完整复现的题面或该题参考答案；不推断其属于 Main 或 Extended 的具体排名。",
+        "source": "https://cognition.com/blog/frontier-code-1.1",
+        "license": "Cognition 官方发布页；仅为识别该公开例题引用任务名称，完整资料及许可未公开。",
+        "split": "1.1 官方发布页联网规则示例",
+        "excerpt": true
+      }
+    ]
+  }
+}

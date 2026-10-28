@@ -1,0 +1,159 @@
+{
+  "id": "wmt24pp",
+  "status": "published",
+  "order": 2207,
+  "name": "WMT24++",
+  "subtitle": "英语到多种语言的机器翻译评测数据。",
+  "category": "knowledge",
+  "tags": [],
+  "publisher": "Google",
+  "brandIds": [],
+  "year": 2025,
+  "version": "WMT24++",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "英语到多种语言的机器翻译评测数据。",
+    "task": "将英语文本翻译成指定目标语言。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/wmt24pp"
+    ]
+  },
+  "taskContract": {
+    "input": "英语源文本和目标语言",
+    "output": "翻译文本",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/wmt24pp"
+    ]
+  },
+  "dataProfile": {
+    "summary": "英语到多种语言的机器翻译评测数据。",
+    "disclosure": "partial",
+    "scale": [
+      "55 个语言或地区配置。"
+    ],
+    "splits": [],
+    "fields": [
+      "lp",
+      "domain",
+      "document_id",
+      "segment_id",
+      "is_bad_source",
+      "source",
+      "target",
+      "original_target"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/wmt24pp"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/google/wmt24pp",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/wmt24pp"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者数据卡标注 Apache-2.0；保留原作者、来源和许可。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/wmt24pp"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已读取固定版本的真实记录，展示原始字段节选。",
+    "url": "https://huggingface.co/datasets/google/wmt24pp/resolve/fd7405c06494bc66a57b25f55d217a72f96e60dc/en-de_DE.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/wmt24pp/resolve/fd7405c06494bc66a57b25f55d217a72f96e60dc/en-de_DE.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "MetricX-24 / MetricX-24-QE 等",
+    "description": "论文正文主要报告 MetricX-24 和无需参考译文的 MetricX-24-QE，附录另报 BLEU、ChrF 和 COMET 等；比较时必须核对指标及方向。论文图示将 MetricX 取负后显示为越高越好。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://arxiv.org/html/2502.12404"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/wmt24pp"
+      ]
+    },
+    {
+      "text": "作者指出自动指标可能低估人工译文，跨语言得分也可能存在指标偏差。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2502.12404"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定版本 fd7405c06494bc66a57b25f55d217a72f96e60dc 的 en-de_DE 文件实际读取 998 条，首条为污染检测 canary，展示下一条真实新闻记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/wmt24pp"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://huggingface.co/datasets/google/wmt24pp",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本实际读取的记录",
+      "url": "https://huggingface.co/datasets/google/wmt24pp/resolve/fd7405c06494bc66a57b25f55d217a72f96e60dc/en-de_DE.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "作者论文及自动评测方法",
+      "url": "https://arxiv.org/html/2502.12404",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "test-en-news_beverly_press.3585-1",
+        "title": "英译德 · 新闻片段",
+        "type": "record",
+        "prompt": "Siso's depictions of land, water center new gallery exhibition",
+        "explanation": "作者提供的英文新闻源句及德语人工译文与后编辑结果；target 是后编辑版本，original_target 是原始参考译文。",
+        "raw": {
+          "lp": "en-de_DE",
+          "domain": "news",
+          "document_id": "test-en-news_beverly_press.3585",
+          "segment_id": 1,
+          "is_bad_source": false,
+          "source": "Siso's depictions of land, water center new gallery exhibition",
+          "target": "Sisos Darstellungen von Land und Wasser in neuer Ausstellung",
+          "original_target": "Sisos Darstellungen von Land und Wasser stehen im Mittelpunkt der neuen Galerieausstellung"
+        },
+        "source": "https://huggingface.co/datasets/google/wmt24pp/resolve/fd7405c06494bc66a57b25f55d217a72f96e60dc/en-de_DE.jsonl",
+        "license": "Apache-2.0；Google WMT24++",
+        "split": "作者公开数据的所示划分",
+        "excerpt": true,
+        "answer": "Sisos Darstellungen von Land und Wasser in neuer Ausstellung",
+        "licensePath": "licenses/mmlu-pro.txt"
+      }
+    ]
+  }
+}

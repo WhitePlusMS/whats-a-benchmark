@@ -1,0 +1,151 @@
+{
+  "id": "milu",
+  "status": "published",
+  "order": 2204,
+  "name": "MILU",
+  "subtitle": "印度语言与文化知识的多语言评测。",
+  "category": "knowledge",
+  "tags": [],
+  "publisher": "AI4Bharat",
+  "brandIds": [],
+  "year": 2024,
+  "version": "MILU",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "印度语言与文化知识的多语言评测。",
+    "task": "按指定语言回答选择题。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ai4bharat/MILU"
+    ]
+  },
+  "taskContract": {
+    "input": "印度语言知识题及选项",
+    "output": "答案选项",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ai4bharat/MILU"
+    ]
+  },
+  "dataProfile": {
+    "summary": "印度语言与文化知识的多语言评测。",
+    "disclosure": "partial",
+    "scale": [
+      "测试集约 80,000 道多选题；验证集 8,933 道，用于 few-shot 示例。",
+      "涵盖 11 种语言、8 个领域和 41 个学科。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ai4bharat/MILU",
+      "https://arxiv.org/html/2411.02538v3"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/ai4bharat/MILU",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ai4bharat/MILU"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者数据卡标注 CC BY 4.0，但须申请访问。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ai4bharat/MILU"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "作者论文 Table 1 公开展示两道 MILU 题目；不含选项及答案，未取得需授权的 HF 文件。",
+    "url": "https://arxiv.org/html/2411.02538v3",
+    "sourceUrls": [
+      "https://arxiv.org/html/2411.02538v3",
+      "https://huggingface.co/datasets/ai4bharat/MILU"
+    ]
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "准确率；比较时需记录数据子集、版本及运行条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ai4bharat/MILU"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ai4bharat/MILU"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "尝试下载固定版本 846d7016558b2004386f30e59a2158731262492f 的英语 validation parquet，服务器返回 HTTP 401；未获取题目。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ai4bharat/MILU"
+      ]
+    },
+    {
+      "text": "作者论文 v3 Table 1 公开示例，不等于读取过受控 HF 数据文件；无法确认其 test 或 validation split。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2411.02538v3"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://huggingface.co/datasets/ai4bharat/MILU",
+      "role": "definition"
+    },
+    {
+      "label": "作者论文 v3 表 1：公开例题",
+      "url": "https://arxiv.org/html/2411.02538v3",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "paper-table1-fastag",
+        "title": "论文公开例题：FASTag",
+        "type": "record",
+        "prompt": "题目询问印度收费站 FASTag 使用哪种波。",
+        "promptOrigin": "editorial",
+        "raw": "FASTag at the Toll Gates uses which waves?",
+        "explanation": "该问题为论文明确标示的 MILU 题目，论文未提供该题选项和参考答案，本站不补写。",
+        "source": "https://arxiv.org/html/2411.02538v3",
+        "license": "论文 CC BY 4.0，Verma 等，MILU Table 1；未取得需要授权的数据文件。",
+        "split": "作者论文 v3 / Table 1",
+        "excerpt": true
+      },
+      {
+        "id": "paper-table1-sitar",
+        "title": "论文公开例题：西塔琴",
+        "type": "record",
+        "prompt": "题目询问西塔琴产生的声音振动类型。",
+        "promptOrigin": "editorial",
+        "raw": "In a Sitar, which type of sound vibrations are produced?",
+        "explanation": "仅为论文公开的题面，选项、参考答案和具体 split 在公开表中未给出。",
+        "source": "https://arxiv.org/html/2411.02538v3",
+        "license": "论文 CC BY 4.0，Verma 等，MILU Table 1；数据集访问条件独立。",
+        "split": "作者论文 v3 / Table 1",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "id": "time-series-time",
+  "status": "published",
+  "order": 3011,
+  "name": "TIME",
+  "subtitle": "面向真实预测任务的时间序列基准",
+  "category": "reasoning",
+  "tags": [
+    "时间序列",
+    "预测"
+  ],
+  "publisher": "Real-TSF 研究团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "主数据快照 83e3d0b，CSV 快照 683bb21",
+  "kind": "suite",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "面向时间序列基础模型的任务中心基准，强调数据质量和现实预测任务。",
+    "task": "用历史时间序列对不同时间尺度的未来数值进行零样本预测。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2602.12147"
+    ]
+  },
+  "taskContract": {
+    "input": "各数据源的历史目标序列、预测长度及任务配置。",
+    "output": "未来数值预测及概率预测。",
+    "environment": "官方提供评估代码与可视化排行榜，按不同预测任务和窗口评估。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2602.12147"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方主数据和参考 CSV 分别发布，两仓库许可标签不一致。",
+    "disclosure": "partial",
+    "scale": [
+      "论文及数据卡给出 50 个数据集、98 个预测任务。"
+    ],
+    "splits": [
+      "按时间窗口评估；主数据目录内部使用 train 存储，不能直接等同最终评测训练划分。"
+    ],
+    "fields": [
+      "主数据包含 item_id、start、freq、target、variate_names；CSV 含 timestamp 及序列列。"
+    ],
+    "files": [
+      "已实际下载并读取 Australia_Solar/H/item0.csv；固定快照 683bb21b470f5a26586e1ab2295f0a2a1529ef0f。",
+      "首行为 2021-04-01 00:00:00，含 solar_63726、solar_51616、solar_31378 三列。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2602.12147",
+      "https://huggingface.co/datasets/Real-TSF/TIME",
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV",
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/resolve/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方主数据与参考 CSV 可下载；TIME 数据卡说明 CSV 为参考或自定义流水线用途。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Real-TSF/TIME",
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV",
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/resolve/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv"
+    ],
+    "url": "https://huggingface.co/datasets/Real-TSF/TIME"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "主数据集标注 CC BY-NC-4.0；参考 CSV 仓库仍标 Apache-2.0。",
+    "scope": "具体数据需结合主数据限制、来源数据许可和用途判断。",
+    "boundaries": [
+      "论文标注 Australia Solar 来源受 PVOutput 服务条款约束；不能仅据参考仓库标签确认该行可公开转载。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Real-TSF/TIME",
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV",
+      "https://arxiv.org/html/2602.12147"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "已读取真实 CSV 记录；来源条款和仓库许可标注存在差异，本站不复制数据值。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV",
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/resolve/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv",
+      "https://arxiv.org/html/2602.12147"
+    ],
+    "url": "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/resolve/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv"
+  },
+  "metric": {
+    "name": "MASE、CRPS",
+    "description": "分别衡量点预测误差和概率预测表现，需结合具体任务及聚合设置。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://arxiv.org/html/2602.12147"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "部分来源数据的许可与使用条件不同，不能将整个集合视为完全相同的商业授权。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2602.12147",
+        "https://huggingface.co/datasets/Real-TSF/TIME",
+        "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "官方数据卡记载 2026-05-16 修复 Global_Influenza/W，2026-05-20 更新 Crypto/D，2026-05-25 更新主数据许可；对比结果时应固定快照。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Real-TSF/TIME"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "TIME 论文与来源数据表",
+      "url": "https://arxiv.org/html/2602.12147",
+      "role": "paper"
+    },
+    {
+      "label": "TIME 主数据集与更新记录",
+      "url": "https://huggingface.co/datasets/Real-TSF/TIME",
+      "role": "data"
+    },
+    {
+      "label": "官方参考 CSV 仓库",
+      "url": "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV",
+      "role": "data"
+    },
+    {
+      "label": "固定快照的真实 CSV 文件",
+      "url": "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/resolve/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv",
+      "role": "data"
+    },
+    {
+      "label": "TIME 官方排行榜",
+      "url": "https://huggingface.co/spaces/Real-TSF/TIME-leaderboard",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

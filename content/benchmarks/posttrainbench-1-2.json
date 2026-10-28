@@ -1,0 +1,156 @@
+{
+  "id": "posttrainbench-1-2",
+  "status": "published",
+  "order": 2212,
+  "name": "PostTrainBench v1.2",
+  "subtitle": "比较智能体在有限 GPU 预算中自主改进语言模型后训练的能力。",
+  "category": "agents",
+  "tags": [],
+  "publisher": "PostTrainBench 团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "v1.2",
+  "kind": "suite",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "比较智能体在有限 GPU 预算中自主改进语言模型后训练的能力。",
+    "task": "在规定算力预算内训练并提交模型。",
+    "sourceUrls": [
+      "https://posttrainbench.com/blog/posttrainbench-1-2/"
+    ]
+  },
+  "taskContract": {
+    "input": "基础模型、算力预算及任务配置",
+    "output": "微调模型与下游评估结果",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://posttrainbench.com/blog/posttrainbench-1-2/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "比较智能体在有限 GPU 预算中自主改进语言模型后训练的能力。",
+    "disclosure": "partial",
+    "scale": [
+      "六个分项：AIME 2025、GPQA Main、HealthBench、HumanEval、GSM8K、Arena Hard Writing。",
+      "官方公布的四舍五入权重合计为 100.1%，因此保留原始数值而不把它们当作精确合计 100% 的权重录入。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [
+      "官方 Harbor 文档公开 GSM8K / Qwen3-1.7B 任务配置示例；HF 提供运行轨迹，但单条轨迹与 v1.2 结果需逐项核验。"
+    ],
+    "sourceUrls": [
+      "https://github.com/aisa-group/PostTrainBench",
+      "https://github.com/aisa-group/PostTrainBench/blob/ea8d65bc375e61c8ac77a7aea86effcc995378fb/src/harbor_adapter/README.md",
+      "https://huggingface.co/datasets/aisa-group/PostTrainBench-Trajectories"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://github.com/aisa-group/PostTrainBench",
+    "sourceUrls": [
+      "https://github.com/aisa-group/PostTrainBench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "示例所属代码仓库 MIT；HF 轨迹数据卡 Apache-2.0，子评测数据另有许可。",
+    "scope": "本站只展示作者代码仓库中公开的任务配置示例；不混用底层基准数据集的许可。",
+    "boundaries": [
+      "公开配置是任务启动示例，不是已实际运行的成绩或完整轨迹。"
+    ],
+    "sourceUrls": [
+      "https://github.com/aisa-group/PostTrainBench/blob/ea8d65bc375e61c8ac77a7aea86effcc995378fb/src/harbor_adapter/README.md",
+      "https://huggingface.co/datasets/aisa-group/PostTrainBench-Trajectories"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已读取固定提交的 Harbor 配置示例；明确示例描述任务配置，而非训练后的模型结果。",
+    "url": "https://github.com/aisa-group/PostTrainBench/blob/ea8d65bc375e61c8ac77a7aea86effcc995378fb/src/harbor_adapter/README.md",
+    "sourceUrls": [
+      "https://github.com/aisa-group/PostTrainBench/blob/ea8d65bc375e61c8ac77a7aea86effcc995378fb/src/harbor_adapter/README.md"
+    ]
+  },
+  "metric": {
+    "name": "加权平均表现",
+    "description": "模型后训练后在六项下游基准表现的加权平均；v1.2 使用多随机种子，污染判断采用多数票。官网各项显示为四舍五入权重，合计 100.1%。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://posttrainbench.com/blog/posttrainbench-1-2/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://posttrainbench.com/blog/posttrainbench-1-2/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "官方 2026-09-30 发布：移除 BFCL；六项权重依次 24.5%、24.3%、19.9%、11.5%、10.1%、9.8%，增加多种随机种子与污染多数票评判。实际读取官方 Harbor 任务配置示例；未验证任何公开轨迹对应 v1.2 榜单。",
+      "sourceUrls": [
+        "https://github.com/aisa-group/PostTrainBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://posttrainbench.com/blog/posttrainbench-1-2/",
+      "role": "definition"
+    },
+    {
+      "label": "作者数据入口",
+      "url": "https://github.com/aisa-group/PostTrainBench",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 Harbor 任务配置示例",
+      "url": "https://github.com/aisa-group/PostTrainBench/blob/ea8d65bc375e61c8ac77a7aea86effcc995378fb/src/harbor_adapter/README.md",
+      "role": "code"
+    },
+    {
+      "label": "作者公开轨迹数据集",
+      "url": "https://huggingface.co/datasets/aisa-group/PostTrainBench-Trajectories",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "posttrainbench",
+      "label": "原版",
+      "detail": "v1.2 修改分项权重与评分流程，分数不应直接混同。",
+      "sourceUrls": [
+        "https://posttrainbench.com/blog/posttrainbench-1-2/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "releaseDate": "2026-09-30",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "harbor-gsm8k-qwen3-1-7b",
+        "title": "GSM8K / Qwen3-1.7B 的官方任务配置",
+        "type": "code",
+        "prompt": "查看作者的 Harbor 任务配置：以 Qwen3-1.7B 为基础模型、GSM8K 为目标，指定 Claude Code 代理。",
+        "promptOrigin": "editorial",
+        "raw": "bash run_modal_task.sh --task tasks/posttrainbench-gsm8k-qwen3-1.7b \\\n    --agent claude-code --model anthropic/claude-opus-4-8 --job-name run1",
+        "explanation": "源码 README 的真实命令节选，不代表本站执行过训练；任务需要作者所述云端 GPU 和相关凭证。",
+        "source": "https://github.com/aisa-group/PostTrainBench/blob/ea8d65bc375e61c8ac77a7aea86effcc995378fb/src/harbor_adapter/README.md",
+        "license": "MIT，Copyright (c) 2025 Ben Rank, Hardik Bhatnagar, Matthias Bethge, Maksym Andriushchenko",
+        "licensePath": "licenses/posttrainbench-mit.txt",
+        "split": "作者 Harbor 文档示例",
+        "excerpt": true
+      }
+    ]
+  }
+}

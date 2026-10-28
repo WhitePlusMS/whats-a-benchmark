@@ -1,0 +1,137 @@
+{
+  "id": "fleurs",
+  "status": "published",
+  "order": 2209,
+  "name": "FLEURS",
+  "subtitle": "跨语言语音识别与语音理解评测数据集。",
+  "category": "multimodal",
+  "tags": [],
+  "publisher": "Google",
+  "brandIds": [],
+  "year": 2022,
+  "version": "FLEURS",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "跨语言语音识别与语音理解评测数据集。",
+    "task": "根据输入语音生成对应文本。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/fleurs"
+    ]
+  },
+  "taskContract": {
+    "input": "不同语言的录音",
+    "output": "识别转写",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/fleurs"
+    ]
+  },
+  "dataProfile": {
+    "summary": "跨语言语音识别与语音理解评测数据集。",
+    "disclosure": "partial",
+    "scale": [
+      "覆盖 102 种语言，含训练、验证和测试划分。"
+    ],
+    "splits": [],
+    "fields": [
+      "id",
+      "audio",
+      "transcription",
+      "raw_transcription",
+      "language"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/fleurs"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/google/fleurs",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/fleurs"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者数据卡标注 CC BY 4.0，复用须标明来源和许可。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/fleurs"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已读取固定版本的真实记录，展示原始字段节选。",
+    "url": "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv"
+    ]
+  },
+  "metric": {
+    "name": "词错误率或字符错误率",
+    "description": "词错误率或字符错误率；比较时需记录数据子集、版本及运行条件。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/fleurs"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/fleurs"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定版本 70bb2e84b976b7e960aa89f1c648e09c59f894dd 的 en_us/test.tsv 已实际读取首条，未获取或展示语音。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/fleurs"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://huggingface.co/datasets/google/fleurs",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本实际读取的记录",
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "1980",
+        "title": "英语测试集 · 真实转写",
+        "type": "record",
+        "prompt": "官方英语测试集中的语音转写样本。",
+        "explanation": "这是作者英语测试集的真实 TSV 第一行，包含录音文件名及对应转写。本站没有复制音频，文本仅为录音转写，不代表用户已听到录音。",
+        "raw": "1980\t12741024238657315067.wav\tUnfortunately, studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty.\tunfortunately studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty\tu n f o r t u n a t e l y | s t u d y i n g | t r a f f i c | f l o w | i s | d i f f i c u l t | b e c a u s e | d r i v e r | b e h a v i o r | c a n n o t | b e | p r e d i c t e d | w i t h | o n e - h u n d r e d | p e r c e n t | c e r t a i n t y |\t202240\tMALE",
+        "source": "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv",
+        "license": "CC BY 4.0；Google FLEURS",
+        "split": "作者公开数据的所示划分",
+        "excerpt": true,
+        "answer": "unfortunately studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "promptOrigin": "editorial"
+      }
+    ]
+  }
+}

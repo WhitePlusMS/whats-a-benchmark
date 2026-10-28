@@ -1,0 +1,135 @@
+{
+  "id": "kimi-design-bench",
+  "status": "published",
+  "order": 3026,
+  "name": "Design Bench（Kimi 内部）",
+  "subtitle": "平面设计与参考图提示评测",
+  "category": "writing",
+  "tags": [
+    "内部评测"
+  ],
+  "publisher": "Moonshot AI / Kimi",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Kimi K3.1 Pro 发布页披露版本（具体题集版本未披露）",
+  "kind": "internal",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Moonshot 的平面设计内部评测，覆盖直接提示和参考图少样本提示。",
+    "task": "根据直接要求或参考图片生成图形设计。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "taskContract": {
+    "input": "设计需求或参考图片；具体题目和图片未公开。",
+    "output": "图形设计作品。",
+    "environment": "官方称其与 DECK-Arena 共用含搜索、图像生成的评测框架；自动裁判由超过 10,000 条人工判断校准。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公开总体成绩及评测概况；未找到逐任务评分明细或可确认属于该评测的题目记录。",
+    "disclosure": "not-public",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "官方称为内部评测；截至核验日未找到公开数据下载地址或申请流程。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到评测题集的公开许可。",
+    "scope": "仅整理官方公开的方法和结果，不复制未公开的题目。",
+    "boundaries": [
+      "发布模型展示材料不等于测试题集可以下载或再发布。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "复查 Hugging Face 数据集搜索和 Moonshot 公开作者账号后，仍未找到可确认属于该内部评测的题目；官方演示未标明与题集的成员关系。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://huggingface.co/api/datasets?search=Design-Bench&limit=100"
+    ]
+  },
+  "metric": {
+    "name": "Elo",
+    "description": "官方完整表中 Kimi K3.1 Pro 为 957 Elo、GPT-6 Astra 为 1076 Elo、Claude Opus 5.5 为 927 Elo；具体配对方法未公开。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "厂商自行设计并报告成绩，完整题集和实现未公开，外部尚无法据此独立复现。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本评测与 DECK-Arena 为官方分列的两个内部评测，不能混为同一题集。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    },
+    {
+      "text": "2026-10-28 使用 Hugging Face 官方数据集 API 按 Design-Bench 检索，并检查 moonshotai 作者账号下的公开数据集；未找到可确认属于此 Moonshot 内部评测的题集。名称相似或同领域的其他数据集不能证明是同一评测。官方模型发布页中的产品演示也未标明属于此评测，不能当成测试题。",
+      "sourceUrls": [
+        "https://huggingface.co/api/datasets?search=Design-Bench&limit=100",
+        "https://www.kimi.ai/blog/kimi-k3-1-pro",
+        "https://huggingface.co/api/datasets?author=moonshotai&limit=1000"
+      ]
+    },
+    {
+      "text": "Hugging Face 的 creative-graphic-design/DesignBench 是 Xiao 等人的网页前端代码生成评测，包含网页截图、编辑及修复任务；没有证据显示它属于 Moonshot 的内部平面设计评测，不能借用其测试题冒充本条样例。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/creative-graphic-design/DesignBench",
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Kimi K3.1 Pro 发布页及评测脚注",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "role": "definition"
+    },
+    {
+      "label": "Hugging Face 数据集名称检索（结果可能变化）",
+      "url": "https://huggingface.co/api/datasets?search=Design-Bench&limit=100",
+      "role": "data"
+    },
+    {
+      "label": "同名 DesignBench 数据集（用于排除混淆）",
+      "url": "https://huggingface.co/datasets/creative-graphic-design/DesignBench",
+      "role": "data"
+    },
+    {
+      "label": "Moonshot AI 的 Hugging Face 公开数据集列表",
+      "url": "https://huggingface.co/api/datasets?author=moonshotai&limit=1000",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

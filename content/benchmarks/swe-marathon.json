@@ -1,0 +1,145 @@
+{
+  "id": "swe-marathon",
+  "status": "published",
+  "order": 1500,
+  "name": "SWE-Marathon",
+  "subtitle": "超长时程软件工程任务",
+  "category": "coding",
+  "tags": [],
+  "publisher": "SWE-Marathon 作者团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "数据修订 8129e0634100dbb6fe0cdc32d703bf2aa03f6cbb",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体自主完成多小时软件工程工作的能力。",
+    "task": "根据任务要求实现或迁移软件并提交可运行成果。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.07682"
+    ]
+  },
+  "taskContract": {
+    "input": "代码仓库、任务说明和测试环境。",
+    "output": "仓库中的实现与测试结果。",
+    "environment": "容器化任务环境和任务特定验证器。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.07682"
+    ]
+  },
+  "dataProfile": {
+    "summary": "20 个长时程软件工程任务。",
+    "disclosure": "partial",
+    "scale": [
+      "20 个长时程软件工程任务。"
+    ],
+    "splits": [],
+    "fields": [
+      "task_id",
+      "name",
+      "description"
+    ],
+    "files": [
+      "tasks.jsonl"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.07682",
+      "https://huggingface.co/datasets/rdesai2/swe-marathon",
+      "https://huggingface.co/datasets/rdesai2/swe-marathon/resolve/8129e0634100dbb6fe0cdc32d703bf2aa03f6cbb/tasks.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "具体任务、脚手架及访问限制以官方入口为准。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/rdesai2/swe-marathon"
+    ],
+    "url": "https://huggingface.co/datasets/rdesai2/swe-marathon"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache License 2.0；来源 SWE-Marathon 数据集；保留许可证及来源，第三方代码另按其许可。",
+    "scope": "仅展示已核对的记录节选和原始字段。",
+    "boundaries": [
+      "不得将仓库代码许可自动推及所有第三方输入及评测材料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/abundant-ai/swe-marathon/blob/main/LICENSE",
+      "https://huggingface.co/datasets/rdesai2/swe-marathon/resolve/8129e0634100dbb6fe0cdc32d703bf2aa03f6cbb/tasks.jsonl"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已从固定版本官方数据读取真实记录并展示节选。",
+    "url": "https://huggingface.co/datasets/rdesai2/swe-marathon/resolve/8129e0634100dbb6fe0cdc32d703bf2aa03f6cbb/tasks.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/rdesai2/swe-marathon/resolve/8129e0634100dbb6fe0cdc32d703bf2aa03f6cbb/tasks.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "任务通过率",
+    "description": "按任务验证器判定成功，汇总通过比例。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2606.07682"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同版本、运行脚手架和评分配置可能导致结果不可直接比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2606.07682"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方论文或评测方资料",
+      "url": "https://arxiv.org/abs/2606.07682",
+      "role": "paper"
+    },
+    {
+      "label": "官方数据或项目入口",
+      "url": "https://huggingface.co/datasets/rdesai2/swe-marathon",
+      "role": "data"
+    },
+    {
+      "label": "固定版本原始记录",
+      "url": "https://huggingface.co/datasets/rdesai2/swe-marathon/resolve/8129e0634100dbb6fe0cdc32d703bf2aa03f6cbb/tasks.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "样例来源许可",
+      "url": "https://github.com/abundant-ai/swe-marathon/blob/main/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "updatedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "biofabric-rust-rewrite",
+        "title": "官方真实记录",
+        "type": "record",
+        "prompt": "Reimplement BioFabric (a Java network visualization tool) and its Network Alignment plugin as a Rust library + CLI that achieves byte-level parity with the Java reference on every test case.",
+        "explanation": "真实任务要求以 Rust 重新实现 BioFabric 与网络对齐插件，达到参考实现字节级一致；完整说明和代码以官方文件为准。",
+        "raw": {
+          "task_id": "biofabric-rust-rewrite",
+          "name": "biofabric-rust-rewrite",
+          "description": "Reimplement BioFabric (a Java network visualization tool) and its Network Alignment plugin as a Rust library + CLI that achieves byte-level parity with the Java reference on every test case."
+        },
+        "source": "https://huggingface.co/datasets/rdesai2/swe-marathon/resolve/8129e0634100dbb6fe0cdc32d703bf2aa03f6cbb/tasks.jsonl",
+        "license": "Apache License 2.0；来源 SWE-Marathon 数据集；保留许可证及来源，第三方代码另按其许可。",
+        "split": "tasks",
+        "excerpt": true,
+        "licensePath": "licenses/lhtb-apache-2-0.txt"
+      }
+    ]
+  }
+}

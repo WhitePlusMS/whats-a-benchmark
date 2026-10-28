@@ -1,0 +1,152 @@
+{
+  "id": "ocrbench-v2",
+  "status": "published",
+  "order": 2723,
+  "name": "OCRBench v2",
+  "subtitle": "双语视觉文字定位、解析与推理",
+  "category": "multimodal",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "OCRBench v2 作者团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "v2，10,000 题",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "OCRBench v2 是覆盖更多文字视觉任务的双语评测。",
+    "task": "理解图像文字、定位、解析并回答问题。",
+    "sourceUrls": [
+      "https://github.com/Yuliang-Liu/MultimodalOCR"
+    ]
+  },
+  "taskContract": {
+    "input": "图像和任务问题。",
+    "output": "文字、位置或结构化答案。",
+    "environment": "按任务类型分别使用官方评分方式。",
+    "sourceUrls": [
+      "https://github.com/Yuliang-Liu/MultimodalOCR"
+    ]
+  },
+  "dataProfile": {
+    "summary": "10,000 个人工验证问答对，覆盖 31 类场景。",
+    "disclosure": "partial",
+    "scale": [
+      "10,000 个人工验证问答对，覆盖 31 类场景。"
+    ],
+    "splits": [],
+    "fields": [
+      "dataset_name",
+      "type",
+      "id",
+      "image_path",
+      "question",
+      "answers",
+      "bbox"
+    ],
+    "files": [
+      "按语言和任务分类的数据"
+    ],
+    "sourceUrls": [
+      "https://github.com/Yuliang-Liu/MultimodalOCR",
+      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/morpheushoc/OCRBenchv2",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "上游仓库声明研究用途；镜像及数据卡许可表述可能不一致，需向权利人核实。",
+    "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
+    "boundaries": [
+      "第三方镜像的分片和许可声明不自动代表作者原版的所有使用许可。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "作者论文 Figure 10 公开一个方向判断例题；仅保留短引和答案，图片与题集整体不转载。",
+    "url": "https://papers.nips.cc/paper_files/paper/2025/file/8c2e6bb15be1894b8fb4e0f9bcad1739-Paper-Datasets_and_Benchmarks_Track.pdf",
+    "sourceUrls": [
+      "https://papers.nips.cc/paper_files/paper/2025/file/8c2e6bb15be1894b8fb4e0f9bcad1739-Paper-Datasets_and_Benchmarks_Track.pdf"
+    ]
+  },
+  "metric": {
+    "name": "综合得分",
+    "description": "官方按任务及语言汇总成绩，总分口径应与所报告版本一致。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/Yuliang-Liu/MultimodalOCR"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "第三方镜像的分片和许可声明不自动代表作者原版的所有使用许可。",
+      "sourceUrls": [
+        "https://github.com/Yuliang-Liu/MultimodalOCR"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者官方仓库",
+      "url": "https://github.com/Yuliang-Liu/MultimodalOCR",
+      "role": "definition"
+    },
+    {
+      "label": "论文",
+      "url": "https://arxiv.org/abs/2501.00321",
+      "role": "paper"
+    },
+    {
+      "label": "公开数据查看器",
+      "url": "https://huggingface.co/datasets/morpheushoc/OCRBenchv2",
+      "role": "data"
+    },
+    {
+      "label": "作者论文 Figure 10 公开任务示例",
+      "url": "https://papers.nips.cc/paper_files/paper/2025/file/8c2e6bb15be1894b8fb4e0f9bcad1739-Paper-Datasets_and_Benchmarks_Track.pdf",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "paper-figure10-museum",
+        "title": "论文公开例题：方向理解",
+        "type": "record",
+        "prompt": "根据图像判断去博物馆的方向。",
+        "promptOrigin": "editorial",
+        "raw": "Which way is it to the museum?",
+        "explanation": "作者论文公开图例的参考答案为 right；由于缺少原始图片，本节选无法独立完成视觉评测。",
+        "source": "https://papers.nips.cc/paper_files/paper/2025/file/8c2e6bb15be1894b8fb4e0f9bcad1739-Paper-Datasets_and_Benchmarks_Track.pdf",
+        "license": "作者论文；仅保留必要短引及事实说明，原始基准限制研究用途。",
+        "split": "NeurIPS 2025 论文 / Figure 10 / Reasoning VQA",
+        "excerpt": true,
+        "answer": "right（右）"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "重新核对论文 PDF 第 41 页 Figure 10，确认 Reasoning VQA 题面和答案；该公开图例不是完整数据的再分发许可。",
+      "sourceUrls": [
+        "https://papers.nips.cc/paper_files/paper/2025/file/8c2e6bb15be1894b8fb4e0f9bcad1739-Paper-Datasets_and_Benchmarks_Track.pdf"
+      ]
+    }
+  ]
+}

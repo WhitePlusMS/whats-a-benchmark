@@ -1,0 +1,137 @@
+{
+  "id": "spatialbench-verified",
+  "status": "published",
+  "order": 2720,
+  "name": "SpatialBench Verified",
+  "subtitle": "专家复核的空间转录组数据分析任务",
+  "category": "agents",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "LatchBio",
+  "brandIds": [],
+  "year": 2026,
+  "version": "115 题专家复核子集",
+  "kind": "subset",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "SpatialBench Verified 是经过独立专家解题复核的空间生物学任务子集。",
+    "task": "基于空间组学数据开展分析，输出可由确定性评分器检验的结果。",
+    "sourceUrls": [
+      "https://blog.latch.bio/p/human-verification-of-spatialbench"
+    ]
+  },
+  "taskContract": {
+    "input": "实验数据、分析环境和任务说明。",
+    "output": "任务要求的数字、类别或其他分析结果。",
+    "environment": "容器化分析环境，评分器根据任务类型检验结果。",
+    "sourceUrls": [
+      "https://blog.latch.bio/p/human-verification-of-spatialbench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "159 项修订版中 115 项经专家验证。",
+    "disclosure": "partial",
+    "scale": [
+      "159 项修订版中 115 项经专家验证。"
+    ],
+    "splits": [],
+    "fields": [
+      "任务类别",
+      "平台类型",
+      "评测任务 ID"
+    ],
+    "files": [
+      "example_evals/manifest.json"
+    ],
+    "sourceUrls": [
+      "https://blog.latch.bio/p/human-verification-of-spatialbench",
+      "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/manifest.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [],
+    "url": "https://github.com/latchbio/spatialbench",
+    "sourceUrls": [
+      "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/manifest.json"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "公开代码仓库 Apache 2.0；各源数据许可独立核对。",
+    "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
+    "boundaries": [
+      "作者保留完整题集防污染，公开样例和 Verified 子集成员的对应关系需进一步确认。"
+    ],
+    "sourceUrls": [
+      "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/manifest.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "已实际读取作者原版公开任务 xenium_kidney_spatial_cn7_composition_day14；它是否属于 Verified 115 题尚未确认，不能作为 Verified 题目转载。",
+    "url": "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/spatial_analysis/xenium_kidney_spatial_cn7_composition_day14.json",
+    "sourceUrls": [
+      "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/spatial_analysis/xenium_kidney_spatial_cn7_composition_day14.json",
+      "https://blog.latch.bio/p/human-verification-of-spatialbench"
+    ]
+  },
+  "metric": {
+    "name": "任务准确率",
+    "description": "不同任务由数值容差、集合或类别等评分器评价，取通过情况。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://blog.latch.bio/p/human-verification-of-spatialbench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "作者保留完整题集防污染，公开样例和 Verified 子集成员的对应关系需进一步确认。",
+      "sourceUrls": [
+        "https://blog.latch.bio/p/human-verification-of-spatialbench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者专家复核说明",
+      "url": "https://blog.latch.bio/p/human-verification-of-spatialbench",
+      "role": "definition"
+    },
+    {
+      "label": "作者仓库",
+      "url": "https://github.com/latchbio/spatialbench",
+      "role": "readme"
+    },
+    {
+      "label": "固定提交的公开样例清单",
+      "url": "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/manifest.json",
+      "role": "data"
+    },
+    {
+      "label": "原版 SpatialBench 公开真实任务（是否属于 Verified 未确认）",
+      "url": "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/spatial_analysis/xenium_kidney_spatial_cn7_composition_day14.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "researchNotes": [
+    {
+      "text": "实际核验公开 manifest 的记录：task=cell_typing，kit=curio，eval_id=curio_ovary_follicle_count_immature；该记录是否属于 Verified 子集尚未确认。",
+      "sourceUrls": [
+        "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/manifest.json"
+      ]
+    },
+    {
+      "text": "作者公开的任务文件要求分析小鼠肾脏 CN7 空间生态位组成；官方复核任务分配表中出现该文件名，但分配不代表最终通过，尚不能确认其属于 Verified。",
+      "sourceUrls": [
+        "https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/spatial_analysis/xenium_kidney_spatial_cn7_composition_day14.json",
+        "https://blog.latch.bio/p/human-verification-of-spatialbench"
+      ]
+    }
+  ]
+}

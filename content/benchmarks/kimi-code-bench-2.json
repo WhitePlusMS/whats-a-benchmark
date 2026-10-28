@@ -1,0 +1,135 @@
+{
+  "id": "kimi-code-bench-2",
+  "status": "published",
+  "order": 3020,
+  "name": "Kimi Code Bench 2.0",
+  "subtitle": "Moonshot 内部编程任务评测",
+  "category": "coding",
+  "tags": [
+    "内部评测"
+  ],
+  "publisher": "Moonshot AI / Kimi",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Kimi K3.1 Pro 发布页披露版本（具体题集版本未披露）",
+  "kind": "internal",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Moonshot 官方称 Kimi Code Bench 2.0 是其内部编程评测。",
+    "task": "评估模型在内部编程任务中的表现；题集构成未披露。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "taskContract": {
+    "input": "内部编程任务，具体题目和输入格式未披露。",
+    "output": "编程任务的完成结果；具体判定细则未披露。",
+    "environment": "K3.1 Pro 用 Claude Code，其他模型使用最大推理设置；专有模型可能发生回退。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公开评测用途及部分设置和成绩；未找到可下载的完整题集、题目样例或评分数据。",
+    "disclosure": "not-public",
+    "scale": [
+      "Kimi K3 官方比较中针对部分模型报告了 80 个任务的拒绝及回退次数；该口径不能据此推定完整题集规模。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://www.kimi.ai/blog/kimi-k3",
+      "https://github.com/MoonshotAI/Kimi-K3"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "官方称为内部评测；截至核验日未找到公开数据下载地址或申请流程。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://www.kimi.ai/blog/kimi-k3"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到评测题集的公开许可。",
+    "scope": "仅整理官方公开的方法和结果，不复制未公开的题目。",
+    "boundaries": [
+      "发布模型展示材料不等于测试题集可以下载或再发布。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://www.kimi.ai/blog/kimi-k3"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "未找到可定位的真实评测案例；官方演示不能自动视作该内部题集中的样本。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://www.kimi.ai/blog/kimi-k3"
+    ]
+  },
+  "metric": {
+    "name": "官方报告分数",
+    "description": "官方完整表中 Kimi K3.1 Pro 为 77.1、DeepSeek-V4.1-Flash-1017 为 76.1、GLM-5.3 为 61.7；其他列未报告，不视为零分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "厂商自行设计并报告成绩，完整题集和实现未公开，外部尚无法据此独立复现。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro",
+        "https://www.kimi.ai/blog/kimi-k3"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "发布页脚注明确区分 Kimi Code Bench 2.0 与 3.0 Long-horizon。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    },
+    {
+      "text": "K3 发布页称 K3 分别使用 Kimi Code 与 Claude Code，部分 GPT-5.6 Sol 任务触发安全防护；不同 harness 会影响比较。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro",
+        "https://www.kimi.ai/blog/kimi-k3"
+      ]
+    },
+    {
+      "text": "Moonshot K3 官方报告表列出各模型成绩及 80 题配置中的拒绝、回退次数，但未公布任务原文；报告中的产品演示不能据此确认为测试题。",
+      "sourceUrls": [
+        "https://github.com/MoonshotAI/Kimi-K3"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Kimi K3.1 Pro 发布页及评测脚注",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "role": "definition"
+    },
+    {
+      "label": "Kimi K3 发布页 KCB 2.0 设置",
+      "url": "https://www.kimi.ai/blog/kimi-k3",
+      "role": "release"
+    },
+    {
+      "label": "Moonshot Kimi K3 官方评测设置与 80 次任务统计",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

@@ -1,0 +1,164 @@
+{
+  "id": "mmlu-prox",
+  "status": "published",
+  "order": 2202,
+  "name": "MMLU-ProX",
+  "subtitle": "跨语言 MMLU-Pro 知识与推理评测。",
+  "category": "knowledge",
+  "tags": [],
+  "publisher": "LiLab",
+  "brandIds": [],
+  "year": 2025,
+  "version": "MMLU-ProX",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "跨语言 MMLU-Pro 知识与推理评测。",
+    "task": "在多语言问题中选择答案。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+    ]
+  },
+  "taskContract": {
+    "input": "翻译后的专业知识选择题",
+    "output": "答案选项",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+    ]
+  },
+  "dataProfile": {
+    "summary": "跨语言 MMLU-Pro 知识与推理评测。",
+    "disclosure": "partial",
+    "scale": [
+      "作者数据提供 29 种语言配置。"
+    ],
+    "splits": [],
+    "fields": [
+      "question_id",
+      "question",
+      "option_0 至 option_9",
+      "answer",
+      "category"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者数据卡标注 MIT；来源问题还应遵循上游数据条款。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet",
+    "reason": "读取作者固定版本英语 validation 的真实问题、选项和答案。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet"
+    ]
+  },
+  "metric": {
+    "name": "正确率",
+    "description": "正确率；比较时需记录数据子集、版本及运行条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定版本 8e6106a6c6ce1c5027e66cc338143cf997b2aa09 的英语 validation 文件实际读取 70 行，首条 question_id=0，category=math，answer=A。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本实际读取的英语验证记录",
+      "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "mmlu-pro",
+      "label": "基准来源",
+      "detail": "MMLU-ProX 以 MMLU-Pro 为基础拓展多语言，样本和测评设置需单独记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "1",
+        "title": "验证集 · 多项式变换",
+        "type": "choice",
+        "prompt": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
+        "options": [
+          "ST + TS is the identity map of V onto itself.",
+          "TS = 0",
+          "ST = 1",
+          "ST - TS = 0",
+          "ST = T",
+          "ST = 0",
+          "ST = TS",
+          "ST - TS is the identity map of V onto itself.",
+          "TS = T",
+          "ST = S"
+        ],
+        "answer": "H",
+        "explanation": "这是英语验证集第 2 条真实记录；原题继承 MMLU-Pro，答案 H。",
+        "raw": {
+          "question_id": 1,
+          "question": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
+          "answer": "H",
+          "answer_index": 7,
+          "category": "math",
+          "src": "cot_lib-college_mathematics"
+        },
+        "source": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet",
+        "license": "MMLU-ProX 数据卡声明 MIT；原题来自 MMLU-Pro，保留作者和上游来源。",
+        "licensePath": "licenses/mmlu-prox-sample-source.txt",
+        "split": "en/validation",
+        "excerpt": true
+      }
+    ]
+  }
+}

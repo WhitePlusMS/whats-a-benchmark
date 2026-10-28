@@ -1,0 +1,145 @@
+{
+  "id": "video-mme-v2",
+  "status": "published",
+  "order": 2201,
+  "name": "Video-MME v2",
+  "subtitle": "通过关联问题评测视频理解与跨问题推理。",
+  "category": "multimodal",
+  "tags": [],
+  "publisher": "Video-MME 研究团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "v2",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过关联问题评测视频理解与跨问题推理。",
+    "task": "观看视频回答一组相关选择题。",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME-v2"
+    ]
+  },
+  "taskContract": {
+    "input": "视频与关联选择题",
+    "output": "各题答案及关联评测结果",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME-v2"
+    ]
+  },
+  "dataProfile": {
+    "summary": "通过关联问题评测视频理解与跨问题推理。",
+    "disclosure": "partial",
+    "scale": [
+      "800 段视频，3200 条问答。"
+    ],
+    "splits": [],
+    "fields": [
+      "video_id",
+      "url",
+      "group_type",
+      "group_structure",
+      "question_id",
+      "question",
+      "options",
+      "answer",
+      "level",
+      "second_head",
+      "third_head"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/tree/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/tree/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/tree/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64"
+    ]
+  },
+  "reusePolicy": {
+    "status": "prohibited",
+    "license": "HF 数据卡标 MIT，但官方仓库禁止未经事先许可复制、分发、发布数据集的任何部分；视频版权属于原权利人。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME-v2",
+      "https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/tree/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "作者论文 Figure 9–11 公开三组真实案例，可直接查看；HF 标记 MIT 与作者仓库禁止复制数据的条款冲突，本站不转载题文、答案或视频。",
+    "url": "https://arxiv.org/html/2604.05015",
+    "sourceUrls": [
+      "https://arxiv.org/html/2604.05015",
+      "https://github.com/MME-Benchmarks/Video-MME-v2"
+    ]
+  },
+  "metric": {
+    "name": "单题准确率及关联性指标",
+    "description": "每组四题；Relevance 按答对题数使用非线性映射，Logic 按依赖链奖励连续正确答案，也可报告逐题准确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/MME-Benchmarks/Video-MME-v2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME-v2"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定版本 6e4bebb03202e1ddbf3d37703e560e51c5aa2d64 的 test.parquet 已实际下载并读取，共 3200 行、11 列，SHA-256 8dc7f8c8830aa49dd08a82592f8276899472a145155dde3bea5dd6914a65a9b4。由于作者许可冲突，不转载题目、答案、标识或视频。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/tree/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64"
+      ]
+    },
+    {
+      "text": "论文 Figure 9–11 分别展示视觉识别、时间推理和实体持续跟踪的真实问题组；这些公开图例可在作者论文中阅读，但数据集条款冲突仍未澄清。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2604.05015"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://github.com/MME-Benchmarks/Video-MME-v2",
+      "role": "definition"
+    },
+    {
+      "label": "作者数据入口",
+      "url": "https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/tree/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64",
+      "role": "data"
+    },
+    {
+      "label": "作者论文公开 Figure 9–11 题组",
+      "url": "https://arxiv.org/html/2604.05015",
+      "role": "paper"
+    }
+  ],
+  "related": [
+    {
+      "id": "video-mme",
+      "label": "前代基准",
+      "detail": "原版和 v2 的题组与指标不同，成绩需分开记录。",
+      "sourceUrls": [
+        "https://github.com/MME-Benchmarks/Video-MME-v2"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28"
+}

@@ -1317,3 +1317,97 @@
 - GitHub Pages 已选择 GitHub Actions。首次构建与测试成功；空仓库初始化的 github-pages 环境规则仍指向不存在的 mater，已精确改为 main（仅允许该分支，未取消分支限制），重跑失败的部署任务后成功。
 - 验证记录：工作流 https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/35975671314 的第2次尝试为 Success；站点 https://whiteplusms.github.io/whats-a-benchmark/ 已用真实浏览器打开，84项目录、MMMLU详情及动态真实样例正常加载。
 - 后续 main 推送会自动执行测试、构建、部署。工作流仍有上游 Actions Node 20 运行时迁移警告，但本次已在平台提供的运行时成功执行；不将告警写成部署失败。本次未启动本地服务。
+
+## 2026-10-28 — 新模型发布页所涉及评测与真实数据补录
+
+- 用户要求：核实本次发现且尚未收录的 benchmark 和新版本，补入官方资料与真实案例；区分不同版本，不虚构未公开数据。只增加内容数据和许可说明，复用现有内容结构；保留既有工作区改动。
+- 新增评测文件（逐文件列出；数字为本站收录的真实记录或公开例题短引数量，0 不表示官方没有数据）：
+  - `content/benchmarks/anthropic-eci.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/bankertoolbench.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/cyscenariobench.json`：0 条，样例状态 `private`。
+  - `content/benchmarks/dense200.json`：0 条，样例状态 `license-pending`。
+  - `content/benchmarks/draco.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/exploitbench.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/exploitgym.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/fev-bench.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/fleurs.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/frontiercode-1-1-extended.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/frontierfinance.json`：0 条，样例状态 `gated`。
+  - `content/benchmarks/gift-eval-ctx.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/gift-eval.json`：0 条，样例状态 `license-pending`。
+  - `content/benchmarks/global-mmlu.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/handbook-md.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/hlab-vals-v1-1.json`：0 条，样例状态 `private`。
+  - `content/benchmarks/hle-diamond.json`：0 条，样例状态 `gated`。
+  - `content/benchmarks/kimi-business-operation.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kimi-code-bench-2.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kimi-code-bench-3-long-horizon.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kimi-deck-arena.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kimi-design-bench.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kimi-financial-modeling.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kimi-financial-research.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kimi-hallu-bench.json`：0 条，样例状态 `unverified`。
+  - `content/benchmarks/kora-v2.json`：0 条，样例状态 `gated`。
+  - `content/benchmarks/linuxarena.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/loca-bench.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/mathvision.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/milu.json`：0 条，样例状态 `gated`。
+  - `content/benchmarks/mmlongbench-doc.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/mmlu-prox.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/ocr-reasoning.json`：0 条，样例状态 `restricted`。
+  - `content/benchmarks/ocrbench-v2.json`：0 条，样例状态 `license-pending`。
+  - `content/benchmarks/officeqa-pro-v2.json`：3 条，样例状态 `local`。
+  - `content/benchmarks/physicianbench.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/posttrainbench-1-2.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/shade-arena.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/singlecellbench.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/spatialbench-verified.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/swe-marathon.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/swe-refactor-bench.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/time-series-time.json`：0 条，样例状态 `license-pending`。
+  - `content/benchmarks/video-mme-v2.json`：0 条，样例状态 `restricted`。
+  - `content/benchmarks/voice-code-bench.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/vstar-bench.json`：0 条，样例状态 `official`。
+  - `content/benchmarks/webvoyager.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/wmt24pp.json`：1 条，样例状态 `local`。
+  - `content/benchmarks/xdev-bench-hard.json`：0 条，样例状态 `unverified`。
+- 新增许可说明：`content/assets/licenses/fev-task-config-apache-2-0.txt`、`content/assets/licenses/mathvision-sample-source.txt`、`content/assets/licenses/mmlu-prox-sample-source.txt`、`content/assets/licenses/voice-code-bench.txt`。分别保留 fev 任务配置、MMLU-ProX、MATH-Vision 和 VoiceCodeBench 的许可及来源边界；两个 Apache 样例引用项目已有标准 Apache 2.0 文件。
+- 数据与来源：Video-MME v2 实际读取固定版本 3200 条标注，HF 标记 MIT 与作者仓库复制限制冲突，未转载题文；Dense200 固定原始文件读取 200 条，原始图像再分发许可未确认；GIFT-Eval、TIME、fev 已读取具体时序记录但分别保留原始数据许可边界。可复用的样本保留来源、划分、许可和版本；LOCA、ExploitBench、fev 的样例是配置而非任务或观测值。
+- 版本与受限资料：Video-MME v2、OfficeQA Pro V2、HLAB-Vals-1.1、FrontierCode Extended、PostTrainBench 1.2、GIFT-Eval-CTX 等独立登记；scBench 明确作者初版 394 项与当前 195 项的差异。OfficeQA Pro V2 受控 CSV 未取得，但引用作者发布页的三道公开例题短语；AA-Briefcase Lite 四条公开演示既已收录且不计入正式榜单，未重复建项。MILU、KORA V2、HLE-Diamond、FrontierFinance 等受控；Moonshot 内部评测只记录已公开的设置和结果，未伪造题目。
+- 验证与影响：新增 49 个条目，其中 18 个有共 20 条站内样例或公开例题节选；npm run validate 通过（264 条公开评测、595 条样例、19 份报告），npm test 47 项通过，npm run build 通过并校验 269 个静态页面及 404。抽查四个新增详情页的构建内容；Vite 报现有大块提示，未处理打包优化。未启动开发服务，未调用网页端 GPT，未提交、推送或部署。
+
+## 2026-10-28 — 对无站内样例的评测再次核查官方测试数据
+
+- 用户要求：重新查找上次新增评测中没有站内数据的条目，重点核验 Hugging Face、作者仓库、论文真实案例、访问条件、版本和复用许可。沿用内容结构，只补可核验的公开数据与来源，保留工作区已有修改。
+- `content/benchmarks/gift-eval-ctx.json`：纠正上次未找到数据的结论；定位作者 Salesforce/GiftEvalCTX 固定快照，实际下载并读取 62,821,273 字节 Parquet、10,000 条 test，记录文件校验与字段；展示首条真实索引和 macro/micro 标签。上游 ETT 原始观测序列另有 CC BY-ND 4.0 限制，未转存原始历史和未来数组，也明确标签由未来派生。
+- `content/benchmarks/physicianbench.json`：补作者固定提交的真实临床工作流任务要求节选，去除可能关联身份的信息；未取得 FHIR 病历镜像。
+- `content/benchmarks/posttrainbench-1-2.json`、`content/assets/licenses/posttrainbench-mit.txt`：收录作者 Harbor GSM8K/Qwen3 真实配置并补 MIT 许可；另登记官方公开运行轨迹集，但未确认轨迹与 v1.2 榜单逐条对应，未声称实跑。
+- `content/benchmarks/milu.json`：收录作者论文 Table 1 两道真实题面；论文未提供这两题选项和答案，HF 完整文件仍须授权。
+- `content/benchmarks/kora-v2.json`：实读作者 2.2.0 标签 781 个公开场景，补充一条学习场景；区分 GitHub 公开场景与需授权的 HF 对话数据。
+- `content/benchmarks/vstar-bench.json`：实读作者固定版 191 条测试记录，收录第 18 题及答案；未复制 SA-1B 图片，原数据许可仍单独标明。
+- `content/benchmarks/mmlongbench-doc.json`：实读作者 1,082 条题目，补运动按键题的必要短引、答案及证据页；保留 CC BY-NC 4.0 及 PDF 权利边界，数据文件引用 main 并未固定提交。
+- `content/benchmarks/ocr-reasoning.json`：实读固定版 1,069 条标注，补 CPU 性能图计数题必要短引和答案；未转载原图，并标出 CC BY-NC-SA 4.0。
+- `content/benchmarks/ocrbench-v2.json`：补作者论文 Figure 10 的公开题目短引及答案；未转载图片，保留数据卡和仓库许可口径差异。
+- `content/benchmarks/video-mme-v2.json`：补充作者论文 Figure 9–11 真实案例入口；数据卡与官方仓库对再分发的表述冲突，因此没有转载题组或视频。
+- `content/benchmarks/linuxarena.json`：实读 HF 固定快照 sample.jsonl 的首条真实运行记录，保留任务和结果字段，标明评测方不用于训练的请求，未复制模型完整轨迹。
+- `content/benchmarks/exploitgym.json`：实读固定版本 869 个唯一 v1 任务 ID 和 20 条 sample ID，收录一条任务标识；明确不是漏洞题面、答案或模型输出。
+- `content/benchmarks/frontiercode-1-1-extended.json`：补作者 1.1 联网规则公开演示，并明确其是否属于 Extended 的 150 题尚未确认；不可把它计作已证实的 Extended 题目。
+- `content/benchmarks/cyscenariobench.json`：补作者明确声明测试集私有的来源；第三方公开事件案例不能冒充评测题目。
+- `content/benchmarks/kimi-code-bench-2.json`：补官方部分模型 80 项运行配置及拒绝、回退事实，不将运行数冒充题库总量。
+- `content/benchmarks/frontierfinance.json`：核实作者 HF 数据卡 Example 可以匿名查看问题和评分标准，完整文件仍返回 401 且有再分享限制；补官方入口、不复制受限题文，并记录论文、仓库与 gate 的不同表述。
+- `content/benchmarks/spatialbench-verified.json`：实读并链接原版公开肾脏任务；专家任务分配不等于最终通过，是否属于 Verified 115 题未确认。
+- `content/benchmarks/kimi-business-operation.json`、`kimi-deck-arena.json`、`kimi-design-bench.json`、`kimi-financial-modeling.json`、`kimi-financial-research.json`：按名称检索 Hugging Face 数据集 API 和 Moonshot 官方公开数据集，记录检索范围和未证实状态；识别第三方同名 DesignBench 不等于 Moonshot 内部评测。发布页提供的 NVDA 工作簿、CATL PPTX、量子计算 PDF 已实测文件入口并作为产品演示链接标注，未冒充内部题集。
+- 仍未取得站内原题的数据：Anthropic ECI、CyScenarioBench、Dense200、FrontierFinance、GIFT-Eval、HLAB-Vals-1.1、HLE-Diamond、九项 Kimi 内部评测、SpatialBench Verified、TIME、Video-MME v2。原因分别为内部/留出集未公开、需授权、原始材料许可未核清或具体子集归属未证实；部分官方页面可查看真实数据或论文例题，相关入口与边界写在条目中。未将无关或旧版本题目作为目标题集。
+- 验证：`npm run validate` 通过（264 条公开评测、608 条样例、19 份报告）；`npm test` 47 项通过；`npm run build` 成功并校验 269 个静态页面及 404。Vite 仍提示大包；未启动开发服务，未调用网页端 GPT，未提交、推送或部署。
+
+## 2026-10-28 — 核对 19 个无站内样例评测的介绍
+
+- 用户要求把 19 个评测“测什么”的说明加入项目；逐项核对现有 `content/benchmarks/` 记录，发现这 19 项均已发布且已有评测简介、任务、输入、输出和指标说明，未公开的题目和细则也已有边界说明，因此不新建重复条目、不虚构数据或改写未获新证据支持的内容。
+- 核对条目：anthropic-eci、cyscenariobench、dense200、frontierfinance、gift-eval、hlab-vals-v1-1、hle-diamond、kimi-business-operation、kimi-code-bench-2、kimi-code-bench-3-long-horizon、kimi-deck-arena、kimi-design-bench、kimi-financial-modeling、kimi-financial-research、kimi-hallu-bench、spatialbench-verified、time-series-time、video-mme-v2、xdev-bench-hard。
+- 验证：`npm run validate` 通过（264 个公开条目、608 条样例、19 份报告）；只读核对现有 `dist` 生成的 19 个详情页，逐项确认简介、输入、输出及评分描述与内容文件一致。未重新构建或做浏览器交互验收，未启动开发服务，未调用网页端 GPT；仅追加本更新说明，未提交、推送或部署。
+
+## 2026-10-28 — 发布新增评测至 GitHub
+
+- 用户要求推送 GitHub 并构建。提交范围为本轮新增 49 个评测 JSON、5 个许可文件及本轮更新说明；指南、样例查看器、测试、技能和其他历史日志改动不纳入提交。
+- 在独立目录以当前提交基线加上述内容运行测试；允许写入的临时目录下 46 项测试通过，按 GitHub Pages 子路径生产构建完成并校验 269 个静态页面及 404。首次系统临时目录测试发生 EPERM，改用工作区临时目录后通过；构建仍有 Vite 大包提示。
+- 推送前 GitHub main 与本地提交一致。将通过正常提交和推送触发仓库现有 Pages 工作流，远端构建、部署与展示以实际结果为准。未启动开发服务或调用网页端 GPT。

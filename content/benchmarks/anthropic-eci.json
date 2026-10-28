@@ -1,0 +1,104 @@
+{
+  "id": "anthropic-eci",
+  "status": "published",
+  "order": 3029,
+  "name": "Anthropic ECI（AECI）",
+  "subtitle": "Anthropic 基于内部结果实现的能力指数",
+  "category": "general",
+  "tags": [
+    "能力指数",
+    "内部评测"
+  ],
+  "publisher": "Anthropic",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Claude Mythos Preview 系统卡公开实现",
+  "kind": "internal",
+  "aliases": [
+    "AECI",
+    "Anthropic Epoch Capabilities Index"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Anthropic 对 Epoch AI 的 Epoch Capabilities Index（ECI）实现的分叉，结合内部和外部评测结果以项目反应理论估计能力。",
+    "task": "将模型在多个评测上的表现映射到共同能力尺度，跟踪能力变化。",
+    "sourceUrls": [
+      "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+    ]
+  },
+  "taskContract": {
+    "input": "内部与外部 benchmark 的模型成绩及模型配置。",
+    "output": "模型能力指数及不确定性估计。",
+    "environment": "使用项目反应理论拟合，并以重采样检查不确定性；部分输入是 Anthropic 内部结果。",
+    "sourceUrls": [
+      "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+    ]
+  },
+  "dataProfile": {
+    "summary": "系统卡描述约 300 个模型和数百项评测的标定规模；多数评测为内部数据。",
+    "disclosure": "partial",
+    "scale": [
+      "报告描述约 300 个模型和数百项评测，具体数据随版本更新。"
+    ],
+    "splits": [],
+    "fields": [
+      "模型配置、评测成绩、能力及不确定性估计。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "系统卡公布方法与图表；完整内部成绩矩阵未找到。"
+    ],
+    "sourceUrls": [
+      "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到 Anthropic 内部评测成绩矩阵的公开许可。",
+    "scope": "本站仅整理公开系统卡的方法，不复制未公开成绩矩阵。",
+    "boundaries": [
+      "ECI 公共资料开放不意味着 AECI 内部输入也已公开。"
+    ],
+    "sourceUrls": [
+      "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "未找到包含单条输入成绩和完整 IRT 参数、可独立复算的公开案例。",
+    "sourceUrls": [
+      "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+    ]
+  },
+  "metric": {
+    "name": "AECI 指数",
+    "description": "使用 IRT 综合多个评测成绩，数值用于同一实现内部比较；它不是单题正确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "Anthropic 明确指出由于评测混合和内部数据不同，AECI 不可直接与 Epoch 的公共 ECI 数值比较。",
+      "sourceUrls": [
+        "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Anthropic Claude Mythos Preview 系统卡",
+      "url": "https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

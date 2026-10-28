@@ -1,0 +1,145 @@
+{
+  "id": "gift-eval",
+  "status": "published",
+  "order": 3010,
+  "name": "GIFT-Eval",
+  "subtitle": "跨领域时间序列预测基准",
+  "category": "reasoning",
+  "tags": [
+    "时间序列",
+    "预测"
+  ],
+  "publisher": "Salesforce AI Research",
+  "brandIds": [],
+  "year": 2024,
+  "version": "原始论文与 Parquet 固定快照 faad405",
+  "kind": "suite",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "跨来源、频率与预测长度的时间序列预测评测集合。",
+    "task": "根据历史观测预测未来区间，比较多种数据与预测长度上的表现。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2410.10393"
+    ]
+  },
+  "taskContract": {
+    "input": "历史数值序列及频率等时间信息。",
+    "output": "预测未来区间的数值或概率分布。",
+    "environment": "按数据来源、频率和短中长期配置评估，详情见官方实现。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2410.10393"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原论文和官方 Parquet 数据包公开；该包将原测试窗口整理为历史与未来数组。",
+    "disclosure": "partial",
+    "scale": [
+      "论文 train/test 部分包含 15 个单变量和 8 个多变量数据集，合计约 14.4 万条时间序列和 1.77 亿个点。"
+    ],
+    "splits": [
+      "Parquet 数据集使用 train 名称存储原评测窗口；它不是原始训练集。"
+    ],
+    "fields": [
+      "item_id、frequency、history_start、history_end、history_value、future_start、future_end、future_value、config"
+    ],
+    "files": [
+      "已实际读取 bitbrains_fast_storage_5T_long 的第 0 行：fastStorage_860_dim0_window0/2013-09-06 13:40:00；history/future 均为 float32 数组。",
+      "固定快照 faad405a631f3082bd3d4e4d47fa8ff976357205，对应文件由下方来源链接提供。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2410.10393",
+      "https://huggingface.co/datasets/Salesforce/GiftEvalParquet",
+      "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1",
+      "https://huggingface.co/datasets/Salesforce/GiftEvalParquet/resolve/faad405a631f3082bd3d4e4d47fa8ff976357205/bitbrains_fast_storage_5T_long/train.parquet"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方数据仓库公开；Parquet 窗口文件可直接下载，原始来源各自约束仍需核查。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Salesforce/GiftEval",
+      "https://huggingface.co/datasets/Salesforce/GiftEvalParquet",
+      "https://huggingface.co/datasets/Salesforce/GiftEvalParquet/resolve/faad405a631f3082bd3d4e4d47fa8ff976357205/bitbrains_fast_storage_5T_long/train.parquet"
+    ],
+    "url": "https://huggingface.co/datasets/Salesforce/GiftEvalParquet"
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "GiftEval 主仓库元数据标注 Apache-2.0，GiftEvalParquet 未见独立许可声明。",
+    "scope": "上述许可标注不能自动证明每个来源或 Parquet 派生记录均可公开转载。",
+    "boundaries": [
+      "本条提供官方窗口文件和行接口；不复制具体时序数组。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Salesforce/GiftEval",
+      "https://huggingface.co/datasets/Salesforce/GiftEvalParquet"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "已读取真实窗口及字段；Parquet 具体窗口的再发布许可尚未核实，提供官方行接口。",
+    "sourceUrls": [
+      "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1",
+      "https://huggingface.co/datasets/Salesforce/GiftEvalParquet"
+    ],
+    "url": "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1"
+  },
+  "metric": {
+    "name": "MASE 与概率预测指标",
+    "description": "按数据集和任务比较预测误差，具体指标和聚合应遵循对应官方配置。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://arxiv.org/html/2410.10393"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "原始来源、频率和预测长度不同；汇总结果应连同评测设置阅读。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2410.10393"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定快照文件与实时行接口分别列出：行接口可能随仓库版本更新，不保证永久指向同一快照。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Salesforce/GiftEvalParquet",
+        "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1",
+        "https://huggingface.co/datasets/Salesforce/GiftEvalParquet/resolve/faad405a631f3082bd3d4e4d47fa8ff976357205/bitbrains_fast_storage_5T_long/train.parquet"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "GIFT-Eval 原论文",
+      "url": "https://arxiv.org/html/2410.10393",
+      "role": "paper"
+    },
+    {
+      "label": "原始数据仓库",
+      "url": "https://huggingface.co/datasets/Salesforce/GiftEval",
+      "role": "data"
+    },
+    {
+      "label": "官方评测窗口 Parquet",
+      "url": "https://huggingface.co/datasets/Salesforce/GiftEvalParquet",
+      "role": "data"
+    },
+    {
+      "label": "已验证的真实窗口行接口",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "固定版本窗口文件",
+      "url": "https://huggingface.co/datasets/Salesforce/GiftEvalParquet/resolve/faad405a631f3082bd3d4e4d47fa8ff976357205/bitbrains_fast_storage_5T_long/train.parquet",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

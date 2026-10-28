@@ -1,0 +1,144 @@
+{
+  "id": "dense200",
+  "status": "published",
+  "order": 3030,
+  "name": "Dense200",
+  "subtitle": "密集小目标视觉定位评测",
+  "category": "multimodal",
+  "tags": [
+    "目标检测",
+    "视觉定位"
+  ],
+  "publisher": "IDEA Research / Rex-Omni 研究团队",
+  "brandIds": [],
+  "year": 2025,
+  "version": "Rex-Omni 官方标注快照 daff862",
+  "kind": "original",
+  "aliases": [
+    "Dense 200"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Rex-Omni 研究团队提出的密集目标检测数据集，包含 200 张人工收集图像和 109 类目标。",
+    "task": "根据图像和目标类别定位密集场景中的目标。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2510.12798"
+    ]
+  },
+  "taskContract": {
+    "input": "图像及目标类别；视觉提示任务可提供参考框。",
+    "output": "目标的位置框或点，按对应任务协议评分。",
+    "environment": "原论文分别讨论边界框、点选和视觉提示，不能混用不同任务的成绩。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2510.12798"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方标注仓库提供检测等多种 JSONL 和图片压缩包。",
+    "disclosure": "partial",
+    "scale": [
+      "200 张图片，109 个类别，平均每张图 91.2 个标注框。"
+    ],
+    "splits": [
+      "box_eval、point_eval 与 visual_prompt_eval 为不同任务格式。"
+    ],
+    "fields": [
+      "box_eval 包含 image_path、categories、gt、dataset_name 和 task_name。"
+    ],
+    "files": [
+      "已实际读取固定快照的 box_eval/Dense200.jsonl，共 200 行；第一行文件 dense200/1.Group-A-at-feeder (1).jpg，类别 chicken。",
+      "数据版本 daff862ba483f56ccaba9af5a12e118a9372ede8。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2510.12798",
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData",
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方标注文件和图像压缩包可访问；原始图片及标注许可需要逐项核对。"
+    ],
+    "url": "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData",
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "原始 Dense200 的独立再发布许可尚未找到。",
+    "scope": "提供官方标注文件入口和来源，不在本站复制原图或坐标标注。",
+    "boundaries": [
+      "代码许可不自动覆盖图像、原始数据及标注。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData",
+      "https://huggingface.co/datasets/Skywalker0410/Grounding-EvalData/blob/main/THIRD_PARTY_NOTICES.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "license-pending",
+    "reason": "已取得 200 行标注并核验首条，但原图及标注的再发布许可尚未确认；提供固定版本源文件。",
+    "url": "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl",
+      "https://huggingface.co/datasets/Skywalker0410/Grounding-EvalData/blob/main/THIRD_PARTY_NOTICES.md"
+    ]
+  },
+  "metric": {
+    "name": "F1（按任务和 IoU 设置）",
+    "description": "原论文检测任务使用多个 IoU 阈值的 F1；点选和视觉提示采用各自协议。Mistral 报告 42% 但未提供足够口径，不能默认与其他实现成绩直接比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2510.12798",
+      "https://mistral.ai/news/mistral-large-4/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "论文涉及框、点和视觉提示等不同评估方式；模型厂商的 42% 需结合具体协议。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2510.12798",
+        "https://mistral.ai/news/mistral-large-4/"
+      ]
+    },
+    {
+      "text": "尚未核实原始图像与转换标注的再发布授权。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData",
+        "https://huggingface.co/datasets/Skywalker0410/Grounding-EvalData/blob/main/THIRD_PARTY_NOTICES.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Rex-Omni 论文及 Dense200 定义",
+      "url": "https://arxiv.org/html/2510.12798",
+      "role": "paper"
+    },
+    {
+      "label": "Rex-Omni 评测数据仓库",
+      "url": "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 Dense200 检测标注文件",
+      "url": "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "数据复用许可核查记录",
+      "url": "https://huggingface.co/datasets/Skywalker0410/Grounding-EvalData/blob/main/THIRD_PARTY_NOTICES.md",
+      "role": "access"
+    },
+    {
+      "label": "Mistral Large 4 发布页成绩",
+      "url": "https://mistral.ai/news/mistral-large-4/",
+      "role": "vendor-report"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

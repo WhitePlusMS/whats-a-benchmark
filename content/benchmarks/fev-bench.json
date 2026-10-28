@@ -1,0 +1,189 @@
+{
+  "id": "fev-bench",
+  "status": "published",
+  "order": 3012,
+  "name": "fev-bench",
+  "subtitle": "覆盖协变量的真实时间序列预测基准",
+  "category": "reasoning",
+  "tags": [
+    "时间序列",
+    "预测"
+  ],
+  "publisher": "AutoGluon / Amazon",
+  "brandIds": [],
+  "year": 2025,
+  "version": "任务配置 v0.7.0；数据快照 d3e7e72",
+  "kind": "suite",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "涵盖多个领域和协变量条件的预测基准及评测框架。",
+    "task": "针对不同历史目标、已知或未知协变量预测未来值，并比较概率与点预测。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2509.26468"
+    ]
+  },
+  "taskContract": {
+    "input": "历史目标序列、任务指定的协变量和预测长度。",
+    "output": "指定长度的点预测及多个分位数预测。",
+    "environment": "使用 fev 指定预测窗口和指标；测试任务可包含已知未来及仅历史可用的协变量。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2509.26468"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文描述 100 个任务，官方任务清单与数据集分开发放。",
+    "disclosure": "partial",
+    "scale": [
+      "论文给出 100 个预测任务、96 个不同数据集、7 个领域，其中 46 个任务含协变量。"
+    ],
+    "splits": [
+      "数据仓库中的 train 是原序列存储方式，任务评测窗口由任务配置产生。"
+    ],
+    "fields": [
+      "ETT_15T 示例包含 id、timestamp、HUFL、HULL、MUFL、MULL、LUFL、LULL、OT。"
+    ],
+    "files": [
+      "已实际读取 ETT_15T 第 0 行，id 为 ETTm1，时间从 2016-07-01 00:00 开始。",
+      "固定数据快照 d3e7e720f4158eab03ebcb021f1cce779cd92acc；任务清单固定为 fev v0.7.0。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2509.26468",
+      "https://huggingface.co/datasets/autogluon/fev_datasets",
+      "https://datasets-server.huggingface.co/rows?dataset=autogluon%2Ffev_datasets&config=ETT_15T&split=train&offset=0&length=1",
+      "https://huggingface.co/datasets/autogluon/fev_datasets/resolve/d3e7e720f4158eab03ebcb021f1cce779cd92acc/ETT/15T/train-00000-of-00001.parquet",
+      "https://raw.githubusercontent.com/autogluon/fev/refs/tags/v0.7.0/benchmarks/fev_bench/tasks.yaml"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方提供数据文件与任务配置；各数据来源另有独立条件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/autogluon/fev_datasets",
+      "https://huggingface.co/datasets/autogluon/fev_datasets/resolve/d3e7e720f4158eab03ebcb021f1cce779cd92acc/ETT/15T/train-00000-of-00001.parquet",
+      "https://raw.githubusercontent.com/autogluon/fev/refs/tags/v0.7.0/benchmarks/fev_bench/tasks.yaml"
+    ],
+    "url": "https://huggingface.co/datasets/autogluon/fev_datasets"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "fev 代码仓库 Apache-2.0；数据仓库许可标注 other。",
+    "scope": "本地案例仅摘录 Apache-2.0 的公开任务配置，不覆盖底层序列数据许可。",
+    "boundaries": [
+      "原始序列来自多个第三方，需按各自来源核对再发布许可。",
+      "Apache-2.0 配置节选保留来源和许可文件；不把代码许可扩展到其他数据源。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/autogluon/fev_datasets",
+      "https://github.com/autogluon/fev/blob/v0.7.0/LICENSE",
+      "https://github.com/autogluon/fev/blob/v0.7.0/NOTICE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示官方任务配置真实节选；ETTm1 原始序列以官方行接口和固定数据文件供核对。",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/autogluon/fev/refs/tags/v0.7.0/benchmarks/fev_bench/tasks.yaml",
+      "https://github.com/autogluon/fev/blob/v0.7.0/LICENSE",
+      "https://datasets-server.huggingface.co/rows?dataset=autogluon%2Ffev_datasets&config=ETT_15T&split=train&offset=0&length=1"
+    ]
+  },
+  "metric": {
+    "name": "SQL、MASE、WAPE、WQL",
+    "description": "v0.7.0 任务配置使用 SQL 和补充指标；具体排行榜聚合及误差解释应参考官方设置。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://arxiv.org/html/2509.26468",
+      "https://raw.githubusercontent.com/autogluon/fev/refs/tags/v0.7.0/benchmarks/fev_bench/tasks.yaml"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "任务来源和协变量不同，不能把 train 存储标签当作最终评估窗口。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2509.26468",
+        "https://huggingface.co/datasets/autogluon/fev_datasets"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "实读的 ETTm1 序列与站内展示的任务配置属于不同数据配置；前者是原始数据示例，后者是可再发布的任务配置节选。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=autogluon%2Ffev_datasets&config=ETT_15T&split=train&offset=0&length=1",
+        "https://raw.githubusercontent.com/autogluon/fev/refs/tags/v0.7.0/benchmarks/fev_bench/tasks.yaml"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "fev-bench 论文",
+      "url": "https://arxiv.org/html/2509.26468",
+      "role": "paper"
+    },
+    {
+      "label": "fev 数据仓库",
+      "url": "https://huggingface.co/datasets/autogluon/fev_datasets",
+      "role": "data"
+    },
+    {
+      "label": "ETTm1 原始记录行接口",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=autogluon%2Ffev_datasets&config=ETT_15T&split=train&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 ETT 数据文件",
+      "url": "https://huggingface.co/datasets/autogluon/fev_datasets/resolve/d3e7e720f4158eab03ebcb021f1cce779cd92acc/ETT/15T/train-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "v0.7.0 任务配置",
+      "url": "https://raw.githubusercontent.com/autogluon/fev/refs/tags/v0.7.0/benchmarks/fev_bench/tasks.yaml",
+      "role": "code"
+    },
+    {
+      "label": "fev 仓库 Apache 2.0 许可",
+      "url": "https://github.com/autogluon/fev/blob/v0.7.0/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "fev 仓库版权通知",
+      "url": "https://github.com/autogluon/fev/blob/v0.7.0/NOTICE",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "proenfo-gfc12-config",
+        "title": "proenfo_gfc12 官方任务配置节选",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "查看这个真实任务的预测长度、窗口数量和指标配置。",
+        "explanation": "节选为官方任务配置，不是观测值或模型预测。窗口数为 10，预测长度为 168。",
+        "raw": {
+          "dataset_path": "autogluon/fev_datasets",
+          "horizon": 168,
+          "num_windows": 10,
+          "seasonality": 24,
+          "eval_metric": "SQL",
+          "known_dynamic_columns": [
+            "airtemperature"
+          ],
+          "static_columns": [],
+          "dataset_config": "proenfo_gfc12"
+        },
+        "source": "https://raw.githubusercontent.com/autogluon/fev/refs/tags/v0.7.0/benchmarks/fev_bench/tasks.yaml",
+        "license": "Apache-2.0，Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.",
+        "licensePath": "licenses/fev-task-config-apache-2-0.txt",
+        "split": "v0.7.0 tasks.yaml 第一个任务配置",
+        "excerpt": true
+      }
+    ]
+  }
+}

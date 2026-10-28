@@ -1,0 +1,139 @@
+{
+  "id": "swe-refactor-bench",
+  "status": "published",
+  "order": 1510,
+  "name": "SWE Refactor Bench",
+  "subtitle": "完整仓库的技术栈迁移",
+  "category": "coding",
+  "tags": [],
+  "publisher": "SWE Refactor Bench 作者团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "论文和官方公开资料；具体版本以来源为准",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估编码代理将真实软件仓库迁移到另一技术栈并保持行为的能力。",
+    "task": "迁移整个仓库，保留公开 API 和可观察行为并移除旧技术栈。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.23564"
+    ]
+  },
+  "taskContract": {
+    "input": "冻结的上游软件及迁移要求。",
+    "output": "迁移后的完整仓库。",
+    "environment": "逐任务冻结代码环境、迁移审计、行为测试和代理验证。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.23564"
+    ]
+  },
+  "dataProfile": {
+    "summary": "20 个完整仓库迁移任务。",
+    "disclosure": "partial",
+    "scale": [
+      "20 个完整仓库迁移任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [
+      "instruction.md"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.23564",
+      "https://github.com/Einsia/SWE-Refactor-Bench",
+      "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "具体任务、脚手架及访问限制以官方入口为准。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Einsia/SWE-Refactor-Bench"
+    ],
+    "url": "https://github.com/Einsia/SWE-Refactor-Bench"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0；Copyright 2026 The SWERefactorBench Authors，按仓库 NOTICE 保留许可证及归属。",
+    "scope": "仅展示官方任务文件中已核对的摘录。",
+    "boundaries": [
+      "第三方代码与其他材料仍按其单独许可处理。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md",
+      "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得固定版本的官方真实任务说明，展示其节选。",
+    "url": "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md"
+    ]
+  },
+  "metric": {
+    "name": "通过率",
+    "description": "结合迁移审计、冻结行为检查与代理验证判断任务通过。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.23564"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同版本、运行脚手架和评分配置可能导致结果不可直接比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.23564"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方论文或评测方资料",
+      "url": "https://arxiv.org/abs/2608.23564",
+      "role": "paper"
+    },
+    {
+      "label": "官方数据或项目入口",
+      "url": "https://github.com/Einsia/SWE-Refactor-Bench",
+      "role": "data"
+    },
+    {
+      "label": "固定版本真实任务",
+      "url": "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "任务作者的许可证",
+      "url": "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "updatedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "lang06-jsonnet-cpp-to-csharp",
+        "title": "真实任务：Jsonnet 从 C++ 迁移至 C#",
+        "type": "record",
+        "prompt": "# Migrate jsonnet from C++ to C# / .NET 8\n\nYou are working in `/workspace/repo`. It holds the source of **jsonnet 0.20.0**, the\nGoogle configuration language, implemented in C++11 and built with GNU Make.\n\nYour task is to **replace the C++ implementation with a C# implementation targeting\n.NET 8**, so that the repository's two command-line programs behave exactly as they\ndo today while no C or C++ source remains.",
+        "explanation": "展示作者编写的任务说明首段，不复制独立许可的原上游项目代码。",
+        "raw": {
+          "instruction": "# Migrate jsonnet from C++ to C# / .NET 8\n\nYou are working in `/workspace/repo`. It holds the source of **jsonnet 0.20.0**, the\nGoogle configuration language, implemented in C++11 and built with GNU Make.\n\nYour task is to **replace the C++ implementation with a C# implementation targeting\n.NET 8**, so that the repository's two command-line programs behave exactly as they\ndo today while no C or C++ source remains."
+        },
+        "source": "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md",
+        "license": "Apache-2.0；Copyright 2026 The SWERefactorBench Authors，按仓库 NOTICE 保留许可证及归属。",
+        "split": "public",
+        "excerpt": true,
+        "licensePath": "licenses/lhtb-apache-2-0.txt"
+      }
+    ]
+  }
+}

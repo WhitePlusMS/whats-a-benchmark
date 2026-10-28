@@ -1,0 +1,149 @@
+{
+  "id": "ocr-reasoning",
+  "status": "published",
+  "order": 2206,
+  "name": "OCR-Reasoning",
+  "subtitle": "评测模型对富文本图像的识别和推理。",
+  "category": "multimodal",
+  "tags": [],
+  "publisher": "华南理工大学等研究团队",
+  "brandIds": [],
+  "year": 2025,
+  "version": "OCR-Reasoning",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评测模型对富文本图像的识别和推理。",
+    "task": "理解图片并给出推理与答案。",
+    "sourceUrls": [
+      "https://github.com/SCUT-DLVCLab/OCR-Reasoning"
+    ]
+  },
+  "taskContract": {
+    "input": "图像与问题",
+    "output": "推理和最终答案",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://github.com/SCUT-DLVCLab/OCR-Reasoning"
+    ]
+  },
+  "dataProfile": {
+    "summary": "评测模型对富文本图像的识别和推理。",
+    "disclosure": "partial",
+    "scale": [
+      "1069 例、6 类核心推理能力、18 类任务。"
+    ],
+    "splits": [],
+    "fields": [
+      "image",
+      "question",
+      "answer"
+    ],
+    "files": [
+      "annotations.json，固定版本 df6bc7b799fde39b6bcffcd5c4205343ce985aa5，共 1,069 条。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mx262/OCR-Reasoning",
+      "https://huggingface.co/datasets/mx262/OCR-Reasoning/resolve/df6bc7b799fde39b6bcffcd5c4205343ce985aa5/annotations.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/mx262/OCR-Reasoning",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mx262/OCR-Reasoning"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "CC BY-NC-SA 4.0，限非商业；原始素材版权归各原始提供者。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://github.com/SCUT-DLVCLab/OCR-Reasoning",
+      "https://huggingface.co/datasets/mx262/OCR-Reasoning"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已实际下载官方标注；只对一条数据作必要短引及中文解读，原图和完整推理未转载。",
+    "url": "https://huggingface.co/datasets/mx262/OCR-Reasoning/resolve/df6bc7b799fde39b6bcffcd5c4205343ce985aa5/annotations.json",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/mx262/OCR-Reasoning/resolve/df6bc7b799fde39b6bcffcd5c4205343ce985aa5/annotations.json"
+    ]
+  },
+  "metric": {
+    "name": "答案及推理评估",
+    "description": "答案及推理评估；比较时需记录数据子集、版本及运行条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/SCUT-DLVCLab/OCR-Reasoning"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://github.com/SCUT-DLVCLab/OCR-Reasoning"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定版本 df6bc7b799fde39b6bcffcd5c4205343ce985aa5 的 annotations.json 实际读取 1069 条；首条图像标识为 0.png。图片素材的独立权利未核实，未转载。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mx262/OCR-Reasoning"
+      ]
+    },
+    {
+      "text": "固定版 annotations.json 实际取得 954,047 字节，SHA-256 5522a600dad96af367b3f834b595af8c4f22e3218e7bb8f6204a779abeffa2b0；sample image=99.png 的问题与答案已逐字段核对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/mx262/OCR-Reasoning/resolve/df6bc7b799fde39b6bcffcd5c4205343ce985aa5/annotations.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://github.com/SCUT-DLVCLab/OCR-Reasoning",
+      "role": "definition"
+    },
+    {
+      "label": "作者数据入口",
+      "url": "https://huggingface.co/datasets/mx262/OCR-Reasoning",
+      "role": "data"
+    },
+    {
+      "label": "固定版本官方 annotations.json",
+      "url": "https://huggingface.co/datasets/mx262/OCR-Reasoning/resolve/df6bc7b799fde39b6bcffcd5c4205343ce985aa5/annotations.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "image-99-cpu",
+        "title": "真实题目：CPU 性能图计数",
+        "type": "record",
+        "prompt": "比较性能图中 AMD CPU 与 Intel I7-13700K，统计高于后者的 AMD 型号数量。",
+        "promptOrigin": "editorial",
+        "raw": "I7-13700K",
+        "explanation": "来源记录 type 为 enumerative reasoning，参考推理列出三种 AMD CPU；本站没有转载图片或整段推理。",
+        "source": "https://huggingface.co/datasets/mx262/OCR-Reasoning/resolve/df6bc7b799fde39b6bcffcd5c4205343ce985aa5/annotations.json",
+        "license": "CC BY-NC-SA 4.0；仅保留必要短引和原创解读，原图素材另须核权。",
+        "split": "官方 annotations.json / image=99.png",
+        "excerpt": true,
+        "answer": "3 个"
+      }
+    ]
+  }
+}

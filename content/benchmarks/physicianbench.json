@@ -1,0 +1,140 @@
+{
+  "id": "physicianbench",
+  "status": "published",
+  "order": 2721,
+  "name": "PhysicianBench",
+  "subtitle": "真实电子病历环境中的临床工作流",
+  "category": "agents",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "Stanford HealthRex",
+  "brandIds": [],
+  "year": 2026,
+  "version": "tasks/v1",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "PhysicianBench 评估智能体在真实临床工作流中的长期任务执行能力。",
+    "task": "查询病历、分析临床信息、执行必要操作并撰写记录。",
+    "sourceUrls": [
+      "https://github.com/HealthRex/PhysicianBench"
+    ]
+  },
+  "taskContract": {
+    "input": "任务说明和通过 FHIR API 访问的电子病历环境。",
+    "output": "临床行动与文档，由多个检查点评估。",
+    "environment": "每项任务使用隔离的 FHIR 容器与评测工具。",
+    "sourceUrls": [
+      "https://github.com/HealthRex/PhysicianBench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "100 个任务、670 个子检查点、21 个专科。",
+    "disclosure": "partial",
+    "scale": [
+      "100 个任务、670 个子检查点、21 个专科。"
+    ],
+    "splits": [],
+    "fields": [
+      "任务说明",
+      "检查点",
+      "FHIR 数据"
+    ],
+    "files": [
+      "tasks/v1/<task>/instruction.md",
+      "独立发布的 FHIR Docker 镜像"
+    ],
+    "sourceUrls": [
+      "https://github.com/HealthRex/PhysicianBench",
+      "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [],
+    "url": "https://github.com/HealthRex/PhysicianBench",
+    "sourceUrls": [
+      "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "代码仓库 Apache 2.0；FHIR 病历镜像访问和使用条件须另行核实。",
+    "scope": "本站摘录作者 Apache-2.0 仓库中公开任务的非身份字段；FHIR 病历镜像的许可和访问须另核。",
+    "boundaries": [
+      "只摘录任务的工作要求，不复制病人标识、病历记录或 FHIR 镜像。",
+      "临床评测样例并非医疗建议，不应作为患者诊疗依据。"
+    ],
+    "sourceUrls": [
+      "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "从固定提交读取官方任务说明，摘录任务要求并去掉包含个人身份标识的上下文；未取得 FHIR 病历镜像。",
+    "url": "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md",
+    "sourceUrls": [
+      "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md"
+    ]
+  },
+  "metric": {
+    "name": "pass@1",
+    "description": "官方以任务成功率和检查点衡量表现，可按多次运行汇总。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/HealthRex/PhysicianBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开任务说明不等于病历镜像已取得授权；临床任务成绩不构成实际医疗安全证明。",
+      "sourceUrls": [
+        "https://github.com/HealthRex/PhysicianBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库与说明",
+      "url": "https://github.com/HealthRex/PhysicianBench",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本的真实任务说明",
+      "url": "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "researchNotes": [
+    {
+      "text": "已核对固定提交 c7efa8fd5b1e4744ada50668efe4b7e84023cbb0 中 tasks/v1/aortic_aneurysm_cad/instruction.md 的具体任务入口。",
+      "sourceUrls": [
+        "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "aortic_aneurysm_cad",
+        "title": "公开任务：主动脉与冠心病评估",
+        "type": "record",
+        "prompt": "在门诊心脏科任务中，查询相关检查和治疗信息，评估主动脉及冠心病风险，形成评估记录并按需提出检查或转诊。",
+        "promptOrigin": "editorial",
+        "raw": "## Your Task\n\n1. **Retrieve clinical data from the EHR**\n   - Patient demographics, active diagnoses, and comorbidities\n   - Recent imaging results including echocardiogram and CT findings\n   - Coronary artery calcium score results\n   - Current medications, recent lab values, and vital signs\n\n2. **Assess aortic pathology and determine surveillance or intervention needs**\n   - Evaluate aortic root and ascending aorta dimensions against established size thresholds\n   - Determine whether referral to an aortic specialty or cardiovascular surgery group is indicated\n   - Assess whether heritable aortopathy workup is warranted based on clinical presentation\n\n3. **Evaluate coronary artery disease risk and further workup**\n   - Interpret coronary calcium scoring in context of overall cardiovascular risk\n   - Determine whether coronary CT angiography is indicated for further evaluation\n   - Review lipid management response and blood pressure control\n\n4. **Document your assessment and place appropriate orders**\n   - Submit diagnostic imaging and referral orders as clinically indicated\n   - Document clinical reasoning for aortic and coronary management decisions",
+        "explanation": "原文为作者 tasks/v1 中任务要求的连续节选；完整任务还依赖 FHIR 环境。未展示原文中可能关联个人身份的信息。",
+        "source": "https://github.com/HealthRex/PhysicianBench/blob/c7efa8fd5b1e4744ada50668efe4b7e84023cbb0/tasks/v1/aortic_aneurysm_cad/instruction.md",
+        "license": "Apache-2.0（HealthRex 公开仓库）；FHIR 病历镜像另有访问和使用条件。",
+        "licensePath": "licenses/lhtb-apache-2-0.txt",
+        "split": "tasks/v1/aortic_aneurysm_cad",
+        "excerpt": true
+      }
+    ]
+  }
+}

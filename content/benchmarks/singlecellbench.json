@@ -1,0 +1,165 @@
+{
+  "id": "singlecellbench",
+  "status": "published",
+  "order": 2599,
+  "name": "scBench / SingleCellBench",
+  "subtitle": "单细胞 RNA 测序分析智能体评测",
+  "category": "agents",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "LatchBio",
+  "brandIds": [],
+  "year": 2026,
+  "version": "作者仓库 195 题版本",
+  "kind": "original",
+  "aliases": [
+    "scBench (LatchBio)",
+    "SingleCellBench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "LatchBio 的 scBench 评估智能体分析真实单细胞 RNA 测序数据；Anthropic 在模型报告中使用 SingleCellBench 名称。",
+    "task": "基于 AnnData 数据快照完成质量控制、聚类、细胞类型判定等任务。",
+    "sourceUrls": [
+      "https://github.com/latchbio/scbench"
+    ]
+  },
+  "taskContract": {
+    "input": "单细胞测序数据和自然语言任务。",
+    "output": "按任务约定输出可验证的结构化结果。",
+    "environment": "在可使用分析代码及依赖的环境中，确定性评分器检查答案。",
+    "sourceUrls": [
+      "https://github.com/latchbio/scbench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者当前仓库版本 195 项任务，6 种测序平台和 6 类任务，公开 6 个代表性样例。",
+    "disclosure": "partial",
+    "scale": [
+      "当前仓库版本 195 项任务；公开 6 个代表样例。"
+    ],
+    "splits": [],
+    "fields": [
+      "data_node",
+      "id",
+      "metadata",
+      "task",
+      "grader"
+    ],
+    "files": [
+      "evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json"
+    ],
+    "sourceUrls": [
+      "https://github.com/latchbio/scbench",
+      "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "完整 195 题作者暂不公开以减少数据污染。"
+    ],
+    "url": "https://github.com/latchbio/scbench",
+    "sourceUrls": [
+      "https://github.com/latchbio/scbench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "代码仓库 Apache 2.0；原始生物数据及服务需另行核对。",
+    "scope": "只展示公开任务文件的字段节选并标明来源。",
+    "boundaries": [
+      "基因组或临床数据使用条件独立于仓库许可。"
+    ],
+    "sourceUrls": [
+      "https://github.com/latchbio/scbench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已核验作者固定提交中的公开样例，展示真实任务元数据与评分目标字段。",
+    "url": "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json",
+    "sourceUrls": [
+      "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json"
+    ]
+  },
+  "metric": {
+    "name": "任务准确率",
+    "description": "官方评分器依据任务类别执行数值容差、集合或分类校验，汇总任务通过率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/latchbio/scbench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "当前仓库的 195 项与初版论文和博客的 394 项是不同版本，不能直接混用。",
+      "sourceUrls": [
+        "https://github.com/latchbio/scbench",
+        "https://blog.latch.bio/p/scbench-can-ai-agents-analyze-real"
+      ]
+    },
+    {
+      "text": "本地节选未包含完整任务说明、原始 AnnData 数据及评分配置，不能单独复现实验。",
+      "sourceUrls": [
+        "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者官方仓库",
+      "url": "https://github.com/latchbio/scbench",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本真实任务",
+      "url": "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json",
+      "role": "data"
+    },
+    {
+      "label": "作者初版发布说明",
+      "url": "https://blog.latch.bio/p/scbench-can-ai-agents-analyze-real",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "bd_rhapsody_tnbc_panel_aware_qc",
+        "title": "BD Rhapsody 质量控制任务",
+        "type": "record",
+        "prompt": "公开任务要求分析质控后保留的外周血细胞和单核细胞。",
+        "promptOrigin": "editorial",
+        "explanation": "来源文件的评分器包含三个真实目标值；完整问题和阈值请查看固定版本原文件。",
+        "raw": {
+          "id": "bd_rhapsody_tnbc_panel_aware_qc",
+          "metadata": {
+            "kit": "bd_rhapsody",
+            "task": "qc"
+          },
+          "grader": {
+            "type": "numeric_tolerance",
+            "config": {
+              "ground_truth": {
+                "median_genes_per_pbmc": 68,
+                "n_monocytes_pbmc": 2592,
+                "n_pbmcs_retained": 14346
+              }
+            }
+          }
+        },
+        "source": "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json",
+        "license": "Apache-2.0（作者仓库）；数据快照另须核权",
+        "split": "作者公开代表样例",
+        "excerpt": true,
+        "licensePath": "licenses/lhtb-apache-2-0.txt"
+      }
+    ]
+  }
+}

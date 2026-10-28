@@ -1,0 +1,143 @@
+{
+  "id": "bankertoolbench",
+  "status": "published",
+  "order": 1550,
+  "name": "BankerToolBench",
+  "subtitle": "投资银行工作流和多文件成果",
+  "category": "work",
+  "tags": [],
+  "publisher": "Handshake AI Research",
+  "brandIds": [],
+  "year": 2026,
+  "version": "v1.1，数据修订 6407cdc22a218d59a1e41d8598679d02d821d6ff",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体完成端到端投资银行工作并交付工作文件的能力。",
+    "task": "处理金融数据并制作模型、演示文稿或报告等成果。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.11304"
+    ]
+  },
+  "taskContract": {
+    "input": "金融任务提示与相关输入文件。",
+    "output": "电子表格、演示文稿、报告等成果。",
+    "environment": "金融工具与任务文件环境。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.11304"
+    ]
+  },
+  "dataProfile": {
+    "summary": "v1.1 数据卡和任务文件列出 100 个任务。",
+    "disclosure": "partial",
+    "scale": [
+      "v1.1 数据卡和任务文件列出 100 个任务。"
+    ],
+    "splits": [],
+    "fields": [
+      "task_id",
+      "final_prompt"
+    ],
+    "files": [
+      "tasks.jsonl"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.11304",
+      "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench",
+      "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench/resolve/6407cdc22a218d59a1e41d8598679d02d821d6ff/tasks.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "具体任务、脚手架及访问限制以官方入口为准。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench"
+    ],
+    "url": "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CC BY 4.0；来源 Handshake AI Research，BankerToolBench v1.1，原文节选并标注来源。",
+    "scope": "仅展示已核对的记录节选和原始字段。",
+    "boundaries": [
+      "不得将仓库代码许可自动推及所有第三方输入及评测材料。"
+    ],
+    "sourceUrls": [
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench/resolve/6407cdc22a218d59a1e41d8598679d02d821d6ff/tasks.jsonl"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已从固定版本官方数据读取真实记录并展示节选。",
+    "url": "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench/resolve/6407cdc22a218d59a1e41d8598679d02d821d6ff/tasks.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench/resolve/6407cdc22a218d59a1e41d8598679d02d821d6ff/tasks.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "专家评分标准得分",
+    "description": "对交付物按照投资银行专家制定的细项标准评分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2604.11304"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同版本、运行脚手架和评分配置可能导致结果不可直接比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.11304"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方论文或评测方资料",
+      "url": "https://arxiv.org/abs/2604.11304",
+      "role": "paper"
+    },
+    {
+      "label": "官方数据或项目入口",
+      "url": "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench",
+      "role": "data"
+    },
+    {
+      "label": "固定版本原始记录",
+      "url": "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench/resolve/6407cdc22a218d59a1e41d8598679d02d821d6ff/tasks.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "样例来源许可",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "updatedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "707cba99-59a7-47bd-bc4d-7f36212e99f3",
+        "title": "官方真实记录",
+        "type": "record",
+        "prompt": "Generate a 6-year forecast DCF analysis for LVS (Las Vegas Sands, NYSE: LVS) to value the company for an upcoming equity raise (the DCF will guide go-to-market pricing and equity investor valuation discussions). The DCF tab must project out to 2030E, covering forecast years 2025E, 2026E, 2027E, 2028E, 2029E, and 2030E (6 forecast years), with 2023A and 2024A shown as historicals. Valuation date is November 2025.",
+        "explanation": "固定 v1.1 官方任务的首段，要求为 LVS 建立六年 DCF 预测；其余任务条件及输入文件省略。",
+        "raw": {
+          "task_id": "707cba99-59a7-47bd-bc4d-7f36212e99f3",
+          "final_prompt": "Generate a 6-year forecast DCF analysis for LVS (Las Vegas Sands, NYSE: LVS) to value the company for an upcoming equity raise (the DCF will guide go-to-market pricing and equity investor valuation discussions). The DCF tab must project out to 2030E, covering forecast years 2025E, 2026E, 2027E, 2028E, 2029E, and 2030E (6 forecast years), with 2023A and 2024A shown as historicals. Valuation date is November 2025."
+        },
+        "source": "https://huggingface.co/datasets/handshake-ai-research/bankertoolbench/resolve/6407cdc22a218d59a1e41d8598679d02d821d6ff/tasks.jsonl",
+        "license": "CC BY 4.0；来源 Handshake AI Research，BankerToolBench v1.1，原文节选并标注来源。",
+        "split": "test",
+        "excerpt": true,
+        "licensePath": "licenses/cc-by-4-0.txt"
+      }
+    ]
+  }
+}

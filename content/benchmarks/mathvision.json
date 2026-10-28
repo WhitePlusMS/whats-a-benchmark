@@ -1,0 +1,143 @@
+{
+  "id": "mathvision",
+  "status": "published",
+  "order": 2724,
+  "name": "MATH-Vision",
+  "subtitle": "依赖图像的竞赛数学推理",
+  "category": "multimodal",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "MATH-Vision 作者团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MATH-Vision 是来自数学竞赛的视觉数学推理评测。",
+    "task": "结合题目图像和文本求解数学问题。",
+    "sourceUrls": [
+      "https://github.com/YerongLi/MathVision"
+    ]
+  },
+  "taskContract": {
+    "input": "竞赛数学题文本与图像。",
+    "output": "数学答案或选择项。",
+    "environment": "官方 test 和 testmini 划分。",
+    "sourceUrls": [
+      "https://github.com/YerongLi/MathVision"
+    ]
+  },
+  "dataProfile": {
+    "summary": "test 3,040 题，16 个数学领域，5 个难度等级。",
+    "disclosure": "partial",
+    "scale": [
+      "test 3,040 题，16 个数学领域，5 个难度等级。"
+    ],
+    "splits": [],
+    "fields": [
+      "id",
+      "question",
+      "options",
+      "image",
+      "answer",
+      "solution",
+      "level",
+      "subject"
+    ],
+    "files": [
+      "test 数据和图像"
+    ],
+    "sourceUrls": [
+      "https://github.com/YerongLi/MathVision",
+      "https://huggingface.co/datasets/MathLLMs/MathVision"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://huggingface.co/datasets/MathLLMs/MathVision",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathLLMs/MathVision"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "数据卡标注 MIT；竞赛题原始素材可能涉及第三方权利。",
+    "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
+    "boundaries": [
+      "题目依赖图像，单独展示文字和答案无法完整复现；图像的第三方权利须另行核实。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathLLMs/MathVision"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已核对官方数据查看器的 test 第 1 条；只展示记录字段，不转载竞赛图片。",
+    "url": "https://huggingface.co/datasets/MathLLMs/MathVision",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/MathLLMs/MathVision"
+    ]
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "以官方答案判断模型预测，按整体及学科分类汇总。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/YerongLi/MathVision"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "题目依赖图像，单独展示文字和答案无法完整复现；图像的第三方权利须另行核实。",
+      "sourceUrls": [
+        "https://github.com/YerongLi/MathVision"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者仓库",
+      "url": "https://github.com/YerongLi/MathVision",
+      "role": "definition"
+    },
+    {
+      "label": "作者数据集查看器",
+      "url": "https://huggingface.co/datasets/MathLLMs/MathVision",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "1",
+        "title": "test 题目 1：算术图题",
+        "type": "record",
+        "prompt": "查看真实题目记录；图像需到官方数据集查看。",
+        "promptOrigin": "editorial",
+        "answer": "60",
+        "explanation": "原题依赖 images/1.jpg；此处为字段节选，不含图像。",
+        "raw": {
+          "id": "1",
+          "question": "Which number should be written in place of the question mark? <image1>",
+          "image": "images/1.jpg",
+          "answer": "60",
+          "level": 2,
+          "subject": "arithmetic"
+        },
+        "source": "https://huggingface.co/datasets/MathLLMs/MathVision",
+        "license": "MIT（数据卡）；图片及竞赛原始素材权利需单独核对",
+        "split": "test",
+        "excerpt": true,
+        "licensePath": "licenses/mathvision-sample-source.txt"
+      }
+    ]
+  }
+}

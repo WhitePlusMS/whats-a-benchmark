@@ -1,0 +1,155 @@
+{
+  "id": "vstar-bench",
+  "status": "published",
+  "order": 2726,
+  "name": "V*Bench",
+  "subtitle": "高分辨率图像细节搜索",
+  "category": "multimodal",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "V*Bench 作者团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "V*Bench 测试模型在高分辨率图像中定位和理解细小视觉细节的能力。",
+    "task": "查找目标细节并回答关于属性或空间关系的问题。",
+    "sourceUrls": [
+      "https://github.com/penghao-wu/vstar"
+    ]
+  },
+  "taskContract": {
+    "input": "高分辨率图像与视觉问答。",
+    "output": "问题答案。",
+    "environment": "图像和问题按官方评测代码运行。",
+    "sourceUrls": [
+      "https://github.com/penghao-wu/vstar"
+    ]
+  },
+  "dataProfile": {
+    "summary": "191 张 SA-1B 高分辨率图像，论文给出的平均分辨率约 2246 × 1582。",
+    "disclosure": "partial",
+    "scale": [
+      "191 张 SA-1B 高分辨率图像，论文给出的平均分辨率约 2246 × 1582。"
+    ],
+    "splits": [],
+    "fields": [
+      "image",
+      "text",
+      "category",
+      "question_id",
+      "label"
+    ],
+    "files": [
+      "作者固定提交 d9ae62c903da0c98336e85c5ee89cd863b04b4da 的 test_questions.jsonl，实际读取 191 行。"
+    ],
+    "sourceUrls": [
+      "https://github.com/penghao-wu/vstar",
+      "https://openaccess.thecvf.com/content/CVPR2024/papers/Wu_V_Guided_Visual_Search_as_a_Core_Mechanism_in_Multimodal_CVPR_2024_paper.pdf",
+      "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者仓库提供 191 条 test 记录和图像；图像使用许可须独立核对。"
+    ],
+    "url": "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "代码和 SA-1B 图像的使用条件应分别核对。",
+    "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
+    "boundaries": [
+      "不同来源的模型报告如果只写 V*，需核对其是否采用同一 V*Bench 数据和设置。"
+    ],
+    "sourceUrls": [
+      "https://openaccess.thecvf.com/content/CVPR2024/papers/Wu_V_Guided_Visual_Search_as_a_Core_Mechanism_in_Multimodal_CVPR_2024_paper.pdf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已实际下载作者固定版本 test 文件；节选一条论文公开展示的题目文本，不转载图片或完整选项。",
+    "url": "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl",
+      "https://arxiv.org/html/2312.14135v2"
+    ]
+  },
+  "metric": {
+    "name": "准确率",
+    "description": "按题目预测结果计算准确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/penghao-wu/vstar"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同来源的模型报告如果只写 V*，需核对其是否采用同一 V*Bench 数据和设置。",
+      "sourceUrls": [
+        "https://github.com/penghao-wu/vstar"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者官方仓库",
+      "url": "https://github.com/penghao-wu/vstar",
+      "role": "definition"
+    },
+    {
+      "label": "CVPR 原始论文",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Wu_V_Guided_Visual_Search_as_a_Core_Mechanism_in_Multimodal_CVPR_2024_paper.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "作者固定版本 test_questions.jsonl",
+      "url": "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "作者论文 v2（CC BY 4.0）",
+      "url": "https://arxiv.org/html/2312.14135v2",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "test-18-stool",
+        "title": "测试记录 18：物体材质",
+        "type": "record",
+        "prompt": "识别画面中凳子的材质。",
+        "promptOrigin": "editorial",
+        "raw": "What is the material of the stool?",
+        "explanation": "作者固定版测试记录 18 的 label 为 C，对应选项 plastic；图片 direct_attributes/sa_9611.jpg 未复制，仅供原始入口查看。",
+        "source": "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl",
+        "license": "论文 v2 Figure 8 中同一问题文本 CC BY 4.0；作者原测试文件及图像的额外许可未明确。",
+        "split": "作者 test_questions.jsonl / question_id=18",
+        "excerpt": true,
+        "answer": "C（plastic，塑料）"
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "已实际下载固定文件 51,637 字节、191 行，SHA-256 d7e1ca9d1beb9a1f86b0cb309bb4a73091e8cb062f75eda81c2fda5304923ae9；论文 Figure 8 公开同一问题文本，未将论文图与该条图片视为已验证相同图像。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl",
+        "https://arxiv.org/html/2312.14135v2"
+      ]
+    }
+  ]
+}

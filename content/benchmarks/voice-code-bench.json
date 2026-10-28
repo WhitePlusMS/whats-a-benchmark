@@ -1,0 +1,182 @@
+{
+  "id": "voice-code-bench",
+  "status": "published",
+  "order": 2208,
+  "name": "VoiceCodeBench",
+  "subtitle": "评测语音识别是否准确恢复代码、号码等结构化实体。",
+  "category": "multimodal",
+  "tags": [],
+  "publisher": "BeSimple AI",
+  "brandIds": [],
+  "year": 2026,
+  "version": "VoiceCodeBench",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评测语音识别是否准确恢复代码、号码等结构化实体。",
+    "task": "输入语音，输出保留结构化实体的转写。",
+    "sourceUrls": [
+      "https://besimple.ai/blogs/voice-code-bench/"
+    ]
+  },
+  "taskContract": {
+    "input": "语音录音",
+    "output": "文本转写和实体恢复结果",
+    "environment": "按作者公开说明配置模型与运行环境。",
+    "sourceUrls": [
+      "https://besimple.ai/blogs/voice-code-bench/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "评测语音识别是否准确恢复代码、号码等结构化实体。",
+    "disclosure": "partial",
+    "scale": [
+      "300 条英语人声录音、1482 个目标实体、8 个领域。"
+    ],
+    "splits": [],
+    "fields": [
+      "file_name",
+      "audio_id",
+      "language",
+      "domain",
+      "scenario",
+      "difficulty",
+      "transcripts",
+      "entities"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/besimple-ai/voice-code-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "请按作者入口及其访问条件获取。"
+    ],
+    "url": "https://huggingface.co/datasets/besimple-ai/voice-code-bench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/besimple-ai/voice-code-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "非音频材料为 MIT；音频采用单独条款，不得用于声音克隆并须保留许可。",
+    "scope": "原始数据及权利以官方文件与各来源授权为准。",
+    "boundaries": [
+      "开放下载和允许转载为不同事项。"
+    ],
+    "sourceUrls": [
+      "https://besimple.ai/blogs/voice-code-bench/",
+      "https://huggingface.co/datasets/besimple-ai/voice-code-bench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已读取固定版本的真实记录，展示原始字段节选。",
+    "url": "https://huggingface.co/datasets/besimple-ai/voice-code-bench/resolve/8edfa398aa5575816d940793e4e2b8c6430184da/data/metadata.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/besimple-ai/voice-code-bench/resolve/8edfa398aa5575816d940793e4e2b8c6430184da/data/metadata.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "CTEM、TSR 与 WER",
+    "description": "CTEM 衡量可从转写恢复的目标实体比例；TSR 要求该录音所有目标实体均恢复；WER 用于辅助衡量转写差异。CTEM、TSR 越高越好，WER 越低越好。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://besimple.ai/blogs/voice-code-bench/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站未复跑模型，实际结果受数据版本、工具与评估配置影响。",
+      "sourceUrls": [
+        "https://besimple.ai/blogs/voice-code-bench/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "实际读取固定版本 8edfa398aa5575816d940793e4e2b8c6430184da 的 metadata.jsonl；首项 audio_id=contact_routing_001，duration=34.92 秒。本站不转载音频。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/besimple-ai/voice-code-bench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方资料",
+      "url": "https://besimple.ai/blogs/voice-code-bench/",
+      "role": "definition"
+    },
+    {
+      "label": "作者数据入口",
+      "url": "https://huggingface.co/datasets/besimple-ai/voice-code-bench",
+      "role": "data"
+    },
+    {
+      "label": "固定版本实际读取的记录",
+      "url": "https://huggingface.co/datasets/besimple-ai/voice-code-bench/resolve/8edfa398aa5575816d940793e4e2b8c6430184da/data/metadata.jsonl",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "contact_routing_001",
+        "title": "联系路由 · 实际录音元数据",
+        "type": "record",
+        "prompt": "该音频用于测试联系路由语音中的结构化实体恢复。",
+        "explanation": "官方记录包含占位模板、朗读文本和规范文本三层转写，以及目标实体。本页展示文本元数据，没有转载或播放实际录音。所有结构化内容为作者数据的真实记录。",
+        "raw": {
+          "file_name": "audio/001.wav",
+          "audio_id": "contact_routing_001",
+          "language": "en",
+          "duration": 34.92,
+          "domain": "contact_routing",
+          "scenario": "callback_instructions",
+          "difficulty": "light",
+          "transcripts": {
+            "template": "Hi, I need someone from <contact_routing_001_e01> to call me back when they can. I have a code issue that is blocking the work I was trying to finish this morning, and I would rather talk it through than keep trading messages. The best number to reach me at is <contact_routing_001_e02>. This is Rina Kell, and the spelling is <contact_routing_001_e03>. I am near my laptop for the next hour today. If you reach voicemail, just leave me the direct case number and I will call right back.",
+            "acoustic": "Hi, I need someone from GitHub Support to call me back when they can. I have a code issue that is blocking the work I was trying to finish this morning, and I would rather talk it through than keep trading messages. The best number to reach me at is area code two one two five five five zero one zero zero. This is Rina Kell, and the spelling is R I N A K E L L. I am near my laptop for the next hour today. If you reach voicemail, just leave me the direct case number and I will call right back.",
+            "canonical": "Hi, I need someone from GitHub Support to call me back when they can. I have a code issue that is blocking the work I was trying to finish this morning, and I would rather talk it through than keep trading messages. The best number to reach me at is 212-555-0100. This is Rina Kell, and the spelling is R I N A K E L L. I am near my laptop for the next hour today. If you reach voicemail, just leave me the direct case number and I will call right back."
+          },
+          "entities": [
+            {
+              "id": "contact_routing_001_e01",
+              "type": "person_or_team_name",
+              "role": "requesting_organization_or_team",
+              "acoustic": "GitHub Support",
+              "canonical": "GitHub Support"
+            },
+            {
+              "id": "contact_routing_001_e02",
+              "type": "phone_number",
+              "role": "callback_number",
+              "acoustic": "area code two one two five five five zero one zero zero",
+              "canonical": "212-555-0100"
+            },
+            {
+              "id": "contact_routing_001_e03",
+              "type": "spelled_sequence",
+              "role": "requester_name_spelling",
+              "acoustic": "R I N A K E L L",
+              "canonical": "R I N A K E L L"
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/besimple-ai/voice-code-bench/resolve/8edfa398aa5575816d940793e4e2b8c6430184da/data/metadata.jsonl",
+        "license": "非音频元数据 MIT；BeSimple AI VoiceCodeBench",
+        "split": "作者公开数据的所示划分",
+        "excerpt": true,
+        "licensePath": "licenses/voice-code-bench.txt",
+        "promptOrigin": "editorial",
+        "answer": "Hi, I need someone from GitHub Support to call me back when they can. I have a code issue that is blocking the work I was trying to finish this morning, and I would rather talk it through than keep trading messages. The best number to reach me at is 212-555-0100. This is Rina Kell, and the spelling is R I N A K E L L. I am near my laptop for the next hour today. If you reach voicemail, just leave me the direct case number and I will call right back."
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "id": "frontierfinance",
+  "status": "published",
+  "order": 3031,
+  "name": "FrontierFinance（Samaya）",
+  "subtitle": "投资研究工作流与来源细则评分",
+  "category": "work",
+  "tags": [],
+  "publisher": "Samaya AI",
+  "brandIds": [],
+  "year": 2026,
+  "version": "论文和官方公开资料；具体版本以来源为准",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估金融研究代理完成投资研究工作流并提供有来源支持的回答。",
+    "task": "回答投资研究问题并按来源关联的细项标准评价。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.11683"
+    ]
+  },
+  "taskContract": {
+    "input": "投资研究查询及允许使用的公开信息。",
+    "output": "投资研究回答。",
+    "environment": "研究环境、数据工具与运行脚手架会影响结果。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.11683"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文报告 220 个专家问题及 11543 条有来源的评分标准。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告 220 个专家问题及 11543 条有来源的评分标准。"
+    ],
+    "splits": [],
+    "fields": [
+      "query_id、query、query_date、use_cases、capabilities、rubrics；评分标准还包含 rubric_id、rubric_text、must_have 等。"
+    ],
+    "files": [
+      "作者数据卡不登录即可查看 Example；完整 frontier_finance_public.jsonl 仍需接受访问条件。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.11683",
+      "https://huggingface.co/datasets/samaya-ai/FrontierFinance"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "数据文件需要登录并同意分享 Hugging Face 信息及禁止站外公开再分发等条件。",
+      "固定修订 36afd6dc1cbb2c4512536daf917dc28b1225a720 的数据文件访问返回 HTTP 401。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/samaya-ai/FrontierFinance"
+    ],
+    "url": "https://huggingface.co/datasets/samaya-ai/FrontierFinance"
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "数据卡标注 CC BY 4.0；访问条件同时要求不在 Hugging Face 受控或私有仓库之外再分发数据集。",
+    "scope": "仅整理公开论文和数据卡中的评测概述；不再发布受控数据文件。",
+    "boundaries": [
+      "实际访问需登录并同意数据访问条件；不可将 CC BY 元数据视为对受限文件的无条件再分发许可。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/samaya-ai/FrontierFinance"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "无需登录可在作者数据卡 Example 查看一条问题和评分标准；完整文件的匿名访问返回 401，且数据卡附加再分享限制，本站不转载该例题。",
+    "url": "https://huggingface.co/datasets/samaya-ai/FrontierFinance",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/samaya-ai/FrontierFinance",
+      "https://github.com/samaya-ai/frontier-finance"
+    ]
+  },
+  "metric": {
+    "name": "评分标准得分",
+    "description": "以任务评分标准评估回答质量。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2608.11683"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同版本、运行脚手架和评分配置可能导致结果不可直接比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.11683"
+      ]
+    },
+    {
+      "text": "Kimi 报告中的 Frontier Finance 是否为本条 Samaya 数据集未获确认；不能据同名将其成绩归入本条。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2608.11683",
+        "https://www.kimi.com/en/blog/kimi-k3-1-pro"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方论文或评测方资料",
+      "url": "https://arxiv.org/abs/2608.11683",
+      "role": "paper"
+    },
+    {
+      "label": "官方数据或项目入口",
+      "url": "https://huggingface.co/datasets/samaya-ai/FrontierFinance",
+      "role": "data"
+    },
+    {
+      "label": "Kimi 发布页：同名评测身份尚未确认",
+      "url": "https://www.kimi.com/en/blog/kimi-k3-1-pro",
+      "role": "vendor-report"
+    },
+    {
+      "label": "作者评分仓库及公开格式示例",
+      "url": "https://github.com/samaya-ai/frontier-finance",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "updatedAt": "2026-10-28",
+  "researchNotes": [
+    {
+      "text": "作者评分仓库 README 写明可以无登录获取数据，但实际 HF 数据卡要求接受条件，固定文件匿名读取返回 401；按实际访问状态列为受控，不把文档口径冲突当作已开放下载。",
+      "sourceUrls": [
+        "https://github.com/samaya-ai/frontier-finance",
+        "https://huggingface.co/datasets/samaya-ai/FrontierFinance"
+      ]
+    }
+  ]
+}

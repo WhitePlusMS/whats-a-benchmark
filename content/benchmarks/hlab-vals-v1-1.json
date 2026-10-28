@@ -1,0 +1,148 @@
+{
+  "id": "hlab-vals-v1-1",
+  "status": "published",
+  "order": 2600,
+  "name": "HLAB-Vals-1.1",
+  "subtitle": "Vals 对 Harvey 法律代理评测的 1.1 版",
+  "category": "work",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "Vals AI / Harvey",
+  "brandIds": [],
+  "year": 2026,
+  "version": "HLAB-Vals-1.1",
+  "kind": "derivative",
+  "aliases": [
+    "Harvey Legal Agent Benchmark Vals 1.1"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Vals 在 Harvey Legal Agent Benchmark 私有留出集上运行的 1.1 版法律代理评测。",
+    "task": "针对具体法律任务处理资料并生成文档等交付物。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/hlab"
+    ]
+  },
+  "taskContract": {
+    "input": "120 个私有留出法律任务及各自文件。",
+    "output": "文档、表格或演示文稿等文件，按任务的多项标准评分。",
+    "environment": "Vals Valkyrie 基于 Harvey harness，禁用互联网，提供文件、Bash、Grep 等工具及文档技能。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/hlab"
+    ]
+  },
+  "dataProfile": {
+    "summary": "1.1 留出集仍为 120 个任务，修复了 17 项不可解评分标准及 1 个错误来源文件。",
+    "disclosure": "partial",
+    "scale": [
+      "120 个留出任务；移除 17 项不可解评分标准，替换 1 份错误来源文件。"
+    ],
+    "splits": [
+      "榜单使用非公开 held-out 集。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/hlab"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "榜单所用留出题集未公开；Harvey 仓库的公开样例不一定属于 Vals 留出集。"
+    ],
+    "url": "https://github.com/harveyai/harvey-labs",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/hlab",
+      "https://github.com/harveyai/harvey-labs"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "私有留出题目的复用许可未公开；公开仓库遵循其单独许可。",
+    "scope": "仅整理 Vals 公开榜单与评测说明。",
+    "boundaries": [
+      "不能将公开示例冒充私有留出集中的题目。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/hlab",
+      "https://github.com/harveyai/harvey-labs"
+    ]
+  },
+  "sampleAccess": {
+    "status": "private",
+    "reason": "未找到 Vals 1.1 榜单所用私有留出任务原文或答案。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/hlab"
+    ]
+  },
+  "metric": {
+    "name": "任务通过率及标准通过率",
+    "description": "每位评委仅在全部标准通过时判任务通过，最终任务通过率取两位评委平均；标准通过率另列，不等同任务通过率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/hlab"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "修复题集、harness 和标准通过率计算后，Vals 指明 1.1 不可与 v1 或 Harvey LAB-AA 直接比较。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/hlab",
+        "https://www.vals.ai/benchmarks/hlab-v1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Vals 1.1 官方方法与榜单",
+      "url": "https://www.vals.ai/benchmarks/hlab",
+      "role": "definition"
+    },
+    {
+      "label": "Vals 归档 v1",
+      "url": "https://www.vals.ai/benchmarks/hlab-v1",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Harvey 官方代码及公开集",
+      "url": "https://github.com/harveyai/harvey-labs",
+      "role": "code"
+    }
+  ],
+  "related": [
+    {
+      "id": "harvey-lab",
+      "label": "Harvey 原始评测",
+      "detail": "Vals 在原评测基础上使用修复后的私有留出集及不同运行配置。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/hlab"
+      ]
+    },
+    {
+      "id": "harvey-lab-aa-v1-1",
+      "label": "Harvey LAB-AA v1.1",
+      "detail": "人工分析公司独立运行，与 Vals 榜单不可直接比较。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/hlab"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "researchNotes": [
+    {
+      "text": "Vals 页面 2026-10-24 榜单公开示例：Gemini 4 Argon 的任务通过率 27.08%，平均标准通过率 96.30%；两者口径不同。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/hlab"
+      ]
+    },
+    {
+      "text": "此数值是 Vals 公布的该设置结果，并非本站重新测试；榜单可能更新。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/hlab"
+      ]
+    }
+  ]
+}

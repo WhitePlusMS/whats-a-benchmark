@@ -1,0 +1,110 @@
+{
+  "id": "xdev-bench-hard",
+  "status": "published",
+  "order": 3023,
+  "name": "xdev-bench-hard",
+  "subtitle": "Moonshot 内部漏洞研究评测",
+  "category": "coding",
+  "tags": [
+    "内部评测"
+  ],
+  "publisher": "Moonshot AI / Kimi",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Kimi K3.1 Pro 发布页披露版本（具体题集版本未披露）",
+  "kind": "internal",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "专家整理的基于源码的漏洞发现及利用任务。",
+    "task": "在独立沙盒中完成漏洞验证并获取用于自动验证的字符串。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "taskContract": {
+    "input": "漏洞源码、简短漏洞提示和相应二进制文件。",
+    "output": "按任务要求在沙盒完成验证并提交验证字符串。",
+    "environment": "官方使用随机运行子集，报告 pass@3；无硬性超时或输出 token 上限，K3.1 Pro 使用 Kimi Code。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公开评测用途及部分设置和成绩；未找到可下载的完整题集、题目样例或评分数据。",
+    "disclosure": "not-public",
+    "scale": [],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "官方称为内部评测；截至核验日未找到公开数据下载地址或申请流程。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到评测题集的公开许可。",
+    "scope": "仅整理官方公开的方法和结果，不复制未公开的题目。",
+    "boundaries": [
+      "发布模型展示材料不等于测试题集可以下载或再发布。"
+    ],
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "sampleAccess": {
+    "status": "unverified",
+    "reason": "未找到可定位的真实评测案例；官方演示不能自动视作该内部题集中的样本。",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "metric": {
+    "name": "pass@3",
+    "description": "官方报告 K3.1 Pro 为 81.0%；这是厂商测试且不同模型可能使用不同 harness。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "厂商自行设计并报告成绩，完整题集和实现未公开，外部尚无法据此独立复现。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "不含风险削减措施的检查点为 90.5%，该检查点不是发布的 K3.1 Pro。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    },
+    {
+      "text": "多数任务复现近期披露漏洞且启用缓解措施；未找到任务清单和容器镜像下载。",
+      "sourceUrls": [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Kimi K3.1 Pro 发布页及评测脚注",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28"
+}

@@ -1,0 +1,155 @@
+{
+  "id": "mmlongbench-doc",
+  "status": "published",
+  "order": 2722,
+  "name": "MMLongBench-Doc",
+  "subtitle": "长文档与图表联合理解",
+  "category": "multimodal",
+  "tags": [
+    "官方资料",
+    "评测数据"
+  ],
+  "publisher": "MMLongBench-Doc 作者团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "MMLongBench-Doc 测试模型对长篇多模态文档及其图表的问答能力。",
+    "task": "读取 PDF 多页证据，回答涉及文本或视觉信息的问题。",
+    "sourceUrls": [
+      "https://github.com/mayubo2333/MMLongBench-Doc"
+    ]
+  },
+  "taskContract": {
+    "input": "长 PDF 和问题。",
+    "output": "短答案及其对应文档证据。",
+    "environment": "官方多阶段评测流程涉及答案抽取。",
+    "sourceUrls": [
+      "https://github.com/mayubo2333/MMLongBench-Doc"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库提供文档与题目；题数因版本及统计口径应以文件为准。",
+    "disclosure": "partial",
+    "scale": [
+      "2026-10-28 实际读取作者 main 版 samples.json，共 1,082 条问答记录。"
+    ],
+    "splits": [],
+    "fields": [
+      "doc_id",
+      "doc_type",
+      "question",
+      "answer",
+      "evidence_pages",
+      "evidence_sources",
+      "answer_format"
+    ],
+    "files": [
+      "data/samples.json",
+      "data/documents/"
+    ],
+    "sourceUrls": [
+      "https://github.com/mayubo2333/MMLongBench-Doc",
+      "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/data/samples.json",
+      "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/main/data/samples.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [],
+    "url": "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/data/samples.json",
+    "sourceUrls": [
+      "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/data/samples.json"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "CC BY-NC 4.0；作者声明仅用于研究。",
+    "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
+    "boundaries": [
+      "PDF 原始文件可能还有独立第三方权利；无法用仅有问题文本替代文档视觉证据。"
+    ],
+    "sourceUrls": [
+      "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/data/samples.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已实际读取作者样例数据，站内只保留用于解读的必要短引；数据非商业使用、PDF 权利需另核对。",
+    "url": "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/main/data/samples.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/main/data/samples.json"
+    ]
+  },
+  "metric": {
+    "name": "F1",
+    "description": "依据官方评测流程抽取答案并计算得分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/mayubo2333/MMLongBench-Doc"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "PDF 原始文件可能还有独立第三方权利；无法用仅有问题文本替代文档视觉证据。",
+      "sourceUrls": [
+        "https://github.com/mayubo2333/MMLongBench-Doc"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者仓库和许可",
+      "url": "https://github.com/mayubo2333/MMLongBench-Doc",
+      "role": "definition"
+    },
+    {
+      "label": "官方题目数据",
+      "url": "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/data/samples.json",
+      "role": "data"
+    },
+    {
+      "label": "作者原始 samples.json（main，本次获取快照）",
+      "url": "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/main/data/samples.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "researchNotes": [
+    {
+      "text": "真实文件包含 doc_id=honor_watch_gs_pro.pdf、answer_format=Int、evidence_pages=[12, 13] 的记录；数据使用遵循 CC BY-NC 4.0。",
+      "sourceUrls": [
+        "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/data/samples.json"
+      ]
+    },
+    {
+      "text": "2026-10-28 实际下载 main 版本 samples.json，421,060 字节，SHA-256 4ffadad60b18cd7ede864155f3e8a366fe4deec2189b3d0a25691b7df4b839e8；main 为可变引用，未将其误称固定提交。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/main/data/samples.json"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "honor-workout-buttons",
+        "title": "真实题目：运动中的按键功能",
+        "type": "record",
+        "prompt": "查阅 honor_watch_gs_pro.pdf 的第 12、13 页，问运动过程中有多少种不同的按键功能。",
+        "promptOrigin": "editorial",
+        "raw": "How many distinct button functions",
+        "explanation": "作者记录的证据页为 [12, 13]、来源类型为 Table；本站未转载 PDF。",
+        "source": "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/main/data/samples.json",
+        "license": "CC BY-NC 4.0；仅作必要短引和原创说明，原 PDF 的权利须单独核对。",
+        "split": "作者 samples.json / doc_id=honor_watch_gs_pro.pdf",
+        "excerpt": true,
+        "answer": "5"
+      }
+    ]
+  }
+}

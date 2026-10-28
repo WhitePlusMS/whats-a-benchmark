@@ -1,0 +1,150 @@
+{
+  "id": "loca-bench",
+  "status": "published",
+  "order": 1520,
+  "name": "LOCA-bench",
+  "subtitle": "可控增长上下文中的长程智能体",
+  "category": "context",
+  "tags": [],
+  "publisher": "香港科技大学研究团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "配置修订 8b6fac49d9edd92922593e703b74ea255357c3ec",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估上下文持续增长时语言智能体的任务表现。",
+    "task": "在可调整复杂度和上下文长度的工具环境中完成任务。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.07962"
+    ]
+  },
+  "taskContract": {
+    "input": "环境状态、任务提示及工具。",
+    "output": "工具操作与任务结果。",
+    "environment": "动态增长的智能体环境。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.07962"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方提供环境配置与可调参数；不同配置不等同独立题目数量。",
+    "disclosure": "partial",
+    "scale": [
+      "官方提供环境配置与可调参数；不同配置不等同独立题目数量。"
+    ],
+    "splits": [],
+    "fields": [
+      "name",
+      "env_class",
+      "env_params"
+    ],
+    "files": [
+      "final_256k_set_config.json"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.07962",
+      "https://github.com/hkust-nlp/LOCA-bench",
+      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "具体任务、脚手架及访问限制以官方入口为准。"
+    ],
+    "sourceUrls": [
+      "https://github.com/hkust-nlp/LOCA-bench"
+    ],
+    "url": "https://github.com/hkust-nlp/LOCA-bench"
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT License\n\nCopyright (c) 2025 LOCA-bench Contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "scope": "仅展示已核对的记录节选和原始字段。",
+    "boundaries": [
+      "不得将仓库代码许可自动推及所有第三方输入及评测材料。"
+    ],
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/LICENSE",
+      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已从固定版本官方数据读取真实记录并展示节选。",
+    "url": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按环境中的任务完成结果统计成功率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2602.07962"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同版本、运行脚手架和评分配置可能导致结果不可直接比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2602.07962"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方论文或评测方资料",
+      "url": "https://arxiv.org/abs/2602.07962",
+      "role": "paper"
+    },
+    {
+      "label": "官方数据或项目入口",
+      "url": "https://github.com/hkust-nlp/LOCA-bench",
+      "role": "data"
+    },
+    {
+      "label": "固定版本原始记录",
+      "url": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json",
+      "role": "data"
+    },
+    {
+      "label": "样例来源许可",
+      "url": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "updatedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "CanvasArrangeExamS2LEnv-seed-42",
+        "title": "官方真实记录",
+        "type": "record",
+        "prompt": "官方配置中以 seed 42 和 160 门课程生成 Canvas 考试安排环境；以下是实际配置字段，而非完整生成后的任务。",
+        "explanation": "仅展示环境名、类路径与参数；原配置中的账号及密码字段已省略。",
+        "raw": {
+          "name": "CanvasArrangeExamS2LEnv",
+          "env_class": "gem.envs.canvas_arrange_exam_s2l.canvas_arrange_exam_s2l.CanvasArrangeExamS2LEnv",
+          "env_params": {
+            "seed": 42,
+            "num_courses": 160,
+            "canvas_exam_rate": 0.8,
+            "email_exam_rate": 0.2
+          }
+        },
+        "source": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json",
+        "license": "MIT License\n\nCopyright (c) 2025 LOCA-bench Contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "split": "final_256k_set_config",
+        "excerpt": true,
+        "promptOrigin": "editorial"
+      }
+    ]
+  }
+}
