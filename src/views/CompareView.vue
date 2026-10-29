@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useHead } from "@unhead/vue";
-import { byId, categoryById } from "../content/catalog";
+import { byId, categoryById, embodiedCategories } from "../content/catalog";
 import {
   dataAccessLabels,
   reusePolicyLabels,
@@ -26,7 +26,16 @@ const rows: {
   { label: "测什么", value: (item) => item.officialDefinition.summary },
   {
     label: "能力方向",
-    value: (item) => categoryById.get(item.category)?.name || "",
+    value: (item) =>
+      item.embodied
+        ? item.embodied.tasks
+            .map(
+              (task) =>
+                embodiedCategories.find((category) => category.id === task)
+                  ?.name || task,
+            )
+            .join("、")
+        : categoryById.get(item.category)?.name || "",
   },
   { label: "任务输入", value: (item) => item.taskContract.input },
   { label: "需要完成什么", value: (item) => item.taskContract.output },
@@ -95,8 +104,7 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
             <th scope="col">对比维度</th>
             <th v-for="item in items" :key="item.id" scope="col">
               <RouterLink :to="`/benchmarks/${item.id}/`"
-                ><span translate="no">{{ item.name }}</span
-              ></RouterLink
+                ><span translate="no">{{ item.name }}</span></RouterLink
               ><span v-if="item.status === 'archived'" class="small-badge"
                 >本站已归档</span
               >
@@ -106,7 +114,11 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
         <tbody>
           <tr v-for="row in rows" :key="row.label">
             <th scope="row">{{ row.label }}</th>
-            <td v-for="item in items" :key="item.id" :class="{ mono: row.mono }">
+            <td
+              v-for="item in items"
+              :key="item.id"
+              :class="{ mono: row.mono }"
+            >
               {{ row.value(item) }}
             </td>
           </tr>
@@ -119,7 +131,8 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
                   :to="`/benchmarks/${item.id}/#${readingAnchor(field.key)}`"
                   class="text-link"
                   >详细说明与依据</RouterLink
-              ></template>
+                ></template
+              >
               <span v-else aria-label="本站尚未整理">—</span>
             </td>
           </tr>
@@ -169,8 +182,8 @@ function readingAnchor(key: (typeof interpretationFields)[number]["key"]) {
       <p>点击评测卡片上的“对比”按钮，最多可以选择 3 项。</p>
       <RouterLink to="/" class="primary-button">浏览评测</RouterLink>
       <p class="empty-hint">
-        在目录卡片上点 <kbd>+ 对比</kbd> 凑够 2 个即可开始；按
-        <kbd>⌘K</kbd> 或 <kbd>Ctrl K</kbd> 可直接搜索评测名。
+        在目录卡片上点 <kbd>+ 对比</kbd> 凑够 2 个即可开始；按 <kbd>⌘K</kbd> 或
+        <kbd>Ctrl K</kbd> 可直接搜索评测名。
       </p>
     </div>
   </div>

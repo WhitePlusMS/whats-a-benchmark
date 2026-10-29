@@ -11,6 +11,8 @@ export function sampleAction(item: Benchmark) {
     return { href: "#samples", label: "查看组成样例", external: false };
   if (item.sampleAccess.status === "local")
     return { href: "#samples", label: "查看真实案例", external: false };
+  if (item.embodied?.taskExample)
+    return { href: "#samples", label: "查看任务示例", external: false };
   if (item.sampleAccess.status === "official" && item.sampleAccess.url)
     return {
       href: item.sampleAccess.url,

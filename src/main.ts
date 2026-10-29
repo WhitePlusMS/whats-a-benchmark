@@ -14,6 +14,7 @@ export const createApp = ViteSSG(
     base: import.meta.env.BASE_URL,
     routes: [
       { path: "/", component: ExploreView },
+      { path: "/embodied/", component: ExploreView },
       ...allBenchmarks.map((item) => ({
         path: `/benchmarks/${item.id}/`,
         component: () => import("./views/DetailView.vue"),
@@ -41,8 +42,10 @@ export const createApp = ViteSSG(
   },
   ({ app, router, isClient }) => {
     const catalogLocation = ref("/");
+    const embodiedLocation = ref("/embodied/");
     let catalogScrollTop = 0;
-    app.provide(catalogNavigationKey, { catalogLocation });
+    let embodiedScrollTop = 0;
+    app.provide(catalogNavigationKey, { catalogLocation, embodiedLocation });
     if (!isClient) return;
 
     // 只记录离开目录时的位置；筛选和视图状态本身由目录 URL 保存。
@@ -50,6 +53,14 @@ export const createApp = ViteSSG(
       if (from.path === "/" && from.matched.length && to.path !== "/") {
         catalogLocation.value = from.fullPath;
         catalogScrollTop = window.scrollY;
+      }
+      if (
+        from.path === "/embodied/" &&
+        from.matched.length &&
+        to.path !== "/embodied/"
+      ) {
+        embodiedLocation.value = from.fullPath;
+        embodiedScrollTop = window.scrollY;
       }
     });
     router.options.scrollBehavior = (to, from, saved) => {
@@ -69,6 +80,8 @@ export const createApp = ViteSSG(
       if (to.path === from.path) return false;
       if (to.fullPath === catalogLocation.value)
         return { top: catalogScrollTop, behavior: "instant" };
+      if (to.fullPath === embodiedLocation.value)
+        return { top: embodiedScrollTop, behavior: "instant" };
       return { top: 0 };
     };
   },

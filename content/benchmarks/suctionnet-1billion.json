@@ -1,0 +1,218 @@
+{
+  "id": "suctionnet-1billion",
+  "status": "published",
+  "order": 22115,
+  "name": "SuctionNet-1Billion",
+  "subtitle": "面向吸盘抓取的真实场景评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "共享场景数据说明",
+        "type": "项目资料",
+        "url": "https://graspnet.net/datasets.html"
+      },
+      {
+        "label": "SuctionNet 官方吸盘标签包",
+        "type": "数据集",
+        "url": "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "GraspNet",
+  "brandIds": [],
+  "year": 2021,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 RGB-D 场景中评测机器人吸盘对物体的抓取。",
+    "task": "在 RGB-D 场景中评测机器人吸盘对物体的抓取。",
+    "sourceUrls": [
+      "https://graspnet.net/suction"
+    ]
+  },
+  "taskContract": {
+    "input": "场景观测和吸盘抓取候选，依官方协议配置。",
+    "output": "预测可形成密封且能承受重力力矩的吸盘抓取。",
+    "environment": "沿用 GraspNet 的真实场景和训练测试划分。",
+    "sourceUrls": [
+      "https://graspnet.net/suction"
+    ]
+  },
+  "dataProfile": {
+    "summary": "数据和划分与 GraspNet-1Billion 相同，另提供密封、力矩和碰撞标签。",
+    "disclosure": "partial",
+    "scale": [
+      "数据和划分与 GraspNet-1Billion 相同，另提供密封、力矩和碰撞标签。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://graspnet.net/suction"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://graspnet.net/suction",
+    "sourceUrls": [
+      "https://graspnet.net/suction"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方数据页面许可名称和缩写存在不一致；复制标签或媒体前需澄清。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://graspnet.net/suction",
+      "https://graspnet.net/datasets.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载官方吸盘标签包，并展示对象 000 的三条候选标签。",
+    "sourceUrls": [
+      "https://graspnet.net/suction",
+      "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view"
+    ]
+  },
+  "metric": {
+    "name": "吸盘抓取评测",
+    "description": "官方提供在线评测；具体评分口径以评测工具为准。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://graspnet.net/suction"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://graspnet.net/suction"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://graspnet.net/suction",
+      "role": "definition"
+    },
+    {
+      "label": "共享场景数据说明",
+      "url": "https://graspnet.net/datasets.html",
+      "role": "data"
+    },
+    {
+      "label": "官方吸盘标签下载包",
+      "url": "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "graspnet-1billion",
+      "label": "共享数据",
+      "detail": "SuctionNet 与 GraspNet 共享场景数据和划分，抓取标签及评测任务不同。",
+      "sourceUrls": [
+        "https://graspnet.net/suction"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "suctionnet-seal-object-000-first-three",
+        "title": "对象 000 · 吸盘密封标签",
+        "type": "record",
+        "prompt": "同一物体表面有多个吸盘候选点，下面展示三个候选点的坐标、法线、碰撞标记和密封评分。",
+        "promptOrigin": "editorial",
+        "explanation": "官方数据包中对象 000 的 seal 标签含 4,723 个候选点；这里只取前三条并保留原始字段。这里的 scores 是密封标签分数，不能直接解读为模型成功率。",
+        "raw": {
+          "archive": "suction_label.zip",
+          "member": "seal_label/000_seal.npz",
+          "member_sha256": "225b491dfb4f9d59f7502575c33f04be7b1b736eaea00659761d76eb79ea2016",
+          "count": 4723,
+          "first_three": {
+            "points": [
+              [
+                -0.0338129997253418,
+                -0.07297900319099426,
+                -0.020208999514579773
+              ],
+              [
+                -0.03311299905180931,
+                -0.07301399856805801,
+                -0.06986899673938751
+              ],
+              [
+                -0.02482300065457821,
+                -0.08105699717998505,
+                -0.0243149995803833
+              ]
+            ],
+            "normals": [
+              [
+                -0.9965000152587891,
+                -0.08309999853372574,
+                -0.008799999952316284
+              ],
+              [
+                -0.9966999888420105,
+                -0.07900000363588333,
+                -0.016899999231100082
+              ],
+              [
+                -0.0364999994635582,
+                -0.9993000030517578,
+                -0.00860000029206276
+              ]
+            ],
+            "indices": [
+              39,
+              124,
+              147
+            ],
+            "collision": [
+              false,
+              false,
+              false
+            ],
+            "scores": [
+              0.1530270278453827,
+              0.0668037086725235,
+              0.2968159317970276
+            ]
+          }
+        },
+        "source": "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
+        "license": "官方数据许可名称与缩写表述不一致；这里只展示少量数值节选，完整许可范围待澄清。",
+        "split": "object 000 / seal_label",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载官方 suction_label.zip（10,888,424 字节）；SHA-256 8df042ed51bb4971967f4f9636ac5e7c9e89d8a5b78b2453d74403b344bba694。对象 000 标签包含 4,723 个候选点。",
+      "sourceUrls": [
+        "https://graspnet.net/suction",
+        "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view"
+      ]
+    }
+  ]
+}

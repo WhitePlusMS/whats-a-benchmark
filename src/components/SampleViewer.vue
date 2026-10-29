@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
@@ -10,6 +10,7 @@ import ArcTask from "./ArcTask.vue";
 import SampleMedia from "./SampleMedia.vue";
 import CitedText from "./CitedText.vue";
 const props = defineProps<{ item: Benchmark }>();
+const emit = defineEmits<{ settled: [] }>();
 const baseUrl = import.meta.env.BASE_URL;
 const ready = ref(false);
 const viewer = useSampleViewer(
@@ -30,6 +31,14 @@ const {
   failedAssets,
   markAssetFailed,
 } = viewer;
+// 通知嵌入页：加载成功或失败的界面已渲染，可据此处理受高度变化影响的锚点。
+watch(
+  [data, error],
+  ([loaded, failed]) => {
+    if (loaded || failed) emit("settled");
+  },
+  { flush: "post" },
+);
 // 没有可直接展示的样例时，仍提供对应栏目的官方依据。
 // `url` 表示具体数据/申请入口；回退到 sourceUrls 时只称“官方说明”，避免误导为可下载数据。
 const externalUrl = computed(() => sampleExternalUrl(props.item));
@@ -51,6 +60,15 @@ onMounted(() => {
 </script>
 <template>
   <div v-if="item.sampleAccess.status !== 'local'" class="external-sample">
+    <template v-if="item.embodied?.taskExample">
+      <h3>{{ item.embodied.taskExample.title }}</h3>
+      <ol>
+        <li v-for="step in item.embodied.taskExample.steps" :key="step">
+          {{ step }}
+        </li>
+      </ol>
+      <p>{{ item.embodied.taskExample.note }}</p>
+    </template>
     <p>
       <CitedText
         :text="item.sampleAccess.reason"
@@ -140,22 +158,26 @@ onMounted(() => {
           <span class="sample-count" aria-live="polite" aria-atomic="true"
             >样例 {{ index + 1 }} / {{ data?.samples.length }}</span
           ><span class="small-badge">{{
-            current.promptOrigin === "editorial"
-              ? "官方公开案例 · 本站解读"
-              : current.excerpt
-                ? "原始记录节选"
-                : "公开样例"
+            item.embodied
+              ? "来源记录 · 本站解读"
+              : current.promptOrigin === "editorial"
+                ? "官方公开案例 · 本站解读"
+                : current.excerpt
+                  ? "原始记录节选"
+                  : "公开样例"
           }}</span>
         </div>
         <h3 translate="no">{{ current.title }}</h3>
         <template v-if="mode === 'read'">
           <p class="prompt-label">
             {{
-              current.promptOrigin === "editorial"
-                ? "具体任务 · 本站根据官方案例整理"
-                : current.gridTask
-                  ? "操作说明 · 本站整理"
-                  : "原题内容"
+              item.embodied
+                ? "任务与记录"
+                : current.promptOrigin === "editorial"
+                  ? "具体任务 · 本站根据官方案例整理"
+                  : current.gridTask
+                    ? "操作说明 · 本站整理"
+                    : "原题内容"
             }}
           </p>
           <pre
@@ -218,11 +240,13 @@ onMounted(() => {
           >
           <p v-if="!current.answer" class="muted">
             {{
-              current.promptOrigin === "editorial"
-                ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
-                : current.excerpt
-                  ? "本页节选不含参考答案，完整任务见原始来源。"
-                  : "此公开记录未附参考答案，完成标准见评分方法。"
+              item.embodied
+                ? "这条记录展示已取得的数据；任务目标和评测条件请核对详情与来源。"
+                : current.promptOrigin === "editorial"
+                  ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
+                  : current.excerpt
+                    ? "本页节选不含参考答案，完整任务见原始来源。"
+                    : "此公开记录未附参考答案，完成标准见评分方法。"
             }}
           </p></template
         >
@@ -248,7 +272,9 @@ onMounted(() => {
         </template>
       </div>
       <aside class="sample-insight">
-        <span class="insight-heading">怎样理解这道题</span>
+        <span class="insight-heading">{{
+          item.embodied ? "怎样理解这条记录" : "怎样理解这道题"
+        }}</span>
         <p>{{ current.explanation }}</p>
         <a
           :href="current.source"

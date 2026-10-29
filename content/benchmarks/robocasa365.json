@@ -1,0 +1,194 @@
+{
+  "id": "robocasa365",
+  "status": "published",
+  "order": 22605,
+  "name": "RoboCasa365",
+  "subtitle": "厨房环境中的机器人操作与多任务学习",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "navigation",
+      "long-horizon"
+    ],
+    "resources": [
+      {
+        "label": "官方数据概览",
+        "type": "项目资料",
+        "url": "https://robocasa.ai/docs/build/html/datasets/datasets_overview.html"
+      },
+      {
+        "label": "NVIDIA 厨房演示数据集",
+        "type": "数据集",
+        "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "导航与移动",
+    "长步骤任务"
+  ],
+  "publisher": "RoboCasa Team",
+  "brandIds": [],
+  "year": 2026,
+  "version": "365 / v1.0.1",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在多样厨房场景中评测机器人执行原子与复合日常任务。",
+    "task": "在多样厨房场景中评测机器人执行原子与复合日常任务。",
+    "sourceUrls": [
+      "https://github.com/robocasa/robocasa"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令、视觉观测与机器人状态，依具体实验协议配置。",
+    "output": "机器人动作序列，使厨房任务目标成立。",
+    "environment": "MuJoCo / robosuite 模拟厨房；区分预训练场景和保留的目标场景。",
+    "sourceUrls": [
+      "https://github.com/robocasa/robocasa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "365 项任务：65 项原子任务与 300 项复合任务；官方数据概览列 2,200 小时以上演示。",
+    "disclosure": "partial",
+    "scale": [
+      "365 项任务：65 项原子任务与 300 项复合任务；官方数据概览列 2,200 小时以上演示。"
+    ],
+    "splits": [
+      "pretrain 和 target 场景",
+      "human 遥操作与 MimicGen 合成演示"
+    ],
+    "fields": [
+      "episode 元数据、观测、动作和相机视频"
+    ],
+    "files": [
+      "LeRobot 数据包含 Parquet、JSONL 和 MP4 文件。"
+    ],
+    "sourceUrls": [
+      "https://robocasa.ai/docs/build/html/datasets/datasets_overview.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://robocasa.ai/docs/build/html/datasets/datasets_overview.html",
+    "sourceUrls": [
+      "https://robocasa.ai/docs/build/html/datasets/datasets_overview.html"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "NVIDIA 数据卡将该演示数据集标为 CC BY 4.0；RoboCasa 官方 README 将 assets 和 datasets 标为 CC BY 4.0。",
+    "scope": "本站所展示的视频按数据卡许可注明作者、来源和许可；其他素材仍需逐项核对。",
+    "boundaries": [
+      "视频未经修改，来自 NVIDIA 发布的固定数据版本；其他第三方素材不得据此推定可转载。"
+    ],
+    "sourceUrls": [
+      "https://github.com/robocasa/robocasa",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示一条 NVIDIA 分发的人类遥操作仿真演示；完整轨迹和动作数据见数据集。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按任务和评估设置统计 rollout 成功率；v1.0.1 将任务 horizon 调整为原来的 1.5 倍，版本不可混比。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/robocasa/robocasa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/robocasa/robocasa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/robocasa/robocasa",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据概览",
+      "url": "https://robocasa.ai/docs/build/html/datasets/datasets_overview.html",
+      "role": "data"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://arxiv.org/abs/2406.02523",
+      "role": "definition"
+    },
+    {
+      "label": "NVIDIA 厨房演示数据卡",
+      "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
+      "role": "data"
+    },
+    {
+      "label": "NVIDIA 数据固定版本与视频文件记录",
+      "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robocasa",
+      "label": "原版",
+      "detail": "RoboCasa 2024 原版与 RoboCasa365 的任务规模和设置不同。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2406.02523"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "adjust-toaster-oven-temperature-episode-000000",
+        "title": "调整烤面包机温度 · 演示轨迹 0",
+        "type": "video",
+        "prompt": "在厨房仿真场景中调整烤面包机的温度。下面的视频来自预训练数据中的人类遥操作演示；它不是模型评测结果。",
+        "promptOrigin": "editorial",
+        "explanation": "视频为右侧第三人称相机的一段观察记录；动作与状态数据需查看同一 episode 的其他文件。此样本来自 NVIDIA 分发的 RoboCasa 厨房数据，未将它作为模型成绩。",
+        "raw": {
+          "dataset": "nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
+          "revision": "f3b185045b416ec9e0d05b60018e538ca3c459b1",
+          "split": "pretrain",
+          "task": "AdjustToasterOvenTemperature",
+          "date": "20250820",
+          "episode_index": 0,
+          "camera": "robot0_agentview_right",
+          "sha256": "ffa15eca205ed2b2c50e76438202b9232fed344b44fcb67569d56c30d7fa726e"
+        },
+        "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1",
+        "license": "NVIDIA / RoboCasa 数据集，CC BY 4.0；视频未经修改，来源及固定版本见链接。",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "split": "pretrain / atomic；human demonstration；episode 000000",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robocasa-adjust-temperature-episode-0.mp4",
+            "caption": "人类遥操作的仿真演示，右侧第三人称相机；NVIDIA / RoboCasa，CC BY 4.0。",
+            "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1"
+          }
+        ]
+      }
+    ]
+  }
+}

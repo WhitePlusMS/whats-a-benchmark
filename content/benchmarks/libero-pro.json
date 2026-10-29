@@ -1,0 +1,161 @@
+{
+  "id": "libero-pro",
+  "status": "published",
+  "order": 22511,
+  "name": "LIBERO-PRO",
+  "subtitle": "LIBERO 任务的多维泛化评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "官方扰动配置数据集",
+        "type": "数据集",
+        "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "LIBERO-PRO Authors",
+  "brandIds": [],
+  "year": 2025,
+  "version": "官方资料所述版本",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 LIBERO 操作任务上引入多维扰动，评估视觉语言动作模型的泛化能力。",
+    "task": "在 LIBERO 操作任务上引入多维扰动，评估视觉语言动作模型的泛化能力。",
+    "sourceUrls": [
+      "https://github.com/Zxy-MLlab/LIBERO-PRO"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令与机器人环境观测；扰动依实验配置选择。",
+    "output": "机器人动作，使操作目标在扰动条件下完成。",
+    "environment": "沿用 LIBERO 仿真环境，并改变物体、位置、语义、任务或环境。",
+    "sourceUrls": [
+      "https://github.com/Zxy-MLlab/LIBERO-PRO"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方定义五类核心扰动；数据卡另列七类扩展案例和 280 个 BDDL 文件。",
+    "disclosure": "partial",
+    "scale": [
+      "官方定义五类核心扰动；数据卡另列七类扩展案例和 280 个 BDDL 文件。"
+    ],
+    "splits": [
+      "LIBERO-Spatial、Object、Goal 与 LIBERO-10 扰动设置"
+    ],
+    "fields": [],
+    "files": [
+      "BDDL 任务定义与 init 初始状态文件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方数据卡将数据标为 CC BY 4.0、代码标为 MIT。",
+    "scope": "站内任务文件节选按数据许可署名；其他场景资产另行核对。",
+    "boundaries": [
+      "场景对象和第三方素材不自动由此节选的许可覆盖。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示官方数据集中一条 BDDL 任务文件的语言与目标条件节选。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按任务组与扰动条件分别报告成功率；应标明评测代码和数据版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/Zxy-MLlab/LIBERO-PRO"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/Zxy-MLlab/LIBERO-PRO"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/Zxy-MLlab/LIBERO-PRO",
+      "role": "definition"
+    },
+    {
+      "label": "官方扰动配置数据集",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro",
+      "role": "data"
+    },
+    {
+      "label": "LIBERO-PRO 固定版本 BDDL 任务文件",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "libero",
+      "label": "基础评测",
+      "detail": "LIBERO-PRO 基于 LIBERO，扰动协议与原版不同。",
+      "sourceUrls": [
+        "https://github.com/Zxy-MLlab/LIBERO-PRO"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "libero-spatial-lan-black-bowl-between-plate-ramekin",
+        "title": "黑碗放到盘子上 · 语言扰动",
+        "type": "record",
+        "prompt": "将位于盘子和小碗之间的黑碗拿起，放到盘子上。此任务属于 LIBERO-PRO 的 Spatial 语言扰动配置。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 BDDL 文件定义了任务语言、场景物体、初始位置和目标条件。这里仅摘出原始语言与目标，省略场景配置；不是机器人执行轨迹或模型成绩。",
+        "raw": "(define (problem LIBERO_Tabletop_Manipulation)\n  (:domain robosuite)\n  (:language lift the black bowl between the plate and ramekin and set it on the plate)\n...\n  (:goal\n    (And (On akita_black_bowl_1 plate_1))\n  )",
+        "source": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+        "license": "LIBERO-PRO 数据集，CC BY 4.0；依据原始 BDDL 文件节选并添加中文说明。",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "split": "libero_spatial_lan；文件版本 e9f3a53",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-28 取得官方 BDDL 文件；文件 SHA-256 为 45bd633fc5920555eca0f8b58b4e2e8fe2c8d46c968ee4c3f7ed11d9acaeb565。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
+      ]
+    }
+  ]
+}

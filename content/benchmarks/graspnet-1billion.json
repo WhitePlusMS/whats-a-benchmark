@@ -1,0 +1,198 @@
+{
+  "id": "graspnet-1billion",
+  "status": "published",
+  "order": 22002,
+  "name": "GraspNet-1Billion",
+  "subtitle": "真实场景中的 RGB-D 物体抓取",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "官方数据集下载",
+        "type": "项目资料",
+        "url": "https://graspnet.net/datasets.html"
+      },
+      {
+        "label": "GraspNet 标签文件镜像",
+        "type": "第三方数据镜像",
+        "url": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/c7a03dfc391bcb12ce7d6031850b83295635e39c/grasp_label.tar"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "GraspNet",
+  "brandIds": [],
+  "year": 2020,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "利用实物场景中的 RGB-D 数据评估机器人对物体的六自由度抓取。",
+    "task": "利用实物场景中的 RGB-D 数据评估机器人对物体的六自由度抓取。",
+    "sourceUrls": [
+      "https://graspnet.net/"
+    ]
+  },
+  "taskContract": {
+    "input": "场景 RGB-D 图像等观测；具体形式取决于评测协议。",
+    "output": "候选六自由度抓取位姿和置信度。",
+    "environment": "真实拍摄的杂乱场景，评测包含不同对象与场景泛化条件。",
+    "sourceUrls": [
+      "https://graspnet.net/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公布 190 个场景、97,280 张图像和 88 个物体，超过 11 亿抓取位姿。",
+    "disclosure": "partial",
+    "scale": [
+      "官方公布 190 个场景、97,280 张图像和 88 个物体，超过 11 亿抓取位姿。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://graspnet.net/datasets.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://graspnet.net/datasets.html",
+    "sourceUrls": [
+      "https://graspnet.net/datasets.html"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方数据页许可名称与缩写表述不一致；复制图像和标签前需权利方澄清。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://graspnet.net/",
+      "https://graspnet.net/datasets.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已从固定版本镜像的抓取标签归档读取对象 083 的 points 数组，展示三个真实数据点。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/c7a03dfc391bcb12ce7d6031850b83295635e39c/grasp_label.tar",
+      "https://github.com/graspnet/graspness_unofficial/blob/main/dataset/generate_graspness.py"
+    ]
+  },
+  "metric": {
+    "name": "抓取平均精度",
+    "description": "按官方抓取评测流程计算；测试场景划分为 seen、similar、novel，结果须分别说明。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://graspnet.net/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://graspnet.net/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://graspnet.net/",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据集下载",
+      "url": "https://graspnet.net/datasets.html",
+      "role": "data"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://graspnet.net/suction",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本 GraspNet 标签镜像",
+      "url": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/c7a03dfc391bcb12ce7d6031850b83295635e39c/grasp_label.tar",
+      "role": "data"
+    },
+    {
+      "label": "GraspNet 标签字段使用代码",
+      "url": "https://github.com/graspnet/graspness_unofficial/blob/main/dataset/generate_graspness.py",
+      "role": "code"
+    }
+  ],
+  "related": [
+    {
+      "id": "suctionnet-1billion",
+      "label": "关联评测",
+      "detail": "SuctionNet 共享场景及划分，增加吸盘抓取标签。",
+      "sourceUrls": [
+        "https://graspnet.net/suction"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "graspnet-object-083-sampled-points",
+        "title": "对象 083 · 抓取候选点",
+        "type": "record",
+        "prompt": "对象的抓取标签包含一组三维候选点。下方展示官方标签格式中对象 083 的前三个点。",
+        "promptOrigin": "editorial",
+        "explanation": "数据来自第三方镜像 grasp_label.tar 中的 083_labels.npz。points.npy 含 1,296 个三维坐标，此处仅展示前三个；角度、抓取评分和场景图像没有取出，不能把这些点当成完整抓取姿态或模型成绩。",
+        "raw": {
+          "archive_member": "grasp_label/083_labels.npz",
+          "array": "points.npy",
+          "array_shape": [
+            1296,
+            3
+          ],
+          "dtype": "float32",
+          "points_first_3": [
+            [
+              0.017258750274777412,
+              -0.001479750033468008,
+              -0.01402449980378151
+            ],
+            [
+              0.017252199351787567,
+              -0.0011474000057205558,
+              -0.014035199768841267
+            ],
+            [
+              0.0006125806248746812,
+              -0.025960128754377365,
+              -0.0029186452738940716
+            ]
+          ],
+          "array_sha256": "f7acc180610495cce4a1fe1dc970efda694a3e541f082a86dc3570be40c46983"
+        },
+        "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/c7a03dfc391bcb12ce7d6031850b83295635e39c/grasp_label.tar",
+        "license": "GraspNet 数据页许可名称与缩写不一致，镜像权限与第三方资产范围需核实；这里只展示坐标数据节选。",
+        "split": "object 083 / grasp_label / points",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 通过 HTTP Range 读取固定版本镜像 tar 内对象 083 的 NPZ，再取得其中 points.npy（15,680 字节，SHA-256 f7acc180610495cce4a1fe1dc970efda694a3e541f082a86dc3570be40c46983），未下载完整 25.85 GB 归档。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/c7a03dfc391bcb12ce7d6031850b83295635e39c/grasp_label.tar",
+        "https://github.com/graspnet/graspness_unofficial/blob/main/dataset/generate_graspness.py"
+      ]
+    }
+  ]
+}

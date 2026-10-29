@@ -36,7 +36,10 @@ export const brandSchema = z.strictObject({
   assetUrl: https,
   wide: z.boolean().optional(),
   // 浅色原始标识可声明承载底色，保持素材自身颜色与透明度不变。
-  background: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+  background: z
+    .string()
+    .regex(/^#[0-9a-fA-F]{6}$/)
+    .optional(),
 });
 const grid = z
   .array(z.array(z.number().int().min(0).max(9)).min(1).max(30))
@@ -86,7 +89,9 @@ export const sampleAssetSchema = z.discriminatedUnion("kind", [
   z.strictObject({
     kind: z.literal("file"),
     // 财务任务保留原始工作簿，只提供文件下载，不转换或执行其中的公式。
-    path: z.string().regex(/^files\/[a-z0-9-]+\.(json|jsonl|csv|txt|pdf|zip|xlsx)$/),
+    path: z
+      .string()
+      .regex(/^files\/[a-z0-9-]+\.(json|jsonl|csv|txt|pdf|zip|xlsx)$/),
     label: text,
     description: text.optional(),
     source: assetSource,
@@ -114,10 +119,12 @@ export const sampleSchema = z
     explanation: text,
     raw: z.union([
       text,
-      z.record(z.string(), z.unknown()).refine(
-        (value) => Object.keys(value).length > 0,
-        "原始数据至少保留一个真实来源字段",
-      ),
+      z
+        .record(z.string(), z.unknown())
+        .refine(
+          (value) => Object.keys(value).length > 0,
+          "原始数据至少保留一个真实来源字段",
+        ),
     ]),
     source: https,
     license: text,
@@ -290,6 +297,38 @@ export const entrySchema = z
     name: text,
     subtitle: text,
     category: idSchema,
+    // 具身评测以任务能力多选归类，原目录仍使用原有单一分类。
+    embodied: z
+      .strictObject({
+        tasks: z
+          .array(
+            z.enum([
+              "manipulation",
+              "navigation",
+              "bimanual",
+              "long-horizon",
+              "reasoning",
+            ]),
+          )
+          .min(1)
+          .refine(
+            (items) => new Set(items).size === items.length,
+            "任务分类不能重复",
+          ),
+        resources: z
+          .array(z.strictObject({ label: text, type: text, url: https }))
+          .optional(),
+        // 只有官方明确说明动作顺序时才展示步骤，不代替实测轨迹。
+        taskExample: z
+          .strictObject({
+            title: text,
+            steps: z.array(text).min(1),
+            note: text,
+            sourceUrl: https,
+          })
+          .optional(),
+      })
+      .optional(),
     tags: strings,
     publisher: text,
     brandIds: ids,
@@ -371,6 +410,11 @@ export const entrySchema = z
     checkUrls(["dataAccess", "sourceUrls"], entry.dataAccess.sourceUrls);
     checkUrls(["reusePolicy", "sourceUrls"], entry.reusePolicy.sourceUrls);
     checkUrls(["sampleAccess", "sourceUrls"], entry.sampleAccess.sourceUrls);
+    if (entry.embodied?.taskExample)
+      checkUrls(
+        ["embodied", "taskExample", "sourceUrl"],
+        [entry.embodied.taskExample.sourceUrl],
+      );
     checkUrls(["metric", "sourceUrls"], entry.metric.sourceUrls);
     entry.limitations.forEach((item, index) =>
       checkUrls(["limitations", index, "sourceUrls"], item.sourceUrls),

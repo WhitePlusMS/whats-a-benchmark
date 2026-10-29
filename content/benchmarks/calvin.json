@@ -1,0 +1,250 @@
+{
+  "id": "calvin",
+  "status": "published",
+  "order": 22101,
+  "name": "CALVIN",
+  "subtitle": "语言条件下的长步骤机器人操作",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "long-horizon"
+    ],
+    "resources": [
+      {
+        "label": "官方数据与下载说明",
+        "type": "项目资料",
+        "url": "https://github.com/mees/calvin/blob/main/dataset/README.md"
+      },
+      {
+        "label": "第三方 LeRobot 转换轨迹",
+        "type": "转换数据集",
+        "url": "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "长步骤任务"
+  ],
+  "publisher": "University of Freiburg",
+  "brandIds": [],
+  "year": 2021,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估机器人在仿真环境中按照语言指令连续完成操作任务，以及跨环境泛化。",
+    "task": "评估机器人在仿真环境中按照语言指令连续完成操作任务，以及跨环境泛化。",
+    "sourceUrls": [
+      "https://github.com/mees/calvin"
+    ]
+  },
+  "taskContract": {
+    "input": "语言指令、视觉观测和机器人状态，依实验设置而定。",
+    "output": "连续执行多个语言指定的操作。",
+    "environment": "仿真桌面操作环境；官方定义 D→D、ABC→D 与 ABCD→D 等环境划分。",
+    "sourceUrls": [
+      "https://github.com/mees/calvin"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方数据说明每个环境约 6 小时遥操作 play data。",
+    "disclosure": "partial",
+    "scale": [
+      "官方数据说明每个环境约 6 小时遥操作 play data。"
+    ],
+    "splits": [
+      "D→D",
+      "ABC→D",
+      "ABCD→D"
+    ],
+    "fields": [],
+    "files": [
+      "官方提供 split 下载脚本、debug 数据和校验和。"
+    ],
+    "sourceUrls": [
+      "https://github.com/mees/calvin/blob/main/dataset/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://github.com/mees/calvin/blob/main/dataset/README.md",
+    "sourceUrls": [
+      "https://github.com/mees/calvin/blob/main/dataset/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "第三方转换数据卡标 Apache-2.0；CALVIN 上游演示数据的独立许可尚未核实。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://github.com/mees/calvin",
+      "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载并解析一条第三方转换的训练轨迹，站内展示真实状态和动作节选。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet",
+      "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1"
+    ]
+  },
+  "metric": {
+    "name": "连续任务完成情况",
+    "description": "依据连续指令序列完成情况评估；应同时报告环境划分与任务序列。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/mees/calvin"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/mees/calvin"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/mees/calvin",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据与下载说明",
+      "url": "https://github.com/mees/calvin/blob/main/dataset/README.md",
+      "role": "data"
+    },
+    {
+      "label": "第三方转换集数据卡",
+      "url": "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
+      "role": "data"
+    },
+    {
+      "label": "固定版本轨迹文件",
+      "url": "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "calvin-converted-train-episode-0",
+        "title": "将门向左移动 · 训练轨迹 0",
+        "type": "record",
+        "prompt": "在仿真环境中完成“将门向左移动”。下方原始数据保留同一条轨迹的首、中、末帧状态与动作。",
+        "promptOrigin": "editorial",
+        "explanation": "该文件由第三方转换为 LeRobot 格式，包含 65 帧。这里只选取 3 帧数值，并未转载图像；这是演示数据，不是模型榜单成绩。",
+        "raw": {
+          "dataset": "CollisionCode/calvin_d_d_lerobot_v2.1",
+          "revision": "437ab85fe61d38fb68ac235db9c3965a05cece18",
+          "file_sha256": "b2669ed310f5b1701caf5d010dbaf19e8f18828f471311c22d32e217212a1af2",
+          "frames": [
+            {
+              "state": [
+                0.08048070967197418,
+                -0.1150674968957901,
+                0.5903953909873962,
+                3.1170778274536133,
+                -0.1419261246919632,
+                1.5174436569213867,
+                0.0,
+                0.0799986869096756
+              ],
+              "actions": [
+                -0.3930954039096832,
+                0.11058016121387482,
+                0.045524150133132935,
+                -0.4724874794483185,
+                0.17970483005046844,
+                0.08577878773212433,
+                1.0
+              ],
+              "timestamp": 0.0,
+              "frame_index": 0,
+              "episode_index": 0,
+              "index": 0,
+              "task_index": 0
+            },
+            {
+              "state": [
+                0.0096104322001338,
+                -0.007256889715790749,
+                0.5107247233390808,
+                3.037249803543091,
+                -0.003538572695106268,
+                1.350917100906372,
+                0.0,
+                0.07946322858333588
+              ],
+              "actions": [
+                0.07812678068876266,
+                0.0044807433150708675,
+                -0.01915005035698414,
+                0.02084854058921337,
+                -0.015287443995475769,
+                -0.12654952704906464,
+                1.0
+              ],
+              "timestamp": 3.200000047683716,
+              "frame_index": 32,
+              "episode_index": 0,
+              "index": 32,
+              "task_index": 0
+            },
+            {
+              "state": [
+                -0.17559468746185303,
+                -0.003656564047560096,
+                0.5183457136154175,
+                3.096256732940674,
+                -0.048330921679735184,
+                1.641719937324524,
+                0.0,
+                0.04345446825027466
+              ],
+              "actions": [
+                -0.5502068400382996,
+                -0.19169479608535767,
+                0.024590061977505684,
+                0.22525931894779205,
+                0.046903133392333984,
+                0.5143977403640747,
+                -1.0
+              ],
+              "timestamp": 6.400000095367432,
+              "frame_index": 64,
+              "episode_index": 0,
+              "index": 64,
+              "task_index": 0
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet",
+        "license": "第三方转换数据卡标 Apache-2.0；CALVIN 上游演示数据的独立许可尚未核实。",
+        "split": "train / episode 0 / 第三方转换集",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载并解析固定版本的 episode_000000.parquet，共 65 帧；文件 SHA-256 b2669ed310f5b1701caf5d010dbaf19e8f18828f471311c22d32e217212a1af2。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
+        "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet"
+      ]
+    }
+  ]
+}

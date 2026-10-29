@@ -6,7 +6,7 @@ import { useSampleViewer } from "../src/composables/sampleViewer";
 import { createSampleLocation } from "../src/lib/sampleLocation";
 import type { SampleFile } from "../src/types/benchmark";
 
-test("指定题目/原始模式在延迟加载、连续操作和历史返回时保持 URL 一致", async (t) => {
+test("样例在详情页同步 URL，在指南中只修改查看器状态", async (t) => {
   const fixture: SampleFile = {
     benchmarkId: "selected",
     retrievedAt: "2026-10-08",
@@ -70,4 +70,20 @@ test("指定题目/原始模式在延迟加载、连续操作和历史返回时�
   await nextTick();
   assert.equal(viewer.mode.value, "raw");
   assert.equal(viewer.current.value?.id, "first/id");
+
+  await t.test("嵌入指南后换题和切原始模式不改动页面地址或锚点", async () => {
+    router.addRoute({ path: "/guide/", component: { template: "<div />" } });
+    await router.push({
+      path: "/guide/",
+      query: { from: "reading" },
+      hash: "#metrics",
+    });
+    const guideLocation = router.currentRoute.value.fullPath;
+    await location.selectSample(1);
+    await location.setMode("raw");
+    await nextTick();
+    assert.equal(viewer.current.value?.id, "second:id");
+    assert.equal(viewer.mode.value, "raw");
+    assert.equal(router.currentRoute.value.fullPath, guideLocation);
+  });
 });

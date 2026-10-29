@@ -19,6 +19,16 @@
   align-items: center;
   gap: 10px;
 }
+/* 入门是辅助入口，复用全站次级按钮的颜色和交互。 */
+.header-guide {
+  min-height: 36px;
+  padding: 7px 12px;
+  gap: 6px;
+}
+.header-guide.router-link-exact-active {
+  color: var(--accent-text);
+  background: var(--accent-softer);
+}
 .brand {
   display: flex;
   align-items: center;
@@ -46,34 +56,40 @@
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 30px;
   margin-left: 40px;
   height: 100%;
 }
-.main-nav a {
-  display: flex;
+/* 两个目录并列切换；颜色和圆角沿用全站变量。 */
+.catalog-switch {
+  display: inline-flex;
   align-items: center;
-  height: 100%;
-  font-size: 14px;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-sunken);
+}
+.catalog-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 6px 11px;
+  border-radius: 6px;
   color: var(--muted);
-  position: relative;
+  font-size: 13px;
+  white-space: nowrap;
 }
-.main-nav a.active,
-.main-nav a.router-link-exact-active {
+.catalog-switch a:hover {
+  color: var(--text-secondary);
+  background: var(--surface);
+}
+.catalog-switch a.active,
+.catalog-switch a.router-link-exact-active {
   color: var(--accent-text);
+  background: var(--accent-softer);
   font-weight: 600;
-}
-.main-nav a.active:after,
-.main-nav a.router-link-exact-active:after {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 17px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 4px;
-  content: "";
 }
 .site-footer {
   margin-top: 55px;
@@ -186,7 +202,6 @@
 @media (max-width: 1190px) {
   .main-nav {
     margin-left: 0;
-    gap: 26px;
   }
 }
 @media (max-width: 900px) {
@@ -197,7 +212,7 @@
     display: none;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 780px) {
   .site-header {
     height: auto;
     min-height: 98px;
@@ -220,17 +235,34 @@
   .main-nav {
     width: 100%;
     order: 3;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: flex-start;
     height: 46px;
   }
-  .main-nav a {
+  /* 手机端将辅助按钮放到导航行右侧，避免占用品牌和工具区域。 */
+  .header-inner {
+    position: relative;
+  }
+  .header-guide {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+  }
+  .catalog-switch a {
+    min-height: 34px;
+    padding: 6px 9px;
     font-size: 12px;
   }
-  .main-nav a.active:after,
-  .main-nav a.router-link-exact-active:after {
-    bottom: 2px;
+}
+@media (max-width: 360px) {
+  /* 窄屏保留目录切换与右侧入门按钮之间的空隙。 */
+  .catalog-switch a {
+    padding-inline: 6px;
   }
+  .header-guide {
+    padding-inline: 8px;
+  }
+}
+@media (max-width: 700px) {
   .footer-inner {
     align-items: flex-start;
     gap: 20px;

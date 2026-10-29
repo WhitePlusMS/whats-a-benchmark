@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createMemoryHistory, createRouter } from "vue-router";
-import { benchmarks } from "../src/content/catalog";
+import { benchmarks, embodiedBenchmarks } from "../src/content/catalog";
 import {
   catalogStats,
   createCatalogQuery,
@@ -159,4 +159,22 @@ test("leaving the catalog cancels pending filter replacements", async () => {
   await Promise.all(pending);
 
   assert.equal(router.currentRoute.value.path, "/other");
+});
+
+test("具身目录只包含具身评测，同一评测可按多个任务找到", async () => {
+  const router = createRouter({
+    history: createMemoryHistory(),
+    routes: [{ path: "/embodied/", component: { template: "<div />" } }],
+  });
+  await router.push("/embodied/");
+  const catalog = createCatalogQuery(router);
+  assert.equal(catalog.results.value.length, embodiedBenchmarks.length);
+  assert.ok(!benchmarks.some((item) => item.id === "robotwin-2"));
+  await catalog.setFilter("category", "bimanual");
+  assert.ok(catalog.results.value.some((item) => item.id === "robotwin-2"));
+  await catalog.setFilter("category", "manipulation");
+  assert.ok(catalog.results.value.some((item) => item.id === "robotwin-2"));
+  assert.equal(router.currentRoute.value.path, "/embodied/");
+  assert.ok(filterCatalog(parseCatalogQuery({ q: "bimanual" }), true).some((item) => item.id === "robotwin-2"));
+  assert.deepEqual(filterCatalog(parseCatalogQuery({ q: "Agent 与工具使用" }), true), []);
 });

@@ -1,5 +1,73 @@
 # 更新说明
 
+## 2026-10-29 — 发布具身评测与页面更新
+
+- 范围：提交 src、scripts、tests 的现有页面与样例改动，以及 content 中新增评测、媒体和许可、相关研究文档；更新本日志。具体文件及差异以 Git 提交为准。
+- 原因与影响：发布当前工作区的具身评测、样例展示和目录体验改进；本地原型和技能配置不纳入发布。
+- 验证：串行运行 npm test（48 项通过）和 npm run build（292 个静态页面通过检查）。
+
+
+
+## 2026-10-28 — 整理具身专区详情与关联方案
+
+- 用户反馈：详情展示由助手根据实际数据选择，不能为套统一格式丢失更合适的内容；相关数据集和模拟器在详情关联并明确类型，评测版本和协议不同应分别记录。
+- 文件与影响：更新 `.scratch/embodied-benchmarks/issues/04-detail.md`、`05-relations.md`、`06-handoff.md` 和 `map.md`；新增 `spec.md` 汇总入口、分类、灵活样例展示、资源关系、官方数据核验与验收。规划完成，后续真实数据和许可仍需逐项核实；没有修改正式页面、组件或数据。
+
+
+## 2026-10-28 — 确认具身评测分类及筛选范围
+
+- 用户决定：按任务能力分类，允许单个评测归入多个分类但只维护一份条目；专区只按任务筛选，仿真/真机、机器人类型、输入动作及成功条件等放在详情页，未公开时如实标明。
+- 文件：更新 `.scratch/embodied-benchmarks/issues/03-taxonomy.md` 和 `map.md`；仅规划讨论，不修改产品页面、数据或服务。
+
+
+## 2026-10-28 — 确认具身专区复用现有目录界面
+
+- 用户决定：具身专区首页分类完全参考现有 LLM 评测目录，保持同一套分类、筛选、卡片和界面样式；临时 A/B/C 原型只作为讨论记录。
+- 文件：更新 `.scratch/embodied-benchmarks/issues/02-prototype.md` 的决策结果及 `map.md` 索引。具身领域分类、额外字段和资源关系仍待讨论，不改正式页面、数据或服务。
+
+
+## 2026-10-28 — 具身专区首页规划原型
+
+- 原因：用户要求继续讨论专区首页、分类与筛选，准备对比现有目录风格的布局方案。
+- 范围：在 `.scratch/embodied-benchmarks/` 内制作独立临时原型，示例仅用已核对的官方评测名称，不表示已收录；复用现有主题样式，不修改正式页面或数据。
+- 文件与验证：新增 `.scratch/embodied-benchmarks/catalog-prototype.html` 与 A/B/C 三张截图；更新 `issues/02-prototype.md` 链接原型。`npm run typecheck` 通过；浏览器检查切换、任务筛选及 390px 无页面横向溢出。临时静态预览结束后关闭，未运行前后端开发服务；等待用户选择，不修改正式页面。
+
+
+## 2026-10-28 — 确认具身详情样例的过程优先布局
+
+- 用户选择：从三个原型中选择 B，样例按机器人任务步骤呈现，图片或视频与说明相配合。
+- 文件：新增 `.scratch/embodied-benchmarks/issues/07-sample-layout.md` 记录该决定；更新 `map.md` 和 `issues/02-prototype.md`，明确样例卡片已选，专区首页分类与筛选仍待独立讨论。
+- 影响：只更新本地规划；真实媒体和数据的来源、版本、许可仍须逐项核对，未改正式页面、组件或评测数据。
+
+
+## 2026-10-28 — 具身样例卡片原型
+
+- 原因与范围：用户要求继续讨论评测详情页的数据样例展示；在 `.scratch/embodied-benchmarks/` 内制作可切换的临时原型，用于比较结构，不接入正式页面。
+- 文件：新增 `.scratch/embodied-benchmarks/sample-card-prototype.html` 与三个方案截图，更新 `issues/02-prototype.md` 指向原型；沿用项目主题变量及已有按钮、样例样式，任务引用 RoboTwin 官方资料，图形为明确标注的自制示意，不虚构原始数据或评测成绩。
+- 验证与状态：`npm run typecheck` 通过；真实浏览器检查 A/B/C 方案切换及 390px 宽度无整页横向溢出。截图保存在 `.scratch/embodied-benchmarks/`；内置浏览器的安全策略不允许直接导航 file URL。原型待用户选择，临时静态预览检查后关闭；未运行前后端开发服务。
+
+
+## 2026-10-28 — 具身评测样例展示规划与官方资料
+
+- 新增 `docs/research/2026-10-28-embodied-benchmarks-official-evidence.md`，核对七项候选的官方任务、环境、数据入口和许可边界；保留未公开或许可不明确的情况，未复制媒体或修改正式数据。
+- 更新 `.scratch/embodied-benchmarks/issues/01-evidence.md` 和 `map.md`，记录研究结果及本地资料路径；独立工作树写入受限，未建立或推送研究分支。更新 `issues/02-prototype.md`，记录用户对具身评测卡片、真实数据及图片等展示形式的关注。
+- 影响：仅规划和资料记录，正式界面与数据未更改；未运行构建或开发服务。
+
+
+## 2026-10-28 — 明确具身专区前端复用约束
+
+- 用户要求：具身专区前端样式不得重复造轮子，优先沿用项目既有能力。
+- 修改文件：更新 `.scratch/embodied-benchmarks/map.md` 及界面原型、详情样例两项决策记录，明确复用导航、主题变量、筛选、卡片、详情和样例组件；具身场景确有缺口时才说明并最小扩展。
+- 影响：仅调整本地规划文档，未修改页面、样式、业务数据或运行服务；不涉及编译变更。
+
+
+## 2026-10-28 — 具身智能专区规划地图
+
+- 原因与范围：按用户调用的 wayfinder 为具身智能专区梳理入口、任务分类、真实样例及资源关系；用户选择顶部独立入口、机器人及其他物理交互评测、评测为主且关联资源分类呈现。
+- 文件：新增 `.scratch/embodied-benchmarks/map.md` 和六个决策问题；作为本地 Markdown 跟踪记录，定义调研、界面原型、分类、详情、资源关系和实施说明的依赖，不改正式页面、数据、服务或配置。
+- 验证：检查本地地图与票据路径、类型及依赖；已将官方资料与样例调研问题交由独立研究智能体处理；界面决策仍在进行，不代表已完成设计或开发。
+
+
 ## 2026-10-28 — 发布详情页布局调整
 
 - 用户授权：将本次详情页样式和间距调整发布到 GitHub Pages；提交范围限定为 `src/styles/detail.css` 与本日志中本次详情页相关记录，不包含其他工作区改动。
@@ -97,6 +165,92 @@
 - 浏览器验证：对构建后的临时本机静态预览实际检查 1280px 桌面与 390px 手机、浅色与深色共四种状态；图标均加载成功、无横向溢出，实际为 36×36 / 32×32。首次预览因本机 Python 的 image/svg MIME 映射失败，仅修正临时进程为 image/svg+xml 后重验成功，不归因缓存、不修改系统设置。
 - 修改影响与边界：本轮只接入所选标识，未编辑既有 README/指南/案例改动或业务接口；不调用网页端 GPT、不提交推送、不发布。未运行 npm dev/start:dev；临时静态验证服务和浏览器标签已清理，用户已有服务未操作。追加本条按字节保留既有日志。
 
+## 2026-10-21 — 阅读指南改为真实案例入门页
+
+- 用户授权与原因：用户否定沿旧有十二节做局部润色，确认重新审视页面必要性与职责后实施界面优化；指南聚焦通过真实任务理解 benchmark，再进入目录和详情。
+- 原则与风格：遵循最简、单一职责、严格类型和原始资料可验证原则；使用 ui-craft 梳理层级，沿用现有字体、主题令牌、按钮与轻微浮现，不引入依赖或另一套视觉系统，不调用网页端 GPT 评审。
+- 页面文件：重写 `src/views/GuideView.vue`，以简短定义、问答/代码/工具三类真实任务、案例到分数的流程、目录入口组成；复用 CMMLU、HumanEval、原版 τ-bench 已收录的案例集合与 SampleViewer。中文导读分别说明输入、输出目标、判分和边界，按三个官方仓库及已核实方法整理，不把首题当作整个评测定义，不将原始记录说成本站执行结果；τ-bench instruction 明确为模拟用户设定。
+- 样式文件：新增 `src/styles/guide.css` 作为 GuideView 的 scoped 私有样式，包含任务类型切换、案例层级、评分流程、手机布局及 280ms 短位移浮现，响应减少动态效果设置；在指南内去掉原选项已含 A–D 时的重复列表标记，原始选项文字保留。手机标题按两个完整词组换行，窄屏按钮内边距收紧。`src/styles/reading.css` 删除旧指南专用 lesson/task-entry 规则，保留归档、对比和关于页共享规则。
+- 查看器复用：`src/lib/sampleLocation.ts` 仅在对应 benchmark 详情页写入案例 URL；指南换题与阅读模式只改本地状态。`tests/sample-location.test.ts` 保留详情深链接、连续操作和历史返回检查，增加指南嵌入后的 URL/query/锚点保持回归。
+- 评分定位：浏览器检查发现首次异步加载案例会推移评分段。`src/components/SampleViewer.vue` 新增 DOM 渲染完成后的 settled 通知，`src/views/GuideView.vue` 仅在首次加载且当前为 #metrics 时校准一次定位；后续换题不主动滚动。详情页原有 `/guide/#metrics` 链接继续定位到实际评分说明。
+- 原始资料与影响：436 个 `content/` 源文件哈希与本轮基线完全一致；三个集合的 4/6/3 条构建案例分别与原始集合逐项相同，题面、答案、原始数据、逐题解析、来源、许可和附件保持。本轮只在本地实施和验证，尚未提交或推送。
+- 检查结果：严格 TypeScript、源码格式及本轮代码差异空白检查通过；47/47 项测试通过；正式子路径构建验证 220 个静态页及 Pages 404。复跑曾因 C 盘临时目录 ENOSPC 产生 10 个资料复制失败，改用本任务 E 盘 TMP/TEMP 后完整通过；两次日志均保留，不修改系统环境设置或清理用户文件。
+- 浏览器检查：在 1280、390、320 宽度检查三类任务切换、选项与答案展开、换题后状态重置、原始代码测试字段和工具源动作、详情往返与评分深链接/刷新定位、键盘焦点、浅深色和减少动态效果；最终检查无横向溢出，评分标题在手机页眉下可见。保存真实构建截图，不将响应式模拟称为真机验收。
+- 并行工作隔离：期间共享 dist 被另一轮根路径构建覆盖，且出现 Logo 的 `src/App.vue`、`src/styles/layout.css`、`public/favicon.svg` 与 `assets/brand/` 改动；本轮保留这些源文件，改用独立源快照与产物复核。临时 Python 服务器受 Windows SVG MIME 映射影响，已在忽略目录的预览服务中明确使用 image/svg+xml，Logo 实际加载通过；正式应用不添加此服务或 MIME 变更。
+- 记录与清理：更新本 `UPDATE_LOG.md`；研究事实、计划、构建/测试日志、源快照、哈希、浏览器检查与桌面/手机截图位于忽略目录 `artifacts/research/2026-10-21-guide-rebuild/`。仅启停本任务只读预览，35756、23056、37112 三个预览进程均已停止，4191 无监听；用户原有服务保持，浏览器模拟设置已恢复。
+
+
+## 2026-10-21 — 移除脑形，以对号为主体重做三版 Logo
+
+- 用户反馈与原因：用户明确排斥大脑造型，同时接受保留对号；本轮彻底移除脑形和仿生细节，只围绕对号与一个简单领域提示构造候选，遵循最简原则和一眼识别要求。
+- 三版构思：A 回答气泡与对号；B 引号与对号；C 题卡与对号。对号均为主体，深蓝与橙色继续作为探索配色；用户尚未确认任何一版或配色，不视为正式品牌决定。
+- 生成与修正：使用 logo-design、icon-design 和内置 image_gen，A/B/C 分别独立生成。B 初版单引号近似数字 6，已查看并以该图为本地编辑目标，只改成双引号，保留初版。四张位图均为 1536×1024、RGB；没有引入旧脑形图作为参考。
+- 新增文件：artifacts/logo-design/2026-10-21-check-v12/ 下 DESIGN.md 保存反馈、定位、构思、观察、边界和四次完整提示词；a-answer-check-v1.png、b-quote-check-v1.png、b-quote-check-v2.png、c-task-check-v1.png 保存原图副本。内置生成原文件路径见 DESIGN.md，全部保留。
+- 实际检查：已查看四图，B 的数字歧义经一次定向修正；PNG 可读性与尺寸检查通过，四份副本与原图 SHA-256 一致，新增 Markdown 与本条日志检查行尾空白。仍属位图候选，未宣称完成纯色 SVG、小尺寸验收或正式站点接入。
+- 修改影响：仅新增候选及记录并追加本日志；应用代码、内容数据、当前 Logo/favicon 未修改，无 TypeScript 变更，不运行无关构建。不提交推送、不启停用户服务、不调用网页端 GPT。按字节保留既有日志内容。
+
+## 2026-10-21 — Logo 改为脑形与单笔勾的简化稿
+
+- 用户反馈与原因：上一轮图形更繁琐，一眼看不出是什么；本轮重新审视方向，停止在芯片/题卡/线路/选项/评分流程上继续补细节，以第一眼识别和单一主意为首要标准。
+- 核心原则：遵循最简原则，一个脑形指向模型智能，一笔勾指向评测；任务、样例和判分信息由项目文字及页面解释。参考logo-design的critique/mark-types规则，使用已读imagegen/brandkit方法进行位图概念探索。
+- 两轮生成：内置image_gen先生成同一概念的A实心、B负形、C带状三种处理，1774×887、RGB；目视发现A/C有云形歧义后，只给A加一道左右脑分界，并保留醒目的橙勾，生成1536×1024、RGB单稿。不增加新的内部图案，主任务选取修正对象不代表用户已定稿。
+- 新增文件：artifacts/logo-design/2026-10-21-simple-v11/ 下 DESIGN.md 保存反馈、重新选定的单一概念、两轮观察、实际尺寸与完整提示词；concepts-v1.png 保存三种构造，brain-check-v2.png 保存一次定向修正后的单稿。
+- 原图保留：C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/ 下 exec-6cd88e19-a509-4454-85d1-9c131e4d602d.png、exec-4b09161f-329d-43d8-bc38-5007f7a309f7.png。第二轮以第一轮该本地文件为明确编辑目标，原文件不覆盖。
+- 实际检查：两轮图均已查看，主任务认为第二稿左右脑分界更明确；不把该判断说成他人识别测试通过。检查PNG可读性、原图/副本哈希和新增Markdown空白；没有宣称完成SVG、真实16px/32px或正式站点接入验收。
+- 修改影响：仅新增候选和记录，正式应用、内容/案例数据、当前Logo/favicon与配色未修改；无TypeScript变更，不运行无关应用构建，不提交推送、不启停用户服务、不调用网页端GPT。追加日志按字节保留既有内容。
+
+## 2026-10-21 — 修正 Logo 与大模型评测的语义关系
+
+- 用户指出：OPC UA参考有明确领域联系，而上一轮四稿仍无法说明与本项目的关系；本轮确认泛化的语言、智能、问号或观察不足以代表大模型评测资料库。
+- 修改原则：遵循最简原则，只新增候选与记录，优先建立模型与任务/答案/评分参照之间的具体关系，再比较视觉造型。图形表达评测主题，不扩展为本站执行测试或生成模型排行的功能。
+- 新构思：A模型答卷，芯片通路直接接入题卡选项；B能力参照，模型内核与评分指针/刻度建立测量关系；C同题对照，双模型核心面向同一题目窗口。A是当前语义较直接的方向，C现有形体较复杂并有单一芯片被分半的读法，不把构思说明等同于画面已经表达成功。
+- 生成方法：内置image_gen全新生成三稿横向比较板，未输入旧图编辑，沿用imagegen/brandkit方法。图中使用项目名与“大模型评测图鉴”说明；深蓝/橙色仍为探索配色。
+- 新增文件：artifacts/logo-design/2026-10-21-domain-v10/ 下 BRIEF.md 保存用户纠正、项目事实、构思与完整提示词；RESULTS.md 保存实际结果、观察及边界；concepts-v1.png 为2048×768、RGB、不透明原图副本。生成源文件 C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-4c6b6fda-fad4-4ded-8e1b-a7364a630e1f.png 保留未动。
+- 实际检查：已查看三稿、编号与中文项目名称/说明；PNG可读取并校验副本哈希，新增Markdown检查空白。当前为位图语义探索，未宣称完成SVG、16px/32px或正式站点验收。
+- 修改影响：未修改应用代码、内容/案例数据、正式Logo/favicon/配色，未提交推送、启停用户服务或调用网页端GPT。没有TypeScript变更，不运行无关应用构建；追加日志按字节保留既有内容。
+
+## 2026-10-21 — 阅读指南内容审阅与前后对照建议
+
+- 用户要求与原因：按第一性原理和金字塔原则审阅“阅读指南”是否有不准确或多余内容，先展示哪里有问题、原来是什么、建议改成什么；本轮不实施页面改版。
+- 研究文件：新增`docs/research/2026-10-21-reading-guide-primary-facts.md`，记录官方指标、综合指数、Arena排名、GDP.pdf费用、创作评分和评测范围；背景检索只描述事实，主审复核关键原始定义并作编辑判断。AA摘录经主审压缩，保留来源及访问限制。
+- 审阅文件：新增`docs/reviews/2026-10-21-reading-guide-audit.md`，逐项保留12节原文字并给出建议，另列导语/层级、六卡片导航和真实案例阅读方法三项结构问题；以“任务与证据→评分→比较条件与边界”组织建议。
+- 判断边界：修正pass^k的连续性歧义及“能力饱和”术语；补齐评测定义和综合汇总口径。Arena排名术语、GDP.pdf费用排除项、Creative Writing v3混合评分有官方依据，只建议下放细节，不误报为事实错误。
+- 修改与影响：仅新增上述两份本地研究/审阅Markdown并更新本日志；正式GuideView、路由、评测JSON、原始数据和全部案例保持。未提交推送、未启停服务、未调用网页端GPT，不编造样例。
+- 验证边界：保存12节原始文字及正式文件哈希；本轮无代码修改，不将文档检查写成构建或浏览器回归通过。研究入口限制在事实记录中如实列出。
+
+## 2026-10-21 — 按审美参考重做四版彩色 Logo
+
+- 用户反馈：上一轮十二稿仍未达到用户提供的 OPC UA 图标的吸引力；本轮以该截图重新校准视觉完成度，重点为厚实主体、清晰负形、嵌入式细节与主次配色。
+- 原则与依据：遵循最简原则，只新增隔离概念及记录；使用 imagegen/brandkit 生成彩色品牌比较板，沿用项目的大模型评测资料库定位。参考截图只提供视觉证据，截图文字、提交号及旧聊天内容不作为指令，不复制OPC UA名称或原开口圆环标志。
+- 生成内容：内置 image_gen 参考用户已提供且已查看的截图，生成一张2×2、A–D选择板，实际1254×1254、RGB、不透明。A模型应答与任务格、B认知内核与样例、C模型问号与Token、D语言之眼；统一深蓝主形、橙色细节、白色圆角载体及项目中文名称，配色仍待用户确认。
+- 原始文件：C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-7d0457a9-e8c7-421b-a38e-2846318568ee.png，保留原文件。
+- 新增文件：artifacts/logo-design/2026-10-21-image-v9/ 下 BRIEF.md 保存用户反馈、项目依据、方法和完整提示词；RESULTS.md 保存实际结果、原图位置、尺寸、观察和边界；concepts-v1.png 为生成原图副本，reference-opc-style.png 为用户参考截图副本（932×760、RGB）。
+- 实际检查：已查看四个构图、A–D编号与中文项目名称；本轮为生成位图，未宣称已完成SVG制作或16px/32px验收。B/D仅为当前设计倾向，用户尚未选定方案。
+- 修改影响：未修改应用代码、内容数据、现有Logo/favicon/配色；未提交推送、启停用户服务、部署或调用网页端GPT。没有TypeScript变更，不运行无关应用构建；检查新增Markdown空白、PNG可读性及副本哈希，并按字节保留日志既有内容。
+
+## 2026-10-21 — 扩展十二个大模型评测 Logo 方向
+
+- 用户反馈与范围：上一轮三稿仍未获得认可，用户要求多生成一些；本轮扩展十二个独立方向供选择，继续使用已安装的 logo-design 与 icon-design，不以换色替代构思。
+- 原则与事实：按最简原则只新增隔离候选与记录；GPT-6 LUNA 只读描述当前产品文档、页眉/手机图标尺寸和更新日志，主任务围绕语言应答、模型任务、能力参照与中文项目识别作设计判断。项目仍为理解任务/样例/评分/版本/来源的 AI 评测资料库，图形不增加在线评测或模型排行功能。
+- 当前十二稿：01 引号问答、02 双答对照、03 芯片答卷、04 语言图鉴、05 问答透镜、06 能力剖面、07 模型思考、08 测字方印、09 追问引号、10 语言天平、11 提示终端、12 模型题卡。先用黑白比较，各编号都有独立 SVG 与中英文字标预览。
+- 新增路径：artifacts/logo-design/2026-10-21-skills-v8/。build_concepts.py 保存几何与生成逻辑；BRIEF.md/RESULTS.md 保存要求、事实、文件说明、检查及边界；concepts-v1/v2.json 保存各稿一句话含义、构造和图形。concept-01..12-v1/v2.svg 共24份符号，匹配的 -lockup- 文件共24份；中文和英文字体转成路径，不分发字体文件。
+- 选择板与检测：01-06-v1/v2.svg、07-12-v1/v2.svg、contact-sheet-v1/v2.svg 共六份板；首轮两张分板PNG在 previews-v1/，第二轮两张分板PNG及两轮总览PNG在当前目录。另有 wordmark-example-v2.png、audit-v1/v2.json、comparison-and-shelf-v2.html/png；参考标志仅在对照页用于尺度观察，没有放入候选图形。
+- 两轮迭代：目视首轮十二稿后，01 收短45度尾部，04 统一书页与引号的15度方向，06 将易读成风车的雷达形改成能力柱形，08 精简字体路径小数精度，09 收短引号底点并修整斜边，12 增加题目选项格；保留所有 v1，不将其覆写。
+- 实际验证：54份SVG的XML解析、生成器语法及两轮实际运行成功；查看两轮分板、v2字标和十二稿单色/反白/同架对照。v2十二份符号均无结构FAIL，08保留字体原有斜笔画提示，06/07为光学留白INFO；结构评分不当作美观或语义证明。符号不含活文字、位图、滤镜、蒙版或外链。
+- 小尺寸边界：分板显示真实64/32/16px及40px反白；32px时主要轮廓可辨，16px时08中文字与边框、03纸页行、12选项格精度有限。选定后再制作该方向的小尺寸稿，不宣称十二稿都完成最终favicon验收；中文字印、终端和天平的领域联想差异见RESULTS.md。
+- 修改影响：本轮未修改应用代码、内容数据、正式Logo/favicon/配色，未提交推送、启停用户服务或调用网页端GPT；没有TypeScript变更，不运行无关应用构建。追加日志时按字节保留已有内容；本轮新增文件执行语法、XML和空白检查，保留其他任务的既有改动。
+
+## 2026-10-21 — 安装 Logo/Icon Skill 并绘制三版 SVG 候选
+
+- 用户授权：安装前次推荐的前两个 Skill，结合本站大模型评测资料重新设计几版直观、正式的 Logo，提供选择。
+- 安装：使用系统 skill-installer 安装 kaankiziltug/logo-design-skill 的 skills/logo-design（download 方法）及 omer-metin/skills-for-antigravity 的 skills/icon-design（git 方法），分别位于 C:/Users/admin/.codex/skills/logo-design 与 C:/Users/admin/.codex/skills/icon-design；均为安装时 main 分支。没有另外安装运行依赖。
+- 原则与依据：沿用项目真实定位及用户对抽象字母、蓝橙配色、普通书页与 AI/LLM 贴字的反馈；使用 logo-design 的概念筛选、SVG 构造及可视化检查，结合 icon-design 的负形、光学对齐和小尺寸规则。由 GPT-6 LUNA 完整描述相关技能脚本和日志文件，主任务检查实际图形并作设计判断；没有调用网页端 GPT。
+- 候选与迭代：在 artifacts/logo-design/2026-10-21-skills-v7/ 新增 A「问答刻度」、B「模型应答」、C「智能刻度」三稿，每稿保存 concept-{a,b,c}-v1.svg 与 v2.svg。v2 中 A 缩短尾部并调整应答点，B 下移图形并扩大眼部与检验负形间隔，C 合并脑沟负形并调整垂直位置；全稿先以黑白比较形状。
+- 新增文件：BRIEF.md 记录项目事实、要求和十个概念筛选；RESULTS.md 记录安装来源、迭代、实际检查及边界；build_lockups.py 将本机字形转换成路径，生成两轮 concept-{a,b,c}-lockup-v1/v2.svg，不分发字体文件。overview-v1/v2.svg/png 为两轮概念板；inspection-v2.svg/png 为真实尺寸与反白板；size-and-context-v2.html/png 为技能生成的完整检测页；audit-v1/v2.json 保存结构审计结果。
+- 实际检查：15 份 SVG 的 XML 解析、字标脚本语法及实际运行均通过，Chrome 渲染后的两轮概念板、完整检测页和紧凑检查板已目视查看。v2 三稿均无结构 FAIL；B/C 无 WARN，A 保留气泡尾部斜角提示和纵向留白提示，不将脚本评分当作美观证明。符号均使用 currentColor、方形画布与真实负形，不含活文字、位图、滤镜或外链资源。
+- 尺寸与使用边界：查看真实 16/24/32/36/48px 浅深底；32/36px 主轮廓和负形可辨，16px 时 B 的模型轮廓最直接，A 的小点和 C 的脑沟精度有限。深底使用白色符号，外部 img 不能直接继承父级文字色；选稿后再制作最终 favicon 变体。通用检测页场景不是本站新增功能。
+- 修改影响：本轮只安装用户授权的两个技能、添加隔离候选文件及追加本日志，尚未选定或替换正式 Logo；未修改应用 TypeScript/Vue、内容数据、现有 favicon 或配色，未提交推送、启动或终止用户服务。没有 TypeScript 变更，因此不运行无关的应用构建；图形检查不代替正式站点接入验收。追加后核对原日志字节保留并执行差异空白检查。
+
 ## 2026-10-21 — 移除发布资料的全站导航入口
 
 - 用户授权与原因：发布资料只选择归档了部分模型报告，不作为完整模型栏目维护；移除顶部和页脚的“发布资料”入口，让主要导航聚焦评测目录和阅读指南。
@@ -119,6 +273,97 @@
 - 首次发布：提交85826ee已推送且Pages工作流39527486053的build/deploy均成功；线上复核触发的CMMLU同项文字同步后，严格类型与220页正式构建再通过，54个修订说明字段出现在静态HTML，案例/附件哈希仍全部一致。
 - 最终内容版验收：一致性提交55dc9cb已推送，Pages工作流39527939034的build/deploy均success。线上24页54处修订说明可见，72次桌面/手机布局检查全部通过；186份案例JSON逐字节相同，214个已发布附件HTTP正常，另4个既有许可源文本未进入构建。全量215个sampleSet、218个附件源文件哈希及非目标191份JSON保持。已停止自建只读预览进程34388，4191无监听；更新发布验收记录并保留截图。
 - 验收文档校对：MemoryArena文件清单误多列dataProfile.files，已按实际修改清单去掉；仅更正文档，不改变JSON、页面或任何验证结果。82份本轮无关的既有改动文件字节保持，范围提交的diff检查通过。
+
+## 2026-10-21 — 检索专用 Icon 与 Logo 设计 Skill
+
+- 原因与范围：用户要求查找专门进行 ICON 设计的 Skill；本轮只检索、核对来源和说明，不安装 Skill 或生成新 Logo。
+- 检索方法：检查本地技能目录，阅读 skill-installer 说明并尝试官方 curated 列表；该接口返回 HTTP 403，未据此判断官方目录内容。改用公开检索，核对第三方仓库的原始 SKILL.md，并查看图标规则及测试说明。
+- 候选一：[kaankiziltug / logo-design](https://github.com/kaankiziltug/logo-design-skill/tree/main/skills/logo-design)：正式品牌标志的概念筛选、SVG 构建、参考案例，以及小尺寸、单色、反白等测试；源文件列有 SVG 检查、概念板、预览和导出脚本，适合作为本项目标志设计的主流程。
+- 候选二：[omer-metin / icon-design](https://github.com/omer-metin/skills-for-antigravity/tree/main/skills/icon-design)：图标网格、光学对齐、线宽、语义选择、不同尺寸简化及 SVG 规范，适合补充图标与 favicon 的细节检查。
+- 候选三：[karak / icon-design](https://github.com/karak/karak-claude-plugin/tree/main/skills/icon-design)：应用图标、favicon、PWA，以及平台规格与 SVG/PNG 导出流程，偏应用图标交付。
+- 推荐与边界：本轮推荐候选一用于正式 Logo 构思和 SVG 交付，候选二辅助小尺寸与图标规范；以上为原始说明核对，不宣称已验证其脚本运行或实际设计质量。
+- 修改文件与影响：遵循最简原则，本项目只在 `UPDATE_LOG.md` 增加检索记录；未安装社区 Skill、执行其脚本、改正式资产或应用代码，未提交推送、启停服务或使用网页端 GPT。
+- 验证：无 TypeScript 变更；更新日志执行差异空白检查，并按哈希核对已有内容保持不变。
+
+## 2026-10-21 — 围绕大模型评测重新设计四版 Logo
+
+- 修改原因：用户明确否定在书页上添加 AI/LLM 字样的处理，要求重新结合大模型评测设计，兼顾直观与正式标志的表现。
+- 设计原则：遵循最简原则，以“模型被提问、回答被检验、能力被衡量”为核心；使用 brandkit 的定位、隐喻融合及负形方法，每个图形聚焦两个相关含义，不依赖 AI/LLM 字样。
+- 新候选：内置 `image_gen` 全新生成 2×2、01–04 选择板，实际 1254×1254；01 芯片与问题、02 对话与刻度、03 脑形与量尺、04 模型头像与答卷，统一黑白比较轮廓。本轮未输入旧书页稿、OPC UA 或第三方标识。
+- 原图：`C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-f0776690-6921-429c-b2a2-b85ed200be6d.png`。
+- 新增生成记录：同目录 `logo-concepts-20261021-model-evaluation-v6.md`，保存用户要求、四种构图、品牌资料调研入口、实际尺寸、验证边界及完整提示词；调研未复制其他品牌标识或引入其业务功能。
+- 修改文件与影响：本项目仅在 `UPDATE_LOG.md` 增加此记录；候选保留在生成目录，待用户选择具体方向，未修改应用代码、正式 Logo、favicon、Hero、配色或文案，未提交推送、启停服务或使用网页端 GPT。
+- 检查：已目视检查四个构图、编号和项目名称；本轮为位图候选稿，未宣称完成小尺寸或矢量验收，无 TypeScript 代码变更。更新日志执行差异空白检查并按哈希核对其余原内容保留。
+
+## 2026-10-21 — Logo 补充 AI 与 LLM 评测领域信息
+
+- 修改原因：用户指出此前图形没有体现 benchmark 与 LLM 的关联；在已确认的题卡、书页方向上修正核心语义，遵循最简原则，直接将 AI/LLM 与问题放入图形。
+- 本地依据：只读核查产品说明、分类、215 份条目字段与代表任务；项目覆盖知识、代码、推理、多模态、Agent 等 AI/大模型能力评测资料，不将这些内容一概描述为纯文本问答。既有品牌素材对应发布者或维护者，不当作本站自有标识。
+- 候选细化：内置 `image_gen` 以上一轮黑白稿为基础，生成左右两版，实际 1774×887；A「AI 题卡」在纸页内放 AI 与问号，B「LLM 书页」在左右页放 LLM 与问号，保留黑白并展示项目名及候选说明“看懂大模型评测”。
+- 新原图：`C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-a1443cf1-65b5-4b2b-94a4-3290940a9e0d.png`；编辑基础为同目录 `exec-afddba2e-973f-4df5-9b27-b540220ccbde.png`。
+- 新增生成记录：同目录 `logo-concepts-20261021-ai-llm-v5.md`，记录用户反馈、产品依据、素材边界、图片路径、实际尺寸、范围及完整提示词。
+- 修改文件与影响：本项目仅在 `UPDATE_LOG.md` 新增此条；候选仍待用户选定，未替换应用代码、正式 Logo、favicon、Hero、配色或站点文案，未提交推送、启停服务或调用网页端 GPT。
+- 检查：已目视确认 AI/LLM、问号、项目名及说明可读；本轮是位图概念稿，无 TypeScript 变更。更新日志执行差异空白检查，并按哈希核对既有内容保留。
+
+## 2026-10-21 — 确认题卡书页方向并生成黑白细化稿
+
+- 用户选择：明确选择“题卡或书页：能直接联想到看题、查资料”；本轮按该方向继续，尚未确定具体稿号与最终配色。
+- 生成内容：内置 `image_gen` 生成新的 2×2 黑白候选图，实际 1254×1254；A 单页题卡、B 带选项的题目页、C 打开的书、D 带书签的手册，以具体对象轮廓比较构图。
+- 候选原图：`C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-afddba2e-973f-4df5-9b27-b540220ccbde.png`。
+- 新增生成记录：同一目录下 `logo-concepts-20261021-paper-book-v4.md`，保存用户确认、四种构图、原图路径、范围与完整提示词。
+- 修改文件与影响：遵循最简原则，本项目仅在 `UPDATE_LOG.md` 增加本条记录；候选及提示词保留在生成目录，不修改应用代码、正式 Logo、favicon、Hero 或配色，不提交推送、启停服务或调用网页端 GPT。
+- 检查：已目视查看四个对象、A–D 标号及项目中文名称；本轮为位图概念预览，无 TypeScript 变更。更新日志执行差异空白检查，并按哈希核对其余已有内容保持不变。
+
+## 2026-10-21 — Logo 改为题卡、书页与中文字标对照
+
+- 修改原因：用户再次反馈方案过于抽象、配色难看；重新审视设计方向，遵循最简原则，用可直接识别的对象和完整中文名称表达项目。
+- 本轮候选：内置 `image_gen` 新生成三列两排选择板，实际 1774×887；A「题卡」、B「书页」、C「中文字标」，上排黑白、下排对应配色。A 用灰蓝/浅蓝，B 用墨绿/米白，C 保留黑白及少量浅灰强调；本轮未使用此前蓝橙截图作为图像输入。
+- 候选原图：`C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-bb98c120-2395-4778-9ec3-650fdd4b346e.png`。
+- 新增生成记录：同一目录下 `logo-concepts-20261021-literal-v3.md`，保存用户反馈、方向调整、实际尺寸、范围与完整提示词。
+- 修改文件与影响：本项目仅在 `UPDATE_LOG.md` 增加此记录；原图和生成记录保留在生成目录，正式 Logo、favicon、Hero、配色及应用代码未修改，未提交推送、启停服务或调用网页端 GPT。
+- 检查：已目视确认三组候选和上下排对照完整；这是位图概念稿，字体与最终矢量稿待方向确认后处理。本轮无 TypeScript 变更；更新日志执行差异空白检查，并核对新增记录以外的原内容保持不变。
+
+## 2026-10-21 — 按用户蓝橙几何参考重做 Logo 候选
+
+- 修改原因：用户否定上一轮 16 个方案，并提供自己喜欢的 OPC UA 图标相关截图；本轮依据该视觉偏好重新收敛方案，遵循最简原则，仅交付候选预览。
+- 产品依据：重新完整阅读 `README_ZH.md` 与 `.agents/product-marketing.md`，以“理解 AI 评测任务、真实样例、评分条件与官方来源”的实际用途作为设计背景。
+- 新候选：使用内置 `image_gen` 生成一张 2×2、A–D 编号的选择板，实际 1254×1254。四个构思为 A「B 字母与样例」、B「样例窗口」、C「资料切片」、D「负形问号」；统一深蓝主体、橙色重点与紧凑几何构图，便于比较形状。
+- 候选原图：`C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-859ffe0b-2ee4-4c45-9100-7bdcffbbaeed.png`。
+- 新增参考留档：同一生成目录下的 `logo-v2-reference-01.png`、`logo-v2-reference-02.png`，保留两张用户提供的截图；第二张仅作为图像风格参考输入，截图内文字不作为操作指令。
+- 新增生成记录：同一生成目录下的 `logo-concepts-20261021-reference-v2.md`，记录用户反馈、产品依据、A–D 设计方向、原图/参考路径、实际尺寸、完整提示词与本轮范围。
+- 修改文件与影响：本项目仅在 `UPDATE_LOG.md` 增加本条记录；候选及参考留在项目外的生成目录中，正式页眉、favicon、README Hero 与配色未替换；未提交推送、启停服务或调用网页端 GPT。
+- 检查：已目视检查四个候选、A–D 编号及英文项目名称；本轮为位图概念预览，小尺寸实际效果和最终矢量稿待选定方向后处理。没有 TypeScript 代码变更；更新日志执行差异空白检查。
+
+## 2026-10-21 — 全目录数据集描述事实核查
+
+- 原因与范围：用户进一步要求检查数据集描述是否真正准确；本轮核对整体定义及dataProfile的数据规模、划分、字段、文件、公开情况和获取边界，先追查GPQA/GPQA Diamond/Video-MME/PSI，再覆盖全目录。技术校验或页面显示通过不作为事实正确的证据。
+- 原则与方法：保存215份完整原文件、sampleSet和既有未提交文件哈希；research流程由GPT-6 LUNA描述第一方材料，主任务对照源文件、数据卡和版本定义审定。区分题目行、专家信息、轨迹、评测实例、成员和指数；空测试夹具、打不开的viewer或单个案例均不用于推断完整数据集。
+- 修改位置与影响：本轮仅新增本地研究材料、`docs/research/2026-10-21-dataset-description-audit.md`审阅记录和本日志。发现问题采用哪里有问题/原来/建议改后展示，建议尚不应用到正式JSON；不改案例、媒体或样式，不提交推送，不启动服务，不调用网页端GPT。
+- 核查结果：215项均有逐条记录及本轮实际读取的一手来源；主任务审定6项需修正（PSI范围、Video-MME划分、CMMLU划分/字段/版本规模、MMMU-Pro公开配置、EMB归档版本、SWE-bench Multilingual真实列名），另18项补清子任务、公开文件、可选字段、计数单位和版本。其余191项仅表述为本轮已读范围未发现已证实矛盾，不当作全面核实通过；177项仍记录官方披露、版本映射或实际文件等具体边界。
+- 报告文件：新增`docs/research/2026-10-21-dataset-description-audit.md`，包含24项完整“哪里有问题 / 原来 / 建议改后”、215项覆盖矩阵及独立来源索引；正式JSON修改建议尚未应用。保留GPQA 448/198/546、HumanEval 164道Python函数题、LiveCodeBench Pro论文584题等已有正确说明；没有因单段措辞或默认Viewer视图而误改。
+- 直接文件核验：主任务重读GPQA固定公开ZIP并核包含关系、CMMLU全部134个CSV、SWE两个变体固定Parquet schema/count、ArXivLean 46行结构、AA-LCR/Omniscience/SimpleQA-Verified固定CSV、HumanEval全部164条，以及ScreenSpot-Pro固定26个JSON的1581条标注对象；When2Call完整扫描确认held_out_param为可选字段（100/300和1062/3652行），撤回仅凭首行推断字段不存在的误报。只留计数、列名和结构，不向报告增加题面、答案、专家个人信息或媒体。
+- 审计材料：忽略目录`artifacts/research/2026-10-21-dataset-description-audit/`保存215份原文基线、三组来源描述、74/76成功的HF公开metadata快照、主任务重新核对的结构、24项建议、完整主审矩阵及生成脚本；两个401只作为访问状态。没有接受新的gated条款、执行上游评测代码或下载媒体。
+- 收尾验证：215份正式JSON字节哈希及215个sampleSet哈希与开始时相同；已有未提交文件除本日志外哈希不变，Git HEAD与暂存区未变。24项建议的before逐字段匹配原文、215个ID唯一且覆盖完整、Markdown空白和Git差异检查通过；最终记录见审计目录`integrity-check.json`。本轮无TypeScript/功能代码变更，不以构建、单元测试或页面运行代替事实核查；未启动服务、提交推送、部署或调用网页端GPT。
+
+## 2026-10-21 — 新一轮 Logo 候选选择板（待用户选择）
+
+- 修改原因：用户指出当前 Logo 仍为 demo，要求生成多个方案供选择；遵循最简原则，本轮交付候选预览。
+- 现状核查：页眉标识位于 `src/App.vue`，是 36px 的紫底白色书本线稿；浏览器图标位于 `public/favicon.svg`。候选围绕“what's a benchmark? · 到底测什么？”的资料阅读、提问与样例理解展开。
+- 新增预览：使用内置 `image_gen` 生成一张新的 4×4、01–16 编号选择板，实际尺寸为 1254×1254；涵盖问号刻度、阅读页、负形提问、对比括号、字母标志、放大镜、索引、聚焦框、文档、像素、汉字印记等不同方向。
+- 候选图片：`C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/exec-9d2b76c7-7379-4f41-91ea-e9c2f0d36fce.png`；此图为 2026-10-21 新生成的选择板，区别于 2026-09-28 的历史候选。
+- 新增生成记录：`C:/Users/admin/.codex/generated_images/01a15bd0-6f8f-7b91-83cb-9bc5498b7fa3/logo-concepts-20261021.md`，保存工具、实际尺寸、候选原图路径、范围与完整提示词。
+- 修改文件：本项目仅在 `UPDATE_LOG.md` 增加此条操作记录；候选图片及生成记录保留在生成目录中供预览。
+- 影响：尚待用户选择编号；本轮没有修改应用代码、页眉 Logo、favicon 或其他现有素材，也未启动或停止用户已有服务、调用网页端 GPT、提交或推送。
+- 检查：已目视检查原图，确认 4×4 布局完整、01–16 编号齐全、方案构图有差异。此次没有 TypeScript 代码变更，不涉及编译或功能回归；更新日志执行差异空白检查。
+
+## 2026-10-21 — GPQA等四项待提交补充复核
+
+- 授权与范围：用户要求检查此前尚未提交的GPQA、GPQA Diamond、Video-MME及PSI补充。本轮仅复核来源、数据访问与页面显示，不提交推送，不修改这四份正式JSON，不启动开发服务，也不调用网页端GPT。
+- 方法与原则：保存当前HEAD、四份完整文件和全目录sampleSet哈希；research流程下由GPT-6 LUNA描述第一方资料与现有代码，主任务复核判断。不将公开下载入口等同于站内转载许可，不从组成项案例推断PSI题库、权重或运行revision。
+- 本地材料：`artifacts/research/2026-10-21-pending-four-check/`保存开始快照、来源与结构事实；`artifacts/candidates/2026-10-21-pending-four-check/`从当前HEAD导出原始Git对象，仅叠加四份未提交JSON，用已有依赖隔离构建。README、推广素材、技能等既有未提交文件保留。
+- 记录文件与影响：新增`docs/research/2026-10-21-pending-four-check.md`按原来/待提交补充/实测结果记录四项情况；单列GPQA Diamond原有边界句的建议改法，明确仅在通过HF入口取文件时适用该入口条件，未改正式JSON。没有新增或复制受限题目、视频或指数样例。
+- 第一方核查：重新下载作者固定修订ZIP并用公开密码在内存读取，Main 448×78、Diamond 198×78、Extended 546×78及Experts 60×11的列名和哈希与前次一致，只保存元数据；Video-MME样例锚点存在，转载批准条款可见；Meta模型卡明确PSI七成员，第5页JobBench链接注释目标为公开项目官网。
+- 实测验证：HEAD仅叠加四份JSON的隔离候选完成215项/575条案例/19份报告校验、严格TypeScript、46项测试、220静态页与404构建；桌面/手机共10份记录实际CSS宽1405/417/316px均无整页横向溢出，控制台无警告/错误。两GPQA公开下载和原题展示边界分开显示，Video-MME官方样例按钮href正确，PSI实际点击可到JobBench。四份原文件及215项sampleSet哈希保持不变；结束后恢复视口、关闭临时页并停止127.0.0.1:4191只读静态预览，收尾状态另存本地。
 
 ## 2026-10-20 — 简介上线与响应式验收完成
 
@@ -162,6 +407,49 @@
 - 提交边界：main关联origin=https://github.com/WhitePlusMS/whats-a-benchmark.git；已有README、推广、品牌与5项资料条目等本地改动独立保留，只暂存本次UI与对应说明。artifacts/candidates/2026-10-20-compact-ui-release保存基线、计划和验证证据。
 - 发布前检查：正式源码类型与格式通过；准确暂存文件树46项测试、SSG构建和220个静态页/404核验通过。1280/768/844横屏/390/320实际CSS视口无整页横向溢出；组合筛选、条件移除、手机面板/Tab/Esc、9张原图150%滚动、精确位置恢复、换题重置与原始数据逐字一致均通过，页面控制台无警告/错误。浮现280ms、卡片200ms且错开最多120ms，减少动态效果实查关闭。
 - 已发布与线上验收：界面提交c54d9b643a7ba5184b624ba9f37d5a908c2333c0正常推送origin/main，[Actions 39292507738](https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/39292507738)测试/构建/deploy成功。线上桌面及320/390手机、844横屏、768平板、1280桌面筛选/刷新/条件清理/模态键盘均通过；9/9原图完整加载、原尺寸/150%滚动、精确位置恢复通过，页面原始JSON与源一致，控制台无警告或错误。9图与4份案例JSON共13资源HTTP200且原字节一致；主CSS仅作用域ID因源换行不同，等价替换后全文一致，未将其冒充编译产物字节一致。浮现及减少动态效果均实查，4190临时服务已停且视口恢复；本次追加仅提交验收说明，既有资料/README修改保留。
+
+## 2026-10-20 — 紧凑目录与案例图片交互预览（始于10月19日）
+
+- 原因与授权：用户要求把目录做紧凑、筛选状态弄清楚、增加案例图片放大，同时改进相关UI细节，先提供可交互预览并检查手机端。沿用现有字体、紫色主题、查询模型、案例原始数据和许可边界。
+- 修改位置：`artifacts/candidates/2026-10-19-compact-ui-preview/`保存独立候选src、方案清单、基线、预览打包入口和验证材料；正式src/content/README和部署配置暂不覆盖，前序未提交修改一并保留。
+- 执行原则：GPT-6 LUNA完整只读描述相关代码与测试，由主任务判断并实施；复用已有目录查询/列表/案例组件，原生dialog负责模态语义和键盘边界，无新增运行依赖。当前先完成候选与校验，再记录实际效果和检查结果；不启动开发服务、不调用网页端GPT、不提交推送。
+- 候选目录：`src/views/ExploreView.vue`、新增`CatalogFilters.vue`与`UiDialog.vue`复用同一URL状态和同一套筛选，增加站内案例快捷入口、可移除条件计数、手机底部面板及选中语义；`catalog.css`、`benchmark-card.css`、`BenchmarkCard.vue`压缩头部/间距/列表，调整层级并展示已有案例数量，移除逐卡延迟入场。候选`base.css`增加稳定滚动条槽位；新增控件与目录视图两批严格TypeScript检查已通过。
+- 候选媒体：`SampleMedia.vue`将原图片包入有明确文字的原生按钮；新增`SampleImageDialog.vue`复用模态，提供适应窗口、原始尺寸、50%至300%显示缩放和原图滚动，保留alt、尺寸、原始来源及错误上报；`Icon.vue`仅复用现有Lucide库的缩放图标，不新增依赖。音视频、原题、中文解析和许可字段未改。
+- 候选阅读细节：`SampleViewer.vue`复用已有selectSample增加上/下案例按钮与首尾禁用，`sample-viewer.css`改善任务/原始数据选中态、解析文字层级及手机44px点击区/16px下拉字体；`layout.css`将桌面页眉减为64px并收紧导航。目录、图片组件与案例工具栏三批改动后严格TypeScript均通过；浏览器实查继续执行。
+- 预览包装：候选`preview-entry.ts`与`build-preview.mjs`使用现有Vue/Vite依赖，将真实组件分别打包为新版/原版并内嵌生成案例JSON；独立预览用hash路由，图片、音频与许可原文件拷贝，解决file协议fetch限制。`preview/index.html`提供原版对照、自适应/390px和图片案例入口；此入口只存在候选，不给正式产品添加环境兼容代码。
+- 浏览器检查路径：浏览器工具拒绝file协议后，使用候选`serve-preview.py`仅绑定127.0.0.1:4189，限制在生成的preview目录内读取，不列目录、不执行文件、无写接口；用于实际渲染检查，结束前终止。交付仍为本地静态预览包，无需运行前后端开发服务。
+- 预览构建修正：浏览器首次打开暴露library模式保留的`process.env.NODE_ENV`导致入口未挂载；已在独立打包配置明确生产常量，不向浏览器注入process兼容对象，也不改正式Vite配置。重新构建后继续实查。
+- 资源实查修正：临时静态服务受Windows MIME映射影响，将SVG返回为image/svg，已在服务中明确image/svg+xml；原资产HTTP200且字节未缺失。候选卡片同时保留文字占位的自适应宽度，避免真实媒体失败时被32px标识规则挤成竖排。
+- 2026-10-20续检：标准MIME的新资源请求已实际显示完整Logo；390px CSS视口下无整页横向溢出，筛选面板底部可见、Esc恢复触发按钮与滚动。为首尾Tab增加显式循环，避免原生模态将反向Tab交给浏览器边界；手机sheet用视口宽度贴边，列表保留类型及partial/blocked研究状态，避免压缩时隐藏资料边界。
+- 候选回归：独立候选源码严格类型检查通过，395个编译文件，无TypeScript错误；将现有查询、样例加载、样例状态和URL四组测试复制到候选下执行，15项全部通过。格式化明确使用独立ignore文件，避免artifacts被仓库.gitignore跳过。
+- 预览锚点修正：实际点击详情“查看真实案例”发现原生#samples覆盖hash路由；仅在`preview-entry.ts`将原生片段链接等价交给当前路由，保留路径和查询，修复预览的案例/来源锚点。正式`main.ts`和详情页链接未修改。
+- 图片与触摸细节：新视图切换和图片缩放按钮在手机设为44px点击区；宽表格的查看区域按原图高度收紧并受视口上限约束，减少空白。实际原图1234×289已加载，原尺寸与150%出现局部滚动，Esc返回图片按钮；截图使用当前页面滚动坐标，避免浏览器缩放时默认截图对固定弹层的裁切偏移。
+- 快速操作修正：9张图逐张加载/缩放/焦点检查通过，但发现原页锚点平滑滚动会在弹层期间继续，关闭后的页面位置不同。候选UiDialog改为打开时停止当前平滑滚动、固定正文于原位置，关闭时恢复原行内样式及精确滚动位置；后续按原图字节、缩放、关闭焦点、选择索引和位置重新实查。
+- 图片复验与显示：修正后9/9原图在390px下通过尺寸、原尺寸/150%滚动、关闭焦点、案例索引及精确滚动位置检查；320/390手机、844横屏、768平板、1280桌面均无整页横向溢出且无Logo占位。浅色/减少动态效果使用临时媒体模拟，悬停位移none、过渡0s且已恢复系统媒体偏好；原始数据实际文字与源JSON相等，前后案例/答案重置/目录查询返回/空结果恢复均通过。
+- 对照包装：预览将原版与新版分别保留在两个已加载框架，切换时保留各自阅读/筛选位置，不再每次重载目录。图片案例入口自动切回新版；仅影响预览包装，正式站导航不变。
+- 最终交付：候选13份源码变化及本地预览已完成，新增`docs/reviews/2026-10-20-compact-catalog-preview.md`记录Checked/Verdict、文件影响、真实测量与检查边界；候选README、PLAN与evidence提供入口/复现/证据。1280×900下原版动画结束后首排489px、新版366px，约上移124px；首卡334→284px，首列表项约132px。
+- 完整性：400个静态资源与生成源逐文件字节一致，186份内嵌案例JSON逐值一致；215项/575条记录均未编造或改写。743个原文件哈希中仅UPDATE_LOG改变，正式src、content、README及前序未提交资料保持原样；无提交、推送或线上部署。预览工具的1条无URL/Electron sandbox观察异常已单独归档，项目产物未含对应MutationObserver调用，未冒充全控制台零告警。
+- 收尾：已核对进程身份并终止本轮只读静态预览服务，4189端口无监听；用户自己的服务未操作。交付预览页保留，关闭服务后实际重试原版/新版切换、搜索、真实图片案例入口、1234×289图片弹层和清空条件均可操作，恢复到新版目录；测试页关闭，视口和媒体模拟已恢复。重新打开请使用保留的本地preview/index.html，停止服务后的HTTP地址不作为持久入口。
+
+## 2026-10-19 — AIHOT 样式与交互参考观察
+
+- 原因与范围：用户提供AIHOT并要求重点观察排版、布局、标签、操作与小动画。本轮为界面参考研究，实际浏览精选、全部动态、热点榜、日报、主题目录/内页、模型榜和内容详情；核对桌面与390px手机布局、搜索提交、分类状态、表格/图切换、图片弹层和Esc焦点恢复。
+- 修改文件：新增`docs/research/2026-10-19-aihot-design-reference.md`，按ui-craft记录Checked、Verdict、五项建议、优先顺序、现有实现对应及未核查范围；更新本日志。`artifacts/research/2026-10-19-aihot-design-reference/`保留本地截图和observations.json计算样式/操作证据，不作为网站媒体发布。
+- 原则与影响：复用现有搜索、筛选、列表、URL状态、案例选择器和减少动态效果规则，优先建议压缩目录首屏、清楚呈现筛选状态、增加案例图片原地放大；微动效随实际操作打磨，版本时间轴列为后续建议。GPT-6 LUNA只读描述现有代码，由主任务结合线上实际页面判断；未修改应用、内容数据、品牌或部署配置，保留前序未提交改动。
+- 核验边界与收尾：文档链接和本地图片完整性单独检查；未以样式观察代替来源内容核实，也未声称完成全站性能/无障碍审核。无代码变更，不重跑应用测试和构建，不启动服务，不调用网页端GPT，不提交推送；临时浏览器页与视口在研究结束后清理。
+
+## 2026-10-19 — 剩余无站内案例条目的访问与补充复核
+
+- 原因与范围：用户要求列出当前仍无具体案例的评测，区分官方未公开、需要申请、暂时没找到，并检查能否补充。本轮从215项中30项无sampleSet记录起步；7项指数/体系与可借用成员分开统计，公开但限制在线转载单独说明，不把数据可访问等同于允许再发布。
+- 方法与原则：按research流程由GPT-6 LUNA完整读取相关条目和描述第一方证据，主任务核对分类；刷新官方页面、HF数据卡、仓库/论文及具体版本，不以403、空viewer、测试夹具或聚合成绩判断无数据。保留真实内容、不生成样例、不接受gated访问条款、不联系第三方申请。
+- 工作记录：本地`artifacts/research/2026-10-19-remaining-cases/`保留盘点、基线与来源证据；最终清单写入docs/research。本轮不启动开发服务、不调用网页端GPT，也不推送新改动。
+- 资料修正：`content/benchmarks/gpqa.json`、`gpqa-diamond.json`将数据获取改为public并链接作者GitHub公开下载说明；固定修订`56686c06f5e19865c153de0fdb11be3890014df7`的数据包及四份CSV结构/行数已核对，补真实字段、文件与哈希依据。HF另一路仍受条件控制，本站仍遵循作者no-online-examples请求，不发布题目值或将元数据计为样例。`video-mme.json`补已从官方页面核实的Dataset Examples直达锚点，保留转载前需批准的说明。
+- 清单文档：新增`docs/research/2026-10-19-remaining-benchmark-cases.md`记录起始30条及续核后当前29条；7项指数另列，余22项按9项内部/专有官方未给当前版原题、2项需接受数据访问条件、6项公开但不转载、5项本次未找到或访问待核分类。解释PSI由3个组成关联补至4个而官方有7个构件、Vals Index仍缺Code Migration，避免将所有指数组件说成均有完整案例。JobBench由PDF实际超链接确认项目身份后补入，不只凭名称和65/35规模认定。
+- JobBench续核与补充：继续读取Meta PDF链接注释，确认第5页直接链接JobBench官网，再由官网/官方评测仓库互链HF题集与论文，纠正此前未检查PDF超链接而将其当作Meta内部题集的遗漏。`jobbench.json`新增两条公开main任务（订单三方核对、采购报价审查），全部9个原始字段逐值保留，prompt/rubric_json/task_card与固定修订文件相等；附件仅留原路径/URL，无模拟数据或生成答案。数据许可依据为固定HF卡的MIT声明，未外推到第三方附件。
+- 身份与品牌：`jobbench.json`改为研究团队公开原创项目，首发日期按arXiv首次提交`2026-05-25`记录，Meta引用日`2026-10-12`与文件revision分别说明；`content/brands.json`及`content/assets/logos/jobbench.svg`接入实际官网favicon原字节与浅底承载，`content/assets/licenses/jobbench-data-card.txt`保存数据卡原文。`personal-superintelligence-index.json`增加JobBench组成关联，仍不编造PSI权重或独立题目。
+- 立即校验修正：公开JobBench不再属于internal后，现有schema拒绝把vendor-report放入官方定义来源；已将定义栏收紧为作者官网与论文，Meta报告只用于评测引用、运行口径和版本关系，不修改或绕过校验规则。
+- 最终核验：内容校验215项/575条/19份发布资料，严格TypeScript、46项测试、生产构建及220个静态页与404检查通过；5个改动详情在本地生产预览实查，JobBench两条页面原始JSON哈希与固定源行一致，案例切换、许可展开、新Logo和390px窄屏通过，无整页横向溢出及控制台警告/错误。新样例JSON、Logo、许可依据文件均HTTP 200且字节一致；本轮没有新增音视频。
+- 收尾与影响：当前186项有站内记录、29项无独立sampleSet；29项包含9/2/6/5/7五组，指数另计。215项中只有上述5项内容条目变动，78个既有README/推广/技能等排除文件哈希保持一致。本地证据保存`verification-summary.json`、`jobbench-adoption-manifest.json`、`browser-verification.json`、`resource-verification.json`与案例截图。临时预览进程已终止，4187无监听，浏览器临时页关闭且视口恢复；未提交或推送本轮修改。
 
 ## 2026-10-19 — 原有评测多案例补核提交与上线验收
 
@@ -1339,6 +1627,7 @@
 - 验证记录：工作流 https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/35975671314 的第2次尝试为 Success；站点 https://whiteplusms.github.io/whats-a-benchmark/ 已用真实浏览器打开，84项目录、MMMLU详情及动态真实样例正常加载。
 - 后续 main 推送会自动执行测试、构建、部署。工作流仍有上游 Actions Node 20 运行时迁移警告，但本次已在平台提供的运行时成功执行；不将告警写成部署失败。本次未启动本地服务。
 
+
 ## 2026-10-28 — 新模型发布页所涉及评测与真实数据补录
 
 - 用户要求：核实本次发现且尚未收录的 benchmark 和新版本，补入官方资料与真实案例；区分不同版本，不虚构未公开数据。只增加内容数据和许可说明，复用现有内容结构；保留既有工作区改动。
@@ -1432,3 +1721,139 @@
 - 用户要求推送 GitHub 并构建。提交范围为本轮新增 49 个评测 JSON、5 个许可文件及本轮更新说明；指南、样例查看器、测试、技能和其他历史日志改动不纳入提交。
 - 在独立目录以当前提交基线加上述内容运行测试；允许写入的临时目录下 46 项测试通过，按 GitHub Pages 子路径生产构建完成并校验 269 个静态页面及 404。首次系统临时目录测试发生 EPERM，改用工作区临时目录后通过；构建仍有 Vite 大包提示。
 - 推送前 GitHub main 与本地提交一致。将通过正常提交和推送触发仓库现有 Pages 工作流，远端构建、部署与展示以实际结果为准。未启动开发服务或调用网页端 GPT。
+
+## 2026-10-28 — benchmark 补录推送与线上核验
+
+- 本次提交 `599ee52c764ca2e9cb86ea5aae0cc9241be59b1b` 已正常推送 `origin/main`，核对远端与本地 HEAD 一致；提交范围为 49 个评测 JSON、5 个许可文件及本轮更新说明，工作区既有其他修改未纳入。
+- GitHub Actions 工作流 https://github.com/WhitePlusMS/whats-a-benchmark/actions/runs/40658400834 显示 build 和 deploy 均成功；有 Actions Node 20 迁移警告和 ubuntu-latest 迁移提示。
+- 实际浏览器核验线上 Video-MME v2 的新版本、规模和与原版的关联；GIFT-Eval-CTX 页面真实样例可切换到原始数据节选，字段正常展示。该在线核验记录追加在本地，未另建提交或修改远端。
+# 2026-10-28 具身智能专区（进行中）
+
+- `src/content/schema.ts`：增加经过严格校验的具身任务多分类及相关资源字段，为一个评测在多个任务分类中展示提供数据基础。
+- `src/content/catalog.ts`：将具身条目与现有目录分开，并定义任务分类；继续复用既有目录展示和样式。现有条目保持不变。
+- `src/lib/search.ts`、`src/lib/catalogQuery.ts`：复用搜索及 URL 筛选逻辑，具身条目按多任务分类筛选，分类统计允许同一条目计入多类。
+- `src/components/CatalogFilters.vue`：接收目录分类并允许隐藏其他条件，使具身专区只按任务分类筛选。
+- `src/views/ExploreView.vue`：同一目录视图按路由选择对应数据和任务分类，复用已有卡片、筛选、布局与响应式样式。
+- `src/main.ts`、`src/App.vue`：增加具身专区路由和顶部导航，详情页按所属专区高亮。
+- `src/views/DetailView.vue`：具身详情返回对应专区，展示多任务标签和已标明类型的官方关联资源。
+- 修正模板回调中的空值类型收窄，确保具身详情通过 TypeScript 检查。
+- `.scratch/embodied-benchmarks/add-entries.cjs`：依据既有官方证据整理首批条目的录入脚本；执行后生成 `content/benchmarks/rlbench.json`、`calvin.json`、`graspnet-1billion.json`、`libero.json`、`behavior-1k.json`、`robocasa365.json`、`robotwin-2.json`。LIBERO 首帧标明第三方转换来源、划分与许可差异；其他条目保留官方样例入口及未取得轨迹的边界。
+- `scripts/postbuild.ts`：把具身目录纳入静态页面校验和站点地图。
+- `tests/catalog-query.test.ts`：验证专区隔离、同一评测的多任务筛选及筛选时路由保持不变。
+- `src/views/CompareView.vue`、`src/views/AboutView.vue`：对比表展示具身任务分类，关于页面统计两个专区的公开条目，避免误用原目录分类和数量。
+- `src/content/schema.ts`、`src/components/SampleViewer.vue`、`content/benchmarks/robotwin-2.json`：为官方明确描述的任务添加有来源的动作顺序，复用现有样例容器；明确这是任务说明而非轨迹或模型成绩，视频链接回官方页面。
+- `src/composables/catalogNavigation.ts`、`src/main.ts`、`src/App.vue`、`src/views/DetailView.vue`：分别保存两个目录的筛选 URL 和滚动位置，详情返回具身目录时恢复原状态。
+- `src/lib/search.ts`、`src/components/CatalogFilters.vue`、`src/views/ExploreView.vue`、`src/lib/sampleAccess.ts`：补充任务分类检索与无障碍标签，并让任务示例按钮定位到站内步骤。
+- `content/assets/videos/robocasa-adjust-temperature-episode-0.mp4`、`content/benchmarks/robocasa365.json`：收录 NVIDIA 数据集中固定版本的单条人类遥操作视频，保留 CC BY 4.0 署名、记录 ID、来源和 SHA-256；明确其为仿真演示而非模型结果。修正 RoboTwin 榜单和数据集的引用目标。
+- `content/benchmarks/r2r.json`、`meta-world.json`、`alfred.json`、`maniskill2.json`：增加有官方资料支持的导航与物理操作基准，保留任务、规模、指标、版本与样例许可未核实范围；具身目录精选排序按年份先后呈现。
+- `src/components/SampleViewer.vue`：具身演示和轨迹使用记录语境，避免把第三方转换数据称作官方原题或强行要求参考答案。
+- 对本次涉及的前端与测试代码运行项目现有 Prettier，保持现有代码格式；保留样例组件此前未提交的改动。
+- `content/benchmarks/alfred.json`：下载并校验官方 Lite 轨迹包，提取 train 中 `trial_T20190908_122510_105385`，展示任务参数和本站整理的操作顺序；由于数据独立许可未确认，不复制完整轨迹和媒体。
+- `content/benchmarks/libero-pro.json`、`libero-plus.json`、`robotwin-1.json`、`robocasa.json`：分别收录并注明各自协议、数据入口与版本；更新 LIBERO、RoboTwin 2.0 和 RoboCasa365 的双向版本关联。
+- `content/benchmarks/libero-pro.json`：取得固定版本的一条官方 BDDL 文件，按 CC BY 4.0 展示语言和目标条件节选，并保留文件版本、来源及 SHA-256。
+- `content/benchmarks/suctionnet-1billion.json`、`toto.json`、`simpler.json`、`vlabench.json`、`embodiedbench.json`、`simple-embodied.json`：加入吸盘抓取、真机及模拟操作、具身智能体和人形机器人评测；明确未核实数据与授权，SuctionNet 和 GraspNet 互相关联。
+- `content/benchmarks/robotwin-early.json`、`robotwin-1.json`：独立收录 2024 早期版并双向关联 1.0；保留早期分支及官方演示数据入口，不混用后续版本协议。
+- `content/benchmarks/` 中 R2R、CALVIN、ALFRED、LIBERO、RoboCasa365、LIBERO-PRO 和 RoboTwin 早期版：补充已核实的划分、字段或文件结构，并明确相关资源类型。
+- `src/lib/search.ts`：具身条目只索引实际任务分类，避免旧目录的占位分类影响搜索。
+- `tests/catalog-query.test.ts`：补充任务分类关键词及旧目录分类隔离的搜索验证。
+- 验证：`npm run typecheck` 通过；在工作区临时目录运行 `npm test`，48 项通过；`npm run validate` 校验 286 个公开条目、612 条样例及 19 份报告；`npm run build` 验证 292 个静态页面和 404。`git diff --check` 通过，Git 仅提示部分文件下次转换 CRLF。
+- 浏览器：验证具身任务筛选、详情返回保留筛选、RoboTwin 步骤、LIBERO-PRO BDDL 原始字段、ALFRED 过程说明；RoboCasa 视频成功加载并播放（256×256、11.7 秒），另检查 390px 移动端展示。临时本机静态服务已关闭；未启动开发服务，未部署或推送。
+- 范围：具身专区共 22 项；4 项有站内真实记录或视频，其余条目保留官方入口、任务说明和许可边界，尚未获得或核实可在站内展示的完整轨迹。视频文件 SHA-256 与 NVIDIA 固定版本记录一致；ALFRED 包和 LIBERO-PRO 文件哈希见相应条目核验记录。
+
+## 2026-10-29 — 具身评测真实数据补充
+
+- `content/benchmarks/meta-world.json`：接入 LeRobot MT50 训练集固定版本的实际轨迹 0，展示三帧、动作、状态和成功标记；标明训练数据与评测成绩的区别。
+- `content/assets/images/metaworld-episode-0-frame-{0,44,87}.jpg` 和 `content/assets/licenses/metaworld-mt50-apache-2-0.txt`：保存真实原图和数据集许可，注明来源、版本及图片哈希。
+- 数据与许可继续逐项核验，检查结果将在后续更新。
+- 修复 Meta-World 条目来源重复，恢复内容管线的唯一来源校验。
+- `content/benchmarks/r2r.json`：下载并校验官方 val_seen 文件，展示路径 5593 的参数及本站整理的导航过程；保留完整文件来源和 SHA-256，注明许可与场景素材边界。
+- `content/benchmarks/vlabench.json`、`content/assets/images/vlabench-episode-0-frame-{0,40,80}.png`、`content/assets/licenses/vlabench-dataset-mit.txt`：取得并校验官方预训练 Parquet 的真实轨迹、三帧、状态和动作；保留来源、固定 revision、文件哈希和许可标注。
+- `content/benchmarks/embodiedbench.json`：下载官方 EB-Nav 多步轨迹文件，展示一条模型 episode 的前六步动作编号和执行结果；记录来源、revision、SHA-256，数据许可未明确。
+- `content/benchmarks/robotwin-early.json`、`content/assets/licenses/robotwin-early-dataset-mit.txt`：取得官方早期版演示包，使用受限解析提取一条轨迹的三帧关节、末端和点云数据；记录固定版本、包与成员哈希及数据许可。
+- `content/benchmarks/rlbench.json`、`calvin.json`：分别下载并解析固定版本的第三方转换轨迹，展示首、中、末帧的真实状态与动作，注明转换来源、文件哈希和上游许可待核实范围。
+- `content/benchmarks/behavior-1k.json`、`content/assets/licenses/behavior-2026-demos-mit.txt`：取得 2026 Challenge 官方一条技能标注，展示任务步骤与帧区间，记录版本、哈希及原版 MIT 许可；不复制受其他条款约束的场景和视频。
+- `content/benchmarks/libero-plus.json`：下载固定版本训练轨迹，展示任务及首、中、末帧状态和动作；标注 277 帧、来源哈希和上游许可边界。
+- `content/benchmarks/simple-embodied.json`：实际下载 SIMPLE 人形机器人抓取数据包并解析 121 帧轨迹，展示三帧真实状态和动作，标注哈希及未明确许可的范围。
+- `content/benchmarks/graspnet-1billion.json`：按字节读取固定版本镜像中对象 083 的实际 points.npy，展示真实坐标及形状、哈希；注明完整姿态与许可待核实。
+- `content/benchmarks/robotwin-2.json`：下载 LeRobot 固定版本轨迹数据及任务索引，展示一条双臂演示的实际状态与动作，保留哈希、版本与许可标注差异。
+- `content/benchmarks/suctionnet-1billion.json`：下载官方吸盘标签包，读取对象 000 实际的 points、normals、indices、collision、scores，展示前三条并记录文件哈希及许可歧义。
+
+### 2026-10-29：补充 ManiSkill2 与原版 RoboCasa 的真实样例
+
+- `content/benchmarks/maniskill2.json`：读取官方 PickCube-v0 的 HDF5 和元数据，补充 88 步演示中的三条动作与成功标志，记录固定版本和 SHA-256。
+- `content/benchmarks/robocasa.json`：读取原版 MG_100 的第三方转换集和任务索引，补充 415 帧合成演示中的三帧，区分 RoboCasa365 和模型成绩。
+- 影响：详情页可展开真实数值摘录及来源，不增加新的前端样式或组件；数据许可和资产范围分别说明。
+
+### 2026-10-29：记录具身样例取证
+
+- `docs/research/2026-10-29-embodied-actual-samples.md`：汇总原先缺样例的 18 个条目的实际下载、数据来源、版本、哈希、用途和未核实边界。
+- 影响：后续维护可直接复核样例来源，不改变前端交互。
+
+### 2026-10-29：补充 SIMPLER 仿真评测录像并修正数值表示
+
+- `content/benchmarks/simpler.json`、`content/assets/videos/simpler-rt1-cokecan-failure.mp4`、`content/assets/videos/simpler-rt1-cokecan-success.mp4`：从作者 MIT 标注的数据集提取 RT-1 抓取可乐罐的两段录像，说明结果、固定来源和素材许可边界。
+- `content/benchmarks/libero-plus.json`：将两处负零写为字符串保留符号，说明格式原因，避免 JSON 序列化后校验不一致。
+- 影响：用户可比较真实仿真评测的成功和失败过程；恢复静态产物一致性检查。
+
+- 补充 `content/benchmarks/simpler.json` 的固定仓库来源与录像数据集许可，满足公开样例来源校验，并保留其他资产许可边界。
+
+### 2026-10-29：补充 TOTO 真机舀取轨迹
+
+- `content/benchmarks/toto.json`：从官方 367,640,015 字节文件读取首条 626 帧真机舀取数据，展示三个时间步的关节角、动作、奖励及官方原图链接，并记录文件哈希和许可边界。文件读取到 1,895 条与文档 1,900 条不一致，如实标明。
+- 影响：详情页可查看真实物理实验数据；不复制许可尚不明确的原始照片。
+
+### 2026-10-29：记录具身样例取证
+
+- `docs/research/2026-10-29-embodied-actual-samples.md`：汇总原先缺样例的 18 个条目的实际下载、数据来源、版本、哈希、用途和未核实边界。
+- 影响：后续维护可直接复核样例来源，不改变前端交互。
+
+### 2026-10-29：同步样例获取后的页面说明
+
+- `content/benchmarks/toto.json`：更新实际文件与官方文档的轨迹数量、字段和目录说明，明确两者不一致。
+- `content/benchmarks/simpler.json`：更新官方录像集访问说明。
+- 影响：详情页不会继续显示与已取得数据相矛盾的旧提示。
+
+### 2026-10-29：核实 RoboTwin 1.0 相关第三方采样
+
+- `content/benchmarks/robotwin-1.json`：补充第三方 RoboTwin 系列单条采样对、真实关节与末端位姿字段、固定版本来源及版本未锁定的明确提示。
+- `content/assets/images/robotwin-related-episode-0-sample-15.png`、`content/assets/images/robotwin-related-episode-0-sample-16.png`：从采样 PKL 的头部相机 RGB 数组无损导出，避免与同名但不一致的预览 JPEG 混配。
+- `content/assets/licenses/robotwin-related-dataset-mit.txt`：保留数据卡所声明的许可及发布方信息。
+- `docs/research/2026-10-29-robotwin-1-trajectory-evidence.md`：记录文件校验值、实际字段、版本推断和发现的画面不一致。
+- 影响：详情页可查看真实采样图片与数值，但该记录不宣称为已确证 1.0 的官方测试轨迹。
+
+- `content/benchmarks/robotwin-1.json`：复用已有官方时间线来源，删除重复 URL 登记，使内容生成校验通过。
+
+- `docs/research/2026-10-29-embodied-actual-samples.md`：同步 RoboTwin 相关第三方样例的最新发现及版本未确认边界，消除过时的缺样例说明。
+
+### 2026-10-29：补充明确标注 RoboTwin 1.0 的完整训练轨迹
+
+- `content/benchmarks/robotwin-1.json`：增加 D-Robotics 发布的 211 帧完整 episode，标注为 1.0 第三方预处理训练演示，保留之前版本未锁定的案例。
+- `content/assets/files/robotwin-1-drrm-block-hammer-episode-0.json`：提供全 211 帧动作、状态、位姿和时间戳数值，原始 Parquet 另含全部相机图片。
+- `content/assets/images/robotwin-1-drrm-block-hammer-frame-{0,105,210}.png`：从原始文件提取三个时刻的头部相机原始图像。
+- `content/assets/licenses/robotwin-drrm-apache-2-0.txt`：保留数据卡 Apache-2.0 许可与来源。
+- `docs/research/2026-10-29-robotwin-1-trajectory-evidence.md`、`docs/research/2026-10-29-embodied-actual-samples.md`：记录版本依据、文件哈希、连续性检查以及不同数据集的帧对照结果。
+- 影响：详情页可查看过程并下载完整数值序列，明确区分官方评测集与第三方训练数据。
+
+### 2026-10-29：调整评测入门入口
+
+- `src/App.vue`：将顶部及页脚的“阅读指南”改为“评测入门”，顶部入口保持在目录链接右侧。
+- `src/styles/layout.css`：沿用现有导航字体、选中态与响应式结构，只增加分组间距，使入门入口与两个目录入口区分；手机端靠右。
+- `src/components/CatalogFilters.vue`、`src/views/GuideView.vue`：同步目录侧栏与指南页内的名称。
+- 影响：入口、标题名称一致，帮助内容和路由不变，其他目录名称及层级未调整。
+
+### 2026-10-29：将评测入门调整为辅助按钮
+
+- `src/App.vue`：将“评测入门”从主导航移到页眉工具区，使用已有 `secondary-button` 和书本图标。
+- `src/styles/layout.css`：移除之前靠增加导航间距的做法；补充按钮尺寸、当前页面状态及手机端右侧布局，保持两个目录入口在主导航中。
+- 影响：入门入口作为辅助按钮与目录导航区分；原有路由与页脚、侧栏入口不变。
+
+- `src/styles/layout.css`：页眉在 780px 以下提前换为两行，修复新增按钮后窄屏目录名称折行；页脚和对比栏仍沿用原有 700px 断点。
+
+### 2026-10-29：目录入口并列切换
+
+- `src/App.vue`：将顶部两个目录入口命名为“模型评测”“具身评测”，组合为同级切换控件并标记当前所属目录；复用原有路由和目录筛选状态。
+- `src/components/Icon.vue`：在现有 Lucide 图标映射中注册机器人图标，配合现有模型图标区分两个入口。
+- `src/styles/layout.css`：使用现有主题变量为目录切换增加分组、悬停和选中样式，并保持页眉手机端布局；评测入门按钮继续独立置于右侧。
+- 影响：目录和对应详情页可显示所属选中项，两个现有目录内容、路由和筛选逻辑不变。
+
+- `src/styles/layout.css`：在 360px 以下略减目录切换与入门按钮的水平内边距，避免 320px 宽度时两者贴合或重叠。

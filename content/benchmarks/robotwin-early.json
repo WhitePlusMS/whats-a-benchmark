@@ -1,0 +1,340 @@
+{
+  "id": "robotwin-early",
+  "status": "published",
+  "order": 22421,
+  "name": "RoboTwin Early Version",
+  "subtitle": "早期双臂数字孪生与操作评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ],
+    "resources": [
+      {
+        "label": "早期版官方演示数据",
+        "type": "数据集",
+        "url": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "双臂协作"
+  ],
+  "publisher": "RoboTwin Team",
+  "brandIds": [],
+  "year": 2024,
+  "version": "2024 early version",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "早期版本利用生成式数字孪生和专家演示研究双臂操作任务。",
+    "task": "早期版本利用生成式数字孪生和专家演示研究双臂操作任务。",
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version"
+    ]
+  },
+  "taskContract": {
+    "input": "任务配置、相机与点云等观测，依具体策略设置。",
+    "output": "控制双臂完成指定物体操作。",
+    "environment": "早期数字孪生仿真环境；论文还讨论真实机器人实验。",
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version"
+    ]
+  },
+  "dataProfile": {
+    "summary": "早期分支说明每项任务发布 50 条演示；数据包分别提供点云或 RGB-D。",
+    "disclosure": "partial",
+    "scale": [
+      "早期分支说明每项任务发布 50 条演示；数据包分别提供点云或 RGB-D。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [
+      "按任务提供点云包及包含 RGB-D 的数据包。"
+    ],
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方 RoboTwin 早期版数据集卡标注 MIT。",
+    "scope": "站内展示所取得演示的关节、末端位姿和点云数值节选；其他场景素材需单独核对。",
+    "boundaries": [
+      "该演示包仅含点云，不含 RGB 视频；此记录不是模型评测成绩。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得早期版官方 Diverse Bottles Pick 数据包，展示同一条演示的三帧数值。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset",
+      "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip"
+    ]
+  },
+  "metric": {
+    "name": "任务完成情况",
+    "description": "应按早期版本论文及任务设置核对；不要将 1.0 和 2.0 的评测设置直接套用。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version",
+      "role": "definition"
+    },
+    {
+      "label": "早期版官方演示数据",
+      "url": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset",
+      "role": "data"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://github.com/Tengbo-Yu/robotwin",
+      "role": "definition"
+    },
+    {
+      "label": "RoboTwin 早期版固定版本演示数据包",
+      "url": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robotwin-1",
+      "label": "后续版本",
+      "detail": "RoboTwin 1.0 与早期版本分属不同代码分支和评测设置。",
+      "sourceUrls": [
+        "https://github.com/Tengbo-Yu/robotwin"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "robotwin-early-diverse-bottles-episode-0",
+        "title": "抓取不同瓶子 · 双臂演示轨迹 0",
+        "type": "record",
+        "prompt": "双臂机器人在仿真场景中执行不同瓶子的抓取任务。原始数据记录了每一帧的关节动作、末端位姿和点云。",
+        "promptOrigin": "editorial",
+        "explanation": "实际下载的官方包中，episode0 含 186 帧；本站展示第 0、93、185 帧的完整关节动作、末端位姿及各两点点云。没有附加 RGB 图片；记录本身不能代表模型总体成功率。",
+        "raw": {
+          "dataset": "YaoMarkMu/robotwin_dataset",
+          "revision": "53fda493155c73c4a1829a6638535f787ca11009",
+          "archive": "diverse_bottles_pick.zip",
+          "archive_sha256": "1ab94717331353e509272963f7dbe94756a53073bbb7d7a15f79c34e50583a48",
+          "frames": [
+            {
+              "frame": 0,
+              "member": "diverse_bottles_pick_pkl/episode0/0.pkl",
+              "member_sha256": "b46dee626e5df887681cd85163a145d7d811462e19971a090261232b4151993d",
+              "joint_action": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.045,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.045
+              ],
+              "endpose": [
+                -0.2988103926181793,
+                -0.31130677461624146,
+                0.937501072883606,
+                3.1415812969207764,
+                -2.350420345464954e-06,
+                1.5708109140396118,
+                0.045,
+                0.30119043588638306,
+                -0.3113069236278534,
+                0.9375012516975403,
+                3.141572952270508,
+                -3.402104994165711e-06,
+                1.570789098739624,
+                0.045
+              ],
+              "pointcloud_first_2": [
+                [
+                  -0.11839853227138519,
+                  0.20448517799377441,
+                  0.8968846797943115,
+                  0.4862070679664612,
+                  0.4216802716255188,
+                  0.40179896354675293
+                ],
+                [
+                  -0.22953316569328308,
+                  -0.2517358064651489,
+                  0.9418603181838989,
+                  0.12159755825996399,
+                  0.11668181419372559,
+                  0.11261072754859924
+                ]
+              ]
+            },
+            {
+              "frame": 93,
+              "member": "diverse_bottles_pick_pkl/episode0/93.pkl",
+              "member_sha256": "8a060d1d4cc292f599645c77a72529ea18c084348c3ed1740e3a468d97ad2a77",
+              "joint_action": [
+                -0.24456073343753815,
+                2.604820966720581,
+                1.7543399333953857,
+                0.8504841923713684,
+                0.4508112967014313,
+                5.393300739342521e-07,
+                0.045,
+                0.06526775658130646,
+                2.329258680343628,
+                1.161149024963379,
+                1.1681060791015625,
+                -0.6497853994369507,
+                1.3556973499362357e-06,
+                0.045
+              ],
+              "endpose": [
+                -0.1600249707698822,
+                0.12020924687385559,
+                0.8676241636276245,
+                3.1344709396362305,
+                -0.004088161513209343,
+                0.9056830406188965,
+                0.045,
+                0.24739298224449158,
+                0.030720263719558716,
+                0.8662675619125366,
+                3.132286310195923,
+                0.006862807087600231,
+                2.3125596046447754,
+                0.045
+              ],
+              "pointcloud_first_2": [
+                [
+                  -0.19221462309360504,
+                  0.12218350172042847,
+                  0.9538639783859253,
+                  0.5655903816223145,
+                  0.5368527173995972,
+                  0.5337379574775696
+                ],
+                [
+                  0.2498055398464203,
+                  -0.07438552379608154,
+                  0.8419674038887024,
+                  0.827068567276001,
+                  0.8171405792236328,
+                  0.8355572819709778
+                ]
+              ]
+            },
+            {
+              "frame": 185,
+              "member": "diverse_bottles_pick_pkl/episode0/185.pkl",
+              "member_sha256": "b4c29ed90f02459165a3b1516dad4b09d2fe4dd18d12166a44e2aacad3e2b311",
+              "joint_action": [
+                -0.28245264291763306,
+                1.8785521984100342,
+                0.663810670375824,
+                1.2147488594055176,
+                1.2883507013320923,
+                -2.992950101088354e-07,
+                0.005,
+                0.29576367139816284,
+                1.879766583442688,
+                0.6977799534797668,
+                1.1371725797653198,
+                -1.2543361186981201,
+                -0.10247547924518585,
+                0.005
+              ],
+              "endpose": [
+                -0.182645782828331,
+                -0.11304675787687302,
+                0.9196745157241821,
+                -3.13724946975708,
+                -0.013750541023910046,
+                0.03565026819705963,
+                0.005,
+                0.17347151041030884,
+                -0.11170991510152817,
+                0.9197831749916077,
+                -0.060099851340055466,
+                3.113459825515747,
+                0.011625289916992188,
+                0.005
+              ],
+              "pointcloud_first_2": [
+                [
+                  -0.07615424692630768,
+                  -0.08097666501998901,
+                  1.0451128482818604,
+                  0.9159886240959167,
+                  0.8748679161071777,
+                  0.8455866575241089
+                ],
+                [
+                  0.20114535093307495,
+                  -0.18355020880699158,
+                  0.8964611291885376,
+                  0.8248142600059509,
+                  0.7811040878295898,
+                  0.798611581325531
+                ]
+              ]
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip",
+        "license": "官方数据集卡标注 MIT；保留发布方、固定版本及许可说明。",
+        "licensePath": "licenses/robotwin-early-dataset-mit.txt",
+        "split": "diverse_bottles_pick / episode0",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载官方 diverse_bottles_pick.zip（195,514,308 字节），SHA-256 1ab94717331353e509272963f7dbe94756a53073bbb7d7a15f79c34e50583a48；使用受限解析读取 episode0 中 0、93、185 帧。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset",
+        "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip"
+      ]
+    }
+  ]
+}

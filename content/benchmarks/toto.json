@@ -1,0 +1,252 @@
+{
+  "id": "toto",
+  "status": "published",
+  "order": 22316,
+  "name": "TOTO",
+  "subtitle": "离线训练、真实机器人在线测试",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "官方数据与评测仓库",
+        "type": "项目资料",
+        "url": "https://github.com/AGI-Labs/toto_benchmark"
+      },
+      {
+        "label": "该轨迹的首张真实相机图像",
+        "type": "原始图片",
+        "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836737259.7883-color.jpeg"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "TOTO Authors",
+  "brandIds": [],
+  "year": 2023,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以离线数据训练机器人策略，再在共享真实机器人上评估操作泛化。",
+    "task": "以离线数据训练机器人策略，再在共享真实机器人上评估操作泛化。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2306.00942"
+    ]
+  },
+  "taskContract": {
+    "input": "离线演示数据与机器人观测，依具体任务设置。",
+    "output": "在桌面任务中执行舀取或倾倒动作。",
+    "environment": "真实机器人评测与仿真数据资源；需区分物理测试和模拟演示。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2306.00942"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方文档列出舀取 1,900 条、倾倒 1,003 条轨迹；本次读取公开舀取解析文件得到 1,895 条，差异原因未核实。",
+    "disclosure": "partial",
+    "scale": [
+      "官方文档：舀取 1,900 条、倾倒 1,003 条轨迹。",
+      "公开舀取 parsed.pkl 实际读取到 1,895 条；不能据此推断其余文件的完整数量。"
+    ],
+    "splits": [],
+    "fields": [
+      "轨迹 ID、彩色与深度图文件名、关节观测和动作、奖励及终止标志。"
+    ],
+    "files": [
+      "公开数据桶中的 parsed.pkl 与按轨迹分目录存放的相机图像。"
+    ],
+    "sourceUrls": [
+      "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md",
+      "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://github.com/AGI-Labs/toto_benchmark",
+    "sourceUrls": [
+      "https://github.com/AGI-Labs/toto_benchmark"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "代码仓库标注 BSD-2-Clause；数据独立许可尚未核实。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2306.00942",
+      "https://github.com/AGI-Labs/toto_benchmark"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载官方真实机器人舀取轨迹文件，展示其中一条的数值摘录和原始图片链接。",
+    "sourceUrls": [
+      "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl",
+      "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836737259.7883-color.jpeg",
+      "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md"
+    ]
+  },
+  "metric": {
+    "name": "任务完成情况",
+    "description": "应按所选任务和当期真实机器人评测协议核对评分方法。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2306.00942"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2306.00942"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://arxiv.org/abs/2306.00942",
+      "role": "definition"
+    },
+    {
+      "label": "官方数据与评测仓库",
+      "url": "https://github.com/AGI-Labs/toto_benchmark",
+      "role": "data"
+    },
+    {
+      "label": "官方真实舀取轨迹文件",
+      "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl",
+      "role": "data"
+    },
+    {
+      "label": "对应的原始相机图像",
+      "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836737259.7883-color.jpeg",
+      "role": "data"
+    },
+    {
+      "label": "官方数据格式说明",
+      "url": "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "toto-scooping-real-traj-22-04-01-14-12-17",
+        "title": "真实机器人舀取杏仁 · 轨迹 22-04-01",
+        "type": "record",
+        "prompt": "真实机器人执行舀取操作；下面列出这条采集轨迹的首、中、末时间步。",
+        "promptOrigin": "editorial",
+        "explanation": "官方数据桶中的真实舀取轨迹，材料为杏仁，共 626 个时间步；观测与动作都是七维关节角。normalized_reward 是此条记录字段，不是模型榜单成绩。原图由官方数据桶提供，数据转载许可尚未核实，本站不复制图片。",
+        "raw": {
+          "dataset": "toto-dataset/cloud-data-scooping/parsed.pkl",
+          "file_sha256": "75e08fbf3f45f8aa544009b3c12ba2c6c6f30140a9ea0437734813b6643177a5",
+          "traj_id": "22-04-01-14-12-17",
+          "material": "almonds",
+          "length": 626,
+          "normalized_reward": 0.26,
+          "first_color_sha256": "11a7de2127073ee02f44ba819340bfa34a1c99e6640d9528bd3552f8d4811805",
+          "frames": [
+            {
+              "step": 0,
+              "observation_joint_angles": [
+                -0.14536676,
+                -0.66464603,
+                -0.0527604,
+                -2.30646181,
+                0.14084357,
+                1.12517202,
+                -0.0053032
+              ],
+              "action_joint_angles": [
+                -0.1425767,
+                -0.65659982,
+                -0.04891951,
+                -2.30467895,
+                0.14278856,
+                1.12235536,
+                -0.00837594
+              ],
+              "reward": 0.0,
+              "terminated": 0.0,
+              "camera_color_file": "c0-818312070212-1648836737259.7883-color.jpeg"
+            },
+            {
+              "step": 313,
+              "observation_joint_angles": [
+                -0.11200214,
+                0.32579446,
+                -0.13755639,
+                -2.53025246,
+                0.94620764,
+                0.51018059,
+                -0.87310153
+              ],
+              "action_joint_angles": [
+                -0.12331125,
+                0.32550939,
+                -0.15035706,
+                -2.54074178,
+                0.9333521,
+                0.52926273,
+                -0.83482569
+              ],
+              "reward": 0.0,
+              "terminated": 0.0,
+              "camera_color_file": "c0-818312070212-1648836745065.47-color.jpeg"
+            },
+            {
+              "step": 625,
+              "observation_joint_angles": [
+                -0.06951676,
+                0.04273103,
+                -0.07088626,
+                -2.61636257,
+                0.49609053,
+                0.68988669,
+                -0.44163278
+              ],
+              "action_joint_angles": [
+                -0.06898359,
+                0.03466233,
+                -0.06733362,
+                -2.61910298,
+                0.48729615,
+                0.701309,
+                -0.43821464
+              ],
+              "reward": 13.0,
+              "terminated": 1.0,
+              "camera_color_file": "c0-818312070212-1648836752871.1748-color.jpeg"
+            }
+          ]
+        },
+        "source": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl",
+        "license": "官方数据的独立许可未核实；本站仅展示有限数值摘录和原图链接。",
+        "split": "real-world scooping / trajectory 22-04-01-14-12-17",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载 367,640,015 字节官方 parsed.pkl，SHA-256 75e08fbf3f45f8aa544009b3c12ba2c6c6f30140a9ea0437734813b6643177a5；限制反序列化可调用类型后读取 1,895 条记录，首条 626 帧。官方文档列 1,900 条，该文件与文档数量不一致。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl",
+        "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md"
+      ]
+    }
+  ]
+}

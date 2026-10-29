@@ -8,6 +8,7 @@ await copyFile("dist/404/index.html", "dist/404.html");
 await writeFile("dist/.nojekyll", "");
 const routes = [
   "",
+  "embodied/",
   "compare/",
   "releases/",
   "guide/",

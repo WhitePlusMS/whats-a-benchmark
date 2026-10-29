@@ -1,0 +1,221 @@
+{
+  "id": "maniskill2",
+  "status": "published",
+  "order": 22310,
+  "name": "ManiSkill2",
+  "subtitle": "物理仿真中的通用机器人操作",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "navigation",
+      "bimanual"
+    ],
+    "resources": [
+      {
+        "label": "ManiSkill2 旧版演示与代码说明",
+        "type": "项目资料",
+        "url": "https://github.com/haosulab/ManiSkill2/blob/main/README.md"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "导航与移动",
+    "双臂协作"
+  ],
+  "publisher": "ManiSkill Team",
+  "brandIds": [],
+  "year": 2023,
+  "version": "ManiSkill2（旧版 v0.5.3）",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过多种物理仿真任务评估机器人操作策略，涵盖不同机器人、物体与物理交互。",
+    "task": "通过多种物理仿真任务评估机器人操作策略，涵盖不同机器人、物体与物理交互。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2302.04659"
+    ]
+  },
+  "taskContract": {
+    "input": "视觉或状态观测与任务配置，取决于具体环境。",
+    "output": "控制机器人完成抓取、移动、双臂或其他操作任务。",
+    "environment": "SAPIEN 物理仿真；各任务的机器人、物体实例与初始条件不同。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2302.04659"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文描述 20 类操作任务、2,000 多个物体模型和超过 400 万演示帧。",
+    "disclosure": "partial",
+    "scale": [
+      "论文描述 20 类操作任务、2,000 多个物体模型和超过 400 万演示帧。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/haosulab/ManiSkill2/blob/main/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://github.com/haosulab/ManiSkill2/blob/main/README.md",
+    "sourceUrls": [
+      "https://github.com/haosulab/ManiSkill2/blob/main/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "代码、软体组件及对象资产采用不同条款；演示视频和轨迹的再发布许可需单独核对。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2302.04659",
+      "https://github.com/haosulab/ManiSkill2/blob/main/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载官方 PickCube-v0 HDF5 轨迹与元数据，展示真实动作与成功标志。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
+      "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.json"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按具体环境的成功条件评估；比较时须核对任务、对象划分和版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2302.04659"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2302.04659"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://arxiv.org/abs/2302.04659",
+      "role": "definition"
+    },
+    {
+      "label": "ManiSkill2 旧版演示与代码说明",
+      "url": "https://github.com/haosulab/ManiSkill2/blob/main/README.md",
+      "role": "data"
+    },
+    {
+      "label": "官方 PickCube 轨迹",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
+      "role": "data"
+    },
+    {
+      "label": "官方 PickCube 轨迹元数据",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "maniskill2-pickcube-trajectory-0",
+        "title": "PickCube · 官方演示轨迹 0",
+        "type": "record",
+        "prompt": "机械臂操作方块，以下按时间显示同一条演示的三个动作。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 ManiSkill2 PickCube-v0 轨迹 0 共 88 个动作，控制模式为 pd_joint_pos；最终成功标志是该条演示的结果，不是模型榜单成绩。原文件还包含 89 个环境状态。",
+        "raw": {
+          "dataset": "haosulab/ManiSkill2",
+          "revision": "0c367447d26e4e2de13fbf5e5d2ab09a258187da",
+          "h5_sha256": "a5920e22e4a9ae49e16d6c56aeb728a082d6ea9c32b62d979b6a95208f27dcd1",
+          "metadata_sha256": "aab69b6f89a2e6f2b6c168b7b85a97d3d0ed5ca78326b6a80484660f42d1665f",
+          "episode_metadata": {
+            "episode_id": 0,
+            "episode_seed": 0,
+            "reset_kwargs": {
+              "seed": 0
+            },
+            "control_mode": "pd_joint_pos",
+            "elapsed_steps": 88,
+            "info": {
+              "elapsed_steps": 88,
+              "is_obj_placed": true,
+              "is_robot_static": true,
+              "success": true
+            }
+          },
+          "actions": [
+            {
+              "action_index": 0,
+              "action": [
+                -0.0453665629029274,
+                0.41936999559402466,
+                -0.016854481771588326,
+                -1.924096941947937,
+                0.02532237023115158,
+                2.3460769653320312,
+                0.8363021612167358,
+                1.0
+              ],
+              "success": false
+            },
+            {
+              "action_index": 44,
+              "action": [
+                -0.04643142968416214,
+                0.7212893962860107,
+                0.1140928864479065,
+                -1.8819738626480103,
+                -0.14377741515636444,
+                2.5954484939575195,
+                0.30208468437194824,
+                -1.0
+              ],
+              "success": false
+            },
+            {
+              "action_index": 87,
+              "action": [
+                -0.2142021209001541,
+                0.8264573812484741,
+                0.110862597823143,
+                -1.5337783098220825,
+                -0.11506447196006775,
+                2.353847026824951,
+                0.08214133977890015,
+                -1.0
+              ],
+              "success": true
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
+        "license": "官方 ManiSkill2 数据卡标注 Apache-2.0；第三方资产使用范围需分别核对。",
+        "split": "PickCube-v0 / traj_0",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载 34,238,682 字节 HDF5 与元数据；HDF5 SHA-256 a5920e22e4a9ae49e16d6c56aeb728a082d6ea9c32b62d979b6a95208f27dcd1；traj_0 含 88 个动作、89 个环境状态。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
+        "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.json"
+      ]
+    }
+  ]
+}

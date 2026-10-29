@@ -1,0 +1,246 @@
+{
+  "id": "libero-plus",
+  "status": "published",
+  "order": 22512,
+  "name": "LIBERO-Plus",
+  "subtitle": "LIBERO 上的七维鲁棒性评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "官方链接的 LeRobot 训练数据",
+        "type": "数据集",
+        "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "LIBERO-Plus Authors",
+  "brandIds": [],
+  "year": 2025,
+  "version": "官方资料所述版本",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过多种可控环境扰动评估视觉语言动作模型在机器人操作中的鲁棒性。",
+    "task": "通过多种可控环境扰动评估视觉语言动作模型在机器人操作中的鲁棒性。",
+    "sourceUrls": [
+      "https://github.com/sylvestf/LIBERO-plus"
+    ]
+  },
+  "taskContract": {
+    "input": "语言指令与机器人观测，具体扰动根据任务设置。",
+    "output": "执行机器人操作，在改变的场景中完成目标。",
+    "environment": "基于 LIBERO 的仿真操作环境，包含相机、机器人初始状态与语言等扰动。",
+    "sourceUrls": [
+      "https://github.com/sylvestf/LIBERO-plus"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库描述 10,030 个任务，覆盖七个扰动维度。",
+    "disclosure": "partial",
+    "scale": [
+      "官方仓库描述 10,030 个任务，覆盖七个扰动维度。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "训练数据卡标注 MIT；其具体范围及其他资产的再发布条款尚需核对。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://github.com/sylvestf/LIBERO-plus",
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载官方链接训练集的一条轨迹，展示三个时刻的原始状态和动作。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "不同扰动条件下的成功率",
+    "description": "分别报告扰动类别及总成功率；不要与原始 LIBERO 或 LIBERO-PRO 结果直接混比。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/sylvestf/LIBERO-plus"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/sylvestf/LIBERO-plus"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/sylvestf/LIBERO-plus",
+      "role": "definition"
+    },
+    {
+      "label": "官方链接的 LeRobot 训练数据",
+      "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot",
+      "role": "data"
+    },
+    {
+      "label": "固定版本训练轨迹文件",
+      "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定版本任务索引",
+      "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "libero",
+      "label": "基础评测",
+      "detail": "LIBERO-Plus 基于 LIBERO，七维扰动协议与原版不同。",
+      "sourceUrls": [
+        "https://github.com/sylvestf/LIBERO-plus"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "libero-plus-train-episode-0",
+        "title": "将两个杯子分别放在左右盘子上",
+        "type": "record",
+        "prompt": "把白色杯子放在左侧盘子上，把黄白色杯子放在右侧盘子上。该说明来自固定版本训练集的任务索引。",
+        "promptOrigin": "editorial",
+        "explanation": "这是 LIBERO-Plus 公开链接的 LeRobot 训练数据；同一 episode 共 277 帧，此处摘出首、中、末帧的状态与动作。它不是鲁棒性测试的模型成绩。 原始动作中的负零以字符串 -0.0 保留，以避免 JSON 序列化丢失符号。",
+        "raw": {
+          "dataset": "Sylvest/libero_plus_lerobot",
+          "revision": "22c57433fef692b5b9ecc0795344daac7fa867a5",
+          "file_sha256": "8f85e526154c47ad0d18bfa4c23c96bd5b24097163f399909d10edfedc3f3693",
+          "frames": [
+            {
+              "observation.state": [
+                -0.059425558894872665,
+                -0.011908365413546562,
+                0.6802680492401123,
+                3.139896869659424,
+                0.000240376713918522,
+                -0.08742361515760422,
+                0.038787223398685455,
+                -0.03878847137093544
+              ],
+              "action": [
+                -0.0026785715017467737,
+                -0.2705357074737549,
+                -0.02410714328289032,
+                0.0,
+                0.0,
+                "-0.0",
+                -1.0
+              ],
+              "timestamp": 0.0,
+              "frame_index": 0,
+              "episode_index": 0,
+              "index": 0,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                -0.012854511849582195,
+                -0.29838141798973083,
+                0.5535524487495422,
+                3.0008134841918945,
+                0.6052331924438477,
+                -0.2713671028614044,
+                0.03333139047026634,
+                -0.03337148576974869
+              ],
+              "action": [
+                0.0,
+                0.18482142686843872,
+                0.3455357253551483,
+                -0.008571428246796131,
+                0.0,
+                "-0.0",
+                -1.0
+              ],
+              "timestamp": 6.900000095367432,
+              "frame_index": 138,
+              "episode_index": 0,
+              "index": 138,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                -0.016954656690359116,
+                0.35258248448371887,
+                0.541333794593811,
+                3.1462132930755615,
+                0.17468123137950897,
+                0.24675971269607544,
+                0.004861289635300636,
+                -0.008630054071545601
+              ],
+              "action": [
+                0.22232143580913544,
+                -0.2008928507566452,
+                0.1205357164144516,
+                0.0,
+                0.15000000596046448,
+                -0.04178571328520775,
+                -1.0
+              ],
+              "timestamp": 13.800000190734863,
+              "frame_index": 276,
+              "episode_index": 0,
+              "index": 276,
+              "task_index": 0
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
+        "license": "训练集数据卡标 MIT；上游 LIBERO 官方数据许可及其他资产范围需一并核对，本站不复制图像视频。",
+        "split": "train / episode_index 0 / task_index 0",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 实际下载并解析 episode_000000.parquet（24,717 字节、277 帧）；SHA-256 8f85e526154c47ad0d18bfa4c23c96bd5b24097163f399909d10edfedc3f3693。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
+        "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl"
+      ]
+    }
+  ]
+}

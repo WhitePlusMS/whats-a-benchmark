@@ -1,0 +1,612 @@
+{
+  "id": "robotwin-1",
+  "status": "published",
+  "order": 22513,
+  "name": "RoboTwin 1.0",
+  "subtitle": "早期双臂协作仿真与评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ],
+    "resources": [
+      {
+        "label": "D-Robotics 1.0 预处理数据集",
+        "type": "训练数据集",
+        "url": "https://huggingface.co/datasets/D-Robotics/DRRM"
+      },
+      {
+        "label": "1.0 论文",
+        "type": "论文",
+        "url": "https://arxiv.org/abs/2504.13059"
+      },
+      {
+        "label": "RoboTwin 系列第三方采样数据（版本未锁定）",
+        "type": "相关数据集",
+        "url": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "双臂协作"
+  ],
+  "publisher": "RoboTwin Team",
+  "brandIds": [],
+  "year": 2025,
+  "version": "1.0",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "利用双臂机器人仿真任务及生成式数字孪生评测操作策略。",
+    "task": "利用双臂机器人仿真任务及生成式数字孪生评测操作策略。",
+    "sourceUrls": [
+      "https://github.com/Tengbo-Yu/robotwin"
+    ]
+  },
+  "taskContract": {
+    "input": "任务与相机观测，依机器人、相机和策略配置确定。",
+    "output": "协调双臂执行任务指定的物体操作。",
+    "environment": "双臂机器人仿真；仓库列举与不同真实相机对齐的设置。",
+    "sourceUrls": [
+      "https://github.com/Tengbo-Yu/robotwin"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方 1.0 仓库任务表列 17 项任务。",
+    "disclosure": "partial",
+    "scale": [
+      "官方 1.0 仓库任务表列 17 项任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/Tengbo-Yu/robotwin"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://github.com/Tengbo-Yu/robotwin",
+    "sourceUrls": [
+      "https://github.com/Tengbo-Yu/robotwin"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "D-Robotics 数据集卡标 Apache-2.0；另一个第三方数据集卡标 MIT。上游模型与场景资产范围仍需分别核对。",
+    "scope": "本站展示各数据集的少量相机画面及字段，并提供 DRRM 单条轨迹全部数值字段。",
+    "boundaries": [
+      "DRRM 是第三方预处理训练数据，不是官方测试集。",
+      "另一个采样案例的上游代码版本未锁定。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/D-Robotics/DRRM",
+      "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载 D-Robotics 明确标注 RoboTwin 1.0 的训练演示完整 episode，并提供全部帧的数值下载；旧案例上游版本仍未锁定。",
+    "sourceUrls": [
+      "https://github.com/D-Robotics-AI-Lab/DRRM/blob/8e71cd63419e87740449e1fca39d19a980f5d54b/README.md",
+      "https://huggingface.co/datasets/D-Robotics/DRRM",
+      "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet",
+      "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/info.json",
+      "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/episodes.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "仓库说明每策略测试 100 次，并对三个训练随机种子的成功率计算均值和标准差。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/Tengbo-Yu/robotwin"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/Tengbo-Yu/robotwin"
+      ]
+    },
+    {
+      "text": "第三方样例未锁定其 RoboTwin 上游提交，不能证明严格属于 1.0 测试集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md",
+        "https://github.com/RoboTwin-Platform/RoboTwin/blob/65a6f5bb74794ba193c6bf17d8eae3b74fc2df70/README.md"
+      ]
+    },
+    {
+      "text": "D-Robotics 的 1.0 轨迹为第三方预处理训练数据；与官方 1.0 测试集及模型成绩有区别。",
+      "sourceUrls": [
+        "https://github.com/D-Robotics-AI-Lab/DRRM/blob/8e71cd63419e87740449e1fca39d19a980f5d54b/README.md",
+        "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/Tengbo-Yu/robotwin",
+      "role": "definition"
+    },
+    {
+      "label": "1.0 论文",
+      "url": "https://arxiv.org/abs/2504.13059",
+      "role": "data"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version",
+      "role": "definition"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "1.0 分支固定版本任务表",
+      "url": "https://github.com/RoboTwin-Platform/RoboTwin/blob/65a6f5bb74794ba193c6bf17d8eae3b74fc2df70/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "第三方数据集固定版本说明",
+      "url": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md",
+      "role": "data"
+    },
+    {
+      "label": "第三方样本对索引",
+      "url": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/dataset.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "第三方轨迹采样文件 15",
+      "url": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/episode0/15.pkl",
+      "role": "data"
+    },
+    {
+      "label": "第三方轨迹采样文件 16",
+      "url": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/episode0/16.pkl",
+      "role": "data"
+    },
+    {
+      "label": "DRRM 数据发布项目说明",
+      "url": "https://github.com/D-Robotics-AI-Lab/DRRM/blob/8e71cd63419e87740449e1fca39d19a980f5d54b/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "D-Robotics 数据集卡",
+      "url": "https://huggingface.co/datasets/D-Robotics/DRRM",
+      "role": "data"
+    },
+    {
+      "label": "1.0 固定版本完整轨迹",
+      "url": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "1.0 轨迹元数据",
+      "url": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/info.json",
+      "role": "data"
+    },
+    {
+      "label": "1.0 轨迹索引",
+      "url": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/episodes.jsonl",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robotwin-early",
+      "label": "早期版本",
+      "detail": "早期版本和 1.0 的任务数据及评测设置需分别核对。",
+      "sourceUrls": [
+        "https://github.com/RoboTwin-Platform/RoboTwin/tree/early_version"
+      ]
+    },
+    {
+      "id": "robotwin-2",
+      "label": "后续版本",
+      "detail": "RoboTwin 2.0 扩展了任务及机器人具身；评测协议应分别核对。",
+      "sourceUrls": [
+        "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "robotwin-1-drrm-block-hammer-episode-0",
+        "title": "敲击积木 · RoboTwin 1.0 完整演示轨迹",
+        "type": "image",
+        "prompt": "机械臂使用锤子敲击积木。下面是第三方标注为 RoboTwin 1.0 的训练演示的首、中、末帧，可下载全部帧的数值记录。",
+        "promptOrigin": "editorial",
+        "explanation": "D-Robotics 发布的 1.0 预处理数据：episode 0 共 211 帧，帧号 0–210 连续，元数据标注 30 FPS；图像为头部相机。下载文件含全部帧的动作、关节状态、末端位姿及时间戳，完整相机画面见原始 Parquet。这是仿真训练演示，不是官方测试集或模型成功率。",
+        "raw": {
+          "dataset": "D-Robotics/DRRM",
+          "revision": "e483263d52cf8e730cb0edf871f911f2204ecdea",
+          "file_sha256": "704b188ffec183d418913729f0d58a48e6c2c6ed44416368b5685dee68504062",
+          "task": "block_hammer_beat",
+          "episode_index": 0,
+          "frame_count": 211,
+          "fps": 30,
+          "frames": [
+            {
+              "frame_index": 0,
+              "episode_index": 0,
+              "timestamp": 0.0,
+              "index": 0,
+              "task_index": 0,
+              "agent_pos": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "action": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "endpose": [
+                -0.29880979657173157,
+                -0.3112953305244446,
+                0.9374341368675232,
+                3.141580820083618,
+                0.00020051102910656482,
+                1.5708019733428955,
+                0.0,
+                0.30119046568870544,
+                -0.3112953305244446,
+                0.9374342560768127,
+                3.141580820083618,
+                0.00020051102910656482,
+                1.5708019733428955,
+                0.0
+              ]
+            },
+            {
+              "frame_index": 105,
+              "episode_index": 0,
+              "timestamp": 3.5,
+              "index": 105,
+              "task_index": 0,
+              "agent_pos": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.7658950090408325,
+                2.2526185512542725,
+                1.7875680923461914,
+                -0.9541040062904358,
+                0.14932148158550262,
+                0.7513356804847717,
+                0.04500000178813934
+              ],
+              "action": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.7658950090408325,
+                2.2526185512542725,
+                1.7875680923461914,
+                -0.9541040062904358,
+                0.14932148158550262,
+                0.7513356804847717,
+                0.04500000178813934
+              ],
+              "endpose": [
+                -0.29880961775779724,
+                -0.3113069534301758,
+                0.9375013113021851,
+                3.141577959060669,
+                -2.730319693000638e-06,
+                1.570796251296997,
+                0.0,
+                -0.014579450711607933,
+                -0.09103329479694366,
+                0.9290302991867065,
+                3.134718179702759,
+                1.3597885370254517,
+                1.5799554586410522,
+                0.04500000178813934
+              ]
+            },
+            {
+              "frame_index": 210,
+              "episode_index": 0,
+              "timestamp": 7.0,
+              "index": 210,
+              "task_index": 0,
+              "agent_pos": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.3744756281375885,
+                2.3525960445404053,
+                2.0364654064178467,
+                -1.0664820671081543,
+                0.07279303669929504,
+                0.3674302101135254,
+                0.0
+              ],
+              "action": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.3744756281375885,
+                2.3525960445404053,
+                2.0364654064178467,
+                -1.0664820671081543,
+                0.07279303669929504,
+                0.3674302101135254,
+                0.0
+              ],
+              "endpose": [
+                -0.29880961775779724,
+                -0.3113069534301758,
+                0.9375013113021851,
+                3.141577959060669,
+                -2.730319693000638e-06,
+                1.570796251296997,
+                0.0,
+                0.12053000181913376,
+                0.030194174498319626,
+                0.9487496018409729,
+                -3.1180484294891357,
+                1.3704655170440674,
+                1.6075581312179565,
+                0.0
+              ]
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet",
+        "license": "D-Robotics 的 DRRM 数据集卡标 Apache-2.0；上游仿真模型和场景资产的许可另行核对。",
+        "licensePath": "licenses/robotwin-drrm-apache-2-0.txt",
+        "split": "DRRM 1.0 RGB / block_hammer_beat / train / episode 0",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/robotwin-1-drrm-block-hammer-frame-0.png",
+            "alt": "RoboTwin 1.0 敲击积木轨迹的第 0 帧",
+            "width": 320,
+            "height": 240,
+            "caption": "第 0 帧 · 0.0 秒 · 头部相机",
+            "source": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet"
+          },
+          {
+            "kind": "image",
+            "path": "images/robotwin-1-drrm-block-hammer-frame-105.png",
+            "alt": "RoboTwin 1.0 敲击积木轨迹的第 105 帧",
+            "width": 320,
+            "height": 240,
+            "caption": "第 105 帧 · 3.5 秒 · 头部相机",
+            "source": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet"
+          },
+          {
+            "kind": "image",
+            "path": "images/robotwin-1-drrm-block-hammer-frame-210.png",
+            "alt": "RoboTwin 1.0 敲击积木轨迹的第 210 帧",
+            "width": 320,
+            "height": 240,
+            "caption": "第 210 帧 · 7.0 秒 · 头部相机",
+            "source": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet"
+          },
+          {
+            "kind": "file",
+            "path": "files/robotwin-1-drrm-block-hammer-episode-0.json",
+            "label": "下载完整数值轨迹（211 帧）",
+            "description": "包含全部帧的时间戳、状态、动作和末端位姿；不含完整相机图像，请从原始 Parquet 获取。",
+            "source": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet"
+          }
+        ]
+      },
+      {
+        "id": "robotwin-related-block-hammer-episode0-15-16",
+        "title": "敲击积木 · 第三方采样案例（版本未锁定）",
+        "type": "image",
+        "prompt": "这是一条 RoboTwin 系列的第三方仿真采样案例：操作机械臂用锤子敲击积木。下图来自同一 episode 的两个原始采样文件；严格对应 1.0 的上游代码提交尚未确认。",
+        "promptOrigin": "editorial",
+        "explanation": "数据发布方在 2025 年 5 月创建数据集，早于官方 2025 年 6 月公布 RoboTwin 2.0；任务名与 1.0 分支吻合，但未提供生成数据时的上游 commit，因此只能作为 1.0 相关案例。原始文件和数据卡中同编号 JPEG 有不一致，本站使用 PKL 内 head_camera.rgb 数组，不把它当作官方测试集、完整轨迹或模型成绩。数据卡称间隔 50 帧，但原始时间戳尚未核实。",
+        "raw": {
+          "dataset": "YimouWu/RoboTwin_instruct-pix2pix",
+          "dataset_revision": "9cd520acee16ed28721c10c01b65cc37e028ab68",
+          "task": "block_hammer_beat",
+          "episode": "episode0",
+          "pair_index": "block_hammer_beat_D435_pkl/dataset.jsonl train",
+          "frames": [
+            {
+              "sample_file": "episode0/15.pkl",
+              "file_sha256": "7cd1332fadb356acbda8eaf4722cc7b2dc1f7ec84a656b747563cc9b4cc56031",
+              "joint_action": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.30271363258361816,
+                0.2745761275291443,
+                0.08650588989257812,
+                0.07942477613687515,
+                0.3013976812362671,
+                0.02624456211924553,
+                0.045
+              ],
+              "endpose": [
+                -0.29880961775779724,
+                -0.3113069534301758,
+                0.9375013113021851,
+                3.141577959060669,
+                -2.730319693000638e-06,
+                1.570796251296997,
+                0.0,
+                0.27382323145866394,
+                -0.2988964915275574,
+                0.9511966109275818,
+                3.1326422691345215,
+                0.10427035391330719,
+                1.5705184936523438,
+                0.045
+              ],
+              "head_camera_rgb_shape": [
+                240,
+                320,
+                3
+              ],
+              "pointcloud_shape": [
+                1024,
+                6
+              ],
+              "image_sha256": "d319d08f6dd2857496fc838481d26e1937bb57ac5ac89f3a5f98ef2e3308b75d"
+            },
+            {
+              "sample_file": "episode0/16.pkl",
+              "file_sha256": "f8ab9fbf9fb0d1a3839bf3b7c7bf6f327a3ffe46928391b657da94b126490565",
+              "joint_action": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.43618255853652954,
+                0.43675410747528076,
+                0.15136578679084778,
+                0.09837885200977325,
+                0.4305664896965027,
+                0.06902223825454712,
+                0.045
+              ],
+              "endpose": [
+                -0.29880961775779724,
+                -0.3113069534301758,
+                0.9375013113021851,
+                3.141577959060669,
+                -2.730319693000638e-06,
+                1.570796251296997,
+                0.0,
+                0.256359726190567,
+                -0.2906360924243927,
+                0.9594324827194214,
+                3.127913236618042,
+                0.16958796977996826,
+                1.5702300071716309,
+                0.045
+              ],
+              "head_camera_rgb_shape": [
+                240,
+                320,
+                3
+              ],
+              "pointcloud_shape": [
+                1024,
+                6
+              ],
+              "image_sha256": "96da5ba1e8c7549163969e588fde58c55fa23b4c26fb10e74cd41ec7c639b5b7"
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/dataset.jsonl",
+        "license": "第三方数据集卡标注 MIT；发布方为 Shenghao Yang、Yimou Wu，资产及上游代码版本仍需核实。",
+        "licensePath": "licenses/robotwin-related-dataset-mit.txt",
+        "split": "第三方训练数据 / episode0 / 15.pkl → 16.pkl",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/robotwin-related-episode-0-sample-15.png",
+            "alt": "RoboTwin 第三方采样案例的 episode0 文件 15 的头部相机画面",
+            "width": 320,
+            "height": 240,
+            "caption": "episode0 / 15.pkl · 从原始头部相机数组导出",
+            "source": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/episode0/15.pkl"
+          },
+          {
+            "kind": "image",
+            "path": "images/robotwin-related-episode-0-sample-16.png",
+            "alt": "RoboTwin 第三方采样案例的 episode0 文件 16 的头部相机画面",
+            "width": 320,
+            "height": 240,
+            "caption": "episode0 / 16.pkl · 从原始头部相机数组导出",
+            "source": "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/episode0/16.pkl"
+          }
+        ]
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 取得第三方固定版本 15.pkl 和 16.pkl，各 3,405,850 字节；SHA-256 分别为 7cd1332fadb356acbda8eaf4722cc7b2dc1f7ec84a656b747563cc9b4cc56031、f8ab9fbf9fb0d1a3839bf3b7c7bf6f327a3ffe46928391b657da94b126490565。数据集 2025-05-03 创建，官方 2.0 2025-06-21 发布；上游生成代码提交未披露，版本归属仅为推断。15.jpeg 与 15.pkl 的头部相机画面不一致，本站从 PKL 数组导出。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md",
+        "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/dataset.jsonl",
+        "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/episode0/15.pkl",
+        "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/block_hammer_beat_D435_pkl/episode0/16.pkl",
+        "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md",
+        "https://github.com/RoboTwin-Platform/RoboTwin/blob/65a6f5bb74794ba193c6bf17d8eae3b74fc2df70/README.md"
+      ]
+    },
+    {
+      "text": "2026-10-29 下载 21,981,592 字节的 episode_000000.parquet，SHA-256 704b188ffec183d418913729f0d58a48e6c2c6ed44416368b5685dee68504062；实际读取 211 帧，与 episode 元数据长度一致，帧索引连续，元数据标 30 FPS。另一第三方数据的第 0、1 帧动作和末端位姿与本轨迹对应帧数值吻合（误差分别为 0 和约 2e-12），但 15、16 帧不吻合，不能仅凭前两帧推断同次运行或上游 commit。",
+      "sourceUrls": [
+        "https://github.com/D-Robotics-AI-Lab/DRRM/blob/8e71cd63419e87740449e1fca39d19a980f5d54b/README.md",
+        "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet",
+        "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/info.json",
+        "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/episodes.jsonl",
+        "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md"
+      ]
+    }
+  ]
+}

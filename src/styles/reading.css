@@ -1,4 +1,4 @@
-/* 发布资料、指南、关于及对比阅读页面。 */
+/* 发布资料、关于及对比阅读页面。指南私有样式由 GuideView 加载。 */
 
 .release-grid {
   display: grid;
@@ -172,68 +172,6 @@
   margin-top: 18px;
   font-size: 13px;
 }
-.lesson {
-  display: flex;
-  gap: 30px;
-  border-top: 1px solid var(--border);
-  padding: 35px 0;
-  max-width: 900px;
-}
-.task-entry-section {
-  margin-bottom: 36px;
-  scroll-margin-top: var(--anchor-offset);
-}
-.task-entry-section > p {
-  margin: 12px 0 18px;
-}
-.task-entry-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-.task-entry-grid > a {
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: var(--surface);
-}
-.task-entry-grid h3 {
-  font-size: 16px;
-}
-.task-entry-grid p {
-  margin: 10px 0;
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.8;
-}
-.lesson-number {
-  font-size: 32px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1;
-}
-.lesson h2 {
-  font-size: 23px;
-  color: var(--text-strong);
-}
-.lesson h3 {
-  font-size: 14px;
-  color: var(--muted);
-  font-weight: 500;
-  margin: 12px 0;
-}
-.lesson p {
-  font-size: 15px;
-  line-height: 1.95;
-  margin-bottom: 20px;
-  color: var(--text-secondary);
-}
-.guide-page > .muted {
-  margin-top: 20px;
-}
-.guide-page > .muted a {
-  text-decoration: underline;
-}
 .prose-panel {
   max-width: 870px;
   background: var(--surface);
@@ -262,9 +200,6 @@
   margin: 20px 0;
 }
 @media (max-width: 700px) {
-  .task-entry-grid {
-    grid-template-columns: 1fr;
-  }
   .release-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -274,19 +209,6 @@
   }
   .release-card h3 {
     font-size: 21px;
-  }
-  .lesson {
-    gap: 16px;
-    padding: 27px 0;
-  }
-  .lesson-number {
-    font-size: 25px;
-  }
-  .lesson h2 {
-    font-size: 20px;
-  }
-  .lesson p {
-    font-size: 13px;
   }
   .prose-panel {
     padding: 24px;

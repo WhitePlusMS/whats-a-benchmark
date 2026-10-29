@@ -1,0 +1,200 @@
+{
+  "id": "embodiedbench",
+  "status": "published",
+  "order": 22519,
+  "name": "EmbodiedBench",
+  "subtitle": "多环境具身智能体能力评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "long-horizon",
+      "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "原始论文",
+        "type": "论文",
+        "url": "https://arxiv.org/abs/2502.09560"
+      },
+      {
+        "label": "EB-Nav 轨迹数据",
+        "type": "模型轨迹数据集",
+        "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset"
+      }
+    ]
+  },
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "长步骤任务",
+    "具身推理"
+  ],
+  "publisher": "EmbodiedBench Authors",
+  "brandIds": [],
+  "year": 2025,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在多个具身环境和任务中评估多模态模型作为具身智能体的能力。",
+    "task": "在多个具身环境和任务中评估多模态模型作为具身智能体的能力。",
+    "sourceUrls": [
+      "https://github.com/EmbodiedBench/EmbodiedBench"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令及相应环境的视觉或状态观测。",
+    "output": "按环境要求输出规划或控制动作。",
+    "environment": "包含 ALFRED、Habitat、导航和操作等不同环境设置。",
+    "sourceUrls": [
+      "https://github.com/EmbodiedBench/EmbodiedBench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方介绍 1,128 个测试任务及四个评测环境。",
+    "disclosure": "partial",
+    "scale": [
+      "官方介绍 1,128 个测试任务及四个评测环境。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2502.09560"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方轨迹集包含模型执行记录；不同环境和版本需分别核对。"
+    ],
+    "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "不同环境、数据和资产的授权应分别核对。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://github.com/EmbodiedBench/EmbodiedBench",
+      "https://arxiv.org/abs/2502.09560"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "本站展示已取得的官方 EB-Nav 轨迹文件中一条模型运行记录的动作编号与结果。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json"
+    ]
+  },
+  "metric": {
+    "name": "任务完成情况",
+    "description": "不同环境的任务与评分条件不同；比较时应分别报告具体环境和协议。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/EmbodiedBench/EmbodiedBench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/EmbodiedBench/EmbodiedBench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/EmbodiedBench/EmbodiedBench",
+      "role": "definition"
+    },
+    {
+      "label": "原始论文",
+      "url": "https://arxiv.org/abs/2502.09560",
+      "role": "data"
+    },
+    {
+      "label": "官方 EB-Nav 轨迹数据集",
+      "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset",
+      "role": "data"
+    },
+    {
+      "label": "固定版本多步轨迹文件",
+      "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "eb-nav-multi-claude-base-episode-1",
+        "title": "导航至面包 · 模型轨迹节选",
+        "type": "record",
+        "prompt": "任务要求机器人接近房间里的面包。该模型先前进两次，尝试向右移动时被阻挡，随后向左移动；下方原始数据保留前六步的动作编号及是否执行成功。",
+        "promptOrigin": "editorial",
+        "explanation": "此记录来自官方发布的多步模型轨迹，而非人类示范。原始文件对整条 episode 记录 success=1.0；这只是该条记录的字段，不是模型在整个基准上的总成绩。本站未转载模型原始文本和图像。",
+        "raw": {
+          "model_name": "claude-3-5-sonnet-20241022_additional_nav_no_c_h",
+          "eval_set": "base",
+          "episode_id": "1",
+          "success": 1.0,
+          "actions": [
+            {
+              "step_id": 1,
+              "action_id": 0,
+              "action_success": true
+            },
+            {
+              "step_id": 2,
+              "action_id": 0,
+              "action_success": true
+            },
+            {
+              "step_id": 3,
+              "action_id": 2,
+              "action_success": false
+            },
+            {
+              "step_id": 4,
+              "action_id": 3,
+              "action_success": true
+            },
+            {
+              "step_id": 5,
+              "action_id": 0,
+              "action_success": true
+            },
+            {
+              "step_id": 6,
+              "action_id": 3,
+              "action_success": true
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json",
+        "license": "数据集未标明明确的转载许可；展示记录编号、动作编号和结果等事实及本站整理说明，完整内容见来源。",
+        "split": "base / episode 1 / multi-step",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载官方多步轨迹 JSON（61,267,651 字节），共 3,300 条记录；文件 SHA-256 c620e62e13e709592c5c5b57d8d38aeea02e7b89d39080033540e4cc46d29014，未发现明确数据许可证。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset",
+        "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json"
+      ]
+    }
+  ]
+}

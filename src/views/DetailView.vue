@@ -2,7 +2,12 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
-import { byId, categoryById, kindLabels } from "../content/catalog";
+import {
+  byId,
+  categoryById,
+  embodiedCategories,
+  kindLabels,
+} from "../content/catalog";
 import {
   dataAccessLabels,
   disclosureLabels,
@@ -36,8 +41,7 @@ const category = computed(
 const statusTone = computed(() => {
   const status = item.value?.researchStatus;
   if (status === "blocked") return "bad";
-  if (status === "partial" || status === "pass-with-limitations")
-    return "warn";
+  if (status === "partial" || status === "pass-with-limitations") return "warn";
   return "ok";
 });
 const scoreInterpretation = computed(() => {
@@ -57,7 +61,7 @@ const featuredIn = computed(() =>
   ),
 );
 const { selected, toggle } = useComparison();
-const { catalogLocation } = useCatalogNavigation();
+const { catalogLocation, embodiedLocation } = useCatalogNavigation();
 const sourceGroups = computed(() =>
   groupSourceReferences(item.value?.sources || []),
 );
@@ -127,10 +131,22 @@ useHead(() => ({
 <template>
   <div v-if="item" class="container detail-page">
     <nav class="breadcrumbs" aria-label="面包屑">
-      <RouterLink :to="catalogLocation">返回目录</RouterLink><span>/</span>
-      <RouterLink :to="{ path: '/', query: { category: item.category } }">{{
-        category?.name
-      }}</RouterLink>
+      <RouterLink :to="item.embodied ? embodiedLocation : catalogLocation"
+        >返回目录</RouterLink
+      ><span>/</span>
+      <RouterLink
+        :to="{
+          path: item.embodied ? '/embodied/' : '/',
+          query: { category: item.embodied?.tasks[0] || item.category },
+        }"
+        >{{
+          item.embodied
+            ? embodiedCategories.find(
+                (entry) => entry.id === item?.embodied?.tasks[0],
+              )?.name
+            : category?.name
+        }}</RouterLink
+      >
       <span>/</span><span translate="no">{{ item.name }}</span>
     </nav>
     <aside v-if="item.status === 'archived'" class="info-banner" role="note">
@@ -147,7 +163,11 @@ useHead(() => ({
         <div>
           <div class="tags">
             <span>{{ kindLabels[item.kind] }}</span
-            ><span>{{ category?.name }}</span
+            ><template v-if="item.embodied"
+              ><span v-for="task in item.embodied.tasks" :key="task">{{
+                embodiedCategories.find((entry) => entry.id === task)?.name
+              }}</span></template
+            ><span v-else>{{ category?.name }}</span
             ><span class="status-dot" :class="statusTone">{{
               researchStatusLabels[item.researchStatus]
             }}</span>
@@ -165,11 +185,9 @@ useHead(() => ({
           :rel="primaryAction.external ? 'noreferrer' : undefined"
           class="primary-button"
         >
-          <Icon
-            v-if="primaryAction.external"
-            name="up"
-            :size="18"
-          />{{ primaryAction.label }}
+          <Icon v-if="primaryAction.external" name="up" :size="18" />{{
+            primaryAction.label
+          }}
         </a>
         <button
           v-if="item.status === 'published'"
@@ -339,8 +357,10 @@ useHead(() => ({
             v-for="component in item.composition.items"
             :key="component.id"
             :to="`/benchmarks/${component.id}/#samples`"
-            ><span translate="no">{{ byId.get(component.id)?.name }}</span
-          ></RouterLink>
+            ><span translate="no">{{
+              byId.get(component.id)?.name
+            }}</span></RouterLink
+          >
         </div>
       </template>
       <SampleViewer v-else :item="item" />
@@ -545,6 +565,26 @@ useHead(() => ({
       </div>
     </section>
 
+    <section v-if="item.embodied?.resources?.length" class="detail-section">
+      <h2>相关资源</h2>
+      <div class="relation-list">
+        <article
+          v-for="resource in item.embodied.resources"
+          :key="resource.url"
+          class="relation-item"
+        >
+          <a
+            :href="resource.url"
+            target="_blank"
+            rel="noreferrer"
+            class="relation-link"
+            ><span class="small-badge">{{ resource.type }}</span>
+            <h3>{{ resource.label }}</h3></a
+          >
+        </article>
+      </div>
+    </section>
+
     <section id="sources" class="detail-section">
       <h2>参考资料</h2>
       <p class="section-intro">
@@ -564,8 +604,8 @@ useHead(() => ({
           v-for="release in featuredIn"
           :key="release.id"
           :to="`/releases/#${release.id}`"
-          ><span translate="no">{{ release.title }}</span
-        ></RouterLink>
+          ><span translate="no">{{ release.title }}</span></RouterLink
+        >
       </div>
       <details
         v-if="item.researchNotes?.length"

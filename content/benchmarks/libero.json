@@ -1,0 +1,205 @@
+{
+  "id": "libero",
+  "status": "published",
+  "order": 22303,
+  "name": "LIBERO",
+  "subtitle": "机器人操作中的知识迁移与持续学习",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "long-horizon"
+    ],
+    "resources": [
+      {
+        "label": "官方 Spatial 演示文件目录",
+        "type": "数据集",
+        "url": "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial"
+      },
+      {
+        "label": "第三方转换集逐帧数据",
+        "type": "转换数据集",
+        "url": "https://huggingface.co/datasets/zcyqyq/libero"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "长步骤任务"
+  ],
+  "publisher": "LIBERO Team",
+  "brandIds": [],
+  "year": 2023,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在多个模拟操作任务上研究机器人策略的知识迁移和持续学习。",
+    "task": "在多个模拟操作任务上研究机器人策略的知识迁移和持续学习。",
+    "sourceUrls": [
+      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "任务语言描述、相机图像与机器人状态；演示数据用于学习。",
+    "output": "机器人操作动作，按场景和目标条件完成任务。",
+    "environment": "MuJoCo 与 robosuite 仿真，包含 Spatial、Object、Goal 和 LIBERO-100 任务组。",
+    "sourceUrls": [
+      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方 README 描述 130 项任务；LIBERO-100 中 90 项预训练、10 项用于下游持续学习。",
+    "disclosure": "partial",
+    "scale": [
+      "官方 README 描述 130 项任务；LIBERO-100 中 90 项预训练、10 项用于下游持续学习。"
+    ],
+    "splits": [
+      "LIBERO-Spatial、LIBERO-Object、LIBERO-Goal",
+      "LIBERO-90 预训练与 LIBERO-10 下游任务"
+    ],
+    "fields": [
+      "工作区及腕部相机观测、机器人状态、任务语言"
+    ],
+    "files": [
+      "官方按任务提供 HDF5 演示文件。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方 README 标注数据 CC BY 4.0；官方 HF 卡标 Apache-2.0，转换集也标 Apache-2.0，许可范围存在差异。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md",
+      "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "官方 Hugging Face 提供任务级 HDF5 演示文件；例如 libero_spatial 的黑碗放到盘子任务。站内节选另来自第三方转换集的一帧数值，非官方原始 HDF5 文件。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial",
+      "https://huggingface.co/datasets/zcyqyq/libero"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按任务和评测配置统计成功；对比必须区分任务组、初始状态、随机种子与演示数据。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "官方 Spatial 演示文件目录",
+      "url": "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial",
+      "role": "data"
+    },
+    {
+      "label": "第三方 LIBERO 转换数据及逐帧预览",
+      "url": "https://huggingface.co/datasets/zcyqyq/libero",
+      "role": "data"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://github.com/Zxy-MLlab/LIBERO-PRO",
+      "role": "definition"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://github.com/sylvestf/LIBERO-plus",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "libero-pro",
+      "label": "衍生评测",
+      "detail": "LIBERO-PRO 在原版任务上引入泛化扰动。",
+      "sourceUrls": [
+        "https://github.com/Zxy-MLlab/LIBERO-PRO"
+      ]
+    },
+    {
+      "id": "libero-plus",
+      "label": "衍生评测",
+      "detail": "LIBERO-Plus 基于原版引入七维鲁棒性扰动。",
+      "sourceUrls": [
+        "https://github.com/sylvestf/LIBERO-plus"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-28",
+    "samples": [
+      {
+        "id": "zcyqyq-libero-train-episode-0-frame-0",
+        "title": "LIBERO 转换集：第 0 条轨迹的第 0 帧",
+        "type": "record",
+        "prompt": "一条仿真机器人演示轨迹在起始时刻记录了机器人状态和动作。以下数值来自第三方转换集的 train 预览；这里展示的是一帧，不代表完整轨迹或模型成绩。",
+        "promptOrigin": "editorial",
+        "explanation": "数据同时提供场景图和腕部图像；本站仅展示可核对的首帧数值节选。原始任务指令、全轨迹和图像需到转换集查阅。",
+        "raw": {
+          "timestamp": 0,
+          "frame_index": 0,
+          "episode_index": 0,
+          "index": 0,
+          "task_index": 0,
+          "state": [
+            -0.05338004603981972,
+            0.007029631175100803,
+            0.6783280968666077,
+            3.1407692432403564,
+            0.0017593271331861615,
+            -0.08994418382644653,
+            0.03878866136074066,
+            -0.03878721222281456
+          ],
+          "actions": [
+            0.01607142947614193,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1
+          ]
+        },
+        "source": "https://huggingface.co/datasets/zcyqyq/libero",
+        "license": "第三方数据卡标注 Apache-2.0；LIBERO 官方 README 标注数据 CC BY 4.0。此处引用首帧数值节选并保留来源，图片与视频未转载。",
+        "split": "train；第三方转换集，核验时 main 为 304c840",
+        "excerpt": true
+      }
+    ]
+  }
+}

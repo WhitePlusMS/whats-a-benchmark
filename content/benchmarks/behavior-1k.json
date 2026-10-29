@@ -1,0 +1,287 @@
+{
+  "id": "behavior-1k",
+  "status": "published",
+  "order": 22404,
+  "name": "BEHAVIOR-1K",
+  "subtitle": "家庭场景中的长步骤具身任务",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "long-horizon",
+      "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "2026 Challenge 数据",
+        "type": "项目资料",
+        "url": "https://behavior.stanford.edu/challenge/dataset.html"
+      },
+      {
+        "label": "2026 Challenge 演示及标注数据",
+        "type": "挑战数据集",
+        "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos"
+      }
+    ]
+  },
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "长步骤任务",
+    "具身推理"
+  ],
+  "publisher": "Stanford University",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在家庭尺度的模拟环境中评估机器人完成日常活动的能力。",
+    "task": "在家庭尺度的模拟环境中评估机器人完成日常活动的能力。",
+    "sourceUrls": [
+      "https://behavior.stanford.edu/"
+    ]
+  },
+  "taskContract": {
+    "input": "任务、环境观测及机器人状态；具体输入取决于所选评测协议。",
+    "output": "在环境中移动并操作物体，使任务目标条件成立。",
+    "environment": "OmniGibson 家庭场景；2026 Challenge 采用 100 个任务，与完整 1,000 项活动范围不同。",
+    "sourceUrls": [
+      "https://behavior.stanford.edu/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "完整项目为 1,000 项活动；2026 Challenge 挑选 100 个任务。",
+    "disclosure": "partial",
+    "scale": [
+      "完整项目为 1,000 项活动；2026 Challenge 挑选 100 个任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://behavior.stanford.edu/"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://behavior.stanford.edu/challenge/dataset.html",
+    "sourceUrls": [
+      "https://behavior.stanford.edu/challenge/dataset.html"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方演示数据集卡和 LICENSE 标注 MIT；场景和对象资产有独立约束。",
+    "scope": "本站只展示官方数据集中的技能标注节选，并保留许可证和来源。",
+    "boundaries": [
+      "场景、对象模型和演示视频可能涉及第三方资产及数据协议；本站未转载。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得 2026 Challenge 官方演示集的一条技能标注记录。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos",
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json"
+    ]
+  },
+  "metric": {
+    "name": "目标条件部分成功分数",
+    "description": "2026 Challenge 根据 BDDL 目标谓词计算部分成功，并对任务汇总；其他协议应另行核实。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://behavior.stanford.edu/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://behavior.stanford.edu/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://behavior.stanford.edu/",
+      "role": "definition"
+    },
+    {
+      "label": "2026 Challenge 数据",
+      "url": "https://behavior.stanford.edu/challenge/dataset.html",
+      "role": "data"
+    },
+    {
+      "label": "2026 Challenge 官方演示数据集",
+      "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos",
+      "role": "data"
+    },
+    {
+      "label": "固定版本的技能标注记录",
+      "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "behavior-2026-task-0-episode-10",
+        "title": "打开收音机 · 任务过程",
+        "type": "record",
+        "prompt": "接近收音机，从咖啡桌上拿起它，按下按钮，再将其放回咖啡桌。下面是官方演示数据中的技能标注。",
+        "promptOrigin": "editorial",
+        "explanation": "这是 BEHAVIOR-1K 2026 Challenge 100 项任务范围内的一条演示标注，记录了每个技能的对象与帧区间；不是完整运动轨迹，也不是模型评测结果。",
+        "raw": {
+          "task_name": "turning on radio",
+          "meta_data": {
+            "task_duration": 1776,
+            "valid_duration": [
+              0,
+              1776
+            ]
+          },
+          "skill_annotation": [
+            {
+              "skill_idx": 0,
+              "skill_id": [
+                1
+              ],
+              "skill_description": [
+                "move to"
+              ],
+              "object_id": [
+                [
+                  "radio_89"
+                ]
+              ],
+              "manipulating_object_id": [],
+              "memory_prefix": [],
+              "spatial_prefix": [],
+              "frame_duration": [
+                0,
+                265
+              ],
+              "mp_ef": [],
+              "skill_type": [
+                "navigation"
+              ]
+            },
+            {
+              "skill_idx": 1,
+              "skill_id": [
+                2
+              ],
+              "skill_description": [
+                "pick up from"
+              ],
+              "object_id": [
+                [
+                  "radio_89",
+                  "coffee_table_koagbh_0"
+                ]
+              ],
+              "manipulating_object_id": [
+                "radio_89"
+              ],
+              "memory_prefix": [],
+              "spatial_prefix": [],
+              "frame_duration": [
+                265,
+                1162
+              ],
+              "mp_ef": [],
+              "skill_type": [
+                "uncoordinated"
+              ]
+            },
+            {
+              "skill_idx": 2,
+              "skill_id": [
+                67
+              ],
+              "skill_description": [
+                "press"
+              ],
+              "object_id": [
+                [
+                  "radio_89"
+                ]
+              ],
+              "manipulating_object_id": [
+                "radio_89"
+              ],
+              "memory_prefix": [],
+              "spatial_prefix": [],
+              "frame_duration": [
+                1162,
+                1434
+              ],
+              "mp_ef": [],
+              "skill_type": [
+                "coordinated"
+              ]
+            },
+            {
+              "skill_idx": 3,
+              "skill_id": [
+                3
+              ],
+              "skill_description": [
+                "place on"
+              ],
+              "object_id": [
+                [
+                  "radio_89",
+                  "coffee_table_koagbh_0"
+                ]
+              ],
+              "manipulating_object_id": [
+                "radio_89"
+              ],
+              "memory_prefix": [
+                "back"
+              ],
+              "spatial_prefix": [],
+              "frame_duration": [
+                1434,
+                1776
+              ],
+              "mp_ef": [],
+              "skill_type": [
+                "uncoordinated"
+              ]
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json",
+        "license": "BEHAVIOR-1K 2026 Challenge Demos，MIT；版权声明和许可文本随站点提供。",
+        "licensePath": "licenses/behavior-2026-demos-mit.txt",
+        "split": "task-0000 / episode_00000010",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 实际下载技能标注，固定版本 4f50b44796641a4d526a19d9aeadc8aa51e2f2c2，文件 SHA-256 48f9ea43dac254b18616355499d07371c9365aeee2539c336b7cee484d92cb81；未获取受独立资产协议约束的场景或图像。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos",
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "id": "simpler",
+  "status": "published",
+  "order": 22417,
+  "name": "SIMPLER",
+  "subtitle": "用仿真评估真实机器人操作策略",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "官方仿真评测仓库",
+        "type": "项目资料",
+        "url": "https://github.com/simpler-env/SimplerEnv"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "SIMPLER Authors",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "构建与真实机器人设置相对应的仿真环境，评估操作策略并研究与真实结果的关系。",
+    "task": "构建与真实机器人设置相对应的仿真环境，评估操作策略并研究与真实结果的关系。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2405.05941"
+    ]
+  },
+  "taskContract": {
+    "input": "仿真环境相机观测及任务设置。",
+    "output": "执行抓取、移动物体或开关抽屉等操作。",
+    "environment": "基于 SAPIEN / ManiSkill 的模拟环境，包含 Google Robot 和 WidowX 设置。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2405.05941"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库列出多项 Google Robot 与 WidowX 操作任务，并区分环境设置。",
+    "disclosure": "partial",
+    "scale": [
+      "官方仓库列出多项 Google Robot 与 WidowX 操作任务，并区分环境设置。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/simpler-env/SimplerEnv"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方仓库提供仿真环境和评测脚本，并链接作者提供的评测录像集。"
+    ],
+    "sourceUrls": [
+      "https://github.com/simpler-env/SimplerEnv"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "作者提供的录像数据集卡标注 MIT；仿真场景与叠加素材的独立许可范围仍需分别核对。",
+    "scope": "本站仅展示作者录像集中的两段原始仿真录像并标注数据来源。",
+    "boundaries": [
+      "此许可判断依据数据集卡；其他资源与资产不能据此推断。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载作者提供的 RT-1 仿真评测录像包并提取成功与失败案例。",
+    "sourceUrls": [
+      "https://github.com/simpler-env/SimplerEnv/blob/eddb5690749a1e34267807c0f7b5eede323918d7/README.md",
+      "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos/blob/610a6204d46cbc6fd9feb2c79d9a98117ce5bc22/rt1_cokecan_000240240.zip",
+      "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "任务成功率衡量单项操作；仿真与真实结果的一致性应另按论文指标分析。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2405.05941"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2405.05941"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://arxiv.org/abs/2405.05941",
+      "role": "definition"
+    },
+    {
+      "label": "官方仿真评测仓库",
+      "url": "https://github.com/simpler-env/SimplerEnv",
+      "role": "data"
+    },
+    {
+      "label": "作者提供的评测视频数据集",
+      "url": "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 RT-1 评测录像包",
+      "url": "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos/blob/610a6204d46cbc6fd9feb2c79d9a98117ce5bc22/rt1_cokecan_000240240.zip",
+      "role": "data"
+    },
+    {
+      "label": "官方固定版本 README",
+      "url": "https://github.com/simpler-env/SimplerEnv/blob/eddb5690749a1e34267807c0f7b5eede323918d7/README.md",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "simpler-rt1-cokecan-failure",
+        "title": "抓取可乐罐 · 失败案例",
+        "type": "video",
+        "prompt": "Google Robot 在仿真中尝试抓取可乐罐；录像文件标记本次尝试为失败。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 SIMPLER 示例录像集中的 RT-1 评测片段，使用视觉匹配设置；这是一次仿真运行，不是真机录像，也不是整项成功率。文件名包含物体位置和抓取状态，具体成功判定以官方评测代码为准。",
+        "raw": {
+          "archive": "rt1_cokecan_000240240.zip",
+          "dataset_revision": "610a6204d46cbc6fd9feb2c79d9a98117ce5bc22",
+          "archive_sha256": "9ede9653a97fa1ad56a8478bb1deaf668887215a4185ec3e2e39e21005afcaf1",
+          "original_member": "rt1_cokecan_000240240/google_pick_coke_can_1_v4/arm_pd_ee_delta_pose_align_interpolate_by_planner_gripper_pd_joint_target_delta_pos_interpolate_by_planner/GraspSingleOpenedCokeCanInScene-v0_lr_switch_True_urdf_version_recolor_cabinet_visual_matching_1/rob_0.35_0.2_rot_0.000_-0.000_3.142_rgb_overlay_google_coke_can_real_eval_1/failure_obj_-0.35_0.42_n_lift_significant_0_consec_grasp_True_grasped_True.mp4",
+          "video_sha256": "c5eac15a6ce20c44d46bb0ba57ef38663426e6abf15041ee40e10537f8233654",
+          "result_label": "failure"
+        },
+        "source": "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos/blob/610a6204d46cbc6fd9feb2c79d9a98117ce5bc22/rt1_cokecan_000240240.zip",
+        "license": "录像数据集卡标 MIT；仿真场景及叠加素材的独立许可仍需核对。",
+        "split": "RT-1 / visual matching / Google Robot / pick coke can",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/simpler-rt1-cokecan-failure.mp4",
+            "caption": "SIMPLER 作者提供的仿真评测录像；文件名标记为 failure。",
+            "source": "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos/blob/610a6204d46cbc6fd9feb2c79d9a98117ce5bc22/rt1_cokecan_000240240.zip"
+          }
+        ]
+      },
+      {
+        "id": "simpler-rt1-cokecan-success",
+        "title": "抓取可乐罐 · 成功案例",
+        "type": "video",
+        "prompt": "Google Robot 在仿真中尝试抓取可乐罐；录像文件标记本次尝试为成功。",
+        "promptOrigin": "editorial",
+        "explanation": "官方 SIMPLER 示例录像集中的 RT-1 评测片段，使用视觉匹配设置；这是一次仿真运行，不是真机录像，也不是整项成功率。文件名包含物体位置和抓取状态，具体成功判定以官方评测代码为准。",
+        "raw": {
+          "archive": "rt1_cokecan_000240240.zip",
+          "dataset_revision": "610a6204d46cbc6fd9feb2c79d9a98117ce5bc22",
+          "archive_sha256": "9ede9653a97fa1ad56a8478bb1deaf668887215a4185ec3e2e39e21005afcaf1",
+          "original_member": "rt1_cokecan_000240240/google_pick_coke_can_1_v4/arm_pd_ee_delta_pose_align_interpolate_by_planner_gripper_pd_joint_target_delta_pos_interpolate_by_planner/GraspSingleOpenedCokeCanInScene-v0_lr_switch_True_urdf_version_recolor_cabinet_visual_matching_1/rob_0.35_0.2_rot_0.000_-0.000_3.142_rgb_overlay_google_coke_can_real_eval_1/success_obj_-0.2925_-0.02_n_lift_significant_57_consec_grasp_True_grasped_True.mp4",
+          "video_sha256": "0cf3c1c544183f48277adf790e6cb6487251fa37294a639a8c4f4b0eb21cd8ce",
+          "result_label": "success"
+        },
+        "source": "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos/blob/610a6204d46cbc6fd9feb2c79d9a98117ce5bc22/rt1_cokecan_000240240.zip",
+        "license": "录像数据集卡标 MIT；仿真场景及叠加素材的独立许可仍需核对。",
+        "split": "RT-1 / visual matching / Google Robot / pick coke can",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/simpler-rt1-cokecan-success.mp4",
+            "caption": "SIMPLER 作者提供的仿真评测录像；文件名标记为 success。",
+            "source": "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos/blob/610a6204d46cbc6fd9feb2c79d9a98117ce5bc22/rt1_cokecan_000240240.zip"
+          }
+        ]
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载 28,572,167 字节录像包，SHA-256 9ede9653a97fa1ad56a8478bb1deaf668887215a4185ec3e2e39e21005afcaf1；按原始文件名提取成功和失败各一段。",
+      "sourceUrls": [
+        "https://github.com/simpler-env/SimplerEnv/blob/eddb5690749a1e34267807c0f7b5eede323918d7/README.md",
+        "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos/blob/610a6204d46cbc6fd9feb2c79d9a98117ce5bc22/rt1_cokecan_000240240.zip",
+        "https://huggingface.co/datasets/xuanlinli17/simpler-env-eval-example-videos"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "id": "robotwin-2",
+  "status": "published",
+  "order": 22506,
+  "name": "RoboTwin 2.0",
+  "subtitle": "双臂协作与机器人操作评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ],
+    "resources": [
+      {
+        "label": "Handover Block 官方任务与视频",
+        "type": "项目资料",
+        "url": "https://robotwin-platform.github.io/doc/tasks/handover_block.html"
+      },
+      {
+        "label": "LeRobot RoboTwin 2.0 转换数据",
+        "type": "转换数据集",
+        "url": "https://huggingface.co/datasets/lerobot/robotwin_unified"
+      }
+    ],
+    "taskExample": {
+      "title": "官方任务：Handover Block",
+      "steps": [
+        "左臂抓起桌上的红色积木。",
+        "将积木交给右臂。",
+        "右臂把积木放到蓝色垫上。"
+      ],
+      "note": "这是官方任务描述的动作顺序，不是一条已取得的演示轨迹或模型结果；视频见下方官方任务页。",
+      "sourceUrl": "https://robotwin-platform.github.io/doc/tasks/handover_block.html"
+    }
+  },
+  "tags": [
+    "抓取与操作",
+    "双臂协作"
+  ],
+  "publisher": "RoboTwin Team",
+  "brandIds": [],
+  "year": 2025,
+  "version": "2.0",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过双臂仿真任务评估机器人在不同具身和环境扰动下的操作能力。",
+    "task": "通过双臂仿真任务评估机器人在不同具身和环境扰动下的操作能力。",
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "相机观测和任务信息；具体状态和动作空间依机器人及策略配置。",
+    "output": "协调双臂完成物体抓取、传递或放置等任务。",
+    "environment": "官方列出 50 项任务、5 种机器人具身，区分 clean 与 randomized 条件。",
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方 2.0 榜单协议每任务使用 50 条 clean 演示，两个测试条件各 100 次试验。",
+    "disclosure": "partial",
+    "scale": [
+      "官方 2.0 榜单协议每任务使用 50 条 clean 演示，两个测试条件各 100 次试验。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://robotwin-platform.github.io/leaderboard"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://huggingface.co/datasets/TianxingChen/RoboTwin2.0",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/TianxingChen/RoboTwin2.0"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "代码许可为 MIT；HF 数据卡虽标 MIT，但第三方物体资产和视频的转载范围仍需核实。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md",
+      "https://huggingface.co/datasets/TianxingChen/RoboTwin2.0"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载并解析 LeRobot 转换数据中的双臂演示轨迹，展示首、中、末帧状态和动作。",
+    "sourceUrls": [
+      "https://huggingface.co/docs/lerobot/en/robotwin",
+      "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/meta/tasks.parquet"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按官方 clean 与 randomized 条件分别统计成功率；任务页的数据生成成功率不等于模型榜单成绩。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "Handover Block 官方任务与视频",
+      "url": "https://robotwin-platform.github.io/doc/tasks/handover_block.html",
+      "role": "data"
+    },
+    {
+      "label": "RoboTwin 2.0 官方榜单协议",
+      "url": "https://robotwin-platform.github.io/leaderboard",
+      "role": "leaderboard"
+    },
+    {
+      "label": "RoboTwin 2.0 数据集",
+      "url": "https://huggingface.co/datasets/TianxingChen/RoboTwin2.0",
+      "role": "data"
+    },
+    {
+      "label": "相关版本官方资料",
+      "url": "https://github.com/Tengbo-Yu/robotwin",
+      "role": "definition"
+    },
+    {
+      "label": "LeRobot 版 RoboTwin 2.0 说明",
+      "url": "https://huggingface.co/docs/lerobot/en/robotwin",
+      "role": "readme"
+    },
+    {
+      "label": "固定版本轨迹数据",
+      "url": "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定版本任务索引",
+      "url": "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/meta/tasks.parquet",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robotwin-1",
+      "label": "早期版本",
+      "detail": "RoboTwin 1.0 与 2.0 的任务及评测设置不同。",
+      "sourceUrls": [
+        "https://github.com/Tengbo-Yu/robotwin"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "robotwin2-lerobot-episode-0",
+        "title": "拿起窄口瓶 · 双臂轨迹 0",
+        "type": "record",
+        "prompt": "双臂机器人从桌面拿起窄口瓶。下方展示同一条仿真演示的首、中、末帧状态和动作。",
+        "promptOrigin": "editorial",
+        "explanation": "该轨迹来自 LeRobot 转换的 RoboTwin 2.0 数据，episode 0 共 139 帧；任务文本来自同版本任务索引。本站仅显示数值节选，未转载相机视频，不应将单条轨迹当作模型评测成绩。",
+        "raw": {
+          "dataset": "lerobot/robotwin_unified",
+          "revision": "1287871839fae2296bc27b88a5457c3e1eba8e1f",
+          "file_sha256": "a6afe2c46a97fe507f6eea52f48b283c225662ad3bed0567eabc041f94d364a2",
+          "frames": [
+            {
+              "observation.state": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "action": [
+                0.0,
+                0.0,
+                9.999999747378752e-06,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "timestamp": 0.0,
+              "frame_index": 0,
+              "episode_index": 0,
+              "index": 0,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                -0.9097139835357666,
+                2.189842700958252,
+                1.5326358079910278,
+                -0.9363280534744263,
+                0.01939300261437893,
+                1.0112932920455933,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "action": [
+                -0.9097139835357666,
+                2.189842700958252,
+                1.5326358079910278,
+                -0.9363280534744263,
+                0.01939300261437893,
+                1.0112932920455933,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "timestamp": 2.299999952316284,
+              "frame_index": 69,
+              "episode_index": 0,
+              "index": 69,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                -0.31376099586486816,
+                0.8629713654518127,
+                0.10148134082555771,
+                0.760524332523346,
+                -0.2856426239013672,
+                0.017110461369156837,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "action": [
+                -0.31376099586486816,
+                0.8629713654518127,
+                0.10148134082555771,
+                0.760524332523346,
+                -0.2856426239013672,
+                0.017110461369156837,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "timestamp": 4.599999904632568,
+              "frame_index": 138,
+              "episode_index": 0,
+              "index": 138,
+              "task_index": 0
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
+        "license": "LeRobot 文档描述 Apache-2.0；本次数据卡未明确标注许可，RoboTwin 上游数据卡标 MIT，媒体与资产范围需分别核对。",
+        "split": "episode_index 0 / task_index 0 / LeRobot 转换集",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载 LeRobot 固定版本的 36,540,076 字节 Parquet；SHA-256 a6afe2c46a97fe507f6eea52f48b283c225662ad3bed0567eabc041f94d364a2；从中读取 episode 0 的 139 帧。",
+      "sourceUrls": [
+        "https://huggingface.co/docs/lerobot/en/robotwin",
+        "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
+        "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/meta/tasks.parquet"
+      ]
+    }
+  ]
+}

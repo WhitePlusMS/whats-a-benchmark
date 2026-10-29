@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue";
-import { benchmarks } from "../content/catalog";
+import { benchmarks, embodiedBenchmarks } from "../content/catalog";
 useHead({ title: "关于与收录规范 · what's a benchmark?" });
 </script>
 <template>
@@ -26,7 +26,7 @@ useHead({ title: "关于与收录规范 · what's a benchmark?" });
       <h2>收录范围与更新日期</h2>
       <p>
         当前目录展示
-        {{ benchmarks.length }}
+        {{ benchmarks.length + embodiedBenchmarks.length }}
         个条目，各条目的核验日期见详情页。目录持续扩展，不声称覆盖所有评测。模型成绩与排名请以原始榜单和具体报告为准。年份未知、访问受限或资料未公开时会明确标识。
       </p>
       <h2>访问与隐私</h2>

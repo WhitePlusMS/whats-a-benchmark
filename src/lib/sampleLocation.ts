@@ -23,7 +23,13 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
   );
 
   function writeLocation() {
-    if (!viewer.current.value) return;
+    // 指南复用查看器时只切换本地状态；只有对应详情页把题目写入 URL。
+    if (
+      !viewer.current.value ||
+      router.currentRoute.value.path !==
+        `/benchmarks/${viewer.data.value?.benchmarkId}/`
+    )
+      return;
     return router.replace({
       path: router.currentRoute.value.path,
       query: {

@@ -1,0 +1,284 @@
+{
+  "id": "vlabench",
+  "status": "published",
+  "order": 22418,
+  "name": "VLABench",
+  "subtitle": "视觉语言动作模型的具身任务评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "long-horizon",
+      "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "官方项目与演示",
+        "type": "项目资料",
+        "url": "https://vlabench.github.io/"
+      },
+      {
+        "label": "VLABench 官方预训练轨迹",
+        "type": "训练数据集",
+        "url": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "长步骤任务",
+    "具身推理"
+  ],
+  "publisher": "VLABench Authors",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过语言条件下的操作任务评估视觉语言动作模型及具身智能体。",
+    "task": "通过语言条件下的操作任务评估视觉语言动作模型及具身智能体。",
+    "sourceUrls": [
+      "https://github.com/OpenMOSS/VLABench"
+    ]
+  },
+  "taskContract": {
+    "input": "任务语言、环境视觉观测和策略所需机器人状态。",
+    "output": "执行操作或生成任务技能序列，具体取决于评测轨道。",
+    "environment": "模拟操作任务，涉及对象、空间、常识和多步骤组合。",
+    "sourceUrls": [
+      "https://github.com/OpenMOSS/VLABench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "项目描述 100 类任务：60 类基础任务与 40 类组合任务。",
+    "disclosure": "partial",
+    "scale": [
+      "项目描述 100 类任务：60 类基础任务与 40 类组合任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://vlabench.github.io/"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "官方数据集按 episode 提供 Parquet；预训练演示和测试评测应分别理解。"
+    ],
+    "url": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方 VLABench 训练数据集卡标注 MIT。",
+    "scope": "本样例展示固定版本中提取的三帧和状态、动作节选。",
+    "boundaries": [
+      "数据卡未单独附带版权声明文件；本站保留项目名称、固定版本、数据卡及许可信息。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得官方预训练集的一条完整轨迹文件，展示三帧与对应数据节选。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
+      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet"
+    ]
+  },
+  "metric": {
+    "name": "成功率与任务进度",
+    "description": "交互式策略和非交互式技能预测使用不同指标，须按轨道核对。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/OpenMOSS/VLABench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/OpenMOSS/VLABench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/OpenMOSS/VLABench",
+      "role": "definition"
+    },
+    {
+      "label": "官方项目与演示",
+      "url": "https://vlabench.github.io/",
+      "role": "data"
+    },
+    {
+      "label": "VLABench 官方数据集卡",
+      "url": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
+      "role": "data"
+    },
+    {
+      "label": "固定版本轨迹 Parquet",
+      "url": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定版本任务索引",
+      "url": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/meta/tasks.jsonl",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "vlabench-train-episode-000000",
+        "title": "选择方块 4 扑克牌 · 轨迹 0",
+        "type": "image",
+        "prompt": "请抓取方块 4 扑克牌。下方按时间展示官方预训练数据中同一条机器人仿真演示的三帧。",
+        "promptOrigin": "editorial",
+        "explanation": "实际文件包含 81 帧和三个相机视角；这里展示 image 视角的第 0、40、80 帧，以及相应状态和动作。原始指令来自同版本任务索引。这是训练轨迹，不是模型成绩，也不据最后一帧推断成功。",
+        "raw": {
+          "dataset": "VLABench/vlabench_primitive_pretrain_lerobot",
+          "revision": "aaa042a8ffb56c931ad738bd220c0c944d8479e7",
+          "file": "data/chunk-000/episode_000000.parquet",
+          "file_sha256": "179a139b7352c575a9b265581a421f0518f231de41800c5a29ec34b4aaa4d854",
+          "task": "Please pick the poker 4 of diamonds",
+          "frames": [
+            {
+              "state": [
+                0.00044109695591032505,
+                0.22970592975616455,
+                0.43188926577568054,
+                -3.132373332977295,
+                -0.05643928050994873,
+                -1.606568455696106,
+                0.0
+              ],
+              "actions": [
+                0.00044109695591032505,
+                0.22970592975616455,
+                0.43188929557800293,
+                -3.132373332977295,
+                -0.05643928050994873,
+                -1.606568455696106,
+                1.0
+              ],
+              "timestamp": 0.0,
+              "frame_index": 0,
+              "episode_index": 0,
+              "index": 0,
+              "task_index": 0,
+              "image_sha256": "27313d0264b6c45f906e926a613e7b78914f39dd2ea0ff6267cb669ed631ada9"
+            },
+            {
+              "state": [
+                -0.11112438142299652,
+                0.4885006844997406,
+                0.25193437933921814,
+                3.1258227825164795,
+                -0.038039274513721466,
+                -0.7298079133033752,
+                0.0
+              ],
+              "actions": [
+                -0.12189929187297821,
+                0.4997604489326477,
+                0.24755336344242096,
+                3.1336917877197266,
+                -0.023819101974368095,
+                -0.6422716379165649,
+                1.0
+              ],
+              "timestamp": 4.0,
+              "frame_index": 40,
+              "episode_index": 0,
+              "index": 40,
+              "task_index": 0,
+              "image_sha256": "df1e45f8a76a6b205afb708e8c71e5f59c99ba11d3a4c7df8e011fa7692fdbbb"
+            },
+            {
+              "state": [
+                -0.19244670867919922,
+                0.5549154877662659,
+                0.12856295704841614,
+                3.11254620552063,
+                -0.008722059428691864,
+                -0.00019971828442066908,
+                1.0
+              ],
+              "actions": [
+                -0.19383542239665985,
+                0.5587597489356995,
+                0.15188667178153992,
+                3.1263577938079834,
+                -0.004619020037353039,
+                -0.00017328443937003613,
+                0.0
+              ],
+              "timestamp": 8.0,
+              "frame_index": 80,
+              "episode_index": 0,
+              "index": 80,
+              "task_index": 0,
+              "image_sha256": "2d154fae11963a948345a606daf9638375adadf89081d331c7a6ec9f7e19fbd4"
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet",
+        "license": "VLABench 官方训练集数据卡标注 MIT；按来源注明发布方和版本。",
+        "licensePath": "licenses/vlabench-dataset-mit.txt",
+        "split": "train / episode_index 0 / task_index 0",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/vlabench-episode-0-frame-0.png",
+            "alt": "VLABench 扑克牌选择任务的第 0 帧",
+            "width": 480,
+            "height": 480,
+            "caption": "第 0 帧 · 0.0 秒 · 相机 image",
+            "source": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet"
+          },
+          {
+            "kind": "image",
+            "path": "images/vlabench-episode-0-frame-40.png",
+            "alt": "VLABench 扑克牌选择任务的第 40 帧",
+            "width": 480,
+            "height": 480,
+            "caption": "第 40 帧 · 4.0 秒 · 相机 image",
+            "source": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet"
+          },
+          {
+            "kind": "image",
+            "path": "images/vlabench-episode-0-frame-80.png",
+            "alt": "VLABench 扑克牌选择任务的第 80 帧",
+            "width": 480,
+            "height": 480,
+            "caption": "第 80 帧 · 8.0 秒 · 相机 image",
+            "source": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet"
+          }
+        ]
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 实际下载固定版本 episode_000000.parquet，大小 45,390,259 字节，SHA-256 179a139b7352c575a9b265581a421f0518f231de41800c5a29ec34b4aaa4d854；数据卡标 MIT，未找到独立版权声明文件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
+        "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet"
+      ]
+    }
+  ]
+}

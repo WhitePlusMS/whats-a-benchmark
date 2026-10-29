@@ -1,0 +1,175 @@
+{
+  "id": "r2r",
+  "status": "published",
+  "order": 21807,
+  "name": "Room-to-Room (R2R)",
+  "subtitle": "根据自然语言指令进行室内导航",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "navigation"
+    ],
+    "resources": [
+      {
+        "label": "原始论文",
+        "type": "论文",
+        "url": "https://arxiv.org/abs/1711.07280"
+      },
+      {
+        "label": "R2R val_seen 路径数据",
+        "type": "数据集",
+        "url": "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1"
+      }
+    ]
+  },
+  "tags": [
+    "导航与移动"
+  ],
+  "publisher": "R2R Authors",
+  "brandIds": [],
+  "year": 2018,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估导航智能体在真实建筑扫描构成的环境中，依据自然语言路线指令到达目标。",
+    "task": "评估导航智能体在真实建筑扫描构成的环境中，依据自然语言路线指令到达目标。",
+    "sourceUrls": [
+      "https://bringmeaspoon.org/"
+    ]
+  },
+  "taskContract": {
+    "input": "自然语言导航指令与环境视觉观测。",
+    "output": "依指令移动并停在目标附近。",
+    "environment": "Matterport3D 建筑扫描构成的仿真导航环境。",
+    "sourceUrls": [
+      "https://bringmeaspoon.org/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原论文描述 7,189 条路径和 21,567 条自然语言指令，覆盖 90 个建筑场景。",
+    "disclosure": "partial",
+    "scale": [
+      "原论文描述 7,189 条路径和 21,567 条自然语言指令，覆盖 90 个建筑场景。"
+    ],
+    "splits": [
+      "train",
+      "val_seen",
+      "val_unseen",
+      "test_unseen"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/1711.07280"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://bringmeaspoon.org/",
+    "sourceUrls": [
+      "https://bringmeaspoon.org/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "Matterport3D 场景资产有独立使用条款；R2R 标注与图像的再发布许可尚未逐项核实。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://bringmeaspoon.org/",
+      "https://arxiv.org/abs/1711.07280"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已从官方脚本指向的验证集取得一条路径记录，站内展示路径参数和本站整理的指令说明。",
+    "sourceUrls": [
+      "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/data/download.sh",
+      "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1"
+    ]
+  },
+  "metric": {
+    "name": "导航成功率及路径效率",
+    "description": "比较时区分导航误差、成功率和路径长度加权成功率，并注明 seen / unseen 场景划分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://bringmeaspoon.org/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://bringmeaspoon.org/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://bringmeaspoon.org/",
+      "role": "definition"
+    },
+    {
+      "label": "原始论文",
+      "url": "https://arxiv.org/abs/1711.07280",
+      "role": "data"
+    },
+    {
+      "label": "R2R 官方下载脚本",
+      "url": "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/data/download.sh",
+      "role": "code"
+    },
+    {
+      "label": "官方脚本指向的 val_seen 数据文件",
+      "url": "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "r2r-val-seen-path-5593",
+        "title": "从卧室到房间隔断附近",
+        "type": "record",
+        "prompt": "从卧室离开，向左穿过房间，停在左侧隔断附近。本站依据此路径的一条英文指令整理。",
+        "promptOrigin": "editorial",
+        "explanation": "这是 val_seen 划分中 path_id 5593 的一条导航路径；原始记录包含三条英文指令。本站展示路径参数和中文说明，未转载场景图像或完整原文。",
+        "raw": {
+          "distance": 7.27,
+          "scan": "vyrNrziPKCB",
+          "path_id": 5593,
+          "path": [
+            "c8a5472a5ef243319ffa4f88d3ddb4bd",
+            "545da9c1d46243758c2f904ff4812ab0",
+            "a93a97e5e78946438c199367964bd080",
+            "466ef42243d641888f8044a19d263a56",
+            "bf12f8713f7d44a9b2d4dee1c8d43ba7"
+          ],
+          "heading": 0.053
+        },
+        "source": "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1",
+        "license": "R2R 标注数据的独立转载许可尚未核实；此处展示路径参数及本站整理的说明，完整记录见官方文件。",
+        "split": "val_seen / path_id 5593",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载官方脚本指向的 R2R_val_seen.json，共 340 条路径；文件 SHA-256：755633db9d5e64d5ca71d329c5046bb722781a09f0d1d501d7e8d094c83652ec。",
+      "sourceUrls": [
+        "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/data/download.sh",
+        "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1"
+      ]
+    }
+  ]
+}

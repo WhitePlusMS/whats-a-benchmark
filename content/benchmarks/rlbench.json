@@ -1,0 +1,251 @@
+{
+  "id": "rlbench",
+  "status": "published",
+  "order": 22000,
+  "name": "RLBench",
+  "subtitle": "视觉引导的机器人操作任务与学习评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "官方任务目录",
+        "type": "任务代码",
+        "url": "https://github.com/stepjam/RLBench/tree/master/rlbench/tasks"
+      },
+      {
+        "label": "第三方 LeRobot 转换轨迹",
+        "type": "转换数据集",
+        "url": "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "Imperial College London",
+  "brandIds": [],
+  "year": 2020,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在仿真环境中评估机器人视觉引导操作，覆盖模仿学习、强化学习、多任务及少样本设置。",
+    "task": "在仿真环境中评估机器人视觉引导操作，覆盖模仿学习、强化学习、多任务及少样本设置。",
+    "sourceUrls": [
+      "https://github.com/stepjam/RLBench/blob/master/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "机器人视觉观测、任务及演示，具体输入取决于实验配置。",
+    "output": "机器人动作序列，完成具体操作任务。",
+    "environment": "CoppeliaSim 与 PyRep；默认机器人可替换，任务和 variation 由配置决定。",
+    "sourceUrls": [
+      "https://github.com/stepjam/RLBench/blob/master/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方 few-shot 设置含 10、25、50 或 95 个训练任务，另有 5 个测试任务。",
+    "disclosure": "partial",
+    "scale": [
+      "官方 few-shot 设置含 10、25、50 或 95 个训练任务，另有 5 个测试任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/stepjam/RLBench/blob/master/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://github.com/stepjam/RLBench/tree/master/rlbench/tasks",
+    "sourceUrls": [
+      "https://github.com/stepjam/RLBench/tree/master/rlbench/tasks"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "第三方转换集标 Apache-2.0；RLBench 软件许可有非商业研究限制，源数据和媒体许可范围须分别核对。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://github.com/stepjam/RLBench/blob/master/README.md",
+      "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载并解析一条第三方转换的训练轨迹，站内展示真实状态和动作节选。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
+      "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按具体任务的完成条件评估；比较时须核对任务、variation、观测和训练设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/stepjam/RLBench/blob/master/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://github.com/stepjam/RLBench/blob/master/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://github.com/stepjam/RLBench/blob/master/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "官方任务目录",
+      "url": "https://github.com/stepjam/RLBench/tree/master/rlbench/tasks",
+      "role": "data"
+    },
+    {
+      "label": "第三方转换集数据卡",
+      "url": "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot",
+      "role": "data"
+    },
+    {
+      "label": "固定版本轨迹文件",
+      "url": "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "rlbench-converted-train-episode-0",
+        "title": "关闭盒子 · 训练轨迹 0",
+        "type": "record",
+        "prompt": "在仿真环境中完成“关闭盒子”。下方原始数据保留同一条轨迹的首、中、末帧状态与动作。",
+        "promptOrigin": "editorial",
+        "explanation": "该文件由第三方转换为 LeRobot 格式，包含 193 帧。这里只选取 3 帧数值，并未转载图像；这是演示数据，不是模型榜单成绩。",
+        "raw": {
+          "dataset": "nvkartik/rlbench-lerobot-groot",
+          "revision": "1e7468f40edf487f24215b355df33a99de5c7566",
+          "file_sha256": "eb897edc702c2856735beadb7d44d9c390c4882572222700c30175c3dc3a702b",
+          "frames": [
+            {
+              "observation.state": [
+                -2.3806078388588503e-06,
+                0.1750042736530304,
+                9.092956133827101e-06,
+                -0.8729740977287292,
+                5.131112629896961e-06,
+                1.221634864807129,
+                0.7853959798812866,
+                1.0
+              ],
+              "action": [
+                0.00013324618339538574,
+                -6.606616079807281e-05,
+                -0.00035572052001953125,
+                -0.00010539787035668269,
+                0.00027209523250348866,
+                0.0006391895585693419,
+                0.0
+              ],
+              "language_instruction": "close box",
+              "task_name": "close_box",
+              "source_episode_id": "train/close_box/episode_0000",
+              "timestamp": 0.0,
+              "frame_index": 0,
+              "episode_index": 0,
+              "index": 0,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                0.7451295852661133,
+                -0.6262524127960205,
+                -1.3522875308990479,
+                -2.2590606212615967,
+                0.4010199308395386,
+                1.9394280910491943,
+                -2.3269968032836914,
+                1.0
+              ],
+              "action": [
+                -0.0013479888439178467,
+                -0.0027997344732284546,
+                -0.004076957702636719,
+                -0.005078933667391539,
+                -0.014237441122531891,
+                0.02643674984574318,
+                0.0
+              ],
+              "language_instruction": "close box",
+              "task_name": "close_box",
+              "source_episode_id": "train/close_box/episode_0000",
+              "timestamp": 4.800000190734863,
+              "frame_index": 96,
+              "episode_index": 0,
+              "index": 96,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                0.9080648422241211,
+                0.2532339096069336,
+                -0.5062410831451416,
+                -1.5595722198486328,
+                -0.2000652551651001,
+                1.4589886665344238,
+                -1.6973214149475098,
+                1.0
+              ],
+              "action": [
+                5.269050598144531e-05,
+                0.0002052783966064453,
+                0.0001024007797241211,
+                -9.996118023991585e-05,
+                0.00016874074935913086,
+                -3.245938569307327e-05,
+                0.0
+              ],
+              "language_instruction": "close box",
+              "task_name": "close_box",
+              "source_episode_id": "train/close_box/episode_0000",
+              "timestamp": 9.600000381469727,
+              "frame_index": 192,
+              "episode_index": 0,
+              "index": 192,
+              "task_index": 0
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
+        "license": "第三方转换集标 Apache-2.0；RLBench 软件许可有非商业研究限制，源数据和媒体许可范围须分别核对。",
+        "split": "train / episode 0 / 第三方转换集",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载并解析固定版本的 episode_000000.parquet，共 193 帧；文件 SHA-256 eb897edc702c2856735beadb7d44d9c390c4882572222700c30175c3dc3a702b。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot",
+        "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet"
+      ]
+    }
+  ]
+}

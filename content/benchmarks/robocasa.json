@@ -1,0 +1,298 @@
+{
+  "id": "robocasa",
+  "status": "published",
+  "order": 22414,
+  "name": "RoboCasa",
+  "subtitle": "原版厨房模拟任务与机器人学习",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "navigation",
+      "long-horizon"
+    ],
+    "resources": [
+      {
+        "label": "官方仓库与数据入口",
+        "type": "项目资料",
+        "url": "https://github.com/robocasa/robocasa"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "导航与移动",
+    "长步骤任务"
+  ],
+  "publisher": "RoboCasa Team",
+  "brandIds": [],
+  "year": 2024,
+  "version": "2024 原版",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在多样厨房场景中提供机器人学习、数据生成和系统性评测任务。",
+    "task": "在多样厨房场景中提供机器人学习、数据生成和系统性评测任务。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.02523"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令与模拟场景中的机器人观测。",
+    "output": "控制机器人完成厨房物体和设施操作。",
+    "environment": "原版厨房仿真环境，包含不同场景、物品与设施。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.02523"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原版论文设计 100 项系统评测任务；这不等于后续 RoboCasa365 的 365 项。",
+    "disclosure": "partial",
+    "scale": [
+      "原版论文设计 100 项系统评测任务；这不等于后续 RoboCasa365 的 365 项。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.02523"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "以官方数据页面的下载、运行和使用条件为准。"
+    ],
+    "url": "https://github.com/robocasa/robocasa",
+    "sourceUrls": [
+      "https://github.com/robocasa/robocasa"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "当前仓库区分代码与数据资产许可；原版具体数据和第三方媒体使用范围需核对。",
+    "scope": "按各资源实际许可证和权利范围核对。",
+    "boundaries": [],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.02523",
+      "https://github.com/robocasa/robocasa"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载原版 RoboCasa 的第三方 LeRobot 转换演示数据并解析轨迹。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "比较时应核对原版任务、演示数据与实验设置；后续版本协议不能直接套用。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2406.02523"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2406.02523"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://arxiv.org/abs/2406.02523",
+      "role": "definition"
+    },
+    {
+      "label": "官方仓库与数据入口",
+      "url": "https://github.com/robocasa/robocasa",
+      "role": "data"
+    },
+    {
+      "label": "原版 MG_100 转换轨迹",
+      "url": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "转换数据任务索引",
+      "url": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet",
+      "role": "data"
+    },
+    {
+      "label": "原版 MG_100 数据说明",
+      "url": "https://huggingface.co/datasets/Voxel51/robocasa-MG_100",
+      "role": "readme"
+    }
+  ],
+  "related": [
+    {
+      "id": "robocasa365",
+      "label": "后续版本",
+      "detail": "RoboCasa365 扩展了原版的任务和数据；版本的评测条件不同。",
+      "sourceUrls": [
+        "https://github.com/robocasa/robocasa"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-28",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "robocasa-mg100-episode-0",
+        "title": "关闭橱柜门 · 合成演示轨迹 0",
+        "type": "record",
+        "prompt": "机器人关闭橱柜门；下面展示这条演示的首、中、末帧状态和动作。",
+        "promptOrigin": "editorial",
+        "explanation": "来自原版 RoboCasa 的 MG_100 合成数据第三方转换集，episode 0 共 415 帧；任务标签来自同版本索引。合成演示不代表模型评测成绩，也不能与 RoboCasa365 混同。",
+        "raw": {
+          "dataset": "DAVIAN-Robotics/robocasa-MG_100",
+          "revision": "510a2940a66e0debc9818803cdb62b140a6c4bb6",
+          "file_sha256": "b81b1d2594c6fa6771f10a4a2f9728484b39e8d35d068694e84377df1ca2828d",
+          "task_index": 0,
+          "frames": [
+            {
+              "action": [
+                0.03401018679141998,
+                -0.029938330873847008,
+                0.00610275287181139,
+                -0.03603851795196533,
+                -0.0019522578222677112,
+                -0.07067176699638367,
+                -1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "next.done": false,
+              "observation.state": [
+                0.2511572241783142,
+                0.003609358798712492,
+                0.5998738408088684,
+                -0.9887166619300842,
+                -0.03651891648769379,
+                -0.14336948096752167,
+                0.0234737079590559,
+                0.020555386319756508,
+                -0.020528268069028854,
+                3.5999999046325684,
+                -1.2000000476837158,
+                0.699999988079071,
+                0.0,
+                0.0,
+                -1.8363942899668473e-06,
+                1.0
+              ],
+              "task_index": 0,
+              "timestamp": 0.0,
+              "frame_index": 0,
+              "episode_index": 0,
+              "index": 0
+            },
+            {
+              "action": [
+                -0.037547823041677475,
+                0.0898013561964035,
+                0.03783987835049629,
+                0.1836698204278946,
+                0.070890873670578,
+                0.044283319264650345,
+                -1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "next.done": false,
+              "observation.state": [
+                0.13841505348682404,
+                -0.376287579536438,
+                0.8589875102043152,
+                -0.7213134169578552,
+                0.36744070053100586,
+                -0.3224976658821106,
+                0.49060142040252686,
+                0.040038660168647766,
+                -0.038064587861299515,
+                3.5986838340759277,
+                -1.2021454572677612,
+                0.7000092267990112,
+                0.0,
+                0.0,
+                -0.005645751021802425,
+                0.9999841451644897
+              ],
+              "task_index": 0,
+              "timestamp": 10.350000381469727,
+              "frame_index": 207,
+              "episode_index": 0,
+              "index": 207
+            },
+            {
+              "action": [
+                0.2266809344291687,
+                0.020431693643331528,
+                0.1536378413438797,
+                -0.02650320902466774,
+                -0.24235761165618896,
+                -0.171138197183609,
+                -1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "next.done": false,
+              "observation.state": [
+                0.3686876595020294,
+                0.17883433401584625,
+                0.7127205729484558,
+                -0.65791916847229,
+                0.3126806616783142,
+                -0.4862681031227112,
+                0.482614666223526,
+                0.04003867506980896,
+                -0.038198910653591156,
+                3.5977590084075928,
+                -1.202714204788208,
+                0.7001611590385437,
+                0.0,
+                0.0,
+                -0.006716507021337748,
+                0.9999774694442749
+              ],
+              "task_index": 0,
+              "timestamp": 20.700000762939453,
+              "frame_index": 414,
+              "episode_index": 0,
+              "index": 414
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
+        "license": "转换数据卡标 Apache-2.0；原版及第三方场景资产的具体转载范围需分别核实。",
+        "split": "MG_100 / episode_index 0 / task_index 0",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 下载 60,639,847 字节转换 Parquet，SHA-256 b81b1d2594c6fa6771f10a4a2f9728484b39e8d35d068694e84377df1ca2828d；提取 episode 0 的 415 帧中的 3 帧。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
+        "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet"
+      ]
+    }
+  ]
+}

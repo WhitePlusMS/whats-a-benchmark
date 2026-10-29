@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useHead } from "@unhead/vue";
-import { benchmarks, categories, kindLabels } from "../content/catalog";
+import { useRoute } from "vue-router";
+import {
+  benchmarks,
+  categories,
+  embodiedBenchmarks,
+  embodiedCategories,
+  kindLabels,
+} from "../content/catalog";
 import { sampleAccessLabels } from "../content/labels";
 import {
   useCatalogQuery,
@@ -13,7 +20,17 @@ import UiDialog from "../components/UiDialog.vue";
 import Icon from "../components/Icon.vue";
 import { formatCount } from "../lib/displayFormats";
 
-useHead({ title: "到底测什么？ · what's a benchmark?" });
+const route = useRoute();
+const isEmbodied = computed(() => route.path === "/embodied/");
+const visibleBenchmarks = computed(() =>
+  isEmbodied.value ? embodiedBenchmarks : benchmarks,
+);
+const visibleCategories = computed(() =>
+  isEmbodied.value ? embodiedCategories : categories,
+);
+useHead(() => ({
+  title: `${isEmbodied.value ? "具身智能" : "到底测什么？"} · what's a benchmark?`,
+}));
 const showFilters = ref(false);
 const isMobile = ref(false);
 const searchInput = ref<HTMLInputElement>();
@@ -54,18 +71,21 @@ const {
   setFilter: updateFilter,
   reset,
 } = useCatalogQuery();
-const { publishers, localCount, sampleCount, categoryCounts } = stats;
+const publishers = computed(() => stats.value.publishers);
+const localCount = computed(() => stats.value.localCount);
+const sampleCount = computed(() => stats.value.sampleCount);
+const categoryCounts = computed(() => stats.value.categoryCounts);
 // 侧栏、面板和条件标签都从同一URL模型派生，不维护第二份筛选状态。
 const activeFilters = computed(() =>
   [
     { key: "q", label: "搜索", value: query.value.q, remove: "移除搜索词" },
     {
       key: "category",
-      label: "能力",
+      label: isEmbodied.value ? "任务" : "能力",
       value: query.value.category
         ? currentCategory.value?.name || query.value.category
         : "",
-      remove: "移除能力分类",
+      remove: isEmbodied.value ? "移除任务分类" : "移除能力分类",
     },
     {
       key: "publisher",
@@ -97,10 +117,14 @@ const filterCount = computed(
 );
 const groupedResults = computed(() => {
   if (hasFilters.value || query.value.view === "list") return [];
-  return categories
+  return visibleCategories.value
     .map((category) => ({
       category,
-      items: results.value.filter((item) => item.category === category.id),
+      items: results.value.filter((item) =>
+        isEmbodied.value
+          ? item.embodied?.tasks.some((task) => task === category.id)
+          : item.category === category.id,
+      ),
     }))
     .filter((group) => group.items.length);
 });
@@ -113,14 +137,22 @@ function setFilter(key: CatalogFilterKey, value: string) {
   <div class="hero">
     <section class="catalog-header container">
       <div class="catalog-intro">
-        <h1>到底测什么？</h1>
-        <p>评测任务、真实案例、评分方法与版本关系。</p>
+        <h1>{{ isEmbodied ? "具身智能" : "到底测什么？" }}</h1>
+        <p>
+          {{
+            isEmbodied
+              ? "机器人与物理交互的任务、数据与评测方法。"
+              : "评测任务、真实案例、评分方法与版本关系。"
+          }}
+        </p>
       </div>
       <div class="catalog-stats" aria-label="目录收录情况">
         <span
-          ><b>{{ formatCount(benchmarks.length) }}</b> 个评测</span
+          ><b>{{ formatCount(visibleBenchmarks.length) }}</b> 个评测</span
         ><span
-          ><b>{{ formatCount(categories.length) }}</b> 类能力</span
+          ><b>{{ formatCount(visibleCategories.length) }}</b> 类{{
+            isEmbodied ? "任务" : "能力"
+          }}</span
         ><span
           ><b>{{ formatCount(sampleCount) }}</b> 条真实案例</span
         >
@@ -147,6 +179,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         ><kbd v-else class="search-kbd">{{ isMac ? "⌘K" : "Ctrl K" }}</kbd>
       </div>
       <button
+        v-if="!isEmbodied"
         class="sample-shortcut"
         :class="{ active: query.sample === 'local' }"
         :aria-pressed="query.sample === 'local'"
@@ -177,7 +210,9 @@ function setFilter(key: CatalogFilterKey, value: string) {
         :query="query"
         :publishers="publishers"
         :category-counts="categoryCounts"
-        :total="benchmarks.length"
+        :total="visibleBenchmarks.length"
+        :categories="visibleCategories"
+        :task-only="isEmbodied"
         @change="setFilter"
       />
     </aside>
@@ -301,7 +336,9 @@ function setFilter(key: CatalogFilterKey, value: string) {
       :query="query"
       :publishers="publishers"
       :category-counts="categoryCounts"
-      :total="benchmarks.length"
+      :total="visibleBenchmarks.length"
+      :categories="visibleCategories"
+      :task-only="isEmbodied"
       @change="setFilter" /><template #footer
       ><button class="clear-all" :disabled="!hasFilters" @click="reset">
         清空条件</button

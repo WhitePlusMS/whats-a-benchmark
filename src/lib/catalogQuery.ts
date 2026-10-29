@@ -1,6 +1,12 @@
 import { computed } from "vue";
 import type { LocationQuery, LocationQueryRaw, Router } from "vue-router";
-import { benchmarks, categories, categoryById } from "../content/catalog";
+import {
+  benchmarks,
+  categories,
+  categoryById,
+  embodiedBenchmarks,
+  embodiedCategories,
+} from "../content/catalog";
 import { searchBenchmarks } from "./search";
 
 export type CatalogSort = "featured" | "name" | "year";
@@ -18,24 +24,43 @@ export type CatalogFilterKey = keyof CatalogQuery;
 
 /** Build the reader-facing catalog state from the application's real router. */
 export function createCatalogQuery(router: Router) {
-  const query = computed(() =>
-    parseCatalogQuery(router.currentRoute.value.query),
+  const isEmbodied = computed(
+    () => router.currentRoute.value.path === "/embodied/",
   );
+  const query = computed(() => {
+    const parsed = parseCatalogQuery(router.currentRoute.value.query);
+    return isEmbodied.value
+      ? { ...parsed, publisher: "", sample: "", kind: "" }
+      : parsed;
+  });
   let queuedQuery: LocationQueryRaw | undefined;
 
   function navigate(nextQuery: LocationQueryRaw) {
     queuedQuery = nextQuery;
-    return router.replace({ path: "/", query: nextQuery }).finally(() => {
-      if (queuedQuery === nextQuery) queuedQuery = undefined;
-    });
+    return router
+      .replace({
+        path: isEmbodied.value ? "/embodied/" : "/",
+        query: nextQuery,
+      })
+      .finally(() => {
+        if (queuedQuery === nextQuery) queuedQuery = undefined;
+      });
   }
 
   return {
     query,
-    currentCategory: computed(() => categoryById.get(query.value.category)),
-    results: computed(() => filterCatalog(query.value)),
+    currentCategory: computed(() =>
+      isEmbodied.value
+        ? embodiedCategories.find(
+            (category) => category.id === query.value.category,
+          )
+        : categoryById.get(query.value.category),
+    ),
+    results: computed(() => filterCatalog(query.value, isEmbodied.value)),
     hasFilters: computed(() => hasCatalogFilters(query.value)),
-    stats: catalogStats,
+    stats: computed(() =>
+      isEmbodied.value ? embodiedCatalogStats : catalogStats,
+    ),
     setFilter(key: CatalogFilterKey, value: string) {
       const current = queuedQuery ?? router.currentRoute.value.query;
       return navigate(updateCatalogQuery(current, key, value));
@@ -86,10 +111,13 @@ export function hasCatalogFilters(query: CatalogQuery): boolean {
   );
 }
 
-export function filterCatalog(query: CatalogQuery) {
-  const items = searchBenchmarks(query.q).filter(
+export function filterCatalog(query: CatalogQuery, embodied = false) {
+  const items = searchBenchmarks(query.q, embodied).filter(
     (item) =>
-      (!query.category || item.category === query.category) &&
+      (!query.category ||
+        (embodied
+          ? item.embodied?.tasks.some((task) => task === query.category)
+          : item.category === query.category)) &&
       (!query.publisher || item.publisher === query.publisher) &&
       (!query.sample || item.sampleAccess.status === query.sample) &&
       (!query.kind || item.kind === query.kind),
@@ -117,4 +145,24 @@ for (const item of benchmarks) {
     (catalogStats.categoryCounts.get(item.category) || 0) + 1,
   );
 }
+export const embodiedCatalogStats = {
+  publishers: [
+    ...new Set(embodiedBenchmarks.map((item) => item.publisher)),
+  ].sort((a, b) => a.localeCompare(b, "zh")),
+  localCount: embodiedBenchmarks.filter(
+    (item) => item.sampleAccess.status === "local",
+  ).length,
+  sampleCount: embodiedBenchmarks.reduce(
+    (total, item) => total + item.sampleCount,
+    0,
+  ),
+  categoryCounts: new Map(
+    embodiedCategories.map((category) => [
+      category.id,
+      embodiedBenchmarks.filter((item) =>
+        item.embodied?.tasks.some((task) => task === category.id),
+      ).length,
+    ]),
+  ),
+};
 export { categoryById };

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useId } from "vue";
-import { categories, kindLabels } from "../content/catalog";
+import { kindLabels } from "../content/catalog";
+import type { Category } from "../types/benchmark";
 import { sampleAccessLabels } from "../content/labels";
 import type { CatalogFilterKey, CatalogQuery } from "../lib/catalogQuery";
 import Icon from "./Icon.vue";
@@ -9,6 +10,8 @@ defineProps<{
   publishers: readonly string[];
   categoryCounts: ReadonlyMap<string, number>;
   total: number;
+  categories: readonly Category[];
+  taskOnly?: boolean;
 }>();
 const emit = defineEmits<{ change: [key: CatalogFilterKey, value: string] }>();
 // 桌面和手机复用同一套控件，各实例仍有唯一的 label/id。
@@ -16,8 +19,12 @@ const id = useId();
 </script>
 <template>
   <div class="catalog-filter-content">
-    <div class="filter-heading">能力分类</div>
-    <div class="category-filters" role="group" aria-label="能力分类">
+    <div class="filter-heading">{{ taskOnly ? "任务分类" : "能力分类" }}</div>
+    <div
+      class="category-filters"
+      role="group"
+      :aria-label="taskOnly ? '任务分类' : '能力分类'"
+    >
       <button
         class="category-filter"
         :class="{ active: !query.category }"
@@ -39,7 +46,7 @@ const id = useId();
         ><small>{{ categoryCounts.get(cat.id) || 0 }}</small>
       </button>
     </div>
-    <div class="filter-more">
+    <div v-if="!taskOnly" class="filter-more">
       <label :for="`${id}-publisher`">发布方</label
       ><select
         :id="`${id}-publisher`"
@@ -103,7 +110,7 @@ const id = useId();
     </div>
     <RouterLink to="/guide/" class="sidebar-tip"
       ><Icon name="book" :size="17" /><span
-        ><strong>评测阅读指南</strong><small>指标、版本与评测条件</small></span
+        ><strong>评测入门</strong><small>指标、版本与评测条件</small></span
       ><Icon name="up" :size="15"
     /></RouterLink>
   </div>

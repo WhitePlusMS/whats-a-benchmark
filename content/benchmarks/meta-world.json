@@ -1,0 +1,403 @@
+{
+  "id": "meta-world",
+  "status": "published",
+  "order": 21908,
+  "name": "Meta-World",
+  "subtitle": "多任务与元强化学习的机器人操作",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "官方任务协议说明",
+        "type": "项目资料",
+        "url": "https://github.com/Farama-Foundation/Metaworld/blob/main/docs/benchmark/benchmark_descriptions.md"
+      },
+      {
+        "label": "LeRobot 转换的 MT50 训练演示",
+        "type": "转换数据集",
+        "url": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "Meta-World Authors",
+  "brandIds": [],
+  "year": 2019,
+  "version": "官方资料所述版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过一组模拟机器人操作任务研究多任务强化学习和元强化学习。",
+    "task": "通过一组模拟机器人操作任务研究多任务强化学习和元强化学习。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/1910.10897"
+    ]
+  },
+  "taskContract": {
+    "input": "机器人和物体状态或视觉观测，取决于环境与策略设置。",
+    "output": "执行连续控制动作完成抓取、推拉、开门等任务。",
+    "environment": "MuJoCo 操作环境；MT 和 ML 协议分别定义训练任务及保留任务。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/1910.10897"
+    ]
+  },
+  "dataProfile": {
+    "summary": "基准包含 50 个机器人操作任务；ML10 使用 10 个训练任务和 5 个保留测试任务。",
+    "disclosure": "partial",
+    "scale": [
+      "基准包含 50 个机器人操作任务；ML10 使用 10 个训练任务和 5 个保留测试任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/Farama-Foundation/Metaworld/blob/main/docs/benchmark/benchmark_descriptions.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "LeRobot 转换集包含 MT50 训练演示；与评测执行结果分别记录。"
+    ],
+    "url": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+      "https://huggingface.co/docs/lerobot/metaworld"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "LeRobot 数据集卡将 metaworld_mt50 标为 Apache-2.0；Meta-World 代码及其他资源的条款须分别核对。",
+    "scope": "本站展示 LeRobot 转换集中的三帧及数值字段；保留来源、版本和许可。",
+    "boundaries": [
+      "图像来自模拟训练演示，不表示实机视频或模型评测成绩。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已取得 LeRobot MT50 训练演示的单条轨迹中的三帧和对应动作、状态。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+      "https://huggingface.co/docs/lerobot/metaworld"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按官方协议统计任务完成情况；对比时核对 MT / ML 协议、目标位置与软件版本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/1910.10897"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/1910.10897"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与说明",
+      "url": "https://arxiv.org/abs/1910.10897",
+      "role": "definition"
+    },
+    {
+      "label": "官方任务协议说明",
+      "url": "https://github.com/Farama-Foundation/Metaworld/blob/main/docs/benchmark/benchmark_descriptions.md",
+      "role": "data"
+    },
+    {
+      "label": "LeRobot MT50 固定版本与数据",
+      "url": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+      "role": "data"
+    },
+    {
+      "label": "LeRobot Meta-World 数据说明",
+      "url": "https://huggingface.co/docs/lerobot/metaworld",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-10-29",
+  "sampleSet": {
+    "retrievedAt": "2026-10-29",
+    "samples": [
+      {
+        "id": "lerobot-metaworld-mt50-train-episode-0",
+        "title": "把螺母套到销钉上 · 演示轨迹 0",
+        "type": "image",
+        "prompt": "在模拟场景中抓起一个螺母并放到销钉上。下方按时间展示同一训练演示的起始、中间和末帧。",
+        "promptOrigin": "editorial",
+        "explanation": "这三帧来自 LeRobot 转换的 Meta-World MT50 训练数据，帧 0、44、87 属于同一 episode；末帧成功标记为 true。它是单次轨迹数据，不能当成模型汇总成功率；原始数值中的图像链接已替换为本站对应文件名和校验值。",
+        "raw": {
+          "dataset": "lerobot/metaworld_mt50",
+          "revision": "b46a1c185a2368660650a82ac5a5083a56722f48",
+          "task": "Pick up a nut and place it onto a peg",
+          "frames": [
+            {
+              "observation.state": [
+                0.005401990842074156,
+                0.6005656719207764,
+                0.1942482739686966,
+                1.0
+              ],
+              "action": [
+                1.0541578531265259,
+                -0.013881375081837177,
+                -0.7519798278808594,
+                0.0
+              ],
+              "next.reward": 0.4559347927570343,
+              "next.success": false,
+              "observation.environment_state": [
+                0.005401990842074156,
+                0.6005656719207764,
+                0.1942482739686966,
+                1.0,
+                0.12999999523162842,
+                0.6000000238418579,
+                0.019025787711143494,
+                0.7071067690849304,
+                0.00013643776765093207,
+                0.00016013822460081428,
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.004584200214594603,
+                0.601388156414032,
+                0.195143461227417,
+                1.0,
+                0.12999999523162842,
+                0.6000000238418579,
+                0.019945474341511726,
+                0.7071067690849304,
+                0.00013643776765093207,
+                0.00016013822460081428,
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.07166998088359833,
+                0.7910752296447754,
+                0.10000000149011612
+              ],
+              "observation.image": {
+                "width": 480,
+                "height": 480,
+                "file": "frame-0.jpg",
+                "sha256": "cd82c9982ed7a7c297c7fe1bcd75a73aec68042db69503829cebac75ad4de437"
+              },
+              "task_id": 0,
+              "timestamp": 0.0,
+              "frame_index": 0,
+              "episode_index": 0,
+              "index": 0,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                0.11330373585224152,
+                0.5952675342559814,
+                0.18494103848934174,
+                0.4893075227737427
+              ],
+              "action": [
+                0.0,
+                0.0,
+                0.6383084058761597,
+                0.6000000238418579
+              ],
+              "next.reward": 3.03092622756958,
+              "next.success": false,
+              "observation.environment_state": [
+                0.11330373585224152,
+                0.5952675342559814,
+                0.18494103848934174,
+                0.4893075227737427,
+                0.12274955213069916,
+                0.5968396067619324,
+                0.13986836373806,
+                0.6991798877716064,
+                0.017989905551075935,
+                -0.001988423289731145,
+                0.7147166728973389,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.11382456868886948,
+                0.5959644913673401,
+                0.17616915702819824,
+                0.4903194308280945,
+                0.12318164855241776,
+                0.5974492430686951,
+                0.13109537959098816,
+                0.6989560127258301,
+                0.01800558902323246,
+                -0.0020319996401667595,
+                0.7149350643157959,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.07166998088359833,
+                0.7910752296447754,
+                0.10000000149011612
+              ],
+              "observation.image": {
+                "width": 480,
+                "height": 480,
+                "file": "frame-44.jpg",
+                "sha256": "9993b4ab04c16e2b78a21876d45296b7ed3894fefef82d0d30acd29924d7e883"
+              },
+              "task_id": 0,
+              "timestamp": 0.550000011920929,
+              "frame_index": 44,
+              "episode_index": 0,
+              "index": 44,
+              "task_index": 0
+            },
+            {
+              "observation.state": [
+                0.18968190252780914,
+                0.788063108921051,
+                0.1417360007762909,
+                0.4846685230731964
+              ],
+              "action": [
+                0.022379444912075996,
+                0.035488247871398926,
+                -1.109289526939392,
+                0.6000000238418579
+              ],
+              "next.reward": 10.0,
+              "next.success": true,
+              "observation.environment_state": [
+                0.18968190252780914,
+                0.788063108921051,
+                0.1417360007762909,
+                0.4846685230731964,
+                0.20669271051883698,
+                0.7912293076515198,
+                0.09473800659179688,
+                0.7016279101371765,
+                0.023909026756882668,
+                -0.019840151071548462,
+                0.7118658423423767,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1894320398569107,
+                0.7875263690948486,
+                0.15092894434928894,
+                0.4840641915798187,
+                0.20629461109638214,
+                0.7906981706619263,
+                0.10396897047758102,
+                0.7019473910331726,
+                0.023814700543880463,
+                -0.019009843468666077,
+                0.7115766406059265,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.07166998088359833,
+                0.7910752296447754,
+                0.10000000149011612
+              ],
+              "observation.image": {
+                "width": 480,
+                "height": 480,
+                "file": "frame-87.jpg",
+                "sha256": "2125aa22e2a3d13e2c9473d3e2714bd7757a0215a7b8ea83983dd7bb75042353"
+              },
+              "task_id": 0,
+              "timestamp": 1.087499976158142,
+              "frame_index": 87,
+              "episode_index": 0,
+              "index": 87,
+              "task_index": 0
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+        "license": "LeRobot metaworld_mt50 数据集卡标注 Apache-2.0；图像未修改，按来源标注和许可使用。",
+        "licensePath": "licenses/metaworld-mt50-apache-2-0.txt",
+        "split": "train / episode_index 0 / task_index 0",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/metaworld-episode-0-frame-0.jpg",
+            "alt": "Meta-World 训练演示轨迹 0 的第 0 帧",
+            "width": 480,
+            "height": 480,
+            "caption": "第 0 帧 · 0.000 秒 · 成功标记：false",
+            "source": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+          },
+          {
+            "kind": "image",
+            "path": "images/metaworld-episode-0-frame-44.jpg",
+            "alt": "Meta-World 训练演示轨迹 0 的第 44 帧",
+            "width": 480,
+            "height": 480,
+            "caption": "第 44 帧 · 0.550 秒 · 成功标记：false",
+            "source": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+          },
+          {
+            "kind": "image",
+            "path": "images/metaworld-episode-0-frame-87.jpg",
+            "alt": "Meta-World 训练演示轨迹 0 的第 87 帧",
+            "width": 480,
+            "height": 480,
+            "caption": "第 87 帧 · 1.087 秒 · 成功标记：true",
+            "source": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+          }
+        ]
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-10-29 取得数据集版本 b46a1c185a2368660650a82ac5a5083a56722f48 的 train 轨迹 0，第 0、44、87 帧及相应原始状态与动作；三帧的 SHA-256 记录在样例原始数据中。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+        "https://huggingface.co/docs/lerobot/metaworld"
+      ]
+    }
+  ]
+}
