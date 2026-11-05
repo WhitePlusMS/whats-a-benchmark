@@ -2498,3 +2498,6 @@
 - 新增 `content/benchmarks/r2r-vlnce.json`，收录 R2R-CE 连续导航任务、官方划分及 SenseNova episode 7 的评测字段；按固定版本提取并观看前视视频，注明 rand100 为第三方划分、单次结果以及 Matterport3D 场景转载边界。修改 `content/benchmarks/r2r.json` 增加与连续环境衍生评测的关联，避免混淆原版节点导航。
 
 - 修改 `content/benchmarks/behavior-1k.json`：补充第三方 Pi0.5 整理图书 public_test 实例 301 的任务目标、原始失败结果及固定版本录像入口；已下载录像核看视角，明确单次部分得分不代表官方榜单成绩，录像仅链接原发布位置。
+
+- 修改 `content/benchmarks/embodiedbench.json`：依据论文补充四个环境的任务、动作及测试规模，加入官方搬书、抓放和导航失败案例及固定版本原图入口；已下载核看三张图，未推断未公开的模型、实例编号和划分。官网录像当前持续缓冲，未声称播放成功。
+- 补登 EmbodiedBench 论文 HTML 证据地址，使新增任务和案例说明的来源通过内容生成校验。

@@ -27,6 +27,21 @@
         "label": "该模型轨迹的官方图片包（约 14.8 GB）",
         "type": "轨迹图像",
         "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip"
+      },
+      {
+        "label": "EB-ALFRED 搬书 · 规划失败原图",
+        "type": "官方案例图",
+        "url": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/planning_error_alfred.png"
+      },
+      {
+        "label": "EB-Manipulation 抓取星形物体 · 感知错误原图",
+        "type": "官方案例图",
+        "url": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/perception_error_mani.png"
+      },
+      {
+        "label": "EB-Navigation 寻找锅 · 绕障失败原图",
+        "type": "官方案例图",
+        "url": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/reasoning_error_nav.png"
       }
     ]
   },
@@ -53,24 +68,27 @@
     ]
   },
   "taskContract": {
-    "input": "任务指令及相应环境的视觉或状态观测。",
-    "output": "按环境要求输出规划或控制动作。",
-    "environment": "包含 ALFRED、Habitat、导航和操作等不同环境设置。",
+    "input": "任务指令、环境画面及动作执行反馈；导航任务不直接提供位置数据。",
+    "output": "按具体环境输出高层技能序列、导航动作或机械臂操作动作，以完成任务目标。",
+    "environment": "EB-ALFRED 与 EB-Habitat 评估家务任务的高层规划；EB-Navigation 评估移动和转向；EB-Manipulation 评估抓放、堆叠、形状分类和擦桌。",
     "sourceUrls": [
-      "https://github.com/EmbodiedBench/EmbodiedBench"
+      "https://arxiv.org/html/2502.09560"
     ]
   },
   "dataProfile": {
     "summary": "官方介绍 1,128 个测试任务及四个评测环境。",
     "disclosure": "partial",
     "scale": [
-      "官方介绍 1,128 个测试任务及四个评测环境。"
+      "EB-ALFRED 与 EB-Habitat 各 300 个测试实例；EB-Navigation 300 个，EB-Manipulation 228 个。",
+      "各环境按基础、常识、复杂指令、视觉外观、空间关系或长步骤能力划分；导航不含空间关系子集，操作不含长步骤子集。"
     ],
-    "splits": [],
+    "splits": [
+      "EB-ALFRED 测试任务选自 ALFRED valid seen；案例图未标明具体子集或实例编号。"
+    ],
     "fields": [],
     "files": [],
     "sourceUrls": [
-      "https://arxiv.org/abs/2502.09560"
+      "https://arxiv.org/html/2502.09560"
     ]
   },
   "dataAccess": {
@@ -95,7 +113,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方 EB-Nav 模型轨迹的动作与结果；已从官方图片包按轨迹路径提取并查看多帧，图片包入口见资源。",
+    "reason": "展示官方 EB-Nav 轨迹动作与结果，以及官方论文的三个失败案例；已核看对应图像，原图可从资源入口查看。",
     "sourceUrls": [
       "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json",
       "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip"
@@ -142,6 +160,26 @@
       "label": "官方 EB-Nav 固定版本图像包",
       "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip",
       "role": "data"
+    },
+    {
+      "label": "EB-ALFRED 搬书 · 规划失败原图",
+      "url": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/planning_error_alfred.png",
+      "role": "data"
+    },
+    {
+      "label": "EB-Manipulation 抓取星形物体 · 感知错误原图",
+      "url": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/perception_error_mani.png",
+      "role": "data"
+    },
+    {
+      "label": "EB-Navigation 寻找锅 · 绕障失败原图",
+      "url": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/reasoning_error_nav.png",
+      "role": "data"
+    },
+    {
+      "label": "论文任务与案例说明",
+      "url": "https://arxiv.org/html/2502.09560",
+      "role": "paper"
     }
   ],
   "related": [],
@@ -198,6 +236,51 @@
         "license": "数据集未标明明确的转载许可；展示记录编号、动作编号和结果等事实及本站整理说明，完整内容见来源。",
         "split": "base / episode 1 / multi-step",
         "excerpt": true
+      },
+      {
+        "id": "embodiedbench-alfred-books",
+        "title": "EB-ALFRED 搬书 · 规划失败",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把床上的两本书搬到书桌上。",
+        "explanation": "官方失败案例图显示，智能体重复寻找和操作第一本书，随后错误地认为两本书都已搬完；该案例说明多物体任务中的规划错误，不代表整体成功率。 原图可从资源入口查看；官网未标注具体实例编号及划分。",
+        "raw": {
+          "Human Instruction": "move two books from the bed to the desk."
+        },
+        "source": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/planning_error_alfred.png",
+        "license": "图片单独转载许可未明确；链接至官方原图。",
+        "split": "官网失败案例；具体子集及实例编号未标注。",
+        "excerpt": true
+      },
+      {
+        "id": "embodiedbench-manipulation-star",
+        "title": "EB-Manipulation 抓取星形物体 · 感知错误",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "抓起星形物体并放入蓝色容器。",
+        "explanation": "官方失败案例图显示智能体在连续规划时错误识别物体颜色；15 步画面展示了机械臂抓取与放置的过程，不能由此推断总体成功率。 原图可从资源入口查看；官网未标注具体实例编号及划分。",
+        "raw": {
+          "Human Instruction": "Pick up the star and place it into the blue container."
+        },
+        "source": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/perception_error_mani.png",
+        "license": "图片单独转载许可未明确；链接至官方原图。",
+        "split": "官网失败案例；具体子集及实例编号未标注。",
+        "excerpt": true
+      },
+      {
+        "id": "embodiedbench-nav-pot",
+        "title": "EB-Navigation 寻找锅 · 绕障失败",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在房间中找到锅并尽量靠近它。",
+        "explanation": "官方失败案例图显示智能体面对台面阻挡时多次尝试无效移动；这是一个导航推理错误案例，不代表整体成功率。 原图可从资源入口查看；官网未标注具体实例编号及划分。",
+        "raw": {
+          "Human Instruction": "navigate to the Pot in the room and be as close as possible to it."
+        },
+        "source": "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/reasoning_error_nav.png",
+        "license": "图片单独转载许可未明确；链接至官方原图。",
+        "split": "官网失败案例；具体子集及实例编号未标注。",
+        "excerpt": true
       }
     ]
   },
@@ -214,6 +297,15 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip",
         "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载并查看官网固定版本三个失败案例原图；图中分别展示搬两本书、星形物体抓放和接近锅的失败过程。原图未标示具体子集、模型或实例编号，本站链接原图而未复制；官网四段录像在当前网络下持续缓冲，未确认可播放。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2502.09560",
+        "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/planning_error_alfred.png",
+        "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/perception_error_mani.png",
+        "https://raw.githubusercontent.com/EmbodiedBench/embodiedbench.github.io/ef11c7d159dd66e90e4f2d1161f14a64c3a726f3/website/img/reasoning_error_nav.png"
       ]
     }
   ]
