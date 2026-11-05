@@ -21,6 +21,11 @@
         "label": "ALFRED Lite 官方轨迹包（约 35 MB）",
         "type": "数据集",
         "url": "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z"
+      },
+      {
+        "label": "该未见场景验证轨迹的官方视频",
+        "type": "轨迹视频",
+        "url": "https://ai2-vision-alfred-data-explorer.s3-us-west-2.amazonaws.com/pick_and_place_simple-SoapBottle-None-Toilet-424/trial_T20190907_004321_405868/video.mp4"
       }
     ]
   },
@@ -96,10 +101,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从官方 Lite 轨迹包中分别核对训练集和未见场景验证集记录，展示任务参数及步骤解读。",
+    "reason": "已从官方 Lite 轨迹包核对训练集和未见场景验证集记录，并找到后者对应的官方专家演示视频链接。",
     "sourceUrls": [
       "https://github.com/askforalfred/alfred/blob/master/data/README.md",
-      "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z"
+      "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z",
+      "https://ai2-vision-alfred-data-explorer.s3-us-west-2.amazonaws.com/pick_and_place_simple-SoapBottle-None-Toilet-424/trial_T20190907_004321_405868/video.mp4"
     ]
   },
   "metric": {
@@ -133,10 +139,15 @@
       "label": "ALFRED 官方 Lite 轨迹包",
       "url": "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z",
       "role": "data"
+    },
+    {
+      "label": "官方数据浏览器对应的验证轨迹视频",
+      "url": "https://ai2-vision-alfred-data-explorer.s3-us-west-2.amazonaws.com/pick_and_place_simple-SoapBottle-None-Toilet-424/trial_T20190907_004321_405868/video.mp4",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
@@ -146,7 +157,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "在浴室中拿起两只水池之间的洗手液瓶，再转向马桶，将瓶子放在马桶水箱后部。",
-        "explanation": "从官方 Lite 包的 valid_unseen 目录解出这条专家轨迹；页面按其中一份语言标注整理步骤，并保留任务参数和场景编号。Lite 包不含此轨迹的视频或原始图像；这不是模型运行结果。",
+        "explanation": "官方 Lite 包中的 valid_unseen 专家轨迹；本站按语言标注整理步骤。官方数据浏览器的视频路径包含同一任务目录和轨迹 ID，已下载并在浏览器查看浴室画面；视频见资源链接，不是模型运行结果。Lite 包本身不含原始视频。",
         "raw": {
           "task_id": "trial_T20190907_004321_405868",
           "task_type": "pick_and_place_simple",
@@ -209,6 +220,13 @@
       "sourceUrls": [
         "https://github.com/askforalfred/alfred/blob/master/data/README.md",
         "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z"
+      ]
+    },
+    {
+      "text": "2026-11-05 核对官方数据浏览器使用的轨迹视频路径并下载视频（506,112 字节，SHA-256 dbcc2c61d2807238d65fb41bd8f7c53c6c28fac6643ee58d68a4e3d599818787）；在浏览器查看对应浴室画面。该视频的独立转载许可尚未确认，本站提供原始链接。",
+      "sourceUrls": [
+        "https://github.com/askforalfred/alfred/blob/master/data/README.md",
+        "https://ai2-vision-alfred-data-explorer.s3-us-west-2.amazonaws.com/pick_and_place_simple-SoapBottle-None-Toilet-424/trial_T20190907_004321_405868/video.mp4"
       ]
     }
   ]
