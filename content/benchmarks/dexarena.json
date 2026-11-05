@@ -40,23 +40,29 @@
     "summary": "10 个长流程任务和 30 个阶段任务。",
     "disclosure": "partial",
     "scale": [
-      "10 个长流程任务和 30 个阶段任务。"
+      "10 个长流程任务和 30 个阶段任务。",
+      "官方发布集：每个阶段 100 条可重放成功的遥操作演示，共 3,000 条、约 9.1 小时。"
     ],
-    "splits": [],
-    "fields": [],
+    "splits": [
+      "官方区分发布集 data 与额外审核记录 data_append；这里不推断它们是训练/验证划分。"
+    ],
+    "fields": [
+      "发布集包含按机械手和任务组织的遥操作轨迹及多视角视频；追加集为其余经审核轨迹，仅含状态。"
+    ],
     "files": [
       "官方数据集说明包含各阶段遥操作轨迹、状态及多视角视频；具体文件访问受控。"
     ],
     "sourceUrls": [
       "https://sipair-elastic.github.io/DexArena-website/",
       "https://arxiv.org/abs/2611.02629",
-      "https://huggingface.co/datasets/SIPAIR/DexArena"
+      "https://huggingface.co/datasets/SIPAIR/DexArena",
+      "https://arxiv.org/html/2611.02629"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "项目网站与代码公开；Hugging Face 官方轨迹数据需登录并获得访问权限。"
+      "项目网站和代码公开；Hugging Face 数据仓库需登录并同意访问条件才能读取文件。"
     ],
     "url": "https://huggingface.co/datasets/SIPAIR/DexArena",
     "sourceUrls": [
@@ -78,7 +84,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "站内提供官网遥操作阶段演示和论文任务条件；受控轨迹文件未取得，不将演示视作模型评测成绩。",
     "url": "https://sipair-elastic.github.io/DexArena-website/",
     "sourceUrls": [
       "https://sipair-elastic.github.io/DexArena-website/",

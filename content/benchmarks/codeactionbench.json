@@ -40,24 +40,28 @@
     "summary": "25 个固定操作任务；论文比较 9 种智能体配置。",
     "disclosure": "partial",
     "scale": [
-      "25 个固定操作任务；论文比较 9 种智能体配置。"
+      "25 项任务、9 种配置，各任务 3 次尝试，共 675 次运行。"
     ],
     "splits": [],
-    "fields": [],
+    "fields": [
+      "官网演示包含模型运行录像、相机观察、代码步骤和验证结果；完整版数据尚待发布。"
+    ],
     "files": [],
     "sourceUrls": [
       "https://codeactionbench.org/",
-      "https://arxiv.org/abs/2609.33807"
+      "https://arxiv.org/abs/2609.33807",
+      "https://codeactionbench.org/benchmark"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "官网可浏览选定执行轨迹和演示；官方仓库说明完整轨迹、图像及视频数据尚待发布。"
     ],
     "url": "https://codeactionbench.org/",
     "sourceUrls": [
-      "https://codeactionbench.org/"
+      "https://codeactionbench.org/",
+      "https://github.com/lyhkk/CodeActionBench"
     ]
   },
   "reusePolicy": {
@@ -65,18 +69,22 @@
     "license": "论文在 arXiv 发布时标注 CC BY 4.0。",
     "scope": "本站展示该论文的原始图像，保留作者、论文来源与许可；论文之外的数据、代码和其他素材分别核对。",
     "boundaries": [
-      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。"
+      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。",
+      "官网单次运行的数值事实与论文图分别记录；官网录像的转载范围未确认，提供外链。"
     ],
     "sourceUrls": [
-      "https://arxiv.org/abs/2609.33807"
+      "https://arxiv.org/abs/2609.33807",
+      "https://github.com/lyhkk/CodeActionBench"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示任务、论文界面图以及官网公开的一条模型评测记录；完整数据集尚待发布。",
     "url": "https://arxiv.org/html/2609.33807",
     "sourceUrls": [
-      "https://arxiv.org/html/2609.33807"
+      "https://arxiv.org/html/2609.33807",
+      "https://codeactionbench.org/benchmark",
+      "https://codeactionbench.org/release-traces/codex-astra/lift_pot/demo-evidence.mp4?v=5292af502f50"
     ]
   },
   "metric": {
@@ -120,6 +128,21 @@
     {
       "label": "官方任务样例",
       "url": "https://arxiv.org/html/2609.33807",
+      "role": "data"
+    },
+    {
+      "label": "官方评测结果与逐步执行展示",
+      "url": "https://codeactionbench.org/benchmark",
+      "role": "data"
+    },
+    {
+      "label": "官方抬锅运行录像（外部）",
+      "url": "https://codeactionbench.org/release-traces/codex-astra/lift_pot/demo-evidence.mp4?v=5292af502f50",
+      "role": "data"
+    },
+    {
+      "label": "官方仓库及数据发布说明",
+      "url": "https://github.com/lyhkk/CodeActionBench",
       "role": "data"
     }
   ],
@@ -195,6 +218,33 @@
             "source": "https://arxiv.org/html/2609.33807v1/figureA-visual-workspace-crop.png"
           }
         ]
+      },
+      {
+        "id": "codeactionbench-astra-lift-pot",
+        "title": "双臂抬锅 · 官方公开模型运行记录",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据相机画面估计锅把手的位置，编写机器人控制代码，用双臂把锅抬起。",
+        "explanation": "官网展示 GPT-6 Astra（Codex）在 lift_pot 的一次仿真执行，并标为验证器通过。数字为智能体构造的把手中心估计，不是仿真器的真实位置；此单次记录不能代表模型在全部任务上的成功率。官网提供运行录像。",
+        "raw": {
+          "task": "lift_pot",
+          "agent": "GPT-6 Astra (Codex)",
+          "trajectory_id": "release-codex-astra-lift_pot",
+          "reported_verifier": "pass",
+          "estimated_handle_center_m": [
+            0.145,
+            -0.0616,
+            0.8184
+          ],
+          "projected_pixel": [
+            512.8346,
+            248.9456
+          ]
+        },
+        "source": "https://codeactionbench.org/benchmark",
+        "license": "模型名称、任务、结果及数值摘自官方公开演示；完整数据集尚待发布，录像留在官方页面。",
+        "split": "官方公开单次评测运行；不是训练轨迹或整套评测汇总。",
+        "excerpt": true
       }
     ]
   }
