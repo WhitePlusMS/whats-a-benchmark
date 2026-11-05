@@ -21,6 +21,16 @@
         "label": "VLABench 官方预训练轨迹",
         "type": "训练数据集",
         "url": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot"
+      },
+      {
+        "label": "调味任务评测原图",
+        "type": "官方评测图片",
+        "url": "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/resolve/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0/input/input.png"
+      },
+      {
+        "label": "调味任务带编号掩码图",
+        "type": "官方评测图片",
+        "url": "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/resolve/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0/input/input_mask.png"
       }
     ]
   },
@@ -59,11 +69,19 @@
     "scale": [
       "项目描述 100 类任务：60 类基础任务与 40 类组合任务。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "预训练轨迹标注 train；vlm_evaluation_v1.0 是单独的视觉语言评测数据。"
+    ],
+    "fields": [
+      "预训练轨迹包含视觉观测、状态、动作和任务索引；VLM 评测案例包含图像、指令、环境配置和参考技能序列。"
+    ],
+    "files": [
+      "预训练数据按 episode 存放 Parquet；VLM 评测按维度、任务和 example 目录组织。"
+    ],
     "sourceUrls": [
-      "https://vlabench.github.io/"
+      "https://vlabench.github.io/",
+      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
+      "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/tree/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0"
     ]
   },
   "dataAccess": {
@@ -78,21 +96,24 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "官方 VLABench 训练数据集卡标注 MIT。",
-    "scope": "本样例展示固定版本中提取的三帧和状态、动作节选。",
+    "license": "官方 VLABench 预训练数据集卡标注 MIT；VLM 评测数据未见单独许可声明。",
+    "scope": "展示预训练轨迹的三帧及状态、动作节选；VLM 评测案例展示少量事实字段与原图链接。",
     "boundaries": [
-      "数据卡未单独附带版权声明文件；本站保留项目名称、固定版本、数据卡及许可信息。"
+      "预训练数据卡未单独附带版权声明文件；本站保留项目名称、固定版本、数据卡及许可信息。",
+      "评测图片的再发布范围未确认，本站提供官方原图链接，不复制图片。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot"
+      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
+      "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得官方预训练集的一条完整轨迹文件，展示三帧与对应数据节选。",
+    "reason": "已取得官方预训练轨迹以及一条 VLM 评测样例；评测图片已查看并提供原图链接。",
     "sourceUrls": [
       "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
-      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet"
+      "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet",
+      "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/tree/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0"
     ]
   },
   "metric": {
@@ -136,6 +157,26 @@
       "label": "固定版本任务索引",
       "url": "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/meta/tasks.jsonl",
       "role": "data"
+    },
+    {
+      "label": "官方 VLM 评测数据集",
+      "url": "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0",
+      "role": "data"
+    },
+    {
+      "label": "调味任务评测案例（固定版本）",
+      "url": "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/tree/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0",
+      "role": "data"
+    },
+    {
+      "label": "调味任务原图",
+      "url": "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/resolve/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0/input/input.png",
+      "role": "data"
+    },
+    {
+      "label": "调味任务编号掩码图",
+      "url": "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/resolve/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0/input/input_mask.png",
+      "role": "data"
     }
   ],
   "related": [],
@@ -143,6 +184,24 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "vlabench-vlm-condiment-example0",
+        "title": "选择有甜味和烟熏味的调味品",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "画面中有多种调味品。根据“为这道咸味菜肴增添一点甜味和烟熏味”的描述，规划抓取与倾倒操作。",
+        "explanation": "官方 VLM 评测样例的参考序列是抓取编号 4、向编号 2 的容器倾倒；环境配置将对应物体记录为烧烤酱和锅。原始输入图与编号掩码图已下载查看，可从相关资源打开。这是视觉语言规划题及参考序列，不是模型运行结果或机器人操作录像。",
+        "raw": {
+          "skill_sequence": [
+            { "name": "pick", "params": { "target_entity_name": 4 } },
+            { "name": "pour", "params": { "target_container_name": 2 } }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/tree/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0",
+        "license": "VLM 评测数据集未见独立再发布许可；仅展示参考序列事实字段和本站整理的题意，并提供官方原图链接。",
+        "split": "官方 VLM 评测 / CommenSence / add_condiment_common_sense / example0；与预训练演示分开。",
+        "excerpt": true
+      },
       {
         "id": "vlabench-train-episode-000000",
         "title": "选择方块 4 扑克牌 · 轨迹 0",
@@ -280,6 +339,12 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot",
         "https://huggingface.co/datasets/VLABench/vlabench_primitive_pretrain_lerobot/blob/aaa042a8ffb56c931ad738bd220c0c944d8479e7/data/chunk-000/episode_000000.parquet"
+      ]
+    },
+    {
+      "text": "2026-11-05 取得固定版本 b432f0c69ec0731935ff49a916d460936a000624 的 example0 指令、环境配置、参考序列与两张输入图，已查看图片；input.png SHA-256 635a95623752505beda558435a15e21441c4cf390ab44b882efe00552f1ffb60，input_mask.png SHA-256 9026b18b8127031ff4dac04b8b542717ad7f629890b0d9ed11550b2b87871c24。未运行评测，未完整下载数据集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/VLABench/vlm_evaluation_v1.0/tree/b432f0c69ec0731935ff49a916d460936a000624/CommenSence/add_condiment_common_sense/example0"
       ]
     }
   ]
