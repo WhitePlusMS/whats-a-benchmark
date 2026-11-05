@@ -24,6 +24,21 @@
         "label": "官方物体清单（第 15 页）",
         "type": "对象图册",
         "url": "https://graspnet.net/images/obj_list.pdf#page=15"
+      },
+      {
+        "label": "测试场景 0114 · 基线抓取候选动画",
+        "type": "预测可视化",
+        "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0114.gif"
+      },
+      {
+        "label": "测试场景 0116 · 基线抓取候选动画",
+        "type": "预测可视化",
+        "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0116.gif"
+      },
+      {
+        "label": "测试场景 0117 · 基线抓取候选动画",
+        "type": "预测可视化",
+        "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0117.gif"
       }
     ]
   },
@@ -60,11 +75,17 @@
     "scale": [
       "官方公布 190 个场景、97,280 张图像和 88 个物体，超过 11 亿抓取位姿。"
     ],
-    "splits": [],
+    "splits": [
+      "train：场景 0000–0099",
+      "test_seen：场景 0100–0129",
+      "test_similar：场景 0130–0159",
+      "test_novel：场景 0160–0189"
+    ],
     "fields": [],
     "files": [],
     "sourceUrls": [
-      "https://graspnet.net/datasets.html"
+      "https://graspnet.net/datasets.html",
+      "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html"
     ]
   },
   "dataAccess": {
@@ -89,11 +110,16 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从固定版本镜像的抓取标签归档读取对象 083 的 points 数组，展示三个真实数据点。 已核对官方物体图册，可从资源入口查看对应对象。",
+    "reason": "已读取对象抓取标签，并核对基线模型在三个 test_seen 场景的抓取候选动画；原片见资源链接。",
     "sourceUrls": [
       "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/c7a03dfc391bcb12ce7d6031850b83295635e39c/grasp_label.tar",
       "https://github.com/graspnet/graspness_unofficial/blob/main/dataset/generate_graspness.py",
-      "https://graspnet.net/images/obj_list.pdf"
+      "https://graspnet.net/images/obj_list.pdf",
+      "https://github.com/graspnet/graspnet-baseline/blob/280c215129f759ed8649cb4e89fc5dfee55f4f80/README.md",
+      "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html",
+      "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0114.gif",
+      "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0116.gif",
+      "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0117.gif"
     ]
   },
   "metric": {
@@ -142,6 +168,31 @@
       "label": "GraspNet 官方物体图册",
       "url": "https://graspnet.net/images/obj_list.pdf",
       "role": "data"
+    },
+    {
+      "label": "基线仓库固定版本：测试场景预测",
+      "url": "https://github.com/graspnet/graspnet-baseline/blob/280c215129f759ed8649cb4e89fc5dfee55f4f80/README.md",
+      "role": "code"
+    },
+    {
+      "label": "官方 API 场景划分代码",
+      "url": "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html",
+      "role": "code"
+    },
+    {
+      "label": "基线场景 0114 可视化",
+      "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0114.gif",
+      "role": "data"
+    },
+    {
+      "label": "基线场景 0116 可视化",
+      "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0116.gif",
+      "role": "data"
+    },
+    {
+      "label": "基线场景 0117 可视化",
+      "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0117.gif",
+      "role": "data"
     }
   ],
   "related": [
@@ -158,6 +209,26 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "graspnet-baseline-test-seen-scenes",
+        "title": "测试场景 0114、0116、0117 · 基线抓取候选",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察真实场景点云中模型提出的抓取位置与方向。",
+        "explanation": "官方基线 README 将三个动画标为模型预测的前 50 个抓取候选；它们属于 test_seen 场景，可通过相关资源查看原动画。动画展示抓取预测，并非机械臂实际执行或单次成功率；与本站对象 083 标签示例没有确认对应关系。",
+        "raw": {
+          "scenes": [
+            "scene_0114",
+            "scene_0116",
+            "scene_0117"
+          ],
+          "display": "Top 50 grasps detected by our baseline model"
+        },
+        "source": "https://github.com/graspnet/graspnet-baseline/blob/280c215129f759ed8649cb4e89fc5dfee55f4f80/README.md",
+        "license": "官方数据页的许可名称与缩写不一致；本站提供原动画链接，不复制媒体。",
+        "split": "test_seen / scenes 0114、0116、0117",
+        "excerpt": true
+      },
       {
         "id": "graspnet-object-083-sampled-points",
         "title": "对象 083 · 抓取候选点",
@@ -211,6 +282,16 @@
       "text": "2026-11-05 下载并查看官方物体图册第 15 页；PDF SHA-256 cecb527371648d4ccd758d4a8fe1218d18360a9a430a35eca0fc9fecbbd5f328。仅提供原图册链接，未复制图片。",
       "sourceUrls": [
         "https://graspnet.net/images/obj_list.pdf"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载并在浏览器查看三个固定版本动画，按场景顺序 SHA-256 分别为 6b518f44fe67d5c403cc6085beec227c6e74678fd5147549688f564b89481189、aafc35259c1a3948aeb617d659b4628468e8a5f881b27b10cbbe3435f17192c3、cbbb28095e1477e60c5da6c4731e5dd2f7d9982e3ff1c5d5a946453e543a53b7；数据页许可表述不一致，本站仅链接原片。",
+      "sourceUrls": [
+        "https://github.com/graspnet/graspnet-baseline/blob/280c215129f759ed8649cb4e89fc5dfee55f4f80/README.md",
+        "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html",
+        "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0114.gif",
+        "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0116.gif",
+        "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0117.gif"
       ]
     }
   ]
