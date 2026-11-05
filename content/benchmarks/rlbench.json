@@ -72,26 +72,29 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "本图像来源的第三方转换数据卡标注 Apache-2.0；RLBench 软件许可包含非商业研究限制，源数据许可范围须分别核对。",
-    "scope": "本站展示第三方转换轨迹的相机帧及由同一轨迹帧合成的视频；许可声明来自该转换集。",
+    "license": "第三方转换集及 PerAct 数据镜像的数据卡标注 Apache-2.0；RLBench 软件许可包含非商业研究限制，源数据许可范围须分别核对。",
+    "scope": "本站展示第三方转换轨迹及 PerAct 测试演示的相机帧，另展示由转换轨迹帧合成的视频；许可声明来自各数据集数据卡。",
     "boundaries": [
       "数据卡的 Apache 声明不代表已核实上游所有素材的权利范围。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test",
-      "https://github.com/stepjam/RLBench/blob/master/README.md"
+      "https://github.com/stepjam/RLBench/blob/master/README.md",
+      "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载两条第三方转换轨迹，展示状态、动作和其中一条轨迹的双相机视频及原始图像。",
+    "reason": "已下载第三方训练轨迹，以及 PerAct 测试划分中的一条打开抽屉演示，展示相机帧和动作记录。",
     "sourceUrls": [
       "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot",
       "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/meta/episodes.jsonl",
       "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/meta/info.json",
-      "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test"
+      "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test",
+      "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/README.md",
+      "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip"
     ]
   },
   "metric": {
@@ -150,6 +153,16 @@
       "label": "转换集划分说明",
       "url": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/meta/info.json",
       "role": "data"
+    },
+    {
+      "label": "PerAct 演示数据镜像说明（固定版本）",
+      "url": "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/README.md",
+      "role": "data"
+    },
+    {
+      "label": "PerAct 测试划分：打开抽屉压缩包",
+      "url": "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip",
+      "role": "data"
     }
   ],
   "related": [],
@@ -157,6 +170,61 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "rlbench-peract-test-open-drawer-episode19",
+        "title": "打开最下层抽屉 · PerAct 测试演示",
+        "type": "record",
+        "prompt": "open the bottom drawer",
+        "explanation": "原始任务描述为打开最下层抽屉；三张图取自同一条 97 帧的正面相机记录。数据镜像将其列在 PerAct 的 test 划分；这是预生成的机器人演示，不是某个模型的评测运行或成绩，也不等同于 RLBench 官方 few-shot 的任务划分。",
+        "raw": {
+          "archive_path": "data/test/open_drawer.zip",
+          "episode_path": "open_drawer/all_variations/episodes/episode19",
+          "variation_descriptions": [
+            "open the bottom drawer",
+            "grip the bottom handle and pull the bottom drawer open",
+            "slide the bottom drawer open"
+          ],
+          "front_rgb_frame_count": 97,
+          "frame_sha256": {
+            "0": "0044495228e3ec04d7277ff6eab56ba7c17a02e15b3e83d880c2194bef67fc68",
+            "48": "86a46a4544b4935ec2efe9e0a28e591dfcb1279e036672580b0965268f728d8e",
+            "96": "f81c9c6e17b68ed87ab7857adf05bc1fe625da1f96352ab2e19cdf85798a679d"
+          }
+        },
+        "source": "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip",
+        "license": "镜像数据卡标注 Apache-2.0；RLBench 软件及源素材的许可范围须分别核对。",
+        "split": "PerAct / test / open_drawer / episode19",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/rlbench-peract-test-open-drawer-episode19-0.png",
+            "caption": "测试演示 episode19：正面相机第 0 帧",
+            "source": "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip",
+            "alt": "机器人打开最下层抽屉的第 0 帧",
+            "width": 128,
+            "height": 128
+          },
+          {
+            "kind": "image",
+            "path": "images/rlbench-peract-test-open-drawer-episode19-48.png",
+            "caption": "测试演示 episode19：正面相机第 48 帧",
+            "source": "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip",
+            "alt": "机器人打开最下层抽屉的第 48 帧",
+            "width": 128,
+            "height": 128
+          },
+          {
+            "kind": "image",
+            "path": "images/rlbench-peract-test-open-drawer-episode19-96.png",
+            "caption": "测试演示 episode19：正面相机第 96 帧",
+            "source": "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip",
+            "alt": "机器人打开最下层抽屉的第 96 帧",
+            "width": 128,
+            "height": 128
+          }
+        ]
+      },
       {
         "id": "rlbench-place-two-cups-converted-episode0",
         "title": "把两个杯子放上杯架 · 轨迹 0",
@@ -365,6 +433,13 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot",
         "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet"
+      ]
+    },
+    {
+      "text": "从固定版本的 PerAct 数据镜像测试压缩包按文件范围读取 episode19 的正面相机帧与任务描述；已查看第 0、96 帧。镜像声称遵循 PerAct 原论文划分。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/README.md",
+        "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip"
       ]
     }
   ]

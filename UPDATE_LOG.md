@@ -1,3 +1,9 @@
+## 2026-11-05：补充 RLBench 的 PerAct 测试演示
+
+- 修改 `content/benchmarks/rlbench.json`：加入测试划分中打开最下层抽屉的 episode19、原始任务描述、帧哈希及固定版本来源，原文提示词沿用项目既有格式，说明预生成演示与模型评测成绩、官方 few-shot 划分的区别。
+- 新增 `content/assets/images/rlbench-peract-test-open-drawer-episode19-{0,48,96}.png`：从测试压缩包提取三张正面相机原始帧。
+- 原因与影响：已有样例属于训练演示；新增有明确来源的测试划分样例，并分别注明镜像许可声明和上游许可核对边界。
+
 ## 2026-11-05：修正科学编程和语音对话评测说明
 
 - 修改 `content/benchmarks/scicode-verified.json`：补充科学编程输入、累积子步骤、测试环境及子问题和整题评分；将误放在评分栏的发布日期信息移除，原有版本说明保留。
