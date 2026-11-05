@@ -2516,3 +2516,7 @@
 
 - 修改 `content/benchmarks/swe-refactor-bench.json`：依据论文补充四类迁移、离线环境与预算，修正原先笼统的通过率描述，区分三阶段综合得分和完整通过条件。
 - 修改 `content/benchmarks/toolret.json`：补充仅查询与查询加指令两种检索配置、三类工具文档及 Completeness@K 的逐题判定，明确工具标签用于评分。
+
+- 修改 `content/benchmarks/critpt.json`：补充研究问题背景、两阶段答案生成与完整挑战/分步 checkpoint 区别，明确两种分步上下文设置。
+- 修改 `content/benchmarks/terminal-bench-3.json`：补充任务产物类型、独立验证容器和官方联网规则，区分任务要求与执行环境。
+- 修改 `content/benchmarks/legal-research-vals.json`：依据官方论文补充美国法律研究输入、工具与来源核验，并更正 All-Pass 条件包括引用来源验证。

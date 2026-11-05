@@ -30,13 +30,12 @@
     ]
   },
   "taskContract": {
-    "input": "物理挑战题与输出约定。",
-    "output": "数值、符号表达式或 Python 函数。",
-    "environment": "通过官方评分服务器核验；评分接口访问需要申请。",
+    "input": "自包含的研究级物理背景、约束和问题；分步评测还提供相应背景及之前的回答或专家答案。",
+    "output": "先给出解题过程，再按指定 Python 模板组织最终答案；答案可为数值、符号表达式、函数或组合。",
+    "environment": "完整挑战和分步 checkpoint 分开评估；论文采用两阶段生成及自动评分，公开挑战评分服务器的访问条件以官方说明为准。",
     "sourceUrls": [
-      "https://github.com/CritPt-Benchmark/CritPt",
-      "https://huggingface.co/datasets/CritPt-Benchmark/CritPt",
-      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      "https://arxiv.org/html/2509.26574",
+      "https://github.com/CritPt-Benchmark/CritPt"
     ]
   },
   "dataProfile": {
@@ -101,12 +100,13 @@
   },
   "metric": {
     "name": "挑战通过率 / pass@1",
-    "description": "AA 在 challenge 层级每题运行五次；先推理再格式化答案，交官方服务器判定。",
+    "description": "完整挑战按最终答案正确率计算；论文另评估分步 checkpoint，分别使用模型前序回答或专家前序答案。AA 对完整挑战每题运行五次，先推理再格式化后提交官方服务器；两种层级不能混为一谈。",
     "direction": "higher",
     "sourceUrls": [
       "https://github.com/CritPt-Benchmark/CritPt",
       "https://huggingface.co/datasets/CritPt-Benchmark/CritPt",
-      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://arxiv.org/html/2509.26574"
     ]
   },
   "limitations": [
@@ -179,10 +179,15 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
       "role": "data"
+    },
+    {
+      "label": "CritPt 论文任务和评分方法",
+      "url": "https://arxiv.org/html/2509.26574",
+      "role": "paper"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "researchNotes": [
     {
       "text": "固定 HF commit e0892bc952bd95cdd28f4c73c5f04d963243ed1a 的 train Parquet 已直接读取并核验 row_idx=0、problem_id=Challenge_1_main；文件 SHA-256 b082d3a8b27f22c76875ea57d43611842304e5da22e8989eb850290458d7771b，共 70 行。problem_description UTF-8 SHA-256 2b5e811d33edea503398fab93556b0bc493bc35afaf3d59995f84310d7496ca5。",

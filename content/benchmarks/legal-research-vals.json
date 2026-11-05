@@ -33,9 +33,9 @@
     ]
   },
   "taskContract": {
-    "input": "专家撰写的法律研究问题。",
-    "output": "含法律依据与引用的最终研究答案。",
-    "environment": "法律搜索、网页读取、检索和提交工具；每题上限 3 小时。",
+    "input": "专家编写的美国法律研究问题，涉及事实背景、联邦或州法律及司法判例。",
+    "output": "研究结论及支撑其结论的法律依据与引用，按题目要求综合适用规则和事实。",
+    "environment": "代理可使用案例法搜索、网页搜索、页面读取和检索工具；官方流程每题上限 3 小时，答案和来源按评判规则核验。",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/legal_research"
     ]
@@ -96,7 +96,7 @@
   },
   "metric": {
     "name": "All-Pass",
-    "description": "每题的全部必需 rubric 条目通过才计 1，否则计 0，汇总测试题成功比例；另报加权部分得分。官方当前流程由 GPT 5.4 作评委。",
+    "description": "All-Pass 要求全部必需 rubric 条目通过且引用来源核验通过，才将该题计为正确；另报加权部分得分。官方当前流程使用 LLM 评委，具体版本随评测配置核对。",
     "direction": "higher",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/legal_research"
@@ -177,7 +177,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {
