@@ -14,6 +14,11 @@
         "label": "官方链接的 LeRobot 训练数据",
         "type": "数据集",
         "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot"
+      },
+      {
+        "label": "摩卡壶背景扰动测试原片",
+        "type": "第三方评测视频",
+        "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/resolve/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/plus/smoke/plus_libero_10_Background-Textures_task-0001_trial-00_attempt-00_success_8828e5b81b.mp4"
       }
     ]
   },
@@ -76,24 +81,28 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "LIBERO-Plus 链接的训练数据卡标注 MIT；LIBERO 上游数据与场景素材的独立许可需一并核对。",
-    "scope": "展示该训练数据的第 0 条轨迹及其前置相机视频。",
+    "scope": "展示训练数据的第 0 条轨迹及视频，并提供第三方冒烟测试记录和原片链接。",
     "boundaries": [
-      "数据卡许可声明不自动覆盖所有上游场景资产。"
+      "数据卡许可声明不自动覆盖所有上游场景资产。",
+      "第三方评测视频的再发布需遵循上游许可；本站仅提供原片链接。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot",
-      "https://github.com/sylvestf/LIBERO-plus"
+      "https://github.com/sylvestf/LIBERO-plus",
+      "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载官方链接训练集中的轨迹与对应相机视频，展示同一轨迹的状态、动作及画面。",
+    "reason": "已下载训练轨迹与相机视频，也核对第三方冒烟测试记录及对应视频；两者分开展示。",
     "sourceUrls": [
       "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl",
       "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/episodes.jsonl",
       "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/info.json",
-      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/videos/chunk-000/observation.images.front/episode_000000.mp4"
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/videos/chunk-000/observation.images.front/episode_000000.mp4",
+      "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/plus-pro/plus-smoke/episodes.jsonl",
+      "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/resolve/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/plus/smoke/plus_libero_10_Background-Textures_task-0001_trial-00_attempt-00_success_8828e5b81b.mp4"
     ]
   },
   "metric": {
@@ -147,6 +156,21 @@
       "label": "训练数据划分与帧率",
       "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/info.json",
       "role": "data"
+    },
+    {
+      "label": "第三方冒烟测试逐条记录",
+      "url": "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/plus-pro/plus-smoke/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "第三方评测视频数据卡及许可边界",
+      "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts",
+      "role": "data"
+    },
+    {
+      "label": "对应摩卡壶测试录像",
+      "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/resolve/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/plus/smoke/plus_libero_10_Background-Textures_task-0001_trial-00_attempt-00_success_8828e5b81b.mp4",
+      "role": "data"
     }
   ],
   "related": [
@@ -163,6 +187,34 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "libero-plus-pi05-moka-smoke",
+        "title": "背景纹理扰动：打开炉灶并放置摩卡壶",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在背景纹理变化的厨房里打开炉灶，并将摩卡壶放到炉灶上。",
+        "explanation": "第三方 π0.5 冒烟测试的单次仿真运行，记录标注 Background Textures、难度 4、240 步和成功；不能代表整套评测成绩。对应录像已下载并播放，原片可在相关资源中打开。该结果并非本站重跑。",
+        "raw": {
+          "benchmark": "plus",
+          "phase": "smoke",
+          "suite": "libero_10",
+          "category": "Background Textures",
+          "difficulty": "4",
+          "task_id": 1,
+          "trial": 0,
+          "seed": 7,
+          "action_steps": 240,
+          "max_steps": 520,
+          "status": "success",
+          "success": true,
+          "task_description": "turn on the stove and put the moka pot on it",
+          "video": "videos/plus/smoke/plus_libero_10_Background-Textures_task-0001_trial-00_attempt-00_success_8828e5b81b.mp4"
+        },
+        "source": "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/plus-pro/plus-smoke/episodes.jsonl",
+        "license": "第三方视频库要求遵循上游模型、评测及素材许可；本站展示有限记录字段和原片链接。",
+        "split": "第三方评测 / LIBERO-Plus / smoke / libero_10 / Background Textures / task 1 / seed 7。",
+        "excerpt": true
+      },
       {
         "id": "libero-plus-train-episode-0",
         "title": "将两个杯子分别放在左右盘子上",
@@ -284,6 +336,13 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
         "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl"
+      ]
+    },
+    {
+      "text": "2026-11-05 核对第三方固定版本评测记录，并下载其关联视频（121,824 字节，SHA-256 9bc403dbf1cbefacb991ad5b7e292fea481a32db62c6edaaa64944921defc9a8）；已在浏览器播放。未运行评测或将录像复制到站内。",
+      "sourceUrls": [
+        "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/plus-pro/plus-smoke/episodes.jsonl",
+        "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/resolve/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/plus/smoke/plus_libero_10_Background-Textures_task-0001_trial-00_attempt-00_success_8828e5b81b.mp4"
       ]
     }
   ]
