@@ -1,3 +1,8 @@
+## 2026-11-05：核实 RobotArena ∞ 真实与仿真演示
+
+- 修改 `content/benchmarks/robotarena-infinity.json`：下载并在浏览器查看玩具狗入锅、海绵擦桌两项任务的四段官网实机与仿真配对录像，补充原片链接和配对说明。
+- 原因与影响：让读者对照真实演示与重建画面；录像独立转载许可未明确，页面仅提供官方链接，不据片段推断任务成功或榜单成绩。
+
 ## 2026-11-05：核对 GraspNet 与 SuctionNet 样例对象图册
 
 - 修改 `content/benchmarks/graspnet-1billion.json` 和 `content/benchmarks/suctionnet-1billion.json`：下载并查看官方物体图册，分别核对现有样例对象 083（part3）和对象 000（003_cracker_box），加入图册对应页入口及来源。

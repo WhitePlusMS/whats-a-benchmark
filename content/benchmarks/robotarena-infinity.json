@@ -66,7 +66,8 @@
     "license": "RobotArena∞ 论文在 arXiv 标注 CC BY 4.0。",
     "scope": "展示原论文中的转换示意图，保留作者与论文来源；图中数据集及代码另适用各自许可。",
     "boundaries": [
-      "论文图示不代表本站复现或实际评测结果。"
+      "论文图示不代表本站复现或实际评测结果。",
+      "官网演示录像的独立转载许可未确认；仅提供官方原片链接，不复制视频。"
     ],
     "sourceUrls": [
       "https://arxiv.org/abs/2510.23571"
@@ -74,10 +75,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官网真实与仿真配对任务、原片链接及论文流程图；视频为演示，不代表整体成绩。",
     "url": "https://robotarenainf.github.io/",
     "sourceUrls": [
-      "https://robotarenainf.github.io/"
+      "https://robotarenainf.github.io/",
+      "https://robotarenainf.github.io/static/videos/real2sim/real2.mp4",
+      "https://robotarenainf.github.io/static/videos/real2sim/sim2.mp4",
+      "https://robotarenainf.github.io/static/videos/real2sim/real18.mp4",
+      "https://robotarenainf.github.io/static/videos/real2sim/sim18.mp4"
     ]
   },
   "metric": {
@@ -112,6 +117,16 @@
         "https://huggingface.co/datasets/sourlreapwr/RobotArena-Benchmark",
         "https://github.com/offjangir/RobotArena/blob/fix/stable_version_genesis/README.md"
       ]
+    },
+    {
+      "text": "2026-11-05 核对官网任务标题与 real2/sim2、real18/sim18 的配对关系，并下载、在浏览器查看四段视频；real2.mp4 SHA-256 60bf123048c194d4fc1126972056496399e2f5bd4685f9943640a00a0acd1669。未运行仿真或评测。",
+      "sourceUrls": [
+        "https://robotarenainf.github.io/",
+        "https://robotarenainf.github.io/static/videos/real2sim/real2.mp4",
+        "https://robotarenainf.github.io/static/videos/real2sim/sim2.mp4",
+        "https://robotarenainf.github.io/static/videos/real2sim/real18.mp4",
+        "https://robotarenainf.github.io/static/videos/real2sim/sim18.mp4"
+      ]
     }
   ],
   "sources": [
@@ -139,6 +154,26 @@
       "label": "RobotArena 重建场景数据卡与访问条件",
       "url": "https://huggingface.co/datasets/sourlreapwr/RobotArena-Benchmark",
       "role": "data"
+    },
+    {
+      "label": "玩具狗入锅 · 真实录像",
+      "url": "https://robotarenainf.github.io/static/videos/real2sim/real2.mp4",
+      "role": "data"
+    },
+    {
+      "label": "玩具狗入锅 · 仿真录像",
+      "url": "https://robotarenainf.github.io/static/videos/real2sim/sim2.mp4",
+      "role": "data"
+    },
+    {
+      "label": "海绵擦桌 · 真实录像",
+      "url": "https://robotarenainf.github.io/static/videos/real2sim/real18.mp4",
+      "role": "data"
+    },
+    {
+      "label": "海绵擦桌 · 仿真录像",
+      "url": "https://robotarenainf.github.io/static/videos/real2sim/sim18.mp4",
+      "role": "data"
     }
   ],
   "related": [],
@@ -148,6 +183,28 @@
     "tasks": [
       "manipulation",
       "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "玩具狗入锅 · 真实录像",
+        "type": "官方视频",
+        "url": "https://robotarenainf.github.io/static/videos/real2sim/real2.mp4"
+      },
+      {
+        "label": "玩具狗入锅 · 仿真录像",
+        "type": "官方视频",
+        "url": "https://robotarenainf.github.io/static/videos/real2sim/sim2.mp4"
+      },
+      {
+        "label": "海绵擦桌 · 真实录像",
+        "type": "官方视频",
+        "url": "https://robotarenainf.github.io/static/videos/real2sim/real18.mp4"
+      },
+      {
+        "label": "海绵擦桌 · 仿真录像",
+        "type": "官方视频",
+        "url": "https://robotarenainf.github.io/static/videos/real2sim/sim18.mp4"
+      }
     ]
   },
   "sampleSet": {
@@ -159,7 +216,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "在从真实场景重建的模拟环境中，将玩具狗放进锅中；项目页同时展示真实演示与模拟场景。",
-        "explanation": "这是官方公开的任务示例，用于理解任务要求；不是本站实际运行记录或模型成绩。",
+        "explanation": "官网将 real2 与 sim2 配对展示此任务的真实示范及重建仿真；两段原片已下载并在浏览器查看。画面仅展示示例过程，不据此判断仿真任务是否成功或推断榜单成绩。",
         "raw": "Put the stuffed dog in the pot",
         "source": "https://robotarenainf.github.io/",
         "license": "仅保留官方任务名称及本站中文解读，未转载完整资料或媒体。",
@@ -172,7 +229,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "用海绵清洁桌面；官网同时展示真实机器人示范和转换后的仿真场景。",
-        "explanation": "该示例体现用工具进行接触操作，以及真实场景到仿真场景的转换；不代表某次模型执行成功。",
+        "explanation": "官网将 real18 与 sim18 配对展示此任务的真实示范及重建仿真；两段原片已下载并在浏览器查看。画面仅展示示例过程，不据此判断仿真任务是否成功或推断榜单成绩。",
         "raw": "Clean the tabletop with a sponge",
         "source": "https://robotarenainf.github.io/",
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
