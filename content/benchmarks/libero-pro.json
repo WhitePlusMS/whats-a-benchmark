@@ -84,9 +84,10 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示官方数据集中一条 BDDL 任务文件的语言与目标条件节选。",
+    "reason": "展示官方语言扰动任务及同一基础任务的运行时移动目标配置；均为任务定义，非机器人执行轨迹。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/c86fc3b8293185a6f373677018ff3e37f8391602/bddl_files/03_runtime_object_move/bddl/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
     ]
   },
   "metric": {
@@ -120,6 +121,11 @@
       "label": "LIBERO-PRO 固定版本 BDDL 任务文件",
       "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
       "role": "data"
+    },
+    {
+      "label": "官方固定修订：黑碗任务的运行时移动配置",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/c86fc3b8293185a6f373677018ff3e37f8391602/bddl_files/03_runtime_object_move/bddl/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+      "role": "data"
     }
   ],
   "related": [
@@ -132,9 +138,9 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
-    "retrievedAt": "2026-10-28",
+    "retrievedAt": "2026-11-05",
     "samples": [
       {
         "id": "libero-spatial-lan-black-bowl-between-plate-ramekin",
@@ -149,6 +155,20 @@
         "licensePath": "licenses/cc-by-4-0.txt",
         "split": "libero_spatial_lan；文件版本 e9f3a53",
         "excerpt": true
+      },
+      {
+        "id": "libero-pro-runtime-move-black-bowl",
+        "title": "黑碗放到盘子上 · 运行中移动目标",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把盘子与小碗之间的黑碗放到盘子上；评测配置在执行过程中移动目标黑碗，检验机器人能否适应位置变化。",
+        "explanation": "官方七类扩展中的运行时目标移动配置：末端执行器接近目标至 0.09 米时触发，若未触发则在第 160 步回退触发，目标位置按配置在 XY 平面偏移 (0.17, 0.06)。这是任务配置，尚未运行仿真，不代表模型成功或失败。",
+        "raw": "(:language Pick the akita black bowl between the plate and the ramekin and place it on the plate)\n(:goal (And (On akita_black_bowl_1 plate_1)))\n(:runtime_move\n  (:enabled true)\n  (:mode qpos_delta_xy)\n  (:object akita_black_bowl_1)\n  (:step 80)\n  (:trigger near_grasp)\n  (:distance_threshold 0.09)\n  (:fallback_step 160)\n  (:delta_xy 0.17 0.06)\n  (:min_delta_norm 0.18)\n)",
+        "source": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/c86fc3b8293185a6f373677018ff3e37f8391602/bddl_files/03_runtime_object_move/bddl/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+        "license": "LIBERO-PRO 官方数据集，CC BY 4.0；节选 BDDL 并加中文说明。",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "split": "七类扩展 / 03_runtime_object_move / libero_spatial；固定修订 c86fc3b8293185a6f373677018ff3e37f8391602",
+        "excerpt": true
       }
     ]
   },
@@ -157,6 +177,12 @@
       "text": "2026-10-28 取得官方 BDDL 文件；文件 SHA-256 为 45bd633fc5920555eca0f8b58b4e2e8fe2c8d46c968ee4c3f7ed11d9acaeb565。",
       "sourceUrls": [
         "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
+      ]
+    },
+    {
+      "text": "2026-11-05 读取七类扩展的运行时移动任务 BDDL；SHA-256 21fdd73f0a5dabbf2b5bde24dba5e1778a93788af03899374d208ddcc64318db。该文件是评测配置，未运行验证器。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/c86fc3b8293185a6f373677018ff3e37f8391602/bddl_files/03_runtime_object_move/bddl/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
       ]
     }
   ]
