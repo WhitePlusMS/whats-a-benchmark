@@ -42,21 +42,26 @@
     "scale": [
       "官方展示 Social Navigation 与 Social Rearrangement 两类协作任务。"
     ],
-    "splits": [],
+    "splits": [
+      "Social Rearrangement：官方 train 与 val；本次读取 val 文件包含 1,200 个 episode。"
+    ],
     "fields": [],
     "files": [
-      "Habitat v0.3.x 基准资源包含 episode_datasets；small_small 为小场景、两个物体的配置。"
+      "Habitat v0.3.x 基准资源包含 episode_datasets；small_small 为小场景、两个物体的配置。",
+      "官方 hab3_episodes/val/social_rearrange.json.gz：含场景、对象及目标位置配置。"
     ],
     "sourceUrls": [
       "https://aihabitat.org/habitat3/",
       "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html",
-      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/README.md"
+      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/README.md",
+      "https://huggingface.co/datasets/ai-habitat/hab3_episodes",
+      "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "官方提供 Social Rearrangement 的训练与验证 episode；场景资产和其他资源需分别取得并核对许可。"
     ],
     "url": "https://aihabitat.org/habitat3/",
     "sourceUrls": [
@@ -65,24 +70,27 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "所展示的 Habitat v0.3.x 基准 episodes 标注 CC BY-NC；其他任务、代码和媒体许可需分别核对。",
-    "scope": "仅展示公开场景 episode 的少量字段和本站任务说明。",
+    "license": "官方 Social Rearrangement episodes 与 HSSD 场景标注 CC BY-NC 4.0；其他代码、物体和媒体许可需分别核对。",
+    "scope": "展示官方 episode 的少量配置字段和本站中文说明；非商业使用并保留署名。",
     "boundaries": [
       "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
     ],
     "sourceUrls": [
       "https://aihabitat.org/habitat3/",
       "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html",
-      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/README.md"
+      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/README.md",
+      "https://huggingface.co/datasets/ai-habitat/hab3_episodes"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "包括官方任务说明和 Habitat v0.3.x 场景重排环境配置；配置并非机器人运行记录。",
+    "reason": "包括官方 Social Rearrangement 验证集 episode 与 Habitat v0.3.x 性能基准配置；它们都是场景配置，不是机器人运行记录。",
     "url": "https://aihabitat.org/habitat3/",
     "sourceUrls": [
       "https://aihabitat.org/habitat3/",
-      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz"
+      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz",
+      "https://huggingface.co/datasets/ai-habitat/hab3_episodes",
+      "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz"
     ]
   },
   "metric": {
@@ -110,6 +118,13 @@
         "https://aihabitat.org/habitat3/",
         "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
       ]
+    },
+    {
+      "text": "2026-11-05 下载固定版本验证文件，575,723 字节，SHA-256 7bad79b367385f0e5c88690ef4c3c865fa3cc55a9e17b22c74d55a6ef2c87ab2；解压读取 1,200 条 episode，并核对第 0 条对象与目标。未运行仿真。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ai-habitat/hab3_episodes",
+        "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz"
+      ]
     }
   ],
   "sources": [
@@ -131,6 +146,16 @@
     {
       "label": "small_small 原始 episode 数据",
       "url": "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz",
+      "role": "data"
+    },
+    {
+      "label": "官方 Habitat 3.0 episode 数据集与许可",
+      "url": "https://huggingface.co/datasets/ai-habitat/hab3_episodes",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 Social Rearrangement 验证集",
+      "url": "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz",
       "role": "data"
     }
   ],
@@ -203,6 +228,83 @@
         "source": "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz",
         "license": "AI Habitat 的 HSSD 资产与 episodes 标注 CC BY-NC；使用请遵守署名和非商业限制，其他资产另有许可。",
         "split": "官方 Habitat v0.3.x 基准资源：small_small / episode 0；未标注 train、validation 或 test。",
+        "excerpt": true
+      },
+      {
+        "id": "hab3-social-rearrange-val-episode-0",
+        "title": "协作重排验证集 · episode 0",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在指定室内场景中，将肉罐头和糖盒移动到各自的目标位置。",
+        "explanation": "官方 Social Rearrangement 验证配置中的 episode 0；targets 为物体的目标变换矩阵。文件还含其他场景物体和初始配置，这里省略；这是任务初始与目标定义，不是人机协作的执行记录或成绩。",
+        "raw": {
+          "episode_id": "0",
+          "scene_id": "data/scene_datasets/hssd-hab/scenes-uncluttered/102344529.scene_instance.json",
+          "info": {
+            "object_labels": {
+              "010_potted_meat_can_:0000": "any_targets|0",
+              "004_sugar_box_:0000": "any_targets|1"
+            }
+          },
+          "targets": {
+            "010_potted_meat_can_:0000": [
+              [
+                0.99972,
+                0.0,
+                -0.02351,
+                -10.2678
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                0.94897
+              ],
+              [
+                0.02351,
+                0.0,
+                0.99972,
+                -0.30573
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "004_sugar_box_:0000": [
+              [
+                -0.75925,
+                0.0,
+                -0.6508,
+                -5.31934
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                0.54873
+              ],
+              [
+                0.6508,
+                0.0,
+                -0.75925,
+                1.50582
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz",
+        "license": "AI Habitat 发布的 HSSD episodes，CC BY-NC 4.0；其他物体及场景资产使用条件需单独核查。",
+        "licensePath": "licenses/cc-by-nc-4.txt",
+        "split": "hab3_episodes / val / social_rearrange / episode 0；固定修订 f1fcb0b6ef893fadf3fcf8d89fed542057dd1129",
         "excerpt": true
       }
     ]
