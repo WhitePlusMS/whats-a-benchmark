@@ -29,8 +29,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务提供目标、观测与机器人接口。",
-    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "input": "例如 move_plate：三路 84×84 RGB 相机观测和 50 维低维状态；不同任务配置可能不同。",
+    "output": "策略输出动作，控制底盘、14 个手臂关节和两个夹爪；下肢由冻结的 GR00T-WBC 控制。",
     "environment": "MuJoCo 中的 Unitree G1，GR00T-WBC 控制下肢；策略控制底盘、双臂与夹爪。",
     "sourceUrls": [
       "https://bigym2.github.io/",
@@ -43,43 +43,59 @@
     "scale": [
       "20 项家庭任务；论文对比 9 项核心任务，另有 11 项扩展任务。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "每项任务有 60 条人工 VR 示范；官方评测使用 100 个种子 620000–620099。",
+      "公开的 coding-agent 轨迹覆盖 2 个智能体、9 项任务、每项 3 次会话，共 5,400 次评测；并非全部任务和智能体的轨迹。"
+    ],
+    "fields": [
+      "评测清单含任务、会话、模型、种子、成功标记、步数与轨迹路径。",
+      "轨迹 NPZ 包含仿真状态与动作；本身不包含图像。"
+    ],
+    "files": [
+      "manifest.csv：评测记录清单",
+      "episodes/<task>/*.npz：仿真状态和动作",
+      "viser/<task>/*.viser：3D 重放数据",
+      "policies/<task>/<session>/episodes.csv：逐种子结果"
+    ],
     "sourceUrls": [
       "https://bigym2.github.io/",
-      "https://bigym2.github.io/docs/"
+      "https://bigym2.github.io/docs/",
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/README.md"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+      "演示数据与 coding-agent 评测轨迹公开提供；重放轨迹需要官方环境和相关依赖。"
     ],
     "url": "https://bigym2.github.io/",
     "sourceUrls": [
-      "https://bigym2.github.io/"
+      "https://bigym2.github.io/",
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/README.md"
     ]
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "官方 BiGym 2.0 演示数据集采用 CC BY 4.0。",
-    "scope": "本站展示数据集中的人工 VR 示范，按 CC BY 4.0 标注 SWIRL-Lab 来源；模型和第三方资源许可另计。",
+    "license": "官方 BiGym 2.0 演示数据和 coding-agent 评测轨迹均标注 CC BY 4.0。",
+    "scope": "本站展示人工 VR 示范和官方评测清单摘录，按 CC BY 4.0 标注 SWIRL-Lab 来源；模型和第三方资源许可另计。",
     "boundaries": [
       "仿真示范不代表机器人实机运行或模型成绩。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/README.md"
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/README.md",
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方人工 VR 示范视频及 coding-agent 测试清单记录；中文任务说明为本站解读。",
     "url": "https://bigym2.github.io/",
     "sourceUrls": [
       "https://bigym2.github.io/",
       "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/agent_demos/dishwasher_close/demo_head.json",
-      "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/agent_demos/dishwasher_load_cups/demo_head.json"
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/agent_demos/dishwasher_load_cups/demo_head.json",
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/manifest.csv",
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/policies/move_plate/astra-s1/episodes.csv"
     ]
   },
   "metric": {
@@ -131,6 +147,21 @@
     {
       "label": "dishwasher_load_cups 官方视频记录",
       "url": "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/agent_demos/dishwasher_load_cups/demo_head.json",
+      "role": "data"
+    },
+    {
+      "label": "官方 coding-agent 评测轨迹与许可",
+      "url": "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/README.md",
+      "role": "data"
+    },
+    {
+      "label": "官方评测清单",
+      "url": "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/manifest.csv",
+      "role": "data"
+    },
+    {
+      "label": "move_plate 会话逐种子结果",
+      "url": "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/policies/move_plate/astra-s1/episodes.csv",
       "role": "data"
     }
   ],
@@ -271,6 +302,56 @@
             "source": "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/agent_demos/dishwasher_load_cups/demo_head.mp4"
           }
         ],
+        "licensePath": "licenses/cc-by-4.txt"
+      },
+      {
+        "id": "bigym-2-move-plate-astra-620000",
+        "title": "搬盘子：测试种子 620000",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "控制人形机器人完成 move_plate（移动盘子）任务。",
+        "explanation": "官方清单记录 GPT-6 Astra 的 astra-s1 会话在种子 620000 上未成功，运行 1700 个控制步；逐种子结果记录终止原因为超时。这是单次运行，不代表整体成功率。该轨迹未提供直接的视频文件。",
+        "raw": {
+          "task": "move_plate",
+          "session": "astra-s1",
+          "model": "GPT-6 Astra",
+          "harness": "Codex CLI 0.153.4",
+          "program_version": "8",
+          "seed": "620000",
+          "success": "0",
+          "length": "1700",
+          "episode": "episodes/move_plate/astra-s1_seed620000.npz",
+          "viser": "viser/move_plate/astra-s1_seed620000.viser"
+        },
+        "source": "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/manifest.csv",
+        "license": "SWIRL-Lab BiGym 2.0 Coding-Agent Rollouts，CC BY 4.0；来源：SWIRL-Lab / Imperial College London。",
+        "split": "官方 coding-agent 隐藏测试种子（结果及轨迹现已公开）。",
+        "excerpt": true,
+        "licensePath": "licenses/cc-by-4.txt"
+      },
+      {
+        "id": "bigym-2-move-plate-astra-620005",
+        "title": "搬盘子：测试种子 620005",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "控制人形机器人完成 move_plate（移动盘子）任务。",
+        "explanation": "官方清单记录 GPT-6 Astra 的 astra-s1 会话在种子 620005 上成功，运行 1599 个控制步；逐种子结果记录终止原因为成功。这是单次运行，不代表整体成功率。该轨迹未提供直接的视频文件。",
+        "raw": {
+          "task": "move_plate",
+          "session": "astra-s1",
+          "model": "GPT-6 Astra",
+          "harness": "Codex CLI 0.153.4",
+          "program_version": "8",
+          "seed": "620005",
+          "success": "1",
+          "length": "1599",
+          "episode": "episodes/move_plate/astra-s1_seed620005.npz",
+          "viser": "viser/move_plate/astra-s1_seed620005.viser"
+        },
+        "source": "https://huggingface.co/datasets/SWIRL-Lab/bigym2-agent-rollouts/blob/d996b62535e008cf7a5f77d3899082ae652eed02/manifest.csv",
+        "license": "SWIRL-Lab BiGym 2.0 Coding-Agent Rollouts，CC BY 4.0；来源：SWIRL-Lab / Imperial College London。",
+        "split": "官方 coding-agent 隐藏测试种子（结果及轨迹现已公开）。",
+        "excerpt": true,
         "licensePath": "licenses/cc-by-4.txt"
       }
     ]
