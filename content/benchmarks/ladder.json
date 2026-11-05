@@ -91,7 +91,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "官方评测轨迹数据集 CC BY 4.0；RoboLab-Long 画面中的资产另按 CC BY-NC-SA 4.0。",
-    "scope": "本站展示 SimplerEnv-Long 单次评测录像，保留作者、数据集与固定版本来源。",
+    "scope": "本站展示 SimplerEnv-Long 成功与失败的单次评测录像，保留作者、数据集与固定版本来源。",
     "boundaries": [
       "该录像为仿真评测，不是实体机器人录像；其他套件的资产可能有独立使用条件。"
     ],
@@ -101,7 +101,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载并核对同次运行的元数据与视频，视频可在站内播放。",
+    "reason": "已下载并核对两次运行的元数据与对应视频，分别展示成功和失败案例。",
     "sourceUrls": [
       "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
       "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4"
@@ -158,6 +158,16 @@
       "label": "固定版本任务汇总",
       "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/results.yaml",
       "role": "data"
+    },
+    {
+      "label": "失败运行元数据",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/episode_meta.yaml",
+      "role": "data"
+    },
+    {
+      "label": "失败运行对应录像",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/main.mp4",
+      "role": "data"
     }
   ],
   "related": [],
@@ -194,6 +204,36 @@
             "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4"
           }
         ]
+      },
+      {
+        "id": "ladder-gpt-policy-all3-plate-episode12",
+        "title": "把三件物品放到盘上 · 失败运行",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将胡萝卜、勺子和茄子放到盘子上。",
+        "explanation": "官方 GPT-Policy 在 SimplerEnv-Long 的 all3_plate 任务中的另一条仿真运行，元数据记录 300 步、未成功。与成功案例是不同 episode；这里只展示单次结果，不推断失败原因或整体成绩。",
+        "raw": {
+          "episode_index": 12,
+          "num_steps": 300,
+          "success": false,
+          "env_name": "all3_plate-v0",
+          "default_instruction": "put the carrot, the spoon and the eggplant on the plate",
+          "instruction": "put the carrot, the spoon and the eggplant on the plate",
+          "batch_env_index": 11
+        },
+        "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/episode_meta.yaml",
+        "license": "LADDER 作者团队，评测轨迹 CC BY 4.0；保留数据集及固定版本来源。",
+        "licensePath": "licenses/cc-by-4.txt",
+        "split": "评测轨迹 / GPT-Policy / SimplerEnv-Long / all3_plate / episode 12",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/ladder-all3-plate-gpt-policy-episode12.mp4",
+            "caption": "同一失败运行的官方仿真录像。",
+            "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/main.mp4"
+          }
+        ]
       }
     ]
   },
@@ -204,6 +244,13 @@
         "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
         "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4",
         "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/results.yaml"
+      ]
+    },
+    {
+      "text": "2026-11-05 从同一固定版本下载 episode 12 元数据及录像；核对 300 步、success=false 与任务指令，已在浏览器播放并查看画面；未自行运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/episode_meta.yaml",
+        "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/main.mp4"
       ]
     }
   ]

@@ -2523,3 +2523,5 @@
 
 - 新增 `content/benchmarks/ladder.json`：收录 LADDER 仿真长步骤操作、任务规模和评分，补充 GPT-Policy 在 SimplerEnv-Long 的单次成功记录及官方固定版本来源；新增 `content/assets/videos/ladder-all3-plate-gpt-policy-episode10.mp4`，使用 CC BY 4.0 并保留归属，已播放核看。单次记录不代表整体成绩，实机与仿真分开说明。
 - 修改 `content/brands.json`、`content/benchmarks/ladder.json` 并新增 `content/assets/logos/ladder.png`：使用 LADDER 官网图标及原始来源，供评测列表和详情页识别。
+
+- 修改 `content/benchmarks/ladder.json` 并新增 `content/assets/videos/ladder-all3-plate-gpt-policy-episode12.mp4`：补充同一 GPT-Policy 仿真任务的 episode 12 失败记录及官方录像，与成功样例区分；已核对原始 300 步和失败标记、播放画面，保留 CC BY 4.0 归属，不推断失败原因。
