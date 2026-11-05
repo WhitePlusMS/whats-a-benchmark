@@ -2152,3 +2152,11 @@
 ### LABBench2 单题任务说明（2026-11-05）
 
 - `content/benchmarks/labbench2.json`：按论文区分单题输入、开放式回答以及图像、PDF 和检索模式，修正将题库总量当作一次输入的描述；保留数据访问受控的说明。
+
+### ManipulationNet 官方积木示例（2026-11-05）
+
+- `content/benchmarks/manipulationnet.json`：加入固定提交的 task299 图文积木任务、难度与对应原图链接，补充 300 条示例的结构及输入输出；已查看原图，明确示例不是模型轨迹，图片许可未确认故不复制。
+
+### RobotArena ∞ 数据入口（2026-11-05）
+
+- `content/benchmarks/robotarena-infinity.json`：补充代码指向的重建场景数据集、数据卡规模和受控访问条件；明确未取得文件，现有图片仍为论文流程图。

@@ -27,26 +27,33 @@
     ]
   },
   "taskContract": {
-    "input": "按任务提供目标、观测与机器人接口。",
-    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "input": "指定实物任务和机器人观测；积木排列可采用文字、图片或图文组合的目标指令。",
+    "output": "控制机器人完成装配、积木排列等目标；各任务由平台按对应条件核验。",
     "environment": "真实机器人任务；统一硬件套件、客户端与服务端支持跨地点评测和结果核验。",
     "sourceUrls": [
       "https://manipulation-net.org/",
-      "https://arxiv.org/abs/2603.04363"
+      "https://arxiv.org/abs/2603.04363",
+      "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/README.md"
     ]
   },
   "dataProfile": {
     "summary": "初始任务包含物理技能与具身推理两条方向，具体任务及套件随平台发布更新。",
     "disclosure": "partial",
     "scale": [
-      "初始任务包含物理技能与具身推理两条方向，具体任务及套件随平台发布更新。"
+      "初始任务包含物理技能与具身推理两条方向，具体任务及套件随平台发布更新。",
+      "官方另公开积木排列示例共 300 项，语言、图像和图文模式各 100 项。"
     ],
     "splits": [],
-    "fields": [],
-    "files": [],
+    "fields": [
+      "积木示例元数据列出任务模式、参考图片、文字描述与难度。"
+    ],
+    "files": [
+      "metadata.json 提供示例任务；images/ 提供对应参考图。"
+    ],
     "sourceUrls": [
       "https://manipulation-net.org/",
-      "https://arxiv.org/abs/2603.04363"
+      "https://arxiv.org/abs/2603.04363",
+      "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/README.md"
     ]
   },
   "dataAccess": {
@@ -64,7 +71,8 @@
     "license": "ManipulationNet 官方客户端仓库采用 Apache 2.0。",
     "scope": "展示官方仓库 docs/images/overview.png，标注原始作者、来源与许可；其他数据和论文单独核对。",
     "boundaries": [
-      "平台示意图不是某次任务的执行轨迹或评测成绩。"
+      "平台示意图不是某次任务的执行轨迹或评测成绩。",
+      "独立的积木示例仓库未声明图片再发布许可，本站仅链接原图。"
     ],
     "sourceUrls": [
       "https://github.com/ManipulationNet/mnet_client/blob/2745ccc6099fb3b65e89cbdbaf7af6521bf8dd29/docs/images/overview.png",
@@ -73,11 +81,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示插销任务及官方积木排列的具体示例；图片仅链接原始仓库，不把任务说明当作模型执行结果。",
     "url": "https://arxiv.org/abs/2603.04363",
     "sourceUrls": [
       "https://arxiv.org/abs/2603.04363",
-      "https://arxiv.org/html/2603.04363"
+      "https://arxiv.org/html/2603.04363",
+      "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/metadata.json",
+      "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/images/61.png",
+      "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/README.md"
     ]
   },
   "metric": {
@@ -130,6 +141,21 @@
       "label": "官方客户端仓库 Apache 2.0 许可",
       "url": "https://github.com/ManipulationNet/mnet_client/blob/2745ccc6099fb3b65e89cbdbaf7af6521bf8dd29/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "官方积木示例任务元数据（固定提交）",
+      "url": "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/metadata.json",
+      "role": "data"
+    },
+    {
+      "label": "task299 对应的官方参考图",
+      "url": "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/images/61.png",
+      "role": "data"
+    },
+    {
+      "label": "官方积木示例任务说明",
+      "url": "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/README.md",
+      "role": "data"
     }
   ],
   "related": [],
@@ -181,6 +207,25 @@
           }
         ],
         "licensePath": "licenses/manipulationnet-apache-2.txt"
+      },
+      {
+        "id": "mnet-block-example-task299",
+        "title": "图文积木排列 · 官方示例 task299",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "参照示意图搭建原有结构，但把所有积木换成绿色；再在顶部中央增加一块蓝色积木。",
+        "explanation": "官方 task299 是图文模式的 hard 示例。原图显示六块红色积木组成的三层结构；图片仅通过官方链接提供。这是公开示例任务，不是模型运行记录。",
+        "raw": {
+          "task_id": "task299",
+          "mode": "VL",
+          "image": "61.png",
+          "description": "Build the original structure but replace all blocks with green ones. Then, add an additional layer on top by placing one blue block centered above the top block.",
+          "level": "hard"
+        },
+        "source": "https://github.com/ManipulationNet/mnet_block_arrangement_example_instructions/blob/056b06497da5bbf7819aedf0ca87dc188dc8a443/metadata.json",
+        "license": "官方仓库未单独声明示例图的转载许可；仅保留短任务文本并提供原图链接。",
+        "split": "官方 Block Arrangement 示例任务 / VL / hard；不是已确认的训练或验证划分。",
+        "excerpt": true
       }
     ]
   }
