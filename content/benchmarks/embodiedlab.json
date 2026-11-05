@@ -43,11 +43,16 @@
       "30 个定量实验，覆盖五个学科与 14 类实验装置。"
     ],
     "splits": [],
-    "fields": [],
-    "files": [],
+    "fields": [
+      "实验配置包含器具、采样范围、证据门槛、误差阈值和操作预算；具体隐藏参数随实例采样。"
+    ],
+    "files": [
+      "每项实验提供 experiment.yaml、任务卡和提交 JSON schema。"
+    ],
     "sourceUrls": [
       "https://github.com/HexaFuture/EmbodiedLab",
-      "https://arxiv.org/abs/2610.35385"
+      "https://arxiv.org/abs/2610.35385",
+      "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/experiment.yaml"
     ]
   },
   "dataAccess": {
@@ -73,11 +78,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方任务及任务卡模板；中文为本站解读，不代表实验运行结果。",
+    "reason": "展示官方实验任务卡、具体配置与论文图；隐藏参数范围不是单次测量或模型运行结果。",
     "url": "https://arxiv.org/abs/2610.35385",
     "sourceUrls": [
       "https://arxiv.org/abs/2610.35385",
-      "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md"
+      "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md",
+      "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/experiment.yaml",
+      "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/task_card.md",
+      "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/schemas/submission.json"
     ]
   },
   "metric": {
@@ -121,6 +129,21 @@
     {
       "label": "官方实验任务卡",
       "url": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md",
+      "role": "data"
+    },
+    {
+      "label": "悬臂梁实验配置（固定提交）",
+      "url": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/experiment.yaml",
+      "role": "data"
+    },
+    {
+      "label": "悬臂梁任务卡（固定提交）",
+      "url": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/task_card.md",
+      "role": "data"
+    },
+    {
+      "label": "悬臂梁提交格式（固定提交）",
+      "url": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/schemas/submission.json",
       "role": "data"
     }
   ],
@@ -174,6 +197,68 @@
           }
         ],
         "licensePath": "licenses/cc-by-4.txt"
+      },
+      {
+        "id": "embodiedlab-cantilever-config",
+        "title": "悬臂梁实验 · 官方实验配置",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "操作砝码和数显表，测量金属悬臂梁的弯曲刚度与夹具转动刚度；提交读数证据，并将器具归位。",
+        "explanation": "这是官方的高级实验配置，不是单次运行的测量结果。评测时两个待测参数按范围采样并对智能体隐藏；验收要求读数对应本轮图像，两项相对误差均不超过 0.5%。",
+        "raw": {
+          "experiment_id": "beam_compliance",
+          "version": 1,
+          "tier": "advanced",
+          "weights_g": [
+            50,
+            100,
+            100
+          ],
+          "load_seats_mm": [
+            100,
+            200,
+            300,
+            400
+          ],
+          "indicator_holes_mm": [
+            50,
+            100,
+            150,
+            200,
+            250,
+            300,
+            350,
+            400
+          ],
+          "hidden_EI_Nm2_range": [
+            3.0,
+            8.0
+          ],
+          "hidden_clamp_stiffness_Nm_per_rad_range": [
+            80,
+            300
+          ],
+          "reading_tolerance_mm": 0.001,
+          "maximum_relative_error": 0.005,
+          "simulated_seconds_budget": 300,
+          "submissions": 1
+        },
+        "source": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/beam_compliance/experiment.yaml",
+        "license": "实验配置字段来自 EmbodiedLab 官方仓库；配图来自 Gao 等论文图 5，CC BY 4.0，未修改。",
+        "licensePath": "licenses/cc-by-4.txt",
+        "split": "官方高级实验定义；待测参数是隐藏采样范围，不是具体实例或 train/validation。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/embodiedlab-beam-pipeline.png",
+            "alt": "EmbodiedLab 论文悬臂梁实验：装置、实验配置、隐藏实例、参考方案及发布审核流程",
+            "width": 757,
+            "height": 254,
+            "caption": "论文图 5：以悬臂梁实验展示配置、采样和验证流程；不是模型运行结果。",
+            "source": "https://arxiv.org/html/2610.35385v1/fig_pipeline.png"
+          }
+        ]
       }
     ]
   }

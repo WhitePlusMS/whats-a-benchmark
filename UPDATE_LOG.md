@@ -2135,3 +2135,12 @@
 ### FrontierFinance 任务与评分说明（2026-11-05）
 
 - `content/benchmarks/frontierfinance.json`：依据论文补充问题日期、研究材料、报告要求、各系统工具差异和按题宏平均的评分方法；保留完整数据集受控访问及重分发限制。
+
+### EmbodiedLab 悬臂梁实验配置（2026-11-05）
+
+- `content/benchmarks/embodiedlab.json`：补充官方高级实验的砝码、测量位置、隐藏采样范围、误差门槛与预算，并链接配置、任务卡与提交格式；明确这不是单次实验结果。
+- `content/assets/images/embodiedlab-beam-pipeline.png`：加入论文 CC BY 4.0 原图，展示实验装置、参数采样与验证过程。
+
+### PLawBench 任务说明与样题措辞（2026-11-05）
+
+- `content/benchmarks/plawbench.json`：根据论文补充咨询、案件分析和法律文书三类任务的输入输出及中国法域范围；将“真实案例”改为“评测样题”，避免将模拟案情误述为实际案件。

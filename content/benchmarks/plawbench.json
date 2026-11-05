@@ -24,11 +24,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2601.16669"
+      "https://arxiv.org/abs/2601.16669",
+      "https://arxiv.org/html/2601.16669"
     ],
-    "environment": "需按论文rubric和评估设置运行。",
-    "input": "法律实践场景与任务要求。",
-    "output": "法律实务文本结果。"
+    "environment": "基于中国法律实践的三类任务；按专家设计的细粒度评分标准评估，论文实验聚焦单模型。",
+    "input": "中文法律咨询叙述、模拟案件事实或文书写作要求；咨询任务中的关键信息可能有意缺失。",
+    "output": "按任务澄清相关事实、分析法律争议并提出结论，或撰写符合场景的法律文书。"
   },
   "dataProfile": {
     "summary": "论文定义850道法律实务问题，覆盖13种场景并含约12,500项rubric检查点，分属法律咨询、案件分析及法律文书任务。",
@@ -93,6 +94,12 @@
       "sourceUrls": [
         "https://arxiv.org/abs/2601.16669"
       ]
+    },
+    {
+      "text": "题目以中文和中国法律制度为背景；案例分析采用模拟实践场景，结果不直接代表其他法域的能力。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2601.16669"
+      ]
     }
   ],
   "sources": [
@@ -115,6 +122,11 @@
       "label": "已实际读取的原始任务记录",
       "url": "https://raw.githubusercontent.com/SKYLENAGE-AI/PLawbench/f6ee07b36c1f4c0bfc2af8ca27183d3dd3175c56/practical_case_analysis_250.jsonl",
       "role": "data"
+    },
+    {
+      "label": "论文：三类法律任务与评测范围",
+      "url": "https://arxiv.org/html/2601.16669",
+      "role": "paper"
     }
   ],
   "related": [],
@@ -136,7 +148,7 @@
         "id": "practical-case-analysis-250-line-0",
         "title": "婚庆录像丢失 · 原始问题与评分项",
         "type": "record",
-        "prompt": "某甲已付清婚庆合同费用，服务商未经告知将摄像转包，录像因重大过失全部丢失；合同附件含全程跟拍记录，其他服务已完成。该真实案例要求按结论、案情、分析和法条的顺序，讨论能否向合同服务商主张精神损害赔偿。",
+        "prompt": "某甲已付清婚庆合同费用，服务商未经告知将摄像转包，录像因重大过失全部丢失；合同附件含全程跟拍记录，其他服务已完成。该评测样题要求按结论、案情、分析和法条的顺序，讨论能否向合同服务商主张精神损害赔偿。",
         "explanation": "原始评分量表的结论项明确给出可主张精神损害赔偿、分值5分；完整量表还分别检查合同违约、录像的人身意义及法条依据。本页用中文整理案情，只保留真实question和首个rubric字段，省略长context及其余量表，不编写替代标准答案。",
         "raw": {
           "label": "个人生活",
