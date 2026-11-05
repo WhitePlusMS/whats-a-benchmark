@@ -83,18 +83,19 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "转换数据卡标注 Apache 2.0。",
-    "scope": "本站展示 HuggingFaceVLA/libero 固定版本的单条示范帧和记录。",
+    "license": "转换数据卡标注 Apache 2.0；LIBERO 官方 README 将数据标为 CC BY 4.0。",
+    "scope": "展示 HuggingFaceVLA/libero 固定版本的单条训练示范首尾帧和按原帧率合成的视频。",
     "boundaries": [
       "训练示范不等同验证集，也不能代表模型评测成绩。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/README.md"
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/README.md",
+      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示公开训练示范轨迹的真实记录及首尾观测帧；评测另在仿真环境运行。",
+    "reason": "展示公开训练示范轨迹的真实记录、首尾观测帧和由同轨迹全部观测帧合成的视频；评测另在仿真环境运行。",
     "sourceUrls": [
       "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial",
       "https://huggingface.co/datasets/zcyqyq/libero",
@@ -163,7 +164,7 @@
       "role": "data"
     },
     {
-      "label": "官方任务文本",
+      "label": "转换集任务索引",
       "url": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/tasks.parquet",
       "role": "data"
     },
@@ -200,8 +201,8 @@
         "title": "真实轨迹 0：两个杯子放到两个盘子",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "把白杯放到左边盘子，把黄白杯放到右边盘子。下方展示这条轨迹的首帧和末帧。",
-        "explanation": "这是公开转换数据集中的第 0 条仿真示范，214 帧、10 Hz；原始数据页保留第 0 帧的状态和动作，以及第 213 帧的编号和时间。它属于 train，不是验证或测试结果。",
+        "prompt": "把白杯放到左边盘子，把黄白杯放到右边盘子。下面展示这条轨迹的观测帧合成视频及首尾帧。",
+        "explanation": "这是第三方公开转换数据集中的第 0 条仿真示范，214 帧、10 Hz；视频由该轨迹的场景相机帧按顺序合成并编码，不是原始录像。它属于 train，不是验证或测试结果。",
         "raw": {
           "episode": {
             "episode_index": 0,
@@ -242,18 +243,24 @@
           }
         },
         "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
-        "license": "HuggingFaceVLA LIBERO 转换数据卡标注 Apache 2.0；原始 LIBERO 项目与转换方均列于来源。",
+        "license": "HuggingFaceVLA 转换数据卡标 Apache 2.0；LIBERO 官方 README 将数据标为 CC BY 4.0。视频由原始观测帧合成，标明来源与修改。",
         "licensePath": "licenses/robodojo-apache-2.txt",
         "split": "train；仿真示范轨迹，不是验证集或测试集。",
         "excerpt": true,
         "assets": [
+          {
+            "kind": "video",
+            "path": "videos/libero-episode0-reconstructed.mp4",
+            "caption": "轨迹 0 · 从 214 帧场景相机观测合成，10 Hz",
+            "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
+          },
           {
             "kind": "image",
             "path": "images/libero-episode0-first.png",
             "alt": "libero 第 0 条轨迹第 0 帧的相机画面",
             "width": 256,
             "height": 256,
-            "caption": "轨迹 0 · 第 0 帧 · 官方数据分片中的相机画面",
+            "caption": "轨迹 0 · 第 0 帧 · 第三方转换数据分片中的相机画面",
             "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
           },
           {
@@ -262,7 +269,7 @@
             "alt": "libero 第 0 条轨迹第 213 帧的相机画面",
             "width": 256,
             "height": 256,
-            "caption": "轨迹 0 · 第 213 帧 · 官方数据分片中的相机画面",
+            "caption": "轨迹 0 · 第 213 帧 · 第三方转换数据分片中的相机画面",
             "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
           }
         ]
@@ -306,5 +313,14 @@
         "excerpt": true
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "2026-11-05 读取转换分片（SHA-256 1c59dec051cfde91ee231a8960516e25bbc2f749736fbe5379293da1843f5df2），确认 episode 0 帧号 0–213 连续；按数据卡 10 Hz 编码为视频并抽查画面。未运行仿真或评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
+        "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/info.json"
+      ]
+    }
+  ]
 }
