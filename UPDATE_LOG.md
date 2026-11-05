@@ -1,3 +1,9 @@
+## 2026-11-05：补充 Meta-World 完整训练演示视频
+
+- 修改 `content/benchmarks/meta-world.json`：为 episode 0 添加完整帧视频，明确播放减速与训练划分；区分 MT50 和 ML10 的任务设置。
+- 新增 `content/assets/videos/metaworld-mt50-train-episode-0.mp4`：将固定版本的 88 张训练图像按 20 帧/秒重新编码，便于观察，原数据标注 80 帧/秒。
+- 原因与影响：原样例仅有三帧，不能直观展示完整动作；视频是训练演示，不代表测试表现。
+
 ## 2026-11-05：细化 AgentHarm 任务与公开范围
 
 - 修改 `content/benchmarks/agentharm.json`：补充模拟工具、无害对照、多轮调用、任务条件评分与拒绝判定，并说明现实环境外推边界。

@@ -44,9 +44,10 @@
   "taskContract": {
     "input": "机器人和物体状态或视觉观测，取决于环境与策略设置。",
     "output": "执行连续控制动作完成抓取、推拉、开门等任务。",
-    "environment": "MuJoCo 操作环境；MT 和 ML 协议分别定义训练任务及保留任务。",
+    "environment": "MuJoCo 操作环境；MT50 在 50 个已定义任务上学习，ML10 则使用 10 个训练任务及 5 个保留测试任务。",
     "sourceUrls": [
-      "https://arxiv.org/abs/1910.10897"
+      "https://arxiv.org/abs/1910.10897",
+      "https://github.com/Farama-Foundation/Metaworld/blob/main/docs/benchmark/benchmark_descriptions.md"
     ]
   },
   "dataProfile": {
@@ -55,11 +56,16 @@
     "scale": [
       "基准包含 50 个机器人操作任务；ML10 使用 10 个训练任务和 5 个保留测试任务。"
     ],
-    "splits": [],
+    "splits": [
+      "MT50：50 个多任务技能，不使用保留测试任务",
+      "ML10：10 个元训练任务和 5 个保留测试任务",
+      "LeRobot 转换集：train 轨迹，不是 ML10 保留测试任务"
+    ],
     "fields": [],
     "files": [],
     "sourceUrls": [
-      "https://github.com/Farama-Foundation/Metaworld/blob/main/docs/benchmark/benchmark_descriptions.md"
+      "https://github.com/Farama-Foundation/Metaworld/blob/main/docs/benchmark/benchmark_descriptions.md",
+      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
     ]
   },
   "dataAccess": {
@@ -76,7 +82,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "LeRobot 数据集卡将 metaworld_mt50 标为 Apache-2.0；Meta-World 代码及其他资源的条款须分别核对。",
-    "scope": "本站展示 LeRobot 转换集中的三帧及数值字段；保留来源、版本和许可。",
+    "scope": "本站展示 LeRobot 转换集中的三帧、由同一轨迹所有帧重新编码的视频及数值字段；保留来源、版本和许可。",
     "boundaries": [
       "图像来自模拟训练演示，不表示实机视频或模型评测成绩。"
     ],
@@ -86,7 +92,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得 LeRobot MT50 训练演示的单条轨迹中的三帧和对应动作、状态。",
+    "reason": "已取得 LeRobot MT50 训练演示的完整单条轨迹图像，展示重编码视频、三帧和对应动作、状态。",
     "sourceUrls": [
       "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
       "https://huggingface.co/docs/lerobot/metaworld"
@@ -141,7 +147,7 @@
         "type": "image",
         "prompt": "在模拟场景中抓起一个螺母并放到销钉上。下方按时间展示同一训练演示的起始、中间和末帧。",
         "promptOrigin": "editorial",
-        "explanation": "这三帧来自 LeRobot 转换的 Meta-World MT50 训练数据，帧 0、44、87 属于同一 episode；末帧成功标记为 true。它是单次轨迹数据，不能当成模型汇总成功率；原始数值中的图像链接已替换为本站对应文件名和校验值。",
+        "explanation": "视频由同一训练 episode 的全部 88 帧重新编码，按 20 帧/秒播放，较数据标注的 80 帧/秒放慢 4 倍；图片为第 0、44、87 帧，末帧成功标记为 true。这是训练演示，不是模型评测成绩；原始数值中的图片链接替换为本站文件名及校验值。",
         "raw": {
           "dataset": "lerobot/metaworld_mt50",
           "revision": "b46a1c185a2368660650a82ac5a5083a56722f48",
@@ -363,6 +369,12 @@
         "excerpt": true,
         "assets": [
           {
+            "kind": "video",
+            "path": "videos/metaworld-mt50-train-episode-0.mp4",
+            "caption": "训练演示 episode 0：88 帧以 20 帧/秒播放，较数据标注的 80 帧/秒放慢 4 倍。",
+            "source": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+          },
+          {
             "kind": "image",
             "path": "images/metaworld-episode-0-frame-0.jpg",
             "alt": "Meta-World 训练演示轨迹 0 的第 0 帧",
@@ -399,6 +411,12 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
         "https://huggingface.co/docs/lerobot/metaworld"
+      ]
+    },
+    {
+      "text": "2026-11-05 从数据集浏览接口取得固定版本 train 中 episode 0 的第 0–87 帧，并核对下一行是 episode 1；按 20 帧/秒重编码为 MP4（来源标注为 80 帧/秒）。生成视频 SHA-256 0e124c0a90184bd06df6099e1e7301594a66206fb04dacaba1801943c4d4cb02。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
       ]
     }
   ]
