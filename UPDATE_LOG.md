@@ -2329,3 +2329,5 @@
 - 修改 `content/benchmarks/aa-omniscience.json`：补充 v1.1 无工具事实问答任务、3,000 题及 300 条公开 test 数据，明确与 v1.0 的 6,000 题和 600 条公开 train 不可直接比较；保留并标注旧版样例，新增官方数据浏览器可核对的 v1.1 第 15 题。文件下载接口限流，未声称下载固定 CSV。
 - v1.1 样例复用现有 `content/assets/licenses/lhtb-apache-2-0.txt` 许可原文，并在样例中注明发布方和版本，避免重复维护相同文本。
 - 将 AA-Omniscience 默认数据入口切至 v1.1，旧版样例仍各自保留 v1.0 固定来源。
+
+- 修改 `content/benchmarks/simple-embodied.json`：补充官方 simple-eval 桌面抓取固定版本数据包、下载说明和 dr-level-0 的 episode 0 原始单帧记录；核对并查看侧面相机首帧，注明评测目录与内部 train 标签的区别、未运行评测和媒体许可未明确的边界。

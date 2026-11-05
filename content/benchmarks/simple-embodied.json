@@ -21,6 +21,11 @@
         "label": "SIMPLE 抓取任务数据包",
         "type": "训练数据集",
         "url": "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip"
+      },
+      {
+        "label": "SIMPLE 桌面抓取评测数据包",
+        "type": "评测数据",
+        "url": "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip"
       }
     ]
   },
@@ -59,11 +64,19 @@
     "scale": [
       "项目介绍 60 项任务、50 个室内场景及 1,000 多个物体。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "simple-eval 的桌面抓取包按 dr-level 分目录；所检查目录的内部 splits 为 train，不能据此称为验证集。"
+    ],
+    "fields": [
+      "任务指令、episode 元数据、环境配置、机器人观测和相机文件。"
+    ],
+    "files": [
+      "桌面抓取 simple-eval 包按随机化目录包含 Parquet、JSONL 和相机 MP4。"
+    ],
     "sourceUrls": [
-      "https://arxiv.org/abs/2606.08278"
+      "https://arxiv.org/abs/2606.08278",
+      "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
+      "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md"
     ]
   },
   "dataAccess": {
@@ -74,7 +87,9 @@
     "url": "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip",
     "sourceUrls": [
       "https://github.com/physical-superintelligence-lab/SIMPLE",
-      "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip"
+      "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip",
+      "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
+      "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md"
     ]
   },
   "reusePolicy": {
@@ -89,10 +104,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示 SIMPLE 桌面抓取 episode 0 的状态和动作；已查看同编号第一视角视频，原始数据包见资源入口。",
+    "reason": "展示 SIMPLE 桌面抓取演示轨迹及评测数据包的单帧初始记录；已检查相机画面，数据包见资源入口。",
     "sourceUrls": [
       "https://github.com/physical-superintelligence-lab/SIMPLE",
-      "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip"
+      "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip",
+      "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
+      "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md"
     ]
   },
   "metric": {
@@ -131,6 +148,16 @@
       "label": "PSI 官方任务数据包固定版本",
       "url": "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip",
       "role": "data"
+    },
+    {
+      "label": "SIMPLE 桌面抓取评测数据包（固定版本）",
+      "url": "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
+      "role": "data"
+    },
+    {
+      "label": "SIMPLE 官方评测数据下载说明",
+      "url": "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md",
+      "role": "readme"
     }
   ],
   "related": [],
@@ -569,6 +596,25 @@
         "license": "数据集未明确声明可再发布许可；仅展示状态与动作的数值节选及本站说明，媒体未转载。",
         "split": "SIMPLE / G1WholebodyTabletopGraspMP-v0 / episode 0",
         "excerpt": true
+      },
+      {
+        "id": "simple-tabletop-eval-dr0-episode0",
+        "title": "桌面抓取 · 评测包初始记录",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "让 G1 机器人抓取桌面物体。",
+        "explanation": "官方评测教程指向 simple-eval 数据包。该包 dr-level-0 的 episode 0 只有 1 帧；已查看同编号侧面相机画面，不能据此判断动作过程或成功情况。目录名为评测数据，但该目录 info.json 与环境配置均标记 train，本站不把它解释为验证或测试划分。",
+        "raw": {
+          "episode_index": 0,
+          "tasks": [
+            "grasp the object on the tabletop."
+          ],
+          "length": 1
+        },
+        "source": "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
+        "license": "数据包及相机画面的再发布许可尚未明确；本站只展示少量记录字段，原始画面见数据包。",
+        "split": "simple-eval / dr-level-0 / episode 0；内部元数据标记 train。",
+        "excerpt": true
       }
     ]
   },
@@ -584,6 +630,13 @@
       "text": "2026-11-05 从固定版本数据包提取 G1WholebodyTabletopGraspMP-v0/videos/chunk-000/egocentric/episode_000000.mp4，319,341 字节，SHA-256 b9afc26830822dcb14d90d4de787d809041d2ac691975642de927307e96c32af；浏览器实际播放并查看画面，未逐帧校准。",
       "sourceUrls": [
         "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载固定版本 simple-eval 桌面抓取包（3,308,391 字节；SHA-256 4150679b2f8738873f5cc12e506a5ecf72b4c8a095e59a63001f2df5387b0172），核对五个 dr-level 目录各 10 条、每条 length=1；提取并查看 dr-level-0 episode 0 侧面相机首帧。未运行评测或转载画面。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
+        "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md"
       ]
     }
   ]
