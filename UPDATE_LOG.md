@@ -1,3 +1,8 @@
+## 2026-11-05：修正 GraspNet 原始数据展示
+
+- 修改 `content/benchmarks/graspnet-1billion.json`：将案例中整理出的字段替换为官方 README 的图片标签和说明原文节选。
+- 原因与影响：避免把本站整理的场景列表误认为数据源原生字段；案例解释和原动画链接不变。
+
 ## 2026-11-05：补充 GraspNet 测试场景候选抓取
 
 - 修改 `content/benchmarks/graspnet-1billion.json`：加入基线模型在三个 test_seen 场景的预测案例、原动画入口和核验记录，并补充官方 API 场景划分。
