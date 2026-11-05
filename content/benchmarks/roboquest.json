@@ -40,41 +40,53 @@
     "summary": "10 个移动操作任务，覆盖搜索、检查与交互测试。",
     "disclosure": "partial",
     "scale": [
-      "10 个移动操作任务，覆盖搜索、检查与交互测试。"
+      "10 个移动操作任务，覆盖搜索、检查与交互测试。",
+      "官方 Tool-Call 版本目前包含 Puzzle Box 500 条示范、32,669 个决策。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "原始示范来自开发场景，不与评测实例重合；Tool-Call 训练数据未预设训练/验证划分，作者建议按 instance_id 划分。"
+    ],
+    "fields": [
+      "Tool-Call 每个决策包含观测消息、目标工具调用、tier、子任务及 instance_id。"
+    ],
+    "files": [
+      "Tool-Call 提供 trajectories.jsonl、rows.jsonl、episodes.jsonl 和三视角 PNG。"
+    ],
     "sourceUrls": [
       "https://declare-lab.github.io/RoboQuest/",
-      "https://arxiv.org/abs/2610.10388"
+      "https://arxiv.org/abs/2610.10388",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/rows.jsonl"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "官方公开开发示范及 Tool-Call 数据；后者可按任务下载，评测实例与开发示范分开。"
     ],
     "url": "https://declare-lab.github.io/RoboQuest/",
     "sourceUrls": [
-      "https://declare-lab.github.io/RoboQuest/"
+      "https://declare-lab.github.io/RoboQuest/",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call"
     ]
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "官方数据集说明演示数据采用 MIT License。",
-    "scope": "本站展示的 Puzzle Box 演示视频和关联数据按 MIT 许可署名；底层模拟器及其他资源的许可另行处理。",
+    "license": "官方原始演示和 Tool-Call 数据集均标注 MIT License。",
+    "scope": "本站展示 Puzzle Box 开发示范视频和 Tool-Call 决策及对应相机图像，按 MIT 许可署名。",
     "boundaries": [
-      "演示视频来自开发场景，不得作为评测集成绩。"
+      "演示视频来自开发场景，不得作为评测集成绩。",
+      "Tool-Call 的动作是从每一步示范状态进行逐步核验，作者未将整段调用从初始状态开环重放作为成功证明。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/declare-lab/RoboQuest",
-      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE"
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示开发场景示范视频与官方 Tool-Call 训练记录；工具调用为逐步核验的示范，不是评测模型的成绩。",
     "url": "https://declare-lab.github.io/RoboQuest/",
     "sourceUrls": [
       "https://declare-lab.github.io/RoboQuest/",
@@ -82,7 +94,9 @@
       "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
       "https://huggingface.co/datasets/declare-lab/RoboQuest",
       "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE",
-      "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl"
+      "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/rows.jsonl",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call"
     ]
   },
   "metric": {
@@ -146,6 +160,31 @@
     {
       "label": "Puzzle Box 官方轨迹元数据",
       "url": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "官方 Tool-Call 数据卡与许可",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call",
+      "role": "data"
+    },
+    {
+      "label": "Tool-Call 固定版本决策记录",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/rows.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "Tool-Call 第一步 left 相机",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/e3/e3292455f2b3319dabf31a8af56b4041f15828c55e22ef5386ccda01d394e260.png",
+      "role": "data"
+    },
+    {
+      "label": "Tool-Call 第一步 right 相机",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/6f/6f3b8d492e7f22000896653408113f08258366b9b7180531d33cfc57395b736b.png",
+      "role": "data"
+    },
+    {
+      "label": "Tool-Call 第一步 wrist 相机",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/e1/e1c52baf2265bb2b332733d77e8e192a3ada8d301d8d5bb7374d2756f5034240.png",
       "role": "data"
     }
   ],
@@ -222,6 +261,106 @@
             "path": "videos/roboquest-puzzle-box-demo.mp4",
             "caption": "官方仿真示范视频，Puzzle Box episode 000000；不是模型评测成绩。",
             "source": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4"
+          }
+        ]
+      },
+      {
+        "id": "roboquest-toolcall-002e-step1",
+        "title": "Puzzle Box：第一步工具调用",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察木盒与插销，执行示范的第一步：移动机械臂以操作左侧最前方的红色滑块。",
+        "explanation": "这是官方 Tool-Call 训练数据中实例 002e0374cb9719d0 的第 1 个决策：提供三路相机和机器人状态，目标为一次 arm 调用，逐步核验等级为 A。该数据从示范状态逐步核验，并非整段开环重放成功或模型评测结果。",
+        "raw": {
+          "id": "puzzle_box__002e0374cb9719d0__001",
+          "task": "puzzle_box",
+          "instance_id": "002e0374cb9719d0",
+          "k": 1,
+          "target": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_3c0f7587c19588c5befa61cb",
+                "type": "function",
+                "function": {
+                  "name": "arm",
+                  "arguments": "{\"position_world_m\":[1.944,-3.775,1.16],\"ticks\":40}"
+                }
+              }
+            ]
+          },
+          "tier": "A",
+          "subtask": "slide out the frontmost red slider on the left side",
+          "subtask_kind": "slide",
+          "messages": [
+            {
+              "role": "user",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"proprio\": {\"eef_position_world_m\": [1.944, -3.775, 1.296], \"eef_quaternion_xyzw\": [0.676, 0.723, 0.113, 0.083], \"base_position_world_m\": [1.697, -3.77, 0.7], \"base_quaternion_xyzw\": [0.0, 0.0, 0.0, 1.0], \"joint_positions\": [-0.016, -1.034, -0.024, -2.275, 0.039, 1.515, 0.695, 0.0, -8.303, -13.77, 0.0, 0.04, -0.039], \"joint_velocities\": [0.0, -0.0, -0.0, 0.0, -0.0, -0.0, 0.0, 0.0, -0.0, -0.0, -0.0, 0.0, -0.0]}, \"step\": 0, \"sim_time_s\": 0.0, \"episode_ended\": false, \"remaining_model_responses\": 200, \"remaining_http_attempts\": null}"
+                },
+                {
+                  "type": "text",
+                  "text": "Camera: robot0_agentview_left"
+                },
+                {
+                  "type": "image",
+                  "image": "images/e3/e3292455f2b3319dabf31a8af56b4041f15828c55e22ef5386ccda01d394e260.png"
+                },
+                {
+                  "type": "text",
+                  "text": "Camera: robot0_agentview_right"
+                },
+                {
+                  "type": "image",
+                  "image": "images/6f/6f3b8d492e7f22000896653408113f08258366b9b7180531d33cfc57395b736b.png"
+                },
+                {
+                  "type": "text",
+                  "text": "Camera: robot0_eye_in_hand"
+                },
+                {
+                  "type": "image",
+                  "image": "images/e1/e1c52baf2265bb2b332733d77e8e192a3ada8d301d8d5bb7374d2756f5034240.png"
+                }
+              ]
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/rows.jsonl",
+        "license": "MIT License，Copyright (c) 2026 DeCLaRe Lab；RoboQuest Tool-Call 数据卡标注 MIT。",
+        "licensePath": "licenses/roboquest-mit.txt",
+        "split": "Tool-Call 训练示范；未预设训练/验证划分，非评测实例。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/roboquest-toolcall-002e-step1-left.png",
+            "alt": "RoboQuest Puzzle Box 决策 1 的 left 相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "决策 1 的 left 相机图像，来自该条记录。",
+            "source": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/e3/e3292455f2b3319dabf31a8af56b4041f15828c55e22ef5386ccda01d394e260.png"
+          },
+          {
+            "kind": "image",
+            "path": "images/roboquest-toolcall-002e-step1-right.png",
+            "alt": "RoboQuest Puzzle Box 决策 1 的 right 相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "决策 1 的 right 相机图像，来自该条记录。",
+            "source": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/6f/6f3b8d492e7f22000896653408113f08258366b9b7180531d33cfc57395b736b.png"
+          },
+          {
+            "kind": "image",
+            "path": "images/roboquest-toolcall-002e-step1-wrist.png",
+            "alt": "RoboQuest Puzzle Box 决策 1 的 wrist 相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "决策 1 的 wrist 相机图像，来自该条记录。",
+            "source": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/e1/e1c52baf2265bb2b332733d77e8e192a3ada8d301d8d5bb7374d2756f5034240.png"
           }
         ]
       }

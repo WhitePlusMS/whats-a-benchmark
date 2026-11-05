@@ -1,3 +1,9 @@
+## 2026-11-05 RoboQuest 工具调用示范
+
+- 修改 `content/benchmarks/roboquest.json`：新增固定版本 Tool-Call 首条决策、机器人观测及目标动作，补充开发示范、未预设训练/验证划分、逐步核验与开环重放的区别。
+- 新增 `content/assets/images/roboquest-toolcall-002e-step1-{left,right,wrist}.png`：下载该条记录引用的三路相机图像，并核对文件名 SHA-256。
+- 影响：用户可以同时看到机器人在某一决策时的三个视角和对应工具调用；不把训练示范误认为模型评测结果。
+
 ## 2026-11-05 EmbodiedX 官方 mini 轨迹
 
 - 修改 `content/benchmarks/embodiedx.json`：补充三条赛道输入输出、公开 mini 与私有保留复核数据的区别，加入两条官方 mini 清单记录及固定版本、上游来源和许可标记差异。
