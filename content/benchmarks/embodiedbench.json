@@ -22,6 +22,11 @@
         "label": "EB-Nav 轨迹数据",
         "type": "模型轨迹数据集",
         "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset"
+      },
+      {
+        "label": "该模型轨迹的官方图片包（约 14.8 GB）",
+        "type": "轨迹图像",
+        "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip"
       }
     ]
   },
@@ -90,9 +95,10 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示已取得的官方 EB-Nav 轨迹文件中一条模型运行记录的动作编号与结果。",
+    "reason": "展示官方 EB-Nav 模型轨迹的动作与结果；已从官方图片包按轨迹路径提取并查看多帧，图片包入口见资源。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json"
+      "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json",
+      "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip"
     ]
   },
   "metric": {
@@ -131,10 +137,15 @@
       "label": "固定版本多步轨迹文件",
       "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json",
       "role": "data"
+    },
+    {
+      "label": "官方 EB-Nav 固定版本图像包",
+      "url": "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-29",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
@@ -144,7 +155,7 @@
         "type": "record",
         "prompt": "任务要求机器人接近房间里的面包。该模型先前进两次，尝试向右移动时被阻挡，随后向左移动；下方原始数据保留前六步的动作编号及是否执行成功。",
         "promptOrigin": "editorial",
-        "explanation": "此记录来自官方发布的多步模型轨迹，而非人类示范。原始文件对整条 episode 记录 success=1.0；这只是该条记录的字段，不是模型在整个基准上的总成绩。本站未转载模型原始文本和图像。",
+        "explanation": "此记录来自官方发布的多步模型轨迹，而非人类示范。原始文件对整条 episode 记录 success=1.0；这是该条记录的字段，不是整个基准成绩。已从官方图片包提取并查看第 0、3、6、13 步对应画面：厨房视角逐渐接近面包；图片包许可未明确，本站提供原包入口，不复制图片。",
         "raw": {
           "model_name": "claude-3-5-sonnet-20241022_additional_nav_no_c_h",
           "eval_set": "base",
@@ -195,6 +206,13 @@
       "text": "2026-10-29 下载官方多步轨迹 JSON（61,267,651 字节），共 3,300 条记录；文件 SHA-256 c620e62e13e709592c5c5b57d8d38aeea02e7b89d39080033540e4cc46d29014，未发现明确数据许可证。",
       "sourceUrls": [
         "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset",
+        "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json"
+      ]
+    },
+    {
+      "text": "2026-11-05 通过范围读取官方 images.zip，核验该轨迹 episode_1_step_0、3、6、13 四帧，路径前缀为 images/claude-3-5-sonnet-20241022_additional_nav_no_c_h/base/episode_1/；第 0 帧 SHA-256 09c93dcf8c750708feee3b5e6298eae54950b4607359515964febd4538aacfab。图片未转载，未完整下载压缩包。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/images.zip",
         "https://huggingface.co/datasets/EmbodiedBench/EB-Nav_trajectory_dataset/blob/c8e0ed66aa62432267ba19f59d87fe9724c18f45/eb-nav_dataset_multi_step.json"
       ]
     }
