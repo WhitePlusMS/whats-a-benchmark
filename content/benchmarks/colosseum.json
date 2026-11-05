@@ -71,7 +71,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "官方 Colosseum 数据集标注 MIT。",
-    "scope": "展示官方数据卡相机布置图和数据包中的演示帧，署名 Colosseum 作者团队。",
+    "scope": "展示官方数据卡相机布置图、演示帧及由同一轨迹帧合成的预览视频，署名 Colosseum 作者团队。",
     "boundaries": [
       "图像说明通用场景布置，不能用作模型操作成功的证据。"
     ],
@@ -209,7 +209,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "将方块滑向目标区域。",
-        "explanation": "从同一官方演示的左肩相机连续帧中选取开头、中间和末尾三帧；仅说明动作过程，不能据此判定最终是否成功。",
+        "explanation": "从同一官方演示的左肩相机提取连续 88 帧，并按本站设定的 10 帧/秒合成为预览视频；原始采样帧率未核实。三张图片分别是开头、中间与末尾帧，不能据此判定最终是否成功。",
         "raw": "slide_block_to_target / slide_block_to_target_0 / variation0 / episodes / episode4 / left_shoulder_rgb / 0.png, 44.png, 87.png",
         "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz",
         "license": "官方 Colosseum 数据集标注 MIT；来源 Colosseum 作者团队。",
@@ -217,6 +217,12 @@
         "split": "_0 为无扰动配置；数据卡将无扰动示范用于训练，压缩包路径未单列 train 标签。",
         "excerpt": true,
         "assets": [
+          {
+            "kind": "video",
+            "path": "videos/colosseum-slide-episode4.mp4",
+            "caption": "episode4 左肩相机连续 88 帧，本站按 10 帧/秒合成；不代表原始播放速度。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
+          },
           {
             "kind": "image",
             "path": "images/colosseum-slide-episode4-0.png",

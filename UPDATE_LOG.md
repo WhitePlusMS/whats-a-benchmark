@@ -1,3 +1,9 @@
+## 2026-11-05 Colosseum 连续帧预览与 LinuxArena 任务说明
+
+- 修改 `content/benchmarks/colosseum.json`，新增 `content/assets/videos/colosseum-slide-episode4.mp4`：将已取得的同一左肩相机演示 88 帧按 10 帧/秒合成预览，明确播放速度由本站设定，保留原帧和数据来源，不推断成功结果。
+- 修改 `content/benchmarks/linuxarena.json`：根据固定版本公开轨迹补充软件主任务与攻击/监控模式，说明实际测试返回 503、预期 200，并区分原测试输出和该次运行的主任务评分。
+- 影响：可连续观看机器人演示，并更直观理解智能体实际修复任务；原数据及许可边界保持可追溯。
+
 ## 2026-11-05 ManiSkill3 示范数据与安全场景说明
 
 - 修改 `content/benchmarks/maniskill3.json`：补充官方 PickCube 遥操作数据字段、轨迹 0 的真实元数据与边界，固定数据版本及许可来源；视频与具体轨迹的对应关系未确认。
