@@ -1,3 +1,8 @@
+## 2026-11-05：补充 SpatialBench Verified 任务说明
+
+- 修改 `content/benchmarks/spatialbench-verified.json`：依据作者仓库和专家复核说明，补充空间转录组任务的输入、输出和确定性评分方式，添加仓库来源并更新核验日期。
+- 原因：原说明过于笼统，无法帮助读者理解实际分析内容。影响：详情页可直接了解任务形式；公开原版题目是否属于 Verified 仍未确认，继续保留原有边界。
+
 ## 2026-11-05 RoboArena 成对实机评测
 
 - 修改 `content/benchmarks/roboarena.json`：补充同一会话两种策略的原始结果与 TIE 偏好，说明两者均未完成，增加数据快照的字段与目录说明。

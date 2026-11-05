@@ -26,11 +26,12 @@
     ]
   },
   "taskContract": {
-    "input": "实验数据、分析环境和任务说明。",
-    "output": "任务要求的数字、类别或其他分析结果。",
-    "environment": "容器化分析环境，评分器根据任务类型检验结果。",
+    "input": "空间转录组实验数据和具体分析问题；任务可能涉及细胞类型、基因表达、空间位置及实验条件。",
+    "output": "按题目要求提交数字、类别、基因列表或细胞类型集合等结果；评分方式随题目而定。",
+    "environment": "分析题目所附的数据；评分器采用数值容差、多项选择、集合相似度等确定性规则。",
     "sourceUrls": [
-      "https://blog.latch.bio/p/human-verification-of-spatialbench"
+      "https://blog.latch.bio/p/human-verification-of-spatialbench",
+      "https://github.com/latchbio/spatialbench"
     ]
   },
   "dataProfile": {
@@ -120,7 +121,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "researchNotes": [
     {
       "text": "实际核验公开 manifest 的记录：task=cell_typing，kit=curio，eval_id=curio_ovary_follicle_count_immature；该记录是否属于 Verified 子集尚未确认。",
