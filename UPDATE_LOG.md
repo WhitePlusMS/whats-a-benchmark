@@ -1,3 +1,8 @@
+## 2026-11-05：细化 SHADE-Arena 任务与评分
+
+- 修改 `content/benchmarks/shade-arena.json`：区分执行智能体和事后监控器的输入输出，补充模拟工具、隐藏 scratchpad、可疑分数与综合成功条件。
+- 原因与影响：原说明没有解释评测过程，容易把副任务成功直接等同综合成功，或把事后监测视为实时拦截；本次未运行评测。
+
 ## 2026-11-05：调整 RoboCasa365 策略录像引用
 
 - 修改 `content/benchmarks/robocasa365.json`，移除策略录像的站内副本引用，增加固定版本原视频链接并注明许可信息缺口，样例改为记录类型；删除 `content/assets/videos/robocasa365-infope-opendrawer-episode111.mp4`。
