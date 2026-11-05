@@ -29,9 +29,9 @@
     "sourceUrls": [
       "https://arxiv.org/abs/2512.06688"
     ],
-    "environment": "需明确使用PersonaMem-v2而非未声明版本的PersonaMem。",
-    "input": "用户交互记录与后续查询。",
-    "output": "个性化响应。"
+    "environment": "论文比较完整长上下文与逐段更新的压缩记忆；评测时需区分 32k / 128k 上下文、选择题与开放式设置。",
+    "input": "模拟的多会话用户与助手对话历史，以及追加在历史末尾的当前问题；选择题模式另提供四个候选回答。",
+    "output": "选择题选出符合用户偏好的一个候选；开放式模式生成符合用户偏好的回答。"
   },
   "dataProfile": {
     "summary": "论文报告1,000个用户persona、300余种日常场景、20,000余项偏好及最多128k token上下文；benchmark含5,000个问答对。",
@@ -39,7 +39,9 @@
       "1,000个persona；300余场景；20,000余偏好",
       "5,000个benchmark QA对；最多128k token上下文"
     ],
-    "splits": [],
+    "splits": [
+      "论文报告 benchmark 5,000、训练 18,000、验证 2,000 个问答对；训练与 benchmark 的 persona 不重叠。"
+    ],
     "fields": [
       "persona_id",
       "user_query",
@@ -98,7 +100,7 @@
   },
   "metric": {
     "name": "隐式个性化 accuracy（MCQ与open-ended分别评估）",
-    "description": "论文对选择题按正确性计分；开放回答由LLM-as-a-judge评估是否符合用户偏好。隐式偏好推断是主要任务，不是显式persona检索。",
+    "description": "选择题判断四个候选中唯一的个性化答案；论文开放式评测由三个独立 GPT-5-Chat 裁判评估回答是否符合标注偏好。两种设置应分别报告。",
     "direction": "higher",
     "sourceUrls": [
       "https://arxiv.org/abs/2512.06688"
