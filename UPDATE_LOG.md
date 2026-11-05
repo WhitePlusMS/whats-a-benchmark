@@ -2323,3 +2323,5 @@
 - 修改 `content/benchmarks/gdp-pdf.json`：依据官方论文公开任务概述，补充专业 PDF 任务中的表格、曲线、脚注、条款等输入及文档证据不足时的回答要求，保留本站尚未取得完整题目和附件的说明；论文称数据已发布，访问状态不能等同于未公开。
 
 - 修改 `content/benchmarks/maniskill2.json`：增加官方处理版 PickCube-v0 episode 0 的元数据、来源与划分边界；从固定版本 HDF5 的 89 帧双相机 RGB 合成 `content/assets/videos/maniskill2-pickcube-rgbd-episode0.mp4`，按 10 帧/秒展示而非宣称实时速度，并沿用 `content/assets/licenses/cc-by-nc-4.txt` 标注数据卡中场景资产的非商业许可。该轨迹是仿真演示，控制模式与原始轨迹样例不同，不作为模型评测成绩。
+
+- 修改 `content/benchmarks/rlbench.json` 并新增 `content/assets/videos/rlbench-place-cups-episode0.mp4`：从固定版本第三方转换 Parquet 中读取 episode 0 的 485 帧 image 与 wrist_image，按数据集的 10 帧/秒并排、缩放、重新编码；保留原始三帧、来源与许可边界，明确转换集标记 train，不能推断原版测试划分或模型成绩。

@@ -73,7 +73,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "本图像来源的第三方转换数据卡标注 Apache-2.0；RLBench 软件许可包含非商业研究限制，源数据许可范围须分别核对。",
-    "scope": "本站展示第三方转换轨迹的三个相机帧；许可声明来自该转换集。",
+    "scope": "本站展示第三方转换轨迹的相机帧及由同一轨迹帧合成的视频；许可声明来自该转换集。",
     "boundaries": [
       "数据卡的 Apache 声明不代表已核实上游所有素材的权利范围。"
     ],
@@ -84,7 +84,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载两条第三方转换轨迹，展示真实状态、动作和一条轨迹的原始图像。",
+    "reason": "已下载两条第三方转换轨迹，展示状态、动作和其中一条轨迹的双相机视频及原始图像。",
     "sourceUrls": [
       "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot",
@@ -163,7 +163,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "把两个杯子放到杯架上。",
-        "explanation": "这条第三方转换轨迹共 485 帧、每秒 10 帧；下方三张图片分别来自第 0、242 和 484 帧，状态与动作摘自首帧。仓库名称含 test，但其内部元数据将轨迹划为 train，未证实与原版 RLBench 测试划分的对应关系。",
+        "explanation": "这条第三方转换轨迹共 485 帧、每秒 10 帧。视频由同一轨迹的 image 和 wrist_image 帧并排、缩放及重新编码；三张图片分别来自第 0、242 和 484 帧，状态与动作摘自首帧。仓库名称含 test，但其内部元数据将轨迹划为 train，未证实与原版 RLBench 测试划分的对应关系；演示不代表模型评测成绩。",
         "raw": {
           "episode": {
             "episode_index": 0,
@@ -216,6 +216,12 @@
         "split": "train / episode 0 / 第三方转换集",
         "excerpt": true,
         "assets": [
+          {
+            "kind": "video",
+            "path": "videos/rlbench-place-cups-episode0.mp4",
+            "caption": "episode 0：左侧 image，右侧 wrist_image；485 帧按数据集 10 帧/秒拼接重编码。",
+            "source": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet"
+          },
           {
             "kind": "image",
             "path": "images/rlbench-place-cups-episode0-0.png",
