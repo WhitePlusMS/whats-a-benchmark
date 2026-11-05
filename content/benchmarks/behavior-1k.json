@@ -22,6 +22,11 @@
         "label": "2026 Challenge 演示及标注数据",
         "type": "挑战数据集",
         "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos"
+      },
+      {
+        "label": "SenseNova 收音机任务评测日志与录像",
+        "type": "第三方评测日志",
+        "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip"
       }
     ]
   },
@@ -80,25 +85,28 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "官方演示数据集卡和 LICENSE 标注 MIT；场景和对象资产有独立约束。",
-    "scope": "本站展示官方演示集中的技能标注节选，以及从同任务视频分片提取的三帧画面，并保留来源和许可。",
+    "license": "官方演示数据集及 SenseNova 评测日志的数据卡均标注 MIT；场景和对象资产有独立约束。",
+    "scope": "本站展示官方演示集的标注和画面，以及第三方评测日志中的一条录像和结果。",
     "boundaries": [
       "场景和对象模型可能有独立协议；本站展示的是演示数据集中的视频帧，不代表已获得场景资产的再发布权。",
-      "视频元数据中的 episode 10 与现有技能标注文件名相同，但时长不同；两者对应关系尚未确认。"
+      "视频元数据中的 episode 10 与现有技能标注文件名相同，但时长不同；两者对应关系尚未确认。",
+      "第三方评测录像涉及评测案例，不应用于训练相应测试样例；场景和对象资产另有使用条件。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos"
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已核对官方技能标注，以及同任务的独立训练轨迹及其头部相机画面；两者的对应关系尚未确认。",
+    "reason": "已核对官方技能标注、训练演示画面及第三方单次评测视频；技能标注与现有训练画面的对应关系尚未确认。",
     "sourceUrls": [
       "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos",
       "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json",
       "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4",
       "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
-      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json"
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip"
     ]
   },
   "metric": {
@@ -152,6 +160,16 @@
       "label": "官方数据划分与帧率",
       "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json",
       "role": "data"
+    },
+    {
+      "label": "SenseNova 评测日志数据卡",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "role": "data"
+    },
+    {
+      "label": "第三方收音机评测录像及日志",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip",
+      "role": "data"
     }
   ],
   "related": [],
@@ -159,6 +177,38 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "behavior-sensenova-radio-test-0",
+        "title": "打开收音机 · 单次评测运行",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在模拟住宅中找到收音机并将它打开。",
+        "explanation": "SenseNova 发布的一次 BEHAVIOR-1K 仿真评测；日志将实例记为 public_test / test-0，要求 radio_receiver1 处于打开状态。记录显示运行 470 个仿真步后成功，q_score 为 1.0；这是一次结果，不代表整体成功率。视频为同次运行的头部视角，以每秒 2 帧呈现 471 帧，并非仿真原速。",
+        "raw": {
+          "benchmark": "behavior_1k",
+          "phase": "evaluation",
+          "mode": "public_test",
+          "id": "test-0",
+          "episode_id": "0001-test-0",
+          "task_name": "turning_on_radio",
+          "success": true,
+          "steps": 470,
+          "q_score": 1.0,
+          "simulator_time": 15.666666666666666
+        },
+        "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip",
+        "license": "SenseNova 评测日志数据卡标注 MIT；场景和对象资产保留其独立使用条件。",
+        "split": "第三方评测日志 / public_test / test-0；与官方训练演示区分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/behavior-sensenova-radio-test0-head.mp4",
+            "caption": "同一次评测的头部视角；源视频按每秒 2 帧播放。",
+            "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip"
+          }
+        ]
+      },
       {
         "id": "behavior-2026-radio-video-episode10",
         "title": "打开收音机 · 训练演示画面",
@@ -368,6 +418,12 @@
         "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json",
         "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
         "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4"
+      ]
+    },
+    {
+      "text": "2026-11-05 从固定版本第三方归档按范围读取 test-0 的提示、结果、指标及头部视频；视频 7,011,022 字节，SHA-256 8bdb0da932597e5f2b90057fb58633d2cf9afb18bc873484704dad1ad36e5597，已在浏览器播放。未完整下载归档或自行运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip"
       ]
     }
   ]

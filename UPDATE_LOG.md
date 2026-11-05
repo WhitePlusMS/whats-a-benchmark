@@ -1,3 +1,9 @@
+## 2026-11-05：补充 BEHAVIOR-1K 评测运行视频
+
+- 修改 `content/benchmarks/behavior-1k.json`：新增 SenseNova 收音机任务 public_test 单次运行、任务目标、结果字段、来源及数据边界；说明视频与仿真时钟不同。
+- 新增 `content/assets/videos/behavior-sensenova-radio-test0-head.mp4`：从固定版本评测归档提取头部相机视频并检查播放。
+- 原因与影响：原画面为训练演示；增加实际评测过程，明确第三方单次成绩不能代表整体结果，场景和对象资产受独立条款约束。
+
 ## 2026-11-05：细化 ExploitBench 任务说明
 
 - 修改 `content/benchmarks/exploitbench.json`：根据论文和官方环境文档补充 V8 任务的输入、候选验证文件、容器和能力标记。
