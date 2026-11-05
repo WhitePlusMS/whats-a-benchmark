@@ -31,12 +31,13 @@
     ]
   },
   "taskContract": {
-    "input": "由文本问题生成的音频问题输入；数据卡描述其与 Big-Bench Hard 题目的关系。",
-    "output": "自然语言答案。",
+    "input": "合成语音朗读的英语推理问题，涵盖形式谬误、路线导航、物体计数和真假推理。",
+    "output": "音频到音频设置要求生成语音答案；官方裁判结合原始问题与参考答案判断回答正误，不同配置需分别注明。",
     "environment": "官方数据集与其对应评估代码/裁判流程；不同版本的评分器和裁判变化需单独核对。",
     "sourceUrls": [
       "https://huggingface.co/blog/big-bench-audio-release",
-      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio"
+      "https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio",
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
     ]
   },
   "dataProfile": {
@@ -45,7 +46,9 @@
     "scale": [
       "The publisher dataset card describes 1,000 English audio recordings: four BIG-Bench Hard categories with 250 questions each."
     ],
-    "splits": [],
+    "splits": [
+      "公开数据集的 Hugging Face split 名为 train；不能据此推断其在其他评测中的使用划分。"
+    ],
     "fields": [
       "id",
       "category",
@@ -163,13 +166,7 @@
         "raw": {
           "id": 0,
           "category": "formal_fallacies",
-          "official_answer": "invalid",
-          "audio": [
-            {
-              "src": "https://datasets-server.huggingface.co/cached-assets/ArtificialAnalysis/big_bench_audio/--/af7bb9c25b015792583ca4da3ee27ec62cb79fe6/--/default/train/0/audio/audio.mp3?Expires=1792351049&Signature=JSUg9oyvDIKxE6iu0e-zt04LuO97pdlauIkDZHfaKMfbyKFlKPSXtJ8CwSEnUiElOsC3fxgbisatksLW0yo32uLtA8J5QYwGoKmEzU~Dcx04a0V48IfvsC18UYU3zSWKIy5UbYl1069MAELeW1Lz84Mzfh1JYZ9KfSwQlZJ0y8Dcl5GwqTFYbAlrOyDCBPjDeBLXiMa-YdIhye~VPXvoOVFnvkxv-QR1kUVnQjwsFWd2l1yrX9SaeMPI4T~EDbzusfat5LFdbeB~EbL0a~DiZGmrHwytHZrS0DZWsU-dAta47HSjdLa6wcI0vcsucDtifQ-xzgIQODDPRZM-VMT0PQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
-              "type": "audio/mpeg"
-            }
-          ]
+          "official_answer": "invalid"
         },
         "title": "Formal fallacies 音频判断",
         "prompt": "判断所附音频中的形式谬误论证是 valid 还是 invalid。该题干是本站对 BBA 类别/答案字段的编辑性呈现，非数据行内原句。",
