@@ -2115,3 +2115,7 @@
 - `content/benchmarks/ebim.json`：加入官方 Task 3 Phase 2 episode 2 的真实任务、视频、人工标签、train 划分和数据结构，明确未提供留出验证集，单条标签不是模型总成绩。
 - `content/assets/videos/ebim-spoon-feeding-episode2.mp4`：下载官方头部视角完整录像并压缩至 854×480 供网页播放，保留时长。
 - `content/assets/licenses/ebim-task3-cc-by-nc-sa-4.txt`：记录作者、固定版本、CC BY-NC-SA 4.0 和转码修改；区分官网平台图的 CC BY 4.0。
+
+### BiGym 转换轨迹记录（2026-11-05）
+
+- `content/benchmarks/bigym.json`：核对第三方 BiGym Plus 的洗碗机 episode 0 元数据和状态数值，补充任务说明、固定版本来源、划分与许可边界；不将其与官网视频视为同一轨迹，也不推断成功结果。

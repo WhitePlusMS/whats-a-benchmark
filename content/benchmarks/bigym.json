@@ -28,12 +28,13 @@
     ]
   },
   "taskContract": {
-    "input": "按任务提供目标、观测与机器人接口。",
-    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "input": "家庭任务目标、机器人本体状态，以及配置启用的头部和腕部相机 RGB/深度观测。",
+    "output": "控制移动底座、双臂与夹爪，完成取放、开关家电等任务；具体动作形式依控制配置而定。",
     "environment": "家庭场景仿真，支持本体感知及三个相机的 RGB、深度观测。",
     "sourceUrls": [
       "https://chernyadev.github.io/bigym/",
-      "https://arxiv.org/abs/2407.07788"
+      "https://arxiv.org/abs/2407.07788",
+      "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/README.md"
     ]
   },
   "dataProfile": {
@@ -43,11 +44,14 @@
       "40 个家庭任务，包含从目标触达到厨房清洁的不同难度。"
     ],
     "splits": [],
-    "fields": [],
+    "fields": [
+      "第三方转换集提供头部及腕部视频、16 维机器人状态和动作，20 Hz；原始任务及版本需分别核对。"
+    ],
     "files": [],
     "sourceUrls": [
       "https://chernyadev.github.io/bigym/",
-      "https://arxiv.org/abs/2407.07788"
+      "https://arxiv.org/abs/2407.07788",
+      "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/README.md"
     ]
   },
   "dataAccess": {
@@ -65,19 +69,25 @@
     "license": "BiGym 官网标注 CC BY-SA 4.0。",
     "scope": "本站展示官网的任务演示，按原许可署名并保留相同方式共享条款。",
     "boundaries": [
-      "视频为仿真演示，不代表实机评测或某个模型成绩。"
+      "视频为仿真演示，不代表实机评测或某个模型成绩。",
+      "第三方转换数据集许可未明确，本站仅摘录数值事实，未转载其视频。"
     ],
     "sourceUrls": [
-      "https://chernyadev.github.io/bigym/"
+      "https://chernyadev.github.io/bigym/",
+      "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官网任务演示以及第三方转换的真实轨迹数值；二者未确认属于同一轨迹。",
     "url": "https://chernyadev.github.io/bigym/",
     "sourceUrls": [
       "https://chernyadev.github.io/bigym/",
-      "https://arxiv.org/html/2407.07788"
+      "https://arxiv.org/html/2407.07788",
+      "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/README.md",
+      "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/dishwasher_open/data/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/dishwasher_open/meta/episodes/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/dishwasher_open/videos/observation.images.cam_high/chunk-000/file-000.mp4"
     ]
   },
   "metric": {
@@ -124,6 +134,26 @@
     {
       "label": "官方样例与任务细则",
       "url": "https://arxiv.org/html/2407.07788",
+      "role": "data"
+    },
+    {
+      "label": "第三方 BiGym Plus 数据卡",
+      "url": "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/README.md",
+      "role": "data"
+    },
+    {
+      "label": "第三方转换轨迹第 0 条数据",
+      "url": "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/dishwasher_open/data/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "第三方转换轨迹元数据",
+      "url": "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/dishwasher_open/meta/episodes/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "第三方轨迹头部相机视频（外部链接）",
+      "url": "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/dishwasher_open/videos/observation.images.cam_high/chunk-000/file-000.mp4",
       "role": "data"
     }
   ],
@@ -218,6 +248,59 @@
             "source": "https://chernyadev.github.io/bigym/static/videos/dishwasher-load-cups.mp4"
           }
         ]
+      },
+      {
+        "id": "bigym-plus-dishwasher-open-episode0",
+        "title": "打开洗碗机 · 第三方转换轨迹 0",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "打开洗碗机门并拉出所有托盘。",
+        "explanation": "第三方 BiGym Plus 数据卡称其转换自 BiGym 0.9.0 人类示范；此条包含 227 帧，20 Hz。仅展示轨迹数值事实；未核实与上方官网演示视频为同一次轨迹，也不推断任务成功。",
+        "raw": {
+          "episode_index": 0,
+          "frame_count": 227,
+          "fps": 20,
+          "video_from_timestamp": 0.0,
+          "video_to_timestamp": 11.35,
+          "state_dimensions": 16,
+          "action_dimensions": 16,
+          "samples": [
+            {
+              "frame": 0,
+              "timestamp": 0.0,
+              "state_first_four": [
+                0.0,
+                -0.800000011920929,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "frame": 113,
+              "timestamp": 5.650000095367432,
+              "state_first_four": [
+                0.12437188625335693,
+                -0.6826657652854919,
+                0.5185922384262085,
+                0.0002861871907953173
+              ]
+            },
+            {
+              "frame": 226,
+              "timestamp": 11.300000190734863,
+              "state_first_four": [
+                -0.15189997851848602,
+                -0.6555852890014648,
+                0.671858549118042,
+                8.287992727673554e-07
+              ]
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/WuChao-Cauchy/bigym_plus/blob/c507004dd1c88138735110c44aca413073a90b4e/dishwasher_open/data/chunk-000/file-000.parquet",
+        "license": "第三方转换集未明确标注许可；仅展示少量数值事实及本站说明，未转载该转换集视频。",
+        "split": "第三方 BiGym Plus / dishwasher_open / episode 0；未确认原始 train/test 划分。",
+        "excerpt": true
       }
     ]
   }
