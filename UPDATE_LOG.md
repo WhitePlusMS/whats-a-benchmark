@@ -1,3 +1,9 @@
+## 2026-11-05：补充 RoboDojo 对齐积木评测运行
+
+- 修改 `content/benchmarks/robodojo.json`：加入第三方对齐积木单次评测的标准与延长预算截点、原始结果和来源，说明两段共享一次轨迹且不能混同预算。
+- 新增 `content/assets/videos/robodojo-sensenova-align-standard.mp4` 与 `content/assets/videos/robodojo-sensenova-align-extended.mp4`：从固定版本归档提取并播放核验两个头部视角视频。
+- 原因与影响：在原官方演示基础上补充实际评测运行，展示预算影响；单次结果不代表整体成绩，上游场景素材条件需分别核对。
+
 ## 2026-11-05：补充 BEHAVIOR-1K 评测运行视频
 
 - 修改 `content/benchmarks/behavior-1k.json`：新增 SenseNova 收音机任务 public_test 单次运行、任务目标、结果字段、来源及数据边界；说明视频与仿真时钟不同。

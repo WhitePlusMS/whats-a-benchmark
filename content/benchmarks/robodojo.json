@@ -62,23 +62,26 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "官方 RoboDojo 数据集标注 Apache 2.0。",
-    "scope": "本站展示该数据集中 sweep_blocks 预览视频，其他资产与软件按各自许可处理。",
+    "license": "官方 RoboDojo 数据集标注 Apache 2.0；SenseNova 评测日志数据卡标注 MIT。",
+    "scope": "本站展示官方演示视频，以及第三方评测日志中的单次运行与录像；其他资产和软件按各自许可处理。",
     "boundaries": [
-      "视频为公开仿真示范，不代表榜单中的策略成绩。"
+      "官方视频是仿真示范；第三方视频是单次评测运行，两者均不代表整体榜单成绩。",
+      "第三方日志涉及评测案例，不应用于训练相应测试样例；上游场景素材许可需分别核对。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/README.md"
+      "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/README.md",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已核对官方扫积木演示的视频和同编号 HDF5，展示轨迹指令、左右臂状态与动作节选。",
+    "reason": "已核对官方扫积木演示及同编号 HDF5，也展示第三方对齐积木评测的两个预算截点及视频。",
     "url": "https://arxiv.org/html/2607.04434",
     "sourceUrls": [
       "https://arxiv.org/html/2607.04434",
       "https://robodojo-benchmark.com/doc/sim-tasks/sweep-blocks/",
-      "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5"
+      "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/RoboDojo.zip"
     ]
   },
   "metric": {
@@ -111,6 +114,12 @@
       "text": "对固定版本 episode_0000000.hdf5 按 HTTP Range 读取元数据和三个时刻的状态与动作，确认 702 帧、25 Hz 和扫积木指令；同编号头部相机视频已在站内展示。",
       "sourceUrls": [
         "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5"
+      ]
+    },
+    {
+      "text": "2026-11-05 按范围读取 SenseNova 固定版本归档中 align_blocks/layout_0_seed_0 的 summary 和两段头部录像，已分别在浏览器播放；标准及延长预算视频 SHA-256 分别为 a93071234a054dbbc48a5eb824970fe3ce86c8d02e555ece7d30c2bf9c0afd05 和 4a292dc9bd4ced38a06067356ca21712544d62dae72dbee4770d1f45148137b2。未下载完整归档或自行运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/RoboDojo.zip"
       ]
     }
   ],
@@ -149,12 +158,29 @@
       "label": "扫积木演示轨迹 HDF5 固定版本",
       "url": "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5",
       "role": "data"
+    },
+    {
+      "label": "SenseNova 评测日志数据卡",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "role": "data"
+    },
+    {
+      "label": "第三方 RoboDojo 测试日志与录像归档",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/RoboDojo.zip",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-11-05",
   "updatedAt": "2026-11-05",
   "embodied": {
+    "resources": [
+      {
+        "label": "SenseNova RoboDojo 测试日志与录像",
+        "type": "第三方评测日志",
+        "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/RoboDojo.zip"
+      }
+    ],
     "tasks": [
       "manipulation",
       "bimanual",
@@ -164,6 +190,43 @@
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [
+      {
+        "id": "robodojo-sensenova-align-layout0-seed0",
+        "title": "使用工具对齐积木 · 两种预算截点",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "使用直角尺将三块积木推成一排，然后放下工具并让机械臂返回。",
+        "explanation": "第三方日志中的同一次仿真运行：标准预算为 200 步，截点记为超时、未成功；延长预算上限至 2000 步后，在第 335 步记录成功。两段共享同一轨迹，不是独立试验；延长预算结果不能与标准预算成绩直接混同。",
+        "raw": {
+          "task": "align_blocks",
+          "layout": 0,
+          "seed": 0,
+          "fps": 25,
+          "shared_source_rollout": true,
+          "stages": [
+            { "stage": "standard", "score": 0.0, "success": false, "failure_type": "Timeout", "control_steps": 200, "step_limit": 200 },
+            { "stage": "up_to_10x", "score": 1.0, "success": true, "failure_type": null, "control_steps": 335, "step_limit": 2000 }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/RoboDojo.zip",
+        "license": "SenseNova 评测日志数据卡标注 MIT；上游场景素材许可另行适用。",
+        "split": "第三方评测日志 / 官方评测集 / align_blocks / layout 0 / seed 0。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robodojo-sensenova-align-standard.mp4",
+            "caption": "标准预算：200 步截点，未成功。",
+            "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/RoboDojo.zip"
+          },
+          {
+            "kind": "video",
+            "path": "videos/robodojo-sensenova-align-extended.mp4",
+            "caption": "同一轨迹延长预算：335 步记录成功。",
+            "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/RoboDojo.zip"
+          }
+        ]
+      },
       {
         "id": "robodojo-official-task",
         "title": "general_pickup",
