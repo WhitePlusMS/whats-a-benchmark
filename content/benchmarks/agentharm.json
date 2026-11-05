@@ -25,18 +25,24 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2410.09024"
+      "https://arxiv.org/abs/2410.09024",
+      "https://ukgovernmentbeis.github.io/inspect_evals/evals/agentharm/"
     ],
-    "environment": "依赖代理工具与任务配置；不同运行脚手架会影响结果。",
-    "input": "论文定义的恶意代理任务与相应工具环境。",
-    "output": "拒绝或执行任务的代理行为，由论文所述评估流程评分。"
+    "environment": "论文使用无副作用的模拟工具和 Inspect；可配置工具、提示及代理脚手架，模拟结果不等同真实环境表现。",
+    "input": "恶意多步请求及任务对应的模拟工具；另有按相同主题改写的无害控制任务，部分提示提供步骤或工具提示。",
+    "output": "代理的回复与多轮工具调用；评分检查任务相关条件及参数，另用拒绝判定器统计拒绝。"
   },
   "dataProfile": {
-    "summary": "论文报告110个基础行为、330个增强版本，共440条提示；公开测试264条，保留测试132条。",
+    "summary": "论文设计110个基础行为及其增强提示；维护方说明目前公开测试集和验证集只发布了部分基础行为。",
     "scale": [
-      "110个基础行为；330个增强版本；共440条提示"
+      "110个基础行为；330个增强版本；共440条提示",
+      "维护方说明已发布公开测试集 44/66 个基础行为及验证集 8/11 个基础行为；完整论文规划规模与实际公开量分开。"
     ],
-    "splits": [],
+    "splits": [
+      "val：论文规划验证集",
+      "test_public：论文规划公开测试集，部分行为已发布",
+      "test_private：论文规划保留测试集"
+    ],
     "fields": [
       "id",
       "id_original",
@@ -52,7 +58,8 @@
     "disclosure": "partial",
     "sourceUrls": [
       "https://arxiv.org/abs/2410.09024",
-      "https://datasets-server.huggingface.co/rows?dataset=ai-safety-institute%2FAgentHarm&config=harmless_benign&split=test_public&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=ai-safety-institute%2FAgentHarm&config=harmless_benign&split=test_public&offset=0&length=1",
+      "https://ukgovernmentbeis.github.io/inspect_evals/evals/agentharm/"
     ]
   },
   "dataAccess": {
@@ -88,7 +95,7 @@
   },
   "metric": {
     "name": "Harmfulness score 与 refusal rate",
-    "description": "论文分别报告危害性分数和拒绝率；危害性分数越高表示越多有害任务完成，拒绝率越高表示越常拒绝，二者方向含义不同。",
+    "description": "论文以预定义条件检查工具调用和参数，必要时用语义裁判，允许部分得分；另以裁判统计拒绝率。危害性分数越高表示完成了更多有害任务，拒绝率有不同含义。",
     "direction": "mixed",
     "sourceUrls": [
       "https://arxiv.org/abs/2410.09024"
@@ -99,6 +106,13 @@
       "text": "报告方采用的任务子集、运行脚手架、工具权限与评分配置可能不同；未据模型发布页补写未披露的运行细节。",
       "sourceUrls": [
         "https://arxiv.org/abs/2410.09024"
+      ]
+    },
+    {
+      "text": "模拟工具是现实风险的代理，不能将得分直接视为真实世界能力或代理整体安全性。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2410.09024",
+        "https://ukgovernmentbeis.github.io/inspect_evals/evals/agentharm/"
       ]
     }
   ],
@@ -127,6 +141,11 @@
       "label": "所选数据/文件固定版本LICENSE原文",
       "url": "https://huggingface.co/datasets/ai-safety-institute/AgentHarm/resolve/e23b3fe60a0da9037314b88e5ee3a0c054970dad/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "Inspect Evals 实现与数据公开范围",
+      "role": "readme",
+      "url": "https://ukgovernmentbeis.github.io/inspect_evals/evals/agentharm/"
     }
   ],
   "related": [],
