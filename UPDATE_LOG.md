@@ -1,3 +1,9 @@
+## 2026-11-05 EmbodiedX 官方 mini 轨迹
+
+- 修改 `content/benchmarks/embodiedx.json`：补充三条赛道输入输出、公开 mini 与私有保留复核数据的区别，加入两条官方 mini 清单记录及固定版本、上游来源和许可标记差异。
+- 新增 `content/assets/images/embodiedx-libero-mini-frame0.png` 和 `content/assets/images/embodiedx-droid-mini-frame0.png`：分别从通过清单 SHA-256 核验的 NPZ 提取第 0 步第 0 路图像，区分仿真和实机。
+- 影响：可直观看到效率测试的输入场景，不将轨迹样本误称为完整机器人操作或模型成绩。
+
 ## 2026-11-05 Colosseum 连续帧预览与 LinuxArena 任务说明
 
 - 修改 `content/benchmarks/colosseum.json`，新增 `content/assets/videos/colosseum-slide-episode4.mp4`：将已取得的同一左肩相机演示 88 帧按 10 帧/秒合成预览，明确播放速度由本站设定，保留原帧和数据来源，不推断成功结果。

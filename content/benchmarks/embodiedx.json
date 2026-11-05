@@ -25,8 +25,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "Track 1A/1B 使用 LIBERO 轨迹中的双路 RGB 观测运行指定 VLA；Track 2 使用 DROID 轨迹执行动作条件视频预测。",
+    "output": "Track 1 输出动作块，Track 2 输出预测帧；对输出质量设门槛，并测量延迟、吞吐及可用时的能效。",
     "environment": "指定 NVIDIA L40S 与 Google Cloud TPU v6e-1；比较单芯片推理性能。",
     "sourceUrls": [
       "https://efficient-embodied-ai.github.io/challenge/",
@@ -39,42 +39,59 @@
     "scale": [
       "首季包含 VLA 与世界模型部署性能赛道。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "公开 mini_v1 清单含 8 段、每段 16 步；决赛官方复核另用私有保留轨迹，不能将 mini 样例称作决赛测试集。",
+      "清单标明上游 LIBERO 和 DROID 轨迹；其上游数据卡标注 train，不等同于 EmbodiedX 私有复核划分。"
+    ],
+    "fields": [
+      "公开 NPZ 包含双路 RGB 帧、proprio_state、gt_actions、cond_actions 和参考输出等数组。"
+    ],
+    "files": [
+      "data/embodiedx_traces_v1_mini/manifest.json 与 8 个 episode_*.npz 文件。"
+    ],
     "sourceUrls": [
       "https://efficient-embodied-ai.github.io/challenge/",
-      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json",
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero",
+      "https://huggingface.co/datasets/lerobot/droid_100"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "官方仓库公开 mini 轨迹与运行代码；决赛复核使用未公开的保留轨迹。"
     ],
     "url": "https://efficient-embodied-ai.github.io/challenge/",
     "sourceUrls": [
-      "https://efficient-embodied-ai.github.io/challenge/"
+      "https://efficient-embodied-ai.github.io/challenge/",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json"
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
-    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "status": "permitted",
+    "license": "代码仓库采用 Apache-2.0；mini 清单对 LIBERO 标注 Apache-2.0 / MIT，而上游数据卡标注 Apache-2.0；DROID 清单标注 MIT / CC-BY-4.0，上游转换集数据卡标注 MIT。",
+    "scope": "本站展示 mini 文件中的少量图像及清单字段，保留项目、上游来源和差异；其他数据和模型权利须分别确认。",
     "boundaries": [
-      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
+      "LIBERO 为仿真演示，DROID 为真实机器人数据；上游原始素材及不同转换版本可能有独立许可。"
     ],
     "sourceUrls": [
       "https://efficient-embodied-ai.github.io/challenge/",
-      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json",
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero",
+      "https://huggingface.co/datasets/lerobot/droid_100"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方 mini 轨迹清单及从其 NPZ 提取的图像，区分 LIBERO 仿真和 DROID 实机；不是决赛成绩。",
     "url": "https://efficient-embodied-ai.github.io/challenge/",
     "sourceUrls": [
-      "https://efficient-embodied-ai.github.io/challenge/"
+      "https://efficient-embodied-ai.github.io/challenge/",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/episode_00_libero_spatial.npz",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/episode_04_droid_pot.npz"
     ]
   },
   "metric": {
@@ -102,6 +119,14 @@
         "https://efficient-embodied-ai.github.io/challenge/",
         "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
       ]
+    },
+    {
+      "text": "已按固定版本清单 SHA-256 校验两份 NPZ，逐一读取 RGB 数组并提取画面；清单对源数据许可标记与上游数据卡有差异，已分别保留。",
+      "sourceUrls": [
+        "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json",
+        "https://huggingface.co/datasets/HuggingFaceVLA/libero",
+        "https://huggingface.co/datasets/lerobot/droid_100"
+      ]
     }
   ],
   "sources": [
@@ -114,6 +139,31 @@
       "label": "论文或官方补充资料",
       "url": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench",
       "role": "readme"
+    },
+    {
+      "label": "固定版本 mini 轨迹清单",
+      "url": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json",
+      "role": "data"
+    },
+    {
+      "label": "LIBERO 上游转换集与许可",
+      "url": "https://huggingface.co/datasets/HuggingFaceVLA/libero",
+      "role": "data"
+    },
+    {
+      "label": "DROID 上游转换集与许可",
+      "url": "https://huggingface.co/datasets/lerobot/droid_100",
+      "role": "data"
+    },
+    {
+      "label": "LIBERO：双杯放盘 NPZ",
+      "url": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/episode_00_libero_spatial.npz",
+      "role": "data"
+    },
+    {
+      "label": "DROID：马克笔放入锅 NPZ",
+      "url": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/episode_04_droid_pot.npz",
+      "role": "data"
     }
   ],
   "related": [],
@@ -134,6 +184,121 @@
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
         "split": "官方公开任务示例；不推断训练或测试划分。",
         "excerpt": true
+      },
+      {
+        "id": "embodiedx-mini-libero",
+        "title": "LIBERO：双杯放盘",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把白杯放左侧盘子、黄白杯放右侧盘子。",
+        "explanation": "官方 mini 清单记录此段来自LIBERO 仿真示范，共 16 步；图为 NPZ 中第 0 步、第 0 路 RGB 的 64×64 原始数组。它是输入轨迹片段，不是模型完成任务或决赛评测成绩。",
+        "raw": {
+          "episode_id": "libero_spatial_ep00",
+          "filename": "episode_00_libero_spatial.npz",
+          "g4_perturbation_linf": 0.001,
+          "golden_action_models": [
+            "cosmos-predict2.5-2b",
+            "gr00t-n1.7-3b",
+            "pi05-3b"
+          ],
+          "golden_latent_models": [
+            "cosmos-predict2.5-2b",
+            "gr00t-n1.7-3b",
+            "pi05-3b"
+          ],
+          "hf_repo": "HuggingFaceVLA/libero",
+          "hf_revision": "86958911c0f959db2bbbdb107eb3e17c5f9c798e",
+          "instruction_prefix_reuse_ratio": 0.75,
+          "instruction_text": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+          "license_spdx": "Apache-2.0 / MIT",
+          "native_cameras": [
+            "image",
+            "image2"
+          ],
+          "num_steps": 16,
+          "pixel_provenance": "REAL_HF_LEROBOT_CAMERA_PIXELS",
+          "sha256": "b76300c0113bfe93cd718995c9ced9b540733deab58f4cc1070dd6edfb047722",
+          "size_bytes": 801614,
+          "source_dataset": "LIBERO",
+          "source_episode_index": 0,
+          "start_step": 76,
+          "subset_name": "HuggingFaceVLA/libero (ep0)",
+          "temporal_frame_coherence": 0.993404
+        },
+        "source": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json",
+        "license": "EmbodiedX 官方 mini 清单标注 Apache-2.0 / MIT；上游数据卡的许可标记见页面说明。",
+        "split": "EmbodiedX mini_v1；非私有保留复核集。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/embodiedx-libero-mini-frame0.png",
+            "alt": "EmbodiedX mini LIBERO 仿真示范，第 0 步第 0 路相机画面",
+            "width": 64,
+            "height": 64,
+            "caption": "LIBERO 仿真示范：mini 片段第 0 步、第 0 路图像，64×64。",
+            "source": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/episode_00_libero_spatial.npz"
+          }
+        ],
+        "licensePath": "licenses/maniskill3-demos-apache-2.txt"
+      },
+      {
+        "id": "embodiedx-mini-droid",
+        "title": "DROID：马克笔放入锅",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把马克笔放进锅里。",
+        "explanation": "官方 mini 清单记录此段来自DROID 真实机器人示范，共 16 步；图为 NPZ 中第 0 步、第 0 路 RGB 的 64×64 原始数组。它是输入轨迹片段，不是模型完成任务或决赛评测成绩。",
+        "raw": {
+          "episode_id": "droid_pot_ep04",
+          "filename": "episode_04_droid_pot.npz",
+          "g4_perturbation_linf": 0.001,
+          "golden_action_models": [
+            "cosmos-predict2.5-2b",
+            "gr00t-n1.7-3b",
+            "pi05-3b"
+          ],
+          "golden_latent_models": [
+            "cosmos-predict2.5-2b",
+            "gr00t-n1.7-3b",
+            "pi05-3b"
+          ],
+          "hf_repo": "lerobot/droid_100",
+          "hf_revision": "87301a2d2e99340e2010c9ef0f1d8e780b08aaf9",
+          "instruction_prefix_reuse_ratio": 0.75,
+          "instruction_text": "Put the marker in the pot",
+          "license_spdx": "MIT / CC-BY-4.0",
+          "native_cameras": [
+            "exterior_image_1_left",
+            "exterior_image_2_left",
+            "wrist_image_left"
+          ],
+          "num_steps": 16,
+          "pixel_provenance": "REAL_HF_LEROBOT_CAMERA_PIXELS",
+          "sha256": "1866f8a1ed1e5c83168d48c16c2fc12b57a34301baa6d24bd815aa60829a4a4c",
+          "size_bytes": 881633,
+          "source_dataset": "DROID",
+          "source_episode_index": 0,
+          "start_step": 60,
+          "subset_name": "lerobot/droid_100 (ep0)",
+          "temporal_frame_coherence": 0.999615
+        },
+        "source": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/manifest.json",
+        "license": "EmbodiedX 官方 mini 清单标注 MIT / CC-BY-4.0；上游数据卡的许可标记见页面说明。",
+        "split": "EmbodiedX mini_v1；非私有保留复核集。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/embodiedx-droid-mini-frame0.png",
+            "alt": "EmbodiedX mini DROID 真实机器人示范，第 0 步第 0 路相机画面",
+            "width": 64,
+            "height": 64,
+            "caption": "DROID 真实机器人示范：mini 片段第 0 步、第 0 路图像，64×64。",
+            "source": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench/blob/b1437f98850671f077d3862885e34474473c7ffe/data/embodiedx_traces_v1_mini/episode_04_droid_pot.npz"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
       }
     ]
   }
