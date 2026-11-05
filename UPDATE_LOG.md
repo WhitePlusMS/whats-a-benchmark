@@ -2507,3 +2507,4 @@
 - 修改 `content/benchmarks/gift-eval.json`：补充历史序列与未来窗口的输入输出、97 种数据集/频率/预测长度配置，以及原论文的末尾测试与滚动窗口设置；保留 Parquet 中 train 标签与原始训练集不同的说明。
 
 - 修改 `content/benchmarks/graspnet-1billion.json`：补充 scene_0017 的 RealSense 同帧 RGB-D 真实训练场景，说明帧号、划分、镜像来源和许可名称差异，不作为模型结果。新增 `content/assets/images/graspnet-scene0017-realsense-0016.png` 原始 RGB 图及 `content/assets/licenses/graspnet-scene-by-nc-sa-4.txt` 归属和非商业相同方式共享说明；深度图仅本地核查。
+- 根据独立审查，将 GraspNet 场景样例的原始节选改为归档中的 RGB 成员路径；场景、相机和帧号由本站解析，已在说明中标明，避免伪装为原生 JSON。
