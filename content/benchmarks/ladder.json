@@ -1,0 +1,210 @@
+{
+  "id": "ladder",
+  "status": "published",
+  "order": 22540,
+  "name": "LADDER",
+  "subtitle": "从短任务到多子目标的机器人操作",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "long-horizon",
+      "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "官方任务与代码",
+        "type": "项目资料",
+        "url": "https://github.com/insait-institute/ladder"
+      },
+      {
+        "label": "官方评测轨迹",
+        "type": "评测数据集",
+        "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "长步骤任务",
+    "具身推理"
+  ],
+  "publisher": "LADDER 作者团队",
+  "brandIds": [
+    "ladder"
+  ],
+  "year": 2026,
+  "version": "论文与固定版本评测轨迹",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估机器人在长步骤操作中完成多个目标的能力。",
+    "task": "在指定场景中按语言目标操作多个物体，完成一至十个子目标。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.18053",
+      "https://github.com/insait-institute/ladder"
+    ]
+  },
+  "taskContract": {
+    "input": "任务指令及仿真环境中的视觉、机器人状态；具体信息依方法和套件而定。",
+    "output": "机器人操作轨迹，使任务的全部子目标和约束在结束时成立。",
+    "environment": "三套仿真环境分别为 SimplerEnv-Long、RobotArena-∞-Long 和 RoboLab-Long；论文另在真实 WidowX 和 Franka 上测试部分任务与方法。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.18053",
+      "https://github.com/insait-institute/ladder"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文包含 145 个仿真任务，每个系统评测 2,024 次仿真运行。",
+    "disclosure": "partial",
+    "scale": [
+      "145 个任务、每个任务 1–10 个子目标；每个系统 2,024 次仿真运行。",
+      "评测轨迹数据卡列出 1,450 个任务运行、20,240 个 episode 及每项任务一个脚本策略成功案例。"
+    ],
+    "splits": [
+      "评测轨迹按方法、环境套件、任务及 episode 组织；该站内样例来自 GPT-Policy / SimplerEnv-Long。"
+    ],
+    "fields": [
+      "每条 episode 元数据包括 episode_index、num_steps、success、env_name、instruction 和 batch_env_index。"
+    ],
+    "files": [
+      "每条运行包括 episode_meta.yaml 与 main.mp4；任务级 results.yaml 汇总结果。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.18053",
+      "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes",
+      "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
+      "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/results.yaml"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "评测录像与日志可从官方数据集获取；各仿真环境及第三方资产的使用条件分别核对。"
+    ],
+    "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方评测轨迹数据集 CC BY 4.0；RoboLab-Long 画面中的资产另按 CC BY-NC-SA 4.0。",
+    "scope": "本站展示 SimplerEnv-Long 单次评测录像，保留作者、数据集与固定版本来源。",
+    "boundaries": [
+      "该录像为仿真评测，不是实体机器人录像；其他套件的资产可能有独立使用条件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "已下载并核对同次运行的元数据与视频，视频可在站内播放。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
+      "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率与子目标进度",
+    "description": "任务成功率要求 episode 结束时全部子目标与约束成立；子目标进度反映部分完成情况，需说明套件、任务及评测设置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.18053"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "仿真与实机、不同子目标长度和不同策略的结果应分别报告。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2610.18053"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "LADDER 论文",
+      "url": "https://arxiv.org/abs/2610.18053",
+      "role": "paper"
+    },
+    {
+      "label": "官方项目与代码",
+      "url": "https://github.com/insait-institute/ladder",
+      "role": "definition"
+    },
+    {
+      "label": "官方项目网站",
+      "url": "https://ladderrobotics.ai/",
+      "role": "readme"
+    },
+    {
+      "label": "官方评测轨迹数据集",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes",
+      "role": "data"
+    },
+    {
+      "label": "固定版本单次运行元数据",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
+      "role": "data"
+    },
+    {
+      "label": "固定版本对应录像",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4",
+      "role": "data"
+    },
+    {
+      "label": "固定版本任务汇总",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/results.yaml",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "ladder-gpt-policy-all3-plate-episode10",
+        "title": "把三件物品放到盘上 · 单次仿真评测",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将胡萝卜、勺子和茄子放到盘子上。",
+        "explanation": "官方 GPT-Policy 在 SimplerEnv-Long 的 all3_plate 任务中一次仿真运行；元数据记录 255 步、成功。视频与该元数据位于同一 episode 目录；这是单次结果，不代表模型整体成功率。",
+        "raw": {
+          "episode_index": 10,
+          "num_steps": 255,
+          "success": true,
+          "env_name": "all3_plate-v0",
+          "default_instruction": "put the carrot, the spoon and the eggplant on the plate",
+          "instruction": "put the carrot, the spoon and the eggplant on the plate",
+          "batch_env_index": 9
+        },
+        "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
+        "license": "LADDER 作者团队，评测轨迹 CC BY 4.0；保留数据集及固定版本来源。",
+        "licensePath": "licenses/cc-by-4.txt",
+        "split": "评测轨迹 / GPT-Policy / SimplerEnv-Long / all3_plate / episode 10",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/ladder-all3-plate-gpt-policy-episode10.mp4",
+            "caption": "官方仿真评测录像，与单次运行元数据同目录。",
+            "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4"
+          }
+        ]
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-11-05 下载固定版本的 episode_meta.yaml、任务结果和同目录视频，核对指令、步数、成功标志；视频在浏览器播放并查看画面，未自行运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
+        "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4",
+        "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/results.yaml"
+      ]
+    }
+  ]
+}

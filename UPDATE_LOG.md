@@ -2520,3 +2520,6 @@
 - 修改 `content/benchmarks/critpt.json`：补充研究问题背景、两阶段答案生成与完整挑战/分步 checkpoint 区别，明确两种分步上下文设置。
 - 修改 `content/benchmarks/terminal-bench-3.json`：补充任务产物类型、独立验证容器和官方联网规则，区分任务要求与执行环境。
 - 修改 `content/benchmarks/legal-research-vals.json`：依据官方论文补充美国法律研究输入、工具与来源核验，并更正 All-Pass 条件包括引用来源验证。
+
+- 新增 `content/benchmarks/ladder.json`：收录 LADDER 仿真长步骤操作、任务规模和评分，补充 GPT-Policy 在 SimplerEnv-Long 的单次成功记录及官方固定版本来源；新增 `content/assets/videos/ladder-all3-plate-gpt-policy-episode10.mp4`，使用 CC BY 4.0 并保留归属，已播放核看。单次记录不代表整体成绩，实机与仿真分开说明。
+- 修改 `content/brands.json`、`content/benchmarks/ladder.json` 并新增 `content/assets/logos/ladder.png`：使用 LADDER 官网图标及原始来源，供评测列表和详情页识别。
