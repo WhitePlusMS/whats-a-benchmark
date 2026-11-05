@@ -2160,3 +2160,7 @@
 ### RobotArena ∞ 数据入口（2026-11-05）
 
 - `content/benchmarks/robotarena-infinity.json`：补充代码指向的重建场景数据集、数据卡规模和受控访问条件；明确未取得文件，现有图片仍为论文流程图。
+
+### REAL-Bench 仿真询问演示（2026-11-05）
+
+- `content/benchmarks/real-bench.json`：补充官网实际 Simulator-User Loop 视频直链、时长与哈希，已下载并查看画面；说明任务编号、数据划分和再发布许可未确认。补充四类任务规模及代码、数据发布状态，并细化输入输出。
