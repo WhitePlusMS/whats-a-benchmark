@@ -178,7 +178,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "沿泳池前进，从吧台和椅子之间穿过，在吧台转角处停下。",
-        "explanation": "SenseNova 发布的一次 VLN-CE 仿真运行，日志记录 episode 7、rand100、62 步和 success=true；原始前视视频包含 63 帧、按 2 帧/秒播放，已提取并查看。它是第三方一次结果，不是原版 R2R val_seen 的 path 5593，也不代表整体成绩。场景画面转载条件未确认，原始视频位于归档中。",
+        "explanation": "SenseNova 发布的一次 VLN-CE 仿真运行：该次提示提供前视 RGB 观察与前进、左转、右转、停止动作；每次前进 0.25 米、转向 15 度，最多 500 个动作。日志记录 episode 7、rand100、62 步和 success=true；前视视频包含 63 帧、按 2 帧/秒播放，已提取并查看。上述动作参数是这次第三方运行的配置；它不是原版 R2R val_seen 的 path 5593，也不代表整体成绩。场景画面转载条件未确认，原始视频位于归档中。",
         "raw": {
           "benchmark": "vln_ce",
           "phase": "evaluation",
@@ -206,7 +206,7 @@
   },
   "researchNotes": [
     {
-      "text": "2026-11-05 对固定版本 VLN-CE-R2R.zip 进行范围读取，取得 episode 7 的 prompt、result、视频元数据和前视视频。视频 1,720,713 字节，SHA-256 df2b595a678611e070a534c7331ea051561d76662ffd513680e53a6e06cc9b12；已在浏览器播放，未完整下载归档或运行评测。",
+      "text": "2026-11-05 对固定版本 VLN-CE-R2R.zip 进行范围读取，取得 episode 7 的 prompt、result、视频元数据和前视视频。视频 1,720,713 字节，SHA-256 df2b595a678611e070a534c7331ea051561d76662ffd513680e53a6e06cc9b12；已在浏览器播放，未完整下载归档或运行评测。 同一归档的 prompt.json 规定前进 0.25 米、转向 15 度、最多 500 个动作，使用 navigation observe 和 step 工具；这些是本次运行条件，不推定所有 VLN-CE 配置相同。",
       "sourceUrls": [
         "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip",
         "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
