@@ -26,34 +26,42 @@
     ]
   },
   "taskContract": {
-    "input": "美国联邦收支账目文件与问题。",
-    "output": "有证据支持的答案。",
-    "environment": "评测主体需取得受控题目并使用文档检索和计算工具。",
+    "input": "自然语言财政问题，以及美国财政部收支账目原始 PDF 或解析后的文档；题目可能需要多份文档、图表或补充网页信息。",
+    "output": "依据题目要求给出数值、金额或带标签的列表；通常需要检索多份文档、核对修订数据，并按要求计算。",
+    "environment": "评测数据需登录并同意访问条件；可使用 PDF 或解析 JSON，具体检索、计算和外部工具配置取决于评测方案。",
     "sourceUrls": [
+      "https://huggingface.co/datasets/databricks/officeqa-pro-v2",
+      "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
       "https://github.com/databricks/officeqa"
     ]
   },
   "dataProfile": {
-    "summary": "90 道问题，语料覆盖 1793—2024 年。",
+    "summary": "90 道问题，基于 1,435 份覆盖 1793—2024 年的财政文件。",
     "disclosure": "partial",
     "scale": [
-      "90 道问题，语料覆盖 1793—2024 年。"
+      "90 道问题；1,435 份 PDF 覆盖 1793—2024 年，官方文章称约 12 万页。",
+      "每题相关来源文档的中位数为 5.5 份；90 题合计引用其中 249 份文档。"
     ],
     "splits": [],
     "fields": [
-      "问题、参考答案和证据；完整字段须获授权核验。"
+      "数据卡列出 uid、question、answer、source_docs 和 source_files；source_docs 包含文档及页码等来源信息。",
+      "解析 JSON 包含文档元素、页面、表格和坐标等结构；未取得原始文件进行独立核验。"
     ],
     "files": [
-      "officeqa_pro_v2.csv"
+      "officeqa_pro_v2.csv：90 道问题及答案。",
+      "pdfs/ 与 parsed_corpus/jsons/：原始 PDF 与解析 JSON；须按数据卡访问条件取得。"
     ],
     "sourceUrls": [
-      "https://github.com/databricks/officeqa",
-      "https://huggingface.co/datasets/databricks/officeqa-pro-v2"
+      "https://huggingface.co/datasets/databricks/officeqa-pro-v2",
+      "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
+      "https://github.com/databricks/officeqa"
     ]
   },
   "dataAccess": {
     "status": "gated",
-    "requirements": [],
+    "requirements": [
+      "需登录 Hugging Face 并同意数据集访问条件；不得使用答案键训练受该评测评价的模型或人为抬高成绩。"
+    ],
     "url": "https://huggingface.co/datasets/databricks/officeqa-pro-v2",
     "sourceUrls": [
       "https://huggingface.co/datasets/databricks/officeqa-pro-v2"
@@ -81,9 +89,11 @@
   },
   "metric": {
     "name": "准确率",
-    "description": "按官方评测流程对问题答案计分，具体运行条件应随成绩核对。",
+    "description": "官方发布文章报告采用参考评分函数及 0% 数值容差；评分器会规范化金额、单位等，并对含标签答案使用文本匹配。其他结果须说明所用容差和评测方案。",
     "direction": "higher",
     "sourceUrls": [
+      "https://huggingface.co/datasets/databricks/officeqa-pro-v2",
+      "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
       "https://github.com/databricks/officeqa"
     ]
   },
@@ -122,7 +132,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
