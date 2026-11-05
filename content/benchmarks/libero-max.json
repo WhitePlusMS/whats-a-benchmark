@@ -69,21 +69,24 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "论文在 arXiv 发布时标注 CC BY 4.0。",
-    "scope": "本站展示该论文的原始图像，保留作者、论文来源与许可；论文之外的数据、代码和其他素材分别核对。",
+    "scope": "本站展示论文原图与官方配对录像的文字说明和原片链接；论文之外的数据、代码和其他素材分别核对。",
     "boundaries": [
-      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。"
+      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。",
+      "官网配对录像独立转载许可未确认，本站仅提供原片链接。"
     ],
     "sourceUrls": [
-      "https://arxiv.org/abs/2609.36518"
+      "https://arxiv.org/abs/2609.36518",
+      "https://liberomax.github.io/"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方任务说明和固定 Lite 清单中的真实配对案例；未运行或转载该案例的模型轨迹。",
+    "reason": "展示官方任务说明、固定 Lite 清单中的配对配置，以及官网另行展示的配对录像入口；未自行运行评测。",
     "url": "https://liberomax.github.io/",
     "sourceUrls": [
       "https://liberomax.github.io/",
-      "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/libero_max_lite.json"
+      "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/libero_max_lite.json",
+      "https://liberomax.github.io/assets/media/paired-examples.mp4"
     ]
   },
   "metric": {
@@ -111,6 +114,13 @@
         "https://liberomax.github.io/",
         "https://arxiv.org/abs/2609.36518"
       ]
+    },
+    {
+      "text": "2026-11-05 下载官网配对视频（1,375,186 字节，SHA-256 950d7b850042b75b70d4e3423c600f4a988b04bfe70989b3f5196c1237d89d9a），并在官网浏览器播放器查看；视频时长 14.4 秒。未确认官网录像与本站 Lite 案例的对应关系，未自行运行评测。",
+      "sourceUrls": [
+        "https://liberomax.github.io/",
+        "https://liberomax.github.io/assets/media/paired-examples.mp4"
+      ]
     }
   ],
   "sources": [
@@ -132,6 +142,11 @@
     {
       "label": "LIBERO-MAX Lite 说明",
       "url": "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/README.md",
+      "role": "data"
+    },
+    {
+      "label": "官方 Base / Dynamic 配对评测原片",
+      "url": "https://liberomax.github.io/assets/media/paired-examples.mp4",
       "role": "data"
     }
   ],
@@ -156,6 +171,23 @@
   "verifiedAt": "2026-11-05",
   "updatedAt": "2026-11-05",
   "embodied": {
+    "resources": [
+      {
+        "label": "官方 Base / Dynamic 配对评测原片",
+        "type": "官方评测视频",
+        "url": "https://liberomax.github.io/assets/media/paired-examples.mp4"
+      },
+      {
+        "label": "目标移动示意动画",
+        "type": "官方动画",
+        "url": "https://liberomax.github.io/assets/media/target-relocation.gif"
+      },
+      {
+        "label": "相机移位示意动画",
+        "type": "官方动画",
+        "url": "https://liberomax.github.io/assets/media/camera-shift.gif"
+      }
+    ],
     "tasks": [
       "manipulation",
       "reasoning"
@@ -164,6 +196,19 @@
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [
+      {
+        "id": "libero-max-official-paired-video",
+        "title": "同一任务中途变化：官方配对评测录像",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察机器人执行操作时出现目标移动、相机移位等变化，并与相同执行前缀的无变化轨迹对照。",
+        "explanation": "官网录像按八类事件各展示两组 Base / Dynamic 配对案例，画面标注模型为 π0.5；每组左侧为 Base、右侧为 Dynamic。本站已在官网播放并提供原片入口；未确认录像中具体案例编号，也不能把它等同于下方摩卡壶 Lite 配置或整体成绩。",
+        "raw": "Sixteen paired examples across eight mid-task event types",
+        "source": "https://liberomax.github.io/",
+        "license": "官网录像的独立转载许可未确认；本站仅提供官方原片链接和整理说明。",
+        "split": "官方公开配对评测录像；具体案例编号及是否属于 Lite 子集未确认。",
+        "excerpt": true
+      },
       {
         "id": "libero-max-official-task",
         "title": "Target relocation",
