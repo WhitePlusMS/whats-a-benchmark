@@ -84,13 +84,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "包括官方 Social Rearrangement 验证集 episode 与 Habitat v0.3.x 性能基准配置；它们都是场景配置，不是机器人运行记录。",
+    "reason": "包括官方 Social Rearrangement 验证场景配置和社会导航原片入口；录像与验证 episode 的对应关系未确认。",
     "url": "https://aihabitat.org/habitat3/",
     "sourceUrls": [
       "https://aihabitat.org/habitat3/",
       "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz",
       "https://huggingface.co/datasets/ai-habitat/hab3_episodes",
-      "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz"
+      "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz",
+      "https://aihabitat.org/habitat3/assets/videos/social_nav/1.mp4",
+      "https://aihabitat.org/habitat3/assets/videos/social_rearrange/1.mp4"
     ]
   },
   "metric": {
@@ -125,6 +127,14 @@
         "https://huggingface.co/datasets/ai-habitat/hab3_episodes",
         "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz"
       ]
+    },
+    {
+      "text": "2026-11-05 下载并在浏览器播放官网 Social Navigation Results 第 1 段录像（SHA-256 8cb609bdb22e4847935cb42e72726a0a61e3a44c133d901d1d2ec847f4d73afb）；另播放官网 Social Rearrangement Results 第 1 段（SHA-256 54ae88035d5235de1710f911b702c8f7a6ef0c42af045872455a1268dd32d671），所查看画面未见明确物体搬运，未与验证 episode 关联。录像独立转载许可未核实，仅链接社会导航原片。",
+      "sourceUrls": [
+        "https://aihabitat.org/habitat3/",
+        "https://aihabitat.org/habitat3/assets/videos/social_nav/1.mp4",
+        "https://aihabitat.org/habitat3/assets/videos/social_rearrange/1.mp4"
+      ]
     }
   ],
   "sources": [
@@ -157,6 +167,16 @@
       "label": "固定版本 Social Rearrangement 验证集",
       "url": "https://huggingface.co/datasets/ai-habitat/hab3_episodes/blob/f1fcb0b6ef893fadf3fcf8d89fed542057dd1129/val/social_rearrange.json.gz",
       "role": "data"
+    },
+    {
+      "label": "官网社会导航结果录像",
+      "url": "https://aihabitat.org/habitat3/assets/videos/social_nav/1.mp4",
+      "role": "data"
+    },
+    {
+      "label": "官网协作整理栏目录像",
+      "url": "https://aihabitat.org/habitat3/assets/videos/social_rearrange/1.mp4",
+      "role": "data"
     }
   ],
   "related": [],
@@ -167,6 +187,13 @@
       "navigation",
       "manipulation",
       "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "社会导航结果录像",
+        "type": "官方仿真视频",
+        "url": "https://aihabitat.org/habitat3/assets/videos/social_nav/1.mp4"
+      }
     ]
   },
   "sampleSet": {
@@ -178,7 +205,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "机器人在室内寻找并跟随人物，同时保持安全距离。",
-        "explanation": "官方页面展示社会导航仿真视频；点击“查看原始来源”，在 Social Navigation 部分可观看。",
+        "explanation": "官网 Social Navigation Results 栏目中的录像可从相关资源直接打开：画面展示室内虚拟人物和移动机器人。录像的具体划分及与本站验证配置的对应关系未披露，不能当作本站运行成绩。",
         "raw": "Social Navigation",
         "source": "https://aihabitat.org/habitat3/",
         "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
