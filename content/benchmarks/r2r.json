@@ -19,6 +19,11 @@
         "label": "R2R val_seen 路径数据",
         "type": "数据集",
         "url": "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1"
+      },
+      {
+        "label": "R2R val_unseen 路径数据",
+        "type": "数据集",
+        "url": "https://www.dropbox.com/s/p6hlckr70a07wka/R2R_val_unseen.json?dl=1"
       }
     ]
   },
@@ -34,17 +39,18 @@
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "评估导航智能体在真实建筑扫描构成的环境中，依据自然语言路线指令到达目标。",
-    "task": "评估导航智能体在真实建筑扫描构成的环境中，依据自然语言路线指令到达目标。",
+    "task": "智能体根据人类编写的路线指令和沿途视觉观察，在室内导航图中移动并在目标附近停止。",
     "sourceUrls": [
       "https://bringmeaspoon.org/"
     ]
   },
   "taskContract": {
-    "input": "自然语言导航指令与环境视觉观测。",
-    "output": "依指令移动并停在目标附近。",
-    "environment": "Matterport3D 建筑扫描构成的仿真导航环境。",
+    "input": "自然语言路线指令、起始位置和朝向，以及当前位置的视觉观察。",
+    "output": "在可导航视点之间移动并决定何时停止，产生从起点到终点的导航轨迹。",
+    "environment": "Matterport3D 建筑扫描组成的离散视点仿真环境；val_seen 与 val_unseen 分别检查已见和未见建筑中的泛化。",
     "sourceUrls": [
-      "https://bringmeaspoon.org/"
+      "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/README.md",
+      "https://arxiv.org/abs/1711.07280"
     ]
   },
   "dataProfile": {
@@ -54,15 +60,21 @@
       "原论文描述 7,189 条路径和 21,567 条自然语言指令，覆盖 90 个建筑场景。"
     ],
     "splits": [
-      "train",
-      "val_seen",
-      "val_unseen",
-      "test_unseen"
+      "train：训练路径；val_seen：训练中出现过的建筑中的验证路径。",
+      "val_unseen：训练时未见建筑中的验证路径；test：未见建筑中的测试路径。",
+      "本站下载文件包含 val_seen 340 条路径和 val_unseen 783 条路径；前者 339 条各有三条指令、1 条有四条，后者每条均有三条指令。"
     ],
-    "fields": [],
-    "files": [],
+    "fields": [
+      "scan 为场景标识；path 为视点标识序列；heading 为初始朝向；distance 为路径距离；instructions 为路径对应的自然语言描述。"
+    ],
+    "files": [
+      "官方脚本分别提供 train、val_seen、val_unseen 和 test JSON 文件。"
+    ],
     "sourceUrls": [
-      "https://arxiv.org/abs/1711.07280"
+      "https://arxiv.org/abs/1711.07280",
+      "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/README.md",
+      "https://www.dropbox.com/s/p6hlckr70a07wka/R2R_val_unseen.json?dl=1",
+      "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1"
     ]
   },
   "dataAccess": {
@@ -87,18 +99,20 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从官方脚本指向的验证集取得一条路径记录，站内展示路径参数和本站整理的指令说明。",
+    "reason": "展示从官方脚本所指文件取得的 seen 和 unseen 验证路径；中文为本站对指令的整理，未取得对应场景画面。",
     "sourceUrls": [
       "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/data/download.sh",
-      "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1"
+      "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1",
+      "https://www.dropbox.com/s/p6hlckr70a07wka/R2R_val_unseen.json?dl=1"
     ]
   },
   "metric": {
     "name": "导航成功率及路径效率",
-    "description": "比较时区分导航误差、成功率和路径长度加权成功率，并注明 seen / unseen 场景划分。",
+    "description": "导航误差为停止点到目标的最短路径距离；原论文以误差小于 3 米计算成功率。比较时也可报告路径长度加权成功率，并注明 seen / unseen 划分。",
     "direction": "higher",
     "sourceUrls": [
-      "https://bringmeaspoon.org/"
+      "https://arxiv.org/abs/1711.07280",
+      "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/README.md"
     ]
   },
   "limitations": [
@@ -134,6 +148,16 @@
       "label": "R2R-CE 官方数据说明",
       "url": "https://jacobkrantz.github.io/vlnce/data",
       "role": "data"
+    },
+    {
+      "label": "官方脚本指向的 val_unseen 数据文件",
+      "url": "https://www.dropbox.com/s/p6hlckr70a07wka/R2R_val_unseen.json?dl=1",
+      "role": "data"
+    },
+    {
+      "label": "官方 R2R 数据字段与划分说明",
+      "url": "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/README.md",
+      "role": "readme"
     }
   ],
   "related": [
@@ -174,6 +198,30 @@
         "license": "R2R 标注数据的独立转载许可尚未核实；此处展示路径参数及本站整理的说明，完整记录见官方文件。",
         "split": "val_seen / path_id 5593",
         "excerpt": true
+      },
+      {
+        "id": "r2r-val-unseen-path-4332",
+        "title": "穿过大厅到窗边沙发",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "朝窗户方向前进，走到远处的沙发，在窗前沙发旁停下。",
+        "explanation": "这是 val_unseen 中 path_id 4332 的一条参考导航路径，中文依据该路径的第三条英文指令整理。原记录含三条不同的指令，路径有四个视点；这不是智能体实际执行轨迹或成绩。",
+        "raw": {
+          "distance": 10.86,
+          "scan": "8194nk5LbLH",
+          "path_id": 4332,
+          "path": [
+            "c9e8dc09263e4d0da77d16de0ecddd39",
+            "f33c718aaf2c41469389a87944442c62",
+            "ae91518ed77047b3bdeeca864cd04029",
+            "6776097c17ed4b93aee61704eb32f06c"
+          ],
+          "heading": 4.055
+        },
+        "source": "https://www.dropbox.com/s/p6hlckr70a07wka/R2R_val_unseen.json?dl=1",
+        "license": "R2R 标注的独立转载许可尚未核实；展示路径参数及本站整理的说明，原始记录见官方文件。",
+        "split": "val_unseen / path_id 4332",
+        "excerpt": true
       }
     ]
   },
@@ -183,6 +231,13 @@
       "sourceUrls": [
         "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/data/download.sh",
         "https://www.dropbox.com/s/8ye4gqce7v8yzdm/R2R_val_seen.json?dl=1"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载并读取官方脚本指向的 R2R_val_unseen.json，共 783 条路径；SHA-256 1cc730adc1c098998ac9191462849fc725e0c5336984a35bfbac7d5f044e682c。核对 path_id 4332 的原始指令和路径；未取得该场景图像或运行导航。",
+      "sourceUrls": [
+        "https://www.dropbox.com/s/p6hlckr70a07wka/R2R_val_unseen.json?dl=1",
+        "https://github.com/peteanderson80/Matterport3DSimulator/blob/master/tasks/R2R/README.md"
       ]
     }
   ]
