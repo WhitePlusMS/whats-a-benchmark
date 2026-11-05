@@ -20,6 +20,11 @@
         "label": "第三方 LeRobot 转换轨迹",
         "type": "转换数据集",
         "url": "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1"
+      },
+      {
+        "label": "OpenBMB 发布的 CALVIN 评测序列",
+        "type": "第三方评测配置",
+        "url": "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json"
       }
     ]
   },
@@ -62,10 +67,12 @@
     ],
     "fields": [],
     "files": [
-      "官方提供 split 下载脚本、debug 数据和校验和。"
+      "官方提供 split 下载脚本、debug 数据和校验和。",
+      "OpenBMB 的评测实现公开 1,000 条初始状态和五步子任务序列。"
     ],
     "sourceUrls": [
-      "https://github.com/mees/calvin/blob/main/dataset/README.md"
+      "https://github.com/mees/calvin/blob/main/dataset/README.md",
+      "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md"
     ]
   },
   "dataAccess": {
@@ -81,25 +88,27 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "本视频来源的 InternRobotics 转换集数据卡标注 MIT；另一个转换集标注 Apache-2.0。CALVIN 上游演示数据的独立许可尚未核实。",
-    "scope": "本站转载 InternRobotics 转换集的第 0 条轨迹视频；许可声明来自该转换集。",
+    "scope": "本站展示 InternRobotics 转换集的第 0 条轨迹视频，以及第三方评测实现公开的一条任务序列节选。",
     "boundaries": [
       "许可声明不代表已核实上游所有素材的权利范围。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC",
-      "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1"
+      "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
+      "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载两条第三方转换的训练轨迹；其中一条提供原始相机视频及状态和动作节选。",
+    "reason": "已下载第三方训练轨迹与评测序列文件；训练视频和评测配置分别展示，未取得与评测序列对应的录像。",
     "sourceUrls": [
       "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
       "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/meta/episodes.jsonl",
       "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/meta/info.json",
-      "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC"
+      "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC",
+      "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json"
     ]
   },
   "metric": {
@@ -163,6 +172,16 @@
       "label": "CALVIN 转换轨迹静态相机视频",
       "url": "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/videos/chunk-000/video.image_base/episode_000000.mp4",
       "role": "data"
+    },
+    {
+      "label": "OpenBMB CALVIN 评测实现说明",
+      "url": "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md",
+      "role": "code"
+    },
+    {
+      "label": "OpenBMB 评测序列文件（固定版本）",
+      "url": "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json",
+      "role": "data"
     }
   ],
   "related": [],
@@ -170,6 +189,19 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "calvin-openbmb-eval-sequence-0",
+        "title": "五步连续操作 · 评测序列 0",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "依次向右旋转蓝色积木、向右移动滑门、从滑门区域提起红色积木、放入滑门区域，最后关闭灯泡。",
+        "explanation": "这是 OpenBMB 评测实现随附序列文件的第 1 条，初始状态和五个子任务编号均来自该文件；中文是本站按编号整理，并非原始语言指令。它是评测配置，不是实际模型轨迹或成功结果；未找到与此序列对应的视频。",
+        "raw": "[{\"led\":1,\"lightbulb\":1,\"slider\":\"left\",\"drawer\":\"open\",\"red_block\":\"slider_left\",\"blue_block\":\"table\",\"pink_block\":\"slider_right\",\"grasped\":0},[\"rotate_blue_block_right\",\"move_slider_right\",\"lift_red_block_slider\",\"place_in_slider\",\"turn_off_lightbulb\"]]",
+        "source": "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json",
+        "license": "OpenBMB 说明该序列文件来自 starVLA，标注 MIT；上游环境与数据资源许可需分别核对。",
+        "split": "第三方 CALVIN 评测实现 / 1,000 条序列中的第 1 条 / 环境 D 验证配置。",
+        "excerpt": true
+      },
       {
         "id": "calvin-abc-pink-block-episode0",
         "title": "推动粉色积木 · 训练轨迹 0",
@@ -346,6 +378,13 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
         "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载 OpenBMB 固定提交的 eval_sequences.json，文件 467,691 字节，SHA-256 c99e041c255df3408ebf3bbb4feea8b407e17e60e7c07d172a6ea7ba6680e8ca；解析得到 1,000 条序列并核对首条。未运行评测或取得该序列对应录像。",
+      "sourceUrls": [
+        "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json",
+        "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md"
       ]
     }
   ]
