@@ -39,6 +39,11 @@
         "label": "测试场景 0117 · 基线抓取候选动画",
         "type": "预测可视化",
         "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0117.gif"
+      },
+      {
+        "label": "场景图像数据镜像（约 142 GB）",
+        "type": "第三方数据镜像",
+        "url": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar"
       }
     ]
   },
@@ -99,10 +104,13 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "官方数据页许可名称与缩写表述不一致；复制图像和标签前需权利方澄清。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "官方称 Creative Commons Attribution 4.0 Non Commercial License，并标注 BY-NC-SA；按非商业及相同方式共享条件展示所列场景图。",
+    "scope": "本站展示的场景图依官方允许的非商业再分发条件提供；其他素材和镜像的权利应分别核对。",
+    "boundaries": [
+      "官方许可名称未写出 ShareAlike，但括号缩写为 BY-NC-SA；本站采用更严格的非商业、相同方式共享条件，并保留原文链接。",
+      "商业使用请依官方页面联系权利方；动画仍只链接原发布位置。"
+    ],
     "sourceUrls": [
       "https://graspnet.net/",
       "https://graspnet.net/datasets.html"
@@ -110,7 +118,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已读取对象抓取标签，并核对基线模型在三个 test_seen 场景的抓取候选动画；原片见资源链接。",
+    "reason": "已读取对象抓取标签、真实训练场景的配对 RGB-D 帧，并核对基线模型在三个 test_seen 场景的抓取候选动画。",
     "sourceUrls": [
       "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/c7a03dfc391bcb12ce7d6031850b83295635e39c/grasp_label.tar",
       "https://github.com/graspnet/graspness_unofficial/blob/main/dataset/generate_graspness.py",
@@ -193,6 +201,11 @@
       "label": "基线场景 0117 可视化",
       "url": "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0117.gif",
       "role": "data"
+    },
+    {
+      "label": "固定版本场景数据镜像",
+      "url": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+      "role": "data"
     }
   ],
   "related": [
@@ -209,6 +222,37 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "graspnet-scene0017-realsense-0016",
+        "title": "真实混放场景 · RealSense 图像",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据 RealSense 拍摄的杂乱物体场景，预测可抓取的物体位置、方向和抓取置信度。",
+        "explanation": "固定版本第三方镜像中 scene_0017 的第 0016 帧，展示原始 RGB 画面；同一场景、相机与帧号的深度图也已读取并检查。此帧属于 train 场景，不是模型预测、抓取动作或测试成绩；未对图中具体物体做数据标签推断。",
+        "raw": {
+          "scene": "scene_0017",
+          "camera": "realsense",
+          "frame": "0016",
+          "rgb_path": "scenes/scene_0017/realsense/rgb/0016.png",
+          "depth_path": "scenes/scene_0017/realsense/depth/0016.png"
+        },
+        "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+        "license": "GraspNet 团队、MVIG、上海交通大学；官网标注非商业及 BY-NC-SA，保留来源与许可说明。",
+        "licensePath": "licenses/graspnet-scene-by-nc-sa-4.txt",
+        "split": "train / scene_0017 / realsense / frame 0016",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/graspnet-scene0017-realsense-0016.png",
+            "alt": "RealSense 真实场景中混放的日用品",
+            "width": 1280,
+            "height": 720,
+            "caption": "RealSense 原始 RGB 图像；训练场景 0017，第 0016 帧。",
+            "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar"
+          }
+        ]
+      },
       {
         "id": "graspnet-baseline-test-seen-scenes",
         "title": "测试场景 0114、0116、0117 · 基线抓取候选",
@@ -285,6 +329,14 @@
         "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0114.gif",
         "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0116.gif",
         "https://raw.githubusercontent.com/chenxi-wang/materials/e52348c0d8f6b248404a63060f8ccf8bd6c9f407/graspnet-baseline/doc/gifs/scene_0117.gif"
+      ]
+    },
+    {
+      "text": "2026-11-05 从固定版本镜像 scenes.tar 范围读取 scene_0017 的 realsense/rgb/0016.png 和同编号 depth/0016.png；RGB 为 1280×720，SHA-256 82d3877d2e7bdf3d20f352a95f2c4658223b3469076b2938ba912ef5fcf98c68；深度图 SHA-256 70929555f5c83d2a01cbad462f6ef3124689c94830c138ef91578df58727f9d0。已查看 RGB 图和原始深度数据；未下载完整归档。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+        "https://graspnet.net/datasets.html",
+        "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html"
       ]
     }
   ]
