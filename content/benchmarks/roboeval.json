@@ -27,8 +27,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "双臂仿真操作任务和相应机器人观测，任务包含举托盘、装箱、旋转阀门等变体。",
+    "output": "控制双臂完成任务；除成功与否外，还可根据任务阶段检查对齐、抓取和双臂协同等行为。",
     "environment": "基于 MuJoCo 的双臂机器人操作仿真及阶段诊断。",
     "sourceUrls": [
       "https://robo-eval.github.io/index.html",
@@ -73,10 +73,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示公开示范记录、真实观测和官方任务演示；训练数据与挑战赛评测分别标明。",
     "url": "https://robo-eval.github.io/challenge.html",
     "sourceUrls": [
-      "https://robo-eval.github.io/challenge.html"
+      "https://robo-eval.github.io/challenge.html",
+      "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/data/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/meta/episodes/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/meta/info.json"
     ]
   },
   "metric": {
@@ -126,6 +129,21 @@
       "label": "挑战赛演示数据许可",
       "url": "https://robo-eval.github.io/challenge-rules.html",
       "role": "access"
+    },
+    {
+      "label": "LiftTray 原始帧与动作分片",
+      "url": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/data/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "LiftTray 轨迹元数据",
+      "url": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/meta/episodes/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "LiftTray 数据划分",
+      "url": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/meta/info.json",
+      "role": "data"
     }
   ],
   "related": [
@@ -149,6 +167,106 @@
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [
+      {
+        "id": "roboeval-lift-tray-episode-0",
+        "title": "真实轨迹 0：双臂抬起早餐托盘",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "用两个夹爪拿起早餐托盘并向上抬。下方是头部相机记录的第 0 帧和第 70 帧。",
+        "explanation": "公开数据中的 LiftTray 第 0 条仿真示范共 71 帧、20 Hz。原始数据包含首帧与末帧的夹爪状态、动作、奖励和终止标记；官方标为 train，不能当成挑战赛隐藏评测结果。",
+        "raw": {
+          "episode": {
+            "episode_index": 0,
+            "tasks": [
+              "Use both grippers to pick up the breakfast tray and raise it."
+            ],
+            "length": 71
+          },
+          "first_frame": {
+            "frame_index": 0,
+            "episode_index": 0,
+            "task_index": 0,
+            "timestamp": 0.0,
+            "state_gripper": [
+              0.4000000059604645,
+              0.4000000059604645
+            ],
+            "actions": [
+              2.6226043701171875e-06,
+              0.0,
+              -2.8133392333984375e-05,
+              -2.432231894999859e-06,
+              5.9791367675643414e-05,
+              7.499153298340389e-07,
+              2.6226043701171875e-06,
+              2.9802322387695312e-08,
+              -2.8133392333984375e-05,
+              -2.432231894999859e-06,
+              5.9791367675643414e-05,
+              7.499153298340389e-07,
+              0.0,
+              0.0
+            ],
+            "reward": 0.0,
+            "is_terminal": false,
+            "truncate": false
+          },
+          "last_frame": {
+            "frame_index": 70,
+            "episode_index": 0,
+            "task_index": 0,
+            "timestamp": 3.5,
+            "state_gripper": [
+              0.30000001192092896,
+              0.4000000059604645
+            ],
+            "actions": [
+              0.0055197179317474365,
+              0.0045101940631866455,
+              0.0019599199295043945,
+              0.0003136751474812627,
+              -6.615074198634829e-06,
+              0.005369030404835939,
+              0.008814990520477295,
+              -0.0006340146064758301,
+              -0.0011963844299316406,
+              -0.0008907414157874882,
+              -9.576990123605356e-05,
+              -0.018619479611516,
+              1.0,
+              1.0
+            ],
+            "reward": 0.0,
+            "is_terminal": false,
+            "truncate": false
+          }
+        },
+        "source": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/data/chunk-000/file-000.parquet",
+        "license": "RoboEval 挑战赛规则声明演示数据为 MIT；来源为其公开 LeRobot 数据集。",
+        "licensePath": "licenses/roboeval-media-mit.txt",
+        "split": "train；公开示范，不是挑战赛隐藏评测。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/roboeval-episode0-first.png",
+            "alt": "roboeval 第 0 条轨迹第 0 帧的相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "轨迹 0 · 第 0 帧 · 官方数据分片中的相机画面",
+            "source": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/data/chunk-000/file-000.parquet"
+          },
+          {
+            "kind": "image",
+            "path": "images/roboeval-episode0-last.png",
+            "alt": "roboeval 第 0 条轨迹第 70 帧的相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "轨迹 0 · 第 70 帧 · 官方数据分片中的相机画面",
+            "source": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftTray/data/chunk-000/file-000.parquet"
+          }
+        ]
+      },
       {
         "id": "roboeval-official-task",
         "title": "Lift Tray",

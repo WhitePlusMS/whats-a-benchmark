@@ -16,16 +16,16 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "跨语言 MMLU-Pro 知识与推理评测。",
+    "summary": "基于 MMLU-Pro 构建的多语言选择题评测，比较模型跨语言的专业知识和推理能力。",
     "task": "在多语言问题中选择答案。",
     "sourceUrls": [
       "https://huggingface.co/datasets/li-lab/MMLU-ProX"
     ]
   },
   "taskContract": {
-    "input": "翻译后的专业知识选择题",
-    "output": "答案选项",
-    "environment": "按作者公开说明配置模型与运行环境。",
+    "input": "指定语言的专业知识与推理选择题，原始数据提供最多十个候选选项。",
+    "output": "选择与题目相符的选项；结果可按语言和学科分类统计。",
+    "environment": "数据按语言提供 validation 和 test；作者提供 lm-evaluation-harness 的复现方法，比较时应记录语言、划分和推理设置。",
     "sourceUrls": [
       "https://huggingface.co/datasets/li-lab/MMLU-ProX"
     ]
@@ -146,7 +146,7 @@
           "ST = S"
         ],
         "answer": "H",
-        "explanation": "这是英语验证集第 2 条真实记录；原题继承 MMLU-Pro，答案 H。",
+        "explanation": "T 将多项式乘以 x，S 对多项式求导。由乘积求导法则，ST(p)=(xp)′=p+xp′，而 TS(p)=xp′，所以 ST−TS 对任意 p 都等于 p，即恒等映射，选 H。",
         "raw": {
           "question_id": 1,
           "question": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",

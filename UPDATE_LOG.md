@@ -1962,3 +1962,156 @@
 - 修改 `src/components/SampleMedia.vue`：视频播放器宽度自适应内容区并限制最大宽度，解决 BiGym 2 的 84×84 原视频导致播放器和原生控件过小、难以操作的问题；保留原始视频文件及比例，不影响图片和音频。
 - 验证：Chrome 中逐项检查 19 个具身评测的 16 段站内视频和 12 张站内图片，视频实际触发播放，图片均成功加载；ManiSkill 图片放大弹窗和 RoboChallenge 官方多视角视频播放正常。BiGym 2 低分辨率视频重新构建后播放器可操作，但放大画面的清晰度受原片分辨率限制。`npm run typecheck`、`npm run build` 通过，临时静态预览服务已关闭。
 - 提交前清理三份 CC 许可文本末尾多余空行，许可正文不变。
+
+## 2026-11-05：具身评测真实数据核查
+
+- 修改 `src/components/SampleViewer.vue`，移除具身评测样例下统一出现的笼统提示；具体记录、划分与限制由样例本身及来源说明，避免用模板文字代替真实数据。
+- 更新 `content/benchmarks/libero.json` 和 `roboeval.json`：从各自固定版本 Parquet 分片逐行提取真实轨迹首末观测帧，保留 episode、任务、时间、状态和动作字段，分别添加 `content/assets/images/libero-episode0-first.png`、`libero-episode0-last.png`、`roboeval-episode0-first.png`、`roboeval-episode0-last.png`，明确属于训练示范。
+- 更新 `content/benchmarks/robotwin-2.json`：从可溯源的公开转换集提取三个 demo_clean 轨迹的编号、场景种子、原始指令和头部相机视频，新增 `content/assets/videos/robotwin2-adjust-bottle-episode0.mp4`、`robotwin2-beat-block-hammer-episode0.mp4`、`robotwin2-stack-blocks-two-episode0.mp4` 和对应 MIT 许可文件；不把转换集描述为官方测试集。
+- 更新 `content/benchmarks/bigym-2.json`、`gm-100.json`、`roboquest.json`：补齐现有视频对应的官方 episode、帧数、场景种子或任务指令等真实元数据，并标明示范及数据划分。
+
+### CALVIN 与 RLBench 真实转换轨迹
+
+- 修改 `content/benchmarks/calvin.json`，下载并接入 InternRobotics 的 CALVIN ABC 第 0 条训练轨迹静态相机视频、任务和首帧状态；文件 `content/assets/videos/calvin-abc-episode0.mp4` 来自该轨迹。补充固定版本来源、转换集许可及上游许可边界。
+- 修改 `content/benchmarks/rlbench.json`，从第三方转换集的第 0 条轨迹导出 0、242、484 三帧，保存至 `content/assets/images/rlbench-place-cups-episode0-*.png`，并关联同一轨迹的任务与首帧字段。数据仓库名称虽含 test，元数据实际标记 train，页面明确说明两者区别及上游许可边界。
+- 原因：让读者直接查看真实记录与对应画面；影响：两项评测增加可追溯的训练轨迹展示，不将其描述为验证结果或模型得分。
+
+- 为 RLBench 新增相机帧补齐图片替代文本及 128×128 尺寸，以满足内容校验并改善无障碍展示。
+
+- 按 CALVIN 转换集的 `info.json` 将视频来源中的相机字段修正为 `video.image_base`，并通过 SHA-256 核对站内视频与固定版本源文件一致。
+
+- 将新增轨迹中的数值负零规范化为零，避免 JSON 序列化改变负零符号后触发产物一致性检查；不改变数值大小。
+
+### 官方验证轨迹与任务说明补充
+
+- 修改 `content/benchmarks/alfred.json`：从已下载的官方 Lite 包核实 `valid_unseen` 轨迹，新增洗手液瓶放置任务、真实场景和参数。Lite 包不含图像，页面明确说明；新增案例不会被误认为模型成绩。
+- 修改 `content/benchmarks/locomo.json`：按作者仓库补足跨会话问答、事件总结、多模态生成及检索设置，纠正现行 10 段公开对话与原始 50 段的关系和图片开放范围。
+- 修改 `content/benchmarks/ocrbench-v2.json`：按作者资料补充题目输入、输出及街景、收据、公式、图表等场景，并提示公开/私有数据应分开报告。目的均为让读者具体理解评测任务，不改变评测或评分协议。
+
+- 修改 `content/benchmarks/robocasa.json`，依据转换集的 episode 索引，从左侧相机视频分片截取 episode 0 的 0–20.75 秒并转码至 `content/assets/videos/robocasa-mg100-episode0.mp4`；明确数据为 train 合成演示，补充视频、元数据、数据卡及许可边界。目的是使已有动作记录对应可观看画面，不将演示解释为模型成绩。
+
+### LIBERO-Plus 训练轨迹视频
+
+- 修改 `content/benchmarks/libero-plus.json`：依据固定版本 `episodes.jsonl` 和 `info.json` 核对任务、277 帧、20 Hz 及 train 划分，为已有 episode 0 样例关联前置相机视频及来源。
+- 添加 `content/assets/videos/libero-plus-episode0-front.mp4`：从对应原始视频转码生成，以便在常见浏览器播放。页面标注数据卡 MIT 及上游素材许可范围需分别核对，不将训练示范描述为模型评测成绩。
+
+### 模型评测任务说明补充
+
+- 修改 `content/benchmarks/global-mmlu.json`：按照作者数据卡补足多语言选择题输入、输出及分组条件，将抽象代数验证样例的通用占位解释替换为具体解题依据，并明确英语 dev 划分。
+- 修改 `content/benchmarks/hle-diamond.json`：依据作者公开说明，补足专家级题目、推理和知识分区、回答形式及官方主要比较不使用工具的条件；受控题目未转载。
+- 目的：让读者理解评测具体要求及样例考点，同时避免把某一运行条件推广为所有可能配置。
+
+### 早期 RoboTwin 点云与 MMLU-ProX 任务说明
+
+- 修改 `content/benchmarks/robotwin-early.json` 并添加 `content/assets/images/robotwin-early-pointcloud-{0,93,185}.png`：使用官方数据包同一条轨迹的 1,024 点 XYZRGB 数据绘制三帧三维图，统一视角和坐标范围，并明确这些是点云渲染而非相机照片。
+- 修改 `content/benchmarks/mmlu-prox.json`：依据作者数据卡补足多语言选择题的输入、输出与运行条件，为英语 validation 样例加入乘积求导法则的具体解释。
+- 目的：将已有可追溯的数据变成可直接理解的画面和任务说明；原始训练/验证划分和许可边界保持可见。
+
+### LegalBench 与 FLEURS 的具体任务
+
+- 修改 `content/benchmarks/legalbench.json`：参照官方任务目录，补充证据传闻判断、法条私人诉权及法律规则问答等输入输出示例，并注明子任务和评分差异。
+- 修改 `content/benchmarks/fleurs.json`：说明语音录音是识别输入、转写是参考答案，注明按语言与划分比较，并为现有英语测试记录补充任务说明和具体划分；当前样例未提供音频。
+- 目的：避免仅显示泛化的输入输出，让读者知道模型实际接收什么、应完成什么。
+
+### Table30 v2 按按钮实机演示
+
+- 修改 `content/benchmarks/robochallenge-table30-v2.json`：读取官方分卷中的任务描述与 episode_000188 全局相机视频，补充按钮顺序、机器人型号、帧率、相机路径、具体数据来源和未知划分；数据概况同步说明 30 项任务及四类机器人。
+- 由于官方数据包未明确视频再发布许可，本次仅在临时目录核验画面，页面展示任务与文件信息和官方分卷入口，不把演示结果当作模型成绩。
+
+### DRACO 深度研究任务说明
+
+- 修改 `content/benchmarks/draco.json`：根据作者论文及数据卡补充研究请求的输入、回答形式和四类评分维度，补全数据字段中 domain 与评分标准字段；把既有测试题说明改成具体的多期双重差分比较要求。
+- 保留原始英文问题和 test 划分，不把评分细则当作统一参考答案，也不声称本站完成了题目研究。
+
+### FLEURS 英语测试录音
+
+- 修改 `content/benchmarks/fleurs.json`：核对 en_us/test 中记录 1980 的文件名、原始转写和录音，补充固定版本归档来源、12.64 秒时长与转码说明。
+- 添加 `content/assets/audio/fleurs-en-us-test-1980.wav`：从官方测试归档提取同名录音并转为 16 位 PCM，供站内播放；保留 CC BY 4.0 归属及参考转写。该样本为测试数据，不代表模型运行结果。
+
+### AA-Robotics 与 RoboArena 具体评测流程
+
+- 修改 `content/benchmarks/aa-robotics.json`：依据官方文章补足相机输入、容器代码与 HTTP 控制、零样本及评分流程；新增官方结果表中 GPT-6 Astra 按按钮单项 100 分的记录，并明确其不是整体成绩。
+- 修改 `content/benchmarks/roboarena.json`：依据论文补足真实场景中的策略配对、顺序执行和评估者反馈，更新已有视频样例的获取说明。
+- 原因：替换通用模板，使读者理解实际任务和结果范围；不转载未核实许可的视频。
+
+### 四项具身评测的任务输入与输出
+
+- 修改 `content/benchmarks/gm-100.json`、`roboeval.json`、`roboquest.json` 和 `robochallenge-table30-v2.json`：依据各项目官方任务页面和数据说明，将统一的占位输入输出改成各自的机器人观测、操作目标和任务反馈。
+- 分别说明真实机器人演示、双臂仿真诊断、隐藏信息搜索和单臂／双臂实机任务；新增内容不改变训练集、验证集或实机成绩的既有划分。
+
+### 六项具身评测的交互流程及 DexArena 数据入口
+
+- 修改 `codeactionbench.json`、`dexarena.json`、`ebim.json`、`embodied-playground.json`、`embodiedlab.json` 和 `libero-max.json`：依据各自官方页面，将通用输入输出替换为实际观测、动作及评估流程。
+- DexArena 官方数据集元数据请求返回 401，页面补充受控访问与固定版本入口；修正网站演示视频为经过缩短的片段，避免误称原样转载。未将未取得的轨迹宣称为已核验。
+
+### RoboDojo 原始轨迹与任务流程
+
+- 修改 `content/benchmarks/robodojo.json`：对已有扫积木视频对应的官方 HDF5 使用分段读取，核对 episode 0 的指令、702 帧、25 Hz 和首／中／末帧左右臂关节状态与动作；关联固定版本文件，明确为仿真演示及未知训练／测试划分。
+- 修改 `content/benchmarks/rle-bench.json` 和 `robotarena-infinity.json`：根据官方论文与项目说明补充代码工程任务和真实到仿真的策略评测输入输出。
+- 影响：样例的视频和数字记录可以交叉核对，任务说明不再依赖通用占位模板；未运行任何模型评测。
+
+### 具身评测通用任务模板补全
+
+- 修改 `content/benchmarks/habitat-3.json`、`maniskill3.json`、`robochallenge.json` 与 `roboeval-bimanual-challenge.json`：核对官方页面及 ManiSkill 观测文档，补充人机协作、仿真观测模式、实机挑战和双臂诊断各自的输入与输出。
+- 保留各项目现有示例及来源边界，不将网站演示改称数据集测试成绩。
+
+### RoboEval 挑战赛指定变体真实样例
+
+- 修改 `content/benchmarks/roboeval-bimanual-challenge.json`，依据固定版本任务与 episode 元数据加入位置和姿态联合扰动的抬锅训练轨迹，展示指令、帧号、夹爪状态、动作、奖励和结束标志，并标注真实 train 划分。
+- 从同一 Parquet 记录提取头部相机第 0 与第 115 帧，新增 `content/assets/images/roboeval-challenge-pot-episode0-{0,115}.png`；两帧均已查看，保留原始 PNG 和数据来源。
+- 目的：让挑战赛条目包含实际指定变体的数据与画面，避免把普通演示或单次示范的奖励解释成模型测试成绩。
+
+### BEHAVIOR-1K 收音机训练轨迹画面
+
+- 修改 `content/benchmarks/behavior-1k.json`：核对官方 LeRobot 轨迹元数据、train 划分及头部相机时间索引，为 turning_on_radio 的 episode 10 增加独立视觉样例。
+- 新增 `content/assets/images/behavior-2026-radio-episode10-{760,800,840}.png`：从固定版本视频分片的对应时间提取，三帧均已查看；保留数据集 MIT 许可和具体来源。
+- 技能标注文件的 1776 帧与视频索引的 2769 帧不一致，现有证据不能证明二者逐帧对应，故页面明确分开展示并保留差异；不是模型评测成绩。
+
+### 四项模型评测任务协议
+
+- 修改 `content/benchmarks/milu.json`：根据作者数据卡说明多语言选择题、test 与 validation 用途及受控访问条件。
+- 修改 `ocr-reasoning.json`：补充富文本图像、答案与推理评测以及作者 VLMEvalKit 运行方式；原图的独立权利限制不变。
+- 修改 `wmt24pp.json`：说明英译目标语言、后编辑参考译文和低质量源句过滤。
+- 修改 `video-mme-v2.json`：说明视频帧、字幕、关联选择题及有无字幕和推理设置；未转载受限题目或视频。
+- 目的：替换笼统运行提示，让读者了解各项评测的实际任务和比较条件。
+
+### 四项模型评测的输入输出与运行条件
+
+- 修改 `content/benchmarks/frontiercode-1-1-extended.json`：说明真实 PR 来源、代码质量阻断规则与 1.1 公平联网要求。
+- 修改 `kora-v2.json`：说明模拟儿童情境、多轮回复及风险机制评估，保留 V2 版本与受控数据边界。
+- 修改 `posttrainbench-1-2.json`：依据官网补充四个基础模型、单卡 H100、十小时预算及 v1.2 多随机种子评估。
+- 修改 `voice-code-bench.json`：说明纯音频输入、转写输出和由评测程序计算的实体恢复指标。
+- 目的：替换泛化运行提示；这些说明不代表本站复跑评测。
+
+### Colosseum 实际示范帧（2026-11-05）
+
+- `content/benchmarks/colosseum.json`：添加滑动方块 episode4 的来源、原始路径、划分依据和展示说明；补充官方数据包链接与复用范围。无扰动配置与数据卡所述训练用途分开表述，避免误认模型成绩或凭画面断定任务成功。
+- `content/assets/images/colosseum-slide-episode4-{0,44,87}.png`：从官方数据包提取同一左肩相机的三帧，保留原始分辨率，便于直接观察动作过程。
+
+### Habitat 3.0 官方场景记录（2026-11-05）
+
+- `content/benchmarks/habitat-3.json`：加入 Habitat 官方 v0.3.x 基准资源 small_small 的 episode 0 物体及目标位置，记录固定版本链接、数据用途和 CC BY-NC 许可；明确场景配置不是社会协作验证集或机器人实际执行结果。
+
+### Colosseum 数据结构与任务说明（2026-11-05）
+
+- `content/benchmarks/colosseum.json`：按官方数据卡补充训练和测试配置、相机观测、低维数据及目录结构，明确任务输入输出，并提供官方数据入口；避免详情页在已有证据时仍显示未整理。
+
+### RLE-Bench 厨房任务接口（2026-11-05）
+
+- `content/benchmarks/rle-bench.json`：按固定版本的官方 Task 01 模板补充三路相机、12 维动作、评测布局与评分公式，说明这属于任务接口而非模型轨迹；补充仓库及许可来源。
+
+### LIBERO-MAX Lite 真实配对案例（2026-11-05）
+
+- `content/benchmarks/libero-max.json`：从固定版本官方 Lite 清单补充摩卡壶任务的相机偏移案例，记录触发距离、相机参数、初态与策略种子；补全清单结构和来源，明确案例配置不等同执行结果。
+
+### 大模型评测任务说明补全（2026-11-05）
+
+- `content/benchmarks/aa-briefcase.json`：补充多种工作资料、交付物格式及每次独立运行边界。
+- `content/benchmarks/riemann-bench.json`：补充研究级题目输入、闭式答案、程序验证与论文工具和采样设置，并区分后续计时修订。
+- `content/benchmarks/exploitgym.json`：补充官方任务输入、三类隔离环境和论文的成功判定，区分获得标记与确认指定漏洞两项条件。以上均依据官方资料，便于理解具体测试内容。
+
+### EBiM 官方喂食训练录像（2026-11-05）
+
+- `content/benchmarks/ebim.json`：加入官方 Task 3 Phase 2 episode 2 的真实任务、视频、人工标签、train 划分和数据结构，明确未提供留出验证集，单条标签不是模型总成绩。
+- `content/assets/videos/ebim-spoon-feeding-episode2.mp4`：下载官方头部视角完整录像并压缩至 854×480 供网页播放，保留时长。
+- `content/assets/licenses/ebim-task3-cc-by-nc-sa-4.txt`：记录作者、固定版本、CC BY-NC-SA 4.0 和转码修改；区分官网平台图的 CC BY 4.0。

@@ -71,21 +71,27 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "第三方转换集标 Apache-2.0；RLBench 软件许可有非商业研究限制，源数据和媒体许可范围须分别核对。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "本图像来源的第三方转换数据卡标注 Apache-2.0；RLBench 软件许可包含非商业研究限制，源数据许可范围须分别核对。",
+    "scope": "本站展示第三方转换轨迹的三个相机帧；许可声明来自该转换集。",
+    "boundaries": [
+      "数据卡的 Apache 声明不代表已核实上游所有素材的权利范围。"
+    ],
     "sourceUrls": [
-      "https://github.com/stepjam/RLBench/blob/master/README.md",
-      "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot"
+      "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test",
+      "https://github.com/stepjam/RLBench/blob/master/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载并解析一条第三方转换的训练轨迹，站内展示真实状态和动作节选。",
+    "reason": "已下载两条第三方转换轨迹，展示真实状态、动作和一条轨迹的原始图像。",
     "sourceUrls": [
       "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
-      "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot"
+      "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot",
+      "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet",
+      "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/meta/episodes.jsonl",
+      "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/meta/info.json",
+      "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test"
     ]
   },
   "metric": {
@@ -124,6 +130,26 @@
       "label": "固定版本轨迹文件",
       "url": "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
       "role": "data"
+    },
+    {
+      "label": "RLBench 转换集数据卡",
+      "url": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test",
+      "role": "data"
+    },
+    {
+      "label": "放杯子轨迹数据",
+      "url": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "放杯子轨迹元数据",
+      "url": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/meta/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "转换集划分说明",
+      "url": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/meta/info.json",
+      "role": "data"
     }
   ],
   "related": [],
@@ -131,6 +157,94 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "rlbench-place-two-cups-converted-episode0",
+        "title": "把两个杯子放上杯架 · 轨迹 0",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把两个杯子放到杯架上。",
+        "explanation": "这条第三方转换轨迹共 485 帧、每秒 10 帧；下方三张图片分别来自第 0、242 和 484 帧，状态与动作摘自首帧。仓库名称含 test，但其内部元数据将轨迹划为 train，未证实与原版 RLBench 测试划分的对应关系。",
+        "raw": {
+          "episode": {
+            "episode_index": 0,
+            "tasks": [
+              "place 2 cups on the cup holder"
+            ],
+            "length": 485
+          },
+          "first_frame": {
+            "state": [
+              7.15613532520365e-06,
+              0.17528632283210754,
+              1.4635625120718032e-06,
+              -0.873036801815033,
+              -5.597723429673351e-06,
+              1.2215447425842285,
+              0.7853881120681763,
+              0.039999403059482574,
+              0.03999984264373779
+            ],
+            "actions": [
+              0.27862387895584106,
+              -0.007818380370736122,
+              1.471490502357483,
+              0.0005174393299967051,
+              0.9927150011062622,
+              0.0005817735218442976,
+              0.12048403173685074,
+              1.0
+            ],
+            "action_joint_velocity": [
+              -0.014061926864087582,
+              -0.011124610900878906,
+              0.022492408752441406,
+              -0.03925323486328125,
+              0.017423629760742188,
+              0.013642311096191406,
+              0.0384521484375,
+              1.0
+            ],
+            "timestamp": 0.0,
+            "frame_index": 0,
+            "episode_index": 0,
+            "index": 0,
+            "task_index": 0
+          }
+        },
+        "source": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet",
+        "license": "第三方转换数据卡标注 Apache-2.0；上游素材的许可范围须分别核对。",
+        "split": "train / episode 0 / 第三方转换集",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/rlbench-place-cups-episode0-0.png",
+            "caption": "第 0 帧：轨迹相机图像",
+            "source": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet",
+            "alt": "第 0 帧：轨迹相机图像",
+            "width": 128,
+            "height": 128
+          },
+          {
+            "kind": "image",
+            "path": "images/rlbench-place-cups-episode0-242.png",
+            "caption": "第 242 帧：轨迹相机图像",
+            "source": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet",
+            "alt": "第 242 帧：轨迹相机图像",
+            "width": 128,
+            "height": 128
+          },
+          {
+            "kind": "image",
+            "path": "images/rlbench-place-cups-episode0-484.png",
+            "caption": "第 484 帧：轨迹相机图像",
+            "source": "https://huggingface.co/datasets/daixianjie/rlbench_lerobot_test/blob/b9864f3dde6a07ee20ce9753783e1ec96ac0582f/data/chunk-000/episode_000000.parquet",
+            "alt": "第 484 帧：轨迹相机图像",
+            "width": 128,
+            "height": 128
+          }
+        ]
+      },
       {
         "id": "rlbench-converted-train-episode-0",
         "title": "关闭盒子 · 训练轨迹 0",

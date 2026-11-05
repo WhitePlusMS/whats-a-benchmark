@@ -26,12 +26,13 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "指定仿真任务和所选观测模式，例如状态、RGB-D 或点云；具体模式由运行配置确定。",
+    "output": "输出机器人控制动作，在仿真中完成抓取、放置或插销等任务；按该环境成功条件评估。",
     "environment": "GPU 并行物理仿真和渲染；具体机器人、观测和任务以配置为准。",
     "sourceUrls": [
       "https://github.com/mani-skill/ManiSkill",
-      "https://arxiv.org/abs/2410.00425"
+      "https://arxiv.org/abs/2410.00425",
+      "https://maniskill.readthedocs.io/en/latest/user_guide/concepts/observation.html"
     ]
   },
   "dataProfile": {
@@ -124,6 +125,11 @@
       "label": "ManiSkill 官方素材许可",
       "url": "https://github.com/haosulab/ManiSkill/blob/62ff3a5896b4d5b4cf0ac4c8d79afe600c9404a3/README.md",
       "role": "access"
+    },
+    {
+      "label": "官方观测模式文档",
+      "url": "https://maniskill.readthedocs.io/en/latest/user_guide/concepts/observation.html",
+      "role": "readme"
     }
   ],
   "related": [

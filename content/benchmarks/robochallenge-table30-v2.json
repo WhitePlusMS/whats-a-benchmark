@@ -27,36 +27,40 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "实机任务目标与对应机器人和相机观测；任务依设备使用单臂或双臂。",
+    "output": "控制机器人完成指定操作，例如按颜色顺序按按钮、涂抹果酱或整理物品，并按对应任务条件评分。",
     "environment": "以真实机器人操作为主，技术报告中的多数任务使用双臂机器人。",
     "sourceUrls": [
       "https://robochallenge.ai/challenges",
-      "https://robochallenge.ai/robochallenge_techreport_V2.pdf"
+      "https://robochallenge.ai/robochallenge_techreport_V2.pdf",
+      "https://huggingface.co/datasets/RoboChallenge/Table30v2"
     ]
   },
   "dataProfile": {
-    "summary": "Table 30 V2 是 RoboChallenge 平台的具体真实机器人任务版本。",
+    "summary": "官方数据集说明列出 30 项操作任务、4 类机器人；各任务包含多条演示轨迹。",
     "disclosure": "partial",
     "scale": [
-      "Table 30 V2 是 RoboChallenge 平台的具体真实机器人任务版本。"
+      "30 项任务，4 类机器人；各任务包含多条真实机器人演示轨迹。"
     ],
     "splits": [],
-    "fields": [],
-    "files": [],
+    "fields": [
+      "任务描述、机器人状态、轨迹元数据和多视角相机视频。"
+    ],
+    "files": [
+      "按任务提供分卷归档，内部按 episode 保存状态、元数据和视频；公开说明未给出统一训练／验证划分。"
+    ],
     "sourceUrls": [
-      "https://robochallenge.ai/challenges",
-      "https://robochallenge.ai/robochallenge_techreport_V2.pdf"
+      "https://huggingface.co/datasets/RoboChallenge/Table30v2"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "官方公开各任务演示分卷；实际下载、使用和再发布条件应分别核对。"
     ],
     "url": "https://robochallenge.ai/challenges",
     "sourceUrls": [
-      "https://robochallenge.ai/challenges"
+      "https://huggingface.co/datasets/RoboChallenge/Table30v2"
     ]
   },
   "reusePolicy": {
@@ -73,11 +77,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方任务说明和已核实的实机演示记录；站内中文为解读，视频因再发布许可未明确而未转载。",
     "url": "https://robochallenge.ai/robochallenge_techreport_V2.pdf",
     "sourceUrls": [
       "https://robochallenge.ai/robochallenge_techreport_V2.pdf",
-      "https://robochallenge.ai/task_detail/table30_v2?task_id=3809"
+      "https://robochallenge.ai/task_detail/table30_v2?task_id=3809",
+      "https://huggingface.co/datasets/RoboChallenge/Table30v2",
+      "https://huggingface.co/datasets/RoboChallenge/task_table30v2_press_the_button/blob/a6b1b95c0a9ddff34df3a0b308ae633e2959bc38/press_the_button.tar.part-0000"
     ]
   },
   "metric": {
@@ -105,6 +111,13 @@
         "https://robochallenge.ai/challenges",
         "https://robochallenge.ai/robochallenge_techreport_V2.pdf"
       ]
+    },
+    {
+      "text": "固定版本按按钮任务首个分卷以 HTTP Range 读取开头 16 MiB，核对任务描述、30 fps 视频元数据，并提取 episode_000188 全局相机视频检查画面；视频 SHA-256 726606b91cc54745e2e0cec3cd72017ddc5a6facc114f1a9ba1a13929c4a25c6。仓库未明确视频再发布许可，站内不复制视频。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/RoboChallenge/Table30v2",
+        "https://huggingface.co/datasets/RoboChallenge/task_table30v2_press_the_button/blob/a6b1b95c0a9ddff34df3a0b308ae633e2959bc38/press_the_button.tar.part-0000"
+      ]
     }
   ],
   "sources": [
@@ -121,6 +134,16 @@
     {
       "label": "Table30 V2 官方盖章任务与演示视频",
       "url": "https://robochallenge.ai/task_detail/table30_v2?task_id=3809",
+      "role": "data"
+    },
+    {
+      "label": "Table30 v2 官方数据集说明",
+      "url": "https://huggingface.co/datasets/RoboChallenge/Table30v2",
+      "role": "data"
+    },
+    {
+      "label": "按按钮任务官方分卷固定版本",
+      "url": "https://huggingface.co/datasets/RoboChallenge/task_table30v2_press_the_button/blob/a6b1b95c0a9ddff34df3a0b308ae633e2959bc38/press_the_button.tar.part-0000",
       "role": "data"
     }
   ],
@@ -145,6 +168,27 @@
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [
+      {
+        "id": "table30v2-press-button-episode188",
+        "title": "按顺序按按钮 · 实机演示 188",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人依次按粉色、蓝色、绿色和黄色按钮。",
+        "explanation": "官方按按钮任务包中的 episode_000188 包含全局、侧面和机械臂相机视频。本站实际检查了全局相机画面，可见单臂机器人与四个按钮；这是一条演示记录，不能代表模型成绩或保证该次操作成功。视频再发布许可未明确，原始分卷可从来源获取。",
+        "raw": {
+          "task_name": "press_the_button",
+          "episode": "episode_000188",
+          "robot": "ARX5",
+          "fps": 30,
+          "global_video": "press_the_button/data/episode_000188/videos/cam_global_rgb.mp4",
+          "side_video": "press_the_button/data/episode_000188/videos/cam_side_rgb.mp4",
+          "wrist_video": "press_the_button/data/episode_000188/videos/cam_arm_rgb.mp4"
+        },
+        "source": "https://huggingface.co/datasets/RoboChallenge/task_table30v2_press_the_button/blob/a6b1b95c0a9ddff34df3a0b308ae633e2959bc38/press_the_button.tar.part-0000",
+        "license": "官方数据包未明确视频再发布许可；这里只展示任务与轨迹文件信息。",
+        "split": "Table30 v2 官方实机演示；包内未确认 train、validation 或 test 划分。",
+        "excerpt": true
+      },
       {
         "id": "robochallenge-table30-v2-official-task",
         "title": "Stamp on paper",

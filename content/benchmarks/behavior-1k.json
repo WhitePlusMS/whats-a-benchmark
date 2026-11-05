@@ -81,9 +81,10 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "官方演示数据集卡和 LICENSE 标注 MIT；场景和对象资产有独立约束。",
-    "scope": "本站只展示官方数据集中的技能标注节选，并保留许可证和来源。",
+    "scope": "本站展示官方演示集中的技能标注节选，以及从同任务视频分片提取的三帧画面，并保留来源和许可。",
     "boundaries": [
-      "场景、对象模型和演示视频可能涉及第三方资产及数据协议；本站未转载。"
+      "场景和对象模型可能有独立协议；本站展示的是演示数据集中的视频帧，不代表已获得场景资产的再发布权。",
+      "视频元数据中的 episode 10 与现有技能标注文件名相同，但时长不同；两者对应关系尚未确认。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos"
@@ -91,10 +92,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得 2026 Challenge 官方演示集的一条技能标注记录。",
+    "reason": "已核对官方技能标注，以及同任务的独立训练轨迹及其头部相机画面；两者的对应关系尚未确认。",
     "sourceUrls": [
       "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos",
-      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json"
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json",
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4",
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json"
     ]
   },
   "metric": {
@@ -133,6 +137,21 @@
       "label": "固定版本的技能标注记录",
       "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json",
       "role": "data"
+    },
+    {
+      "label": "官方头部相机视频分片",
+      "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4",
+      "role": "data"
+    },
+    {
+      "label": "官方轨迹元数据",
+      "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "官方数据划分与帧率",
+      "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json",
+      "role": "data"
     }
   ],
   "related": [],
@@ -140,6 +159,64 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "behavior-2026-radio-video-episode10",
+        "title": "打开收音机 · 训练演示画面",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在家庭仿真环境中操作桌上的收音机。",
+        "explanation": "官方 LeRobot 元数据将这条 turning_on_radio 轨迹标为 episode 10，共 2769 帧、30 Hz；三幅画面从其头部相机分片的对应时间范围提取。这是人类遥操作训练示范，不是模型评测结果。另一个技能标注文件的时长不同，尚不能确认与本视频逐帧对应。",
+        "raw": {
+          "task": "turning_on_radio",
+          "episode_index": 10,
+          "length": 2769,
+          "fps": 30,
+          "video_camera": "observation.rgb.zed_link_camera_0",
+          "chunk_index": 0,
+          "file_index": 0,
+          "video_from_timestamp": 754.8333333333333,
+          "video_to_timestamp": 847.1333333333332,
+          "extracted_video_timestamps": [
+            760,
+            800,
+            840
+          ]
+        },
+        "source": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
+        "license": "BEHAVIOR-1K 2026 Challenge Demos 官方数据卡标注 MIT；本站保留来源及许可证。",
+        "licensePath": "licenses/behavior-2026-demos-mit.txt",
+        "split": "train / task-0000 / episode_index 10；人类遥操作演示。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/behavior-2026-radio-episode10-760.png",
+            "alt": "打开收音机演示头部相机在源分片 760 秒处的画面",
+            "width": 720,
+            "height": 720,
+            "caption": "头部相机 · 源视频分片 760 秒",
+            "source": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4"
+          },
+          {
+            "kind": "image",
+            "path": "images/behavior-2026-radio-episode10-800.png",
+            "alt": "打开收音机演示头部相机在源分片 800 秒处的画面",
+            "width": 720,
+            "height": 720,
+            "caption": "头部相机 · 源视频分片 800 秒",
+            "source": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4"
+          },
+          {
+            "kind": "image",
+            "path": "images/behavior-2026-radio-episode10-840.png",
+            "alt": "打开收音机演示头部相机在源分片 840 秒处的画面",
+            "width": 720,
+            "height": 720,
+            "caption": "头部相机 · 源视频分片 840 秒",
+            "source": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4"
+          }
+        ]
+      },
       {
         "id": "behavior-2026-task-0-episode-10",
         "title": "打开收音机 · 任务过程",
@@ -283,6 +360,14 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos",
         "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json"
+      ]
+    },
+    {
+      "text": "固定版本中 info.json 标注 train；meta/episodes 的 episode 10 记录 task=turning_on_radio、2769 帧及头部视频分片时间 754.833–847.133 秒。已取得该分片并提取 760、800、840 秒帧；annotations/task-0000/episode_00000010.json 标注持续 1776 帧，尚未确认与视频索引是否逐帧对应。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json",
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/videos/observation.rgb.zed_link_camera_0/chunk-000/file-000.mp4"
       ]
     }
   ]

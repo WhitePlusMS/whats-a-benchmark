@@ -66,21 +66,26 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "训练数据卡标注 MIT；其具体范围及其他资产的再发布条款尚需核对。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "LIBERO-Plus 链接的训练数据卡标注 MIT；LIBERO 上游数据与场景素材的独立许可需一并核对。",
+    "scope": "展示该训练数据的第 0 条轨迹及其前置相机视频。",
+    "boundaries": [
+      "数据卡许可声明不自动覆盖所有上游场景资产。"
+    ],
     "sourceUrls": [
-      "https://github.com/sylvestf/LIBERO-plus",
-      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot"
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot",
+      "https://github.com/sylvestf/LIBERO-plus"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载官方链接训练集的一条轨迹，展示三个时刻的原始状态和动作。",
+    "reason": "已下载官方链接训练集中的轨迹与对应相机视频，展示同一轨迹的状态、动作及画面。",
     "sourceUrls": [
       "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
-      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl"
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl",
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/episodes.jsonl",
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/info.json",
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/videos/chunk-000/observation.images.front/episode_000000.mp4"
     ]
   },
   "metric": {
@@ -119,6 +124,21 @@
       "label": "固定版本任务索引",
       "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/tasks.jsonl",
       "role": "data"
+    },
+    {
+      "label": "训练轨迹前置相机视频",
+      "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/videos/chunk-000/observation.images.front/episode_000000.mp4",
+      "role": "data"
+    },
+    {
+      "label": "训练轨迹元数据",
+      "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "训练数据划分与帧率",
+      "url": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/meta/info.json",
+      "role": "data"
     }
   ],
   "related": [
@@ -141,7 +161,7 @@
         "type": "record",
         "prompt": "把白色杯子放在左侧盘子上，把黄白色杯子放在右侧盘子上。该说明来自固定版本训练集的任务索引。",
         "promptOrigin": "editorial",
-        "explanation": "这是 LIBERO-Plus 公开链接的 LeRobot 训练数据；同一 episode 共 277 帧，此处摘出首、中、末帧的状态与动作。它不是鲁棒性测试的模型成绩。 原始动作中的负零以字符串 -0.0 保留，以避免 JSON 序列化丢失符号。",
+        "explanation": "这是 LIBERO-Plus 公开链接的 LeRobot 训练数据；同一 episode 共 277 帧、20 Hz。前置相机视频与状态、动作来自同一条轨迹；视频已转码。它不是鲁棒性测试的模型成绩。原始动作中的负零以字符串 -0.0 保留。",
         "raw": {
           "dataset": "Sylvest/libero_plus_lerobot",
           "revision": "22c57433fef692b5b9ecc0795344daac7fa867a5",
@@ -225,12 +245,28 @@
               "index": 276,
               "task_index": 0
             }
-          ]
+          ],
+          "episode_metadata": {
+            "episode_index": 0,
+            "tasks": [
+              "put the white mug on the left plate and put the yellow and white mug on the right plate"
+            ],
+            "length": 277,
+            "fps": 20
+          }
         },
         "source": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet",
-        "license": "训练集数据卡标 MIT；上游 LIBERO 官方数据许可及其他资产范围需一并核对，本站不复制图像视频。",
+        "license": "训练集数据卡标注 MIT；上游 LIBERO 数据和场景资产的许可范围需一并核对。",
         "split": "train / episode_index 0 / task_index 0",
-        "excerpt": true
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/libero-plus-episode0-front.mp4",
+            "caption": "训练轨迹 0：前置相机，277 帧",
+            "source": "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/videos/chunk-000/observation.images.front/episode_000000.mp4"
+          }
+        ]
       }
     ]
   },

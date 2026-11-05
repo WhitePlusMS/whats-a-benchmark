@@ -72,21 +72,26 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "当前仓库区分代码与数据资产许可；原版具体数据和第三方媒体使用范围需核对。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "DAVIAN-Robotics 转换数据卡标注 Apache-2.0；RoboCasa 原版和第三方场景资产的转载范围须分别核实。",
+    "scope": "展示转换集第 0 条轨迹的左侧相机片段，许可声明来自转换数据卡。",
+    "boundaries": [
+      "转换数据卡的许可声明不代表已核实所有上游场景和物品素材的权利范围。"
+    ],
     "sourceUrls": [
-      "https://arxiv.org/abs/2406.02523",
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100",
       "https://github.com/robocasa/robocasa"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载原版 RoboCasa 的第三方 LeRobot 转换演示数据并解析轨迹。",
+    "reason": "已下载原版 RoboCasa 的第三方转换演示，展示第 0 条轨迹的相机视频、状态和动作。",
     "sourceUrls": [
       "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
-      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet"
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet",
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/episodes/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/info.json",
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
     ]
   },
   "metric": {
@@ -130,6 +135,26 @@
       "label": "原版 MG_100 数据说明",
       "url": "https://huggingface.co/datasets/Voxel51/robocasa-MG_100",
       "role": "readme"
+    },
+    {
+      "label": "转换集左侧相机视频分片",
+      "url": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4",
+      "role": "data"
+    },
+    {
+      "label": "转换轨迹与视频时间索引",
+      "url": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/episodes/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "转换数据划分与帧率",
+      "url": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/info.json",
+      "role": "data"
+    },
+    {
+      "label": "转换集许可声明",
+      "url": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100",
+      "role": "data"
     }
   ],
   "related": [
@@ -152,7 +177,7 @@
         "type": "record",
         "prompt": "机器人关闭橱柜门；下面展示这条演示的首、中、末帧状态和动作。",
         "promptOrigin": "editorial",
-        "explanation": "来自原版 RoboCasa 的 MG_100 合成数据第三方转换集，episode 0 共 415 帧；任务标签来自同版本索引。合成演示不代表模型评测成绩，也不能与 RoboCasa365 混同。",
+        "explanation": "这是原版 RoboCasa 的 MG_100 合成演示经第三方转换后的 episode 0，共 415 帧、20 Hz。视频由左侧相机分片的 0 至 20.75 秒截取并转码；转换集元数据将轨迹划为 train。它不是模型评测成绩，也不能与 RoboCasa365 混同。",
         "raw": {
           "dataset": "DAVIAN-Robotics/robocasa-MG_100",
           "revision": "510a2940a66e0debc9818803cdb62b140a6c4bb6",
@@ -279,12 +304,32 @@
               "episode_index": 0,
               "index": 414
             }
-          ]
+          ],
+          "episode_video": {
+            "episode_index": 0,
+            "tasks": [
+              "close the cabinet doors"
+            ],
+            "length": 415,
+            "camera": "observation.images.robot0_agentview_left_image",
+            "chunk_index": 0,
+            "file_index": 0,
+            "from_timestamp": 0.0,
+            "to_timestamp": 20.75
+          }
         },
         "source": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
         "license": "转换数据卡标 Apache-2.0；原版及第三方场景资产的具体转载范围需分别核实。",
-        "split": "MG_100 / episode_index 0 / task_index 0",
-        "excerpt": true
+        "split": "train / MG_100 / episode_index 0 / 第三方转换集",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robocasa-mg100-episode0.mp4",
+            "caption": "关闭橱柜门：轨迹 0 的左侧相机，原分片 0–20.75 秒",
+            "source": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
+          }
+        ]
       }
     ]
   },

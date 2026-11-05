@@ -27,8 +27,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "线缆布放、导热垫放置或辅助喂食任务中的双臂机器人观测和场景。",
+    "output": "提交操作策略完成指定任务；项目安排仿真评测及后续跨地点真实机器人验证，需区分阶段。",
     "environment": "开发预览包含 Isaac Sim / MuJoCo 环境；部分组合未就绪，实机验证使用 Mobile FR3 Duo。",
     "sourceUrls": [
       "https://ebim-benchmark.github.io/",
@@ -39,43 +39,57 @@
     "summary": "三个赛道：线缆布放与插接、柔性材料处理、辅助生活与喂食。",
     "disclosure": "partial",
     "scale": [
-      "三个赛道：线缆布放与插接、柔性材料处理、辅助生活与喂食。"
+      "三个赛道：线缆布放与插接、柔性材料处理、辅助生活与喂食。",
+      "Task 3 第二阶段数据集含 177 条喂食记录、124,872 个时间步。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "Task 3 Phase 2 的记录全部标为 train，数据卡说明无留出验证集；包含成功和失败样本。"
+    ],
+    "fields": [
+      "每条记录有头部及左右腕相机、机器人状态、动作、时间戳和人工有效性标签；末帧 next.reward 不代表成功。"
+    ],
+    "files": [
+      "task3_phase2_munich/{data,videos,meta}；episodes_preview.parquet 是浏览索引。"
+    ],
     "sourceUrls": [
       "https://ebim-benchmark.github.io/",
-      "https://ebim-benchmark.github.io/faq.html"
+      "https://ebim-benchmark.github.io/faq.html",
+      "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/README.md"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "Task 3 Phase 2 的 LeRobot 数据、视频和元数据可公开下载；其他任务及实机评测访问条件需分别核对。"
     ],
     "url": "https://ebim-benchmark.github.io/",
     "sourceUrls": [
-      "https://ebim-benchmark.github.io/"
+      "https://ebim-benchmark.github.io/",
+      "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/README.md"
     ]
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "EBiM 官网仓库声明站点文字及图片采用 CC BY 4.0。",
-    "scope": "展示官网的 Mobile FR3 Duo 平台图，标注 EBiM 和平台提供方。",
+    "license": "官网平台图标注 CC BY 4.0；Task 3 Phase 2 数据集标注 CC BY-NC-SA 4.0。",
+    "scope": "平台图和 Task 3 训练录像分别遵循对应许可；录像经缩放和转码，按 CC BY-NC-SA 4.0 标注。",
     "boundaries": [
-      "图为平台示意，不能用作实机任务成功证据；代码和其他资源许可另行核对。"
+      "图为平台示意，不能用作实机任务成功证据；代码和其他资源许可另行核对。",
+      "Task 3 录像仅限非商业使用，改编须按相同许可共享；其他数据和代码另行核对。"
     ],
     "sourceUrls": [
-      "https://github.com/EBiM-Benchmark/ebim-benchmark.github.io"
+      "https://github.com/EBiM-Benchmark/ebim-benchmark.github.io",
+      "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方任务示例、平台图以及 Task 3 的真实训练记录；不将训练示范当作模型评测成绩。",
     "url": "https://ebim-benchmark.github.io/faq.html",
     "sourceUrls": [
-      "https://ebim-benchmark.github.io/faq.html"
+      "https://ebim-benchmark.github.io/faq.html",
+      "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/README.md",
+      "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/episodes_preview.parquet",
+      "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/0b7882bea6172131fd0db10646a153e7fdbd7e63/task3_phase2_munich/videos/chunk-000/observation.images.head/episode_000002.mp4"
     ]
   },
   "metric": {
@@ -124,6 +138,21 @@
     {
       "label": "官网内容 CC BY 4.0 许可",
       "url": "https://github.com/EBiM-Benchmark/ebim-benchmark.github.io",
+      "role": "data"
+    },
+    {
+      "label": "EBiM 官方 Task 3 数据卡与许可",
+      "url": "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/README.md",
+      "role": "data"
+    },
+    {
+      "label": "Task 3 记录预览索引",
+      "url": "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/episodes_preview.parquet",
+      "role": "data"
+    },
+    {
+      "label": "第 2 条记录原始头部相机视频",
+      "url": "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/0b7882bea6172131fd0db10646a153e7fdbd7e63/task3_phase2_munich/videos/chunk-000/observation.images.head/episode_000002.mp4",
       "role": "data"
     }
   ],
@@ -187,6 +216,36 @@
             "height": 2250,
             "caption": "官方平台示意图：Mobile FR3 Duo 与工作台；不是评测运行记录。",
             "source": "https://raw.githubusercontent.com/EBiM-Benchmark/ebim-benchmark.github.io/main/src/img/platform/MFR3_Duo_with_workbench.png"
+          }
+        ]
+      },
+      {
+        "id": "ebim-spoon-feeding-episode2",
+        "title": "辅助喂食 · 官方训练记录 2",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "拿起勺子向人体模型喂食，然后把勺子放回碗中。",
+        "explanation": "官方第二阶段喂食数据的第 2 条头部相机录像，记录 679 帧、33.95 秒，数据预览中的人工审核标签为 REVIEW_SUCCESS。它是单条训练记录，不是模型评测总成绩；头部相机校正为近似值。",
+        "raw": {
+          "episode_index": 2,
+          "task": "Pick up the spoon, feed the mannequin, and place the spoon back in the bowl.",
+          "success": true,
+          "frames": 679,
+          "duration_seconds": 33.95,
+          "source_batch": "disk1",
+          "source_label": "REVIEW_SUCCESS"
+        },
+        "source": "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/b2fefb62b33e2d38f4b914444155efa1e265f427/episodes_preview.parquet",
+        "license": "EBiM Benchmark，CC BY-NC-SA 4.0；录像转码并由 1280×720 缩至 854×480，保留完整时长。",
+        "licensePath": "licenses/ebim-task3-cc-by-nc-sa-4.txt",
+        "split": "task3_phase2 / train / episode 2；官方明确无留出验证集。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/ebim-spoon-feeding-episode2.mp4",
+            "caption": "官方训练记录 2 的头部视角；已缩放和重新编码，不代表模型评测成绩。",
+            "source": "https://huggingface.co/datasets/ebim-benchmark/task3_phase2/blob/0b7882bea6172131fd0db10646a153e7fdbd7e63/task3_phase2_munich/videos/chunk-000/observation.images.head/episode_000002.mp4"
           }
         ]
       }

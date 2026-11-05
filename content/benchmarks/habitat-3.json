@@ -28,8 +28,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "家庭仿真场景中的协作任务、机器人观测和人体虚拟角色；人类可通过键鼠或 VR 参与。",
+    "output": "依任务寻找并跟随人物且保持距离，或与人物协作移动物体到目标位置。",
     "environment": "室内机器人与人体虚拟角色仿真，支持键鼠或 VR 的人在环交互。",
     "sourceUrls": [
       "https://aihabitat.org/habitat3/",
@@ -44,10 +44,13 @@
     ],
     "splits": [],
     "fields": [],
-    "files": [],
+    "files": [
+      "Habitat v0.3.x 基准资源包含 episode_datasets；small_small 为小场景、两个物体的配置。"
+    ],
     "sourceUrls": [
       "https://aihabitat.org/habitat3/",
-      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html",
+      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/README.md"
     ]
   },
   "dataAccess": {
@@ -62,22 +65,24 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
-    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "license": "所展示的 Habitat v0.3.x 基准 episodes 标注 CC BY-NC；其他任务、代码和媒体许可需分别核对。",
+    "scope": "仅展示公开场景 episode 的少量字段和本站任务说明。",
     "boundaries": [
       "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
     ],
     "sourceUrls": [
       "https://aihabitat.org/habitat3/",
-      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html",
+      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "包括官方任务说明和 Habitat v0.3.x 场景重排环境配置；配置并非机器人运行记录。",
     "url": "https://aihabitat.org/habitat3/",
     "sourceUrls": [
-      "https://aihabitat.org/habitat3/"
+      "https://aihabitat.org/habitat3/",
+      "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz"
     ]
   },
   "metric": {
@@ -117,6 +122,16 @@
       "label": "论文或官方补充资料",
       "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html",
       "role": "paper"
+    },
+    {
+      "label": "官方 Habitat v0.3.x 基准数据说明与许可",
+      "url": "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/README.md",
+      "role": "data"
+    },
+    {
+      "label": "small_small 原始 episode 数据",
+      "url": "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz",
+      "role": "data"
     }
   ],
   "related": [],
@@ -156,6 +171,38 @@
         "source": "https://aihabitat.org/habitat3/",
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
         "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "hab3-small-small-episode0",
+        "title": "小场景重排环境 · episode 0",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这一场景配置中有金枪鱼罐头和糖盒两个物体；每个物体都定义了目标位姿，可用于物体重排任务。",
+        "explanation": "这是官方 Habitat v0.3.x 性能基准资源中的环境配置，不是 Social Rearrangement 的特定验证集，也不是机器人执行轨迹或成功记录。矩阵为源文件提供的物体目标变换。",
+        "raw": {
+          "episode_id": "0",
+          "scene_id": "103997919_171031233.scene_instance.json",
+          "objects": [
+            "007_tuna_fish_can_:0000",
+            "004_sugar_box_:0000"
+          ],
+          "target_translation": {
+            "007_tuna_fish_can_:0000": [
+              -5.71498,
+              0.62332,
+              -5.52875
+            ],
+            "004_sugar_box_:0000": [
+              -6.72075,
+              0.60465,
+              -3.54588
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/ai-habitat/hab3_bench_assets/blob/57d98828d30e3d2648ab9dc1d17a8c7b444927bc/episode_datasets/small_small.json.gz",
+        "license": "AI Habitat 的 HSSD 资产与 episodes 标注 CC BY-NC；使用请遵守署名和非商业限制，其他资产另有许可。",
+        "split": "官方 Habitat v0.3.x 基准资源：small_small / episode 0；未标注 train、validation 或 test。",
         "excerpt": true
       }
     ]

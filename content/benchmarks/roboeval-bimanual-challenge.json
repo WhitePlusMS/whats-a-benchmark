@@ -27,8 +27,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "八类任务的位置与朝向组合变体、任务指令、机器人本体状态和策略声明使用的相机画面。",
+    "output": "提交策略控制双臂执行任务；按结果、安全稳定、效率和双臂协调四类指标计算诊断分。",
     "environment": "MuJoCo 中的双臂 Franka Panda；参考人类遥操作示范。",
     "sourceUrls": [
       "https://robo-eval.github.io/challenge.html",
@@ -62,7 +62,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "挑战赛规则声明评测资源及演示数据采用 MIT；代码仓库另列 Apache 2.0。",
-    "scope": "本站引用 RoboEval 官方站点的任务演示；许可按资源类型分别核对。",
+    "scope": "本站展示 RoboEval 官方任务示范和挑战赛指定变体的一条训练轨迹图像；许可按资源类型分别核对。",
     "boundaries": [
       "视频属于官方任务示范，未标明挑战赛的具体位置和姿态扰动，不代表评测成绩。"
     ],
@@ -73,10 +73,13 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方任务演示，以及挑战赛位置与姿态组合变体中的一条训练轨迹和对应图像。",
     "url": "https://robo-eval.github.io/challenge.html",
     "sourceUrls": [
-      "https://robo-eval.github.io/challenge.html"
+      "https://robo-eval.github.io/challenge.html",
+      "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/data/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/meta/episodes/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/meta/info.json"
     ]
   },
   "metric": {
@@ -121,6 +124,21 @@
       "label": "RoboEval 官方任务演示",
       "url": "https://robo-eval.github.io/index.html",
       "role": "data"
+    },
+    {
+      "label": "抬锅位置与姿态变体轨迹",
+      "url": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/data/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "抬锅变体轨迹元数据",
+      "url": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/meta/episodes/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "抬锅变体数据划分与帧率",
+      "url": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/meta/info.json",
+      "role": "data"
     }
   ],
   "related": [
@@ -144,6 +162,105 @@
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [
+      {
+        "id": "roboeval-challenge-liftpot-pr-train-episode0",
+        "title": "双臂抬锅 · 位置与姿态变体训练轨迹",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "双臂分别抓住锅的两侧，将锅抬离台面。",
+        "explanation": "挑战赛使用的位置与姿态组合变体中，官方演示数据 episode 0 共 116 帧、20 Hz；图像与动作来自同一条轨迹。末帧记录 reward=1、is_terminal=true，只描述这次演示，不是模型挑战赛得分。",
+        "raw": {
+          "dataset": "helen9975/roboeval_ee_delta_20hz_scaled",
+          "variant": "LiftPotPositionAndOrientation",
+          "episode_index": 0,
+          "task": "Grip the pot on both sides and elevate it above the counter.",
+          "length": 116,
+          "fps": 20,
+          "frames": [
+            {
+              "frame_index": 0,
+              "episode_index": 0,
+              "timestamp": 0.0,
+              "state_gripper": [
+                0.4000000059604645,
+                0.4000000059604645
+              ],
+              "actions": [
+                2.6226043701171875e-06,
+                0.0,
+                -2.8133392333984375e-05,
+                -2.5576043753972044e-06,
+                5.990442878101021e-05,
+                8.572376941629045e-07,
+                2.6226043701171875e-06,
+                2.9802322387695312e-08,
+                -2.8133392333984375e-05,
+                -2.432654582662508e-06,
+                5.979094567010179e-05,
+                7.499153298340389e-07,
+                0.0,
+                0.0
+              ],
+              "reward": 0.0,
+              "is_terminal": false,
+              "truncate": false
+            },
+            {
+              "frame_index": 115,
+              "episode_index": 0,
+              "timestamp": 5.75,
+              "state_gripper": [
+                0.20000000298023224,
+                0.20000000298023224
+              ],
+              "actions": [
+                -8.821487426757812e-06,
+                -7.0035457611083984e-06,
+                -1.5497207641601562e-06,
+                2.4988100904010935e-06,
+                2.430098902550526e-06,
+                -1.0111468327522743e-05,
+                -6.973743438720703e-06,
+                -1.953914761543274e-06,
+                -2.6226043701171875e-06,
+                -3.532664550220943e-06,
+                -1.9553841923425352e-07,
+                2.932620418505394e-06,
+                1.0,
+                1.0
+              ],
+              "reward": 1.0,
+              "is_terminal": true,
+              "truncate": false
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/data/chunk-000/file-000.parquet",
+        "license": "RoboEval 挑战赛官方规则声明评测资源与示范数据采用 MIT。",
+        "licensePath": "licenses/roboeval-media-mit.txt",
+        "split": "train / LiftPotPositionAndOrientation / episode 0；人类演示。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/roboeval-challenge-pot-episode0-0.png",
+            "alt": "抬锅演示轨迹 0 的第 0 帧头部相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "位置与姿态变体 · episode 0 · 第 0 帧 · 头部相机",
+            "source": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/data/chunk-000/file-000.parquet"
+          },
+          {
+            "kind": "image",
+            "path": "images/roboeval-challenge-pot-episode0-115.png",
+            "alt": "抬锅演示轨迹 0 的第 115 帧头部相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "位置与姿态变体 · episode 0 · 第 115 帧 · 头部相机",
+            "source": "https://huggingface.co/datasets/helen9975/roboeval_ee_delta_20hz_scaled/blob/918b4072cd1d15f28b1f96a440ac7aa84591ce92/LiftPotPositionAndOrientation/data/chunk-000/file-000.parquet"
+          }
+        ]
+      },
       {
         "id": "roboeval-bimanual-challenge-official-task",
         "title": "Lift Pot",

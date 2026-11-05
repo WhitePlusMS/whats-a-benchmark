@@ -26,8 +26,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "机器人学习工程任务目标、代码与仿真环境，以及任务指定的工具、算力和时间预算。",
+    "output": "编写、运行并调整控制代码、学习方案、感知或机械设计，利用仿真反馈完成任务并提交相应成果。",
     "environment": "编码智能体在任务限定的时间、计算与交互预算内进行机器人学习工程。",
     "sourceUrls": [
       "https://rle-bench.github.io/",
@@ -59,22 +59,24 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
-    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "license": "RLE-Bench 代码仓库标注 MIT；外部机器人模型、数据集和依赖各有许可。",
+    "scope": "展示任务名称、少量接口字段和本站中文解读。",
     "boundaries": [
       "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
     ],
     "sourceUrls": [
       "https://rle-bench.github.io/",
-      "https://arxiv.org/abs/2609.34210"
+      "https://arxiv.org/abs/2609.34210",
+      "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方任务示例及代码仓库中的任务接口；不将任务描述当作模型运行结果。",
     "url": "https://rle-bench.github.io/blog/",
     "sourceUrls": [
-      "https://rle-bench.github.io/blog/"
+      "https://rle-bench.github.io/blog/",
+      "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/tasks/task01/_template/steps/develop/instruction.md.in"
     ]
   },
   "metric": {
@@ -119,6 +121,16 @@
       "label": "官方任务示例",
       "url": "https://rle-bench.github.io/blog/",
       "role": "data"
+    },
+    {
+      "label": "Task 01 官方任务模板（固定提交）",
+      "url": "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/tasks/task01/_template/steps/develop/instruction.md.in",
+      "role": "data"
+    },
+    {
+      "label": "RLE-Bench 官方代码及许可",
+      "url": "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/README.md",
+      "role": "data"
     }
   ],
   "related": [],
@@ -156,6 +168,36 @@
         "source": "https://rle-bench.github.io/blog/",
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
         "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "rle-task01-interface",
+        "title": "Task 01：厨房机器人的观测与动作",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "编写程序控制仿真机械臂完成厨房操作，并让方案适应未见过的厨房布局。",
+        "explanation": "这是官方任务模板公开的接口和评估规则，不是某次模型运行记录。开发阶段记录交互步数；评估阶段在未见过的厨房计算成功率，并综合开发交互成本。",
+        "raw": {
+          "task_family": "task01",
+          "observation": [
+            "robot0_agentview_left_image",
+            "robot0_agentview_right_image",
+            "robot0_eye_in_hand_image",
+            "robot0_joint_pos"
+          ],
+          "action_dim": 12,
+          "action_components": {
+            "0-5": "arm position and rotation delta",
+            "6": "gripper",
+            "7-9": "mobile base x, y, yaw",
+            "10": "torso",
+            "11": "base_mode"
+          },
+          "reward": "0.80 * success_rate + 0.20 * success_rate * (1 - development_steps / interaction_budget)"
+        },
+        "source": "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/tasks/task01/_template/steps/develop/instruction.md.in",
+        "license": "RLE-Bench 仓库代码标注 MIT；外部机器人模型、数据及依赖沿用各自许可。",
+        "split": "Task 01 公开任务模板；评估试次使用未见过的厨房布局，非模型轨迹。",
         "excerpt": true
       }
     ]

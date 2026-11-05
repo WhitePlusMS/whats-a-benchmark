@@ -28,8 +28,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "选定的仿真或实机操作任务、机器人观测及评测配置；任务涉及物体、环境或技能泛化。",
+    "output": "控制机器人完成抓取、工具使用或多步骤操作；分别按仿真任务和真实任务的成功条件评估。",
     "environment": "仿真与三种真实机器人平台分别评测，真实测评依赖指定实机条件。",
     "sourceUrls": [
       "https://github.com/robodojo-benchmark/RoboDojo",
@@ -73,11 +73,12 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "已核对官方扫积木演示的视频和同编号 HDF5，展示轨迹指令、左右臂状态与动作节选。",
     "url": "https://arxiv.org/html/2607.04434",
     "sourceUrls": [
       "https://arxiv.org/html/2607.04434",
-      "https://robodojo-benchmark.com/doc/sim-tasks/sweep-blocks/"
+      "https://robodojo-benchmark.com/doc/sim-tasks/sweep-blocks/",
+      "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5"
     ]
   },
   "metric": {
@@ -104,6 +105,12 @@
       "sourceUrls": [
         "https://github.com/robodojo-benchmark/RoboDojo",
         "https://arxiv.org/abs/2607.04434"
+      ]
+    },
+    {
+      "text": "对固定版本 episode_0000000.hdf5 按 HTTP Range 读取元数据和三个时刻的状态与动作，确认 702 帧、25 Hz 和扫积木指令；同编号头部相机视频已在站内展示。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5"
       ]
     }
   ],
@@ -137,6 +144,11 @@
       "label": "扫积木官方预览记录",
       "url": "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/preview_video/episode_0000000_cam_head.mp4",
       "role": "data"
+    },
+    {
+      "label": "扫积木演示轨迹 HDF5 固定版本",
+      "url": "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5",
+      "role": "data"
     }
   ],
   "related": [],
@@ -167,15 +179,130 @@
       },
       {
         "id": "robodojo-concrete-task",
-        "title": "Sweep Blocks",
+        "title": "扫积木 · 仿真演示轨迹 0",
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "机器人先拿起扫帚并交到右手，左手抓住簸箕，再把积木扫进簸箕。",
-        "explanation": "官方仿真任务将双手交接、工具使用和收集组合在一起。",
-        "raw": "Sweep Blocks",
-        "source": "https://robodojo-benchmark.com/doc/sim-tasks/sweep-blocks/",
+        "explanation": "官方数据集中 arx_x5 的 episode 0 共 702 帧、25 Hz；画面与下面的任务指令、首／中／末帧左右臂状态及动作来自同编号轨迹。它是仿真演示，不代表模型评测成绩；数据源未在此文件中标明训练或测试划分。",
+        "raw": {
+          "dataset": "RoboDojo-Benchmark/RoboDojo",
+          "task": "sweep_blocks",
+          "robot": "arx_x5",
+          "episode_index": 0,
+          "frame_count": 702,
+          "instruction": "Pick up the broom, hand it over to the right hand, then use the dustpan to sweep the blocks.",
+          "frequency": 25,
+          "frames": [
+            {
+              "frame": 0,
+              "state_left_arm": [
+                4.071576788829828e-13,
+                -5.980520063923126e-16,
+                1.4398613808702345e-16,
+                3.386160584530263e-16,
+                -6.584927373341765e-13,
+                1.9300398952648568e-12
+              ],
+              "action_left_arm": [
+                -0.009311203844845295,
+                -0.0006584381917491555,
+                0.004155219532549381,
+                -0.004618460778146982,
+                -0.008086906746029854,
+                -0.0011776896426454186
+              ],
+              "state_right_arm": [
+                4.0715439917141105e-13,
+                -5.98048724139642e-16,
+                1.4397848832071856e-16,
+                3.3861656137883873e-16,
+                -6.584978330843871e-13,
+                1.9300385942222498e-12
+              ],
+              "action_right_arm": [
+                4.795772611497495e-13,
+                -7.061983673011039e-16,
+                1.6999710376399432e-16,
+                4.0071490255243604e-16,
+                -7.765784001100007e-13,
+                2.2452090100294475e-12
+              ]
+            },
+            {
+              "frame": 351,
+              "state_left_arm": [
+                -0.30545365810394287,
+                2.5161471366882324,
+                2.385627031326294,
+                -1.637847661972046,
+                -0.33991244435310364,
+                1.4327130317687988
+              ],
+              "action_left_arm": [
+                -0.3172772228717804,
+                2.5092763900756836,
+                2.3708221912384033,
+                -1.6318224668502808,
+                -0.3380403518676758,
+                1.420574426651001
+              ],
+              "state_right_arm": [
+                0.2994384765625,
+                1.3804059028625488,
+                0.8953370451927185,
+                -0.846847653388977,
+                0.1941831260919571,
+                0.1821606606245041
+              ],
+              "action_right_arm": [
+                0.2994384467601776,
+                1.3804059028625488,
+                0.8953370451927185,
+                -0.846847653388977,
+                0.1941831409931183,
+                0.1821606606245041
+              ]
+            },
+            {
+              "frame": 701,
+              "state_left_arm": [
+                -0.0002804424148052931,
+                0.0018808372551575303,
+                0.0017971923807635903,
+                -0.0017463912954553962,
+                -0.00027471972862258554,
+                0.001185015426017344
+              ],
+              "action_left_arm": [
+                -0.0003456897393334657,
+                0.0022000789176672697,
+                0.002136184833943844,
+                -0.0018712991150096059,
+                -0.00028796744300052524,
+                0.001297185430303216
+              ],
+              "state_right_arm": [
+                0.00018102307512890548,
+                0.001009313389658928,
+                0.0007248003385029733,
+                -0.0006697399076074362,
+                5.57308385396027e-06,
+                0.00037880134186707437
+              ],
+              "action_right_arm": [
+                0.0001786616921890527,
+                0.0009929786901921034,
+                0.0007044868543744087,
+                -0.0006455947877839208,
+                4.474434263102012e-06,
+                0.0003653750754892826
+              ]
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/data/episode_0000000.hdf5",
         "license": "RoboDojo-Benchmark 官方数据集标注 Apache 2.0；来源 RoboDojo-Benchmark。",
-        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "split": "sweep_blocks / arx_x5 / episode 0；官方演示数据，未确认 train 或 test 划分。",
         "excerpt": true,
         "assets": [
           {

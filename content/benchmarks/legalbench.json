@@ -24,11 +24,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2308.11462"
+      "https://arxiv.org/abs/2308.11462",
+      "https://hazyresearch.stanford.edu/legalbench/"
     ],
-    "environment": "任务子集和评分脚本需明确标注。",
-    "input": "法律任务提示及材料。",
-    "output": "法律推理答案。"
+    "environment": "各任务有独立输入输出格式及评估方法；比较结果需注明任务子集、提示词和评分脚本。",
+    "input": "依子任务提供法律材料和问题，例如证据情景、法条文本或关于法律规则的问题。",
+    "output": "按子任务回答：例如判断证据是否属于传闻、法条是否包含私人诉权，或回答规则问题。"
   },
   "dataProfile": {
     "summary": "LegalBench收录162项法律推理任务，由40名贡献者构建；不同任务的数据来源和许可各异，部分开放式生成任务使用人工评分表。",

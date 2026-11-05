@@ -20,7 +20,7 @@
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "用25道专家编写、双盲核验的私有数学问题评估研究级推理能力，强调超越奥赛的高级理论知识；问题具有唯一闭式答案，由程序化验证器检查。",
-    "task": "回答高难数学问题并评价求解能力。",
+    "task": "求解需要高级理论与多步推理的研究级数学题，提交可由程序验证的唯一答案。",
     "sourceUrls": [
       "https://arxiv.org/abs/2604.06802",
       "https://surgehq.ai/blog/riemann-bench-a-benchmark-for-moonshot-mathematics",
@@ -28,12 +28,13 @@
     ]
   },
   "taskContract": {
-    "input": "研究级数学题及论文定义的作答条件。",
-    "output": "数学解答。",
-    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "input": "一道研究级数学题及题目给出的定义、约束和输出要求。",
+    "output": "满足题目规定的唯一闭式答案；官方验证器检查等价表达式，不设部分分。",
+    "environment": "论文实验允许代码工具、搜索和开放式推理；每题运行 100 次估计 pass@1。官网另有后续计时协议更新。",
     "sourceUrls": [
       "https://arxiv.org/abs/2604.06802",
-      "https://surgehq.ai/blog/riemann-bench-a-benchmark-for-moonshot-mathematics"
+      "https://surgehq.ai/blog/riemann-bench-a-benchmark-for-moonshot-mathematics",
+      "https://arxiv.org/html/2604.06802"
     ]
   },
   "dataProfile": {
@@ -84,11 +85,12 @@
   },
   "metric": {
     "name": "数学题求解正确性",
-    "description": "采用论文v1定义版日期2026-04-08；官网另列9/16与3/24，且记载计时协议曾变，相关实施修订日期不与论文v1日期混用。",
+    "description": "题目具有唯一闭式答案，由程序验证器判对错，不设部分分；论文以每题 100 次独立运行估计 pass@1。官网后续计时协议与论文版本需区分。",
     "direction": "higher",
     "sourceUrls": [
       "https://arxiv.org/abs/2604.06802",
-      "https://surgehq.ai/blog/riemann-bench-a-benchmark-for-moonshot-mathematics"
+      "https://surgehq.ai/blog/riemann-bench-a-benchmark-for-moonshot-mathematics",
+      "https://arxiv.org/html/2604.06802"
     ]
   },
   "limitations": [

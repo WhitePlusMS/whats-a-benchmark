@@ -26,9 +26,9 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
-    "environment": "真实 Hiwonder NexArm 机械臂，四个相机视角，模型通过代码和 HTTP 接口发出动作。",
+    "input": "桌面任务目标、简要机械臂接口说明，以及三路桌面相机和一路腕部相机的画面。",
+    "output": "在隔离容器中编写并运行代码，通过 HTTP 接口控制真实机械臂；完成后提交任务供人工按目标条件评分。",
+    "environment": "真实 Hiwonder NexArm；作者研究预览的各次任务为零样本，任务结束状态按通过条件或部分进展计分。",
     "sourceUrls": [
       "https://artificialanalysis.ai/articles/aa-robotics/"
     ]
@@ -142,6 +142,24 @@
         "source": "https://artificialanalysis.ai/articles/aa-robotics/",
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
         "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "aa-robotics-press-button-gpt6-astra",
+        "title": "红色按钮 · 一次公开评测结果",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "控制夹爪按下红色按钮，使按钮闪亮。",
+        "explanation": "官方结果表记录 GPT-6 Astra 在这项任务得 100 分；这是该模型在单一任务上的公开结果，不代表其他任务的成绩。官方页面提供该任务的可切换模型及相机视角录像。",
+        "raw": {
+          "task": "Press the red button",
+          "model": "GPT-6 Astra",
+          "score": 100,
+          "maximum_score": 100
+        },
+        "source": "https://artificialanalysis.ai/articles/aa-robotics/",
+        "license": "结果和任务条件依据官方公开表格整理；视频留在官方页面观看。",
+        "split": "AA-Robotics v0.1 官方实机评测结果；非训练数据。",
         "excerpt": true
       }
     ]

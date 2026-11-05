@@ -23,9 +23,9 @@
     ]
   },
   "taskContract": {
-    "input": "不同语言的录音",
-    "output": "识别转写",
-    "environment": "按作者公开说明配置模型与运行环境。",
+    "input": "指定语言的朗读语音录音；语音识别设置使用录音作为输入，参考转写用于评分。",
+    "output": "将听到的语音转为文字；数据也可用于语言识别等任务，任务和指标应分别标明。",
+    "environment": "按语言选择训练、验证或测试划分；报告语音识别结果时注明语言、文本规范化方式及词或字符错误率。",
     "sourceUrls": [
       "https://huggingface.co/datasets/google/fleurs"
     ]
@@ -72,10 +72,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已读取固定版本的真实记录，展示原始字段节选。",
+    "reason": "已核对作者英语测试集中的转写和同名录音，本站提供录音及参考转写。",
     "url": "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv",
     "sourceUrls": [
-      "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv"
+      "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv",
+      "https://huggingface.co/datasets/google/fleurs/blob/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/audio/test.tar.gz"
     ]
   },
   "metric": {
@@ -100,6 +101,12 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/google/fleurs"
       ]
+    },
+    {
+      "text": "从固定版本 en_us/audio/test.tar.gz 中提取 test/12741024238657315067.wav；原文件 SHA-256 3e76cc5728bfd7c24f1039b5c9a47e8d79c7f225605862e977833a4f79249bff，202240 采样点、16 kHz、12.64 秒；本站转换为 16 位 PCM。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/fleurs/blob/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/audio/test.tar.gz"
+      ]
     }
   ],
   "sources": [
@@ -112,6 +119,11 @@
       "label": "固定版本实际读取的记录",
       "url": "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv",
       "role": "data"
+    },
+    {
+      "label": "英语测试录音归档（固定版本）",
+      "url": "https://huggingface.co/datasets/google/fleurs/blob/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/audio/test.tar.gz",
+      "role": "data"
     }
   ],
   "related": [],
@@ -123,16 +135,25 @@
         "id": "1980",
         "title": "英语测试集 · 真实转写",
         "type": "record",
-        "prompt": "官方英语测试集中的语音转写样本。",
-        "explanation": "这是作者英语测试集的真实 TSV 第一行，包含录音文件名及对应转写。本站没有复制音频，文本仅为录音转写，不代表用户已听到录音。",
+        "prompt": "听取英语测试集中的朗读录音，将听到的内容转写成文字。",
+        "explanation": "记录 1980 对应一段讨论交通流研究的英语朗读。识别系统需要根据录音生成文字，再与规范化参考转写比较。音频来自同名测试文件，并转换为 16 位 PCM 以便浏览器播放。",
         "raw": "1980\t12741024238657315067.wav\tUnfortunately, studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty.\tunfortunately studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty\tu n f o r t u n a t e l y | s t u d y i n g | t r a f f i c | f l o w | i s | d i f f i c u l t | b e c a u s e | d r i v e r | b e h a v i o r | c a n n o t | b e | p r e d i c t e d | w i t h | o n e - h u n d r e d | p e r c e n t | c e r t a i n t y |\t202240\tMALE",
         "source": "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/test.tsv",
         "license": "CC BY 4.0；Google FLEURS",
-        "split": "作者公开数据的所示划分",
+        "split": "en_us / test / id 1980",
         "excerpt": true,
         "answer": "unfortunately studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty",
         "licensePath": "licenses/cc-by-4-0.txt",
-        "promptOrigin": "editorial"
+        "promptOrigin": "editorial",
+        "assets": [
+          {
+            "kind": "audio",
+            "path": "audio/fleurs-en-us-test-1980.wav",
+            "caption": "英语测试集录音 1980 · 12.64 秒",
+            "transcript": "Unfortunately, studying traffic flow is difficult because driver behavior cannot be predicted with one-hundred percent certainty.",
+            "source": "https://huggingface.co/datasets/google/fleurs/blob/70bb2e84b976b7e960aa89f1c648e09c59f894dd/data/en_us/audio/test.tar.gz"
+          }
+        ]
       }
     ]
   }

@@ -82,21 +82,27 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "官方 README 标注数据 CC BY 4.0；官方 HF 卡标 Apache-2.0，转换集也标 Apache-2.0，许可范围存在差异。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "转换数据卡标注 Apache 2.0。",
+    "scope": "本站展示 HuggingFaceVLA/libero 固定版本的单条示范帧和记录。",
+    "boundaries": [
+      "训练示范不等同验证集，也不能代表模型评测成绩。"
+    ],
     "sourceUrls": [
-      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md",
-      "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial"
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官方 Hugging Face 提供任务级 HDF5 演示文件；例如 libero_spatial 的黑碗放到盘子任务。站内节选另来自第三方转换集的一帧数值，非官方原始 HDF5 文件。",
+    "reason": "展示公开训练示范轨迹的真实记录及首尾观测帧；评测另在仿真环境运行。",
     "sourceUrls": [
       "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial",
-      "https://huggingface.co/datasets/zcyqyq/libero"
+      "https://huggingface.co/datasets/zcyqyq/libero",
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/README.md",
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/episodes/chunk-000/file-000.parquet",
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/tasks.parquet",
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/info.json"
     ]
   },
   "metric": {
@@ -140,6 +146,31 @@
       "label": "相关版本官方资料",
       "url": "https://github.com/sylvestf/LIBERO-plus",
       "role": "definition"
+    },
+    {
+      "label": "LIBERO 转换数据与许可",
+      "url": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/README.md",
+      "role": "data"
+    },
+    {
+      "label": "实际观测帧与动作数据",
+      "url": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "轨迹元数据",
+      "url": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/episodes/chunk-000/file-000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "官方任务文本",
+      "url": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/tasks.parquet",
+      "role": "data"
+    },
+    {
+      "label": "数据划分与特征",
+      "url": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/info.json",
+      "role": "data"
     }
   ],
   "related": [
@@ -164,6 +195,78 @@
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
+      {
+        "id": "libero-dataset-episode-0",
+        "title": "真实轨迹 0：两个杯子放到两个盘子",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把白杯放到左边盘子，把黄白杯放到右边盘子。下方展示这条轨迹的首帧和末帧。",
+        "explanation": "这是公开转换数据集中的第 0 条仿真示范，214 帧、10 Hz；原始数据页保留第 0 帧的状态和动作，以及第 213 帧的编号和时间。它属于 train，不是验证或测试结果。",
+        "raw": {
+          "episode": {
+            "episode_index": 0,
+            "tasks": [
+              "put the white mug on the left plate and put the yellow and white mug on the right plate"
+            ],
+            "length": 214
+          },
+          "first_frame": {
+            "frame_index": 0,
+            "episode_index": 0,
+            "task_index": 0,
+            "timestamp": 0.0,
+            "observation.state": [
+              -0.05338004603981972,
+              0.007029631175100803,
+              0.6783280968666077,
+              3.1407692432403564,
+              0.0017593271331861615,
+              -0.08994418382644653,
+              0.03878866136074066,
+              -0.03878721222281456
+            ],
+            "action": [
+              0.01607142947614193,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.0
+            ]
+          },
+          "last_frame": {
+            "frame_index": 213,
+            "episode_index": 0,
+            "timestamp": 21.299999237060547
+          }
+        },
+        "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
+        "license": "HuggingFaceVLA LIBERO 转换数据卡标注 Apache 2.0；原始 LIBERO 项目与转换方均列于来源。",
+        "licensePath": "licenses/robodojo-apache-2.txt",
+        "split": "train；仿真示范轨迹，不是验证集或测试集。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/libero-episode0-first.png",
+            "alt": "libero 第 0 条轨迹第 0 帧的相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "轨迹 0 · 第 0 帧 · 官方数据分片中的相机画面",
+            "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
+          },
+          {
+            "kind": "image",
+            "path": "images/libero-episode0-last.png",
+            "alt": "libero 第 0 条轨迹第 213 帧的相机画面",
+            "width": 256,
+            "height": 256,
+            "caption": "轨迹 0 · 第 213 帧 · 官方数据分片中的相机画面",
+            "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
+          }
+        ]
+      },
       {
         "id": "zcyqyq-libero-train-episode-0-frame-0",
         "title": "LIBERO 转换集：第 0 条轨迹的第 0 帧",

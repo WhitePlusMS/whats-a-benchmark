@@ -26,9 +26,9 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
-    "environment": "分布式 DROID 真机，评测者可选任务和场景，对两种策略进行双盲比较。",
+    "input": "评估者自选真实场景和语言任务；中心服务为同一任务抽取两种待比较策略，策略接收机器人观测。",
+    "output": "两种策略依次控制机器人执行同一任务；评估者记录每个策略的进展分、两者偏好和文字反馈。",
+    "environment": "分布式真实机器人双盲比较；单次成对实验维持可比场景，不同评估场次的场景和任务可以不同。",
     "sourceUrls": [
       "https://robo-arena.github.io/",
       "https://arxiv.org/abs/2506.18123"
@@ -72,7 +72,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示论文任务例子及官方数据快照中的一次真实评测录像和结果字段；单条记录不代表整套评测成绩。",
     "url": "https://robo-arena.github.io/",
     "sourceUrls": [
       "https://robo-arena.github.io/",

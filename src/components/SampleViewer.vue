@@ -238,11 +238,9 @@ onMounted(() => {
             translate="no"
             >{{ current.answer }}</pre
           >
-          <p v-if="!current.answer" class="muted">
+          <p v-if="!current.answer && !item.embodied" class="muted">
             {{
-              item.embodied
-                ? "这条记录展示已取得的数据；任务目标和评测条件请核对详情与来源。"
-                : current.promptOrigin === "editorial"
+              current.promptOrigin === "editorial"
                   ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
                   : current.excerpt
                     ? "本页节选不含参考答案，完整任务见原始来源。"

@@ -23,11 +23,12 @@
     ]
   },
   "taskContract": {
-    "input": "基础模型、算力预算及任务配置",
-    "output": "微调模型与下游评估结果",
-    "environment": "按作者公开说明配置模型与运行环境。",
+    "input": "基础语言模型、后训练目标及指定算力和时间预算。",
+    "output": "智能体编写并运行后训练流程，提交训练后的模型权重，由评测系统计算下游分数。",
+    "environment": "官方设置提供四个小型基础模型、单张 H100 和 10 小时预算；v1.2 对最终模型使用多随机种子评估。",
     "sourceUrls": [
-      "https://posttrainbench.com/blog/posttrainbench-1-2/"
+      "https://posttrainbench.com/blog/posttrainbench-1-2/",
+      "https://posttrainbench.com/"
     ]
   },
   "dataProfile": {
@@ -122,6 +123,11 @@
       "label": "作者公开轨迹数据集",
       "url": "https://huggingface.co/datasets/aisa-group/PostTrainBench-Trajectories",
       "role": "data"
+    },
+    {
+      "label": "官方基础模型与算力设置",
+      "url": "https://posttrainbench.com/",
+      "role": "definition"
     }
   ],
   "related": [

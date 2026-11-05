@@ -28,8 +28,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "移动操作任务指令与相机观测；目标位置、容器打开方式等关键信息可能在初始时隐藏。",
+    "output": "通过移动、搜索、检查和物体操作收集所需信息并完成任务，最后使用 SUBMIT 结束该次尝试。",
     "environment": "在 RoboCasa365 的 MuJoCo 厨房仿真中，使用移动底盘与 Franka Panda 机械臂；初始观测不暴露完成任务所需的全部信息。",
     "sourceUrls": [
       "https://declare-lab.github.io/RoboQuest/",
@@ -81,7 +81,8 @@
       "https://arxiv.org/html/2610.10388",
       "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
       "https://huggingface.co/datasets/declare-lab/RoboQuest",
-      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE"
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl"
     ]
   },
   "metric": {
@@ -141,6 +142,11 @@
       "label": "官方 MIT 许可",
       "url": "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "Puzzle Box 官方轨迹元数据",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl",
+      "role": "data"
     }
   ],
   "related": [
@@ -196,14 +202,16 @@
         "title": "Puzzle Box：官方示范记录 000000",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "观看官方演示：移动机械臂操作带插销的解谜盒，并完成盒内物品取放。",
-        "explanation": "该视频来自官方演示数据集的 puzzle_box 第 000000 条记录，是开发场景的演示视频，不是评测集轨迹或模型成绩。不同实例中盒内物品与场景可能不同。",
+        "prompt": "打开被插销锁住的木盒，取出橘子并竖放在托盘上；松手后按红色 SUBMIT。",
+        "explanation": "视频对应官方 puzzle_box 第 0 条示范：数据记录给出了完整任务指令和 1740 帧；数据卡说明示范来自开发场景，不是评测集轨迹。",
         "raw": {
-          "dataset": "declare-lab/RoboQuest",
-          "path": "lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
-          "episode_index": 0
+          "episode_index": 0,
+          "tasks": [
+            "Open the wooden puzzle box on the counter, take out the tangerine inside, and stand it inside the tray. The lid slides sideways but is locked by sliding bolts with round black handles: a part moves only when nothing blocks it, so work out the order. Any order that works is fine. Once the tangerine is inside the tray and you have let go of everything, press the red SUBMIT button. Your first submission ends the episode; a wrong submission or no submission fails."
+          ],
+          "length": 1740
         },
-        "source": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
+        "source": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl",
         "license": "MIT License，Copyright (c) 2026 DeCLaRe Lab；官方数据集说明演示数据采用 MIT。",
         "licensePath": "licenses/roboquest-mit.txt",
         "split": "官方开发场景演示数据，不是评测集。",

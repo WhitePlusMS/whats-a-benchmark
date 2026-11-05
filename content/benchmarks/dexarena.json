@@ -28,8 +28,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "指定的阶段或长流程灵巧操作任务，以及对应仿真场景、相机观测和机器人状态。",
+    "output": "控制机械手执行阶段技能或组合完整动作序列；按物理成功条件分别评估阶段、跨场景和完整任务。",
     "environment": "基于 SAPIEN 的物理仿真，含单臂与双臂、多种末端执行器。",
     "sourceUrls": [
       "https://sipair-elastic.github.io/DexArena-website/",
@@ -44,20 +44,25 @@
     ],
     "splits": [],
     "fields": [],
-    "files": [],
+    "files": [
+      "官方数据集说明包含各阶段遥操作轨迹、状态及多视角视频；具体文件访问受控。"
+    ],
     "sourceUrls": [
       "https://sipair-elastic.github.io/DexArena-website/",
-      "https://arxiv.org/abs/2611.02629"
+      "https://arxiv.org/abs/2611.02629",
+      "https://huggingface.co/datasets/SIPAIR/DexArena"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "项目网站与代码公开；Hugging Face 官方轨迹数据需登录并获得访问权限。"
     ],
-    "url": "https://sipair-elastic.github.io/DexArena-website/",
+    "url": "https://huggingface.co/datasets/SIPAIR/DexArena",
     "sourceUrls": [
-      "https://sipair-elastic.github.io/DexArena-website/"
+      "https://sipair-elastic.github.io/DexArena-website/",
+      "https://huggingface.co/datasets/SIPAIR/DexArena",
+      "https://huggingface.co/datasets/SIPAIR/DexArena/blob/f949677d5a51436813fab4f77c57772f44bf1226/data/sharpa/CabinetPouringOpenCabinet-Sharpa-v1/meta/info.json"
     ]
   },
   "reusePolicy": {
@@ -111,6 +116,13 @@
       "sourceUrls": [
         "https://github.com/SIPAIR-Elastic/DexArena-website/blob/d221b76d59e9681aaf4778ccb43339f2504e13ea/src/task-preview-videos.json"
       ]
+    },
+    {
+      "text": "2026-11-05 核对官方数据集固定版本 f949677d5a51436813fab4f77c57772f44bf1226，数据集为受控访问；匿名请求具体 info.json 返回 HTTP 401，未取得该轨迹文件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/SIPAIR/DexArena",
+        "https://huggingface.co/datasets/SIPAIR/DexArena/blob/f949677d5a51436813fab4f77c57772f44bf1226/data/sharpa/CabinetPouringOpenCabinet-Sharpa-v1/meta/info.json"
+      ]
     }
   ],
   "sources": [
@@ -132,6 +144,16 @@
     {
       "label": "官方演示视频来源说明",
       "url": "https://github.com/SIPAIR-Elastic/DexArena-website/blob/d221b76d59e9681aaf4778ccb43339f2504e13ea/src/task-preview-videos.json",
+      "role": "data"
+    },
+    {
+      "label": "官方轨迹数据集与申请入口",
+      "url": "https://huggingface.co/datasets/SIPAIR/DexArena",
+      "role": "data"
+    },
+    {
+      "label": "固定版本轨迹元数据（受控访问）",
+      "url": "https://huggingface.co/datasets/SIPAIR/DexArena/blob/f949677d5a51436813fab4f77c57772f44bf1226/data/sharpa/CabinetPouringOpenCabinet-Sharpa-v1/meta/info.json",
       "role": "data"
     }
   ],
@@ -157,7 +179,7 @@
         "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
         "raw": "Open the package. Retrieve the apple.",
         "source": "https://sipair-elastic.github.io/DexArena-website/",
-        "license": "DexArena 项目网站标注 CC BY 4.0；视频为官方人工遥操作阶段演示，本站原样转载并标明来源。",
+        "license": "DexArena 项目网站标注 CC BY 4.0；视频为官方人工遥操作阶段演示，本站展示缩短后的片段并标明来源。",
         "split": "官方公开任务示例；不推断其训练或测试划分。",
         "excerpt": true,
         "assets": [
@@ -179,7 +201,7 @@
         "explanation": "论文给出的是单阶段成功条件，不代表某个策略已经完成。",
         "raw": "OpenLaptop",
         "source": "https://arxiv.org/html/2611.02629",
-        "license": "DexArena 项目网站标注 CC BY 4.0；视频为官方人工遥操作阶段演示，本站原样转载并标明来源。",
+        "license": "DexArena 项目网站标注 CC BY 4.0；视频为官方人工遥操作阶段演示，本站展示缩短后的片段并标明来源。",
         "split": "官方公开任务示例；不推断训练或测试划分。",
         "excerpt": true,
         "assets": [

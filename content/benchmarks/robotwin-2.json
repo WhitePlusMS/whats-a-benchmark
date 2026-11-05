@@ -85,22 +85,33 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "代码许可为 MIT；HF 数据卡虽标 MIT，但第三方物体资产和视频的转载范围仍需核实。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "公开转换数据标注 MIT。",
+    "scope": "本站展示来源可追溯到官方 demo_clean 的少量转换视频与记录。",
+    "boundaries": [
+      "转换数据为训练示范，不是评测时的验证或测试轨迹。"
+    ],
     "sourceUrls": [
-      "https://github.com/RoboTwin-Platform/RoboTwin/blob/main/README.md",
-      "https://huggingface.co/datasets/TianxingChen/RoboTwin2.0"
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载并解析 LeRobot 转换数据中的双臂演示轨迹，展示首、中、末帧状态和动作。",
+    "reason": "展示 RoboTwin 2.0 官方示范的公开转换轨迹、视频和数据字段；划分按来源标注。",
     "sourceUrls": [
       "https://huggingface.co/docs/lerobot/en/robotwin",
       "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
-      "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/meta/tasks.parquet"
+      "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/meta/tasks.parquet",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/README.md",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes.jsonl",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/LICENSE",
+      "https://huggingface.co/datasets/TianxingChen/RoboTwin2.0",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/adjust_bottle/episode_0000000/instruction.json",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/adjust_bottle/episode_0000000/head_camera.mp4",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/beat_block_hammer/episode_0000000/instruction.json",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/beat_block_hammer/episode_0000000/head_camera.mp4",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/instruction.json",
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/head_camera.mp4"
     ]
   },
   "metric": {
@@ -159,6 +170,51 @@
       "label": "固定版本任务索引",
       "url": "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/meta/tasks.parquet",
       "role": "data"
+    },
+    {
+      "label": "RoboTwin 2.0 逐轨迹转换数据",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/README.md",
+      "role": "data"
+    },
+    {
+      "label": "原始轨迹元数据",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "转换数据 MIT 许可",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/LICENSE",
+      "role": "data"
+    },
+    {
+      "label": "adjust_bottle 指令文件",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/adjust_bottle/episode_0000000/instruction.json",
+      "role": "data"
+    },
+    {
+      "label": "adjust_bottle 头部相机视频",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/adjust_bottle/episode_0000000/head_camera.mp4",
+      "role": "data"
+    },
+    {
+      "label": "beat_block_hammer 指令文件",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/beat_block_hammer/episode_0000000/instruction.json",
+      "role": "data"
+    },
+    {
+      "label": "beat_block_hammer 头部相机视频",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/beat_block_hammer/episode_0000000/head_camera.mp4",
+      "role": "data"
+    },
+    {
+      "label": "stack_blocks_two 指令文件",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/instruction.json",
+      "role": "data"
+    },
+    {
+      "label": "stack_blocks_two 头部相机视频",
+      "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/head_camera.mp4",
+      "role": "data"
     }
   ],
   "related": [
@@ -175,6 +231,99 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "robotwin2-stack-blocks-two-episode0",
+        "title": "真实轨迹 0：堆叠红绿方块",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "先将红方块放到中间，再把绿方块叠到红方块上。",
+        "explanation": "该视频和元数据取自 RoboTwin 2.0 demo_clean 轨迹的公开转换，episode 0、scene_seed 0、311 条轨迹记录；视频经过转换并标为 30 fps。指令文件提供多种描述，本例展示其中一条。",
+        "raw": {
+          "episode_index": 0,
+          "task": "stack_blocks_two",
+          "scene_seed": 0,
+          "rows": 311,
+          "source_archive": "dataset/stack_blocks_two/demo_clean.zip",
+          "video_fps": 30,
+          "instruction_seen": "Center red block using the left arm, then stack green block with the left arm on top.",
+          "head_camera": "episodes/stack_blocks_two/episode_0000000/head_camera.mp4"
+        },
+        "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes.jsonl",
+        "license": "robotensor 公布的 RoboTwin 2.0 转换数据标注 MIT，并保留原项目版权与来源。",
+        "licensePath": "licenses/robotwin-aloha-clean-mit.txt",
+        "split": "demo_clean 训练示范；公开转换集声明没有验证或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robotwin2-stack-blocks-two-episode0.mp4",
+            "caption": "RoboTwin 2.0 demo_clean 轨迹 0 · 头部相机（公开转换）",
+            "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/head_camera.mp4"
+          }
+        ]
+      },
+      {
+        "id": "robotwin2-beat-block-hammer-episode0",
+        "title": "真实轨迹 0：使用锤子敲方块",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "用金属锤敲击方块。",
+        "explanation": "该视频和元数据取自 RoboTwin 2.0 demo_clean 轨迹的公开转换，episode 0、scene_seed 0、125 条轨迹记录；视频经过转换并标为 30 fps。指令文件提供多种描述，本例展示其中一条。",
+        "raw": {
+          "episode_index": 0,
+          "task": "beat_block_hammer",
+          "scene_seed": 0,
+          "rows": 125,
+          "source_archive": "dataset/beat_block_hammer/demo_clean.zip",
+          "video_fps": 30,
+          "instruction_seen": "Use the medium-sized metal hammer to hammer the block.",
+          "head_camera": "episodes/beat_block_hammer/episode_0000000/head_camera.mp4"
+        },
+        "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes.jsonl",
+        "license": "robotensor 公布的 RoboTwin 2.0 转换数据标注 MIT，并保留原项目版权与来源。",
+        "licensePath": "licenses/robotwin-aloha-clean-mit.txt",
+        "split": "demo_clean 训练示范；公开转换集声明没有验证或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robotwin2-beat-block-hammer-episode0.mp4",
+            "caption": "RoboTwin 2.0 demo_clean 轨迹 0 · 头部相机（公开转换）",
+            "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/beat_block_hammer/episode_0000000/head_camera.mp4"
+          }
+        ]
+      },
+      {
+        "id": "robotwin2-adjust-bottle-episode0",
+        "title": "真实轨迹 0：扶正绿色瓶子",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "用左臂拿起绿色瓶子并保持瓶口向上。",
+        "explanation": "该视频和元数据取自 RoboTwin 2.0 demo_clean 轨迹的公开转换，episode 0、scene_seed 0、139 条轨迹记录；视频经过转换并标为 30 fps。指令文件提供多种描述，本例展示其中一条。",
+        "raw": {
+          "episode_index": 0,
+          "task": "adjust_bottle",
+          "scene_seed": 0,
+          "rows": 139,
+          "source_archive": "dataset/adjust_bottle/demo_clean.zip",
+          "video_fps": 30,
+          "instruction_seen": "Pick the bottle with ridges near base head-up using the left arm",
+          "head_camera": "episodes/adjust_bottle/episode_0000000/head_camera.mp4"
+        },
+        "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes.jsonl",
+        "license": "robotensor 公布的 RoboTwin 2.0 转换数据标注 MIT，并保留原项目版权与来源。",
+        "licensePath": "licenses/robotwin-aloha-clean-mit.txt",
+        "split": "demo_clean 训练示范；公开转换集声明没有验证或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robotwin2-adjust-bottle-episode0.mp4",
+            "caption": "RoboTwin 2.0 demo_clean 轨迹 0 · 头部相机（公开转换）",
+            "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/adjust_bottle/episode_0000000/head_camera.mp4"
+          }
+        ]
+      },
       {
         "id": "robotwin2-lerobot-episode-0",
         "title": "拿起窄口瓶 · 双臂轨迹 0",

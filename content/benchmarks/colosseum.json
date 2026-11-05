@@ -26,12 +26,13 @@
     ]
   },
   "taskContract": {
-    "input": "按任务提供目标、观测与机器人接口。",
-    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "input": "任务语言描述，以及四个相机的 RGB、深度观测和机器人状态；具体输入组合取决于策略实现。",
+    "output": "机器人操作动作，使机械臂完成指定目标；具体动作接口由策略和任务配置决定。",
     "environment": "基于 RLBench 的操作仿真；论文也报告部分对应的真实世界验证。",
     "sourceUrls": [
       "https://robot-colosseum.github.io/",
-      "https://arxiv.org/abs/2402.08191"
+      "https://arxiv.org/abs/2402.08191",
+      "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/README.md"
     ]
   },
   "dataProfile": {
@@ -40,28 +41,37 @@
     "scale": [
       "论文介绍 20 项操作任务和 14 类环境扰动；工具文档列出的可控因素口径可能不同。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "数据卡说明训练集采用无扰动任务演示，测试集包含适用于各任务的扰动；原始目录以任务和扰动编号组织。"
+    ],
+    "fields": [
+      "四个相机各有 RGB 与深度帧（128 × 128）；variation_descriptions.pkl 保存任务描述，low_dim_obs.pkl 保存低维观测。"
+    ],
+    "files": [
+      "按任务分发 tar.gz；示例路径 slide_block_to_target_0/variation0/episodes/episode4/left_shoulder_rgb/。"
+    ],
     "sourceUrls": [
       "https://robot-colosseum.github.io/",
-      "https://arxiv.org/abs/2402.08191"
+      "https://arxiv.org/abs/2402.08191",
+      "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/README.md",
+      "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+      "官方 Hugging Face 页面公开按任务分发的数据包；完整训练与测试所需下载规模较大。"
     ],
-    "url": "https://robot-colosseum.github.io/",
+    "url": "https://huggingface.co/datasets/colosseum/colosseum-challenge",
     "sourceUrls": [
-      "https://robot-colosseum.github.io/"
+      "https://robot-colosseum.github.io/",
+      "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/README.md"
     ]
   },
   "reusePolicy": {
     "status": "permitted",
     "license": "官方 Colosseum 数据集标注 MIT。",
-    "scope": "展示数据集卡中的相机布置图，署名 Colosseum 作者团队。",
+    "scope": "展示官方数据卡相机布置图和数据包中的演示帧，署名 Colosseum 作者团队。",
     "boundaries": [
       "图像说明通用场景布置，不能用作模型操作成功的证据。"
     ],
@@ -71,7 +81,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方演示帧和任务说明；划分依据数据卡说明，未将演示视为模型评测结果。",
     "url": "https://robot-colosseum.github.io/",
     "sourceUrls": [
       "https://robot-colosseum.github.io/",
@@ -127,6 +137,11 @@
     {
       "label": "官方机器人相机布置图",
       "url": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/media/colosseum-camera-views.png",
+      "role": "data"
+    },
+    {
+      "label": "官方滑动方块演示原始数据包",
+      "url": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz",
       "role": "data"
     }
   ],
@@ -185,6 +200,49 @@
             "height": 597,
             "caption": "官方相机布置示意；不是单条机器人执行轨迹。",
             "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/media/colosseum-camera-views.png"
+          }
+        ]
+      },
+      {
+        "id": "colosseum-slide-episode4",
+        "title": "滑动方块：官方 episode4 轨迹",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将方块滑向目标区域。",
+        "explanation": "从同一官方演示的左肩相机连续帧中选取开头、中间和末尾三帧；仅说明动作过程，不能据此判定最终是否成功。",
+        "raw": "slide_block_to_target / slide_block_to_target_0 / variation0 / episodes / episode4 / left_shoulder_rgb / 0.png, 44.png, 87.png",
+        "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz",
+        "license": "官方 Colosseum 数据集标注 MIT；来源 Colosseum 作者团队。",
+        "licensePath": "licenses/colosseum-data-mit.txt",
+        "split": "_0 为无扰动配置；数据卡将无扰动示范用于训练，压缩包路径未单列 train 标签。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/colosseum-slide-episode4-0.png",
+            "alt": "Colosseum 滑动方块演示 episode4 左肩相机第 0 帧",
+            "width": 128,
+            "height": 128,
+            "caption": "左肩相机第 0 帧，原始 128 × 128。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
+          },
+          {
+            "kind": "image",
+            "path": "images/colosseum-slide-episode4-44.png",
+            "alt": "Colosseum 滑动方块演示 episode4 左肩相机第 44 帧",
+            "width": 128,
+            "height": 128,
+            "caption": "左肩相机第 44 帧，原始 128 × 128。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
+          },
+          {
+            "kind": "image",
+            "path": "images/colosseum-slide-episode4-87.png",
+            "alt": "Colosseum 滑动方块演示 episode4 左肩相机第 87 帧",
+            "width": 128,
+            "height": 128,
+            "caption": "左肩相机第 87 帧，原始 128 × 128。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
           }
         ]
       }

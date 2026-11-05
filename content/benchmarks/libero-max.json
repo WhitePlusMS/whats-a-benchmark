@@ -27,8 +27,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "原始 LIBERO 任务与机器人观测；运行中会发生目标位置、相机、光照或障碍物等变化。",
+    "output": "控制策略在变化后继续执行并争取完成任务；与相同初始设置及前缀的无变化对照进行比较。",
     "environment": "基于 LIBERO-Plus 与 LIBERO-PRO 的仿真案例，在执行途中施加可控环境变化。",
     "sourceUrls": [
       "https://liberomax.github.io/",
@@ -41,12 +41,19 @@
     "scale": [
       "完整评测 8,000 对 Base/Dynamic 案例，覆盖 8 类事件；Lite 为固定的 800 对子集。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "Lite 是完整评测的固定 800 对案例子集，每种事件 100 对；各案例有无变化对照。"
+    ],
+    "fields": [
+      "清单包含基础任务、初始状态、策略随机种子、触发条件和变化参数。"
+    ],
+    "files": [
+      "benchmark/lite/libero_max_lite.json 提供 Lite 案例清单。"
+    ],
     "sourceUrls": [
       "https://liberomax.github.io/",
-      "https://arxiv.org/abs/2609.36518"
+      "https://arxiv.org/abs/2609.36518",
+      "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/libero_max_lite.json"
     ]
   },
   "dataAccess": {
@@ -72,10 +79,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方任务说明和固定 Lite 清单中的真实配对案例；未运行或转载该案例的模型轨迹。",
     "url": "https://liberomax.github.io/",
     "sourceUrls": [
-      "https://liberomax.github.io/"
+      "https://liberomax.github.io/",
+      "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/libero_max_lite.json"
     ]
   },
   "metric": {
@@ -115,6 +123,16 @@
       "label": "论文或官方补充资料",
       "url": "https://arxiv.org/abs/2609.36518",
       "role": "paper"
+    },
+    {
+      "label": "LIBERO-MAX Lite 官方案例清单（固定提交）",
+      "url": "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/libero_max_lite.json",
+      "role": "data"
+    },
+    {
+      "label": "LIBERO-MAX Lite 说明",
+      "url": "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/README.md",
+      "role": "data"
     }
   ],
   "related": [
@@ -182,6 +200,40 @@
         "source": "https://liberomax.github.io/",
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
         "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "libero-max-lite-camera-case",
+        "title": "Lite 真实案例：接近摩卡壶时相机移位",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "打开炉灶并把摩卡壶放上去；机器人接近摩卡壶时，相机视角按案例配置发生变化，继续执行原任务。",
+        "explanation": "来自官方 Lite 配对清单的一个案例。机器人距摩卡壶 0.18 米时触发相机偏移；Base 与 Dynamic 使用相同初始设置，后者施加变化。本条是评测配置，不包含实际执行轨迹或成功结果。",
+        "raw": {
+          "case_id": "libero_10-t0009-camera_shift-d0-p195",
+          "task_name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_table_19",
+          "init_state_index": 0,
+          "policy_seed": 195,
+          "trigger": {
+            "type": "on_proximity",
+            "value": "moka_pot_1",
+            "distance_m": 0.18
+          },
+          "change": {
+            "camera": "agentview",
+            "operation": "shift_camera",
+            "delta_position_m": [
+              0.06,
+              0.0,
+              0.02
+            ],
+            "delta_fovy_degrees": 12.0,
+            "yaw_degrees": 18.0
+          }
+        },
+        "source": "https://github.com/liberomax/LIBERO-MAX/blob/01625e290b1aa07511bdc820781e635e851353cc/benchmark/lite/libero_max_lite.json",
+        "license": "案例标识及参数摘自作者公开清单；本站中文解释为整理，相关资产及代码许可分别核对。",
+        "split": "LIBERO-MAX Lite 3.0.0 固定评测案例，来自 LIBERO-Plus 基础任务；不推断训练数据划分。",
         "excerpt": true
       }
     ]

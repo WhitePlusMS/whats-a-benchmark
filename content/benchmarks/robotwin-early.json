@@ -74,7 +74,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "官方 RoboTwin 早期版数据集卡标注 MIT。",
-    "scope": "站内展示所取得演示的关节、末端位姿和点云数值节选；其他场景素材需单独核对。",
+    "scope": "站内展示演示的关节、末端位姿和点云数值节选，以及从同一轨迹点云绘制的三帧图像；其他场景素材需单独核对。",
     "boundaries": [
       "该演示包仅含点云，不含 RGB 视频；此记录不是模型评测成绩。"
     ],
@@ -84,7 +84,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得早期版官方 Diverse Bottles Pick 数据包，展示同一条演示的三帧数值。",
+    "reason": "已取得早期版官方 Diverse Bottles Pick 数据包，展示同一条演示的三帧数值和点云渲染图。",
     "sourceUrls": [
       "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset",
       "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip"
@@ -148,7 +148,7 @@
         "type": "record",
         "prompt": "双臂机器人在仿真场景中执行不同瓶子的抓取任务。原始数据记录了每一帧的关节动作、末端位姿和点云。",
         "promptOrigin": "editorial",
-        "explanation": "实际下载的官方包中，episode0 含 186 帧；本站展示第 0、93、185 帧的完整关节动作、末端位姿及各两点点云。没有附加 RGB 图片；记录本身不能代表模型总体成功率。",
+        "explanation": "官方点云包中 episode0 含 186 帧；本站展示第 0、93、185 帧的关节动作、末端位姿和点云。图像是依据每帧 1,024 个 XYZRGB 点绘制的三维散点图，不是相机照片；三图采用同一视角与三帧合并后坐标的 1%–99% 分位显示范围。该记录不是模型总体成功率。",
         "raw": {
           "dataset": "YaoMarkMu/robotwin_dataset",
           "revision": "53fda493155c73c4a1829a6638535f787ca11009",
@@ -326,7 +326,36 @@
         "license": "官方数据集卡标注 MIT；保留发布方、固定版本及许可说明。",
         "licensePath": "licenses/robotwin-early-dataset-mit.txt",
         "split": "diverse_bottles_pick / episode0",
-        "excerpt": true
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/robotwin-early-pointcloud-0.png",
+            "alt": "第 0 帧点云三维散点图",
+            "width": 840,
+            "height": 840,
+            "caption": "轨迹 0 · 第 0 帧 · 从点云绘制，非相机照片",
+            "source": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip"
+          },
+          {
+            "kind": "image",
+            "path": "images/robotwin-early-pointcloud-93.png",
+            "alt": "第 93 帧点云三维散点图",
+            "width": 840,
+            "height": 840,
+            "caption": "轨迹 0 · 第 93 帧 · 从点云绘制，非相机照片",
+            "source": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip"
+          },
+          {
+            "kind": "image",
+            "path": "images/robotwin-early-pointcloud-185.png",
+            "alt": "第 185 帧点云三维散点图",
+            "width": 840,
+            "height": 840,
+            "caption": "轨迹 0 · 第 185 帧 · 从点云绘制，非相机照片",
+            "source": "https://huggingface.co/datasets/YaoMarkMu/robotwin_dataset/blob/53fda493155c73c4a1829a6638535f787ca11009/diverse_bottles_pick.zip"
+          }
+        ]
       }
     ]
   },

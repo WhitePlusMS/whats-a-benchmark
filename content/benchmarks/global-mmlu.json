@@ -16,16 +16,16 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "跨语言和文化视角的 MMLU 知识评估。",
+    "summary": "将 MMLU 选择题扩展到多种语言，并为部分问题加入文化敏感性标注，用于分析跨语言知识评测表现。",
     "task": "回答多语言专业知识选择题。",
     "sourceUrls": [
       "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
     ]
   },
   "taskContract": {
-    "input": "多语言问题与四个选项",
-    "output": "答案选项",
-    "environment": "按作者公开说明配置模型与运行环境。",
+    "input": "指定语言的学科问题与四个候选答案；部分记录还附文化敏感性、地区等标注。",
+    "output": "针对每道题选择一个答案选项；按语言、学科或文化敏感性分组分析时须说明使用的子集。",
+    "environment": "作者数据提供不同语言及 dev、test 等划分；语言版本的翻译和后编辑情况不同，应随成绩注明配置。",
     "sourceUrls": [
       "https://huggingface.co/datasets/CohereLabs/Global-MMLU"
     ]
@@ -130,7 +130,7 @@
         "title": "抽象代数 · 官方 dev 记录",
         "type": "choice",
         "prompt": "Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.",
-        "explanation": "这是实际读取的原始数据记录，来源与划分见链接；其余记录未经逐条审查。",
+        "explanation": "题目要求判断模 3 的多项式商环何时构成域。二次多项式在 Z₃ 上不可约时商环为域；c=1 时 x²+1 在 0、1、2 均无根，因此选 B。c=0 或 2 时多项式有根。",
         "raw": {
           "sample_id": "abstract_algebra/dev/0",
           "subject": "abstract_algebra",
@@ -143,7 +143,7 @@
         },
         "source": "https://huggingface.co/datasets/CohereLabs/Global-MMLU/resolve/0e619dbeb34206cd48705a1a0ea7fb21cae09993/en/dev-00000-of-00001.parquet",
         "license": "Apache-2.0；Cohere Labs, Global-MMLU",
-        "split": "作者公开数据的所示划分",
+        "split": "en / dev / abstract_algebra/dev/0",
         "excerpt": true,
         "answer": "B",
         "options": [

@@ -27,8 +27,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
-    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "input": "指定的真实机器人操作任务及多相机观测；可使用项目提供的专家遥操作演示训练策略。",
+    "output": "控制对应机械臂完成任务，例如搬运试管、击球或切割；按具体任务的条件评估。",
     "environment": "真实机器人采集和评估，项目展示不同机械臂平台及多相机视频。",
     "sourceUrls": [
       "https://www.rhos.ai/research/gm-100/results/",
@@ -75,7 +75,8 @@
     "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
     "url": "https://www.rhos.ai/research/gm-100/results/",
     "sourceUrls": [
-      "https://www.rhos.ai/research/gm-100/results/"
+      "https://www.rhos.ai/research/gm-100/results/",
+      "https://huggingface.co/datasets/rhos-ai/gm100-cobotmagic-lerobot/blob/aaee720c36c3ff95d143f3a674d22db557b09c91/task_00008/meta/episodes.jsonl"
     ]
   },
   "metric": {
@@ -130,6 +131,11 @@
       "label": "试管转移实机演示",
       "url": "https://huggingface.co/datasets/rhos-ai/gm100-cobotmagic-lerobot/blob/aaee720c36c3ff95d143f3a674d22db557b09c91/task_00008/videos/chunk-000/observation.images.camera_top/episode_000000.mp4",
       "role": "data"
+    },
+    {
+      "label": "试管转移轨迹记录",
+      "url": "https://huggingface.co/datasets/rhos-ai/gm100-cobotmagic-lerobot/blob/aaee720c36c3ff95d143f3a674d22db557b09c91/task_00008/meta/episodes.jsonl",
+      "role": "data"
     }
   ],
   "related": [],
@@ -163,11 +169,23 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "把试管从右侧试管架转移到左侧试管架。",
-        "explanation": "视频来自官方数据集 task_00008 的第 0 条实机遥操作记录；该演示不代表某个自主策略的评测成绩。",
-        "raw": "Transferring Test Tubes",
-        "source": "https://www.rhos.ai/research/gm-100/results/",
+        "explanation": "视频对应官方数据集 task_00008 的第 0 条实机遥操作记录，元数据记录长度为 1867 帧；这是示范而非自主策略评测成绩。",
+        "raw": {
+          "episode": {
+            "episode_index": 0,
+            "tasks": [
+              "move-test-tubes-from-right-rack-to-left-rack"
+            ],
+            "length": 1867
+          },
+          "task": {
+            "task_index": 0,
+            "task": "move-test-tubes-from-right-rack-to-left-rack"
+          }
+        },
+        "source": "https://huggingface.co/datasets/rhos-ai/gm100-cobotmagic-lerobot/blob/aaee720c36c3ff95d143f3a674d22db557b09c91/task_00008/meta/episodes.jsonl",
         "license": "Rhos AI 官方 GM-100 Cobot Magic 数据集标注 MIT；来源 Rhos AI。",
-        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "split": "公开实机遥操作示范；不标为验证或测试集。",
         "excerpt": true,
         "assets": [
           {

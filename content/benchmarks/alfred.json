@@ -96,7 +96,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "本站展示已下载官方 Lite 轨迹包中的一条记录的参数和步骤解读；数据许可尚未明确。",
+    "reason": "已从官方 Lite 轨迹包中分别核对训练集和未见场景验证集记录，展示任务参数及步骤解读。",
     "sourceUrls": [
       "https://github.com/askforalfred/alfred/blob/master/data/README.md",
       "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z"
@@ -141,6 +141,33 @@
     "retrievedAt": "2026-10-28",
     "samples": [
       {
+        "id": "alfred-valid-unseen-soap-405868",
+        "title": "把洗手液瓶移到马桶上 · 未见场景验证集",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在浴室中拿起两只水池之间的洗手液瓶，再转向马桶，将瓶子放在马桶水箱后部。",
+        "explanation": "从官方 Lite 包的 valid_unseen 目录解出这条专家轨迹；页面按其中一份语言标注整理步骤，并保留任务参数和场景编号。Lite 包不含此轨迹的视频或原始图像；这不是模型运行结果。",
+        "raw": {
+          "task_id": "trial_T20190907_004321_405868",
+          "task_type": "pick_and_place_simple",
+          "pddl_params": {
+            "mrecep_target": "",
+            "object_sliced": false,
+            "object_target": "SoapBottle",
+            "parent_target": "Toilet",
+            "toggle_target": ""
+          },
+          "scene": {
+            "floor_plan": "FloorPlan424",
+            "scene_num": 424
+          }
+        },
+        "source": "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z",
+        "license": "数据包的独立转载许可尚未核实；仅展示任务参数与本站整理的步骤。",
+        "split": "valid_unseen / json_2.1.0 / trial_T20190907_004321_405868",
+        "excerpt": true
+      },
+      {
         "id": "trial-T20190908-122510-105385",
         "title": "把喷雾瓶放入垃圾桶",
         "type": "record",
@@ -172,6 +199,13 @@
   "researchNotes": [
     {
       "text": "2026-10-28 下载官方 json_2.1.0.7z 并解出 trial_T20190908_122510_105385；压缩包 SHA-256 为 c2e9e4256f94ccb2451dcaf99ff26124777eda0f256110489d1f0eaf6a3f02e9。",
+      "sourceUrls": [
+        "https://github.com/askforalfred/alfred/blob/master/data/README.md",
+        "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z"
+      ]
+    },
+    {
+      "text": "从官方 Lite 包中提取 valid_unseen/pick_and_place_simple-SoapBottle-None-Toilet-424/trial_T20190907_004321_405868/traj_data.json，核对任务参数、场景及标注步骤；Lite 数据不包含原始图像。",
       "sourceUrls": [
         "https://github.com/askforalfred/alfred/blob/master/data/README.md",
         "https://ai2-vision-alfred.s3-us-west-2.amazonaws.com/json_2.1.0.7z"

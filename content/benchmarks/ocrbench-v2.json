@@ -17,16 +17,16 @@
   "aliases": [],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "OCRBench v2 是覆盖更多文字视觉任务的双语评测。",
+    "summary": "双语视觉文字评测，考查模型识别、定位和理解图像中文字，并据此完成推理。",
     "task": "理解图像文字、定位、解析并回答问题。",
     "sourceUrls": [
       "https://github.com/Yuliang-Liu/MultimodalOCR"
     ]
   },
   "taskContract": {
-    "input": "图像和任务问题。",
-    "output": "文字、位置或结构化答案。",
-    "environment": "按任务类型分别使用官方评分方式。",
+    "input": "包含文字的图像和相应问题；场景包括街景、收据、公式及图表等。",
+    "output": "根据题目返回识别文字、文字位置或利用图中文字推理得到的答案。",
+    "environment": "按官方定义的任务类型及语言分别评分和汇总；公开数据与私有评测集应分别注明。",
     "sourceUrls": [
       "https://github.com/Yuliang-Liu/MultimodalOCR"
     ]
