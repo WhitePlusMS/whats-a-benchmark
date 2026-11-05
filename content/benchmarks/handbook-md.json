@@ -23,8 +23,8 @@
     ]
   },
   "taskContract": {
-    "input": "任务提示、企业手册和模拟业务工具。",
-    "output": "业务操作与最终产物。",
+    "input": "企业任务指令、长篇操作手册，以及模拟邮箱、聊天、工单和工作区文件等可用资源。",
+    "output": "依据手册执行必要业务操作并生成指定文件；评估同时检查要求完成的动作和禁止事项。",
     "environment": "模拟邮箱、聊天、日历等服务和文件环境。",
     "sourceUrls": [
       "https://arxiv.org/abs/2607.25398"
@@ -36,25 +36,32 @@
     "scale": [
       "论文包含 65 个任务，覆盖金融、医疗账单、保险、物流和人力资源；仓库提供 3 个示例任务。"
     ],
-    "splits": [],
-    "fields": [],
+    "splits": [
+      "官方仓库提供 3 个公开示例任务；论文包含 65 个任务，不应把示例数当作完整题集规模。"
+    ],
+    "fields": [
+      "每个公开任务包含 instruction.md、工作区与模拟服务初始状态、任务配置和评分规则。"
+    ],
     "files": [
-      "instruction.md"
+      "instruction.md：任务指令；environment/：初始环境；tests/rubrics.json：任务评分标准。"
     ],
     "sourceUrls": [
       "https://arxiv.org/abs/2607.25398",
       "https://github.com/surge-ai/handbook",
-      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/hr_crestwood_university_79786c46/instruction.md"
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/hr_crestwood_university_79786c46/instruction.md",
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/instruction.md",
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/tests/rubrics.json"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "具体任务、脚手架及访问限制以官方入口为准。"
+      "官方仓库公开 3 个示例任务、初始环境与检查规则；完整 65 题的公开范围需以官方资料为准。"
     ],
     "sourceUrls": [
       "https://github.com/surge-ai/handbook"
-    ]
+    ],
+    "url": "https://github.com/surge-ai/handbook"
   },
   "reusePolicy": {
     "status": "permitted",
@@ -65,15 +72,19 @@
     ],
     "sourceUrls": [
       "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/hr_crestwood_university_79786c46/instruction.md",
-      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/LICENSE"
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/LICENSE",
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/instruction.md",
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/tests/rubrics.json"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得固定版本的官方真实任务说明，展示其节选。",
+    "reason": "展示官方公开示例任务原文；保险对账样例附对应的工作簿评分条件，不能代表完整评测集。",
     "url": "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/hr_crestwood_university_79786c46/instruction.md",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/hr_crestwood_university_79786c46/instruction.md"
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/hr_crestwood_university_79786c46/instruction.md",
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/instruction.md",
+      "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/tests/rubrics.json"
     ]
   },
   "metric": {
@@ -112,11 +123,21 @@
       "label": "任务作者的许可证",
       "url": "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "保险对账示例任务指令",
+      "url": "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "保险对账示例评分条件",
+      "url": "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/tests/rubrics.json",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
-  "updatedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
@@ -134,6 +155,20 @@
         "split": "public",
         "excerpt": true,
         "licensePath": "licenses/lhtb-apache-2-0.txt"
+      },
+      {
+        "id": "insurance-vanguard-suspense-reconciliation",
+        "title": "保险对账：处理月结暂记项目",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据工作区 SOP 核对三月公司间暂记项目，保存指定的对账工作簿，并补齐支持材料、冲突、状态和处理说明等五列。",
+        "explanation": "官方公开示例要求输出 Suspense_Reconciliation_March2026.xlsx。首项评分条件检查文件是否存在以及五列是否齐全；其他规则还检查逐项状态、证明材料与相关业务动作，不能只创建空表。",
+        "raw": "Hey, I need you to handle the March intercompany suspense reconciliation. We're already a few days past the month close deadline and Marcus is asking for an update on where we stand with the suspense items.\n\nThe suspense workbook and SOP are in the workspace. Follow the SOP procedures for intercompany suspense reconciliation.\nSave your completed reconciliation workbook to Suspense_Reconciliation_March2026.xlsx. Add these specific tie-out columns to the Excel file: Support Found, Support Location, Conflict, Status, and Resolution Notes.",
+        "source": "https://raw.githubusercontent.com/surge-ai/handbook/374bc876ba008169e0dc30c1a751859d525cedc4/tasks/insurance_vanguard_shield_mutual_9b2f7a29/instruction.md",
+        "license": "Apache-2.0；Surge AI HANDBOOK.md，保留作者和许可。",
+        "licensePath": "licenses/lhtb-apache-2-0.txt",
+        "split": "公开示例任务；不是完整 65 项任务的独立训练/测试划分。",
+        "excerpt": true
       }
     ]
   }
