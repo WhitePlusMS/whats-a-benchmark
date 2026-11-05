@@ -2325,3 +2325,7 @@
 - 修改 `content/benchmarks/maniskill2.json`：增加官方处理版 PickCube-v0 episode 0 的元数据、来源与划分边界；从固定版本 HDF5 的 89 帧双相机 RGB 合成 `content/assets/videos/maniskill2-pickcube-rgbd-episode0.mp4`，按 10 帧/秒展示而非宣称实时速度，并沿用 `content/assets/licenses/cc-by-nc-4.txt` 标注数据卡中场景资产的非商业许可。该轨迹是仿真演示，控制模式与原始轨迹样例不同，不作为模型评测成绩。
 
 - 修改 `content/benchmarks/rlbench.json` 并新增 `content/assets/videos/rlbench-place-cups-episode0.mp4`：从固定版本第三方转换 Parquet 中读取 episode 0 的 485 帧 image 与 wrist_image，按数据集的 10 帧/秒并排、缩放、重新编码；保留原始三帧、来源与许可边界，明确转换集标记 train，不能推断原版测试划分或模型成绩。
+
+- 修改 `content/benchmarks/aa-omniscience.json`：补充 v1.1 无工具事实问答任务、3,000 题及 300 条公开 test 数据，明确与 v1.0 的 6,000 题和 600 条公开 train 不可直接比较；保留并标注旧版样例，新增官方数据浏览器可核对的 v1.1 第 15 题。文件下载接口限流，未声称下载固定 CSV。
+- 新增 `content/assets/licenses/aa-omniscience-v11-apache-2.txt`，为 v1.1 样例提供独立命名的 Apache-2.0 许可文本。
+- 将 AA-Omniscience 默认数据入口切至 v1.1，旧版样例仍各自保留 v1.0 固定来源。

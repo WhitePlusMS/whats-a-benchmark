@@ -13,7 +13,7 @@
     "artificial-analysis"
   ],
   "year": 2025,
-  "version": "按 2026-09-28 方法快照",
+  "version": "v1.1；保留 v1.0 公开示例以供区分",
   "kind": "original",
   "aliases": [
     "AA Omniscience"
@@ -21,83 +21,93 @@
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "评估模型跨领域的事实记忆与知识校准能力：既检查答案是否准确，也惩罚不知道时的错误猜测，以比较输出的事实可靠性。",
-    "task": "跨主题的知识问题。 → 开放式回答，或明确不作答。",
+    "task": "在不使用外部工具或额外上下文时回答跨领域事实问题；不确定时明确说明不知道。",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/omniscience",
       "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
-      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public"
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
     ]
   },
   "taskContract": {
-    "input": "跨主题的知识问题。",
-    "output": "开放式回答，或明确不作答。",
-    "environment": "固定问答提示与判分协议，不是多轮办公任务。",
+    "input": "给出所属领域、子主题及一个开放式事实问题，例如询问电路公式、法律条款或历史年份。",
+    "output": "只给简短答案；不确定或需要额外资料时明确不作答，裁判按参考答案判断。",
+    "environment": "官方问答设置不提供额外上下文或工具；比较时区分题集与裁判版本。",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/omniscience",
       "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
-      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public"
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
     ]
   },
   "dataProfile": {
-    "summary": "官方提供 Public 子集入口；该入口不表示正式集及全部答案均可获得。",
+    "summary": "v1.1 含 3,000 题，其中 300 条公开；旧版 v1.0 为 6,000 题、600 条公开。两版成绩不直接可比。",
     "disclosure": "partial",
     "scale": [
-      "正式集：6,000 题、42 个主题。"
+      "v1.1：3,000 题、6 个领域、42 个主题；其中 300 题公开。",
+      "v1.0：6,000 题；其中 600 题公开。"
     ],
     "splits": [
-      "Public CSV 共 600 条；官方 HF 发布标为 train，公开子集不同于完整正式集。"
+      "v1.1 公开集：test，300 行；其余 2,700 题不公开。",
+      "v1.0 公开集：train，600 行；与 v1.1 分别记录。"
     ],
     "fields": [
-      "原 CSV：domain、topic、subtopic、question_id、question、answer。"
+      "v1.1：domain、subtopic、question_id、question、answer。",
+      "v1.0：domain、topic、subtopic、question_id、question、answer。"
     ],
     "files": [
-      "AA-Omniscience_dataset_public.csv；本页取 question_id=1。"
+      "AA-Omniscience_dataset_public.csv；本页取 question_id=1。",
+      "v1.1 公开 CSV：AA-Omniscience_dataset_public.csv。"
     ],
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/omniscience",
       "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
       "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
       "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
-      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/README.md"
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "部分题目以公开子集发布，正式评测范围见官方方法。"
+      "v1.0 与 v1.1 均提供公开子集；v1.1 其余 2,700 题不公开。"
     ],
-    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/omniscience",
       "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
-      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public"
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
     ]
   },
   "reusePolicy": {
     "status": "permitted",
     "license": "Apache-2.0（固定公开数据快照的许可声明）",
-    "scope": "AA-Omniscience-Public 的 Apache-2.0 许可覆盖本页选取的公开子集记录；未授权或复制正式留出集。",
+    "scope": "v1.0 和 v1.1 公开子集数据卡均标注 Apache-2.0；本站只展示公开记录，未复制非公开题目。",
     "boundaries": [
       "保留发布方、记录位置和许可原文；中文解读由本站撰写。",
-      "600 题公开子集与完整 6,000 题范围分别核对，单例不代表完整复现。"
+      "v1.0 和 v1.1 的题目与成绩不可直接混同；公开样例不等于完整评测。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/README.md",
-      "https://www.apache.org/licenses/LICENSE-2.0.txt"
+      "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
-    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
+    "reason": "5 条 v1.0 公开题与 1 条 v1.1 公开题可查看；分别标明版本与来源，公开样例不代替完整题集。",
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1",
     "sourceUrls": [
       "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
-      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/README.md"
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
     ]
   },
   "metric": {
     "name": "Omniscience 指数、准确率与幻觉率",
-    "description": "独立 Omniscience 指数奖励答对、惩罚错误、拒答中性；在智能指数中则分别使用准确率与非幻觉率。",
+    "description": "v1.1 独立指数奖励正确、惩罚错误，部分正确和不作答记零；综合智能指数另将准确率和非幻觉率作为分项。",
     "direction": "higher",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/omniscience",
@@ -133,11 +143,18 @@
       ]
     },
     "disclosure": {
-      "text": "方法和部分数据可查看，完整留出内容不能由 Public 子集推定。",
+      "text": "v1.1 公开 300 题、其余 2,700 题不公开；本站另保留 v1.0 公开示例。",
       "sourceUrls": [
         "https://artificialanalysis.ai/evaluations/omniscience",
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
         "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public"
+      ]
+    },
+    "versionChanges": {
+      "text": "v1.1 共 3,000 题，去除 v1.0 公开题并增补和修订题目；两版成绩不能直接比较。本站保留的旧例属于 v1.0 公开集。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
       ]
     }
   },
@@ -171,10 +188,15 @@
       "label": "Apache-2.0 许可原文",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
       "role": "access"
+    },
+    {
+      "label": "AA-Omniscience v1.1 公开数据卡与样例",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "researchNotes": [
     {
       "text": "已读取固定原文件：train, question_id=1; CSV data row 0；SHA-256 1e04603dafa3bd0d16d8151f07a5eb74c43d90c3a85d2fca120da2359174d02f。未运行模型评测，也未核验全部上游题目的逐题来源。",
@@ -198,12 +220,38 @@
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
         "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public"
       ]
+    },
+    {
+      "text": "2026-11-05 核对 v1.1 数据卡与公开浏览器的 test 第 15 题；CSV 下载接口当时返回 429，本条以数据浏览器公开记录为来源，未声称读取固定文件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1"
+      ]
     }
   ],
   "updatedAt": "2026-10-20",
   "sampleSet": {
-    "retrievedAt": "2026-10-19",
+    "retrievedAt": "2026-11-05",
     "samples": [
+      {
+        "id": "v11-public-question-15",
+        "title": "v1.1 · 升压电路电流纹波",
+        "type": "text",
+        "prompt": "For an ideal boost converter operating in steady‑state CCM, using ΔiL to denote the peak (half of peak‑to‑peak) inductor current ripple, what is ΔiL in terms of Vg, L, D, and Ts?",
+        "answer": "Vg D Ts/(2L)",
+        "explanation": "官方 v1.1 公开集第 15 题，要求按给定符号写出理想升压变换器在连续导通稳态下的电感电流纹波峰值表达式。参考答案来自公开数据浏览器，不代表对全部评测题的复现。",
+        "raw": {
+          "domain": "Science Engineering and Mathematics",
+          "subtopic": "Electrical Engineering",
+          "question_id": 15,
+          "question": "For an ideal boost converter operating in steady‑state CCM, using ΔiL to denote the peak (half of peak‑to‑peak) inductor current ripple, what is ΔiL in terms of Vg, L, D, and Ts?",
+          "answer": "Vg D Ts/(2L)"
+        },
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public-v1.1",
+        "license": "Artificial Analysis AA-Omniscience-Public v1.1，Apache-2.0。",
+        "licensePath": "licenses/aa-omniscience-v11-apache-2.txt",
+        "split": "v1.1 / public / test / question_id 15",
+        "excerpt": false
+      },
       {
         "id": "public-question-1",
         "title": "公开子集 · 会计准则条款",
@@ -222,7 +270,7 @@
         "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
         "license": "Artificial Analysis · Apache-2.0",
         "licensePath": "licenses/aa-omniscience-sample-source.txt",
-        "split": "train（官方 Public CSV；公开子集）",
+        "split": "v1.0 / train（官方 Public CSV；公开子集）",
         "excerpt": false
       },
       {
@@ -243,7 +291,7 @@
         "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
         "license": "Artificial Analysis · Apache-2.0",
         "licensePath": "licenses/aa-omniscience-sample-source.txt",
-        "split": "train / official public CSV",
+        "split": "v1.0 / train / official public CSV",
         "excerpt": false
       },
       {
@@ -264,7 +312,7 @@
         "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
         "license": "Artificial Analysis · Apache-2.0",
         "licensePath": "licenses/aa-omniscience-sample-source.txt",
-        "split": "train / official public CSV",
+        "split": "v1.0 / train / official public CSV",
         "excerpt": false
       },
       {
@@ -285,7 +333,7 @@
         "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
         "license": "Artificial Analysis · Apache-2.0",
         "licensePath": "licenses/aa-omniscience-sample-source.txt",
-        "split": "train / official public CSV",
+        "split": "v1.0 / train / official public CSV",
         "excerpt": false
       },
       {
@@ -306,7 +354,7 @@
         "source": "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public/resolve/e4883edbb9f5ccf2b2a8fdc6fb65e01a58e99849/AA-Omniscience_dataset_public.csv",
         "license": "Artificial Analysis · Apache-2.0",
         "licensePath": "licenses/aa-omniscience-sample-source.txt",
-        "split": "train / official public CSV",
+        "split": "v1.0 / train / official public CSV",
         "excerpt": false
       }
     ]
