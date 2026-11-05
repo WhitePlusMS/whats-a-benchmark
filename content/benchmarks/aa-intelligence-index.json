@@ -27,16 +27,16 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "将代理工作、编程、科学推理与通用能力的多项评测加权汇总，用于比较语言模型的综合表现；主要面向英语文本，不直接代表所有实际使用场景。",
-    "task": "运行组成评测后合成指数，各项的具体任务见组成表。",
+    "summary": "本页记录 v4.3.2：将代理工作、编程、科学推理与通用能力的评测加权汇总，用于比较语言模型；官方方法已更新至 v5.0.1。",
+    "task": "分别完成职业工作、终端编程、长文档理解及科学推理等分项，再按该版本权重合成指数。",
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
     ]
   },
   "taskContract": {
-    "input": "十项评测各自的任务。",
-    "output": "分项结果及综合指数。",
-    "environment": "采用 AA 分项实施协议。",
+    "input": "v4.3.2 的十项评测各有输入，例如工作任务与文件、终端开发环境、长文档或科学问题。",
+    "output": "按分项要求提交文件、代码或答案；分项评分经换算和加权后形成综合指数。",
+    "environment": "使用 AA 对各分项规定的模型配置、工具和评分方法；部分任务或答案不公开。不同指数版本的组成和权重需分别核对。",
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
     ]
@@ -96,6 +96,12 @@
       "sourceUrls": [
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
       ]
+    },
+    {
+      "text": "本站组成表保留 v4.3.2 的历史配置；官方现行方法页面为 v5.0.1，组成和权重已有变化，不能将本表当作现行指数。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
     }
   ],
   "interpretation": {
@@ -118,7 +124,7 @@
       ]
     },
     "versionChanges": {
-      "text": "v4.3 换入 Terminal-Bench 4.0 与 AutomationBench-AA；后续修订又调整 Elo 拟合。应保留对应版本。",
+      "text": "v4.3 换入 Terminal-Bench 4.0 与 AutomationBench-AA，v4.3.2 调整 Elo 拟合；官方此后发布 v5.0 和 v5.0.1，组成及权重变化。本页仍记录 v4.3.2。",
       "sourceUrls": [
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
       ]
