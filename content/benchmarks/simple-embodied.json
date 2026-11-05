@@ -89,7 +89,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得 SIMPLE 桌面抓取数据包及其中一条轨迹，展示三个时刻的状态和动作。",
+    "reason": "展示 SIMPLE 桌面抓取 episode 0 的状态和动作；已查看同编号第一视角视频，原始数据包见资源入口。",
     "sourceUrls": [
       "https://github.com/physical-superintelligence-lab/SIMPLE",
       "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip"
@@ -134,9 +134,9 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-29",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
-    "retrievedAt": "2026-10-29",
+    "retrievedAt": "2026-11-05",
     "samples": [
       {
         "id": "simple-g1-tabletop-grasp-episode-0",
@@ -144,7 +144,7 @@
         "type": "record",
         "prompt": "人形机器人 G1 抓取桌面上的物体。本站展示同一条仿真轨迹的首、中、末帧状态和动作数值。",
         "promptOrigin": "editorial",
-        "explanation": "PSI 发布的数据包包含 100 条轨迹；选中的 episode 0 有 121 帧，包含手臂、手部、腿部关节观测和动作。源包还有第一视角视频；因数据许可未明确，本站未转载视频，也不据此宣称模型成功率。",
+        "explanation": "PSI 发布的数据包包含 100 条轨迹；episode 0 有 121 条状态记录。包内同编号第一视角视频已提取并在浏览器查看，画面显示仿真双手抓取桌面物体；未逐帧校准视频与状态时间。因数据许可未明确，本站不转载视频，也不据此宣称模型成功率。",
         "raw": {
           "dataset": "USC-PSI-Lab/psi-data",
           "revision": "e78fb93cc28912a3031a10b8656d32d7f0a2b867",
@@ -577,6 +577,12 @@
       "text": "2026-10-29 实际下载任务包（34,395,427 字节），SHA-256 9930fe06f67b34cc408e4bf82c1e693460202fa3edcd6adead3af9cf8056005e；从中读取 episode_000000.parquet，共 121 帧。",
       "sourceUrls": [
         "https://github.com/physical-superintelligence-lab/SIMPLE",
+        "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip"
+      ]
+    },
+    {
+      "text": "2026-11-05 从固定版本数据包提取 G1WholebodyTabletopGraspMP-v0/videos/chunk-000/egocentric/episode_000000.mp4，319,341 字节，SHA-256 b9afc26830822dcb14d90d4de787d809041d2ac691975642de927307e96c32af；浏览器实际播放并查看画面，未逐帧校准。",
+      "sourceUrls": [
         "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip"
       ]
     }
