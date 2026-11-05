@@ -24,11 +24,12 @@
     ]
   },
   "taskContract": {
-    "input": "长 PDF 和问题。",
-    "output": "短答案及其对应文档证据。",
-    "environment": "官方多阶段评测流程涉及答案抽取。",
+    "input": "完整 PDF 文档与问题；证据可能来自文字、表格、图表、图像或跨页内容，部分问题在文档中不可回答。",
+    "output": "针对问题给出答案；若文档不足以回答，应识别不可回答。数据集另标注证据页与来源类型，不能默认这些标注是模型输入或必需输出。",
+    "environment": "官方流程先生成回答，再抽取整数、浮点数、字符串或列表等答案并计算得分；具体模型的文档输入方式需区分。",
     "sourceUrls": [
-      "https://github.com/mayubo2333/MMLongBench-Doc"
+      "https://github.com/mayubo2333/MMLongBench-Doc",
+      "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/eval/prompt_for_answer_extraction.md"
     ]
   },
   "dataProfile": {
@@ -86,7 +87,7 @@
   },
   "metric": {
     "name": "F1",
-    "description": "依据官方评测流程抽取答案并计算得分。",
+    "description": "官方流程先抽取答案，再报告兼顾可回答与不可回答问题的 generalized accuracy 和 generalized F1；不同版本题目和输入方式应分别标明。",
     "direction": "higher",
     "sourceUrls": [
       "https://github.com/mayubo2333/MMLongBench-Doc"
@@ -115,10 +116,15 @@
       "label": "作者原始 samples.json（main，本次获取快照）",
       "url": "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/main/data/samples.json",
       "role": "data"
+    },
+    {
+      "label": "官方答案抽取提示",
+      "url": "https://github.com/mayubo2333/MMLongBench-Doc/blob/main/eval/prompt_for_answer_extraction.md",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "researchNotes": [
     {
       "text": "真实文件包含 doc_id=honor_watch_gs_pro.pdf、answer_format=Int、evidence_pages=[12, 13] 的记录；数据使用遵循 CC BY-NC 4.0。",

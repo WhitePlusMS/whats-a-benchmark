@@ -24,9 +24,9 @@
     ]
   },
   "taskContract": {
-    "input": "竞赛数学题文本与图像。",
-    "output": "数学答案或选择项。",
-    "environment": "官方 test 和 testmini 划分。",
+    "input": "数学竞赛题目文字及关联图像；部分题目提供选项。",
+    "output": "根据题目要求给出数值、表达式或选择答案，结合图中信息推理。",
+    "environment": "官方 test 包含 3,040 题，testmini 为 304 题子集；比较时须区分划分和评测方法。",
     "sourceUrls": [
       "https://github.com/YerongLi/MathVision"
     ]
@@ -37,7 +37,10 @@
     "scale": [
       "test 3,040 题，16 个数学领域，5 个难度等级。"
     ],
-    "splits": [],
+    "splits": [
+      "test：3,040 题",
+      "testmini：304 题，官方用于人类表现评估"
+    ],
     "fields": [
       "id",
       "question",
@@ -78,9 +81,10 @@
   "sampleAccess": {
     "status": "local",
     "reason": "已核对官方数据查看器的 test 第 1 条；只展示记录字段，不转载竞赛图片。",
-    "url": "https://huggingface.co/datasets/MathLLMs/MathVision",
+    "url": "https://datasets-server.huggingface.co/rows?dataset=MathLLMs%2FMathVision&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://huggingface.co/datasets/MathLLMs/MathVision"
+      "https://huggingface.co/datasets/MathLLMs/MathVision",
+      "https://datasets-server.huggingface.co/rows?dataset=MathLLMs%2FMathVision&config=default&split=test&offset=0&length=1"
     ]
   },
   "metric": {
@@ -109,10 +113,15 @@
       "label": "作者数据集查看器",
       "url": "https://huggingface.co/datasets/MathLLMs/MathVision",
       "role": "data"
+    },
+    {
+      "label": "官方 test 第 1 条记录及原始图像",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=MathLLMs%2FMathVision&config=default&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
@@ -123,7 +132,7 @@
         "prompt": "查看真实题目记录；图像需到官方数据集查看。",
         "promptOrigin": "editorial",
         "answer": "60",
-        "explanation": "原题依赖 images/1.jpg；此处为字段节选，不含图像。",
+        "explanation": "官方 test 第 1 行关联的图像是一列数字车厢，要求补全问号处；已下载并查看原图，原始标注答案为 60。图像未转载，可通过官方记录入口查看。",
         "raw": {
           "id": "1",
           "question": "Which number should be written in place of the question mark? <image1>",
@@ -132,12 +141,20 @@
           "level": 2,
           "subject": "arithmetic"
         },
-        "source": "https://huggingface.co/datasets/MathLLMs/MathVision",
+        "source": "https://datasets-server.huggingface.co/rows?dataset=MathLLMs%2FMathVision&config=default&split=test&offset=0&length=1",
         "license": "MIT（数据卡）；图片及竞赛原始素材权利需单独核对",
         "split": "test",
         "excerpt": true,
         "licensePath": "licenses/mathvision-sample-source.txt"
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "2026-11-05 读取官方 test 行接口第 0 行并下载其 decoded_image：1176 × 178，SHA-256 6f4b5c2759816ed1e46d783e12ea31ba03aa3dc62d15eb3d820a8879caebfac2；查看原图后确认页面所述数字序列，未复制图像。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=MathLLMs%2FMathVision&config=default&split=test&offset=0&length=1"
+      ]
+    }
+  ]
 }

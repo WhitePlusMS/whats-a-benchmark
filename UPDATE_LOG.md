@@ -1,3 +1,10 @@
+## 2026-11-05：完善多模态文档、数学与安全评测说明
+
+- 修改 `content/benchmarks/mmlongbench-doc.json`：补充多页证据、不可回答问题及答案抽取流程，澄清数据标注的证据页不一定作为模型输入或强制输出。
+- 修改 `content/benchmarks/mathvision.json`：补充 test、testmini 的规模和任务形式；实际读取第 1 条并查看对应图片，提供具体行接口和核验哈希。图片的第三方权利未确认，未转载。
+- 修改 `content/benchmarks/cybench.json`：补充 CTF 任务的输入、提交目标和无指导/子任务指导模式。
+- 原因与影响：修正含糊表述，让读者能对照真实例题理解评测；不代表本站执行模型评测。
+
 ## 2026-11-05：补充 RLE-Bench 三段仿真演示
 
 - 修改 `content/benchmarks/rle-bench.json`：下载并在浏览器逐段查看 Task 01 解冻、Task 02 整理剩菜、Task 03 探测隐藏重物的官网视频，增加对应任务说明、模型与加速倍速及原片链接；审核后将本站整理的任务编号字段改为官网实际任务名称。
