@@ -14,6 +14,11 @@
         "label": "官方扰动配置数据集",
         "type": "数据集",
         "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro"
+      },
+      {
+        "label": "SenseNova LIBERO-PRO 评测轨迹",
+        "type": "第三方评测日志",
+        "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/LIBERO-PRO.zip"
       }
     ]
   },
@@ -73,21 +78,24 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "官方数据卡将数据标为 CC BY 4.0、代码标为 MIT。",
-    "scope": "站内任务文件节选按数据许可署名；其他场景资产另行核对。",
+    "license": "官方任务配置数据卡标注 CC BY 4.0；SenseNova 评测日志数据卡标注 MIT。",
+    "scope": "展示官方任务配置节选，以及 SenseNova 发布的单条评测视频和日志字段。",
     "boundaries": [
-      "场景对象和第三方素材不自动由此节选的许可覆盖。"
+      "第三方日志涉及评测集，不应用于训练相应基准案例；上游场景素材许可需分别核对。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro"
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方语言扰动任务及同一基础任务的运行时移动目标配置；均为任务定义，非机器人执行轨迹。",
+    "reason": "展示官方任务配置，以及 SenseNova 发布的单条评测轨迹、结果字段和视频。",
     "sourceUrls": [
       "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/e9f3a53/bddl_files/libero_spatial_lan/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
-      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/c86fc3b8293185a6f373677018ff3e37f8391602/bddl_files/03_runtime_object_move/bddl/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/c86fc3b8293185a6f373677018ff3e37f8391602/bddl_files/03_runtime_object_move/bddl/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/LIBERO-PRO.zip"
     ]
   },
   "metric": {
@@ -131,6 +139,16 @@
       "label": "LIBERO-Pro2.0 官方项目",
       "url": "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0",
       "role": "definition"
+    },
+    {
+      "label": "SenseNova 评测日志数据卡",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "role": "data"
+    },
+    {
+      "label": "第三方 LIBERO-PRO 评测视频与日志归档",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/LIBERO-PRO.zip",
+      "role": "data"
     }
   ],
   "related": [
@@ -182,6 +200,38 @@
         "licensePath": "licenses/cc-by-4-0.txt",
         "split": "七类扩展 / 03_runtime_object_move / libero_spatial；固定修订 c86fc3b8293185a6f373677018ff3e37f8391602",
         "excerpt": true
+      },
+      {
+        "id": "libero-pro-sensenova-swap-task0-init0",
+        "title": "两种食品放入篮子 · 单次评测",
+        "type": "video",
+        "promptOrigin": "editorial",
+        "prompt": "将字母汤和番茄酱都放入篮子。",
+        "explanation": "SenseNova 在官方评测集上发布的第三方仿真运行：libero_10_swap、task 0、初始状态 0、seed 0。日志记录 final_goal_success=true、完成 1,101 步；这是发布方的一次运行结果，不代表其他任务或模型整体成绩。视频与日志按同一 case_id 对应。",
+        "raw": {
+          "benchmark_source": "libero-pro",
+          "suite": "libero_10_swap",
+          "task": 0,
+          "seed": 0,
+          "init_state_id": 0,
+          "evaluation_protocol": "fixed-init-state",
+          "max_episode_steps": 10000,
+          "completed_steps": 1101,
+          "final_goal_success": true,
+          "instruction": "put both the alphabet soup and the tomato sauce in the basket"
+        },
+        "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/LIBERO-PRO.zip",
+        "license": "SenseNova-RoboRSI-Log 数据卡标注 MIT；上游场景素材的许可范围需分别核对。",
+        "split": "第三方评测日志 / 官方评测集 / libero_10_swap / task 0 / 初始状态 0；不用于训练相应评测案例。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/libero-pro-sensenova-swap-task0-init0.mp4",
+            "caption": "同一 case_id 的原始仿真评测视频；SenseNova 发布。",
+            "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/LIBERO-PRO.zip"
+          }
+        ]
       }
     ]
   },
@@ -196,6 +246,13 @@
       "text": "2026-11-05 读取七类扩展的运行时移动任务 BDDL；SHA-256 21fdd73f0a5dabbf2b5bde24dba5e1778a93788af03899374d208ddcc64318db。该文件是评测配置，未运行验证器。",
       "sourceUrls": [
         "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro/blob/c86fc3b8293185a6f373677018ff3e37f8391602/bddl_files/03_runtime_object_move/bddl/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl"
+      ]
+    },
+    {
+      "text": "2026-11-05 通过范围读取固定版本 LIBERO-PRO.zip，提取同一 case_id 的 record.json、pro_result.json 和视频；视频 SHA-256 61891c231e5107d41da6347ced1209485bd61a6ff357ca7ca6438c4def7a842e，已在浏览器查看。未完整下载归档或运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/LIBERO-PRO.zip",
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
       ]
     }
   ]
