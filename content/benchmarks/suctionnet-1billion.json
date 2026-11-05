@@ -24,6 +24,21 @@
         "label": "官方物体清单（第 1 页）",
         "type": "对象图册",
         "url": "https://graspnet.net/images/obj_list.pdf#page=1"
+      },
+      {
+        "label": "真实机器人吸取演示",
+        "type": "官方演示动画",
+        "url": "https://graspnet.net/images/robot.gif"
+      },
+      {
+        "label": "物体表面密封标签可视化",
+        "type": "官方演示动画",
+        "url": "https://graspnet.net/images/seal.gif"
+      },
+      {
+        "label": "力矩与碰撞标签可视化",
+        "type": "官方演示动画",
+        "url": "https://graspnet.net/images/wrench_collision.gif"
       }
     ]
   },
@@ -47,8 +62,8 @@
     ]
   },
   "taskContract": {
-    "input": "场景观测和吸盘抓取候选，依官方协议配置。",
-    "output": "预测可形成密封且能承受重力力矩的吸盘抓取。",
+    "input": "场景 RGB-D 观测或点云；具体输入取决于方法和评测配置。",
+    "output": "预测吸盘候选接触位置、方向及评分；评测检查密封、重力力矩与碰撞条件。",
     "environment": "沿用 GraspNet 的真实场景和训练测试划分。",
     "sourceUrls": [
       "https://graspnet.net/suction"
@@ -89,11 +104,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载官方吸盘标签包，并展示对象 000 的三条候选标签。 已核对官方物体图册，可从资源入口查看对应对象。",
+    "reason": "已读取对象 000 吸盘标签，并查看官方实机及标签可视化动画；原片见资源入口。",
     "sourceUrls": [
       "https://graspnet.net/suction",
       "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
-      "https://graspnet.net/images/obj_list.pdf"
+      "https://graspnet.net/images/obj_list.pdf",
+      "https://graspnet.net/images/robot.gif",
+      "https://graspnet.net/images/seal.gif",
+      "https://graspnet.net/images/wrench_collision.gif"
     ]
   },
   "metric": {
@@ -132,6 +150,21 @@
       "label": "GraspNet 官方物体图册",
       "url": "https://graspnet.net/images/obj_list.pdf",
       "role": "data"
+    },
+    {
+      "label": "真实机器人吸取演示",
+      "url": "https://graspnet.net/images/robot.gif",
+      "role": "data"
+    },
+    {
+      "label": "物体表面密封标签可视化",
+      "url": "https://graspnet.net/images/seal.gif",
+      "role": "data"
+    },
+    {
+      "label": "力矩与碰撞标签可视化",
+      "url": "https://graspnet.net/images/wrench_collision.gif",
+      "role": "data"
     }
   ],
   "related": [
@@ -148,6 +181,19 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "suctionnet-official-demo",
+        "title": "实机吸取与吸盘标签可视化",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察机器人吸取物体，以及物体表面密封评分、场景力矩和碰撞标签。",
+        "explanation": "官方页面将实机、密封和力矩碰撞画面分别展示；标签动画中的颜色用于表达对应评分或碰撞状态。素材的具体数据划分、轨迹编号及与对象 000 标签的对应关系未披露；实机演示不构成本站运行的评测成绩。",
+        "raw": "Real robot demo\nMany objects\nWrench & Collision\nWe provide wrench and collision labels",
+        "source": "https://graspnet.net/suction",
+        "license": "官方许可名称和缩写存在不一致；本站只提供原始动画链接。",
+        "split": "官方展示素材 / 具体划分未披露",
+        "excerpt": true
+      },
       {
         "id": "suctionnet-seal-object-000-first-three",
         "title": "对象 000 · 吸盘密封标签",
@@ -231,6 +277,15 @@
       "text": "2026-11-05 下载并查看官方物体图册第 1 页；PDF SHA-256 cecb527371648d4ccd758d4a8fe1218d18360a9a430a35eca0fc9fecbbd5f328。仅提供原图册链接，未复制图片。",
       "sourceUrls": [
         "https://graspnet.net/images/obj_list.pdf"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载并在浏览器查看官方页面三段动画；按实机、密封、力矩碰撞顺序，SHA-256 分别为 49c21192842e2b4a69cd6f50c4bdf740fe504c389d4ce616552d301bd1c915bf、93b6d64c9bf23b5d501ad05e4feb592a9e0bdfc502c58b43ad07b01c9d39e637、5404ecbfd16c1f4cc4cd8e5fcdb4509bb3f2e3bbfb9e18c1e74a9b5af5e59b2a；未找到轨迹编号和独立许可。",
+      "sourceUrls": [
+        "https://graspnet.net/suction",
+        "https://graspnet.net/images/robot.gif",
+        "https://graspnet.net/images/seal.gif",
+        "https://graspnet.net/images/wrench_collision.gif"
       ]
     }
   ]
