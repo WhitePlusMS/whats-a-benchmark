@@ -2496,3 +2496,5 @@
 - 修改 `content/benchmarks/simple-embodied.json` 并新增 `content/assets/videos/simple-sensenova-bend-icl-l0e01.mp4`：从 SenseNova 固定版本评测归档提取 BendPick ICL L0/E01 的视频及索引记录，原片因浏览器不兼容转为 H.264；标注第三方单次结果、评测集及许可边界，保留 PSI 原始数据许可未明确的说明。
 
 - 新增 `content/benchmarks/r2r-vlnce.json`，收录 R2R-CE 连续导航任务、官方划分及 SenseNova episode 7 的评测字段；按固定版本提取并观看前视视频，注明 rand100 为第三方划分、单次结果以及 Matterport3D 场景转载边界。修改 `content/benchmarks/r2r.json` 增加与连续环境衍生评测的关联，避免混淆原版节点导航。
+
+- 修改 `content/benchmarks/behavior-1k.json`：补充第三方 Pi0.5 整理图书 public_test 实例 301 的任务目标、原始失败结果及固定版本录像入口；已下载录像核看视角，明确单次部分得分不代表官方榜单成绩，录像仅链接原发布位置。

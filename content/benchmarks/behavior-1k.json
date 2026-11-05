@@ -27,6 +27,11 @@
         "label": "SenseNova 收音机任务评测日志与录像",
         "type": "第三方评测日志",
         "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip"
+      },
+      {
+        "label": "整理图书测试运行录像（实例 301）",
+        "type": "第三方评测录像",
+        "url": "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/resolve/09ec3cbea07be6cc7fa6c16707242f373260b989/videos/step_24999/re_shelving_library_books_301_0.mp4"
       }
     ]
   },
@@ -170,6 +175,21 @@
       "label": "第三方收音机评测录像及日志",
       "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip",
       "role": "data"
+    },
+    {
+      "label": "整理图书第三方测试说明",
+      "url": "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/blob/09ec3cbea07be6cc7fa6c16707242f373260b989/README.md",
+      "role": "data"
+    },
+    {
+      "label": "整理图书实例 301 原始结果",
+      "url": "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/blob/09ec3cbea07be6cc7fa6c16707242f373260b989/results/step_24999/re_shelving_library_books_301_0.json",
+      "role": "data"
+    },
+    {
+      "label": "整理图书实例 301 录像",
+      "url": "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/resolve/09ec3cbea07be6cc7fa6c16707242f373260b989/videos/step_24999/re_shelving_library_books_301_0.mp4",
+      "role": "data"
     }
   ],
   "related": [],
@@ -194,8 +214,12 @@
           "success": true,
           "steps": 470,
           "metrics": {
-            "q_score": { "final": 1.0 },
-            "time": { "simulator_time": 15.666666666666666 }
+            "q_score": {
+              "final": 1.0
+            },
+            "time": {
+              "simulator_time": 15.666666666666666
+            }
           }
         },
         "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip",
@@ -210,6 +234,33 @@
             "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip"
           }
         ]
+      },
+      {
+        "id": "behavior-books-test-301",
+        "title": "整理图书 · 测试运行失败样例",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在模拟环境中将三本书全部放进书柜。",
+        "explanation": "第三方使用微调的 Pi0.5（step_24999）运行 BEHAVIOR-1K 2026 挑战任务 55。公开测试实例 301 的结果为失败，完成度 q_score 为 1/3，运行 14293 个仿真步；这是一条运行记录，不是官方榜单成绩。配套录像含头部和双腕视角，可从上方资源打开。",
+        "raw": {
+          "task": "re_shelving_library_books",
+          "instance_id": 301,
+          "rollout_id": 0,
+          "steps": 14293,
+          "success": false,
+          "q_score": {
+            "final": 0.3333333333333333
+          },
+          "time": {
+            "simulator_steps": 14293,
+            "simulator_time": 476.43333333333334,
+            "normalized_time": 0.6666501084446932
+          }
+        },
+        "source": "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/blob/09ec3cbea07be6cc7fa6c16707242f373260b989/results/step_24999/re_shelving_library_books_301_0.json",
+        "license": "第三方数据卡标注 Apache-2.0；配套录像链接至原发布位置。",
+        "split": "第三方 public_test / instance 301 / rollout 0；非训练演示。",
+        "excerpt": true
       },
       {
         "id": "behavior-2026-radio-video-episode10",
@@ -426,6 +477,14 @@
       "text": "2026-11-05 从固定版本第三方归档按范围读取 test-0 的提示、结果、指标及头部视频；视频 7,011,022 字节，SHA-256 8bdb0da932597e5f2b90057fb58633d2cf9afb18bc873484704dad1ad36e5597，已在浏览器播放。未完整下载归档或自行运行评测。",
       "sourceUrls": [
         "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/behavior/000-turning_on_radio.zip"
+      ]
+    },
+    {
+      "text": "2026-11-05 核对固定版本第三方结果 JSON、数据卡及对应录像，下载视频并查看画面；数据卡称 301–310 为 public_test 的榜单报告部分，模型检查点由 311–315 选择。录像仅链接原发布位置，未复制到站点。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/blob/09ec3cbea07be6cc7fa6c16707242f373260b989/README.md",
+        "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/blob/09ec3cbea07be6cc7fa6c16707242f373260b989/results/step_24999/re_shelving_library_books_301_0.json",
+        "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/resolve/09ec3cbea07be6cc7fa6c16707242f373260b989/videos/step_24999/re_shelving_library_books_301_0.mp4"
       ]
     }
   ]
