@@ -75,11 +75,23 @@
     "scale": [
       "数据和划分与 GraspNet-1Billion 相同，另提供密封、力矩和碰撞标签。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "train：场景 0000–0099",
+      "test_seen：场景 0100–0129",
+      "test_similar：场景 0130–0159",
+      "test_novel：场景 0160–0189"
+    ],
+    "fields": [
+      "对象密封标签包含 points、normals、indices、collision 和 scores；共享场景另含 RGB、深度及物体姿态标注。"
+    ],
+    "files": [
+      "suction_label.zip 中的 seal_label/{对象编号}_seal.npz；共享场景按场景、相机及帧编号组织。"
+    ],
     "sourceUrls": [
-      "https://graspnet.net/suction"
+      "https://graspnet.net/suction",
+      "https://graspnet.net/datasets.html",
+      "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html",
+      "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view"
     ]
   },
   "dataAccess": {
@@ -93,10 +105,13 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "官方数据页面许可名称和缩写存在不一致；复制标签或媒体前需澄清。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "共享场景图按官方非商业、BY-NC-SA 条件展示；官方许可名称和缩写存在差异。",
+    "scope": "仅对所展示的共享场景图按上述条件提供；吸盘标签与其他媒体应按各自来源核对。",
+    "boundaries": [
+      "官方许可名称未写出 ShareAlike，但括号缩写为 BY-NC-SA；本站采用非商业、相同方式共享条件并保留原文链接。",
+      "商业使用请依官方页面联系权利方；官方动画仅链接原发布位置。"
+    ],
     "sourceUrls": [
       "https://graspnet.net/suction",
       "https://graspnet.net/datasets.html"
@@ -104,7 +119,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已读取对象 000 吸盘标签，并查看官方实机及标签可视化动画；原片见资源入口。",
+    "reason": "已读取官方对象吸盘标签及共享场景图像与标注，并查看官方实机及标签可视化动画。",
     "sourceUrls": [
       "https://graspnet.net/suction",
       "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
@@ -165,6 +180,16 @@
       "label": "力矩与碰撞标签可视化",
       "url": "https://graspnet.net/images/wrench_collision.gif",
       "role": "data"
+    },
+    {
+      "label": "固定版本共享场景镜像",
+      "url": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+      "role": "data"
+    },
+    {
+      "label": "GraspNet 场景划分代码",
+      "url": "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html",
+      "role": "code"
     }
   ],
   "related": [
@@ -181,6 +206,31 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "suctionnet-shared-scene0017-drill",
+        "title": "共享训练场景 · 电钻吸盘候选",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察真实场景中混放的物体，寻找可用吸盘抓取的位置和方向。",
+        "explanation": "SuctionNet 与 GraspNet 共享场景。固定版本镜像中的 scene_0017 / RealSense / 0016 原始图像及其场景标注显示对象 8 为电钻；官方 seal_label/008_seal.npz 包含该对象的 2,979 个密封候选点。对象标签属于物体本身，尚未转换或投影到此场景图；这不是模型预测或执行结果。",
+        "raw": "<obj_id>8</obj_id>\n<obj_name>035_power_drill.ply</obj_name>",
+        "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+        "license": "共享场景图由 GraspNet 团队、MVIG、上海交通大学提供；非商业使用，按 BY-NC-SA 条件并注明来源。",
+        "licensePath": "licenses/graspnet-scene-by-nc-sa-4.txt",
+        "split": "train / scene_0017 / realsense / frame 0016；对象级 seal_label/008_seal.npz",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/graspnet-scene0017-realsense-0016.png",
+            "alt": "真实混放场景中的电钻与其他物体",
+            "width": 1280,
+            "height": 720,
+            "caption": "共享场景的 RealSense RGB 原图；该图未叠加吸盘候选点。",
+            "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar"
+          }
+        ]
+      },
       {
         "id": "suctionnet-official-demo",
         "title": "实机吸取与吸盘标签可视化",
@@ -286,6 +336,15 @@
         "https://graspnet.net/images/robot.gif",
         "https://graspnet.net/images/seal.gif",
         "https://graspnet.net/images/wrench_collision.gif"
+      ]
+    },
+    {
+      "text": "2026-11-05 按范围从固定版本场景镜像提取 annotations/0016.xml 并核对 RGB 图；XML 的对象 8 为 035_power_drill.ply。另读取官方 suction_label.zip 中 seal_label/008_seal.npz，points 数组形状为 2979×3，该 NPZ 的 SHA-256 为 b919e22ac8ed2bc08fb9cd3fed825f011ec869051e1a70bd316068d6ae11fd59；未将标签点变换到相机坐标。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+        "https://graspnet.net/suction",
+        "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
+        "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html"
       ]
     }
   ]

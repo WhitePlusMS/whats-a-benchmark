@@ -2508,3 +2508,6 @@
 
 - 修改 `content/benchmarks/graspnet-1billion.json`：补充 scene_0017 的 RealSense 同帧 RGB-D 真实训练场景，说明帧号、划分、镜像来源和许可名称差异，不作为模型结果。新增 `content/assets/images/graspnet-scene0017-realsense-0016.png` 原始 RGB 图及 `content/assets/licenses/graspnet-scene-by-nc-sa-4.txt` 归属和非商业相同方式共享说明；深度图仅本地核查。
 - 根据独立审查，将 GraspNet 场景样例的原始节选改为归档中的 RGB 成员路径；场景、相机和帧号由本站解析，已在说明中标明，避免伪装为原生 JSON。
+
+- 修改 `content/benchmarks/suctionnet-1billion.json`：复用 GraspNet 原始 RGB 场景图，核对同帧 XML 将对象 8 标为电钻，并读取官方对象 8 的 2,979 个吸盘密封候选点；明确 train 划分、共享图像来源和候选点未投影到画面，保留非商业及相同方式共享许可说明。
+- 补充 SuctionNet 共享场景的训练与三类测试划分，以及已读取的对象密封标签字段和文件路径格式，消除数据结构空缺。
