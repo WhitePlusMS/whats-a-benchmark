@@ -35,8 +35,8 @@
     ]
   },
   "taskContract": {
-    "input": "语言指令与机器人观测，具体扰动根据任务设置。",
-    "output": "执行机器人操作，在改变的场景中完成目标。",
+    "input": "机器人接收语言指令及场景观测；评测分别改变物体布局、相机视角、机器人初始状态、指令、光照、背景纹理和传感器噪声。",
+    "output": "策略输出机器人动作，尝试在扰动后的仿真场景完成语言指定的操作目标。",
     "environment": "基于 LIBERO 的仿真操作环境，包含相机、机器人初始状态与语言等扰动。",
     "sourceUrls": [
       "https://github.com/sylvestf/LIBERO-plus"
@@ -48,11 +48,19 @@
     "scale": [
       "官方仓库描述 10,030 个任务，覆盖七个扰动维度。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "公开链接的 LeRobot 数据为训练轨迹；鲁棒性评测按扰动类别和难度划分，不能把训练轨迹当作模型测试成绩。"
+    ],
+    "fields": [
+      "训练轨迹包含 observation.state、action、timestamp、frame_index、episode_index 和 task_index。"
+    ],
+    "files": [
+      "data/chunk-000/*.parquet：状态与动作；videos/：相机视频；meta/：任务、轨迹和数据集信息。"
+    ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot"
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot",
+      "https://github.com/sylvestf/LIBERO-plus",
+      "https://huggingface.co/datasets/Sylvest/libero_plus_lerobot/blob/22c57433fef692b5b9ecc0795344daac7fa867a5/data/chunk-000/episode_000000.parquet"
     ]
   },
   "dataAccess": {

@@ -26,8 +26,8 @@
     ]
   },
   "taskContract": {
-    "input": "按任务提供目标、观测与机器人接口。",
-    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "input": "可使用机器人关节角度和速度、物体位姿与速度；环境还支持头部双相机图像与全身触觉，不同实验的观测配置可能不同。",
+    "output": "输出机器人控制动作，驱动全身关节完成指定移动或操作任务；层级方法也可向底层技能发送目标。",
     "environment": "MuJoCo 仿真，可配置人形机器人与末端执行器；论文使用 Unitree H1 及双灵巧手。",
     "sourceUrls": [
       "https://humanoid-bench.github.io/",
@@ -40,12 +40,19 @@
     "scale": [
       "27 项全身控制任务，包括 15 项操作与 12 项移动任务。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "官方提供仿真环境和训练代码；此处展示的 RoboVerse 轨迹未标注训练或测试划分。"
+    ],
+    "fields": [
+      "RoboVerse 的 stand 轨迹包含 init_state、actions、states 和 extra。"
+    ],
+    "files": [
+      "RoboVerse stand/v2/h1_v2.pkl：H1 初始状态、动作目标和状态轨迹。"
+    ],
     "sourceUrls": [
       "https://humanoid-bench.github.io/",
-      "https://arxiv.org/abs/2403.10506"
+      "https://arxiv.org/abs/2403.10506",
+      "https://huggingface.co/datasets/RoboVerseOrg/roboverse_data/blob/1133c84a9d5624b7670a75d4043992c57d09b5cd/trajs/humanoidbench/stand/v2/h1_v2.pkl"
     ]
   },
   "dataAccess": {
@@ -60,21 +67,23 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "HumanoidBench 官网标注 CC BY-SA 4.0。",
-    "scope": "本站展示官网仿真视频并保留署名和相同方式共享条款。",
+    "license": "官网视频标注 CC BY-SA 4.0；RoboVerse 数据集卡标注 Apache-2.0。",
+    "scope": "官网视频按 CC BY-SA 4.0 标注，第三方轨迹摘录标注 RoboVerse 来源与 Apache-2.0；上游机器人和场景资产许可另计。",
     "boundaries": [
       "视频不标明具体评测版本或模型成绩。"
     ],
     "sourceUrls": [
-      "https://humanoid-bench.github.io/"
+      "https://humanoid-bench.github.io/",
+      "https://huggingface.co/datasets/RoboVerseOrg/roboverse_data"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官网仿真片段，以及 RoboVerse 发布的 HumanoidBench stand 轨迹摘录；第三方轨迹不推断测试划分或成绩。",
     "url": "https://www.roboticsproceedings.org/rss20/p061.pdf",
     "sourceUrls": [
-      "https://www.roboticsproceedings.org/rss20/p061.pdf"
+      "https://www.roboticsproceedings.org/rss20/p061.pdf",
+      "https://huggingface.co/datasets/RoboVerseOrg/roboverse_data/blob/1133c84a9d5624b7670a75d4043992c57d09b5cd/trajs/humanoidbench/stand/v2/h1_v2.pkl"
     ]
   },
   "metric": {
@@ -100,6 +109,12 @@
       "sourceUrls": [
         "https://humanoid-bench.github.io/"
       ]
+    },
+    {
+      "text": "已下载并解析 stand/v2/h1_v2.pkl（765080 字节，SHA-256 b46738c8131d8d6e0817c58690cde28863a35abd233a7996397d2a78d892663a）；该文件未标注运行策略或任务成功与否。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/RoboVerseOrg/roboverse_data/blob/1133c84a9d5624b7670a75d4043992c57d09b5cd/trajs/humanoidbench/stand/v2/h1_v2.pkl"
+      ]
     }
   ],
   "sources": [
@@ -117,6 +132,16 @@
       "label": "官方任务示例",
       "url": "https://www.roboticsproceedings.org/rss20/p061.pdf",
       "role": "paper"
+    },
+    {
+      "label": "RoboVerse 公开数据及许可",
+      "url": "https://huggingface.co/datasets/RoboVerseOrg/roboverse_data",
+      "role": "data"
+    },
+    {
+      "label": "RoboVerse stand 轨迹固定版本",
+      "url": "https://huggingface.co/datasets/RoboVerseOrg/roboverse_data/blob/1133c84a9d5624b7670a75d4043992c57d09b5cd/trajs/humanoidbench/stand/v2/h1_v2.pkl",
+      "role": "data"
     }
   ],
   "related": [],
@@ -175,6 +200,120 @@
           }
         ],
         "licensePath": "licenses/cc-by-sa-4.txt"
+      },
+      {
+        "id": "humanoidbench-roboverse-stand-h1",
+        "title": "站立：RoboVerse H1 轨迹",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "控制 H1 人形机器人完成站立任务。",
+        "explanation": "这是 RoboVerse 发布的 HumanoidBench stand 轨迹，而非官方论文测试记录。该文件含 1 条 H1 轨迹、799 条动作和 799 条状态；下方摘录初始状态及首条动作、状态。文件未标注训练或测试划分，也未提供成功标签或匹配视频。",
+        "raw": {
+          "init_state": {
+            "h1": {
+              "pos": [
+                -0.001446707555676243,
+                0.005256012829965162,
+                0.9749518120827086
+              ],
+              "rot": [
+                0.999951746047894,
+                0.007742950689423788,
+                -0.005786542186841288,
+                0.0017516334974129718
+              ],
+              "dof_pos": {
+                "left_hip_yaw": 0.007888895334922671,
+                "left_hip_roll": -0.004036872004292185,
+                "left_hip_pitch": -0.3943924513258638,
+                "left_knee": 0.8030053835270662,
+                "left_ankle": -0.39344126268186697,
+                "right_hip_yaw": -0.004692583171882004,
+                "right_hip_roll": -0.0065830588963238235,
+                "right_hip_pitch": -0.40734368430771617,
+                "right_knee": 0.8024749964965372,
+                "right_ankle": -0.40701080137621415,
+                "torso": 0.006643062136138184,
+                "left_shoulder_pitch": 0.00125388464333126,
+                "left_shoulder_roll": -0.006108442438983739,
+                "left_shoulder_yaw": -0.006074582602742944,
+                "left_elbow": -0.005980777550959777,
+                "right_shoulder_pitch": 0.006432975768308971,
+                "right_shoulder_roll": -0.00985374181763704,
+                "right_shoulder_yaw": -0.004742093263804914,
+                "right_elbow": 0.005126346015731639
+              }
+            }
+          },
+          "actions": [
+            {
+              "dof_pos_target": {
+                "left_hip_yaw": 0.4300000071525574,
+                "left_hip_roll": -0.4300000071525574,
+                "left_hip_pitch": 2.5299999713897705,
+                "left_knee": -0.25999999046325684,
+                "left_ankle": -0.2102341651916504,
+                "right_hip_yaw": 0.4300000071525574,
+                "right_hip_roll": -0.4300000071525574,
+                "right_hip_pitch": 2.5299999713897705,
+                "right_knee": -0.25999999046325684,
+                "right_ankle": -0.01772904396057129,
+                "torso": 2.3499999046325684,
+                "left_shoulder_pitch": -2.869999885559082,
+                "left_shoulder_roll": 3.109999895095825,
+                "left_shoulder_yaw": -1.2999999523162842,
+                "left_elbow": 2.609999895095825,
+                "right_shoulder_pitch": 2.869999885559082,
+                "right_shoulder_roll": 0.3399999141693115,
+                "right_shoulder_yaw": 1.3000001907348633,
+                "right_elbow": 2.609999895095825
+              }
+            }
+          ],
+          "states": [
+            {
+              "h1": {
+                "pos": [
+                  0.004131232250441381,
+                  0.006131310590820114,
+                  0.989738526605089
+                ],
+                "rot": [
+                  0.9975215103730365,
+                  0.017421620583498117,
+                  -0.030170910068661665,
+                  -0.06113133128739914
+                ],
+                "dof_pos": {
+                  "left_hip_yaw": 0.13298739595802384,
+                  "left_hip_roll": -0.024231657003325063,
+                  "left_hip_pitch": -0.2434417546976311,
+                  "left_knee": 0.6719227366076966,
+                  "left_ankle": -0.3647552278091558,
+                  "right_hip_yaw": 0.12919857581366162,
+                  "right_hip_roll": -0.03094562114774792,
+                  "right_hip_pitch": -0.2935889075886603,
+                  "right_knee": 0.6897995875088869,
+                  "right_ankle": -0.3588938823790723,
+                  "torso": 0.20941771676051563,
+                  "left_shoulder_pitch": -0.0615619192343025,
+                  "left_shoulder_roll": 0.026537198430225846,
+                  "left_shoulder_yaw": -0.05708304624527975,
+                  "left_elbow": 0.06138203192504105,
+                  "right_shoulder_pitch": 0.07552424902539817,
+                  "right_shoulder_roll": 0.009798500021928318,
+                  "right_shoulder_yaw": 0.008801307471184983,
+                  "right_elbow": 0.04420165681697337
+                }
+              }
+            }
+          ],
+          "extra": null
+        },
+        "source": "https://huggingface.co/datasets/RoboVerseOrg/roboverse_data/blob/1133c84a9d5624b7670a75d4043992c57d09b5cd/trajs/humanoidbench/stand/v2/h1_v2.pkl",
+        "license": "RoboVerse 数据集卡标注 Apache-2.0；来源 RoboVerseOrg。",
+        "split": "RoboVerse 第三方轨迹；训练、测试划分未标注。",
+        "excerpt": true
       }
     ]
   }

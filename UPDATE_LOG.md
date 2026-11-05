@@ -1,3 +1,9 @@
+## 2026-11-05 HumanoidBench 轨迹与 LIBERO-Plus 任务说明
+
+- 修改 `content/benchmarks/humanoidbench.json`：补充官方环境观测和动作说明；下载并解析 RoboVerse 发布的 stand/H1 轨迹，摘录初始状态、第一条动作和状态，注明第三方来源、许可及未标注划分和成绩的边界。官网视频仍为独立任务片段，不冒充轨迹对应视频。
+- 修改 `content/benchmarks/libero-plus.json`：按官方仓库补足七类扰动、任务输入输出与训练轨迹字段和文件，区分训练数据与鲁棒性评测结果。
+- 影响：用户可查看具体机器人状态和动作，并了解两项评测的输入与数据边界。
+
 ## 2026-11-05 BiGym 2.0 官方评测记录
 
 - 修改 `content/benchmarks/bigym-2.json`：依据官方文档补充 move_plate 观测与控制接口，区分人工示范和公开的 coding-agent 隐藏测试轨迹，列出数据字段与文件。
