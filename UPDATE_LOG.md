@@ -2144,3 +2144,11 @@
 ### PLawBench 任务说明与样题措辞（2026-11-05）
 
 - `content/benchmarks/plawbench.json`：根据论文补充咨询、案件分析和法律文书三类任务的输入输出及中国法域范围；将“真实案例”改为“评测样题”，避免将模拟案情误述为实际案件。
+
+### RoboChallenge 初版真实演示（2026-11-05）
+
+- `content/benchmarks/robochallenge.json`：补充 Table30 初版打开抽屉 episode 0 的状态、帧数和视频文件信息，链接固定修订的官方分卷与数据卡；已检查全局画面，划分和视频转载许可未确认，未将演示当作模型成绩。
+
+### LABBench2 单题任务说明（2026-11-05）
+
+- `content/benchmarks/labbench2.json`：按论文区分单题输入、开放式回答以及图像、PDF 和检索模式，修正将题库总量当作一次输入的描述；保留数据访问受控的说明。

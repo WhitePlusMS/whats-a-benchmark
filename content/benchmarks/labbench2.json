@@ -27,11 +27,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2604.09554"
+      "https://arxiv.org/abs/2604.09554",
+      "https://arxiv.org/html/2604.09554"
     ],
-    "environment": "以论文和官方harness的版本为准。",
-    "input": "约 1,900 项生物研究任务记录，按各子任务要求提供信息与问题。",
-    "output": "按子任务要求提交答案或研究产物，并按对应任务评测。"
+    "environment": "FigQA2 与 TableQA2 分图像、论文和检索三种模式；序列任务的数据交付方式也有不同设置，比较结果需注明模式和工具。",
+    "input": "一道生物研究问题；依子任务提供图表图像、论文 PDF、序列或其他材料，也有需要自行检索来源的模式。",
+    "output": "按子任务提交开放式回答或指定研究结果，例如解读图表、查找文献或处理生物序列。"
   },
   "dataProfile": {
     "summary": "LABBench2用于评估科学研究任务；论文报告约1,900项任务。官方数据仓库持续修订，包含论文发布后的任务和答案更新。",
@@ -114,6 +115,11 @@
       "url": "https://arxiv.org/abs/2604.09554",
       "role": "paper",
       "label": "arxiv.org - LABBench2日期依据"
+    },
+    {
+      "label": "论文：子任务和输入模式",
+      "url": "https://arxiv.org/html/2604.09554",
+      "role": "paper"
     }
   ],
   "related": [],

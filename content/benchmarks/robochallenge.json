@@ -42,11 +42,16 @@
       "实机评测平台包含多个挑战和榜单；具体任务集与版本单独说明。"
     ],
     "splits": [],
-    "fields": [],
-    "files": [],
+    "fields": [
+      "Table30 初版演示按 episode 保存机器人关节与末端状态、时间戳和相机视频。"
+    ],
+    "files": [
+      "Table30 初版按任务发布分卷归档，内含任务说明、状态与视频。"
+    ],
     "sourceUrls": [
       "https://robochallenge.ai/",
-      "https://robochallenge.ai/challenges"
+      "https://robochallenge.ai/challenges",
+      "https://huggingface.co/datasets/RoboChallenge/Table30/blob/1eda76b8935b5c7a59cd635ca9e3fab882943e11/README.md"
     ]
   },
   "dataAccess": {
@@ -64,21 +69,25 @@
     "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
     "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
     "boundaries": [
-      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
+      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。",
+      "Table30 初版视频的再发布许可尚未确认，本站不转载该视频。"
     ],
     "sourceUrls": [
       "https://robochallenge.ai/",
-      "https://robochallenge.ai/challenges"
+      "https://robochallenge.ai/challenges",
+      "https://huggingface.co/datasets/RoboChallenge/Table30/blob/1eda76b8935b5c7a59cd635ca9e3fab882943e11/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方任务说明及 Table30 初版一条实际演示的状态和视频文件信息；未转载许可不明的录像。",
     "url": "https://robochallenge.ai/",
     "sourceUrls": [
       "https://robochallenge.ai/",
       "https://robochallenge.ai/robochallenge_techreport_V2.pdf",
-      "https://robochallenge.ai/task_detail/table30_v2?task_id=3809"
+      "https://robochallenge.ai/task_detail/table30_v2?task_id=3809",
+      "https://huggingface.co/datasets/RoboChallenge/Table30/blob/1eda76b8935b5c7a59cd635ca9e3fab882943e11/README.md",
+      "https://huggingface.co/datasets/RoboChallenge/Table30/blob/1eda76b8935b5c7a59cd635ca9e3fab882943e11/open_the_drawer.tar-aa"
     ]
   },
   "metric": {
@@ -128,6 +137,16 @@
       "label": "Table30 V2 官方盖章任务与演示视频",
       "url": "https://robochallenge.ai/task_detail/table30_v2?task_id=3809",
       "role": "data"
+    },
+    {
+      "label": "Table30 初版官方数据集说明",
+      "url": "https://huggingface.co/datasets/RoboChallenge/Table30/blob/1eda76b8935b5c7a59cd635ca9e3fab882943e11/README.md",
+      "role": "data"
+    },
+    {
+      "label": "打开抽屉任务官方数据分卷（固定版本）",
+      "url": "https://huggingface.co/datasets/RoboChallenge/Table30/blob/1eda76b8935b5c7a59cd635ca9e3fab882943e11/open_the_drawer.tar-aa",
+      "role": "data"
     }
   ],
   "related": [
@@ -175,6 +194,38 @@
         "source": "https://robochallenge.ai/task_detail/table30_v2?task_id=3809",
         "license": "任务名称和评分事实来自官方页面；演示视频的独立转载许可未确认，本页提供官方观看链接。",
         "split": "Table30 V2 官方任务页面。",
+        "excerpt": true
+      },
+      {
+        "id": "robochallenge-v1-drawer-episode0",
+        "title": "打开抽屉 · Table30 初版演示 0",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "控制真实机械臂打开抽屉。",
+        "explanation": "官方 Table30 初版数据包的 episode_000000 含 1,240 条状态记录及腕部、全局和右侧视频；已从分卷读取并检查全局画面。这是一条演示，不代表模型评测结果；视频转载许可未明确，站内未复制。",
+        "raw": {
+          "task": "open_the_drawer",
+          "episode_index": 0,
+          "recorded_frames": 1240,
+          "state_file": "open_the_drawer/data/episode_000000/states/states.jsonl",
+          "global_video": "open_the_drawer/data/episode_000000/videos/global_realsense_rgb.mp4",
+          "video_fps": 30,
+          "video_resolution": [
+            640,
+            480
+          ],
+          "initial_joint_positions": [
+            -0.01964569091796875,
+            0.8566036224365234,
+            1.0122451782226562,
+            -0.5659189224243164,
+            -0.02613067626953125,
+            -0.00934600830078125
+          ]
+        },
+        "source": "https://huggingface.co/datasets/RoboChallenge/Table30/blob/1eda76b8935b5c7a59cd635ca9e3fab882943e11/open_the_drawer.tar-aa",
+        "license": "官方数据包未明确媒体再发布许可；本站只展示少量记录字段和来源链接。",
+        "split": "Table30 初版 / open_the_drawer / episode 0；数据包未确认 train、validation 或 test 划分。",
         "excerpt": true
       }
     ]
