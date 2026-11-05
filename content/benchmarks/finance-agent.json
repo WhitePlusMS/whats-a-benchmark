@@ -32,12 +32,12 @@
     ]
   },
   "taskContract": {
-    "input": "自然语言金融任务及其公开数据/财务背景。",
-    "output": "研究分析或财务交付成果，由 benchmark rubric 逐项评分。",
-    "environment": "Vals v2 使用 SEC EDGAR、网页搜索与解析、检索材料搜索、计算器及历史价格等工具；每个任务最长 2 小时。",
+    "input": "具体金融分析问题，可能指定公司、报告期、交易日期及计算假设；智能体通过工具自行检索公司披露、网页和历史价格。",
+    "output": "按题目要求给出有依据的财务分析与计算结果；评审依据该题的检查项判定，公开 CSV 包含部分题目的评分细则。",
+    "environment": "Vals v2 的共享工具环境提供 SEC EDGAR、网页搜索与解析、已获取材料检索、计算器和历史价格；每题限时两小时，超时记零。",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/fabv2",
-      "https://github.com/vals-ai/finance-agent-v2"
+      "https://raw.githubusercontent.com/vals-ai/finance-agent-v2/502aab6fdaa3fb9294905c7453f89882baa8d39b/data/public.csv"
     ]
   },
   "dataProfile": {
@@ -52,7 +52,8 @@
       "任务规模和 split 仅按 v2 页面口径表述。"
     ],
     "fields": [
-      "公开任务材料包含 prompt 与 rubric 检查项；完整隐藏测试记录 schema 未公开。"
+      "公开 CSV 列为 Question、Question Type、Expert time (mins) 和 Rubric；Rubric 为逐项检查标准及相关权重等设置。",
+      "完整私有测试集的记录内容和字段未公开。"
     ],
     "files": [
       "官方仓库公开 data/public.csv 与 data/public.txt。",
@@ -66,7 +67,7 @@
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开任务样例可从仓库获取；validation 受许可条件约束，private test 不公开。"
+      "27 条公开任务及其评分项可从官方仓库获取；450 条私人验证样本需要另行获取授权，450 条测试样本不公开。"
     ],
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/fabv2",
@@ -99,7 +100,7 @@
   },
   "metric": {
     "name": "Partial Credit accuracy / All-Pass",
-    "description": "v2 对 rubric 检查项计算 Partial Credit accuracy，并同时报告需所有检查项通过的 All-Pass；页面建议三次运行。不同版本和运行预算下的值不可直接合并。",
+    "description": "主指标 Partial Credit 按检查项严重程度加权，但任一关键检查项（dealbreaker）失败，该题记 0；次指标 All-Pass 要求所有检查项通过。官方每个模型运行三次并报告均值及标准误；比较时需保持相同版本与运行条件。",
     "direction": "higher",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/fabv2",
@@ -191,6 +192,13 @@
         "https://raw.githubusercontent.com/vals-ai/finance-agent-v2/502aab6fdaa3fb9294905c7453f89882baa8d39b/data/public.csv",
         "https://github.com/vals-ai/finance-agent-v2/blob/502aab6fdaa3fb9294905c7453f89882baa8d39b/LICENSE",
         "https://github.com/vals-ai/finance-agent-v2/tree/main/data"
+      ]
+    },
+    {
+      "text": "2026-11-05 重新核对 Vals v2 归档方法页及固定版本 public.csv 表头：公开评分细则与私有测试集分别说明；关键检查项门槛、权重和三次运行依官方方法记载，未自行评分。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/fabv2",
+        "https://raw.githubusercontent.com/vals-ai/finance-agent-v2/502aab6fdaa3fb9294905c7453f89882baa8d39b/data/public.csv"
       ]
     }
   ],
@@ -285,7 +293,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "题目要求逐项核对FY2023暂定与FY2024最终PPA、Q4减值资产来源及年末无形资产净额变化。原始公开Question及分类字段见raw。",
-        "explanation": "题目要求逐项核对FY2023暂定与FY2024最终PPA、Q4减值资产来源及年末无形资产净额变化；会涉及两年年报/季度披露，原CSV仅提供问题与评分rubric。",
+        "explanation": "题目要求逐项核对FY2023暂定与FY2024最终PPA、Q4减值资产来源及年末无形资产净额变化；会涉及两年年报/季度披露，原 CSV 还包含该题评分 rubric，本站此例未展示评分内容。",
         "raw": {
           "Question": "For NYSE: PFE, how did the Seagen purchase price allocation change from the provisional amounts disclosed in FY2023 to the finalized amounts disclosed in FY2024 for developed technology rights, in-process research and development, total intangible assets, and goodwill? Show as dollar values in millions. Also, based on FY2024, itemize the Q4 FY2024 intangible asset impairments by asset name, amount, and asset type, identify which impaired assets originated from the Seagen portfolio and calculate Seagen-originated impairments as a percentage of total Q4 FY2024 intangible asset impairments, and compare consolidated identifiable intangible assets, net, at 12/31/23 versus 12/31/24 to calculate the year-over-year dollar decline.",
           "Question Type": "Disclosure Analysis",
