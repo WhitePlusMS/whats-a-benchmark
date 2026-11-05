@@ -71,7 +71,7 @@
   "reusePolicy": {
     "status": "unknown",
     "license": "GiftEval 主仓库元数据标注 Apache-2.0，GiftEvalParquet 未见独立许可声明。",
-    "scope": "上述许可标注不能自动证明每个来源或 Parquet 派生记录均可公开转载。",
+    "scope": "站内仅列示窗口标识、时间和长度等事实；数值数组及其他来源的使用条件需分别核查。",
     "boundaries": [
       "本条提供官方窗口文件和行接口；不复制具体时序数组。"
     ],
@@ -81,8 +81,8 @@
     ]
   },
   "sampleAccess": {
-    "status": "license-pending",
-    "reason": "已读取真实窗口及字段；Parquet 具体窗口的再发布许可尚未核实，提供官方行接口。",
+    "status": "local",
+    "reason": "站内展示已读取真实窗口的任务标识、时间和长度；底层数值数组的再发布许可尚未确认，保留原始入口。",
     "sourceUrls": [
       "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1",
       "https://huggingface.co/datasets/Salesforce/GiftEvalParquet"
@@ -143,5 +143,33 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28"
+  "verifiedAt": "2026-11-05",
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "bitbrains-fast-storage-window-0",
+        "title": "五分钟频率的存储序列预测",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据这条存储时间序列已有的 7,200 个历史观测点，预测紧随其后的 720 个五分钟观测点。",
+        "explanation": "从官方 Parquet 行接口读取的真实窗口：历史区间截至 2013-09-06 13:35，预测区间从 13:40 开始。这里只展示窗口长度与时间等元数据，不复制源数值数组；未运行模型。",
+        "raw": {
+          "item_id": "fastStorage_860_dim0_window0/2013-09-06 13:40:00",
+          "frequency": "5T",
+          "history_start": "2013-08-12 13:40:00",
+          "history_end": "2013-09-06 13:35:00",
+          "history_length": 7200,
+          "future_start": "2013-09-06 13:40:00",
+          "future_end": "2013-09-09 01:35:00",
+          "future_length": 720,
+          "config": "bitbrains_fast_storage/5T/long"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1",
+        "license": "窗口文件的独立再发布许可尚未核实；仅列示任务标识、时间和长度等事实，不转载数值数组。",
+        "split": "GiftEvalParquet / bitbrains_fast_storage_5T_long / train 行 0；该 train 名称用于存储原评测窗口，不等同原始训练集。",
+        "excerpt": true
+      }
+    ]
+  }
 }
