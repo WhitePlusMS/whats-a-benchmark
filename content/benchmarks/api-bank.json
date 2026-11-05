@@ -33,12 +33,13 @@
     ]
   },
   "taskContract": {
-    "input": "用户请求、可用 API 描述及其执行环境。",
-    "output": "API 选择/调用序列及最终回答或任务结果。",
-    "environment": "论文所述可执行工具环境与 API-Bank 评估系统。",
+    "input": "用户请求及对话历史；Call 设置提供相关 API 说明，检索设置先提供 API Search 的用法，再由模型查找所需 API。",
+    "output": "API 名称和参数、可能的后续调用及基于执行结果的自然语言回复；复杂任务需要自行规划多个 API 调用。",
+    "environment": "论文评测系统提供可执行 API 和初始化数据库；检索设置在调用业务 API 前使用 API Search，部分外部信息使用预先记录的返回值。",
     "sourceUrls": [
       "https://arxiv.org/abs/2304.08244",
-      "https://github.com/AlibabaResearch/DAMO-ConvAI/tree/main/api-bank"
+      "https://github.com/AlibabaResearch/DAMO-ConvAI/tree/main/api-bank",
+      "https://arxiv.org/html/2304.08244"
     ]
   },
   "dataProfile": {
@@ -90,7 +91,7 @@
   },
   "metric": {
     "name": "API 调用正确率与响应 ROUGE-L",
-    "description": "论文按预测 API 调用与人工标注调用的一致性计算 API 调用 Accuracy，并用 ROUGE-L 评估调用后的自然语言响应；结果须分 Call、Retrieval+Call、Plan+Retrieval+Call 能力报告。",
+    "description": "API 调用 Accuracy 根据预测与人工标注是否产生相同数据库查询或修改及返回结果计算；自然语言回复用 ROUGE-L。Call、Retrieval+Call 和 Plan+Retrieval+Call 应分开报告。",
     "direction": "higher",
     "sourceUrls": [
       "https://arxiv.org/abs/2304.08244",
@@ -162,7 +163,7 @@
       ]
     },
     {
-      "text": "2026-10-19直接取得实际记录api-bank-add-agenda-l1-1；已核对来源文件、版本或响应快照、记录定位与哈希。任务不能跳过登录、猜测token或在信息不全时添加日程。原始JSONL保留了完整13条用户/助手/API记录，能看到参数逐步补齐与实际API返回；这些是官方合成样例数据，没有执行登录或添加日程。raw保持原文件逐行格式，未把数组改造成数字键的假JSON对象。",
+      "text": "2026-10-19直接取得实际记录api-bank-add-agenda-l1-1；已核对来源文件、版本或响应快照、记录定位与哈希。任务不能跳过登录、猜测token或在信息不全时添加日程。原始JSONL保留了完整13条用户/助手/API记录，能看到参数逐步补齐与实际API返回；这些是官方样例中的模拟数据，没有执行登录或添加日程。raw保持原文件逐行格式，未把数组改造成数字键的假JSON对象。",
       "sourceUrls": [
         "https://github.com/AlibabaResearch/DAMO-ConvAI/blob/188835d4f9948563a6b9c8ac50cd0f3ae4021ed6/api-bank/lv1-lv2-samples/level-1-given-desc/AddAgenda-level-1-1.jsonl"
       ]
@@ -182,7 +183,7 @@
         "license": "MIT License in the sampled AlibabaResearch/DAMO-ConvAI repository, copyright Alibaba Research (2022); sampled level-1 JSONL resides in this repository.",
         "type": "record",
         "raw": "{\"role\": \"User\", \"text\": \"Hi, can you help me add a new schedule for my meeting tomorrow at 2pm? Today is 2021-09-27\"}\r\n{\"role\": \"AI\", \"text\": \"Sure, I can help you with that. What's the content of the agenda?\"}\r\n{\"role\": \"User\", \"text\": \"The meeting with the marketing team\"}\r\n{\"role\": \"AI\", \"text\": \"Great, and where is the meeting located?\"}\r\n{\"role\": \"User\", \"text\": \"At the conference room\"}\r\n{\"role\": \"AI\", \"text\": \"Okay, at what time is the meeting scheduled to start?\"}\r\n{\"role\": \"User\", \"text\": \"Tomorrow at 2pm\"}\r\n{\"role\": \"AI\", \"text\": \"Got it, I need to authenticate with your account first. Can you please provide me with your username and password?\"}\r\n{\"role\": \"User\", \"text\": \"Sure, my username is foo and my password is bar\"}\r\n{\"role\": \"API\", \"api_name\": \"GetUserToken\", \"param_dict\": {\"username\": \"foo\", \"password\": \"bar\"}, \"result\": {\"api_name\": \"GetUserToken\", \"input\": {\"username\": \"foo\", \"password\": \"bar\"}, \"output\": {\"token\": \"z9x8c7v6b5n4m3q2w1\"}, \"exception\": null}}\r\n{\"role\": \"AI\", \"text\": \"Thank you, I have retrieved your token. Now, let me add the agenda for you.\"}\r\n{\"role\": \"API\", \"api_name\": \"AddAgenda\", \"param_dict\": {\"token\": \"z9x8c7v6b5n4m3q2w1\", \"content\": \"Meeting with the marketing team\", \"time\": \"2021-09-28 14:00:00\", \"location\": \"Conference room\"}, \"result\": {\"api_name\": \"AddAgenda\", \"input\": {\"token\": \"z9x8c7v6b5n4m3q2w1\", \"content\": \"Meeting with the marketing team\", \"time\": \"2021-09-28 14:00:00\", \"location\": \"Conference room\"}, \"output\": \"success\", \"exception\": null}}\r\n{\"role\": \"AI\", \"text\": \"The agenda has been added successfully.\"}\r\n",
-        "explanation": "任务不能跳过登录、猜测token或在信息不全时添加日程。原始JSONL保留了完整13条用户/助手/API记录，能看到参数逐步补齐与实际API返回；这些是官方合成样例数据，没有执行登录或添加日程。raw保持原文件逐行格式，未把数组改造成数字键的假JSON对象。",
+        "explanation": "任务不能跳过登录、猜测token或在信息不全时添加日程。原始JSONL保留了完整13条用户/助手/API记录，能看到参数逐步补齐与实际API返回；这些是官方样例中的模拟数据，没有执行登录或添加日程。raw保持原文件逐行格式，未把数组改造成数字键的假JSON对象。",
         "promptOrigin": "editorial",
         "licensePath": "licenses/api-bank-sample-source.txt"
       }
