@@ -25,26 +25,32 @@
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "评估推测解码在多样语义任务和不同并发负载下的推理服务性能，分别设置语义覆盖与吞吐测试部分，比较实际加速效果及服务条件影响。",
-    "task": "在目标模型及服务配置下运行推测解码，比较其输出质量约束下的吞吐等推理性能表现。",
+    "task": "将不同领域的真实提示词发送给推理服务，测量推测解码的草稿接受情况，并在不同输入长度和并发下比较吞吐或加速效果。",
     "sourceUrls": [
       "https://arxiv.org/abs/2604.09557",
       "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
     ]
   },
   "taskContract": {
-    "input": "SPEED-Bench请求数据及目标模型/推测解码配置。",
-    "output": "生成结果及服务性能测量；结果受硬件、批量、服务栈与推测解码策略影响。",
-    "environment": "可通过 NVIDIA AIPerf 集成执行；AIPerf 是基准运行/剖析工具，不能与数据集名称合并成新评测。",
+    "input": "Qualitative 部分提供编码、数学、问答等 11 类提示词；Throughput 部分按输入长度和输出熵分组。另需指定目标模型、推测解码方法及服务负载。",
+    "output": "模型生成文本及推测解码接受长度、吞吐或相对基线的加速等测量结果；该基准主要评估推理性能，不以题目答对率作为统一主指标。",
+    "environment": "使用目标模型与推理服务，在不同并发和输入长度下测量；论文使用生产级推理引擎，NVIDIA AIPerf 提供集成。需记录硬件、引擎、采样与基线配置。",
     "sourceUrls": [
       "https://arxiv.org/abs/2604.09557",
       "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
     ]
   },
   "dataProfile": {
-    "summary": "论文提出用于推测解码评估的数据集；NVIDIA 文档说明其 AIPerf 数据集使用方式。具体数据字段、许可和固定数据revision须看原始数据源。",
+    "summary": "SPEED-Bench 包含侧重语义覆盖的 Qualitative 部分和面向不同负载的 Throughput 部分；数量及配置以数据版本为准。",
     "disclosure": "partial",
-    "scale": [],
-    "splits": [],
+    "scale": [
+      "NVIDIA AIPerf 文档列出 Qualitative 共 880 条、11 个领域，每类 80 条。",
+      "AIPerf 文档列出 1K、2K、8K、16K、32K 输入长度各 1,536 条，以及 100K 输入长度 384 条；这些是文档所列集成配置。"
+    ],
+    "splits": [
+      "Qualitative 覆盖编码、数学、多语言、问答、检索增强生成、写作等领域；数据集查看器标为 qualitative / test。",
+      "Throughput 按输入长度和低、中、高输出熵分组，供不同负载与并发设置测量；不要与模型训练划分混同。"
+    ],
     "fields": [
       "question_id",
       "category",
@@ -55,24 +61,26 @@
       "difficulty",
       "multiturn"
     ],
-    "files": [],
+    "files": [
+      "Hugging Face 数据卡提供各配置及 Parquet 数据；部分来源提示词以占位符提供，需按对应来源条件恢复。"
+    ],
     "sourceUrls": [
       "https://arxiv.org/abs/2604.09557",
       "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset",
-      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1"
+      "https://huggingface.co/datasets/nvidia/SPEED-Bench"
     ]
   },
   "dataAccess": {
-    "status": "gated",
+    "status": "partial",
     "requirements": [
-      "Accept the NVIDIA Evaluation Dataset License Agreement; some upstream Hugging Face datasets require access approval and authentication."
+      "NVIDIA 数据集卡及部分记录可公开查看；完整提示词须遵守 NVIDIA Evaluation Dataset License Agreement 与各上游数据集条款。",
+      "AIPerf 文档说明部分上游提示词需重新获取，其中 HLE 需要单独接受访问条款并认证；具体访问条件以来源为准。"
     ],
     "sourceUrls": [
-      "https://arxiv.org/abs/2604.09557",
-      "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset",
-      "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1"
+      "https://huggingface.co/datasets/nvidia/SPEED-Bench",
+      "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
     ],
-    "url": "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset"
+    "url": "https://huggingface.co/datasets/nvidia/SPEED-Bench"
   },
   "reusePolicy": {
     "status": "permitted",
@@ -96,8 +104,8 @@
     ]
   },
   "metric": {
-    "name": "Throughput / speedup",
-    "description": "以目标服务配置下的推理吞吐或加速表现衡量；硬件与服务负载条件不可省略。",
+    "name": "接受长度 / 吞吐量 / 加速比",
+    "description": "按领域或负载报告草稿接受长度、输出吞吐及相对基线的加速比；比较时记录输入长度、并发、硬件、引擎及推测配置。",
     "direction": "higher",
     "sourceUrls": [
       "https://arxiv.org/abs/2604.09557",
@@ -150,6 +158,11 @@
       "label": "实际原始任务、数据或许可依据",
       "url": "https://huggingface.co/datasets/bigcode/humanevalpack/raw/9a41762f73a8cb23bb5811b73d5aab164efcf378/README.md",
       "role": "data"
+    },
+    {
+      "label": "NVIDIA SPEED-Bench 数据卡",
+      "url": "https://huggingface.co/datasets/nvidia/SPEED-Bench",
+      "role": "data"
     }
   ],
   "related": [],
@@ -198,6 +211,14 @@
       "text": "2026-10-19直接取得实际记录speed-bench-go-27；已核对来源文件、版本或响应快照、记录定位与哈希。原前缀要求FlipCase反转字母大小写，示例Hello对应hELLO；函数体待补全。SPEED-Bench将它用作qualitative/coding工作负载，该记录没有参考实现，本站没有补写答案。raw保留原始turns、source与src_id=Go/27；已对照固定HumanEvalPack原文件确认该187字符前缀完全一致。",
       "sourceUrls": [
         "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FSPEED-Bench&config=qualitative&split=test&offset=0&length=1"
+      ]
+    },
+    {
+      "text": "2026-11-05 复核论文 v2、NVIDIA 数据卡与 AIPerf dev 文档；补充 Qualitative 和 Throughput 的具体构成及访问条件。集成文档数量按其所列配置记录，不推断所有论文版本相同。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2604.09557",
+        "https://docs.nvidia.com/aiperf/dev/tutorials/datasets-inputs/profile-with-speed-bench-dataset",
+        "https://huggingface.co/datasets/nvidia/SPEED-Bench"
       ]
     }
   ]
