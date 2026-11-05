@@ -21,18 +21,18 @@
     ]
   },
   "taskContract": {
-    "input": "冻结的上游软件及迁移要求。",
-    "output": "迁移后的完整仓库。",
-    "environment": "逐任务冻结代码环境、迁移审计、行为测试和代理验证。",
+    "input": "固定版本的可运行开源仓库、目标技术栈、迁移说明，以及包含新旧工具链的离线容器和时间预算。",
+    "output": "迁移后的工作树：用目标技术栈构建，并保持要求范围内的外部接口和可观察行为。",
+    "environment": "20 项任务分为语言、框架、平台和构建工具链迁移；论文每项给出 6–30 小时预算，运行时除模型端点外不联网。",
     "sourceUrls": [
-      "https://arxiv.org/abs/2608.23564"
+      "https://arxiv.org/html/2608.23564"
     ]
   },
   "dataProfile": {
     "summary": "20 个完整仓库迁移任务。",
     "disclosure": "partial",
     "scale": [
-      "20 个完整仓库迁移任务。"
+      "20 个完整仓库迁移任务：语言 7、框架 7、平台 3、构建工具链 3。"
     ],
     "splits": [],
     "fields": [],
@@ -42,7 +42,8 @@
     "sourceUrls": [
       "https://arxiv.org/abs/2608.23564",
       "https://github.com/Einsia/SWE-Refactor-Bench",
-      "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md"
+      "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/tasks/lang06-jsonnet-cpp-to-csharp/instruction.md",
+      "https://arxiv.org/html/2608.23564"
     ]
   },
   "dataAccess": {
@@ -76,11 +77,11 @@
     ]
   },
   "metric": {
-    "name": "通过率",
-    "description": "结合迁移审计、冻结行为检查与代理验证判断任务通过。",
+    "name": "三阶段综合得分与完整通过数",
+    "description": "迁移审计或任一固定行为测试未通过则得 0；两者通过后，得分为 0.4 加上六个验证代理未找到有效反例的比例乘以 0.6。全部六个验证代理均未找到反例才计入完整通过；未发现反例不等于形式化证明。",
     "direction": "higher",
     "sourceUrls": [
-      "https://arxiv.org/abs/2608.23564"
+      "https://arxiv.org/html/2608.23564"
     ]
   },
   "limitations": [
@@ -111,10 +112,15 @@
       "label": "任务作者的许可证",
       "url": "https://raw.githubusercontent.com/Einsia/SWE-Refactor-Bench/0d5d7310e64970826ffbe53fb53a349114acd69c/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "论文任务与评分协议",
+      "url": "https://arxiv.org/html/2608.23564",
+      "role": "paper"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "updatedAt": "2026-10-28",
   "sampleSet": {
     "retrievedAt": "2026-10-28",

@@ -34,9 +34,9 @@
     ]
   },
   "taskContract": {
-    "input": "自然语言查询和候选工具文档/描述。",
-    "output": "排序后的相关工具列表，依据论文检索指标评估。",
-    "environment": "论文与作者仓库所提供的工具检索数据及评估实现。",
+    "input": "用户任务查询与候选工具文档；论文分别评估仅用查询，以及将查询与附加检索指令拼接的两种设置。",
+    "output": "按相关性排序的工具列表；目标工具标注用于评分，工具本身不必执行。",
+    "environment": "工具文档分为 Web API、代码函数和自定义应用三类；结果需要标明检索设置、候选范围及 K 值。",
     "sourceUrls": [
       "https://github.com/mangopy/tool-retrieval-benchmark",
       "https://arxiv.org/abs/2503.01763",
@@ -107,7 +107,7 @@
   },
   "metric": {
     "name": "nDCG@K、Recall@K、Precision@K、Completeness@K",
-    "description": "论文分别用 NDCG@K 评价相关工具排序、Recall@K 评价召回目标工具的比例、Precision@K 评价检索结果准确性，并采用 Completeness@K 补充衡量目标工具集合覆盖；应注明 K 和检索设置。",
+    "description": "NDCG@K 衡量排序质量，Recall@K 衡量目标工具召回比例，Precision@K 衡量前 K 条的准确性；单条任务的 Completeness@K 仅在所有目标工具都进入前 K 条时为 1，否则为 0。",
     "direction": "higher",
     "sourceUrls": [
       "https://github.com/mangopy/tool-retrieval-benchmark",
@@ -182,7 +182,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-21",
+  "verifiedAt": "2026-11-05",
   "interpretation": {
     "versionChanges": {
       "text": "arXiv v1 于 2025-03-03 首次提交；作者仓库记录同日发布论文、3月5日发布代码、5月20日论文被 ACL 2025 接收。工具库和检索任务应按引用版本固定。",

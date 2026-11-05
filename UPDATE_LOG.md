@@ -2513,3 +2513,6 @@
 - 补充 SuctionNet 共享场景的训练与三类测试划分，以及已读取的对象密封标签字段和文件路径格式，消除数据结构空缺。
 
 - 修改 `content/benchmarks/officeqa-pro-v2.json`：核对官方数据卡和发布文章，补充真实财政文档输入、多文档推理与答案形式、文档及题量、数据字段、访问条件和评分容差；明确完整受控文件尚未取得，避免把来源证据误写为必需的答案格式。
+
+- 修改 `content/benchmarks/swe-refactor-bench.json`：依据论文补充四类迁移、离线环境与预算，修正原先笼统的通过率描述，区分三阶段综合得分和完整通过条件。
+- 修改 `content/benchmarks/toolret.json`：补充仅查询与查询加指令两种检索配置、三类工具文档及 Completeness@K 的逐题判定，明确工具标签用于评分。
