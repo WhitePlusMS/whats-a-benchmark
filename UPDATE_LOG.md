@@ -2331,3 +2331,5 @@
 - 将 AA-Omniscience 默认数据入口切至 v1.1，旧版样例仍各自保留 v1.0 固定来源。
 
 - 修改 `content/benchmarks/simple-embodied.json`：补充官方 simple-eval 桌面抓取固定版本数据包、下载说明和 dr-level-0 的 episode 0 原始单帧记录；核对并查看侧面相机首帧，注明评测目录与内部 train 标签的区别、未运行评测和媒体许可未明确的边界。
+
+- 新增 `content/benchmarks/libero-pro2.json` 和 `content/assets/videos/libero-pro2-libero10-base-review-000.mp4`：收录 LIBERO-Pro2.0 的任务、扰动、训练/留出评测范围和官方训练演示；依据固定版本元数据与原始视频标明许可和非商业使用边界，不将视频编号等同 HDF5 episode 编号或评测成绩。修改 `content/benchmarks/libero-pro.json` 增加版本关联，便于区分原版和 2.0。

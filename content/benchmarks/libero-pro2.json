@@ -1,0 +1,226 @@
+{
+  "id": "libero-pro2",
+  "status": "published",
+  "order": 22512,
+  "name": "LIBERO-Pro2.0",
+  "subtitle": "机器人操作策略在静态和运行时扰动下的稳健性",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "官方训练数据",
+        "type": "训练数据集",
+        "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train"
+      },
+      {
+        "label": "官方评测资源",
+        "type": "评测资源",
+        "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval"
+      }
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "具身推理"
+  ],
+  "publisher": "LIBERO-Pro2.0 Authors",
+  "brandIds": [
+    "libero-pro"
+  ],
+  "year": 2026,
+  "version": "2.0",
+  "kind": "derivative",
+  "aliases": [
+    "LIBERO-Pro 2.0"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过静态变化和执行中的扰动评估具身操作策略的稳健性。",
+    "task": "在仿真操作任务中面对物体、环境、观测、执行、机器人或语言变化，完成指定目标。",
+    "sourceUrls": [
+      "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0",
+      "https://arxiv.org/abs/2610.24587"
+    ]
+  },
+  "taskContract": {
+    "input": "任务语言、机器人视觉与状态观测；具体扰动和策略输入依评测配置确定。",
+    "output": "生成机器人动作，在任务执行前或执行中受到扰动的条件下完成目标。",
+    "environment": "基于 LIBERO 的仿真操作环境；区分静态分布变化和运行时干预。",
+    "sourceUrls": [
+      "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0",
+      "https://arxiv.org/abs/2610.24587"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方介绍 42 类扰动、1,646 个有效任务与扰动组合。",
+    "disclosure": "partial",
+    "scale": [
+      "42 类扰动：22 类静态和 20 类运行时；跨 32 个训练任务与 8 个留出评测任务。",
+      "训练数据卡列出 40,470 条存储演示，覆盖 1,349 个任务与变化组合。"
+    ],
+    "splits": [
+      "训练数据集只含训练演示；8 个留出任务用于评测，评测资源单独发布。"
+    ],
+    "fields": [
+      "训练 HDF5 包含语言指令、两路 RGB、机器人状态与 7 维动作。"
+    ],
+    "files": [
+      "训练资源含 HDF5、元数据、预览视频；评测资源含任务定义、初始状态与评测工具。"
+    ],
+    "sourceUrls": [
+      "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "训练和评测资源分开发布；以各数据卡的下载与使用条件为准。"
+    ],
+    "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方训练数据卡标注 CC BY-NC 4.0。",
+    "scope": "展示官方训练数据的单条原始视频，注明来源及非商业限制。",
+    "boundaries": [
+      "评测资源及其他第三方素材的使用条件需分别核对。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示官方训练数据的一条任务视频及同目录元数据；该演示不是留出评测成绩。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/metadata.json",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/review_videos/success_000.mp4",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/viewer/review_videos/train"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "按任务及扰动条件统计成功率；静态变化、运行时干预及无扰动基线应分别报告。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "训练演示和留出评测任务用途不同；不同扰动及评测配置的成绩不应直接合并。",
+      "sourceUrls": [
+        "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0",
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0",
+      "role": "definition"
+    },
+    {
+      "label": "原始论文",
+      "url": "https://arxiv.org/abs/2610.24587",
+      "role": "paper"
+    },
+    {
+      "label": "官方训练数据卡与许可",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train",
+      "role": "data"
+    },
+    {
+      "label": "官方评测资源",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval",
+      "role": "data"
+    },
+    {
+      "label": "训练案例元数据（固定版本）",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/metadata.json",
+      "role": "data"
+    },
+    {
+      "label": "训练案例原始视频（固定版本）",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/review_videos/success_000.mp4",
+      "role": "data"
+    },
+    {
+      "label": "官方训练视频索引",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/viewer/review_videos/train",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "libero-pro",
+      "label": "前一版本",
+      "detail": "LIBERO-Pro2.0 扩展静态及运行时扰动设置，版本间结果不能直接混同。",
+      "sourceUrls": [
+        "https://github.com/LIBERO-Pro-Team/LIBERO-Pro2.0"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "libero-pro2-libero10-base-review-000",
+        "title": "把两种罐装食品放进篮子",
+        "type": "video",
+        "promptOrigin": "editorial",
+        "prompt": "将字母汤和番茄酱都放入篮子。",
+        "explanation": "官方训练数据的 libero_10 / task_0 / BASE 预览视频，约 22.35 秒；同目录元数据列出 30 条成功轨迹及该预览文件。视频编号不自动等同 HDF5 内的 episode 编号；这是训练演示，不是留出任务的模型成绩。",
+        "raw": {
+          "suite": "libero_10",
+          "task_id": 0,
+          "case_id": "BASE",
+          "successful_trajectories": 30,
+          "review_videos": [
+            "success_000.mp4",
+            "success_001.mp4",
+            "success_002.mp4",
+            "success_003.mp4",
+            "success_004.mp4"
+          ]
+        },
+        "source": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/metadata.json",
+        "license": "LIBERO-Pro2.0 作者团队，官方训练数据集 CC BY-NC 4.0；原视频未经修改，仅限非商业使用。",
+        "licensePath": "licenses/cc-by-nc-4.txt",
+        "split": "训练数据 / libero_10 / task_0 / BASE / review video 000",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/libero-pro2-libero10-base-review-000.mp4",
+            "caption": "官方训练演示原片；字母汤和番茄酱放入篮子。",
+            "source": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/review_videos/success_000.mp4"
+          }
+        ]
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-11-05 下载固定版本训练元数据及视频；视频 174,529 字节，SHA-256 196511c6ea28a170f6438c88ce95314e839d48b45dedbf8d86ce18276fc66174，并在浏览器播放查看。未下载 380 MB HDF5 或运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/metadata.json",
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/review_videos/success_000.mp4"
+      ]
+    }
+  ]
+}
