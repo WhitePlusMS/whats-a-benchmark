@@ -31,11 +31,11 @@
     ]
   },
   "taskContract": {
-    "input": "由用户兴趣驱动的 trivia 风格文本问题。",
-    "output": "事实答案。",
-    "environment": "Kaggle 托管评测；Parametric 不允许借外部搜索解决问题。",
+    "input": "反映用户兴趣的简短事实问题，覆盖人物、日期、地点等；评测时不使用外部搜索工具。",
+    "output": "回答问题所要求的单一事实，通常是姓名、日期、地点或数值等简短实体。",
+    "environment": "闭卷评估模型参数中的事实知识；题目答案需有维基百科证据，但评测时该证据不作为外部检索工具提供。",
     "sourceUrls": [
-      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+      "https://arxiv.org/html/2512.10791"
     ]
   },
   "dataProfile": {
@@ -85,10 +85,11 @@
   },
   "metric": {
     "name": "Accuracy（Parametric）",
-    "description": "衡量 Parametric 事实问答准确率；这是 FACTS 四项套件中的分项，不是四项平均的 FACTS Score。",
+    "description": "主指标为正确回答比例；论文另报告未作答比例、已作答准确率和 F1，并使用模型评委对每题回答抽取三次判定。",
     "direction": "higher",
     "sourceUrls": [
-      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/"
+      "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/",
+      "https://arxiv.org/html/2512.10791"
     ]
   },
   "limitations": [
@@ -147,10 +148,15 @@
       "label": "已核验的具体任务或公开例题",
       "url": "https://storage.googleapis.com/deepmind-media/FACTS/FACTS_benchmark_suite_paper.pdf",
       "role": "data"
+    },
+    {
+      "label": "FACTS 论文全文",
+      "url": "https://arxiv.org/html/2512.10791",
+      "role": "paper"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {

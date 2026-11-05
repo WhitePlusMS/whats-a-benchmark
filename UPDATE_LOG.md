@@ -2525,3 +2525,7 @@
 - 修改 `content/brands.json`、`content/benchmarks/ladder.json` 并新增 `content/assets/logos/ladder.png`：使用 LADDER 官网图标及原始来源，供评测列表和详情页识别。
 
 - 修改 `content/benchmarks/ladder.json` 并新增 `content/assets/videos/ladder-all3-plate-gpt-policy-episode12.mp4`：补充同一 GPT-Policy 仿真任务的 episode 12 失败记录及官方录像，与成功样例区分；已核对原始 300 步和失败标记、播放画面，保留 CC BY 4.0 归属，不推断失败原因。
+
+- 修改 `content/benchmarks/tax-agent-bench.json`：按当前官方方法区分 Accuracy 的全项通过规则与 Weighted Pass 部分分规则，纠正先前混用公式，并补充美国税务研究输入输出。
+- 修改 `content/benchmarks/deepsearchqa.json`：明确单答案与集合答案、隐藏答案类型和按题 F1 的精确率/召回率含义，登记官方论文和数据卡。
+- 修改 `content/benchmarks/facts-parametric.json`：补充闭卷事实问题、简短实体输出、证据与模型评委的评测边界，登记官方论文。

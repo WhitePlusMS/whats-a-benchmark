@@ -32,9 +32,9 @@
     ]
   },
   "taskContract": {
-    "input": "专家税务问题和给定事实。",
-    "output": "最终书面答案及引用；工具轨迹留作分析。",
-    "environment": "搜索、法规定位、文档读取、检索和计算器工具；每题上限 3 小时，无固定步数。",
+    "input": "美国企业税务相关的专家问题与事实背景，涉及联邦、州及地方税、合伙企业等。",
+    "output": "提交含分析及引用的一份最终书面答案；工具调用轨迹仅供分析，不直接计分。",
+    "environment": "通过搜索、法规定位、文档读取、检索和计算器研究；每题上限 3 小时，不限制固定步数。",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/tax_agent_bench"
     ]
@@ -94,8 +94,8 @@
     ]
   },
   "metric": {
-    "name": "Accuracy / All-Pass",
-    "description": "rubric 按 1–3 权重给部分得分，任一 must-pass 失败则该题归零；任务分= rubric分×(0.7+0.3×引用质量)，193 测试题等权平均。All-Pass 另统计全部检查通过比例。",
+    "name": "Accuracy / Weighted Pass",
+    "description": "官方当前主指标先要求所有 rubric 检查通过，否则该题为 0；全部通过后乘以 0.7 + 0.3 × 引用质量，并对 193 道私有测试题等权平均。另报 Weighted Pass：按检查权重给部分分，再乘相同引用系数；任一 must-pass 未通过则部分分为 0。",
     "direction": "higher",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/tax_agent_bench"
@@ -171,7 +171,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "updatedAt": "2026-10-20",
   "interpretation": {
     "judge": {

@@ -31,12 +31,12 @@
     ]
   },
   "taskContract": {
-    "input": "需要综合多项证据的研究问题。",
-    "output": "含必要答案要点及依据的综合回答。",
-    "environment": "官方技术报告定义的深度研究任务；榜单、裁判、pass设置与生成模型执行配置需分别核实。",
+    "input": "多步骤信息检索问题，可能要求按条件筛选、汇总或交叉核对多个来源；数据中的答案类型不提供给被测模型。",
+    "output": "根据问题给出唯一答案，或列出所有满足条件的答案项；答案集合的顺序不影响评价。",
+    "environment": "论文按最终答案评估，集合题同时衡量正确性与完整性；具体搜索工具及运行设置需随结果说明。",
     "sourceUrls": [
-      "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
-      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+      "https://arxiv.org/html/2601.20975",
+      "https://huggingface.co/datasets/google/deepsearchqa"
     ]
   },
   "dataProfile": {
@@ -97,11 +97,12 @@
   },
   "metric": {
     "name": "F1（集合式答案）；另报分项状态指标",
-    "description": "Google DeepMind报告以F1评价集合式答案，并另列答案状态分布；不得把状态分类指标混称为主准确率。",
+    "description": "对每题答案项计算精确率、召回率和 F1，再按题平均；单答案题相当于二元正确性。论文另报告完全正确、完全错误、部分正确和含多余答案等状态。",
     "direction": "higher",
     "sourceUrls": [
       "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
-      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/",
+      "https://arxiv.org/html/2601.20975"
     ]
   },
   "limitations": [
@@ -145,10 +146,20 @@
       "label": "实际原始任务、数据或许可依据",
       "url": "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "label": "DeepSearchQA 论文全文",
+      "url": "https://arxiv.org/html/2601.20975",
+      "role": "paper"
+    },
+    {
+      "label": "官方数据卡",
+      "url": "https://huggingface.co/datasets/google/deepsearchqa",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "interpretation": {
     "versionChanges": {
       "text": "Google DeepSearchQA 技术报告与公开数据/榜单；模型报告所用pass和judge设置未必相同",
