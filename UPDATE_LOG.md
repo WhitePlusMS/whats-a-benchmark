@@ -1,3 +1,9 @@
+## 2026-11-05 RoboArena 成对实机评测
+
+- 修改 `content/benchmarks/roboarena.json`：补充同一会话两种策略的原始结果与 TIE 偏好，说明两者均未完成，增加数据快照的字段与目录说明。
+- 新增 `content/assets/videos/roboarena-fridge-policy-b.mp4`：下载同场策略 B 的官方右侧相机录像，与既有策略 A 录像配对展示。
+- 影响：可直观看到双盲评测的两次实际运行，同时保留单场结果与整体成绩的边界。
+
 ## 2026-11-05 HANDBOOK.md 保险对账样例
 
 - 修改 `content/benchmarks/handbook-md.json`：依据官方固定版本补充保险对账任务原文、工作簿名称与五列要求，并核对评分文件，说明文件存在只是多项检查之一。

@@ -40,12 +40,19 @@
     "scale": [
       "论文报告来自七个学术机构的 600 多次真实机器人两两比较。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "官方 2026-07-17 数据快照包含真实策略评测会话；数据卡未将该会话标为训练数据。"
+    ],
+    "fields": [
+      "每场 metadata.yaml 记录语言指令、偏好、反馈及各策略结果；策略目录包含视频与动作/本体状态文件。"
+    ],
+    "files": [
+      "evaluation_sessions/<session>/metadata.yaml 与各策略目录中的视频和 NPZ 文件。"
+    ],
     "sourceUrls": [
       "https://robo-arena.github.io/",
-      "https://arxiv.org/abs/2506.18123"
+      "https://arxiv.org/abs/2506.18123",
+      "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/README.md"
     ]
   },
   "dataAccess": {
@@ -61,7 +68,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "RoboArena 官方数据快照标注 MIT。",
-    "scope": "本站展示一条公开实机评测视频与必要结果字段，归属 RoboArena。",
+    "scope": "本站展示同一场公开实机评测的两段录像与必要结果字段，归属 RoboArena。",
     "boundaries": [
       "单次失败不能代表整个评测或该策略的整体表现。"
     ],
@@ -72,13 +79,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示论文任务例子及官方数据快照中的一次真实评测录像和结果字段；单条记录不代表整套评测成绩。",
+    "reason": "展示论文任务例子及同一场官方真实评测的两段录像与结果字段；单场比较不代表整套评测成绩。",
     "url": "https://robo-arena.github.io/",
     "sourceUrls": [
       "https://robo-arena.github.io/",
       "https://arxiv.org/html/2506.18123",
       "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/metadata.yaml",
-      "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/README.md"
+      "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/README.md",
+      "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/B_paligemma_fast_specialist_droid/paligemma_fast_specialist_droid_2025-10-17T08:52:04.098815_video_right.mp4"
     ]
   },
   "metric": {
@@ -143,6 +151,11 @@
       "label": "MIT 许可文本",
       "url": "https://github.com/robo-arena/roboarena/blob/main/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "同一场评测的策略 B 录像",
+      "url": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/B_paligemma_fast_specialist_droid/paligemma_fast_specialist_droid_2025-10-17T08:52:04.098815_video_right.mp4",
+      "role": "data"
     }
   ],
   "related": [],
@@ -171,16 +184,28 @@
       },
       {
         "id": "roboarena-fridge-record-a",
-        "title": "真实评测：打开冰箱门（失败案例）",
+        "title": "真实评测：两种策略打开冰箱门",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "实机指令：打开冰箱门。视频展示策略 A 的一次执行；官方记录该次没有完成目标。",
-        "explanation": "来自 RoboArena 官方 2026-07-17 数据快照：该场比较中的策略 A 成功标记为 0。人工反馈称两个策略都未找到冰箱；这里不将个别结果推广为整套评测的成绩。",
+        "prompt": "实机指令：打开冰箱门。评估者在同一场景分别运行两种策略并比较。",
+        "explanation": "官方元数据记录策略 A 与 B 的 binary_success 均为 0、partial_success 均为 0.1，人工偏好为 TIE；评估者反馈两者均未找到冰箱。两段视频分别来自同一场会话的策略 A、B，不能推广为策略整体成绩。",
         "raw": {
           "language_instruction": "open the fridge door",
-          "policy_name": "paligemma_fast_droid",
-          "binary_success": 0,
-          "partial_success": 0.1
+          "preference": "TIE",
+          "policies": {
+            "B": {
+              "policy_name": "paligemma_fast_specialist_droid",
+              "binary_success": 0,
+              "partial_success": 0.1,
+              "duration": 399
+            },
+            "A": {
+              "policy_name": "paligemma_fast_droid",
+              "binary_success": 0,
+              "partial_success": 0.1,
+              "duration": 399
+            }
+          }
         },
         "source": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/metadata.yaml",
         "license": "RoboArena 官方数据快照标注 MIT；来源 RoboArena。",
@@ -193,6 +218,12 @@
             "path": "videos/roboarena-fridge.mp4",
             "caption": "官方实机录像：策略 A 未能打开冰箱门；右侧相机视角。",
             "source": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/A_paligemma_fast_droid/paligemma_fast_droid_2025-10-17T08:48:05.106298_video_right.mp4"
+          },
+          {
+            "kind": "video",
+            "path": "videos/roboarena-fridge-policy-b.mp4",
+            "caption": "同一场评测的策略 B 录像：未完成开冰箱任务；右侧相机视角。",
+            "source": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/B_paligemma_fast_specialist_droid/paligemma_fast_specialist_droid_2025-10-17T08:52:04.098815_video_right.mp4"
           }
         ]
       }
