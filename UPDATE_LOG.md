@@ -2531,3 +2531,9 @@
 - 修改 `content/benchmarks/facts-parametric.json`：补充闭卷事实问题、简短实体输出、证据与模型评委的评测边界，登记官方论文。
 
 - 修改 `content/benchmarks/ladder.json` 并新增 `content/assets/videos/ladder-psp-widowx-episode100.mp4`：补充官方 WidowX 实机 episode 100 的任务、掉落重试日志与最终结果，标明 PSP-Agent、实机划分、固定版本和 CC BY 4.0；已播放核看，单次结果不代表总体成绩。
+
+## 2026-11-05：补充 LIBERO-Pro2.0 留出评测配置
+
+- 修改 `content/benchmarks/libero-pro2.json`：依据固定版本官方评测压缩包、任务清单与划分清单补充 Spatial 任务 0 的 S01 静态扰动案例，注明目标、偏移、test 划分、来源和许可边界。
+- 原因：现有样例仅为训练视频，不能直观看到留出评测的实际任务配置。
+- 影响：读者可区分训练演示和未运行的测试配置；未声称录像或模型成绩。

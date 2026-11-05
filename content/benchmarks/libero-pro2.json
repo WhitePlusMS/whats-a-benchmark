@@ -63,7 +63,8 @@
       "训练数据卡列出 40,470 条存储演示，覆盖 1,349 个任务与变化组合。"
     ],
     "splits": [
-      "训练数据集只含训练演示；8 个留出任务用于评测，评测资源单独发布。"
+      "训练数据集只含训练演示；8 个留出任务用于评测，评测资源单独发布。",
+      "固定版本划分清单的 test 包含 libero_spatial 任务 0 与 8；所有同一基础任务的扰动变体属于同一划分。"
     ],
     "fields": [
       "训练 HDF5 包含语言指令、两路 RGB、机器人状态与 7 维动作。"
@@ -102,12 +103,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方训练数据的一条任务视频及同目录元数据；该演示不是留出评测成绩。",
+    "reason": "展示一条官方训练演示及一条留出评测配置；评测配置不是模型运行记录。",
     "sourceUrls": [
       "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train",
       "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/metadata.json",
       "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/review_videos/success_000.mp4",
-      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/viewer/review_videos/train"
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/viewer/review_videos/train",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/manifests/task_manifest.json",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/manifests/benchmark_split_v1.json",
+      "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/evaluation.zip"
     ]
   },
   "metric": {
@@ -162,6 +166,21 @@
       "label": "官方训练视频索引",
       "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/viewer/review_videos/train",
       "role": "data"
+    },
+    {
+      "label": "固定版本评测任务清单",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/manifests/task_manifest.json",
+      "role": "data"
+    },
+    {
+      "label": "固定版本训练与测试划分",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/manifests/benchmark_split_v1.json",
+      "role": "data"
+    },
+    {
+      "label": "固定版本评测配置压缩包",
+      "url": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/evaluation.zip",
+      "role": "data"
     }
   ],
   "related": [
@@ -211,6 +230,27 @@
             "source": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/review_videos/success_000.mp4"
           }
         ]
+      },
+      {
+        "id": "libero-pro2-spatial-test-s01",
+        "title": "留出测试：移动黑碗到盘子",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "拾起盘子与烤盅之间的黑碗，将它放到盘子上。",
+        "explanation": "官方留出评测任务 libero_spatial / 0 的 S01 静态变体。配置在重置时对目标碗应用位置与朝向变换，记录的平面偏移为 (0.0, -0.075)；成功目标仍是碗位于盘上。这是任务配置，不是运行轨迹或评测成绩。",
+        "raw": {
+          "suite": "libero_spatial",
+          "base_task_id": 0,
+          "case_id": "S01",
+          "case_kind": "static",
+          "bddl_path": "bddl/libero-pro2.0-1680-v1/libero_spatial/01_static/S01__pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+          "bddl_sha256": "a28427cf05d17337dbcea5f14a280cc76f4723a177606ece8fe1f588fc4d06a3",
+          "max_steps": 220
+        },
+        "source": "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/manifests/task_manifest.json",
+        "license": "官方评测清单必要字段摘录；评测资源内代码与资产按原有许可使用，数据卡未给予服务代码额外许可。",
+        "split": "test / libero_spatial / base_task_id 0 / S01 静态扰动",
+        "excerpt": true
       }
     ]
   },
@@ -220,6 +260,14 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/metadata.json",
         "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Train/blob/6c4c5524676815a88880a7025badd17fb724f7f4/data/libero_10/task_0/BASE/review_videos/success_000.mp4"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载固定版本 evaluation.zip 并核对 SHA-256 473def4e586eeee7e413092e93205d602c45551623746a5fc05893812acc1db2；查看 S01 BDDL 的语言、目标和扰动字段，并通过任务清单与划分清单核对留出 test。未运行仿真或取得该变体的评测录像。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/evaluation.zip",
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/manifests/task_manifest.json",
+        "https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro2.0-Eval/blob/d1933228f8be59f5d8fa1d8e2e251b463dfb64bc/manifests/benchmark_split_v1.json"
       ]
     }
   ]
