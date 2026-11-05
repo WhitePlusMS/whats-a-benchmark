@@ -29,9 +29,9 @@
     ]
   },
   "taskContract": {
-    "input": "单细胞测序数据和自然语言任务。",
-    "output": "按任务约定输出可验证的结构化结果。",
-    "environment": "在可使用分析代码及依赖的环境中，确定性评分器检查答案。",
+    "input": "一个 AnnData（.h5ad）数据快照及自然语言分析任务；任务涉及质量控制、归一化、降维、聚类、细胞类型或差异表达。",
+    "output": "按各任务指定的字段和格式提交分析结果，例如数量、数值、细胞类型集合或基因列表，由相应确定性评分器检查。",
+    "environment": "智能体在可运行分析代码和依赖的环境中读取数据；题目指定输出格式，评分器按数值容差、选择题、集合或分布等规则判定。",
     "sourceUrls": [
       "https://github.com/latchbio/scbench"
     ]
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "text": "本地节选未包含完整任务说明、原始 AnnData 数据及评分配置，不能单独复现实验。",
+      "text": "本站只展示公开题目的中文整理及评分字段节选，未附原始 AnnData 快照，不能单独复现实验。",
       "sourceUrls": [
         "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json"
       ]
@@ -136,9 +136,9 @@
         "id": "bd_rhapsody_tnbc_panel_aware_qc",
         "title": "BD Rhapsody 质量控制任务",
         "type": "record",
-        "prompt": "公开任务要求分析质控后保留的外周血细胞和单核细胞。",
+        "prompt": "对乳腺癌队列的 BD Rhapsody 单细胞数据进行适合该数据的质量控制，分析外周血细胞：报告质控后保留的细胞数、每个细胞检测到的基因数中位数，以及归为经典单核细胞的数量。",
         "promptOrigin": "editorial",
-        "explanation": "来源文件的评分器包含三个真实目标值；完整问题和阈值请查看固定版本原文件。",
+        "explanation": "公开任务要求在 EVAL_ANSWER 标签中返回三个指定 JSON 字段。评分器分别比较三个数值与参考值，绝对容差依次为 800、8、1000。数据为靶向基因面板；原文件说明套用常见全转录组阈值可能误删细胞。评分只核对数值，因此数值通过不保证分析理由正确。本站未运行该任务。",
         "raw": {
           "id": "bd_rhapsody_tnbc_panel_aware_qc",
           "metadata": {
@@ -152,6 +152,20 @@
                 "median_genes_per_pbmc": 68,
                 "n_monocytes_pbmc": 2592,
                 "n_pbmcs_retained": 14346
+              },
+              "tolerances": {
+                "median_genes_per_pbmc": {
+                  "type": "absolute",
+                  "value": 8
+                },
+                "n_monocytes_pbmc": {
+                  "type": "absolute",
+                  "value": 1000
+                },
+                "n_pbmcs_retained": {
+                  "type": "absolute",
+                  "value": 800
+                }
               }
             }
           }
@@ -163,5 +177,13 @@
         "licensePath": "licenses/lhtb-apache-2-0.txt"
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "2026-11-05 核对固定版本公开任务的题面、三个答案字段、参考值和绝对容差；任务文件说明数值评分可能无法识别不影响最终数值的错误理由。",
+      "sourceUrls": [
+        "https://github.com/latchbio/scbench/blob/0bc34032bfa402dad29fc40b4cf10ea8fc03193e/evals/qc/bd_rhapsody_tnbc_panel_aware_qc.json"
+      ]
+    }
+  ]
 }
