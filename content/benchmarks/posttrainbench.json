@@ -24,11 +24,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2603.08640"
+      "https://arxiv.org/abs/2603.08640",
+      "https://github.com/aisa-group/PostTrainBench"
     ],
-    "environment": "研究代理、训练资源及任务配置；版本按官网记录。",
-    "input": "后训练任务目标与可用实验资源。",
-    "output": "实验/研究产物及任务分数。"
+    "environment": "论文参考设置给 CLI 智能体单张 H100 和 10 小时；不同运行实现与预算须注明。",
+    "input": "给定基础语言模型、目标下游基准、评估脚本与可用的训练资源；代理自行选择后训练方法。",
+    "output": "提交后训练模型，并以其在目标基准上的表现衡量任务结果。"
   },
   "dataProfile": {
     "summary": "在单张H100 GPU、10小时计算预算内执行自主LLM后训练研究任务；将基础模型后训练后在目标任务上评估。",
@@ -119,7 +120,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "releaseDate": "2026-03-09",
   "interpretation": {
     "versionChanges": {

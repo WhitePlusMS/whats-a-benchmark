@@ -1,3 +1,10 @@
+## 2026-11-05：补充智能体工作任务说明与网页真题
+
+- 修改 `content/benchmarks/webvoyager.json`：核对固定提交的 643 条官方任务，增加 Allrecipes 食谱检索真题和本站解读的节选标记，补充输入、交互输出及实时网页限制。
+- 修改 `content/benchmarks/bankertoolbench.json`：根据官方数据卡明确投资银行任务的输入、交付文件和专家评分条件。
+- 修改 `content/benchmarks/posttrainbench.json`：明确基础模型、目标基准、评估脚本、提交模型及参考 GPU 时间预算。
+- 原因与影响：原任务说明较笼统；新增样例标明来源和划分边界，不代表本站执行网页操作或模型训练。
+
 ## 2026-11-05：核实 AA-Robotics 单项实机录像
 
 - 修改 `content/benchmarks/aa-robotics.json`：下载并在浏览器查看官网红色按钮任务中 GPT-6 Astra 对应的多视角实机视频，补充官方原片入口、来源和哈希。

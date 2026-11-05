@@ -26,9 +26,9 @@
     ]
   },
   "taskContract": {
-    "input": "任务指令、网站地址与实时网页。",
-    "output": "完成网页任务并返回结果。",
-    "environment": "使用浏览器与 Selenium 的在线环境。",
+    "input": "用户网页任务指令和起始网址，代理根据页面截图及交互反馈继续操作。",
+    "output": "通过点击、输入、滚动等操作完成任务，并按题意返回找到的信息或结果。",
+    "environment": "作者实现使用 Selenium 操作实时网站；网站变化、动态内容和运行时间会影响复现。",
     "sourceUrls": [
       "https://github.com/MinorJerry/WebVoyager"
     ]
@@ -37,7 +37,7 @@
     "summary": "作者公开真实网站任务 JSONL；网站和网页状态会随时间变化。",
     "disclosure": "partial",
     "scale": [
-      "作者公开真实网站任务 JSONL；网站和网页状态会随时间变化。"
+      "官方任务文件含 643 条任务，覆盖 15 个网站。"
     ],
     "splits": [],
     "fields": [
@@ -51,7 +51,8 @@
     ],
     "sourceUrls": [
       "https://github.com/MinorJerry/WebVoyager",
-      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl"
+      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
+      "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl"
     ]
   },
   "dataAccess": {
@@ -75,10 +76,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已读取官方 JSONL 的 Google Search--1 原始记录；不复制第三方网页内容。",
+    "reason": "展示官方 JSONL 中的 Google 搜索及 Allrecipes 两条真实任务；不复制第三方网页内容。",
     "url": "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
     "sourceUrls": [
-      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl"
+      "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
+      "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl"
     ]
   },
   "metric": {
@@ -107,12 +109,17 @@
       "label": "官方任务 JSONL",
       "url": "https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl",
       "role": "data"
+    },
+    {
+      "label": "固定提交的官方网页任务数据",
+      "url": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
-    "retrievedAt": "2026-10-28",
+    "retrievedAt": "2026-11-05",
     "samples": [
       {
         "id": "Google Search--1",
@@ -131,6 +138,25 @@
         "split": "官方任务文件",
         "excerpt": false,
         "licensePath": "licenses/lhtb-apache-2-0.txt"
+      },
+      {
+        "id": "Allrecipes--0",
+        "title": "真实网页任务：寻找素食千层面食谱",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在 Allrecipes 寻找一份适合 6 人、评论超过 100 条且评分至少 4.5 星的素食千层面食谱。",
+        "explanation": "这是官方网页任务文件中的真实记录；代理需要在实际网页中查找并核对人数、评论数和评分。网站内容会变化，本站未运行该任务或保存网页结果。",
+        "raw": {
+          "web_name": "Allrecipes",
+          "id": "Allrecipes--0",
+          "ques": "Provide a recipe for vegetarian lasagna with more than 100 reviews and a rating of at least 4.5 stars suitable for 6 people.",
+          "web": "https://www.allrecipes.com/"
+        },
+        "source": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+        "license": "WebVoyager 作者仓库采用 Apache 2.0；外部网站内容适用各自条款。",
+        "licensePath": "licenses/lhtb-apache-2-0.txt",
+        "split": "官方 WebVoyager 任务文件 / Allrecipes--0；未另标训练或验证划分。",
+        "excerpt": true
       }
     ]
   }
