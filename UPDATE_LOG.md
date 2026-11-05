@@ -1,3 +1,9 @@
+## 2026-11-05 LOCA-bench 与 LongMemEval 任务说明
+
+- 修改 `content/benchmarks/loca-bench.json`：依据固定版本环境源码补充模拟工具、Excel 交付与检查方式；新增考试安排任务的真实指令及来源，保留原配置中账号字段的省略说明。
+- 修改 `content/benchmarks/longmemeval.json`：依据作者资料补充带日期的对话历史、问题、回答和弃答要求，区分 S、M 与 oracle 上下文。
+- 影响：读者可直观看到智能体实际任务，并理解长期记忆评测的输入、输出及数据配置边界。
+
 ## 2026-11-05 HumanoidBench 轨迹与 LIBERO-Plus 任务说明
 
 - 修改 `content/benchmarks/humanoidbench.json`：补充官方环境观测和动作说明；下载并解析 RoboVerse 发布的 stand/H1 轨迹，摘录初始状态、第一条动作和状态，注明第三方来源、许可及未标注划分和成绩的边界。官网视频仍为独立任务片段，不冒充轨迹对应视频。

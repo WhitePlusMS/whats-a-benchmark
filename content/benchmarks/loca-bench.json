@@ -21,18 +21,20 @@
     ]
   },
   "taskContract": {
-    "input": "环境状态、任务提示及工具。",
-    "output": "工具操作与任务结果。",
-    "environment": "动态增长的智能体环境。",
+    "input": "固定任务指令与可通过模拟工具探索的环境；例如查询 Canvas 公告和邮件，读取已有考试安排表。",
+    "output": "通过工具操作完成任务；例如把需参加的期末考试按开始时间填入指定 Excel 表，再由环境检查结果。",
+    "environment": "模拟工具环境按配置生成不同规模的状态；任务含义保持不变，上下文随探索增长。",
     "sourceUrls": [
-      "https://arxiv.org/abs/2602.07962"
+      "https://arxiv.org/abs/2602.07962",
+      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/gem/envs/canvas_arrange_exam_s2l/canvas_arrange_exam_s2l.py"
     ]
   },
   "dataProfile": {
-    "summary": "官方提供环境配置与可调参数；不同配置不等同独立题目数量。",
+    "summary": "论文使用 15 项种子任务、7 档环境描述长度和每档 5 个随机种子，共 525 个生成实例。",
     "disclosure": "partial",
     "scale": [
-      "官方提供环境配置与可调参数；不同配置不等同独立题目数量。"
+      "15 项种子任务；每档 75 个实例，共 525 个实例。",
+      "7 档环境描述长度：8K、16K、32K、64K、96K、128K、256K；每档 5 个随机种子。"
     ],
     "splits": [],
     "fields": [
@@ -73,10 +75,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已从固定版本官方数据读取真实记录并展示节选。",
+    "reason": "展示官方固定版本的环境配置与对应环境的任务指令；不将配置或指令称作一次模型运行结果。",
     "url": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json",
     "sourceUrls": [
-      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json"
+      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/task-configs/final_256k_set_config.json",
+      "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/gem/envs/canvas_arrange_exam_s2l/canvas_arrange_exam_s2l.py"
     ]
   },
   "metric": {
@@ -115,20 +118,25 @@
       "label": "样例来源许可",
       "url": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/LICENSE",
       "role": "data"
+    },
+    {
+      "label": "考试安排环境源码与任务指令",
+      "url": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/gem/envs/canvas_arrange_exam_s2l/canvas_arrange_exam_s2l.py",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
-  "updatedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
       {
         "id": "CanvasArrangeExamS2LEnv-seed-42",
-        "title": "官方真实记录",
+        "title": "考试安排：256K 环境配置",
         "type": "record",
         "prompt": "官方配置中以 seed 42 和 160 门课程生成 Canvas 考试安排环境；以下是实际配置字段，而非完整生成后的任务。",
-        "explanation": "仅展示环境名、类路径与参数；原配置中的账号及密码字段已省略。",
+        "explanation": "这是环境配置，seed 为 42；原配置中的账号及密码字段已省略。对应任务指令见下一条样例。",
         "raw": {
           "name": "CanvasArrangeExamS2LEnv",
           "env_class": "gem.envs.canvas_arrange_exam_s2l.canvas_arrange_exam_s2l.CanvasArrangeExamS2LEnv",
@@ -144,6 +152,21 @@
         "split": "final_256k_set_config",
         "excerpt": true,
         "promptOrigin": "editorial"
+      },
+      {
+        "id": "CanvasArrangeExamS2LEnv-instruction",
+        "title": "考试安排：真实任务指令",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "检查 Canvas 公告和邮件，将尚需参加的期末考试填入工作区 exam_schedule.xlsx，按开始时间排序并保留表头；尚未公布的信息填 TBD。",
+        "explanation": "这是环境源码中的 TASK_INSTRUCTION，设定日期为 2025 年 1 月 15 日；源文件还规定排除已结束、无需参加或明确没有期末考试的课程。环境配置会生成数据，下面的指令本身不代表一次实际模型运行或成绩。",
+        "raw": {
+          "TASK_INSTRUCTION": "It is exam week now, and today is January 15, 2025. Check the announcements in Canvas or Emails (already logined in) for information and compile a list of the remaining final exams I need to take. (To reduce the burden at the end of the semester, please only list the final exams I must attend) Please fill in the table `exam_schedule.xlsx` under the workspace; the column names have already been provided, do not change the file name after filling in it. Sort the final exam information in order of exam start time, from nearest to farthest. Remove the “-x” suffix from course codes and course names.  Do not include courses that have already ended, that I do not need to attend, or that explicitly state there is no final exam.  The table must list all courses that have not yet ended, that I need to take, and that do not explicitly state there is no final exam. By default, the proctor is the course instructor. If any exam information has not yet been released, mark the cell as TBD. When filling in the table, completely preserve the original table headers.  "
+        },
+        "source": "https://raw.githubusercontent.com/hkust-nlp/LOCA-bench/8b6fac49d9edd92922593e703b74ea255357c3ec/gem/envs/canvas_arrange_exam_s2l/canvas_arrange_exam_s2l.py",
+        "license": "MIT License\n\nCopyright (c) 2025 LOCA-bench Contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+        "split": "固定版本环境通用任务指令；与 256K 配置关联，并非独立测试集划分。",
+        "excerpt": true
       }
     ]
   }

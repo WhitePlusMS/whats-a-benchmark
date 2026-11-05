@@ -24,11 +24,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2410.10813"
+      "https://arxiv.org/abs/2410.10813",
+      "https://github.com/xiaowu0162/LongMemEval"
     ],
-    "environment": "需区分原版与LongMemEval-V2，检索配置影响结果。",
-    "input": "多会话对话与查询。",
-    "output": "基于记忆的回答。"
+    "environment": "S、M 和 oracle 文件的上下文规模不同；检索与回答配置需单独记录，也不能与 LongMemEval-V2 混用。",
+    "input": "多段带日期的用户与助手历史会话，以及针对历史信息的问题；可按具体系统采用检索或直接读取上下文。",
+    "output": "根据历史回答问题；对没有足够依据的问题应弃答。评测将回答与参考答案比较。"
   },
   "dataProfile": {
     "summary": "LongMemEval含500个问题；S与M是不同上下文规模设置，S每题约115k tokens，M每题包含500个会话、约1.5M tokens。",
@@ -36,7 +37,9 @@
       "500个问题；LongMemEval-S每题约115k tokens",
       "LongMemEval-M每题500个会话、约1.5M tokens"
     ],
-    "splits": [],
+    "splits": [
+      "S 和 M 为同一评测的不同历史长度配置；oracle 文件只包含证据会话，不是完整长历史。"
+    ],
     "fields": [
       "固定oracle文件字段：question_id、question_type、question、answer、question_date、haystack_session_ids、haystack_sessions、haystack_dates、answer_session_ids。",
       "这是oracle发布文件的列清单，S/M完整长历史的文件、长度与运行配置另行固定。"
@@ -124,7 +127,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-21",
+  "verifiedAt": "2026-11-05",
   "releaseDate": "2024-10-14",
   "interpretation": {
     "versionChanges": {
@@ -134,7 +137,7 @@
       ]
     }
   },
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
