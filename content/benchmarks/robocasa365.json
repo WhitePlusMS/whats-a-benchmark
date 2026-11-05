@@ -97,10 +97,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示一条 NVIDIA 分发的人类遥操作仿真演示；完整轨迹和动作数据见数据集。",
+    "reason": "站内展示 NVIDIA 分发的厨房仿真演示；轨迹的相机视频、指令与数据划分可在固定版本核对。",
     "sourceUrls": [
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
-      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1"
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/meta/episodes.jsonl",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/meta/info.json",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/data/chunk-000/episode_000000.parquet",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000000.mp4"
     ]
   },
   "metric": {
@@ -143,6 +147,26 @@
     {
       "label": "NVIDIA 数据固定版本与视频文件记录",
       "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1",
+      "role": "data"
+    },
+    {
+      "label": "打开抽屉轨迹与指令",
+      "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/meta/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "打开抽屉数据划分和帧率",
+      "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/meta/info.json",
+      "role": "data"
+    },
+    {
+      "label": "打开抽屉动作数据",
+      "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/data/chunk-000/episode_000000.parquet",
+      "role": "data"
+    },
+    {
+      "label": "打开抽屉相机视频",
+      "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000000.mp4",
       "role": "data"
     }
   ],
@@ -188,6 +212,41 @@
             "path": "videos/robocasa-adjust-temperature-episode-0.mp4",
             "caption": "人类遥操作的仿真演示，右侧第三人称相机；NVIDIA / RoboCasa，CC BY 4.0。",
             "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1"
+          }
+        ]
+      },
+      {
+        "id": "open-drawer-target-episode-000000",
+        "title": "打开右侧抽屉 · 目标场景轨迹 0",
+        "type": "video",
+        "prompt": "Open the right drawer.",
+        "explanation": "原始指令为“打开右侧抽屉”。轨迹含 334 帧，元数据标明帧率为 20 Hz。target 表示目标场景目录；该数据集元数据将此轨迹划入 train，不能当作验证集或模型评测成绩。",
+        "raw": {
+          "dataset": "nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
+          "revision": "f3b185045b416ec9e0d05b60018e538ca3c459b1",
+          "scene": "target",
+          "task": "OpenDrawer",
+          "date": "20250816",
+          "episode_index": 0,
+          "tasks": [
+            "Open the right drawer."
+          ],
+          "length": 334,
+          "fps": 20,
+          "camera": "robot0_agentview_left",
+          "sha256": "37473e84964da8c9b666c628e4adc72bd2239d7e47adf09760795ad084cb9fce"
+        },
+        "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/meta/episodes.jsonl",
+        "license": "NVIDIA / RoboCasa 数据集，CC BY 4.0；视频未经修改，来源及固定版本见链接。",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "split": "target 场景 / atomic / train / episode 000000",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robocasa-target-open-drawer-episode-0.mp4",
+            "caption": "打开右侧抽屉的仿真演示，左侧第三人称相机；NVIDIA / RoboCasa，CC BY 4.0。",
+            "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000000.mp4"
           }
         ]
       }

@@ -2311,3 +2311,6 @@
 - `content/benchmarks/lvbench.json`：核对原作者仓库后，补充 CC BY-NC-SA 4.0、仅限学术研究及原视频第三方权利，明确与第三方镜像 MIT 标记的冲突；补充长视频选择题的输入输出，避免将镜像许可直接套用于原视频。
 
 - 校验修正：已确认作者允许按 CC BY-NC-SA 4.0 条件复用题目标注，许可状态按项目语义设为“可按许可使用”；非商业、相同方式共享和镜像标记冲突仍明确保留。
+
+- 修改 `content/benchmarks/robocasa365.json`，补充 NVIDIA 固定版本中 target 场景 OpenDrawer 轨迹 0 的原始指令、334 帧、20 Hz、train 划分及视频和动作数据来源；新增 `content/assets/videos/robocasa-target-open-drawer-episode-0.mp4`，原样展示左侧相机视频并注明 CC BY 4.0。target 是场景目录，train 是数据划分，该演示不代表验证集或模型成绩。
+- 修正新样例的来源标记：原始指令遵循现有 schema，省略仅用于编辑改写内容的 `promptOrigin`，使内容生成校验通过。
