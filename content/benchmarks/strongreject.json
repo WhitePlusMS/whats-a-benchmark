@@ -24,11 +24,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2402.10260"
+      "https://arxiv.org/abs/2402.10260",
+      "https://github.com/dsbowen/strong_reject"
     ],
-    "environment": "判分器及所用提示集版本影响结果。",
-    "input": "有害请求与模型响应。",
-    "output": "拒答质量/有害响应评分。"
+    "environment": "可对同一请求比较不同越狱方式与无越狱基线；官方提供基于评分量表的 LLM 评估器和微调评估器。",
+    "input": "被测模型收到行为请求，可附加越狱提示；评估器再接收请求及模型回应。",
+    "output": "被测模型生成回应；评估器对其有害完成程度评分。较高有害分不表示模型更安全。"
   },
   "dataProfile": {
     "summary": "作者仓库列有313条有害请求提示，覆盖六类有害行为；数据由多个来源集合构成，各来源许可不一。",
