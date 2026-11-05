@@ -85,26 +85,31 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "NVIDIA 数据卡将该演示数据集标为 CC BY 4.0；RoboCasa 官方 README 将 assets 和 datasets 标为 CC BY 4.0。",
-    "scope": "本站所展示的视频按数据卡许可注明作者、来源和许可；其他素材仍需逐项核对。",
+    "license": "NVIDIA 演示数据卡与 RoboCasa 官方 assets、datasets 标为 CC BY 4.0；第三方 infope 数据卡标为 MIT，上游素材条款仍需分别核对。",
+    "scope": "展示 NVIDIA 厨房演示和 infope 分发的策略运行视频，均注明各自来源；其他素材仍需逐项核对。",
     "boundaries": [
-      "视频未经修改，来自 NVIDIA 发布的固定数据版本；其他第三方素材不得据此推定可转载。"
+      "第三方数据卡的 MIT 声明不覆盖未核实的上游素材权利；RoboCasa 官方 assets 与 datasets 标为 CC BY 4.0。"
     ],
     "sourceUrls": [
       "https://github.com/robocasa/robocasa",
-      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos"
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
+      "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示 NVIDIA 分发的厨房仿真演示；轨迹的相机视频、指令与数据划分可在固定版本核对。",
+    "reason": "展示 NVIDIA 分发的厨房演示以及第三方整理的 GR00T 策略运行记录和录像；训练、目标场景和离线评估划分分别标注。",
     "sourceUrls": [
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1",
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/meta/episodes.jsonl",
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/meta/info.json",
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/data/chunk-000/episode_000000.parquet",
-      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000000.mp4"
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000000.mp4",
+      "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/README.md",
+      "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/episodes.jsonl",
+      "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/info.json",
+      "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000111.mp4"
     ]
   },
   "metric": {
@@ -168,6 +173,26 @@
       "label": "打开抽屉相机视频",
       "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/blob/f3b185045b416ec9e0d05b60018e538ca3c459b1/target/atomic/OpenDrawer/20250816/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000000.mp4",
       "role": "data"
+    },
+    {
+      "label": "第三方离线评估数据说明",
+      "url": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/README.md",
+      "role": "data"
+    },
+    {
+      "label": "打开抽屉运行轨迹元数据",
+      "url": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "打开抽屉数据格式与顶层划分",
+      "url": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/info.json",
+      "role": "data"
+    },
+    {
+      "label": "策略运行录像 episode 111",
+      "url": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000111.mp4",
+      "role": "data"
     }
   ],
   "related": [
@@ -184,6 +209,39 @@
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
+      {
+        "id": "infope-opendrawer-valid-rollout-111",
+        "title": "打开左侧抽屉 · GR00T 策略运行",
+        "type": "video",
+        "prompt": "Open the left drawer.",
+        "explanation": "第三方数据记录这条 GR00T 策略运行在离线评估划分 valid，is_success 为 false；它属于 RoboCasa365 的 pretrain 场景，不是官方排行榜测试结果。该数据集的 LeRobot 顶层 info 将全部轨迹标为 train，valid 是逐条元数据里的离线评估划分。录像为左侧相机，含 750 个时间步；运行使用 v1.0.1 horizon 且 ignore_done=True。",
+        "raw": {
+          "episode_index": 111,
+          "tasks": [
+            "Open the left drawer."
+          ],
+          "length": 750,
+          "source": "rollout",
+          "policy": "gr00tMTPretrainHuman",
+          "is_success": false,
+          "layout_id": 15,
+          "style_id": 59,
+          "source_episode_index": 9,
+          "split": "valid"
+        },
+        "source": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/episodes.jsonl",
+        "license": "infope 数据卡标 MIT；RoboCasa 官方 assets 与 datasets 标 CC BY 4.0，上游素材仍须分别核对。",
+        "split": "pretrain / atomic / 离线评估 valid / LeRobot train / episode 111",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robocasa365-infope-opendrawer-episode111.mp4",
+            "caption": "策略运行的左侧相机录像；元数据记录 is_success=false。",
+            "source": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000111.mp4"
+          }
+        ]
+      },
       {
         "id": "adjust-toaster-oven-temperature-episode-000000",
         "title": "调整烤面包机温度 · 演示轨迹 0",
@@ -243,5 +301,16 @@
         ]
       }
     ]
-  }
+  },
+  "researchNotes": [
+    {
+      "text": "2026-11-05 下载并播放 infope 固定版本 OpenDrawer episode 111 左侧相机视频，文件 SHA-256 dbadea339f080a3ddbfe702a61f382df54a59d58ab008736176a35c24584b535；逐条元数据为 valid，顶层 info 标 train。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/README.md",
+        "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/episodes.jsonl",
+        "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/info.json",
+        "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000111.mp4"
+      ]
+    }
+  ]
 }
