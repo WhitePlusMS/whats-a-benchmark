@@ -42,22 +42,30 @@
     "scale": [
       "410 个任务环境；EP-100 是覆盖五个任务组的 100 项代表子集，EP-20 是更小选择。"
     ],
-    "splits": [],
+    "splits": [
+      "EP-100 分为 Easy 与 Hard 各 50 项；EP-20 含各 10 项，属于诊断子集，不是训练/验证数据划分。"
+    ],
     "fields": [],
-    "files": [],
+    "files": [
+      "ep100-index.json 记录任务编号、子集、难度与任务分组；demo-manifest.json 记录示范来源和结果。"
+    ],
     "sourceUrls": [
       "https://winniechen2002.github.io/Agent-bench-website/",
-      "https://arxiv.org/abs/2610.27039"
+      "https://arxiv.org/abs/2610.27039",
+      "https://winniechen2002.github.io/Agent-bench-website/data/ep100-index.json",
+      "https://winniechen2002.github.io/Agent-bench-website/evidence/demo-manifest.json"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "公开任务索引、模型汇总结果和部分示范录像；执行录像分为参考执行或复现，不能混作计分试验。"
     ],
     "url": "https://winniechen2002.github.io/Agent-bench-website/",
     "sourceUrls": [
-      "https://winniechen2002.github.io/Agent-bench-website/"
+      "https://winniechen2002.github.io/Agent-bench-website/",
+      "https://winniechen2002.github.io/Agent-bench-website/data/ep100-index.json",
+      "https://winniechen2002.github.io/Agent-bench-website/evidence/demo-manifest.json"
     ]
   },
   "reusePolicy": {
@@ -65,7 +73,8 @@
     "license": "论文在 arXiv 发布时标注 CC BY 4.0。",
     "scope": "本站展示该论文的原始图像，保留作者、论文来源与许可；论文之外的数据、代码和其他素材分别核对。",
     "boundaries": [
-      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。"
+      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。",
+      "官方 P5 录像许可尚未单独核实，本站只提供外部链接；论文图片许可不自动覆盖录像。"
     ],
     "sourceUrls": [
       "https://arxiv.org/abs/2610.27039"
@@ -73,11 +82,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示论文图、任务条件和官网脚本复现的实际记录；复现录像与计分模型试验分开。",
     "url": "https://arxiv.org/abs/2610.27039",
     "sourceUrls": [
       "https://arxiv.org/abs/2610.27039",
-      "https://arxiv.org/html/2610.27039"
+      "https://arxiv.org/html/2610.27039",
+      "https://winniechen2002.github.io/Agent-bench-website/evidence/demo-manifest.json",
+      "https://winniechen2002.github.io/Agent-bench-website/assets/media/home-p5-reproduction.mp4",
+      "https://winniechen2002.github.io/Agent-bench-website/data/ep100-index.json"
     ]
   },
   "metric": {
@@ -121,6 +133,21 @@
     {
       "label": "官方样例与任务细则",
       "url": "https://arxiv.org/html/2610.27039",
+      "role": "data"
+    },
+    {
+      "label": "官方复现录像及来源清单",
+      "url": "https://winniechen2002.github.io/Agent-bench-website/evidence/demo-manifest.json",
+      "role": "data"
+    },
+    {
+      "label": "官方 P5 完整复现录像（外部）",
+      "url": "https://winniechen2002.github.io/Agent-bench-website/assets/media/home-p5-reproduction.mp4",
+      "role": "data"
+    },
+    {
+      "label": "EP-100 官方任务与难度索引",
+      "url": "https://winniechen2002.github.io/Agent-bench-website/data/ep100-index.json",
       "role": "data"
     }
   ],
@@ -173,6 +200,30 @@
         "source": "https://arxiv.org/html/2610.27039",
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
         "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "embodied-playground-p5-reproduction",
+        "title": "P5 挂杯 · 官方脚本复现记录",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "Franka Panda 用挂钩穿过蓝色杯子的杯柄，松手后让杯子稳定悬挂。",
+        "explanation": "官网素材清单将这条录像标为 scripted-reproduction，记录成功和 764 个控制步；相邻红杯保持原位。它是任务复现录像，与官网计分模型试验分开，不是模型能力成绩。官网录像为完整 38.25 秒记录。",
+        "raw": {
+          "case_id": "maniskill_geometry/panda/P5",
+          "ep100_index": "Home-12",
+          "suite": "Home",
+          "difficulty": "Hard",
+          "ep20": true,
+          "claim_status": "scripted-reproduction",
+          "success": true,
+          "control_steps": 764,
+          "video_duration_seconds": 38.25,
+          "web_video_sha256": "d8220d740c54e27aaaa1f11a3757162f5243606f4aa179ee0ff49ab9acea1351"
+        },
+        "source": "https://winniechen2002.github.io/Agent-bench-website/evidence/demo-manifest.json",
+        "license": "结果字段与任务事实来自官方公开记录；录像再发布许可未确认，提供官方原片链接。",
+        "split": "EP-100 / Home / Hard；同时属于 EP-20。录像是脚本复现，不是 train/validation 或模型计分轨迹。",
         "excerpt": true
       }
     ]

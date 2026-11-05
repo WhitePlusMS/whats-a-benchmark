@@ -23,11 +23,12 @@
     ]
   },
   "taskContract": {
-    "input": "投资研究查询及允许使用的公开信息。",
-    "output": "投资研究回答。",
-    "environment": "研究环境、数据工具与运行脚手架会影响结果。",
+    "input": "投资研究问题及其查询日期；问题覆盖财务数据提取、公司筛选、行业与宏观研究等场景。",
+    "output": "围绕指定日期提供有来源支持的投资研究回答或报告，包含题目要求的事实、计算与分析。",
+    "environment": "论文比较允许检索的研究系统，并要求以问题日期为时间基准；工具、数据覆盖和日期过滤因系统而异。",
     "sourceUrls": [
-      "https://arxiv.org/abs/2608.11683"
+      "https://arxiv.org/abs/2608.11683",
+      "https://arxiv.org/html/2608.11683"
     ]
   },
   "dataProfile": {
@@ -80,11 +81,12 @@
     ]
   },
   "metric": {
-    "name": "评分标准得分",
-    "description": "以任务评分标准评估回答质量。",
+    "name": "宏平均评分标准达成率",
+    "description": "模型评审逐条判断回答是否满足专家制定的二元评分标准；先计算每题达成比例，再对题目取平均。",
     "direction": "higher",
     "sourceUrls": [
-      "https://arxiv.org/abs/2608.11683"
+      "https://arxiv.org/abs/2608.11683",
+      "https://arxiv.org/html/2608.11683"
     ]
   },
   "limitations": [
@@ -122,6 +124,11 @@
       "label": "作者评分仓库及公开格式示例",
       "url": "https://github.com/samaya-ai/frontier-finance",
       "role": "code"
+    },
+    {
+      "label": "论文：任务日期、研究流程和评分方法",
+      "url": "https://arxiv.org/html/2608.11683",
+      "role": "paper"
     }
   ],
   "related": [],

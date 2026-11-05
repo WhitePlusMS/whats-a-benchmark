@@ -2127,3 +2127,11 @@
 ### DexArena 官方数据集访问与规模（2026-11-05）
 
 - `content/benchmarks/dexarena.json`：依据官方数据卡与论文补充 3,000 条阶段演示的规模、发布集与追加集结构、登录及同意访问条件；明确目录分类不是推定的训练/验证划分，官网演示不能替代受控轨迹文件。
+
+### Embodied Playground P5 真实复现记录（2026-11-05）
+
+- `content/benchmarks/embodied-playground.json`：补充官网 P5 挂杯脚本复现的成功标记、控制步数、录像时长与 SHA-256，以及 EP-100 Hard / EP-20 的任务归属；明确其不是模型计分轨迹。补充官网视频外链和数据索引，未确认录像再发布许可，未复制原片。
+
+### FrontierFinance 任务与评分说明（2026-11-05）
+
+- `content/benchmarks/frontierfinance.json`：依据论文补充问题日期、研究材料、报告要求、各系统工具差异和按题宏平均的评分方法；保留完整数据集受控访问及重分发限制。
