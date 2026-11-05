@@ -63,7 +63,8 @@
       "评测轨迹数据卡列出 1,450 个任务运行、20,240 个 episode 及每项任务一个脚本策略成功案例。"
     ],
     "splits": [
-      "评测轨迹按方法、环境套件、任务及 episode 组织；该站内样例来自 GPT-Policy / SimplerEnv-Long。"
+      "评测轨迹按方法、环境套件、任务及 episode 组织；该站内样例来自 GPT-Policy / SimplerEnv-Long。",
+      "实机数据按方法和机器人组织；本站实机样例为 PSP-Agent / real_widowx / episode 100。"
     ],
     "fields": [
       "每条 episode 元数据包括 episode_index、num_steps、success、env_name、instruction 和 batch_env_index。"
@@ -91,9 +92,9 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "官方评测轨迹数据集 CC BY 4.0；RoboLab-Long 画面中的资产另按 CC BY-NC-SA 4.0。",
-    "scope": "本站展示 SimplerEnv-Long 成功与失败的单次评测录像，保留作者、数据集与固定版本来源。",
+    "scope": "本站展示 SimplerEnv-Long 仿真录像及 WidowX 实机录像，保留作者、数据集与固定版本来源。",
     "boundaries": [
-      "该录像为仿真评测，不是实体机器人录像；其他套件的资产可能有独立使用条件。"
+      "仿真与实机录像分别标注；RoboLab-Long 等其他套件的资产可能有独立使用条件。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes"
@@ -101,7 +102,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载并核对两次运行的元数据与对应视频，分别展示成功和失败案例。",
+    "reason": "已下载核对两次仿真运行及一次实机运行的元数据与对应视频。",
     "sourceUrls": [
       "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/episode_meta.yaml",
       "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_10_2026_09_23_10_28_22_env9_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_success/main.mp4"
@@ -167,6 +168,16 @@
     {
       "label": "失败运行对应录像",
       "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/main.mp4",
+      "role": "data"
+    },
+    {
+      "label": "WidowX 实机运行元数据",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/psp_agent/real_widowx/episode_100_2026_09_24_21_43_49_put_one_carrot_in_the_pot_and_one_carrot_on_the_cloth/episode_meta.yaml",
+      "role": "data"
+    },
+    {
+      "label": "WidowX 实机运行录像",
+      "url": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/psp_agent/real_widowx/episode_100_2026_09_24_21_43_49_put_one_carrot_in_the_pot_and_one_carrot_on_the_cloth/main.mp4",
       "role": "data"
     }
   ],
@@ -234,6 +245,37 @@
             "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/main.mp4"
           }
         ]
+      },
+      {
+        "id": "ladder-psp-widowx-episode100",
+        "title": "两根胡萝卜分开放置 · 实机运行",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把一根胡萝卜放进锅里，另一根放到布上。",
+        "explanation": "官方 PSP-Agent 使用 WidowX 真实机械臂的一次运行；日志记录第一根放入锅后，第二根途中掉落，随后重新抓取并放到布上。元数据标记两项子目标完成、score=1.0、success=true；这是一次运行，不代表整体成功率。",
+        "raw": {
+          "episode_index": 100,
+          "num_steps": 200,
+          "success": true,
+          "instruction": "put one carrot in the pot and one carrot on the cloth",
+          "max_episode_steps": 200,
+          "score": 1.0,
+          "num_subgoals_complete": 2,
+          "num_goals": 2
+        },
+        "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/psp_agent/real_widowx/episode_100_2026_09_24_21_43_49_put_one_carrot_in_the_pot_and_one_carrot_on_the_cloth/episode_meta.yaml",
+        "license": "LADDER 作者团队，评测轨迹 CC BY 4.0；保留数据集及固定版本来源。",
+        "licensePath": "licenses/cc-by-4.txt",
+        "split": "实机评测 / PSP-Agent / WidowX / episode 100",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/ladder-psp-widowx-episode100.mp4",
+            "caption": "同一实机运行的官方录像；操作过程和结果见配套日志。",
+            "source": "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/psp_agent/real_widowx/episode_100_2026_09_24_21_43_49_put_one_carrot_in_the_pot_and_one_carrot_on_the_cloth/main.mp4"
+          }
+        ]
       }
     ]
   },
@@ -251,6 +293,13 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/episode_meta.yaml",
         "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/gpt_policy/simplerenv_long/all3_plate/episodes/episode_12_2026_09_23_10_28_22_env11_put_the_carrot,_the_spoon_and_the_eggplant_on_the_plate_failure/main.mp4"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载固定版本 PSP-Agent / real_widowx / episode 100 元数据和同目录录像，核对分步事件与结果；视频 SHA-256 12bd219c9d927fbdea16ab220677d45619fc27ee9f76935e451ec5b06f52164a，已在浏览器播放。未自行运行实机。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/psp_agent/real_widowx/episode_100_2026_09_24_21_43_49_put_one_carrot_in_the_pot_and_one_carrot_on_the_cloth/episode_meta.yaml",
+        "https://huggingface.co/datasets/INSAIT-Institute/LADDER-Evaluation-Episodes/blob/fa6cb3f0a89c0e55ec971cf1fe4fcca898640a36/psp_agent/real_widowx/episode_100_2026_09_24_21_43_49_put_one_carrot_in_the_pot_and_one_carrot_on_the_cloth/main.mp4"
       ]
     }
   ]
