@@ -1,0 +1,193 @@
+{
+  "id": "colosseum",
+  "status": "published",
+  "order": 23230,
+  "name": "THE COLOSSEUM",
+  "subtitle": "通过系统改变环境因素评估机器人操作策略的泛化能力。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "Colosseum 作者团队",
+  "brandIds": [
+    "colosseum"
+  ],
+  "year": 2024,
+  "version": "官方公开版本",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过系统改变环境因素评估机器人操作策略的泛化能力。",
+    "task": "通过系统改变环境因素评估机器人操作策略的泛化能力。",
+    "sourceUrls": [
+      "https://robot-colosseum.github.io/",
+      "https://arxiv.org/abs/2402.08191"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务提供目标、观测与机器人接口。",
+    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "environment": "基于 RLBench 的操作仿真；论文也报告部分对应的真实世界验证。",
+    "sourceUrls": [
+      "https://robot-colosseum.github.io/",
+      "https://arxiv.org/abs/2402.08191"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文介绍 20 项操作任务和 14 类环境扰动；工具文档列出的可控因素口径可能不同。",
+    "disclosure": "partial",
+    "scale": [
+      "论文介绍 20 项操作任务和 14 类环境扰动；工具文档列出的可控因素口径可能不同。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://robot-colosseum.github.io/",
+      "https://arxiv.org/abs/2402.08191"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+    ],
+    "url": "https://robot-colosseum.github.io/",
+    "sourceUrls": [
+      "https://robot-colosseum.github.io/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方 Colosseum 数据集标注 MIT。",
+    "scope": "展示数据集卡中的相机布置图，署名 Colosseum 作者团队。",
+    "boundaries": [
+      "图像说明通用场景布置，不能用作模型操作成功的证据。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://robot-colosseum.github.io/",
+    "sourceUrls": [
+      "https://robot-colosseum.github.io/",
+      "https://arxiv.org/html/2402.08191"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "分别比较无扰动和各扰动条件下的任务成功表现；不应将仿真关联性视作实机保证。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://robot-colosseum.github.io/",
+      "https://arxiv.org/abs/2402.08191"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "机器人形态、评估条件、任务版本和采样预算不同会影响结果，不应直接合并比较。",
+      "sourceUrls": [
+        "https://robot-colosseum.github.io/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "依据公开项目与论文整理；完整数据、许可及具体运行条件仍以官方资源为准。",
+      "sourceUrls": [
+        "https://robot-colosseum.github.io/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与任务说明",
+      "url": "https://robot-colosseum.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2402.08191",
+      "role": "paper"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://arxiv.org/html/2402.08191",
+      "role": "data"
+    },
+    {
+      "label": "Colosseum 官方数据集与许可",
+      "url": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/README.md",
+      "role": "data"
+    },
+    {
+      "label": "官方机器人相机布置图",
+      "url": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/media/colosseum-camera-views.png",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "rlbench",
+      "label": "基础环境",
+      "detail": "Colosseum 在 RLBench 基础上引入环境扰动，评估操作泛化。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2402.08191"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "colosseum-concrete-task",
+        "title": "slide_block_to_target",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把方块滑到目标位置；可在不同光照、桌面纹理、干扰物和方块尺寸条件下比较表现。",
+        "explanation": "论文用该任务研究单项和组合扰动对机器人泛化的影响。",
+        "raw": "slide_block_to_target",
+        "source": "https://arxiv.org/html/2402.08191",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "colosseum-camera-views",
+        "title": "官方场景：四个相机视角",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方演示数据从正前方、左右肩部与手腕四个相机采集机器人操作画面。",
+        "explanation": "该图说明采集相机的空间布置，不是具体任务的一次动作轨迹。",
+        "raw": "Front camera; Left shoulder camera; Right shoulder camera; Wrist camera",
+        "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/README.md",
+        "license": "官方 Colosseum 数据集标注 MIT；来源 Colosseum 作者团队。",
+        "licensePath": "licenses/colosseum-data-mit.txt",
+        "split": "官方数据集说明图。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/colosseum-camera-views.png",
+            "alt": "Colosseum 官方仿真机械臂及四个相机位置示意图",
+            "width": 683,
+            "height": 597,
+            "caption": "官方相机布置示意；不是单条机器人执行轨迹。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/media/colosseum-camera-views.png"
+          }
+        ]
+      }
+    ]
+  }
+}

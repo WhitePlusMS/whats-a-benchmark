@@ -1,0 +1,140 @@
+{
+  "id": "embodiedx",
+  "status": "published",
+  "order": 23080,
+  "name": "EmbodiedX",
+  "subtitle": "评估 VLA 策略及世界模型在实时约束下的部署性能。",
+  "category": "agents",
+  "tags": [
+    "具身模型部署",
+    "运行性能"
+  ],
+  "publisher": "Efficient Embodied AI 组织方",
+  "brandIds": [],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估 VLA 策略及世界模型在实时约束下的部署性能。",
+    "task": "评估 VLA 策略及世界模型在实时约束下的部署性能。",
+    "sourceUrls": [
+      "https://efficient-embodied-ai.github.io/challenge/",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "指定 NVIDIA L40S 与 Google Cloud TPU v6e-1；比较单芯片推理性能。",
+    "sourceUrls": [
+      "https://efficient-embodied-ai.github.io/challenge/",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "首季包含 VLA 与世界模型部署性能赛道。",
+    "disclosure": "partial",
+    "scale": [
+      "首季包含 VLA 与世界模型部署性能赛道。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://efficient-embodied-ai.github.io/challenge/",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://efficient-embodied-ai.github.io/challenge/",
+    "sourceUrls": [
+      "https://efficient-embodied-ai.github.io/challenge/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
+    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "boundaries": [
+      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
+    ],
+    "sourceUrls": [
+      "https://efficient-embodied-ai.github.io/challenge/",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://efficient-embodied-ai.github.io/challenge/",
+    "sourceUrls": [
+      "https://efficient-embodied-ai.github.io/challenge/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "考察实时延迟约束下的吞吐及能效；属于部署性能评测，不是机械臂任务成功率。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://efficient-embodied-ai.github.io/challenge/",
+      "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://efficient-embodied-ai.github.io/challenge/",
+        "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://efficient-embodied-ai.github.io/challenge/",
+        "https://github.com/efficient-embodied-ai/embodied-efficiency-bench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://efficient-embodied-ai.github.io/challenge/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://github.com/efficient-embodied-ai/embodied-efficiency-bench",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "embodiedx-concrete-task",
+        "title": "Track 1A: π0.5-LIBERO",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "使用 LIBERO 轨迹中的两路 224×224 图像，运行指定的 π0.5 策略；闭环动作推理 p99 不超过 250 毫秒，且须通过输出相似度门槛。",
+        "explanation": "这是推理效率赛道的公开测试配置，不是抓取任务的成功率样例；具体精度和分组条件以赛规为准。",
+        "raw": "Track 1A: π0.5-LIBERO",
+        "source": "https://efficient-embodied-ai.github.io/challenge/",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      }
+    ]
+  }
+}

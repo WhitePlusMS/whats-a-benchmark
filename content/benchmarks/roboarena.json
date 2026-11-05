@@ -1,0 +1,201 @@
+{
+  "id": "roboarena",
+  "status": "published",
+  "order": 23140,
+  "name": "RoboArena",
+  "subtitle": "通过分布式真机双盲比较评估通用机器人策略。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作"
+  ],
+  "publisher": "RoboArena 作者团队",
+  "brandIds": [
+    "roboarena"
+  ],
+  "year": 2025,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过分布式真机双盲比较评估通用机器人策略。",
+    "task": "通过分布式真机双盲比较评估通用机器人策略。",
+    "sourceUrls": [
+      "https://robo-arena.github.io/",
+      "https://arxiv.org/abs/2506.18123"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "分布式 DROID 真机，评测者可选任务和场景，对两种策略进行双盲比较。",
+    "sourceUrls": [
+      "https://robo-arena.github.io/",
+      "https://arxiv.org/abs/2506.18123"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文报告来自七个学术机构的 600 多次真实机器人两两比较。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告来自七个学术机构的 600 多次真实机器人两两比较。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://robo-arena.github.io/",
+      "https://arxiv.org/abs/2506.18123"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://robo-arena.github.io/",
+    "sourceUrls": [
+      "https://robo-arena.github.io/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "RoboArena 官方数据快照标注 MIT。",
+    "scope": "本站展示一条公开实机评测视频与必要结果字段，归属 RoboArena。",
+    "boundaries": [
+      "单次失败不能代表整个评测或该策略的整体表现。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/README.md",
+      "https://github.com/robo-arena/roboarena/blob/main/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://robo-arena.github.io/",
+    "sourceUrls": [
+      "https://robo-arena.github.io/",
+      "https://arxiv.org/html/2506.18123",
+      "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/metadata.yaml",
+      "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/README.md"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "汇总人类对成对策略的偏好得出排序；不能当作固定题集的成功率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://robo-arena.github.io/",
+      "https://arxiv.org/abs/2506.18123"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://robo-arena.github.io/",
+        "https://arxiv.org/abs/2506.18123"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://robo-arena.github.io/",
+        "https://arxiv.org/abs/2506.18123"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://robo-arena.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2506.18123",
+      "role": "paper"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://arxiv.org/html/2506.18123",
+      "role": "data"
+    },
+    {
+      "label": "实机录像来源",
+      "url": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/A_paligemma_fast_droid/paligemma_fast_droid_2025-10-17T08:48:05.106298_video_right.mp4",
+      "role": "data"
+    },
+    {
+      "label": "官方运行结果元数据",
+      "url": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/metadata.yaml",
+      "role": "data"
+    },
+    {
+      "label": "官方数据集许可",
+      "url": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/README.md",
+      "role": "data"
+    },
+    {
+      "label": "MIT 许可文本",
+      "url": "https://github.com/robo-arena/roboarena/blob/main/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "roboarena-concrete-task",
+        "title": "Put the yellow ducks in mug",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "真实实验场景中的指令：把黄色小鸭放进杯子。评估者可比较两个机器人策略在同一任务上的表现。",
+        "explanation": "论文将这一指令列为低光照场景的例子；该文本不代表任一策略的成功结果。",
+        "raw": "Put the yellow ducks in mug",
+        "source": "https://arxiv.org/html/2506.18123",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "roboarena-fridge-record-a",
+        "title": "真实评测：打开冰箱门（失败案例）",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "实机指令：打开冰箱门。视频展示策略 A 的一次执行；官方记录该次没有完成目标。",
+        "explanation": "来自 RoboArena 官方 2026-07-17 数据快照：该场比较中的策略 A 成功标记为 0。人工反馈称两个策略都未找到冰箱；这里不将个别结果推广为整套评测的成绩。",
+        "raw": {
+          "language_instruction": "open the fridge door",
+          "policy_name": "paligemma_fast_droid",
+          "binary_success": 0,
+          "partial_success": 0.1
+        },
+        "source": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/metadata.yaml",
+        "license": "RoboArena 官方数据快照标注 MIT；来源 RoboArena。",
+        "licensePath": "licenses/roboarena-mit.txt",
+        "split": "官方公开的真实评测记录。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/roboarena-fridge.mp4",
+            "caption": "官方实机录像：策略 A 未能打开冰箱门；右侧相机视角。",
+            "source": "https://huggingface.co/datasets/RoboArena/DataDump_07-17-2026/blob/7931db81f3f6a48a3245427f7213a4c461f92ccc/evaluation_sessions/00008df3-4cb6-45ce-a6de-1d98a755146a/A_paligemma_fast_droid/paligemma_fast_droid_2025-10-17T08:48:05.106298_video_right.mp4"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "rle-bench",
+  "status": "published",
+  "order": 23070,
+  "name": "RLE-Bench",
+  "subtitle": "评估编码智能体解决机器人学习工程任务的能力。",
+  "category": "agents",
+  "tags": [
+    "推理与决策"
+  ],
+  "publisher": "RLE-Bench 作者团队",
+  "brandIds": [
+    "rle-bench"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估编码智能体解决机器人学习工程任务的能力。",
+    "task": "评估编码智能体解决机器人学习工程任务的能力。",
+    "sourceUrls": [
+      "https://rle-bench.github.io/",
+      "https://arxiv.org/abs/2609.34210"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "编码智能体在任务限定的时间、计算与交互预算内进行机器人学习工程。",
+    "sourceUrls": [
+      "https://rle-bench.github.io/",
+      "https://arxiv.org/abs/2609.34210"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方项目包含 9 个任务族、51 个任务，分为四类工作流。",
+    "disclosure": "partial",
+    "scale": [
+      "9 个任务族、51 个任务；四类工作流。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://rle-bench.github.io/blog/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://rle-bench.github.io/",
+    "sourceUrls": [
+      "https://rle-bench.github.io/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
+    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "boundaries": [
+      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
+    ],
+    "sourceUrls": [
+      "https://rle-bench.github.io/",
+      "https://arxiv.org/abs/2609.34210"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://rle-bench.github.io/blog/",
+    "sourceUrls": [
+      "https://rle-bench.github.io/blog/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "先汇总各工作流内任务分数，再跨工作流平均为 0–100 指数。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://rle-bench.github.io/",
+      "https://arxiv.org/abs/2609.34210"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://rle-bench.github.io/",
+        "https://arxiv.org/abs/2609.34210"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://rle-bench.github.io/",
+        "https://arxiv.org/abs/2609.34210"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://rle-bench.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2609.34210",
+      "role": "paper"
+    },
+    {
+      "label": "官方任务示例",
+      "url": "https://rle-bench.github.io/blog/",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "rle-bench-official-task",
+        "title": "Mobile Base Design",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "设计机器人移动底盘，并根据仿真反馈检查和改进设计。",
+        "explanation": "这是官方公开的任务示例，用于理解任务要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Mobile Base Design",
+        "source": "https://rle-bench.github.io/blog/",
+        "license": "仅保留官方任务名称及本站中文解读，未转载完整资料或媒体。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "rle-bench-concrete-task",
+        "title": "DefrostByCategory",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把土豆和玉米放进台面上的碗，再把橙子和香蕉放入水槽，在流动水下为水果解冻。",
+        "explanation": "这是官方 T01 演示的具体目标；点击“查看原始来源”，在 Task 01 部分可播放仿真录像。任务说明本身不代表一定成功。",
+        "raw": "DefrostByCategory",
+        "source": "https://rle-bench.github.io/blog/",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      }
+    ]
+  }
+}

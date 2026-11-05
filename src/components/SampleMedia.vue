@@ -171,6 +171,10 @@ function assetCaption(asset: SampleAsset) {
   display: block;
   border-radius: 6px;
 }
+.sample-media video {
+  /* 小分辨率原片也需要足够大的原生播放控件。 */
+  width: min(100%, 680px);
+}
 .sample-media audio {
   display: block;
   width: 100%;

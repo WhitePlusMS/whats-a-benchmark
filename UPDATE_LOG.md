@@ -1857,3 +1857,108 @@
 - 影响：目录和对应详情页可显示所属选中项，两个现有目录内容、路由和筛选逻辑不变。
 
 - `src/styles/layout.css`：在 360px 以下略减目录切换与入门按钮的水平内边距，避免 320px 宽度时两者贴合或重叠。
+
+## 2026-11-05 FrontierScience 评测收录
+
+- 新增 `content/benchmarks/frontierscience.json`：收录 OpenAI 的 FrontierScience 总评测，说明两个赛道、公开数据范围、评分方式和局限，方便按评测名称查阅。
+- 新增 `content/benchmarks/frontierscience-research.json`：单独收录 Research 赛道，说明 60 道公开金标准题、10 分评分细则及 7 分成功阈值，并与主评测互相关联。
+- 两个条目均链接官方介绍、论文与数据集；标明保留题目、数据污染提示和评分条件，样题使用官方入口，避免推断公开数据行的赛道归属。
+
+## 2026-11-05 FrontierScience 真实样题
+
+- 更新 `content/benchmarks/frontierscience.json`：根据官方固定修订，加入 2 道 Olympiad 与 3 道 Research 真实题目，附中文任务说明、官方原始字段与来源，帮助读者理解两种任务。
+- 更新 `content/benchmarks/frontierscience-research.json`：展示同一批 3 道 Research 真实样题，保留官方评分细则和任务标识，说明与主条目共享而非新增题目。
+- 更正两条目的数据文件说明：官方分别提供 `olympiad/test.jsonl` 和 `research/test.jsonl`，因此可根据源文件确定赛道；保留 Apache-2.0 标识和禁止进入训练语料的官方提示。
+
+## 2026-11-05 全站评测图标核查与补充
+
+- 核查 288 个已发布评测、112 个原有图标及其本地文件和来源；原有图标文件无缺失，来源请求中 Design Arena 和 Microsoft AI 返回访问限制，保留本地现有图标。
+- 更新 `content/brands.json`，新增 19 个经核查的官方项目、发布方或维护组织标识；图片位于 `content/assets/logos/`，文件名分别为 alfred、stanford-vl、embodiedbench、autogluon、google、idea-research、moonshot-ai、kora、hao-su-lab、farama、scut-dlvclab、healthrex、robocasa、robotwin、latchbio、openmoss、graspnet、salesforce、ai4bharat（扩展名以登记文件为准）。记录来源页面及实际资源地址，避免使用无关图标。
+- 为 alfred、anthropic-eci、behavior-1k、dense200、draco、embodiedbench、exploitgym、fev-bench、fleurs、frontiercode-1-1-extended、gift-eval、gift-eval-ctx、graspnet-1billion、suctionnet-1billion、handbook-md、hlab-vals-v1-1、hle-diamond、kora-v2、loca-bench、maniskill2、meta-world、milu、ocr-reasoning、officeqa-pro-v2、physicianbench、posttrainbench-1-2、robocasa、robocasa365、robotwin-2、robotwin-early、singlecellbench、spatialbench-verified、video-mme-v2、vlabench、wmt24pp、kimi-business-operation、kimi-code-bench-2、kimi-code-bench-3-long-horizon、kimi-deck-arena、kimi-design-bench、kimi-financial-modeling、kimi-financial-research、kimi-hallu-bench、xdev-bench-hard 等 44 个 `content/benchmarks/*.json` 条目补充对应标识关联，优先复用已有品牌；作用于目录卡片和详情页。官方项目和维护组织以登记名称明确标注。
+- 没有核实到合适官方标识的项目继续显示名称；不将 GitHub 自动生成的默认头像当作项目 logo。
+
+- 第二批补充 `content/brands.json` 与 `content/assets/logos/` 的 Handshake AI Research、Samaya、Cohere、LIBERO、LIBERO-PRO、LinuxArena、SIMPLE、BeSimple 官方标识；分别更新 bankertoolbench、frontierfinance、global-mmlu、libero、libero-pro、linuxarena、simple-embodied、voice-code-bench、robotwin-1 条目的品牌关联。RoboTwin 1.0 复用同系列官方标识。
+
+- 第三批补充 Irregular、LiLab、Real-TSF 的官方机构标识和 WebVoyager 官方仓库项目图标；更新 `cyscenariobench.json`、`mmlu-prox.json`、`time-series-time.json`、`webvoyager.json` 的关联和 `content/brands.json`。
+
+- 复核 `content/benchmarks/loca-bench.json`：撤销误用其他项目 Toolathlon 专属标识的关联；LOCA-bench 暂用名称显示，避免混淆项目身份。
+
+- 新增 SWE-Marathon 官网 favicon 至 `content/assets/logos/swe-marathon.png` 和 `content/brands.json`，并关联 `content/benchmarks/swe-marathon.json`。
+
+- 将 `content/assets/logos/webvoyager.png` 等比例缩小至最长边 256 像素，以减少列表加载开销；保留官方图案和来源链接。
+
+## 2026-11-05 具身智能评测补充
+
+- 更新 `content/brands.json` 并新增 `content/assets/logos/` 中的 dexarena、hexafuture、embodied-playground、codeactionbench、robodojo、rle-bench、maniskill、ebim、roboarena、robochallenge、rhos-ai、roboquest 标识；分别来自官方项目网站或发布组织，PNG 按比例缩小至最长边 256 像素；未使用默认占位图。
+
+- 新增 `content/benchmarks/` 下 dexarena、embodiedlab、embodied-playground、aa-robotics、libero-max、codeactionbench、robodojo、rle-bench、embodiedx、roboeval、roboeval-bimanual-challenge、maniskill3、habitat-3、ebim、roboarena、robochallenge、robochallenge-table30-v2、gm-100、roboquest、robotarena-infinity 共 20 个评测条目，覆盖近期双臂、长流程、主动探索、科学实验、实机、仿真及部署性能评测；各自列出任务范围、运行环境、计分方法、官方出处、许可与结果适用边界。
+- 为有明确官方任务来源的条目加入任务名称与中文案例解读；区分官方任务描述和模型真实运行轨迹。关联 LIBERO 系列、ManiSkill 版本、RoboEval 挑战赛和 RoboChallenge 版本。
+
+- 补充 LIBERO-MAX 官网专属字标 `content/assets/logos/libero-max.svg`，登记至 `content/brands.json` 并关联 `content/benchmarks/libero-max.json`，避免沿用其他版本标识。
+
+- 新增并登记官方 RoboEval 字标，关联 RoboEval 及其双臂挑战赛；为 RLE-Bench、RobotArena ∞、Table 30 V2 补充官方任务案例。修正 RLE-Bench 的规模口径为 9 个任务族、51 个任务和四类工作流。
+
+- 为后续补充的人形与双臂评测添加 BiGym、BiGym 2.0、InternRobotics、ManipulationNet 官方标识及 `content/brands.json` 登记。
+
+- 新增 HumanoidBench、BiGym、BiGym 2.0、THE COLOSSEUM、REAL-Bench、ManipulationNet 共 6 个条目，覆盖人形移动、双臂操作、环境扰动与实机装配；关联 BiGym 版本与 RLBench，记录官方图标、任务案例、条件和限制。
+
+- 补充 THE COLOSSEUM 官方项目标题图标 `content/assets/logos/colosseum.png`，登记来源并关联评测条目。
+
+- 补充 RoboQuest 的 RoboCasa365 / MuJoCo 仿真环境和 CodeActionBench 的 RoboTwin 2.0 / SAPIEN 基础，分别建立关联，明确仿真与实机的边界。
+
+- 复核 18 个新增评测的任务定义，将误写为单个案例的任务描述改为对应评测的整体任务范围；具体案例仍保留在样例区，避免把单题当成完整评测。
+
+## 2026-11-05：补充具身评测真实任务样例
+
+- 修改 `content/benchmarks/` 下 dexarena、embodiedlab、embodied-playground、aa-robotics、libero-max、codeactionbench、robodojo、rle-bench、embodiedx、roboeval、roboeval-bimanual-challenge、maniskill3、habitat-3、ebim、roboarena、robochallenge、robochallenge-table30-v2、gm-100、roboquest、robotarena-infinity、humanoidbench、bigym、bigym-2、colosseum、real-bench、manipulationnet 的 JSON：根据官方文档、论文、配置补充具体任务、场景或判定条件，登记样例来源；部分原本仅跳转官网的条目现可直接阅读。
+- REAL-Bench 直接摘取官方 MIT 许可 YAML 的任务字段和计划，增加 `content/assets/licenses/real-bench-mit.txt`；场景资产许可不由此推定。动作计划明确标注为配置而非实测轨迹。EmbodiedLab 的公开任务卡为模板，不虚构实验数据。
+- 为便于理解，补充阈值、扰动及多步骤任务的中文说明；仅在来源明确时列出成功条件，不把任务示例解释为模型成绩。其他示例仅引用必要的官方任务名称，不复制第三方媒体。
+- 影响：评测详情页的本地样例和来源链接增加；不改变评分、排行榜或运行接口。
+- 按内容校验规则合并重复来源 URL，保留原始来源登记。
+- 将 RobotArena∞ 重复的新增任务替换为官网的海绵清洁桌面示例，丰富任务类型。
+
+## 2026-11-05：为具身任务补充官方演示媒体
+
+- 更新 `content/benchmarks/dexarena.json`，为开包装和打开电脑两个案例分别增加官方阶段演示视频及媒体来源；明确人工遥操作、阶段示范和非模型成绩的边界。添加 `content/assets/videos/dexarena-package-opening.mp4`、`dexarena-office-desk.mp4`。
+- 更新 `content/benchmarks/maniskill3.json`，为抓取方块和侧向插销任务分别添加官方仿真起始与结束画面，以及独立媒体来源；新增 `content/assets/images/maniskill3-pick-cube-first.png`、`maniskill3-pick-cube-last.png`、`maniskill3-peg-insertion-first.png`、`maniskill3-peg-insertion-last.png`。
+- 添加 `content/assets/licenses/cc-by-4.txt` 和 `cc-by-nc-4.txt`，分别保留 DexArena 网站标注许可和 ManiSkill 仓库注明的素材非商业许可；许可状态仅覆盖本站所列素材，不推定完整数据集或第三方资源许可。
+- 原因与影响：通过现有媒体组件直接呈现任务画面，无播放器代码变更；页面可链接官方素材和许可，其他评测仍可通过既有官方来源查看演示。
+- 更新 `content/benchmarks/roboquest.json`，新增官方演示数据集 Puzzle Box 第 000000 条视频样例和固定版本来源；添加 `content/assets/videos/roboquest-puzzle-box-demo.mp4` 与 `content/assets/licenses/roboquest-mit.txt`。原始视频 SHA-256 已核对官方数据文件，明确这是开发场景示范而非模型评测成绩。
+
+## 2026-11-05：扩充其他具身评测的官方演示
+
+- 更新 `content/benchmarks/roboeval.json` 与 `roboeval-bimanual-challenge.json`，分别为抬托盘、叠方块、抬锅、转阀门添加 RoboEval 官方仿真视频；新增 `content/assets/videos/roboeval-lift-tray.mp4`、`roboeval-stack-cubes.mp4`、`roboeval-lift-pot.mp4`、`roboeval-rotate-valve.mp4`，标明挑战赛具体扰动与成绩不可从演示推断。
+- 更新 `content/benchmarks/bigym-2.json`，添加官方 CC BY 4.0 人工 VR 示范的关洗碗机、放杯子两段头部视角视频：`bigym2-dishwasher-close.mp4`、`bigym2-dishwasher-load-cups.mp4`。
+- 更新 `content/benchmarks/robodojo.json`，添加官方 Apache 2.0 数据集扫积木预览视频 `robodojo-sweep-blocks.mp4`；新增对应许可 `content/assets/licenses/robodojo-apache-2.txt`。
+- 更新 `content/benchmarks/roboarena.json`，增加一条打开冰箱门失败的真实评测记录及右侧视角视频 `roboarena-fridge.mp4`，保留数据源中的失败结果而不复制评价者个人信息；附官方 MIT 许可 `roboarena-mit.txt`。
+- 新增 `content/assets/licenses/roboeval-media-mit.txt`：保留挑战赛页面对示范资源的 MIT 声明及条款，明确仓库代码另列 Apache 2.0。上述媒体都链接到原始视频与许可，既有播放器无代码变更。
+
+## 2026-11-05：继续补充具身评测官方媒体
+
+- 更新 `content/benchmarks/bigym.json`，添加洗碗机打开和装杯子的仿真视频案例；新增 `content/assets/videos/bigym-dishwasher-open.mp4` 与 `bigym-dishwasher-load-cups.mp4`。
+- 更新 `content/benchmarks/humanoidbench.json`，为书架整理和篮球操作补充官网仿真视频 `humanoidbench-bookshelf.mp4`、`humanoidbench-basketball.mp4`；上述两个官网标明 CC BY-SA 4.0，新增 `content/assets/licenses/cc-by-sa-4.txt` 并标注出处。
+- 更新 `content/benchmarks/gm-100.json`，为试管转移加入官方 MIT 数据集的实机遥操作视频 `gm100-test-tubes.mp4`，并依据数据集任务字段说明从右侧架转移到左侧架；新增许可记录 `gm100-data-mit.txt`。
+- 更新 `content/benchmarks/colosseum.json`，增加官方相机布置说明和 `content/assets/images/colosseum-camera-views.png`，注明是布置示意而非执行轨迹；新增许可记录 `colosseum-data-mit.txt`。
+- 影响：更多具身样例直接显示真实官方媒体；媒体独立登记来源、许可与仿真/实机边界，不改变评测评分。
+
+## 2026-11-05：补充开放许可论文中的具身任务图
+
+- 修改 `content/benchmarks/embodiedlab.json`、`embodied-playground.json`、`libero-max.json` 和 `codeactionbench.json`，分别展示官方论文中弹簧实验、汉诺塔多步操作、目标及视角扰动、机器人视觉工具的原图；新增四个对应 PNG 文件，均位于 `content/assets/images/`。
+- 四篇论文在 arXiv 标注 CC BY 4.0，页面保留论文作者、图号、原图来源和许可，明确图像是实验场景、论文案例或接口说明，不将其冒充本站实测；未将论文许可推广到项目全部数据和媒体。
+- CodeActionBench 新增独立的视觉接口说明样例，其他图片直接附到对应既有任务。影响仅为增加样例媒体和来源。
+- 更新 `content/benchmarks/ebim.json`，新增官方 CC BY 4.0 的 Mobile FR3 Duo 机器人与工作台示意图 `content/assets/images/ebim-workbench.png`，标明 EBiM、Franka Robotics 及官网许可；该图是平台展示，不是任务执行录像。
+- 更新 `content/benchmarks/robotarena-infinity.json`，新增论文 CC BY 4.0 的真实录像转仿真流程图 `content/assets/images/robotarena-infinity-real2sim.png`；注明图中原数据集及作者，避免误作模型成绩。
+- 更新 `content/benchmarks/robochallenge.json` 与 `robochallenge-table30-v2.json`，新增官方 `stamp_positioning` 实机任务和评分步骤，附带能播放多视角演示的官方任务页链接；未确认视频再发布许可，故在官网观看。
+
+## 2026-11-05：补充 ManipulationNet 官方场景图
+
+- 修改 `content/benchmarks/manipulationnet.json`，为插销任务附加官方客户端仓库中的平台图；图中包含多个实验室的真实机器人及插销板，明确标注其为平台示意而非任务录像或模型成绩。
+- 新增 `content/assets/images/manipulationnet-overview.png` 与 `content/assets/licenses/manipulationnet-apache-2.txt`，保留官方仓库固定提交、Apache 2.0 许可、署名和图片原始来源；仅扩大本地样例媒体，不改变评测逻辑。
+- 更新 `content/benchmarks/real-bench.json`，新增 REAL 官方仿真探索、交互澄清和实机部署演示入口；明确实机部署与 REAL-Bench 的仿真任务分开，未转载许可未核实的视频。
+- 修改 `content/benchmarks/aa-robotics.json`、`rle-bench.json` 和 `habitat-3.json` 的样例说明，明确官方页面中对应实机或仿真视频的观看位置；保留现有官方来源链接，不转载尚未核实许可的媒体。
+
+## 2026-11-05：修复低分辨率样例的视频播放器
+
+- 修改 `src/components/SampleMedia.vue`：视频播放器宽度自适应内容区并限制最大宽度，解决 BiGym 2 的 84×84 原视频导致播放器和原生控件过小、难以操作的问题；保留原始视频文件及比例，不影响图片和音频。
+- 验证：Chrome 中逐项检查 19 个具身评测的 16 段站内视频和 12 张站内图片，视频实际触发播放，图片均成功加载；ManiSkill 图片放大弹窗和 RoboChallenge 官方多视角视频播放正常。BiGym 2 低分辨率视频重新构建后播放器可操作，但放大画面的清晰度受原片分辨率限制。`npm run typecheck`、`npm run build` 通过，临时静态预览服务已关闭。
+- 提交前清理三份 CC 许可文本末尾多余空行，许可正文不变。

@@ -1,0 +1,181 @@
+{
+  "id": "humanoidbench",
+  "status": "published",
+  "order": 23200,
+  "name": "HumanoidBench",
+  "subtitle": "在人形机器人仿真中评估全身移动和物体操作能力。",
+  "category": "agents",
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "长步骤任务"
+  ],
+  "publisher": "HumanoidBench 作者团队",
+  "brandIds": [],
+  "year": 2024,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在人形机器人仿真中评估全身移动和物体操作能力。",
+    "task": "控制人形机器人完成全身运动、导航和物体操作等多种仿真任务。",
+    "sourceUrls": [
+      "https://humanoid-bench.github.io/",
+      "https://arxiv.org/abs/2403.10506"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务提供目标、观测与机器人接口。",
+    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "environment": "MuJoCo 仿真，可配置人形机器人与末端执行器；论文使用 Unitree H1 及双灵巧手。",
+    "sourceUrls": [
+      "https://humanoid-bench.github.io/",
+      "https://arxiv.org/abs/2403.10506"
+    ]
+  },
+  "dataProfile": {
+    "summary": "27 项全身控制任务，包括 15 项操作与 12 项移动任务。",
+    "disclosure": "partial",
+    "scale": [
+      "27 项全身控制任务，包括 15 项操作与 12 项移动任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://humanoid-bench.github.io/",
+      "https://arxiv.org/abs/2403.10506"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+    ],
+    "url": "https://humanoid-bench.github.io/",
+    "sourceUrls": [
+      "https://humanoid-bench.github.io/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "HumanoidBench 官网标注 CC BY-SA 4.0。",
+    "scope": "本站展示官网仿真视频并保留署名和相同方式共享条款。",
+    "boundaries": [
+      "视频不标明具体评测版本或模型成绩。"
+    ],
+    "sourceUrls": [
+      "https://humanoid-bench.github.io/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://www.roboticsproceedings.org/rss20/p061.pdf",
+    "sourceUrls": [
+      "https://www.roboticsproceedings.org/rss20/p061.pdf"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "按任务报告回报或完成表现，须核对任务、机器人、观测、训练预算和成功条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://humanoid-bench.github.io/",
+      "https://arxiv.org/abs/2403.10506"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "机器人形态、评估条件、任务版本和采样预算不同会影响结果，不应直接合并比较。",
+      "sourceUrls": [
+        "https://humanoid-bench.github.io/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "依据公开项目与论文整理；完整数据、许可及具体运行条件仍以官方资源为准。",
+      "sourceUrls": [
+        "https://humanoid-bench.github.io/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与任务说明",
+      "url": "https://humanoid-bench.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2403.10506",
+      "role": "paper"
+    },
+    {
+      "label": "官方任务示例",
+      "url": "https://www.roboticsproceedings.org/rss20/p061.pdf",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "long-horizon"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "humanoidbench-official-task",
+        "title": "shelf rearrangement",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "人形机器人整理架上的物体，需要同时维持全身姿态并完成操作。",
+        "explanation": "官方公开任务示例；不表示本站进行了机器人运行或复现。",
+        "raw": "shelf rearrangement",
+        "source": "https://www.roboticsproceedings.org/rss20/p061.pdf",
+        "license": "HumanoidBench 官网标注 CC BY-SA 4.0，来源 HumanoidBench 作者团队。",
+        "split": "官方公开任务示例；未推断数据划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/humanoidbench-bookshelf.mp4",
+            "caption": "HumanoidBench 官方仿真片段：书架整理；具体模型及评价结果未标明。",
+            "source": "https://humanoid-bench.github.io/static/videos/trailer/Dbookshelf.mp4"
+          }
+        ],
+        "licensePath": "licenses/cc-by-sa-4.txt"
+      },
+      {
+        "id": "humanoidbench-concrete-task",
+        "title": "basketball",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "人形机器人在仿真环境中完成接球与投篮等篮球操作。",
+        "explanation": "官方论文将篮球列为全身操作示例，涉及移动、平衡和手部动作；具体奖励由环境定义。",
+        "raw": "basketball",
+        "source": "https://www.roboticsproceedings.org/rss20/p061.pdf",
+        "license": "HumanoidBench 官网标注 CC BY-SA 4.0，来源 HumanoidBench 作者团队。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/humanoidbench-basketball.mp4",
+            "caption": "HumanoidBench 官方仿真片段：篮球操作；具体模型及评价结果未标明。",
+            "source": "https://humanoid-bench.github.io/static/videos/trailer/Tbasketball.mp4"
+          }
+        ],
+        "licensePath": "licenses/cc-by-sa-4.txt"
+      }
+    ]
+  }
+}

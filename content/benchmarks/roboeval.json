@@ -1,0 +1,198 @@
+{
+  "id": "roboeval",
+  "status": "published",
+  "order": 23090,
+  "name": "RoboEval",
+  "subtitle": "通过分阶段和行为指标评估双臂操作策略。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作"
+  ],
+  "publisher": "RoboEval 作者团队",
+  "brandIds": [
+    "roboeval"
+  ],
+  "year": 2025,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过分阶段和行为指标评估双臂操作策略。",
+    "task": "在双臂仿真任务中完成指定操作，同时记录过程、效率、稳定性与协调指标。",
+    "sourceUrls": [
+      "https://robo-eval.github.io/index.html",
+      "https://robo-eval.github.io/RoboEval-Documentation/tasks/index.html"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "基于 MuJoCo 的双臂机器人操作仿真及阶段诊断。",
+    "sourceUrls": [
+      "https://robo-eval.github.io/index.html",
+      "https://robo-eval.github.io/RoboEval-Documentation/tasks/index.html"
+    ]
+  },
+  "dataProfile": {
+    "summary": "8 个任务族，官方文档列出 28 种任务变体；具体版本以运行文档为准。",
+    "disclosure": "partial",
+    "scale": [
+      "8 个任务族，官方文档列出 28 种任务变体；具体版本以运行文档为准。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://robo-eval.github.io/index.html",
+      "https://robo-eval.github.io/RoboEval-Documentation/tasks/index.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://robo-eval.github.io/index.html",
+    "sourceUrls": [
+      "https://robo-eval.github.io/index.html"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "挑战赛规则声明评测资源及演示数据采用 MIT；代码仓库另列 Apache 2.0。",
+    "scope": "本站引用 RoboEval 官方站点的任务演示；许可按资源类型分别核对。",
+    "boundaries": [
+      "视频属于官方任务示范，未标明挑战赛的具体位置和姿态扰动，不代表评测成绩。"
+    ],
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge-rules.html",
+      "https://robo-eval.github.io/index.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://robo-eval.github.io/challenge.html",
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge.html"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "结合任务成功、阶段进度、运动效率、安全稳定和双臂协调指标；不同挑战赛聚合权重可能不同。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://robo-eval.github.io/index.html",
+      "https://robo-eval.github.io/RoboEval-Documentation/tasks/index.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://robo-eval.github.io/index.html",
+        "https://robo-eval.github.io/RoboEval-Documentation/tasks/index.html"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://robo-eval.github.io/index.html",
+        "https://robo-eval.github.io/RoboEval-Documentation/tasks/index.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://robo-eval.github.io/index.html",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://robo-eval.github.io/RoboEval-Documentation/tasks/index.html",
+      "role": "readme"
+    },
+    {
+      "label": "官方任务样例",
+      "url": "https://robo-eval.github.io/challenge.html",
+      "role": "data"
+    },
+    {
+      "label": "挑战赛演示数据许可",
+      "url": "https://robo-eval.github.io/challenge-rules.html",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "roboeval-bimanual-challenge",
+      "label": "相关挑战赛",
+      "detail": "2026 挑战赛在 RoboEval 任务族上定义单独的诊断评分。",
+      "sourceUrls": [
+        "https://robo-eval.github.io/challenge.html"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "roboeval-official-task",
+        "title": "Lift Tray",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "双臂配合抓取并抬起托盘；除结果外，还可分析协同动作和稳定性。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Lift Tray",
+        "source": "https://robo-eval.github.io/challenge.html",
+        "license": "RoboEval 挑战赛规则声明评测资源和示范数据采用 MIT；项目代码仓库另列 Apache 2.0。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/roboeval-lift-tray.mp4",
+            "caption": "RoboEval 官方仿真任务演示：抬起托盘；画面未标明挑战赛具体扰动或评测成绩。",
+            "source": "https://robo-eval.github.io/media/demo_videos/lift_tray.mp4"
+          }
+        ],
+        "licensePath": "licenses/roboeval-media-mit.txt"
+      },
+      {
+        "id": "roboeval-concrete-task",
+        "title": "Stack Two Cubes",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "双臂操作场景中把两个方块堆叠起来，并在不同位置或姿态配置下评估表现。",
+        "explanation": "官方挑战赛任务清单中的操作例子；不同变体有不同配置，本例不虚构距离阈值。",
+        "raw": "Stack Two Cubes",
+        "source": "https://robo-eval.github.io/challenge.html",
+        "license": "RoboEval 挑战赛规则声明评测资源和示范数据采用 MIT；项目代码仓库另列 Apache 2.0。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/roboeval-stack-cubes.mp4",
+            "caption": "RoboEval 官方仿真任务演示：堆叠方块；画面未标明挑战赛具体扰动或评测成绩。",
+            "source": "https://robo-eval.github.io/media/demo_videos/stack_cubes.mp4"
+          }
+        ],
+        "licensePath": "licenses/roboeval-media-mit.txt"
+      }
+    ]
+  }
+}

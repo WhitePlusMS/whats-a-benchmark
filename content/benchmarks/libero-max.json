@@ -1,0 +1,189 @@
+{
+  "id": "libero-max",
+  "status": "published",
+  "order": 23040,
+  "name": "LIBERO-MAX",
+  "subtitle": "评估机器人策略在执行中遇到环境变化后的动态鲁棒性。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "推理与决策"
+  ],
+  "publisher": "LIBERO-MAX 作者团队",
+  "brandIds": [
+    "libero-max"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "derivative",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估机器人策略在执行中遇到环境变化后的动态鲁棒性。",
+    "task": "在机器人执行任务过程中引入可控变化，比较变化前后一致的对照轨迹能否完成目标。",
+    "sourceUrls": [
+      "https://liberomax.github.io/",
+      "https://arxiv.org/abs/2609.36518"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "基于 LIBERO-Plus 与 LIBERO-PRO 的仿真案例，在执行途中施加可控环境变化。",
+    "sourceUrls": [
+      "https://liberomax.github.io/",
+      "https://arxiv.org/abs/2609.36518"
+    ]
+  },
+  "dataProfile": {
+    "summary": "完整评测 8,000 对 Base/Dynamic 案例，覆盖 8 类事件；Lite 为固定的 800 对子集。",
+    "disclosure": "partial",
+    "scale": [
+      "完整评测 8,000 对 Base/Dynamic 案例，覆盖 8 类事件；Lite 为固定的 800 对子集。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://liberomax.github.io/",
+      "https://arxiv.org/abs/2609.36518"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://liberomax.github.io/",
+    "sourceUrls": [
+      "https://liberomax.github.io/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "论文在 arXiv 发布时标注 CC BY 4.0。",
+    "scope": "本站展示该论文的原始图像，保留作者、论文来源与许可；论文之外的数据、代码和其他素材分别核对。",
+    "boundaries": [
+      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2609.36518"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://liberomax.github.io/",
+    "sourceUrls": [
+      "https://liberomax.github.io/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "比较同一初态与执行前缀下 Base 和 Dynamic 的任务成功率；不据此推断模型内部是否主动识别变化。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://liberomax.github.io/",
+      "https://arxiv.org/abs/2609.36518"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://liberomax.github.io/",
+        "https://arxiv.org/abs/2609.36518"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://liberomax.github.io/",
+        "https://arxiv.org/abs/2609.36518"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://liberomax.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2609.36518",
+      "role": "paper"
+    }
+  ],
+  "related": [
+    {
+      "id": "libero-plus",
+      "label": "源评测",
+      "detail": "LIBERO-MAX 使用 LIBERO-Plus 来源案例构建执行中变化的配对评估。",
+      "sourceUrls": [
+        "https://liberomax.github.io/"
+      ]
+    },
+    {
+      "id": "libero-pro",
+      "label": "源评测",
+      "detail": "LIBERO-MAX 使用 LIBERO-PRO 来源案例构建执行中变化的配对评估。",
+      "sourceUrls": [
+        "https://liberomax.github.io/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "libero-max-official-task",
+        "title": "Target relocation",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人开始接近后移动目标物体，对照未移动的同源轨迹，检查能否继续完成任务。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Target relocation",
+        "source": "https://liberomax.github.io/",
+        "license": "Zhang 等，LIBERO-MAX 论文图 1，CC BY 4.0；原图未修改。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/libero-max-teaser.png",
+            "alt": "LIBERO-MAX 论文图：物体位置、视角、路径及场景外观变化前后的对比。",
+            "width": 1459,
+            "height": 707,
+            "caption": "论文图 1：左上为目标或容器位置变化，另展示视角、障碍和场景变化。",
+            "source": "https://arxiv.org/html/2609.36518v1/liberomax_teaser.png"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
+      },
+      {
+        "id": "libero-max-concrete-task",
+        "title": "Camera shift",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人执行操作时，摄像机视角发生变化；继续完成原本的操作目标。",
+        "explanation": "该扰动用于考察运行中的视角变化，具体物体与目标由所选基础任务决定。",
+        "raw": "Camera shift",
+        "source": "https://liberomax.github.io/",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      }
+    ]
+  }
+}

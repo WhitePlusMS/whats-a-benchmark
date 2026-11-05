@@ -1,0 +1,180 @@
+{
+  "id": "embodiedlab",
+  "status": "published",
+  "order": 23010,
+  "name": "EmbodiedLab",
+  "subtitle": "评估智能体通过操作仿真实验仪器、采集证据并推断未知量的能力。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "长步骤任务",
+    "推理与决策"
+  ],
+  "publisher": "HexaFuture 与论文作者",
+  "brandIds": [
+    "hexafuture"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体通过操作仿真实验仪器、采集证据并推断未知量的能力。",
+    "task": "操作仿真实验装置，选择测量步骤并提交有实验读数支持的结论。",
+    "sourceUrls": [
+      "https://github.com/HexaFuture/EmbodiedLab",
+      "https://arxiv.org/abs/2610.35385"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "基于物理的仿真实验室，机器人通过相机读数并操作仪器。",
+    "sourceUrls": [
+      "https://github.com/HexaFuture/EmbodiedLab",
+      "https://arxiv.org/abs/2610.35385"
+    ]
+  },
+  "dataProfile": {
+    "summary": "30 个定量实验，覆盖五个学科与 14 类实验装置。",
+    "disclosure": "partial",
+    "scale": [
+      "30 个定量实验，覆盖五个学科与 14 类实验装置。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/HexaFuture/EmbodiedLab",
+      "https://arxiv.org/abs/2610.35385"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://github.com/HexaFuture/EmbodiedLab",
+    "sourceUrls": [
+      "https://github.com/HexaFuture/EmbodiedLab"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "论文在 arXiv 发布时标注 CC BY 4.0。",
+    "scope": "本站展示该论文的原始图像，保留作者、论文来源与许可；论文之外的数据、代码和其他素材分别核对。",
+    "boundaries": [
+      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.35385"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示官方任务及任务卡模板；中文为本站解读，不代表实验运行结果。",
+    "url": "https://arxiv.org/abs/2610.35385",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.35385",
+      "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "综合实验成功率与六阶段过程分，结果需基于本次操作中的测量证据。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/HexaFuture/EmbodiedLab",
+      "https://arxiv.org/abs/2610.35385"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://github.com/HexaFuture/EmbodiedLab",
+        "https://arxiv.org/abs/2610.35385"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://github.com/HexaFuture/EmbodiedLab",
+        "https://arxiv.org/abs/2610.35385"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://github.com/HexaFuture/EmbodiedLab",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2610.35385",
+      "role": "paper"
+    },
+    {
+      "label": "官方实验任务卡",
+      "url": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "long-horizon",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "embodiedlab-official-task",
+        "title": "Hooke’s law",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "操作弹簧装置并在至少四种载荷下读取刻度，估计弹簧刚度；不是实际湿实验。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Hooke’s law",
+        "source": "https://arxiv.org/abs/2610.35385",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "embodiedlab-hooke-card",
+        "title": "弹簧刚度测量任务卡",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "通过多组不同载荷测量弹簧形变，估计弹簧刚度；静止观察并记录证据，再提交结果。",
+        "explanation": "官方任务卡是包含占位符的实验模板，具体负载数与参数由实例确定；这里没有伪造测量值或实验结果。",
+        "raw": "Spring stiffness",
+        "source": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md",
+        "license": "Gao 等，EmbodiedLab 论文图 7，CC BY 4.0；原图未修改。",
+        "split": "公开任务卡模板。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/embodiedlab-gallery.png",
+            "alt": "EmbodiedLab 30 种科学实验图集，第三行左侧是弹簧刚度实验。",
+            "width": 756,
+            "height": 728,
+            "caption": "论文图 7：固定相机记录的实验场景，第三行首图为胡克定律实验。",
+            "source": "https://arxiv.org/html/2610.35385v1/fig_gallery.png"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
+      }
+    ]
+  }
+}

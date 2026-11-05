@@ -1,0 +1,194 @@
+{
+  "id": "bigym-2",
+  "status": "published",
+  "order": 23220,
+  "name": "BiGym 2.0",
+  "subtitle": "评估人形机器人在家庭任务上的全身移动、双臂操作与程序控制。",
+  "category": "agents",
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "双臂操作",
+    "长步骤任务"
+  ],
+  "publisher": "BiGym 2.0 作者团队",
+  "brandIds": [
+    "bigym2"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估人形机器人在家庭任务上的全身移动、双臂操作与程序控制。",
+    "task": "控制人形机器人底盘、双臂和夹爪，完成指定家庭任务。",
+    "sourceUrls": [
+      "https://bigym2.github.io/",
+      "https://bigym2.github.io/docs/"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务提供目标、观测与机器人接口。",
+    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "environment": "MuJoCo 中的 Unitree G1，GR00T-WBC 控制下肢；策略控制底盘、双臂与夹爪。",
+    "sourceUrls": [
+      "https://bigym2.github.io/",
+      "https://bigym2.github.io/docs/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "20 项家庭任务；论文对比 9 项核心任务，另有 11 项扩展任务。",
+    "disclosure": "partial",
+    "scale": [
+      "20 项家庭任务；论文对比 9 项核心任务，另有 11 项扩展任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://bigym2.github.io/",
+      "https://bigym2.github.io/docs/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+    ],
+    "url": "https://bigym2.github.io/",
+    "sourceUrls": [
+      "https://bigym2.github.io/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方 BiGym 2.0 演示数据集采用 CC BY 4.0。",
+    "scope": "本站展示数据集中的人工 VR 示范，按 CC BY 4.0 标注 SWIRL-Lab 来源；模型和第三方资源许可另计。",
+    "boundaries": [
+      "仿真示范不代表机器人实机运行或模型成绩。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://bigym2.github.io/",
+    "sourceUrls": [
+      "https://bigym2.github.io/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "以隐藏测试 episode 的成功率比较，须区分论文核心任务、网站扩展任务及演示数量。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://bigym2.github.io/",
+      "https://bigym2.github.io/docs/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "机器人形态、评估条件、任务版本和采样预算不同会影响结果，不应直接合并比较。",
+      "sourceUrls": [
+        "https://bigym2.github.io/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "依据公开项目与论文整理；完整数据、许可及具体运行条件仍以官方资源为准。",
+      "sourceUrls": [
+        "https://bigym2.github.io/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与任务说明",
+      "url": "https://bigym2.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://bigym2.github.io/docs/",
+      "role": "readme"
+    },
+    {
+      "label": "官方示范数据和 CC BY 4.0 许可",
+      "url": "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/README.md",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "bigym",
+      "label": "前代评测",
+      "detail": "BiGym 2.0 建立在 BiGym 基础上，机器人、任务及评测协议需分别核对。",
+      "sourceUrls": [
+        "https://bigym2.github.io/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "bimanual",
+      "long-horizon"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "bigym-2-official-task",
+        "title": "dishwasher_close",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "控制人形机器人关闭洗碗机；部分任务的起始状态固定，应结合版本阅读泛化结果。",
+        "explanation": "官方公开任务示例；不表示本站进行了机器人运行或复现。",
+        "raw": "dishwasher_close",
+        "source": "https://bigym2.github.io/",
+        "license": "SWIRL-Lab BiGym 2.0 官方演示数据 CC BY 4.0；来源：SWIRL-Lab / Imperial College London。",
+        "split": "官方公开任务示例；未推断数据划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/bigym2-dishwasher-close.mp4",
+            "caption": "官方仿真人工 VR 示范：关闭洗碗机，头部相机视角；不是模型成绩。",
+            "source": "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/agent_demos/dishwasher_close/demo_head.mp4"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
+      },
+      {
+        "id": "bigym-2-concrete-task",
+        "title": "dishwasher load cups",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在洗碗机场景中装入杯子；该任务与打开抽屉、搬动盘子等并列出现在官方任务结果表中。",
+        "explanation": "这里仅说明任务目标；BiGym 2.0 的完整判定请以其版本配置为准。",
+        "raw": "dishwasher load cups",
+        "source": "https://bigym2.github.io/",
+        "license": "SWIRL-Lab BiGym 2.0 官方演示数据 CC BY 4.0；来源：SWIRL-Lab / Imperial College London。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/bigym2-dishwasher-load-cups.mp4",
+            "caption": "官方仿真人工 VR 示范：将杯子装入洗碗机，头部相机视角；不是模型成绩。",
+            "source": "https://huggingface.co/datasets/SWIRL-Lab/bigym-g1-native60/blob/4c3e4414aaf74540899de0b9e82239ef927c9710/agent_demos/dishwasher_load_cups/demo_head.mp4"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
+      }
+    ]
+  }
+}

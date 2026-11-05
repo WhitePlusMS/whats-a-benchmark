@@ -1,0 +1,201 @@
+{
+  "id": "codeactionbench",
+  "status": "published",
+  "order": 23050,
+  "name": "CodeActionBench",
+  "subtitle": "评估智能体以代码控制机器人完成操作任务的能力。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作",
+    "推理与决策"
+  ],
+  "publisher": "CodeActionBench 作者团队",
+  "brandIds": [
+    "codeactionbench"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体以代码控制机器人完成操作任务的能力。",
+    "task": "依据视觉观测编写和调整机器人操作代码，完成抓取、交接、工具使用等任务。",
+    "sourceUrls": [
+      "https://codeactionbench.org/",
+      "https://arxiv.org/abs/2609.33807"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "基于 RoboTwin 2.0 的 SAPIEN 双臂操作仿真；智能体使用共享视觉、几何和动作 API 编写或执行策略代码。",
+    "sourceUrls": [
+      "https://codeactionbench.org/",
+      "https://arxiv.org/abs/2609.33807"
+    ]
+  },
+  "dataProfile": {
+    "summary": "25 个固定操作任务；论文比较 9 种智能体配置。",
+    "disclosure": "partial",
+    "scale": [
+      "25 个固定操作任务；论文比较 9 种智能体配置。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://codeactionbench.org/",
+      "https://arxiv.org/abs/2609.33807"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://codeactionbench.org/",
+    "sourceUrls": [
+      "https://codeactionbench.org/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "论文在 arXiv 发布时标注 CC BY 4.0。",
+    "scope": "本站展示该论文的原始图像，保留作者、论文来源与许可；论文之外的数据、代码和其他素材分别核对。",
+    "boundaries": [
+      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2609.33807"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://arxiv.org/html/2609.33807",
+    "sourceUrls": [
+      "https://arxiv.org/html/2609.33807"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "以独立物理结果验证任务完成；报告成功尝试率、任务覆盖和试验预算。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://codeactionbench.org/",
+      "https://arxiv.org/abs/2609.33807"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://codeactionbench.org/",
+        "https://arxiv.org/abs/2609.33807"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://codeactionbench.org/",
+        "https://arxiv.org/abs/2609.33807"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://codeactionbench.org/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2609.33807",
+      "role": "paper"
+    },
+    {
+      "label": "官方任务样例",
+      "url": "https://arxiv.org/html/2609.33807",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robotwin-2",
+      "label": "基础评测",
+      "detail": "CodeActionBench 基于 RoboTwin 2.0 的双臂任务、机器人配置和成功检查进行适配。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2609.33807"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "codeactionbench-official-task",
+        "title": "hanging_mug",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "先用左臂拿起并调整杯子，再用右臂将杯子挂到架上；评估动作衔接及最终状态。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "hanging_mug",
+        "source": "https://arxiv.org/html/2609.33807",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "codeactionbench-concrete-task",
+        "title": "blocks_ranking_size",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "用机器人操作代码把三块不同大小的积木从左到右按由大到小排列。",
+        "explanation": "考察代码控制、物体大小判断与最终排列；颜色和初始位置可能变化。",
+        "raw": "blocks_ranking_size",
+        "source": "https://arxiv.org/html/2609.33807",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "codeactionbench-visual-tools",
+        "title": "机器人视觉与动作规划界面",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察机械臂、物体与场景，在图像中标记关键点、预览候选姿态，再编写代码控制机器人。",
+        "explanation": "论文原图展示测量尺度、像素标记、姿态预览和候选姿态比较四种视觉反馈；该图是接口说明，不是一条完整运行轨迹。",
+        "raw": "Visual feedback for spatial estimation and target construction.",
+        "source": "https://arxiv.org/abs/2609.33807",
+        "license": "Lyu 等，CodeActionBench 论文图 7，CC BY 4.0；原图未修改。",
+        "licensePath": "licenses/cc-by-4.txt",
+        "split": "官方论文中的接口示意。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/codeactionbench-workspace.png",
+            "alt": "CodeActionBench 四组机器人视觉工具画面：尺度、像素标记、姿态预览和姿态比较。",
+            "width": 1567,
+            "height": 619,
+            "caption": "论文图 7：机器人视觉反馈界面；不是一条完整任务轨迹。",
+            "source": "https://arxiv.org/html/2609.33807v1/figureA-visual-workspace-crop.png"
+          }
+        ]
+      }
+    ]
+  }
+}

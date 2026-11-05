@@ -1,0 +1,313 @@
+{
+  "id": "real-bench",
+  "status": "published",
+  "order": 23240,
+  "name": "REAL-Bench",
+  "subtitle": "评估具身智能体在开放环境中探索、交互并完成移动操作任务。",
+  "category": "agents",
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "推理与决策"
+  ],
+  "publisher": "InternRobotics / REAL 作者团队",
+  "brandIds": [
+    "internrobotics"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估具身智能体在开放环境中探索、交互并完成移动操作任务。",
+    "task": "评估具身智能体在开放环境中探索、交互并完成移动操作任务。",
+    "sourceUrls": [
+      "https://github.com/InternRobotics/REAL"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务提供目标、观测与机器人接口。",
+    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "environment": "主要依据非特权 RGB 观测，以工具接口控制移动和操作；项目还报告实机部署实验。",
+    "sourceUrls": [
+      "https://github.com/InternRobotics/REAL"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方仓库提供 241 项任务定义，归为四个任务族。",
+    "disclosure": "partial",
+    "scale": [
+      "官方仓库提供 241 项任务定义，归为四个任务族。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/InternRobotics/REAL"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+    ],
+    "url": "https://github.com/InternRobotics/REAL",
+    "sourceUrls": [
+      "https://github.com/InternRobotics/REAL"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "代码、数据和媒体的具体许可尚未逐项核实。",
+    "scope": "保留官方链接及简短任务名称；资源使用需核对对应许可。",
+    "boundaries": [
+      "中文任务说明由本站整理，不代表获得完整数据或媒体的再发布权。"
+    ],
+    "sourceUrls": [
+      "https://github.com/InternRobotics/REAL"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示官方任务配置、动作计划及官方演示入口；仿真任务配置不等于机器人实际运行轨迹。",
+    "url": "https://github.com/InternRobotics/REAL",
+    "sourceUrls": [
+      "https://github.com/InternRobotics/REAL",
+      "https://github.com/InternRobotics/REAL/blob/9c362043786af2d609fbaa5b680b27a00463e07b/benchmark/tasks/FDP/verify_task_1.yaml",
+      "https://github.com/InternRobotics/REAL/blob/9c362043786af2d609fbaa5b680b27a00463e07b/benchmark/tasks/FDO/verify_task_100.yaml",
+      "https://internrobotics.github.io/REAL/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "按任务设置报告完成情况，须区分仿真基准和单独的实机实验。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/InternRobotics/REAL"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "机器人形态、评估条件、任务版本和采样预算不同会影响结果，不应直接合并比较。",
+      "sourceUrls": [
+        "https://github.com/InternRobotics/REAL"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "依据公开项目与论文整理；完整数据、许可及具体运行条件仍以官方资源为准。",
+      "sourceUrls": [
+        "https://github.com/InternRobotics/REAL"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与任务说明",
+      "url": "https://github.com/InternRobotics/REAL",
+      "role": "definition"
+    },
+    {
+      "label": "官方任务 YAML",
+      "url": "https://github.com/InternRobotics/REAL/blob/9c362043786af2d609fbaa5b680b27a00463e07b/benchmark/tasks/FDP/verify_task_1.yaml",
+      "role": "data"
+    },
+    {
+      "label": "官方任务 YAML",
+      "url": "https://github.com/InternRobotics/REAL/blob/9c362043786af2d609fbaa5b680b27a00463e07b/benchmark/tasks/FDO/verify_task_100.yaml",
+      "role": "data"
+    },
+    {
+      "label": "REAL 官方仿真与实机演示",
+      "url": "https://internrobotics.github.io/REAL/",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "real-bench-fdp-1",
+        "title": "寻找并搬运浅蓝色泰迪熊",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "去电视前的沙发找到浅蓝色绒毛泰迪熊，将它送到长方形桌子；场景中还有另一张桌子和其他玩具熊。",
+        "explanation": "原始字段摘自官方 YAML：src 和 dest 是任务起点和目标，execution_plan 是配置内的计划，不是机器人实际运行记录。",
+        "raw": {
+          "task_id": "verify_task_1",
+          "episode_idx": 0,
+          "task_description": "First, drive to the couch in front of the TV to find the soft, plush teddy bear; rounded body, small ears, button-like eyes, light blue, fluffy surface, then deliver it to the rectangular table.",
+          "src": "couch_2",
+          "src_distractors": [],
+          "dest": "table_1",
+          "dest_distractors": [
+            "table_2"
+          ],
+          "execution_plan": [
+            {
+              "action": "nav_to",
+              "args": {
+                "receptacle_name": "couch_2"
+              }
+            },
+            {
+              "action": "find",
+              "args": {
+                "target_category": "teddy bear",
+                "target_description": "Soft, plush teddy bear; rounded body, small ears, button-like eyes, light blue, fluffy surface."
+              }
+            },
+            {
+              "action": "gaze_at",
+              "args": {
+                "target_category": "teddy bear",
+                "target_description": "Soft, plush teddy bear; rounded body, small ears, button-like eyes, light blue, fluffy surface."
+              }
+            },
+            {
+              "action": "pick",
+              "args": {
+                "target_category": "teddy bear",
+                "target_description": "Soft, plush teddy bear; rounded body, small ears, button-like eyes, light blue, fluffy surface."
+              }
+            },
+            {
+              "action": "nav_to",
+              "args": {
+                "receptacle_name": "table_2"
+              }
+            },
+            {
+              "action": "nav_to",
+              "args": {
+                "receptacle_name": "table_1"
+              }
+            },
+            {
+              "action": "place",
+              "args": {
+                "receptacle_name": "table_1"
+              }
+            }
+          ]
+        },
+        "source": "https://github.com/InternRobotics/REAL/blob/9c362043786af2d609fbaa5b680b27a00463e07b/benchmark/tasks/FDP/verify_task_1.yaml",
+        "license": "MIT License，Copyright (c) 2026 REAL Contributors；场景和模型资产另行适用各自许可。",
+        "licensePath": "licenses/real-bench-mit.txt",
+        "split": "官方公开任务配置，未推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "real-bench-fdo-100",
+        "title": "寻找零食并放入洗衣机",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "前往灰黑色床寻找零食，将它放进洗衣机并关门；配置中还存在另一张床作为干扰。",
+        "explanation": "原始字段摘自官方 YAML：src 和 dest 是任务起点和目标，execution_plan 是配置内的计划，不是机器人实际运行记录。",
+        "raw": {
+          "task_id": "verify_task_100",
+          "episode_idx": 16,
+          "task_description": "Head over to layered grey and black bed, fetch a snack, and bring it back to the washingmachine.",
+          "src": "bed_2",
+          "src_distractors": [
+            "bed_1"
+          ],
+          "dest": "washingmachine_1",
+          "dest_distractors": [],
+          "execution_plan": [
+            {
+              "action": "nav_to",
+              "args": {
+                "receptacle_name": "washingmachine_1"
+              }
+            },
+            {
+              "action": "open",
+              "args": {
+                "receptacle_name": "washingmachine_1"
+              }
+            },
+            {
+              "action": "nav_to",
+              "args": {
+                "receptacle_name": "bed_1"
+              }
+            },
+            {
+              "action": "nav_to",
+              "args": {
+                "receptacle_name": "bed_2"
+              }
+            },
+            {
+              "action": "find",
+              "args": {
+                "target_category": "snack"
+              }
+            },
+            {
+              "action": "gaze_at",
+              "args": {
+                "target_category": "snack"
+              }
+            },
+            {
+              "action": "pick",
+              "args": {
+                "target_category": "snack"
+              }
+            },
+            {
+              "action": "nav_to",
+              "args": {
+                "receptacle_name": "washingmachine_1"
+              }
+            },
+            {
+              "action": "place",
+              "args": {
+                "receptacle_name": "washingmachine_1"
+              }
+            },
+            {
+              "action": "close",
+              "args": {
+                "receptacle_name": "washingmachine_1"
+              }
+            }
+          ]
+        },
+        "source": "https://github.com/InternRobotics/REAL/blob/9c362043786af2d609fbaa5b680b27a00463e07b/benchmark/tasks/FDO/verify_task_100.yaml",
+        "license": "MIT License，Copyright (c) 2026 REAL Contributors；场景和模型资产另行适用各自许可。",
+        "licensePath": "licenses/real-bench-mit.txt",
+        "split": "官方公开任务配置，未推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "real-bench-official-demonstrations",
+        "title": "官方演示：探索、询问与实机执行",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观看官方展示：智能体在仿真场景探索目标、遇到歧义时询问；另外展示同一框架部署到双臂移动机器人的过程。",
+        "explanation": "官方网站 Evidence 部分提供仿真探索、交互澄清和实机操作三个展示。实机部署是 REAL 框架的单独实验，不等同于 REAL-Bench 241 项仿真任务的逐条执行记录。点击“查看原始来源”可在官方页面播放。",
+        "raw": "Evidence, one trajectory at a time.",
+        "source": "https://internrobotics.github.io/REAL/",
+        "license": "本站保留官方公开说明的必要短语并提供演示入口；媒体独立再发布许可尚未确认，视频在官方网站观看。",
+        "split": "官网代表性展示；实机部署与仿真评测分别说明。",
+        "excerpt": true
+      }
+    ]
+  }
+}

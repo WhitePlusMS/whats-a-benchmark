@@ -1,0 +1,195 @@
+{
+  "id": "ebim",
+  "status": "published",
+  "order": 23130,
+  "name": "EBiM Benchmark",
+  "subtitle": "通过仿真与跨地点真机验证评估双臂操作。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作"
+  ],
+  "publisher": "EBiM 组织委员会",
+  "brandIds": [
+    "ebim"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过仿真与跨地点真机验证评估双臂操作。",
+    "task": "在指定条件下完成线缆、柔性材料或辅助生活方向的双臂操作任务。",
+    "sourceUrls": [
+      "https://ebim-benchmark.github.io/",
+      "https://ebim-benchmark.github.io/faq.html"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "开发预览包含 Isaac Sim / MuJoCo 环境；部分组合未就绪，实机验证使用 Mobile FR3 Duo。",
+    "sourceUrls": [
+      "https://ebim-benchmark.github.io/",
+      "https://ebim-benchmark.github.io/faq.html"
+    ]
+  },
+  "dataProfile": {
+    "summary": "三个赛道：线缆布放与插接、柔性材料处理、辅助生活与喂食。",
+    "disclosure": "partial",
+    "scale": [
+      "三个赛道：线缆布放与插接、柔性材料处理、辅助生活与喂食。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://ebim-benchmark.github.io/",
+      "https://ebim-benchmark.github.io/faq.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://ebim-benchmark.github.io/",
+    "sourceUrls": [
+      "https://ebim-benchmark.github.io/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "EBiM 官网仓库声明站点文字及图片采用 CC BY 4.0。",
+    "scope": "展示官网的 Mobile FR3 Duo 平台图，标注 EBiM 和平台提供方。",
+    "boundaries": [
+      "图为平台示意，不能用作实机任务成功证据；代码和其他资源许可另行核对。"
+    ],
+    "sourceUrls": [
+      "https://github.com/EBiM-Benchmark/ebim-benchmark.github.io"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://ebim-benchmark.github.io/faq.html",
+    "sourceUrls": [
+      "https://ebim-benchmark.github.io/faq.html"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "按赛道和阶段的官方规则评估；开发辅助评估程序不等同组织方正式评分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://ebim-benchmark.github.io/",
+      "https://ebim-benchmark.github.io/faq.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://ebim-benchmark.github.io/",
+        "https://ebim-benchmark.github.io/faq.html"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://ebim-benchmark.github.io/",
+        "https://ebim-benchmark.github.io/faq.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://ebim-benchmark.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://ebim-benchmark.github.io/faq.html",
+      "role": "readme"
+    },
+    {
+      "label": "官方竞赛平台",
+      "url": "https://ebim-benchmark.github.io/competition.html",
+      "role": "data"
+    },
+    {
+      "label": "官网内容 CC BY 4.0 许可",
+      "url": "https://github.com/EBiM-Benchmark/ebim-benchmark.github.io",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "ebim-official-task",
+        "title": "Cable Routing & Plugging",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "双臂处理线缆并完成布放与插接；侧重柔性物体与双臂配合。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Cable Routing & Plugging",
+        "source": "https://ebim-benchmark.github.io/faq.html",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "ebim-concrete-task",
+        "title": "Thermal Pad Placement",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在电子设备装配场景中放置导热垫，考察机械臂针对柔性材料的操作。",
+        "explanation": "这是官方 FAQ 列出的任务类别；具体物体布局与判定细则请查看对应赛道。",
+        "raw": "Thermal Pad Placement",
+        "source": "https://ebim-benchmark.github.io/faq.html",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "ebim-mobile-fr3-platform",
+        "title": "Mobile FR3 Duo 官方平台图",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "EBiM 的跨地区实机验证使用 Mobile FR3 Duo 双臂移动操作平台，任务包括线缆整理、导热垫放置和辅助进食。",
+        "explanation": "官网展示的机器人与工作台平台图，说明设备形态；画面不是任一参赛策略的实际执行轨迹。",
+        "raw": "Mobile FR3 Duo",
+        "source": "https://ebim-benchmark.github.io/competition.html",
+        "license": "EBiM 官网声明站点内容（含图片）采用 CC BY 4.0；来源 EBiM Benchmark，平台由 Franka Robotics 提供。",
+        "licensePath": "licenses/cc-by-4.txt",
+        "split": "官方平台说明图片。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/ebim-workbench.png",
+            "alt": "EBiM 官网 Mobile FR3 Duo 双臂移动机器人与工作台的平台渲染图",
+            "width": 4000,
+            "height": 2250,
+            "caption": "官方平台示意图：Mobile FR3 Duo 与工作台；不是评测运行记录。",
+            "source": "https://raw.githubusercontent.com/EBiM-Benchmark/ebim-benchmark.github.io/main/src/img/platform/MFR3_Duo_with_workbench.png"
+          }
+        ]
+      }
+    ]
+  }
+}

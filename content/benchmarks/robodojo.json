@@ -1,0 +1,192 @@
+{
+  "id": "robodojo",
+  "status": "published",
+  "order": 23060,
+  "name": "RoboDojo",
+  "subtitle": "通过仿真和实机任务评估通用机器人操作策略。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作",
+    "长步骤任务"
+  ],
+  "publisher": "RoboDojo 作者团队",
+  "brandIds": [
+    "robodojo"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过仿真和实机任务评估通用机器人操作策略。",
+    "task": "在仿真和真实机器人上分别完成涉及泛化、记忆、精度和长流程的操作任务。",
+    "sourceUrls": [
+      "https://github.com/robodojo-benchmark/RoboDojo",
+      "https://arxiv.org/abs/2607.04434"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "仿真与三种真实机器人平台分别评测，真实测评依赖指定实机条件。",
+    "sourceUrls": [
+      "https://github.com/robodojo-benchmark/RoboDojo",
+      "https://arxiv.org/abs/2607.04434"
+    ]
+  },
+  "dataProfile": {
+    "summary": "42 个仿真任务和 18 个真实任务；仿真部分分为五个能力维度。",
+    "disclosure": "partial",
+    "scale": [
+      "42 个仿真任务和 18 个真实任务；仿真部分分为五个能力维度。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://github.com/robodojo-benchmark/RoboDojo",
+      "https://arxiv.org/abs/2607.04434"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://github.com/robodojo-benchmark/RoboDojo",
+    "sourceUrls": [
+      "https://github.com/robodojo-benchmark/RoboDojo"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方 RoboDojo 数据集标注 Apache 2.0。",
+    "scope": "本站展示该数据集中 sweep_blocks 预览视频，其他资产与软件按各自许可处理。",
+    "boundaries": [
+      "视频为公开仿真示范，不代表榜单中的策略成绩。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://arxiv.org/html/2607.04434",
+    "sourceUrls": [
+      "https://arxiv.org/html/2607.04434",
+      "https://robodojo-benchmark.com/doc/sim-tasks/sweep-blocks/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "仿真综合分先对各能力维度取均值；实机和仿真结果分别阅读。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/robodojo-benchmark/RoboDojo",
+      "https://arxiv.org/abs/2607.04434"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://github.com/robodojo-benchmark/RoboDojo",
+        "https://arxiv.org/abs/2607.04434"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://github.com/robodojo-benchmark/RoboDojo",
+        "https://arxiv.org/abs/2607.04434"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://github.com/robodojo-benchmark/RoboDojo",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2607.04434",
+      "role": "paper"
+    },
+    {
+      "label": "官方任务样例",
+      "url": "https://arxiv.org/html/2607.04434",
+      "role": "data"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://robodojo-benchmark.com/doc/sim-tasks/sweep-blocks/",
+      "role": "data"
+    },
+    {
+      "label": "RoboDojo 官方数据集许可",
+      "url": "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/README.md",
+      "role": "access"
+    },
+    {
+      "label": "扫积木官方预览记录",
+      "url": "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/preview_video/episode_0000000_cam_head.mp4",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual",
+      "long-horizon"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "robodojo-official-task",
+        "title": "general_pickup",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据新任务目标抓取物体，用于考察已学操作技能对未见任务说明的组合和迁移。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "general_pickup",
+        "source": "https://arxiv.org/html/2607.04434",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "robodojo-concrete-task",
+        "title": "Sweep Blocks",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人先拿起扫帚并交到右手，左手抓住簸箕，再把积木扫进簸箕。",
+        "explanation": "官方仿真任务将双手交接、工具使用和收集组合在一起。",
+        "raw": "Sweep Blocks",
+        "source": "https://robodojo-benchmark.com/doc/sim-tasks/sweep-blocks/",
+        "license": "RoboDojo-Benchmark 官方数据集标注 Apache 2.0；来源 RoboDojo-Benchmark。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robodojo-sweep-blocks.mp4",
+            "caption": "官方仿真示范：扫帚和簸箕协作收集积木，头部视角；不代表模型评测成绩。",
+            "source": "https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/sweep_blocks/arx_x5/preview_video/episode_0000000_cam_head.mp4"
+          }
+        ],
+        "licensePath": "licenses/robodojo-apache-2.txt"
+      }
+    ]
+  }
+}

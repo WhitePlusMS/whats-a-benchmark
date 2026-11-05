@@ -1,0 +1,149 @@
+{
+  "id": "aa-robotics",
+  "status": "published",
+  "order": 23030,
+  "name": "AA-Robotics v0.1",
+  "subtitle": "评估语言模型通过编码智能体控制真实机械臂完成桌面任务的能力。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "推理与决策"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估语言模型通过编码智能体控制真实机械臂完成桌面任务的能力。",
+    "task": "通过编写代码控制真实机械臂，完成按钮、倒水、摆放和测量等桌面任务。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics/"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "真实 Hiwonder NexArm 机械臂，四个相机视角，模型通过代码和 HTTP 接口发出动作。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "首版研究预览包含 8 项桌面任务。",
+    "disclosure": "partial",
+    "scale": [
+      "首版研究预览包含 8 项桌面任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://artificialanalysis.ai/articles/aa-robotics/",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
+    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "boundaries": [
+      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://artificialanalysis.ai/articles/aa-robotics/",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "单项任务按 0–100 分计，完成得满分，部分进展可得部分分；再按任务取平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://artificialanalysis.ai/articles/aa-robotics/",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "aa-robotics-official-task",
+        "title": "Press the red button",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "使用夹爪按红色按钮；官方成功条件是按钮闪亮。",
+        "explanation": "官方文章包含按下红色按钮的实机演示；点击“查看原始来源”即可观看。",
+        "raw": "Press the red button",
+        "source": "https://artificialanalysis.ai/articles/aa-robotics/",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "aa-robotics-concrete-task",
+        "title": "Tidy the blocks into the box",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将四块积木全部放入盒子，盖回盒盖；通过条件是积木均在盒内且盒盖平整盖好。",
+        "explanation": "官方文章列出具体目标和通过条件，并提供积木收纳实机演示；点击“查看原始来源”即可观看。",
+        "raw": "Tidy the blocks into the box",
+        "source": "https://artificialanalysis.ai/articles/aa-robotics/",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      }
+    ]
+  }
+}

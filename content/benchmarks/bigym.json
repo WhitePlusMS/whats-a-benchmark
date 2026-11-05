@@ -1,0 +1,224 @@
+{
+  "id": "bigym",
+  "status": "published",
+  "order": 23210,
+  "name": "BiGym",
+  "subtitle": "通过人类演示驱动的家庭任务评估移动双臂操作。",
+  "category": "agents",
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "双臂操作"
+  ],
+  "publisher": "BiGym 作者团队",
+  "brandIds": [
+    "bigym"
+  ],
+  "year": 2024,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过人类演示驱动的家庭任务评估移动双臂操作。",
+    "task": "依据观测与示范控制移动双臂机器人完成不同家庭任务。",
+    "sourceUrls": [
+      "https://chernyadev.github.io/bigym/",
+      "https://arxiv.org/abs/2407.07788"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务提供目标、观测与机器人接口。",
+    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "environment": "家庭场景仿真，支持本体感知及三个相机的 RGB、深度观测。",
+    "sourceUrls": [
+      "https://chernyadev.github.io/bigym/",
+      "https://arxiv.org/abs/2407.07788"
+    ]
+  },
+  "dataProfile": {
+    "summary": "40 个家庭任务，包含从目标触达到厨房清洁的不同难度。",
+    "disclosure": "partial",
+    "scale": [
+      "40 个家庭任务，包含从目标触达到厨房清洁的不同难度。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://chernyadev.github.io/bigym/",
+      "https://arxiv.org/abs/2407.07788"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+    ],
+    "url": "https://chernyadev.github.io/bigym/",
+    "sourceUrls": [
+      "https://chernyadev.github.io/bigym/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "BiGym 官网标注 CC BY-SA 4.0。",
+    "scope": "本站展示官网的任务演示，按原许可署名并保留相同方式共享条款。",
+    "boundaries": [
+      "视频为仿真演示，不代表实机评测或某个模型成绩。"
+    ],
+    "sourceUrls": [
+      "https://chernyadev.github.io/bigym/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://chernyadev.github.io/bigym/",
+    "sourceUrls": [
+      "https://chernyadev.github.io/bigym/",
+      "https://arxiv.org/html/2407.07788"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "任务成功表现依赖观测、演示数量、任务和控制配置，应分别比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://chernyadev.github.io/bigym/",
+      "https://arxiv.org/abs/2407.07788"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "机器人形态、评估条件、任务版本和采样预算不同会影响结果，不应直接合并比较。",
+      "sourceUrls": [
+        "https://chernyadev.github.io/bigym/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "依据公开项目与论文整理；完整数据、许可及具体运行条件仍以官方资源为准。",
+      "sourceUrls": [
+        "https://chernyadev.github.io/bigym/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与任务说明",
+      "url": "https://chernyadev.github.io/bigym/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2407.07788",
+      "role": "paper"
+    },
+    {
+      "label": "BiGym 2.0 官方项目",
+      "url": "https://bigym2.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://arxiv.org/html/2407.07788",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "bigym-2",
+      "label": "后续版本",
+      "detail": "BiGym 2.0 是后续的人形机器人操作评测。",
+      "sourceUrls": [
+        "https://bigym2.github.io/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "bimanual"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "bigym-official-task",
+        "title": "kitchen cleaning",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "移动双臂机器人在家庭场景中完成厨房清洁，需要结合移动和物体操作。",
+        "explanation": "官方公开任务示例；不表示本站进行了机器人运行或复现。",
+        "raw": "kitchen cleaning",
+        "source": "https://chernyadev.github.io/bigym/",
+        "license": "仅引用任务名称并提供中文解读；其他官方内容与媒体未转载。",
+        "split": "官方公开任务示例；未推断数据划分。",
+        "excerpt": true
+      },
+      {
+        "id": "bigym-concrete-task",
+        "title": "dishwasher_load_plates",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将盘子放入洗碗机下层托盘，并松开盘子。",
+        "explanation": "该任务要求盘子接触下层托盘，体现移动、双手操作与家电交互。",
+        "raw": "dishwasher_load_plates",
+        "source": "https://arxiv.org/html/2407.07788",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "bigym-video-dishwasher-open",
+        "title": "dishwasher_open",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "打开洗碗机并拉出托盘。",
+        "explanation": "官网公开视频展示该 BiGym 仿真任务；未指定模型和评测分数。",
+        "raw": "dishwasher_open",
+        "source": "https://chernyadev.github.io/bigym/",
+        "license": "BiGym 官网内容按 CC BY-SA 4.0 标注；原作者 BiGym 项目团队。",
+        "licensePath": "licenses/cc-by-sa-4.txt",
+        "split": "官方公开仿真任务演示。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/bigym-dishwasher-open.mp4",
+            "caption": "BiGym 官方仿真演示：打开洗碗机并拉出托盘。",
+            "source": "https://chernyadev.github.io/bigym/static/videos/dishwasher-open.mp4"
+          }
+        ]
+      },
+      {
+        "id": "bigym-video-dishwasher-load-cups",
+        "title": "dishwasher_load_cups",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将杯子放入洗碗机。",
+        "explanation": "官网公开视频展示该 BiGym 仿真任务；未指定模型和评测分数。",
+        "raw": "dishwasher_load_cups",
+        "source": "https://chernyadev.github.io/bigym/",
+        "license": "BiGym 官网内容按 CC BY-SA 4.0 标注；原作者 BiGym 项目团队。",
+        "licensePath": "licenses/cc-by-sa-4.txt",
+        "split": "官方公开仿真任务演示。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/bigym-dishwasher-load-cups.mp4",
+            "caption": "BiGym 官方仿真演示：将杯子放入洗碗机。",
+            "source": "https://chernyadev.github.io/bigym/static/videos/dishwasher-load-cups.mp4"
+          }
+        ]
+      }
+    ]
+  }
+}

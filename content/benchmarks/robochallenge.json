@@ -1,0 +1,182 @@
+{
+  "id": "robochallenge",
+  "status": "published",
+  "order": 23150,
+  "name": "RoboChallenge",
+  "subtitle": "组织真实机器人及仿真挑战，比较操作策略。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作"
+  ],
+  "publisher": "RoboChallenge 团队",
+  "brandIds": [
+    "robochallenge"
+  ],
+  "year": 2025,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "组织真实机器人及仿真挑战，比较操作策略。",
+    "task": "组织真实机器人及仿真挑战，比较操作策略。",
+    "sourceUrls": [
+      "https://robochallenge.ai/",
+      "https://robochallenge.ai/challenges"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "主要面向真实机器人，并有连接 Isaac Lab 的仿真赛道。",
+    "sourceUrls": [
+      "https://robochallenge.ai/",
+      "https://robochallenge.ai/challenges"
+    ]
+  },
+  "dataProfile": {
+    "summary": "实机评测平台包含多个挑战和榜单；具体任务集与版本单独说明。",
+    "disclosure": "partial",
+    "scale": [
+      "实机评测平台包含多个挑战和榜单；具体任务集与版本单独说明。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://robochallenge.ai/",
+      "https://robochallenge.ai/challenges"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://robochallenge.ai/",
+    "sourceUrls": [
+      "https://robochallenge.ai/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
+    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "boundaries": [
+      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
+    ],
+    "sourceUrls": [
+      "https://robochallenge.ai/",
+      "https://robochallenge.ai/challenges"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://robochallenge.ai/",
+    "sourceUrls": [
+      "https://robochallenge.ai/",
+      "https://robochallenge.ai/robochallenge_techreport_V2.pdf",
+      "https://robochallenge.ai/task_detail/table30_v2?task_id=3809"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "依各挑战协议报告成功率及排名，不同机器人、任务版本和测试设置应分别比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://robochallenge.ai/",
+      "https://robochallenge.ai/challenges"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://robochallenge.ai/",
+        "https://robochallenge.ai/challenges"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://robochallenge.ai/",
+        "https://robochallenge.ai/challenges"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://robochallenge.ai/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://robochallenge.ai/challenges",
+      "role": "readme"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://robochallenge.ai/robochallenge_techreport_V2.pdf",
+      "role": "data"
+    },
+    {
+      "label": "Table30 V2 官方盖章任务与演示视频",
+      "url": "https://robochallenge.ai/task_detail/table30_v2?task_id=3809",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robochallenge-table30-v2",
+      "label": "具体任务版本",
+      "detail": "Table 30 V2 是平台上的真实机器人任务版本。",
+      "sourceUrls": [
+        "https://robochallenge.ai/challenges"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "robochallenge-concrete-task",
+        "title": "Stamp on paper",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "使用印章在纸上盖印，要求机器人完成工具抓取、对准和接触操作。",
+        "explanation": "这是 Table30 V2 技术报告列出的真实任务名称；具体评分和版本以官方报告为准。",
+        "raw": "Stamp on paper",
+        "source": "https://robochallenge.ai/robochallenge_techreport_V2.pdf",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "robochallenge-stamp-positioning",
+        "title": "stamp_positioning · 官方演示",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "一只夹爪按住纸，另一只夹爪拿印章蘸印泥，在签名区盖章，再把印章放回印泥盒。",
+        "explanation": "这是 Table30 V2 的官方任务页，页面提供实机示范与不同相机视角；评分分为蘸印泥、按住纸、准确盖章和归还印章四步。点击“查看原始来源”可在官网播放。",
+        "raw": "stamp_positioning",
+        "source": "https://robochallenge.ai/task_detail/table30_v2?task_id=3809",
+        "license": "任务名称和评分事实来自官方页面；演示视频的独立转载许可未确认，本页提供官方观看链接。",
+        "split": "Table30 V2 官方任务页面。",
+        "excerpt": true
+      }
+    ]
+  }
+}

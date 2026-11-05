@@ -1,0 +1,222 @@
+{
+  "id": "roboquest",
+  "status": "published",
+  "order": 23180,
+  "name": "RoboQuest",
+  "subtitle": "评估机器人为获取信息而主动搜索、检查和实验的能力。",
+  "category": "agents",
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "推理与决策"
+  ],
+  "publisher": "DeCLaRe Lab / 作者团队",
+  "brandIds": [
+    "roboquest"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估机器人为获取信息而主动搜索、检查和实验的能力。",
+    "task": "主动搜索、检查或试验以获取隐藏信息，再执行移动操作并决定何时提交结果。",
+    "sourceUrls": [
+      "https://declare-lab.github.io/RoboQuest/",
+      "https://arxiv.org/abs/2610.10388"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "在 RoboCasa365 的 MuJoCo 厨房仿真中，使用移动底盘与 Franka Panda 机械臂；初始观测不暴露完成任务所需的全部信息。",
+    "sourceUrls": [
+      "https://declare-lab.github.io/RoboQuest/",
+      "https://arxiv.org/abs/2610.10388"
+    ]
+  },
+  "dataProfile": {
+    "summary": "10 个移动操作任务，覆盖搜索、检查与交互测试。",
+    "disclosure": "partial",
+    "scale": [
+      "10 个移动操作任务，覆盖搜索、检查与交互测试。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://declare-lab.github.io/RoboQuest/",
+      "https://arxiv.org/abs/2610.10388"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://declare-lab.github.io/RoboQuest/",
+    "sourceUrls": [
+      "https://declare-lab.github.io/RoboQuest/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "官方数据集说明演示数据采用 MIT License。",
+    "scope": "本站展示的 Puzzle Box 演示视频和关联数据按 MIT 许可署名；底层模拟器及其他资源的许可另行处理。",
+    "boundaries": [
+      "演示视频来自开发场景，不得作为评测集成绩。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/declare-lab/RoboQuest",
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://declare-lab.github.io/RoboQuest/",
+    "sourceUrls": [
+      "https://declare-lab.github.io/RoboQuest/",
+      "https://arxiv.org/html/2610.10388",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
+      "https://huggingface.co/datasets/declare-lab/RoboQuest",
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "报告任务成功率、任务进度及成本；评测需记录交互预算和自动结束条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://declare-lab.github.io/RoboQuest/",
+      "https://arxiv.org/abs/2610.10388"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://declare-lab.github.io/RoboQuest/",
+        "https://arxiv.org/abs/2610.10388"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://declare-lab.github.io/RoboQuest/",
+        "https://arxiv.org/abs/2610.10388"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://declare-lab.github.io/RoboQuest/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2610.10388",
+      "role": "paper"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://arxiv.org/html/2610.10388",
+      "role": "data"
+    },
+    {
+      "label": "官方 Puzzle Box 演示视频",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
+      "role": "data"
+    },
+    {
+      "label": "官方演示数据集与许可",
+      "url": "https://huggingface.co/datasets/declare-lab/RoboQuest",
+      "role": "data"
+    },
+    {
+      "label": "官方 MIT 许可",
+      "url": "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robocasa365",
+      "label": "仿真环境",
+      "detail": "RoboQuest 的任务运行在 RoboCasa365 厨房仿真环境中。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2610.10388"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "roboquest-official-task",
+        "title": "Search Room",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "搜索并找齐隐藏目标，把它们放到托盘后主动提交。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Search Room",
+        "source": "https://declare-lab.github.io/RoboQuest/",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "roboquest-concrete-task",
+        "title": "Puzzle Box",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "打开被一串滑动插销锁住的木盒，把里面的橘子取出并竖放在托盘中，松开物体后按红色 SUBMIT。",
+        "explanation": "插销之间存在先后阻挡关系，需要尝试并观察；首次提交即结束，提交错误或不提交都失败。",
+        "raw": "Puzzle Box",
+        "source": "https://arxiv.org/html/2610.10388",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "roboquest-puzzle-box-demo-000000",
+        "title": "Puzzle Box：官方示范记录 000000",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观看官方演示：移动机械臂操作带插销的解谜盒，并完成盒内物品取放。",
+        "explanation": "该视频来自官方演示数据集的 puzzle_box 第 000000 条记录，是开发场景的演示视频，不是评测集轨迹或模型成绩。不同实例中盒内物品与场景可能不同。",
+        "raw": {
+          "dataset": "declare-lab/RoboQuest",
+          "path": "lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
+          "episode_index": 0
+        },
+        "source": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4",
+        "license": "MIT License，Copyright (c) 2026 DeCLaRe Lab；官方数据集说明演示数据采用 MIT。",
+        "licensePath": "licenses/roboquest-mit.txt",
+        "split": "官方开发场景演示数据，不是评测集。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/roboquest-puzzle-box-demo.mp4",
+            "caption": "官方仿真示范视频，Puzzle Box episode 000000；不是模型评测成绩。",
+            "source": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4"
+          }
+        ]
+      }
+    ]
+  }
+}

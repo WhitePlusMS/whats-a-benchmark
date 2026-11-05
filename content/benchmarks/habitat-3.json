@@ -1,0 +1,163 @@
+{
+  "id": "habitat-3",
+  "status": "published",
+  "order": 23120,
+  "name": "Habitat 3.0",
+  "subtitle": "提供室内人机协作仿真和协作任务评估。",
+  "category": "agents",
+  "tags": [
+    "导航与移动",
+    "抓取与操作",
+    "推理与决策"
+  ],
+  "publisher": "Meta AI / Habitat 研究团队",
+  "brandIds": [
+    "meta"
+  ],
+  "year": 2023,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "提供室内人机协作仿真和协作任务评估。",
+    "task": "在家庭仿真场景中完成人体跟随或人机协作整理物体等任务。",
+    "sourceUrls": [
+      "https://aihabitat.org/habitat3/",
+      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "室内机器人与人体虚拟角色仿真，支持键鼠或 VR 的人在环交互。",
+    "sourceUrls": [
+      "https://aihabitat.org/habitat3/",
+      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方展示 Social Navigation 与 Social Rearrangement 两类协作任务。",
+    "disclosure": "partial",
+    "scale": [
+      "官方展示 Social Navigation 与 Social Rearrangement 两类协作任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://aihabitat.org/habitat3/",
+      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://aihabitat.org/habitat3/",
+    "sourceUrls": [
+      "https://aihabitat.org/habitat3/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "题目、数据、代码与媒体的许可可能不同，完整复用范围尚未逐项核实。",
+    "scope": "仅提供来源链接和必要的任务名称；下载或转载资源前应核对对应许可。",
+    "boundaries": [
+      "本站任务说明为依据官方资料整理的中文解读，不代表获得完整资源再发布权。"
+    ],
+    "sourceUrls": [
+      "https://aihabitat.org/habitat3/",
+      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://aihabitat.org/habitat3/",
+    "sourceUrls": [
+      "https://aihabitat.org/habitat3/"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "按具体任务报告导航、协作及物体整理表现；场景与协作者设置影响结果。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://aihabitat.org/habitat3/",
+      "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://aihabitat.org/habitat3/",
+        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://aihabitat.org/habitat3/",
+        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://aihabitat.org/habitat3/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/430894999584d0bd358611e2ecf00b15-Abstract-Conference.html",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "habitat-3-official-task",
+        "title": "Social Navigation",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人在室内寻找并跟随人物，同时保持安全距离。",
+        "explanation": "官方页面展示社会导航仿真视频；点击“查看原始来源”，在 Social Navigation 部分可观看。",
+        "raw": "Social Navigation",
+        "source": "https://aihabitat.org/habitat3/",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true
+      },
+      {
+        "id": "habitat-3-concrete-task",
+        "title": "Social Rearrangement",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人与虚拟人物共同在室内完成物品整理，需要在移动和操作时考虑另一位参与者。",
+        "explanation": "这是官方提出的人机协作整理仿真场景；点击“查看原始来源”，在 Social Rearrangement 部分可观看演示。",
+        "raw": "Social Rearrangement",
+        "source": "https://aihabitat.org/habitat3/",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      }
+    ]
+  }
+}

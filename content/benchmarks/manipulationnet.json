@@ -1,0 +1,187 @@
+{
+  "id": "manipulationnet",
+  "status": "published",
+  "order": 23250,
+  "name": "ManipulationNet",
+  "subtitle": "通过标准化实物任务套件与分布式评测评估机器人操作能力。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "推理与决策"
+  ],
+  "publisher": "ManipulationNet 研究团队",
+  "brandIds": [
+    "manipulationnet"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过标准化实物任务套件与分布式评测评估机器人操作能力。",
+    "task": "按照标准实物场景完成装配、线缆管理、抓取或指令驱动的操作任务。",
+    "sourceUrls": [
+      "https://manipulation-net.org/",
+      "https://arxiv.org/abs/2603.04363"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务提供目标、观测与机器人接口。",
+    "output": "通过机器人动作或策略完成目标；具体动作空间由任务配置确定。",
+    "environment": "真实机器人任务；统一硬件套件、客户端与服务端支持跨地点评测和结果核验。",
+    "sourceUrls": [
+      "https://manipulation-net.org/",
+      "https://arxiv.org/abs/2603.04363"
+    ]
+  },
+  "dataProfile": {
+    "summary": "初始任务包含物理技能与具身推理两条方向，具体任务及套件随平台发布更新。",
+    "disclosure": "partial",
+    "scale": [
+      "初始任务包含物理技能与具身推理两条方向，具体任务及套件随平台发布更新。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://manipulation-net.org/",
+      "https://arxiv.org/abs/2603.04363"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开代码、数据和硬件条件请以官方资料为准；未逐一确认全部资源访问条件。"
+    ],
+    "url": "https://manipulation-net.org/",
+    "sourceUrls": [
+      "https://manipulation-net.org/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "ManipulationNet 官方客户端仓库采用 Apache 2.0。",
+    "scope": "展示官方仓库 docs/images/overview.png，标注原始作者、来源与许可；其他数据和论文单独核对。",
+    "boundaries": [
+      "平台示意图不是某次任务的执行轨迹或评测成绩。"
+    ],
+    "sourceUrls": [
+      "https://github.com/ManipulationNet/mnet_client/blob/2745ccc6099fb3b65e89cbdbaf7af6521bf8dd29/docs/images/overview.png",
+      "https://github.com/ManipulationNet/mnet_client/blob/2745ccc6099fb3b65e89cbdbaf7af6521bf8dd29/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://arxiv.org/abs/2603.04363",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.04363",
+      "https://arxiv.org/html/2603.04363"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "各任务采用对应指标并由平台核验，报告时注明硬件、任务版本及规则。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://manipulation-net.org/",
+      "https://arxiv.org/abs/2603.04363"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "机器人形态、评估条件、任务版本和采样预算不同会影响结果，不应直接合并比较。",
+      "sourceUrls": [
+        "https://manipulation-net.org/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "依据公开项目与论文整理；完整数据、许可及具体运行条件仍以官方资源为准。",
+      "sourceUrls": [
+        "https://manipulation-net.org/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与任务说明",
+      "url": "https://manipulation-net.org/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2603.04363",
+      "role": "paper"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://arxiv.org/html/2603.04363",
+      "role": "data"
+    },
+    {
+      "label": "ManipulationNet 官方平台示意图",
+      "url": "https://github.com/ManipulationNet/mnet_client/blob/2745ccc6099fb3b65e89cbdbaf7af6521bf8dd29/docs/images/overview.png",
+      "role": "data"
+    },
+    {
+      "label": "官方客户端仓库 Apache 2.0 许可",
+      "url": "https://github.com/ManipulationNet/mnet_client/blob/2745ccc6099fb3b65e89cbdbaf7af6521bf8dd29/LICENSE",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "manipulationnet-official-task",
+        "title": "Peg-in-Hole Assembly",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人把不同形状的轴插入透明板上的对应孔位；不同孔隙配置用于考察接触控制与精度。",
+        "explanation": "官方公开任务示例；不表示本站进行了机器人运行或复现。",
+        "raw": "Peg-in-Hole Assembly",
+        "source": "https://arxiv.org/abs/2603.04363",
+        "license": "仅引用任务名称并提供中文解读；其他官方内容与媒体未转载。",
+        "split": "官方公开任务示例；未推断数据划分。",
+        "excerpt": true
+      },
+      {
+        "id": "manipulationnet-concrete-task",
+        "title": "Peg-in-Hole Assembly",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将不同形状的销钉插入透明亚克力板的对应孔中；官方设置了 3、1、0.1 和 0.02 毫米四档配合间隙。",
+        "explanation": "这是实物精密装配任务，难点包括透明物体感知、几何对准和接触控制。",
+        "raw": "Peg-in-Hole Assembly",
+        "source": "https://arxiv.org/html/2603.04363",
+        "license": "ManipulationNet 官方客户端仓库采用 Apache 2.0；来源 ManipulationNet 作者团队，原图未修改。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/manipulationnet-overview.png",
+            "alt": "ManipulationNet 官方平台示意图，展示多个实验室的真实机器人以及插销板等操作任务",
+            "width": 9063,
+            "height": 3412,
+            "caption": "官方客户端仓库的平台图：不同实验室使用实机和标准任务装置，图中包括插销板；不是单次操作录像。",
+            "source": "https://github.com/ManipulationNet/mnet_client/blob/2745ccc6099fb3b65e89cbdbaf7af6521bf8dd29/docs/images/overview.png"
+          }
+        ],
+        "licensePath": "licenses/manipulationnet-apache-2.txt"
+      }
+    ]
+  }
+}

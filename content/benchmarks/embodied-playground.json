@@ -1,0 +1,180 @@
+{
+  "id": "embodied-playground",
+  "status": "published",
+  "order": 23020,
+  "name": "Embodied Playground",
+  "subtitle": "评估机器人智能体在多步骤任务中的物理、空间和策略推理。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "长步骤任务",
+    "推理与决策"
+  ],
+  "publisher": "Embodied Playground 作者团队",
+  "brandIds": [
+    "embodied-playground"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估机器人智能体在多步骤任务中的物理、空间和策略推理。",
+    "task": "在连续机器人交互中完成操作、空间谜题与多步骤家庭任务，并满足过程规则。",
+    "sourceUrls": [
+      "https://winniechen2002.github.io/Agent-bench-website/",
+      "https://arxiv.org/abs/2610.27039"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "机器人仿真任务，通过观察、动作和工具接口执行。",
+    "sourceUrls": [
+      "https://winniechen2002.github.io/Agent-bench-website/",
+      "https://arxiv.org/abs/2610.27039"
+    ]
+  },
+  "dataProfile": {
+    "summary": "410 个任务环境；EP-100 是覆盖五个任务组的 100 项代表子集，EP-20 是更小选择。",
+    "disclosure": "partial",
+    "scale": [
+      "410 个任务环境；EP-100 是覆盖五个任务组的 100 项代表子集，EP-20 是更小选择。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://winniechen2002.github.io/Agent-bench-website/",
+      "https://arxiv.org/abs/2610.27039"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://winniechen2002.github.io/Agent-bench-website/",
+    "sourceUrls": [
+      "https://winniechen2002.github.io/Agent-bench-website/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "论文在 arXiv 发布时标注 CC BY 4.0。",
+    "scope": "本站展示该论文的原始图像，保留作者、论文来源与许可；论文之外的数据、代码和其他素材分别核对。",
+    "boundaries": [
+      "论文图片仅用于说明评测设置或所示样例，不代表本站重跑或对全部结果独立验证。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.27039"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://arxiv.org/abs/2610.27039",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.27039",
+      "https://arxiv.org/html/2610.27039"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "依据完成目标、遵循任务规则与物理有效性判定，比较时须注明 EP 子集、预算与重复次数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://winniechen2002.github.io/Agent-bench-website/",
+      "https://arxiv.org/abs/2610.27039"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://winniechen2002.github.io/Agent-bench-website/",
+        "https://arxiv.org/abs/2610.27039"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://winniechen2002.github.io/Agent-bench-website/",
+        "https://arxiv.org/abs/2610.27039"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://winniechen2002.github.io/Agent-bench-website/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2610.27039",
+      "role": "paper"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://arxiv.org/html/2610.27039",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "long-horizon",
+      "reasoning"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "embodied-playground-official-task",
+        "title": "Tower of Hanoi",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机器人按规则移动汉诺塔圆盘，中间步骤也必须合法，最终结构须保持稳定。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Tower of Hanoi",
+        "source": "https://arxiv.org/abs/2610.27039",
+        "license": "Chen 等，Embodied Playground 论文图 1，CC BY 4.0；原图未修改。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/embodied-playground-teaser.png",
+            "alt": "Embodied Playground 论文图：包含汉诺塔多步操作，以及成功和失败的仿真过程。",
+            "width": 2040,
+            "height": 1369,
+            "caption": "论文图 1：右上角为五环汉诺塔的多步操作；图中其他例子包含成功和失败。",
+            "source": "https://arxiv.org/html/2610.27039v2/ep100-teaser.png"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
+      },
+      {
+        "id": "embodied-playground-concrete-task",
+        "title": "P5",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "让 Panda 机械臂将挂钩穿过杯柄，松手后杯子稳定悬挂。",
+        "explanation": "该仿真任务考察路径、姿态和释放后的稳定性。",
+        "raw": "P5",
+        "source": "https://arxiv.org/html/2610.27039",
+        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "id": "roboeval-bimanual-challenge",
+  "status": "published",
+  "order": 23100,
+  "name": "RoboEval Diagnostic Bimanual Challenge",
+  "subtitle": "在指定任务变体上综合评估双臂操作结果、稳定性、效率与协调。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作"
+  ],
+  "publisher": "RoboEval 挑战赛组织方",
+  "brandIds": [
+    "roboeval"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "subset",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在指定任务变体上综合评估双臂操作结果、稳定性、效率与协调。",
+    "task": "对八个双臂任务族的位置及朝向组合变体执行策略，并按挑战赛规则评估。",
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge.html",
+      "https://robo-eval.github.io/challenge-rules.html"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "MuJoCo 中的双臂 Franka Panda；参考人类遥操作示范。",
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge.html",
+      "https://robo-eval.github.io/challenge-rules.html"
+    ]
+  },
+  "dataProfile": {
+    "summary": "2026 挑战赛测试 8 个任务族的位置与朝向组合变体。",
+    "disclosure": "partial",
+    "scale": [
+      "2026 挑战赛测试 8 个任务族的位置与朝向组合变体。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge.html",
+      "https://robo-eval.github.io/challenge-rules.html"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://robo-eval.github.io/challenge.html",
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge.html"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "挑战赛规则声明评测资源及演示数据采用 MIT；代码仓库另列 Apache 2.0。",
+    "scope": "本站引用 RoboEval 官方站点的任务演示；许可按资源类型分别核对。",
+    "boundaries": [
+      "视频属于官方任务示范，未标明挑战赛的具体位置和姿态扰动，不代表评测成绩。"
+    ],
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge-rules.html",
+      "https://robo-eval.github.io/index.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://robo-eval.github.io/challenge.html",
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge.html"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "诊断分由结果 40%、安全与稳定 30%、效率 20%、双臂协调 10% 构成；按挑战赛具体规则运行。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://robo-eval.github.io/challenge.html",
+      "https://robo-eval.github.io/challenge-rules.html"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://robo-eval.github.io/challenge.html",
+        "https://robo-eval.github.io/challenge-rules.html"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://robo-eval.github.io/challenge.html",
+        "https://robo-eval.github.io/challenge-rules.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://robo-eval.github.io/challenge.html",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://robo-eval.github.io/challenge-rules.html",
+      "role": "readme"
+    },
+    {
+      "label": "RoboEval 官方任务演示",
+      "url": "https://robo-eval.github.io/index.html",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "roboeval",
+      "label": "所属评测",
+      "detail": "挑战赛使用 RoboEval 任务族并规定专门的评分规则。",
+      "sourceUrls": [
+        "https://robo-eval.github.io/challenge.html"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "roboeval-bimanual-challenge-official-task",
+        "title": "Lift Pot",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "双臂共同抬锅，考察成功结果、抓取稳定性与双臂同步。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Lift Pot",
+        "source": "https://robo-eval.github.io/challenge.html",
+        "license": "RoboEval 挑战赛规则声明评测资源和示范数据采用 MIT；项目代码仓库另列 Apache 2.0。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/roboeval-lift-pot.mp4",
+            "caption": "RoboEval 官方仿真任务演示：双臂抬锅；画面未标明挑战赛具体扰动或评测成绩。",
+            "source": "https://robo-eval.github.io/media/demo_videos/lift_pot.mp4"
+          }
+        ],
+        "licensePath": "licenses/roboeval-media-mit.txt"
+      },
+      {
+        "id": "roboeval-bimanual-challenge-concrete-task",
+        "title": "Rotate Valve",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "使用双臂完成旋转阀门任务，挑战赛通过位置与姿态等组合变化考察策略的适应能力。",
+        "explanation": "这是挑战赛公开的任务类别；具体变体与判定以官方配置为准。",
+        "raw": "Rotate Valve",
+        "source": "https://robo-eval.github.io/challenge.html",
+        "license": "RoboEval 挑战赛规则声明评测资源和示范数据采用 MIT；项目代码仓库另列 Apache 2.0。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/roboeval-rotate-valve.mp4",
+            "caption": "RoboEval 官方仿真任务演示：转动阀门；画面未标明挑战赛具体扰动或评测成绩。",
+            "source": "https://robo-eval.github.io/media/demo_videos/rotate_valve.mp4"
+          }
+        ],
+        "licensePath": "licenses/roboeval-media-mit.txt"
+      }
+    ]
+  }
+}

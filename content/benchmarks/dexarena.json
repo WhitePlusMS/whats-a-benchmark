@@ -1,0 +1,197 @@
+{
+  "id": "dexarena",
+  "status": "published",
+  "order": 23000,
+  "name": "DexArena",
+  "subtitle": "评估双臂灵巧操作中的阶段执行、场景泛化和长流程技能组合。",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作",
+    "长步骤任务"
+  ],
+  "publisher": "DexArena 研究团队",
+  "brandIds": [
+    "dexarena"
+  ],
+  "year": 2026,
+  "version": "官方公开版本",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估双臂灵巧操作中的阶段执行、场景泛化和长流程技能组合。",
+    "task": "在不同环境中执行并组合抓取、开合和双臂协调等阶段，完成指定的长流程操作。",
+    "sourceUrls": [
+      "https://sipair-elastic.github.io/DexArena-website/",
+      "https://arxiv.org/abs/2611.02629"
+    ]
+  },
+  "taskContract": {
+    "input": "按任务协议提供目标、允许的观测与机器人或策略接口。",
+    "output": "根据具体协议输出动作、策略、任务结果或性能记录。",
+    "environment": "基于 SAPIEN 的物理仿真，含单臂与双臂、多种末端执行器。",
+    "sourceUrls": [
+      "https://sipair-elastic.github.io/DexArena-website/",
+      "https://arxiv.org/abs/2611.02629"
+    ]
+  },
+  "dataProfile": {
+    "summary": "10 个长流程任务和 30 个阶段任务。",
+    "disclosure": "partial",
+    "scale": [
+      "10 个长流程任务和 30 个阶段任务。"
+    ],
+    "splits": [],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://sipair-elastic.github.io/DexArena-website/",
+      "https://arxiv.org/abs/2611.02629"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+    ],
+    "url": "https://sipair-elastic.github.io/DexArena-website/",
+    "sourceUrls": [
+      "https://sipair-elastic.github.io/DexArena-website/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "DexArena 项目网站标注 CC BY 4.0。",
+    "scope": "本站所展示的项目网站阶段演示视频按网站所列许可署名；其他数据、模型与第三方资源另行核对。",
+    "boundaries": [
+      "视频为人工遥操作阶段示范，不代表完整任务或模型成绩。"
+    ],
+    "sourceUrls": [
+      "https://sipair-elastic.github.io/DexArena-website/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "url": "https://sipair-elastic.github.io/DexArena-website/",
+    "sourceUrls": [
+      "https://sipair-elastic.github.io/DexArena-website/",
+      "https://arxiv.org/html/2611.02629"
+    ]
+  },
+  "metric": {
+    "name": "评测指标",
+    "description": "分别报告阶段执行、跨场景泛化和完整任务成功率；需注明场景和策略配置。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://sipair-elastic.github.io/DexArena-website/",
+      "https://arxiv.org/abs/2611.02629"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "成绩依赖具体任务、设备、模型接口、运行预算和评分协议；不同版本不可直接比较。",
+      "sourceUrls": [
+        "https://sipair-elastic.github.io/DexArena-website/",
+        "https://arxiv.org/abs/2611.02629"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "基于公开资料核验任务定义与范围；具体数据资源、许可和后续版本更新仍应以官方发布为准。",
+      "sourceUrls": [
+        "https://sipair-elastic.github.io/DexArena-website/",
+        "https://arxiv.org/abs/2611.02629"
+      ]
+    },
+    {
+      "text": "官方素材清单将视频说明为人工遥操作阶段演示，而非策略成绩；本站展示未经重新渲染的原版短片。",
+      "sourceUrls": [
+        "https://github.com/SIPAIR-Elastic/DexArena-website/blob/d221b76d59e9681aaf4778ccb43339f2504e13ea/src/task-preview-videos.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方项目与评测说明",
+      "url": "https://sipair-elastic.github.io/DexArena-website/",
+      "role": "definition"
+    },
+    {
+      "label": "论文或官方补充资料",
+      "url": "https://arxiv.org/abs/2611.02629",
+      "role": "paper"
+    },
+    {
+      "label": "官方样例与任务细则",
+      "url": "https://arxiv.org/html/2611.02629",
+      "role": "data"
+    },
+    {
+      "label": "官方演示视频来源说明",
+      "url": "https://github.com/SIPAIR-Elastic/DexArena-website/blob/d221b76d59e9681aaf4778ccb43339f2504e13ea/src/task-preview-videos.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual",
+      "long-horizon"
+    ]
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "dexarena-official-task",
+        "title": "Open the package. Retrieve the apple.",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "双手打开包装，再取出苹果并放置；官方以物理条件判断阶段与完整任务。",
+        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
+        "raw": "Open the package. Retrieve the apple.",
+        "source": "https://sipair-elastic.github.io/DexArena-website/",
+        "license": "DexArena 项目网站标注 CC BY 4.0；视频为官方人工遥操作阶段演示，本站原样转载并标明来源。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/dexarena-package-opening.mp4",
+            "caption": "官方演示：打开包装阶段。人工遥操作演示，经缩短处理；并非完整任务或模型得分证据。",
+            "source": "https://sipair-elastic.github.io/DexArena-website/assets/task-previews/package-opening.mp4"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
+      },
+      {
+        "id": "dexarena-concrete-task",
+        "title": "OpenLaptop",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "笔记本电脑最初打开约 40°–50°；机械手将屏幕打开至至少 90°，随后保持至少 85°，连续满足 4 次检查。",
+        "explanation": "论文给出的是单阶段成功条件，不代表某个策略已经完成。",
+        "raw": "OpenLaptop",
+        "source": "https://arxiv.org/html/2611.02629",
+        "license": "DexArena 项目网站标注 CC BY 4.0；视频为官方人工遥操作阶段演示，本站原样转载并标明来源。",
+        "split": "官方公开任务示例；不推断训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/dexarena-office-desk.mp4",
+            "caption": "官方演示：打开笔记本电脑阶段。人工遥操作演示，经缩短处理；并非模型自主运行成绩。",
+            "source": "https://sipair-elastic.github.io/DexArena-website/assets/task-previews/office-desk.mp4"
+          }
+        ],
+        "licensePath": "licenses/cc-by-4.txt"
+      }
+    ]
+  }
+}
