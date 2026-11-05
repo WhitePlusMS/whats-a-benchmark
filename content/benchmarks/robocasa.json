@@ -35,15 +35,15 @@
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "在多样厨房场景中提供机器人学习、数据生成和系统性评测任务。",
-    "task": "在多样厨房场景中提供机器人学习、数据生成和系统性评测任务。",
+    "task": "在多样厨房中根据指令完成开关门、取放、导航等基础操作，或连续执行多个步骤完成厨房活动。",
     "sourceUrls": [
       "https://arxiv.org/abs/2406.02523"
     ]
   },
   "taskContract": {
-    "input": "任务指令与模拟场景中的机器人观测。",
-    "output": "控制机器人完成厨房物体和设施操作。",
-    "environment": "原版厨房仿真环境，包含不同场景、物品与设施。",
+    "input": "厨房任务的语言指令及机器人相机观测；具体输入随策略与实验设置而变化。",
+    "output": "生成控制动作，完成物体取放、设施操作或移动等目标。",
+    "environment": "原版厨房仿真环境包含不同布局、风格和物品；论文另报告实机迁移实验。",
     "sourceUrls": [
       "https://arxiv.org/abs/2406.02523"
     ]
@@ -52,13 +52,23 @@
     "summary": "原版论文设计 100 项系统评测任务；这不等于后续 RoboCasa365 的 365 项。",
     "disclosure": "partial",
     "scale": [
-      "原版论文设计 100 项系统评测任务；这不等于后续 RoboCasa365 的 365 项。"
+      "原版 100 项任务包括 25 项基础操作和 75 项组合任务；后续 RoboCasa365 的任务规模另计。",
+      "论文的 Human-50 覆盖 25 项基础任务、每项 50 条人类遥操作演示；另生成合成演示。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "原论文基础任务实验中训练图像使用 AI 生成纹理；评估使用人工整理纹理、未见物体实例和五个固定场景，其中两个场景风格未出现在训练中。",
+      "本站视频来自第三方转换集标记的 train 划分，为合成演示；不视为上述评测运行。"
+    ],
+    "fields": [
+      "转换轨迹包含动作、机器人状态、时间戳、帧号、episode 编号与任务索引；视频索引另记录相机及时间范围。"
+    ],
+    "files": [
+      "第三方转换集提供 Parquet 轨迹及 episode 索引和相机视频分片。"
+    ],
     "sourceUrls": [
-      "https://arxiv.org/abs/2406.02523"
+      "https://arxiv.org/abs/2406.02523",
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100",
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/episodes/chunk-000/file-000.parquet"
     ]
   },
   "dataAccess": {
@@ -74,7 +84,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "DAVIAN-Robotics 转换数据卡标注 Apache-2.0；RoboCasa 原版和第三方场景资产的转载范围须分别核实。",
-    "scope": "展示转换集第 0 条轨迹的左侧相机片段，许可声明来自转换数据卡。",
+    "scope": "展示转换集第 0 与第 200 条轨迹的左侧相机片段，许可声明来自转换数据卡。",
     "boundaries": [
       "转换数据卡的许可声明不代表已核实所有上游场景和物品素材的权利范围。"
     ],
@@ -85,7 +95,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载原版 RoboCasa 的第三方转换演示，展示第 0 条轨迹的相机视频、状态和动作。",
+    "reason": "展示原版 RoboCasa 第三方转换集的两条合成训练演示，以及对应轨迹索引和相机视频。",
     "sourceUrls": [
       "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
       "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet",
@@ -330,6 +340,39 @@
             "source": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
           }
         ]
+      },
+      {
+        "id": "robocasa-mg100-episode-200",
+        "title": "关闭微波炉门 · 合成演示轨迹 200",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "关闭微波炉门。",
+        "explanation": "原版 RoboCasa 的 MG_100 合成演示，经第三方转换后为 episode 200，240 帧、20 Hz。站内视频从左侧相机分片的 3055.15–3067.15 秒截取并转码；这是训练演示，不是模型评测结果。",
+        "raw": {
+          "episode_index": 200,
+          "tasks": [
+            "close the microwave door"
+          ],
+          "length": 240,
+          "dataset_from_index": 61103,
+          "dataset_to_index": 61343,
+          "data/file_index": 0,
+          "videos/observation.images.robot0_agentview_left_image/file_index": 0,
+          "videos/observation.images.robot0_agentview_left_image/from_timestamp": 3055.15,
+          "videos/observation.images.robot0_agentview_left_image/to_timestamp": 3067.15
+        },
+        "source": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/episodes/chunk-000/file-000.parquet",
+        "license": "转换数据卡标 Apache-2.0；原版及第三方场景资产的具体转载范围需分别核实。",
+        "split": "train / MG_100 / episode_index 200 / 第三方转换集",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robocasa-mg100-episode200.mp4",
+            "caption": "关闭微波炉门：轨迹 200 的左侧相机，原分片 3055.15–3067.15 秒",
+            "source": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
+          }
+        ]
       }
     ]
   },
@@ -339,6 +382,14 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
         "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet"
+      ]
+    },
+    {
+      "text": "2026-11-05 读取转换集 episode 200 索引及 240 条动作记录，按左侧相机时间范围截取并转码视频；已抽查画面，未运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/episodes/chunk-000/file-000.parquet",
+        "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
+        "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
       ]
     }
   ]
