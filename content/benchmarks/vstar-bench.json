@@ -24,11 +24,12 @@
     ]
   },
   "taskContract": {
-    "input": "高分辨率图像与视觉问答。",
-    "output": "问题答案。",
-    "environment": "图像和问题按官方评测代码运行。",
+    "input": "高分辨率图像及选择题：询问目标物体的属性，或两个物体的相对空间关系。",
+    "output": "选择题答案；需找到题目相关的视觉细节才能判断。",
+    "environment": "作者公开的测试集包含 115 条属性识别和 76 条空间关系题；模型和图像处理设置需在比较时注明。",
     "sourceUrls": [
-      "https://github.com/penghao-wu/vstar"
+      "https://github.com/penghao-wu/vstar",
+      "https://arxiv.org/html/2312.14135v2"
     ]
   },
   "dataProfile": {
@@ -123,7 +124,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [

@@ -26,9 +26,9 @@
     "sourceUrls": [
       "https://arxiv.org/abs/2602.16313"
     ],
-    "environment": "交互轨迹与agent harness构成评测条件。",
-    "input": "多轮交互任务序列及环境反馈。",
-    "output": "后续任务行为与完成情况。"
+    "environment": "多会话任务与记忆机制组合运行；不同环境可使用网页交互、搜索或推理工具。",
+    "input": "按顺序给出相互关联的多个子任务及环境反馈，例如逐步检索、团体购物与旅行规划、数学或物理推理。",
+    "output": "在后续子任务中利用先前交互信息，提交购物组合、旅行计划或检索及推理答案，具体取决于任务。"
   },
   "dataProfile": {
     "summary": "论文报告766个任务；本次所读官方HF固定修订的五个公开文件共701行。两者的版本/范围映射未核实，不能把公开文件行数直接改称论文总任务数。",
@@ -86,8 +86,8 @@
     ]
   },
   "metric": {
-    "name": "各配置的任务成功率（success rate）",
-    "description": "论文按数据配置分别报告agent任务成功率；不同配置分别呈现，不将其合成单一总分。",
+    "name": "任务成功率与进度分数",
+    "description": "论文分别报告最终任务成功率（SR）和完成子任务比例（PS）；团体旅行还报告按约束满足比例计算的软进度分数（sPS）。不同环境的成功条件不同。",
     "direction": "higher",
     "sourceUrls": [
       "https://arxiv.org/abs/2602.16313",
@@ -140,7 +140,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-21",
+  "verifiedAt": "2026-11-05",
   "releaseDate": "2026-02-18",
   "interpretation": {
     "versionChanges": {

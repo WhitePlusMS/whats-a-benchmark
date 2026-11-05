@@ -28,9 +28,9 @@
     "sourceUrls": [
       "https://arxiv.org/abs/2504.05506"
     ],
-    "environment": "视觉语言模型评测；具体解码参数未在候选中统一。",
-    "input": "图表图像与对应问题。",
-    "output": "问题答案；按论文评估口径评分。"
+    "environment": "视觉语言模型结合图表和题目作答；论文分别测试 direct、chain-of-thought 与 program-of-thought 提示。",
+    "input": "图表图像、问题，以及部分题目附带的上下文段落；问题包括事实查询、选择、对话和假设情景。",
+    "output": "依据图表回答；答案可能是数值、年份、文本、选项或列表，形式依题目而定。"
   },
   "dataProfile": {
     "summary": "基准含1,341张来自157个来源的图表和1,948个问题；样本由图表、问题、答案及可选上下文段组成。",
@@ -84,7 +84,7 @@
   },
   "metric": {
     "name": "Accuracy（按提示类型及问题类型分项）",
-    "description": "论文按 direct、chain-of-thought、program-of-thought 提示方式和各问题类型报告准确率；不是单一跨任务复合评分。",
+    "description": "论文对选择及事实判断题和年份使用精确匹配，其他数值允许 5% 相对误差，文字使用 ANLS；列表逐项计分后求平均。按提示和问题类型分别报告。",
     "direction": "higher",
     "sourceUrls": [
       "https://arxiv.org/abs/2504.05506"
@@ -121,7 +121,7 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-05",
   "releaseDate": "2025-04-07",
   "interpretation": {
     "versionChanges": {
@@ -140,7 +140,7 @@
         "title": "读取原图 · 风电容量超过100 GW",
         "type": "image",
         "prompt": "根据随附的原始图表，估计风电装机容量首次超过 100 GW 的年份。",
-        "explanation": "这张原图是堆叠柱状图：问题问的是绿色Wind分量本身何时超过100 GW，不能把整根柱子的总高度当作风电容量。原始标注答案是2037-38。raw保留Question/Answer等实际字段，图像单列为本地附件；原始行中的image传输字段未混入文字数据。",
+        "explanation": "原图为堆叠柱状图，问题要求估计绿色 Wind 部分何时首次超过 100 GW；原始标注答案是 2037-38。本站观察图中绿色柱段时未能确认该答案，图表读数与标注是否一致需要进一步复核；此处保留原始标注，不将其作为本站验证结论。raw 保留题目和标注字段。",
         "raw": {
           "Question": [
             "estimate the year in which wind capacity first exceeds 100 gw based on the trend shown in the chart."
