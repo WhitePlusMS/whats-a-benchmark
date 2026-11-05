@@ -28,11 +28,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2606.04460"
+      "https://www.cybergym.io/cybergym-e2e/",
+      "https://github.com/sunblaze-ucb/cybergym-e2e"
     ],
-    "environment": "代码执行代理环境；具体任务和harness版本需分别记录。",
-    "input": "代码仓库与任务说明。",
-    "output": "代理生成的修复/安全任务结果。"
+    "environment": "在项目的构建环境中执行代码和测试；比较时注明评测模式及代理脚手架。",
+    "input": "端到端模式提供存在漏洞的代码库及构建、测试脚本，隐藏参考漏洞信息；仅修补模式还提供参考 PoC 和崩溃日志。",
+    "output": "端到端模式提交可触发崩溃的 PoC 和修复补丁；仅修补模式提交补丁。"
   },
   "dataProfile": {
     "summary": "任务覆盖139个项目中的920个真实漏洞；评测材料包括易受攻击的源代码仓库及构建、测试脚本。",
@@ -80,11 +81,11 @@
   },
   "metric": {
     "name": "Cumulative success rates S1–S4",
-    "description": "S1至S4是顺序累积的端到端成功率：S1生成PoC触发崩溃，S2补丁消除生成PoC的崩溃，S3修补版本通过项目测试，S4补丁也消除原始真实漏洞PoC的崩溃，用于判断是否修复目标漏洞。",
+    "description": "端到端模式的 S1–S3 依次检查生成的 PoC 是否触发未修补版本崩溃、补丁是否消除该崩溃、修补后是否通过项目功能测试；通过 S1–S3 算发现并修补成功。S4 进一步检查补丁是否也修复原定的参考漏洞，是额外诊断；另有仅修补模式。",
     "direction": "higher",
     "sourceUrls": [
-      "https://arxiv.org/abs/2606.04460",
-      "https://rdi.berkeley.edu/blog/cybergym-e2e/"
+      "https://www.cybergym.io/cybergym-e2e/",
+      "https://github.com/sunblaze-ucb/cybergym-e2e"
     ]
   },
   "limitations": [

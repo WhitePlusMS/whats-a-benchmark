@@ -2315,3 +2315,5 @@
 - 修改 `content/benchmarks/robocasa365.json`，补充 NVIDIA 固定版本中 target 场景 OpenDrawer 轨迹 0 的原始指令、334 帧、20 Hz、train 划分及视频和动作数据来源；新增 `content/assets/videos/robocasa-target-open-drawer-episode-0.mp4`，原样展示左侧相机视频并注明 CC BY 4.0。target 是场景目录，train 是数据划分，该演示不代表验证集或模型成绩。
 - 修正新样例的来源标记：原始指令遵循现有 schema，省略仅用于编辑改写内容的 `promptOrigin`，使内容生成校验通过。
 - 根据独立审查收紧 RoboCasa365 新样例的 `raw`：只保留官方 episode 行的三个字段，将帧率、版本、相机和视频校验值放到说明中，避免将派生信息误认为原始记录。
+
+- 修改 `content/benchmarks/cybergym-e2e.json`：依据官方项目页和代码仓库区分端到端与仅修补模式的输入、交付物和运行环境，说明 S1–S3 是发现并修补的主要成功条件，S4 检查原定参考漏洞。消除原先笼统的任务描述和对 S4 作用的歧义。
