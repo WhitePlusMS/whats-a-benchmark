@@ -1,3 +1,8 @@
+## 2026-11-05：调整 RoboCasa365 策略录像引用
+
+- 修改 `content/benchmarks/robocasa365.json`，移除策略录像的站内副本引用，增加固定版本原视频链接并注明许可信息缺口，样例改为记录类型；删除 `content/assets/videos/robocasa365-infope-opendrawer-episode111.mp4`。
+- 原因与影响：发布方数据卡标 MIT，但固定版本未发现独立许可正文与版权声明；保留已核验的运行记录与外部视频入口。
+
 ## 2026-11-05：补充 RoboCasa365 策略运行录像
 
 - 修改 `content/benchmarks/robocasa365.json`：加入 infope 的 OpenDrawer 策略运行记录、原始字段、固定来源和许可说明，区分离线评估 valid、LeRobot 顶层 train 和 RoboCasa 预训练场景。

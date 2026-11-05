@@ -21,6 +21,11 @@
         "label": "NVIDIA 厨房演示数据集",
         "type": "数据集",
         "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos"
+      },
+      {
+        "label": "打开左侧抽屉策略运行原视频（第三方）",
+        "type": "策略运行视频",
+        "url": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000111.mp4"
       }
     ]
   },
@@ -86,9 +91,10 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "NVIDIA 演示数据卡与 RoboCasa 官方 assets、datasets 标为 CC BY 4.0；第三方 infope 数据卡标为 MIT，上游素材条款仍需分别核对。",
-    "scope": "展示 NVIDIA 厨房演示和 infope 分发的策略运行视频，均注明各自来源；其他素材仍需逐项核对。",
+    "scope": "本站展示 NVIDIA 厨房演示视频，并链接 infope 的策略运行原视频。",
     "boundaries": [
-      "第三方数据卡的 MIT 声明不覆盖未核实的上游素材权利；RoboCasa 官方 assets 与 datasets 标为 CC BY 4.0。"
+      "第三方数据卡的 MIT 声明不覆盖未核实的上游素材权利；RoboCasa 官方 assets 与 datasets 标为 CC BY 4.0。",
+      "infope 固定版本未发现独立许可正文与版权声明，策略视频不在本站转载。"
     ],
     "sourceUrls": [
       "https://github.com/robocasa/robocasa",
@@ -98,7 +104,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示 NVIDIA 分发的厨房演示以及第三方整理的 GR00T 策略运行记录和录像；训练、目标场景和离线评估划分分别标注。",
+    "reason": "展示 NVIDIA 厨房演示视频及第三方 GR00T 策略运行记录，策略原视频可从资源打开；训练、目标场景和离线评估划分分别标注。",
     "sourceUrls": [
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos",
       "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-Kitchen-Demos/commit/f3b185045b416ec9e0d05b60018e538ca3c459b1",
@@ -212,9 +218,9 @@
       {
         "id": "infope-opendrawer-valid-rollout-111",
         "title": "打开左侧抽屉 · GR00T 策略运行",
-        "type": "video",
+        "type": "record",
         "prompt": "Open the left drawer.",
-        "explanation": "第三方数据记录这条 GR00T 策略运行在离线评估划分 valid，is_success 为 false；它属于 RoboCasa365 的 pretrain 场景，不是官方排行榜测试结果。该数据集的 LeRobot 顶层 info 将全部轨迹标为 train，valid 是逐条元数据里的离线评估划分。录像为左侧相机，含 750 个时间步；运行使用 v1.0.1 horizon 且 ignore_done=True。",
+        "explanation": "第三方数据记录这条 GR00T 策略运行在离线评估划分 valid，is_success 为 false；它属于 RoboCasa365 的 pretrain 场景，不是官方排行榜测试结果。该数据集的 LeRobot 顶层 info 将全部轨迹标为 train，valid 是逐条元数据里的离线评估划分。录像为左侧相机，含 750 个时间步；运行使用 v1.0.1 horizon 且 ignore_done=True。 视频许可正文及版权声明未在固定版本找到，可从相关资源打开原视频。",
         "raw": {
           "episode_index": 111,
           "tasks": [
@@ -230,17 +236,9 @@
           "split": "valid"
         },
         "source": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/meta/episodes.jsonl",
-        "license": "infope 数据卡标 MIT；RoboCasa 官方 assets 与 datasets 标 CC BY 4.0，上游素材仍须分别核对。",
+        "license": "第三方数据卡标 MIT，但固定版本未找到许可正文及版权声明；本站仅链接原视频。",
         "split": "pretrain / atomic / 离线评估 valid / LeRobot train / episode 111",
-        "excerpt": true,
-        "assets": [
-          {
-            "kind": "video",
-            "path": "videos/robocasa365-infope-opendrawer-episode111.mp4",
-            "caption": "策略运行的左侧相机录像；元数据记录 is_success=false。",
-            "source": "https://huggingface.co/datasets/infope/robocasa/blob/a8cfa17874a359ad6b1cff421aba918b1df1304c/pretrain_atomic/OpenDrawer/lerobot/videos/chunk-000/observation.images.robot0_agentview_left/episode_000111.mp4"
-          }
-        ]
+        "excerpt": true
       },
       {
         "id": "adjust-toaster-oven-temperature-episode-000000",
