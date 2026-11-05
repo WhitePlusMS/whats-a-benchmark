@@ -41,41 +41,55 @@
     "scale": [
       "ManiSkill3 是机器人操作仿真与任务框架；环境和版本按官方任务文档分别记录。"
     ],
-    "splits": [],
-    "fields": [],
-    "files": [],
+    "splits": [
+      "PickCube-v1 遥操作示范包含 10 条轨迹；未标注独立验证或测试划分，示范成功不等于模型评测成绩。"
+    ],
+    "fields": [
+      "轨迹 HDF5 包含 actions、terminated、truncated、success、env_states 等；元数据记录任务、控制模式、种子和逐条结果。"
+    ],
+    "files": [
+      "teleop/trajectory.h5：原始示范；trajectory.json：环境与 episode 元数据；sample.mp4：同目录示范视频。"
+    ],
     "sourceUrls": [
       "https://github.com/mani-skill/ManiSkill",
-      "https://arxiv.org/abs/2410.00425"
+      "https://arxiv.org/abs/2410.00425",
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.h5",
+      "https://maniskill.readthedocs.io/en/latest/user_guide/datasets/demos.html"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "公开资料、代码、数据及实机接入条件以官方页面为准；未逐项确认完整资源的开放程度。"
+      "官方演示数据按任务下载；轨迹默认精简，视觉观测可通过官方回放工具生成。"
     ],
     "url": "https://github.com/mani-skill/ManiSkill",
     "sourceUrls": [
-      "https://github.com/mani-skill/ManiSkill"
+      "https://github.com/mani-skill/ManiSkill",
+      "https://maniskill.readthedocs.io/en/latest/user_guide/datasets/demos.html"
     ]
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "ManiSkill 仓库说明素材采用 CC BY-NC 4.0。",
-    "scope": "本站展示的官方任务缩略图，须署名且仅限非商业用途；代码和其他第三方资源另按各自条款处理。",
+    "license": "ManiSkill 仓库的任务素材采用 CC BY-NC 4.0；官方演示数据集卡标注 Apache-2.0。",
+    "scope": "官方任务图依 CC BY-NC 4.0 标注；演示轨迹和视频依据数据集卡标注 Apache-2.0，其他资源许可另计。",
     "boundaries": [
       "不得把素材非商业许可推广为整个项目所有数据或代码的统一许可。"
     ],
     "sourceUrls": [
-      "https://github.com/haosulab/ManiSkill/blob/62ff3a5896b4d5b4cf0ac4c8d79afe600c9404a3/README.md"
+      "https://github.com/haosulab/ManiSkill/blob/62ff3a5896b4d5b4cf0ac4c8d79afe600c9404a3/README.md",
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示根据官方任务配置或论文整理的真实案例；中文为本站解读，任务说明不代表运行结果。",
+    "reason": "展示官方任务图和 PickCube 遥操作示范记录与同目录视频；未确认视频对应具体 episode。",
     "url": "https://maniskill.readthedocs.io/en/v3.0.0b20/tasks/table_top_gripper/",
     "sourceUrls": [
-      "https://maniskill.readthedocs.io/en/v3.0.0b20/tasks/table_top_gripper/"
+      "https://maniskill.readthedocs.io/en/v3.0.0b20/tasks/table_top_gripper/",
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.h5",
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4"
     ]
   },
   "metric": {
@@ -102,6 +116,14 @@
       "sourceUrls": [
         "https://github.com/mani-skill/ManiSkill",
         "https://arxiv.org/abs/2410.00425"
+      ]
+    },
+    {
+      "text": "已下载并读取固定版本 trajectory.h5（383,621 字节，SHA-256 0e6285c5e7a9293fbb1c10590a1be4fc115792cb816e00b37e9914369a0c3c94）及对应元数据；视频与具体 episode 的对应关系未公开确认。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.h5",
+        "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
+        "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4"
       ]
     }
   ],
@@ -130,6 +152,31 @@
       "label": "官方观测模式文档",
       "url": "https://maniskill.readthedocs.io/en/latest/user_guide/concepts/observation.html",
       "role": "readme"
+    },
+    {
+      "label": "官方示范数据集和许可",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations",
+      "role": "data"
+    },
+    {
+      "label": "示范轨迹格式文档",
+      "url": "https://maniskill.readthedocs.io/en/latest/user_guide/datasets/demos.html",
+      "role": "readme"
+    },
+    {
+      "label": "PickCube 遥操作元数据",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
+      "role": "data"
+    },
+    {
+      "label": "PickCube 遥操作 HDF5",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.h5",
+      "role": "data"
+    },
+    {
+      "label": "PickCube 遥操作示范视频",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4",
+      "role": "data"
     }
   ],
   "related": [
@@ -219,6 +266,38 @@
           }
         ],
         "licensePath": "licenses/cc-by-nc-4.txt"
+      },
+      {
+        "id": "maniskill3-pickcube-teleop-0",
+        "title": "PickCube：遥操作示范轨迹 0",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "操作仿真机械臂抓起方块并放到目标位置。",
+        "explanation": "官方遥操作元数据记录 episode 0、种子 0、105 步且 success 为 true；实际读取 HDF5 可见 105 条 8 维动作。末步 success、terminated、truncated 均为 true；这些是数据记录，不推断截断原因。同目录视频为遥操作示范，尚不能确认它对应 episode 0。",
+        "raw": {
+          "episode_id": 0,
+          "episode_seed": 0,
+          "control_mode": "pd_joint_pos",
+          "elapsed_steps": 105,
+          "reset_kwargs": {
+            "seed": 0,
+            "options": {}
+          },
+          "success": true
+        },
+        "source": "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
+        "license": "ManiSkill / SU Lab 官方演示数据集卡标注 Apache-2.0。",
+        "split": "teleop 示范 / episode 0；未标注训练或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/maniskill3-pickcube-teleop.mp4",
+            "caption": "官方 PickCube 遥操作示范视频；未确认是否对应轨迹 0。",
+            "source": "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4"
+          }
+        ],
+        "licensePath": "licenses/maniskill3-demos-apache-2.txt"
       }
     ]
   }

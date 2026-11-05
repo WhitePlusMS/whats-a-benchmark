@@ -1,3 +1,10 @@
+## 2026-11-05 ManiSkill3 示范数据与安全场景说明
+
+- 修改 `content/benchmarks/maniskill3.json`：补充官方 PickCube 遥操作数据字段、轨迹 0 的真实元数据与边界，固定数据版本及许可来源；视频与具体轨迹的对应关系未确认。
+- 新增 `content/assets/videos/maniskill3-pickcube-teleop.mp4` 与 `content/assets/licenses/maniskill3-demos-apache-2.txt`：下载官方同目录示范视频并附数据集许可文本。
+- 修改 `content/benchmarks/cyscenariobench.json`：依据评测方公开方法补充受控环境、任务输出和三层评估，私有原题仍不虚构。
+- 影响：用户可查阅实际示范和公开视频，理解安全评测任务与公开范围。
+
 ## 2026-11-05 LOCA-bench 与 LongMemEval 任务说明
 
 - 修改 `content/benchmarks/loca-bench.json`：依据固定版本环境源码补充模拟工具、Excel 交付与检查方式；新增考试安排任务的真实指令及来源，保留原配置中账号字段的省略说明。

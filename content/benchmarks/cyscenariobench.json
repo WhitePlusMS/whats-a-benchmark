@@ -23,9 +23,9 @@
     ]
   },
   "taskContract": {
-    "input": "由评测方提供的场景和工具。",
-    "output": "场景任务与评分结果。",
-    "environment": "评测方控制的安全测试环境。",
+    "input": "评测方提供的受控模拟网络环境及任务目标；部分场景包含模拟员工、网站或语音材料，具体题目未公开。",
+    "output": "模型通过多步行动或引导完成场景目标；评测记录任务、路径和完整行动层级的表现及错误。",
+    "environment": "容器化网络及模拟服务与防御监测；场景的具体配置和题目保持私有。",
     "sourceUrls": [
       "https://www.irregular.com/research/cyscenariobench"
     ]
@@ -37,7 +37,9 @@
       "官方研究资料提及十挑战子集；完整题量、划分和原始题目尚未公开核实。"
     ],
     "splits": [],
-    "fields": [],
+    "fields": [
+      "公开方法区分单项任务、攻击树路径和完整行动三层；原始题目字段未公开。"
+    ],
     "files": [],
     "sourceUrls": [
       "https://www.irregular.com/research",
@@ -110,8 +112,8 @@
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28",
-  "updatedAt": "2026-10-28",
+  "verifiedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
   "researchNotes": [
     {
       "text": "作者 SOLVE+ 文章使用公开 MITRE APT29 场景讲解评分，但并未声明这是 CyScenarioBench 的真实任务，不可当作该题集样本。",
