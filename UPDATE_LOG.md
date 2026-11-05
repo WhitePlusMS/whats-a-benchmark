@@ -2335,3 +2335,5 @@
 - 新增 `content/benchmarks/libero-pro2.json` 和 `content/assets/videos/libero-pro2-libero10-base-review-000.mp4`：收录 LIBERO-Pro2.0 的任务、扰动、训练/留出评测范围和官方训练演示；依据固定版本元数据与原始视频标明许可和非商业使用边界，不将视频编号等同 HDF5 episode 编号或评测成绩。修改 `content/benchmarks/libero-pro.json` 增加版本关联，便于区分原版和 2.0。
 
 - 修改 `content/benchmarks/libero-pro.json` 并新增 `content/assets/videos/libero-pro-sensenova-swap-task0-init0.mp4`：从 SenseNova 固定版本评测归档按 case_id 取得一条 LIBERO-PRO 仿真视频和结果字段，注明第三方运行、评测集、初始状态、单次成功标志及不得用于相应测试案例训练的边界；保留官方配置数据许可与上游素材边界。
+
+- 修改 `content/benchmarks/simple-embodied.json` 并新增 `content/assets/videos/simple-sensenova-bend-icl-l0e01.mp4`：从 SenseNova 固定版本评测归档提取 BendPick ICL L0/E01 的视频及索引记录，原片因浏览器不兼容转为 H.264；标注第三方单次结果、评测集及许可边界，保留 PSI 原始数据许可未明确的说明。

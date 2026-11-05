@@ -26,6 +26,11 @@
         "label": "SIMPLE 桌面抓取评测数据包",
         "type": "评测数据",
         "url": "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip"
+      },
+      {
+        "label": "SenseNova SIMPLE 评测日志",
+        "type": "第三方评测日志",
+        "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/SIMPLE.zip"
       }
     ]
   },
@@ -93,23 +98,29 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "数据与媒体再发布许可尚未确认。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "SenseNova 评测日志数据卡标注 MIT；PSI 原始数据包的再发布许可尚未确认。",
+    "scope": "展示 SenseNova 发布的单条仿真评测视频及记录节选。",
+    "boundaries": [
+      "视频由原片转码；第三方日志涉及评测集，不应用于训练相应基准案例。",
+      "PSI 原始数据和其他上游场景素材的许可范围须分别核对。"
+    ],
     "sourceUrls": [
-      "https://psi-lab.ai/SIMPLE/index.html",
-      "https://arxiv.org/abs/2606.08278"
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/SIMPLE.zip",
+      "https://psi-lab.ai/SIMPLE/index.html"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示 SIMPLE 桌面抓取演示轨迹及评测数据包的单帧初始记录；已检查相机画面，数据包见资源入口。",
+    "reason": "展示 SIMPLE 训练演示、评测包初始记录及 SenseNova 发布的单次评测视频。",
     "sourceUrls": [
       "https://github.com/physical-superintelligence-lab/SIMPLE",
       "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/e78fb93cc28912a3031a10b8656d32d7f0a2b867/simple/G1WholebodyTabletopGraspMP-v0.zip",
       "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
-      "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md"
+      "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/SIMPLE.zip"
     ]
   },
   "metric": {
@@ -158,6 +169,16 @@
       "label": "SIMPLE 官方评测数据下载说明",
       "url": "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md",
       "role": "readme"
+    },
+    {
+      "label": "SenseNova 评测日志数据卡",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "role": "data"
+    },
+    {
+      "label": "第三方 SIMPLE 评测轨迹与视频归档",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/SIMPLE.zip",
+      "role": "data"
     }
   ],
   "related": [],
@@ -615,6 +636,35 @@
         "license": "数据包及相机画面的再发布许可尚未明确；本站只展示少量记录字段，原始画面见数据包。",
         "split": "simple-eval / dr-level-0 / episode 0；内部元数据标记 train。",
         "excerpt": true
+      },
+      {
+        "id": "simple-sensenova-bend-icl-l0e01",
+        "title": "弯腰抓取物体 · 单次评测",
+        "type": "video",
+        "promptOrigin": "editorial",
+        "prompt": "人形机器人弯腰抓起物体。",
+        "explanation": "SenseNova 发布的 SIMPLE 仿真评测案例，原始索引标记 BendPick、ICL、L0/E01、1× 预算，并记录该次成功。视频为头部左相机视角，原片因浏览器不支持 MPEG-4 编码而转为 H.264，保留 50 帧/秒与约 3.1 秒时长；该结果不代表模型整体成绩。",
+        "raw": {
+          "id": "bend_icl_L0E01",
+          "task": "BendPick",
+          "setting": "ICL",
+          "budget": "1×",
+          "case": "L0/E01",
+          "note": "同案例成功；API摘要记录了示范画面对齐、抓取阶段和关节跟踪差异分析。",
+          "video_duration_seconds": 3.1
+        },
+        "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/SIMPLE.zip",
+        "license": "SenseNova-RoboRSI-Log 数据卡标注 MIT；本视频经转码，上游机器人和场景素材许可须另行核对。",
+        "split": "第三方评测日志 / 官方评测集 / BendPick / ICL / L0 / E01；不用于训练相应评测案例。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/simple-sensenova-bend-icl-l0e01.mp4",
+            "caption": "头部左相机评测片段，由原片转码为 H.264；SenseNova 发布。",
+            "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/SIMPLE.zip"
+          }
+        ]
       }
     ]
   },
@@ -637,6 +687,13 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/USC-PSI-Lab/psi-data/blob/c8258285d134d0da644fdbf1a304988398fc3819/simple-eval/G1WholebodyTabletopGraspMP-v0.zip",
         "https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md"
+      ]
+    },
+    {
+      "text": "2026-11-05 从固定版本 SIMPLE.zip 范围读取 illustrative_cases.json 和同编号视频；原视频 SHA-256 8bf30dc4722b79ffdd0835bcab20ebd4cc99ba94f1b73bf236d53ccf8385c769。原片 MPEG-4 在浏览器无法播放，转为 H.264 后实际查看；未完整下载归档或运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/SIMPLE.zip"
       ]
     }
   ]
