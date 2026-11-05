@@ -28,9 +28,9 @@
     ]
   },
   "taskContract": {
-    "input": "实时语音对话场景；部分场景提供工具及调用schema。",
-    "output": "对话偏好评价与场景任务表现。",
-    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "input": "真人参与者获得一个对话场景，分别与两个匿名语音系统实时交谈；需完成工具任务的场景为模型提供相应工具。",
+    "output": "模型生成语音回应，适用时调用工具；参与者选择更偏好的对话，工具场景另检查最终任务调用。",
+    "environment": "同一参与者分别完成两次通话并给出偏好；工具任务成功率只统计符合条件的对话，排除参与者偏离任务或无法核验的情况。",
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
       "https://artificialanalysis.ai/articles/announcing-the-speech-agent-arena"
@@ -77,7 +77,7 @@
   },
   "metric": {
     "name": "Arena偏好Elo及任务表现",
-    "description": "AA于2026-08-24公告Arena；35场景由15 agentic、20 non-agentic组成。纳入Speech-to-Speech Index v1.1的具体日期未披露，完整提示/对话不公开。",
+    "description": "偏好投票用于拟合 Elo；工具任务成功率统计符合条件的对话中最终工具调用正确的比例。两项指标分别解释。",
     "direction": "higher",
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"

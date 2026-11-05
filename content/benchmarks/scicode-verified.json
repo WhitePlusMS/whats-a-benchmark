@@ -27,9 +27,9 @@
     ]
   },
   "taskContract": {
-    "input": "SciCode科学问题、代码实现及可执行验证材料。",
-    "output": "代码和相应科学计算结果，由核验数据评估。",
-    "environment": "按对应来源公开的任务和运行设置执行；未披露条件不作补充。",
+    "input": "科学问题描述、函数接口与依赖；可按协议提供背景信息，后续子步骤还接收先前生成的代码。",
+    "output": "生成满足接口的科学计算代码，由评测程序运行测试并核对结果。",
+    "environment": "作者标准协议区分有无背景，按步骤累积代码；测试使用校正后的目标数据，并分别在固定科学 Python 环境中执行。",
     "sourceUrls": [
       "https://github.com/flyingwagner/scicode-verified"
     ]
@@ -98,7 +98,7 @@
   },
   "metric": {
     "name": "科学编程任务验证结果",
-    "description": "日期限定论文v1定义披露版；作者仓库称v2数据于2026年8月可用但未给准确日。不是SciCode上游官方版本，维护者机构身份未核实。",
+    "description": "作者标准协议报告子问题和整题 pass@1；整题需所有计分子问题通过，两个固定环境中任一通过即计该步通过。有背景与无背景结果分别报告。",
     "direction": "higher",
     "sourceUrls": [
       "https://github.com/flyingwagner/scicode-verified"
