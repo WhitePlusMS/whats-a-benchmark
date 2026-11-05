@@ -24,11 +24,12 @@
   },
   "taskContract": {
     "sourceUrls": [
-      "https://arxiv.org/abs/2406.08035"
+      "https://arxiv.org/abs/2406.08035",
+      "https://github.com/zai-org/LVBench"
     ],
-    "environment": "视频采样、帧率与上下文设置影响结果。",
-    "input": "长视频及自然语言问题。",
-    "output": "视频理解答案。"
+    "environment": "原视频由 YouTube 等第三方托管；帧采样、视频输入长度和模型上下文配置会影响结果。",
+    "input": "长视频及对应问题和候选答案；题目可要求定位某一时间片段、理解跨时段事件或综合视频内容。",
+    "output": "选择与视频内容相符的答案选项；官方按问答正确率统计。"
   },
   "dataProfile": {
     "summary": "长视频问答基准覆盖六种长视频理解能力，视频时长可达约两小时；官方仓库提供元数据与获取脚本，原视频托管于YouTube。",
@@ -68,14 +69,15 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "LVBench数据集卡标注MIT；本页仅展示任务标注，不下载或再分发YouTube视频。",
-    "scope": "仅用于本页所注明的真实记录、字段与附件，按对应许可保留归属和使用条件。",
+    "license": "原作者 LVBench 仓库声明数据集为 CC BY-NC-SA 4.0、仅限学术研究；第三方镜像数据卡标注 MIT，两者许可标记不一致。",
+    "scope": "本站展示题目标注节选；视频归第三方权利人，未在站内转载。",
     "boundaries": [
-      "不将此记录的许可扩展到未展示的第三方媒体、外部服务内容或其他组成数据集。"
+      "使用题目应核对作者版本及许可差异，遵守原作者非商业、相同方式共享要求；不得将镜像标记扩展至原视频。"
     ],
     "sourceUrls": [
       "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1",
-      "https://huggingface.co/datasets/DongfuJiang/LVBench"
+      "https://huggingface.co/datasets/DongfuJiang/LVBench",
+      "https://github.com/zai-org/LVBench"
     ]
   },
   "sampleAccess": {
@@ -167,7 +169,7 @@
           "time_reference": "00:15-00:19"
         },
         "source": "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1",
-        "license": "mit; 数据题目/媒体许可范围需按原始数据卡与仓库进一步核实。",
+        "license": "原作者仓库声明 CC BY-NC-SA 4.0，第三方镜像卡标记 MIT；本站未转载原视频，使用前应核对许可差异。",
         "split": "test",
         "excerpt": true,
         "answer": "D"
@@ -179,6 +181,13 @@
       "text": "2026-10-19实际取得记录55；来源响应SHA-256 524a1623dcec0502a8a82a5e0486dce6fc0287d177422b17d352b726e11dd132。HF rows不接受revision参数；观察到的仓库HEAD与本次响应分开记录，未声称已直接对照固定Parquet文件。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
       "sourceUrls": [
         "https://datasets-server.huggingface.co/rows?dataset=DongfuJiang%2FLVBench&config=default&split=test&offset=0&length=1"
+      ]
+    },
+    {
+      "text": "原作者仓库声明数据集 CC BY-NC-SA 4.0 且不拥有原视频版权；此前仅引用第三方镜像 MIT 标记不充分，现并列记录差异。",
+      "sourceUrls": [
+        "https://github.com/zai-org/LVBench",
+        "https://huggingface.co/datasets/DongfuJiang/LVBench"
       ]
     }
   ]
