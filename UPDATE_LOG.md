@@ -1,3 +1,8 @@
+## 2026-11-05：核对 GraspNet 与 SuctionNet 样例对象图册
+
+- 修改 `content/benchmarks/graspnet-1billion.json` 和 `content/benchmarks/suctionnet-1billion.json`：下载并查看官方物体图册，分别核对现有样例对象 083（part3）和对象 000（003_cracker_box），加入图册对应页入口及来源。
+- 原因与影响：使读者能直观看到抓取标签所属对象；图册是对象示意，不是候选点可视化或机器人抓取结果。原始许可表述仍有歧义，未复制图像。
+
 ## 2026-11-05：补充 Habitat 3.0 协作重排验证样例
 
 - 修改 `content/benchmarks/habitat-3.json`：下载并解析官方固定版本 Social Rearrangement 验证文件，补充 episode 0 的真实场景、目标物体和目标矩阵，并记录 1,200 条验证配置、文件来源、哈希及 CC BY-NC 4.0 条件。

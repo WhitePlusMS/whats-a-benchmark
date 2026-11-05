@@ -19,6 +19,11 @@
         "label": "SuctionNet 官方吸盘标签包",
         "type": "数据集",
         "url": "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view"
+      },
+      {
+        "label": "官方物体清单（第 1 页）",
+        "type": "对象图册",
+        "url": "https://graspnet.net/images/obj_list.pdf#page=1"
       }
     ]
   },
@@ -84,10 +89,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载官方吸盘标签包，并展示对象 000 的三条候选标签。",
+    "reason": "已下载官方吸盘标签包，并展示对象 000 的三条候选标签。 已核对官方物体图册，可从资源入口查看对应对象。",
     "sourceUrls": [
       "https://graspnet.net/suction",
-      "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view"
+      "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
+      "https://graspnet.net/images/obj_list.pdf"
     ]
   },
   "metric": {
@@ -121,6 +127,11 @@
       "label": "官方吸盘标签下载包",
       "url": "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
       "role": "data"
+    },
+    {
+      "label": "GraspNet 官方物体图册",
+      "url": "https://graspnet.net/images/obj_list.pdf",
+      "role": "data"
     }
   ],
   "related": [
@@ -133,7 +144,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-10-29",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
@@ -143,7 +154,7 @@
         "type": "record",
         "prompt": "同一物体表面有多个吸盘候选点，下面展示三个候选点的坐标、法线、碰撞标记和密封评分。",
         "promptOrigin": "editorial",
-        "explanation": "官方数据包中对象 000 的 seal 标签含 4,723 个候选点；这里只取前三条并保留原始字段。这里的 scores 是密封标签分数，不能直接解读为模型成功率。",
+        "explanation": "官方数据包中对象 000 的 seal 标签含 4,723 个候选点；这里只取前三条并保留原始字段。这里的 scores 是密封标签分数，不能直接解读为模型成功率。 官方物体清单第 1 页将对象 000 标为 003_cracker_box，展示饼干盒；清单图片不是这三个吸盘候选点的可视化或抓取执行记录。",
         "raw": {
           "archive": "suction_label.zip",
           "member": "seal_label/000_seal.npz",
@@ -214,6 +225,12 @@
       "sourceUrls": [
         "https://graspnet.net/suction",
         "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载并查看官方物体图册第 1 页；PDF SHA-256 cecb527371648d4ccd758d4a8fe1218d18360a9a430a35eca0fc9fecbbd5f328。仅提供原图册链接，未复制图片。",
+      "sourceUrls": [
+        "https://graspnet.net/images/obj_list.pdf"
       ]
     }
   ]
