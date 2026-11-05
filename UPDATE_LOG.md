@@ -1,3 +1,9 @@
+## 2026-11-05：补充 RLBench 测试演示连续画面
+
+- 修改 `content/benchmarks/rlbench.json`：增加 PerAct test 划分中打开抽屉演示的完整帧视频及核验记录。
+- 新增 `content/assets/videos/rlbench-peract-test-open-drawer-episode19.mp4`：从固定版本压缩包提取 97 帧并按 10 帧/秒重编码；该速率是展示设置。
+- 原因与影响：原样例只有三帧；视频展示连续动作，仍明确这是预生成演示而非模型评测成绩。
+
 ## 2026-11-05：细化 API-Bank 三类任务条件
 
 - 修改 `content/benchmarks/api-bank.json`：补充已知 API、检索调用和多步规划调用的输入输出、模拟环境及论文评分口径。

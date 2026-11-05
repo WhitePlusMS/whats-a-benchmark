@@ -73,7 +73,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "第三方转换集及 PerAct 数据镜像的数据卡标注 Apache-2.0；RLBench 软件许可包含非商业研究限制，源数据许可范围须分别核对。",
-    "scope": "本站展示第三方转换轨迹及 PerAct 测试演示的相机帧，另展示由转换轨迹帧合成的视频；许可声明来自各数据集数据卡。",
+    "scope": "本站展示第三方转换轨迹及 PerAct 测试演示的相机帧，并展示由各自轨迹帧合成的视频；许可声明来自各数据集数据卡。",
     "boundaries": [
       "数据卡的 Apache 声明不代表已核实上游所有素材的权利范围。"
     ],
@@ -85,7 +85,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载第三方训练轨迹，以及 PerAct 测试划分中的一条打开抽屉演示，展示相机帧和动作记录。",
+    "reason": "已下载第三方训练轨迹和 PerAct 测试划分的打开抽屉演示，展示相机帧、重编码视频和动作记录。",
     "sourceUrls": [
       "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot/blob/1e7468f40edf487f24215b355df33a99de5c7566/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/nvkartik/rlbench-lerobot-groot",
@@ -175,7 +175,7 @@
         "title": "打开最下层抽屉 · PerAct 测试演示",
         "type": "record",
         "prompt": "open the bottom drawer",
-        "explanation": "原始任务描述为打开最下层抽屉；三张图取自同一条 97 帧的正面相机记录。数据镜像将其列在 PerAct 的 test 划分；这是预生成的机器人演示，不是某个模型的评测运行或成绩，也不等同于 RLBench 官方 few-shot 的任务划分。",
+        "explanation": "原始任务描述为打开最下层抽屉；视频由同一条 97 帧正面相机记录按每秒 10 帧重编码，播放速度仅为展示设置。三张图片分别是第 0、48、96 帧。数据镜像将其列在 PerAct 的 test 划分；这是预生成的机器人演示，不是某个模型的评测运行或成绩，也不等同于 RLBench 官方 few-shot 的任务划分。",
         "raw": {
           "variation_descriptions": [
             "open the bottom drawer",
@@ -188,6 +188,12 @@
         "split": "PerAct / test / open_drawer / episode19",
         "excerpt": true,
         "assets": [
+          {
+            "kind": "video",
+            "path": "videos/rlbench-peract-test-open-drawer-episode19.mp4",
+            "caption": "PerAct 测试演示 episode19：97 张正面相机帧按每秒 10 帧合成，播放速度仅为展示设置。",
+            "source": "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip"
+          },
           {
             "kind": "image",
             "path": "images/rlbench-peract-test-open-drawer-episode19-0.png",
@@ -431,6 +437,12 @@
       "text": "从固定版本的 PerAct 数据镜像测试压缩包按文件范围读取 episode19 的正面相机帧与任务描述；已查看第 0、96 帧。镜像声称遵循 PerAct 原论文划分。 压缩包内路径为 open_drawer/all_variations/episodes/episode19；统计 front_rgb 共 97 帧。第 0、48、96 帧的 SHA-256 分别为 0044495228e3ec04d7277ff6eab56ba7c17a02e15b3e83d880c2194bef67fc68, 86a46a4544b4935ec2efe9e0a28e591dfcb1279e036672580b0965268f728d8e, f81c9c6e17b68ed87ab7857adf05bc1fe625da1f96352ab2e19cdf85798a679d。",
       "sourceUrls": [
         "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/README.md",
+        "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip"
+      ]
+    },
+    {
+      "text": "2026-11-05 通过范围读取固定版本测试压缩包的 episode19 正面相机全部 97 帧，并核对第 0、48、96 帧与已展示图片一致；按 10 帧/秒重编码为展示视频，SHA-256 8c49eb02ebbd9fa366dc2f85104bd15a8bb88d3c2c7e1219e0095a84781c2fb5。该播放速率为本站设定，不代表原始仿真时间。",
+      "sourceUrls": [
         "https://huggingface.co/datasets/hqfang/rlbench-18-tasks/blob/ddb141a10147929b3353881f73057b11931d3466/data/test/open_drawer.zip"
       ]
     }
