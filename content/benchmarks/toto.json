@@ -19,6 +19,16 @@
         "label": "该轨迹的首张真实相机图像",
         "type": "原始图片",
         "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836737259.7883-color.jpeg"
+      },
+      {
+        "label": "同一轨迹中间相机图像",
+        "type": "原始图片",
+        "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836745065.47-color.jpeg"
+      },
+      {
+        "label": "同一轨迹最后相机图像",
+        "type": "原始图片",
+        "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836752871.1748-color.jpeg"
       }
     ]
   },
@@ -40,19 +50,20 @@
     ]
   },
   "taskContract": {
-    "input": "离线演示数据与机器人观测，依具体任务设置。",
-    "output": "在桌面任务中执行舀取或倾倒动作。",
-    "environment": "真实机器人评测与仿真数据资源；需区分物理测试和模拟演示。",
+    "input": "真实机器人离线轨迹包含 RGB-D 图像、七维关节角观测和目标动作；具体策略输入依实现而定。",
+    "output": "控制机械臂：舀取任务从碗中舀起材料；倾倒任务把杯中材料倒入桌上目标杯。",
+    "environment": "论文使用真实 Franka Emika Panda 机械臂，测试未见过的容器和材料，并分别测试训练见过和未见过的位置。",
     "sourceUrls": [
-      "https://arxiv.org/abs/2306.00942"
+      "https://arxiv.org/html/2306.00942",
+      "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md"
     ]
   },
   "dataProfile": {
-    "summary": "官方文档列出舀取 1,900 条、倾倒 1,003 条轨迹；本次读取公开舀取解析文件得到 1,895 条，差异原因未核实。",
+    "summary": "论文与官网列舀取 1,895 条、倾倒 1,003 条真实轨迹；仓库数据说明对舀取写作 1,900 条。",
     "disclosure": "partial",
     "scale": [
-      "官方文档：舀取 1,900 条、倾倒 1,003 条轨迹。",
-      "公开舀取 parsed.pkl 实际读取到 1,895 条；不能据此推断其余文件的完整数量。"
+      "论文：舀取 1,895 条、倾倒 1,003 条；仓库数据说明列舀取 1,900 条。",
+      "实际读取公开舀取 parsed.pkl 得到 1,895 条，与论文数量一致。"
     ],
     "splits": [],
     "fields": [
@@ -63,7 +74,8 @@
     ],
     "sourceUrls": [
       "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md",
-      "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl"
+      "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl",
+      "https://arxiv.org/html/2306.00942"
     ]
   },
   "dataAccess": {
@@ -88,19 +100,21 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载官方真实机器人舀取轨迹文件，展示其中一条的数值摘录和原始图片链接。",
+    "reason": "已读取官方真实舀取轨迹，并查看首、中、末三个对应原始相机画面；提供原图链接。",
     "sourceUrls": [
       "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl",
       "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836737259.7883-color.jpeg",
-      "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md"
+      "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md",
+      "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836745065.47-color.jpeg",
+      "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836752871.1748-color.jpeg"
     ]
   },
   "metric": {
-    "name": "任务完成情况",
-    "description": "应按所选任务和当期真实机器人评测协议核对评分方法。",
+    "name": "奖励与成功率",
+    "description": "论文以成功舀起或倒入的材料重量（克）为奖励，奖励大于 0 视为成功；按任务和位置分别统计。",
     "direction": "higher",
     "sourceUrls": [
-      "https://arxiv.org/abs/2306.00942"
+      "https://arxiv.org/html/2306.00942"
     ]
   },
   "limitations": [
@@ -136,10 +150,25 @@
       "label": "官方数据格式说明",
       "url": "https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md",
       "role": "readme"
+    },
+    {
+      "label": "原论文中的任务、数据和评分协议",
+      "url": "https://arxiv.org/html/2306.00942",
+      "role": "paper"
+    },
+    {
+      "label": "同一轨迹中间相机图像",
+      "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836745065.47-color.jpeg",
+      "role": "data"
+    },
+    {
+      "label": "同一轨迹最后相机图像",
+      "url": "https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836752871.1748-color.jpeg",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-29",
+  "verifiedAt": "2026-11-05",
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
@@ -149,7 +178,7 @@
         "type": "record",
         "prompt": "真实机器人执行舀取操作；下面列出这条采集轨迹的首、中、末时间步。",
         "promptOrigin": "editorial",
-        "explanation": "官方数据桶中的真实舀取轨迹，材料为杏仁，共 626 个时间步；观测与动作都是七维关节角。normalized_reward 是此条记录字段，不是模型榜单成绩。原图由官方数据桶提供，数据转载许可尚未核实，本站不复制图片。",
+        "explanation": "官方真实舀取轨迹，材料为杏仁，共 626 个时间步；观测与动作是七维关节角。已检查首、中、末三张原始画面：机械臂从碗上方移动到碗内，再抬起勺子；对应原图可从资源链接查看。normalized_reward 是记录字段，不是模型榜单成绩；原始图片转载许可尚未核实。",
         "raw": {
           "dataset": "toto-dataset/cloud-data-scooping/parsed.pkl",
           "file_sha256": "75e08fbf3f45f8aa544009b3c12ba2c6c6f30140a9ea0437734813b6643177a5",
