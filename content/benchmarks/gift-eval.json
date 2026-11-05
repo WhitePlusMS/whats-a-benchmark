@@ -153,16 +153,14 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "根据这条存储时间序列已有的 7,200 个历史观测点，预测紧随其后的 720 个五分钟观测点。",
-        "explanation": "从官方 Parquet 行接口读取的真实窗口：历史区间截至 2013-09-06 13:35，预测区间从 13:40 开始。这里只展示窗口长度与时间等元数据，不复制源数值数组；未运行模型。",
+        "explanation": "从官方 Parquet 行接口读取的真实窗口：历史区间截至 2013-09-06 13:35，预测区间从 13:40 开始；7,200 和 720 分别是根据 history_value、future_value 数组计算的长度。这里只展示窗口时间等元数据，不复制源数值数组；未运行模型。",
         "raw": {
           "item_id": "fastStorage_860_dim0_window0/2013-09-06 13:40:00",
           "frequency": "5T",
           "history_start": "2013-08-12 13:40:00",
           "history_end": "2013-09-06 13:35:00",
-          "history_length": 7200,
           "future_start": "2013-09-06 13:40:00",
           "future_end": "2013-09-09 01:35:00",
-          "future_length": 720,
           "config": "bitbrains_fast_storage/5T/long"
         },
         "source": "https://datasets-server.huggingface.co/rows?dataset=Salesforce%2FGiftEvalParquet&config=bitbrains_fast_storage_5T_long&split=train&offset=0&length=1",
