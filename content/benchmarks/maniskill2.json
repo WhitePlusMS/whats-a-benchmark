@@ -72,21 +72,25 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "代码、软体组件及对象资产采用不同条款；演示视频和轨迹的再发布许可需单独核对。",
-    "scope": "按各资源实际许可证和权利范围核对。",
-    "boundaries": [],
+    "status": "permitted",
+    "license": "ManiSkill2 数据卡标注数据集 Apache-2.0，并注明资产为 CC BY-NC 4.0。",
+    "scope": "本站处理版轨迹视频由官方 RGB 画面生成，注明来源、修改及非商业限制。",
+    "boundaries": [
+      "视频含仿真资产，按 CC BY-NC 4.0 的非商业限制使用；其他第三方资产权利范围须分别核对。"
+    ],
     "sourceUrls": [
-      "https://arxiv.org/abs/2302.04659",
-      "https://github.com/haosulab/ManiSkill2/blob/main/README.md"
+      "https://huggingface.co/datasets/haosulab/ManiSkill2"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载官方 PickCube-v0 HDF5 轨迹与元数据，展示真实动作与成功标志。",
+    "reason": "展示原始 PickCube 演示的动作记录，以及官方处理版轨迹 0 的双相机画面。",
     "sourceUrls": [
       "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
-      "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.json"
+      "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.json",
+      "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.h5",
+      "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json",
+      "https://huggingface.co/datasets/haosulab/ManiSkill2"
     ]
   },
   "metric": {
@@ -124,6 +128,21 @@
     {
       "label": "官方 PickCube 轨迹元数据",
       "url": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.json",
+      "role": "data"
+    },
+    {
+      "label": "官方处理版 RGB-D 轨迹",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.h5",
+      "role": "data"
+    },
+    {
+      "label": "官方处理版轨迹元数据",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json",
+      "role": "data"
+    },
+    {
+      "label": "ManiSkill2 官方数据卡与许可",
+      "url": "https://huggingface.co/datasets/haosulab/ManiSkill2",
       "role": "data"
     }
   ],
@@ -208,6 +227,42 @@
         "license": "官方 ManiSkill2 数据卡标注 Apache-2.0；第三方资产使用范围需分别核对。",
         "split": "PickCube-v0 / traj_0",
         "excerpt": true
+      },
+      {
+        "id": "maniskill2-pickcube-rgbd-episode-0",
+        "title": "PickCube · 处理版双相机轨迹 0",
+        "type": "video",
+        "prompt": "在仿真中用机械臂抓起方块并将其移动到目标位置。",
+        "promptOrigin": "editorial",
+        "explanation": "官方处理版 episode 0 的元数据记录 seed 0、控制模式 pd_ee_delta_pose、88 个动作与 success=true；RGB 观测包含 89 帧。视频将基座相机与手部相机按帧并排，按 10 帧/秒重新编码供观看，播放速度不代表原始实时速度。它是仿真演示，不是模型评测成绩；处理版与本页原始动作样例控制模式不同。",
+        "raw": {
+          "episode_id": 0,
+          "episode_seed": 0,
+          "reset_kwargs": {
+            "seed": 0
+          },
+          "control_mode": "pd_ee_delta_pose",
+          "elapsed_steps": 88,
+          "info": {
+            "elapsed_steps": 88,
+            "is_obj_placed": true,
+            "is_robot_static": true,
+            "success": true
+          }
+        },
+        "source": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json",
+        "license": "ManiSkill2 / SU Lab：数据卡标注数据集 Apache-2.0，资产 CC BY-NC 4.0；本视频由原始画面拼接、缩放和重新编码，按非商业限制使用。",
+        "licensePath": "licenses/cc-by-nc-4.txt",
+        "split": "processed_demos / PickCube-v0 / episode 0；未标明训练、验证或测试划分。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/maniskill2-pickcube-rgbd-episode0.mp4",
+            "caption": "左侧基座相机，右侧手部相机；官方 RGB 帧拼接重编码，10 帧/秒。",
+            "source": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.h5"
+          }
+        ]
       }
     ]
   },
@@ -217,6 +272,13 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
         "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.json"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载固定修订 RGB-D HDF5（824,986,789 字节，SHA-256 22ebe97558f2171f2646892c4cccfa92d5172cd942dff4afbed55acf013c7088）及元数据；核验 episode 0 的 89 帧、88 个动作，在浏览器观看由双相机 RGB 帧按 10 帧/秒合成的视频。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.h5",
+        "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json"
       ]
     }
   ]

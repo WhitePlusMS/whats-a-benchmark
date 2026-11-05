@@ -2321,3 +2321,5 @@
 - 修改 `content/benchmarks/big-bench-audio.json`：补充官方语音推理四类问题、音频到音频设置的输出与判分方式，并说明数据集 train 标签的含义边界；删除样例原始字段中会过期的临时音频地址，保留站内音频和数据记录来源。
 
 - 修改 `content/benchmarks/gdp-pdf.json`：依据官方论文公开任务概述，补充专业 PDF 任务中的表格、曲线、脚注、条款等输入及文档证据不足时的回答要求，保留本站尚未取得完整题目和附件的说明；论文称数据已发布，访问状态不能等同于未公开。
+
+- 修改 `content/benchmarks/maniskill2.json`：增加官方处理版 PickCube-v0 episode 0 的元数据、来源与划分边界；从固定版本 HDF5 的 89 帧双相机 RGB 合成 `content/assets/videos/maniskill2-pickcube-rgbd-episode0.mp4`，按 10 帧/秒展示而非宣称实时速度，并沿用 `content/assets/licenses/cc-by-nc-4.txt` 标注数据卡中场景资产的非商业许可。该轨迹是仿真演示，控制模式与原始轨迹样例不同，不作为模型评测成绩。
