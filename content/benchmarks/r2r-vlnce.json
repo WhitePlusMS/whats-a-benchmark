@@ -1,0 +1,216 @@
+{
+  "id": "r2r-vlnce",
+  "status": "published",
+  "order": 21808,
+  "name": "R2R-CE (VLN-CE)",
+  "subtitle": "连续仿真环境中的语言指令导航",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "官方 R2R-CE 数据说明",
+        "type": "数据集",
+        "url": "https://jacobkrantz.github.io/vlnce/data"
+      },
+      {
+        "label": "SenseNova 连续导航评测轨迹",
+        "type": "第三方评测日志",
+        "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip"
+      }
+    ]
+  },
+  "tags": [
+    "导航与移动",
+    "具身推理"
+  ],
+  "publisher": "VLN-CE Authors",
+  "brandIds": [],
+  "year": 2020,
+  "version": "R2R_VLNCE v1-3",
+  "kind": "derivative",
+  "aliases": [
+    "VLN-CE R2R",
+    "R2R_VLNCE"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "将 R2R 的室内路线指令移植到 Habitat 连续环境，评估基于视觉和语言的导航。",
+    "task": "根据自然语言路线和第一人称画面，通过移动与转向抵达目标并停止。",
+    "sourceUrls": [
+      "https://jacobkrantz.github.io/vlnce/",
+      "https://jacobkrantz.github.io/vlnce/data"
+    ]
+  },
+  "taskContract": {
+    "input": "人类路线指令和第一人称视觉观测。",
+    "output": "连续环境中的前进、转向及停止动作。",
+    "environment": "Habitat 仿真中的 Matterport3D 场景；不同于原版依导航图节点移动的设置。",
+    "sourceUrls": [
+      "https://jacobkrantz.github.io/vlnce/",
+      "https://jacobkrantz.github.io/vlnce/data"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方 R2R_VLNCE v1-3 数据从原版 R2R 移植到 Habitat，并公布训练、验证与测试划分。",
+    "disclosure": "partial",
+    "scale": [
+      "v1-3：train 10,819、val_seen 778、val_unseen 1,839、test 3,408 条 episode。"
+    ],
+    "splits": [
+      "train、val_seen、val_unseen、test；场景与划分以官方文件为准。"
+    ],
+    "fields": [
+      "episode_id、场景、指令、起始位姿、目标及参考路径。"
+    ],
+    "files": [
+      "官方提供 JSON.GZ 数据；场景资产需按 Matterport3D 条款另行获取。"
+    ],
+    "sourceUrls": [
+      "https://jacobkrantz.github.io/vlnce/data",
+      "https://github.com/jacobkrantz/VLN-CE"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "导航标注可从官方数据页获取；Matterport3D 场景的访问和使用遵循独立条款。"
+    ],
+    "url": "https://jacobkrantz.github.io/vlnce/data",
+    "sourceUrls": [
+      "https://jacobkrantz.github.io/vlnce/data",
+      "https://github.com/jacobkrantz/VLN-CE",
+      "https://matterport.com/legal/matterport-end-user-license-agreement-academic-use-model-data"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "SenseNova 日志数据卡标注 MIT；Matterport3D 场景和衍生画面的使用需遵循其独立条款。",
+    "scope": "展示少量第三方运行字段和本站整理的路线说明；提供原始归档入口。",
+    "boundaries": [
+      "未确认场景画面的站内转载范围，视频不复制到本站。",
+      "日志涉及评测案例，不应用于训练相应测试样例。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "https://matterport.com/legal/matterport-end-user-license-agreement-academic-use-model-data"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示一条第三方连续导航运行记录；视频已提取查看，原始归档可从相关资源获取。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip"
+    ]
+  },
+  "metric": {
+    "name": "成功率与路径效率",
+    "description": "按目标距离和路径效率报告成功率、SPL 等；比较时注明数据划分、动作空间和运行预算。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://jacobkrantz.github.io/vlnce/",
+      "https://github.com/jacobkrantz/VLN-CE"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "连续环境与原版节点导航的结果不能直接混同；第三方运行的 rand100 不是官方划分名称。",
+      "sourceUrls": [
+        "https://jacobkrantz.github.io/vlnce/",
+        "https://jacobkrantz.github.io/vlnce/data",
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "VLN-CE 官方项目",
+      "url": "https://jacobkrantz.github.io/vlnce/",
+      "role": "definition"
+    },
+    {
+      "label": "R2R_VLNCE 官方数据说明",
+      "url": "https://jacobkrantz.github.io/vlnce/data",
+      "role": "data"
+    },
+    {
+      "label": "VLN-CE 官方代码",
+      "url": "https://github.com/jacobkrantz/VLN-CE",
+      "role": "code"
+    },
+    {
+      "label": "SenseNova 评测日志数据卡",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
+      "role": "data"
+    },
+    {
+      "label": "连续导航视频与日志归档",
+      "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip",
+      "role": "data"
+    },
+    {
+      "label": "Matterport 场景数据使用条款",
+      "url": "https://matterport.com/legal/matterport-end-user-license-agreement-academic-use-model-data",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "r2r",
+      "label": "原始数据",
+      "detail": "R2R-CE 将原版 R2R 指令与路径移植到 Habitat 连续环境。",
+      "sourceUrls": [
+        "https://jacobkrantz.github.io/vlnce/data"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-05",
+  "sampleSet": {
+    "retrievedAt": "2026-11-05",
+    "samples": [
+      {
+        "id": "r2rce-sensenova-episode7",
+        "title": "经过泳池，在吧台转角停下",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "沿泳池前进，从吧台和椅子之间穿过，在吧台转角处停下。",
+        "explanation": "SenseNova 发布的一次 VLN-CE 仿真运行，日志记录 episode 7、rand100、62 步和 success=true；原始前视视频包含 63 帧、按 2 帧/秒播放，已提取并查看。它是第三方一次结果，不是原版 R2R val_seen 的 path 5593，也不代表整体成绩。场景画面转载条件未确认，原始视频位于归档中。",
+        "raw": {
+          "benchmark": "vln_ce",
+          "phase": "evaluation",
+          "episode_id": "7",
+          "split": "rand100",
+          "status": "completed",
+          "seed": 0,
+          "max_steps": 500,
+          "success": true,
+          "metrics": {
+            "distance_to_goal": 0.8322722911834717,
+            "success": 1.0,
+            "spl": 1.0,
+            "ndtw": 0.96286124994603,
+            "path_length": 9.74919605255127,
+            "steps_taken": 62.0
+          }
+        },
+        "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip",
+        "license": "SenseNova 日志数据卡标注 MIT；Matterport3D 场景及其衍生画面另有使用条款，本页未转载视频。",
+        "split": "第三方评测 / R2R-CE / rand100 / episode 7 / 500 步预算；不是官方 val_seen 标签。",
+        "excerpt": true
+      }
+    ]
+  },
+  "researchNotes": [
+    {
+      "text": "2026-11-05 对固定版本 VLN-CE-R2R.zip 进行范围读取，取得 episode 7 的 prompt、result、视频元数据和前视视频。视频 1,720,713 字节，SHA-256 df2b595a678611e070a534c7331ea051561d76662ffd513680e53a6e06cc9b12；已在浏览器播放，未完整下载归档或运行评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip",
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
+      ]
+    }
+  ]
+}
