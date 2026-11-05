@@ -72,11 +72,14 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方任务示例及代码仓库中的任务接口；不将任务描述当作模型运行结果。",
+    "reason": "展示官方任务模板及三段对应仿真演示；视频提供官方原片链接，任务结果不代表基准整体成绩。",
     "url": "https://rle-bench.github.io/blog/",
     "sourceUrls": [
       "https://rle-bench.github.io/blog/",
-      "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/tasks/task01/_template/steps/develop/instruction.md.in"
+      "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/tasks/task01/_template/steps/develop/instruction.md.in",
+      "https://rle-bench.github.io/assets/blog/demos/task01-6x.mp4",
+      "https://rle-bench.github.io/assets/blog/demos/task02-4x.mp4",
+      "https://rle-bench.github.io/assets/blog/demos/hidden-center-of-mass-2x.mp4"
     ]
   },
   "metric": {
@@ -103,6 +106,15 @@
       "sourceUrls": [
         "https://rle-bench.github.io/",
         "https://arxiv.org/abs/2609.34210"
+      ]
+    },
+    {
+      "text": "2026-11-05 下载并在浏览器查看 Task 01、02、03 官网演示；Task 01 原片 SHA-256 6660a4f3f7d5a7cf8eff3064bf716b804f3488f0b1dc8507c00978d8226dbd85。原片许可未确认，本站不复制视频。",
+      "sourceUrls": [
+        "https://rle-bench.github.io/blog/",
+        "https://rle-bench.github.io/assets/blog/demos/task01-6x.mp4",
+        "https://rle-bench.github.io/assets/blog/demos/task02-4x.mp4",
+        "https://rle-bench.github.io/assets/blog/demos/hidden-center-of-mass-2x.mp4"
       ]
     }
   ],
@@ -131,6 +143,21 @@
       "label": "RLE-Bench 官方代码及许可",
       "url": "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/README.md",
       "role": "data"
+    },
+    {
+      "label": "Task 01 解冻任务视频",
+      "url": "https://rle-bench.github.io/assets/blog/demos/task01-6x.mp4",
+      "role": "data"
+    },
+    {
+      "label": "Task 02 收纳剩菜视频",
+      "url": "https://rle-bench.github.io/assets/blog/demos/task02-4x.mp4",
+      "role": "data"
+    },
+    {
+      "label": "Task 03 探测隐藏重物视频",
+      "url": "https://rle-bench.github.io/assets/blog/demos/hidden-center-of-mass-2x.mp4",
+      "role": "data"
     }
   ],
   "related": [],
@@ -139,6 +166,23 @@
   "embodied": {
     "tasks": [
       "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "Task 01 解冻任务视频",
+        "type": "官方仿真视频",
+        "url": "https://rle-bench.github.io/assets/blog/demos/task01-6x.mp4"
+      },
+      {
+        "label": "Task 02 收纳剩菜视频",
+        "type": "官方仿真视频",
+        "url": "https://rle-bench.github.io/assets/blog/demos/task02-4x.mp4"
+      },
+      {
+        "label": "Task 03 探测隐藏重物视频",
+        "type": "官方仿真视频",
+        "url": "https://rle-bench.github.io/assets/blog/demos/hidden-center-of-mass-2x.mp4"
+      }
     ]
   },
   "sampleSet": {
@@ -163,7 +207,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "把土豆和玉米放进台面上的碗，再把橙子和香蕉放入水槽，在流动水下为水果解冻。",
-        "explanation": "这是官方 T01 演示的具体目标；点击“查看原始来源”，在 Task 01 部分可播放仿真录像。任务说明本身不代表一定成功。",
+        "explanation": "官方 Task 01 公开片段标注 GPT-6 Astra、RoboCasa 仿真及 6 倍速；视频见资源链接。演示片段不代表任务集整体成绩。",
         "raw": "DefrostByCategory",
         "source": "https://rle-bench.github.io/blog/",
         "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
@@ -198,6 +242,36 @@
         "source": "https://github.com/RLE-Bench/RLE-Bench/blob/c6bf572283b5453c0ee76eaa3054f23d691e433d/tasks/task01/_template/steps/develop/instruction.md.in",
         "license": "RLE-Bench 仓库代码标注 MIT；外部机器人模型、数据及依赖沿用各自许可。",
         "split": "Task 01 公开任务模板；评估试次使用未见过的厨房布局，非模型轨迹。",
+        "excerpt": true
+      },
+      {
+        "id": "rle-task02-store-leftovers",
+        "title": "Task 02：整理剩菜",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "将盘中的鸡腿和蔬菜放入碗里，再把碗送进冰箱。",
+        "explanation": "官方标注 GPT-6 Astra、RoboCasa 仿真和 4 倍速；此片段是官网演示，不代表整体评分。 官方视频见资源链接。",
+        "raw": {
+          "task_family": "task02"
+        },
+        "source": "https://rle-bench.github.io/blog/",
+        "license": "官网公开视频的独立转载许可尚未确认；本站仅提供原片链接。",
+        "split": "官网任务演示；具体训练/测试划分和整体成绩未披露。",
+        "excerpt": true
+      },
+      {
+        "id": "rle-task03-hidden-mass",
+        "title": "Task 03：探测箱内重物",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "操纵机械臂接触密封盒，根据物理反馈判断隐藏重物位于 A、B、C、D 的哪个区域。",
+        "explanation": "官方标注 GPT-5.6 Sol、2 倍速；此片段展示仿真探测过程，未将答案或整体成绩作为已验证结果。 官方视频见资源链接。",
+        "raw": {
+          "task_family": "task03"
+        },
+        "source": "https://rle-bench.github.io/blog/",
+        "license": "官网公开视频的独立转载许可尚未确认；本站仅提供原片链接。",
+        "split": "官网任务演示；具体训练/测试划分和整体成绩未披露。",
         "excerpt": true
       }
     ]
