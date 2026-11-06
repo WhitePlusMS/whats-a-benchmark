@@ -78,18 +78,16 @@
     "url": "https://docs.mteb.org/api/benchmark/"
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "未确认数据集各组成部分适用的许可。",
-    "scope": "许可说明仅适用于明确列出的数据对象；代码、题集及引用的上游材料须分别依据各自来源条款判断。",
+    "status": "permitted",
+    "license": "本页所选 q265734/c265734 的代码片段可定位至 you-get 固定版本的 miomio.py，适用该版本 MIT 许可；不代表 MTEB 所有组成数据统一采用 MIT。",
+    "scope": "仅确认当前所选代码续段检索示例中的原始函数代码许可；检索配对和相关性标签来自 MTEB 数据发布层，不扩展至其他代码仓库或数据集。",
     "boundaries": [
-      "代码仓库许可不能自动视为题集、图片、音频或上游数据许可。",
-      "具体发布、商用和再分发权限须按各数据源条款另行核对。"
+      "复用所选代码须保留 Mort Yao、Boyu Guo 的版权声明和 MIT 许可通知。",
+      "MTEB 组成代码须分别核对原仓库许可，不能用评测框架许可替代所有上游权利。"
     ],
     "sourceUrls": [
-      "https://leaderboard.mteb.org/",
-      "https://docs.mteb.org/api/benchmark/",
-      "https://arxiv.org/abs/2502.13595",
-      "https://arxiv.org/html/2502.13595"
+      "https://github.com/soimort/you-get/blob/b746ac01c9f39de94cac2d56f665285b0523b974/src/you_get/extractors/miomio.py#L41-L51",
+      "https://github.com/soimort/you-get/blob/b746ac01c9f39de94cac2d56f665285b0523b974/LICENSE.txt"
     ]
   },
   "sampleAccess": {
@@ -182,6 +180,16 @@
       "label": "MTEB(Code, v1) official benchmark page",
       "url": "https://leaderboard.mteb.org/benchmark/MTEB%28Code%2C%20v1%29",
       "role": "definition"
+    },
+    {
+      "label": "所选代码的原始固定来源",
+      "url": "https://github.com/soimort/you-get/blob/b746ac01c9f39de94cac2d56f665285b0523b974/src/you_get/extractors/miomio.py#L41-L51",
+      "role": "code"
+    },
+    {
+      "label": "所选代码的 MIT 许可与版权通知",
+      "url": "https://github.com/soimort/you-get/blob/b746ac01c9f39de94cac2d56f665285b0523b974/LICENSE.txt",
+      "role": "readme"
     }
   ],
   "related": [],
@@ -209,10 +217,11 @@
         "promptOrigin": "editorial",
         "raw": "{\n  \"id\": \"q265734\",\n  \"text\": \"def sina_xml_to_url_list(xml_data):\\n    \\\"\\\"\\\"str->list\\n    Convert XML to URL List.\\n    From Biligrab.\\n    \\\"\\\"\\\"\\n    rawurl = []\\n    dom = parseString(xml_data)\\n    for node in dom.getElementsByTagName('durl'):\\n      \"\n}\n\n{\n  \"id\": \"c265734\",\n  \"text\": \"  url = node.getElementsByTagName('url')[0]\\n        rawurl.append(url.childNodes[0].data)\\n    return rawurl\",\n  \"title\": \"\"\n}\n\n{\n  \"query-id\": \"q265734\",\n  \"corpus-id\": \"c265734\",\n  \"score\": 1\n}",
         "source": "https://huggingface.co/datasets/mteb/CodeSearchNetCCRetrieval",
-        "license": "MTEB mirror card and CodeSearchNet-derived query/code licensing were not independently confirmed; permissions remain unknown.",
+        "license": "所选代码来自 you-get 固定版本，MIT；版权归 Mort Yao、Boyu Guo。MTEB 检索配对不改变原代码许可，其他组成数据另行核对。",
         "split": "python-queries/test row_idx=0 q265734; paired positive c265734 and qrel score 1",
         "excerpt": true,
-        "explanation": "这个CodeSearchNetCCRetrieval例子是代码续段检索：query在遍历durl节点的循环处结束，正例继续读取url子节点、收集文本并返回列表。它不是检索英文函数说明，也不是运行代码验证输出。raw依次保留query、corpus和qrel三条真实记录的原字段；不添加query/positive_corpus_item/qrel这样的来源外包装，不附其他代码库。"
+        "explanation": "这个CodeSearchNetCCRetrieval例子是代码续段检索：query在遍历durl节点的循环处结束，正例继续读取url子节点、收集文本并返回列表。它不是检索英文函数说明，也不是运行代码验证输出。raw依次保留query、corpus和qrel三条真实记录的原字段；不添加query/positive_corpus_item/qrel这样的来源外包装，不附其他代码库。 查询代码与正例续段拼接后对应原仓库 miomio.py 的同一完整函数；这是检索相关性示例，不是函数执行结果。",
+        "licensePath": "licenses/mteb-code-you-get-mit.txt"
       }
     ],
     "retrievedAt": "2026-10-19"
