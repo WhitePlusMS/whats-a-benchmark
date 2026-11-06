@@ -1,3 +1,11 @@
+# 更新说明
+
+## 2026-11-06：补充 SuctionNet 测试场景输入
+
+- 修改 `content/benchmarks/suctionnet-1billion.json`：补充固定版本共享场景的 test_seen 图片、帧编号、来源和哈希，明确仅为输入而非吸盘预测或执行结果。
+- 新增 `content/assets/images/graspnet-scene0100-kinect-0194.png`：来自共享场景归档的 Kinect 原图，沿用项目对官方许可歧义采取的 BY-NC-SA 非商业共享条件。
+- 原因和影响：已有吸盘样例缺少具名测试场景；新增一条不同于现有训练场景的真实测试输入，不改变评测逻辑或虚构成绩。
+
 ## 2026-11-05：补充 R2R-CE 具体运行条件
 
 - 修改 `content/benchmarks/r2r-vlnce.json`：依据同一轨迹的原始提示补充前视观测、可选动作、前进步长、转向角度和动作预算。

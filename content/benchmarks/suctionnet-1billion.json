@@ -119,7 +119,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已读取官方对象吸盘标签及共享场景图像与标注，并查看官方实机及标签可视化动画。",
+    "reason": "已读取官方对象吸盘标签、共享训练和测试场景图像，并查看官方实机及标签可视化动画。",
     "sourceUrls": [
       "https://graspnet.net/suction",
       "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
@@ -227,6 +227,34 @@
             "width": 1280,
             "height": 720,
             "caption": "共享场景的 RealSense RGB 原图；该图未叠加吸盘候选点。",
+            "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar"
+          }
+        ]
+      },
+      {
+        "id": "suctionnet-test-seen-scene0100-kinect-0194",
+        "title": "已见物体测试场景 · Kinect 输入",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察测试场景中的混放物体，预测适合吸盘接触的位置和方向。",
+        "explanation": "这是真实采集的共享场景 RGB 输入，scene_0100 属于 test_seen。图中没有叠加吸盘候选、密封评分或抓取执行结果；此帧不能单独证明某个位置可成功吸取。",
+        "raw": {
+          "archive_member": "scenes/scene_0100/kinect/rgb/0194.png",
+          "sha256": "82c854fb71a25bdf1e7c6338e2d301e12a435e210efd2e68632e70200b2a69a9"
+        },
+        "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+        "license": "共享场景图由 GraspNet 团队、MVIG、上海交通大学提供；非商业使用，按 BY-NC-SA 条件并注明来源。",
+        "licensePath": "licenses/graspnet-scene-by-nc-sa-4.txt",
+        "split": "test_seen / scene_0100 / kinect / frame 0194",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/graspnet-scene0100-kinect-0194.png",
+            "alt": "测试场景中桌面上的混放物体，Kinect 原始图像",
+            "width": 1280,
+            "height": 720,
+            "caption": "test_seen 原始 RGB 图，未叠加吸盘预测或标签。",
             "source": "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar"
           }
         ]
@@ -344,6 +372,14 @@
         "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
         "https://graspnet.net/suction",
         "https://drive.google.com/file/d/1BaZ60u5ZkudDlYHvH2mcu2EVfUc9wGK_/view",
+        "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html"
+      ]
+    },
+    {
+      "text": "2026-11-06 从固定版本共享场景镜像按字节范围提取 scenes/scene_0100/kinect/rgb/0194.png；文件 1,154,412 字节，SHA-256 82c854fb71a25bdf1e7c6338e2d301e12a435e210efd2e68632e70200b2a69a9。按官方场景划分，scene_0100 属于 test_seen；此图只提供场景输入，未匹配吸盘标签或运行结果。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/DravenALG/GraspNet-1Billion/blob/1f9db26044cd2a7e629bbb465be3665364cbf2bf/scenes.tar",
+        "https://graspnet.net/suction",
         "https://graspnetapi.readthedocs.io/en/latest/_modules/graspnetAPI/graspnet.html"
       ]
     }
