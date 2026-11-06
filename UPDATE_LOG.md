@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：补充 ManiSkill 第三方评估轨迹
+
+- 修改 `content/benchmarks/maniskill3.json`：增加 SyncWorld 世界模型评估集中的 PushCube 专家参考轨迹及来源、划分和许可边界。
+- 新增 `content/assets/videos/maniskill3-syncworld-pushcube-episode0.mp4` 与 `content/assets/licenses/openmdw-1-1.txt`：保留原始视频及其数据卡许可文本，另按 ManiSkill 素材非商业条件使用。
+- 原因和影响：补充不同于现有 PickCube 演示的推方块评估参考，不将第三方评估集标成官方测试划分或模型成绩。
+
+# 更新说明
+
 ## 2026-11-06：补充 RoboTwin 2.0 测试场景回放
 
 - 修改 `content/benchmarks/robotwin-2.json`：增加第三方双臂传递积木测试场景的单次诊断、种子、结果和来源，区分生成视频、逆动力学动作提取与 SAPIEN 回放。

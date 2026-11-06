@@ -42,7 +42,8 @@
       "ManiSkill3 是机器人操作仿真与任务框架；环境和版本按官方任务文档分别记录。"
     ],
     "splits": [
-      "PickCube-v1 遥操作示范包含 10 条轨迹；未标注独立验证或测试划分，示范成功不等于模型评测成绩。"
+      "PickCube-v1 遥操作示范包含 10 条轨迹；未标注独立验证或测试划分，示范成功不等于模型评测成绩。",
+      "SyncWorld 第三方世界模型评估集含 ManiSkill 专家轨迹；不视为官方 ManiSkill 测试划分或策略评测成绩。"
     ],
     "fields": [
       "轨迹 HDF5 包含 actions、terminated、truncated、success、env_states 等；元数据记录任务、控制模式、种子和逐条结果。"
@@ -55,7 +56,8 @@
       "https://arxiv.org/abs/2410.00425",
       "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
       "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.h5",
-      "https://maniskill.readthedocs.io/en/latest/user_guide/datasets/demos.html"
+      "https://maniskill.readthedocs.io/en/latest/user_guide/datasets/demos.html",
+      "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation"
     ]
   },
   "dataAccess": {
@@ -71,25 +73,30 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "ManiSkill 仓库的任务素材采用 CC BY-NC 4.0；官方演示数据集卡标注 Apache-2.0。",
-    "scope": "官方任务图依 CC BY-NC 4.0 标注；演示轨迹和视频依据数据集卡标注 Apache-2.0，其他资源许可另计。",
+    "license": "官方任务素材采用 CC BY-NC 4.0；官方演示数据卡标 Apache-2.0；SyncWorld 评估集标 OpenMDW-1.1。",
+    "scope": "官方任务图按 CC BY-NC 4.0；演示轨迹按数据集卡 Apache-2.0；SyncWorld 视频保留 OpenMDW 许可并按 ManiSkill 素材非商业条件使用。",
     "boundaries": [
       "不得把素材非商业许可推广为整个项目所有数据或代码的统一许可。"
     ],
     "sourceUrls": [
       "https://github.com/haosulab/ManiSkill/blob/62ff3a5896b4d5b4cf0ac4c8d79afe600c9404a3/README.md",
-      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations"
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations",
+      "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation",
+      "https://github.com/OpenMDW/OpenMDW/blob/b26b32b34ad2edcc29a7707abb68dcfb25a538c1/1.1/LICENSE.OpenMDW-1.1"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方任务图和 PickCube 遥操作示范记录与同目录视频；未确认视频对应具体 episode。",
+    "reason": "展示官方任务图、PickCube 遥操作示范及第三方世界模型评估集中的 PushCube 专家轨迹。",
     "url": "https://maniskill.readthedocs.io/en/v3.0.0b20/tasks/table_top_gripper/",
     "sourceUrls": [
       "https://maniskill.readthedocs.io/en/v3.0.0b20/tasks/table_top_gripper/",
       "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
       "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.h5",
-      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4"
+      "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4",
+      "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation",
+      "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/base_camera_rgb/video.mp4",
+      "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/pose.pkl"
     ]
   },
   "metric": {
@@ -124,6 +131,14 @@
         "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.h5",
         "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/trajectory.json",
         "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4"
+      ]
+    },
+    {
+      "text": "2026-11-06 下载固定版本 PushCube-v1 / episode 0 / expert 的 base_camera_rgb 视频（132,109 字节，SHA-256 b7990606023d1d6dd8335c9128cb6dc3bd9d67f0825cbcac7dfe44b234c4799c）及同目录 pose.pkl（9,574 字节，SHA-256 1feb82f1bf0301033fc5748f36a04023bea4119f4221165da87771dc11a19157；未反序列化）。本地浏览器播放视频约 5.1 秒、512×512；未运行仿真或确认成功判定。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation",
+        "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/base_camera_rgb/video.mp4",
+        "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/pose.pkl"
       ]
     }
   ],
@@ -177,6 +192,26 @@
       "label": "PickCube 遥操作示范视频",
       "url": "https://huggingface.co/datasets/haosulab/ManiSkill_Demonstrations/blob/d674485bbffdd533914e52d272fdda34c0515608/demos/PickCube-v1/teleop/sample.mp4",
       "role": "data"
+    },
+    {
+      "label": "SyncWorld 评估集说明与许可",
+      "url": "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation",
+      "role": "data"
+    },
+    {
+      "label": "推方块专家参考录像",
+      "url": "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/base_camera_rgb/video.mp4",
+      "role": "data"
+    },
+    {
+      "label": "同轨迹姿态数据",
+      "url": "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/pose.pkl",
+      "role": "data"
+    },
+    {
+      "label": "OpenMDW 1.1 许可原文",
+      "url": "https://github.com/OpenMDW/OpenMDW/blob/b26b32b34ad2edcc29a7707abb68dcfb25a538c1/1.1/LICENSE.OpenMDW-1.1",
+      "role": "access"
     }
   ],
   "related": [
@@ -199,6 +234,28 @@
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [
+      {
+        "id": "maniskill3-syncworld-pushcube-episode0",
+        "title": "推方块 · 第三方世界模型测试轨迹",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "机械臂在桌面上推动蓝色方块，朝圆形目标区域移动。",
+        "explanation": "这是 SyncWorld 世界模型评估集中的 ManiSkill PushCube-v1 专家轨迹：episode 0、camera_poses_0、base_camera_rgb。视频是该评估集提供的仿真参考画面，不是世界模型生成的视频或机器人策略的评测成绩；未核实是否属于 ManiSkill 官方测试划分，也未获得该次成功判定。",
+        "raw": "evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/base_camera_rgb/video.mp4",
+        "source": "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/base_camera_rgb/video.mp4",
+        "license": "SyncWorld-Evaluation 数据卡标 OpenMDW-1.1；保留来源与许可，并按 ManiSkill 素材 CC BY-NC 4.0 条件仅限非商业用途。",
+        "licensePath": "licenses/openmdw-1-1.txt",
+        "split": "第三方 SyncWorld 世界模型评估集 / PushCube-v1 / episode 0 / expert",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/maniskill3-syncworld-pushcube-episode0.mp4",
+            "caption": "第三方评估集专家参考画面，base_camera_rgb；不是生成预测。",
+            "source": "https://huggingface.co/datasets/yyuncong/SyncWorld-Evaluation/blob/9ed64f8562227faa31416c0b297e59d8acf44ae7/evaluation_maniskill/PushCube-v1/episode_0/camera_poses_0/expert/base_camera_rgb/video.mp4"
+          }
+        ]
+      },
       {
         "id": "maniskill3-official-task",
         "title": "PickCube-v1",
