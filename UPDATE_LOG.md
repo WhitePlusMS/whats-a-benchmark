@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：固定 CritPt 原始记录来源与划分说明
+
+- 修改 `content/benchmarks/critpt.json`：四条动态rows入口已漂移，改绑与现raw一致的固定Parquet；五卡明确HF存储split名train但官方用途为70题testset，scope覆盖五条题面和代码模板，禁训练与禁发布解答条款不变。
+- 影响：样例数不变，不新增媒体或扩大许可。
+- 验证：源字段或连续节点逐字核验；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：精确裁剪 TubeLab 单题HTML范围
 
 - 修改 `content/benchmarks/tubelab.json`：两个HTML片段原来各夹带下一题卡，现各仅保留自身title与excerpt连续节点；不合并不同任务，不扩展公开题摘要为完整题。

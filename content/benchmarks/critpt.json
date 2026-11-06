@@ -75,7 +75,7 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "Apache-2.0（固定 Hugging Face 数据集 revision e0892bc952bd95cdd28f4c73c5f04d963243ed1a 的 dataset card 元数据）。数据卡同时注明不得用于模型训练，并要求不要在线发布解答。",
-    "scope": "仅展示该固定 revision 中公开 train row 0 的完整 problem_description；不含答案、expected-answer 数据、评分测试或 grader secrets。",
+    "scope": "仅展示固定 revision e0892bc952bd95cdd28f4c73c5f04d963243ed1a 中 HF default/train 的 row_idx=0–4 五条公开题面及所选公开字段（题目ID、类型、索引、代码模板与元数据）；对应 Challenge_1_main、Challenge_10_main、Challenge_11_main、Challenge_12_main、Challenge_13_main。train 是仓库配置名称，这些记录属于官方70题 testset，不代表训练用途许可；不含解答、answer_code、answer_only_code、expected-answer 数据、评分测试或 grader secrets。",
     "boundaries": [
       "不得将 CritPt benchmark data 用于模型训练。",
       "不在线发布题目解答。",
@@ -89,7 +89,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
+    "reason": "5条固定版本的公开题面及所选公开字段可切换查看；HF train 是仓库配置名称，属于官方70题testset，不表示训练用途许可。未展示解答、评分测试或grader秘密，5条不代表完整70题核验。",
     "url": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
     "sourceUrls": [
       "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
@@ -226,9 +226,15 @@
         "https://huggingface.co/datasets/CritPt-Benchmark/CritPt",
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
       ]
+    },
+    {
+      "text": "2026-11-06 逐条实读核验：四条动态rows入口已漂移，改绑与现raw一致的固定Parquet；五卡明确HF存储split名train但官方用途为70题testset，scope覆盖五条题面和代码模板，禁训练与禁发布解答条款不变。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet"
+      ]
     }
   ],
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-06",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
@@ -247,7 +253,7 @@
         "source": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
         "license": "Apache-2.0 — fixed HF dataset revision metadata",
         "licensePath": "licenses/critpt-sample-source.txt",
-        "split": "default / train / row_idx=0 / Challenge_1_main",
+        "split": "HF default / train / row_idx=0 / Challenge_1_main；train为仓库配置名称，属于官方70题testset，不表示允许训练",
         "excerpt": false
       },
       {
@@ -266,10 +272,10 @@
           "metadata_problem_setup": "# Problem setup:\nIn order to introduce torsion to the system, one can use the first-order formulation of general relativity. We define a local reference frame at each point of the $(3+1)$-dimensional manifold $\\mathcal{M}$, the tetrad $e^A_\\mu$, such that the metric can be written as $g_{\\mu\\nu}=e^A_\\mu e^B_\\nu \\eta_{AB}$, where $\\eta_{AB}$ is the flat Minkowski metric on the internal space of coordinates. The internal indices, denoted by the Latin alphabet, also run from $0$ to $3$ just like the spacetime ones. The metrics $g_{\\mu\\nu}$ and $\\eta_{AB}$ can raise or lower the spacetime and internal tangent-space indices, respectively. The Levi-Civita symbol shall be denoted by $\\epsilon_{ABCD}$.\n\nThe gravitational action can be reformulated in the first-order form as a function of the tetrad $(e^A)$ and spin-connection variables $(\\omega^{AB})$. Both of these are 1-forms on the manifold $\\mathcal{M}$. In this formalism, the curvature 2-form is\n\\begin{align}\nR^{AB} =d\\omega^{AB} + \\omega^A{}_C\\wedge\\omega^{CB}\\,.\n\\end{align}\n\nStart with the Einstein-Hilbert action $(\\mathcal{S}_{EH})$ in first-order Palatini form, and in first-order Palatini form, add an action term ($\\mathcal{S}_{\\vartheta}$) for a single scalar, $\\vartheta$, with an as-yet unspecified potential that depends on $\\vartheta$, $V(\\vartheta)$. Assume that the scalar $\\vartheta$ depends only on time, $\\vartheta(t)$, and take $c = 1$.\n\nWe add a Chern-Simons action, which we write as\n\\begin{align}\n\\mathcal{S}_{\\rm CS}=\\frac{\\alpha}{4}\\int d\\vartheta\\wedge \\left( \\omega^{AB} \\wedge d\\omega_{AB} +\\frac{2}{3}\\omega^A{}_B\\wedge\\omega^B{}_C\\wedge\\omega^C{}_A\\right),\n\\end{align}\nwhere we have dropped a boundary term.\n\nWe introduce the ansatz for the torsion 2-form:\n\\begin{align}\nT^0 =  0,\n\\\\\nT^i = h(t)e^0\\wedge e^i - \\phi(t)\\epsilon^i_{jk} e^j \\wedge e^k.\n\\end{align}\n\nWe split the spin connection into ''Torsion free\" and ''Torsion full\" parts:\n\n\\begin{equation}\n\\omega^{IJ} = \\bar{\\omega}^{IJ} + \\tilde{\\omega}^{IJ}\n\\end{equation}\n\nAssume a FRW geometry. The scale factor is denoted by $a(t)$, where $t$ is the cosmic time and the Hubble parameter is defined as $H(t)$.",
           "metadata_tag": ""
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "source": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
         "license": "Apache-2.0 — fixed HF dataset revision metadata",
         "licensePath": "licenses/critpt-sample-source.txt",
-        "split": "train / row_idx=1 / problem_idx=Challenge_10_main",
+        "split": "HF default / train / row_idx=1 / Challenge_10_main；train为仓库配置名称，属于官方70题testset，不表示允许训练",
         "excerpt": true
       },
       {
@@ -288,10 +294,10 @@
           "metadata_problem_setup": "\n\n# Problem setup:\nConsider a (1+1)-D Lagrangian that consists of a Majorana fermion $\\chi$ and boson $\\phi$ with compactification radius $\\sqrt{\\frac{K}{m}}$:\n\n$\\\\\nL=\\frac{i}{2}\\bar{\\chi}\\not\\!{\\partial}\\chi+\\frac{m}{2\\pi K}(\\partial_\\mu \\phi)^2+\\frac{\\Delta}{2}i\\bar{\\chi}\\chi\\cos(2m\\phi).\\\\\n$\n\nIn this problem, $x\\equiv [\\Delta]$, where $[\\Delta]$ is the scaling dimension of the coupling constant $\\Delta$",
           "metadata_tag": ""
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "source": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
         "license": "Apache-2.0 — fixed HF dataset revision metadata",
         "licensePath": "licenses/critpt-sample-source.txt",
-        "split": "train / row_idx=2 / problem_idx=Challenge_11_main",
+        "split": "HF default / train / row_idx=2 / Challenge_11_main；train为仓库配置名称，属于官方70题testset，不表示允许训练",
         "excerpt": true
       },
       {
@@ -310,10 +316,10 @@
           "metadata_problem_setup": "\n\n# Problem setup:\nConsider $Z_N$ ($N$ is any integer) parafermion zero-mode operators on four sites $\\alpha_i$ with $i=1,2,3,4$ and a four-stage tunneling process described by\n\n$\nH_{34}\\rightarrow H_{23} \\rightarrow H_{12}\\rightarrow H_{13}\\rightarrow H_{34},\n$\n\nwhere\n$\nH_{ij}=t\\left(e^{-i\\phi_{ij}/N}\\alpha_i^\\dagger\\alpha_j+H.c.\\right)\n$, $\\phi_{ij}$ is a phase between sites $i$ and $j$, and $H.c.$ stands for Hermitian conjugate. This tunneling process is followed by a permutation between zero modes $(\\alpha_1,\\alpha_2)$ and $(\\alpha_3,\\alpha_4)$, respectively.",
           "metadata_tag": ""
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "source": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
         "license": "Apache-2.0 — fixed HF dataset revision metadata",
         "licensePath": "licenses/critpt-sample-source.txt",
-        "split": "train / row_idx=3 / problem_idx=Challenge_12_main",
+        "split": "HF default / train / row_idx=3 / Challenge_12_main；train为仓库配置名称，属于官方70题testset，不表示允许训练",
         "excerpt": true
       },
       {
@@ -332,10 +338,10 @@
           "metadata_problem_setup": "# Problem setup:\nConsider a (1+1)-D CFT on a torus that consists of right- and left-moving edges of a Moore-Read state at filling fraction $\\nu=1/k$. The primary fields are labeled by $(j_L,n_L,j_R,n_R)$, where $j_{L/R}=0,1/2,1$, $n_{L/R}\\in Z_{2k}$  and the electron operators in the theory are $(1,2k,0,0)$ and $(0,0,1,2k)$.",
           "metadata_tag": ""
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=CritPt-Benchmark%2FCritPt&config=default&split=train&offset=0&length=6",
+        "source": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/resolve/e0892bc952bd95cdd28f4c73c5f04d963243ed1a/data/train-00000-of-00001.parquet",
         "license": "Apache-2.0 — fixed HF dataset revision metadata",
         "licensePath": "licenses/critpt-sample-source.txt",
-        "split": "train / row_idx=4 / problem_idx=Challenge_13_main",
+        "split": "HF default / train / row_idx=4 / Challenge_13_main；train为仓库配置名称，属于官方70题testset，不表示允许训练",
         "excerpt": true
       }
     ]
