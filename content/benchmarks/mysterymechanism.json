@@ -62,12 +62,12 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "官方材料未明确完整任务数据的复用许可；本站不推定公开访问意味着可再发布。",
+    "status": "restricted",
+    "license": "Vals 官方将 MysteryMechanism 标为专有（Proprietary）；三个冻结公开示例未见单独再发布许可，公开可访问不等于开放题库。",
     "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "代码仓库的开源许可与底层任务数据授权需分别核对。",
-      "后续转载题目或媒体前，须核实对应材料的授权范围。"
+      "专有基准与公开演示的可访问范围不同；不得据公开示例推定隐藏验证或测试机制可再发布。",
+      "本站保留的任务条件、观测数值和公开示意公式不构成对完整任务、实验路径或模型轨迹的再发布授权。"
     ],
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/mysterymechanism"
@@ -162,7 +162,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "Recover an executable mathematical expression mapping the anonymous inputs to one measured output. Bounds: x1 ∈ [0.05, 0.70], x2 ∈ [0.05, 30.0]. Passive observations: (0.5944, 1.9188) → 12.2245; (0.5044, 0.2068) → 10.3732.",
-        "explanation": "血液黏度公开示例给出两维无名输入的物理范围和两条被动观测，要求从有限实验中恢复映射表达式；本站只保留提问、范围和初始观测，没有复制官方示意中的实验路径及拟合方程。 答案栏保留作者已公开的成功示意公式及系数，它不代表本轮求解结果，也不冒充隐藏计分机制。",
+        "explanation": "血液黏度公开示例给出两维无名输入的物理范围和两条被动观测，要求从有限实验中恢复映射表达式；本站只保留提问、范围和初始观测，没有复制官方示意中的实验路径。 答案栏保留作者已公开的成功示意公式及系数，它不代表本轮求解结果，也不冒充隐藏计分机制。",
         "raw": "<section class=\"min-w-0 p-4 lg:edge-r lg:edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nAgent-visible question\n</div> <p class=\"mt-2 font-serif text-base/6 font-medium foreground-primary\" data-astro-cid-cdxvoeg3>\nRecover an executable mathematical expression mapping the\n              anonymous inputs to one measured output.\n</p> <p class=\"mt-1 text-xs/5 foreground-secondary\" data-astro-cid-cdxvoeg3>\nTwo noisy passive observations · 5 additional\n              experiments · no domain context\n</p> <div class=\"mt-4 edge edge-primary\" data-astro-cid-cdxvoeg3> <div class=\"grid gap-3 p-3 sm:grid-cols-2\" data-astro-cid-cdxvoeg3> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nBounds\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>x1 ∈ [0.05, 0.70]</li><li data-astro-cid-cdxvoeg3>x2 ∈ [0.05, 30.0]</li> </ul> </div> <div data-astro-cid-cdxvoeg3> <div class=\"font-mono text-3xs uppercase tracking-wide foreground-tertiary\" data-astro-cid-cdxvoeg3>\nPassive observations\n</div> <ul class=\"mt-1 space-y-1 font-mono text-[11px]/4 foreground-primary\" data-astro-cid-cdxvoeg3> <li data-astro-cid-cdxvoeg3>(0.5944, 1.9188) → 12.2245</li><li data-astro-cid-cdxvoeg3>(0.5044, 0.2068) → 10.3732</li> </ul> </div> </div> </div> </section>",
         "source": "https://www.vals.ai/benchmarks/mysterymechanism",
         "license": "Vals公开冻结示例的必要任务条件、范围及观测数值；未确认独立数据许可。原始HTML保留，不新建假数据字段；没有抓取隐藏测试机制或模型逐字推理。",
