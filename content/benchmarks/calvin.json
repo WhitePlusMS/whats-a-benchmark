@@ -25,6 +25,11 @@
         "label": "OpenBMB 发布的 CALVIN 评测序列",
         "type": "第三方评测配置",
         "url": "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json"
+      },
+      {
+        "label": "第三方验证数据帧查看器",
+        "type": "转换数据集",
+        "url": "https://huggingface.co/datasets/KyujinL/CALVIN_ABC"
       }
     ]
   },
@@ -63,7 +68,8 @@
     "splits": [
       "D→D",
       "ABC→D",
-      "ABCD→D"
+      "ABCD→D",
+      "第三方 KyujinL/CALVIN_ABC 查看器提供标为 validation 的数据帧；发布者未提供数据卡，本站未核实与官方原始文件及具体评测序列的一一对应。"
     ],
     "fields": [],
     "files": [
@@ -72,7 +78,9 @@
     ],
     "sourceUrls": [
       "https://github.com/mees/calvin/blob/main/dataset/README.md",
-      "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md"
+      "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md",
+      "https://huggingface.co/datasets/KyujinL/CALVIN_ABC",
+      "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1"
     ]
   },
   "dataAccess": {
@@ -100,7 +108,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载第三方训练轨迹与评测序列文件；训练视频和评测配置分别展示，未取得与评测序列对应的录像。",
+    "reason": "展示第三方训练轨迹、评测序列和另一个来源标为 validation 的单帧数值；各记录互不推断对应关系。",
     "sourceUrls": [
       "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
@@ -108,7 +116,10 @@
       "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/meta/episodes.jsonl",
       "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/meta/info.json",
       "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC",
-      "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json"
+      "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json",
+      "https://huggingface.co/datasets/KyujinL/CALVIN_ABC",
+      "https://huggingface.co/datasets/KyujinL/CALVIN_ABC/blob/0874cd64f0df8dcc3a3534360ca448705e44e954/validation.tar.part-000",
+      "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1"
     ]
   },
   "metric": {
@@ -181,6 +192,21 @@
     {
       "label": "OpenBMB 评测序列文件（固定版本）",
       "url": "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json",
+      "role": "data"
+    },
+    {
+      "label": "第三方 validation 数据及查看器",
+      "url": "https://huggingface.co/datasets/KyujinL/CALVIN_ABC",
+      "role": "data"
+    },
+    {
+      "label": "第三方固定版本 validation 数据分片",
+      "url": "https://huggingface.co/datasets/KyujinL/CALVIN_ABC/blob/0874cd64f0df8dcc3a3534360ca448705e44e954/validation.tar.part-000",
+      "role": "data"
+    },
+    {
+      "label": "validation 单帧查看接口",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1",
       "role": "data"
     }
   ],
@@ -369,6 +395,88 @@
         "license": "第三方转换数据卡标 Apache-2.0；CALVIN 上游演示数据的独立许可尚未核实。",
         "split": "train / episode 0 / 第三方转换集",
         "excerpt": true
+      },
+      {
+        "id": "calvin-kyujin-validation-0032068",
+        "title": "验证数据中的一帧 · 第三方发布",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "查看标为 validation 的机器人交互数据：一帧同时记录相机观察、机器人状态与动作。",
+        "explanation": "第三方发布的 CALVIN_ABC validation 数据查看接口中，该帧 key 为 validation/episode_0032068；接口提供静态和腕部 RGB、深度及状态和动作。本站下载并查看静态相机画面，但该帧未带任务指令或结果，不能推断机器人正在完成什么，也未确认与本站现有评测序列的对应关系。图片转载许可未明确，可通过数据查看器查看原始内容。",
+        "raw": {
+          "__key__": "validation/episode_0032068",
+          "__url__": "hf://datasets/KyujinL/CALVIN_ABC@0874cd64f0df8dcc3a3534360ca448705e44e954/validation.tar.part-000",
+          "actions": [
+            0.16547654553838786,
+            -0.26100794806278405,
+            0.3553280284022681,
+            -3.1186382175136145,
+            0.008153868779908242,
+            1.5018440208313382,
+            -1.0
+          ],
+          "rel_actions": [
+            0.0015385588108665638,
+            0.3695912771994797,
+            0.021336945539715546,
+            -0.1522304609004621,
+            -0.08421430579778288,
+            0.061132881044621,
+            -1.0
+          ],
+          "robot_obs": [
+            0.16544577436217053,
+            -0.26839977360677364,
+            0.3549012894914738,
+            -3.1110266944685914,
+            0.012364584069797499,
+            1.4987873767791073,
+            -3.0647435400062e-07,
+            -0.9422141364029949,
+            1.257246753840235,
+            1.5082980944003164,
+            -2.1169667293492194,
+            -1.306175700368218,
+            1.7617048433619706,
+            0.42074182728241244,
+            -1.0
+          ],
+          "scene_obs": [
+            0.273417437475027,
+            0.07247076533566545,
+            1.2357966427329128e-19,
+            -1.3025828094341888e-14,
+            0.0,
+            0.0,
+            0.20907782586292786,
+            -0.13327306891645285,
+            0.36234975507407613,
+            0.0001710501815348403,
+            -0.00011435658450885805,
+            3.0453043606302046,
+            0.049158579938572144,
+            0.08236944403831717,
+            0.46098913472568814,
+            -1.5707994414319923,
+            -6.0842609719362406e-05,
+            0.12783321167031822,
+            0.09335058788708187,
+            -0.15372138933356766,
+            0.36234924696591153,
+            -8.725625890304967e-06,
+            -1.4723103365352213e-05,
+            -1.4766728899217383
+          ],
+          "rgb_static_shape": [
+            200,
+            200,
+            3
+          ]
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1",
+        "license": "第三方数据集未提供数据卡或明确素材许可；仅展示少量数值字段并提供源入口，未转载画面。",
+        "split": "第三方标注 validation / validation/episode_0032068；与官方验证文件的逐项对应未核实。",
+        "excerpt": true
       }
     ]
   },
@@ -385,6 +493,14 @@
       "sourceUrls": [
         "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_sequences.json",
         "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md"
+      ]
+    },
+    {
+      "text": "2026-11-06 下载查看接口返回的单帧 JSON（2,175,613 字节，SHA-256 da71138dc7283c2f54ced8ab298730342f19d782f35dcb9298efc62fe43df7a8），读取 validation/episode_0032068 并查看 rgb_static；该接口按行返回，源归档标识修订 0874cd64f0df8dcc3a3534360ca448705e44e954。发布者未给数据卡，未核实源帧与原版数据的逐字节对应或特定任务。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/KyujinL/CALVIN_ABC",
+        "https://huggingface.co/datasets/KyujinL/CALVIN_ABC/blob/0874cd64f0df8dcc3a3534360ca448705e44e954/validation.tar.part-000",
+        "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1"
       ]
     }
   ]
