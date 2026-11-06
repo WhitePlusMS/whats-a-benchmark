@@ -44,7 +44,8 @@
       "官方 Tool-Call 版本目前包含 Puzzle Box 500 条示范、32,669 个决策。"
     ],
     "splits": [
-      "原始示范来自开发场景，不与评测实例重合；Tool-Call 训练数据未预设训练/验证划分，作者建议按 instance_id 划分。"
+      "原始示范来自开发场景，不与评测实例重合；Tool-Call 训练数据未预设训练/验证划分，作者建议按 instance_id 划分。",
+      "官方 eval50 清单列出各任务的评测实例；作者另提供逐实例模型结果表。"
     ],
     "fields": [
       "Tool-Call 每个决策包含观测消息、目标工具调用、tier、子任务及 instance_id。"
@@ -56,7 +57,9 @@
       "https://declare-lab.github.io/RoboQuest/",
       "https://arxiv.org/abs/2610.10388",
       "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call",
-      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/rows.jsonl"
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/rows.jsonl",
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/results/eval50/episodes.csv",
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/suite/v1/eval50/puzzle_box.txt"
     ]
   },
   "dataAccess": {
@@ -86,7 +89,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示开发场景示范视频与官方 Tool-Call 训练记录；工具调用为逐步核验的示范，不是评测模型的成绩。",
+    "reason": "展示开发场景示范、Tool-Call 训练记录，以及作者公开的单次评测结果；三者划分不同。",
     "url": "https://declare-lab.github.io/RoboQuest/",
     "sourceUrls": [
       "https://declare-lab.github.io/RoboQuest/",
@@ -96,7 +99,10 @@
       "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/LICENSE",
       "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl",
       "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/rows.jsonl",
-      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call"
+      "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call",
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/results/eval50/episodes.csv",
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/suite/v1/eval50/puzzle_box.txt",
+      "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/suite/v1/puzzle_box/registry/instances/059f7f6ecc3ee5e7.json"
     ]
   },
   "metric": {
@@ -192,6 +198,21 @@
     {
       "label": "Tool-Call 第一步 wrist 相机",
       "url": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/e1/e1c52baf2265bb2b332733d77e8e192a3ada8d301d8d5bb7374d2756f5034240.png",
+      "role": "data"
+    },
+    {
+      "label": "官方逐次模型评测结果",
+      "url": "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/results/eval50/episodes.csv",
+      "role": "data"
+    },
+    {
+      "label": "Puzzle Box 官方评测实例清单",
+      "url": "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/suite/v1/eval50/puzzle_box.txt",
+      "role": "data"
+    },
+    {
+      "label": "Puzzle Box 评测实例配置",
+      "url": "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/suite/v1/puzzle_box/registry/instances/059f7f6ecc3ee5e7.json",
       "role": "data"
     }
   ],
@@ -357,6 +378,39 @@
             "source": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/e1/e1c52baf2265bb2b332733d77e8e192a3ada8d301d8d5bb7374d2756f5034240.png"
           }
         ]
+      },
+      {
+        "id": "roboquest-eval50-astra-puzzle-059f",
+        "title": "Puzzle Box：一次官方模型评测记录",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在五个插销相互阻挡的木盒任务中，找出操作顺序，取出橘子并提交。",
+        "explanation": "作者公开的 eval50 清单包含此实例；评测结果表记录 GPT-6 Astra 在该实例以 80 次决策完成正确提交，进度为 1.0。实例配置包含 5 个联动插销、无遮罩；这是发布方报告的单次仿真结果，不代表整体成功率，也没有该次运行的录像。",
+        "raw": {
+          "model": "GPT-6 Astra",
+          "model_dir": "openai-gpt-6-astra",
+          "task": "puzzle_box",
+          "instance_id": "059f7f6ecc3ee5e7",
+          "cell": "chain_length=5;cover=none",
+          "obs_level": "pb_visible",
+          "success": "1",
+          "progress": "1.0",
+          "outcome": "correct submit",
+          "termination": "physical_submit",
+          "submitted": "1",
+          "decisions": "80",
+          "ticks": "6819",
+          "sim_seconds": "341.0",
+          "wall_seconds": "1147",
+          "prompt_tokens": "1787221",
+          "cache_read_tokens": "1527299",
+          "output_tokens": "11554"
+        },
+        "source": "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/results/eval50/episodes.csv",
+        "license": "RoboQuest 代码仓库标注 MIT License，Copyright (c) 2026 DeCLaRe Lab；本条摘录公开结果表中的一行。",
+        "licensePath": "licenses/roboquest-mit.txt",
+        "split": "官方 suite/v1/eval50 / puzzle_box / 实例 059f7f6ecc3ee5e7；模型评测结果。",
+        "excerpt": true
       }
     ]
   }

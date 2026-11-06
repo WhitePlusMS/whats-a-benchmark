@@ -1,5 +1,12 @@
 # 更新说明
 
+## 2026-11-06：补充 RoboQuest 官方单次评测记录
+
+- 修改 `content/benchmarks/roboquest.json`：增加 eval50 清单中 Puzzle Box 实例的官方单次模型结果及固定版本来源，并补充测试划分说明。
+- 原因和影响：原有示例均为任务介绍或开发演示；新增可对应实例配置的测试结果，明确是发布方的单次仿真记录且没有该次录像，不重复已有示范。
+
+# 更新说明
+
 ## 2026-11-06：补充 Colosseum 组合扰动测试演示
 
 - 修改 `content/benchmarks/colosseum.json`，增加官方任务扰动表来源及 `_1/variation0/episode8` 记录；在 `content/assets/images/` 增加三张原始帧，在 `content/assets/videos/` 增加由 95 帧合成的预览视频。
