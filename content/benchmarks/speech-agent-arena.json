@@ -57,19 +57,21 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "未核实题库与媒体的统一再发布许可。",
-    "scope": "仅记录官方定义和已披露范围。",
+    "status": "restricted",
+    "license": "官网内容适用受限网站使用条款（Artificial Analysis, Inc.）；并非题库或语音媒体开放许可证。",
+    "scope": "仅保留本站独立任务说明及官方公开演示链接；未获场景原文、完整提示、工具材料和录音的公开再发布授权。",
     "boundaries": [
-      "不将代码许可推定为题库、素材或媒体再发布许可。"
+      "官网条款第2.1–2.2节仅授予个人非商业的有限使用权，并限制内容分发与托管。",
+      "不复制完整场景、系统提示、工具材料或录音；公开可读不等于再发布授权。"
     ],
     "sourceUrls": [
-      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "https://artificialanalysis.ai/terms-of-use"
     ]
   },
   "sampleAccess": {
-    "status": "local",
-    "reason": "已核对并展示官方公开案例的真实片段与解析；这不是完整私有题集。",
+    "status": "restricted",
+    "reason": "官方提供牙科预约等公开语音演示，可通过原始入口查看；本站保留独立任务说明，不转载受网站条款限制的场景原文、完整提示或录音。",
     "url": "https://artificialanalysis.ai/speech-to-speech/arena/overview",
     "sourceUrls": [
       "https://artificialanalysis.ai/speech-to-speech/arena/overview"
@@ -107,6 +109,11 @@
       "label": "AA官方牙科预约场景、示例提示与工具签名",
       "url": "https://artificialanalysis.ai/speech-to-speech/arena/overview",
       "role": "data"
+    },
+    {
+      "label": "官网内容使用条款",
+      "url": "https://artificialanalysis.ai/terms-of-use",
+      "role": "access"
     }
   ],
   "related": [],
@@ -122,24 +129,6 @@
     }
   },
   "updatedAt": "2026-10-20",
-  "sampleSet": {
-    "retrievedAt": "2026-10-19",
-    "samples": [
-      {
-        "id": "overview-public-dental-booking-example",
-        "title": "牙科预约：首选时间与替代条件",
-        "type": "record",
-        "prompt": "新患者希望预约周二上午9:30的牙科检查；若该时段已满，改约最早可用的上午时段。官方完整演示还要求核对注册记录，并让接待员复述预约日期和时间。",
-        "promptOrigin": "editorial",
-        "explanation": "这条场景需要先查询账户和可用时段，再按用户条件调用预约工具。只有说“预约成功”不能证明完成；官方另行检查最终工具调用和参数。来源页同时公开示例系统提示与工具签名，但演示录音不计入排行榜结果；本站没有将其冒称为计分对话行。",
-        "raw": "Book a new-patient dental check-up for Tuesday at 9:30am, or the earliest available morning if that time is taken.",
-        "source": "https://artificialanalysis.ai/speech-to-speech/arena/overview",
-        "license": "官方公开场景句的必要短引；未确认完整提示、工具材料和录音的统一再分发许可。",
-        "split": "官方overview / New Patient Dental Booking公开演示 / 未披露稳定行ID",
-        "excerpt": true
-      }
-    ]
-  },
   "researchNotes": [
     {
       "text": "2026-10-19直接核对官方原文，保留页面实际展示的短片段；任务说明及解析由本站整理，未将文字节选包装为完整题库行。源页面与响应哈希保存在本轮逐项核验资料中。",
