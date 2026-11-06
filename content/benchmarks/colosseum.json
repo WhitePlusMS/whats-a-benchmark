@@ -143,6 +143,11 @@
       "label": "官方滑动方块演示原始数据包",
       "url": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz",
       "role": "data"
+    },
+    {
+      "label": "官方任务扰动适用表",
+      "url": "https://docs.google.com/spreadsheets/d/175cCG9qHzNB6axSno6K2NjQ9gjpbCqNK9GCi-SAQkCM/edit?usp=sharing",
+      "role": "data"
     }
   ],
   "related": [
@@ -248,6 +253,55 @@
             "width": 128,
             "height": 128,
             "caption": "左肩相机第 87 帧，原始 128 × 128。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
+          }
+        ]
+      },
+      {
+        "id": "colosseum-slide-var1-episode8",
+        "title": "滑动方块：组合扰动测试演示",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在组合扰动的仿真场景中将方块滑向目标区域。",
+        "explanation": "官方任务表将 slide_block_to_target 的编号 1 标为适用全变化条件；这里展示数据包中同一条左肩相机演示的 95 帧，预览视频由本站按 10 帧/秒合成，原始采样帧率未核实。具体扰动取值未逐项读取；这不是模型评测结果，也不能仅凭画面判定成功。",
+        "raw": "slide_block_to_target / slide_block_to_target_1 / variation0 / episodes / episode8 / left_shoulder_rgb / 0.png–94.png",
+        "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz",
+        "license": "官方 Colosseum 数据集标注 MIT；来源 Colosseum 作者团队。",
+        "licensePath": "licenses/colosseum-data-mit.txt",
+        "split": "数据卡将适用扰动条件的演示列为测试集；_1 是官方任务表中的全变化配置。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/colosseum-slide-var1-episode8.mp4",
+            "caption": "episode8 左肩相机连续 95 帧，本站按 10 帧/秒合成；不代表原始播放速度。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
+          },
+          {
+            "kind": "image",
+            "path": "images/colosseum-slide-var1-episode8-0.png",
+            "alt": "Colosseum 组合扰动演示 episode8 左肩相机第 0 帧",
+            "width": 128,
+            "height": 128,
+            "caption": "左肩相机第 0 帧，原始 128 × 128。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
+          },
+          {
+            "kind": "image",
+            "path": "images/colosseum-slide-var1-episode8-47.png",
+            "alt": "Colosseum 组合扰动演示 episode8 左肩相机第 47 帧",
+            "width": 128,
+            "height": 128,
+            "caption": "左肩相机第 47 帧，原始 128 × 128。",
+            "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
+          },
+          {
+            "kind": "image",
+            "path": "images/colosseum-slide-var1-episode8-94.png",
+            "alt": "Colosseum 组合扰动演示 episode8 左肩相机第 94 帧",
+            "width": 128,
+            "height": 128,
+            "caption": "左肩相机第 94 帧，原始 128 × 128。",
             "source": "https://huggingface.co/datasets/colosseum/colosseum-challenge/blob/b6e8897b0e2a9b74e4dc50174064661918b60236/slide_block_to_target.tar.gz"
           }
         ]

@@ -1,5 +1,12 @@
 # 更新说明
 
+## 2026-11-06：补充 Colosseum 组合扰动测试演示
+
+- 修改 `content/benchmarks/colosseum.json`，增加官方任务扰动表来源及 `_1/variation0/episode8` 记录；在 `content/assets/images/` 增加三张原始帧，在 `content/assets/videos/` 增加由 95 帧合成的预览视频。
+- 原因和影响：补充原有无扰动训练演示缺少的组合扰动测试条件；明确数据卡划分、帧率假设与非模型成绩边界。
+
+# 更新说明
+
 ## 2026-11-06：恢复三帧轨迹数值
 
 - 修改 `content/benchmarks/robotwin-2.json`：同一条样例保留 LeRobot 的三帧状态与动作，样例来源指向该转换集，视频沿用其独立来源与许可说明。
