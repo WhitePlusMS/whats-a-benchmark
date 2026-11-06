@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 PRBench 总项与分项重复案例
+
+- 修改 `content/benchmarks/prbench.json`：四个 task_id 与 Finance/Legal 分项原始字段完全相同，仅在分项保留；总项保留独有CCAR任务并沿用相关条目链接。
+- 影响：总项样例5→1，源题与两个分项不变，不将多轮记录首轮当完整运行；数量说明同步更新。
+- 验证：四组raw逐值相同且原来源已复核；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：更正 MIEB-Lite 旧记录身份备注
 
 - 修改 `content/benchmarks/mieb-lite.json`：将旧备注的300×300/标签43标记为错误历史，实读确认当前rectangular_farmland_124为256×256/标签31；raw省略过期签名图片URL并说明节选范围。

@@ -88,7 +88,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。保留单轮或多轮记录的首轮问题及标签，未重放全部历史；模型回答不作为参考答案。",
+    "reason": "本站总条目保留1条独有CCAR公开记录；其余4条同源案例仅在关联的Finance/Legal分项展示，避免重复计数。仍仅保留首轮问题及标签，未重放多轮历史，模型回答不作为参考答案。",
     "url": "https://huggingface.co/datasets/ScaleAI/PRBench",
     "sourceUrls": [
       "https://huggingface.co/datasets/ScaleAI/PRBench",
@@ -146,6 +146,12 @@
         "https://datasets-server.huggingface.co/first-rows?dataset=ScaleAI%2FPRBench&config=default&split=finance",
         "https://github.com/scaleapi/PRBench",
         "https://labs.scale.com/papers/prbench"
+      ]
+    },
+    {
+      "text": "2026-11-06 已核对官方原记录，并比对本站总项与Finance/Legal分项：task_id ed36da8e8736016b46097546、4d8572153bf1cf6c0484b643、e6d074eb6486a518673769d3、740a326c927c1ce16ffee6b8 的原始字段完全相同。总条目移除这4条重复展示，保留独有CCAR任务ea67e314b6c2e8fc70627c19；四条题目仍在对应分项及原数据源，不代表删除源数据或改变评测规模。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/PRBench"
       ]
     }
   ],
@@ -232,7 +238,7 @@
     }
   ],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-06",
   "interpretation": {
     "judge": {
       "text": "评委读取完整对话和标准，评的是最终助手回应；负权重会扣分，criterion 通过比例不等于论文 mean_clipped。",
@@ -270,86 +276,6 @@
         "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
         "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0；本站仅保留该记录的实际字段，不扩展到被省略的历史回复、评分rubric或参考文本。",
         "split": "config=default / split=finance / row_idx=0 / task_id=ea67e314b6c2e8fc70627c19",
-        "excerpt": true
-      },
-      {
-        "id": "prbench-finance-ed36da8e8736016b46097546",
-        "title": "Market Microstructure, Trading & Liquidity · Expert",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "询问交易流动性与执行策略问题，要求结合题目中的市场情景分析。",
-        "explanation": "该金融专家任务来自 Market Microstructure, Trading & Liquidity：市场深度突然消失而跨场所失衡指标仍中性时，询问如何调节算法以降低逆向选择。源记录是4轮对话；本站只保留开场提示和任务标签。官方记录另含各轮模型回答及专家评分rubric，但没有唯一标准答案字段；模型回答不作为参考答案。",
-        "raw": {
-          "task": "ed36da8e8736016b46097546",
-          "turns": 4,
-          "field": "Finance",
-          "topic": "Market Microstructure, Trading & Liquidity",
-          "expert": "Expert",
-          "prompt_0": "How to tweak the algorithm to prevent adverse selection when depth vanishes but cross venue imbalance looks neutral?"
-        },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
-        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
-        "split": "config=default / split=finance / row_idx=2 / task_id=ed36da8e8736016b46097546",
-        "excerpt": true
-      },
-      {
-        "id": "prbench-finance-4d8572153bf1cf6c0484b643",
-        "title": "Wealth Management, Financial Planning & Advice · Non-Expert",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "询问个人财富管理与投资规划问题，要求结合具体财务约束分析。",
-        "explanation": "该财富管理任务给出银行误转 £3,455 而非 £345.50、用户已花 £650 的情境，询问银行要求退款时如何处理。源记录是一轮、非专家问题。官方数据另有模型回复与 rubric，不是官方唯一标准答案；候选不摘录这些内容。",
-        "raw": {
-          "task": "4d8572153bf1cf6c0484b643",
-          "turns": 1,
-          "field": "Finance",
-          "topic": "Wealth Management, Financial Planning & Advice",
-          "expert": "Non-Expert",
-          "prompt_0": "I got a credit alert on my bank app and I assumed it was the interest on my savings so I used £650 for the balance on my holiday trip. The bank just called requesting a refund because it was a wrong amount, they sent £3,455 instead of £ 345.5, but I've already spent part of the money. I don't mind they taking the rest but i won't pay for what i already spent. Is that ok? "
-        },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=finance&offset=0&length=100",
-        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
-        "split": "config=default / split=finance / row_idx=4 / task_id=4d8572153bf1cf6c0484b643",
-        "excerpt": true
-      },
-      {
-        "id": "prbench-legal-e6d074eb6486a518673769d3",
-        "title": "Labor & Employment Law · Expert",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "询问跨州远程雇佣、员工分类及迁居后的劳动法问题。",
-        "explanation": "跨州远程雇佣情景同时涉及搬到纽约后的员工豁免分类、孕期安排、用餐休息和加州加班规则是否适用。需要分别识别工作地点与公司总部的关系，不能把它简化为税务问题。这里保留官方一轮任务的开场问题；模型回复和评分准则没有当作参考答案。",
-        "raw": {
-          "task": "e6d074eb6486a518673769d3",
-          "turns": 1,
-          "field": "Legal",
-          "topic": "Labor & Employment Law",
-          "expert": "Expert",
-          "prompt_0": "got a software engineer with a currently exmpt 180k salary who's been remote in texas since covide working for our CA based company. he's moving to NYc next month and wants to stay remote, he's also pregnant he's a transgender male. HR is worried aobut changing his exempt status when he moves to NY and whether we need to do anything different becausse of the pregnancy. Also not sure if we need to follow NY meal break rules for remote workers or if CA overtime laws still apply since we're headquartered here. what's our exposure here?"
-        },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
-        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
-        "split": "config=default / split=legal / row_idx=0 / task_id=e6d074eb6486a518673769d3",
-        "excerpt": true
-      },
-      {
-        "id": "prbench-legal-740a326c927c1ce16ffee6b8",
-        "title": "Regulatory & Administrative Law · Expert",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "询问居家血液检测产品面向消费者销售时的监管审批路径。",
-        "explanation": "该监管法任务询问小型生物科技初创企业将居家血液检测盒直接销售给消费者时的 FDA 流程，以及可能适用 510(k) 或 De Novo 的问题。源记录为四轮专家对话；数据含模型回复和rubric评分条件，不含单一标准答案字段，本站只留首轮用户问题。",
-        "raw": {
-          "task": "740a326c927c1ce16ffee6b8",
-          "turns": 4,
-          "field": "Legal",
-          "topic": "Regulatory & Administrative Law",
-          "expert": "Expert",
-          "prompt_0": "client's a small biotech startup, we wanna sell a new at-home blood test kit directly to customers. What's the fda process look like for this? Do we need 510(k) or de novo? kinda lost on where to even start."
-        },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FPRBench&config=default&split=legal&offset=0&length=100",
-        "license": "CC BY 4.0 · Scale AI / PRBench authors；数据卡标注 cc-by-4.0，本站按该许可署名并注明仅展示所列字段，不涵盖未展示的模型回答、rubric 或参考文本。",
-        "split": "config=default / split=legal / row_idx=1 / task_id=740a326c927c1ce16ffee6b8",
         "excerpt": true
       }
     ]
