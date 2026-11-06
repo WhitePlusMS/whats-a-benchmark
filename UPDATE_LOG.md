@@ -2594,3 +2594,8 @@
 - 修改 `content/benchmarks/robochallenge.json`：删除与关联 Table30 V2 条目重复的两条盖章任务展示，保留总条目的 Table30 初版实机演示和指向 V2 的关联。
 - 修改 `content/benchmarks/libero.json`：两份转换数据所展示的第 0 帧状态、动作与索引一致，移除较简略的单帧展示，保留含完整视频及首尾帧的样例；不推断两个数据集全部轨迹相同。
 - 原因和影响：减少重复计数和重复浏览；不同轨迹、不同随机种子及成功/失败运行保留。
+
+## 2026-11-06：合并 ManipulationNet 重复任务展示
+
+- 修改 `content/benchmarks/manipulationnet.json`：核对论文 2.3.1 节后，移除重复的 Peg-in-Hole Assembly 概述样例，保留含四档间隙条件和图片的完整案例。
+- 原因和影响：两条记录描述同一项官方任务，去重后仍可查看任务条件及原始来源，不影响其他不同任务。
