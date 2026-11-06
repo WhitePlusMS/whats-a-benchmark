@@ -2604,3 +2604,9 @@
 
 - 修改 `content/benchmarks/robochallenge-table30-v2.json`：对照技术报告和官网任务页面，移除简略的 Stamp on paper 说明，保留含动作和评分步骤的盖章案例及两处来源。
 - 原因和影响：避免同一盖章任务重复展示；保留其他不同任务及按按钮实机演示。
+
+## 2026-11-06：合并具身任务概述与具体记录
+
+- 修改 `content/benchmarks/aa-robotics.json`：将重复的红色按钮任务通过条件并入该任务的公开评测结果，保留实机视频入口。
+- 修改 `content/benchmarks/roboquest.json`：将 Puzzle Box 的插销与提交条件并入开发场景演示，保留不同的 Tool-Call 训练记录，并明确演示与评测配置的区别。
+- 原因和影响：减少同任务概述和具体案例的重复展示，保留任务条件、数据来源及训练/评测边界。

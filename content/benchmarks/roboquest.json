@@ -124,6 +124,13 @@
         "https://declare-lab.github.io/RoboQuest/",
         "https://arxiv.org/abs/2610.10388"
       ]
+    },
+    {
+      "text": "2026-11-06 对照论文的 Puzzle Box 任务说明和开发场景演示：任务目标重复，将插销与提交条件并入演示说明，保留 Tool-Call 的单独训练记录。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2610.10388",
+        "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/meta/episodes.jsonl"
+      ]
     }
   ],
   "sources": [
@@ -224,25 +231,12 @@
         "excerpt": true
       },
       {
-        "id": "roboquest-concrete-task",
-        "title": "Puzzle Box",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "打开被一串滑动插销锁住的木盒，把里面的橘子取出并竖放在托盘中，松开物体后按红色 SUBMIT。",
-        "explanation": "插销之间存在先后阻挡关系，需要尝试并观察；首次提交即结束，提交错误或不提交都失败。",
-        "raw": "Puzzle Box",
-        "source": "https://arxiv.org/html/2610.10388",
-        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
-        "split": "官方公开任务示例；不推断训练或测试划分。",
-        "excerpt": true
-      },
-      {
         "id": "roboquest-puzzle-box-demo-000000",
         "title": "Puzzle Box：官方示范记录 000000",
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "打开被插销锁住的木盒，取出橘子并竖放在托盘上；松手后按红色 SUBMIT。",
-        "explanation": "视频对应官方 puzzle_box 第 0 条示范：数据记录给出了完整任务指令和 1740 帧；数据卡说明示范来自开发场景，不是评测集轨迹。",
+        "explanation": "视频对应官方 puzzle_box 第 0 条示范：数据记录给出完整任务指令和 1740 帧，示范来自开发场景，不是评测集轨迹。论文说明插销存在先后阻挡关系，首次按 SUBMIT 即结束，提交错误或不提交均失败；评测配置与示范场景应分开理解。",
         "raw": {
           "episode_index": 0,
           "tasks": [
