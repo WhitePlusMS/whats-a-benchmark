@@ -84,8 +84,8 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示官方固定修订的 5 条真实数据；中文为本站整理，原始字段和评分细则保留在样例中。",
-    "url": "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/research/test.jsonl",
+    "reason": "展示官方固定修订的 2 条 Olympiad 真实数据；3 条同源 Research 题仅在 Research 子项展示。中文为本站整理，原始字段保留，不将子项重复计为独立原题。",
+    "url": "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/olympiad/test.jsonl",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/olympiad/test.jsonl",
       "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/research/test.jsonl"
@@ -128,6 +128,13 @@
         "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/olympiad/test.jsonl",
         "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/research/test.jsonl"
       ]
+    },
+    {
+      "text": "2026-11-06 对照固定修订的 research/test.jsonl 和本站 Research 子项：三个 research ID 的 raw 逐值相同，原始记录已核实。总项移除三张重复卡，仅保留两个 Olympiad 记录；Research 成员关系、源题和专属子项不变。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/olympiad/test.jsonl",
+        "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/research/test.jsonl"
+      ]
     }
   ],
   "sources": [
@@ -161,7 +168,7 @@
     {
       "id": "frontierscience-research",
       "label": "Research 赛道",
-      "detail": "Research 是 FrontierScience 的科研子问题赛道。",
+      "detail": "Research 是 FrontierScience 的科研子问题赛道。 三条同源 Research 样例仅在该子项展示，总项保留两条 Olympiad 样例。",
       "sourceUrls": [
         "https://openai.com/index/frontierscience/"
       ]
@@ -209,60 +216,6 @@
         "split": "olympiad/test.jsonl，固定修订 25ed67db7da8f4591484e764008ff585544f5a30，第 71 行",
         "excerpt": true,
         "answer": "`Sulfuryl chloride (\\(SO_2Cl_2)\\) `"
-      },
-      {
-        "id": "research-8fac71ae-1f4a-4edd-9f0d-88a443912a04",
-        "title": "超新星中微子搜寻方案",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "围绕超新星中微子探测，解释相对光学观测的优势，提出 Super-Kamiokande 的触发条件，讨论探测效率、事件数量与时间分布、距离影响以及背景排除。",
-        "explanation": "评分细则分项检查观测优势、触发条件、效率、事件规模、距离关系和背景等；例如事件数随距离平方反比变化。",
-        "raw": {
-          "problem": "Context: The observation of neutrinos from SN1987A (Hirata et al. 1987; Bionta et al. 1987; Alexeyev et al. 1988; Aglietta et al. 1988) established the basic mechanism of core-collapse supernovae1 featuring neutrino production during the initial matter infall, the subsequent shock revival and at later times as the remnant proto-neutron star cools (Sato &amp; Suzuki 1987). This production is expected to last several tens of seconds and to carry detailed information on the mechanisms and dynamics of the collapse process.\n\nSince that first observation, several experiments have searched in real time for other galactic supernovae using liquid scintillator (Asakura et al. 2016; Bruno et al. 2017; Monzani 2006), plastic scintillator (Ambrosio et al. 1998), lead (Zuber 2015), heavy-water (Aharmim et al. 2011), and water-based detectors (Abe et al. 2016a; Kopke 2018). These have yielded only null results. Such searches focus on the intense burst of neutrinos expected for a canonical explosion at the galactic center (about 10 kpc) in order to overcome intrinsic backgrounds and trigger the detector, as in (Ikeda et al. 2007).\nQuestion: 1. Why are neutrino searches for supernovae better than optical? Give one example of somewhere we would be able to detect supernova neutrinos from but not see optically.\n2. For a hypothetical search for Supernovae neutrino sources with Super-Kamiokande, what should the trigger be?\n3. With what efficiencies should the trigger correspond to? Mention the efficiencies for both positron kinetic energies greater than 5.5 MeV and greater than 8.5 MeV. If ranges are used, they should not have a spread larger than 10.  \n4. If a supernova were to go off near the galactic center, on what order of events would a neutrino cluster (a collection of interactions) contain? Over what time scale would it be distributed in Super-K?\n5. How does the number of events change over distance?\n6. In a search for neutrinos from supernovae at Super-K, what types of background must be removed manually by visually scanning? Give two examples. \n7. Since events in a supernova neutrino event cluster are expected to be separated from one another by O(1 ms) and some spallation isotopes have very short lifetimes, what time difference between all events should our search require?\n\n\nThink step by step and solve the problem below. In your answer, you should include all intermediate derivations, formulas, important steps, and justifications for how you arrived at your answer. Be as detailed as possible in your response.",
-          "answer": "Points: 1.0, Item: The solution to question 1 should mention that neutrinos allow us to search for supernovae on the opposite side of the galaxy, where things are normally optically obscured.\nPoints: 1.0, Item: The solution to question 2 should mention that the trigger should rely on a large number of PMT hits (&gt;20) within less than 300 nanoseconds.\nPoints: 2.0, Item: The solution to question 3 should state that the efficiency is 54% for energies greater than 5.5 MeV and 99% for energies greater than 8&gt;5 MeV. The percentages given in the solution can have errors of +- 5 percent and still get full points.\nPoints: 2.0, Item: The solution to question 4 should mention events on the order of 1000 distributed over 100 seconds within +- 20 seconds.\nPoints: 1.0, Item: The solution to question 5 should be that the number of events is proportional to the inverse of distance squared.\nPoints: 2.0, Item: The solution to question 6 should mention BOTH PMT malfunction and data acquisition for full points.\nPoints: 1.0, Item: The solution to question 7 should be a minimum time difference of 50µs.\n",
-          "subject": "physics",
-          "task_group_id": "8fac71ae-1f4a-4edd-9f0d-88a443912a04"
-        },
-        "source": "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/research/test.jsonl",
-        "license": "OpenAI FrontierScience 公开数据集，Apache-2.0；数据集卡要求评测数据不要进入训练语料。",
-        "split": "research/test.jsonl，固定修订 25ed67db7da8f4591484e764008ff585544f5a30，第 6 行",
-        "excerpt": true
-      },
-      {
-        "id": "research-f8b3f2c7-7747-42d9-85bb-f8b370cc50e9",
-        "title": "用沉淀与置换反应分析混盐",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "25 g 氯化钠与氯化钾混合物溶于水后，加入 840 mL、0.5 mol/dm³ 硝酸银溶液并滤去沉淀；将 100.00 g 铜片放入滤液后增重至 101.52 g。求混合物各成分质量百分比并展示计算步骤。",
-        "explanation": "评分逐项检查铜置换银、质量变化和氯离子守恒等推导；官方细则给出 NaCl 70.4%、KCl 29.6%。",
-        "raw": {
-          "problem": "Context: A sample containing a mixture of sodium chloride and potassium chloride weighs 25 g. After its dissolution in water, 840 ml of AgNO3 solution (c = 0.5 mol dm^-3) is added. The precipitate is filtered off, and a strip of copper weighing 100.00 g is dipped into the filtrate. After a given time interval the strip weighs 101.52 g.\nQuestion: Calculate the mass percent composition of the mixture. Show all steps\n\nThink step by step and solve the problem below. In your answer, you should include all intermediate derivations, formulas, important steps, and justifications for how you arrived at your answer. Be as detailed as possible in your response.",
-          "answer": "Points: 1.0, Item: 1. **Understanding the Reaction with Copper Strip**\n   - Full Point: The student correctly states and uses the reaction equation between copper and silver nitrate: (\\\\text{Cu} + 2 \\\\text{AgNO}\\_3 \\\\rightarrow \\\\text{Cu(NO}\\_3{)}\\_2 + 2 \\\\text{Ag}).\nPoints: 1.0, Item: 10. **Calculating Mass Percent Composition of KCl**\n    - Full Point: Computes (\\\\frac{7.4}{25} \\\\times 100 = 29.6%) for KCl.\nPoints: 1.0, Item: 2. **Determining Mass Change due to Silver Deposition**\n   - Full Point: The student identifies that the mass of silver deposited minus the mass of copper dissolved leads to a 1.52 g increase.\nPoints: 1.0, Item: 3. **Solving the System for Silver (x) and Copper (y)**\n   - Full Point: Correctly solves (\\\\frac{63.5}{y} = \\\\frac{2 \\\\times 108}{x}) and (x - y = 1.52) to find (x = 2.15 , \\\\text{g}) and (y = 0.63 , \\\\text{g}).\nPoints: 1.0, Item: 4. **Calculating Mass of Silver Ions (Ag⁺)**\n   - Full Point: Accurately calculates (45.36 , \\\\text{g}) of Ag⁺ using the ratio (\\\\frac{108}{170}).\nPoints: 1.0, Item: 5. Correctly subtracted the excess silver (45.36 - 2.15 = 43.21)\nPoints: 1.0, Item: 6. **Calculating Total Mass of Chloride Ions (Cl⁻)**\n   - Full Point: Correctly finds 14.2 g of Cl⁻ using (\\\\frac{35.5}{108}).\nPoints: 1.0, Item: 7. **Establishing the System of Equations for NaCl and KCl**\n   - Full Point: Provides the equations (m + n = 25) and (\\\\frac{35.5m}{58.5} + \\\\frac{35.5n}{74.6} = 14.2).\nPoints: 1.0, Item: 8. **Solving the System for NaCl (m) and KCl (n)**\n   - Full Point: Correctly solves to find (m = 17.6 , \\\\text{g}) for NaCl and (n = 7.4 , \\\\text{g}) for KCl.\nPoints: 1.0, Item: 9. **Calculating Mass Percent Composition of NaCl**\n   - Full Point: Computes (\\\\frac{17.6}{25} \\\\times 100 = 70.4%) for NaCl.\n",
-          "subject": "chemistry",
-          "task_group_id": "f8b3f2c7-7747-42d9-85bb-f8b370cc50e9"
-        },
-        "source": "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/research/test.jsonl",
-        "license": "OpenAI FrontierScience 公开数据集，Apache-2.0；数据集卡要求评测数据不要进入训练语料。",
-        "split": "research/test.jsonl，固定修订 25ed67db7da8f4591484e764008ff585544f5a30，第 21 行",
-        "excerpt": true
-      },
-      {
-        "id": "research-824508b0-030f-4ed6-a642-c1dcf2ab15d7",
-        "title": "从鱼鳍到四肢的发育遗传学",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "结合斑马鱼 waslb 功能获得或缺失、小鼠 Wasl 敲除与相关信号通路，分析鳍和肢体发育的变化，并对肉鳍鱼向四足动物演化提出假设。",
-        "explanation": "评分涉及实验表型、跨物种比较、Vav2 与 Waslb 的联系，以及对化石物种演化的推测；是多步骤、需论证的开放式任务。",
-        "raw": {
-          "problem": "Context: Studies of the fin-to-limb transition are a hallmark of evolutionary developmental biology. Modern transgenic research can shed light on the key genetic changes that drove the early formation of a weight-bearing limb, which led to the first forays into terrestrial living.\nQuestion: 1. How do gain-of-function models of the gene *waslb* in zebrafish affect the embryo's fin development? Be specific.\n2. How do loss-of-function models of the gene *waslb* in zebrafish affect the embryo's fin patterning? Be specific.\n3. Conditional knockout of the gene *Wasl* in mice results in limb malformations. What limb malformations are these? What other transgenic models for limb development share these malformations? Give the names of the genes involved.\n4. What about the role of *Wasla* in pectoral fin patterning and outgrowth? Is this gene involved in fin development?\n5. How do *waslb* gain-of-function in zebrafish and *wasl* knockout mice compare in terms of limb/fin development? Does this tell us anything about the fin-to-limb transition?\n6. How does the gene *Vav2* interact with *Waslb* in zebrafish? Give the specific genetic pathway and intermediary molecule(s).\n7. Based on this information, hypothesize the role of *waslb* in sarcopterygian evolution. How might *waslb* activity have changed between Eusthenopteron and Tiktaalik or Acanthostega? What about in species like coelacanth?\n\nThink step by step and solve the problem below. In your answer, you should include all intermediate derivations, formulas, important steps, and justifications for how you arrived at your answer. Be as detailed as possible in your response.",
-          "answer": "Points: 1.0, Item: 1. How do gain-of-function models of the gene *waslb* in zebrafish affect the embryo's fin development? Be specific.\n\n   Answer states (0.25 for each)\n\n- Fin development is altered within the radials. \n- Typically, there are proximal and distal radials formed in the teleost fin. In these mutants, intermediate radials are found between the normal radial rows\n- Fin fold is unaffected\n- Fin rays are unaffected\nPoints: 1.0, Item: 2. How do loss-of-function models of the gene *waslb* in zebrafish affect the embryo's fin patterning? Be specific\n\n   Answer states:\n\n- *Waslb* knockouts (loss-of-function) are embryonically lethal \n\nPoints: 1.0, Item: 3. Conditional knockout of the gene *Wasl* in mice results in limb malformations. What limb malformations are these?\n\n   Answer states:\n\n- *Wasl* mutant mice have malformations of the autopod (hands/feet) and occasionally the zeugopod (radius/ulna and tibia/fibula) (0.5)\n- Lack of joint segmentation in fingers (0.25)\n- Cartilage formation is reduced (0.25)\nPoints: 1.0, Item: 3. Conditional knockout of the gene *Wasl* in mice results in limb malformations. What other transgenic models for limb development share these malformations? Give the names of the genes involved.\n\n   Response should include at least one of the following (0.5 points for one, award full point if 2 or more examples are given): \n   - Phenotype closely resembles HOX11-HOX13 or distal HOX mutations\n   - Lack of joint formation is common to these mutants and GDF5 mutants\n   - Distal structure mutation similar to AER/FGF-8 loss at later limb patterning\n   - Reduction in joint formation also partially resembles WNT9A knockdown experiments\nPoints: 1.0, Item: 4. What about the role of *Wasla* in pectoral fin patterning and outgrowth? Is this gene involved in fin development?\n\n   Answer states:\n\n- There is no strong evidence to suggest that *wasla* plays a major role in zebrafish fin development.\nPoints: 1.0, Item: 5. How do *waslb* gain-of-function in zebrafish and *wasl* knockout mice compare in terms of limb/fin development?\n\n   Answer states (0.33 for each, 1 point for all three):\n\n- Both of these genetic mutations specifically target joint formation\n- The opposing effects of these two experiments suggests that necessity of *wasl* activity in the limb may be correlated with the fin-to-limb transition\n- The changes in these two taxa are both in the intermediate/distal part of the limb skeleton, highlighting their importance in later limb patterning and elaboration\nPoints: 1.0, Item: 5. Relationship to fin-to-limb transition\n\nAnswer should include (0.33 for each, 1 point for all three):\n\n- Importance of joint formation/weight-bearing locomotion\n- Expansion of *waslb* activity as key step\n- Essential role of wasl in tetrapods but not fishes`\nPoints: 1.0, Item: 6. How does the gene *Vav2* interact with *Waslb* in zebrafish? Give the specific genetic pathway and intermediary molecule(s).\n\n   Answer states:\n\n   Vav2 interacts with waslb through the protein cdc42. Cdc42 is a g-protein (part of GCPR signaling pathways) that communicates with Rac and ARP 2/3\nPoints: 1.0, Item: 7. *Waslb* activity in coelacanth\n\n   Answer states:\n\n- Given the morphology of coelacanth fins, they likely utilize a small amount of *waslb* gene activity in their fins\n- Coelacanths have also reduced fins down to metapterygial region and have a skeleton similar in appearance to some elpistostegelians\nPoints: 1.0, Item: 7. *Waslb* activity in fossil sarcopterygians\n\n   Answer states:\n\n- Shift in activity likely occurred in tetrapodomorphs\n- Early taxa likely retained a more fish-like *waslb* pattern (Eusthenopteron) while later taxa (Tiktaalik, Acanthostega) have more tetrapod-like limbs, potentially indicating expanded *waslb* function.\n",
-          "subject": "biology",
-          "task_group_id": "824508b0-030f-4ed6-a642-c1dcf2ab15d7"
-        },
-        "source": "https://huggingface.co/datasets/openai/frontierscience/resolve/25ed67db7da8f4591484e764008ff585544f5a30/research/test.jsonl",
-        "license": "OpenAI FrontierScience 公开数据集，Apache-2.0；数据集卡要求评测数据不要进入训练语料。",
-        "split": "research/test.jsonl，固定修订 25ed67db7da8f4591484e764008ff585544f5a30，第 41 行",
-        "excerpt": true
       }
     ]
   }

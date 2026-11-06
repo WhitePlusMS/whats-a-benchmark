@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 FrontierScience 总分项重复题
+
+- 修改 `content/benchmarks/frontierscience.json`：三个 Research 原始记录与子项完全相同，仅在专属子项展示；总项保留两个 Olympiad 样例。
+- 影响：总项样例5→2，源记录及子项不变；访问入口和数量描述同步，不重复计为独立原题。
+- 验证：三个 raw 逐值一致且固定原始数据已读取；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 GDPval-AA 跨版本重复演示
 
 - 修改 `content/benchmarks/gdpval-aa.json`：与 v2.1 相同的舞台图短引仅在后者展示，增加关联和版本边界说明。
