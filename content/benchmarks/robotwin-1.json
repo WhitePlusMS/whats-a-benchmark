@@ -62,11 +62,14 @@
     "scale": [
       "官方 1.0 仓库任务表列 17 项任务。"
     ],
-    "splits": [],
+    "splits": [
+      "第三方图像预测数据集包含 train 和 test，test 有 18,261 条图像对；不是已确认的官方 1.0 策略测试集。"
+    ],
     "fields": [],
     "files": [],
     "sourceUrls": [
-      "https://github.com/Tengbo-Yu/robotwin"
+      "https://github.com/Tengbo-Yu/robotwin",
+      "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/README.md"
     ]
   },
   "dataAccess": {
@@ -81,26 +84,31 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "D-Robotics 数据集卡标 Apache-2.0；另一个第三方数据集卡标 MIT。上游模型与场景资产范围仍需分别核对。",
+    "license": "D-Robotics 数据集卡标 Apache-2.0；两个第三方图像数据集卡标 MIT。上游模型与场景资产范围仍需分别核对。",
     "scope": "本站展示各数据集的少量相机画面及字段，并提供 DRRM 单条轨迹全部数值字段。",
     "boundaries": [
       "DRRM 是第三方预处理训练数据，不是官方测试集。",
-      "另一个采样案例的上游代码版本未锁定。"
+      "另一个采样案例的上游代码版本未锁定。",
+      "图像预测 test 划分由第三方定义，未确认按轨迹隔离或对应官方策略测试。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/D-Robotics/DRRM",
-      "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md"
+      "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md",
+      "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已下载 D-Robotics 明确标注 RoboTwin 1.0 的训练演示完整 episode，并提供全部帧的数值下载；旧案例上游版本仍未锁定。",
+    "reason": "展示明确标注 RoboTwin 1.0 的第三方训练轨迹，以及上游版本未锁定的第三方图像预测测试样例。",
     "sourceUrls": [
       "https://github.com/D-Robotics-AI-Lab/DRRM/blob/8e71cd63419e87740449e1fca39d19a980f5d54b/README.md",
       "https://huggingface.co/datasets/D-Robotics/DRRM",
       "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/info.json",
-      "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/episodes.jsonl"
+      "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/episodes.jsonl",
+      "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/README.md",
+      "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/data/test-00000-of-00006.parquet",
+      "https://datasets-server.huggingface.co/rows?dataset=bryandts%2Frobotwin-action-prediction-dataset&config=default&split=test&offset=0&length=1"
     ]
   },
   "metric": {
@@ -203,6 +211,21 @@
       "label": "1.0 轨迹索引",
       "url": "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/episodes.jsonl",
       "role": "data"
+    },
+    {
+      "label": "第三方图像预测数据卡",
+      "url": "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/README.md",
+      "role": "data"
+    },
+    {
+      "label": "第三方 test 数据分片",
+      "url": "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/data/test-00000-of-00006.parquet",
+      "role": "data"
+    },
+    {
+      "label": "test 第 0 行数据浏览器",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=bryandts%2Frobotwin-action-prediction-dataset&config=default&split=test&offset=0&length=1",
+      "role": "data"
     }
   ],
   "related": [
@@ -227,6 +250,42 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "robotwin1-action-prediction-test-row0",
+        "title": "传递积木 · 第三方图像预测测试对",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "观察双臂传递积木的当前画面，预测 50 帧后的参考画面。",
+        "explanation": "第三方 RoboTwin 图像预测数据集 test 划分第 0 行，原始指令为 handover the blocks；两张图是数据浏览器导出的当前帧和 50 帧后参考帧，不是模型生成或执行结果。数据发布方未锁定上游 RoboTwin 代码版本，也未说明训练与测试是否按轨迹隔离；不能将此划分视为 1.0 官方策略测试集。",
+        "raw": {
+          "instruction": "handover the blocks"
+        },
+        "source": "https://datasets-server.huggingface.co/rows?dataset=bryandts%2Frobotwin-action-prediction-dataset&config=default&split=test&offset=0&length=1",
+        "license": "第三方数据卡标 MIT，发布者 bryandts；截图由数据浏览器导出，上游场景资产范围仍需分别核对。",
+        "licensePath": "licenses/robotwin-action-prediction-mit.txt",
+        "split": "第三方图像预测数据 / default / test / row 0；上游版本未锁定",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/robotwin1-thirdparty-test0-current-frame.png",
+            "alt": "双臂传递红色积木的当前画面",
+            "width": 320,
+            "height": 240,
+            "caption": "第 0 行 current_frame：数据浏览器导出的画面。",
+            "source": "https://datasets-server.huggingface.co/rows?dataset=bryandts%2Frobotwin-action-prediction-dataset&config=default&split=test&offset=0&length=1"
+          },
+          {
+            "kind": "image",
+            "path": "images/robotwin1-thirdparty-test0-future-frame.png",
+            "alt": "同一图像预测样本中 50 帧后的双臂画面",
+            "width": 320,
+            "height": 240,
+            "caption": "第 0 行 future_frame：数据集说明为 50 帧后的参考画面。",
+            "source": "https://datasets-server.huggingface.co/rows?dataset=bryandts%2Frobotwin-action-prediction-dataset&config=default&split=test&offset=0&length=1"
+          }
+        ]
+      },
       {
         "id": "robotwin-1-drrm-block-hammer-episode-0",
         "title": "敲击积木 · RoboTwin 1.0 完整演示轨迹",
@@ -608,6 +667,14 @@
         "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/info.json",
         "https://huggingface.co/datasets/D-Robotics/DRRM/blob/e483263d52cf8e730cb0edf871f911f2204ecdea/drrm_robotwin1.0_D435_200_rgb/block_hammer_beat/meta/episodes.jsonl",
         "https://huggingface.co/datasets/YimouWu/RoboTwin_instruct-pix2pix/blob/9cd520acee16ed28721c10c01b65cc37e028ab68/README.md"
+      ]
+    },
+    {
+      "text": "2026-11-06 读取固定修订数据卡和数据浏览器 default / test 第 0 行；指令为 handover the blocks，当前与未来图均为 320×240。浏览器导出的 PNG 分别为 83,507 和 88,310 字节，SHA-256 分别为 fec265c8b02c51bd6666ec29995f8151e3711411995e0fcca2f67bdc98cdb93c 和 9b5346349bba515570142c337035b50af24c5e977632736f4dee0140db42c7d5。上游代码版本及按轨迹隔离情况未披露。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/README.md",
+        "https://huggingface.co/datasets/bryandts/robotwin-action-prediction-dataset/blob/a580885fbb7b68abacde569b90b567d3e6a0edf6/data/test-00000-of-00006.parquet",
+        "https://datasets-server.huggingface.co/rows?dataset=bryandts%2Frobotwin-action-prediction-dataset&config=default&split=test&offset=0&length=1"
       ]
     }
   ]

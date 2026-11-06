@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：补充 RoboTwin 第三方图像预测测试对
+
+- 修改 `content/benchmarks/robotwin-1.json`：增加第三方 test 第 0 行指令、当前与未来参考画面、数据来源及版本和划分边界。
+- 新增 `content/assets/images/robotwin1-thirdparty-test0-current-frame.png`、`content/assets/images/robotwin1-thirdparty-test0-future-frame.png` 和 `content/assets/licenses/robotwin-action-prediction-mit.txt`：保存数据浏览器导出的图像与数据卡许可说明。
+- 原因和影响：补充不同于现有训练示范的第三方测试图像对；不将图像预测划分称作官方 1.0 策略测试，也不推断上游代码版本或轨迹隔离。
+
+# 更新说明
+
 ## 2026-11-06：记录非具身评测样例覆盖快照
 
 - 新增 `docs/non-embodied-sample-inventory-2026-11-06.md`：逐项列出 267 个已发布非具身评测的站内样例数、现有访问状态和资料入口。
