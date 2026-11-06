@@ -73,29 +73,33 @@
   "dataAccess": {
     "status": "unknown",
     "requirements": [
-      "第一方公告确认两场考试安排；题目、答案及机器可读数据的官方下载入口尚未确认。"
+      "MAA 第一方公告确认两场考试安排；MAA 题目、答案及机器可读数据的官方下载入口尚未确认。MathArena 另有可公开读取的整理发布集，不等同于 MAA 第一方题库。"
     ],
     "url": "https://maa.org/maa-invitational-competitions/",
     "sourceUrls": [
       "https://maa.org/news/aime-thresholds-are-available/#L83-L94",
-      "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100"
+      "https://maa.org/student-programs/amc/maa-american-mathematics-competitions-policies/#L83-L100",
+      "https://huggingface.co/datasets/MathArena/aime_2025/blob/main/README.md"
     ]
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "本次取得官方公开问题及标注，竞赛原题/解答整体复用许可未确认。",
-    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
+    "license": "MathArena 数据卡声明 CC BY-NC-SA 4.0；该发布层声明不单独证明 MAA 竞赛原题或官方解答的再发布授权。",
+    "scope": "仅确认 MathArena 对其有权许可的整理与发布材料所作的许可声明；所引竞赛题目的上游权利链仍未确认。",
     "boundaries": [
-      "题目可能来自上游竞赛；数据托管不等于整体版权转移。",
-      "HF /rows为本次响应快照，不把另行观察的HEAD冒充它的固定修订。"
+      "数据托管方的许可声明不等于 MAA 原题版权转授。",
+      "复用 MathArena 有权许可的材料须遵守署名、非商业和相同方式共享条件。",
+      "HF /rows 是响应快照，不将另行观察的仓库修订冒充这些响应的固定版本。"
     ],
     "sourceUrls": [
-      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6"
+      "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
+      "https://huggingface.co/datasets/MathArena/aime_2025/blob/main/README.md",
+      "https://huggingface.co/datasets/MathArena/aime_2025/commit/c94da77eb22bbd6439e62a323bec18493a421302"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "3道真实公开数学题可切换，原问题、标识和官方短答案保留；旧题遗漏条件已恢复，中文解析与源数据分开。",
+    "reason": "3 道 MathArena 整理发布的 AIME 2025 题目可切换，保留问题、标识和该发布集的短答案标注；中文解析与源数据分开。",
     "url": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
     "sourceUrls": [
       "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
@@ -168,8 +172,18 @@
       "role": "data"
     },
     {
-      "label": "2026-10-19 核验的官方原始记录",
+      "label": "MathArena AIME 2025 数据记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
+      "role": "data"
+    },
+    {
+      "label": "MathArena AIME 2025 数据卡与许可声明",
+      "url": "https://huggingface.co/datasets/MathArena/aime_2025/blob/main/README.md",
+      "role": "access"
+    },
+    {
+      "label": "MathArena AIME 2025 发布修订记录",
+      "url": "https://huggingface.co/datasets/MathArena/aime_2025/commit/c94da77eb22bbd6439e62a323bec18493a421302",
       "role": "data"
     }
   ],
@@ -201,7 +215,7 @@
       ]
     },
     {
-      "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
+      "text": "2026-10-19 真实记录补核：逐字段核对 MathArena 原始响应，本轮去重后新增 2 条，现有 3 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
       "sourceUrls": [
         "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6"
       ]
@@ -226,7 +240,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "求所有整数进制 b>9 的总和，使该进制表示的 17_b 能整除 97_b。MathArena 2025 固定发布中 problem_idx=1 的答案为 70；该行没有 AIME I/II 标记，本页保持这一边界。",
-        "explanation": "这是具名公开题、官方指令算例或公开日志输入的真实事实节选；原文保留必要短引，不镜像完整题库/参考代码/模型输出。 定位：MathArena train row_idx 0, problem_idx 1; MathArena README config aime/aime_2025.yaml\n原始数据精简说明：保留原生字段 problem_idx、problem、answer、problem_type；其他记录字段未收录。字段名与所选值已逐项对照官方源记录，未将本站中文任务说明包装成数据。",
+        "explanation": "所选竞赛题及短答案来自 MathArena 的整理发布集，不将其标注视为 MAA 官方解答。定位：MathArena train row_idx 0，problem_idx 1；raw 保留 problem_idx、problem、answer、problem_type 原字段与原值，未转载解答过程。",
         "raw": {
           "problem_idx": 1,
           "problem": "Find the sum of all integer bases $b>9$ for which $17_b$ is a divisor of $97_b.$",
@@ -237,7 +251,7 @@
         },
         "source": "https://huggingface.co/datasets/MathArena/aime_2025/resolve/c94da77eb22bbd6439e62a323bec18493a421302/data/train-00000-of-00001.parquet",
         "answer": "70",
-        "license": "本站原创事实解读与必要来源短引；竞赛原题、代码或完整数据集的整体再发布许可按原说明单独处理。 原始数据展示范围仅限上述源字段、实际元数据与必要原文节选；不扩展到底层题库、补丁、模型输出或第三方完整材料。",
+        "license": "MathArena 数据卡声明 CC BY-NC-SA 4.0，限其有权许可的整理与发布材料；所选问题和短答案标注来自该发布集，不据此推定 MAA 原题或官方解答的完整再发布授权。",
         "split": "MathArena AIME 2025 dataset problem_idx 1; 2025 I/II sub-contest not identified in this dataset row",
         "excerpt": true
       },
@@ -246,8 +260,8 @@
         "title": "九人选择冰淇淋口味的组合计数",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "官方公开问题的原题与标注见raw：九人选择冰淇淋口味的组合计数。",
-        "explanation": "九名有区别的队员各选三种口味之一，三个口味人数均须为正且巧克力>香草>草莓。需按可行人数分配累加多项式系数，最后取模1000；原题的singlescoop拼写与官方数值答案保留。",
+        "prompt": "MathArena 整理发布的问题与标注见raw：九人选择冰淇淋口味的组合计数。",
+        "explanation": "九名有区别的队员各选三种口味之一，三个口味人数均须为正且巧克力>香草>草莓。需按可行人数分配累加多项式系数，最后取模1000；原题的singlescoop拼写与MathArena 数值答案标注保留。",
         "raw": {
           "problem_idx": 3,
           "problem": "The 9 members of a baseball team went to an ice-cream parlor after their game. Each player had a singlescoop cone of chocolate, vanilla, or strawberry ice cream. At least one player chose each flavor, and the number of players who chose chocolate was greater than the number of players who chose vanilla, which was greater than the number of players who chose strawberry. Let $N$ be the number of different assignments of flavors to players that meet these conditions. Find the remainder when $N$ is divided by $1000.$",
@@ -257,8 +271,8 @@
           "answer": 16
         },
         "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
-        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
-        "split": "aime-2025 official HF rows / train row_idx=2",
+        "license": "MathArena 数据卡声明 CC BY-NC-SA 4.0，限其有权许可的整理与发布材料；所选问题和短答案标注来自该发布集，不据此推定 MAA 原题或官方解答的完整再发布授权。",
+        "split": "MathArena aime_2025 / train（HF rows 响应） / train row_idx=2",
         "excerpt": true,
         "answer": "16"
       },
@@ -267,8 +281,8 @@
         "title": "aime-2025 · 代数方程求值",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "官方公开问题的原题与标注见raw：aime-2025 · 代数方程求值。",
-        "explanation": "题目统计区间内满足指定二次型等式的有序整数对，重点是将二次型分解并处理有序对及闭区间边界。 原记录的 answer/solution 未复制；raw 保留题面与对应元数据原值。",
+        "prompt": "MathArena 整理发布的问题与标注见raw：aime-2025 · 代数方程求值。",
+        "explanation": "题目统计区间内满足指定二次型等式的有序整数对，重点是将二次型分解并处理有序对及闭区间边界。 raw 保留 MathArena 题面、元数据与 answer 标注原值，未转载解答过程。",
         "raw": {
           "problem_idx": 4,
           "problem": "Find the number of ordered pairs $(x,y)$, where both $x$ and $y$ are integers between $-100$ and $100$, inclusive, such that $12x^2-xy-6y^2=0$.",
@@ -278,8 +292,8 @@
           "answer": 117
         },
         "source": "https://datasets-server.huggingface.co/rows?dataset=MathArena%2Faime_2025&config=default&split=train&offset=0&length=6",
-        "license": "所选实际数学问题与官方短答案标注；本次未确认竞赛原题整体再发布许可，未复制完整题库或解答过程。数据标识及原值按官方数据入口保存。",
-        "split": "aime-2025 official HF rows / train row_idx=3",
+        "license": "MathArena 数据卡声明 CC BY-NC-SA 4.0，限其有权许可的整理与发布材料；所选问题和短答案标注来自该发布集，不据此推定 MAA 原题或官方解答的完整再发布授权。",
+        "split": "MathArena aime_2025 / train（HF rows 响应） / train row_idx=3",
         "excerpt": true,
         "answer": "117"
       }
