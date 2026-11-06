@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：恢复 MathVision 原始问题换行
+
+- 修改 `content/benchmarks/mathvision.json`：raw.question 中 <image1> 前恢复源记录换行，不将空格规范化内容称为逐字原文。
+- 影响：题意、答案60、样例数量和媒体不变，不扩大第三方图像许可。
+- 验证：官方 rows 响应字段对照；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：以真实中文题替换 MMLU-ProX 重复英语题
 
 - 修改 `content/benchmarks/mmlu-prox.json` 及 `content/assets/licenses/mmlu-prox-sample-source.txt`：去除与 MMLU-Pro 相同的英语 id=1，使用固定中文 validation id=3 的题文、十选项与答案 I。
