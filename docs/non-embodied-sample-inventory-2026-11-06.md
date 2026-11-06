@@ -6,6 +6,20 @@
 
 样例数只统计 `sampleSet.samples`，不统计详情、外部资源链接或完整数据集。访问状态和资料入口取自各条目现有的 `sampleAccess`；`official`、`restricted`、`gated`、`private`、`unverified`、`license-pending` 等状态不代表数据一定可公开复制，也不代表本站已经独立验证完整数据。数据可能更新，请以具体来源和当前项目内容为准。
 
+## 已复核的公开数据文件
+
+2026-11-06 实际读取下列固定版本文件，只统计行数、字节数、字段名和哈希，没有在站内复制题目、对话或评分标准。作者的样例披露请求与数据是否可下载是两个不同问题。
+
+| 评测 | 本次核验 | 固定版本来源 | 在线样例说明 |
+| --- | --- | --- | --- |
+| GPQA Main | 作者压缩包中 `gpqa_main.csv` 有 448 行、78 列；压缩包 2,348,038 字节，SHA-256 `461ae7329f15a3e35f8184d2dac24b990f34fdf12f366ca4062d8e6638cd08dc`。 | [公开数据包](https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip)；[作者下载说明](https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/README.md#dataset-download) | [作者数据卡](https://huggingface.co/datasets/Idavidrein/gpqa)请求不要在线公开样例；Hugging Face 入口有访问条件，GitHub 公开包使用作者公开密码。 |
+| GPQA Diamond | 同一作者压缩包中 `gpqa_diamond.csv` 有 198 行、78 列。 | [公开数据包](https://github.com/idavidrein/gpqa/blob/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip) | 同 GPQA Main。 |
+| HealthBench | 官方 JSONL 有 5,000 行、60,258,154 字节，SHA-256 `e99dd3c6372c10d6fcc5e385c5fae69d0dd40392dae56836ef9493ae324ecd2f`；首行包含 `prompt`、`rubrics` 等字段。 | [官方固定版本 JSONL](https://huggingface.co/datasets/openai/healthbench/blob/40ee1968852fc57f625934251ac22be47077a8fb/2025-05-07-06-14-12_oss_eval.jsonl) | [OpenAI 发布页](https://openai.com/index/healthbench/)请求不要在线以文字或图片公开样例。 |
+| HealthBench Hard | 官方 JSONL 有 1,000 行、12,581,564 字节，SHA-256 `b0320430e5cd974e746585594c1dd10b5a3fc2aff9c72b26106c2c4a069d74e9`。 | [官方固定版本 JSONL](https://huggingface.co/datasets/openai/healthbench/blob/40ee1968852fc57f625934251ac22be47077a8fb/hard_2025-05-08-21-00-10.jsonl) | 属于 HealthBench 数据，按同一披露请求处理。 |
+| HealthBench Professional | 官方公开 JSONL 有 525 行、2,755,136 字节，SHA-256 `d44b08e6e952e04c945e2c406f02533d9e7a989a84e35820ee7efdff20c9e4e2`；首行包含 `conversation`、`rubric_items` 等字段。 | [官方固定版本 JSONL](https://huggingface.co/datasets/openai/healthbench-professional/blob/349962fd46dd02343a0d8a606491baf59154ea1a/healthbench_professional_eval.jsonl) | [官方数据卡](https://huggingface.co/datasets/openai/healthbench-professional)请求不要在线公开样例；这不代表私有留出部分公开。 |
+
+## 站内样例清单
+
 | 评测 | 类别 | 站内样例数 | 已记录访问状态 | 资料入口 |
 | --- | --- | ---: | --- | --- |
 | AA-AnalystAgent (`aa-analyst-agent`) | work | 2 | `local` | [资料](https://artificialanalysis.ai/evaluations/aa-analyst-agent) |

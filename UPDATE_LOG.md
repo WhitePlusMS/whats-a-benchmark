@@ -1,5 +1,12 @@
 # 更新说明
 
+## 2026-11-06：核对 GPQA 与 HealthBench 官方数据
+
+- 修改 `docs/non-embodied-sample-inventory-2026-11-06.md`：记录 GPQA Main、Diamond 和 HealthBench 三个版本的固定数据文件、实际行数、文件哈希及作者的在线披露请求。
+- 原因和影响：确认这些评测虽然没有站内真实题目或对话，官方公开部分确实有数据；未复制受作者披露请求约束的内容，也未将公开部分混同私有留出集。
+
+# 更新说明
+
 ## 2026-11-06：补充 RoboTwin 第三方图像预测测试对
 
 - 修改 `content/benchmarks/robotwin-1.json`：增加第三方 test 第 0 行指令、当前与未来参考画面、数据来源及版本和划分边界。
