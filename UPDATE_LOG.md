@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 SWE-ContextBench 共享基础题重复展示
+
+- 修改 `content/benchmarks/swe-contextbench.json`：Astropy 12907与Verified的实例、基线和问题相同，原问题仅在Verified展示；ContextBench保留原始入口与关联说明。
+- 影响：本站本条样例1→0，但公开数据已读取，不代表没有数据；独有related-task/context配对仍未核实，不把两个评测等同。
+- 验证：三项身份字段逐值一致，正确切换外部样例状态；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 Terminal-Bench 2.1 同源DNA重复展示
 
 - 修改 `content/benchmarks/terminal-bench-2-1.json`：与2.0原始指令完全相同的 dna-assembly 仅在2.0展示，保留2.1成员来源与关联链接。
