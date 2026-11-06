@@ -5,6 +5,7 @@
 - 修改 `content/benchmarks/maniskill3.json`：增加 SyncWorld 世界模型评估集中的 PushCube 专家参考轨迹及来源、划分和许可边界。
 - 新增 `content/assets/videos/maniskill3-syncworld-pushcube-episode0.mp4` 与 `content/assets/licenses/openmdw-1-1.txt`：保留原始视频及其数据卡许可文本，另按 ManiSkill 素材非商业条件使用。
 - 原因和影响：补充不同于现有 PickCube 演示的推方块评估参考，不将第三方评估集标成官方测试划分或模型成绩。
+- 审核修正：新增视频许可说明补充来源署名及 CC BY-NC 4.0 许可原文链接，保留 OpenMDW 原文。
 
 # 更新说明
 
