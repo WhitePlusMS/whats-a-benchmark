@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：更正 Longform Writing 提示定位
+
+- 修改 `content/benchmarks/longform-writing.json`：首条split对齐固定基础提示文件key1，不再冒称特定模型完整运行输入；题文不变。
+- 影响：样例数量、任务内容与既有许可边界不变，不新增媒体。
+- 验证：固定来源直接对照；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：还原 SHADE-Arena 原文段落结构
 
 - 修改 `content/benchmarks/shade-arena.json`：将人工构造instruction包装还原为README原句字符串，明确Main task段落来源，不冒充原生JSON字段。

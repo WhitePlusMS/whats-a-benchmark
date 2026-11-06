@@ -151,7 +151,7 @@
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-06",
   "interpretation": {
     "judge": {
       "text": "官方活页 v1.11（2026-02-19）使用 Claude Sonnet 4.6，逐章与整篇按 14 项文学 rubric 评价；不能沿用仓库旧 README 的 Sonnet 4 标签。",
@@ -202,6 +202,12 @@
         "https://github.com/EQ-bench/longform-writing-bench/blob/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/README.md",
         "https://github.com/EQ-bench/longform-writing-bench"
       ]
+    },
+    {
+      "text": "2026-11-06 已对照固定来源核验：首条split对齐固定基础提示文件key1，不再冒称特定模型完整运行输入；题文不变。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json"
+      ]
     }
   ],
   "sampleSet": {
@@ -220,10 +226,10 @@
             "writing_prompt": "Mythology-Inspired\nWrite a short story over several chapters to this prompt: Gods wore sneakers."
           }
         },
-        "explanation": "原始种子要求以“Gods wore sneakers”写跨章节短篇；恢复类别后的原始换行，不复制报告中的规划、章节正文或模型评分。 原始记录完整保留category/title/writing_prompt三个字段及换行；没有模型回答、后续生成指令或评分。",
+        "explanation": "原始种子要求以“Gods wore sneakers”写跨章节短篇；恢复类别后的原始换行，不复制报告中的规划、章节正文或模型评分。 原始记录完整保留category/title/writing_prompt三个字段及换行；没有模型回答、后续生成指令或评分。 本卡来源是固定基础提示文件 key=1，不以该提示单独证明 openrouter/pony-alpha 具体运行或完整输入。",
         "source": "https://raw.githubusercontent.com/EQ-bench/longform-writing-bench/34f60a028c3f973c19cde98dc5a9e8f9875a87e3/data/longform_creative_writing_prompts_minimalist.json",
         "license": "官方固定README License章节明确MIT；所选为作者原创极简提示，不涉及报告中的模型故事。",
-        "split": "EQ-Bench Longform report · openrouter/pony-alpha · Mythology-Inspired · initial prompt",
+        "split": "官方固定 data/longform_creative_writing_prompts_minimalist.json · key=1 · 基础写作提示，非某模型完整运行输入",
         "excerpt": true,
         "licensePath": "licenses/longform-writing-license-notice.txt"
       },
