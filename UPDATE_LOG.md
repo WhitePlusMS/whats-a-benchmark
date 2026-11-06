@@ -2610,3 +2610,8 @@
 - 修改 `content/benchmarks/aa-robotics.json`：将重复的红色按钮任务通过条件并入该任务的公开评测结果，保留实机视频入口。
 - 修改 `content/benchmarks/roboquest.json`：将 Puzzle Box 的插销与提交条件并入开发场景演示，保留不同的 Tool-Call 训练记录，并明确演示与评测配置的区别。
 - 原因和影响：减少同任务概述和具体案例的重复展示，保留任务条件、数据来源及训练/评测边界。
+
+## 2026-11-06：合并 Embodied Playground P5 任务说明
+
+- 修改 `content/benchmarks/embodied-playground.json`：将重复的 P5 挂杯任务概述合并进官网脚本复现记录，保留动作考点、复现结果和非模型成绩边界。
+- 原因和影响：减少同一目标的重复展示，保留论文及复现素材来源；不同任务的汉诺塔案例保留。

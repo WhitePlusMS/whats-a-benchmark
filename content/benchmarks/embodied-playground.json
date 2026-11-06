@@ -117,6 +117,13 @@
         "https://winniechen2002.github.io/Agent-bench-website/",
         "https://arxiv.org/abs/2610.27039"
       ]
+    },
+    {
+      "text": "2026-11-06 比对 P5 任务概述与官网 P5 脚本复现记录；二者描述同一挂杯目标，保留带控制步与结果的复现记录并合入任务考点。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2610.27039",
+        "https://winniechen2002.github.io/Agent-bench-website/evidence/demo-manifest.json"
+      ]
     }
   ],
   "sources": [
@@ -190,25 +197,12 @@
         "licensePath": "licenses/cc-by-4.txt"
       },
       {
-        "id": "embodied-playground-concrete-task",
-        "title": "P5",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "让 Panda 机械臂将挂钩穿过杯柄，松手后杯子稳定悬挂。",
-        "explanation": "该仿真任务考察路径、姿态和释放后的稳定性。",
-        "raw": "P5",
-        "source": "https://arxiv.org/html/2610.27039",
-        "license": "原始任务名称来自官方资料；中文说明依据原资料整理。",
-        "split": "官方公开任务示例；不推断训练或测试划分。",
-        "excerpt": true
-      },
-      {
         "id": "embodied-playground-p5-reproduction",
         "title": "P5 挂杯 · 官方脚本复现记录",
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "Franka Panda 用挂钩穿过蓝色杯子的杯柄，松手后让杯子稳定悬挂。",
-        "explanation": "官网素材清单将这条录像标为 scripted-reproduction，记录成功和 764 个控制步；相邻红杯保持原位。它是任务复现录像，与官网计分模型试验分开，不是模型能力成绩。官网录像为完整 38.25 秒记录。",
+        "explanation": "该仿真任务考察挂钩路径、姿态和释放后的稳定性。官网素材清单将这条录像标为 scripted-reproduction，记录成功和 764 个控制步；相邻红杯保持原位。它是任务复现录像，与官网计分模型试验分开，不是模型能力成绩。官网录像为完整 38.25 秒记录。",
         "raw": {
           "case_id": "maniskill_geometry/panda/P5",
           "ep100_index": "Home-12",
