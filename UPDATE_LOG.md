@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：以真实中文题替换 MMLU-ProX 重复英语题
+
+- 修改 `content/benchmarks/mmlu-prox.json` 及 `content/assets/licenses/mmlu-prox-sample-source.txt`：去除与 MMLU-Pro 相同的英语 id=1，使用固定中文 validation id=3 的题文、十选项与答案 I。
+- 影响：样例数仍为1，保留作者原中文、来源哈希与MIT归属，不复制COT、不宣称独立原创题或模型成绩。
+- 验证：原始 Parquet 和固定许可数据卡已读取；全站题文及上游ID去重，公式解析检查，内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 SimpleQA 与 Verified 同源重复题
 
 - 修改 `content/benchmarks/simpleqa.json`：row 5 与 Verified original_index=5 是同一问题，答案仅补单位；仅在 Verified 保留该题，添加固定对照来源。

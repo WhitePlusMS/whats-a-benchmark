@@ -61,21 +61,24 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "作者数据卡标注 MIT；来源问题还应遵循上游数据条款。",
+    "license": "MMLU-ProX 固定数据卡明确 MIT；上游 MMLU-Pro 数据的 MIT 许可见论文附录 A.5，代码仓库 Apache-2.0 不替代数据条款。",
     "scope": "原始数据及权利以官方文件与各来源授权为准。",
     "boundaries": [
       "开放下载和允许转载为不同事项。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/li-lab/MMLU-ProX"
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX",
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX/blob/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/README.md",
+      "https://arxiv.org/html/2406.01574v6#A1.SS5"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet",
-    "reason": "读取作者固定版本英语 validation 的真实问题、选项和答案。",
+    "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/zh/validation-00000-of-00001.parquet",
+    "reason": "读取作者固定版本中文 validation 第3行的真实问题、十个选项和答案；作者原中文，不是本站翻译。替换与 MMLU-Pro 已展示 id=1 重复的英语题。",
     "sourceUrls": [
-      "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet"
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/zh/validation-00000-of-00001.parquet",
+      "https://huggingface.co/datasets/li-lab/MMLU-ProX/blob/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/README.md"
     ]
   },
   "metric": {
@@ -100,6 +103,14 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/li-lab/MMLU-ProX"
       ]
+    },
+    {
+      "text": "2026-11-06 原英语 id=1 与本站 MMLU-Pro 题面、十个选项顺序、答案 H/索引7一致，源字段投影差异不构成新题。替换为官方中文 validation row_idx=3、question_id=question_id_src=3，源 Parquet 48790字节、SHA-256 22c3d98cc2be5fe01ee6a100670036b6eb8d6d1c4263704e42b9f3a591cfe7be；固定数据卡31534字节、SHA-256 240fe7199ef50b91bbaa0329d5b0f6f25321f924c8fc2c379bca4c9d1573ae5b。全站原中英文题文及盐水特征核查未发现相同题，MMLU-Pro已展示ID不含3。raw保留原字段投影，省略cot_content；没有执行模型评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/zh/validation-00000-of-00001.parquet",
+        "https://huggingface.co/datasets/li-lab/MMLU-ProX/blob/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/README.md",
+        "https://arxiv.org/html/2406.01574v6#A1.SS5"
+      ]
     }
   ],
   "sources": [
@@ -112,13 +123,28 @@
       "label": "固定版本实际读取的英语验证记录",
       "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet",
       "role": "data"
+    },
+    {
+      "label": "固定版本中文验证文件",
+      "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/zh/validation-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定版本数据卡与MIT声明",
+      "url": "https://huggingface.co/datasets/li-lab/MMLU-ProX/blob/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/README.md",
+      "role": "access"
+    },
+    {
+      "label": "MMLU-Pro数据许可附录A.5",
+      "url": "https://arxiv.org/html/2406.01574v6#A1.SS5",
+      "role": "paper"
     }
   ],
   "related": [
     {
       "id": "mmlu-pro",
       "label": "基准来源",
-      "detail": "MMLU-ProX 以 MMLU-Pro 为基础拓展多语言，样本和测评设置需单独记录。",
+      "detail": "MMLU-ProX 以 MMLU-Pro 为基础拓展多语言，样本和测评设置需单独记录。 原英语 id=1 与上游已展示题相同，已替换为未在本站出现的中文 id=3；这是同一题库的多语言衍生条件，不声称独立原创题。",
       "sourceUrls": [
         "https://huggingface.co/datasets/li-lab/MMLU-ProX"
       ]
@@ -126,41 +152,53 @@
   ],
   "verifiedAt": "2026-10-28",
   "sampleSet": {
-    "retrievedAt": "2026-10-28",
+    "retrievedAt": "2026-11-06",
     "samples": [
       {
-        "id": "1",
-        "title": "验证集 · 多项式变换",
+        "id": "mmlu-prox-zh-validation-3",
+        "title": "中文验证集 · 盐水混合微分方程",
         "type": "choice",
-        "prompt": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
+        "prompt": "一个水箱最初包含了3克盐溶解在100升水中的盐溶液。一种含有每升水0.02克盐的盐溶液以每分钟4升的速率喷入水箱。喷入的溶液不断与水箱中的盐溶液混合，并且混合物以每分钟4升的速率从水箱流出。如果混合是瞬时的，那么在100分钟后，水箱中有多少克盐？",
         "options": [
-          "ST + TS is the identity map of V onto itself.",
-          "TS = 0",
-          "ST = 1",
-          "ST - TS = 0",
-          "ST = T",
-          "ST = 0",
-          "ST = TS",
-          "ST - TS is the identity map of V onto itself.",
-          "TS = T",
-          "ST = S"
+          "3 + e^-2",
+          "2 - e^-4",
+          "2 - e^-2",
+          "3 + e^-4",
+          "2 + e^-3",
+          "2 - e^-3",
+          "3 - e^-2",
+          "2 + e^-2",
+          "2 + e^-4",
+          "2"
         ],
-        "answer": "H",
-        "explanation": "T 将多项式乘以 x，S 对多项式求导。由乘积求导法则，ST(p)=(xp)′=p+xp′，而 TS(p)=xp′，所以 ST−TS 对任意 p 都等于 p，即恒等映射，选 H。",
+        "answer": "I",
+        "explanation": "原题及十个选项来自中文validation第3行。按流入盐量0.08克/分钟、流出盐量s/25克/分钟，可得s′=(2−s)/25，初值s(0)=3，所以s(100)=2+e^(−4)，对应I。这里保留作者中文题文；未运行模型评测。",
         "raw": {
-          "question_id": 1,
-          "question": "Let V be the set of all real polynomials p(x). Let transformations T, S be defined on V by T:p(x) -> xp(x) and S:p(x) -> p'(x) = d/dx p(x), and interpret (ST)(p(x)) as S(T(p(x))). Which of the following is true?",
-          "answer": "H",
-          "answer_index": 7,
+          "question_id": 3,
+          "question": "一个水箱最初包含了3克盐溶解在100升水中的盐溶液。一种含有每升水0.02克盐的盐溶液以每分钟4升的速率喷入水箱。喷入的溶液不断与水箱中的盐溶液混合，并且混合物以每分钟4升的速率从水箱流出。如果混合是瞬时的，那么在100分钟后，水箱中有多少克盐？",
+          "option_0": "3 + e^-2",
+          "option_1": "2 - e^-4",
+          "option_2": "2 - e^-2",
+          "option_3": "3 + e^-4",
+          "option_4": "2 + e^-3",
+          "option_5": "2 - e^-3",
+          "option_6": "3 - e^-2",
+          "option_7": "2 + e^-2",
+          "option_8": "2 + e^-4",
+          "option_9": "2",
+          "answer": "I",
+          "answer_index": 8,
           "category": "math",
-          "src": "cot_lib-college_mathematics"
+          "src": "cot_lib-college_mathematics",
+          "question_id_src": 3
         },
-        "source": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/en/validation-00000-of-00001.parquet",
-        "license": "MMLU-ProX 数据卡声明 MIT；原题来自 MMLU-Pro，保留作者和上游来源。",
+        "source": "https://huggingface.co/datasets/li-lab/MMLU-ProX/resolve/8e6106a6c6ce1c5027e66cc338143cf997b2aa09/zh/validation-00000-of-00001.parquet",
+        "license": "MMLU-ProX固定数据卡声明MIT；上游MMLU-Pro数据许可见作者论文附录A.5。保留发布方与来源。",
         "licensePath": "licenses/mmlu-prox-sample-source.txt",
-        "split": "en/validation",
+        "split": "zh / validation / row_idx=3 / question_id=3 / question_id_src=3",
         "excerpt": true
       }
     ]
-  }
+  },
+  "updatedAt": "2026-11-06"
 }
