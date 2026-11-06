@@ -77,11 +77,13 @@
     "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
       "不得将 not-for-training 数据用于训练。",
-      "不得将数据许可标记推定为覆盖每张第三方图表图像。"
+      "不得将数据许可标记推定为覆盖每张第三方图表图像。",
+      "所引博客内容另受 Surge 网站条款约束；数据卡可访问性及其许可标签不能代替博客题文或上游原图的授权核实。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/surgeai/chartography",
-      "https://github.com/surge-ai/chartography"
+      "https://github.com/surge-ai/chartography",
+      "https://surgehq.ai/terms-of-service"
     ]
   },
   "sampleAccess": {
@@ -130,6 +132,11 @@
       "label": "Surge AI Chartography official example task",
       "url": "https://surgehq.ai/blog/chartography",
       "role": "release"
+    },
+    {
+      "label": "Surge 官网服务条款（内容使用限制）",
+      "url": "https://surgehq.ai/terms-of-service",
+      "role": "access"
     }
   ],
   "researchNotes": [
@@ -166,9 +173,9 @@
         "prompt": "官方博客 Example 1 是工程设计图表题：给定出水管直径 48 英寸、流量每秒 73 立方英尺，要求判断下游 riprap apron 的最小宽度。官方给出的答案为 30 feet；图表未随本站样例打包，完整视觉输入需打开原文。",
         "raw": "For an outlet pipe with a diameter of 48 inches and a flow of 73 cubic feet per second, what is the minimum downstream width",
         "answer": "30 feet",
-        "explanation": "官方文章明确将其列为 Example 1，并给出答案 30 feet、接受区间 29–31 feet及对应图像。图像链接 HEAD 为 200 image/webp，但没有下载/嵌入。本轮 HF dataset API 返回 401，故此样例许可范围按 unknown 记录，不依据旧卡信息宣布 CC BY。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
+        "explanation": "官方文章明确将其列为 Example 1，并给出答案 30 feet、接受区间 29–31 feet及对应图像。本站未提供原图，文本节选不能代替完整视觉输入。本样例按官方博客定位；HF 数据卡的许可声明不自动适用于博客题文或原图。",
         "source": "https://surgehq.ai/blog/chartography",
-        "license": "本轮可读官方博客但无法读取数据卡（HF API 401），未确认博客题文/答案的再发布许可；原始图表图像未复制。仅含短文本摘录、答案和本站中文说明；不得将其理解为整套数据或图像的授权。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "license": "Surge 网站条款限制站内内容未经允许复制、分发或公开展示；本博客题文未确认独立再发布许可。HF 数据卡声明不自动覆盖博客示例及上游图像；本站未复制原图。",
         "split": "official blog Example 1 · engineering design chart · no dataset row id exposed",
         "excerpt": true
       }
