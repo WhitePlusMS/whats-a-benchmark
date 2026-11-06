@@ -2624,3 +2624,13 @@
 - 校验修正：研究记录复用已登记的论文来源地址，满足证据链接约束。
 
 - 审核修正：恢复两张论文图片的原始 HTML 图像地址，避免错误跳转至摘要页。
+
+## 2026-11-06：补充 Meta-World ML10 留出任务本地复现
+
+- 修改 `content/benchmarks/meta-world.json`：区分 MT50 训练演示与 ML10 测试任务，登记固定官方代码、专家策略、环境版本、随机种子及单次结果。
+- 新增 `content/assets/videos/metaworld-ml10-test-lever-seed42.mp4`、`content/assets/files/metaworld-ml10-test-lever-seed42-steps.json`、`content/assets/files/metaworld-ml10-test-lever-seed42-replay.txt` 和 `content/assets/licenses/metaworld-source-mit.txt`：提供顶视录像、91 步策略输出及奖励、复现脚本和官方许可。
+- 原因和影响：补足此前只有训练演示的缺口；这是本站单次脚本专家复现，非模型榜单结果。标明动作会被环境裁剪，视频帧率为展示设置。
+
+- 校验调整：按现有下载资源格式提供 Python 脚本文本文件。
+
+- 页面核验修正：将训练演示的图像说明限定于 MT50，避免与新增 ML10 测试复现混淆。

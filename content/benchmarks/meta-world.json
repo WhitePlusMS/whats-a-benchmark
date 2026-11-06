@@ -59,13 +59,15 @@
     "splits": [
       "MT50：50 个多任务技能，不使用保留测试任务",
       "ML10：10 个元训练任务和 5 个保留测试任务",
-      "LeRobot 转换集：train 轨迹，不是 ML10 保留测试任务"
+      "LeRobot 转换集：train 轨迹，不是 ML10 保留测试任务",
+      "ML10 测试任务包含 lever-pull-v3；本站选用固定代码版本、seed 42 生成的第一个该任务实例。"
     ],
     "fields": [],
     "files": [],
     "sourceUrls": [
       "https://github.com/Farama-Foundation/Metaworld/blob/main/docs/benchmark/benchmark_descriptions.md",
-      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+      "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/env_dict.py"
     ]
   },
   "dataAccess": {
@@ -81,21 +83,27 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "LeRobot 数据集卡将 metaworld_mt50 标为 Apache-2.0；Meta-World 代码及其他资源的条款须分别核对。",
-    "scope": "本站展示 LeRobot 转换集中的三帧、由同一轨迹所有帧重新编码的视频及数值字段；保留来源、版本和许可。",
+    "license": "LeRobot MT50 转换数据卡标 Apache-2.0；本站 ML10 本地复现使用 Meta-World MIT 许可代码。",
+    "scope": "展示转换集训练演示和本站基于官方代码生成的 ML10 测试任务录像及数值。",
     "boundaries": [
-      "图像来自模拟训练演示，不表示实机视频或模型评测成绩。"
+      "MT50 训练演示图像来自仿真，不表示实机视频或模型评测成绩。",
+      "ML10 测试画面为本站用官方脚本专家生成，不是作者发布的原始录像或模型榜单成绩。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+      "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
+      "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/env_dict.py",
+      "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/policies/sawyer_lever_pull_v3_policy.py",
+      "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/LICENSE"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得 LeRobot MT50 训练演示的完整单条轨迹图像，展示重编码视频、三帧和对应动作、状态。",
+    "reason": "展示第三方 MT50 训练演示，以及本站按官方 ML10 测试配置运行脚本专家得到的一次仿真记录；两者分别标注。",
     "sourceUrls": [
       "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48",
-      "https://huggingface.co/docs/lerobot/metaworld"
+      "https://huggingface.co/docs/lerobot/metaworld",
+      "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/env_dict.py",
+      "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/policies/sawyer_lever_pull_v3_policy.py"
     ]
   },
   "metric": {
@@ -134,6 +142,26 @@
       "label": "LeRobot Meta-World 数据说明",
       "url": "https://huggingface.co/docs/lerobot/metaworld",
       "role": "readme"
+    },
+    {
+      "label": "ML10 官方任务划分（固定版本）",
+      "url": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/env_dict.py",
+      "role": "data"
+    },
+    {
+      "label": "官方拉杆专家策略（固定版本）",
+      "url": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/policies/sawyer_lever_pull_v3_policy.py",
+      "role": "data"
+    },
+    {
+      "label": "Meta-World 代码许可（固定版本）",
+      "url": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/LICENSE",
+      "role": "data"
+    },
+    {
+      "label": "官方任务描述",
+      "url": "https://metaworld.farama.org/benchmark/task_descriptions/",
+      "role": "data"
     }
   ],
   "related": [],
@@ -402,6 +430,79 @@
             "source": "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
           }
         ]
+      },
+      {
+        "id": "metaworld-ml10-test-lever-seed42-expert",
+        "title": "拉下杠杆 · ML10 测试任务本地复现",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "控制 Sawyer 机械臂将杠杆向下拉。",
+        "explanation": "本站使用官方 Meta-World 3.1.1 的 ML10 测试任务生成器（seed 42），选择 lever-pull-v3 的第一个测试实例，以官方脚本专家执行；第 91 步环境返回 success=1。视频由仿真顶视图生成，92 帧以 20 帧/秒播放，不代表实时速度。此单次复现不是训练模型成绩或官方榜单结果；动作记录为环境裁剪前的策略输出。",
+        "raw": {
+          "benchmark": "ML10",
+          "split": "test",
+          "task": "lever-pull-v3",
+          "benchmark_seed": 42,
+          "reset_seed": 42,
+          "test_task_index_for_environment": 0,
+          "num_test_tasks_for_environment": 50,
+          "steps": 91,
+          "final_success": 1.0,
+          "frame_count": 92,
+          "fps": 20,
+          "note": "official scripted expert, not trained policy or leaderboard result",
+          "first_step": {
+            "step": 1,
+            "action": [
+              5.226694583892822,
+              1.8553657531738281,
+              -1.1479475498199463,
+              1.0
+            ],
+            "reward": 0.6222538879961064,
+            "success": 0.0
+          },
+          "last_step": {
+            "step": 91,
+            "action": [
+              -0.11485311388969421,
+              0.36016377806663513,
+              1.7513238191604614,
+              1.0
+            ],
+            "reward": 9.996515372593501,
+            "success": 1.0
+          },
+          "camera": "topview",
+          "action_note": "action 为策略提出的值，环境将其裁剪到 [-1, 1]。"
+        },
+        "source": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/env_dict.py",
+        "license": "Meta-World Team，MIT License；画面和数值由本站使用固定版本官方仿真代码与脚本专家生成。",
+        "licensePath": "licenses/metaworld-source-mit.txt",
+        "split": "ML10 / test / lever-pull-v3 / benchmark seed 42 / task index 0；本站本地复现",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/metaworld-ml10-test-lever-seed42.mp4",
+            "caption": "本地脚本专家运行：顶视图、92 帧、20 帧/秒",
+            "source": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/policies/sawyer_lever_pull_v3_policy.py"
+          },
+          {
+            "kind": "file",
+            "path": "files/metaworld-ml10-test-lever-seed42-steps.json",
+            "label": "下载 91 步动作与结果",
+            "description": "包含策略裁剪前动作、每步奖励和 success 标记。",
+            "source": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/policies/sawyer_lever_pull_v3_policy.py"
+          },
+          {
+            "kind": "file",
+            "path": "files/metaworld-ml10-test-lever-seed42-replay.txt",
+            "label": "下载复现脚本",
+            "description": "Python 脚本文本；固定 ML10 种子、测试实例、专家策略和渲染设置。",
+            "source": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/policies/sawyer_lever_pull_v3_policy.py"
+          }
+        ]
       }
     ]
   },
@@ -417,6 +518,13 @@
       "text": "2026-11-05 从数据集浏览接口取得固定版本 train 中 episode 0 的第 0–87 帧，并核对下一行是 episode 1；按 20 帧/秒重编码为 MP4（来源标注为 80 帧/秒）。生成视频 SHA-256 0e124c0a90184bd06df6099e1e7301594a66206fb04dacaba1801943c4d4cb02。",
       "sourceUrls": [
         "https://huggingface.co/datasets/lerobot/metaworld_mt50/tree/b46a1c185a2368660650a82ac5a5083a56722f48"
+      ]
+    },
+    {
+      "text": "2026-11-06 在隔离环境运行固定版本 c0dafaf1557f31cad3b96ba2b62462f45638f5a5；Python 3.12.11、MuJoCo 3.3.0、Gymnasium 1.4.0。ML10 test 选择 lever-pull-v3 的第一个实例、两处 seed 42；脚本专家第 91 步 success=1，视频 SHA-256 9b8ea1db029bf082869c3277dfa64f191c28ff906c0faf2efbe876571eb839d4。策略输出可能超过 [-1,1]，环境会裁剪；未进行多次评估。",
+      "sourceUrls": [
+        "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/env_dict.py",
+        "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/metaworld/policies/sawyer_lever_pull_v3_policy.py"
       ]
     }
   ]
