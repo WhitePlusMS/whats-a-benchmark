@@ -94,7 +94,7 @@
     "scope": "本站展示官方演示集的标注和画面，以及第三方评测日志中的一条录像和结果。",
     "boundaries": [
       "场景和对象模型可能有独立协议；本站展示的是演示数据集中的视频帧，不代表已获得场景资产的再发布权。",
-      "视频元数据中的 episode 10 与现有技能标注文件名相同，但时长不同；两者对应关系尚未确认。",
+      "LeRobot episode_index 10 明确映射 raw_episode_id 120、annotation120（2769 帧）；annotation10 则属于 episode_index 0，标注 1776 帧与该轨迹元数据 1956 帧的差异尚未解释。",
       "第三方评测录像涉及评测案例，不应用于训练相应测试样例；场景和对象资产另有使用条件。"
     ],
     "sourceUrls": [
@@ -190,12 +190,17 @@
       "label": "整理图书实例 301 录像",
       "url": "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/resolve/09ec3cbea07be6cc7fa6c16707242f373260b989/videos/step_24999/re_shelving_library_books_301_0.mp4",
       "role": "data"
+    },
+    {
+      "label": "LeRobot episode 10 对应的原始 episode 120 技能标注",
+      "url": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000120.json",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-29",
   "sampleSet": {
-    "retrievedAt": "2026-10-29",
+    "retrievedAt": "2026-11-06",
     "samples": [
       {
         "id": "behavior-sensenova-radio-test-0",
@@ -268,7 +273,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "在家庭仿真环境中操作桌上的收音机。",
-        "explanation": "官方 LeRobot 元数据将这条 turning_on_radio 轨迹标为 episode 10，共 2769 帧、30 Hz；三幅画面从其头部相机分片的对应时间范围提取。这是人类遥操作训练示范，不是模型评测结果。另一个技能标注文件的时长不同，尚不能确认与本视频逐帧对应。",
+        "explanation": "官方 LeRobot 元数据将这条 turning_on_radio 轨迹标为 episode_index 10，对应 raw_episode_id 120、task_instance_id 12，共 2769 帧、30 Hz；三幅画面从其头部相机分片对应时间范围提取。这是人类遥操作训练示范，不是模型评测结果。元数据明确指向 episode_00000120.json，其 task_duration 同为 2769；本页另一条 episode_00000010.json 标注属于 raw_episode_id 10 / LeRobot episode_index 0，并非这段视频。",
         "raw": {
           "task": "turning_on_radio",
           "episode_index": 10,
@@ -283,12 +288,16 @@
             760,
             800,
             840
-          ]
+          ],
+          "raw_episode_id": 120,
+          "task_instance_id": 12,
+          "demo_index_within_task": 10,
+          "annotation_path": "annotations/task-0000/episode_00000120.json"
         },
         "source": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
         "license": "BEHAVIOR-1K 2026 Challenge Demos 官方数据卡标注 MIT；本站保留来源及许可证。",
         "licensePath": "licenses/behavior-2026-demos-mit.txt",
-        "split": "train / task-0000 / episode_index 10；人类遥操作演示。",
+        "split": "train / task-0000 / LeRobot episode_index 10 / raw_episode_id 120 / task_instance_id 12；人类遥操作演示。",
         "excerpt": true,
         "assets": [
           {
@@ -326,7 +335,7 @@
         "type": "record",
         "prompt": "接近收音机，从咖啡桌上拿起它，按下按钮，再将其放回咖啡桌。下面是官方演示数据中的技能标注。",
         "promptOrigin": "editorial",
-        "explanation": "这是 BEHAVIOR-1K 2026 Challenge 100 项任务范围内的一条演示标注，记录了每个技能的对象与帧区间；不是完整运动轨迹，也不是模型评测结果。",
+        "explanation": "这是 BEHAVIOR-1K 2026 Challenge 100 项任务范围内的一条演示标注，记录了每个技能的对象与帧区间；不是完整运动轨迹，也不是模型评测结果。 元数据将该标注映射到 LeRobot episode_index 0，而非本页画面的 episode_index 10；标注持续 1776 帧，但相应 episode 0 元数据 length 为 1956，这一时长差异尚未解释，不宣称逐帧一致。",
         "raw": {
           "task_name": "turning on radio",
           "meta_data": {
@@ -452,7 +461,7 @@
         "source": "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json",
         "license": "BEHAVIOR-1K 2026 Challenge Demos，MIT；版权声明和许可文本随站点提供。",
         "licensePath": "licenses/behavior-2026-demos-mit.txt",
-        "split": "task-0000 / episode_00000010",
+        "split": "train / task-0000 / raw_episode_id 10 / LeRobot episode_index 0 / task_instance_id 1；技能标注。",
         "excerpt": true
       }
     ]
@@ -466,7 +475,7 @@
       ]
     },
     {
-      "text": "固定版本中 info.json 标注 train；meta/episodes 的 episode 10 记录 task=turning_on_radio、2769 帧及头部视频分片时间 754.833–847.133 秒。已取得该分片并提取 760、800、840 秒帧；annotations/task-0000/episode_00000010.json 标注持续 1776 帧，尚未确认与视频索引是否逐帧对应。",
+      "text": "历史核查记录（2026-11-06 已通过原始 ID 映射补充更正）：固定版本中 info.json 标注 train；meta/episodes 的 episode 10 记录 task=turning_on_radio、2769 帧及头部视频分片时间 754.833–847.133 秒。已取得该分片并提取 760、800、840 秒帧；annotations/task-0000/episode_00000010.json 标注持续 1776 帧，尚未确认与视频索引是否逐帧对应。",
       "sourceUrls": [
         "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/info.json",
         "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
@@ -486,6 +495,15 @@
         "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/blob/09ec3cbea07be6cc7fa6c16707242f373260b989/results/step_24999/re_shelving_library_books_301_0.json",
         "https://huggingface.co/datasets/jermo1120/b1k-task55-re-shelving-library-books-official-eval/resolve/09ec3cbea07be6cc7fa6c16707242f373260b989/videos/step_24999/re_shelving_library_books_301_0.mp4"
       ]
+    },
+    {
+      "text": "2026-11-06 实读固定修订 meta/episodes/chunk-000/file-000.parquet 共 200 行：episode_index 10 的 raw_episode_id=120、task_instance_id=12、annotation_path 指向 episode_00000120.json，length=2769；对应标注 task_duration=2769，SHA-256 f117f4f81191dfd8a1aa8261fefac52b4de64c899f0faec7f0362ad47898db43。episode_index 0 才对应 raw_episode_id=10、task_instance_id=1、annotation10，length=1956。保留不同示范样例，不按文件名中的 10 合并；未解释 episode 0 的视频/标注时长差。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/meta/episodes/chunk-000/file-000.parquet",
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000120.json",
+        "https://huggingface.co/datasets/behavior-1k/2026-challenge-demos/blob/4f50b44796641a4d526a19d9aeadc8aa51e2f2c2/annotations/task-0000/episode_00000010.json"
+      ]
     }
-  ]
+  ],
+  "updatedAt": "2026-11-06"
 }

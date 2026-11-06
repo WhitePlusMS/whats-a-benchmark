@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：纠正 BEHAVIOR 演示与技能标注映射
+
+- 修改 `content/benchmarks/behavior-1k.json`：补 LeRobot episode_index 10 → raw_episode_id 120 → annotation120 的明确映射，登记固定标注来源；保留属于不同轨迹的 annotation10，明确其对应 episode_index 0。
+- 影响：不增加或删除样例及媒体；保留旧核查并附更正，不再将两种 ID 的数字 10 误作同轨迹。annotation10 的 1776 帧与 episode0 元数据 1956 帧差异仍未解释。
+- 验证：原始 Parquet/annotation120 实读，既有图片源帧由独立核验确认一致；内容生成、类型/内容校验及 diff 检查通过，浏览器播放未完成。
+
+# 更新说明
+
 ## 2026-11-06：合并 ManiSkill2 同源控制回放
 
 - 修改 `content/benchmarks/maniskill2.json`：依据固定原始和处理版 HDF5、元数据及官方重放实现，将同一示范的两种控制模式合为一个样例，保留动作、既有视频、许可和全部来源。
