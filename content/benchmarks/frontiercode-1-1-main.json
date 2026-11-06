@@ -88,10 +88,10 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "官网仅核到LOG_WARNING一项独立公开任务，恢复实际任务面板HTML；测试/lint/分支指南不是第二道题，不据此增加样例数。",
-    "url": "https://cognition.com/frontiercode",
+    "reason": "所选 LOG_WARNING 任务片段来自早期 Introducing FrontierCode 公开介绍，未证明属于 1.1 Main 的正式计分成员；测试、lint 与分支指南不另算独立任务。",
+    "url": "https://cognition.com/blog/frontier-code",
     "sourceUrls": [
-      "https://cognition.com/frontiercode",
+      "https://cognition.com/blog/frontier-code",
       "https://cognition.com/blog/frontier-code-1.1"
     ]
   },
@@ -162,20 +162,20 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "在src/logger.h增加LOG_WARNING输出流入口，统一标准错误、warning前缀和不受verbose影响的警告日志。",
-        "explanation": "这是官方 FrontierCode 页面公开展示的 jsonschema 仓库 C++ 任务：集中新增 LOG_WARNING 输出流辅助函数，保证 warning 前缀、stderr 和不受 --verbose 控制，并替换所有既有 warning 文本输出。页面同时给出与此示例一起展示的测试、lint、分支规则；本次只记录网页内容，没有运行构建或评测。",
+        "explanation": "这是 Cognition 原始 Introducing FrontierCode 文章公开展示的 jsonschema C++ 任务片段，原HTML与所引文章完全一致。该文章正文未标识1.1版本，未取得该例属于1.1 Main正式计分集的成员证据；没有运行构建或评测。",
         "raw": "<p class=\"mb-2 font-body text-[13px] leading-[1.5] text-text-secondary\">Encapsulate all warning logs in a new <code class=\"bg-black/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-text-primary\">auto LOG_WARNING() -&gt; std::ostream &amp;</code> method in <code class=\"bg-black/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-text-primary\">src/logger.h</code> such that:</p><ul class=\"my-2 flex flex-col gap-1.5\"><li class=\"flex gap-2\"><span aria-hidden=\"true\" class=\"mt-[0.55em] size-1 shrink-0 bg-text-secondary\"></span><span class=\"font-body text-[13px] leading-[1.5] text-text-secondary\">Warnings are always printed to standard error</span></li><li class=\"flex gap-2\"><span aria-hidden=\"true\" class=\"mt-[0.55em] size-1 shrink-0 bg-text-secondary\"></span><span class=\"font-body text-[13px] leading-[1.5] text-text-secondary\">Warnings are always printed, independently of <code class=\"bg-black/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-text-primary\">--verbose</code></span></li><li class=\"flex gap-2\"><span aria-hidden=\"true\" class=\"mt-[0.55em] size-1 shrink-0 bg-text-secondary\"></span><span class=\"font-body text-[13px] leading-[1.5] text-text-secondary\">The helper automatically prints the <code class=\"bg-black/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-text-primary\">warning:</code> prefix</span></li></ul><p class=\"mt-2 font-body text-[13px] leading-[1.5] text-text-secondary\">Use this new function in every instance of <code class=\"bg-black/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-text-primary\">warning: &lt;message&gt;</code> messages throughout the codebase.</p>",
-        "source": "https://cognition.com/frontiercode",
-        "license": "Cognition官方排行榜展示的真实任务片段；原任务面板HTML保留，未确认单独数据许可。测试/lint/分支指南在源页面可查看，未执行这些指令。",
-        "split": "FrontierCode leaderboard page public Example Task; page labels product FrontierCode v1.1; no stable benchmark row ID",
+        "source": "https://cognition.com/blog/frontier-code",
+        "license": "Cognition 官方介绍文章的公开任务片段；原HTML连续节选已核对。未确认独立题库再发布许可，不据此扩大正文、测试或附件的复制范围。",
+        "split": "官方 Introducing FrontierCode 文章公开示例；未证明属于 1.1 Main 的正式计分成员",
         "excerpt": true
       }
     ]
   },
   "researchNotes": [
     {
-      "text": "本轮已沿官方原文件/发布例题定位具体任务：Leaderboard > What a task looks like > Task description (warning logger task)；本页为事实解读和来源短引。",
+      "text": "所引任务片段可定位至早期 Introducing FrontierCode 介绍文章；文章未标识 1.1 版本，本页不将其作为 1.1 Main 正式成员的证明。",
       "sourceUrls": [
-        "https://cognition.com/frontiercode"
+        "https://cognition.com/blog/frontier-code"
       ]
     },
     {
@@ -192,5 +192,6 @@
         "https://cognition.com/blog/frontier-code-1.1"
       ]
     }
-  ]
+  ],
+  "releaseDate": "2026-07-07"
 }
