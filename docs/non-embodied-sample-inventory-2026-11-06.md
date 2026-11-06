@@ -71,6 +71,19 @@
 | Artificial Analysis Speech-to-Speech Index | [首发说明](https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index)的 v1 组合与[当前方法页](https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking)不同；本站条目记录 v1.0。 | 当前方法页指向 [Big Bench Audio](https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio)，本次官方数据接口显示固定修订 `af7bb9c25b015792583ca4da3ee27ec62cb79fe6` 有 1,000 个 `train` 行；本站该组成项已有样例。该数字来自数据服务元数据，非本站逐条读取。 |
 | Vals Index | [Vals Index v2 方法页](https://www.vals.ai/benchmarks/vals_index_v2)说明其汇总七项评测，其中五项私有、两项公开。 | 榜单和方法公开不等于七项原始题目均可下载；Code Migration 在指数中另使用指定子集。 |
 
+## 其他无站内样例条目的数据核查
+
+以下检查于 2026-11-06 进行；受控入口的匿名结果不能代表授权后的访问结果，标注文件可读取也不等于原图或环境可转载。
+
+| 评测 | 核查结果 | 来源与边界 |
+| --- | --- | --- |
+| Dense200 | 读取固定版本标注 JSONL，共 200 行、973,702 字节，SHA-256 `c10545c598fbd14f757fc55953bdf5de3acd692f755a2df9fb626641ad840ba6`；首行有类别、图像路径和标注等字段。 | [标注文件](https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/blob/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl)；原图和标注的再发布许可仍需核对。 |
+| FrontierFinance（Samaya） | 指定版本 `frontier_finance_public.jsonl` 的未登录请求返回 HTTP 401；作者数据卡声明有 220 个问题，并提供一个公开格式示例，本次没有读取完整数据文件。 | [作者数据卡](https://huggingface.co/datasets/samaya-ai/FrontierFinance)要求访问者满足其分享和访问条件。 |
+| OSWorld 2.1 | 未登录请求任务仓库固定版本 `task_001.py` 返回 HTTP 401；本次没有读取任务实现，也没有核对完整运行资产。 | [任务仓库](https://huggingface.co/datasets/xlangai/osworld_v2_tasks)；任务版本须按[作者说明](https://github.com/xlang-ai/OSWorld-V2/blob/main/README.md)另行核对，不能把其他版本案例直接当作 2.1。 |
+| CyScenarioBench | 发布方说明场景评测集保持私有、未对外发布；页面公开方法，不提供完整场景数据。 | [Irregular 官方说明](https://www.irregular.com/research/cyscenariobench)。 |
+| Mystery Game Puzzles | 发布方说明暂不公开提示、示例局面和模型轨迹；页面给出评测方法和总体规模。 | [Epoch AI 方法页](https://epoch.ai/benchmarks/mystery-game-puzzles)；不以其他游戏局面替代。 |
+| MedCode | Vals 页面标为专有，公开榜单与方法；本次未在该页面找到患者级记录下载。 | [Vals 官方页面](https://www.vals.ai/benchmarks/medcode)；仅说明本次核查范围，不推断不存在其他授权渠道。 |
+
 ## 站内样例清单
 
 | 评测 | 类别 | 站内样例数 | 已记录访问状态 | 资料入口 |
