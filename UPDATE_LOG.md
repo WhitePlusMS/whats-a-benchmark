@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：补充 RoboTwin 2.0 测试场景回放
+
+- 修改 `content/benchmarks/robotwin-2.json`：增加第三方双臂传递积木测试场景的单次诊断、种子、结果和来源，区分生成视频、逆动力学动作提取与 SAPIEN 回放。
+- 新增 `content/assets/videos/robotwin2-handover-block-sapien-eval.mp4`：固定版本第三方原始仿真回放，数据卡标注 Apache-2.0，并保留上游资产许可边界。
+- 原因和影响：已有条目主要为训练演示，本次补充不同任务的测试场景录像；单次结果不作为整体成绩，也不代表实机运行。
+
+# 更新说明
+
 ## 2026-11-06：补充 RoboCasa 作者仿真示例入口
 
 - 修改 `content/benchmarks/robocasa.json`：增加 Cosmos Policy 作者公开的打开抽屉仿真运行示例、原视频链接与核验记录。

@@ -86,18 +86,19 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "公开转换数据标注 MIT。",
-    "scope": "本站展示来源可追溯到官方 demo_clean 的少量转换视频与记录。",
+    "license": "训练转换数据卡标 MIT；第三方 SAPIEN 回放数据卡标 Apache-2.0。",
+    "scope": "本站展示少量训练转换视频与一条第三方测试场景回放；上游场景资产按各自条件使用。",
     "boundaries": [
       "转换数据为训练示范，不是评测时的验证或测试轨迹。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/README.md"
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/README.md",
+      "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示 RoboTwin 2.0 官方示范的公开转换轨迹、视频和数据字段；划分按来源标注。",
+    "reason": "展示 RoboTwin 2.0 训练转换轨迹，以及第三方测试场景的诊断记录和 SAPIEN 回放。",
     "sourceUrls": [
       "https://huggingface.co/docs/lerobot/en/robotwin",
       "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
@@ -111,7 +112,10 @@
       "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/beat_block_hammer/episode_0000000/instruction.json",
       "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/beat_block_hammer/episode_0000000/head_camera.mp4",
       "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/instruction.json",
-      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/head_camera.mp4"
+      "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/head_camera.mp4",
+      "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval",
+      "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_diag.json",
+      "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_sapien.mp4"
     ]
   },
   "metric": {
@@ -215,6 +219,21 @@
       "label": "stack_blocks_two 头部相机视频",
       "url": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/stack_blocks_two/episode_0000000/head_camera.mp4",
       "role": "data"
+    },
+    {
+      "label": "第三方 SAPIEN 回放数据卡",
+      "url": "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval",
+      "role": "data"
+    },
+    {
+      "label": "测试场景单次诊断",
+      "url": "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_diag.json",
+      "role": "data"
+    },
+    {
+      "label": "对应 SAPIEN 回放视频",
+      "url": "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_sapien.mp4",
+      "role": "data"
     }
   ],
   "related": [
@@ -231,6 +250,34 @@
   "sampleSet": {
     "retrievedAt": "2026-10-29",
     "samples": [
+      {
+        "id": "robotwin2-sapien-eval-handover-block-123500000-g000",
+        "title": "双臂传递积木 · 测试场景回放",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "左臂抓起红色积木并交给右臂，右臂将其放到蓝色目标垫上。",
+        "explanation": "第三方以环境种子 123500000 和生成种子 42 进行单次运行：先由 SFT 视频模型生成画面，再由 Vidar 逆动力学模型提取动作，最后在 RoboTwin 2.0 的 SAPIEN 场景回放。诊断记录包含 121 个动作并标记成功；这是一条仿真回放，不是实机演示或整体成功率。",
+        "raw": {
+          "stem": "robotwin_handover_block_123500000_g000_s42",
+          "seed": 123500000,
+          "num_actions": 121,
+          "success": true,
+          "failure_reasons": []
+        },
+        "source": "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_diag.json",
+        "license": "第三方回放数据卡标注 Apache-2.0；RoboTwin 场景和其他上游资产适用各自条件。",
+        "licensePath": "licenses/robodojo-apache-2.txt",
+        "split": "第三方测试场景 / handover_block / 环境种子 123500000 / 生成种子 42",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/robotwin2-handover-block-sapien-eval.mp4",
+            "caption": "第三方 SAPIEN 动作回放；诊断记录标记该次成功。",
+            "source": "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_sapien.mp4"
+          }
+        ]
+      },
       {
         "id": "robotwin2-stack-blocks-two-episode0",
         "title": "真实轨迹 0：堆叠红绿方块",
@@ -469,6 +516,14 @@
         "https://huggingface.co/docs/lerobot/en/robotwin",
         "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
         "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/meta/tasks.parquet"
+      ]
+    },
+    {
+      "text": "2026-11-06 下载固定版本诊断与对应回放：诊断 3,018 字节，SHA-256 3763f265b10c3f242e68850bd49eca57784d83d45a6b58699a35ceb0c9a759f2；回放 321,263 字节，SHA-256 25a679bb78fb8019ba58080605cdede508d4f36be2946c0283e1dafff41f1462。本地浏览器播放约 11.5 秒、640×480 的回放，画面为双臂传递积木；未自行运行模型或仿真。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval",
+        "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_diag.json",
+        "https://huggingface.co/datasets/VincentNi/robotwin-sft-8tasks-sapien-eval/blob/1d983da91efdcd5fba132dd29234be2b18947d91/handover_block/robotwin_handover_block_123500000/robotwin_handover_block_123500000_g000_s42_sapien.mp4"
       ]
     }
   ]
