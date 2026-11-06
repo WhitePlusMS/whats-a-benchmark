@@ -64,15 +64,17 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "官方未单列示例转载许可；80题及答案私有，但页面Example Tasks明确公开两道题和各自参考值。",
-    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
+    "status": "restricted",
+    "license": "AA 网站条款仅授予个人非商业访问，并限制网页内容的复制、再发布和托管；两道公开问题未见独立再发布许可。问题与参考数值的公开展示不授予私有 80 题、配套工作簿或完整题文的再发布权。",
+    "scope": "所引 AA 官网内容层：现有两条公开问题及参考数值用于说明任务，未确认独立题文再发布许可；不扩大到私有 80 题或配套工作簿。",
     "boundaries": [
       "页面未说明该示例是否计分。",
-      "不由公开展示推定完整题库、附件或模型输出可复用。"
+      "不由公开展示推定完整题库、附件或模型输出可复用。",
+      "网站内容的使用限制与底层数据许可分开；公开任务名称、数值事实及本站解读不代表完整题文、附件或媒体已获再发布授权。"
     ],
     "sourceUrls": [
-      "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+      "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+      "https://artificialanalysis.ai/terms-of-use"
     ]
   },
   "sampleAccess": {
@@ -145,6 +147,11 @@
       "label": "当前版本发布日期来源",
       "url": "https://artificialanalysis.ai/articles/aa-analyst-agent",
       "role": "definition"
+    },
+    {
+      "label": "Artificial Analysis 网站使用条款",
+      "url": "https://artificialanalysis.ai/terms-of-use",
+      "role": "access"
     }
   ],
   "related": [],
@@ -176,7 +183,7 @@
         "explanation": "需协调医疗交通各组成项，包含C- medical transport，并按美元取整。官方公开答案115801保留；漏掉的原题末尾取整要求已补回。配套表格未镜像，尚不能在本站复算官方结果。",
         "raw": "What was the total computable medical transport spend (including C- medical transport) for Medicaid in California in 2001? Round the answer to the nearest dollar.",
         "source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
-        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。 所引官网内容另受 AA 网站条款约束；本条不表示已获完整题文、附件或媒体的再发布许可。",
         "split": "官方公开演示 / 非已定位的计分数据行",
         "excerpt": true,
         "answer": "115801"
@@ -190,7 +197,7 @@
         "promptOrigin": "editorial",
         "explanation": "需要用处方药支出除以总净医疗援助支出，再按两位小数报告百分比；官方页面单独公开的参考答案是8.66%。没有配套支出表，本站未独立复算，公开演示也未映射到私有80题中的某一计分行。",
         "id": "aa-analyst-agent-public-ca-medicaid-drug-share",
-        "license": "官方公开页未为题面另列再发布license；仅保留一个必要短问题记录其实际披露，不能据公开展示推断整套80题或参考文件可再发布。",
+        "license": "官方公开页未为题面另列再发布license；仅保留一个必要短问题记录其实际披露，不能据公开展示推断整套80题或参考文件可再发布。 所引官网内容另受 AA 网站条款约束；本条不表示已获完整题文、附件或媒体的再发布许可。",
         "type": "record",
         "raw": "Prescribed drug expenditures accounted for what percent of total net medical assistance program expenditures for Medicaid in California in 1997? Round the answer to two decimal places.",
         "answer": "8.66%"
