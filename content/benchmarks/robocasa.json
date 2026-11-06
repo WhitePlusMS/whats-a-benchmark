@@ -16,6 +16,11 @@
         "label": "官方仓库与数据入口",
         "type": "项目资料",
         "url": "https://github.com/robocasa/robocasa"
+      },
+      {
+        "label": "Cosmos Policy 打开抽屉原始视频",
+        "type": "作者运行录像",
+        "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/assets/cosmos_policy_robocasa_open_drawer.mp4"
       }
     ]
   },
@@ -95,13 +100,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示原版 RoboCasa 第三方转换集的两条合成训练演示，以及对应轨迹索引和相机视频。",
+    "reason": "展示两条合成训练演示及索引，另提供作者公开的 RoboCasa 模型仿真运行示例链接。",
     "sourceUrls": [
       "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
       "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/tasks.parquet",
       "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/episodes/chunk-000/file-000.parquet",
       "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/info.json",
-      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
+      "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4",
+      "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/",
+      "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/assets/cosmos_policy_robocasa_open_drawer.mp4"
     ]
   },
   "metric": {
@@ -164,6 +171,16 @@
     {
       "label": "转换集许可声明",
       "url": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100",
+      "role": "data"
+    },
+    {
+      "label": "Cosmos Policy 作者项目与仿真示例",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/",
+      "role": "data"
+    },
+    {
+      "label": "作者打开抽屉原始视频",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/assets/cosmos_policy_robocasa_open_drawer.mp4",
       "role": "data"
     }
   ],
@@ -373,6 +390,19 @@
             "source": "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
           }
         ]
+      },
+      {
+        "id": "robocasa-cosmos-policy-open-drawer",
+        "title": "打开抽屉 · 作者公开的仿真运行示例",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在厨房仿真环境中操作机器人，打开抽屉。",
+        "explanation": "Cosmos Policy 作者在 RoboCasa 示例区展示该任务的模型运行录像及未来图像预测。作者页面未标注此视频的试次编号、种子或单次成功判定，也未说明它是否来自表格所统计的评测试次；不能据此推算成功率。对应录像仅链接作者原始页面和文件。",
+        "raw": "Open Drawer",
+        "source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/",
+        "license": "作者页面未明确单独提供该录像的再发布许可；本站仅链接原始页面和视频。",
+        "split": "Cosmos Policy 作者公开的 RoboCasa 仿真运行示例；具体试次未披露。",
+        "excerpt": true
       }
     ]
   },
@@ -390,6 +420,13 @@
         "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/meta/episodes/chunk-000/file-000.parquet",
         "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/data/chunk-000/file-000.parquet",
         "https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/videos/observation.images.robot0_agentview_left_image/chunk-000/file-000.mp4"
+      ]
+    },
+    {
+      "text": "2026-11-06 核对 Cosmos Policy 作者页面及 RoboCasa / Open Drawer 素材，原视频下载大小 420,328 字节，SHA-256 803f6c02eb2c282a061600592bee5ab537b0c874459b9d1513ec017e6c816973；页面未公开该视频的试次编号和成功判定。浏览器访问原片时持续缓冲，尚未验证播放；本站仅提供原始链接。",
+      "sourceUrls": [
+        "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/",
+        "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/assets/cosmos_policy_robocasa_open_drawer.mp4"
       ]
     }
   ]
