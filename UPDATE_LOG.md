@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：还原 SHADE-Arena 原文段落结构
+
+- 修改 `content/benchmarks/shade-arena.json`：将人工构造instruction包装还原为README原句字符串，明确Main task段落来源，不冒充原生JSON字段。
+- 影响：样例数量、任务内容与既有许可边界不变，不新增媒体。
+- 验证：固定来源直接对照；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：固定 CritPt 原始记录来源与划分说明
 
 - 修改 `content/benchmarks/critpt.json`：四条动态rows入口已漂移，改绑与现raw一致的固定Parquet；五卡明确HF存储split名train但官方用途为70题testset，scope覆盖五条题面和代码模板，禁训练与禁发布解答条款不变。
