@@ -49,12 +49,15 @@
     ],
     "files": [
       "已实际读取固定快照的 box_eval/Dense200.jsonl，共 200 行；第一行文件 dense200/1.Group-A-at-feeder (1).jpg，类别 chicken。",
-      "数据版本 daff862ba483f56ccaba9af5a12e118a9372ede8。"
+      "数据版本 daff862ba483f56ccaba9af5a12e118a9372ede8。",
+      "2026-11-06 从同快照图像包实际提取首条对应 JPG：918×1234，类别 chicken，40 个标注框在图像边界内；未逐框评估质量。"
     ],
     "sourceUrls": [
       "https://arxiv.org/html/2510.12798",
       "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData",
-      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl"
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl",
+      "https://github.com/IDEA-Research/Rex-Omni/blob/6508981c1e0c3fbb2dbe7b962a4bb745005f3e2e/evaluation/README.md",
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/dense200.tar.gz"
     ]
   },
   "dataAccess": {
@@ -82,11 +85,12 @@
   },
   "sampleAccess": {
     "status": "license-pending",
-    "reason": "已取得 200 行标注并核验首条，但原图及标注的再发布许可尚未确认；提供固定版本源文件。",
+    "reason": "已读取 200 行标注，并实际提取首条对应鸡群图核对文件、类别与框边界；原照片出处和图片/标注转载许可尚未确认，本站不复制原图或坐标。",
     "url": "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl",
     "sourceUrls": [
       "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/_annotations/box_eval/Dense200.jsonl",
-      "https://huggingface.co/datasets/Skywalker0410/Grounding-EvalData/blob/main/THIRD_PARTY_NOTICES.md"
+      "https://huggingface.co/datasets/Skywalker0410/Grounding-EvalData/blob/main/THIRD_PARTY_NOTICES.md",
+      "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/dense200.tar.gz"
     ]
   },
   "metric": {
@@ -139,8 +143,34 @@
       "label": "Mistral Large 4 发布页成绩",
       "url": "https://mistral.ai/news/mistral-large-4/",
       "role": "vendor-report"
+    },
+    {
+      "label": "固定作者评估指南",
+      "url": "https://github.com/IDEA-Research/Rex-Omni/blob/6508981c1e0c3fbb2dbe7b962a4bb745005f3e2e/evaluation/README.md",
+      "role": "data"
+    },
+    {
+      "label": "同快照原图压缩包",
+      "url": "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/dense200.tar.gz",
+      "role": "data"
+    },
+    {
+      "label": "代码许可（不替代图像许可）",
+      "url": "https://github.com/IDEA-Research/Rex-Omni/blob/6508981c1e0c3fbb2dbe7b962a4bb745005f3e2e/LICENSE",
+      "role": "data"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28"
+  "verifiedAt": "2026-10-28",
+  "researchNotes": [
+    {
+      "text": "2026-11-06：首条对应 JPG 为364484字节，SHA-256 9612570b797d81aa4af3f0afc31301d0efec8a2a363b939475ee2cb4c2308f02。只核验该成员，不声称逐框正确或模型通过。作者代码许可不能自动覆盖收集照片与标注；第三方 notice 也不是原版权人授权。",
+      "sourceUrls": [
+        "https://github.com/IDEA-Research/Rex-Omni/blob/6508981c1e0c3fbb2dbe7b962a4bb745005f3e2e/evaluation/README.md",
+        "https://huggingface.co/datasets/Mountchicken/Rex-Omni-EvalData/resolve/daff862ba483f56ccaba9af5a12e118a9372ede8/dense200.tar.gz",
+        "https://github.com/IDEA-Research/Rex-Omni/blob/6508981c1e0c3fbb2dbe7b962a4bb745005f3e2e/LICENSE"
+      ]
+    }
+  ],
+  "updatedAt": "2026-11-06"
 }

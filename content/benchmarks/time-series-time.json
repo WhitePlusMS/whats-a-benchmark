@@ -40,7 +40,8 @@
       "论文及数据卡给出 50 个数据集、98 个预测任务。"
     ],
     "splits": [
-      "按时间窗口评估；主数据目录内部使用 train 存储，不能直接等同最终评测训练划分。"
+      "按时间窗口评估；主数据目录内部使用 train 存储，不能直接等同最终评测训练划分。",
+      "Australia Solar 的 test_data/val_data 目标区各2520小时；预测长度24/72/168小时，测试窗口数105/35/15，相邻窗口按预测长度推进。仅此数据配置，不外推全部TIME任务。"
     ],
     "fields": [
       "主数据包含 item_id、start、freq、target、variate_names；CSV 含 timestamp 及序列列。"
@@ -53,7 +54,9 @@
       "https://arxiv.org/html/2602.12147",
       "https://huggingface.co/datasets/Real-TSF/TIME",
       "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV",
-      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/resolve/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv"
+      "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/resolve/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv",
+      "https://github.com/zqiao11/TIME/blob/a246570202a8287d3cb83ef0aa558b5ac7697bc3/src/timebench/config/datasets.yaml#L186-L194",
+      "https://github.com/zqiao11/TIME/blob/a246570202a8287d3cb83ef0aa558b5ac7697bc3/src/timebench/evaluation/data.py#L368-L397"
     ]
   },
   "dataAccess": {
@@ -73,12 +76,15 @@
     "license": "主数据集标注 CC BY-NC-4.0；参考 CSV 仓库仍标 Apache-2.0。",
     "scope": "具体数据需结合主数据限制、来源数据许可和用途判断。",
     "boundaries": [
-      "论文标注 Australia Solar 来源受 PVOutput 服务条款约束；不能仅据参考仓库标签确认该行可公开转载。"
+      "论文标注 Australia Solar 来源受 PVOutput 服务条款约束；不能仅据参考仓库标签确认该行可公开转载。",
+      "PVOutput Data Service 条款向有效订阅者授予带署名的再发布权；本轮未确认该权利可转授至本站，不能只按CSV的Apache标签复制上游数值。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/Real-TSF/TIME",
       "https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV",
-      "https://arxiv.org/html/2602.12147"
+      "https://arxiv.org/html/2602.12147",
+      "https://www.pvoutput.org/help/terms_of_service.html",
+      "https://arxiv.org/html/2602.12147v4"
     ]
   },
   "sampleAccess": {
@@ -115,6 +121,14 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/Real-TSF/TIME"
       ]
+    },
+    {
+      "text": "2026-11-06：CSV的35064行时间戳连续逐小时。按官方test_data/val_data规则推导测试目标区2024-12-17至2025-03-31，验证目标区2024-09-03至2024-12-16；未运行模型/完整框架，未下载主Arrow逐值核对，也未调用PVOutput API。原始整份CSV不是一道测试题，代码历史training_dataset接口不等同此验证窗口。",
+      "sourceUrls": [
+        "https://github.com/zqiao11/TIME/blob/a246570202a8287d3cb83ef0aa558b5ac7697bc3/src/timebench/config/datasets.yaml#L186-L194",
+        "https://github.com/zqiao11/TIME/blob/a246570202a8287d3cb83ef0aa558b5ac7697bc3/src/timebench/evaluation/data.py#L368-L397",
+        "https://arxiv.org/html/2602.12147v4"
+      ]
     }
   ],
   "sources": [
@@ -142,8 +156,29 @@
       "label": "TIME 官方排行榜",
       "url": "https://huggingface.co/spaces/Real-TSF/TIME-leaderboard",
       "role": "leaderboard"
+    },
+    {
+      "label": "固定Australia Solar任务配置",
+      "url": "https://github.com/zqiao11/TIME/blob/a246570202a8287d3cb83ef0aa558b5ac7697bc3/src/timebench/config/datasets.yaml#L186-L194",
+      "role": "code"
+    },
+    {
+      "label": "固定test_data/val_data切分实现",
+      "url": "https://github.com/zqiao11/TIME/blob/a246570202a8287d3cb83ef0aa558b5ac7697bc3/src/timebench/evaluation/data.py#L368-L397",
+      "role": "code"
+    },
+    {
+      "label": "PVOutput上游服务条款",
+      "url": "https://www.pvoutput.org/help/terms_of_service.html",
+      "role": "access"
+    },
+    {
+      "label": "TIME论文v4：上游数据来源",
+      "url": "https://arxiv.org/html/2602.12147v4",
+      "role": "paper"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-28"
+  "verifiedAt": "2026-10-28",
+  "updatedAt": "2026-11-06"
 }

@@ -40,13 +40,18 @@
     "summary": "官方bug-fix版本，更新代理、评测流程、任务快照和固定环境资产。",
     "disclosure": "partial",
     "scale": [
-      "release说明108个任务文件"
+      "官方发布说明列出 108 个任务；2026-11-06 实际解析固定 hash manifest，含 108 个 task_*.py 条目，未取得任务正文。"
     ],
     "splits": [],
     "fields": [],
-    "files": [],
+    "files": [
+      "任务 revision 0a1aadad95aa79b00b3783e717d865089ab06e26；完整 gated assets revision 384b3834faba5700a7b589e6cc181490c9808949。",
+      "公开 runtime assets revision 3a140a3df8f351b22bb5b9526846f078e738777f，不等于完整任务资产。"
+    ],
     "sourceUrls": [
-      "https://github.com/xlang-ai/OSWorld-V2/releases"
+      "https://github.com/xlang-ai/OSWorld-V2/releases",
+      "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/benchmark_releases/osworld-v2.1.json",
+      "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/benchmark_releases/osworld-v2.1.task_hashes.json"
     ]
   },
   "dataAccess": {
@@ -132,6 +137,26 @@
       "label": "OSWorld 2.0: Benchmarking Computer Use Agents on Long-Horizon Real-World Tasks",
       "url": "https://arxiv.org/abs/2606.29537",
       "role": "paper"
+    },
+    {
+      "label": "2.1 固定发布组件清单",
+      "url": "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/benchmark_releases/osworld-v2.1.json",
+      "role": "data"
+    },
+    {
+      "label": "2.1 固定任务文件哈希清单",
+      "url": "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/benchmark_releases/osworld-v2.1.task_hashes.json",
+      "role": "data"
+    },
+    {
+      "label": "2.1 固定公开评测指引",
+      "url": "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/docs/PUBLIC_EVALUATION_GUIDELINE_v2.1.md",
+      "role": "data"
+    },
+    {
+      "label": "2.1 受控任务文件入口",
+      "url": "https://huggingface.co/datasets/xlangai/osworld_v2_tasks/resolve/0a1aadad95aa79b00b3783e717d865089ab06e26/task_001.py",
+      "role": "data"
     }
   ],
   "related": [
@@ -154,13 +179,22 @@
       ]
     }
   },
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-06",
   "researchNotes": [
     {
       "text": "已实际核对2.1 README、Public Evaluation Guideline、2.0项目案例及轨迹入口。官方说明2.1任务实现不在公开GitHub checkout；公开2.0演示不证明其内容与2.1逐项一致，因此保留真实版本与访问边界。",
       "sourceUrls": [
         "https://github.com/xlang-ai/OSWorld-V2/blob/main/README.md",
         "https://osworld-v2.xlang.ai/"
+      ]
+    },
+    {
+      "text": "2026-11-06：实际读取 release manifest 与 task hash manifest，后者 SHA-256 与发布清单一致；精确任务版本的 task_001.py 匿名访问仍为 401。此检查仅确认108条文件元数据和版本关系，未执行任务、未核实完整资产或测试划分。公开2.0演示与2.1具有相同编号不足以证明内容一致。",
+      "sourceUrls": [
+        "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/benchmark_releases/osworld-v2.1.json",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/benchmark_releases/osworld-v2.1.task_hashes.json",
+        "https://github.com/xlang-ai/OSWorld-V2/blob/3d778a3c9a34a079316f70df023b166700445792/docs/PUBLIC_EVALUATION_GUIDELINE_v2.1.md",
+        "https://huggingface.co/datasets/xlangai/osworld_v2_tasks/resolve/0a1aadad95aa79b00b3783e717d865089ab06e26/task_001.py"
       ]
     }
   ]

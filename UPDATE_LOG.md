@@ -1,5 +1,15 @@
 # 更新说明
 
+## 2026-11-06：Dot 独立核验非具身数据与许可
+
+- 修改 `content/benchmarks/mmlu-pro.json`：将代码仓库许可从 MIT 更正为 Apache-2.0，保留论文附录对数据集 MIT 的独立声明。
+- 修改 `dense200`、`time-series-time`、`frontierfinance`、`osworld-2-1`、`taptap-maker`：补实际读取、固定版本、切分和访问/许可边界，保持无样例状态。
+- 修改 `spatialbench-verified` 并新增 `content/assets/licenses/spatialbench-apache-2-0.txt`：由官方当前V1成员清单确认一个公开任务ID，新增1条题面/评分器节选，保留版本与底层数据边界；无新图片或视频。
+- 新增 `docs/dot-llm-data-findings.md`：记录六项逐项证据与八项热门记录抽查、哈希、限制及验证；本批不是全部评测完成结论。
+- 原因和影响：实际读取的代码 LICENSE 与旧说明不一致；只纠正许可范围，不改原题和答案。
+
+# 更新说明
+
 ## 2026-11-06：补充 RoboQuest 官方单次评测记录
 
 - 修改 `content/benchmarks/roboquest.json`：增加 eval50 清单中 Puzzle Box 实例的官方单次模型结果及固定版本来源，并补充测试划分说明。

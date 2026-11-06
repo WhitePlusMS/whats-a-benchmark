@@ -73,11 +73,12 @@
   },
   "sampleAccess": {
     "status": "official",
-    "reason": "无需登录可在作者数据卡 Example 查看一条问题和评分标准；完整文件的匿名访问返回 401，且数据卡附加再分享限制，本站不转载该例题。",
+    "reason": "2026-11-06 读取的作者公开数据卡与评分仓库只提供格式示例；未取得正式 JSONL，无法独立确认示例属于正式题集或评分细则完整。固定文件匿名访问为 401，且数据卡限制站外再分享，本站不转载题面。",
     "url": "https://huggingface.co/datasets/samaya-ai/FrontierFinance",
     "sourceUrls": [
       "https://huggingface.co/datasets/samaya-ai/FrontierFinance",
-      "https://github.com/samaya-ai/frontier-finance"
+      "https://github.com/samaya-ai/frontier-finance/blob/8b71342dc7730eb1803dd3934e17bc71c9922ec5/README.md",
+      "https://huggingface.co/datasets/samaya-ai/FrontierFinance/resolve/36afd6dc1cbb2c4512536daf917dc28b1225a720/frontier_finance_public.jsonl"
     ]
   },
   "metric": {
@@ -129,16 +130,39 @@
       "label": "论文：任务日期、研究流程和评分方法",
       "url": "https://arxiv.org/html/2608.11683",
       "role": "paper"
+    },
+    {
+      "label": "固定版本评分器说明及格式示例",
+      "url": "https://github.com/samaya-ai/frontier-finance/blob/8b71342dc7730eb1803dd3934e17bc71c9922ec5/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "评分器与数据集分别适用的许可",
+      "url": "https://github.com/samaya-ai/frontier-finance/blob/8b71342dc7730eb1803dd3934e17bc71c9922ec5/NOTICE",
+      "role": "access"
+    },
+    {
+      "label": "固定版本受控数据文件",
+      "url": "https://huggingface.co/datasets/samaya-ai/FrontierFinance/resolve/36afd6dc1cbb2c4512536daf917dc28b1225a720/frontier_finance_public.jsonl",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-28",
-  "updatedAt": "2026-10-28",
+  "updatedAt": "2026-11-06",
   "researchNotes": [
     {
       "text": "作者评分仓库 README 写明可以无登录获取数据，但实际 HF 数据卡要求接受条件，固定文件匿名读取返回 401；按实际访问状态列为受控，不把文档口径冲突当作已开放下载。",
       "sourceUrls": [
         "https://github.com/samaya-ai/frontier-finance",
+        "https://huggingface.co/datasets/samaya-ai/FrontierFinance"
+      ]
+    },
+    {
+      "text": "2026-11-06：HF Example 的 query_id 为 ac8e1799814fee95，GitHub Input formats 的示例为 85bc71fb95e1a5c4，后者 rubric 带省略号；均不作为已核实的正式题。NOTICE 将评分器 Apache-2.0 与数据集 CC BY 4.0 分开，HF 附加访问和再分享条件仍须遵守。",
+      "sourceUrls": [
+        "https://github.com/samaya-ai/frontier-finance/blob/8b71342dc7730eb1803dd3934e17bc71c9922ec5/README.md",
+        "https://github.com/samaya-ai/frontier-finance/blob/8b71342dc7730eb1803dd3934e17bc71c9922ec5/NOTICE",
         "https://huggingface.co/datasets/samaya-ai/FrontierFinance"
       ]
     }

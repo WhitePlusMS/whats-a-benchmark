@@ -77,12 +77,13 @@
   },
   "sampleAccess": {
     "status": "unverified",
-    "reason": "2026-10-19 已沿官网公开脚本读取 latest、edition index 及 11 份版本 JSON。它们提供版本指纹、模型成绩、成本、速度、分类和难度汇总，未提供具体 task prompt、输入文件或答案。方法中的 public tasks 不等于该页面已经发布题目包；held-out 题面和轨迹则明确保密。",
+    "reason": "2026-11-06 读取当前索引及2026-09-10、2026-11-05两个官方快照，仍只有成绩与统计，未取得题面、输入文件、答案或任务转载许可。索引现13版，不将方法中的public tasks或数据hash前缀当作已下载题包；held-out内容保持不公开。",
     "sourceUrls": [
       "https://maker.taptap.cn/leaderboard/methodology.html",
       "https://maker.taptap.cn/leaderboard/editions.html",
       "https://maker.taptap.cn/leaderboard/data/editions/index.json",
-      "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json"
+      "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json",
+      "https://maker.taptap.cn/leaderboard/data/editions/2026-11-05-v6-hy4.json"
     ]
   },
   "metric": {
@@ -138,6 +139,13 @@
         "https://maker.taptap.cn/leaderboard/data/editions/index.json",
         "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json"
       ]
+    },
+    {
+      "text": "2026-11-06：索引列出13个edition。本轮实际读取2026-09-10与2026-11-05两个JSON，只有榜单、成本、速度、分类与难度汇总，没有任务输入或答案。两者dataset_version均为0.2.3、hash前缀de38ba84；前缀不能证明题包已取得。未重新下载全部13版，保持此条历史version不变。",
+      "sourceUrls": [
+        "https://maker.taptap.cn/leaderboard/data/editions/2026-11-05-v6-hy4.json",
+        "https://maker.taptap.cn/leaderboard/data/editions/index.json"
+      ]
     }
   ],
   "sources": [
@@ -165,11 +173,16 @@
       "label": "2026-10-19 公开数据与案例核查入口",
       "url": "https://maker.taptap.cn/leaderboard/data/editions/2026-10-18-v6-voxel.json",
       "role": "access"
+    },
+    {
+      "label": "2026-11-05公开榜单快照（不是题包）",
+      "url": "https://maker.taptap.cn/leaderboard/data/editions/2026-11-05-v6-hy4.json",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-06",
   "interpretation": {
     "judge": {
       "text": "先检查L0交付物、L1 Lua静态分析，再用真实UrhoX无头执行的L2断言判分；无LLM裁判，agent容器不能读取答案/断言。",
