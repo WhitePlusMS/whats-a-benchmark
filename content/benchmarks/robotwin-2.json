@@ -346,7 +346,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "用左臂拿起绿色瓶子并保持瓶口向上。",
-        "explanation": "该视频和元数据取自 RoboTwin 2.0 demo_clean 轨迹的公开转换，episode 0、scene_seed 0、139 条轨迹记录；视频经过转换并标为 30 fps。指令文件提供多种描述，本例展示其中一条。",
+        "explanation": "该视频和元数据取自 RoboTwin 2.0 demo_clean 轨迹的公开转换，episode 0、scene_seed 0、139 条轨迹记录；视频经过转换并标为 30 fps。指令文件提供多种描述，本例展示其中一条。 另一公开转换集的第 0、69、138 帧双臂状态与动作数值与此轨迹完全一致，因此合并展示；该比较不代表逐帧核验了全部 139 帧。",
         "raw": {
           "episode_index": 0,
           "task": "adjust_bottle",
@@ -355,7 +355,131 @@
           "source_archive": "dataset/adjust_bottle/demo_clean.zip",
           "video_fps": 30,
           "instruction_seen": "Pick the bottle with ridges near base head-up using the left arm",
-          "head_camera": "episodes/adjust_bottle/episode_0000000/head_camera.mp4"
+          "head_camera": "episodes/adjust_bottle/episode_0000000/head_camera.mp4",
+          "lerobot_conversion": {
+            "source": "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
+            "license_note": "LeRobot 文档描述 Apache-2.0；本次数据卡未明确标注许可，RoboTwin 上游数据卡标 MIT，媒体与资产范围需分别核对。",
+            "frames": [
+              {
+                "observation.state": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "action": [
+                  0.0,
+                  0.0,
+                  9.999999747378752e-06,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "timestamp": 0.0,
+                "frame_index": 0,
+                "episode_index": 0,
+                "index": 0,
+                "task_index": 0
+              },
+              {
+                "observation.state": [
+                  -0.9097139835357666,
+                  2.189842700958252,
+                  1.5326358079910278,
+                  -0.9363280534744263,
+                  0.01939300261437893,
+                  1.0112932920455933,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "action": [
+                  -0.9097139835357666,
+                  2.189842700958252,
+                  1.5326358079910278,
+                  -0.9363280534744263,
+                  0.01939300261437893,
+                  1.0112932920455933,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "timestamp": 2.299999952316284,
+                "frame_index": 69,
+                "episode_index": 0,
+                "index": 69,
+                "task_index": 0
+              },
+              {
+                "observation.state": [
+                  -0.31376099586486816,
+                  0.8629713654518127,
+                  0.10148134082555771,
+                  0.760524332523346,
+                  -0.2856426239013672,
+                  0.017110461369156837,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "action": [
+                  -0.31376099586486816,
+                  0.8629713654518127,
+                  0.10148134082555771,
+                  0.760524332523346,
+                  -0.2856426239013672,
+                  0.017110461369156837,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "timestamp": 4.599999904632568,
+                "frame_index": 138,
+                "episode_index": 0,
+                "index": 138,
+                "task_index": 0
+              }
+            ]
+          },
+          "trajectory_source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/adjust_bottle/episode_0000000/trajectory.hdf5"
         },
         "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes.jsonl",
         "license": "robotensor 公布的 RoboTwin 2.0 转换数据标注 MIT，并保留原项目版权与来源。",
@@ -370,142 +494,6 @@
             "source": "https://huggingface.co/datasets/robotensor/robotwin-aloha-clean/blob/f0332a22c7e3a7b537f9eb4eba1ba70432aa1785/episodes/adjust_bottle/episode_0000000/head_camera.mp4"
           }
         ]
-      },
-      {
-        "id": "robotwin2-lerobot-episode-0",
-        "title": "拿起窄口瓶 · 双臂轨迹 0",
-        "type": "record",
-        "prompt": "双臂机器人从桌面拿起窄口瓶。下方展示同一条仿真演示的首、中、末帧状态和动作。",
-        "promptOrigin": "editorial",
-        "explanation": "该轨迹来自 LeRobot 转换的 RoboTwin 2.0 数据，episode 0 共 139 帧；任务文本来自同版本任务索引。本站仅显示数值节选，未转载相机视频，不应将单条轨迹当作模型评测成绩。",
-        "raw": {
-          "dataset": "lerobot/robotwin_unified",
-          "revision": "1287871839fae2296bc27b88a5457c3e1eba8e1f",
-          "file_sha256": "a6afe2c46a97fe507f6eea52f48b283c225662ad3bed0567eabc041f94d364a2",
-          "frames": [
-            {
-              "observation.state": [
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "action": [
-                0.0,
-                0.0,
-                9.999999747378752e-06,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "timestamp": 0.0,
-              "frame_index": 0,
-              "episode_index": 0,
-              "index": 0,
-              "task_index": 0
-            },
-            {
-              "observation.state": [
-                -0.9097139835357666,
-                2.189842700958252,
-                1.5326358079910278,
-                -0.9363280534744263,
-                0.01939300261437893,
-                1.0112932920455933,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "action": [
-                -0.9097139835357666,
-                2.189842700958252,
-                1.5326358079910278,
-                -0.9363280534744263,
-                0.01939300261437893,
-                1.0112932920455933,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "timestamp": 2.299999952316284,
-              "frame_index": 69,
-              "episode_index": 0,
-              "index": 69,
-              "task_index": 0
-            },
-            {
-              "observation.state": [
-                -0.31376099586486816,
-                0.8629713654518127,
-                0.10148134082555771,
-                0.760524332523346,
-                -0.2856426239013672,
-                0.017110461369156837,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "action": [
-                -0.31376099586486816,
-                0.8629713654518127,
-                0.10148134082555771,
-                0.760524332523346,
-                -0.2856426239013672,
-                0.017110461369156837,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "timestamp": 4.599999904632568,
-              "frame_index": 138,
-              "episode_index": 0,
-              "index": 138,
-              "task_index": 0
-            }
-          ]
-        },
-        "source": "https://huggingface.co/datasets/lerobot/robotwin_unified/blob/1287871839fae2296bc27b88a5457c3e1eba8e1f/data/chunk-000/file-000.parquet",
-        "license": "LeRobot 文档描述 Apache-2.0；本次数据卡未明确标注许可，RoboTwin 上游数据卡标 MIT，媒体与资产范围需分别核对。",
-        "split": "episode_index 0 / task_index 0 / LeRobot 转换集",
-        "excerpt": true
       }
     ]
   },

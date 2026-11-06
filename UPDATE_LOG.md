@@ -1,5 +1,12 @@
 # 更新说明
 
+## 2026-11-06：合并 RoboTwin 2.0 重复轨迹
+
+- 修改 `content/benchmarks/robotwin-2.json`：将扶正瓶子的两条转换集记录合并，保留原视频、两侧数据来源、许可说明和三帧数值。
+- 原因和影响：读取 robotensor 原始 HDF5 并对照 LeRobot 转换集的第 0、69、138 帧，状态与动作均一致；避免同一演示重复展示。该核对未覆盖全部帧。
+
+# 更新说明
+
 ## 2026-11-06：复核榜单、留出集与公开案例边界
 
 - 修改 `docs/non-embodied-sample-inventory-2026-11-06.md`：记录 AECI、HLAB、Jev、OpenAI 前端评测、SpatialBench Verified、TapTap 和 Design Arena 的公开来源与本次访问结果。
