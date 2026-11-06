@@ -20,6 +20,11 @@
         "label": "第三方转换集逐帧数据",
         "type": "转换数据集",
         "url": "https://huggingface.co/datasets/zcyqyq/libero"
+      },
+      {
+        "label": "第三方评测录像：黑碗放到盘子上",
+        "type": "评测录像",
+        "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/blob/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4"
       }
     ]
   },
@@ -97,7 +102,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示公开训练示范轨迹的真实记录、首尾观测帧和由同轨迹全部观测帧合成的视频；评测另在仿真环境运行。",
+    "reason": "展示训练示范轨迹及第三方公开的单次 LIBERO-Spatial 仿真评测记录；评测录像提供原始链接。",
     "sourceUrls": [
       "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial",
       "https://huggingface.co/datasets/zcyqyq/libero",
@@ -105,7 +110,9 @@
       "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
       "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/episodes/chunk-000/file-000.parquet",
       "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/tasks.parquet",
-      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/info.json"
+      "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/info.json",
+      "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
+      "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/blob/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4"
     ]
   },
   "metric": {
@@ -179,6 +186,21 @@
       "label": "LIBERO 数据许可 CC BY 4.0",
       "url": "https://creativecommons.org/licenses/by/4.0/",
       "role": "access"
+    },
+    {
+      "label": "第三方 LIBERO 逐次评测记录",
+      "url": "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "第三方对应录像",
+      "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/blob/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4",
+      "role": "data"
+    },
+    {
+      "label": "第三方录像数据卡和许可",
+      "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts",
+      "role": "data"
     }
   ],
   "related": [
@@ -203,6 +225,31 @@
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
+      {
+        "id": "libero-pi05-spatial-task0-trial0",
+        "title": "黑碗放到盘子上 · 第三方评测记录",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在仿真桌面上，拿起盘子与小烤碗之间的黑碗，放到盘子上。",
+        "explanation": "第三方使用 pi05_libero 策略，在 LIBERO-Spatial 的第 0 个任务进行第 0 次尝试。该日志记录 79 个动作步骤、随机种子 7，并标记该次成功；这是单次仿真结果，不能代表整体成功率。对应录像见相关资源链接。",
+        "raw": {
+          "episode_id": "official:libero_spatial:task-00:trial-00:seed-7",
+          "task_description": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+          "suite": "libero_spatial",
+          "task_id": 0,
+          "trial": 0,
+          "seed": 7,
+          "attempt": 0,
+          "action_steps": 79,
+          "status": "success",
+          "success": true,
+          "video": "videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4"
+        },
+        "source": "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
+        "license": "评测日志与录像来自第三方；录像数据卡要求核对各上游许可，本站仅链接原视频。",
+        "split": "第三方评测 / LIBERO-Spatial / task 0 / trial 0 / seed 7",
+        "excerpt": true
+      },
       {
         "id": "libero-dataset-episode-0",
         "title": "真实轨迹 0：两个杯子放到两个盘子",
@@ -296,6 +343,14 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/zcyqyq/libero",
         "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
+      ]
+    },
+    {
+      "text": "2026-11-06 核对固定版本第三方逐次日志中 official:libero_spatial:task-00:trial-00:seed-7，与对应录像路径一致。下载录像 41,789 字节，SHA-256 fe2dcf063e0c7c6aec0e0bc86a51f5d1316efb52d98c352d94b9ec2c505362d8；浏览器读取到 224×224、7.9 秒的视频元数据。数据卡未给录像单独的明确再发布许可，本站仅链接。",
+      "sourceUrls": [
+        "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
+        "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/blob/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4",
+        "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts"
       ]
     }
   ]

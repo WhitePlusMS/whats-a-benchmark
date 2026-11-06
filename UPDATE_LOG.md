@@ -1,5 +1,12 @@
 # 更新说明
 
+## 2026-11-06：补充 LIBERO 第三方评测记录
+
+- 修改 `content/benchmarks/libero.json`：加入 LIBERO-Spatial 单次仿真评测日志、任务描述和对应录像链接，注明模型、任务、随机种子、结果及来源。
+- 原因和影响：原版 LIBERO 只有训练示范，本次补充不同任务的第三方评测记录；未把单次结果当作整体成绩，也未复制许可范围不明确的录像。
+
+# 更新说明
+
 ## 2026-11-06：补充 SuctionNet 测试场景输入
 
 - 修改 `content/benchmarks/suctionnet-1billion.json`：补充固定版本共享场景的 test_seen 图片、帧编号、来源和哈希，明确仅为输入而非吸盘预测或执行结果。
