@@ -6,6 +6,16 @@ export const idSchema = z
   .string()
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "使用小写英文、数字与短横线");
 const date = z.iso.date();
+// 版本发布日期保留已核实精度；核验日期等字段仍要求完整年月日。
+const releaseDate = z.union([
+  date,
+  z
+    .string()
+    .regex(
+      /^\d{4}-(0[1-9]|1[0-2])$/,
+      "发布日期须为有效的 YYYY-MM 或 YYYY-MM-DD",
+    ),
+]);
 const https = z.url({ protocol: /^https$/ });
 const strings = z.array(text);
 const ids = z
@@ -333,8 +343,8 @@ export const entrySchema = z
     publisher: text,
     brandIds: ids,
     year: z.number().int().min(1900).max(2200).nullable(),
-    // 已核实的当前版本发布日期；未精确到日时不填写，也不使用核验日期补齐。
-    releaseDate: date.optional(),
+    // 已核实的当前版本发布日期；仅核实到月时保留月份，不虚构具体日期，也不使用核验日期补齐。
+    releaseDate: releaseDate.optional(),
     version: text,
     kind: z.enum(["original", "subset", "derivative", "suite", "internal"]),
     aliases: strings,

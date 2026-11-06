@@ -16,6 +16,10 @@ export const formatPercent = new Intl.NumberFormat("zh-CN", {
   maximumFractionDigits: 2,
 }).format;
 export function formatDate(value: string) {
+  if (/^\d{4}-(0[1-9]|1[0-2])$/.test(value)) {
+    // 仅为 Intl 构造日期对象；输出保留月精度，不展示推测的日期。
+    return monthFormatter.format(new Date(`${value}-01T00:00:00Z`));
+  }
   return dateFormatter.format(new Date(`${value}T00:00:00Z`));
 }
 export function formatMonth(value: string) {

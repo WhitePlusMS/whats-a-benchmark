@@ -431,6 +431,32 @@ test("删除后重建不遗留样例；共享原始素材保留；产物检查�
   await assert.rejects(verifyBuild(root), /详情页面存在遗漏或删除残留/);
 });
 
+test("发布日期保留有效月份精度，其他日期不放宽", async (t) => {
+  const { root, entry, path } = await fixture(t);
+  for (const releaseDate of ["2026-01", "2026-12", "2024-02-29"]) {
+    await writeJson(path, { ...entry, releaseDate });
+    const projection = publicProjection(await generateContent(root));
+    assert.equal(
+      projection.catalog.find((item) => item.id === entry.id)?.releaseDate,
+      releaseDate,
+    );
+  }
+  for (const releaseDate of [
+    "2026",
+    "2026-00",
+    "2026-13",
+    "2026-1",
+    "2026-02-29",
+    "2026-04-31",
+    "2026-11-00",
+  ]) {
+    await writeJson(path, { ...entry, releaseDate });
+    await assert.rejects(loadContent(root), /releaseDate/);
+  }
+  await writeJson(path, { ...entry, verifiedAt: "2026-11" });
+  await assert.rejects(loadContent(root), /verifiedAt/);
+});
+
 test("严格校验未知字段、真实日期、重复品牌、资源缺失和错名文件", async (t) => {
   const { root, entry, path } = await fixture(t);
   await writeJson(path, { ...entry, verifiedAt: "2026-02-30" });
