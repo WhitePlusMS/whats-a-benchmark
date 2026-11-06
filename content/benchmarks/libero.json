@@ -280,44 +280,6 @@
             "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
           }
         ]
-      },
-      {
-        "id": "zcyqyq-libero-train-episode-0-frame-0",
-        "title": "LIBERO 转换集：第 0 条轨迹的第 0 帧",
-        "type": "record",
-        "prompt": "一条仿真机器人演示轨迹在起始时刻记录了机器人状态和动作。以下数值来自第三方转换集的 train 预览；这里展示的是一帧，不代表完整轨迹或模型成绩。",
-        "promptOrigin": "editorial",
-        "explanation": "数据同时提供场景图和腕部图像；本站仅展示可核对的首帧数值节选。原始任务指令、全轨迹和图像需到转换集查阅。",
-        "raw": {
-          "timestamp": 0,
-          "frame_index": 0,
-          "episode_index": 0,
-          "index": 0,
-          "task_index": 0,
-          "state": [
-            -0.05338004603981972,
-            0.007029631175100803,
-            0.6783280968666077,
-            3.1407692432403564,
-            0.0017593271331861615,
-            -0.08994418382644653,
-            0.03878866136074066,
-            -0.03878721222281456
-          ],
-          "actions": [
-            0.01607142947614193,
-            0,
-            0,
-            0,
-            0,
-            0,
-            -1
-          ]
-        },
-        "source": "https://huggingface.co/datasets/zcyqyq/libero",
-        "license": "第三方数据卡标注 Apache-2.0；LIBERO 官方 README 标注数据 CC BY 4.0。此处引用首帧数值节选并保留来源，图片与视频未转载。",
-        "split": "train；第三方转换集，核验时 main 为 304c840",
-        "excerpt": true
       }
     ]
   },
@@ -327,6 +289,13 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
         "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/info.json"
+      ]
+    },
+    {
+      "text": "2026-11-06 核对两个第三方转换集的 episode 0 首帧：所展示状态、动作和索引相同；移除重复的单帧展示，保留更完整的观测视频及原始数值。此核验只说明已展示首帧相同，不推断两个数据集全部轨迹相同。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/zcyqyq/libero",
+        "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
       ]
     }
   ]
