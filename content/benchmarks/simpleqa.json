@@ -4,7 +4,7 @@
     {
       "id": "simpleqa-verified",
       "label": "经修订的 Verified",
-      "detail": "Google 修订原始 SimpleQA 的题目与答案，须区分数据和评分协议。",
+      "detail": "Google 修订原始 SimpleQA 的题目与答案，须区分数据和评分协议。 原始 CSV row 5 与 Verified original_index=5 问题逐字相同，后者答案仅补充 euros 单位；本站仅在 Verified 展示此题，不将其计为两道独立原创题。",
       "sourceUrls": [
         "https://huggingface.co/datasets/google/simpleqa-verified"
       ]
@@ -91,6 +91,11 @@
       "label": "MIT 许可原文",
       "url": "https://raw.githubusercontent.com/openai/simple-evals/main/LICENSE",
       "role": "access"
+    },
+    {
+      "label": "去重对照：Verified 固定数据",
+      "url": "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -161,7 +166,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "7 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
+    "reason": "6 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。 与 Verified original_index=5 同源的一题仅在该衍生集展示。",
     "url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
     "sourceUrls": [
       "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
@@ -189,6 +194,13 @@
         "https://raw.githubusercontent.com/openai/simple-evals/main/README.md",
         "https://openai.com/index/introducing-simpleqa/",
         "https://github.com/openai/simple-evals/blob/main/simpleqa_eval.py"
+      ]
+    },
+    {
+      "text": "2026-11-06 实读并对比原始 CSV row 5 与 Verified original_index=5：问题逐字相同，原答案120,000在 Verified 补为120,000 euros，原问题已明确询问欧元；新增校订标签和来源清理没有构成新任务。移除本条重复卡，在 Verified 保留带显式单位的记录；不声称完整 raw 相同，也不将两个评测协议等同。",
+      "sourceUrls": [
+        "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+        "https://huggingface.co/datasets/google/simpleqa-verified/resolve/0dc97e0d28d8233463e005cdc4475cc2a13ba2dc/simpleqa_verified.csv"
       ]
     }
   ],
@@ -279,24 +291,6 @@
           "metadata": "{'topic': 'Art', 'answer_type': 'Person', 'urls': ['https://www.gutenberg.org/files/60408/60408-h/60408-h.htm\\nhttps://en.wikipedia.org/wiki/Achilleion_(Corfu)', 'https://www.gutenberg.org/cache/epub/60408/pg60408-images.html', 'https://archive.org/stream/elizabethempres01burggoog/elizabethempres01burggoog_djvu.txt', 'https://www.habsburger.net/en/chapter/achilleion-corfu-elisabeths-flight-antiquity']}",
           "problem": "According to Karl Küchler, what did Empress Elizabeth of Austria's favorite sculpture depict, which was made for her villa Achilleion at Corfu?",
           "answer": "Poet Henrich Heine."
-        },
-        "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
-        "license": "OpenAI · MIT",
-        "licensePath": "licenses/simpleqa-sample-source.txt",
-        "split": "test / CSV record",
-        "excerpt": false
-      },
-      {
-        "id": "csv-row-5",
-        "title": "历史判决的赔偿金额",
-        "type": "text",
-        "prompt": "How much money, in euros, was the surgeon held responsible for Stella Obasanjo's death ordered to pay her son?",
-        "answer": "120,000",
-        "explanation": "题目要求给出以欧元计的赔偿数额，数额与币种都属于答题约束。官方 answer 只写120,000，币种来自原题，本站不改写该字段。",
-        "raw": {
-          "metadata": "{'topic': 'Politics', 'answer_type': 'Number', 'urls': ['https://en.wikipedia.org/wiki/Stella_Obasanjo#Death', 'https://en.wikipedia.org/wiki/Stella_Obasanjo', 'https://www.independent.co.uk/news/world/africa/surgeon-jailed-over-death-of-first-lady-1791712.html)', 'https://www.abc.net.au/news/2009-09-22/doctor-jailed-over-former-first-ladys-lipo-death/1437416)']}",
-          "problem": "How much money, in euros, was the surgeon held responsible for Stella Obasanjo's death ordered to pay her son?",
-          "answer": "120,000"
         },
         "source": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
         "license": "OpenAI · MIT",

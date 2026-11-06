@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 SimpleQA 与 Verified 同源重复题
+
+- 修改 `content/benchmarks/simpleqa.json`：row 5 与 Verified original_index=5 是同一问题，答案仅补单位；仅在 Verified 保留该题，添加固定对照来源。
+- 影响：原始 SimpleQA 本站样例7→6；保留版本校订差异，不声称全部 raw 一致或评测等同。
+- 验证：原问题逐字匹配，答案单位差异已检查；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 FrontierMath 母子项重复样题
 
 - 修改 `content/benchmarks/frontiermath.json`：两对不同站内题名实际 raw 完全相同，仅在 Tiers 1–3 子项保留；总项保留独有案例。
