@@ -113,6 +113,13 @@
         "https://github.com/HexaFuture/EmbodiedLab",
         "https://arxiv.org/abs/2610.35385"
       ]
+    },
+    {
+      "text": "2026-11-06 对照论文表 6 和 hooke_k 任务卡，原两条均为弹簧刚度实验；将论文的至少四种载荷验收要求并入任务卡说明，保留模板与实际实例的区别。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2610.35385",
+        "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md"
+      ]
     }
   ],
   "sources": [
@@ -161,25 +168,12 @@
     "retrievedAt": "2026-11-05",
     "samples": [
       {
-        "id": "embodiedlab-official-task",
-        "title": "Hooke’s law",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "操作弹簧装置并在至少四种载荷下读取刻度，估计弹簧刚度；不是实际湿实验。",
-        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
-        "raw": "Hooke’s law",
-        "source": "https://arxiv.org/abs/2610.35385",
-        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
-        "split": "官方公开任务示例；不推断其训练或测试划分。",
-        "excerpt": true
-      },
-      {
         "id": "embodiedlab-hooke-card",
         "title": "弹簧刚度测量任务卡",
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "通过多组不同载荷测量弹簧形变，估计弹簧刚度；静止观察并记录证据，再提交结果。",
-        "explanation": "官方任务卡是包含占位符的实验模板，具体负载数与参数由实例确定；这里没有伪造测量值或实验结果。",
+        "explanation": "官方任务卡是包含占位符的实验模板；论文列出的 Hooke’s law 验收要求包括在载荷托盘静止且未被触碰时，取得至少四种载荷的尺子读数。这里没有伪造测量值或实验结果。",
         "raw": "Spring stiffness",
         "source": "https://github.com/HexaFuture/EmbodiedLab/blob/5dd50ff33ec1211685f47ee38d9abf8db75656bf/experiments/hooke_k/task_card.md",
         "license": "Gao 等，EmbodiedLab 论文图 7，CC BY 4.0；原图未修改。",
@@ -193,7 +187,7 @@
             "width": 756,
             "height": 728,
             "caption": "论文图 7：固定相机记录的实验场景，第三行首图为胡克定律实验。",
-            "source": "https://arxiv.org/html/2610.35385v1/fig_gallery.png"
+            "source": "https://arxiv.org/abs/2610.35385v1/fig_gallery.png"
           }
         ],
         "licensePath": "licenses/cc-by-4.txt"
@@ -256,7 +250,7 @@
             "width": 757,
             "height": 254,
             "caption": "论文图 5：以悬臂梁实验展示配置、采样和验证流程；不是模型运行结果。",
-            "source": "https://arxiv.org/html/2610.35385v1/fig_pipeline.png"
+            "source": "https://arxiv.org/abs/2610.35385v1/fig_pipeline.png"
           }
         ]
       }
