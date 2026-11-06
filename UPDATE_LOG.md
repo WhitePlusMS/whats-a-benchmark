@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：撤回 CyberBench Patch 无效 OpenSC 样例
+
+- 修改 `content/benchmarks/cyberbench-patch-v1-1.json`：删除把约166万字符页面/图表/脚本片段误当 OpenSC 测试记录的样例，保留与官方原文一致的 libxml2 必要短引；旧核查记录标记更正并补本次来源哈希。
+- 原因和影响：原 raw 不含 OpenSC，不能支持中文题面；样例2→1，不以榜单或网页源码凑数量，不编造替代题，不扩大许可。
+- 验证：重新读取公开页面并对照原 raw；内容生成、类型/内容验证与 diff 检查通过。无媒体变动。
+
+# 更新说明
+
 ## 2026-11-06：细化 RoboCasa365 演示固定来源
 
 - 修改 `content/benchmarks/robocasa365.json`：将温度调整样例和视频的提交总览链接细化为固定版本的 episodes.jsonl 与 episode_000000.mp4，登记两条来源并附实际读取和视频哈希。
