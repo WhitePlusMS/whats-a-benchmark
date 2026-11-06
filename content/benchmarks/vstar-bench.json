@@ -67,13 +67,16 @@
   },
   "reusePolicy": {
     "status": "restricted",
-    "license": "代码和 SA-1B 图像的使用条件应分别核对。",
+    "license": "论文 v2 采用 CC BY 4.0；V*Bench 原图来自 SA-1B，Meta 官方页面明确仅供研究用途并标注 Limited 许可。论文许可不替代原图使用条件。",
     "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
     "boundaries": [
-      "不同来源的模型报告如果只写 V*，需核对其是否采用同一 V*Bench 数据和设置。"
+      "不同来源的模型报告如果只写 V*，需核对其是否采用同一 V*Bench 数据和设置。",
+      "SA-1B 完整数据协议及所选原图的再发布权限尚未核实；公开下载不等于可转载图片。"
     ],
     "sourceUrls": [
-      "https://openaccess.thecvf.com/content/CVPR2024/papers/Wu_V_Guided_Visual_Search_as_a_Core_Mechanism_in_Multimodal_CVPR_2024_paper.pdf"
+      "https://openaccess.thecvf.com/content/CVPR2024/papers/Wu_V_Guided_Visual_Search_as_a_Core_Mechanism_in_Multimodal_CVPR_2024_paper.pdf",
+      "https://ai.meta.com/datasets/segment-anything/",
+      "https://arxiv.org/abs/2312.14135v2"
     ]
   },
   "sampleAccess": {
@@ -121,6 +124,16 @@
       "label": "作者论文 v2（CC BY 4.0）",
       "url": "https://arxiv.org/html/2312.14135v2",
       "role": "paper"
+    },
+    {
+      "label": "Meta SA-1B 数据集使用范围",
+      "url": "https://ai.meta.com/datasets/segment-anything/",
+      "role": "access"
+    },
+    {
+      "label": "V* 论文 v2 与许可说明",
+      "url": "https://arxiv.org/abs/2312.14135v2",
+      "role": "access"
     }
   ],
   "related": [],
@@ -137,7 +150,7 @@
         "raw": "What is the material of the stool?",
         "explanation": "作者固定版测试记录 18 的 label 为 C，对应选项 plastic；图片 direct_attributes/sa_9611.jpg 未复制，仅供原始入口查看。",
         "source": "https://huggingface.co/datasets/craigwu/vstar_bench/resolve/d9ae62c903da0c98336e85c5ee89cd863b04b4da/test_questions.jsonl",
-        "license": "论文 v2 Figure 8 中同一问题文本 CC BY 4.0；作者原测试文件及图像的额外许可未明确。",
+        "license": "论文 v2 Figure 8 中同一问题文本 CC BY 4.0；作者测试文件的独立许可未明确；图像另受 SA-1B 数据使用条件约束，本站不转载图片。",
         "split": "作者 test_questions.jsonl / question_id=18",
         "excerpt": true,
         "answer": "C（plastic，塑料）"
