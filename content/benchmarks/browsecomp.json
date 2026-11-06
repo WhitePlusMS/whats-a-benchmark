@@ -86,7 +86,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "1 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
+    "reason": "保留作者论文第3页创题方法中单独刊载的演示短引及独立解析，不是 BrowseComp 正式计分数据行；数据集禁止在线披露的请求继续遵守。",
     "url": "https://openai.com/index/browsecomp/",
     "sourceUrls": [
       "https://openai.com/index/browsecomp/"
@@ -156,7 +156,7 @@
     },
     {
       "label": "论文 PDF",
-      "url": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf#page=9",
+      "url": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf#page=3",
       "role": "paper"
     },
     {
@@ -168,6 +168,11 @@
       "label": "OpenAI simple-evals browsecomp_eval.py",
       "url": "https://raw.githubusercontent.com/openai/simple-evals/main/browsecomp_eval.py",
       "role": "readme"
+    },
+    {
+      "label": "演示所指论文的正式出版信息",
+      "url": "https://aclanthology.org/2021.emnlp-main.72/",
+      "role": "paper"
     }
   ],
   "sampleSet": {
@@ -179,11 +184,11 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "寻找 2018—2023 年 EMNLP 的一篇论文：第一作者本科毕业于 Dartmouth，第四作者本科毕业于 University of Pennsylvania。官方创题说明给出所求标题为 Frequency Effects on Syntactic Rule Learning in Transformers（EMNLP 2021）。",
-        "explanation": "采用作者在创题方法说明中单独印出的反向检索演示。raw仅保留该问题的一段连续短引，作者公布的论文标题另列参考值，不把两处文字拼成一条原始数据行。没有读取或再发布BrowseComp题库记录；数据集示例的禁止在线披露请求仍单独注明。",
+        "explanation": "采用作者在论文创题方法说明中单独印出的反向检索演示。raw是其中一段连续短引，已核对PDF排版换行；作者公布的论文标题另列参考值，不拼接成原始数据行。论文标题及EMNLP2021年份另由ACL Anthology核对。未读取或再发布BrowseComp题库记录，数据集禁止在线披露请求仍保留。",
         "raw": "the EMNLP conference between 2018-2023 where the first author did their undergrad at Dartmouth College",
-        "source": "https://openai.com/index/browsecomp/",
+        "source": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf#page=3",
         "license": "本页为本站原创任务解读及官方公开示例的必要简短引用；未确认底层题库或附件整体转载许可。 原始数据只显示上述已公开源字段、事实配置与必要原文节录，不扩展为受控题库、第三方完整正文或附件的公开再发布授权。",
-        "split": "官方公开演示 / 非已定位的计分数据行",
+        "split": "官方论文第3页 §2.1 创题方法演示；非已定位的 BrowseComp 计分数据行",
         "excerpt": true,
         "answer": "Frequency Effects on Syntactic Rule Learning in Transformers, EMNLP 2021"
       }
@@ -211,5 +216,6 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20"
+  "updatedAt": "2026-10-20",
+  "releaseDate": "2025-04-10"
 }
