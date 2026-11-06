@@ -84,6 +84,18 @@
 | Mystery Game Puzzles | 发布方说明暂不公开提示、示例局面和模型轨迹；页面给出评测方法和总体规模。 | [Epoch AI 方法页](https://epoch.ai/benchmarks/mystery-game-puzzles)；不以其他游戏局面替代。 |
 | MedCode | Vals 页面标为专有，公开榜单与方法；本次未在该页面找到患者级记录下载。 | [Vals 官方页面](https://www.vals.ai/benchmarks/medcode)；仅说明本次核查范围，不推断不存在其他授权渠道。 |
 
+## 内部评测与时间序列文件复核
+
+2026-11-06 核查以下资料；未找到下载入口仅针对列出的页面和文件，不代表发布方没有内部数据或其他授权渠道。
+
+| 条目 | 本次核查 | 来源与边界 |
+| --- | --- | --- |
+| FocusBench、MemoryBench、VBT | Meta 模型卡分别将三者描述为内部个人代理、长对话记忆和浏览评测；模型卡给出任务概述，但本次未在该卡中找到可确认的逐题数据下载入口。 | [Meta 模型卡](https://research.meta.ai/static/muse-wonder-model-card)，第 5–6 页；产品演示不自动属于这些测试集。 |
+| PSI / Personal Superintelligence Index | 同一模型卡将 PSI 描述为七项评测的内部组合；组成项既有公开评测也有内部评测。 | [Meta 模型卡](https://research.meta.ai/static/muse-wonder-model-card)，第 4 页；指数本身不能按一道独立题目统计。 |
+| xdev-bench-hard | Kimi 发布方将其描述为内部安全评测，公开概述和模型结果；本次未在发布页找到题集下载入口。 | [Kimi K3.1 Pro 发布页](https://www.kimi.ai/blog/kimi-k3-1-pro)。 |
+| CursorBench 4.0 | 本次查看官方 4.0 榜单页，页面说明来自真实会话的多文件任务并公布模型结果；未在所查页面找到可确认的 4.0 题集文件。 | [CursorBench 官方页面](https://cursor.com/cursorbench)；不能把其他版本的脱敏案例直接标成 4.0。 |
+| TIME | 实际读取官方参考 CSV 固定版本 `Australia_Solar/H/item0.csv`：35,064 行数据、1,777,299 字节，SHA-256 `b0ecd12298c14a06419f70b08991e016af0d37f3dbfd8ae05ed1e649ee5f72ed`；列名为时间戳和三个太阳能序列。 | [固定版本 CSV](https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/blob/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv)；只核验这一文件，原始数据与再发布许可仍需分别核对。 |
+
 ## 站内样例清单
 
 | 评测 | 类别 | 站内样例数 | 已记录访问状态 | 资料入口 |
