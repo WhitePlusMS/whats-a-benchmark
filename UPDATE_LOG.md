@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：精确裁剪 TubeLab 单题HTML范围
+
+- 修改 `content/benchmarks/tubelab.json`：两个HTML片段原来各夹带下一题卡，现各仅保留自身title与excerpt连续节点；不合并不同任务，不扩展公开题摘要为完整题。
+- 影响：样例数不变，不新增媒体或扩大许可。
+- 验证：源字段或连续节点逐字核验；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：更正 EQ-Bench 4 场景生成类型
 
 - 修改 `content/benchmarks/eq-bench-4.json`：第100条固定源source_type为hand_authored，split同步为手写场景；其他四条generated不变。
