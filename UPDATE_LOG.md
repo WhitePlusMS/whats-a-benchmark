@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：修复 SWE-bench 固定数据卡链接
+
+- 修改 `content/benchmarks/swe-bench.json`：旧命名空间固定README返回404，改为同revision已实读成功的新命名空间链接。
+- 影响：四条题目与许可边界不变，不改变版本或扩大上游文本转载权。
+- 验证：新链接HTTP200、3974字节与SHA已记录；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：纠正 ScreenSpot-Pro 首卡来源与控件类型
 
 - 修改 `content/benchmarks/screenspot-pro.json`：首卡 raw 为固定官方 davinci_macos_10 标注，将来源、标题和split同步为文本控件，不再误用论文图标图例；许可分离数据卡与第三方截图。
