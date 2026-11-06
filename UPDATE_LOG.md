@@ -2599,3 +2599,8 @@
 
 - 修改 `content/benchmarks/manipulationnet.json`：核对论文 2.3.1 节后，移除重复的 Peg-in-Hole Assembly 概述样例，保留含四档间隙条件和图片的完整案例。
 - 原因和影响：两条记录描述同一项官方任务，去重后仍可查看任务条件及原始来源，不影响其他不同任务。
+
+## 2026-11-06：合并 Table30 V2 盖章任务展示
+
+- 修改 `content/benchmarks/robochallenge-table30-v2.json`：对照技术报告和官网任务页面，移除简略的 Stamp on paper 说明，保留含动作和评分步骤的盖章案例及两处来源。
+- 原因和影响：避免同一盖章任务重复展示；保留其他不同任务及按按钮实机演示。
