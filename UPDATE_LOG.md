@@ -1,5 +1,12 @@
 # 更新说明
 
+## 2026-11-06：复核榜单、留出集与公开案例边界
+
+- 修改 `docs/non-embodied-sample-inventory-2026-11-06.md`：记录 AECI、HLAB、Jev、OpenAI 前端评测、SpatialBench Verified、TapTap 和 Design Arena 的公开来源与本次访问结果。
+- 原因和影响：区分公开案例与留出集、榜单快照与原始任务，以及访问失败与数据不存在；不伪造子集成员或复制受限题目。
+
+# 更新说明
+
 ## 2026-11-06：复核内部评测和 TIME 数据文件
 
 - 修改 `docs/non-embodied-sample-inventory-2026-11-06.md`：记录 Meta 三项内部评测与组合指数、Kimi 内部评测、CursorBench 4.0 的公开资料范围，以及 TIME 单个参考 CSV 的实际统计和哈希。

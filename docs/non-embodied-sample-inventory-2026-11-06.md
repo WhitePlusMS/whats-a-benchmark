@@ -96,6 +96,20 @@
 | CursorBench 4.0 | 本次查看官方 4.0 榜单页，页面说明来自真实会话的多文件任务并公布模型结果；未在所查页面找到可确认的 4.0 题集文件。 | [CursorBench 官方页面](https://cursor.com/cursorbench)；不能把其他版本的脱敏案例直接标成 4.0。 |
 | TIME | 实际读取官方参考 CSV 固定版本 `Australia_Solar/H/item0.csv`：35,064 行数据、1,777,299 字节，SHA-256 `b0ecd12298c14a06419f70b08991e016af0d37f3dbfd8ae05ed1e649ee5f72ed`；列名为时间戳和三个太阳能序列。 | [固定版本 CSV](https://huggingface.co/datasets/Real-TSF/TIME-ProcessedCSV/blob/683bb21b470f5a26586e1ab2295f0a2a1529ef0f/Australia_Solar/H/item0.csv)；只核验这一文件，原始数据与再发布许可仍需分别核对。 |
 
+## 其他榜单和子集的来源复核
+
+2026-11-06 查看以下官方资料与指定入口。页面访问失败、未找到下载入口或没有确认子集成员关系，均不等同于不存在数据。
+
+| 条目 | 本次核查 | 来源与边界 |
+| --- | --- | --- |
+| Anthropic ECI（AECI） | 实际读取 245 页系统卡；第 42–43 页说明 AECI 使用内部评测结果并区别于公开 ECI 分数。本次未取得可复算的逐条成绩矩阵和全部参数。 | [Anthropic 系统卡](https://www-cdn.anthropic.com/08ab9158070959f88f296514c21b7facce6f52bc.pdf)，本次读取文件 SHA-256 `2b1e0097352dc7cf21a564feab3c92dbf96f004b56329cc3976ceb8febe285cc`。 |
+| HLAB-Vals-1.1 | 榜单方法说明 HLAB 有公开集及留出测试集，榜单结果来自留出集；Harvey 另有公开仓库。 | [Vals 方法](https://www.vals.ai/benchmarks/hlab)、[Harvey 仓库](https://github.com/harveyai/harvey-labs)；公开案例不能直接认作榜单留出任务。 |
+| Jev Decision Index 公开复现榜 0.3 | 社区复现套件描述可重建的公开组成集；0.3 Full 还含私有部分。当前页面已更新至 0.4，不能把其权重覆盖本站 0.3 记录。 | [社区复现套件](https://github.com/apolinario/decision-index)；它并非 TypeSafe 官方题集，也不能完整重建私有评分。 |
+| OpenAI 前端偏好评测 | 开发者发布页描述内部成对偏好比较，并将附近单次生成作品称作精选示例。 | [OpenAI 开发者发布页](https://openai.com/index/introducing-gpt-5-for-developers/#frontend-engineering)；本次所查页面没有确认精选作品属于比较题集，也未取得成对评审记录。 |
+| SpatialBench Verified | 作者称 Verified 是 115 项经人工复核任务的子集；原版仓库有公开样例。 | [作者复核说明](https://blog.latch.bio/p/human-verification-of-spatialbench)、[固定版原始样例清单](https://github.com/latchbio/spatialbench/blob/5042c4f3ee597da1590650c7b894d068ae968e26/example_evals/manifest.json)；尚未证明本站此前读取的原版样例属于 Verified 115 项。 |
+| TapTap Maker Benchmark | 官方方法页区分公开题和不公开题面、答案及轨迹的留出题；本次版本索引请求返回 HTTP 200。 | [方法页](https://maker.taptap.cn/leaderboard/methodology.html)、[版本索引](https://maker.taptap.cn/leaderboard/data/editions/index.json)；索引给出版本及模型数量，不能仅凭索引证明取得任务题包。 |
+| Design Arena | 本次请求既有指定 tournament 页面返回 HTTP 403，未读取页面内容。 | [指定页面](https://www.designarena.ai/tournaments/33d366af-ea0b-4220-8cb1-c275096a452e)；该结果不能证明数据未公开，也不能验证旧案例属于该场次。 |
+
 ## 站内样例清单
 
 | 评测 | 类别 | 站内样例数 | 已记录访问状态 | 资料入口 |
