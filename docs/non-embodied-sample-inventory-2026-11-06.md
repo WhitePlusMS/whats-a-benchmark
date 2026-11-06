@@ -29,6 +29,19 @@
 | Video-MME | 读取第三方公开镜像固定版本标注 Parquet：2,700 行、405,167 字节，SHA-256 `7fffab8ed38ecc2f9f0eca4c44d8a11636f0ee96116ede83580c8b9ae0faf986`；包含题目、选项、答案和视频标识字段。 | [镜像标注文件](https://huggingface.co/datasets/lmms-lab/Video-MME/blob/ead1408f75b618502df9a1d8e0950166bf0a2a0b/videomme/test-00000-of-00001.parquet)；[作者仓库](https://github.com/MME-Benchmarks/Video-MME)对数据转载设有事先批准条件。 |
 | Video-MME-v2 | 读取作者固定版本标注 Parquet：3,200 行、1,185,975 字节，SHA-256 `8dc7f8c8830aa49dd08a82592f8276899472a145155dde3bea5dd6914a65a9b4`；包含题目、选项、答案和分组字段。 | [作者标注文件](https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/blob/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64/test.parquet)；[作者仓库](https://github.com/MME-Benchmarks/Video-MME-v2)要求转载前获得批准，视频权利属于各自所有者。 |
 
+## 内部及留出评测的公开资料核查
+
+2026-11-06 复查以下发布方资料及其 Hugging Face 账号。这里的“未找到”仅限所列资料与账号，不能证明其他渠道不存在，也不代表发布方没有内部数据。
+
+| 条目 | 官方已说明 | 本次公开数据核查 |
+| --- | --- | --- |
+| Microsoft MAI Held-Out Code、Math、QA、STEM | [Microsoft AI 发布文章](https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/)说明 Code 来自 MAI 自身代码库，STEM、Math、QA 由供应商提供；[报告](https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2)展示留出评测指标。 | 上述文章和报告未提供四个题集的下载文件或访问流程；本次 [microsoft 账号数据集列表](https://huggingface.co/api/datasets?author=microsoft&limit=1000)也未发现名称含 `held` 或 `mai-base` 的匹配项。不能据此排除其他账号或非公开渠道。 |
+| Kimi Code Bench 2.0、3.0 Long-horizon | [Kimi K3.1 Pro 发布页](https://www.kimi.ai/blog/kimi-k3-1-pro)称两者为内部编码评测；[Kimi K3 仓库](https://github.com/MoonshotAI/Kimi-K3)提供 2.0 的评测设置与结果说明。 | 在上述资料及 [moonshotai 账号数据集列表](https://huggingface.co/api/datasets?author=moonshotai&limit=1000)中未找到可确认对应的题集文件或访问流程；不能用产品演示代替题集样例。 |
+| Financial Modeling、Financial Research、Business Operation、Kimi Hallu Bench | [Kimi K3.1 Pro 发布页](https://www.kimi.ai/blog/kimi-k3-1-pro)明确将金融与事实性测试描述为内部评测，并给出任务或结果概述。 | 在该发布页及 [moonshotai 账号数据集列表](https://huggingface.co/api/datasets?author=moonshotai&limit=1000)中未找到可确认对应的题集下载入口；发布页示范不自动等同题集成员。 |
+| DECK-Arena、Design Bench | [Kimi K3.1 Pro 发布页](https://www.kimi.ai/blog/kimi-k3-1-pro)说明演示文稿和设计任务及评分方法。 | 本次在该页面和 [moonshotai 账号数据集列表](https://huggingface.co/api/datasets?author=moonshotai&limit=1000)中未找到可确认对应的题集文件；同名第三方数据集不能直接视为同一评测。 |
+
+本次账号接口返回 `moonshotai` 3 个和 `microsoft` 119 个公开数据集；名称和数量可能变化，账号列表也不涵盖所有可能发布方。
+
 ## 站内样例清单
 
 | 评测 | 类别 | 站内样例数 | 已记录访问状态 | 资料入口 |
