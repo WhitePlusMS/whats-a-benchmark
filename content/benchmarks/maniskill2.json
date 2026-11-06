@@ -144,20 +144,25 @@
       "label": "ManiSkill2 官方数据卡与许可",
       "url": "https://huggingface.co/datasets/haosulab/ManiSkill2",
       "role": "data"
+    },
+    {
+      "label": "官方 ManiSkill2 0.5.3 发行包与回放工具",
+      "url": "https://pypi.org/project/mani-skill2/0.5.3/",
+      "role": "data"
     }
   ],
   "related": [],
   "verifiedAt": "2026-10-28",
   "sampleSet": {
-    "retrievedAt": "2026-10-29",
+    "retrievedAt": "2026-11-06",
     "samples": [
       {
         "id": "maniskill2-pickcube-trajectory-0",
-        "title": "PickCube · 官方演示轨迹 0",
-        "type": "record",
+        "title": "PickCube · 演示轨迹 0 与同源双相机回放",
+        "type": "video",
         "prompt": "机械臂操作方块，以下按时间显示同一条演示的三个动作。",
         "promptOrigin": "editorial",
-        "explanation": "官方 ManiSkill2 PickCube-v0 轨迹 0 共 88 个动作，控制模式为 pd_joint_pos；最终成功标志是该条演示的结果，不是模型榜单成绩。原文件还包含 89 个环境状态。",
+        "explanation": "官方原始 traj_0 使用 pd_joint_pos，88 个动作；处理版 episode 0 将同一示范转为 pd_ee_delta_pose，仍有 88 个动作与 89 帧 RGB 观测。两者 seed、初始环境状态和逐步 success 标志一致；重放后的环境状态存在数值漂移，不能称为逐帧完全相同，也不是两个独立试次。以下动作保留原始 8 维控制值；视频来自处理版的 7 维控制回放，将基座与手部相机按帧并排、10 帧/秒重新编码，播放速度不代表原速。最终 success=true 是演示记录，不是模型榜单成绩。",
         "raw": {
           "dataset": "haosulab/ManiSkill2",
           "revision": "0c367447d26e4e2de13fbf5e5d2ab09a258187da",
@@ -221,39 +226,29 @@
               ],
               "success": true
             }
-          ]
+          ],
+          "processed_episode_metadata": {
+            "episode_id": 0,
+            "episode_seed": 0,
+            "reset_kwargs": {
+              "seed": 0
+            },
+            "control_mode": "pd_ee_delta_pose",
+            "elapsed_steps": 88,
+            "info": {
+              "elapsed_steps": 88,
+              "is_obj_placed": true,
+              "is_robot_static": true,
+              "success": true
+            }
+          },
+          "processed_revision": "a1988e0918a9a1f2a9cb46ad7984efc3d422ac63",
+          "processed_h5_sha256": "22ebe97558f2171f2646892c4cccfa92d5172cd942dff4afbed55acf013c7088",
+          "processed_metadata_source": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json"
         },
         "source": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
-        "license": "官方 ManiSkill2 数据卡标注 Apache-2.0；第三方资产使用范围需分别核对。",
-        "split": "PickCube-v0 / traj_0",
-        "excerpt": true
-      },
-      {
-        "id": "maniskill2-pickcube-rgbd-episode-0",
-        "title": "PickCube · 处理版双相机轨迹 0",
-        "type": "video",
-        "prompt": "在仿真中用机械臂抓起方块并将其移动到目标位置。",
-        "promptOrigin": "editorial",
-        "explanation": "官方处理版 episode 0 的元数据记录 seed 0、控制模式 pd_ee_delta_pose、88 个动作与 success=true；RGB 观测包含 89 帧。视频将基座相机与手部相机按帧并排，按 10 帧/秒重新编码供观看，播放速度不代表原始实时速度。它是仿真演示，不是模型评测成绩；处理版与本页原始动作样例控制模式不同。",
-        "raw": {
-          "episode_id": 0,
-          "episode_seed": 0,
-          "reset_kwargs": {
-            "seed": 0
-          },
-          "control_mode": "pd_ee_delta_pose",
-          "elapsed_steps": 88,
-          "info": {
-            "elapsed_steps": 88,
-            "is_obj_placed": true,
-            "is_robot_static": true,
-            "success": true
-          }
-        },
-        "source": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json",
         "license": "ManiSkill2 / SU Lab：数据卡标注数据集 Apache-2.0，资产 CC BY-NC 4.0；本视频由原始画面拼接、缩放和重新编码，按非商业限制使用。",
-        "licensePath": "licenses/cc-by-nc-4.txt",
-        "split": "processed_demos / PickCube-v0 / episode 0；未标明训练、验证或测试划分。",
+        "split": "PickCube-v0 / 原始 traj_0 与 processed_demos episode 0；同一演示的控制模式转换回放，未标明训练、验证或测试划分。",
         "excerpt": true,
         "assets": [
           {
@@ -262,7 +257,8 @@
             "caption": "左侧基座相机，右侧手部相机；官方 RGB 帧拼接重编码，10 帧/秒。",
             "source": "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.h5"
           }
-        ]
+        ],
+        "licensePath": "licenses/cc-by-nc-4.txt"
       }
     ]
   },
@@ -280,6 +276,16 @@
         "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.h5",
         "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json"
       ]
+    },
+    {
+      "text": "2026-11-06 重新读取两个固定版 HDF5 与元数据：原始 actions 为 (88,8)，处理版为 (88,7)，env_states 均为 (89,73)；初始 73 维状态及 88 步 success 数组完全一致，后续状态最大绝对差 0.015485702781006694。mani_skill2 0.5.3 官方发行包 replay_trajectory.py 按原 episode 和 seed 做关节至末端控制重放；据此合并同源样例并保留动作、视频和两套来源，不把转换版重复计数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/trajectory.h5",
+        "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.json",
+        "https://huggingface.co/datasets/haosulab/ManiSkill2/blob/a1988e0918a9a1f2a9cb46ad7984efc3d422ac63/processed_demos/PickCube-v0/trajectory.rgbd.pd_ee_delta_pose.h5",
+        "https://pypi.org/project/mani-skill2/0.5.3/"
+      ]
     }
-  ]
+  ],
+  "updatedAt": "2026-11-06"
 }
