@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 Terminal-Bench 2.0 同源Cython重复展示
+
+- 修改 `content/benchmarks/terminal-bench-2.json`：与2.1原始指令完全相同的 build-cython-ext 仅在2.1展示，保留两版来源并增加关联说明。
+- 影响：本站2.0样例4→3，其他任务与官方规模不变；不把共享一题视为两个版本等价。
+- 验证：两版固定原文与本站raw一致；内容生成、类型/内容验证、diff检查和构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 PRBench 总项与分项重复案例
 
 - 修改 `content/benchmarks/prbench.json`：四个 task_id 与 Finance/Legal 分项原始字段完全相同，仅在分项保留；总项保留独有CCAR任务并沿用相关条目链接。
