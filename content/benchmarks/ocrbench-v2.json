@@ -52,26 +52,31 @@
     ],
     "sourceUrls": [
       "https://github.com/Yuliang-Liu/MultimodalOCR",
-      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2"
+      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2",
+      "https://huggingface.co/datasets/ling99/OCRBench_v2"
     ]
   },
   "dataAccess": {
     "status": "public",
     "requirements": [],
-    "url": "https://huggingface.co/datasets/morpheushoc/OCRBenchv2",
+    "url": "https://huggingface.co/datasets/ling99/OCRBench_v2",
     "sourceUrls": [
-      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2"
+      "https://github.com/Yuliang-Liu/MultimodalOCR/blob/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/README.md",
+      "https://huggingface.co/datasets/ling99/OCRBench_v2"
     ]
   },
   "reusePolicy": {
     "status": "restricted",
-    "license": "上游仓库声明研究用途；镜像及数据卡许可表述可能不一致，需向权利人核实。",
+    "license": "作者固定版本 README 声明仅限研究用途、不得商用；作者链接的官方 ling99 数据卡同时标为 MIT，二者表述不一致，不能据单一声明推定图片或完整数据可再发布。",
     "scope": "本条引用官方资料及其许可范围；来源数据和第三方素材的权利分别核实。",
     "boundaries": [
-      "第三方镜像的分片和许可声明不自动代表作者原版的所有使用许可。"
+      "官方数据入口为作者仓库链接的 ling99/OCRBench_v2；morpheushoc/OCRBenchv2 为第三方镜像。",
+      "官方仓库的研究用途限制与官方数据卡的 MIT 声明尚未厘清，TextVQA 等上游图像权利仍须分别核实。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2"
+      "https://huggingface.co/datasets/morpheushoc/OCRBenchv2",
+      "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench_v2/README.md",
+      "https://huggingface.co/datasets/ling99/OCRBench_v2/raw/c7e7cdf23bdb6774661e9b0caf0d9935a42feb8b/README.md"
     ]
   },
   "sampleAccess": {
@@ -92,9 +97,10 @@
   },
   "limitations": [
     {
-      "text": "第三方镜像的分片和许可声明不自动代表作者原版的所有使用许可。",
+      "text": "官方 README 的研究用途限制与官方数据卡的 MIT 声明不一致；第三方镜像的分片或许可声明不能消除该差异。",
       "sourceUrls": [
-        "https://github.com/Yuliang-Liu/MultimodalOCR"
+        "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench_v2/README.md",
+        "https://huggingface.co/datasets/ling99/OCRBench_v2/raw/c7e7cdf23bdb6774661e9b0caf0d9935a42feb8b/README.md"
       ]
     }
   ],
@@ -110,7 +116,7 @@
       "role": "paper"
     },
     {
-      "label": "公开数据查看器",
+      "label": "第三方数据镜像（非作者发布入口）",
       "url": "https://huggingface.co/datasets/morpheushoc/OCRBenchv2",
       "role": "data"
     },
@@ -118,6 +124,31 @@
       "label": "作者论文 Figure 10 公开任务示例",
       "url": "https://papers.nips.cc/paper_files/paper/2025/file/8c2e6bb15be1894b8fb4e0f9bcad1739-Paper-Datasets_and_Benchmarks_Track.pdf",
       "role": "paper"
+    },
+    {
+      "label": "作者官方 OCRBench v2 数据集",
+      "url": "https://huggingface.co/datasets/ling99/OCRBench_v2",
+      "role": "data"
+    },
+    {
+      "label": "作者固定版本 README（官方数据入口）",
+      "url": "https://github.com/Yuliang-Liu/MultimodalOCR/blob/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "OCRBench v2 固定版权声明",
+      "url": "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench_v2/README.md",
+      "role": "access"
+    },
+    {
+      "label": "作者官方固定数据卡",
+      "url": "https://huggingface.co/datasets/ling99/OCRBench_v2/raw/c7e7cdf23bdb6774661e9b0caf0d9935a42feb8b/README.md",
+      "role": "access"
+    },
+    {
+      "label": "作者固定评测输出记录（含题文与参考标注）",
+      "url": "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench_v2/pred_folder/internvl2_5_26b.json",
+      "role": "data"
     }
   ],
   "related": [],
@@ -132,9 +163,9 @@
         "prompt": "根据图像判断去博物馆的方向。",
         "promptOrigin": "editorial",
         "raw": "Which way is it to the museum?",
-        "explanation": "作者论文公开图例的参考答案为 right；由于缺少原始图片，本节选无法独立完成视觉评测。",
+        "explanation": "作者论文 Figure 10 的参考答案为 right；官方固定评测输出文件中 id=6010（textVQA / reasoning VQA en）的 question 与此短引仅首字母大小写不同，answers 同为 right。本站仍按论文图例定位，未展示图片，不能独立完成视觉评测；不将模型 predict 字段当作参考答案，也未证明论文图与数据图字节一致。",
         "source": "https://papers.nips.cc/paper_files/paper/2025/file/8c2e6bb15be1894b8fb4e0f9bcad1739-Paper-Datasets_and_Benchmarks_Track.pdf",
-        "license": "作者论文；仅保留必要短引及事实说明，原始基准限制研究用途。",
+        "license": "仅保留作者论文的必要短引及答案事实说明，不转载图片；官方仓库研究用途限制与官方数据卡 MIT 声明存在差异，未据此推定图像或完整题集可再发布。",
         "split": "NeurIPS 2025 论文 / Figure 10 / Reasoning VQA",
         "excerpt": true,
         "answer": "right（右）"
