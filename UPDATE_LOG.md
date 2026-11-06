@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：更正 MIEB-Lite 旧记录身份备注
+
+- 修改 `content/benchmarks/mieb-lite.json`：将旧备注的300×300/标签43标记为错误历史，实读确认当前rectangular_farmland_124为256×256/标签31；raw省略过期签名图片URL并说明节选范围。
+- 影响：正确的现有标注、稳定来源和样例数不变；许可仍unknown，不新增图片，不把动态响应当固定修订。
+- 验证：原始响应字段及成员目录已复核，记录响应字节和哈希；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：裁正 FACTS Parametric 例题取样边界
 
 - 修改 `content/benchmarks/facts-parametric.json`：四条 raw 原本夹带约4万字符后续论文及其他题，现各仅保留 Table 5 对应例题的两行原文，保留问题、答案和分类。

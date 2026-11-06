@@ -194,7 +194,7 @@
     }
   },
   "releaseDate": "2025-04-14",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-06",
   "sampleSet": {
     "samples": [
       {
@@ -205,7 +205,6 @@
         "promptOrigin": "editorial",
         "raw": {
           "image": {
-            "src": "https://datasets-server.huggingface.co/cached-assets/mteb/resisc45/--/a5b7c0d47eb6544fb2ef0d380b9c105f3c6dc259/--/default/test/0/image/image.jpg?Expires=1792352888&Signature=pTMTZEMcDatrWUkVMUc97Fg65dSYVdgFne5OgwmQxPHHs6c-kORSqoSwWXioEN0TCgqYufycn4s47ij1uw29KMBrfzkr0MNFduW0nMu35MJ3orWrfHasyXu6pvgH8N8KNLhl3I~73RlpM61hf92OrdHwkF1X6Q6sMnpu63LTjXFSsCZHscnL0X5Kx5QF9jYnO7YPuAz0cNJaqs9VgiawNLPzsl26UeDY-W9P500BdXRS27tq51VY~3GLv3WqfpUrbxP-Ev22wjjSNX2C1LXqHBzS5VuPwVp7MpfBIiiNilaMT4n1CbsUeqf-4Iy47ocntZr4YqpnnKQVJk2xF-InkQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
             "height": 256,
             "width": 256
           },
@@ -216,23 +215,29 @@
         "license": "MTEB RESISC45 数据卡 license 原值为 unknown；图像文件仅保存为本地许可核查证据，不在样例媒体中发布。",
         "split": "default/test row_idx=0; image_id=rectangular_farmland_124",
         "excerpt": true,
-        "explanation": "本条实际取回的记录属于RESISC45，官方MIEB(lite)清单明确包含该任务；先前找到的Caltech101属于其他MIEB分支，已排除。raw保留本记录原生image、label、image_id字段。原图许可未明确，因此本站不嵌入或再分发图像，这里不能单独完成看图分类；不能把未附图说成官方无数据，也不把较大MIEB分支的案例冒充lite。"
+        "explanation": "本条实际取回的记录属于RESISC45，官方MIEB(lite)清单明确包含该任务；先前找到的Caltech101属于其他MIEB分支，已排除。raw仅节选原生image的宽高、label和image_id；已省略会过期的签名图片URL，稳定数据行入口保留。原图许可未明确，因此本站不嵌入或再分发图像，这里不能单独完成看图分类；不能把未附图说成官方无数据，也不把较大MIEB分支的案例冒充lite。"
       }
     ],
-    "retrievedAt": "2026-10-19"
+    "retrievedAt": "2026-11-06"
   },
   "researchNotes": [
     {
-      "text": "2026-10-19直接取得实际记录resisc45-test-0；已核对来源文件、版本或响应快照、记录定位与哈希。原图已实际取回，固有尺寸300×300；原行标签为43。当前资料没有此图的逐图授权，本站未复制图片，也没有把数字43猜成类别名，因此这里仅为真实标注节选，不能单独完成看图分类。原始数据保留实际image元信息及label，不能据“本站未附图”说官方没有图像数据。",
+      "text": "历史错误记录（2026-11-06 已更正：300×300和标签43不属于当前这条RESISC45记录，不能作为本条证据）：2026-10-19直接取得实际记录resisc45-test-0；已核对来源文件、版本或响应快照、记录定位与哈希。原图已实际取回，固有尺寸300×300；原行标签为43。当前资料没有此图的逐图授权，本站未复制图片，也没有把数字43猜成类别名，因此这里仅为真实标注节选，不能单独完成看图分类。原始数据保留实际image元信息及label，不能据“本站未附图”说官方没有图像数据。",
       "sourceUrls": [
         "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1"
       ]
     },
     {
-      "text": "本条实际取回的记录属于RESISC45，官方MIEB(lite)清单明确包含该任务；先前找到的Caltech101属于其他MIEB分支，已排除。raw保留本记录原生image、label、image_id字段。原图许可未明确，因此本站不嵌入或再分发图像，这里不能单独完成看图分类；不能把未附图说成官方无数据，也不把较大MIEB分支的案例冒充lite。",
+      "text": "本条实际取回的记录属于RESISC45，官方MIEB(lite)清单明确包含该任务；先前找到的Caltech101属于其他MIEB分支，已排除。raw仅节选原生image的宽高、label和image_id；已省略会过期的签名图片URL，稳定数据行入口保留。原图许可未明确，因此本站不嵌入或再分发图像，这里不能单独完成看图分类；不能把未附图说成官方无数据，也不把较大MIEB分支的案例冒充lite。",
       "sourceUrls": [
         "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1",
         "https://docs.mteb.org/overview/available_benchmarks/"
+      ]
+    },
+    {
+      "text": "2026-11-06 实读 RESISC45 default/test 第0行响应（1567字节，SHA-256 486b7c6e8408bcad8c50bd464c531e1ec10d6dd74c541a91588a740f807d7e8d）：image_id=rectangular_farmland_124，label=31，宽高256×256，与当前样例字段一致。纠正历史备注中的另一记录尺寸/标签，并移除raw的过期签名图片URL；数据卡许可仍unknown，不新增或嵌入原图。该rows是响应快照，未标为不可变修订。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=mteb%2Fresisc45&config=default&split=test&offset=0&length=1"
       ]
     }
   ]
