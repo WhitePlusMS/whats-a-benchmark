@@ -72,15 +72,18 @@
   },
   "reusePolicy": {
     "status": "unknown",
-    "license": "检查的官方示例页和仓库README未声明任务文本或工作簿专属许可；HF镜像MIT元数据未用于推定官网素材许可。",
+    "license": "官方仓库链接的 KAKA22/SpreadsheetBench-v2 数据卡声明 MIT；本站调试与图表两条题文可在该固定发布样例包中核对。官网财务建模片段尚未映射到数据包，网站图片和第三方工作簿不据此取得统一授权。",
     "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
     "boundaries": [
-      "未找到任务数据/工作簿的明确统一许可，保留unknown；不将非官方HF镜像MIT标签外推。"
+      "数据卡为作者官方仓库链接的发布入口，不是非官方镜像。",
+      "MIT 声明限该数据发布层及已确认题文；不推定官网图片、第三方工作簿或外部资料获得统一再发布许可。",
+      "官网调试文本在多行共用，不能仅按题文指定唯一题目ID；财务CAGR官网片段尚未映射到此样例包。"
     ],
     "sourceUrls": [
-      "https://spreadsheetbench.github.io/",
-      "https://github.com/RUCKBReasoning/SpreadsheetBench-2",
-      "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2"
+      "https://github.com/RUCKBReasoning/SpreadsheetBench-2/blob/a7bdc2d358e052d35a94768e1f487c0d9e9c0011/README.md",
+      "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2/blob/5a2215ed4121945ab09d8723df2995602090b042/README.md",
+      "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2/resolve/5a2215ed4121945ab09d8723df2995602090b042/data_example_05_11.zip",
+      "https://spreadsheetbench.github.io/"
     ]
   },
   "sampleAccess": {
@@ -165,6 +168,21 @@
       "label": "已核验官方来源",
       "url": "https://spreadsheetbench.github.io/",
       "role": "data"
+    },
+    {
+      "label": "作者数据发布与许可来源",
+      "url": "https://github.com/RUCKBReasoning/SpreadsheetBench-2/blob/a7bdc2d358e052d35a94768e1f487c0d9e9c0011/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "作者数据发布与许可来源",
+      "url": "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2/blob/5a2215ed4121945ab09d8723df2995602090b042/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "作者数据发布与许可来源",
+      "url": "https://huggingface.co/datasets/KAKA22/SpreadsheetBench-v2/resolve/5a2215ed4121945ab09d8723df2995602090b042/data_example_05_11.zip",
+      "role": "data"
     }
   ],
   "related": [],
@@ -197,7 +215,7 @@
         "explanation": "网站V2 Example 2实际任务要求通盘审计并修复工作簿，页面进一步列出公式逻辑、不应硬编码、断裂引用、数据验证和格式/命名等问题类型。这里仅保留官网完整指令段；没有复制实际工作簿、参考答案或作者的示例图片。 标题和中文说明不塞入raw，电子表格与参考产物未镜像；原文的格式要求保留。",
         "split": "SpreadsheetBench 2 · official website · Version 2 · Example 2（public example, no dataset row ID）",
         "source": "https://spreadsheetbench.github.io/",
-        "license": "未发现官网任务文本或工作簿专属许可；仅必要短引与原创中文解读，HF镜像MIT元数据没有作为官网任务材料的授权依据。"
+        "license": "作者官方仓库链接的固定数据卡声明 MIT；本指令与 data_example_05_11/Debugging/dataset.json 的共用指令一致，不能据此指定唯一行。保留来源和许可声明，不外推第三方工作簿授权。"
       },
       {
         "type": "record",
@@ -210,7 +228,7 @@
         "explanation": "网站V2 Example 3是实际图表生成任务：指定Surprise!第50–71行，且官方完整说明要求一张多系列组合图和一张发散柱形图，分别设置系列、次轴、标题与季度区间。raw保留官网该公开案例的完整指令段；未复制电子表格、图表图片、参考结果或其余逐项格式规格。 标题和中文说明不塞入raw，电子表格与参考产物未镜像；原文的格式要求保留。",
         "split": "SpreadsheetBench 2 · official website · Version 2 · Example 3（public example, no dataset row ID）",
         "source": "https://spreadsheetbench.github.io/",
-        "license": "未发现官网任务文本或工作簿专属许可；仅必要短引与原创中文解读，HF镜像MIT元数据没有作为官网任务材料的授权依据。"
+        "license": "作者官方仓库链接的固定数据卡声明 MIT；本指令与 data_example_05_11/Visualization/dataset.json 中 Task 126 的 instruction 一致。保留来源和许可声明，不外推官网图片或第三方工作簿授权。"
       }
     ]
   }
