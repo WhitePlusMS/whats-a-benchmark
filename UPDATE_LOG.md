@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：补齐 ManiSkill3 遥操作视频素材限制
+
+- 修改 `content/benchmarks/maniskill3.json`：为 PickCube teleop 样例补 CC BY-NC 4.0 资产条件和现有许可文件链接，区分结构化演示数据 Apache-2.0 与仿真画面素材许可。
+- 影响：不改动作、视频或样例数，不扩大复用权；仍不宣称演示视频对应轨迹0。
+- 验证：官方固定README资产许可已复读；内容生成、类型/内容验证、diff检查及构建通过，真实浏览器播放未完成。
+
+# 更新说明
+
 ## 2026-11-06：纠正 CALVIN 上游许可确认状态
 
 - 修改 `content/benchmarks/calvin.json`：将 `reusePolicy.status` 从 permitted 改为 unknown，并记录第三方转换集许可不能自动覆盖上游演示和素材。
