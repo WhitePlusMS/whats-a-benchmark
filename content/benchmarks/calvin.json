@@ -94,9 +94,9 @@
     ]
   },
   "reusePolicy": {
-    "status": "permitted",
+    "status": "unknown",
     "license": "本视频来源的 InternRobotics 转换集数据卡标注 MIT；另一个转换集标注 Apache-2.0。CALVIN 上游演示数据的独立许可尚未核实。",
-    "scope": "本站展示 InternRobotics 转换集的第 0 条轨迹视频，以及第三方评测实现公开的一条任务序列节选。",
+    "scope": "本站仅展示第三方公开评测配置、转换轨迹的必要数值字段及中文说明；原转换视频暂停播放器展示，上游演示与素材复用许可仍待核实。",
     "boundaries": [
       "许可声明不代表已核实上游所有素材的权利范围。"
     ],
@@ -108,7 +108,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示第三方训练轨迹、评测序列和另一个来源标为 validation 的单帧数值；各记录互不推断对应关系。",
+    "reason": "保留四条可追溯的配置或轨迹字段节选；上游素材许可尚未确认，转换视频仅保留外部来源入口，不在本站播放器展示。",
     "sourceUrls": [
       "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1/blob/437ab85fe61d38fb68ac235db9c3965a05cece18/data/chunk-000/episode_000000.parquet",
       "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
@@ -234,7 +234,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "让机械臂将粉色积木向左推。",
-        "explanation": "第三方将 CALVIN ABC 数据转换为 LeRobot 格式；第 0 条轨迹有 46 帧、每秒 10 帧。视频、任务和首帧状态来自同一条轨迹，元数据将其划为训练数据，并非评测结果。",
+        "explanation": "第三方将 CALVIN ABC 数据转换为 LeRobot 格式；第 0 条轨迹有 46 帧、每秒 10 帧。视频、任务和首帧状态来自同一条轨迹，元数据将其划为训练数据，并非评测结果。 本次已核对转换视频字节，但上游演示与场景素材的独立再发布许可仍未确认，暂停站内视频播放展示；原发布入口保留在来源列表，不能把第三方数据卡许可视为完整上游授权。",
         "raw": {
           "episode": {
             "episode_index": 0,
@@ -289,15 +289,7 @@
         "source": "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/data/chunk-000/episode_000000.parquet",
         "license": "InternRobotics 转换集数据卡标注 MIT；CALVIN 上游数据的独立许可尚未核实。",
         "split": "train / episode 0 / 第三方转换集",
-        "excerpt": true,
-        "assets": [
-          {
-            "kind": "video",
-            "path": "videos/calvin-abc-episode0.mp4",
-            "caption": "第 0 条轨迹：静态相机视角，46 帧",
-            "source": "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC/blob/fd844a43912c1823ff8355873b6f013a5cce127a/videos/chunk-000/video.image_base/episode_000000.mp4"
-          }
-        ]
+        "excerpt": true
       },
       {
         "id": "calvin-converted-train-episode-0",
@@ -497,6 +489,15 @@
         "https://huggingface.co/datasets/KyujinL/CALVIN_ABC/blob/0874cd64f0df8dcc3a3534360ca448705e44e954/validation.tar.part-000",
         "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1"
       ]
+    },
+    {
+      "text": "2026-11-06 复核转换集数据卡及上游说明：第三方 MIT/Apache-2.0 声明不能自动确立 CALVIN 上游演示和场景素材的独立再发布权。将顶层复用状态由 permitted 更正为 unknown，保留已核转换来源和各项边界；不据此声称原始数据不可访问或不存在许可。 为与未确认许可的状态一致，移除该样例的站内视频附件引用，保留原始来源和已有文件历史，不更改公共schema。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/InternRobotics/InternData-Calvin_ABC",
+        "https://huggingface.co/datasets/CollisionCode/calvin_d_d_lerobot_v2.1",
+        "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/README.md"
+      ]
     }
-  ]
+  ],
+  "updatedAt": "2026-11-06"
 }
