@@ -73,21 +73,22 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "AA评测页未为示例问题声明单独复用许可；链接的Wisedocs数据集不证明与AA样例相同。",
-    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
+    "status": "restricted",
+    "license": "AA 网站条款仅授予个人非商业访问，并限制复制、再发布及托管站内内容；官网三条示例未获独立题文再发布许可。Wisedocs 公开集许可不覆盖 AA 示例或私有留出题。",
+    "scope": "本站仅保留独立任务说明和官方来源入口，不转载 AA 的示例题文、私有留出题或病历材料。",
     "boundaries": [
-      "不复制或推测病历内容、答案或记录页码。",
-      "不将示例映射到Wisedocs记录或AA held-out评分集。"
+      "官方可公开查看不等于获准复制或再发布题文。",
+      "Wisedocs 公开数据与 AA 私有留出评测须分别核对来源和许可；不把一方许可套用另一方。"
     ],
     "sourceUrls": [
+      "https://artificialanalysis.ai/terms-of-use",
       "https://artificialanalysis.ai/evaluations/mlcr-aa",
       "https://huggingface.co/datasets/Wisedocs/mlcr-dataset"
     ]
   },
   "sampleAccess": {
-    "status": "local",
-    "reason": "3种官方公开问题可切换，MRI日期/跨文档时间线/因果评议各有原题文；病历、答案和AA私有数据行未附。",
+    "status": "restricted",
+    "reason": "官方页面提供事实检索、治疗时间线与临床推理示例，但官网题文受网站使用条款限制；本站保留任务说明和原始入口，不转载示例题文或未公开病历。",
     "url": "https://artificialanalysis.ai/evaluations/mlcr-aa",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/mlcr-aa",
@@ -153,6 +154,11 @@
       "label": "MLCR 公开数据卡",
       "url": "https://huggingface.co/datasets/Wisedocs/mlcr-dataset",
       "role": "data"
+    },
+    {
+      "label": "官方内容访问与使用条件",
+      "url": "https://artificialanalysis.ai/terms-of-use",
+      "role": "access"
     }
   ],
   "related": [],
@@ -173,49 +179,5 @@
         "https://artificialanalysis.ai/evaluations/mlcr-aa"
       ]
     }
-  },
-  "sampleSet": {
-    "retrievedAt": "2026-10-19",
-    "samples": [
-      {
-        "id": "official-case-mlcr-aa-mri-fact-retrieval",
-        "title": "官方任务演示 · 腰椎MRI日期与开立者",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "官方 MLCR-AA 页面展示的 single-fact retrieval 示例，要求从记录中找出腰椎 MRI 日期和开立医生并注明页码。页面未展示底层记录或gold答案。",
-        "explanation": "raw 是官方示例题的完整连续HTML段落，已恢复被旧raw截断的题干结尾。页面可核对题干，但没有公开本例的病历输入或参考答案；本站不补造答案。",
-        "raw": "<p>On what date was the lumbar spine MRI performed, and which provider ordered it? Cite the page of the record where this appears.</p>",
-        "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
-        "license": "本站原创任务解读及AA页面必要短引；示例题文本与底层病历没有单独许可说明。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
-        "split": "AA MLCR-AA / Example Tasks / Fact retrieval；未给记录ID或split",
-        "excerpt": true
-      },
-      {
-        "id": "mlcr-aa-chronology",
-        "title": "右膝伤情的跨文档治疗时间线",
-        "type": "text",
-        "promptOrigin": "editorial",
-        "prompt": "结合骨科、物理治疗和影像记录，按日期重建右膝伤情的治疗经过，并列出每次就诊采取的治疗。",
-        "raw": "<p>Reconstruct the treatment timeline for the right knee injury across the orthopedic, physical therapy, and imaging notes. List each encounter in date order with the treatment provided.</p>",
-        "explanation": "作者公开示例要求跨多份就诊材料合成时间线，而非只找一个日期。 raw为AA公开页的实际题文段落；该页未附底层病历或参考答案，不能独立重做完整评测，也不映射为AA私有计分行。",
-        "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
-        "license": "官方公开示例的必要题文片段与本站事实解析；未确认完整病历/题目统一再发布许可，不含患者材料、参考答案或模型输出。",
-        "split": "MLCR-AA official example panel / public question only / no released row ID",
-        "excerpt": true
-      },
-      {
-        "id": "mlcr-aa-clinical-reasoning",
-        "title": "腰椎间盘突出与工作事故的因果评议",
-        "type": "text",
-        "promptOrigin": "editorial",
-        "prompt": "结合受伤机制、既往病情与诊疗顺序，判断腰椎间盘突出更可能与工作事故还是既往退变有关，并指出支持判断的病历。",
-        "raw": "<p>Based on the documented mechanism of injury, prior conditions, and the sequence of care, is the lumbar disc herniation more likely causally related to the workplace incident or to pre-existing degenerative disease? Explain which records support your conclusion.</p>",
-        "explanation": "作者公开示例属于复合专家推理，需要基于病历比较两种因果解释；本站没有补造患者资料或给出诊断结论。 raw为AA公开页的实际题文段落；该页未附底层病历或参考答案，不能独立重做完整评测，也不映射为AA私有计分行。",
-        "source": "https://artificialanalysis.ai/evaluations/mlcr-aa",
-        "license": "官方公开示例的必要题文片段与本站事实解析；未确认完整病历/题目统一再发布许可，不含患者材料、参考答案或模型输出。",
-        "split": "MLCR-AA official example panel / public question only / no released row ID",
-        "excerpt": true
-      }
-    ]
   }
 }
