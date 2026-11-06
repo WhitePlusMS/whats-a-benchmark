@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：细化 RoboCasa365 演示固定来源
+
+- 修改 `content/benchmarks/robocasa365.json`：将温度调整样例和视频的提交总览链接细化为固定版本的 episodes.jsonl 与 episode_000000.mp4，登记两条来源并附实际读取和视频哈希。
+- 影响：样例、视频字节和许可均不变；可直接追溯同一演示，不增加重复项或推断成功。
+- 验证：固定视频 141857 字节与站内文件完全一致；内容生成、类型/内容验证与 diff 检查通过，真实浏览器播放仍未完成。
+
+# 更新说明
+
 ## 2026-11-06：纠正 BEHAVIOR 演示与技能标注映射
 
 - 修改 `content/benchmarks/behavior-1k.json`：补 LeRobot episode_index 10 → raw_episode_id 120 → annotation120 的明确映射，登记固定标注来源；保留属于不同轨迹的 annotation10，明确其对应 episode_index 0。
