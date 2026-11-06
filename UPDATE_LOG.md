@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 FrontierMath 母子项重复样题
+
+- 修改 `content/benchmarks/frontiermath.json`：两对不同站内题名实际 raw 完全相同，仅在 Tiers 1–3 子项保留；总项保留独有案例。
+- 影响：总项样例3→1，来源与关联保持；去重不等于冻结 v2 成员证明，不扩大许可。
+- 验证：两对原文逐值一致且当前官方页面再次匹配；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 FrontierScience 总分项重复题
 
 - 修改 `content/benchmarks/frontierscience.json`：三个 Research 原始记录与子项完全相同，仅在专属子项展示；总项保留两个 Olympiad 样例。

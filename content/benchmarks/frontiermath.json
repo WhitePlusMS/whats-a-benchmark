@@ -21,7 +21,7 @@
     {
       "id": "frontiermath-v2-tiers-1-3",
       "label": "v2 基础难度组",
-      "detail": "修订后的 295 题 Tiers 1–3。",
+      "detail": "修订后的 295 题 Tiers 1–3。 两个同源公开网页样例仅在该子项展示；网页去重不构成其冻结 v2 数据成员证明。",
       "sourceUrls": [
         "https://epoch.ai/benchmarks/frontiermath-tiers-1-3-v2"
       ]
@@ -104,7 +104,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "3个共享官方样题页案例可切换；原Problem面板和数学条件保留，不宣称是固定v2题集行。母项/版本页复用的同一例不当作独立题集。",
+    "reason": "展示1个官方公开样题页案例；另2个同源案例仅在 Tiers 1–3 子项展示。保留原 Problem 面板和数学条件，不宣称这些网页示例是固定 v2 题集行或已证明版本成员。",
     "url": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
     "sourceUrls": [
       "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
@@ -224,6 +224,12 @@
         "https://epoch.ai/use-data",
         "https://epoch.ai/frontiermath/tiers-1-4/about"
       ]
+    },
+    {
+      "text": "2026-11-06 实读当前官方样题页并对比本站 raw：总项的 recursive-count-5var 与子项 asymptotic-equation 相同，enumerative-geometry 与 finite-field-conics 相同。总项移除这两个重复卡、保留独有案例，原文仍在 Tiers 1–3 子项；题名差异不产生新题，且当前网页不能独立证明精确 v2 版本成员。",
+      "sourceUrls": [
+        "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems"
+      ]
     }
   ],
   "updatedAt": "2026-10-20",
@@ -243,32 +249,6 @@
         "split": "Tier 2 / A recursive construction on large permutations; lines 753-760; no stable problem ID.",
         "excerpt": true,
         "answer": "499999999972"
-      },
-      {
-        "id": "public-page-frontiermath-recursive-count-5var",
-        "title": "Asymptotics of solutions of a 5-variable equation",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "There are unique constants \\(C, \\alpha, \\beta\\) such that the number of solutions to the equation\n\\(ab+1=cde\\)\nwith \\(a, b, c, d, e \\in \\mathbb{N}\\) with \\(ab \\le x\\) is asymptotic to \\(Cx^{\\alpha}\\log^{\\beta}x\\) as \\(x\\rightarrow\\infty.\\)\nCompute \\(\\lfloor 1000C\\rfloor.\\)",
-        "explanation": "这题要求分析满足 ab+1=cde 且 ab≤x 的自然数解数量渐近式，从中提取常数 C 并计算 floor(1000C)。 这是共享官方样题页的页面级案例，没有稳定题号或固定v2成员映射；raw保留连续原HTML，中文解析/可读题面分列。",
-        "raw": "<p>There are unique constants <span class=\"mjx-inline\">\\(C, \\alpha, \\beta\\)</span> such that the number of solutions to the equation</p>\n<p>\\(ab+1=cde\\)</p>\n<p>with <span class=\"mjx-inline\">\\(a, b, c, d, e \\in \\mathbb{N}\\)</span> with <span class=\"mjx-inline\">\\(ab \\le x\\)</span> is asymptotic to <span class=\"mjx-inline\">\\(Cx^{\\alpha}\\log^{\\beta}x\\)</span> as <span class=\"mjx-inline\">\\(x\\rightarrow\\infty.\\)</span>\nCompute <span class=\"mjx-inline\">\\(\\lfloor 1000C\\rfloor.\\)</span></p>",
-        "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
-        "license": "Epoch官方公开样题Problem面板的原始HTML及数学条件，未复制隐藏Solution正文。Epoch数据通用CC BY声明将题目/答案权利保留给各创作者，本次未定位逐题单独许可；不外推私有完整题集。",
-        "split": "Tier 2 / official public-samples page; exact dataset-version membership not identified",
-        "excerpt": true
-      },
-      {
-        "id": "public-page-frontiermath-enumerative-geometry",
-        "title": "Enumerative geometry over finite fields",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "Let \\(U\\subset\\mathbb{P}H^0(\\mathbb{P}^2_{\\mathbb{Z}}, \\mathcal{O}(2))\\) be the space of smooth conics in \\(\\mathbb{P}^2_{\\mathbb{Z}}\\), and let\n\\(Z\\subset U^6\\) be the closed subscheme parametrizing \\(6\\)-tuples \\((C_1, \\cdots, C_6)\\) with \\(C_1\\) tangent to \\(C_2, \\cdots, C_6\\). Let \\(\\pi: Z\\to U^5\\)\nbe the map induced by the projection onto the last \\(5\\) coordinates, and let \\(V\\subset U^5\\) be the dense open subscheme over which \\(\\pi\\) is finite étale.\nLet\n\\(L=\\lim_{p\\to \\infty} \\frac{1}{\\#V(\\mathbb{F}_p)}\\sum_{x\\in V(\\mathbb{F}_p)} \\#\\pi^{-1}(x),\\)\nthat is, the limit of the average number of components of the space of conics tangent to 5 smooth conics over \\(\\mathbb{F}_p\\), as \\(p\\) tends to infinity.\nFind \\(\\lfloor 100L \\rfloor.\\)",
-        "explanation": "这题把六条光滑圆锥曲线的相切条件写成有限覆盖，要求计算素域上纤维点数平均值的极限并缩放取整。 这是共享官方样题页的页面级案例，没有稳定题号或固定v2成员映射；raw保留连续原HTML，中文解析/可读题面分列。",
-        "raw": "<p>Let <span class=\"mjx-inline\">\\(U\\subset\\mathbb{P}H^0(\\mathbb{P}^2_{\\mathbb{Z}}, \\mathcal{O}(2))\\)</span> be the space of smooth conics in <span class=\"mjx-inline\">\\(\\mathbb{P}^2_{\\mathbb{Z}}\\)</span>, and let\n<span class=\"mjx-inline\">\\(Z\\subset U^6\\)</span> be the closed subscheme parametrizing <span class=\"mjx-inline\">\\(6\\)</span>-tuples <span class=\"mjx-inline\">\\((C_1, \\cdots, C_6)\\)</span> with <span class=\"mjx-inline\">\\(C_1\\)</span> tangent to <span class=\"mjx-inline\">\\(C_2, \\cdots, C_6\\)</span>. Let <span class=\"mjx-inline\">\\(\\pi: Z\\to U^5\\)</span>\nbe the map induced by the projection onto the last <span class=\"mjx-inline\">\\(5\\)</span> coordinates, and let <span class=\"mjx-inline\">\\(V\\subset U^5\\)</span> be the dense open subscheme over which <span class=\"mjx-inline\">\\(\\pi\\)</span> is finite étale.\nLet</p>\n<p>\\(L=\\lim_{p\\to \\infty} \\frac{1}{\\#V(\\mathbb{F}_p)}\\sum_{x\\in V(\\mathbb{F}_p)} \\#\\pi^{-1}(x),\\)</p>\n<p>that is, the limit of the average number of components of the space of conics tangent to 5 smooth conics over <span class=\"mjx-inline\">\\(\\mathbb{F}_p\\)</span>, as <span class=\"mjx-inline\">\\(p\\)</span> tends to infinity.\nFind <span class=\"mjx-inline\">\\(\\lfloor 100L \\rfloor.\\)</span></p>",
-        "source": "https://epoch.ai/frontiermath/tiers-1-4/benchmark-problems",
-        "license": "Epoch官方公开样题Problem面板的原始HTML及数学条件，未复制隐藏Solution正文。Epoch数据通用CC BY声明将题目/答案权利保留给各创作者，本次未定位逐题单独许可；不外推私有完整题集。",
-        "split": "Tier 3 / official public-samples page; exact dataset-version membership not identified",
-        "excerpt": true
       }
     ]
   }
