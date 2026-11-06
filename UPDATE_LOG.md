@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 Terminal-Bench 2.1 同源DNA重复展示
+
+- 修改 `content/benchmarks/terminal-bench-2-1.json`：与2.0原始指令完全相同的 dna-assembly 仅在2.0展示，保留2.1成员来源与关联链接。
+- 影响：本站2.1样例4→3，其余三项不变；不声称该任务不属于2.1，不把两个版本等价。
+- 验证：两版raw逐值相同且固定原文已读取；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 Terminal-Bench 2.0 同源Cython重复展示
 
 - 修改 `content/benchmarks/terminal-bench-2.json`：与2.1原始指令完全相同的 build-cython-ext 仅在2.1展示，保留两版来源并增加关联说明。
