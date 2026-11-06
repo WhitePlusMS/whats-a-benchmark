@@ -1,5 +1,12 @@
 # 更新说明
 
+## 2026-11-06：核对受控数据入口与视频评测标注
+
+- 修改 `docs/non-embodied-sample-inventory-2026-11-06.md`：记录 HLE-Diamond、LABBench2 的未登录访问状态，以及 Video-MME 两版标注文件的实际行数、大小和哈希。
+- 原因和影响：区分访问受控、标注可下载和媒体转载条件；不披露题目，不把作者声明的数量当成本站读取的结果，也不声称已验证全部视频。
+
+# 更新说明
+
 ## 2026-11-06：核对 GPQA 与 HealthBench 官方数据
 
 - 修改 `docs/non-embodied-sample-inventory-2026-11-06.md`：记录 GPQA Main、Diamond 和 HealthBench 三个版本的固定数据文件、实际行数、文件哈希及作者的在线披露请求。

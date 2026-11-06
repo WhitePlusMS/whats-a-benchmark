@@ -18,6 +18,17 @@
 | HealthBench Hard | 官方 JSONL 有 1,000 行、12,581,564 字节，SHA-256 `b0320430e5cd974e746585594c1dd10b5a3fc2aff9c72b26106c2c4a069d74e9`。 | [官方固定版本 JSONL](https://huggingface.co/datasets/openai/healthbench/blob/40ee1968852fc57f625934251ac22be47077a8fb/hard_2025-05-08-21-00-10.jsonl) | 属于 HealthBench 数据，按同一披露请求处理。 |
 | HealthBench Professional | 官方公开 JSONL 有 525 行、2,755,136 字节，SHA-256 `d44b08e6e952e04c945e2c406f02533d9e7a989a84e35820ee7efdff20c9e4e2`；首行包含 `conversation`、`rubric_items` 等字段。 | [官方固定版本 JSONL](https://huggingface.co/datasets/openai/healthbench-professional/blob/349962fd46dd02343a0d8a606491baf59154ea1a/healthbench_professional_eval.jsonl) | [官方数据卡](https://huggingface.co/datasets/openai/healthbench-professional)请求不要在线公开样例；这不代表私有留出部分公开。 |
 
+## 本次复核的受控与视频评测
+
+以下检查于 2026-11-06 进行。文件行数仅指所读取的标注文件；没有下载或验证全部视频及其版权。
+
+| 评测 | 本次实际检查 | 来源与使用边界 |
+| --- | --- | --- |
+| HLE-Diamond | 无登录请求固定版本 Parquet 返回 HTTP 401，未读取题目；作者数据卡称共 1,000 题，这是发布方声明而非本站实数统计。 | [作者数据卡](https://huggingface.co/datasets/cais/hle-diamond)要求先接受访问条件，并请求不要公开分享或分发数据。 |
+| LABBench2 | 无登录请求固定版本 `all` Parquet 返回 HTTP 401，未读取题目；作者数据卡称约 1,900 项，这是发布方声明而非本站实数统计。 | [作者数据卡](https://huggingface.co/datasets/EdisonScientific/labbench2)标注 CC BY-SA 4.0，文件访问仍需满足该入口条件。 |
+| Video-MME | 读取第三方公开镜像固定版本标注 Parquet：2,700 行、405,167 字节，SHA-256 `7fffab8ed38ecc2f9f0eca4c44d8a11636f0ee96116ede83580c8b9ae0faf986`；包含题目、选项、答案和视频标识字段。 | [镜像标注文件](https://huggingface.co/datasets/lmms-lab/Video-MME/blob/ead1408f75b618502df9a1d8e0950166bf0a2a0b/videomme/test-00000-of-00001.parquet)；[作者仓库](https://github.com/MME-Benchmarks/Video-MME)对数据转载设有事先批准条件。 |
+| Video-MME-v2 | 读取作者固定版本标注 Parquet：3,200 行、1,185,975 字节，SHA-256 `8dc7f8c8830aa49dd08a82592f8276899472a145155dde3bea5dd6914a65a9b4`；包含题目、选项、答案和分组字段。 | [作者标注文件](https://huggingface.co/datasets/MME-Benchmarks/Video-MME-v2/blob/6e4bebb03202e1ddbf3d37703e560e51c5aa2d64/test.parquet)；[作者仓库](https://github.com/MME-Benchmarks/Video-MME-v2)要求转载前获得批准，视频权利属于各自所有者。 |
+
 ## 站内样例清单
 
 | 评测 | 类别 | 站内样例数 | 已记录访问状态 | 资料入口 |
