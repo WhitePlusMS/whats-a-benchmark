@@ -59,6 +59,18 @@
 
 上述筛选只是针对短 `raw` 的一次结构抽查，不代表其他 616 条均完整或已逐条外部复核；真实数据、来源有效性和许可仍需分项检查。
 
+## 综合指数的数据来源核查
+
+2026-11-06 核查发布方方法页。综合指数的站内样例数为 0，不表示其组成评测没有数据；各项的数据、许可和访问范围应分别核对。下列线上方法版本可能随时间更新，不能直接替代本站条目记录的历史版本。
+
+| 指数 | 本次核验 | 数据边界 |
+| --- | --- | --- |
+| Artificial Analysis Intelligence Index | [当前方法页](https://artificialanalysis.ai/methodology/intelligence-benchmarking)标 v5.0.1，列出 9 个组成评测；本站条目记录的是 v4.3.2。 | 页面提供组合方法，组成项的题目和访问条件并不相同；不能把当前组合直接套到旧版。 |
+| Artificial Analysis Coding Agent Index | [当前方法页](https://artificialanalysis.ai/methodology/coding-agents-benchmarking/)标 v2.0，汇总 FrontierCode v1.1、Terminal-Bench 4.0 和 SWE-Atlas-QnA-AA；本站条目记录 v1.5。 | 官方说明 FrontierCode v1.1 Main 的 100 项任务未公开；其他成员需按各自来源核查。 |
+| AA Cyber Index | [发布说明](https://artificialanalysis.ai/articles/artificial-analysis-cyber-index/)将 v1 定义为三项评测组合。 | 作者称 CWE-Bench-AA 和 DeepsecBench-AA 含私有留出评测；公开上游案例不自动等于 AA 专属计分行。 |
+| Artificial Analysis Speech-to-Speech Index | [首发说明](https://artificialanalysis.ai/articles/announcing-the-artificial-analysis-speech-to-speech-index)的 v1 组合与[当前方法页](https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking)不同；本站条目记录 v1.0。 | 当前方法页指向 [Big Bench Audio](https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio)，本次官方数据接口显示固定修订 `af7bb9c25b015792583ca4da3ee27ec62cb79fe6` 有 1,000 个 `train` 行；本站该组成项已有样例。该数字来自数据服务元数据，非本站逐条读取。 |
+| Vals Index | [Vals Index v2 方法页](https://www.vals.ai/benchmarks/vals_index_v2)说明其汇总七项评测，其中五项私有、两项公开。 | 榜单和方法公开不等于七项原始题目均可下载；Code Migration 在指数中另使用指定子集。 |
+
 ## 站内样例清单
 
 | 评测 | 类别 | 站内样例数 | 已记录访问状态 | 资料入口 |
