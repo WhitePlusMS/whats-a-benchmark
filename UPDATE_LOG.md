@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-11-06：去除 GDPval-AA 跨版本重复演示
+
+- 修改 `content/benchmarks/gdpval-aa.json`：与 v2.1 相同的舞台图短引仅在后者展示，增加关联和版本边界说明。
+- 影响：本站本条样例1→0；冻结 v2 专属样例仍未核实，不推断上游无数据，不把当前 v2.1 页面冒充 v2 成员证明。
+- 验证：两卡原文逐字一致；内容生成、类型/内容验证、diff检查及构建通过。
+
+# 更新说明
+
 ## 2026-11-06：去除 SWE-ContextBench 共享基础题重复展示
 
 - 修改 `content/benchmarks/swe-contextbench.json`：Astropy 12907与Verified的实例、基线和问题相同，原问题仅在Verified展示；ContextBench保留原始入口与关联说明。
