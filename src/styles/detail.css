@@ -97,7 +97,7 @@
 }
 .detail-nav {
   position: sticky;
-  top: 72px;
+  top: 64px;
   z-index: 20;
   display: flex;
   gap: 28px;
@@ -532,6 +532,12 @@
   .contract-grid > article + article {
     border-left: 0;
     border-top: 1px solid var(--border);
+  }
+}
+@media (max-width: 780px) {
+  /* 页眉在此宽度换行，导航随正文滚动，避免覆盖页眉。 */
+  .detail-nav {
+    position: static;
   }
 }
 @media (max-width: 700px) {
