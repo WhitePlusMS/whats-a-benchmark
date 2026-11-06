@@ -148,7 +148,7 @@
     ]
   },
   "sampleAccess": {
-    "url": "https://arxiv.org/html/2504.07981v1",
+    "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json",
     "status": "local",
     "reason": "3条真实native定位标注可切换，bbox/图像尺寸/原文件名保留；第三方软件截图未本地展示。",
     "sourceUrls": [
@@ -209,16 +209,22 @@
         "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
         "https://arxiv.org/abs/2504.07981"
       ]
+    },
+    {
+      "text": "2026-11-06 实读固定 annotations/davinci_macos.json（21370字节，SHA-256 4141af54af7c214e6b5af9dc7d325902a8dc776c2f0f2f3f423eaea85077bad2），首卡 raw 与 davinci_macos_10 完全一致，ui_type=text。纠正首卡论文来源、图标标题和split，使其直接指向原生标注；不再以论文许可推定数据或界面素材许可，未复制截图。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json"
+      ]
     }
   ],
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-06",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "screenspot-pro-davinci-blur-dissolve",
-        "title": "DaVinci Resolve 图标定位任务",
-        "type": "text",
+        "title": "DaVinci Resolve 文本控件定位任务",
+        "type": "record",
         "promptOrigin": "editorial",
         "prompt": "ScreenSpot-Pro 的 DaVinci annotation 指令为 “Blur Dissolve”，bbox 和屏幕尺寸按原记录展示；没有把对应截图像素放入本候选，因此缺图时不能完成实际定位任务。",
         "raw": {
@@ -241,10 +247,10 @@
           "ui_type": "text",
           "group": "Creative"
         },
-        "explanation": "raw 是官方 revision annotation JSON 中 id=davinci_macos_10 的完整原生对象。原站内raw曾把字段改写为标签行，且把ui_type记作icon；官方记录的ui_type实际为text，bbox为[460,1344,709,1375]。对应截图文件名在img_filename字段中，但此样例未复制截图。",
-        "source": "https://arxiv.org/html/2504.07981v1",
-        "license": "论文页面标注 CC BY 4.0；该截图包含第三方软件界面，界面元素及商标的逐项权利未核实。本页仅保留短标签和本站概述，不复制截图，也不把论文许可扩展到界面素材。 本条原始数据只取公开案例的事实数据和必要原文节选，未扩展为题库、附件、模型输出或媒体的再发布授权。",
-        "split": "论文 v1 · Appendix D · Figure 5 · Application=DaVinci · Type=icon",
+        "explanation": "raw 是官方固定修订 210e78d3844251110bff86c95835ebd37a6930fa 的 annotations/davinci_macos.json 中 id=davinci_macos_10 的完整原生对象，逐字段与该记录一致。该记录 ui_type=text，不再沿用论文图例的 icon 标签；图像文件名、bbox 和屏幕尺寸均保留源值。此条是定位标注，不包含对应截图像素，不能单独作为完整视觉输入。",
+        "source": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro/blob/210e78d3844251110bff86c95835ebd37a6930fa/annotations/davinci_macos.json",
+        "license": "固定修订的数据卡标注 MIT；本条仅保留所选 annotation 对象，不含截图像素。数据卡标签不自动覆盖第三方软件界面、图标、商标及截图内容的独立转载权，不把论文 CC BY 4.0 当作该标注记录或界面素材的授权依据。",
+        "split": "官方 annotations/davinci_macos.json · davinci_macos_10 · application=davinci · platform=macos · ui_type=text；未据此推断 train/dev/test 划分",
         "excerpt": true
       },
       {
