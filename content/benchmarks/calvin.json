@@ -402,7 +402,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "查看标为 validation 的机器人交互数据：一帧同时记录相机观察、机器人状态与动作。",
-        "explanation": "第三方发布的 CALVIN_ABC validation 数据查看接口中，该帧 key 为 validation/episode_0032068；接口提供静态和腕部 RGB、深度及状态和动作。本站下载并查看静态相机画面，但该帧未带任务指令或结果，不能推断机器人正在完成什么，也未确认与本站现有评测序列的对应关系。图片转载许可未明确，可通过数据查看器查看原始内容。",
+        "explanation": "第三方发布的 CALVIN_ABC validation 数据查看接口中，该帧 key 为 validation/episode_0032068；接口提供静态和腕部 RGB、深度及状态和动作。本站下载并查看静态相机画面，数组尺寸为 200×200×3，但该帧未带任务指令或结果，不能推断机器人正在完成什么，也未确认与本站现有评测序列的对应关系。图片转载许可未明确，可通过数据查看器查看原始内容。",
         "raw": {
           "__key__": "validation/episode_0032068",
           "__url__": "hf://datasets/KyujinL/CALVIN_ABC@0874cd64f0df8dcc3a3534360ca448705e44e954/validation.tar.part-000",
@@ -466,11 +466,6 @@
             -8.725625890304967e-06,
             -1.4723103365352213e-05,
             -1.4766728899217383
-          ],
-          "rgb_static_shape": [
-            200,
-            200,
-            3
           ]
         },
         "source": "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1",
