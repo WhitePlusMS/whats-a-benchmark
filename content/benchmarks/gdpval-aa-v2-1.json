@@ -97,16 +97,18 @@
     "url": "https://huggingface.co/datasets/openai/gdpval"
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "检查的AA页面和OpenAI数据卡未为展示prompt、参考文件或提交附件给出明确数据许可。",
-    "scope": "仅保留所选公开任务/字段/必要原文片段及本站解析，具体范围见每条说明；没有据此取得完整题库、第三方附件或模型输出的统一再发布权。",
+    "status": "restricted",
+    "license": "AA 网站条款仅授予个人非商业访问，并限制网页内容的复制、再发布和托管；公开舞台图任务片段未见独立再发布许可。OpenAI GDPval 题目、参考文件及 AA 提交附件的许可仍须分别核实，AA 网站条款不替代 OpenAI 数据许可。",
+    "scope": "所引 AA 官网内容层：仅保留公开任务的必要短引及本站解读；不扩大到 OpenAI GDPval 题库、参考文件或 AA 提交附件。",
     "boundaries": [
       "不将AA页面展示推定为附件再分发许可。",
-      "不把模型提交当作gold答案。"
+      "不把模型提交当作gold答案。",
+      "网站内容的使用限制与底层数据许可分开；公开任务名称、数值事实及本站解读不代表完整题文、附件或媒体已获再发布授权。"
     ],
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/gdpval-aa",
-      "https://huggingface.co/datasets/openai/gdpval"
+      "https://huggingface.co/datasets/openai/gdpval",
+      "https://artificialanalysis.ai/terms-of-use"
     ]
   },
   "sampleAccess": {
@@ -169,6 +171,11 @@
       "label": "Anthropic Opus 5.5 发布页",
       "url": "https://www.anthropic.com/claude-opus-5-5",
       "role": "vendor-report"
+    },
+    {
+      "label": "Artificial Analysis 网站使用条款",
+      "url": "https://artificialanalysis.ai/terms-of-use",
+      "role": "access"
     }
   ],
   "interpretation": {
@@ -239,7 +246,7 @@
         "explanation": "官方 AA 页面将评测标为 GDPval-AA v2.1 并公开 Task 1 及提交示例。题库和参考文件仍按原页面的公开范围描述；本页不复制附件或将模型提交作为标准答案。\n原始数据精简说明：保留官方原始文本或配置的实际片段，多个来源块分段显示；其他正文、附件、数据行与模型输出未收录。字段和任务说明没有用本站摘要替换。",
         "raw": "Create a one-page visual stage plot for the touring band",
         "source": "https://artificialanalysis.ai/evaluations/gdpval-aa",
-        "license": "本站原创任务解读及AA公开页必要短引；GDPval题目、参考文件及AA提交附件许可未单独确认。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。",
+        "license": "本站原创任务解读及AA公开页必要短引；GDPval题目、参考文件及AA提交附件许可未单独确认。 原始数据范围仅为这些实际源片段与配置事实，保留原来的资料许可边界；不推及完整题库或附件。 所引官网内容另受 AA 网站条款约束；本条不表示已获完整题文、附件或媒体的再发布许可。",
         "split": "GDPval-AA v2.1 / Example Tasks & Submissions / Task 1；代表性公开任务演示，未给出底层 task_id。",
         "excerpt": true
       }
