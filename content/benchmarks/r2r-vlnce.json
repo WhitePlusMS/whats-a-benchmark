@@ -20,6 +20,11 @@
         "label": "SenseNova 连续导航评测轨迹",
         "type": "第三方评测日志",
         "url": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip"
+      },
+      {
+        "label": "官方 R2R-CE v1-3 验证集",
+        "type": "数据集",
+        "url": "https://drive.google.com/file/d/1T9SjqZWyR2PCLSXYkFckfDeIs6Un0Rjm/view?usp=sharing"
       }
     ]
   },
@@ -61,17 +66,19 @@
       "v1-3：train 10,819、val_seen 778、val_unseen 1,839、test 3,408 条 episode。"
     ],
     "splits": [
-      "train、val_seen、val_unseen、test；场景与划分以官方文件为准。"
+      "train、val_seen、val_unseen、test；场景与划分以官方文件为准。",
+      "已核对官方 v1-3 val_unseen 的 episode 7 与第三方 rand100 运行的指令、场景及起点坐标一致，但初始旋转不同；不可合并为同一配置。"
     ],
     "fields": [
-      "episode_id、场景、指令、起始位姿、目标及参考路径。"
+      "train 和验证划分包含 episode_id、场景、指令、起始位姿、目标及参考路径；官方测试集不公开目标位置或参考路径。"
     ],
     "files": [
       "官方提供 JSON.GZ 数据；场景资产需按 Matterport3D 条款另行获取。"
     ],
     "sourceUrls": [
       "https://jacobkrantz.github.io/vlnce/data",
-      "https://github.com/jacobkrantz/VLN-CE"
+      "https://github.com/jacobkrantz/VLN-CE",
+      "https://drive.google.com/file/d/1T9SjqZWyR2PCLSXYkFckfDeIs6Un0Rjm/view?usp=sharing"
     ]
   },
   "dataAccess": {
@@ -101,10 +108,11 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示一条第三方连续导航运行记录；视频已提取查看，原始归档可从相关资源获取。",
+    "reason": "展示一条第三方导航运行及其与官方 val_unseen 参考记录的对照；录像已查看，原始归档可从相关资源获取。",
     "sourceUrls": [
       "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log",
-      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip"
+      "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip",
+      "https://drive.google.com/file/d/1T9SjqZWyR2PCLSXYkFckfDeIs6Un0Rjm/view?usp=sharing"
     ]
   },
   "metric": {
@@ -156,6 +164,11 @@
       "label": "Matterport 场景数据使用条款",
       "url": "https://matterport.com/legal/matterport-end-user-license-agreement-academic-use-model-data",
       "role": "access"
+    },
+    {
+      "label": "官方 R2R_VLNCE v1-3 标注文件",
+      "url": "https://drive.google.com/file/d/1T9SjqZWyR2PCLSXYkFckfDeIs6Un0Rjm/view?usp=sharing",
+      "role": "data"
     }
   ],
   "related": [
@@ -168,7 +181,7 @@
       ]
     }
   ],
-  "verifiedAt": "2026-11-05",
+  "verifiedAt": "2026-11-06",
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [
@@ -178,7 +191,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "沿泳池前进，从吧台和椅子之间穿过，在吧台转角处停下。",
-        "explanation": "SenseNova 发布的一次 VLN-CE 仿真运行：该次提示提供前视 RGB 观察与前进、左转、右转、停止动作；每次前进 0.25 米、转向 15 度，最多 500 个动作。日志记录 episode 7、rand100、62 步和 success=true；前视视频包含 63 帧、按 2 帧/秒播放，已提取并查看。上述动作参数是这次第三方运行的配置；它不是原版 R2R val_seen 的 path 5593，也不代表整体成绩。场景画面转载条件未确认，原始视频位于归档中。",
+        "explanation": "SenseNova 发布的一次 VLN-CE 仿真运行：该次提示提供前视 RGB 观察与前进、左转、右转、停止动作；每次前进 0.25 米、转向 15 度，最多 500 个动作。日志记录 episode 7、rand100、62 步和 success=true；前视视频包含 63 帧、按 2 帧/秒播放，已提取并查看。上述动作参数是这次第三方运行的配置；它不是原版 R2R val_seen 的 path 5593，也不代表整体成绩。场景画面转载条件未确认，原始视频位于归档中。 对照官方 v1-3 验证集：val_unseen 的 episode 7 在路线指令、场景及起点坐标上与该日志一致，但初始旋转不同；不能将本次 rand100 运行直接等同于官方 v1-3 配置。",
         "raw": {
           "benchmark": "vln_ce",
           "phase": "evaluation",
@@ -195,11 +208,46 @@
             "ndtw": 0.96286124994603,
             "path_length": 9.74919605255127,
             "steps_taken": 62.0
-          }
+          },
+          "official_v1_3_val_unseen": {
+            "episode_id": 7,
+            "trajectory_id": 42,
+            "scene_id": "mp3d/x8F5xyUWy9e/x8F5xyUWy9e.glb",
+            "start_position": [
+              -0.944907009601593,
+              0.04610800743103027,
+              5.948919773101807
+            ],
+            "start_rotation": [
+              -0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "goals": [
+              {
+                "position": [
+                  0.8591700196266174,
+                  0.04610800743103027,
+                  -4.339749813079834
+                ],
+                "radius": 3.0
+              }
+            ],
+            "info": {
+              "geodesic_distance": 10.452263832092285
+            }
+          },
+          "run_initial_rotation_xyzw": [
+            0,
+            0.9857222714611324,
+            0,
+            -0.168379344177086
+          ]
         },
         "source": "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip",
-        "license": "SenseNova 日志数据卡标注 MIT；Matterport3D 场景及其衍生画面另有使用条款，本页未转载视频。",
-        "split": "第三方评测 / R2R-CE / rand100 / episode 7 / 500 步预算；不是官方 val_seen 标签。",
+        "license": "SenseNova 日志数据卡标注 MIT；Matterport3D 场景及其衍生画面另有使用条款，本页未转载视频。 官方验证记录仅展示必要字段，完整标注通过官方数据入口获取。",
+        "split": "第三方运行：rand100 / episode 7；官方对应参考：v1-3 / val_unseen / episode 7，初始朝向不同。",
         "excerpt": true
       }
     ]
@@ -210,6 +258,14 @@
       "sourceUrls": [
         "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip",
         "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log"
+      ]
+    },
+    {
+      "text": "2026-11-06 下载官方页面链接的 v1-3 ZIP（2,608,469 字节，SHA-256 e2a81331524a6ca9a987d014a1affcb3b7174240cfae3647532bbaf68ef18404），读取 val_unseen episode 7 与第三方 prompt/result：指令文本、场景 ID 和初始坐标一致；官方旋转 [-0.0,0.0,0.0,1.0]，运行日志为 [0,0.9857222714611324,0,-0.168379344177086]。两者初始朝向差异未解释，不视为同一设置。",
+      "sourceUrls": [
+        "https://drive.google.com/file/d/1T9SjqZWyR2PCLSXYkFckfDeIs6Un0Rjm/view?usp=sharing",
+        "https://jacobkrantz.github.io/vlnce/data",
+        "https://huggingface.co/datasets/sensenova/SenseNova-RoboRSI-Log/blob/be4c0460385e1dc3cf2436fe788ba7ef970b2999/VLN-CE-R2R.zip"
       ]
     }
   ]
