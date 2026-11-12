@@ -1,4 +1,5 @@
-/** One HumanEval entry (hash or saved position), after both async sections render.
+/** One asynchronous detail entry (HumanEval / GSM8K, hash or saved position),
+ * after both the pilot and samples sections render.
  * This is a readiness handshake only: routing owns the scroll and cancellation.
  */
 export function createDeferredDetailAnchor() {

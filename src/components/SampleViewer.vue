@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
+import { isUnknownGsm8kSample } from "../content/gsm8kExperience";
 import { isUnknownHumanEvalSample } from "../content/humanEvalExperience";
 import { isUnknownArcSample } from "../content/arcExperience";
 import { isUnknownRoboQuestSample } from "../content/roboQuestExperience";
@@ -19,12 +20,18 @@ const route = useRoute();
 const unknownSelectedSample = computed(
   () =>
     ready.value &&
-    (isUnknownRoboQuestSample(
+    (isUnknownGsm8kSample(
       props.item.id,
       route.query.sample,
       data.value?.samples,
       route.path,
     ) ||
+      isUnknownRoboQuestSample(
+        props.item.id,
+        route.query.sample,
+        data.value?.samples,
+        route.path,
+      ) ||
       isUnknownArcSample(
         props.item.id,
         route.query.sample,
@@ -152,6 +159,8 @@ onMounted(() => {
             >含参考输出</span
           ><span v-if="item.id === 'human-eval'" class="mode-note"
             >含参考代码与测试</span
+          ><span v-if="item.id === 'gsm8k'" class="mode-note"
+            >含参考推导与答案</span
           ><span v-if="current.excerpt" class="mode-note">节选</span>
         </button>
       </div>
@@ -292,8 +301,7 @@ onMounted(() => {
             }}
           </button>
           <pre
-            v-if="current.answer"
-            v-show="showAnswer"
+            v-if="current.answer && showAnswer"
             :id="`sample-answer-${item.id}`"
             class="answer-content"
             translate="no"
