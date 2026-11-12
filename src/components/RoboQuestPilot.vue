@@ -328,18 +328,26 @@ function selectCase(id: string) {
             </div>
             <p aria-live="polite">{{ searchConcepts[concept]?.text }}</p>
             <p class="rq-note">
-              这份资料只有官方任务名称「Search
-              Room」。图解来自本站概览，不含官方图像、具体题目布局、完整轨迹或单次成绩。
+              本站该条记录仅保存任务名称「Search
+              Room」。图解来自本站概览，不含官方图像、具体题目布局、完整轨迹或单次成绩；完整任务说明请查阅
+              <a
+                href="https://declare-lab.github.io/RoboQuest/tasks.html"
+                target="_blank"
+                rel="noreferrer"
+                class="pilot-link"
+                >官方任务页面 <Icon name="up" :size="14" /></a
+              >。
             </p>
           </div>
         </div>
         <div v-if="failedAssets.length" class="rq-media-retry">
+          <p class="rq-note">此处与下方原始记录的媒体独立加载，请分别重试。</p>
           <button
             type="button"
             class="secondary-button"
             @click="failedAssets = []"
           >
-            重新加载媒体
+            重新加载上方媒体
           </button>
         </div>
         <footer class="walkthrough-footer">

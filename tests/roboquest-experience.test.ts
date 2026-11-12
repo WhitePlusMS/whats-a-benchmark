@@ -130,3 +130,79 @@ test("RoboQuest 上下四题双向共享 URL，刷新恢复并保留其他查询
     true,
   );
 });
+
+test("RoboQuest 媒体重试不写入 URL，切换原始模式与任务不串题", async (t) => {
+  t.mock.method(globalThis, "fetch", async () => Response.json(fixture));
+  const router = createRouter({
+    history: createMemoryHistory(),
+    routes: [
+      { path: "/benchmarks/roboquest/", component: { template: "<div />" } },
+    ],
+  });
+  await router.push({
+    path: "/benchmarks/roboquest/",
+    query: { from: "catalog" },
+  });
+  const scope = effectScope();
+  t.after(() => scope.stop());
+  const { viewer, location } = scope.run(() => {
+    const viewer = useSampleViewer(
+      () => "roboquest",
+      () => true,
+      "/",
+    );
+    return { viewer, location: createSampleLocation(router, viewer) };
+  })!;
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  await nextTick();
+  for (const index of [0, 1, 0]) {
+    await location.selectSample(index);
+    await nextTick();
+    const asset = viewer.current.value!.assets![0]!;
+    assert.deepEqual([...viewer.failedAssets.value], []);
+    viewer.markAssetFailed(asset.path);
+    await location.setMode("raw");
+    await nextTick();
+    await location.setMode("read");
+    await nextTick();
+    assert.deepEqual([...viewer.failedAssets.value], [asset.path]);
+    const url = router.currentRoute.value.fullPath;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      viewer.retryMedia();
+      await nextTick();
+      assert.deepEqual([...viewer.failedAssets.value], []);
+      assert.equal(router.currentRoute.value.fullPath, url);
+      assert.equal(viewer.current.value!.id, fixture.samples[index]!.id);
+      viewer.markAssetFailed(asset.path);
+      assert.deepEqual([...viewer.failedAssets.value], [asset.path]);
+    }
+  }
+});
+
+test("Search Room 明确区分本站收录范围和官方说明，并保留原始来源", async () => {
+  const pilot = await readFile(
+    new URL("../src/components/RoboQuestPilot.vue", import.meta.url),
+    "utf8",
+  );
+  const { searchConcepts } = await import("../src/content/roboQuestExperience");
+  assert.match(pilot, /本站该条记录仅保存任务名称「Search\s+Room」/);
+  assert.match(
+    pilot,
+    /href="https:\/\/declare-lab\.github\.io\/RoboQuest\/tasks\.html"/,
+  );
+  assert.match(pilot, /:href="sample.source"/);
+  assert.match(searchConcepts[1].text, /本站该条记录未收录逐步动作或轨迹/);
+  assert.match(searchConcepts[2].text, /本站该条记录仅保存任务名称/);
+  assert.doesNotMatch(
+    pilot + searchConcepts.map((x) => x.text).join(""),
+    /这份资料只有官方任务名称|没有可公开的逐步动作/,
+  );
+  const viewer = await readFile(
+    new URL("../src/components/SampleViewer.vue", import.meta.url),
+    "utf8",
+  );
+  assert.match(pilot, /重新加载上方媒体/);
+  assert.match(pilot, /与下方原始记录的媒体独立加载/);
+  assert.match(viewer, /@click="retryMedia"/);
+  assert.match(viewer, /重新加载本条记录媒体/);
+});

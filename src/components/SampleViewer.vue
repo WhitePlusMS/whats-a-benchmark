@@ -43,6 +43,7 @@ const {
   selectedOption,
   failedAssets,
   markAssetFailed,
+  retryMedia,
 } = viewer;
 // 通知嵌入页：加载成功或失败的界面已渲染，可据此处理受高度变化影响的锚点。
 watch(
@@ -187,6 +188,14 @@ onMounted(() => {
         </div>
         <h3 translate="no">{{ current.title }}</h3>
         <template v-if="mode === 'read'">
+          <div v-if="failedAssets.length" class="sample-media-retry">
+            <p v-if="item.id === 'roboquest'" class="muted">
+              此处与上方任务图解的媒体独立加载，请分别重试。
+            </p>
+            <button type="button" class="secondary-button" @click="retryMedia">
+              重新加载本条记录媒体
+            </button>
+          </div>
           <SampleWalkthrough
             v-if="current.walkthrough"
             :key="`${item.id}:${current.id}`"
