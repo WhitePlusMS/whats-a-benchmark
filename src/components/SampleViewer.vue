@@ -4,11 +4,13 @@ import { useRoute, useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
+import { isUnknownLiberoSample } from "../content/liberoExperience";
 import { isUnknownGsm8kSample } from "../content/gsm8kExperience";
 import { isUnknownHumanEvalSample } from "../content/humanEvalExperience";
 import { isUnknownArcSample } from "../content/arcExperience";
 import { isUnknownRoboQuestSample } from "../content/roboQuestExperience";
 import { sampleExternalUrl } from "../lib/sampleAccess";
+import { nextLiberoMediaRetryToken } from "../lib/liberoMediaRetry";
 import Icon from "./Icon.vue";
 import ArcTask from "./ArcTask.vue";
 import SampleMedia from "./SampleMedia.vue";
@@ -20,12 +22,18 @@ const route = useRoute();
 const unknownSelectedSample = computed(
   () =>
     ready.value &&
-    (isUnknownGsm8kSample(
+    (isUnknownLiberoSample(
       props.item.id,
       route.query.sample,
       data.value?.samples,
       route.path,
     ) ||
+      isUnknownGsm8kSample(
+        props.item.id,
+        route.query.sample,
+        data.value?.samples,
+        route.path,
+      ) ||
       isUnknownRoboQuestSample(
         props.item.id,
         route.query.sample,
@@ -64,8 +72,14 @@ const {
   selectedOption,
   failedAssets,
   markAssetFailed,
-  retryMedia,
+  retryMedia: retryViewerMedia,
 } = viewer;
+const mediaRetryToken = ref("");
+function retryMedia() {
+  if (props.item.id === "libero")
+    mediaRetryToken.value = nextLiberoMediaRetryToken();
+  retryViewerMedia();
+}
 // 通知嵌入页：加载成功或失败的界面已渲染，可据此处理受高度变化影响的锚点。
 watch(
   [data, error],
@@ -216,7 +230,10 @@ onMounted(() => {
         <h3 translate="no">{{ current.title }}</h3>
         <template v-if="mode === 'read'">
           <div v-if="failedAssets.length" class="sample-media-retry">
-            <p v-if="item.id === 'roboquest'" class="muted">
+            <p
+              v-if="item.id === 'roboquest' || item.id === 'libero'"
+              class="muted"
+            >
               此处与上方任务图解的媒体独立加载，请分别重试。
             </p>
             <button type="button" class="secondary-button" @click="retryMedia">
@@ -232,6 +249,7 @@ onMounted(() => {
               v-if="item.embodied && current.assets"
               overview
               :failed-assets="failedAssets"
+              :retry-token="item.id === 'libero' ? mediaRetryToken : undefined"
               @asset-error="markAssetFailed"
               :assets="current.assets"
               :title="current.title"
@@ -259,6 +277,7 @@ onMounted(() => {
           <SampleMedia
             v-if="current.assets && !(current.walkthrough && item.embodied)"
             :failed-assets="failedAssets"
+            :retry-token="item.id === 'libero' ? mediaRetryToken : undefined"
             @asset-error="markAssetFailed"
             :key="`${item.id}:${current.id}`"
             :assets="current.assets"

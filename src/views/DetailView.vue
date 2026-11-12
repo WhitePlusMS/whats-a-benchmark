@@ -34,6 +34,7 @@ import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import ArcAgiPilot from "../components/ArcAgiPilot.vue";
+import LiberoPilot from "../components/LiberoPilot.vue";
 import Gsm8kPilot from "../components/Gsm8kPilot.vue";
 import HumanEvalPilot from "../components/HumanEvalPilot.vue";
 import { humanEvalInitialAnchor } from "../lib/deferredDetailAnchor";
@@ -43,7 +44,7 @@ const item = computed(() =>
   byId.get(String(route.meta.benchmarkId || route.params.id)),
 );
 function reportHumanEvalReady(section: "pilot" | "samples") {
-  if (["human-eval", "gsm8k"].includes(item.value?.id || ""))
+  if (["human-eval", "gsm8k", "libero"].includes(item.value?.id || ""))
     humanEvalInitialAnchor.settled(route.fullPath, section);
 }
 const category = computed(
@@ -197,6 +198,12 @@ useHead(() => ({
       @toggle="toggle(item.id)"
       @settled="reportHumanEvalReady('pilot')"
     />
+    <LiberoPilot
+      v-else-if="item.id === 'libero'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+      @settled="reportHumanEvalReady('pilot')"
+    />
     <header v-else class="detail-heading">
       <div class="detail-title-line">
         <PublisherMarks
@@ -284,7 +291,8 @@ useHead(() => ({
           item.id === 'roboquest' ||
           item.id === 'arc-agi-2' ||
           item.id === 'human-eval' ||
-          item.id === 'gsm8k'
+          item.id === 'gsm8k' ||
+          item.id === 'libero'
         "
         href="#task-walkthrough"
         >一题看懂</a

@@ -1,4 +1,4 @@
-/** One asynchronous detail entry (HumanEval / GSM8K, hash or saved position),
+/** One asynchronous detail entry (HumanEval / GSM8K / LIBERO, hash or saved position),
  * after both the pilot and samples sections render.
  * This is a readiness handshake only: routing owns the scroll and cancellation.
  */
