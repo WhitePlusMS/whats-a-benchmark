@@ -34,6 +34,7 @@ import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import ArcAgiPilot from "../components/ArcAgiPilot.vue";
+import MmluProPilot from "../components/MmluProPilot.vue";
 import BfclPilot from "../components/BfclPilot.vue";
 import CalvinPilot from "../components/CalvinPilot.vue";
 import IfevalPilot from "../components/IfevalPilot.vue";
@@ -57,6 +58,7 @@ function reportHumanEvalReady(section: "pilot" | "samples") {
       "ifeval",
       "calvin",
       "bfcl",
+      "mmlu-pro",
     ].includes(item.value?.id || "")
   )
     humanEvalInitialAnchor.settled(route.fullPath, section);
@@ -218,6 +220,12 @@ useHead(() => ({
       @toggle="toggle(item.id)"
       @settled="reportHumanEvalReady('pilot')"
     />
+    <MmluProPilot
+      v-else-if="item.id === 'mmlu-pro'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+      @settled="reportHumanEvalReady('pilot')"
+    />
     <BfclPilot
       v-else-if="item.id === 'bfcl'"
       :selected="selected.includes(item.id)"
@@ -334,7 +342,8 @@ useHead(() => ({
           item.id === 'mmmlu' ||
           item.id === 'ifeval' ||
           item.id === 'calvin' ||
-          item.id === 'bfcl'
+          item.id === 'bfcl' ||
+          item.id === 'mmlu-pro'
         "
         href="#task-walkthrough"
         >一题看懂</a

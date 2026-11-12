@@ -1,0 +1,186 @@
+.mp-pilot {
+  --pilot-accent: var(--accent);
+}
+.mp-cases {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 24px 0;
+}
+.mp-cases button,
+.mp-button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+.mp-cases small,
+.mp-cases b {
+  display: block;
+}
+.mp-cases small,
+.mp-meta,
+.mp-small {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.mp-cases [aria-pressed="true"],
+.mp-selected {
+  border-color: var(--accent) !important;
+  background: var(--accent-soft) !important;
+}
+.mp-task {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: clamp(16px, 3vw, 32px);
+  background: var(--surface);
+}
+.mp-task h3 {
+  font-size: 1.55rem;
+  margin: 12px 0;
+}
+.mp-question {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.mp-options {
+  border: 0;
+  padding: 0;
+  margin: 22px 0;
+  display: grid;
+  gap: 8px;
+}
+.mp-options legend {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.mp-options label {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  border: 1px solid var(--border);
+  padding: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.mp-options input {
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.mp-actions,
+.mp-evidence {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.mp-answer {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.mp-answer p {
+  line-height: 1.8;
+}
+.mp-explanation,
+.mp-correction {
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.mp-correction {
+  border-left: 4px solid var(--accent);
+}
+.mp-answer pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 460px;
+  overflow: auto;
+  padding: 18px;
+  background: var(--surface-subtle);
+  line-height: 1.7;
+}
+.mp-pipeline h4 {
+  margin-bottom: 8px;
+}
+.mp-instructions {
+  padding-left: 24px;
+}
+.mp-instructions li {
+  margin: 8px 0;
+  border-left: 3px solid transparent;
+}
+.mp-instructions li.mp-active {
+  border-color: var(--accent);
+}
+.mp-instructions button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  text-align: left;
+  border: 0;
+  background: var(--surface-subtle);
+  color: var(--text);
+  padding: 12px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.mp-dependency {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.mp-protocol {
+  margin: 26px 0;
+  line-height: 1.8;
+}
+.mp-protocol summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.mp-pilot button:focus-visible,
+.mp-pilot a:focus-visible,
+.mp-options label:focus-within {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.mp-button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+@media (max-width: 850px) {
+  .mp-cases {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .mp-cases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mp-instructions button {
+    grid-template-columns: 1fr;
+  }
+  .mp-options label {
+    gap: 8px;
+  }
+  .mp-task {
+    padding: 16px;
+  }
+  .mp-answer pre {
+    padding: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-pilot * {
+    scroll-behavior: auto;
+    transition: none !important;
+  }
+}

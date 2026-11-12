@@ -482,7 +482,7 @@ test("BFCL integrates deep anchors, unknown selections, source separation and re
   assert.ok(viewer.includes('item.id === "bfcl" && findBfclCase(current.id)'));
   assert.ok(viewer.includes("该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"));
   assert.ok(viewer.includes("此公开记录未附参考答案，完成标准见评分方法。"));
-  assert.ok(card.includes("'bfcl'].includes(item.id) ? '#task-walkthrough'"));
+  assert.ok(card.includes("'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'"));
   assert.match(pilot, /:key="entry.sampleId"/);
   assert.match(pilot, /loaded \|\| failed/);
   assert.match(bench, /v-if="revealed"/);

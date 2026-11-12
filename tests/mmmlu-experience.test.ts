@@ -331,7 +331,7 @@ test("MMMLU integration retains deferred layout, source distinction and answer g
   assert.ok(viewer.includes("isUnknownMmmluSample"));
   assert.ok(
     card.includes(
-      "'mmmlu', 'ifeval', 'calvin', 'bfcl'].includes(item.id) ? '#task-walkthrough'",
+      "'mmmlu', 'ifeval', 'calvin', 'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'",
     ),
   );
   assert.match(pilot, /v-if="revealed"\s+id="mm-reference"/);

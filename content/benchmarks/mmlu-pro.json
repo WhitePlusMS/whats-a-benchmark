@@ -81,6 +81,31 @@
       "label": "代码仓库固定Apache-2.0许可",
       "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/f418b116db00b065c2aea046518d8fcf74d39872/LICENSE",
       "role": "access"
+    },
+    {
+      "label": "固定数据卡与 MIT 声明",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/README.md",
+      "role": "data"
+    },
+    {
+      "label": "固定 validation 数据（按 question_id 定位）",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定本地评分与提示构建",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/f418b116db00b065c2aea046518d8fcf74d39872/evaluate_from_local.py",
+      "role": "code"
+    },
+    {
+      "label": "肽聚糖与细菌质膜位置关系",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36794934/",
+      "role": "paper"
+    },
+    {
+      "label": "国际法院专案法官说明",
+      "url": "https://icj-web.leman.un-icc.cloud/judges-ad-hoc",
+      "role": "access"
     }
   ],
   "status": "published",
@@ -132,9 +157,8 @@
         ],
         "answer": "H. ST - TS is the identity map of V onto itself.",
         "explanation": "题目定义了乘以 x 和求导两个变换，需要分清组合顺序，再从 10 个表达式中选择正确关系。",
-        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。",
         "type": "choice"
       },
       {
@@ -173,14 +197,12 @@
           "-6",
           "-1",
           "-2",
-          "-9",
-          "N/A"
+          "-9"
         ],
         "answer": "E. -4",
-        "explanation": "先处理整数线性约束，再比较可行的 m+n 值，找出最大的负数；共有 10 个候选答案。",
-        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/viewer/default/validation",
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt",
+        "explanation": "在整数约束下寻找 m+n 的最大负值。练习包含 9 个有效选项；原始数组另有一个 N/A 占位，保留在原始记录。",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。",
         "type": "choice"
       },
       {
@@ -223,11 +245,10 @@
           "category": "health",
           "src": "cot_lib-anatomy"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / health / row_idx=5",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       },
       {
         "id": "mmlu-pro-validation-diverse-10",
@@ -243,8 +264,7 @@
           "20000 times more",
           "2000 times more",
           "100 times more",
-          "10 times more",
-          "N/A"
+          "10 times more"
         ],
         "answer": "E. 10000 times more",
         "explanation": "题目比较集光量，使用口径对应的面积比，不是角分辨率或放大倍数。50厘米需与5毫米统一单位后平方比较；raw 中保留官方原解读，包括其中50mm的单位笔误，没有替作者改写。",
@@ -269,11 +289,10 @@
           "category": "physics",
           "src": "cot_lib-astronomy"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / physics / row_idx=10",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       },
       {
         "id": "mmlu-pro-validation-diverse-15",
@@ -293,7 +312,7 @@
           "Boycotts, Buycotts, Blockchain technology, Decreased Sales"
         ],
         "answer": "F. Boycotts, Buycotts, Digital technology, Increased Sales",
-        "explanation": "商业伦理题比较管理伦理的不同机制，需辨析题干中“奖励有利行为”的组织做法。",
+        "explanation": "根据句子关系区分消费者抵制与支持性购买，再辨别数字传播与销量的对应概念。",
         "raw": {
           "question_id": 15,
           "question": "In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .",
@@ -315,11 +334,10 @@
           "category": "business",
           "src": "cot_lib-business_ethics"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / business / row_idx=15",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       },
       {
         "id": "mmlu-pro-validation-diverse-20",
@@ -330,13 +348,7 @@
           "They possess an exoskeleton composed primarily of peptidoglycan.",
           "They possess an open circulatory system with a dorsal heart.",
           "They are members of a biologically unsuccessful phylum incapable of exploiting diverse habitats and nutrition sources.",
-          "They lack paired, jointed appendages.",
-          "N/A",
-          "N/A",
-          "N/A",
-          "N/A",
-          "N/A",
-          "N/A"
+          "They lack paired, jointed appendages."
         ],
         "answer": "B. They possess an open circulatory system with a dorsal heart.",
         "explanation": "生物题考察节肢动物相关陈述的准确性，需要从多项生态/生理描述中找出符合事实的一项。",
@@ -361,11 +373,10 @@
           "category": "biology",
           "src": "cot_lib-college_biology"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / biology / row_idx=20",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       },
       {
         "id": "mmlu-pro-validation-diverse-25",
@@ -407,11 +418,10 @@
           "category": "chemistry",
           "src": "cot_lib-college_chemistry"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / chemistry / row_idx=25",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       },
       {
         "id": "mmlu-pro-validation-diverse-30",
@@ -426,9 +436,7 @@
           "12",
           "4",
           "7",
-          "8",
-          "N/A",
-          "N/A"
+          "8"
         ],
         "answer": "B. 6",
         "explanation": "需在不改写 A、B、C 所在寄存器的条件下安排乘加操作，并计算相邻数据依赖带来的周期代价。源答案标为6；原 cot 中把 ABC 写成 R3×R4（AB×BC），与题面不一致，本站保留该原文，不把它当作已验证的正确推导。",
@@ -453,11 +461,10 @@
           "category": "computer science",
           "src": "cot_lib-college_computer_science"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / computer science / row_idx=30",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       },
       {
         "id": "mmlu-pro-validation-diverse-55",
@@ -472,9 +479,7 @@
           "Imperialist",
           "Nationalist",
           "Enlightenment",
-          "Existentialist",
-          "N/A",
-          "N/A"
+          "Existentialist"
         ],
         "answer": "A. Communist",
         "explanation": "历史题先提供关于俄国局势的史料片段，再要求据材料判断历史语境，属于材料解读而非孤立年代记忆。",
@@ -499,11 +504,10 @@
           "category": "history",
           "src": "cot_lib-high_school_european_history"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / history / row_idx=55",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       },
       {
         "id": "mmlu-pro-validation-diverse-65",
@@ -519,8 +523,7 @@
           "Judge ad hoc is a judge who decides on the admissibility of cases before the ICJ",
           "Judge ad hoc is a judge appointed by the Security Council of the United Nations",
           "Judge ad hoc is a surrogate judge, in case a judge is disqualified or passes away",
-          "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
-          "N/A"
+          "If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc"
         ],
         "answer": "I. If a party to a contentious case before the ICJ does not have a national sitting as judge, it is entitled to nominate someone as a judge solely for that case, with the title of judge ad hoc",
         "explanation": "法学题询问 ad hoc 法官的含义，考察国际司法中的临时法官制度及其适用语境。",
@@ -545,11 +548,10 @@
           "category": "law",
           "src": "cot_lib-international_law"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=TIGER-Lab%2FMMLU-Pro&config=default&split=validation&offset=0&length=100",
+        "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
         "split": "validation / law / row_idx=65",
         "excerpt": false,
-        "license": "MIT · TIGER-Lab",
-        "licensePath": "licenses/mmlu-pro.txt"
+        "license": "数据：固定官方数据卡声明 MIT；代码 Apache-2.0 不作为数据许可全文。"
       }
     ]
   },
@@ -612,7 +614,8 @@
     ],
     "sourceUrls": [
       "https://arxiv.org/html/2406.01574v6#A1.SS5",
-      "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/f418b116db00b065c2aea046518d8fcf74d39872/LICENSE"
+      "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/f418b116db00b065c2aea046518d8fcf74d39872/LICENSE",
+      "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/blob/b189ec765aa7ed75c8acfea42df31fdae71f97be/README.md"
     ]
   },
   "sampleAccess": {
@@ -662,5 +665,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20"
+  "updatedAt": "2026-11-12"
 }

@@ -331,7 +331,7 @@ test("CALVIN integration includes anchors, local state reset and accessible narr
   assert.ok(detail.includes("<CalvinPilot"));
   assert.ok(viewer.includes("isUnknownCalvinSample"));
   assert.ok(
-    card.includes("'calvin', 'bfcl'].includes(item.id) ? '#task-walkthrough'"),
+    card.includes("'calvin', 'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'"),
   );
   assert.ok(
     pilot.includes('emit("settled")') || pilot.includes("emit('settled')"),

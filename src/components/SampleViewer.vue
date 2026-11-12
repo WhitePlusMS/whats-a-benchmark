@@ -4,6 +4,10 @@ import { useRoute, useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
+import {
+  findMmluProCase,
+  isUnknownMmluProSample,
+} from "../content/mmluProExperience";
 import { findBfclCase, isUnknownBfclSample } from "../content/bfclExperience";
 import { isUnknownCalvinSample } from "../content/calvinExperience";
 import { isUnknownIfevalSample } from "../content/ifevalExperience";
@@ -26,12 +30,18 @@ const route = useRoute();
 const unknownSelectedSample = computed(
   () =>
     ready.value &&
-    (isUnknownBfclSample(
+    (isUnknownMmluProSample(
       props.item.id,
       route.query.sample,
       data.value?.samples,
       route.path,
     ) ||
+      isUnknownBfclSample(
+        props.item.id,
+        route.query.sample,
+        data.value?.samples,
+        route.path,
+      ) ||
       isUnknownCalvinSample(
         props.item.id,
         route.query.sample,
@@ -203,6 +213,8 @@ onMounted(() => {
             >含参考代码与测试</span
           ><span v-if="item.id === 'gsm8k'" class="mode-note"
             >含参考推导与答案</span
+          ><span v-if="item.id === 'mmlu-pro'" class="mode-note"
+            >含答案与公开 CoT</span
           ><span v-if="current.excerpt" class="mode-note">节选</span>
         </button>
       </div>
@@ -251,10 +263,10 @@ onMounted(() => {
               : item.id === "bfcl" && findBfclCase(current.id)
                 ? "该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"
                 : current.promptOrigin === "editorial"
-                ? "官方公开案例 · 本站解读"
-                : current.excerpt
-                  ? "原始记录节选"
-                  : "公开样例"
+                  ? "官方公开案例 · 本站解读"
+                  : current.excerpt
+                    ? "原始记录节选"
+                    : "公开样例"
           }}</span>
         </div>
         <h3 translate="no">{{ current.title }}</h3>
@@ -364,14 +376,24 @@ onMounted(() => {
               item.id === "bfcl" && findBfclCase(current.id)
                 ? "该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"
                 : current.promptOrigin === "editorial"
-                ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
-                : current.excerpt
-                  ? "本页节选不含参考答案，完整任务见原始来源。"
-                  : "此公开记录未附参考答案，完成标准见评分方法。"
+                  ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
+                  : current.excerpt
+                    ? "本页节选不含参考答案，完整任务见原始来源。"
+                    : "此公开记录未附参考答案，完成标准见评分方法。"
             }}
           </p></template
         >
         <template v-else>
+          <div v-if="item.id === 'mmlu-pro'" class="muted">
+            <p>
+              以下包含数据集公开答案与示范
+              CoT，未经本站改写；公开解释不保证每一步正确，不是模型隐藏思维或本轮输出。
+            </p>
+            <p v-if="findMmluProCase(current.id)?.correction">
+              <strong>公开解释纠错：</strong
+              >{{ findMmluProCase(current.id)?.correction }}
+            </p>
+          </div>
           <p class="muted">
             {{
               current.excerpt
