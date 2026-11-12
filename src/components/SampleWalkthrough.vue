@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { TaskSample } from "../types/benchmark";
+import { sampleSourceText } from "../lib/sampleSourceText";
 
 const props = defineProps<{ sample: TaskSample }>();
 const guide = computed(() => props.sample.walkthrough);
-const sourceText = computed(() => {
-  const raw = props.sample.raw;
-  return typeof raw === "string" ? raw : raw[guide.value?.sourceField || ""];
-});
+const sourceText = computed(() =>
+  sampleSourceText(props.sample.raw, guide.value?.sourceField),
+);
 </script>
 
 <template>
   <div v-if="guide" class="task-walkthrough">
     <p class="guide-label">任务导读 · 本站整理</p>
     <p class="guide-summary">{{ guide.summary || sample.prompt }}</p>
+    <slot />
     <dl class="task-contract">
       <div>
         <dt><span aria-hidden="true">01</span> 模型拿到什么</dt>
@@ -24,8 +25,8 @@ const sourceText = computed(() => {
         <dd>{{ guide.output }}</dd>
       </div>
     </dl>
-    <section class="task-evidence" aria-label="原题关键片段">
-      <p class="guide-label">沿着原题看问题</p>
+    <section class="task-evidence" aria-label="来源记录片段">
+      <p class="guide-label">从来源看细节</p>
       <figure v-for="part in guide.excerpts" :key="part.label">
         <figcaption>{{ part.label }} <span>原文节选</span></figcaption>
         <pre tabindex="0" :aria-label="part.label" translate="no">{{
@@ -42,14 +43,14 @@ const sourceText = computed(() => {
     <p class="task-boundary">{{ guide.note }}</p>
     <details class="task-original">
       <summary>
-        查看本条问题原文<span v-if="guide.sourceField">
+        查看本条来源原文<span v-if="guide.sourceField">
           · {{ guide.sourceField }}</span
         >
       </summary>
       <p>
         保留来源文本与格式；上方中文导读和片段标题由本站整理。完整记录字段可切换至“原始数据”。
       </p>
-      <pre tabindex="0" aria-label="问题原文" translate="no">{{
+      <pre tabindex="0" aria-label="来源原文" translate="no">{{
         sourceText
       }}</pre>
     </details>

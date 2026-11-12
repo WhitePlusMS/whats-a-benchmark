@@ -7,6 +7,7 @@ defineProps<{
   assets: SampleAsset[];
   title: string;
   failedAssets: readonly string[];
+  overview?: boolean;
 }>();
 // 由查看器保留当前样例的失败记录，切换到原始数据再返回时不重复请求失败媒体。
 const emit = defineEmits<{ assetError: [path: string] }>();
@@ -25,11 +26,12 @@ function assetCaption(asset: SampleAsset) {
 }
 </script>
 <template>
-  <div class="sample-assets">
+  <div class="sample-assets" :class="{ 'sample-assets-overview': overview }">
     <figure
       v-for="asset in assets"
       :key="`${asset.kind}:${asset.path}`"
       class="sample-media"
+      :class="{ 'image-media': asset.kind === 'image' }"
     >
       <button
         v-if="asset.kind === 'image' && !failedAssets.includes(asset.path)"
@@ -174,6 +176,23 @@ function assetCaption(asset: SampleAsset) {
 .sample-media video {
   /* 小分辨率原片也需要足够大的原生播放控件。 */
   width: min(100%, 680px);
+}
+.sample-assets-overview {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  align-items: start;
+}
+.sample-assets-overview .sample-media:not(.image-media) {
+  grid-column: 1 / -1;
+}
+.sample-assets-overview .sample-image-button,
+.sample-assets-overview img {
+  width: 100%;
+}
+.sample-assets-overview video {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  background: var(--surface-sunken);
 }
 .sample-media audio {
   display: block;

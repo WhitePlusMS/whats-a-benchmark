@@ -174,7 +174,16 @@ onMounted(() => {
             v-if="current.walkthrough"
             :key="`${item.id}:${current.id}`"
             :sample="current"
-          />
+          >
+            <SampleMedia
+              v-if="item.embodied && current.assets"
+              overview
+              :failed-assets="failedAssets"
+              @asset-error="markAssetFailed"
+              :assets="current.assets"
+              :title="current.title"
+            />
+          </SampleWalkthrough>
           <template v-else>
             <p class="prompt-label">
               {{
@@ -195,7 +204,7 @@ onMounted(() => {
             >
           </template>
           <SampleMedia
-            v-if="current.assets"
+            v-if="current.assets && !(current.walkthrough && item.embodied)"
             :failed-assets="failedAssets"
             @asset-error="markAssetFailed"
             :key="`${item.id}:${current.id}`"

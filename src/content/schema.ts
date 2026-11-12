@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { sampleSourceText } from "../lib/sampleSourceText";
 
 // One definition drives validation and TypeScript types without rewriting original text.
 const text = z.string().refine((value) => value.trim().length > 0, "不能为空");
@@ -172,10 +173,10 @@ export const sampleSchema = z
       check(sample.excerpt, "excerpt", "本站案例解读必须标注节选");
     }
     if (sample.walkthrough) {
-      const source =
-        typeof sample.raw === "string"
-          ? sample.raw
-          : sample.raw[sample.walkthrough.sourceField || ""];
+      const source = sampleSourceText(
+        sample.raw,
+        sample.walkthrough.sourceField,
+      );
       check(
         typeof source === "string",
         "walkthrough",

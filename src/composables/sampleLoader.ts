@@ -1,5 +1,6 @@
 import { ref, watch } from "vue";
 import type { SampleFile } from "../types/benchmark";
+import { sampleSourceText } from "../lib/sampleSourceText";
 
 const sampleTypes = new Set([
   "text",
@@ -99,10 +100,14 @@ function isSample(value: unknown): boolean {
         value.walkthrough.excerpts.every(
           (part) => isRecord(part) && hasText(part.label) && hasText(part.text),
         ) &&
-        (hasText(value.raw) ||
-          (isRecord(value.raw) &&
-            hasText(value.walkthrough.sourceField) &&
-            hasText(value.raw[value.walkthrough.sourceField]))))) &&
+        hasText(
+          sampleSourceText(
+            value.raw,
+            typeof value.walkthrough.sourceField === "string"
+              ? value.walkthrough.sourceField
+              : undefined,
+          ),
+        ))) &&
     (!("promptOrigin" in value) ||
       (value.promptOrigin === "editorial" && value.excerpt === true)) &&
     (!("answer" in value) || typeof value.answer === "string") &&
