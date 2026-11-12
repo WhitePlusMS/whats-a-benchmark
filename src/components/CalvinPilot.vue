@@ -85,7 +85,7 @@ function select(id: string) {
       <div class="walkthrough-heading">
         <div>
           <span class="walkthrough-kicker">任务配置 / 训练记录 / 单帧观察</span>
-          <h2 id="cv-title">一条任务链，怎样在中途停下？</h2>
+          <h2 id="cv-title">一条真实配置，五个连续目标。</h2>
           <p>四份独立材料，分别读；不是同一次运行，也没有模型成功成绩。</p>
         </div>
         <a href="#samples" class="pilot-link"

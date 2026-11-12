@@ -13,8 +13,6 @@ import {
   readCalvinRecord,
   findCalvinCase,
   isUnknownCalvinSample,
-  calvinPrefixStatuses,
-  calvinScore,
   calvinRoot,
   calvinEnvironmentRules,
   calvinNumber,
@@ -110,41 +108,27 @@ test("CALVIN sequence and numeric schemas do not conflate independent records", 
     );
   assert.equal(calvinNumber(0.0096104322001338), "0.00961");
 });
-test("CALVIN prefix failure stops later tasks; default is not a result", () => {
-  assert.deepEqual(calvinPrefixStatuses(null), Array(5).fill("未设定"));
-  assert.deepEqual(calvinPrefixStatuses(2), [
-    "假设通过",
-    "假设通过",
-    "在此停止",
-    "未执行",
-    "未执行",
-  ]);
-  assert.deepEqual(calvinPrefixStatuses(0), [
-    "在此停止",
-    ...Array(4).fill("未执行"),
-  ]);
-  assert.deepEqual(calvinPrefixStatuses(5), Array(5).fill("假设通过"));
-  for (const n of [-1, 6, 2.5, NaN])
-    assert.deepEqual(calvinPrefixStatuses(n), Array(5).fill("未设定"));
-});
-test("CALVIN success@k uses cumulative chain counts, not independent task rates", () => {
-  assert.deepEqual(calvinScore([0, 2, 5]), {
-    mean: 7 / 3,
-    counts: [2, 2, 1, 1, 1],
-    total: 3,
-  });
-  assert.deepEqual(calvinScore([5, 5]), {
-    mean: 5,
-    counts: [2, 2, 2, 2, 2],
-    total: 2,
-  });
-  assert.deepEqual(calvinScore([0]), {
-    mean: 0,
-    counts: [0, 0, 0, 0, 0],
-    total: 1,
-  });
-  for (const values of [[], [-1], [6], [1.5], [NaN]])
-    assert.equal(calvinScore(values), null);
+test("CALVIN focuses on real cases without hypothetical scoring controls", async () => {
+  const [pilot, bench, content, css] = await Promise.all(
+    [
+      "src/components/CalvinPilot.vue",
+      "src/components/CalvinWorkbench.vue",
+      "src/content/calvinExperience.ts",
+      "src/styles/calvin-pilot.css",
+    ].map(read),
+  );
+  for (const text of [pilot, bench, content, css])
+    assert.doesNotMatch(
+      text,
+      /假设|练习|cv-practice|cv-prefix-options|cv-status-chain|cv-score-grid|cv-average|calvinPrefixStatuses|calvinScore|trials|resetPractice/,
+    );
+  assert.match(bench, /首个子任务失败时停止/);
+  assert.match(bench, /后续任务不再执行/);
+  assert.match(bench, /平均连续成功长度/);
+  assert.match(bench, /成功率@k/);
+  assert.match(bench, /calvin_models\/calvin_agent\/evaluation\/utils\.py/);
+  assert.match(bench, /aria-label="五个连续子任务"/);
+  assert.match(bench, /选择已保存的滑门轨迹帧/);
 });
 test("CALVIN rules preserve strict rotation/slider/lift bounds and contact meaning", () => {
   assert.match(calvinSteps[0].rule, /−180° < z < −60°/);
@@ -304,7 +288,17 @@ test("CALVIN actual Vue workbench renders all records without media or pretend s
       renderToString(createSSRApp(component, { record })),
     ),
   );
-  assert.match(html[0], /尚未设定，没有成绩/);
+  assert.match(html[0], /首个子任务失败时停止/);
+  assert.ok(
+    html[0].includes(
+      `${calvinRoot}calvin_models/calvin_agent/evaluation/utils.py`,
+    ),
+  );
+  assert.equal((html[0].match(/<button\b/g) || []).length, 5);
+  assert.equal((html[2].match(/<button\b/g) || []).length, 3);
+  html.forEach((h) =>
+    assert.doesNotMatch(h, /假设|练习|小批次|cv-practice|<input|<select/),
+  );
   assert.match(html[0], /rotate_blue_block_right/);
   assert.match(html[0], /配置文件未记录实际模型 prompt/);
   assert.match(html[1], /不是加载失败/);
@@ -331,14 +325,16 @@ test("CALVIN integration includes anchors, local state reset and accessible narr
   assert.ok(detail.includes("<CalvinPilot"));
   assert.ok(viewer.includes("isUnknownCalvinSample"));
   assert.ok(
-    card.includes("'calvin', 'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'"),
+    card.includes(
+      "'calvin', 'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'",
+    ),
   );
   assert.ok(
     pilot.includes('emit("settled")') || pilot.includes("emit('settled')"),
   );
   assert.match(pilot, /:key="entry.sampleId"/);
-  assert.match(bench, /trials.value\s*=\s*\[\]/);
-  assert.match(bench, /trials.length\s*>=\s*20/);
+  assert.match(bench, /step.value = 0/);
+  assert.match(bench, /frame.value = 0/);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /focus-visible/);
   assert.match(css, /overflow-x:\s*auto/);

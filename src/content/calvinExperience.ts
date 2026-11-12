@@ -216,34 +216,6 @@ export function readCalvinRecord(
     return null;
   }
 }
-export function calvinPrefixStatuses(length: number | null) {
-  if (
-    length !== null &&
-    (!Number.isInteger(length) || length < 0 || length > 5)
-  )
-    length = null;
-  return calvinSteps.map((_, i) =>
-    length === null
-      ? "未设定"
-      : i < length
-        ? "假设通过"
-        : i === length
-          ? "在此停止"
-          : "未执行",
-  );
-}
-export function calvinScore(lengths: readonly number[]) {
-  if (
-    !lengths.length ||
-    lengths.some((n) => !Number.isInteger(n) || n < 0 || n > 5)
-  )
-    return null;
-  return {
-    mean: lengths.reduce((a, b) => a + b, 0) / lengths.length,
-    counts: [1, 2, 3, 4, 5].map((k) => lengths.filter((n) => n >= k).length),
-    total: lengths.length,
-  };
-}
 export function calvinNumber(n: number) {
   return n.toFixed(5);
 }

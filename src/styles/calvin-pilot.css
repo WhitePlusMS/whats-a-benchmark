@@ -21,7 +21,6 @@
 }
 .cv-cases button,
 .cv-chain button,
-.cv-prefix-options button,
 .cv-frame-picker button {
   border: 1px solid var(--border);
   background: var(--surface);
@@ -34,7 +33,6 @@
 }
 .cv-cases button[aria-pressed="true"],
 .cv-chain button[aria-pressed="true"],
-.cv-prefix-options button[aria-pressed="true"],
 .cv-frame-picker button[aria-pressed="true"] {
   border-color: var(--accent-text);
   background: color-mix(in srgb, var(--accent) 10%, var(--surface));
@@ -188,95 +186,13 @@
   color: var(--muted);
   font-size: 11px;
 }
+.cv-workbench > p > a,
 .cv-rule a,
 .cv-protocol a,
 .cv-evidence a {
   font-size: 12px;
   color: var(--accent-text);
   text-underline-offset: 4px;
-}
-.cv-practice {
-  margin-top: 30px;
-  padding-top: 28px;
-  border-top: 1px solid var(--border);
-}
-.cv-prefix-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 18px 0;
-}
-.cv-prefix-options button {
-  font-size: 12px;
-  padding: 12px;
-}
-.cv-status-chain {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
-  margin: 20px 0;
-}
-.cv-status-chain li {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-  text-align: center;
-  border: 1px dashed var(--border);
-  border-radius: 10px;
-  padding: 14px 6px;
-  color: var(--muted);
-  font-size: 12px;
-}
-.cv-status-chain .passed {
-  border-style: solid;
-  border-color: var(--accent-text);
-  color: var(--accent-text);
-  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-}
-.cv-status-chain .stopped {
-  border-style: solid;
-  border-color: var(--text);
-  color: var(--text);
-}
-.cv-practice-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.cv-practice button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-.cv-score-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
-  margin: 20px 0;
-}
-.cv-score-grid div {
-  display: grid;
-  gap: 8px;
-  border: 1px solid var(--border);
-  padding: 15px 8px;
-  border-radius: 10px;
-  text-align: center;
-}
-.cv-score-grid span,
-.cv-score-grid small {
-  font-size: 11px;
-  color: var(--muted);
-}
-.cv-score-grid b {
-  font-size: 20px;
-}
-.cv-average b {
-  font-size: 20px;
-  color: var(--text);
-  margin-left: 12px;
 }
 .cv-record-heading {
   max-width: 800px;
@@ -434,16 +350,6 @@
   .cv-rule {
     padding: 16px;
     min-height: 0;
-  }
-  .cv-status-chain {
-    gap: 4px;
-  }
-  .cv-status-chain li {
-    font-size: 10px;
-    padding: 12px 2px;
-  }
-  .cv-score-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .cv-frame-picker {
     gap: 6px;

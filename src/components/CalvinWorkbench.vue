@@ -2,8 +2,6 @@
 import { computed, ref, watch } from "vue";
 import {
   calvinSteps,
-  calvinPrefixStatuses,
-  calvinScore,
   calvinNumber,
   calvinRoot,
   calvinEnvironmentRules,
@@ -11,20 +9,14 @@ import {
 } from "../content/calvinExperience";
 const props = defineProps<{ record: CalvinRecord }>();
 const step = ref(0),
-  frame = ref(0),
-  prefix = ref<number | null>(null),
-  trials = ref<number[]>([]);
+  frame = ref(0);
 watch(
   () => props.record,
   () => {
     step.value = 0;
     frame.value = 0;
-    prefix.value = null;
-    trials.value = [];
   },
 );
-const statuses = computed(() => calvinPrefixStatuses(prefix.value));
-const score = computed(() => calvinScore(trials.value));
 const selectedStep = computed(() => calvinSteps[step.value]);
 const selectedFrame = computed(() =>
   props.record.kind === "door" ? props.record.frames[frame.value] : null,
@@ -37,10 +29,6 @@ const dimensions: Record<string, string> = {
   rel_actions: "归一化相对位置 3 + 姿态 3 + 夹爪 1",
 };
 const stateLabels = ["x", "y", "z", "roll", "pitch", "yaw", "pad", "gripper"];
-function resetPractice() {
-  prefix.value = null;
-  trials.value = [];
-}
 </script>
 <template>
   <div class="cv-workbench">
@@ -96,80 +84,17 @@ function resetPractice() {
           >参数配置 ↗</a
         >
       </section>
-      <section class="cv-practice" aria-labelledby="cv-practice-title">
-        <span class="cv-eyebrow">独立评分练习 · 由你设定，不是模型成绩</span>
-        <h3 id="cv-practice-title">第三步失败，后两步还算执行过吗？</h3>
-        <p>选择一条假设链的连续成功长度。首个失败即停止，后面不再执行。</p>
-        <div
-          class="cv-prefix-options"
-          role="group"
-          aria-label="设定假设连续成功长度"
+      <p>
+        正式评测在首个子任务失败时停止，记录此前连续成功的任务数（0–5），后续任务不再执行。
+        汇总时报告平均连续成功长度，以及连续完成至少 k 步的链条比例（成功率@k，k
+        = 1–5）。
+        <a
+          :href="`${calvinRoot}calvin_models/calvin_agent/evaluation/utils.py`"
+          target="_blank"
+          rel="noreferrer"
+          >固定版本评分代码 ↗</a
         >
-          <button
-            v-for="n in 6"
-            :key="n"
-            type="button"
-            :aria-pressed="prefix === n - 1"
-            @click="prefix = n - 1"
-          >
-            {{ n === 6 ? "全部 5 步通过" : `第 ${n} 步停止` }}
-          </button>
-        </div>
-        <ol class="cv-status-chain" aria-label="假设任务执行状态">
-          <li
-            v-for="(status, i) in statuses"
-            :key="i"
-            :class="{
-              passed: prefix !== null && i < prefix,
-              stopped: prefix === i,
-            }"
-          >
-            <b>{{ i + 1 }}</b
-            ><span>{{ status }}</span>
-          </li>
-        </ol>
-        <p aria-live="polite">
-          {{
-            prefix === null
-              ? "尚未设定，没有成绩。"
-              : `这条假设链的连续成功长度 = ${prefix} / 5。`
-          }}
-        </p>
-        <div class="cv-practice-actions">
-          <button
-            type="button"
-            class="secondary-button"
-            :disabled="prefix === null || trials.length >= 20"
-            @click="prefix !== null && trials.push(prefix)"
-          >
-            加入假设小批次</button
-          ><button type="button" class="pilot-link" @click="resetPractice">
-            清空练习
-          </button>
-        </div>
-        <template v-if="score"
-          ><p>
-            你设定的 {{ score.total }} 条假设链：<code>{{
-              trials.join("、")
-            }}</code
-            >（最多 20 条）
-          </p>
-          <div class="cv-score-grid">
-            <div v-for="(count, i) in score.counts" :key="i">
-              <span>连续 ≥ {{ i + 1 }} 步</span
-              ><b>{{ count }} / {{ score.total }}</b
-              ><small>{{ ((count / score.total) * 100).toFixed(1) }}%</small>
-            </div>
-          </div>
-          <p class="cv-average">
-            平均连续成功长度 <b>{{ score.mean.toFixed(2) }} / 5</b>
-          </p>
-          <p>
-            成功率@k = 连续成功长度 ≥ k 的链条数 ÷
-            总链条数。不是五道独立题的准确率。
-          </p></template
-        >
-      </section>
+      </p>
     </template>
     <template v-else-if="record.kind === 'pink'">
       <div class="cv-record-heading">
