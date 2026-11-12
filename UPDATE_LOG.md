@@ -1,5 +1,10 @@
 # 更新说明
 
+## 2026-11-12：记录评测体验设计标准
+
+- 新增 `docs/benchmark-experience-standard.md`：以 Terminal-Bench 与 SWE-bench 两个可运行样板记录页面结构、真实来源、交互、响应式、视觉验收和逐评测提交标准。
+- 原因和影响：让云端智能体通过共享分支直接获取可复现的设计基线，避免只整理文字内容或误把示意图当成真实运行结果；不改变网站运行逻辑。
+
 ## 2026-11-12：优化 SWE-bench Verified 任务体验
 
 - 新增 `src/components/SweBenchPilot.vue`、`src/styles/swe-bench-pilot.css` 和 `src/content/sweBenchExperience.ts`：为四个真实任务提供首屏入口、案例切换和接收问题、理解问题、交付补丁、检查结果四步阅读；按题面分别展示矩阵、缺列、类型迁移和坐标关系示意。
