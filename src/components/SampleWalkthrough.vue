@@ -13,7 +13,7 @@ const sourceText = computed(() => {
 <template>
   <div v-if="guide" class="task-walkthrough">
     <p class="guide-label">任务导读 · 本站整理</p>
-    <p class="guide-summary">{{ sample.prompt }}</p>
+    <p class="guide-summary">{{ guide.summary || sample.prompt }}</p>
     <dl class="task-contract">
       <div>
         <dt><span aria-hidden="true">01</span> 模型拿到什么</dt>

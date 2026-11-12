@@ -99,3 +99,33 @@ test("task guides can cite native source text and normalize line endings only", 
     false,
   );
 });
+
+test("Terminal-Bench guides explain native instructions without replacing source prompts", () => {
+  const terminal = entrySchema.parse(
+    JSON.parse(
+      readFileSync("content/benchmarks/terminal-bench-4.json", "utf8"),
+    ),
+  );
+  assert.equal(terminal.sampleSet!.samples.length, 4);
+  for (const item of terminal.sampleSet!.samples) {
+    assert.equal(item.prompt, item.raw);
+    assert.equal(item.promptOrigin, undefined);
+    assert(item.walkthrough!.summary);
+    assert.equal(item.walkthrough!.sourceField, undefined);
+    assert.equal(sampleSchema.safeParse(item).success, true);
+    assert.equal(item.answer, undefined);
+    assert.equal(
+      sampleSchema.safeParse({
+        ...item,
+        walkthrough: { ...item.walkthrough, summary: " " },
+      }).success,
+      false,
+    );
+  }
+  const command =
+    terminal.sampleSet!.samples[3]!.walkthrough!.excerpts[1]!.text;
+  assert.equal(
+    command,
+    "python3 /app/anon.py /app/input --policy /app/policy.yaml --output /app/output --seed 42 --max-memory 64MB",
+  );
+});

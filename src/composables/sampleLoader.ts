@@ -86,6 +86,8 @@ function isSample(value: unknown): boolean {
   return (
     (!("walkthrough" in value) ||
       (isRecord(value.walkthrough) &&
+        (!("summary" in value.walkthrough) ||
+          hasText(value.walkthrough.summary)) &&
         hasText(value.walkthrough.input) &&
         hasText(value.walkthrough.output) &&
         hasText(value.walkthrough.note) &&

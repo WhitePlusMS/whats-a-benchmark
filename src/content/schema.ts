@@ -127,6 +127,7 @@ export const sampleSchema = z
     // 可选的中文任务导读；引用片段必须来自本条已保存的原始文本。
     walkthrough: z
       .strictObject({
+        summary: text.optional(),
         input: text,
         output: text,
         checks: z.array(text).min(1).max(4),
