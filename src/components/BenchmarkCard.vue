@@ -45,7 +45,7 @@ const { selected, toggle } = useComparison();
     </div>
     <div class="card-actions">
       <RouterLink
-        :to="`/benchmarks/${item.id}/${['roboquest', 'arc-agi-2', 'human-eval', 'gsm8k', 'libero'].includes(item.id) ? '#task-walkthrough' : '#samples'}`"
+        :to="`/benchmarks/${item.id}/${['roboquest', 'arc-agi-2', 'human-eval', 'gsm8k', 'libero', 'mmmlu'].includes(item.id) ? '#task-walkthrough' : '#samples'}`"
         :class="{ 'is-local': item.sampleAccess.status === 'local' }"
         ><Icon
           :name="item.sampleAccess.status === 'local' ? 'book' : 'up'"

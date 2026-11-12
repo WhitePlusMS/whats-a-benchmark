@@ -55,14 +55,15 @@ export const createApp = ViteSSG(
 
     // 只记录离开目录时的位置；筛选和视图状态本身由目录 URL 保存。
     router.beforeEach((to, from) => {
-      // HumanEval, GSM8K and LIBERO share this async-layout handshake.
+      // HumanEval, GSM8K, LIBERO and MMMLU share this async-layout handshake.
       // A new navigation cancels the previous readiness/scroll request. Same-page
       // sample switches must keep the existing router behavior, not start a wait.
       humanEvalInitialAnchor.cancel();
       if (
         (to.path === "/benchmarks/human-eval/" && to.path !== from.path) ||
         (to.path === "/benchmarks/gsm8k/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/libero/" && to.path !== from.path)
+        (to.path === "/benchmarks/libero/" && to.path !== from.path) ||
+        (to.path === "/benchmarks/mmmlu/" && to.path !== from.path)
       )
         humanEvalInitialAnchor.begin(to.fullPath);
       if (from.path === "/" && from.matched.length && to.path !== "/") {

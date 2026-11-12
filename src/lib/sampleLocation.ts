@@ -33,7 +33,7 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
       // Interactive tasks' unknown selections also clear underlying answer state,
       // rather than only hiding a silently selected first record in the UI.
       const invalidInteractiveSelection =
-        ["arc-agi-2", "human-eval", "gsm8k", "libero"].includes(
+        ["arc-agi-2", "human-eval", "gsm8k", "libero", "mmmlu"].includes(
           data.benchmarkId,
         ) &&
         route.query.sample !== undefined &&
@@ -72,7 +72,7 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
     viewer.index.value = index;
     viewer.mode.value = "read";
     return writeLocation(
-      ["arc-agi-2", "human-eval", "gsm8k", "libero"].includes(
+      ["arc-agi-2", "human-eval", "gsm8k", "libero", "mmmlu"].includes(
         viewer.data.value?.benchmarkId || "",
       )
         ? "push"
