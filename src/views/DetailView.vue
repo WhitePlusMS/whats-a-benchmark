@@ -32,6 +32,7 @@ import SampleViewer from "../components/SampleViewer.vue";
 import PublisherMarks from "../components/PublisherMarks.vue";
 import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
+import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 
 const route = useRoute();
 const item = computed(() =>
@@ -166,6 +167,11 @@ useHead(() => ({
       :selected="selected.includes(item.id)"
       @toggle="toggle(item.id)"
     />
+    <RoboQuestPilot
+      v-else-if="item.id === 'roboquest'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+    />
     <header v-else class="detail-heading">
       <div class="detail-title-line">
         <PublisherMarks
@@ -248,7 +254,9 @@ useHead(() => ({
     <nav class="detail-nav" aria-label="详情导航">
       <a
         v-if="
-          item.id === 'terminal-bench-4' || item.id === 'swe-bench-verified'
+          item.id === 'terminal-bench-4' ||
+          item.id === 'swe-bench-verified' ||
+          item.id === 'roboquest'
         "
         href="#task-walkthrough"
         >一题看懂</a
