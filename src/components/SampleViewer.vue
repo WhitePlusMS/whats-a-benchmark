@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
+import { findBfclCase, isUnknownBfclSample } from "../content/bfclExperience";
 import { isUnknownCalvinSample } from "../content/calvinExperience";
 import { isUnknownIfevalSample } from "../content/ifevalExperience";
 import { isUnknownMmmluSample } from "../content/mmmluExperience";
@@ -25,12 +26,18 @@ const route = useRoute();
 const unknownSelectedSample = computed(
   () =>
     ready.value &&
-    (isUnknownCalvinSample(
+    (isUnknownBfclSample(
       props.item.id,
       route.query.sample,
       data.value?.samples,
       route.path,
     ) ||
+      isUnknownCalvinSample(
+        props.item.id,
+        route.query.sample,
+        data.value?.samples,
+        route.path,
+      ) ||
       isUnknownIfevalSample(
         props.item.id,
         route.query.sample,
@@ -241,7 +248,9 @@ onMounted(() => {
           ><span class="small-badge">{{
             item.embodied
               ? "来源记录 · 本站解读"
-              : current.promptOrigin === "editorial"
+              : item.id === "bfcl" && findBfclCase(current.id)
+                ? "该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"
+                : current.promptOrigin === "editorial"
                 ? "官方公开案例 · 本站解读"
                 : current.excerpt
                   ? "原始记录节选"
@@ -352,7 +361,9 @@ onMounted(() => {
             class="muted"
           >
             {{
-              current.promptOrigin === "editorial"
+              item.id === "bfcl" && findBfclCase(current.id)
+                ? "该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"
+                : current.promptOrigin === "editorial"
                 ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
                 : current.excerpt
                   ? "本页节选不含参考答案，完整任务见原始来源。"

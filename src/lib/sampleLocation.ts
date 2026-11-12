@@ -41,6 +41,7 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
           "mmmlu",
           "ifeval",
           "calvin",
+          "bfcl",
         ].includes(data.benchmarkId) &&
         route.query.sample !== undefined &&
         route.query.sample !== null &&
@@ -86,6 +87,7 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
         "mmmlu",
         "ifeval",
         "calvin",
+        "bfcl",
       ].includes(viewer.data.value?.benchmarkId || "")
         ? "push"
         : "replace",
