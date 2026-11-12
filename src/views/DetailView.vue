@@ -34,6 +34,7 @@ import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import ArcAgiPilot from "../components/ArcAgiPilot.vue";
+import IfevalPilot from "../components/IfevalPilot.vue";
 import MmmluPilot from "../components/MmmluPilot.vue";
 import LiberoPilot from "../components/LiberoPilot.vue";
 import Gsm8kPilot from "../components/Gsm8kPilot.vue";
@@ -45,7 +46,11 @@ const item = computed(() =>
   byId.get(String(route.meta.benchmarkId || route.params.id)),
 );
 function reportHumanEvalReady(section: "pilot" | "samples") {
-  if (["human-eval", "gsm8k", "libero", "mmmlu"].includes(item.value?.id || ""))
+  if (
+    ["human-eval", "gsm8k", "libero", "mmmlu", "ifeval"].includes(
+      item.value?.id || "",
+    )
+  )
     humanEvalInitialAnchor.settled(route.fullPath, section);
 }
 const category = computed(
@@ -205,6 +210,12 @@ useHead(() => ({
       @toggle="toggle(item.id)"
       @settled="reportHumanEvalReady('pilot')"
     />
+    <IfevalPilot
+      v-else-if="item.id === 'ifeval'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+      @settled="reportHumanEvalReady('pilot')"
+    />
     <MmmluPilot
       v-else-if="item.id === 'mmmlu'"
       :selected="selected.includes(item.id)"
@@ -300,7 +311,8 @@ useHead(() => ({
           item.id === 'human-eval' ||
           item.id === 'gsm8k' ||
           item.id === 'libero' ||
-          item.id === 'mmmlu'
+          item.id === 'mmmlu' ||
+          item.id === 'ifeval'
         "
         href="#task-walkthrough"
         >一题看懂</a

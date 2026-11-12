@@ -329,7 +329,9 @@ test("MMMLU integration retains deferred layout, source distinction and answer g
   assert.ok(pilot.includes('emit("settled")'));
   assert.ok(pilot.includes("loaded || failed"));
   assert.ok(viewer.includes("isUnknownMmmluSample"));
-  assert.ok(card.includes("'mmmlu'].includes(item.id) ? '#task-walkthrough'"));
+  assert.ok(
+    card.includes("'mmmlu', 'ifeval'].includes(item.id) ? '#task-walkthrough'"),
+  );
   assert.match(pilot, /v-if="revealed"\s+id="mm-reference"/);
   assert.match(pilot, /:revealed="revealed"/);
   assert.ok(pilot.includes("不是阶或幂"));

@@ -19,10 +19,11 @@
   "metric": {
     "name": "严格 / 宽松遵循率",
     "direction": "higher",
-    "description": "prompt-level strict：一个 prompt 中所有指令都通过的 prompt 比例；instruction-level strict：逐条指令通过的比例。\nloose：在 strict 规则外，对回答尝试去除 markdown 粗体/斜体标记、首行或末行（及其组合）后再检查，用于减少特定格式导致的假阴性。作者提醒 loose 可能引入假阳性，因此应与 strict 并列报告而非取代它。\n共四项：prompt-level strict、instruction-level strict、prompt-level loose、instruction-level loose。对比成绩时需说明选用哪项，尤其不能把“loose”单值写成未注明口径的 IFEval accuracy。",
+    "description": "strict 在非空原响应上逐条检查；prompt-level 是全部约束满足的提示比例，instruction-level 是满足的指令条数占全部指令条数的比例。固定版本 loose 生成 8 个候选：原文、删除所有 ASCII 星号、删首行、删末行、删首末行，以及三个删行版本各再删除星号。每条规则独立寻找任意非空候选满足，再合取各条规则；不是必须找到一个同时满足全部规则的候选。strict 与 loose 各有提示级和指令级，共四项，应明确报告口径。",
     "sourceUrls": [
       "https://arxiv.org/html/2311.07911#S2.SS2",
-      "https://arxiv.org/html/2311.07911#S3"
+      "https://arxiv.org/html/2311.07911#S3",
+      "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/evaluation_main.py"
     ]
   },
   "limitations": [
@@ -103,6 +104,36 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://raw.githubusercontent.com/google-research/google-research/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
       "role": "data"
+    },
+    {
+      "label": "固定版本评分主逻辑",
+      "url": "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/evaluation_main.py",
+      "role": "code"
+    },
+    {
+      "label": "固定版本指令检查器",
+      "url": "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/instructions.py",
+      "role": "code"
+    },
+    {
+      "label": "固定版本计数工具",
+      "url": "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/instructions_util.py",
+      "role": "code"
+    },
+    {
+      "label": "固定版本 IFEval README",
+      "url": "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "固定版本原始提示",
+      "url": "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 Apache-2.0 许可",
+      "url": "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/LICENSE",
+      "role": "access"
     }
   ],
   "status": "published",
@@ -129,7 +160,7 @@
         "split": "公开 input_data",
         "excerpt": false,
         "prompt": "I am planning a trip to Japan, and I would like thee to write an itinerary for my journey in a Shakespearean style. You are not allowed to use any commas in your response.",
-        "explanation": "回复既要采用莎士比亚风格，又不能出现逗号。评分关注可检查的文本约束；完成主题内容仍可能因格式不合格而失败。",
+        "explanation": "题面要求旅行计划、莎士比亚风格和无逗号；固定版本这条检查器只禁止 ASCII 英文逗号，不判断主题或风格。格式检查满足不能证明整个请求完成。",
         "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
         "license": "Apache-2.0 · Google Research",
         "licensePath": "licenses/google-research.txt",
@@ -153,7 +184,7 @@
         "split": "公开 input_data",
         "excerpt": false,
         "prompt": "Write a resume for a fresh high school graduate who is seeking their first job. Make sure to include at least 12 placeholder represented by square brackets, such as [address], [name].",
-        "explanation": "简历必须包含至少 12 个方括号占位符。检查器依据 instruction_id_list 和 kwargs 检查数量与格式，此题没有唯一参考文本。",
+        "explanation": "题面要求至少 12 个方括号占位符；固定检查器统计单行方括号匹配次数，空 [] 与重复字段也计数，不检查简历质量。该题没有唯一参考文本。",
         "source": "https://github.com/google-research/google-research/blob/master/instruction_following_eval/data/input_data.jsonl",
         "license": "Apache-2.0 · Google Research",
         "licensePath": "licenses/google-research.txt",
@@ -161,11 +192,11 @@
       },
       {
         "id": "ifeval-1000",
-        "title": "无逗号、三节标题与300词摘要",
+        "title": "无逗号、星号高亮与300词摘要",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "该记录要求围绕所给 Raymond III, Count of Tripoli Wikipedia URL 写至少 300 词摘要，不用逗号，并以 Markdown 标题标出至少三个部分。",
-        "explanation": "该条把长度、标点和结构三种约束组合在一个任务里；URL是被总结对象的输入引用。 raw含完整官方prompt及3项instruction ID/参数；不包含外部Wikipedia正文、参考答案输出或模型答案。 raw保留该官方数据行的prompt、instruction_id_list与kwargs；不包含模型回答。",
+        "prompt": "原题要求对给定 Wikipedia URL 写 300+ 词摘要、无逗号并高亮至少三个带标题部分；固定检查器实际按星号正则匹配计数，不把 # 标题当作高亮。",
+        "explanation": "raw 保留完整英文原题与三个检查器参数。本站未收录或读取该 Wikipedia 正文，没有摘要答案或模型输出；教学片段只演示标点、星号与词数形式，不代替原题内容。",
         "raw": {
           "key": 1000,
           "prompt": "Write a 300+ word summary of the wikipedia page \"https://en.wikipedia.org/wiki/Raymond_III,_Count_of_Tripoli\". Do not use any commas and highlight at least 3 sections that has titles in markdown format, for example *highlighted section part 1*, *highlighted section part 2*, *highlighted section part 3*.",
@@ -196,7 +227,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "该记录要求写辞职邮件，标题须用双尖括号包裹；先逐字重复请求主体，再给答复，附有重复范围和开头位置的限制。",
-        "explanation": "这是一个多重输出次序约束：需要先复述prompt的特定部分，再输出有<<title>>格式的邮件标题。raw保留源给的prompt_to_repeat参数；数据行没有参考答案邮件答案。 raw保留该官方数据行的prompt、instruction_id_list与kwargs；不包含模型回答。",
+        "explanation": "题面要求复述后给带标题的邮件；固定检查器实际去首尾空白、忽略大小写比对开头，另查任意位置的双尖括号标题。原复述范围已有 <<title>>，仅复述可能满足这两项检查但并未写出邮件。本站只引用数据集请求，不生成或发送辞职信。",
         "raw": {
           "key": 1012,
           "prompt": "Write an email to my boss telling him that I am quitting. The email must contain a title wrapped in double angular brackets, i.e. <<title>>.\nFirst repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)",
@@ -222,7 +253,7 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "该记录要求对给定句子作两段批评，所有字母大写，并用 PARAGRAPH X 标记段落。",
-        "explanation": "此题同时检查英文字母大小写与两段结构；引文句子本身含法律主张，本站只保留原始任务，不评价法律准确性。官方 kwargs 将段数设为2并要求PARAGRAPH分节。 raw保留该官方数据行的prompt、instruction_id_list与kwargs；不包含模型回答。",
+        "explanation": "题面要求两段且全大写；固定段标检查器实际要求至少两个 PARAGRAPH 加数字的匹配，不检查恰好两段或编号顺序。另一检查器还调用英语 langdetect；本站未运行语言识别，因此不作该完整条件的通过结论。引文法律主张不由本站评价。",
         "raw": {
           "key": 1021,
           "prompt": "Write a 2 paragraph critique of the following sentence in all capital letters, no lowercase letters allowed: \"If the law is bad, you should not follow it\". Label each paragraph with PARAGRAPH X.",
@@ -288,13 +319,15 @@
     ]
   },
   "taskContract": {
-    "input": "prompt 集及待评 response；官方输入包含提示，评测记录示例包含 prompt 和 response。",
-    "output": "离线计算 strict/loose 遵循结果，并给出 prompt 级与 instruction 级分数。",
+    "input": "模型收到自然语言 prompt；离线评分另读 instruction_id_list、kwargs 和模型 response。本站六条原始记录不包含模型回答。",
+    "output": "模型交付回答文本；离线评测逐条检查响应的可验证约束，汇总 strict / loose 的提示级和指令级四项分数。",
     "environment": "官方 Python 评测代码离线检查响应；任务不要求模型执行程序或依赖在线裁判。",
     "sourceUrls": [
       "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
       "https://github.com/google-research/google-research/blob/master/instruction_following_eval/evaluation_main.py",
-      "https://arxiv.org/html/2311.07911#S2.SS2"
+      "https://arxiv.org/html/2311.07911#S2.SS2",
+      "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/evaluation_main.py",
+      "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/instructions.py"
     ]
   },
   "dataProfile": {
@@ -342,7 +375,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "6 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
+    "reason": "六条真实提示可在本站切换查看完整英文 raw.prompt；格式实验采用明确标记的本站教学片段，不含模型回答或唯一参考答案，也不执行官方 harness。",
     "sourceUrls": [
       "https://arxiv.org/html/2311.07911#S2.SS1",
       "https://arxiv.org/html/2311.07911",
@@ -373,6 +406,17 @@
         "https://arxiv.org/html/2311.07911#S2.SS1",
         "https://arxiv.org/html/2311.07911",
         "https://github.com/google-research/google-research/tree/master/instruction_following_eval"
+      ]
+    },
+    {
+      "text": "2026-11-12 体验核验：六条 raw 与固定修订输入逐字段一致，Apache-2.0 许可与本地全文一致；未核验全部 541 条。该修订评分逻辑在 evaluation_main.py，不能把后来主分支 evaluation_lib.py 当作同版证据。教学检查按已支持范围显示满足、不满足或未判定；词数、段标、关键词和复述仅对 ASCII 片段判定，英语识别未执行。loose 对每条规则独立 OR 候选，再 AND 规则，格式满足不证明语义任务完成。",
+      "sourceUrls": [
+        "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/data/input_data.jsonl",
+        "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/evaluation_main.py",
+        "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/instructions.py",
+        "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/instructions_util.py",
+        "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/instruction_following_eval/README.md",
+        "https://github.com/google-research/google-research/blob/26d8ccdab6fec61b5c83ad6327ea8bda9e580288/LICENSE"
       ]
     }
   ],
