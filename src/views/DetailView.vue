@@ -34,11 +34,17 @@ import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import ArcAgiPilot from "../components/ArcAgiPilot.vue";
+import HumanEvalPilot from "../components/HumanEvalPilot.vue";
+import { humanEvalInitialAnchor } from "../lib/deferredDetailAnchor";
 
 const route = useRoute();
 const item = computed(() =>
   byId.get(String(route.meta.benchmarkId || route.params.id)),
 );
+function reportHumanEvalReady(section: "pilot" | "samples") {
+  if (item.value?.id === "human-eval")
+    humanEvalInitialAnchor.settled(route.fullPath, section);
+}
 const category = computed(
   () => item.value && categoryById.get(item.value.category),
 );
@@ -178,6 +184,12 @@ useHead(() => ({
       :selected="selected.includes(item.id)"
       @toggle="toggle(item.id)"
     />
+    <HumanEvalPilot
+      v-else-if="item.id === 'human-eval'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+      @settled="reportHumanEvalReady('pilot')"
+    />
     <header v-else class="detail-heading">
       <div class="detail-title-line">
         <PublisherMarks
@@ -263,7 +275,8 @@ useHead(() => ({
           item.id === 'terminal-bench-4' ||
           item.id === 'swe-bench-verified' ||
           item.id === 'roboquest' ||
-          item.id === 'arc-agi-2'
+          item.id === 'arc-agi-2' ||
+          item.id === 'human-eval'
         "
         href="#task-walkthrough"
         >一题看懂</a
@@ -398,7 +411,11 @@ useHead(() => ({
           >
         </div>
       </template>
-      <SampleViewer v-else :item="item" />
+      <SampleViewer
+        v-else
+        :item="item"
+        @settled="reportHumanEvalReady('samples')"
+      />
     </section>
 
     <section id="score" class="detail-section">

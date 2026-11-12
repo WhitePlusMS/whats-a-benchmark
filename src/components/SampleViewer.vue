@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
+import { isUnknownHumanEvalSample } from "../content/humanEvalExperience";
 import { isUnknownArcSample } from "../content/arcExperience";
 import { isUnknownRoboQuestSample } from "../content/roboQuestExperience";
 import { sampleExternalUrl } from "../lib/sampleAccess";
@@ -25,6 +26,12 @@ const unknownSelectedSample = computed(
       route.path,
     ) ||
       isUnknownArcSample(
+        props.item.id,
+        route.query.sample,
+        data.value?.samples,
+        route.path,
+      ) ||
+      isUnknownHumanEvalSample(
         props.item.id,
         route.query.sample,
         data.value?.samples,
@@ -143,6 +150,8 @@ onMounted(() => {
         >
           原始数据<span v-if="item.id === 'arc-agi-2'" class="mode-note"
             >含参考输出</span
+          ><span v-if="item.id === 'human-eval'" class="mode-note"
+            >含参考代码与测试</span
           ><span v-if="current.excerpt" class="mode-note">节选</span>
         </button>
       </div>

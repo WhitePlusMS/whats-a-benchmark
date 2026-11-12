@@ -30,15 +30,17 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
       const sampleId =
         typeof route.query.sample === "string" ? route.query.sample : "";
       const index = data.samples.findIndex((sample) => sample.id === sampleId);
-      // ARC's unknown selection must also clear the underlying answer state,
+      // Interactive tasks' unknown selections also clear underlying answer state,
       // rather than only hiding a silently selected first record in the UI.
-      const invalidArcSelection =
-        data.benchmarkId === "arc-agi-2" &&
+      const invalidInteractiveSelection =
+        ["arc-agi-2", "human-eval"].includes(data.benchmarkId) &&
         route.query.sample !== undefined &&
         route.query.sample !== null &&
         route.query.sample !== "" &&
         index < 0;
-      viewer.index.value = invalidArcSelection ? -1 : Math.max(0, index);
+      viewer.index.value = invalidInteractiveSelection
+        ? -1
+        : Math.max(0, index);
       viewer.mode.value = route.query.sampleView === "raw" ? "raw" : "read";
     },
     { immediate: true },
@@ -68,7 +70,9 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
     viewer.index.value = index;
     viewer.mode.value = "read";
     return writeLocation(
-      viewer.data.value?.benchmarkId === "arc-agi-2" ? "push" : "replace",
+      ["arc-agi-2", "human-eval"].includes(viewer.data.value?.benchmarkId || "")
+        ? "push"
+        : "replace",
     );
   }
   function setMode(mode: "read" | "raw") {
