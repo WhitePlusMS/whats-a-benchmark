@@ -8,9 +8,13 @@ type Viewer = Pick<
 >;
 
 /** 图解区选题时保留其他查询参数，清除原始模式和锚点，避免跳到样例区。 */
-export function selectSampleFromWalkthrough(router: Router, sampleId: string) {
+export function selectSampleFromWalkthrough(
+  router: Router,
+  sampleId: string,
+  history: "push" | "replace" = "replace",
+) {
   const route = router.currentRoute.value;
-  return router.replace({
+  return router[history]({
     path: route.path,
     query: { ...route.query, sample: sampleId, sampleView: undefined },
     hash: "",
@@ -26,13 +30,21 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
       const sampleId =
         typeof route.query.sample === "string" ? route.query.sample : "";
       const index = data.samples.findIndex((sample) => sample.id === sampleId);
-      viewer.index.value = Math.max(0, index);
+      // ARC's unknown selection must also clear the underlying answer state,
+      // rather than only hiding a silently selected first record in the UI.
+      const invalidArcSelection =
+        data.benchmarkId === "arc-agi-2" &&
+        route.query.sample !== undefined &&
+        route.query.sample !== null &&
+        route.query.sample !== "" &&
+        index < 0;
+      viewer.index.value = invalidArcSelection ? -1 : Math.max(0, index);
       viewer.mode.value = route.query.sampleView === "raw" ? "raw" : "read";
     },
     { immediate: true },
   );
 
-  function writeLocation() {
+  function writeLocation(history: "push" | "replace" = "replace") {
     // 指南复用查看器时只切换本地状态；只有对应详情页把题目写入 URL。
     if (
       !viewer.current.value ||
@@ -40,7 +52,7 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
         `/benchmarks/${viewer.data.value?.benchmarkId}/`
     )
       return;
-    return router.replace({
+    return router[history]({
       path: router.currentRoute.value.path,
       query: {
         ...router.currentRoute.value.query,
@@ -55,7 +67,9 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
     // 同步更新保证连续点击换题与模式时，后一次操作使用最新题目。
     viewer.index.value = index;
     viewer.mode.value = "read";
-    return writeLocation();
+    return writeLocation(
+      viewer.data.value?.benchmarkId === "arc-agi-2" ? "push" : "replace",
+    );
   }
   function setMode(mode: "read" | "raw") {
     viewer.mode.value = mode;

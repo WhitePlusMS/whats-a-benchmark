@@ -1,0 +1,227 @@
+.arc-practice {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.arc-practice-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 28px;
+  align-items: center;
+  padding: 25px 28px;
+  background: var(--accent-softer);
+}
+.arc-eyebrow {
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+.arc-practice h3 {
+  margin: 7px 0 10px;
+  color: var(--text-strong);
+  font-size: 21px;
+}
+.arc-practice-intro p {
+  max-width: 570px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.arc-practice-intro .primary-button {
+  margin-top: 17px;
+}
+.arc-practice-intro small {
+  display: block;
+  margin-top: 11px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.arc-practice figure {
+  min-width: 0;
+  margin: 0;
+}
+.arc-practice figcaption {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 10px;
+  color: var(--text-strong);
+  font-size: 13px;
+  font-weight: 600;
+}
+.arc-practice figcaption span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+.arc-practice-board {
+  padding: 24px 28px;
+  border-top: 1px solid var(--border);
+}
+.arc-size-form {
+  display: flex;
+  gap: 8px 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.arc-size-form > span {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.arc-size-form label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.arc-size-form input {
+  width: 60px;
+  min-height: 40px;
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  padding: 5px 7px;
+}
+.arc-tool {
+  min-height: 40px;
+  padding: 8px 13px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.arc-tool:hover:not(:disabled) {
+  color: var(--accent-text);
+  border-color: var(--accent-border-strong);
+  background: var(--accent-softer);
+}
+.arc-tool:disabled {
+  opacity: 0.5;
+}
+.arc-helper {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.arc-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 17px;
+}
+.arc-palette button {
+  width: 40px;
+  height: 42px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+.arc-palette button span {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  border: 1px solid #626775;
+  border-radius: 3px;
+  background: var(--swatch);
+  color: var(--swatch-ink);
+  font: 600 12px monospace;
+}
+.arc-palette button[aria-pressed="true"] {
+  border-color: var(--accent-text);
+  background: var(--accent-softer);
+}
+.arc-edit-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.arc-answer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 25px;
+  margin: 23px 0;
+}
+.arc-answer-layout.has-reference {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.arc-draft {
+  max-width: 100%;
+}
+.arc-reference-scroll {
+  overflow: auto;
+  max-width: 100%;
+  padding: 7px;
+  border-radius: 5px;
+  background: var(--surface-sunken);
+}
+.arc-reference :deep(.arc-grid) {
+  max-height: none;
+  max-width: none;
+  margin: 0 auto;
+}
+.arc-check-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+.arc-revealed {
+  font-size: 12px;
+  color: var(--muted);
+}
+.arc-check-result {
+  margin-top: 16px;
+  padding: 15px 17px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-subtle);
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.9;
+}
+.arc-check-result b {
+  color: var(--text-strong);
+}
+.arc-check-result p + p {
+  margin-top: 6px;
+}
+.arc-feedback {
+  font-size: 12px;
+  margin: 8px 0;
+  color: var(--status-bad);
+}
+@media (max-width: 620px) {
+  .arc-practice-intro {
+    grid-template-columns: minmax(0, 1fr) 110px;
+    gap: 16px;
+    padding: 20px 18px;
+  }
+  .arc-practice-intro h3 {
+    font-size: 19px;
+  }
+  .arc-practice-intro figcaption {
+    flex-direction: column;
+  }
+  .arc-practice-board {
+    padding: 20px 15px;
+  }
+  .arc-answer-layout.has-reference {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 400px) {
+  .arc-practice-intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .arc-test-input {
+    width: 150px;
+    justify-self: center;
+  }
+}

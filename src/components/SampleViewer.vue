@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
+import { isUnknownArcSample } from "../content/arcExperience";
 import { isUnknownRoboQuestSample } from "../content/roboQuestExperience";
 import { sampleExternalUrl } from "../lib/sampleAccess";
 import Icon from "./Icon.vue";
@@ -14,15 +15,21 @@ import SampleWalkthrough from "./SampleWalkthrough.vue";
 const props = defineProps<{ item: Benchmark }>();
 const emit = defineEmits<{ settled: [] }>();
 const route = useRoute();
-const unknownRoboQuestSample = computed(
+const unknownSelectedSample = computed(
   () =>
     ready.value &&
-    isUnknownRoboQuestSample(
+    (isUnknownRoboQuestSample(
       props.item.id,
       route.query.sample,
       data.value?.samples,
       route.path,
-    ),
+    ) ||
+      isUnknownArcSample(
+        props.item.id,
+        route.query.sample,
+        data.value?.samples,
+        route.path,
+      )),
 );
 const baseUrl = import.meta.env.BASE_URL;
 const ready = ref(false);
@@ -112,7 +119,7 @@ onMounted(() => {
     <p>请重试，或通过参考资料查看原始任务。</p>
     <button class="primary-button" @click="reload">重新加载</button>
   </div>
-  <div v-else-if="unknownRoboQuestSample" class="empty-state" role="status">
+  <div v-else-if="unknownSelectedSample" class="empty-state" role="status">
     <h3>没有匹配此编号的样例</h3>
     <p>不会以其他实例替代。请返回任务区重新选择。</p>
     <a class="secondary-button" href="#task-walkthrough">选择任务材料</a>
@@ -134,7 +141,9 @@ onMounted(() => {
           :aria-pressed="mode === 'raw'"
           @click="setMode('raw')"
         >
-          原始数据<span v-if="current.excerpt" class="mode-note">节选</span>
+          原始数据<span v-if="item.id === 'arc-agi-2'" class="mode-note"
+            >含参考输出</span
+          ><span v-if="current.excerpt" class="mode-note">节选</span>
         </button>
       </div>
       <div class="sample-picker">

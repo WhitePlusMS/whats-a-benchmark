@@ -33,6 +33,7 @@ import PublisherMarks from "../components/PublisherMarks.vue";
 import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
+import ArcAgiPilot from "../components/ArcAgiPilot.vue";
 
 const route = useRoute();
 const item = computed(() =>
@@ -172,6 +173,11 @@ useHead(() => ({
       :selected="selected.includes(item.id)"
       @toggle="toggle(item.id)"
     />
+    <ArcAgiPilot
+      v-else-if="item.id === 'arc-agi-2'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+    />
     <header v-else class="detail-heading">
       <div class="detail-title-line">
         <PublisherMarks
@@ -256,7 +262,8 @@ useHead(() => ({
         v-if="
           item.id === 'terminal-bench-4' ||
           item.id === 'swe-bench-verified' ||
-          item.id === 'roboquest'
+          item.id === 'roboquest' ||
+          item.id === 'arc-agi-2'
         "
         href="#task-walkthrough"
         >一题看懂</a

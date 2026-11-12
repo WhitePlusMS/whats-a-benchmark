@@ -8944,7 +8944,7 @@
   },
   "metric": {
     "name": "任务解决率",
-    "description": "每项任务在首次见到时须为每个测试输入给出预测；任一允许尝试的结果完整匹配全部测试输入输出，任务计为解决。官方公开说明每个 test input 允许 2 次尝试。\nARC-AGI-2 同时强调效率/成本；官方介绍将能力和效率视为不同衡量维度。比赛评分另受 Kaggle 竞赛规则约束，不应把像素正确率替代官方 exact task accuracy\n",
+    "description": "每项任务在首次见到时须为每个测试输入给出预测；每个测试输入都须在其允许的尝试内得到尺寸和所有单元格完全正确的输出，全部测试输入答对后，任务才计为解决。官方成功准则说明每个 test input 允许 2 次尝试。\nARC-AGI-2 同时强调效率/成本；官方介绍将能力和效率视为不同衡量维度。比赛评分另受 Kaggle 竞赛规则约束，不应把像素正确率替代官方 exact task accuracy\n",
     "direction": "higher",
     "sourceUrls": [
       "https://github.com/arcprize/ARC-AGI-2#task-success-criterion",
@@ -8954,9 +8954,10 @@
   },
   "limitations": [
     {
-      "text": "公开 README 对测试接口尝试次数存在 2 次与 3 次的文字差异；榜单评测应固定具体规则版本。",
+      "text": "公开 README 的 Task success criterion 写每个测试输入允许 2 次尝试，Task file format 仍写 3 次；测试界面又不强制该次数限制。正式评测须固定规则版本，不以界面可点击次数推断评测协议。",
       "sourceUrls": [
         "https://github.com/arcprize/ARC-AGI-2#task-success-criterion",
+        "https://github.com/arcprize/ARC-AGI-2#task-file-format",
         "https://github.com/arcprize/ARC-AGI-2#usage-of-the-testing-interface"
       ]
     },
