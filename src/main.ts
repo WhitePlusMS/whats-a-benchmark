@@ -64,7 +64,8 @@ export const createApp = ViteSSG(
         (to.path === "/benchmarks/gsm8k/" && to.path !== from.path) ||
         (to.path === "/benchmarks/libero/" && to.path !== from.path) ||
         (to.path === "/benchmarks/mmmlu/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/ifeval/" && to.path !== from.path)
+        (to.path === "/benchmarks/ifeval/" && to.path !== from.path) ||
+        (to.path === "/benchmarks/calvin/" && to.path !== from.path)
       )
         humanEvalInitialAnchor.begin(to.fullPath);
       if (from.path === "/" && from.matched.length && to.path !== "/") {

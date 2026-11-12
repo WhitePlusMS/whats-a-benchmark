@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import type { Benchmark } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
+import { isUnknownCalvinSample } from "../content/calvinExperience";
 import { isUnknownIfevalSample } from "../content/ifevalExperience";
 import { isUnknownMmmluSample } from "../content/mmmluExperience";
 import { isUnknownLiberoSample } from "../content/liberoExperience";
@@ -24,12 +25,18 @@ const route = useRoute();
 const unknownSelectedSample = computed(
   () =>
     ready.value &&
-    (isUnknownIfevalSample(
+    (isUnknownCalvinSample(
       props.item.id,
       route.query.sample,
       data.value?.samples,
       route.path,
     ) ||
+      isUnknownIfevalSample(
+        props.item.id,
+        route.query.sample,
+        data.value?.samples,
+        route.path,
+      ) ||
       isUnknownMmmluSample(
         props.item.id,
         route.query.sample,

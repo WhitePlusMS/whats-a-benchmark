@@ -232,7 +232,7 @@ test("GSM8K 目录真实案例按钮进入互动图解，不跳过体验直接�
   const card = await read("src/components/BenchmarkCard.vue");
   assert.match(
     card,
-    /\['roboquest', 'arc-agi-2', 'human-eval', 'gsm8k', 'libero', 'mmmlu', 'ifeval'\]\.includes\(item.id\) \? '#task-walkthrough' : '#samples'/,
+    /\['roboquest', 'arc-agi-2', 'human-eval', 'gsm8k', 'libero', 'mmmlu', 'ifeval', 'calvin'\]\.includes\(item.id\) \? '#task-walkthrough' : '#samples'/,
   );
 });
 

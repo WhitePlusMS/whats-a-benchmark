@@ -34,6 +34,7 @@ import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import ArcAgiPilot from "../components/ArcAgiPilot.vue";
+import CalvinPilot from "../components/CalvinPilot.vue";
 import IfevalPilot from "../components/IfevalPilot.vue";
 import MmmluPilot from "../components/MmmluPilot.vue";
 import LiberoPilot from "../components/LiberoPilot.vue";
@@ -47,7 +48,7 @@ const item = computed(() =>
 );
 function reportHumanEvalReady(section: "pilot" | "samples") {
   if (
-    ["human-eval", "gsm8k", "libero", "mmmlu", "ifeval"].includes(
+    ["human-eval", "gsm8k", "libero", "mmmlu", "ifeval", "calvin"].includes(
       item.value?.id || "",
     )
   )
@@ -210,6 +211,12 @@ useHead(() => ({
       @toggle="toggle(item.id)"
       @settled="reportHumanEvalReady('pilot')"
     />
+    <CalvinPilot
+      v-else-if="item.id === 'calvin'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+      @settled="reportHumanEvalReady('pilot')"
+    />
     <IfevalPilot
       v-else-if="item.id === 'ifeval'"
       :selected="selected.includes(item.id)"
@@ -312,7 +319,8 @@ useHead(() => ({
           item.id === 'gsm8k' ||
           item.id === 'libero' ||
           item.id === 'mmmlu' ||
-          item.id === 'ifeval'
+          item.id === 'ifeval' ||
+          item.id === 'calvin'
         "
         href="#task-walkthrough"
         >一题看懂</a
