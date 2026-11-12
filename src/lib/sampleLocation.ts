@@ -7,6 +7,16 @@ type Viewer = Pick<
   "data" | "index" | "mode" | "current"
 >;
 
+/** 图解区选题时保留其他查询参数，清除原始模式和锚点，避免跳到样例区。 */
+export function selectSampleFromWalkthrough(router: Router, sampleId: string) {
+  const route = router.currentRoute.value;
+  return router.replace({
+    path: route.path,
+    query: { ...route.query, sample: sampleId, sampleView: undefined },
+    hash: "",
+  });
+}
+
 /** URL 只保存题目 ID 与阅读模式，答案和选项仍是本地临时状态。 */
 export function createSampleLocation(router: Router, viewer: Viewer) {
   watch(

@@ -1,5 +1,14 @@
 # 更新说明
 
+## 2026-11-12：恢复 Terminal-Bench 试点并保留云端案例
+
+- 恢复 `src/components/TerminalBenchPilot.vue`、`src/content/terminalBenchWalkthrough.ts`：重新展示用户认可的首屏、四种任务、四步图解、切换动效与对应验收来源；保留云端新增的原题导读和来源片段。
+- 修改 `src/views/DetailView.vue`、`src/lib/sampleLocation.ts`、`tests/sample-location.test.ts` 和 `tests/terminal-bench-walkthrough.test.ts`：接回详情入口及上下样例的 URL 联动，验证题目映射和来源；其他评测仍使用既有详情结构。
+- 恢复 `src/styles/detail.css` 的紧凑来源列表，以及 `src/views/ExploreView.vue`、`src/styles/catalog.css` 中的试点阅读入口；保留响应式、引用高亮和减少动态效果设置。
+- 修改 `content/benchmarks/terminal-bench-4.json`：四份完整指令已与固定版本官方原文逐字核对，将其中三条误标为节选的状态更正；云端的中文导读、字段与其他资料保持不变。
+- 原因和影响：将用户认可的体验恢复为共享基线，同时整合云端已经完成的内容工作，避免不同工作区继续偏离。
+- 验证：四份任务指令与固定版本官方原文逐字一致；类型检查、内容校验、57 项测试及 323 页静态构建通过；浏览器核对了原试点图解、云端导读和上下双向切题。
+
 ## 2026-11-06：保留中等屏幕导航吸顶
 
 - 修改 `src/styles/detail.css` 和 `src/styles/layout.css`：统一 701–780 像素换行页眉及导航吸顶高度为 104 像素。

@@ -3,7 +3,10 @@ import { test } from "node:test";
 import { effectScope, nextTick } from "vue";
 import { createMemoryHistory, createRouter } from "vue-router";
 import { useSampleViewer } from "../src/composables/sampleViewer";
-import { createSampleLocation } from "../src/lib/sampleLocation";
+import {
+  createSampleLocation,
+  selectSampleFromWalkthrough,
+} from "../src/lib/sampleLocation";
 import type { SampleFile } from "../src/types/benchmark";
 
 test("样例在详情页同步 URL，在指南中只修改查看器状态", async (t) => {
@@ -70,6 +73,24 @@ test("样例在详情页同步 URL，在指南中只修改查看器状态", asyn
   await nextTick();
   assert.equal(viewer.mode.value, "raw");
   assert.equal(viewer.current.value?.id, "first/id");
+
+  // 上方图解切题不跳转到原题区；下方查看器仍通过同一 URL 恢复题目。
+  await router.replace({
+    path: "/benchmarks/selected/",
+    query: { sample: "first/id", sampleView: "raw", from: "reading" },
+    hash: "#samples",
+  });
+  await selectSampleFromWalkthrough(router, "second:id");
+  await nextTick();
+  assert.equal(viewer.current.value?.id, "second:id");
+  assert.equal(viewer.mode.value, "read");
+  assert.equal(router.currentRoute.value.hash, "");
+  assert.equal(router.currentRoute.value.query.from, "reading");
+  assert.equal(router.currentRoute.value.query.sampleView, undefined);
+  await location.selectSample(0);
+  await nextTick();
+  assert.equal(router.currentRoute.value.query.sample, "first/id");
+  assert.equal(router.currentRoute.value.hash, "#samples");
 
   await t.test("嵌入指南后换题和切原始模式不改动页面地址或锚点", async () => {
     router.addRoute({ path: "/guide/", component: { template: "<div />" } });

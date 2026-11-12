@@ -30,6 +30,7 @@ import SourceList from "../components/SourceList.vue";
 import Icon from "../components/Icon.vue";
 import SampleViewer from "../components/SampleViewer.vue";
 import PublisherMarks from "../components/PublisherMarks.vue";
+import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 
 const route = useRoute();
 const item = computed(() =>
@@ -153,7 +154,13 @@ useHead(() => ({
       <p><strong>本站已归档</strong> · {{ item.archiveNote }}</p>
       <p>保留历史资料与引用，不表示官方评测已停用。</p>
     </aside>
-    <header class="detail-heading">
+    <!-- 恢复用户认可的试点，原有详情和云端整理的样例继续保留。 -->
+    <TerminalBenchPilot
+      v-if="item.id === 'terminal-bench-4'"
+      :selected="selected.includes(item.id)"
+      @toggle="toggle(item.id)"
+    />
+    <header v-else class="detail-heading">
       <div class="detail-title-line">
         <PublisherMarks
           :benchmark-id="item.id"
@@ -233,6 +240,9 @@ useHead(() => ({
       </div>
     </div>
     <nav class="detail-nav" aria-label="详情导航">
+      <a v-if="item.id === 'terminal-bench-4'" href="#task-walkthrough"
+        >一题看懂</a
+      >
       <a href="#definition">测什么</a><a href="#task">具体任务</a>
       <a v-if="item.composition" href="#composition">指数组成</a>
       <a href="#samples">{{ sampleTitle }}</a

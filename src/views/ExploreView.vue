@@ -204,6 +204,20 @@ function setFilter(key: CatalogFilterKey, value: string) {
       </button>
     </section>
   </div>
+  <div v-if="!isEmbodied && !hasFilters" class="container">
+    <RouterLink class="reading-feature" to="/benchmarks/terminal-bench-4/">
+      <span class="reading-feature-mark" aria-hidden="true"
+        ><Icon name="code" :size="21"
+      /></span>
+      <span class="reading-feature-copy">
+        <strong>用一道真实任务，看懂 Terminal-Bench 4.0</strong>
+        <small>从输入到验收，看看这项评测怎样出题</small>
+      </span>
+      <span class="reading-feature-action"
+        >开始阅读 <Icon name="up" :size="16"
+      /></span>
+    </RouterLink>
+  </div>
   <div id="catalog" class="container atlas-layout">
     <aside v-if="!isMobile" class="filters" aria-label="评测筛选">
       <CatalogFilters

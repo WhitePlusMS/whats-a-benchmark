@@ -141,6 +141,53 @@
 .mobile-filter-button {
   display: none;
 }
+/* 精选入口只引向一条已整理的阅读路径，筛选时不打断目录。 */
+.reading-feature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  margin: 0 0 22px;
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.reading-feature:hover {
+  border-color: var(--accent-border-strong);
+  background: var(--accent-softer);
+}
+.reading-feature-mark {
+  display: grid;
+  flex: 0 0 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--accent-text);
+  background: var(--accent-softer);
+}
+.reading-feature-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+.reading-feature-copy strong {
+  color: var(--text-strong);
+  font-size: 14px;
+}
+.reading-feature-copy small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.reading-feature-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
 .atlas-layout {
   display: grid;
   grid-template-columns: 205px minmax(0, 1fr);
@@ -490,6 +537,21 @@
   .hero {
     padding-bottom: 14px;
     margin-bottom: 16px;
+  }
+  .reading-feature {
+    gap: 11px;
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  .reading-feature-mark {
+    flex-basis: 38px;
+    height: 38px;
+  }
+  .reading-feature-copy strong {
+    font-size: 13px;
+  }
+  .reading-feature-action {
+    font-size: 0;
   }
   .catalog-header {
     padding-top: 18px;
