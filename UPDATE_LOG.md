@@ -1,5 +1,14 @@
 # 更新说明
 
+## 2026-11-12：优化 SWE-bench Verified 任务体验
+
+- 新增 `src/components/SweBenchPilot.vue`、`src/styles/swe-bench-pilot.css` 和 `src/content/sweBenchExperience.ts`：为四个真实任务提供首屏入口、案例切换和接收问题、理解问题、交付补丁、检查结果四步阅读；按题面分别展示矩阵、缺列、类型迁移和坐标关系示意。
+- 新增 `src/styles/pilot-common.css`，并调整 `src/components/TerminalBenchPilot.vue`：抽取两页完全相同的首屏和步骤样式，保持各自的任务图形与响应式规则独立，便于后续评测复用。
+- 修改 `src/views/DetailView.vue`：为 SWE-bench Verified 接入试点和详情导航；复用云端样例加载、来源片段及 URL 同步，下方原始记录和导读继续保留。
+- 新增 `tests/swe-bench-experience.test.ts`：验证图解与四个真实样例一一对应，以及未知样例编号不会错误套用其他图解。
+- 原因和影响：将已核验的任务内容变成可切换的视觉阅读路径，并明确示意图和源码片段的边界；不展示虚构补丁或本站运行结果。
+- 验证：类型检查、内容校验、58 项测试、格式检查及 323 页静态构建通过；浏览器核对四题图解、上下双向切换、无效编号、刷新与分享链接、窄屏、浅色和减少动态效果，并回归 Terminal-Bench 与 RoboQuest 样例。
+
 ## 2026-11-12：恢复 Terminal-Bench 试点并保留云端案例
 
 - 恢复 `src/components/TerminalBenchPilot.vue`、`src/content/terminalBenchWalkthrough.ts`：重新展示用户认可的首屏、四种任务、四步图解、切换动效与对应验收来源；保留云端新增的原题导读和来源片段。
