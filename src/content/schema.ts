@@ -124,6 +124,20 @@ export const sampleSchema = z
     prompt: text,
     // 这个标记只说明任务说明由本站整理；raw 始终保留真实来源的数据格式。
     promptOrigin: z.literal("editorial").optional(),
+    // 可选的中文任务导读；引用片段必须来自本条已保存的原始文本。
+    walkthrough: z
+      .strictObject({
+        input: text,
+        output: text,
+        checks: z.array(text).min(1).max(4),
+        sourceField: text.optional(),
+        excerpts: z
+          .array(z.strictObject({ label: text, text }))
+          .min(1)
+          .max(3),
+        note: text,
+      })
+      .optional(),
     options: z.array(text).min(2).optional(),
     answer: text.optional(),
     explanation: text,
@@ -155,6 +169,27 @@ export const sampleSchema = z
     };
     if (sample.promptOrigin === "editorial") {
       check(sample.excerpt, "excerpt", "本站案例解读必须标注节选");
+    }
+    if (sample.walkthrough) {
+      const source =
+        typeof sample.raw === "string"
+          ? sample.raw
+          : sample.raw[sample.walkthrough.sourceField || ""];
+      check(
+        typeof source === "string",
+        "walkthrough",
+        "任务导读须指向本条原始文本",
+      );
+      if (typeof source === "string") {
+        const normalized = source.replace(/\r\n/g, "\n");
+        check(
+          sample.walkthrough.excerpts.every((part) =>
+            normalized.includes(part.text.replace(/\r\n/g, "\n")),
+          ),
+          "walkthrough",
+          "导读引用须为原始文本中的连续片段，不得改写源内容",
+        );
+      }
     }
     check(
       sample.type === "choice" ? !!sample.options : !sample.options,

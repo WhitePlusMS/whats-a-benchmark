@@ -72,7 +72,10 @@ function isSample(value: unknown): boolean {
     !sampleTypes.has(value.type) ||
     !hasText(value.prompt) ||
     !hasText(value.explanation) ||
-    !(hasText(value.raw) || (isRecord(value.raw) && Object.keys(value.raw).length > 0)) ||
+    !(
+      hasText(value.raw) ||
+      (isRecord(value.raw) && Object.keys(value.raw).length > 0)
+    ) ||
     !hasText(value.source) ||
     !hasText(value.license) ||
     !hasText(value.split) ||
@@ -81,6 +84,23 @@ function isSample(value: unknown): boolean {
     return false;
 
   return (
+    (!("walkthrough" in value) ||
+      (isRecord(value.walkthrough) &&
+        hasText(value.walkthrough.input) &&
+        hasText(value.walkthrough.output) &&
+        hasText(value.walkthrough.note) &&
+        Array.isArray(value.walkthrough.checks) &&
+        value.walkthrough.checks.length > 0 &&
+        value.walkthrough.checks.every(hasText) &&
+        Array.isArray(value.walkthrough.excerpts) &&
+        value.walkthrough.excerpts.length > 0 &&
+        value.walkthrough.excerpts.every(
+          (part) => isRecord(part) && hasText(part.label) && hasText(part.text),
+        ) &&
+        (hasText(value.raw) ||
+          (isRecord(value.raw) &&
+            hasText(value.walkthrough.sourceField) &&
+            hasText(value.raw[value.walkthrough.sourceField]))))) &&
     (!("promptOrigin" in value) ||
       (value.promptOrigin === "editorial" && value.excerpt === true)) &&
     (!("answer" in value) || typeof value.answer === "string") &&

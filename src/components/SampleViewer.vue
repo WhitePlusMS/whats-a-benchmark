@@ -9,6 +9,7 @@ import Icon from "./Icon.vue";
 import ArcTask from "./ArcTask.vue";
 import SampleMedia from "./SampleMedia.vue";
 import CitedText from "./CitedText.vue";
+import SampleWalkthrough from "./SampleWalkthrough.vue";
 const props = defineProps<{ item: Benchmark }>();
 const emit = defineEmits<{ settled: [] }>();
 const baseUrl = import.meta.env.BASE_URL;
@@ -169,23 +170,30 @@ onMounted(() => {
         </div>
         <h3 translate="no">{{ current.title }}</h3>
         <template v-if="mode === 'read'">
-          <p class="prompt-label">
-            {{
-              item.embodied
-                ? "任务与记录"
-                : current.promptOrigin === "editorial"
-                  ? "具体任务 · 本站根据官方案例整理"
-                  : current.gridTask
-                    ? "操作说明 · 本站整理"
-                    : "原题内容"
-            }}
-          </p>
-          <pre
-            class="prompt-text"
-            translate="no"
-            :class="{ 'code-prompt': current.type === 'code' }"
-            >{{ current.prompt }}</pre
-          >
+          <SampleWalkthrough
+            v-if="current.walkthrough"
+            :key="`${item.id}:${current.id}`"
+            :sample="current"
+          />
+          <template v-else>
+            <p class="prompt-label">
+              {{
+                item.embodied
+                  ? "任务与记录"
+                  : current.promptOrigin === "editorial"
+                    ? "具体任务 · 本站根据官方案例整理"
+                    : current.gridTask
+                      ? "操作说明 · 本站整理"
+                      : "原题内容"
+              }}
+            </p>
+            <pre
+              class="prompt-text"
+              translate="no"
+              :class="{ 'code-prompt': current.type === 'code' }"
+              >{{ current.prompt }}</pre
+            >
+          </template>
           <SampleMedia
             v-if="current.assets"
             :failed-assets="failedAssets"
@@ -238,13 +246,16 @@ onMounted(() => {
             translate="no"
             >{{ current.answer }}</pre
           >
-          <p v-if="!current.answer && !item.embodied" class="muted">
+          <p
+            v-if="!current.answer && !item.embodied && !current.walkthrough"
+            class="muted"
+          >
             {{
               current.promptOrigin === "editorial"
-                  ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
-                  : current.excerpt
-                    ? "本页节选不含参考答案，完整任务见原始来源。"
-                    : "此公开记录未附参考答案，完成标准见评分方法。"
+                ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
+                : current.excerpt
+                  ? "本页节选不含参考答案，完整任务见原始来源。"
+                  : "此公开记录未附参考答案，完成标准见评分方法。"
             }}
           </p></template
         >
