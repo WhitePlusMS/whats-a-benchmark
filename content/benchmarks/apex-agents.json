@@ -18,7 +18,9 @@
   "version": "原版；480 个任务",
   "kind": "original",
   "aliases": [
-    "AI Productivity Index for Agents"
+    "AI Productivity Index for Agents",
+    "APEX-Agents-AA",
+    "APEX Agents AA"
   ],
   "related": [
     {
@@ -49,10 +51,11 @@
     ]
   },
   "dataProfile": {
-    "summary": "原版 480 个任务的受控任务包；1.1 修订版本另见关联条目。",
+    "summary": "原版 480 题；AA 452 题 Stirrup 实施在本页单列，1.1 的 240 题修订另见关联条目。",
     "disclosure": "not-public",
     "scale": [
-      "480 个任务，三个职业领域各 160 题；33 个 worlds。"
+      "480 个任务，三个职业领域各 160 题；33 个 worlds。",
+      "APEX-Agents-AA：从原版 480 题排除依赖外部 API 的 Investment Banking Worlds 244、246，剩余 452 题；不是 1.1 的 240 题集。"
     ],
     "splits": [
       "官方页面未声明标准 train/dev/test split。"
@@ -64,7 +67,9 @@
       "原版任务与世界资产在 Hugging Face gated 文件中，本站未下载原始文件。"
     ],
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents"
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://artificialanalysis.ai/evaluations/apex-agents-aa",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#apex-agents-aa"
     ]
   },
   "dataAccess": {
@@ -99,10 +104,11 @@
   },
   "metric": {
     "name": "Rubric pass rate",
-    "description": "原版报告 Pass@1、Pass@8、Pass^8 与平均分；按 rubric 的逐项二元条件判定，分别表达单次、至少一次和多次均成功。",
+    "description": "原版报告 Pass@1、Pass@8、Pass^8 与平均分；按 rubric 的逐项二元条件判定，分别表达单次、至少一次和多次均成功。 AA 452 题协议：Gemini 3 Flash（low）裁判通过 Archipelago local file grader 同时读取 Finish 最终答复与前后文件系统差异；单次必须满足所有 rubric 才通过，汇总三次重复的平均 pass@1，不是 pass@3，也不是 rubric 分项均值。",
     "direction": "higher",
     "sourceUrls": [
-      "https://huggingface.co/datasets/mercor/apex-agents"
+      "https://huggingface.co/datasets/mercor/apex-agents",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#apex-agents-aa"
     ]
   },
   "limitations": [
@@ -126,6 +132,13 @@
         "https://huggingface.co/datasets/mercor/apex-agents",
         "https://huggingface.co/datasets/mercor/apex-agents-v1.1",
         "https://github.com/Mercor-Intelligence/apex_loop_truncated_tools_agent"
+      ]
+    },
+    {
+      "text": "本站既有案例来自历史原版公开展示，未确认它属于 AA 的 452 题；AA 官方示例页亦展示 World246 的案例，不能将页面示例全都推定为 AA 实际入选题。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/apex-agents-aa",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#apex-agents-aa"
       ]
     }
   ],
@@ -164,6 +177,16 @@
       "label": "已核验的官方具体案例",
       "url": "https://www.mercor.com/apex/apex-agents-leaderboard/management-consultant-agent/",
       "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/apex-agents-aa",
+      "label": "APEX-Agents-AA：452 题范围与公开任务入口",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#apex-agents-aa",
+      "label": "APEX-Agents-AA：三次重复、Stirrup 与本地评分协议",
+      "role": "definition"
     }
   ],
   "researchNotes": [
@@ -194,7 +217,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
@@ -212,5 +235,14 @@
         "excerpt": true
       }
     ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "APEX-Agents-AA（2026-11-13 方法快照）是原版 480 题的独立实施，排除 Investment Banking Worlds 244 和 246 的外部运行依赖后测 452 题。每题重复 3 次，经 Stirrup 在 Archipelago 环境使用 MCP 工具，最多 200 turns。原版和 AA 的设置不混同；后续 1.1 为另一题包。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/apex-agents-aa",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#apex-agents-aa"
+      ]
+    }
   }
 }

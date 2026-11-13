@@ -1,0 +1,135 @@
+{
+  "id": "aa-personalitybench",
+  "status": "published",
+  "order": 600,
+  "name": "AA-PersonalityBench",
+  "subtitle": "描述模型沟通风格，不把个性偏好当作能力高低",
+  "category": "alignment",
+  "tags": [
+    "沟通风格",
+    "行为特质",
+    "相对比较"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "方法快照 2026-11-13",
+  "kind": "original",
+  "aliases": [
+    "Artificial Analysis PersonalityBench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用 30 项沟通特质衡量模型回答风格，并汇总为 8 个风格指数；不是通用能力或人格优劣排名。",
+    "task": "对同一提示的不同模型回答进行盲评，判断哪份更体现指定特质，允许平局。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-personalitybench",
+      "https://artificialanalysis.ai/articles/aa-personalitybench"
+    ]
+  },
+  "taskContract": {
+    "input": "每项特质 30 道问题；仅用户提示，没有 system prompt。",
+    "output": "每个模型每题一次回答，再做匿名成对特质比较。",
+    "environment": "随机回答顺序、平衡评委分配；评委面板为 Gemini 3.8 Flash（high）、Claude Sonnet 5.5（medium）、GLM-5.3 Flash（max）。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-personalitybench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "30 特质 × 30 问题 = 900 问题；完整问题集私有，官方展示 5 个公开例子；另统计 21 项程序化沟通特征。",
+    "disclosure": "partial",
+    "scale": [
+      "8 指数：Expressiveness、Organization、Informativeness、Transparency、Warmth、Conviction、Imagination、Slop。",
+      "21 项程序化特征涵盖长度、结构、标点与强调方式。"
+    ],
+    "splits": [
+      "正式问题集私有；5 个官方公开示例不是独立可下载 test split。"
+    ],
+    "fields": [
+      "特质评分、指数百分位及沟通特征；没有统一的正确答案字段。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-personalitybench",
+      "https://artificialanalysis.ai/articles/aa-personalitybench"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法、指数与公开示例可浏览；900 道完整问题集未公开。"
+    ],
+    "url": "https://artificialanalysis.ai/evaluations/aa-personalitybench",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-personalitybench",
+      "https://artificialanalysis.ai/evaluations/aa-personalitybench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "所查官方方法和展示页未声明完整题集及模型回答的统一转载许可。",
+    "scope": "本站中文整理测量方法与公开示例类型，原始问题和参评回答仅提供官方入口。",
+    "boundaries": [
+      "不复制私有问题或批量转载官方回答。",
+      "官方可查看不等于可再发布。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-personalitybench",
+      "https://artificialanalysis.ai/evaluations/aa-personalitybench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方展示幽默、真实性、结构化、迎合与文采等 5 类真实比较例子，可查看原始问题和回答；本站不复制未明确授权的原文，不编造标准答案。",
+    "url": "https://artificialanalysis.ai/evaluations/aa-personalitybench",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-personalitybench",
+      "https://artificialanalysis.ai/evaluations/aa-personalitybench"
+    ]
+  },
+  "metric": {
+    "name": "特质 Elo / 风格指数百分位",
+    "description": "Firth-penalized Bradley–Terry 拟合特质 Elo，平局半胜，GPT-6.1 Sol（max）锚定 1000，bootstrap 1,000 次。各特质在参评模型中转 z-score 后按指数平均并映射 1–100 百分位；Transparency 中 Sycophantic 反向。数值描述风格强弱，不代表越高越好。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-personalitybench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "900 问题及单次回答覆盖有限；相对百分位依赖当前参评模型集合，不能解释为稳定的人类人格测量或任务能力。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/aa-personalitybench"
+      ]
+    },
+    {
+      "text": "21 项程序化特征与 30 项评委特质是不同统计层，不能当作同一套标签。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/aa-personalitybench"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/evaluations/aa-personalitybench",
+      "label": "官方特质、指数与公开示例",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/aa-personalitybench",
+      "label": "官方问题设计、裁判、拟合及指数方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/articles/aa-personalitybench",
+      "label": "官方首发文章与日期",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-10-19"
+}

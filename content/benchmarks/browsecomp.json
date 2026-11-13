@@ -16,9 +16,14 @@
   "year": 2025,
   "version": "原始 BrowseComp",
   "kind": "original",
-  "aliases": [],
+  "aliases": [
+    "BrowseComp AA Search",
+    "BrowseComp AA Hard 200",
+    "BrowseComp n200",
+    "BrowseComp AA 搜索子集"
+  ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-13",
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "BrowseComp 是 OpenAI 发布的 browsing benchmark，包含需要搜索并综合多个网页信息才能回答的高难度问题。",
@@ -42,7 +47,8 @@
     "summary": "官方发布题数为 1,266；完整记录通过加密数据交付，评测代码可公开浏览。",
     "disclosure": "partial",
     "scale": [
-      "1,266 道浏览研究问题。"
+      "1,266 道浏览研究问题。",
+      "AA Search Index：从原版 1,266 题中抽取困难 200 题（n200），不代表完整原版。"
     ],
     "splits": [
       "官方没有发布标准 train/dev/test 划分。"
@@ -57,7 +63,8 @@
     "sourceUrls": [
       "https://openai.com/index/browsecomp/",
       "https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py",
-      "https://github.com/openai/simple-evals#evals"
+      "https://github.com/openai/simple-evals#evals",
+      "https://artificialanalysis.ai/methodology/search-api#browsecomp"
     ]
   },
   "dataAccess": {
@@ -173,6 +180,16 @@
       "label": "演示所指论文的正式出版信息",
       "url": "https://aclanthology.org/2021.emnlp-main.72/",
       "role": "paper"
+    },
+    {
+      "label": "AA Search Index 的 BrowseComp 困难 200 题与固定模型协议",
+      "url": "https://artificialanalysis.ai/methodology/search-api#browsecomp",
+      "role": "definition"
+    },
+    {
+      "label": "AA 搜索 API 供应商比较结果",
+      "url": "https://artificialanalysis.ai/agents/search-api",
+      "role": "leaderboard"
     }
   ],
   "sampleSet": {
@@ -216,6 +233,27 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20",
-  "releaseDate": "2025-04-10"
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2025-04-10",
+  "interpretation": {
+    "comparison": {
+      "text": "AA Search Index 使用 BrowseComp 困难 200 题子集，固定答题模型 GPT-5.6 Luna（medium），只替换搜索 API 供应商；同型号 GPT-5.6 Luna（medium）按原评测口径判定简短答案准确率，pass@1。它与 DeepSearchQA、AA-Omniscience 准确率等权组成搜索指数，不是模型单独的 BrowseComp 全集成绩。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/search-api#browsecomp"
+      ]
+    },
+    "versionChanges": {
+      "text": "AA 的常规 Stirrup 搜索循环限制 25 个 agent turns，每次搜索最多返回 10 项，正文为纯文本提取；未调用 finish 而耗尽轮次得零分。OpenAI Web Search 是单次 Responses API 调用，不使用同一 Stirrup 轮次预算，不能描述为所有供应商都执行完全相同的 agent 循环。方法快照为 2026-11-13。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/search-api#browsecomp"
+      ]
+    },
+    "disclosure": {
+      "text": "AA 200 题成员未在本页逐题核验；下方沿用作者论文的创题方法演示，不是已定位的原版计分数据行，更不能当作已确认的 AA 200 题成员。继续遵守原作者不在线披露数据集题目的要求。",
+      "sourceUrls": [
+        "https://openai.com/index/browsecomp/",
+        "https://artificialanalysis.ai/methodology/search-api#browsecomp"
+      ]
+    }
+  }
 }

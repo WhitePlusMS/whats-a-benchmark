@@ -19,7 +19,13 @@
   "aliases": [
     "Berkeley Function Calling Leaderboard",
     "BFCL v3",
-    "BFCL v4"
+    "BFCL v4",
+    "BFCL v4-500",
+    "BFCL AA Endpoint",
+    "BFCL AA Mobile",
+    "BFCL v4 non-live 640",
+    "BFCL 手机协议",
+    "BFCL 端点协议"
   ],
   "related": [],
   "verifiedAt": "2026-10-19",
@@ -47,7 +53,9 @@
     "disclosure": "complete",
     "scale": [
       "V1 初始 benchmark 约 2K 条；该规模只对应 V1。",
-      "V2 Live、V3 multi-turn/multi-step 与 V4 Agentic 分别扩展了任务范围。"
+      "V2 Live、V3 multi-turn/multi-step 与 V4 Agentic 分别扩展了任务范围。",
+      "AA 端点协议 BFCL v4-500：500 道离线子集，3 次重复，使用上游 2026.3.23 版本。",
+      "AA 手机协议：BFCL v4 non-live 640 题；Multiple 200、Multi-turn base 200、Irrelevance 240，三类各占 1/3。"
     ],
     "splits": [
       "官方按 function-call 类别和版本组织任务；未声明一个适用于所有版本的统一 train/dev/test split。"
@@ -62,7 +70,9 @@
     "sourceUrls": [
       "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#bfcl-v1",
       "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
-      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json"
+      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+      "https://artificialanalysis.ai/methodology/endpoint-accuracy-index",
+      "https://artificialanalysis.ai/methodology/mobile-device-benchmark-set"
     ]
   },
   "dataAccess": {
@@ -575,9 +585,19 @@
       "label": "历史核验所录入口（旧行号不适用；现用固定版见正文）",
       "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353",
       "role": "data"
+    },
+    {
+      "label": "AA 端点 BFCL v4-500 协议",
+      "url": "https://artificialanalysis.ai/methodology/endpoint-accuracy-index",
+      "role": "definition"
+    },
+    {
+      "label": "AA 手机 BFCL non-live 640 协议",
+      "url": "https://artificialanalysis.ai/methodology/mobile-device-benchmark-set",
+      "role": "definition"
     }
   ],
-  "updatedAt": "2026-11-12",
+  "updatedAt": "2026-11-13",
   "researchNotes": [
     {
       "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",
@@ -597,5 +617,26 @@
         "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md"
       ]
     }
-  ]
+  ],
+  "interpretation": {
+    "comparison": {
+      "text": "AA 方法快照 2026-11-13。AA 端点 v4-500：在同一模型的不同 API 供应商间比较原生工具调用执行与匹配准确率，3 次重复取均值。500 道离线子集偏重多轮与并行调用，排除 Java/JS、memory、web search、live-relevance；采用上游 2026.3.23 版本，不是 BFCL 全集。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/endpoint-accuracy-index"
+      ]
+    },
+    "versionChanges": {
+      "text": "AA 手机 non-live 640：Multiple 200 题、Multi-turn base 200 题和 Irrelevance 240 题三类等权，不按各题数直接加权；每题 5 次，pass@1。只用原生 FC 模式及 llama.cpp 解析，不从文本回复补救工具调用；不可执行的调用判失败。当前量化为 Q4_K_M 或更小 GGUF，16K 上下文，另提供 1 分钟限制结果。这是手机模型能力协议，不是端点 v4-500 或手机推理速度测试。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/mobile-device-benchmark-set"
+      ]
+    },
+    "disclosure": {
+      "text": "下方站内样例来自 BFCL 上游公开 simple_python 和 multiple 类别；没有确认它被选入 AA 端点 500 题或手机 640 题，因此不将其标作 AA 子集样例。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/endpoint-accuracy-index",
+        "https://artificialanalysis.ai/methodology/mobile-device-benchmark-set"
+      ]
+    }
+  }
 }

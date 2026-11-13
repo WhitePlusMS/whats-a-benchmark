@@ -1,0 +1,144 @@
+{
+  "id": "aa-image-editing",
+  "status": "published",
+  "order": 600,
+  "name": "AA-Image-Editing v2.1",
+  "subtitle": "参考图上的局部编辑：既要改对，也要保留无关内容",
+  "category": "multimodal",
+  "tags": [
+    "图像编辑",
+    "人类偏好",
+    "Elo"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "v2.1；2026-11-13 方法快照",
+  "kind": "original",
+  "aliases": [
+    "AA-Image-Editing",
+    "AA Image Editing",
+    "AA 图像编辑"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "根据参考图与编辑指令对图像作局部修改，并尽可能保持其余内容不变；用盲选的人类偏好比较模型输出。",
+    "task": "覆盖物体、场景风格、修复增强、构图、身份保持、文字符号和推理驱动的七种编辑动作。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "taskContract": {
+    "input": "一张经筛选的真实或合成参考图，以及针对该图的英文人工编辑指令。",
+    "output": "一张编辑后的图像；同一参考图与指令下比较两个模型的输出。",
+    "environment": "每提示生成 1 张，1:1，seed 42，通常 1024×1024；最低分辨率更高的模型按最小支持尺寸生成，再缩至 1024×1024 供 Arena 展示。其余采用供应商公布的默认设置。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "dataProfile": {
+    "summary": "v2.1 沿用 v2.0 的任务分类与按月更新；十类用途乘七类编辑动作，参考图与指令成对策划，未公开完整题包数量。",
+    "disclosure": "partial",
+    "scale": [
+      "10 类用途；7 类编辑动作；按用途与动作组合均衡采样。"
+    ],
+    "splits": [
+      "统计 AA-Image-Editing v2 测试集、且两模型均在 v2.1 范围内的投票；模型更换 Arena host 后早期输出的投票不再计入。"
+    ],
+    "fields": [
+      "参考图",
+      "编辑指令",
+      "模型输出",
+      "盲选结果"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "正式榜单公开；成对图像和编辑请求通过官方 Image Arena 查看，未取得可下载完整任务包。"
+    ],
+    "url": "https://artificialanalysis.ai/image/leaderboard/editing",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image",
+      "https://artificialanalysis.ai/image/leaderboard/editing",
+      "https://artificialanalysis.ai/image/arena"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到参考图、编辑指令与模型输出的统一再发布许可。",
+    "scope": "本站说明输入、输出和评分规则，不复制官方图片、截图或任务原文。",
+    "boundaries": [
+      "可公开查看不代表可转载；模型权重许可也不覆盖 Arena 素材。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image",
+      "https://artificialanalysis.ai/image/leaderboard/editing"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "参考图、编辑要求及两份输出请在官方 Image Arena 的图像编辑模式查看。未确认单项转载许可，因此本站不放来源不明的前后对比，也不拿合成示意冒充真实案例。",
+    "url": "https://artificialanalysis.ai/image/arena",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/image/arena",
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "metric": {
+    "name": "Quality Elo（人工盲选）",
+    "description": "经验证的私有评审者对同一任务的两份输出盲选，左右随机；以 Bradley–Terry 拟合并换算 Elo，FLUX.2 [dev] 锚定为 1000，提供 95% 区间。图像编辑与文生图分别计分。分数是相对偏好，不是编辑成功率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "v2.1 调整在榜模型与统计估计：区间考虑其他模型评级的不确定性，总榜 Range 来自完整榜单模拟，筛选和分类榜沿用置信区间对应范围。任务分类和按月刷新机制沿用 v2.0。未核实 v2.1 的日级或月级首发时间，不把本次核验日或参评模型发布日期当作评测发布日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/image"
+      ]
+    }
+  },
+  "limitations": [
+    {
+      "text": "它测试修改现有图像的后期编辑，不是生成全新图像但保留参考特征的 Reference to Image；两者是独立评测。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/image"
+      ]
+    },
+    {
+      "text": "置信区间把每次投票当作独立观测；同一评审者或提示的相关性可能使区间偏窄。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/image"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/image",
+      "label": "AA 图像方法：v2.1 编辑分类、盲选与版本变化",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "label": "AA-Image-Editing v2.1 正式榜单",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/image/arena",
+      "label": "官方 Image Arena：查看参考图与编辑输出",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13"
+}

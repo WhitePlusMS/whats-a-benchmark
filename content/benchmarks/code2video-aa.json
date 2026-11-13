@@ -1,0 +1,160 @@
+{
+  "id": "code2video-aa",
+  "status": "published",
+  "order": 600,
+  "name": "Code2Video-AA",
+  "subtitle": "用 HTML 生成短视频，再按五个设计维度比较成品",
+  "category": "multimodal",
+  "tags": [
+    "视频生成",
+    "前端代码",
+    "设计评价"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "dataset 0.3.0；HyperFrames 0.8.30",
+  "kind": "derivative",
+  "aliases": [
+    "Code2Video AA"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AA 对 HeyGen Code2Video Bench 的独立实施：从 168 个设计 brief 中筛选 114 项，要求模型以 HyperFrames HTML 制作短产品或品牌视频。",
+    "task": "根据设计 brief 一次性产出可渲染的动画代码，比较渲染视频的设计质量。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/code2video-aa",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa"
+    ]
+  },
+  "taskContract": {
+    "input": "设计 brief、HeyGen 系统提示、composition schema 与 lint 规则。",
+    "output": "HyperFrames HTML/GSAP composition（index.html），经离线渲染成为视频。",
+    "environment": "单次生成、无工具调用；HyperFrames 0.8.30，渲染限时 5 分钟；远程资源不可访问，本地提供 GSAP。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA dataset 0.3.0 使用 114 项，包括 39 公开与 75 私有；不同于 HeyGen 原版 168 项。",
+    "disclosure": "partial",
+    "scale": [
+      "114 项：39 public + 75 private。"
+    ],
+    "splits": [
+      "AA 文章明确展示 3 项来自 HeyGen public split 的真实 brief。"
+    ],
+    "fields": [
+      "设计 brief、HTML composition、渲染视频；五轴成对判定。"
+    ],
+    "files": [
+      "官方发布页可查看公开 brief 与模型渲染成品；本站不分发完整数据包。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa",
+      "https://artificialanalysis.ai/articles/code2video-aa",
+      "https://www.heygen.com/research/introducing-code2video-benchmark"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法和公开任务展示可浏览；AA 114 项完整集合未取得，75 私有题不应冒充公开题。"
+    ],
+    "url": "https://artificialanalysis.ai/articles/code2video-aa",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/code2video-aa",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "AA 发布页说明所展示 HeyGen public split brief 为 CC BY 4.0；不据此推断所有模型渲染视频具有相同许可。",
+    "scope": "本站仅节选一个公开 brief 并中文概述；实际视频通过官方入口观看。",
+    "boundaries": [
+      "不下载或转载许可未确认的参评视频。",
+      "公开 brief 的许可不扩展到 75 私有任务。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/code2video-aa"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示已核对的公开具体任务，原始材料与本站说明分开。",
+    "url": "https://artificialanalysis.ai/articles/code2video-aa",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/code2video-aa"
+    ]
+  },
+  "metric": {
+    "name": "五轴 Bradley–Terry Elo 均值",
+    "description": "Gemini 4 Argon 按 engagement、prompt intent、composition、temporal consistency、craft 比较同题视频；每轴独立采样，8 fps/high 输入。五个轴分别拟合 Elo 后取均值，GPT-5.5（xhigh）锚定 1000。渲染失败对成功直接负，两边失败为平局。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa",
+      "https://artificialanalysis.ai/articles/code2video-aa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "置信区间反映比较采样，不覆盖重复生成或 brief 变化；评委模型自身也参加该评测，需保留裁判依赖边界。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa"
+      ]
+    },
+    {
+      "text": "本实现不是原 HeyGen 168 题及其偏好模型裁判；不能将两套成绩混为一谈。",
+      "sourceUrls": [
+        "https://www.heygen.com/research/introducing-code2video-benchmark",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/evaluations/code2video-aa",
+      "label": "AA 评测定义与公开入口",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/articles/code2video-aa",
+      "label": "AA 首发文章与日期",
+      "role": "release"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#code2video-aa",
+      "label": "AA 当前实施方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://www.heygen.com/research/introducing-code2video-benchmark",
+      "label": "HeyGen 原版发布与任务范围",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-10-26",
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "public-wireframe-builder-demo",
+        "title": "Wireframe builder demo：移动端线框编辑器演示",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "制作约 7.3 秒、16:9 的线框编辑器演示：黑色标题卡后进入浅灰工作区，依次添加手机画布中的模块。镜头固定，动作来自指针、面板切换与元素添加。",
+        "explanation": "这是 AA 发布页明确标出的 HeyGen public split 真实任务。raw 保留 brief 开头节录；本站 ID 仅为展示标识，未声称是原始数据行 ID。完整 brief 和各模型生成视频在官方链接，不以本站生成动画替代参评成品。",
+        "raw": "UI motion graphic (product screen-recording style), 16:9, ~7.3s. A demo of a mobile-app wireframe builder : one black title card, then a flat, high-key light-gray workspace where blocks are added to a phone canvas one at a time.",
+        "source": "https://artificialanalysis.ai/articles/code2video-aa",
+        "license": "HeyGen Code2Video Bench public brief，CC BY 4.0（AA 发布页明确说明）；本站节选并中文概述。https://creativecommons.org/licenses/by/4.0/",
+        "split": "官方展示的 HeyGen public split；AA dataset 0.3.0",
+        "excerpt": true
+      }
+    ]
+  }
+}

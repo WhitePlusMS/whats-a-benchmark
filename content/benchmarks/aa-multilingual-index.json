@@ -165,6 +165,11 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=CohereLabs%2FGlobal-MMLU-Lite&config=ja&split=test&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "label": "Global-MMLU-Lite 版本及关联依据",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite",
+      "role": "definition"
     }
   ],
   "related": [
@@ -176,10 +181,18 @@
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
         "https://huggingface.co/datasets/openai/MMMLU"
       ]
+    },
+    {
+      "id": "global-mmlu-lite",
+      "label": "基础题集",
+      "detail": "上游 v3.0 有 23 种语言；AA 方法当前列 16 种支持语言，成绩覆盖应依 AA 运行范围，不把上游总量当作已实测。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite"
+      ]
     }
   ],
   "verifiedAt": "2026-10-19",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-13",
   "interpretation": {
     "judge": {
       "text": "选择题通过正则提取答案并按标准答案计分，由 AA 独立执行。",

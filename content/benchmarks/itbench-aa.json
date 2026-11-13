@@ -1,0 +1,167 @@
+{
+  "id": "itbench-aa",
+  "status": "published",
+  "order": 600,
+  "name": "ITBench-AA",
+  "subtitle": "从 Kubernetes 离线故障快照定位独立根因",
+  "category": "agents",
+  "tags": [
+    "SRE",
+    "根因分析",
+    "运维代理"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA SRE；固定数据 76df38a",
+  "kind": "derivative",
+  "aliases": [
+    "ITBench-AA SRE"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AA 独立实施 IBM ITBench 的 SRE 根因分析任务，共 59 项，要求识别引发故障的实体而非下游症状。",
+    "task": "读取集群离线观测数据，返回最小的独立致因集合。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#itbench-aa",
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "alerts、events、traces、metrics、logs 和 topology 等离线快照。",
+    "output": "/home/user/agent_output.json：contributing_factors 中的 namespace/Kind/name 以及理由和证据。",
+    "environment": "AA Stirrup shell 沙箱；最多 100 turns，每题 3 次；不是直接操作线上集群修复故障。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#itbench-aa",
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "正式 59 项含 40 项公开及 19 项私有留出；固定公开 JSONL 实读 40 行。",
+    "disclosure": "partial",
+    "scale": [
+      "59 正式任务 = 40 public + 19 private。"
+    ],
+    "splits": [
+      "HF sre 配置 / test split；已发布行的 source_split 全为 public。"
+    ],
+    "fields": [
+      "id_aa、scenario_id、category、source_split、scenario_root、ground_truth_yaml。"
+    ],
+    "files": [
+      "sre/data.jsonl；场景目录另提供离线观测文件。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#itbench-aa"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "40 项公开可下载；19 项留出题不包含在公开仓库。"
+    ],
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "固定 AA 数据卡声明 CC BY 4.0。",
+    "scope": "本站节选公开 Scenario-31 的参考根因与传播关系，注明 IBM 原 ITBench 和 AA 发布版本。",
+    "boundaries": [
+      "许可声明针对公开发布数据，不能推断私有 19 项也可取得。",
+      "不分发完整观测文件或集群环境。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示已核对的公开具体任务，原始材料与本站说明分开。",
+    "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "根因集合严格覆盖后的 precision",
+    "description": "GPT-5.5（medium）仅归一化实体名和别名；确定性匹配先合并等价实体。遗漏任何根因组得 0；全部覆盖后按 TP/(TP+FP) 惩罚多报；每题 3 次后平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#itbench-aa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "离线诊断分数不能解释为在线修复成功率；公开样例不代表私有留出题已公开。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#itbench-aa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/evaluations/itbench-aa",
+      "label": "AA 评测定义与公开入口",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/articles/itbench-aa-launch",
+      "label": "AA 首发文章与日期",
+      "role": "release"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#itbench-aa",
+      "label": "AA 当前实施方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/README.md",
+      "label": "AA 固定数据卡与 CC BY 4.0",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl",
+      "label": "实际读取的固定 40 行 sre/test JSONL",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-05-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "it-bench-sre-public-scenario-31",
+        "title": "Scenario-31：NetworkPolicy 阻断前端入口",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "从离线集群故障观测中找出独立根因。此例前端代理无法连接前端服务；不要把传播链上的每个 Pod 和 Service 都列成独立原因。",
+        "answer": "参考根因实体：otel-demo/NetworkPolicy/frontend-block-all-ports。",
+        "explanation": "raw 是固定公开 test 的真实 ground_truth_yaml 记录；保留根因、别名和传播关系，便于区分原因与症状。本站未载入全部观测文件，也没有执行代理，参考根因不是本站实测输出。",
+        "raw": {
+          "id_aa": "it-bench-sre-public-scenario-31",
+          "scenario_id": "Scenario-31",
+          "category": "sre",
+          "source_split": "public",
+          "scenario_root": "/home/user",
+          "ground_truth_yaml": "---\napiVersion: itbench.io/v1\nkind: GroundTruth\nmetadata:\n  name: scenario-31\nspec:\n  alerts:\n    - group_id: frontend-proxy-service-1\n      id: RequestErrorRate\n      metadata:\n        description: Frontend proxy cannot reach frontend service due to network policy blocking ingress\n  aliases:\n    - - frontend-service-1\n      - frontend-pod-1\n    - - frontend-proxy-service-1\n      - frontend-proxy-pod-1\n  fault:\n    - category: Configuration\n      condition: NetworkPolicy blocks all ingress traffic to frontend pods\n      entity:\n        group_id: frontend-pod-1\n        kind: Pod\n        name: frontend-pod-1\n      fault_mechanism: misconfigured-network-policy\n  groups:\n    - filter:\n        - frontend-block-all-ports\n      id: frontend-block-all-ports\n      kind: NetworkPolicy\n      namespace: otel-demo\n      root_cause: true\n    - filter:\n        - frontend-.*\n      id: frontend-pod-1\n      kind: Pod\n      namespace: otel-demo\n    - filter:\n        - frontend\\b\n      id: frontend-service-1\n      kind: Service\n      namespace: otel-demo\n    - filter:\n        - frontend-proxy-.*\n      id: frontend-proxy-pod-1\n      kind: Pod\n    - filter:\n        - frontend-proxy\\b\n      id: frontend-proxy-service-1\n      kind: Service\n      namespace: otel-demo\n  propagations:\n    - condition: Misconfigured network policy\n      effect: NetworkPolicy blocks all ingress traffic to frontend pods\n      source: frontend-block-all-ports\n      target: frontend-pod-1\n    - condition: NetworkPolicy blocks all ingress traffic to frontend pods\n      effect: Frontend service cannot receive traffic, making it completely unavailable\n      source: frontend-pod-1\n      target: frontend-service-1\n    - condition: Frontend proxy cannot connect to frontend service due to network policy\n      effect: All user requests through proxy fail with connection errors\n      source: frontend-service-1\n      target: frontend-proxy-1\n  recommended_actions:\n    - solution:\n        actions:\n          - Identify and remove the NetworkPolicy blocking ingress to frontend pods\n        id: remove_blocking_network_policy"
+        },
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl",
+        "license": "IBM ITBench；Artificial Analysis 公开 SRE 发布，CC BY 4.0。本站中文整理与节选。https://creativecommons.org/licenses/by/4.0/",
+        "split": "HF sre/test；source_split=public",
+        "excerpt": true
+      }
+    ]
+  }
+}

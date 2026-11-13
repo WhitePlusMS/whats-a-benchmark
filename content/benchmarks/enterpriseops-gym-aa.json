@@ -1,0 +1,183 @@
+{
+  "id": "enterpriseops-gym-aa",
+  "status": "published",
+  "order": 600,
+  "name": "EnterpriseOps-Gym-AA",
+  "subtitle": "在有状态企业系统中完成跨工具工作流",
+  "category": "agents",
+  "tags": [
+    "企业代理",
+    "工具调用",
+    "数据库状态"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA oracle；方法快照 2026-11-13",
+  "kind": "derivative",
+  "aliases": [
+    "Enterprise Ops Gym AA"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AA 对 ServiceNow EnterpriseOps-Gym 的独立实施，在企业业务系统中执行多步任务并检查最终数据库状态。",
+    "task": "通过 MCP 工具修改业务系统，使任务要求全部成立；不以自然语言宣称完成作为成功。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/enterprise-ops-gym-aa",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa"
+    ]
+  },
+  "taskContract": {
+    "input": "业务请求、初始数据库状态和 oracle 模式指定的相关工具。",
+    "output": "数据库中真实产生的日历、工单、权限或其他业务状态变化。",
+    "environment": "AA Stirrup；8 个业务域；每次独立重置数据库，最多 100 turns；每题运行 3 次。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa",
+      "https://artificialanalysis.ai/articles/announcing-enterpriseops-gym-aa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA 声明采用 1,117 项 oracle 任务；本次读取的固定上游数据卡八域 oracle 合计 649 行，不能当作 AA 全量成员清单。",
+    "disclosure": "partial",
+    "scale": [
+      "AA：1,117 任务、512 工具、164 数据表。",
+      "固定公开 oracle 数据卡：649 行；calendar Parquet 实读 61 行。"
+    ],
+    "splits": [
+      "上游 oracle 配置按 calendar、csm、drive、email、hr、hybrid、itsm、teams 分 split；不是训练/测试划分。"
+    ],
+    "fields": [
+      "task_id、domain、user_prompt、selected_tools、verifiers；运行配置另含数据库和 MCP 上下文。"
+    ],
+    "files": [
+      "oracle/calendar-00000-of-00001.parquet"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/announcing-enterpriseops-gym-aa",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa",
+      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/README.md",
+      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/oracle/calendar-00000-of-00001.parquet"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "上游固定公开快照可下载；AA 1,117 项与该快照的完整逐题对应尚未确认。"
+    ],
+    "url": "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/README.md",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "上游固定数据卡声明 Apache-2.0。",
+    "scope": "本站节选公开合成任务的请求、工具名及判定条件，中文整理。",
+    "boundaries": [
+      "不转载运行 token、用户上下文、数据库全量与缓存。",
+      "公开上游示例未独立证明是 AA 1,117 正式任务成员。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示已核对的公开具体任务，原始材料与本站说明分开。",
+    "url": "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/oracle/calendar-00000-of-00001.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/README.md",
+      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/oracle/calendar-00000-of-00001.parquet"
+    ]
+  },
+  "metric": {
+    "name": "严格任务成功率（pass@1）",
+    "description": "只有最终数据库的全部 SQL verifiers 通过，该次任务才成功；每题 3 次平均，不是三次任一成功。逐 verifier 通过率为另一辅助指标，不能替代任务成功率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa",
+      "https://artificialanalysis.ai/articles/announcing-enterpriseops-gym-aa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "oracle 预先给出相关工具，不包含从干扰工具中检索的难度；AA harness 与提示和上游报告不同。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa"
+      ]
+    },
+    {
+      "text": "固定公开快照与 AA 正式集合规模不一致；本站示例仅标为上游公开 oracle，未断言 AA 成员关系。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/README.md",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/evaluations/enterprise-ops-gym-aa",
+      "label": "AA 评测定义与公开入口",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/articles/announcing-enterpriseops-gym-aa",
+      "label": "AA 首发文章与日期",
+      "role": "release"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#enterprise-ops-gym-aa",
+      "label": "AA 当前实施方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/README.md",
+      "label": "ServiceNow 固定数据卡、oracle 分片数与许可",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/oracle/calendar-00000-of-00001.parquet",
+      "label": "实际读取的固定 calendar oracle Parquet",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-07-08",
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "task_20251117_165528_648_bca89e7d_3e81ece9",
+        "title": "创建日历、共享编辑权限并预约空闲时段",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "创建 Search Algorithm Beta 次级日历并授予指定同事编辑权限；从指定日期开始寻找第一个没有日程的日期，在 UTC 15:00 安排 60 分钟带 Google Meet 的技术启动会。",
+        "answer": "原始 SQL 判定要求：次级日历存在、指定同事拥有 writer 权限、会议时间为 2025-11-16 15:00–16:00 UTC。",
+        "explanation": "真实上游 calendar/oracle 第一条记录，raw 保留请求、工具和原始 SQL verifiers，省略系统提示、数据库上下文及 token。本例未运行代理，也未证明属于 AA 全部 1,117 项；判定条件不是模型实测结果。 数据集为合成企业场景；记录中的联系人和邮箱是基准场景角色，不是用户的真实日历或邮件。",
+        "raw": {
+          "task_id": "task_20251117_165528_648_bca89e7d_3e81ece9",
+          "domain": "calendar",
+          "user_prompt": "I’m planning to have a technical kickoff session with Carol. Create a secondary calendar called “Search Algorithm Beta.” Allow Carol(carol.white@techcorp.com) to edit. Starting from November 14, 2025, find the first day when I have no scheduled events, and schedule “Search Algorithm Beta – Technical Kickoff” for 60 minutes at 3:00 PM UTC with Google Meet.",
+          "selected_tools": [
+            "query_freebusy",
+            "create_event",
+            "insert_acl_rule",
+            "create_calendar",
+            "get_calendar_list"
+          ],
+          "verifiers": "[{\"verifier_type\": \"database_state\", \"name\": \"Calendar Creation\", \"description\": \"Verify secondary calendar created\", \"gym_name\": \"gym-calendar\", \"validation_config\": {\"query\": \"SELECT COUNT(*) AS count FROM calendars WHERE summary = 'Search Algorithm Beta' AND is_primary = 0 AND user_id = 'bob_developer'\", \"expected_value\": 1, \"comparison_type\": \"equals\"}}, {\"verifier_type\": \"database_state\", \"name\": \"Carol Edit Access\", \"description\": \"Check Carol's edit permissions\", \"gym_name\": \"gym-calendar\", \"validation_config\": {\"query\": \"SELECT COUNT(*) AS count FROM acls WHERE user_id = 'bob_developer' AND scope_id LIKE '%carol%' AND role = 'writer'\", \"expected_value\": 1, \"comparison_type\": \"equals\"}}, {\"verifier_type\": \"database_state\", \"name\": \"Event Scheduled\", \"description\": \"Verify event created on available day\", \"gym_name\": \"gym-calendar\", \"validation_config\": {\"query\": \"SELECT COUNT(*) AS count FROM events WHERE user_id = 'bob_developer' AND summary LIKE '%Search Algorithm Beta \\u2013 Technical Kickoff%' AND start_datetime = '2025-11-16 15:00:00.000000' AND end_datetime = '2025-11-16 16:00:00.000000' AND start_timezone = 'UTC' AND end_timezone = 'UTC'\", \"expected_value\": 1, \"comparison_type\": \"equals\"}}]"
+        },
+        "source": "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym/blob/c8e538eae8a6205294f0a86675fefdc1fac408f6/oracle/calendar-00000-of-00001.parquet",
+        "license": "ServiceNow-AI EnterpriseOps-Gym，Apache-2.0（固定数据卡声明）；本站节选及中文整理。",
+        "split": "oracle 配置 / calendar split；AA 正式成员未确认",
+        "excerpt": true,
+        "licensePath": "licenses/enterpriseops-gym-apache-2.txt"
+      }
+    ]
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "id": "global-mmlu-lite",
+  "status": "published",
+  "order": 600,
+  "name": "Global-MMLU-Lite",
+  "subtitle": "保留文化分层的多语言知识测试轻量版",
+  "category": "knowledge",
+  "tags": [
+    "多语言",
+    "知识",
+    "文化分层"
+  ],
+  "publisher": "Cohere Labs",
+  "brandIds": [
+    "cohere"
+  ],
+  "year": 2026,
+  "version": "v3.0；固定数据修订 36c2fd7",
+  "kind": "derivative",
+  "aliases": [
+    "Global MMLU Lite",
+    "Global-MMLU-Lite v3.0"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Global-MMLU 的轻量版：每种语言 400 道测试题，文化敏感 CS 与文化无关 CA 各 200 道；v3.0 覆盖 23 种语言。",
+    "task": "在原语言四个选项中选择答案，并可按语言与文化分层分析表现。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "指定语言的问题、四个选项；原始记录还保存学科、文化敏感标签及标注者投票。",
+    "output": "答案字母 A/B/C/D；评测时保留语言和子集条件。",
+    "environment": "原始 test 是测评集，dev 单独提供。AA 独立实施为零样本指令提示、正则提取答案、pass@1；其支持语言范围不等于上游全部 23 种。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite"
+    ]
+  },
+  "dataProfile": {
+    "summary": "数据卡 v3.0 说明 23 语言、每语言 400 道 test，共 9,200 题；本次实际读取固定中文 test parquet 的 400 行。",
+    "disclosure": "complete",
+    "scale": [
+      "上游 test：23 × 400 = 9,200，每语言 CS 200 + CA 200。",
+      "上游 dev 覆盖 22 种语言，与 test 分开；本站未逐片读取 dev，不将其规模计入测试题数。",
+      "AA 方法列 16 种支持语言，概述规模约 6,000；不是上游全部 9,200 题的统一成绩。"
+    ],
+    "splits": [
+      "zh/test-00000-of-00001.parquet：test，400 行。",
+      "各语言 dev 与 test 分开；不以 dev 冒充测试。"
+    ],
+    "fields": [
+      "sample_id",
+      "question",
+      "option_a…option_d",
+      "answer",
+      "subject",
+      "cultural_sensitivity_label",
+      "is_annotated",
+      "required_knowledge",
+      "reference",
+      "culture",
+      "region",
+      "country"
+    ],
+    "files": [
+      "zh/test-00000-of-00001.parquet"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "按语言选择固定 revision 的 dev/test 文件。"
+    ],
+    "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Cohere Labs 数据卡明确声明 Apache-2.0。",
+    "scope": "展示一条固定中文 test 原始记录，保留字段和作者许可。",
+    "boundaries": [
+      "同一题的不同语言属于对应翻译，不应作为不同独立知识问题重复计数。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示固定官方数据文件中的一条记录，保留原始字段；不是本站编写的测试题。",
+    "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+    ]
+  },
+  "metric": {
+    "name": "答案准确率（按语言/文化子集）",
+    "description": "对四选一答案评分；AA 用正则提取答案、一次运行的 pass@1。跨语言综合分必须注明实际支持语言，不把 AA 当前支持范围等同上游 23 种语言。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "CS/CA 标签用于分析已有题目的文化依赖，不能证明测试覆盖全部文化或语言；翻译也不保证跨语言难度完全一致。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+      ]
+    },
+    {
+      "text": "AA 页面及方法列出 16 种语言并使用约 6,000 的概数；本页不据此推断某模型已完成所有语言或上游 9,200 行。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/global-mmlu-lite",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md",
+      "label": "Cohere Labs v3.0 固定数据卡",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+      "label": "固定中文 test parquet",
+      "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite",
+      "label": "AA Global-MMLU-Lite 实施与支持语言",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/global-mmlu-lite",
+      "label": "AA 官方结果按语言入口",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [
+    {
+      "id": "global-mmlu",
+      "label": "完整版",
+      "detail": "完整版包含约 14K 题的多语言翻译；Lite 是每语言 400 题、CS/CA 平衡的独立轻量配置。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+      ]
+    },
+    {
+      "id": "aa-multilingual-index",
+      "label": "AA 多语言指数",
+      "detail": "AA 基于 Lite 的支持语言成绩构建指数；其运行覆盖不等于上游全部语言。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#global-mmlu-lite"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-05",
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "global-mmlu-lite-zh-astronomy-test-107",
+        "title": "中文 test · astronomy/test/107（CA）",
+        "type": "choice",
+        "prompt": "在月球上，最重的是什么？",
+        "options": [
+          "一千克羽毛",
+          "在地球上测量重五磅的砖",
+          "五千克羽毛",
+          "一千克砖"
+        ],
+        "answer": "C",
+        "explanation": "这是固定中文测试记录，文化分层为 CA（文化无关）、is_annotated 为 true。原始标注字段完整保留，内容不是本站改写题或解题步骤。未据此声称该题被某次 AA 运行实际执行。",
+        "raw": {
+          "sample_id": "astronomy/test/107",
+          "subject": "astronomy",
+          "subject_category": "STEM",
+          "question": "在月球上，最重的是什么？",
+          "option_a": "一千克羽毛",
+          "option_b": "在地球上测量重五磅的砖",
+          "option_c": "五千克羽毛",
+          "option_d": "一千克砖",
+          "answer": "C",
+          "required_knowledge": "['none', 'none', 'none', 'none']",
+          "time_sensitive": "['No', 'No', 'No', 'No']",
+          "reference": "['-', '-', '-', '-']",
+          "culture": "[]",
+          "region": "[]",
+          "country": "[]",
+          "cultural_sensitivity_label": "CA",
+          "is_annotated": true
+        },
+        "source": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/zh/test-00000-of-00001.parquet",
+        "license": "Cohere Labs Global-MMLU-Lite，Apache-2.0；保留中文原始记录。",
+        "licensePath": "licenses/global-mmlu-lite-apache-2.txt",
+        "split": "zh / test；固定修订 36c2fd756f19ccf13a9a96c8e53ccecc02192b8b",
+        "excerpt": false
+      }
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "数据卡标注首发 2024-12，当前 v3.0 的更新月份为 2026-05。本页发布日期采用当前版本的已披露月份，不把首发月份或下载日期当成 v3.0 日级发布日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite/blob/36c2fd756f19ccf13a9a96c8e53ccecc02192b8b/README.md"
+      ]
+    }
+  }
+}
