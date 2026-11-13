@@ -185,3 +185,36 @@ test("leaving comparison cancels a pending URL replacement and remembers committ
   assert.deepEqual(state.selected.value, [ids[0]!]);
   state.dispose();
 });
+
+test("目录刷新恢复当前标签页的选择，分享链接优先，清空同步保存", async () => {
+  let value = "";
+  const session = () => ({
+    getItem: () => value,
+    setItem: (_key: string, ids: string) => {
+      value = ids;
+    },
+  });
+  const router = setupRouter();
+  await router.push("/");
+  const first = createComparison(router, session);
+  first.activate();
+  first.toggle(ids[0]!);
+  first.toggle(ids[1]!);
+  first.dispose();
+  const reloaded = createComparison(router, session);
+  assert.deepEqual(reloaded.selected.value, []);
+  reloaded.activate();
+  assert.deepEqual(reloaded.selected.value, ids.slice(0, 2));
+  await router.push({
+    path: "/compare/",
+    query: { ids: ids.slice(1, 3).join(",") },
+  });
+  assert.deepEqual(reloaded.selected.value, ids.slice(1, 3));
+  const settled = navigated(router);
+  reloaded.clear();
+  await settled;
+  assert.equal(value, "");
+  await router.push("/");
+  assert.deepEqual(reloaded.selected.value, []);
+  reloaded.dispose();
+});

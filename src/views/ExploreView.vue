@@ -18,6 +18,7 @@ import BenchmarkCard from "../components/BenchmarkCard.vue";
 import CatalogFilters from "../components/CatalogFilters.vue";
 import UiDialog from "../components/UiDialog.vue";
 import Icon from "../components/Icon.vue";
+import ComparisonSelectionBar from "../components/ComparisonSelectionBar.vue";
 import { formatCount } from "../lib/displayFormats";
 
 const route = useRoute();
@@ -188,7 +189,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         <Icon
           :name="query.sample === 'local' ? 'tick' : 'book'"
           :size="17"
-        />站内案例<span>{{ localCount }}</span>
+        />有站内案例<span>{{ localCount }} 项</span>
       </button>
       <button
         class="mobile-filter-button"
@@ -210,7 +211,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         ><Icon name="code" :size="21"
       /></span>
       <span class="reading-feature-copy">
-        <strong>用一道真实任务，看懂 Terminal-Bench 4.0</strong>
+        <strong>Terminal-Bench 4.0 任务示例</strong>
         <small>从输入到验收，看看这项评测怎样出题</small>
       </span>
       <span class="reading-feature-action"
@@ -235,6 +236,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         {{ query.q ? `搜索“${query.q}”，` : "" }}找到
         {{ formatCount(results.length) }} 项评测。
       </p>
+      <ComparisonSelectionBar inline />
       <div class="results-toolbar">
         <div>
           <h2>

@@ -94,9 +94,12 @@
 .site-footer {
   margin-top: 55px;
   border-top: 1px solid var(--border);
-  padding: 30px 0 calc(var(--dock-clearance) + env(safe-area-inset-bottom, 0px));
+  padding: 30px 0 calc(30px + env(safe-area-inset-bottom, 0px));
   background: var(--surface-subtle);
   color: var(--muted);
+}
+.site-footer.with-compare-dock {
+  padding-bottom: calc(var(--dock-clearance) + env(safe-area-inset-bottom, 0px));
 }
 .footer-inner {
   display: flex;
@@ -230,7 +233,7 @@
     height: 32px;
   }
   .brand small {
-    font-size: 10px;
+    font-size: var(--ui-text-meta);
   }
   .main-nav {
     width: 100%;
@@ -281,9 +284,7 @@
   .site-footer {
     margin-top: 35px;
     padding-top: 25px;
-    padding-bottom: calc(
-      var(--dock-clearance) + 20px + env(safe-area-inset-bottom, 0px)
-    );
+    padding-bottom: calc(25px + env(safe-area-inset-bottom, 0px));
   }
   .compare-dock {
     bottom: calc(12px + env(safe-area-inset-bottom, 0px));
@@ -319,5 +320,54 @@
     white-space: normal;
     width: 280px;
     text-align: center;
+  }
+}
+
+.compare-dock-inline {
+  display: none;
+}
+@media (max-width: 700px) {
+  .catalog-compare-dock {
+    display: none;
+  }
+  .site-footer.catalog-footer {
+    padding-bottom: calc(25px + env(safe-area-inset-bottom, 0px));
+  }
+  .compare-dock-inline {
+    position: static;
+    transform: none;
+    display: flex;
+    max-width: none;
+    width: auto;
+    min-height: var(--ui-touch-target);
+    padding: 4px 10px;
+    gap: 8px;
+    margin-bottom: 10px;
+    border-radius: var(--ui-card-radius);
+    box-shadow: none;
+  }
+  .compare-dock-inline .dock-heading {
+    display: flex;
+    margin-right: auto;
+  }
+  .compare-dock-inline .dock-heading > svg {
+    display: none;
+  }
+  .compare-dock-inline > .icon-button {
+    position: static;
+    width: var(--ui-touch-target);
+    height: var(--ui-touch-target);
+  }
+  .compare-dock-inline > .primary-button {
+    min-height: var(--ui-touch-target);
+  }
+  .compare-dock-inline .dock-instruction {
+    font-size: var(--ui-text-meta);
+  }
+  .compare-dock-inline .dock-notice {
+    position: static;
+    flex-basis: 100%;
+    transform: none;
+    padding: 6px 8px;
   }
 }

@@ -2,14 +2,15 @@
 
 .release-grid {
   display: grid;
+  align-items: start;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 .release-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 30px;
+  border-radius: var(--ui-card-radius);
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -25,11 +26,11 @@
 }
 .release-card h3 {
   font-size: 26px;
-  margin: 22px 0 12px;
+  margin: var(--ui-space) 0 8px;
   letter-spacing: -0.7px;
 }
 .release-card > p {
-  font-size: 13px;
+  font-size: var(--ui-text-body);
   line-height: 1.9;
   color: var(--muted);
 }
@@ -37,7 +38,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 24px 0;
+  margin: var(--ui-space) 0;
 }
 .release-benchmarks > a {
   display: inline-flex;
@@ -51,7 +52,7 @@
   color: var(--text-secondary);
 }
 .release-card .release-note {
-  font-size: 11px;
+  font-size: var(--ui-text-meta);
   margin-top: auto;
   background: var(--surface-subtle);
   padding: 12px;
@@ -66,7 +67,7 @@
   scrollbar-gutter: stable;
   scroll-padding-inline-start: 150px;
   border: 1px solid var(--border);
-  border-radius: 11px;
+  border-radius: var(--ui-card-radius);
   background: var(--surface);
 }
 .comparison-table {
@@ -115,11 +116,6 @@
   margin-top: 12px;
   font-size: 12px;
 }
-.comparison-note {
-  margin-bottom: 16px;
-  color: var(--muted);
-  font-size: 13px;
-}
 .reading-index {
   display: flex;
   flex-wrap: wrap;
@@ -144,11 +140,6 @@
   font-size: 20px;
   margin-bottom: 18px;
 }
-.comparison-table thead th > a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 .comparison-table tbody th {
   font-weight: 500;
   color: var(--muted);
@@ -157,7 +148,7 @@
 .comparison-table td {
   color: var(--text-secondary);
 }
-.comparison-table td.mono {
+.comparison-table td .mono {
   font-size: 12.5px;
 }
 /* 行 hover 微反馈（dense 操作台惯例）。 */
@@ -167,10 +158,6 @@
 .comparison-table tbody tr:hover td,
 .comparison-table tbody tr:hover th {
   background: var(--accent-softer);
-}
-.empty-hint {
-  margin-top: 18px;
-  font-size: 13px;
 }
 .prose-panel {
   max-width: 870px;
@@ -213,21 +200,125 @@
   .prose-panel {
     padding: 24px;
   }
-  .comparison-table {
-    min-width: 720px;
-  }
+}
+
+.comparison-selection,
+.comparison-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.comparison-selection {
+  margin: var(--ui-space) 0;
+}
+.comparison-chips {
+  min-width: 0;
+  margin: 0 auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+.comparison-chips li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--ui-control-radius);
+  background: var(--surface);
+}
+.comparison-chips a {
+  padding: 8px 0 8px 12px;
+  color: var(--accent-text);
+  font-size: var(--ui-text-body);
+  overflow-wrap: anywhere;
+}
+.comparison-chips button {
+  flex: 0 0 var(--ui-touch-target);
+  display: grid;
+  place-items: center;
+  height: var(--ui-touch-target);
+  color: var(--muted);
+}
+.comparison-chips button:hover {
+  color: var(--text-strong);
+}
+.comparison-selection > .text-link {
+  min-height: var(--ui-touch-target);
+  padding-inline: 12px;
+}
+.comparison-empty {
+  margin-top: var(--ui-space);
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface);
+}
+.comparison-empty p {
+  margin-bottom: var(--ui-space);
+  color: var(--text-secondary);
+}
+.comparison-mobile {
+  display: none;
+}
+@media (max-width: 840px) {
   .comparison-scroll {
-    scroll-padding-inline-start: 115px;
-    max-height: calc(100dvh - 230px);
+    display: none;
   }
-  .comparison-table thead th {
-    font-size: 15px;
+  .comparison-mobile {
+    display: grid;
+    gap: var(--ui-space);
   }
-  .comparison-table th,
-  .comparison-table td {
-    padding: 18px;
+  .comparison-group:not(details) {
+    display: grid;
+    gap: var(--ui-space);
   }
-  .comparison-table th:first-child {
-    width: 115px;
+  .comparison-group > summary {
+    padding: 12px var(--ui-space);
+    cursor: pointer;
+    color: var(--accent-text);
+    font-size: var(--ui-text-body);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--ui-card-radius);
+  }
+  .comparison-group[open] > .comparison-dimension {
+    margin-top: var(--ui-space);
+  }
+  .comparison-dimension {
+    padding: var(--ui-space);
+    border: 1px solid var(--border);
+    border-radius: var(--ui-card-radius);
+    background: var(--surface);
+    overflow-wrap: anywhere;
+  }
+  .comparison-dimension h2 {
+    font-size: 16px;
+  }
+  .comparison-dimension dl,
+  .comparison-dimension dd {
+    margin: 0;
+  }
+  .comparison-dimension dl > div {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .comparison-dimension dt {
+    color: var(--text-strong);
+    font-weight: 650;
+    font-size: var(--ui-text-meta);
+  }
+  .comparison-dimension dd {
+    margin-top: 4px;
+    color: var(--text-secondary);
+    font-size: var(--ui-text-body);
+    line-height: 1.7;
+  }
+  .comparison-dimension dd ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+  .comparison-dimension .text-link {
+    margin-top: 6px;
   }
 }

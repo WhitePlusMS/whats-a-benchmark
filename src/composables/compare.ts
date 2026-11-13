@@ -14,8 +14,14 @@ export interface Comparison {
 }
 export const comparisonKey: InjectionKey<Comparison> = Symbol("comparison");
 
-/** An App-owned store; the compare URL is authoritative only on that page. */
-export function createComparison(router: Router) {
+const selectionKey = "benchmark-comparison";
+
+/** 结果页以 URL 为准，目录选择随当前标签页保存。 */
+export function createComparison(
+  router: Router,
+  session = (): Pick<Storage, "getItem" | "setItem"> | undefined =>
+    globalThis.window?.sessionStorage,
+) {
   const remembered = ref<string[]>([]);
   const notice = ref("");
   // SSG generates query-free pages. Read shared selections after hydration only.
@@ -28,14 +34,24 @@ export function createComparison(router: Router) {
       ? parseComparisonIds(router.currentRoute.value.query.ids)
       : remembered.value,
   );
+  function remember(ids: string[]) {
+    remembered.value = ids;
+    try {
+      session()?.setItem(selectionKey, ids.join(","));
+    } catch {
+      // 禁用浏览器存储时仍保留本次页面会话中的选择。
+    }
+  }
   const dispose = router.afterEach((to, from, failure) => {
     if (!active.value) return;
     if (failure) {
       if (!isCompare(router.currentRoute.value.path)) pendingIds = undefined;
       return;
     }
-    if (isCompare(from.path) && !isCompare(to.path)) {
-      remembered.value = parseComparisonIds(from.query.ids);
+    if (isCompare(to.path)) {
+      remember(parseComparisonIds(to.query.ids));
+    } else if (isCompare(from.path)) {
+      remember(parseComparisonIds(from.query.ids));
       pendingIds = undefined;
     }
     notice.value = "";
@@ -54,7 +70,7 @@ export function createComparison(router: Router) {
         .finally(() => {
           if (pendingIds === next) pendingIds = undefined;
         });
-    } else remembered.value = next;
+    } else remember(next);
   }
   function toggle(id: string) {
     notice.value = "";
@@ -76,6 +92,11 @@ export function createComparison(router: Router) {
     toggle,
     clear,
     activate: () => {
+      try {
+        remembered.value = parseComparisonIds(session()?.getItem(selectionKey));
+      } catch {
+        // 存储不可用时可照常使用目录和分享链接。
+      }
       active.value = true;
     },
     dispose,
