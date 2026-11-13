@@ -1,0 +1,134 @@
+{
+  "id": "aa-llm-api-performance",
+  "status": "published",
+  "order": 600,
+  "name": "LLM API Performance v3.0.0",
+  "subtitle": "在持续并发负载下比较 API 的首答延迟、全程输出速度与端点错误率",
+  "category": "general",
+  "tags": [
+    "推理性能",
+    "系统配置",
+    "速度与延迟"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v3.0.0（2026-11-03）",
+  "kind": "original",
+  "aliases": [
+    "LLM API Performance",
+    "AA LLM API Performance",
+    "LLM API Performance v3.0.0",
+    "API 性能评测"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在持续并发负载下比较 API 的首答延迟、全程输出速度与端点错误率",
+    "task": "对相同请求与代理任务计时，比较具体 API 端点的服务表现，而非题目答案能力。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/performance-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "约 1K、10K、100K 输入 token 的单请求负载，以及编程、知识工作和自动化中的多轮 agentic 任务。",
+    "output": "逐请求/会话的 token 计数、时间、错误和缓存报告，汇总端点与模型性能。",
+    "environment": "Google Cloud Run us-central1；所有负载处于并发负载下，每轮对各端点发送相同任务。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/performance-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "每 6 小时运行一次，弃用模型端点每 18 小时；使用不断抽样的请求与任务，不是一个永久固定题包。",
+    "disclosure": "partial",
+    "scale": [
+      "单请求输入约 1K / 10K / 100K token；多轮工具任务另为一个负载。",
+      "每负载先求各轮样本中位数，再平均过去 5 天各轮中位数；各可测负载等权。"
+    ],
+    "splits": [
+      "超出端点上下文或不支持工具调用时，仅汇总实际测得的负载，比较需核对覆盖范围。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/performance-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://artificialanalysis.ai/methodology/performance-benchmarking",
+    "requirements": [
+      "官方公开测试方法与结果；不据此推断完整请求或原始运行记录已开放。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/performance-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未确认完整负载、轨迹与原始测量记录的统一再发布许可。",
+    "scope": "本站中文整理方法并链接官方入口，不运行负载或复制媒体/轨迹。",
+    "boundaries": [
+      "公开方法或图表不等于原始数据再发布授权。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/performance-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "url": "https://artificialanalysis.ai/methodology/performance-benchmarking",
+    "reason": "通过官方方法查看测试负载和测量示意；本站不将示意图或榜单包装成真实测试行。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/performance-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "TTFAT / TTFT / Output Speed / Error Rate",
+    "description": "首答 token 延迟包含推理等待；TTFT 可停在首个推理 token。v3 输出速度用全部输出 token（含推理）除以完整请求时间，包含 TTFT；多轮累计请求时间但排除工具执行耗时。单请求端点失败计速度 0；多轮会话失败或未在计划时段内完成时，仅计已答请求，完全未答才计 0；错误率按请求池汇总，多轮会话任一请求失败算该会话失败，非端点原因排除。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/performance-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "TTFT 和首答延迟包含网络延迟；us-central1 的位置可能偏向部分服务商，不能视为用户所在地的固定延迟。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/performance-benchmarking"
+      ]
+    },
+    {
+      "text": "不同端点若测得负载不齐，总览均值的工作构成也不同；快不代表输出正确或成本更低。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/performance-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方方法",
+      "url": "https://artificialanalysis.ai/methodology/performance-benchmarking",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "interpretation": {
+    "comparison": {
+      "text": "模型总览通常使用代表端点（一般为创建者 API），无代表或近 5 天未测时取测得端点中位数。token 优先采用提供商 API 报告，包括不返回文本的推理 token；未报告时从文本计数。不同端点、缓存、量化与网络位置仍影响比较。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/performance-benchmarking"
+      ]
+    },
+    "versionChanges": {
+      "text": "v2.2.0（2026-03-02）改用更广提示，默认速度为 10K 负载过去 72 小时中位数。v3.0.0（2026-11-03）加入多轮、移除视觉负载与旧单/并行场景，改为 5 天跨负载均值、全程速度、API token 计数及 6 小时频率，不能直接拼接两版速度曲线。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/performance-benchmarking"
+      ]
+    }
+  },
+  "releaseDate": "2026-11-03"
+}

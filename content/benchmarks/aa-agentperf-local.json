@@ -1,0 +1,179 @@
+{
+  "id": "aa-agentperf-local",
+  "status": "published",
+  "order": 600,
+  "name": "AA-AgentPerf-Local",
+  "subtitle": "重放真实代理轨迹，测量本地推理栈速度而非任务能力",
+  "category": "general",
+  "tags": [
+    "推理性能",
+    "硬件",
+    "运行配置"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "工具 0.3.4；固定提交 1fe8056；默认 agentperf-default-v1",
+  "kind": "original",
+  "aliases": [
+    "AgentPerf Local",
+    "agentperf-local",
+    "AA-AgentPerf-Local 0.3.4"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "重放8个真实代理任务、168轮模型请求，在相同工作量下比较笔记本和工作站推理性能，不评估生成答案质量。",
+    "task": "向 OpenAI-compatible 模型服务重放累积对话，每轮生成指定长度，测量完整推理流程。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-agentperf-local",
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "录制的代理对话轨迹、模型服务端点及固定运行配置；每轮包含截至当时的完整对话。",
+    "output": "延迟、吞吐等性能报告及对应模型/量化/框架/硬件元数据，不是任务成功率。",
+    "environment": "默认 agentperf-default-v1、batch size 1、exact 输出策略；0.3.4 要求完整65536-token上下文，最大轮约58000 tokens。默认跳过工具耗时以隔离推理；fixed_delay与live是另选条件。",
+    "sourceUrls": [
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/pyproject.toml"
+    ]
+  },
+  "dataProfile": {
+    "summary": "首发默认8任务168轮；工具固定版本的README仍列同一默认重放，另有6轮合成aa-mini-v1仅检查安装。",
+    "disclosure": "complete",
+    "scale": [
+      "默认 agentperf-default-v1：8个录制任务、168轮。",
+      "aa-mini-v1：6轮合成快测，不与完整轨迹结果比较。"
+    ],
+    "splits": [
+      "性能重放工作负载，不属于训练/验证/测试问答集。"
+    ],
+    "fields": [
+      "轨迹与轮次",
+      "每轮输出token数",
+      "上下文长度",
+      "输出策略",
+      "工具模式",
+      "模型/量化/框架/设备配置"
+    ],
+    "files": [
+      "README.md",
+      "pyproject.toml"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-agentperf-local",
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/pyproject.toml"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开仓库提供代码、轨迹和配置入口；本站只读固定README与版本声明，未安装框架、下载模型或执行重放。"
+    ],
+    "url": "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+    "sourceUrls": [
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+      "https://artificialanalysis.ai/hardware-inference-stack/laptops-workstations/configs"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "固定 pyproject.toml 与仓库 LICENSE 声明 Apache-2.0。",
+    "scope": "公开工具代码的许可已核对；本站仅整理方法，不镜像整套轨迹或模型权重。",
+    "boundaries": [
+      "模型权重、框架、具体第三方素材仍需各自许可；工具许可不能自动授权全部外部资产。"
+    ],
+    "sourceUrls": [
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/pyproject.toml",
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "真实工作负载、运行条件与配置请查看固定README及官方配置页；这是推理性能轨迹，不是可手工作答的测试题。本站未运行benchmark或生成虚拟成绩。",
+    "url": "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+    "sourceUrls": [
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+      "https://artificialanalysis.ai/hardware-inference-stack/laptops-workstations/configs"
+    ]
+  },
+  "metric": {
+    "name": "端到端完成时间、吞吐与延迟",
+    "description": "比较完成同一录制工作负载所需时间，时间越低越好；吞吐另以token/s报告。默认不含真实工具执行耗时，因此不能解释为实时完成业务任务的总时长或能力得分。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+      "https://artificialanalysis.ai/articles/aa-agentperf-local"
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "2026-09-29是AA首发文章日期；0.3.4及固定提交是本次读取的工具快照，不能把首发硬件/配置范围当作0.3.4全部支持范围。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-agentperf-local",
+        "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/pyproject.toml"
+      ]
+    },
+    "disclosure": {
+      "text": "首发测试为单代理使用整机；文章约56K上下文是首发描述，当前固定README明确完整65536上下文及最大轮约58000 tokens，以具体工具版本条件为准。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-agentperf-local",
+        "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md"
+      ]
+    }
+  },
+  "limitations": [
+    {
+      "text": "exact 依赖非标准 ignore_eos；不支持的服务可能无法执行可比运行。Ollama 使用 recorded 策略并报告归一化延迟估计，不能与 exact 结果直接比较。",
+      "sourceUrls": [
+        "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md"
+      ]
+    },
+    {
+      "text": "低于65536上下文标为reduced且不可与完整结果比较；小合成快测不替代默认轨迹。模型、量化、框架、推测解码、缓存和工具模式变化都会改变性能。",
+      "sourceUrls": [
+        "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+        "https://artificialanalysis.ai/articles/aa-agentperf-local"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+      "label": "AA-AgentPerf-Local 首发文章（2026-09-29）",
+      "role": "release"
+    },
+    {
+      "url": "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/README.md",
+      "label": "固定0.3.4 README：默认负载与可比条件",
+      "role": "readme"
+    },
+    {
+      "url": "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/pyproject.toml",
+      "label": "固定pyproject：版本0.3.4",
+      "role": "code"
+    },
+    {
+      "url": "https://github.com/ArtificialAnalysis/aa-agentperf-local/blob/1fe80568c1e4b81b338ef276ccc6874a36d3704d/LICENSE",
+      "label": "固定Apache-2.0许可证",
+      "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/hardware-inference-stack/laptops-workstations",
+      "label": "官方笔记本与工作站结果",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/hardware-inference-stack/laptops-workstations/configs",
+      "label": "官方服务配置入口",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-09-29"
+}

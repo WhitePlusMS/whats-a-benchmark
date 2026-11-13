@@ -1,0 +1,194 @@
+{
+  "id": "liquid-ai-pipette",
+  "status": "published",
+  "order": 600,
+  "name": "Liquid AI Pipette · AA 手机推理实测",
+  "subtitle": "在真实手机上比较固定负载的时延、速度与内存",
+  "category": "general",
+  "tags": [
+    "推理性能",
+    "硬件",
+    "运行配置"
+  ],
+  "publisher": "Liquid AI / Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA 手机推理协议；2026-11-13 页面快照；非完整 Pipette 产品版本",
+  "kind": "original",
+  "aliases": [
+    "Liquid AI Pipette",
+    "Pipette",
+    "AA Mobile Phone Inference",
+    "AA 手机真机推理"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Liquid AI 在真实手机上测量推理性能，AA独立核验测量方法并展示结果；比较对象是模型、量化、运行时与设备的组合，而非只比较模型名称。",
+    "task": "处理固定1024-token输入并生成256-token响应，测量端到端时间，同时查看输出速度与内存。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+      "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones"
+    ]
+  },
+  "taskContract": {
+    "input": "指定模型量化构建、llama.cpp运行配置及真实手机；AA展示的标准时延负载为1024输入/256输出tokens。",
+    "output": "端到端时间（秒）、输出速度（tokens/s）和内存（GB）等设备性能指标。",
+    "environment": "AA当前范围为4-bit或更小构建，首发iPhone17 Pro；当前页面还列Galaxy S26 Ultra，均12GB。Pipette使用受控实验环境，每次测量前检查设备冷却与空闲；结果必须连同具体设备、功耗/散热和运行配置解释。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+      "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+      "https://pipette.liquid.ai/docs",
+      "https://pipette.liquid.ai/docs/methodology/device-conditions"
+    ]
+  },
+  "dataProfile": {
+    "summary": "固定长度推理负载与手机测量，不是独立知识题库；AA能力测试和手机性能是不同测量环节。",
+    "disclosure": "partial",
+    "scale": [
+      "AA E2E：1024输入tokens，256输出tokens。",
+      "AA纳入模型条件：量化后含8K上下文KV cache需在8GB内；这不是E2E请求长度。"
+    ],
+    "splits": [
+      "性能负载不使用问答数据的train/dev/test划分。"
+    ],
+    "fields": [
+      "模型",
+      "量化构建",
+      "运行框架",
+      "手机与内存",
+      "输入/输出token长度",
+      "E2E时间",
+      "输出速度",
+      "峰值内存"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+      "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+      "https://pipette.liquid.ai/docs"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "AA手机结果页可按设备比较；Pipette文档提供协议、结果和复现实验入口。本次只读取文档，未操作手机或运行测试。"
+    ],
+    "url": "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+      "https://pipette.liquid.ai/docs"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "Pipette Data License 为专用数据许可：允许附条件分享，要求署名与许可链接，并含 Competing Service Restriction；不是无条件开放许可。",
+    "scope": "本站仅整理协议与入口，不镜像完整数据、模型文件或媒体。",
+    "boundaries": [
+      "数据许可明确限制用于竞争服务；本站不镜像Pipette结果数据，仅整理方法并链接官方。",
+      "代码、模型权重、声音/图片等素材须各自核验许可，不由数据许可一并授予。"
+    ],
+    "sourceUrls": [
+      "https://pipette.liquid.ai/data-license"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方AA手机页提供真实设备结果，Pipette提供测量协议；本卡不把配置截图或杜撰对话当作测试样例，也未产生本站实测成绩。",
+    "url": "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+      "https://pipette.liquid.ai/docs"
+    ]
+  },
+  "metric": {
+    "name": "端到端生成时间（秒）",
+    "description": "AA标准负载处理1024-token输入并生成256-token输出所需墙钟时间，越低越好。该值反映固定负载的硬件/模型配置，不包含模型在实际任务中更啰嗦或需更多轮的差异；输出速度与峰值内存应分别看。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+      "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference"
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "2026-08-24是AA手机能力与推理联合发布日，不是已核实的Pipette软件首次发布日期。AA首发41构建/33成功运行是当时快照，本页不把它固定为当前模型总量。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference"
+      ]
+    },
+    "comparison": {
+      "text": "8GB准入、能力测试16K上下文、内存测量条件及1024/256性能负载是不同参数，不能互相替代。当前Pipette产品文档和AA页面必须按各自实验标识比较。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+        "https://pipette.liquid.ai/docs"
+      ]
+    }
+  },
+  "limitations": [
+    {
+      "text": "AA手机能力均分来自独立的BFCL子集、IFBench、AA-Omniscience、GPQA Diamond和MATH-500；不是Pipette E2E时间，也不表示这些能力评测全部在手机运行。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+        "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones"
+      ]
+    },
+    {
+      "text": "Pipette当前文档说明质量评测另在AMD MI325X GPU上进行，按相同模型/量化与设备性能匹配展示；不要把它的产品评测列表或新协议未经核对地当作AA首发配置。",
+      "sourceUrls": [
+        "https://pipette.liquid.ai/docs"
+      ]
+    },
+    {
+      "text": "手机温度、功耗、冷却、操作系统和运行时影响结果；标准实验室结果不等于日常多任务、过热或电池受限场景。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+        "https://pipette.liquid.ai/docs/methodology/device-conditions"
+      ]
+    },
+    {
+      "text": "Pipette当前E2E文档示例为512输入/256输出、毫秒、5次测量的均值与标准差；AA页面是1024/256、秒。二者不能因使用同一工具名而合并为同一配置。iOS应用与CLI服务路径也不应未经校准直接比较。",
+      "sourceUrls": [
+        "https://pipette.liquid.ai/docs/benchmarks/end-to-end-latency-latest",
+        "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+      "label": "AA手机推理首发文章（2026-08-24）",
+      "role": "release"
+    },
+    {
+      "url": "https://artificialanalysis.ai/hardware-inference-stack/mobile-phones",
+      "label": "AA当前手机设备结果",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://pipette.liquid.ai/docs",
+      "label": "Pipette官方方法概览",
+      "role": "definition"
+    },
+    {
+      "url": "https://pipette.liquid.ai/docs/methodology/device-conditions",
+      "label": "Pipette设备条件",
+      "role": "definition"
+    },
+    {
+      "url": "https://pipette.liquid.ai/docs/benchmarks/end-to-end-latency-latest",
+      "label": "Pipette当前E2E定义（与AA协议分辨）",
+      "role": "definition"
+    },
+    {
+      "url": "https://pipette.liquid.ai/data-license",
+      "label": "Pipette数据许可入口",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-08-24"
+}

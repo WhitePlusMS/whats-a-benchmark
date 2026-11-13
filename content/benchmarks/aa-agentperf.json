@@ -1,0 +1,168 @@
+{
+  "id": "aa-agentperf",
+  "status": "published",
+  "order": 600,
+  "name": "AA-AgentPerf",
+  "subtitle": "用真实编码代理轨迹测数据中心部署的吞吐与单请求速度折衷",
+  "category": "general",
+  "tags": [
+    "推理性能",
+    "系统配置",
+    "速度与延迟"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "2026-06-12 首发；2026-11-13 现行方法快照",
+  "kind": "original",
+  "aliases": [
+    "AA-AgentPerf",
+    "AA AgentPerf",
+    "数据中心 AgentPerf"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用真实编码代理轨迹测数据中心部署的吞吐与单请求速度折衷",
+    "task": "重放真实多轮轨迹，持续维持活跃代理，在多个并发和服务配置下寻找吞吐/速度 Pareto 前沿。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/agentperf"
+    ]
+  },
+  "taskContract": {
+    "input": "OpenCode 中 DeepSeek V3.2、GLM 4.7、Kimi K2.5 生成的公开仓库修复轨迹，包含推理、工具调用与可变上下文。",
+    "output": "逐请求 TTFT、输出速度、服务器吞吐和实测功耗，连同完整模型/推理框架/硬件配置公开结果。",
+    "environment": "固定并发分阶段；每阶段须同时满足至少完成 30 条轨迹、每代理至少 3 条、稳态至少 10 分钟；每轮动态前缀打断跨阶段缓存。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/agentperf"
+    ]
+  },
+  "dataProfile": {
+    "summary": "完整测试集私有；测试参与者获代表性调优子集，不等于所有网站访客可下载。",
+    "disclosure": "partial",
+    "scale": [
+      "调优子集 500 条独立轨迹、18,997 prompts。",
+      "输入约 5K–131K token，平均约 27K；12+ 编程语言。",
+      "工具处理延迟按真实分布模拟，约低于 0.1 秒至 5 秒，中位约 1 秒。"
+    ],
+    "splits": [
+      "代表性调优子集与私有完整测试集分开；测试轨迹按待测模型建议上下文长度截断。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/agentperf"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://artificialanalysis.ai/hardware-inference-stack/datacenter",
+    "requirements": [
+      "榜单及配置浏览器公开结果与已披露系统配置。",
+      "完整测试轨迹不公开；代表性调优子集面向测试参与者。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/agentperf",
+      "https://artificialanalysis.ai/hardware-inference-stack/datacenter",
+      "https://artificialanalysis.ai/hardware-inference-stack/configs"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未确认完整负载、轨迹与原始测量记录的统一再发布许可。",
+    "scope": "本站中文整理方法并链接官方入口，不运行负载或复制媒体/轨迹。",
+    "boundaries": [
+      "公开方法或图表不等于原始数据再发布授权。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/agentperf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "url": "https://artificialanalysis.ai/articles/aa-agentperf",
+    "reason": "官方公告展示轨迹结构的示意动画；它明确是 illustrative session，不是可下载的真实任务记录。实际结果与配置另见榜单和配置入口。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-agentperf"
+    ]
+  },
+  "metric": {
+    "name": "服务器吞吐 / 单请求输出速度 / TTFT / 功耗归一化",
+    "description": "现行方法显示服务器总吞吐与单请求速度的 Pareto 前沿；图表默认请求速度 P25。输出速度从首 token 后计；总吞吐同时计输入和输出，输入包含 KV cache 命中。主吞吐按 MW、加速器、每小时租赁美元归一化；MW用负载实测加速器芯片+HBM功耗，不是整机功耗或额定TDP。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/agentperf"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "完整测试集私有，本站不提供或运行轨迹；公开轨迹动画是示意，不能当作一次真实运行证据。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/agentperf"
+      ]
+    },
+    {
+      "text": "功耗按加速器芯片与 HBM 计，租价来自外部数据或 AA 估计；不是整个数据中心电耗或采购报价。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/agentperf"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方方法",
+      "url": "https://artificialanalysis.ai/methodology/agentperf",
+      "role": "definition"
+    },
+    {
+      "label": "首次结果公告（2026-06-12）",
+      "url": "https://artificialanalysis.ai/articles/aa-agentperf",
+      "role": "release"
+    },
+    {
+      "label": "数据中心结果榜",
+      "url": "https://artificialanalysis.ai/hardware-inference-stack/datacenter",
+      "role": "leaderboard"
+    },
+    {
+      "label": "公开配置浏览器",
+      "url": "https://artificialanalysis.ai/hardware-inference-stack/configs",
+      "role": "access"
+    },
+    {
+      "label": "Local 版本公告",
+      "url": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-agentperf-local",
+      "label": "本地设备版本",
+      "detail": "Local 面向个人设备与本地模型，负载及汇总协议不同。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/agentperf",
+        "https://artificialanalysis.ai/articles/aa-agentperf-local"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "interpretation": {
+    "comparison": {
+      "text": "仅纳入全部代理在目标并发已活跃至少 30 秒的稳态时段；每请求 max_tokens 16K。服务器 token 计数与本地原生 tokenizer 核对；允许缓存、推测解码等生产优化，成绩属于具体模型与软件/硬件配置。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/agentperf"
+      ]
+    },
+    "versionChanges": {
+      "text": "2026-06-12 首发文章主述 Agents per Megawatt 及服务级别门槛；本页现行方法已以总吞吐/速度 Pareto 前沿和吞吐归一化描述主结果。两者保留时间与指标区别，不拿首发单次硬件排名当恒定结论。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-agentperf",
+        "https://artificialanalysis.ai/methodology/agentperf"
+      ]
+    }
+  },
+  "releaseDate": "2026-06-12"
+}

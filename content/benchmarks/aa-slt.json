@@ -1,0 +1,144 @@
+{
+  "id": "aa-slt",
+  "status": "published",
+  "order": 600,
+  "name": "AA-SLT（System Load Test）",
+  "subtitle": "逐级增加并发，观察系统吞吐上限与单请求速度、延迟的折衷",
+  "category": "general",
+  "tags": [
+    "推理性能",
+    "系统配置",
+    "速度与延迟"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "2026-11-13 官方方法快照",
+  "kind": "original",
+  "aliases": [
+    "AA-SLT（System Load Test）",
+    "AA-SLT",
+    "System Load Test",
+    "Artificial Analysis System Load Test"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "逐级增加并发，观察系统吞吐上限与单请求速度、延迟的折衷",
+    "task": "维持每阶段固定并发，请求完成立即补发，直到增加并发不再提高整体输出吞吐。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/system-load-test"
+    ]
+  },
+  "taskContract": {
+    "input": "每请求 1,000 输入 token、1,000 输出 token，启用 streaming。",
+    "output": "分阶段总体输出 token/s、响应比例，以及每请求延迟与输出速度。",
+    "environment": "每阶段稳态 3 分钟，不含启动和冷却；并发 1、2、4、8、16、32、64，此后每次增加 64 直至吞吐平台。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/system-load-test"
+    ]
+  },
+  "dataProfile": {
+    "summary": "固定形状的系统压力负载，不是带标准答案的知识或编程题集。",
+    "disclosure": "partial",
+    "scale": [
+      "每查询 1K 输入 / 1K 输出；每并发档测量 3 分钟。"
+    ],
+    "splits": [],
+    "fields": [
+      "并发数",
+      "阶段输出 token 数",
+      "请求响应状态",
+      "首 token 和末 token 时间"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/system-load-test"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://artificialanalysis.ai/methodology/system-load-test",
+    "requirements": [
+      "官方公开测试方法与结果；不据此推断完整请求或原始运行记录已开放。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/system-load-test"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未确认完整负载、轨迹与原始测量记录的统一再发布许可。",
+    "scope": "本站中文整理方法并链接官方入口，不运行负载或复制媒体/轨迹。",
+    "boundaries": [
+      "公开方法或图表不等于原始数据再发布授权。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/system-load-test"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "url": "https://artificialanalysis.ai/methodology/system-load-test",
+    "reason": "通过官方方法查看测试负载和测量示意；本站不将示意图或榜单包装成真实测试行。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/system-load-test"
+    ]
+  },
+  "metric": {
+    "name": "系统输出吞吐 / 响应率 / 单查询延迟与速度",
+    "description": "系统吞吐为所有并发请求的平均总输出 token/s；响应率只要求至少收到 1 个输出 token，不等同完整请求成功。单查询端到端延迟及首 token 后输出速度按阶段中位数报告。",
+    "direction": "mixed",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/system-load-test"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "固定 1K/1K 负载不代表长上下文或真实多轮 agentic 分布；吞吐上升可能伴随单请求体验变差。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/system-load-test"
+      ]
+    },
+    {
+      "text": "该速度定义排除首 token 等待，与 LLM API Performance v3.0.0 的全程输出速度不同；比较必须注明协议。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/system-load-test"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方方法",
+      "url": "https://artificialanalysis.ai/methodology/system-load-test",
+      "role": "definition"
+    },
+    {
+      "label": "AA-AgentPerf 方法",
+      "url": "https://artificialanalysis.ai/methodology/agentperf",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-agentperf",
+      "label": "真实代理轨迹负载",
+      "detail": "AgentPerf 测真实轨迹的并发吞吐，不使用统一 1K/1K 查询形状。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/system-load-test",
+        "https://artificialanalysis.ai/methodology/agentperf"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "interpretation": {
+    "disclosure": {
+      "text": "方法页提供四并发运行示意。本站未取得指定配置的一次完整原始测量记录，也未运行压力测试；未核实独立版号或首发年月。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/system-load-test"
+      ]
+    }
+  }
+}
