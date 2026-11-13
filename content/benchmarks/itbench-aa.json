@@ -132,6 +132,11 @@
       "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl",
       "label": "实际读取的固定 40 行 sre/test JSONL",
       "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/Scenario-31/alerts/alerts_in_alerting_state_2025-12-15T175655.720371Z.json",
+      "label": "Scenario-31 固定真实告警快照",
+      "role": "data"
     }
   ],
   "related": [],
@@ -146,21 +151,53 @@
         "title": "Scenario-31：NetworkPolicy 阻断前端入口",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "从离线集群故障观测中找出独立根因。此例前端代理无法连接前端服务；不要把传播链上的每个 Pod 和 Service 都列成独立原因。",
+        "prompt": "从同一 Scenario-31 的离线故障记录中识别独立根因。\n\n实际告警：RequestErrorRate，状态 firing，严重性 warning；namespace=otel-demo，service_name=frontend-proxy。告警说明该服务的请求错误率超过 0，原始 value 为 3.3333333333333326e-02。\n\n服务关系：同题 ground_truth_yaml 将这条 RequestErrorRate 关联到 frontend-proxy-service-1；其参考传播关系为 NetworkPolicy 阻断前端 Pod 入站 → 前端 Service 无法接收流量 → frontend-proxy 连接前端失败。告警本身只定位报错服务，不能单凭这一条告警证明 NetworkPolicy 就是根因。",
         "answer": "参考根因实体：otel-demo/NetworkPolicy/frontend-block-all-ports。",
-        "explanation": "raw 是固定公开 test 的真实 ground_truth_yaml 记录；保留根因、别名和传播关系，便于区分原因与症状。本站未载入全部观测文件，也没有执行代理，参考根因不是本站实测输出。",
+        "explanation": "同一固定修订的 Scenario-31 告警与 ground_truth_yaml 在此对照：前者是实际观测，后者是参考标注，不是代理自行推断的输出。告警原始 timestamp、activeAt、value 均保留；两种时间字段不一致，本站不据此推断先后或故障时长。只读取这份小告警和公开参考记录，未载入整套观测、运行代理或验证修复成功。",
         "raw": {
           "id_aa": "it-bench-sre-public-scenario-31",
           "scenario_id": "Scenario-31",
           "category": "sre",
           "source_split": "public",
           "scenario_root": "/home/user",
-          "ground_truth_yaml": "---\napiVersion: itbench.io/v1\nkind: GroundTruth\nmetadata:\n  name: scenario-31\nspec:\n  alerts:\n    - group_id: frontend-proxy-service-1\n      id: RequestErrorRate\n      metadata:\n        description: Frontend proxy cannot reach frontend service due to network policy blocking ingress\n  aliases:\n    - - frontend-service-1\n      - frontend-pod-1\n    - - frontend-proxy-service-1\n      - frontend-proxy-pod-1\n  fault:\n    - category: Configuration\n      condition: NetworkPolicy blocks all ingress traffic to frontend pods\n      entity:\n        group_id: frontend-pod-1\n        kind: Pod\n        name: frontend-pod-1\n      fault_mechanism: misconfigured-network-policy\n  groups:\n    - filter:\n        - frontend-block-all-ports\n      id: frontend-block-all-ports\n      kind: NetworkPolicy\n      namespace: otel-demo\n      root_cause: true\n    - filter:\n        - frontend-.*\n      id: frontend-pod-1\n      kind: Pod\n      namespace: otel-demo\n    - filter:\n        - frontend\\b\n      id: frontend-service-1\n      kind: Service\n      namespace: otel-demo\n    - filter:\n        - frontend-proxy-.*\n      id: frontend-proxy-pod-1\n      kind: Pod\n    - filter:\n        - frontend-proxy\\b\n      id: frontend-proxy-service-1\n      kind: Service\n      namespace: otel-demo\n  propagations:\n    - condition: Misconfigured network policy\n      effect: NetworkPolicy blocks all ingress traffic to frontend pods\n      source: frontend-block-all-ports\n      target: frontend-pod-1\n    - condition: NetworkPolicy blocks all ingress traffic to frontend pods\n      effect: Frontend service cannot receive traffic, making it completely unavailable\n      source: frontend-pod-1\n      target: frontend-service-1\n    - condition: Frontend proxy cannot connect to frontend service due to network policy\n      effect: All user requests through proxy fail with connection errors\n      source: frontend-service-1\n      target: frontend-proxy-1\n  recommended_actions:\n    - solution:\n        actions:\n          - Identify and remove the NetworkPolicy blocking ingress to frontend pods\n        id: remove_blocking_network_policy"
+          "ground_truth_yaml": "---\napiVersion: itbench.io/v1\nkind: GroundTruth\nmetadata:\n  name: scenario-31\nspec:\n  alerts:\n    - group_id: frontend-proxy-service-1\n      id: RequestErrorRate\n      metadata:\n        description: Frontend proxy cannot reach frontend service due to network policy blocking ingress\n  aliases:\n    - - frontend-service-1\n      - frontend-pod-1\n    - - frontend-proxy-service-1\n      - frontend-proxy-pod-1\n  fault:\n    - category: Configuration\n      condition: NetworkPolicy blocks all ingress traffic to frontend pods\n      entity:\n        group_id: frontend-pod-1\n        kind: Pod\n        name: frontend-pod-1\n      fault_mechanism: misconfigured-network-policy\n  groups:\n    - filter:\n        - frontend-block-all-ports\n      id: frontend-block-all-ports\n      kind: NetworkPolicy\n      namespace: otel-demo\n      root_cause: true\n    - filter:\n        - frontend-.*\n      id: frontend-pod-1\n      kind: Pod\n      namespace: otel-demo\n    - filter:\n        - frontend\\b\n      id: frontend-service-1\n      kind: Service\n      namespace: otel-demo\n    - filter:\n        - frontend-proxy-.*\n      id: frontend-proxy-pod-1\n      kind: Pod\n    - filter:\n        - frontend-proxy\\b\n      id: frontend-proxy-service-1\n      kind: Service\n      namespace: otel-demo\n  propagations:\n    - condition: Misconfigured network policy\n      effect: NetworkPolicy blocks all ingress traffic to frontend pods\n      source: frontend-block-all-ports\n      target: frontend-pod-1\n    - condition: NetworkPolicy blocks all ingress traffic to frontend pods\n      effect: Frontend service cannot receive traffic, making it completely unavailable\n      source: frontend-pod-1\n      target: frontend-service-1\n    - condition: Frontend proxy cannot connect to frontend service due to network policy\n      effect: All user requests through proxy fail with connection errors\n      source: frontend-service-1\n      target: frontend-proxy-1\n  recommended_actions:\n    - solution:\n        actions:\n          - Identify and remove the NetworkPolicy blocking ingress to frontend pods\n        id: remove_blocking_network_policy",
+          "alerts_snapshot": {
+            "data": {
+              "alerts": [
+                {
+                  "activeAt": "2025-12-15T17:57:13.229243327Z",
+                  "annotations": {
+                    "description": "Request error rate in service frontend-proxy in namespace otel-demo is above 0 (current: 0.033333333333333326)"
+                  },
+                  "labels": {
+                    "alertname": "RequestErrorRate",
+                    "namespace": "otel-demo",
+                    "service_name": "frontend-proxy",
+                    "severity": "warning"
+                  },
+                  "state": "firing",
+                  "value": "3.3333333333333326e-02"
+                }
+              ]
+            },
+            "status": "success",
+            "timestamp": "2025-12-15T17:56:55Z"
+          }
         },
         "source": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl",
-        "license": "IBM ITBench；Artificial Analysis 公开 SRE 发布，CC BY 4.0。本站中文整理与节选。https://creativecommons.org/licenses/by/4.0/",
+        "license": "IBM ITBench；Artificial Analysis 公开 SRE 发布，CC BY 4.0。本站中文整理与节选。https://creativecommons.org/licenses/by/4.0/ 另节选同一固定 Scenario-31 告警文件；原始字段保留。",
         "split": "HF sre/test；source_split=public",
-        "excerpt": true
+        "excerpt": true,
+        "references": [
+          {
+            "label": "同题真实告警：frontend-proxy 的 RequestErrorRate",
+            "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/Scenario-31/alerts/alerts_in_alerting_state_2025-12-15T175655.720371Z.json"
+          },
+          {
+            "label": "同题参考根因及服务传播关系（公开 test 记录）",
+            "url": "https://huggingface.co/datasets/ArtificialAnalysis/ITBench-AA/blob/76df38a82288f75ba9e41dc8c515033332497473/sre/data.jsonl"
+          }
+        ]
       }
     ]
   }
