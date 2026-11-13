@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import Icon from "./Icon.vue";
-import PublisherMarks from "./PublisherMarks.vue";
+import { computed, ref } from "vue";
 import {
   findTerminalBenchCase,
-  terminalBenchCases,
   type WalkthroughStep,
 } from "../content/terminalBenchWalkthrough";
-import { selectSampleFromWalkthrough } from "../lib/sampleLocation";
+import type { TaskSample } from "../types/benchmark";
+import Icon from "./Icon.vue";
 
-defineProps<{ selected: boolean }>();
-defineEmits<{ toggle: [] }>();
-
+const props = defineProps<{ sample: TaskSample }>();
 const stepLabels: Record<WalkthroughStep, string> = {
   input: "接收材料",
   task: "理解任务",
@@ -21,173 +16,85 @@ const stepLabels: Record<WalkthroughStep, string> = {
 };
 const stepOrder: WalkthroughStep[] = ["input", "task", "output", "verify"];
 const activeStep = ref<WalkthroughStep>("input");
-const route = useRoute();
-const router = useRouter();
-const mounted = ref(false);
-// 静态 HTML 始终以首题生成；挂载后再恢复查询参数，避免深链接水合不一致。
-const activeCase = computed(() =>
-  findTerminalBenchCase(mounted.value ? route.query.sample : undefined),
-);
+const activeCase = computed(() => findTerminalBenchCase(props.sample.id));
 const currentStep = computed(() => activeCase.value?.steps[activeStep.value]);
-watch(
-  () => activeCase.value?.sampleId,
-  () => {
-    activeStep.value = "input";
-  },
-);
-onMounted(() => {
-  mounted.value = true;
-});
-function selectCase(sampleId: string) {
-  void selectSampleFromWalkthrough(router, sampleId);
-}
 </script>
 
 <template>
   <div class="terminal-pilot">
-    <header class="pilot-intro">
-      <div class="pilot-heading-line">
-        <PublisherMarks
-          benchmark-id="terminal-bench-4"
-          publisher="Terminal-Bench 团队"
-          large
-        />
-        <span>Agent 与工具使用</span>
-      </div>
-      <h1 translate="no">Terminal-Bench <span>4.0</span></h1>
-      <p class="pilot-lead">给 AI 一个终端，看它能否完成一项真实工作。</p>
-      <p class="pilot-description">
-        智能体需要在任务环境中使用工具、处理文件并交付结果。每道任务都有自己的验证方式，成绩反映模型与运行框架共同完成任务的表现。
-      </p>
-      <div class="pilot-actions">
-        <a href="#task-walkthrough" class="primary-button">
-          看一道真实任务 <Icon name="down" :size="16" />
-        </a>
-        <a href="#score" class="pilot-link">
-          了解评分方式 <Icon name="down" :size="15" />
-        </a>
+    <div v-if="activeCase && currentStep" class="walkthrough-card">
+      <div class="step-selector" role="group" aria-label="任务阅读步骤">
         <button
+          v-for="(step, index) in stepOrder"
+          :key="step"
           type="button"
-          class="pilot-compare"
-          :aria-pressed="selected"
-          @click="$emit('toggle')"
+          class="step-button"
+          :class="{ active: activeStep === step }"
+          :aria-pressed="activeStep === step"
+          aria-controls="task-step-content"
+          @click="activeStep = step"
         >
-          <Icon name="compare" :size="17" />{{
-            selected ? "已加入对比" : "加入评测对比"
-          }}
+          <span class="step-number">0{{ index + 1 }}</span>
+          <span>{{ stepLabels[step] }}</span>
         </button>
       </div>
-    </header>
-
-    <section
-      id="task-walkthrough"
-      class="walkthrough"
-      aria-labelledby="walkthrough-title"
-    >
-      <div class="walkthrough-heading">
-        <div>
-          <span class="walkthrough-kicker">Terminal-Bench 4.0 的真实任务</span>
-          <h2 id="walkthrough-title">
-            {{ activeCase?.title || "该任务暂未提供图解" }}
-          </h2>
-          <p>选择一道任务，看看它需要什么、交付什么、如何验收。</p>
-        </div>
-        <a href="#samples" class="pilot-link">
-          查看完整原题 <Icon name="up" :size="15" />
-        </a>
-      </div>
-
-      <div class="case-selector" role="group" aria-label="选择真实任务">
-        <button
-          v-for="task in terminalBenchCases"
-          :key="task.sampleId"
-          type="button"
-          class="case-button"
-          :class="{ active: activeCase?.sampleId === task.sampleId }"
-          :aria-pressed="activeCase?.sampleId === task.sampleId"
-          @click="selectCase(task.sampleId)"
-        >
-          {{ task.label }}
-        </button>
-      </div>
-      <div v-if="activeCase && currentStep" class="walkthrough-card">
-        <div class="step-selector" role="group" aria-label="任务阅读步骤">
-          <button
-            v-for="(step, index) in stepOrder"
-            :key="step"
-            type="button"
-            class="step-button"
-            :class="{ active: activeStep === step }"
-            :aria-pressed="activeStep === step"
-            aria-controls="task-step-content"
-            @click="activeStep = step"
-          >
-            <span class="step-number">0{{ index + 1 }}</span>
-            <span>{{ stepLabels[step] }}</span>
-          </button>
-        </div>
-        <div
-          id="task-step-content"
-          class="step-content"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <Transition name="step-switch" mode="out-in">
-            <div
-              :key="activeCase.sampleId + ':' + activeStep"
-              class="step-panel"
-            >
-              <!-- 图形和示例结构均为本站示意，不能当作原题附件或模型输出。 -->
-              <div class="step-visual" aria-hidden="true">
-                <div
-                  v-if="
-                    activeCase.kind === 'layout' &&
-                    (activeStep === 'input' || activeStep === 'task')
-                  "
-                  class="scene-window"
-                >
-                  <div class="scene-bar">
-                    <span class="scene-dots"><i></i><i></i><i></i></span>
-                    <span translate="no">layout.png</span>
-                    <span>示意</span>
-                  </div>
-                  <div
-                    class="artboard"
-                    :class="{ 'artboard-layers': activeStep === 'task' }"
-                  >
-                    <span class="art-header"></span>
-                    <span class="art-image"><i></i></span>
-                    <span class="art-title"></span>
-                    <span class="art-line art-line-one"></span>
-                    <span class="art-line art-line-two"></span>
-                    <span class="art-button"></span>
-                    <template v-if="activeStep === 'task'">
-                      <span class="layer-outline layer-image"
-                        ><b>IMAGE</b></span
-                      >
-                      <span class="layer-outline layer-text"><b>TEXT</b></span>
-                    </template>
-                  </div>
-                  <div class="scene-caption" translate="no">
-                    {{
-                      activeStep === "input"
-                        ? "layout.png + components/"
-                        : "位置 · 尺寸 · 样式 · 层级"
-                    }}
-                  </div>
+      <div
+        id="task-step-content"
+        class="step-content"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <Transition name="step-switch" mode="out-in">
+          <div :key="activeCase.sampleId + ':' + activeStep" class="step-panel">
+            <!-- 图形和示例结构均为本站示意，不能当作原题附件或模型输出。 -->
+            <div class="step-visual" aria-hidden="true">
+              <div
+                v-if="
+                  activeCase.kind === 'layout' &&
+                  (activeStep === 'input' || activeStep === 'task')
+                "
+                class="scene-window"
+              >
+                <div class="scene-bar">
+                  <span class="scene-dots"><i></i><i></i><i></i></span>
+                  <span translate="no">layout.png</span>
+                  <span>示意</span>
                 </div>
                 <div
-                  v-else-if="
-                    activeCase.kind === 'layout' && activeStep === 'output'
-                  "
-                  class="scene-window code-window"
+                  class="artboard"
+                  :class="{ 'artboard-layers': activeStep === 'task' }"
                 >
-                  <div class="scene-bar">
-                    <span class="scene-dots"><i></i><i></i><i></i></span>
-                    <span translate="no">config.json</span>
-                    <span>结构示意</span>
-                  </div>
-                  <pre v-pre>
+                  <span class="art-header"></span>
+                  <span class="art-image"><i></i></span>
+                  <span class="art-title"></span>
+                  <span class="art-line art-line-one"></span>
+                  <span class="art-line art-line-two"></span>
+                  <span class="art-button"></span>
+                  <template v-if="activeStep === 'task'">
+                    <span class="layer-outline layer-image"><b>IMAGE</b></span>
+                    <span class="layer-outline layer-text"><b>TEXT</b></span>
+                  </template>
+                </div>
+                <div class="scene-caption" translate="no">
+                  {{
+                    activeStep === "input"
+                      ? "layout.png + components/"
+                      : "位置 · 尺寸 · 样式 · 层级"
+                  }}
+                </div>
+              </div>
+              <div
+                v-else-if="
+                  activeCase.kind === 'layout' && activeStep === 'output'
+                "
+                class="scene-window code-window"
+              >
+                <div class="scene-bar">
+                  <span class="scene-dots"><i></i><i></i><i></i></span>
+                  <span translate="no">config.json</span>
+                  <span>结构示意</span>
+                </div>
+                <pre v-pre>
 {
   "components": [
     { "type": "IMAGE", ... },
@@ -195,119 +102,88 @@ function selectCase(sampleId: string) {
   ],
   "style": { ... }
 }</pre
-                  >
-                  <div class="scene-caption" translate="no">
-                    /app/output/config.json
-                  </div>
-                </div>
-                <div
-                  v-else-if="activeCase.kind === 'layout'"
-                  class="verify-scene"
                 >
-                  <div class="verify-pair">
-                    <div>
-                      <span class="verify-picture"><i></i><b></b></span
-                      ><small>原图</small>
-                    </div>
-                    <span class="verify-arrow">→</span>
-                    <div>
-                      <span class="verify-picture"><i></i><b></b></span
-                      ><small>重新渲染</small>
-                    </div>
-                  </div>
-                  <div class="verify-threshold">
-                    <strong>≥ 98<span>%</span></strong
-                    ><span>像素一致率要求</span>
-                  </div>
-                </div>
-                <div v-else class="scene-window concept-window">
-                  <div class="scene-bar">
-                    <span class="scene-dots"><i></i><i></i><i></i></span>
-                    <span>{{ activeCase.label }}</span>
-                    <span>示意</span>
-                  </div>
-                  <div class="concept-flow">
-                    <div class="concept-node">
-                      <Icon :name="currentStep.visual.leftIcon" :size="25" />
-                      <strong translate="no">{{
-                        currentStep.visual.left
-                      }}</strong>
-                      <small>{{ currentStep.visual.leftLabel }}</small>
-                    </div>
-                    <span class="concept-arrow">→</span>
-                    <div class="concept-node">
-                      <Icon :name="currentStep.visual.rightIcon" :size="25" />
-                      <strong translate="no">{{
-                        currentStep.visual.right
-                      }}</strong>
-                      <small>{{ currentStep.visual.rightLabel }}</small>
-                    </div>
-                  </div>
-                  <div class="scene-caption">
-                    {{ stepLabels[activeStep] }} · 任务示意
-                  </div>
+                <div class="scene-caption" translate="no">
+                  /app/output/config.json
                 </div>
               </div>
-              <div class="step-explanation">
-                <span class="step-eyebrow"
-                  >任务步骤 · 0{{ stepOrder.indexOf(activeStep) + 1 }} /
-                  04</span
-                >
-                <h3>{{ currentStep.title }}</h3>
-                <p>{{ currentStep.description }}</p>
-                <p class="step-note">{{ currentStep.note }}</p>
+              <div
+                v-else-if="activeCase.kind === 'layout'"
+                class="verify-scene"
+              >
+                <div class="verify-pair">
+                  <div>
+                    <span class="verify-picture"><i></i><b></b></span
+                    ><small>原图</small>
+                  </div>
+                  <span class="verify-arrow">→</span>
+                  <div>
+                    <span class="verify-picture"><i></i><b></b></span
+                    ><small>重新渲染</small>
+                  </div>
+                </div>
+                <div class="verify-threshold">
+                  <strong>≥ 98<span>%</span></strong
+                  ><span>像素一致率要求</span>
+                </div>
+              </div>
+              <div v-else class="scene-window concept-window">
+                <div class="scene-bar">
+                  <span class="scene-dots"><i></i><i></i><i></i></span>
+                  <span>{{ activeCase.label }}</span>
+                  <span>示意</span>
+                </div>
+                <div class="concept-flow">
+                  <div class="concept-node">
+                    <Icon :name="currentStep.visual.leftIcon" :size="25" />
+                    <strong translate="no">{{
+                      currentStep.visual.left
+                    }}</strong>
+                    <small>{{ currentStep.visual.leftLabel }}</small>
+                  </div>
+                  <span class="concept-arrow">→</span>
+                  <div class="concept-node">
+                    <Icon :name="currentStep.visual.rightIcon" :size="25" />
+                    <strong translate="no">{{
+                      currentStep.visual.right
+                    }}</strong>
+                    <small>{{ currentStep.visual.rightLabel }}</small>
+                  </div>
+                </div>
+                <div class="scene-caption">
+                  {{ stepLabels[activeStep] }} · 任务示意
+                </div>
               </div>
             </div>
-          </Transition>
-        </div>
-        <div class="walkthrough-footer">
-          <span>{{ activeCase.disclaimer }}</span>
-          <div class="walkthrough-links">
-            <a href="#samples" class="pilot-link"
-              >查看原题和来源 <Icon name="up" :size="15"
-            /></a>
-            <a
-              v-if="activeStep === 'verify' && activeCase.verificationUrl"
-              :href="activeCase.verificationUrl"
-              target="_blank"
-              rel="noreferrer"
-              class="pilot-link"
-              >查看验收代码 <Icon name="up" :size="15"
-            /></a>
+            <div class="step-explanation">
+              <span class="step-eyebrow"
+                >任务步骤 · 0{{ stepOrder.indexOf(activeStep) + 1 }} / 04</span
+              >
+              <h3>{{ currentStep.title }}</h3>
+              <p>{{ currentStep.description }}</p>
+              <p class="step-note">{{ currentStep.note }}</p>
+            </div>
           </div>
+        </Transition>
+      </div>
+      <div class="walkthrough-footer">
+        <span>{{ activeCase.disclaimer }}</span>
+        <div class="walkthrough-links">
+          <a
+            v-if="activeStep === 'verify' && activeCase.verificationUrl"
+            :href="activeCase.verificationUrl"
+            target="_blank"
+            rel="noreferrer"
+            class="pilot-link"
+            >查看验收代码 <Icon name="up" :size="15"
+          /></a>
         </div>
       </div>
-      <p v-else class="walkthrough-empty">
-        此样例尚未整理图解，可查看下方原题。
-      </p>
-    </section>
-
-    <aside class="score-summary">
-      <div>
-        <span>评分与比较</span>
-        <h2>每道任务都有自己的验收方式</h2>
-      </div>
-      <div>
-        <p>
-          评测用任务验证结果汇总通过率。比较成绩前，还要核对评测版本、模型、运行框架、资源设置和重复次数。
-        </p>
-        <a href="#score" class="pilot-link"
-          >查看评分说明 <Icon name="down" :size="15"
-        /></a>
-      </div>
-    </aside>
+    </div>
   </div>
 </template>
-
 <style scoped src="../styles/pilot-common.css"></style>
 <style scoped>
-.terminal-pilot {
-  padding-top: 28px;
-}
-.pilot-intro {
-  max-width: 900px;
-  padding: 0 0 36px;
-}
 .case-button {
   min-height: 42px;
   padding: 8px 15px;
@@ -599,15 +475,6 @@ function selectCase(sampleId: string) {
   }
 }
 @media (max-width: 700px) {
-  .terminal-pilot {
-    padding-top: 22px;
-  }
-  .pilot-intro {
-    padding-bottom: 28px;
-  }
-  .pilot-intro h1 {
-    font-size: clamp(32px, 8vw, 42px);
-  }
   .walkthrough-heading {
     align-items: flex-start;
     flex-direction: column;

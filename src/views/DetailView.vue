@@ -20,6 +20,7 @@ import SourceList from "../components/SourceList.vue";
 import Icon from "../components/Icon.vue";
 import SampleViewer from "../components/SampleViewer.vue";
 import BenchmarkDetailHeader from "../components/BenchmarkDetailHeader.vue";
+import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import { humanEvalInitialAnchor } from "../lib/deferredDetailAnchor";
 
 const route = useRoute();
@@ -27,6 +28,7 @@ const item = computed(() =>
   byId.get(String(route.meta.benchmarkId || route.params.id)),
 );
 const caseVisuals: Partial<Record<string, Component>> = {
+  "terminal-bench-4": TerminalBenchPilot,
 };
 const caseVisual = computed(() => item.value && caseVisuals[item.value.id]);
 function reportSamplesReady() {
