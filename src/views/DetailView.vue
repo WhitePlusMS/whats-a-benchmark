@@ -22,6 +22,7 @@ import SampleViewer from "../components/SampleViewer.vue";
 import BenchmarkDetailHeader from "../components/BenchmarkDetailHeader.vue";
 import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
+import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import { humanEvalInitialAnchor } from "../lib/deferredDetailAnchor";
 
 const route = useRoute();
@@ -31,6 +32,7 @@ const item = computed(() =>
 const caseVisuals: Partial<Record<string, Component>> = {
   "terminal-bench-4": TerminalBenchPilot,
   "swe-bench-verified": SweBenchPilot,
+  roboquest: RoboQuestPilot,
 };
 const caseVisual = computed(() => item.value && caseVisuals[item.value.id]);
 function reportSamplesReady() {

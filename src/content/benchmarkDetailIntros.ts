@@ -9,6 +9,13 @@ interface BenchmarkDetailIntro {
 export const benchmarkDetailIntros: Partial<
   Record<string, BenchmarkDetailIntro>
 > = {
+  roboquest: {
+    context: "具身智能 · 观察、操作与主动提交",
+    accent: "Quest",
+    lead: "看见插销，不等于能打开盒子。",
+    summary:
+      "让机器人在仿真环境中理解物体关系、规划动作并完成任务。打开木盒只是中途：还要取出目标、放好、松手，最后主动提交。",
+  },
   "swe-bench-verified": {
     context: "编程与软件工程",
     accent: "Verified",
