@@ -1,0 +1,149 @@
+{
+  "id": "aa-image-t2i",
+  "status": "published",
+  "order": 600,
+  "name": "AA-Image-T2I v2.1",
+  "subtitle": "同一文字提示生成两张图，由匿名偏好比较建模排名",
+  "category": "multimodal",
+  "tags": [
+    "文生图",
+    "人类偏好",
+    "图像生成"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "v2.1；方法快照2026-11-13",
+  "kind": "original",
+  "aliases": [
+    "AA-Image-T2I",
+    "AA-Image-T2I v2.1",
+    "Artificial Analysis Text to Image",
+    "Artificial Analysis Image Arena Text to Image"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "对纯文本生成图像做独立盲评，按用途和能力两轴均衡覆盖；由经过验证的私有评委比较同题成品并估计相对偏好。",
+    "task": "从英文文本提示生成图像，比较对真实用途和指定能力要求的表现；不是图像理解题，也不是带参考图的编辑任务。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "taskContract": {
+    "input": "人工整理的英文单条正向提示，无输入参考图；提示覆盖10类用途和9类能力。",
+    "output": "每提示生成1张、1:1图像；标准展示1024×1024，最低支持更高分辨率时先以最低分辨率生成再缩小展示。",
+    "environment": "遵循模型/API公开默认设置，seed42；同题同模态成品成对比较，左右随机且投票前隐藏身份。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA独立维护轮换提示集，按用途×主要能力均衡采样并每月刷新；本轮未找到完整提示文件、固定行数或全量成员清单。",
+    "disclosure": "partial",
+    "scale": [
+      "用途：营销广告、零售电商、真人影视、动画游戏、建筑地产、生产力知识工作、UI/UX、消费、社媒创作者、前沿。",
+      "能力：推理、知识、文字渲染、布局、复杂构图、光照、材质、物理、人体结构。"
+    ],
+    "splits": [
+      "只计AA-Image-T2I v2 test set中v2.1参评模型之间的有效票；不等于所有公开Arena互动。"
+    ],
+    "fields": [
+      "每提示含用途、主要能力及风格标签；盲评输出为成对偏好。"
+    ],
+    "files": [
+      "未取得可下载的全量轮换题集或成品包。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法、动态榜单与Image Arena可访问；完整提示集及有效票明细未取得。"
+    ],
+    "url": "https://artificialanalysis.ai/image/arena",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "所查官方方法与榜单没有为全量提示、参评成品声明统一开放转载许可。",
+    "scope": "本站中文整理方法，提供官方真实图像比较入口，不复制图片或未授权提示。",
+    "boundaries": [
+      "参评模型开放权重不代表AA题集或所有生成图像可自由再发布。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方 Image Arena 是混合入口：只看文生图时启用 Text to Image，并关闭 Image Editing。可按官方交互查看同一提示的模型输出；本站不搬运成品，不把自制图片当评测样例。",
+    "url": "https://artificialanalysis.ai/image/arena",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image",
+      "https://artificialanalysis.ai/image/arena"
+    ]
+  },
+  "metric": {
+    "name": "人类偏好Elo（Bradley–Terry）",
+    "description": "用验证过的私有评委有效成对票联合拟合Bradley–Terry，锚定FLUX.2 [dev]=1000；用途与能力等权。报告95%区间，整体Range来自完整榜单模拟，筛选与分类页Range来自各模型区间。价格和生成耗时另列，不是Elo的加权项。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/image"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "偏好Elo是相对量尺，不是正确率；随参评模型、提示刷新与票数变化，不应把不同快照视为固定题库上的精确绝对分数。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/image"
+      ]
+    },
+    {
+      "text": "文生图与图像编辑独立计分，不能互换；本页不覆盖Reference to Image。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/image"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/image",
+      "label": "官方图像方法与v2.1规则",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "label": "AA-Image-T2I v2.1榜单",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/image/arena",
+      "label": "官方Text to Image真实比较入口",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "interpretation": {
+    "judge": {
+      "text": "评委看不到模型身份，满足最小交互时间后选择偏好；提示标签提供关注要点。新增模型暂时提高采样频率。置信区间按票独立处理，同一评委或提示的相关性可能使区间偏窄。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/image"
+      ]
+    },
+    "versionChanges": {
+      "text": "v2.1沿用v2.0提示分类与每月刷新，更新统计方法，并移除不再维护或票数不足的模型。模型更换Arena host后，旧输出上的票不再计入。本轮未核实v2.1可靠首发日期，榜单Released栏是模型日期，不能代替评测日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/image",
+        "https://artificialanalysis.ai/image/leaderboard/text-to-image"
+      ]
+    }
+  }
+}

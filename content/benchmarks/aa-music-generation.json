@@ -1,0 +1,167 @@
+{
+  "id": "aa-music-generation",
+  "status": "published",
+  "order": 600,
+  "name": "AA-Music Generation",
+  "subtitle": "纯音乐与含人声音乐各自盲评，不合并成一个总分",
+  "category": "multimodal",
+  "tags": [
+    "音乐生成",
+    "人类偏好",
+    "声乐",
+    "纯音乐"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "Instrumental v1.1 / Vocal v1.1",
+  "kind": "original",
+  "aliases": [
+    "AA-Music-Instrumental",
+    "AA-Music-Instrumental v1.1",
+    "AA-Music-Vocal",
+    "AA-Music-Vocal v1.1",
+    "Artificial Analysis Music Arena"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在同一页面分别介绍两套独立音乐生成评测：Instrumental不含人声；Vocal含演唱或说话人声。两者单独拟合榜单，并可按曲风查看。",
+    "task": "根据音乐提示生成完整音轨，由验证过的私有评委盲听同题同类型的两份作品并选择偏好。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/music"
+    ]
+  },
+  "taskContract": {
+    "input": "经整理的音乐风格提示；用户提交25–200字符的提示经审核后可加入轮换。Vocal不给现成歌词。",
+    "output": "每提示1首约3分钟音轨，或模型最接近/固定支持时长；Instrumental关闭人声，Vocal由模型自行写歌词并生成声音。",
+    "environment": "可设置时使用seed42、MP3及44.1kHz，否则采用最接近支持值/默认值。入场统一为320kbps MP3/44.1kHz，去元数据及封面，保留原单/双声道。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/music"
+    ]
+  },
+  "dataProfile": {
+    "summary": "人工整理、可重复运行的提示轮换覆盖多种曲风，但本轮未找到完整题集下载、固定题数或两个任务的逐题对应清单。两套独立榜单不得拼成虚构综合指数。",
+    "disclosure": "partial",
+    "scale": [
+      "Instrumental v1.1：仅纳入能通过标志或风格/负向控制抑制人声的接口；无法区分人声的接口仅可进入Vocal。",
+      "Vocal v1.1：必须从提示自行生成歌词及人声，测端到端写歌，不以外部提供歌词代替。",
+      "每提示一个曲风标签，例如Pop、Hip-Hop/Rap、Electronic、Classical/Orchestral、Jazz/Blues；可按曲风独立统计。"
+    ],
+    "splits": [
+      "无已取得的公开train/test文件；同题同模态成对，Instrumental与Vocal独立统计。"
+    ],
+    "fields": [
+      "提示、曲风、生成音轨、匿名成对偏好；无标准答案转录。"
+    ],
+    "files": [
+      "官方Music Arena为真实试听入口；本站不取得或分发完整曲库。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/music",
+      "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "https://artificialanalysis.ai/music/leaderboard/vocals"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法、两个榜单及公开试听入口可访问；全量题集、私有评委票及成品包未取得。"
+    ],
+    "url": "https://artificialanalysis.ai/music/arena",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/music"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方方法未为提示、歌词及参评音轨声明统一开放转载许可。",
+    "scope": "本站仅中文介绍方法及官方试听入口，不复制歌词、音频或专有提示。",
+    "boundaries": [
+      "可试听不等于可再发布；不同提供商生成作品可能另有条款。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/music"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "Music Arena展示同题真实音轨对，可试听；官网要求每首至少听10秒才可投票。本轮仅核对页面和方法，未实际播放、未投票，不声称完成音质验收。",
+    "url": "https://artificialanalysis.ai/music/arena",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/music",
+      "https://artificialanalysis.ai/music/arena"
+    ]
+  },
+  "metric": {
+    "name": "Instrumental Elo / Vocal Elo（独立）",
+    "description": "私有验证评委匿名成对偏好以Bradley–Terry最大似然拟合，再转换为Elo；两个榜单分别以MiniMax Music 3.0=1000锚定并给95%区间，不直接合并或跨榜比较。公开Music Arena投票不进入正式评分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/music",
+      "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "https://artificialanalysis.ai/music/leaderboard/vocals"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "偏好不是客观正确率；纯音乐与人声歌唱任务能力不同，不能以某榜分数代表另一榜。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/music"
+      ]
+    },
+    {
+      "text": "只核对官方方法与页面，未读取全量票或试听作品，无法独立复算排名或确认具体曲目的音频内容。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/music"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/music",
+      "label": "官方音乐生成方法与v1.1更新日期",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "label": "Instrumental v1.1独立榜单及锚点",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/music/leaderboard/vocals",
+      "label": "Vocal v1.1独立榜单及锚点",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/music/arena",
+      "label": "Music Arena官方真实试听入口",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-10",
+  "interpretation": {
+    "judge": {
+      "text": "每首至少试听10秒，投票前隐藏身份。静态增益调整朝-16 LUFS目标，但受-1 dBTP真峰值上限约束，部分音轨会低于目标；不加压缩、限幅或EQ，以免音量或文件格式差异主导偏好。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/music"
+      ]
+    },
+    "comparison": {
+      "text": "各模态独立总体榜与曲风榜；达到最低票数才展示，所查方法没有给统一最低票数。约3分钟是目标而非所有模型相同成品长度。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/music"
+      ]
+    },
+    "versionChanges": {
+      "text": "官方注明2026-10更新统计方法至v1.1：区间纳入其他模型评分不确定性，整体Range来自完整榜单模拟，分类/筛选Range按个体区间。此处发布日期对应当前v1.1更新月份，非断言Music Arena最早上线日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/music"
+      ]
+    }
+  }
+}

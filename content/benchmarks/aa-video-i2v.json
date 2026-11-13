@@ -1,0 +1,187 @@
+{
+  "id": "aa-video-i2v",
+  "status": "published",
+  "order": 600,
+  "name": "AA-Video-I2V v2.1",
+  "subtitle": "参考图生成视频：保持首帧内容并按要求运动",
+  "category": "multimodal",
+  "tags": [
+    "视频生成",
+    "人类偏好",
+    "有声/无声"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "v2.1；2026-11-13 方法快照",
+  "kind": "original",
+  "aliases": [
+    "AA-Video-I2V",
+    "AA-Video-I2V-Silent",
+    "AA-Video-I2V v2.1",
+    "AA-Video-I2V-Silent v2.1",
+    "AA image-to-video",
+    "AA 图生视频"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以参考首帧及配套指令生成视频，比较动态与一致性；有声与 Silent 独立评测。",
+    "task": "以给定图像作为首帧，在维持人物、物体和场景一致性的同时实现后续动作及镜头要求。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/video"
+    ]
+  },
+  "taskContract": {
+    "input": "1920×1080 的无损 PNG 参考首帧及（模型支持时）配套文本指令。",
+    "output": "有声分项输出带同步音频的视频；Silent 分项输出无声视频。每次只比较同一题集、同一输入的两个模型结果。",
+    "environment": "默认 1080p、24 FPS、10 秒、16:9；不支持时取最接近设置，距离相同取较高者。seed 42（若支持）；提示增强仅在作者推荐时开启，guidance/steps 取官方默认。有声分项启用音频输出。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/video"
+    ]
+  },
+  "dataProfile": {
+    "summary": "同一专题保留有声与无声两个独立评测名称、输入范围和官方分榜。",
+    "disclosure": "partial",
+    "scale": [
+      "有声：1,000 项提示；Silent：500 项提示，两套独立题集。",
+      "按10类实际用途与10类能力组织，另标8种视觉风格，风格不等比例。",
+      "每项为参考首帧与针对该图编写的指令；图像统一1920×1080 PNG。"
+    ],
+    "splits": [
+      "有声和无声各有独立测试集和 Elo 池；不与其他视频任务池混合。",
+      "题包全文、媒体和逐票数据未核实为可下载开放集。"
+    ],
+    "fields": [
+      "文本指令",
+      "参考首帧",
+      "模型输出视频",
+      "盲评偏好票"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/video"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "同一官方榜单页面用 With Audio / No Audio 切换两个分项；请同时确认页标题显示正确评测名与版本。",
+      "公开 Arena 是多模式入口，不能从链接本身推断已选择本卡模式。"
+    ],
+    "url": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "https://artificialanalysis.ai/methodology/video",
+      "https://artificialanalysis.ai/video/arena"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到题目文本、参考媒体、输出视频及投票记录的统一再发布许可。",
+    "scope": "本站只整理方法与数据边界，保留官方榜单和实际对比入口，不镜像未授权媒体或原始提示。",
+    "boundaries": [
+      "可浏览不等于允许转载；公开 Arena 的投票不计入正式视频评测分数。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/video"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方 Video Arena 为混合模式入口。查看本卡案例时须核对仅启用 Image to Video，并确认 With Audio 或 No Audio，与所查分项一致；其他模式需关闭。本站未取得可永久定位的公开题目 ID，也未复制视频或编造样例，实际可见内容以官网为准。",
+    "url": "https://artificialanalysis.ai/video/arena",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/video/arena",
+      "https://artificialanalysis.ai/methodology/video"
+    ]
+  },
+  "metric": {
+    "name": "Quality Elo（有声 / Silent 分池）",
+    "description": "通过经过验证的私人评审盲选，以 Bradley–Terry 拟合并报告 Elo；公开 Arena 投票不计入正式分数。每个评测池分别排名，不直接比较有声与无声或生成与编辑的绝对分数。置信区间把票视为独立，重复评审或提示导致相关性时可能偏窄。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/video"
+    ]
+  },
+  "interpretation": {
+    "comparison": {
+      "text": "有声分项：AA-Video-I2V v2.1，1,000 项提示；无声分项：AA-Video-I2V-Silent v2.1，500 项提示。官方同一榜单以 With Audio / No Audio 切换；两组结果单独拟合，不能把其中一组榜单或题数代表另一组。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+        "https://artificialanalysis.ai/methodology/video"
+      ]
+    },
+    "versionChanges": {
+      "text": "I2V v2.1 采用当前1000/500两套图像与提示。有声对局按用途与能力组合均匀抽样，再取题；Silent 则从全题集随机取题，两者不是相同抽样流程。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/video"
+      ]
+    },
+    "disclosure": {
+      "text": "官方端到端 Generation Time 当前仅覆盖无声 T2V/I2V，包含排队、生成及下载；I2V 若需上传图像则计上传时间，URL方式无上传步骤。编辑与有声分项目前仅以质量Elo排名，不应编造其延迟结果。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/video"
+      ]
+    }
+  },
+  "limitations": [
+    {
+      "text": "Elo 是该题集和参评模型范围内的相对偏好，不是任务通过率，也不能等同“模型正确理解所有指令”。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/video"
+      ]
+    },
+    {
+      "text": "未核实本版本首发年月；2026-11-13 为核对快照，榜单 Released 栏表示参评模型发布日期，不是评测首发日。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/video",
+        "https://artificialanalysis.ai/video/leaderboard/image-to-video"
+      ]
+    },
+    {
+      "text": "播放不把低分辨率视频放大，高于1080p则缩小；不支持10秒的模型以其最长时长呈现。有声输出用固定增益趋向−18 LUFS，不重新压缩或混音。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/video"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/video",
+      "label": "AA 视频方法：六分项、题集与版本",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "label": "AA-Video-I2V / AA-Video-I2V-Silent 正式榜单（切换音频模式）",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/video/arena",
+      "label": "官方 Video Arena 多模式对比入口",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-video-t2v",
+      "label": "不同输入任务",
+      "detail": "该卡使用不同输入及独立Elo池，不共享本卡有声/无声榜单。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/video"
+      ]
+    },
+    {
+      "id": "aa-video-editing",
+      "label": "不同输入任务",
+      "detail": "该卡使用不同输入及独立Elo池，不共享本卡有声/无声榜单。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/video"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13"
+}
