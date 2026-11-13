@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import type { Source } from "../content/schema";
 import { sourceReference } from "../lib/sourceReferences";
 import { sourceRoleLabels } from "../content/labels";
+import { formatDate } from "../lib/displayFormats";
 import UiTooltip from "./UiTooltip.vue";
 
 const props = defineProps<{
@@ -39,7 +40,7 @@ const links = computed(() => {
             hash: `#${reference.id}`,
           }"
           :aria-describedby="describedBy"
-          :aria-label="`参考资料 ${reference.number}：${reference.source.label}`"
+          :aria-label="`参考资料 ${reference.number}：${reference.title}`"
           >[{{ reference.number }}]</RouterLink
         >
       </template>
@@ -48,8 +49,13 @@ const links = computed(() => {
           >参考资料 [{{ reference.number }}] ·
           {{ sourceRoleLabels[reference.source.role] }}</span
         >
-        <strong>{{ reference.source.label }}</strong>
-        <span class="ui-tooltip-meta" translate="no">{{ reference.host }}</span>
+        <strong>{{ reference.title }}</strong>
+        <span class="ui-tooltip-meta">
+          <span translate="no">{{ reference.host }}</span>
+          <template v-if="reference.verifiedAt">
+            · 核验于 {{ formatDate(reference.verifiedAt) }}</template
+          >
+        </span>
       </template>
     </UiTooltip>
   </sup>
