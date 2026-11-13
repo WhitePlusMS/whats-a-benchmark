@@ -1,0 +1,149 @@
+{
+  "id": "arena-document",
+  "status": "published",
+  "order": 600,
+  "name": "Document Arena",
+  "subtitle": "围绕真实用户PDF比较摘要、提取和长文档问答",
+  "category": "context",
+  "tags": [
+    "PDF",
+    "文档分析",
+    "人类偏好",
+    "长上下文"
+  ],
+  "publisher": "Arena / LMArena（Arena Intelligence Inc.）",
+  "brandIds": [
+    "arena"
+  ],
+  "year": 2026,
+  "version": "持续更新的专项榜单",
+  "kind": "subset",
+  "aliases": [
+    "Arena Document",
+    "LMArena Document Arena"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "围绕用户上传PDF做文档分析和长内容推理，以同一任务下的匿名回答偏好建立专项排名。",
+    "task": "阅读PDF并按需求总结、提取信息或回答问题；不是单张图片理解榜的别名。",
+    "sourceUrls": [
+      "https://arena.ai/blog/march-2026-arena-updates",
+      "https://arena.ai/company/leaderboard-changelog",
+      "https://arena.ai/leaderboard/chat/document"
+    ]
+  },
+  "taskContract": {
+    "input": "用户上传PDF与分析问题。",
+    "output": "两个匿名模型的文档回答，供用户比较偏好。",
+    "environment": "Arena对战流程；本轮未独立确认各模型PDF抽取、OCR、截断及最大页数是否完全一致。",
+    "sourceUrls": [
+      "https://arena.ai/blog/march-2026-arena-updates",
+      "https://arena.ai/how-it-works"
+    ]
+  },
+  "dataProfile": {
+    "summary": "真实上传文档驱动的动态评测；公共HF有document/document_style_control模型汇总，不代表原PDF、问题和回答全公开。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [
+      "汇总latest/full是当前与历史榜快照，不是原始题目test。"
+    ],
+    "fields": [
+      "汇总rating、区间、vote_count、rank、日期。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/blog/march-2026-arena-updates"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开榜单及汇总可查；完整原始PDF与任务集没有在本轮确认取得。"
+    ],
+    "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/blog/march-2026-arena-updates"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖用户输入、原始附件和模型输出的统一转载许可。",
+    "scope": "本站仅中文整理方法与公开入口，不复制用户会话、上传文件或模型作品。",
+    "boundaries": [
+      "公开榜单与汇总数据不等于原始任务已公开；模型许可列也不是评测数据许可。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/chat/document"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方发布页含Document Arena流程演示与入口；不是可转载的真实用户PDF样例包。",
+    "url": "https://arena.ai/blog/march-2026-arena-updates",
+    "sourceUrls": [
+      "https://arena.ai/blog/march-2026-arena-updates"
+    ]
+  },
+  "metric": {
+    "name": "Arena Score（文档回答偏好）",
+    "description": "按匿名成对人类偏好形成Bradley–Terry相对评分；公开页有style-control开关。评分不是逐页OCR准确率，也不是固定参考答案正确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/leaderboard/chat/document",
+      "https://arena.ai/how-it-works"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "用户材料和任务分布动态变化；本轮未复核解析管线，不能推断所有文件格式或长度均受相同测试。",
+      "sourceUrls": [
+        "https://arena.ai/blog/march-2026-arena-updates",
+        "https://arena.ai/leaderboard/chat/document"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://arena.ai/leaderboard/chat/document",
+      "label": "Document Arena 官方入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://arena.ai/blog/march-2026-arena-updates",
+      "label": "PDF任务流程与正式榜发布回顾",
+      "role": "definition"
+    },
+    {
+      "url": "https://arena.ai/company/leaderboard-changelog",
+      "label": "2026-03-03文档榜上线记录",
+      "role": "release"
+    },
+    {
+      "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "label": "固定document汇总数据卡",
+      "role": "data"
+    },
+    {
+      "url": "https://arena.ai/how-it-works",
+      "label": "官方匿名对战流程",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-03-03",
+  "interpretation": {
+    "versionChanges": {
+      "text": "官方变更记录于2026-03-03宣布Document榜上线；此前有早期收票阶段，不能把正式榜上线日说成最早接收PDF之日。",
+      "sourceUrls": [
+        "https://arena.ai/company/leaderboard-changelog",
+        "https://arena.ai/blog/march-2026-arena-updates"
+      ]
+    }
+  }
+}

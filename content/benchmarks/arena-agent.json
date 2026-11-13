@@ -1,0 +1,167 @@
+{
+  "id": "arena-agent",
+  "status": "published",
+  "order": 600,
+  "name": "Agent Arena",
+  "subtitle": "从真实单线程工作记录估计主代理模型的净改善",
+  "category": "agents",
+  "tags": [
+    "代理",
+    "真实用户任务",
+    "因果评估"
+  ],
+  "publisher": "Arena / LMArena（Arena Intelligence Inc.）",
+  "brandIds": [
+    "arena"
+  ],
+  "year": 2026,
+  "version": "持续更新的专项榜单",
+  "kind": "original",
+  "aliases": [
+    "Agent Arena Capabilities",
+    "Arena Agent Mode",
+    "Agent Arena Net Improvement"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Arena在真实用户工作会话中随机分配主代理模型，用任务与工具反馈估计该模型相对平均模型的改善；不是匿名双答案投票榜。",
+    "task": "完成代码、文件、研究等多步委托，接受用户纠正，并正确使用可用工具。",
+    "sourceUrls": [
+      "https://arena.ai/blog/agent-arena-methodology",
+      "https://arena.ai/resources/agent-arena-signals"
+    ]
+  },
+  "taskContract": {
+    "input": "真实用户任务、上下文和Agent Mode可用工具；不是固定合成题包。",
+    "output": "执行轨迹、交付结果与用户确认/反馈。",
+    "environment": "随机路由的单线程多轮Agent Mode；当前评估orchestrator，不把子代理或整个harness的因果效应全部归给它。",
+    "sourceUrls": [
+      "https://arena.ai/blog/agent-arena-methodology",
+      "https://help.arena.ai/articles/5432423882-how-to-use-agent-mode"
+    ]
+  },
+  "dataProfile": {
+    "summary": "持续产生真实会话；公开HF提供模型级汇总及历史快照，不是完整原始会话集。",
+    "disclosure": "partial",
+    "scale": [
+      "当前五信号：Confirmed Success、Praise vs Complaint、Steerability、Bash Reliability、Tool Hallucinations。"
+    ],
+    "splits": [
+      "leaderboard-dataset的agent与分信号配置有latest/full，表示汇总快照而非训练/测试题。"
+    ],
+    "fields": [
+      "score、score_ci_lower/upper、session_count、observation_count、leaderboard_publish_date。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/resources/agent-arena-signals"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "榜单、方法与公开汇总可查；本次未取得完整原始任务/执行轨迹。"
+    ],
+    "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/blog/agent-arena-methodology"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "公开leaderboard-dataset声明CC BY4.0；原始会话/附件/模型输出不由此一并获许可。",
+    "scope": "本站仅中文整理方法与公开入口，不复制用户会话、上传文件或模型作品。",
+    "boundaries": [
+      "公开榜单与汇总数据不等于原始任务已公开；模型许可列也不是评测数据许可。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/how-it-works"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方Agent Mode可体验工作流；不是公开固定测试题下载。本次没有开启真实任务或转载用户会话。",
+    "url": "https://arena.ai/agent",
+    "sourceUrls": [
+      "https://arena.ai/blog/agent-arena-methodology",
+      "https://help.arena.ai/articles/5432423882-how-to-use-agent-mode"
+    ]
+  },
+  "metric": {
+    "name": "Net Improvement（因果净改善）",
+    "description": "按随机分配概率作自归一化逆概率加权，估计各信号相对基线的百分点差异，再汇总；有95%置信区间及时间衰减。正值表示高于基线，不是任务通过率，也不是Bradley–Terry评分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arena.ai/blog/agent-arena-methodology",
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "比较基线、模型集合和真实任务分布随时间变化；同一模型净改善改变不必然意味着模型权重改变。",
+      "sourceUrls": [
+        "https://arena.ai/blog/agent-arena-methodology",
+        "https://help.arena.ai/articles/5432423882-how-to-use-agent-mode"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://arena.ai/leaderboard/agent",
+      "label": "Agent Arena 官方入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://arena.ai/blog/agent-arena-methodology",
+      "label": "2026-06-04发布与因果统计方法",
+      "role": "release"
+    },
+    {
+      "url": "https://arena.ai/resources/agent-arena-signals",
+      "label": "当前五信号权威定义",
+      "role": "definition"
+    },
+    {
+      "url": "https://help.arena.ai/articles/5432423882-how-to-use-agent-mode",
+      "label": "Agent Mode体验及随机路由说明",
+      "role": "access"
+    },
+    {
+      "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "label": "固定公开汇总数据卡",
+      "role": "data"
+    },
+    {
+      "url": "https://arena.ai/how-it-works",
+      "label": "官方数据与用户反馈边界",
+      "role": "definition"
+    },
+    {
+      "url": "https://arena.ai/company/leaderboard-changelog",
+      "label": "Bash信号变更记录",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-06-04",
+  "interpretation": {
+    "judge": {
+      "text": "以当前信号定义为准：Confirmed Success只认专门确认弹窗的yes；日常感谢属于Praise而非该确认。Steerability考察纠正负担；工具幻觉考察不存在的工具调用。",
+      "sourceUrls": [
+        "https://arena.ai/resources/agent-arena-signals"
+      ]
+    },
+    "versionChanges": {
+      "text": "2026-10-12将Bash Recovery改为Bash Reliability：按非豁免调用的模型原因失败率，不再数失败后的恢复步数。旧方法文章/帮助页仍有旧名，不能当作现行规则。",
+      "sourceUrls": [
+        "https://arena.ai/resources/agent-arena-signals",
+        "https://arena.ai/company/leaderboard-changelog"
+      ]
+    }
+  }
+}

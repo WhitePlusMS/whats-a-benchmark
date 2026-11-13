@@ -1,0 +1,150 @@
+{
+  "id": "arena-search",
+  "status": "published",
+  "order": 600,
+  "name": "Search Arena",
+  "subtitle": "真实联网问题的匿名双答案偏好评测",
+  "category": "knowledge",
+  "tags": [
+    "联网搜索",
+    "人类偏好",
+    "时效性"
+  ],
+  "publisher": "Arena / LMArena（Arena Intelligence Inc.）",
+  "brandIds": [
+    "arena"
+  ],
+  "year": 2025,
+  "version": "持续更新的专项榜单",
+  "kind": "subset",
+  "aliases": [
+    "Arena Search",
+    "LMArena Search Arena",
+    "search-arena-24k",
+    "search-arena-v1-7k"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用户向搜索增强模型提出真实问题，再比较匿名回答；评价检索、组织来源与最终回答的整体体验，而非单纯搜索API召回率。",
+    "task": "联网获取相关资料并回答用户问题，由用户给出相对偏好。",
+    "sourceUrls": [
+      "https://arena.ai/blog/search-arena"
+    ]
+  },
+  "taskContract": {
+    "input": "真实、多语言、可多轮的搜索问题。",
+    "output": "两组搜索增强模型回答及来源引用、人类偏好；没有统一标准答案。",
+    "environment": "在Arena搜索模式匿名对比；历史研究使用引用格式标准化/随机化分析潜在身份泄漏与格式影响。",
+    "sourceUrls": [
+      "https://arena.ai/blog/search-arena",
+      "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "固定24k发布覆盖2025-03-18至05-08：24069会话、12652偏好票，不能把会话数当票数或现行榜规模。",
+    "disclosure": "partial",
+    "scale": [
+      "旧7k发布是2025-03-18至04-13的筛选对战；与24k日期覆盖重叠，不应相加算独立题数。"
+    ],
+    "splits": [
+      "两个HF发布均default/test；是日志发布标签，不是训练用途承诺。"
+    ],
+    "fields": [
+      "messages_a/b、人类偏好（部分缺失）、时间戳、系统和搜索轨迹元数据、语言/意图标注。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md",
+      "https://huggingface.co/datasets/lmarena-ai/search-arena-v1-7k/blob/06865038ceb415c1942e58bff8f14150cbc9fbcd/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "历史匿名数据公开；现行全部会话不等于已发布历史快照。"
+    ],
+    "url": "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md",
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "历史数据卡：用户提示CC BY4.0，模型输出服从各提供商条款；公开汇总榜另为CC BY4.0。",
+    "scope": "本次只介绍数据结构与官方入口，不转载可能包含个人信息或受其他条款约束的模型回答。",
+    "boundaries": [
+      "发布者声明已做DLP去标识，不意味着每条内容都可不经核验直接转载。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md",
+      "https://huggingface.co/datasets/lmarena-ai/search-arena-v1-7k/blob/06865038ceb415c1942e58bff8f14150cbc9fbcd/README.md",
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "可在官方历史数据查看真实多轮记录；本轮只读数据卡，不挑选或复制未经逐条隐私/许可核验的用户记录。",
+    "url": "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md"
+    ]
+  },
+  "metric": {
+    "name": "Arena Score（成对人类偏好）",
+    "description": "按对战票以Bradley–Terry体系估计相对偏好，并报告区间；style-control与非控制快照须区分。偏好不是引用正确率或事实全对率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/blog/search-arena"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "引用数、篇幅与偏好相关，不足以证明信息正确；实时网页变化使历史回答不能视作今日事实。",
+      "sourceUrls": [
+        "https://arena.ai/blog/search-arena"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://arena.ai/leaderboard/chat/search",
+      "label": "Search Arena 官方入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://arena.ai/blog/search-arena",
+      "label": "官方首发与搜索偏好方法",
+      "role": "release"
+    },
+    {
+      "url": "https://huggingface.co/datasets/lmarena-ai/search-arena-24k/blob/fac8dcf86146c8773ef020095c5694c9b2bc98d7/README.md",
+      "label": "固定24k数据卡与分层许可",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/lmarena-ai/search-arena-v1-7k/blob/06865038ceb415c1942e58bff8f14150cbc9fbcd/README.md",
+      "label": "固定7k历史发布数据卡",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "label": "公开评分与历史快照规则",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2025-03-18",
+  "interpretation": {
+    "versionChanges": {
+      "text": "首篇官方文章写最初上线为2025-03-18，文章发表于04-15；后续平台迁移/公开汇总数据起始时间不同，不以某快照日期替代首发。",
+      "sourceUrls": [
+        "https://arena.ai/blog/search-arena",
+        "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md"
+      ]
+    }
+  }
+}

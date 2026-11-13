@@ -1,0 +1,150 @@
+{
+  "id": "arena-image-to-webdev",
+  "status": "published",
+  "order": 600,
+  "name": "Image-to-WebDev Arena",
+  "subtitle": "从截图或参考图生成网站，比较可运行结果",
+  "category": "coding",
+  "tags": [
+    "截图转代码",
+    "网页生成",
+    "多模态编程",
+    "人类偏好"
+  ],
+  "publisher": "Arena / LMArena（Arena Intelligence Inc.）",
+  "brandIds": [
+    "arena"
+  ],
+  "year": 2026,
+  "version": "持续更新的专项榜单",
+  "kind": "subset",
+  "aliases": [
+    "Code Arena Image-to-WebDev",
+    "Image to WebDev",
+    "Image-to-Code Arena"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Code Arena的图像输入专项，要求根据图片或截图生成网站，包含多步推理与工具调用的开发路线；与纯文字WebDev分开。",
+    "task": "把参考画面转为网页实现，并通过运行预览进行比较，不是生成一张静态网页截图。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/code/image-to-webdev",
+      "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena"
+    ]
+  },
+  "taskContract": {
+    "input": "用户图片/截图及网页需求。",
+    "output": "网站代码与可运行预览。",
+    "environment": "Code Arena生成两份实现供比较；通用Code Arena说明需查看两边预览后才能投票。各模型/harness路线应按榜单标识区分。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/code/image-to-webdev",
+      "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena"
+    ]
+  },
+  "dataProfile": {
+    "summary": "动态用户任务与偏好票；本轮未取得固定图像任务包、参考实现或该专项全部原始票。",
+    "disclosure": "partial",
+    "scale": [],
+    "splits": [],
+    "fields": [
+      "公开榜含模型/harness标识、Score、Votes、区间、成本等；这些是汇总字段，不是完整测试输入。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/code/image-to-webdev"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "专项榜和Code Arena使用说明公开；完整原题与产物集尚未核实可下载。"
+    ],
+    "url": "https://arena.ai/leaderboard/code/image-to-webdev",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/code/image-to-webdev",
+      "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖用户输入、原始附件和模型输出的统一转载许可。",
+    "scope": "本站仅中文整理方法与公开入口，不复制用户会话、上传文件或模型作品。",
+    "boundaries": [
+      "公开榜单与汇总数据不等于原始任务已公开；模型许可列也不是评测数据许可。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/code/image-to-webdev"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方Code Arena说明含预览和投票流程；本轮未取得有固定ID及充分转载许可的截图转网页任务，故不伪造示例。",
+    "url": "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena",
+    "sourceUrls": [
+      "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena",
+      "https://arena.ai/leaderboard/code/image-to-webdev"
+    ]
+  },
+  "metric": {
+    "name": "Arena Score（网页实现偏好）",
+    "description": "同一任务的两份网站预览供用户比较，报告相对偏好分、票数和区间；不是像素相似度或自动测试通过率。不要将通用WebDev汇总当成本专项成绩。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/code/image-to-webdev",
+      "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena",
+      "https://arena.ai/how-it-works"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "视觉偏好不保证安全性、可访问性、后端正确性或生产部署质量；本轮未独立执行任何参评网站。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/code/image-to-webdev",
+        "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://arena.ai/leaderboard/code/image-to-webdev",
+      "label": "Image-to-WebDev Arena 官方入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://help.arena.ai/articles/5701270322-lmarena-how-to-code-arena",
+      "label": "官方运行预览与投票流程",
+      "role": "definition"
+    },
+    {
+      "url": "https://arena.ai/how-it-works",
+      "label": "官方匿名偏好对战流程",
+      "role": "definition"
+    },
+    {
+      "url": "https://arena.ai/company/leaderboard-changelog",
+      "label": "2026-04-15专项榜上线",
+      "role": "release"
+    }
+  ],
+  "related": [
+    {
+      "id": "arena-webdev",
+      "label": "文字需求WebDev",
+      "detail": "已有独立页面；本页仅补图像/截图输入专项，不复制其任务。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/code/image-to-webdev"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-04-15",
+  "interpretation": {
+    "versionChanges": {
+      "text": "官方变更记录2026-04-15宣布Image to WebDev榜上线；榜单当前日期是成绩快照，不是发布日期。",
+      "sourceUrls": [
+        "https://arena.ai/company/leaderboard-changelog"
+      ]
+    }
+  }
+}

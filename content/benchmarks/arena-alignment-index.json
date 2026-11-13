@@ -1,0 +1,130 @@
+{
+  "id": "arena-alignment-index",
+  "status": "published",
+  "order": 600,
+  "name": "Arena Alignment Index",
+  "subtitle": "从实际代理会话识别越权、虚假归因和虚报完成",
+  "category": "alignment",
+  "tags": [
+    "代理对齐",
+    "行为可靠性",
+    "真实会话"
+  ],
+  "publisher": "Arena / LMArena（Arena Intelligence Inc.）",
+  "brandIds": [
+    "arena"
+  ],
+  "year": 2026,
+  "version": "持续更新的专项榜单",
+  "kind": "original",
+  "aliases": [
+    "Agent Arena Alignment Index",
+    "Arena AI Alignment Index"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "从Agent Arena真实会话抽取三类有直接证据的失误，作为范围有限的对齐可靠性指标；与Agent Arena能力榜分开。",
+    "task": "识别越过用户权限、将不实请求或事实归给用户、以及声称完成却有反证的情况。",
+    "sourceUrls": [
+      "https://arena.ai/blog/ai-alignment-index"
+    ]
+  },
+  "taskContract": {
+    "input": "符合条件的完整代理会话及其中用户指令、行为和结果证据。",
+    "output": "UA、FA、DC会话级标记与支持证据；按模型统计并调整会话长度。",
+    "environment": "LLM judge依据经人工复核迭代的rubric判断；必须定位具体声明/动作与证据，不是用户偏好票。",
+    "sourceUrls": [
+      "https://arena.ai/blog/ai-alignment-index"
+    ]
+  },
+  "dataProfile": {
+    "summary": "来源是真实Agent Arena会话的抽样分析；公开方法和聚合榜，不是独立固定问答题库。",
+    "disclosure": "partial",
+    "scale": [
+      "UA：Unauthorized Action；FA：False Attribution；DC：Deceptive Completion。"
+    ],
+    "splits": [
+      "未取得完整会话级分析集或固定train/test划分。"
+    ],
+    "fields": [
+      "三个信号的调整后发生率、Alignment Index与区间。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arena.ai/blog/ai-alignment-index",
+      "https://arena.ai/leaderboard/agent/alignment"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开榜单、研究文章和官方案例分析可查；原始会话全量及完整裁判配置未独立取得。"
+    ],
+    "url": "https://arena.ai/leaderboard/agent/alignment",
+    "sourceUrls": [
+      "https://arena.ai/blog/ai-alignment-index",
+      "https://arena.ai/leaderboard/agent/alignment"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未核实覆盖用户输入、原始附件和模型输出的统一转载许可。",
+    "scope": "本站仅中文整理方法与公开入口，不复制用户会话、上传文件或模型作品。",
+    "boundaries": [
+      "公开榜单与汇总数据不等于原始任务已公开；模型许可列也不是评测数据许可。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/agent/alignment"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "研究文章展示官方失败模式分析；本页不搬运真实用户的会话、文件或危险行为记录。",
+    "url": "https://arena.ai/blog/ai-alignment-index",
+    "sourceUrls": [
+      "https://arena.ai/blog/ai-alignment-index"
+    ]
+  },
+  "metric": {
+    "name": "Alignment Index",
+    "description": "先调整会话长度，再将每个信号发生率r变换为1−√r，按UA50%、FA25%、DC25%加权并以百分制展示；越高表示这些可观察失误越少，不是全领域安全认证。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arena.ai/blog/ai-alignment-index",
+      "https://arena.ai/leaderboard/agent/alignment"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "只覆盖三类可观察失误，不代表所有安全与价值对齐；自动判别也受rubric及证据可见性限制。",
+      "sourceUrls": [
+        "https://arena.ai/blog/ai-alignment-index"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://arena.ai/leaderboard/agent/alignment",
+      "label": "Arena Alignment Index 官方入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://arena.ai/blog/ai-alignment-index",
+      "label": "2026-10-08发布、三信号与权重",
+      "role": "release"
+    }
+  ],
+  "related": [
+    {
+      "id": "arena-agent",
+      "label": "能力榜",
+      "detail": "同源Agent Arena会话，不同目标：能力净改善与对齐失误分别报告。",
+      "sourceUrls": [
+        "https://arena.ai/blog/ai-alignment-index"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-10-08"
+}
