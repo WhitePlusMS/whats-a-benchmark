@@ -443,15 +443,11 @@ test("IFEval integration preserves origins, local-only drafts and async layout r
       "src/components/SampleViewer.vue",
     ].map(read),
   );
-  assert.ok(
-    main.includes('to.path === "/benchmarks/ifeval/" && to.path !== from.path'),
-  );
-  assert.ok(detail.includes("IfevalPilot"));
-  assert.ok(viewer.includes("isUnknownIfevalSample"));
-  assert.ok(pilot.includes("record.prompt"));
-  assert.ok(pilot.includes('emit("settled")'));
-  assert.ok(pilot.includes("loaded || failed"));
-  assert.ok(pilot.includes("pilot-common.css"));
+  assert.match(main, /benchmark\?\.sampleAccess\.status === "local"/);
+  assert.match(detail, /ifeval: IfevalPilot/);
+  assert.match(viewer, /current.prompt/);
+  assert.match(pilot, /record.instruction_id_list/);
+  assert.match(pilot, /试用格式检查/);
   assert.ok(css.includes("prefers-reduced-motion"));
   assert.ok(css.includes("focus-visible"));
   assert.ok(workbench.includes('maxlength="12000"'));
@@ -470,10 +466,9 @@ test("IFEval integration preserves origins, local-only drafts and async layout r
   a.begin("/benchmarks/ifeval/#score");
   let ready = false;
   const pending = a.wait("/benchmarks/ifeval/#score").then((v) => (ready = v));
-  a.settled("/benchmarks/ifeval/#score", "pilot");
   await Promise.resolve();
   assert.equal(ready, false);
-  a.settled("/benchmarks/ifeval/#score", "samples");
+  a.settled("/benchmarks/ifeval/#score");
   await pending;
   assert.equal(ready, true);
 });

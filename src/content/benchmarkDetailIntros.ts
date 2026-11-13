@@ -44,6 +44,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "模型收到 Python 函数签名与 docstring，补全函数体；评测端再用测试检查行为。先把真实输入放进图解里，看清代码究竟要做到什么。",
   },
+  ifeval: {
+    context: "指令遵循 · 把文字要求变成可检查的约束",
+    accent: "Eval",
+    lead: "回答写得再流畅，也不能漏掉一个条件。",
+    summary:
+      "读一个真实提示，找到它的可验证要求，再观察文本怎样经过检查器。这里有 6 条原始记录和本地格式实验，不调用模型，不把格式合格当成内容正确。",
+  },
   libero: {
     context: "机器人操作 · 从语言到物体关系",
     accent: "ERO",
