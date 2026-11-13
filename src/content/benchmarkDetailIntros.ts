@@ -23,6 +23,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "从五条真实任务出发，把用户请求变成一份调用。这里练的是函数与参数，不是计算面积、查询首都或真的执行工具。",
   },
+  calvin: {
+    context: "语言条件操控 · 长程任务链",
+    accent: "VIN",
+    lead: "做对第一步，还要把下一步接上。",
+    summary:
+      "听懂指令，操作物体，再从改变后的环境继续。一次五任务链考察的不只是单个动作，还包括连续执行能走多远。",
+  },
   gsm8k: {
     context: "数学推理 · 把文字变成数量关系",
     accent: "8K",

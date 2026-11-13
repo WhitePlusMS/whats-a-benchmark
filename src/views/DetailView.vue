@@ -25,6 +25,7 @@ import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import ArcAgiPilot from "../components/ArcAgiPilot.vue";
 import BfclPilot from "../components/BfclPilot.vue";
+import CalvinPilot from "../components/CalvinPilot.vue";
 import LiberoPilot from "../components/LiberoPilot.vue";
 import Gsm8kPilot from "../components/Gsm8kPilot.vue";
 import HumanEvalPilot from "../components/HumanEvalPilot.vue";
@@ -43,6 +44,7 @@ const caseVisuals: Partial<Record<string, Component>> = {
   gsm8k: Gsm8kPilot,
   libero: LiberoPilot,
   bfcl: BfclPilot,
+  calvin: CalvinPilot,
 };
 const caseVisual = computed(() => item.value && caseVisuals[item.value.id]);
 function reportSamplesReady() {

@@ -321,18 +321,11 @@ test("CALVIN integration includes anchors, local state reset and accessible narr
       "src/styles/calvin-pilot.css",
     ].map(read),
   );
-  assert.ok(main.includes('to.path === "/benchmarks/calvin/"'));
-  assert.ok(detail.includes("<CalvinPilot"));
-  assert.ok(viewer.includes("isUnknownCalvinSample"));
-  assert.ok(
-    card.includes(
-      "'calvin', 'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'",
-    ),
-  );
-  assert.ok(
-    pilot.includes('emit("settled")') || pilot.includes("emit('settled')"),
-  );
-  assert.match(pilot, /:key="entry.sampleId"/);
+  assert.match(main, /benchmark\?\.sampleAccess\.status === "local"/);
+  assert.match(detail, /calvin: CalvinPilot/);
+  assert.match(viewer, /没有匹配此编号的样例/);
+  assert.match(card, /#samples/);
+  assert.match(pilot, /<CalvinWorkbench/);
   assert.match(bench, /step.value = 0/);
   assert.match(bench, /frame.value = 0/);
   assert.match(css, /prefers-reduced-motion/);
@@ -342,10 +335,9 @@ test("CALVIN integration includes anchors, local state reset and accessible narr
   a.begin("/benchmarks/calvin/#score");
   let ready = false;
   const promise = a.wait("/benchmarks/calvin/#score").then((v) => (ready = v));
-  a.settled("/benchmarks/calvin/#score", "pilot");
   await nextTick();
   assert.equal(ready, false);
-  a.settled("/benchmarks/calvin/#score", "samples");
+  a.settled("/benchmarks/calvin/#score");
   await promise;
   assert.equal(ready, true);
 });
