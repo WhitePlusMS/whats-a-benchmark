@@ -5,9 +5,10 @@ import { researchStatusLabels } from "../content/labels";
 import { useComparison } from "../composables/compare";
 import { sampleAction } from "../lib/sampleAccess";
 import { formatDate } from "../lib/displayFormats";
+import { benchmarkSearchTarget } from "../lib/search";
 import Icon from "./Icon.vue";
 import PublisherMarks from "./PublisherMarks.vue";
-defineProps<{ item: Benchmark }>();
+defineProps<{ item: Benchmark; searchQuery?: string }>();
 const { selected, toggle } = useComparison();
 </script>
 <template>
@@ -27,7 +28,7 @@ const { selected, toggle } = useComparison();
         >
       </div>
     </div>
-    <RouterLink :to="`/benchmarks/${item.id}/`" class="card-title"
+    <RouterLink :to="benchmarkSearchTarget(item, searchQuery)" class="card-title"
       ><h3 translate="no">{{ item.name }}</h3></RouterLink
     >
     <p class="card-tldr">{{ item.subtitle }}</p>

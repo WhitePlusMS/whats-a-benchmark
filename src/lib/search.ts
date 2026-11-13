@@ -15,6 +15,35 @@ export function normalizeName(value: string): string {
     .replace(/[\s_‐‑–—-]/g, "");
 }
 
+// 专题内独立分项的搜索入口与详情锚点共用定义，保持母卡名称检索不变。
+const searchSections = [
+  {
+    benchmarkId: "aa-decision-index-v2-1",
+    name: "AA-Omniscience-Decision",
+    anchor: "aa-omniscience-decision",
+  },
+];
+
+export function benchmarkSearchTarget(item: Benchmark, query = ""): string {
+  const section = searchSections.find(
+    (entry) =>
+      entry.benchmarkId === item.id &&
+      normalizeName(query.trim()).startsWith(normalizeName(entry.name)),
+  );
+  return `/benchmarks/${item.id}/${section ? `#${section.anchor}` : ""}`;
+}
+
+export function profileAnchor(
+  benchmarkId: string,
+  text: string,
+): string | undefined {
+  return searchSections.find(
+    (entry) =>
+      entry.benchmarkId === benchmarkId &&
+      normalizeName(text).startsWith(normalizeName(entry.name)),
+  )?.anchor;
+}
+
 // 公开目录在本次运行期间不变；名称和全文只标准化一次，输入时仅做匹配。
 const searchIndex = [...benchmarks, ...embodiedBenchmarks].map((item) => ({
   item,

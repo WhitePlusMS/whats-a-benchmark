@@ -315,6 +315,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
               v-for="(item, index) in group.items"
               :key="item.id"
               :item="item"
+              :search-query="query.q"
               :style="{ '--i': Math.min(index, 4) }"
             />
           </div>
@@ -325,6 +326,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
           v-for="(item, index) in results"
           :key="item.id"
           :item="item"
+          :search-query="query.q"
           :style="{ '--i': Math.min(index, 4) }"
         />
       </div>

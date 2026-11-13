@@ -15,6 +15,7 @@ import { useCatalogNavigation } from "../composables/catalogNavigation";
 import { groupSourceReferences } from "../lib/sourceReferences";
 import { compositionSample, sampleSectionTitle } from "../lib/sampleAccess";
 import { formatDate, formatPercent } from "../lib/displayFormats";
+import { profileAnchor } from "../lib/search";
 import CitedText from "../components/CitedText.vue";
 import SourceList from "../components/SourceList.vue";
 import Icon from "../components/Icon.vue";
@@ -446,7 +447,11 @@ useHead(() => ({
         <article v-for="group in profileGroups" :key="group.label">
           <small>{{ group.label }}</small>
           <ul>
-            <li v-for="value in group.values" :key="value">{{ value }}</li>
+            <li
+              v-for="value in group.values"
+              :id="profileAnchor(item.id, value)"
+              :key="value"
+            >{{ value }}</li>
           </ul>
         </article>
       </div>
