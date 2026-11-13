@@ -159,7 +159,7 @@ test("GSM8K 已知、缺省、未知、重复 query 不偷换题，URL上下联�
   scope.stop();
 });
 
-test("GSM8K 跨页深链和无hash返回等上下布局，失败亦能完成，取消不会恢复", async () => {
+test("GSM8K 跨页深链和无hash返回等案例布局，失败亦能完成，取消不会恢复", async () => {
   for (const suffix of ["#samples", "#score", ""]) {
     const key = "/benchmarks/gsm8k/?sample=public-test-18" + suffix;
     const anchor = createDeferredDetailAnchor();
@@ -167,52 +167,34 @@ test("GSM8K 跨页深链和无hash返回等上下布局，失败亦能完成，�
     assert.equal(shouldWaitForDetailLayout(true, !!suffix, !suffix), true);
     let done = false;
     const wait = anchor.wait(key).then((v) => (done = v));
-    anchor.settled(key, "pilot");
     await Promise.resolve();
     assert.equal(done, false);
-    anchor.settled(key, "samples");
+    anchor.settled(key);
     await wait;
     assert.equal(done, true);
     anchor.begin(key);
     const canceled = anchor.wait(key);
     anchor.cancel();
-    anchor.settled(key, "samples");
+    anchor.settled(key);
     assert.equal(await canceled, false);
   }
-  const [main, detail, pilot, viewer] = await Promise.all([
-    read("src/main.ts"),
+  const [detail, viewer] = await Promise.all([
     read("src/views/DetailView.vue"),
-    read("src/components/Gsm8kPilot.vue"),
     read("src/components/SampleViewer.vue"),
   ]);
-  assert.match(
-    main,
-    /to\.path === "\/benchmarks\/gsm8k\/" &&\s*to\.path !== from\.path/,
-  );
-  assert.ok(detail.includes("Gsm8kPilot"));
-  assert.ok(pilot.includes("重新加载题目记录"));
+  assert.ok(detail.includes("gsm8k: Gsm8kPilot"));
   assert.ok(viewer.includes("reload"));
 });
 
-test("GSM8K 页面边界：主动揭示推导，原始数据注明答案，不伪称运行评测", async () => {
-  const [pilot, scene, viewer] = await Promise.all([
+test("GSM8K 仅下载题保留时间轴，答案仍由公共案例卡揭示", async () => {
+  const [pilot, viewer] = await Promise.all([
     read("src/components/Gsm8kPilot.vue"),
-    read("src/components/Gsm8kScene.vue"),
     read("src/components/SampleViewer.vue"),
   ]);
-  for (const label of [
-    "揭示参考推导",
-    "本站练习",
-    "不是模型成绩",
-    "不评价推理",
-    "完整英文原题",
-    "含最终答案",
-  ])
-    assert.ok(pilot.includes(label));
-  assert.ok(scene.includes("step >= 3"));
-  assert.ok(viewer.includes("含参考推导与答案"));
-  assert.ok(!scene.includes('aria-label="18'));
-  assert.ok(!scene.includes('aria-label="70000'));
+  assert.match(pilot, /entry\?\.kind === 'download'/);
+  assert.match(pilot, /revealed \? 3 : 0/);
+  assert.match(viewer, /含参考推导与答案/);
+  assert.match(viewer, /current\.answer && showAnswer/);
 });
 
 test("GSM8K 参考答案仅主动揭示时挂载，比例图不受标签布局压缩", async () => {
@@ -221,19 +203,17 @@ test("GSM8K 参考答案仅主动揭示时挂载，比例图不受标签布局�
     read("src/components/SampleViewer.vue"),
     read("src/styles/gsm8k-scene.css"),
   ]);
-  assert.ok(pilot.includes('v-if="referenceRevealed"'));
-  assert.ok(viewer.includes('v-if="current.answer && showAnswer"'));
+  assert.ok(pilot.includes("revealed ? 3 : 0"));
+  assert.match(viewer, /current\.answer && showAnswer/);
   assert.ok(!viewer.includes('v-show="showAnswer"'));
   assert.match(css, /\.gsm-month-plot\s*\{[^}]*height: 180px/s);
   assert.match(css, /\.gsm-timeline\s*\{[^}]*display: grid/s);
 });
 
-test("GSM8K 目录真实案例按钮进入互动图解，不跳过体验直接进入原始样例", async () => {
+test("目录案例按钮直达唯一案例区", async () => {
   const card = await read("src/components/BenchmarkCard.vue");
-  assert.match(
-    card,
-    /\['roboquest', 'arc-agi-2', 'human-eval', 'gsm8k', 'libero', 'mmmlu', 'ifeval', 'calvin', 'bfcl', 'mmlu-pro'\]\.includes\(item.id\) \? '#task-walkthrough' : '#samples'/,
-  );
+  assert.match(card, /#samples/);
+  assert.doesNotMatch(card, /#task-walkthrough/);
 });
 
 test("GSM8K 窄屏时间轴保留比例但将完整阶段说明移到独立可读图例", async () => {

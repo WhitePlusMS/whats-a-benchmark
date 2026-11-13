@@ -16,6 +16,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "从彩色网格中找出共同规律，再为新输入画出完整输出。尺寸和每一个格子都必须正确，才算答对。",
   },
+  gsm8k: {
+    context: "数学推理 · 把文字变成数量关系",
+    accent: "8K",
+    lead: "数字不难，难的是把关系接对。",
+    summary:
+      "鸭蛋、布料、房屋与下载进度：模型读一段英文应用题，串起几步算术，交付最终答案。先自己理清条件，再打开参考推导。",
+  },
   "human-eval": {
     context: "代码生成 · 从函数说明到正确实现",
     accent: "Eval",
