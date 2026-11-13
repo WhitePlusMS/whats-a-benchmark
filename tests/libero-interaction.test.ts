@@ -193,7 +193,7 @@ test("LIBERO lower media retry preserves selection/mode and case change clears f
   scope.stop();
 });
 
-test("LIBERO upper/lower media has explicit independent retries and square reservations", async () => {
+test("LIBERO case media has an explicit retry and square reservations", async () => {
   const [pilot, viewer, media, css] = await Promise.all([
     read("src/components/LiberoPilot.vue"),
     read("src/components/SampleViewer.vue"),
@@ -208,16 +208,16 @@ test("LIBERO upper/lower media has explicit independent retries and square reser
   assert.match(pilot, /function retryMedia\(\)[\s\S]*?\}/);
   const retryBody = pilot.match(/function retryMedia\(\)\s*\{([^}]+)\}/)![1]!;
   assert.ok(!/panel|observation|select|reload/.test(retryBody));
-  assert.ok(pilot.includes("独立"));
-  assert.ok(viewer.includes("item.id === 'libero'"));
-  assert.ok(viewer.includes("此处与上方任务图解的媒体独立加载，请分别重试"));
+  assert.ok(pilot.includes("重试图解媒体"));
+  assert.ok(viewer.includes('["roboquest", "libero"].includes(props.item.id)'));
+  assert.match(viewer, /!hasVisualMedia/);
   assert.ok(viewer.includes('@click="retryMedia"'));
   assert.match(css, /\.libero-screen\s*\{[^}]*aspect-ratio: 1/s);
   assert.ok(media.includes("videos/libero-episode0-reconstructed.mp4"));
   assert.ok(media.includes("aspectRatio"));
 });
 
-test("LIBERO deferred layout waits for both settled sections, cancels stale navigation", async () => {
+test("LIBERO deferred layout waits for the case viewer, cancels stale navigation", async () => {
   for (const suffix of ["#samples", "#score", ""]) {
     const key = "/benchmarks/libero/?sample=libero-dataset-episode-0" + suffix;
     const anchor = createDeferredDetailAnchor();
@@ -225,10 +225,9 @@ test("LIBERO deferred layout waits for both settled sections, cancels stale navi
     assert.equal(shouldWaitForDetailLayout(true, !!suffix, !suffix), true);
     let done = false;
     const waiting = anchor.wait(key).then((v) => (done = v));
-    anchor.settled(key, "pilot");
     await Promise.resolve();
     assert.equal(done, false);
-    anchor.settled(key, "samples");
+    anchor.settled(key);
     await waiting;
     assert.equal(done, true);
     anchor.begin(key);
@@ -236,27 +235,20 @@ test("LIBERO deferred layout waits for both settled sections, cancels stale navi
     const canceled = anchor.wait(key);
     anchor.begin(key + "new");
     assert.equal(await canceled, false);
-    anchor.settled(key, "pilot");
-    anchor.settled(key, "samples");
+    anchor.settled(key);
     assert.equal(anchor.matches(key), false);
     assert.notEqual(anchor.token(key + "new"), token);
     anchor.cancel();
   }
   assert.equal(shouldWaitForDetailLayout(false, true, false), false);
-  const [main, detail, pilot, viewer] = await Promise.all([
+  const [main, detail, viewer] = await Promise.all([
     read("src/main.ts"),
     read("src/views/DetailView.vue"),
-    read("src/components/LiberoPilot.vue"),
     read("src/components/SampleViewer.vue"),
   ]);
-  assert.match(
-    main,
-    /to.path === "\/benchmarks\/libero\/" && to.path !== from.path/,
-  );
+  assert.match(main, /benchmark\?\.sampleAccess\.status === "local"/);
   assert.ok(detail.includes("LiberoPilot"));
-  assert.ok(pilot.includes('emit("settled")'));
   assert.ok(viewer.includes('emit("settled")'));
-  assert.ok(pilot.includes("loaded || err"));
   assert.ok(viewer.includes("loaded || failed"));
 });
 

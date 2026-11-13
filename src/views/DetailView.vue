@@ -24,6 +24,7 @@ import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
 import ArcAgiPilot from "../components/ArcAgiPilot.vue";
+import LiberoPilot from "../components/LiberoPilot.vue";
 import Gsm8kPilot from "../components/Gsm8kPilot.vue";
 import HumanEvalPilot from "../components/HumanEvalPilot.vue";
 import { humanEvalInitialAnchor } from "../lib/deferredDetailAnchor";
@@ -39,6 +40,7 @@ const caseVisuals: Partial<Record<string, Component>> = {
   "arc-agi-2": ArcAgiPilot,
   "human-eval": HumanEvalPilot,
   gsm8k: Gsm8kPilot,
+  libero: LiberoPilot,
 };
 const caseVisual = computed(() => item.value && caseVisuals[item.value.id]);
 function reportSamplesReady() {

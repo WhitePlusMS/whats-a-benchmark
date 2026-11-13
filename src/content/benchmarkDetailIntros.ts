@@ -30,6 +30,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "模型收到 Python 函数签名与 docstring，补全函数体；评测端再用测试检查行为。先把真实输入放进图解里，看清代码究竟要做到什么。",
   },
+  libero: {
+    context: "机器人操作 · 从语言到物体关系",
+    accent: "ERO",
+    lead: "不是说对答案，是把物体放对地方。",
+    summary:
+      "相机看到桌面，语言指定目标，策略输出动作。双杯要各归其位，黑碗要先找对那一只：用一条真实训练示范和一条第三方运行，拆开“完成任务”的含义。",
+  },
   roboquest: {
     context: "具身智能 · 观察、操作与主动提交",
     accent: "Quest",
