@@ -1,22 +1,12 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import type { Benchmark } from "../types/benchmark";
+import { useRouter } from "vue-router";
+import type { Benchmark, TaskSample } from "../types/benchmark";
 import { useSampleViewer } from "../composables/sampleViewer";
 import { createSampleLocation } from "../lib/sampleLocation";
-import {
-  findMmluProCase,
-  isUnknownMmluProSample,
-} from "../content/mmluProExperience";
-import { findBfclCase, isUnknownBfclSample } from "../content/bfclExperience";
-import { isUnknownCalvinSample } from "../content/calvinExperience";
-import { isUnknownIfevalSample } from "../content/ifevalExperience";
-import { isUnknownMmmluSample } from "../content/mmmluExperience";
-import { isUnknownLiberoSample } from "../content/liberoExperience";
-import { isUnknownGsm8kSample } from "../content/gsm8kExperience";
-import { isUnknownHumanEvalSample } from "../content/humanEvalExperience";
-import { isUnknownArcSample } from "../content/arcExperience";
-import { isUnknownRoboQuestSample } from "../content/roboQuestExperience";
+import { findMmluProCase } from "../content/mmluProExperience";
+import { findBfclCase } from "../content/bfclExperience";
+import { samplePickerLabel } from "../lib/samplePickerLabel";
 import { sampleExternalUrl } from "../lib/sampleAccess";
 import { nextLiberoMediaRetryToken } from "../lib/liberoMediaRetry";
 import Icon from "./Icon.vue";
@@ -24,72 +14,20 @@ import ArcTask from "./ArcTask.vue";
 import SampleMedia from "./SampleMedia.vue";
 import CitedText from "./CitedText.vue";
 import SampleWalkthrough from "./SampleWalkthrough.vue";
-const props = defineProps<{ item: Benchmark }>();
+const props = defineProps<{
+  item: Benchmark;
+  detailId?: string;
+  wideVisual?: boolean;
+}>();
 const emit = defineEmits<{ settled: [] }>();
-const route = useRoute();
-const unknownSelectedSample = computed(
-  () =>
-    ready.value &&
-    (isUnknownMmluProSample(
-      props.item.id,
-      route.query.sample,
-      data.value?.samples,
-      route.path,
-    ) ||
-      isUnknownBfclSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownCalvinSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownIfevalSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownMmmluSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownLiberoSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownGsm8kSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownRoboQuestSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownArcSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      ) ||
-      isUnknownHumanEvalSample(
-        props.item.id,
-        route.query.sample,
-        data.value?.samples,
-        route.path,
-      )),
+const slots = defineSlots<{
+  visual?(props: { sample: TaskSample; showAnswer: boolean }): unknown;
+}>();
+const hasVisualMedia = computed(
+  () => !!slots.visual && ["roboquest", "libero"].includes(props.item.id),
+);
+const hasVisualGrid = computed(
+  () => !!slots.visual && props.item.id === "arc-agi-2",
 );
 const baseUrl = import.meta.env.BASE_URL;
 const ready = ref(false);
@@ -98,7 +36,11 @@ const viewer = useSampleViewer(
   () => ready.value && props.item.sampleAccess.status === "local",
   baseUrl,
 );
-const { selectSample, setMode } = createSampleLocation(useRouter(), viewer);
+const { selectSample, setMode } = createSampleLocation(
+  useRouter(),
+  viewer,
+  () => props.detailId ?? props.item.id,
+);
 const {
   data,
   error,
@@ -112,6 +54,15 @@ const {
   markAssetFailed,
   retryMedia: retryViewerMedia,
 } = viewer;
+const rawHasAnswer = computed(
+  () => !!(current.value?.answer || current.value?.gridTask),
+);
+const showExplanation = computed(
+  () =>
+    mode.value === "raw" ||
+    showAnswer.value ||
+    !(current.value?.options && current.value.answer),
+);
 const mediaRetryToken = ref("");
 function retryMedia() {
   if (props.item.id === "libero")
@@ -185,17 +136,17 @@ onMounted(() => {
     <p>请重试，或通过参考资料查看原始任务。</p>
     <button class="primary-button" @click="reload">重新加载</button>
   </div>
-  <div v-else-if="unknownSelectedSample" class="empty-state" role="status">
-    <h3>没有匹配此编号的样例</h3>
-    <p>不会以其他实例替代。请返回任务区重新选择。</p>
-    <a class="secondary-button" href="#task-walkthrough">选择任务材料</a>
-  </div>
-  <div v-else-if="!current" class="sample-loading" role="status">
+  <div v-else-if="!data" class="sample-loading" role="status">
     正在加载样例…
   </div>
   <div v-else class="sample-viewer">
     <div class="sample-toolbar">
-      <div class="sample-tabs" role="group" aria-label="样例展示方式">
+      <div
+        v-if="current"
+        class="sample-tabs"
+        role="group"
+        aria-label="样例展示方式"
+      >
         <button
           :class="{ active: mode === 'read' }"
           :aria-pressed="mode === 'read'"
@@ -205,17 +156,12 @@ onMounted(() => {
         ><button
           :class="{ active: mode === 'raw' }"
           :aria-pressed="mode === 'raw'"
+          :aria-describedby="
+            rawHasAnswer ? 'sample-raw-note-' + item.id : undefined
+          "
           @click="setMode('raw')"
         >
-          原始数据<span v-if="item.id === 'arc-agi-2'" class="mode-note"
-            >含参考输出</span
-          ><span v-if="item.id === 'human-eval'" class="mode-note"
-            >含参考代码与测试</span
-          ><span v-if="item.id === 'gsm8k'" class="mode-note"
-            >含参考推导与答案</span
-          ><span v-if="item.id === 'mmlu-pro'" class="mode-note"
-            >含答案与公开 CoT</span
-          ><span v-if="current.excerpt" class="mode-note">节选</span>
+          原始数据
         </button>
       </div>
       <div class="sample-picker">
@@ -223,7 +169,7 @@ onMounted(() => {
           class="sample-step"
           aria-label="上一个案例"
           title="上一个案例"
-          :disabled="index === 0"
+          :disabled="index <= 0"
           @click="selectSample(index - 1)"
         >
           <Icon name="back" :size="17" />
@@ -237,8 +183,9 @@ onMounted(() => {
           name="sample"
           autocomplete="off"
         >
+          <option v-if="!current" :value="-1" disabled>选择有效样例</option>
           <option v-for="(task, i) in data?.samples" :key="task.id" :value="i">
-            {{ i + 1 }}. {{ task.title }}
+            {{ i + 1 }}. {{ samplePickerLabel(task) }}
           </option>
         </select>
         <button
@@ -252,7 +199,21 @@ onMounted(() => {
         </button>
       </div>
     </div>
-    <div class="sample-body">
+    <p
+      v-if="rawHasAnswer"
+      :id="'sample-raw-note-' + item.id"
+      class="sample-raw-note"
+    >
+      原始数据含参考答案。
+    </p>
+    <p v-if="!current" class="empty-state" role="status">
+      没有匹配此编号的样例，请重新选择。
+    </p>
+    <div
+      v-else
+      class="sample-body"
+      :class="{ 'sample-body-wide': wideVisual && mode === 'read' }"
+    >
       <div class="sample-question">
         <div class="section-line">
           <span class="sample-count" aria-live="polite" aria-atomic="true"
@@ -260,24 +221,16 @@ onMounted(() => {
           ><span class="small-badge">{{
             item.embodied
               ? "来源记录 · 本站解读"
-              : item.id === "bfcl" && findBfclCase(current.id)
-                ? "该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"
-                : current.promptOrigin === "editorial"
-                  ? "官方公开案例 · 本站解读"
-                  : current.excerpt
-                    ? "原始记录节选"
-                    : "公开样例"
+              : current.promptOrigin === "editorial"
+                ? "官方公开案例 · 本站解读"
+                : current.excerpt
+                  ? "原始记录节选"
+                  : "公开样例"
           }}</span>
         </div>
         <h3 translate="no">{{ current.title }}</h3>
         <template v-if="mode === 'read'">
           <div v-if="failedAssets.length" class="sample-media-retry">
-            <p
-              v-if="item.id === 'roboquest' || item.id === 'libero'"
-              class="muted"
-            >
-              此处与上方任务图解的媒体独立加载，请分别重试。
-            </p>
             <button type="button" class="secondary-button" @click="retryMedia">
               重新加载本条记录媒体
             </button>
@@ -288,7 +241,7 @@ onMounted(() => {
             :sample="current"
           >
             <SampleMedia
-              v-if="item.embodied && current.assets"
+              v-if="item.embodied && current.assets && !hasVisualMedia"
               overview
               :failed-assets="failedAssets"
               :retry-token="item.id === 'libero' ? mediaRetryToken : undefined"
@@ -296,6 +249,9 @@ onMounted(() => {
               :assets="current.assets"
               :title="current.title"
             />
+            <div v-if="$slots.visual" class="case-visual">
+              <slot name="visual" :sample="current" :show-answer="showAnswer" />
+            </div>
           </SampleWalkthrough>
           <template v-else>
             <p class="prompt-label">
@@ -317,7 +273,11 @@ onMounted(() => {
             >
           </template>
           <SampleMedia
-            v-if="current.assets && !(current.walkthrough && item.embodied)"
+            v-if="
+              current.assets &&
+              !hasVisualMedia &&
+              !(current.walkthrough && item.embodied)
+            "
             :failed-assets="failedAssets"
             :retry-token="item.id === 'libero' ? mediaRetryToken : undefined"
             @asset-error="markAssetFailed"
@@ -326,10 +286,13 @@ onMounted(() => {
             :title="current.title"
           />
           <ArcTask
-            v-if="current.gridTask"
+            v-if="current.gridTask && !hasVisualGrid"
             :task="current.gridTask"
             :show-answer="showAnswer"
           />
+          <div v-if="$slots.visual && !current.walkthrough" class="case-visual">
+            <slot name="visual" :sample="current" :show-answer="showAnswer" />
+          </div>
           <fieldset v-if="current.options" class="sample-options">
             <legend>选项</legend>
             <ol class="answer-options" type="A">
@@ -351,7 +314,7 @@ onMounted(() => {
             </ol>
           </fieldset>
           <button
-            v-if="current.answer"
+            v-if="current.answer && !hasVisualGrid"
             class="answer-button"
             @click="showAnswer = !showAnswer"
             :aria-expanded="showAnswer"
@@ -362,7 +325,7 @@ onMounted(() => {
             }}
           </button>
           <pre
-            v-if="current.answer && showAnswer"
+            v-if="current.answer && showAnswer && !hasVisualGrid"
             :id="`sample-answer-${item.id}`"
             class="answer-content"
             translate="no"
@@ -374,7 +337,7 @@ onMounted(() => {
           >
             {{
               item.id === "bfcl" && findBfclCase(current.id)
-                ? "该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"
+                ? "官方参考调用来自独立标注文件。"
                 : current.promptOrigin === "editorial"
                   ? "任务说明由本站根据官方案例整理；原始数据可在上方切换查看。本条未附参考答案，完整案例与附件见来源。"
                   : current.excerpt
@@ -394,10 +357,17 @@ onMounted(() => {
               >{{ findMmluProCase(current.id)?.correction }}
             </p>
           </div>
+          <p v-else-if="current.gridTask" class="muted">原始网格含参考输出。</p>
+          <p v-else-if="item.id === 'human-eval'" class="muted">
+            原始记录含参考代码与测试。
+          </p>
+          <p v-else-if="item.id === 'gsm8k'" class="muted">
+            原始记录含参考推导与答案。
+          </p>
           <p class="muted">
             {{
               current.excerpt
-                ? "以下为原始数据的精简版，保留来源字段和原始内容；省略范围见右侧说明，完整记录见来源。"
+                ? "以下为原始数据的精简版，保留来源字段和原始内容；删节说明见「记录与许可」，完整记录见原始来源。"
                 : "以下为该样例的原始数据，保留来源格式和内容。"
             }}
           </p>
@@ -415,10 +385,12 @@ onMounted(() => {
         </template>
       </div>
       <aside class="sample-insight">
-        <span class="insight-heading">{{
-          item.embodied ? "怎样理解这条记录" : "怎样理解这道题"
-        }}</span>
-        <p>{{ current.explanation }}</p>
+        <template v-if="showExplanation">
+          <span class="insight-heading">{{
+            item.embodied ? "怎样理解这条记录" : "怎样理解这道题"
+          }}</span>
+          <p>{{ current.explanation }}</p>
+        </template>
         <a
           :href="current.source"
           target="_blank"

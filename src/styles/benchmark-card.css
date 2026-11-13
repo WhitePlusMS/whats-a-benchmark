@@ -2,8 +2,8 @@
 .benchmark-card {
   border: 1px solid var(--border);
   background: var(--surface);
-  border-radius: 10px;
-  padding: 16px 16px 0;
+  border-radius: var(--ui-card-radius);
+  padding: var(--ui-space) var(--ui-space) 0;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -268,7 +268,7 @@
   font-size: 11px;
 }
 .list-view .sample-link-count {
-  font-size: 10px;
+  font-size: var(--ui-text-meta);
   min-width: 16px;
 }
 @media (max-width: 900px) {
@@ -304,11 +304,11 @@
     min-height: 54px;
   }
   .card-actions > a {
-    min-height: 44px;
+    min-height: var(--ui-touch-target);
     font-size: 13px;
   }
   .compare-toggle {
-    min-height: 44px;
+    min-height: var(--ui-touch-target);
     min-width: 60px;
     font-size: 12px;
   }
@@ -320,10 +320,10 @@
     font-size: 13px;
   }
   .list-view .card-actions {
-    min-height: 44px;
+    min-height: var(--ui-touch-target);
   }
   .list-view .card-actions > a {
     font-size: 12px;
-    min-height: 44px;
+    min-height: var(--ui-touch-target);
   }
 }

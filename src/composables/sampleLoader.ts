@@ -69,6 +69,8 @@ function isSample(value: unknown): boolean {
   if (
     !hasText(value.id) ||
     !hasText(value.title) ||
+    ("shortTitle" in value &&
+      (!hasText(value.shortTitle) || value.shortTitle.length > 24)) ||
     typeof value.type !== "string" ||
     !sampleTypes.has(value.type) ||
     !hasText(value.prompt) ||

@@ -22,35 +22,21 @@ export function selectSampleFromWalkthrough(
 }
 
 /** URL 只保存题目 ID 与阅读模式，答案和选项仍是本地临时状态。 */
-export function createSampleLocation(router: Router, viewer: Viewer) {
+export function createSampleLocation(
+  router: Router,
+  viewer: Viewer,
+  detailId = () => viewer.data.value?.benchmarkId,
+) {
   watch(
     [router.currentRoute, viewer.data],
     ([route, data]) => {
-      if (!data || route.path !== `/benchmarks/${data.benchmarkId}/`) return;
-      const sampleId =
-        typeof route.query.sample === "string" ? route.query.sample : "";
-      const index = data.samples.findIndex((sample) => sample.id === sampleId);
-      // Interactive tasks' unknown selections also clear underlying answer state,
-      // rather than only hiding a silently selected first record in the UI.
-      const invalidInteractiveSelection =
-        [
-          "arc-agi-2",
-          "human-eval",
-          "gsm8k",
-          "libero",
-          "mmmlu",
-          "ifeval",
-          "calvin",
-          "bfcl",
-          "mmlu-pro",
-        ].includes(data.benchmarkId) &&
-        route.query.sample !== undefined &&
-        route.query.sample !== null &&
-        route.query.sample !== "" &&
-        index < 0;
-      viewer.index.value = invalidInteractiveSelection
-        ? -1
-        : Math.max(0, index);
+      if (!data || route.path !== `/benchmarks/${detailId()}/`) return;
+      const sample = route.query.sample;
+      // 未知编号保留恢复入口；仅无编号的链接默认展示首题。
+      viewer.index.value =
+        sample === undefined || sample === null || sample === ""
+          ? 0
+          : data.samples.findIndex((task) => task.id === sample);
       viewer.mode.value = route.query.sampleView === "raw" ? "raw" : "read";
     },
     { immediate: true },
@@ -60,8 +46,7 @@ export function createSampleLocation(router: Router, viewer: Viewer) {
     // 指南复用查看器时只切换本地状态；只有对应详情页把题目写入 URL。
     if (
       !viewer.current.value ||
-      router.currentRoute.value.path !==
-        `/benchmarks/${viewer.data.value?.benchmarkId}/`
+      router.currentRoute.value.path !== `/benchmarks/${detailId()}/`
     )
       return;
     return router[history]({

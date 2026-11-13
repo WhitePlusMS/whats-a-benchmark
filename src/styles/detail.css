@@ -26,74 +26,40 @@
 .breadcrumbs a:hover {
   color: var(--accent-text);
 }
-.detail-heading {
-  padding: 28px 0 24px;
-  max-width: 960px;
-}
-.detail-title-line {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-/* 标识保留实际宽度，标题在剩余空间换行，避免横向 Logo 与文字重叠。 */
-.detail-title-line > .publisher-marks {
-  flex-shrink: 0;
-}
-.detail-title-line > div {
-  min-width: 0;
-}
-.detail-heading h1 {
-  font-size: clamp(30px, 3.2vw, 40px);
-  line-height: 1.15;
-  letter-spacing: -0.035em;
-  margin-top: 10px;
-  overflow-wrap: anywhere;
-}
-.detail-subtitle {
-  font-size: 15px;
-  font-weight: 600;
-  margin-top: 8px;
-  color: var(--text-secondary);
-  overflow-wrap: anywhere;
-}
-.detail-summary {
-  font-size: 15px;
-  line-height: 1.9;
-  margin-top: 16px;
-  max-width: 760px;
-  color: var(--text-secondary);
-}
-.detail-cta {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
 .detail-facts {
-  display: grid;
-  grid-template-columns: 1.25fr 0.7fr 1.35fr 0.8fr 0.85fr;
-  gap: 20px;
-  padding: 22px 24px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 14px 0;
+  border-block: 1px solid var(--border);
+  font-size: 12px;
 }
 .detail-facts > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 3px 7px;
   min-width: 0;
 }
-.detail-facts small {
-  display: block;
-  font-size: 11px;
-  margin-bottom: 8px;
+.detail-facts dt {
   color: var(--muted);
 }
-.detail-facts strong {
-  display: block;
-  font-size: 14px;
-  line-height: 1.55;
-  font-weight: 600;
+.detail-facts dd {
+  margin: 0;
   color: var(--text-strong);
+  font-size: inherit;
+  font-weight: 600;
   overflow-wrap: anywhere;
+}
+.detail-facts .status-dot {
+  align-self: center;
+}
+.detail-facts .status-dot.warn {
+  color: var(--evidence-text);
+}
+.detail-facts .status-dot.bad {
+  color: var(--status-bad);
 }
 .detail-nav {
   position: sticky;
@@ -387,7 +353,7 @@
   gap: 10px;
   min-height: 68px;
   padding: 14px 6px;
-  border-radius: 6px;
+  border-radius: var(--ui-control-radius);
 }
 .source-number {
   padding-top: 2px;
@@ -399,15 +365,19 @@
   font-weight: 600;
   display: block;
   color: var(--text-strong);
-  font-size: 13px;
+  font-size: var(--ui-text-body);
   line-height: 1.5;
 }
 .source-list small {
-  font-size: 12px;
+  font-size: var(--ui-text-meta);
   display: block;
   margin-top: 2px;
   color: var(--muted);
   line-height: 1.5;
+}
+.source-verification {
+  display: inline-block;
+  white-space: nowrap;
 }
 .source-main > svg {
   margin-top: 2px;
@@ -540,10 +510,6 @@
   .caveat-panel {
     padding: 0;
   }
-  .detail-facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
   .contract-grid {
     grid-template-columns: 1fr;
   }
@@ -564,37 +530,6 @@
   }
   .breadcrumbs {
     font-size: 12px;
-  }
-  .detail-heading {
-    padding: 22px 0;
-  }
-  .detail-heading h1 {
-    font-size: 29px;
-  }
-  .detail-title-line {
-    gap: 13px;
-  }
-  .detail-subtitle {
-    font-size: 14px;
-  }
-  .detail-summary {
-    font-size: 14px;
-  }
-  .detail-cta {
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .detail-cta .primary-button,
-  .detail-cta .secondary-button {
-    font-size: 12px;
-    padding: 10px 13px;
-  }
-  .detail-facts {
-    padding: 18px;
-    gap: 18px 20px;
-  }
-  .detail-facts strong {
-    font-size: 13px;
   }
   .detail-nav {
     gap: 14px 20px;
@@ -633,17 +568,23 @@
   }
 }
 
-/* 极窄屏将标识放到标题上方，长版本独占一行。 */
-@media (max-width: 360px) {
-  .detail-title-line {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .detail-heading h1 {
-    word-break: keep-all;
-  }
-  .detail-facts > div:nth-child(3) {
-    grid-column: 1 / -1;
-  }
+
+.case-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px var(--ui-space);
+  margin-bottom: var(--ui-space);
+}
+.case-section-heading h2 {
+  margin: 0;
+}
+.case-benchmark-name {
+  color: var(--muted);
+  font-size: var(--ui-text-meta);
+  overflow-wrap: anywhere;
+}
+.case-section-heading > a {
+  min-height: var(--ui-touch-target);
 }

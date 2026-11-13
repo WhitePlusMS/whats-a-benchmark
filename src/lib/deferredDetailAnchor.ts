@@ -1,5 +1,4 @@
-/** One asynchronous detail entry (HumanEval / GSM8K / LIBERO / MMMLU / IFEval, hash or saved position),
- * after both the pilot and samples sections render.
+/** One asynchronous detail entry, after the sample card renders.
  * This is a readiness handshake only: routing owns the scroll and cancellation.
  */
 export function createDeferredDetailAnchor() {
@@ -7,7 +6,7 @@ export function createDeferredDetailAnchor() {
   let active: {
     key: string;
     token: number;
-    settled: Set<"pilot" | "samples">;
+    ready: boolean;
     resolve?: (ready: boolean) => void;
     promise?: Promise<boolean>;
   } | null = null;
@@ -18,7 +17,7 @@ export function createDeferredDetailAnchor() {
   }
   function begin(key: string) {
     cancel();
-    active = { key, token: ++sequence, settled: new Set() };
+    active = { key, token: ++sequence, ready: false };
   }
   function matches(key: string) {
     return active?.key === key;
@@ -26,14 +25,14 @@ export function createDeferredDetailAnchor() {
   function token(key: string) {
     return active?.key === key ? active.token : undefined;
   }
-  function settled(key: string, section: "pilot" | "samples") {
+  function settled(key: string) {
     if (!active || active.key !== key) return;
-    active.settled.add(section);
-    if (active.settled.size === 2) active.resolve?.(true);
+    active.ready = true;
+    active.resolve?.(true);
   }
   function wait(key: string): Promise<boolean> {
     if (!active || active.key !== key) return Promise.resolve(false);
-    if (active.settled.size === 2) return Promise.resolve(true);
+    if (active.ready) return Promise.resolve(true);
     if (!active.promise)
       active.promise = new Promise<boolean>((resolve) => {
         active!.resolve = resolve;

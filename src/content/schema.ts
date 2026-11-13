@@ -112,6 +112,7 @@ export const sampleSchema = z
   .strictObject({
     id: text,
     title: text,
+    shortTitle: text.max(24).optional(),
     type: z.enum([
       "text",
       "code",

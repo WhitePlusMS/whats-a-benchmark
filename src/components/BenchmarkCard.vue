@@ -3,6 +3,7 @@ import type { Benchmark } from "../types/benchmark";
 import { kindLabels } from "../content/catalog";
 import { researchStatusLabels } from "../content/labels";
 import { useComparison } from "../composables/compare";
+import { sampleAction } from "../lib/sampleAccess";
 import { formatDate } from "../lib/displayFormats";
 import Icon from "./Icon.vue";
 import PublisherMarks from "./PublisherMarks.vue";
@@ -45,18 +46,9 @@ const { selected, toggle } = useComparison();
     </div>
     <div class="card-actions">
       <RouterLink
-        :to="`/benchmarks/${item.id}/${['roboquest', 'arc-agi-2', 'human-eval', 'gsm8k', 'libero', 'mmmlu', 'ifeval', 'calvin', 'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough' : '#samples'}`"
+        :to="`/benchmarks/${item.id}/#samples`"
         :class="{ 'is-local': item.sampleAccess.status === 'local' }"
-        ><Icon
-          :name="item.sampleAccess.status === 'local' ? 'book' : 'up'"
-          :size="14"
-        />
-        {{
-          item.composition
-            ? "查看组成样例"
-            : item.sampleAccess.status === "local"
-              ? "查看真实案例"
-              : "查看获取方式"
+        ><Icon name="book" :size="14" /> {{ sampleAction(item)
         }}<span
           v-if="!item.composition && item.sampleAccess.status === 'local'"
           class="sample-link-count"
@@ -70,7 +62,7 @@ const { selected, toggle } = useComparison();
         @click="toggle(item.id)"
       >
         <Icon :name="selected.includes(item.id) ? 'tick' : 'plus'" :size="16" />
-        <span>{{ selected.includes(item.id) ? "已选" : "对比" }}</span>
+        <span>{{ selected.includes(item.id) ? "已加入" : "加入对比" }}</span>
       </button>
     </div>
   </article>

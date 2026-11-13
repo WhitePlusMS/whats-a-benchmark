@@ -12,35 +12,34 @@ const sourceText = computed(() =>
 
 <template>
   <div v-if="guide" class="task-walkthrough">
-    <p class="guide-label">任务导读 · 本站整理</p>
     <p class="guide-summary">{{ guide.summary || sample.prompt }}</p>
-    <slot />
     <dl class="task-contract">
       <div>
-        <dt><span aria-hidden="true">01</span> 模型拿到什么</dt>
+        <dt>模型拿到什么</dt>
         <dd>{{ guide.input }}</dd>
       </div>
       <div>
-        <dt><span aria-hidden="true">02</span> 需要交付什么</dt>
+        <dt>需要交付什么</dt>
         <dd>{{ guide.output }}</dd>
       </div>
     </dl>
-    <section class="task-evidence" aria-label="来源记录片段">
-      <p class="guide-label">从来源看细节</p>
+    <section class="task-checks" aria-label="完成条件">
+      <h4>怎样才算完成</h4>
+      <ul>
+        <li v-for="check in guide.checks" :key="check">{{ check }}</li>
+      </ul>
+    </section>
+    <slot />
+    <p class="task-boundary">{{ guide.note }}</p>
+    <details class="task-original task-evidence">
+      <summary>查看来源节选</summary>
       <figure v-for="part in guide.excerpts" :key="part.label">
         <figcaption>{{ part.label }} <span>原文节选</span></figcaption>
         <pre tabindex="0" :aria-label="part.label" translate="no">{{
           part.text
         }}</pre>
       </figure>
-    </section>
-    <section class="task-checks" aria-label="完成条件">
-      <h4><span aria-hidden="true">03</span> 怎样才算完成</h4>
-      <ul>
-        <li v-for="check in guide.checks" :key="check">{{ check }}</li>
-      </ul>
-    </section>
-    <p class="task-boundary">{{ guide.note }}</p>
+    </details>
     <details class="task-original">
       <summary>
         查看本条来源原文<span v-if="guide.sourceField">
@@ -58,11 +57,6 @@ const sourceText = computed(() =>
 </template>
 
 <style scoped>
-.guide-label {
-  margin: 0 0 10px;
-  color: var(--muted);
-  font-size: 12px;
-}
 .guide-summary {
   margin: 0 0 22px;
   color: var(--text-strong);
@@ -78,7 +72,7 @@ const sourceText = computed(() =>
 .task-contract > div {
   background: var(--surface-subtle);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--ui-control-radius);
   padding: 15px;
 }
 .task-contract dt,
@@ -88,23 +82,17 @@ const sourceText = computed(() =>
   font-size: 13px;
   font-weight: 600;
 }
-.task-contract dt > span,
-.task-checks h4 > span {
-  color: var(--accent-text);
-  margin-right: 8px;
-  font-variant-numeric: tabular-nums;
-}
 .task-contract dd {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 12px;
-  line-height: 1.85;
+  font-size: var(--ui-text-body);
+  line-height: 1.7;
   overflow-wrap: anywhere;
 }
 .task-evidence figure {
-  margin: 0 0 16px;
+  margin: 10px 0 16px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--ui-control-radius);
   overflow: hidden;
 }
 .task-evidence figcaption {
@@ -117,7 +105,7 @@ const sourceText = computed(() =>
 .task-evidence figcaption > span {
   display: inline-block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--ui-text-meta);
   margin-left: 8px;
 }
 .task-evidence pre,
@@ -135,7 +123,7 @@ const sourceText = computed(() =>
   overflow: auto;
 }
 .task-checks {
-  margin-top: 24px;
+  margin-top: 0;
   padding-left: 14px;
   border-left: 3px solid var(--accent-border-strong);
 }
@@ -143,8 +131,8 @@ const sourceText = computed(() =>
   margin: 0;
   padding-left: 18px;
   color: var(--text-secondary);
-  font-size: 12px;
-  line-height: 1.85;
+  font-size: var(--ui-text-body);
+  line-height: 1.7;
 }
 .task-checks li + li {
   margin-top: 7px;

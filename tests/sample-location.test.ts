@@ -66,7 +66,7 @@ test("样例在详情页同步 URL，在指南中只修改查看器状态", asyn
     query: { sample: "unknown", sampleView: "invalid" },
   });
   await nextTick();
-  assert.equal(viewer.current.value?.id, "first/id");
+  assert.equal(viewer.index.value, -1);
   assert.equal(viewer.mode.value, "read");
   router.back();
   await new Promise<void>((resolve) => setImmediate(resolve));

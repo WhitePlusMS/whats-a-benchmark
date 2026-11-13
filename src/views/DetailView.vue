@@ -1,71 +1,46 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, type Component } from "vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
-import {
-  byId,
-  categoryById,
-  embodiedCategories,
-  kindLabels,
-} from "../content/catalog";
+import { byId, categoryById, embodiedCategories } from "../content/catalog";
 import {
   dataAccessLabels,
   disclosureLabels,
   researchStatusLabels,
   reusePolicyLabels,
-  sampleAccessLabels,
 } from "../content/labels";
 import { releases } from "../content/releases";
 import { useComparison } from "../composables/compare";
 import { useCatalogNavigation } from "../composables/catalogNavigation";
 import { groupSourceReferences } from "../lib/sourceReferences";
-import {
-  compositionSample,
-  sampleAction,
-  sampleSectionTitle,
-} from "../lib/sampleAccess";
+import { compositionSample, sampleSectionTitle } from "../lib/sampleAccess";
 import { formatDate, formatPercent } from "../lib/displayFormats";
 import CitedText from "../components/CitedText.vue";
 import SourceList from "../components/SourceList.vue";
 import Icon from "../components/Icon.vue";
 import SampleViewer from "../components/SampleViewer.vue";
-import PublisherMarks from "../components/PublisherMarks.vue";
-import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
-import SweBenchPilot from "../components/SweBenchPilot.vue";
-import RoboQuestPilot from "../components/RoboQuestPilot.vue";
-import ArcAgiPilot from "../components/ArcAgiPilot.vue";
-import MmluProPilot from "../components/MmluProPilot.vue";
-import BfclPilot from "../components/BfclPilot.vue";
-import CalvinPilot from "../components/CalvinPilot.vue";
-import IfevalPilot from "../components/IfevalPilot.vue";
-import MmmluPilot from "../components/MmmluPilot.vue";
-import LiberoPilot from "../components/LiberoPilot.vue";
-import Gsm8kPilot from "../components/Gsm8kPilot.vue";
-import HumanEvalPilot from "../components/HumanEvalPilot.vue";
+import BenchmarkDetailHeader from "../components/BenchmarkDetailHeader.vue";
 import { humanEvalInitialAnchor } from "../lib/deferredDetailAnchor";
 
 const route = useRoute();
 const item = computed(() =>
   byId.get(String(route.meta.benchmarkId || route.params.id)),
 );
-function reportHumanEvalReady(section: "pilot" | "samples") {
-  if (
-    [
-      "human-eval",
-      "gsm8k",
-      "libero",
-      "mmmlu",
-      "ifeval",
-      "calvin",
-      "bfcl",
-      "mmlu-pro",
-    ].includes(item.value?.id || "")
-  )
-    humanEvalInitialAnchor.settled(route.fullPath, section);
+const caseVisuals: Partial<Record<string, Component>> = {
+};
+const caseVisual = computed(() => item.value && caseVisuals[item.value.id]);
+function reportSamplesReady() {
+  humanEvalInitialAnchor.settled(route.fullPath);
 }
-const category = computed(
-  () => item.value && categoryById.get(item.value.category),
-);
+const categoryName = computed(() => {
+  const benchmark = item.value;
+  if (!benchmark) return;
+  return benchmark.embodied
+    ? embodiedCategories.find(
+        (entry) => entry.id === benchmark.embodied?.tasks[0],
+      )?.name
+    : categoryById.get(benchmark.category)?.name;
+});
 const statusTone = computed(() => {
   const status = item.value?.researchStatus;
   if (status === "blocked") return "bad";
@@ -127,7 +102,6 @@ const dataAccessLinkLabel = computed(() =>
       ? "打开官方数据入口"
       : "查看官方访问说明",
 );
-const primaryAction = computed(() => item.value && sampleAction(item.value));
 const sampleTitle = computed(
   () => item.value && sampleSectionTitle(item.value),
 );
@@ -167,13 +141,7 @@ useHead(() => ({
           path: item.embodied ? '/embodied/' : '/',
           query: { category: item.embodied?.tasks[0] || item.category },
         }"
-        >{{
-          item.embodied
-            ? embodiedCategories.find(
-                (entry) => entry.id === item?.embodied?.tasks[0],
-              )?.name
-            : category?.name
-        }}</RouterLink
+        >{{ categoryName }}</RouterLink
       >
       <span>/</span><span translate="no">{{ item.name }}</span>
     </nav>
@@ -181,183 +149,126 @@ useHead(() => ({
       <p><strong>本站已归档</strong> · {{ item.archiveNote }}</p>
       <p>保留历史资料与引用，不表示官方评测已停用。</p>
     </aside>
-    <!-- 恢复用户认可的试点，原有详情和云端整理的样例继续保留。 -->
-    <TerminalBenchPilot
-      v-if="item.id === 'terminal-bench-4'"
+    <BenchmarkDetailHeader
+      :item="item"
+      :category-name="categoryName"
       :selected="selected.includes(item.id)"
       @toggle="toggle(item.id)"
     />
-    <SweBenchPilot
-      v-else-if="item.id === 'swe-bench-verified'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-    />
-    <RoboQuestPilot
-      v-else-if="item.id === 'roboquest'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-    />
-    <ArcAgiPilot
-      v-else-if="item.id === 'arc-agi-2'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-    />
-    <HumanEvalPilot
-      v-else-if="item.id === 'human-eval'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <Gsm8kPilot
-      v-else-if="item.id === 'gsm8k'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <LiberoPilot
-      v-else-if="item.id === 'libero'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <MmluProPilot
-      v-else-if="item.id === 'mmlu-pro'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <BfclPilot
-      v-else-if="item.id === 'bfcl'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <CalvinPilot
-      v-else-if="item.id === 'calvin'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <IfevalPilot
-      v-else-if="item.id === 'ifeval'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <MmmluPilot
-      v-else-if="item.id === 'mmmlu'"
-      :selected="selected.includes(item.id)"
-      @toggle="toggle(item.id)"
-      @settled="reportHumanEvalReady('pilot')"
-    />
-    <header v-else class="detail-heading">
-      <div class="detail-title-line">
-        <PublisherMarks
-          :benchmark-id="item.id"
-          :publisher="item.publisher"
-          large
-        />
-        <div>
-          <div class="tags">
-            <span>{{ kindLabels[item.kind] }}</span
-            ><template v-if="item.embodied"
-              ><span v-for="task in item.embodied.tasks" :key="task">{{
-                embodiedCategories.find((entry) => entry.id === task)?.name
-              }}</span></template
-            ><span v-else>{{ category?.name }}</span
-            ><span class="status-dot" :class="statusTone">{{
-              researchStatusLabels[item.researchStatus]
-            }}</span>
-          </div>
-          <h1 translate="no">{{ item.name }}</h1>
-          <p class="detail-subtitle">{{ item.subtitle }}</p>
-        </div>
-      </div>
-      <p class="detail-summary">{{ item.officialDefinition.summary }}</p>
-      <div class="detail-cta">
-        <a
-          v-if="primaryAction"
-          :href="primaryAction.href"
-          :target="primaryAction.external ? '_blank' : undefined"
-          :rel="primaryAction.external ? 'noreferrer' : undefined"
-          class="primary-button"
-        >
-          <Icon v-if="primaryAction.external" name="up" :size="18" />{{
-            primaryAction.label
-          }}
-        </a>
-        <button
-          v-if="item.status === 'published'"
-          class="secondary-button"
-          @click="toggle(item.id)"
-          :aria-pressed="selected.includes(item.id)"
-        >
-          <Icon name="compare" :size="18" />{{
-            selected.includes(item.id) ? "已加入对比" : "加入评测对比"
-          }}
-        </button>
-      </div>
-    </header>
-    <div class="detail-facts">
+    <dl class="detail-facts">
       <div>
-        <small>发布方</small
-        ><strong translate="no">{{ item.publisher }}</strong>
+        <dt>发布方</dt>
+        <dd translate="no">{{ item.publisher }}</dd>
       </div>
       <div>
-        <small>{{ item.releaseDate ? "版本发布日期" : "首次发布年份" }}</small
-        ><strong class="num"
-          ><time v-if="item.releaseDate" :datetime="item.releaseDate">{{
+        <dt>{{ item.releaseDate ? "版本发布日期" : "首次发布年份" }}</dt>
+        <dd class="num">
+          <time v-if="item.releaseDate" :datetime="item.releaseDate">{{
             formatDate(item.releaseDate)
           }}</time
-          ><template v-else>{{ item.year || "尚未核实" }}</template></strong
-        >
+          ><template v-else>{{ item.year || "尚未核实" }}</template>
+        </dd>
       </div>
       <div>
-        <small>评测版本</small
-        ><strong class="mono" translate="no">{{ item.version }}</strong>
+        <dt>评测版本</dt>
+        <dd class="mono" translate="no">{{ item.version }}</dd>
       </div>
       <div>
-        <small>数据访问</small
-        ><strong>{{ dataAccessLabels[item.dataAccess.status] }}</strong>
+        <dt>数据访问</dt>
+        <dd>{{ dataAccessLabels[item.dataAccess.status] }}</dd>
       </div>
       <div>
-        <small>资料核验日期</small
-        ><strong
-          ><time class="mono" :datetime="item.verifiedAt">{{
+        <dt>资料核验日期</dt>
+        <dd>
+          <time class="mono" :datetime="item.verifiedAt">{{
             formatDate(item.verifiedAt)
-          }}</time></strong
-        >
+          }}</time>
+        </dd>
       </div>
-    </div>
+      <div>
+        <dt>资料核验状态</dt>
+        <dd class="status-dot" :class="statusTone">
+          {{ researchStatusLabels[item.researchStatus] }}
+        </dd>
+      </div>
+    </dl>
     <nav class="detail-nav" aria-label="详情导航">
-      <a
-        v-if="
-          item.id === 'terminal-bench-4' ||
-          item.id === 'swe-bench-verified' ||
-          item.id === 'roboquest' ||
-          item.id === 'arc-agi-2' ||
-          item.id === 'human-eval' ||
-          item.id === 'gsm8k' ||
-          item.id === 'libero' ||
-          item.id === 'mmmlu' ||
-          item.id === 'ifeval' ||
-          item.id === 'calvin' ||
-          item.id === 'bfcl' ||
-          item.id === 'mmlu-pro'
-        "
-        href="#task-walkthrough"
-        >一题看懂</a
-      >
+      <a href="#samples">{{ sampleTitle }}</a>
       <a href="#definition">测什么</a><a href="#task">具体任务</a>
       <a v-if="item.composition" href="#composition">指数组成</a>
-      <a href="#samples">{{ sampleTitle }}</a
-      ><a href="#score">评分与比较</a><a href="#data">数据与许可</a>
+      <a href="#score">评分与比较</a><a href="#data">数据与许可</a>
       <a
         v-if="item.related.length || item.interpretation?.versionChanges"
         href="#relations"
         >版本关系</a
       ><a href="#sources">参考资料</a>
     </nav>
+
+    <section id="samples" class="detail-section">
+      <div id="task-walkthrough" class="case-section-heading">
+        <div>
+          <p class="case-benchmark-name" translate="no">{{ item.name }}</p>
+          <h2>{{ sampleTitle }}</h2>
+        </div>
+        <a href="#score" class="text-link">评分方式 <Icon name="down" :size="16" /></a>
+      </div>
+      <template v-if="item.composition">
+        <!-- 组成项没有站内样例时，只展示入口，不承诺下方存在真实案例。 -->
+        <p class="task-description">
+          指数汇总多个评测，本身没有独立题库。
+          <template v-if="constituentSample"
+            >下面展示一个组成评测的真实案例；各项任务和执行协议分别核对。</template
+          >
+          <template v-else
+            >可通过下方组成项查看官方样例入口及获取方式。</template
+          >
+        </p>
+        <template v-if="constituentSample">
+          <p class="task-description">
+            案例来自
+            <RouterLink
+              :to="`/benchmarks/${constituentSample.id}/#samples`"
+              class="text-link"
+              translate="no"
+              >{{ constituentSample.name }}</RouterLink
+            >，原题、答案与许可由该组成项提供。
+          </p>
+          <SampleViewer :item="constituentSample" :detail-id="item.id" @settled="reportSamplesReady" />
+        </template>
+        <div class="composition-samples">
+          <RouterLink
+            v-for="component in item.composition.items"
+            :key="component.id"
+            :to="`/benchmarks/${component.id}/#samples`"
+            ><span translate="no">{{
+              byId.get(component.id)?.name
+            }}</span></RouterLink
+          >
+        </div>
+      </template>
+      <SampleViewer
+        v-else
+        :item="item"
+        :wide-visual="
+          !!caseVisual &&
+          !['swe-bench-verified', 'gsm8k', 'bfcl'].includes(item.id)
+        "
+        @settled="reportSamplesReady"
+      >
+        <template v-if="caseVisual" #visual="{ sample, showAnswer }">
+          <component
+            :is="caseVisual"
+            :key="sample.id"
+            :sample="sample"
+            v-bind="
+              ['gsm8k', 'mmmlu'].includes(item.id)
+                ? { revealed: showAnswer }
+                : {}
+            "
+          />
+        </template>
+      </SampleViewer>
+    </section>
 
     <section id="definition" class="detail-section">
       <h2>测什么</h2>
@@ -435,54 +346,6 @@ useHead(() => ({
           </tbody>
         </table>
       </div>
-    </section>
-
-    <section id="samples" class="detail-section">
-      <div class="section-title-row">
-        <h2>{{ sampleTitle }}</h2>
-        <span v-if="!item.composition" class="small-badge">{{
-          sampleAccessLabels[item.sampleAccess.status]
-        }}</span>
-      </div>
-      <template v-if="item.composition">
-        <!-- 组成项没有站内样例时，只展示入口，不承诺下方存在真实案例。 -->
-        <p class="task-description">
-          指数汇总多个评测，本身没有独立题库。
-          <template v-if="constituentSample"
-            >下面展示一个组成评测的真实案例；各项任务和执行协议分别核对。</template
-          >
-          <template v-else
-            >可通过下方组成项查看官方样例入口及获取方式。</template
-          >
-        </p>
-        <template v-if="constituentSample">
-          <p class="task-description">
-            案例来自
-            <RouterLink
-              :to="`/benchmarks/${constituentSample.id}/#samples`"
-              class="text-link"
-              translate="no"
-              >{{ constituentSample.name }}</RouterLink
-            >，原题、答案与许可由该组成项提供。
-          </p>
-          <SampleViewer :item="constituentSample" />
-        </template>
-        <div class="composition-samples">
-          <RouterLink
-            v-for="component in item.composition.items"
-            :key="component.id"
-            :to="`/benchmarks/${component.id}/#samples`"
-            ><span translate="no">{{
-              byId.get(component.id)?.name
-            }}</span></RouterLink
-          >
-        </div>
-      </template>
-      <SampleViewer
-        v-else
-        :item="item"
-        @settled="reportHumanEvalReady('samples')"
-      />
     </section>
 
     <section id="score" class="detail-section">

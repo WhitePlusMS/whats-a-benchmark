@@ -7,8 +7,9 @@ import {
   shouldWaitForDetailLayout,
 } from "./lib/deferredDetailAnchor";
 import App from "./App.vue";
-import { allBenchmarks } from "./content/catalog";
+import { allBenchmarks, byId } from "./content/catalog";
 import ExploreView from "./views/ExploreView.vue";
+import { compositionSample } from "./lib/sampleAccess";
 import { catalogNavigationKey } from "./composables/catalogNavigation";
 import "./styles/main.css";
 
@@ -55,21 +56,17 @@ export const createApp = ViteSSG(
 
     // 只记录离开目录时的位置；筛选和视图状态本身由目录 URL 保存。
     router.beforeEach((to, from) => {
-      // HumanEval, GSM8K, LIBERO, MMMLU and IFEval share this async-layout handshake.
-      // A new navigation cancels the previous readiness/scroll request. Same-page
-      // sample switches must keep the existing router behavior, not start a wait.
+      // A newly entered detail page settles when its case viewer renders.
       humanEvalInitialAnchor.cancel();
+      const benchmark = byId.get(String(to.meta.benchmarkId ?? ""));
       if (
-        (to.path === "/benchmarks/human-eval/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/gsm8k/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/libero/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/mmmlu/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/ifeval/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/calvin/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/bfcl/" && to.path !== from.path) ||
-        (to.path === "/benchmarks/mmlu-pro/" && to.path !== from.path)
-      )
+        to.path !== from.path &&
+        ((benchmark?.sampleAccess.status === "local" &&
+          !benchmark.composition) ||
+          (benchmark && compositionSample(benchmark, byId)))
+      ) {
         humanEvalInitialAnchor.begin(to.fullPath);
+      }
       if (from.path === "/" && from.matched.length && to.path !== "/") {
         catalogLocation.value = from.fullPath;
         catalogScrollTop = window.scrollY;
