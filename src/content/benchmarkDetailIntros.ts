@@ -16,6 +16,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "从彩色网格中找出共同规律，再为新输入画出完整输出。尺寸和每一个格子都必须正确，才算答对。",
   },
+  "human-eval": {
+    context: "代码生成 · 从函数说明到正确实现",
+    accent: "Eval",
+    lead: "不是写出答案，而是写出能产生答案的函数。",
+    summary:
+      "模型收到 Python 函数签名与 docstring，补全函数体；评测端再用测试检查行为。先把真实输入放进图解里，看清代码究竟要做到什么。",
+  },
   roboquest: {
     context: "具身智能 · 观察、操作与主动提交",
     accent: "Quest",

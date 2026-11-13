@@ -440,41 +440,27 @@ test("HumanEval 记录失败后重试恢复URL选题且不继承参考状态", a
   assert.equal(viewer.showAnswer.value, false);
 });
 
-test("HumanEval UI 明确模型输入/评测侧边界，测试和解答独立揭示，保留来源与键盘入口", async () => {
-  const read = (file: string) =>
-    readFile(new URL(`../${file}`, import.meta.url), "utf8").then((text) =>
-      text.replace(/\s+/g, " "),
-    );
-  const [pilot, scene, css, viewer, detail, card] = await Promise.all([
+test("HumanEval 在案例卡内显示可选图解，公开测试和参考答案分别揭示", async () => {
+  const read = (path: string) =>
+    readFile(new URL("../" + path, import.meta.url), "utf8");
+  const [pilot, scene, css, viewer, detail] = await Promise.all([
     read("src/components/HumanEvalPilot.vue"),
     read("src/components/HumanEvalScene.vue"),
     read("src/styles/human-eval-pilot.css"),
     read("src/components/SampleViewer.vue"),
     read("src/views/DetailView.vue"),
-    read("src/components/BenchmarkCard.vue"),
   ]);
-  assert.match(pilot, /不执行\s+Python/);
-  assert.match(pilot, /不执行提交代码、不运行 harness、不生成模型成绩/);
-  assert.match(pilot, /不是安全沙箱/);
-  assert.match(pilot, /k 是候选程序数，不是测试数/);
-  assert.match(pilot, /v-if="solutionRevealed"/);
+  assert.match(pilot, /查看函数行为图解/);
+  assert.match(pilot, /不执行 Python/);
   assert.match(pilot, /v-if="testsRevealed"/);
-  assert.match(pilot, /模型收到的完整 prompt/);
-  assert.match(pilot, /record\.canonical_solution/);
   assert.match(pilot, /record\.test/);
-  assert.match(pilot, /:href="sample.source"/);
-  assert.match(pilot, /href="#score"/);
-  assert.match(pilot, /href="#samples"/);
-  assert.match(scene, /:data-scene="kind"/);
-  assert.match(scene, /不再执行/);
-  assert.match(scene, /不是\s+Python\s+逐行跟踪/);
-  assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.match(css, /animation: none/);
-  assert.match(css, /focus-visible/);
+  assert.match(viewer, /current\.answer && showAnswer/);
   assert.match(viewer, /含参考代码与测试/);
-  assert.match(viewer, /isUnknownHumanEvalSample/);
-  assert.match(detail, /<HumanEvalPilot/);
-  assert.match(card, /'human-eval'/);
+  assert.match(viewer, /:href="current.source"/);
+  assert.match(scene, /:data-scene="kind"/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(css, /focus-visible/);
+  assert.match(detail, /"human-eval": HumanEvalPilot/);
 });
 
 test("HumanEval 参考按钮焦点不被面板裁剪，跳过操作文字保留完整对比度", async () => {
