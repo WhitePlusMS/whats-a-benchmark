@@ -58,6 +58,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "相机看到桌面，语言指定目标，策略输出动作。双杯要各归其位，黑碗要先找对那一只：用一条真实训练示范和一条第三方运行，拆开“完成任务”的含义。",
   },
+  mmmlu: {
+    context: "多语言 · 同一学科框架，不同语言题面",
+    accent: "MLU",
+    lead: "换一种语言，知识还接得上吗？",
+    summary:
+      "把 MMLU 的 test 题专业人工翻译成 14 种语言。模型读题、理解四个选项，交付一个答案字母。这里从四道真实中文代数题，拆开语言与推理各自的难点。",
+  },
   roboquest: {
     context: "具身智能 · 观察、操作与主动提交",
     accent: "Quest",

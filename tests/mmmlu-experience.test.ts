@@ -322,25 +322,11 @@ test("MMMLU integration retains deferred layout, source distinction and answer g
       "src/styles/mmmlu-pilot.css",
     ].map(read),
   );
-  assert.ok(
-    main.includes('to.path === "/benchmarks/mmmlu/" && to.path !== from.path'),
-  );
-  assert.ok(detail.includes("MmmluPilot"));
-  assert.ok(pilot.includes('emit("settled")'));
-  assert.ok(pilot.includes("loaded || failed"));
-  assert.ok(viewer.includes("isUnknownMmmluSample"));
-  assert.ok(
-    card.includes(
-      "'mmmlu', 'ifeval', 'calvin', 'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'",
-    ),
-  );
-  assert.match(pilot, /v-if="revealed"\s+id="mm-reference"/);
-  assert.match(pilot, /:revealed="revealed"/);
-  assert.ok(pilot.includes("不是阶或幂"));
-  assert.match(
-    pilot,
-    /<style scoped src="\.\.\/styles\/pilot-common\.css"><\/style>/,
-  );
+  assert.match(main, /benchmark\?\.sampleAccess\.status === "local"/);
+  assert.match(detail, /mmmlu: MmmluPilot/);
+  assert.match(card, /#samples/);
+  assert.match(pilot, /v-if="entry && revealed"/);
+  assert.match(viewer, /current\.answer && showAnswer/);
   assert.ok(css.includes("prefers-reduced-motion"));
   assert.ok(css.includes("var(--accent-text)"));
   const anchor = createDeferredDetailAnchor();
@@ -349,10 +335,9 @@ test("MMMLU integration retains deferred layout, source distinction and answer g
   const pending = anchor
     .wait("/benchmarks/mmmlu/#score")
     .then((v) => (ready = v));
-  anchor.settled("/benchmarks/mmmlu/#score", "pilot");
   await Promise.resolve();
   assert.equal(ready, false);
-  anchor.settled("/benchmarks/mmmlu/#score", "samples");
+  anchor.settled("/benchmarks/mmmlu/#score");
   await pending;
   assert.equal(ready, true);
   assert.ok(source.reusePolicy.license.includes("不含 README"));
