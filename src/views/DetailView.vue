@@ -23,6 +23,7 @@ import BenchmarkDetailHeader from "../components/BenchmarkDetailHeader.vue";
 import TerminalBenchPilot from "../components/TerminalBenchPilot.vue";
 import SweBenchPilot from "../components/SweBenchPilot.vue";
 import RoboQuestPilot from "../components/RoboQuestPilot.vue";
+import ArcAgiPilot from "../components/ArcAgiPilot.vue";
 import { humanEvalInitialAnchor } from "../lib/deferredDetailAnchor";
 
 const route = useRoute();
@@ -33,6 +34,7 @@ const caseVisuals: Partial<Record<string, Component>> = {
   "terminal-bench-4": TerminalBenchPilot,
   "swe-bench-verified": SweBenchPilot,
   roboquest: RoboQuestPilot,
+  "arc-agi-2": ArcAgiPilot,
 };
 const caseVisual = computed(() => item.value && caseVisuals[item.value.id]);
 function reportSamplesReady() {

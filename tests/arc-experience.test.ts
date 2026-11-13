@@ -318,9 +318,8 @@ test("ARC 保留原始矩阵与来源入口；参考只在明确揭示后渲染�
       read("src/views/DetailView.vue"),
       read("src/components/BenchmarkCard.vue"),
     ]);
-  assert.match(pilot, /:href="sample.source"/);
-  assert.match(pilot, /href="#samples"/);
-  assert.match(pilot, /href="#score"/);
+  assert.match(rawViewer, /:href="current.source"/);
+  assert.match(pilot, /:sample-id="sample.id"/);
   assert.match(pilot, /不将放大后的画面对齐/);
   assert.match(practice, /v-if="revealed" class="arc-reference"/);
   assert.match(practice, /revealed.value \? gridDifferences/);
@@ -335,10 +334,10 @@ test("ARC 保留原始矩阵与来源入口；参考只在明确揭示后渲染�
   assert.match(styles, /prefers-reduced-motion: reduce/);
   assert.match(styles, /animation: none/);
   assert.match(rawViewer, /含参考输出/);
-  assert.match(rawViewer, /isUnknownArcSample/);
+  assert.match(rawViewer, /没有匹配此编号的样例/);
   assert.match(shared, /<ArcGrid/);
-  assert.match(details, /<ArcAgiPilot/);
-  assert.match(card, /'roboquest', 'arc-agi-2'/);
+  assert.match(details, /"arc-agi-2": ArcAgiPilot/);
+  assert.match(card, /#samples/);
 });
 
 test("ARC 非首格绘色不会重置键盘 Tab 位置，实际尺寸变动才重置", async () => {

@@ -9,6 +9,13 @@ interface BenchmarkDetailIntro {
 export const benchmarkDetailIntros: Partial<
   Record<string, BenchmarkDetailIntro>
 > = {
+  "arc-agi-2": {
+    context: "抽象推理 · 从示范迁移到新输入",
+    accent: "-2",
+    lead: "不给规则，只给几组前后变化。",
+    summary:
+      "从彩色网格中找出共同规律，再为新输入画出完整输出。尺寸和每一个格子都必须正确，才算答对。",
+  },
   roboquest: {
     context: "具身智能 · 观察、操作与主动提交",
     accent: "Quest",
