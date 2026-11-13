@@ -84,11 +84,14 @@
     "status": "partial",
     "requirements": [
       "方法、分项榜单与过滤规则公开；私有题库不能从网页可访问推断可下载。",
-      "本轮亲自读取方法及七个分项入口，未读取完整数据文件，也未复现评测。"
+      "本轮亲自读取方法及七个分项入口，未读取完整数据文件，也未复现评测。",
+      "EvalSafe 上游数据与 WildGuardMix（wildguardtest 配置）入口见下方来源；不能把上游原始集当作 AA 已过滤版本。"
     ],
     "url": "https://artificialanalysis.ai/methodology/decision-index/",
     "sourceUrls": [
-      "https://artificialanalysis.ai/methodology/decision-index/"
+      "https://artificialanalysis.ai/methodology/decision-index/",
+      "https://huggingface.co/datasets/typesafeAI/evalsafe-onet",
+      "https://huggingface.co/datasets/allenai/wildguardmix"
     ]
   },
   "reusePolicy": {
@@ -105,10 +108,11 @@
   },
   "sampleAccess": {
     "status": "official",
-    "reason": "指数没有自有原题；使用官方方法中的六分项入口查看范围和公开程度，不编造指数示例，不将私有题或生成替代题写成真实样例。",
-    "url": "https://artificialanalysis.ai/methodology/decision-index/",
+    "reason": "查看 AA-Paperclip 的官方公开案例：这是指数中一个分项的文档决策/抽取示例，不代表六项都公开。指数没有自有题库，本站不转载私有原题或编造替代题。",
+    "url": "https://artificialanalysis.ai/evaluations/aa-paperclip#example-tasks",
     "sourceUrls": [
-      "https://artificialanalysis.ai/methodology/decision-index/"
+      "https://artificialanalysis.ai/methodology/decision-index/",
+      "https://artificialanalysis.ai/evaluations/aa-paperclip#example-tasks"
     ]
   },
   "metric": {
@@ -179,6 +183,21 @@
       "url": "https://artificialanalysis.ai/evaluations/wildguardtest",
       "label": "wildguardtest 官方分项入口",
       "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/aa-paperclip#example-tasks",
+      "label": "AA-Paperclip 官方公开案例直达",
+      "role": "access"
+    },
+    {
+      "url": "https://huggingface.co/datasets/typesafeAI/evalsafe-onet",
+      "label": "EvalSafe-O*NET 上游原始数据（不是 AA 6,582 题过滤集）",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/allenai/wildguardmix",
+      "label": "WildGuardMix 上游原始数据：其中 wildguardtest 为测试配置",
+      "role": "data"
     }
   ],
   "related": [

@@ -171,6 +171,11 @@
       "url": "https://artificialanalysis.ai/methodology/decision-index/",
       "label": "AA 决策指数方法、筛题名单及版本历史",
       "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/decision-index#when2call",
+      "label": "AA When2Call 过滤协议与排除名单",
+      "role": "definition"
     }
   ],
   "related": [
@@ -221,7 +226,7 @@
     "samples": [
       {
         "source": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1",
-        "explanation": "NVIDIA When2Call test/mcq首行来自 BFCL v2 Live Multiple。正确答案为cannot_answer，因为工具列表仅提供ChaFod（修改食物），没有候选参考调用中的ChaDri.change_drink；不能用不可用工具修改拿铁。",
+        "explanation": "NVIDIA 上游样例，已被 AA 排除。不属于 AA 3,423 题评测集：source_id live_multiple_0-0-0 明确出现在 AA 官方排除名单。NVIDIA When2Call test/mcq首行来自 BFCL v2 Live Multiple。正确答案为cannot_answer，因为工具列表仅提供ChaFod（修改食物），没有候选参考调用中的ChaDri.change_drink；不能用不可用工具修改拿铁。",
         "raw": {
           "uuid": "5ce19067-938e-41f5-acd5-0e8e66683f62",
           "source": "BFCL v2 Live Multiple",
@@ -245,9 +250,15 @@
         "license": "HF卡声明 CC-BY-4.0；BFCL来源权利另行核对。",
         "prompt": "update my latte to a large size with coconut milk and make it extra sweet? make it served boiling hot.",
         "type": "record",
-        "title": "拿铁定制的工具选择",
+        "title": "拿铁定制的工具选择（NVIDIA 上游样例，已被 AA 排除）",
         "excerpt": true,
-        "id": "when2call-5ce19067"
+        "id": "when2call-5ce19067",
+        "references": [
+          {
+            "label": "AA 官方排除名单：live_multiple_0-0-0",
+            "url": "https://artificialanalysis.ai/methodology/decision-index#when2call"
+          }
+        ]
       }
     ]
   },
