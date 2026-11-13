@@ -1,0 +1,196 @@
+{
+  "id": "aa-intelligence-index-v5-0-1",
+  "status": "published",
+  "order": 600,
+  "name": "Artificial Analysis Intelligence Index v5.0.1",
+  "subtitle": "四个能力组等权、九项评测加权汇总",
+  "category": "general",
+  "tags": [
+    "综合指数",
+    "知识工作",
+    "编程",
+    "科学"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v5.0.1",
+  "kind": "suite",
+  "aliases": [
+    "AA Intelligence Index v5.0.1",
+    "AA 智能指数 v5.0.1"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "九项评测组成的当前智能指数：知识工作、编程、科学和通用四组各占 25%。",
+    "task": "在各自环境完成九项评测，将不同分项的结果按规定转换与权重汇总。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "组成项的任务与数据；没有指数独立原题。",
+    "output": "文件、代码、科学答案或知识回答，依分项规则评分后汇总。",
+    "environment": "按各分项指定版本、工具、评委和重复次数运行；不是同一提示词或单次问答。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "9 项成员；其中 FrontierCode-AA 2.0 为 132 题，CritPt 使用私有 40 题 Hard，不能用完整 70 题分数替代。",
+    "disclosure": "partial",
+    "scale": [
+      "知识工作、编程、科学、通用各 25%。"
+    ],
+    "splits": [
+      "公开程度依组成项，指数没有独立 split。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开方法可查；若干组成项的正式题集或成员名单私有。"
+    ],
+    "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方网页未为全部任务与成品声明统一再发布许可。",
+    "scope": "本站仅整理公开方法及任务事实，底层题目和作品需分别核对权利。",
+    "boundaries": [
+      "官方可浏览不等于整套数据可转载。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "没有指数自有题目；按组成项链接复用已有真实案例。",
+    "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "加权智能指数",
+    "description": "按官方分项标准化规则转换后加权；不能直接相加 Elo、准确率和 rubric 分。AA-Omniscience 总权重 15%，含准确率 10% 与非幻觉率 5%。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "以英文文本相关任务为主，部分分项可输入图像；语音与多语言另行评测，不属于这九项。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "v5.0.1 重判 CritPt v2；旧 v4.3.2 组成与权重不同，总分不可当作同一量尺横向接续。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "label": "AA 官方当前方法、权重与历史",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-intelligence-index",
+      "label": "历史 v4.3.2",
+      "detail": "旧版稳定页面保留，不覆盖其十项组成。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-11",
+  "composition": {
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ],
+    "items": [
+      {
+        "id": "aa-briefcase",
+        "group": "知识工作",
+        "weight": 15,
+        "detail": "v1.1，91 任务、4 场景；任务成功、分析和呈现的综合 Elo。"
+      },
+      {
+        "id": "automationbench-aa",
+        "group": "知识工作",
+        "weight": 5,
+        "detail": "657 任务；触发 guardrail 违规得零。"
+      },
+      {
+        "id": "gdp-pdf",
+        "group": "知识工作",
+        "weight": 5,
+        "detail": "100 任务；rubric all-pass，每题 5 次。"
+      },
+      {
+        "id": "frontiercode-aa-2-0",
+        "group": "编程",
+        "weight": 15,
+        "detail": "2.0 的 132 任务，每题 3 次；阻断失败或查解答得零。"
+      },
+      {
+        "id": "terminal-bench-4",
+        "group": "编程",
+        "weight": 10,
+        "detail": "4.0 的 66 任务，每题 3 次，pass@1。"
+      },
+      {
+        "id": "terminal-bench-science-0-1",
+        "group": "科学",
+        "weight": 15,
+        "detail": "0.1.0 的 70 任务，每题 3 次，pass@1。"
+      },
+      {
+        "id": "critpt-v2",
+        "group": "科学",
+        "weight": 10,
+        "detail": "只使用 40 题 Hard Subset，不是完整 70 题；每题 5 次。"
+      },
+      {
+        "id": "aa-omniscience",
+        "group": "通用",
+        "weight": 15,
+        "detail": "v1.1 的 3,000 题；准确率 10%＋非幻觉率 5%。"
+      },
+      {
+        "id": "hle-diamond",
+        "group": "通用",
+        "weight": 10,
+        "detail": "1,000 题，含 272 图像题；无工具；不能替换为原 HLE。"
+      }
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "v5.0 于 2026-10 换入 FrontierCode-AA 2.0、HLE-Diamond、Terminal-Bench-Science，使用 CritPt v2 Hard，移出 GDPval-AA、SciCode、AA-LCR 和原 HLE；v5.0.1 于 2026-11 改进 CritPt 判分并重判。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  }
+}

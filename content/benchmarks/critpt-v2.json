@@ -1,0 +1,145 @@
+{
+  "id": "critpt-v2",
+  "status": "published",
+  "order": 600,
+  "name": "CritPt v2",
+  "subtitle": "70 个研究级物理挑战与 AA 困难子集",
+  "category": "reasoning",
+  "tags": [
+    "物理",
+    "科学推理",
+    "工具使用"
+  ],
+  "publisher": "CritPt 作者团队；Artificial Analysis 独立实施",
+  "brandIds": [],
+  "year": 2026,
+  "version": "v2；AA 完整集与 40 题 Hard Subset",
+  "kind": "original",
+  "aliases": [
+    "CritPt v2 Hard Subset",
+    "CritPt v2 (Hard Subset)"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "修订后的 70 个研究级物理挑战；AA 单独报告完整集和 40 题困难子集，不能混用成绩。",
+    "task": "依据物理研究问题推导符号、数值或 Python 函数形式的答案，提交给作者的专业判分服务。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/critpt-v2",
+      "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "物理挑战、代码答案模板与允许的软件环境。",
+    "output": "通过 finish 工具提交结束原因、推导及符合模板的答案。",
+    "environment": "AA：离线 Linux、Python 3.13、numpy/scipy/sympy/matplotlib、最多 50 turns；每题 5 次。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "固定数据卡 37ecba7 声明当前为 v2，正文称 70 道 test challenges；HF 文件配置标签为 train。AA Hard 为其中 40 题，成员清单私有。",
+    "disclosure": "partial",
+    "scale": [
+      "完整 v2：70 题。",
+      "AA Hard：40 题，剔除发布时 7 个前沿模型在全部 5 次尝试中都答对的 30 题。"
+    ],
+    "splits": [
+      "HF 发布标签 train，不应当作训练用途；作者明确只用于测试。"
+    ],
+    "fields": [
+      "problem_id、problem_description、code_template 等（按固定数据卡字段表）。"
+    ],
+    "files": [
+      "data/train-00000-of-00001.parquet（字段表已核对，本轮不转载完整题库）。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开数据卡及题目文件可浏览；评测 API 需要向 AA 申请并经批准；Hard 成员清单私有。"
+    ],
+    "url": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md",
+      "https://artificialanalysis.ai/evaluations/critpt-v2",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "固定数据卡标 Apache-2.0，同时作者明确不得用于训练，并请求勿将自行推导的答案发布到网上。",
+    "scope": "站内仅介绍作者主动公开的量子纠错示例，不复制其他正式题的答案。",
+    "boundaries": [
+      "官网示例未证实属于 AA Hard，不作成员断言。",
+      "数据卡仍有 71 题旧领域统计，与当前 70 题描述不一致；规模使用当前 v2 声明。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md",
+      "https://critpt.com/example.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "作者指定 Quantum Error Detection 为公开示例，含题目、checkpoint、答案与模型输出；本站不新增或转载研究题解。尚未逐项确认它的 v2 / Hard 成员关系。",
+    "url": "https://critpt.com/example.html",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md",
+      "https://critpt.com/example.html"
+    ]
+  },
+  "metric": {
+    "name": "Challenge accuracy / pass@1",
+    "description": "作者评分服务器判定答案；AA 对每题 5 次正确性取平均。完整集按 70 题，Hard 仅按固定 40 题。2026 年 11 月随 Intelligence Index v5.0.1 采用判分稳健性修正并重判所有模型。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "未公开 Hard 名单，不能从站内示例推断其被纳入 40 题；重判前后的成绩应分别标注版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/evaluations/critpt-v2",
+      "label": "AA CritPt v2 与受控评分 API",
+      "role": "definition"
+    },
+    {
+      "url": "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md",
+      "label": "CritPt 固定 v2 数据卡与使用限制",
+      "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "label": "AA 完整集、困难子集及重判方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://critpt.com/example.html",
+      "label": "作者指定量子错误检测公开示例",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "critpt",
+      "label": "早期版本",
+      "detail": "保留原 CritPt 页面；本页记录修订后的 v2，不覆盖原版题目或历史成绩。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CritPt-Benchmark/CritPt/blob/37ecba7e9d00eda858d7be1adba19a38ba50e7a6/README.md"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13"
+}

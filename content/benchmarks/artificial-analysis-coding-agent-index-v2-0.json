@@ -1,0 +1,155 @@
+{
+  "id": "artificial-analysis-coding-agent-index-v2-0",
+  "status": "published",
+  "order": 600,
+  "name": "Artificial Analysis Coding Agent Index v2.0",
+  "subtitle": "真实仓库修改、终端任务与仓库问答三项等权",
+  "category": "coding",
+  "tags": [
+    "综合指数",
+    "编程代理"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v2.0",
+  "kind": "suite",
+  "aliases": [
+    "AA Coding Agent Index v2.0"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "对 FrontierCode 1.1 Main、Terminal-Bench 4.0、SWE-Atlas-QnA-AA 三项成绩等权平均。",
+    "task": "在仓库修改、终端执行和只读仓库问答三类工作流中评估代理完成能力。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "三项共 290 任务：100 项 FrontierCode 1.1 Main、66 项 Terminal-Bench 4.0、124 项 SWE-Atlas-QnA-AA。",
+    "output": "按任务要求提交代码修改、终端执行结果或只读问答答案。",
+    "environment": "每题 3 次；不同 coding agent 使用各自 harness，按方法记录运行配置和完整性审查。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "同一指数包含私有代码修改任务和公开终端、问答任务；没有独立指数题库。",
+    "disclosure": "partial",
+    "scale": [
+      "290 任务；每题 3 次。"
+    ],
+    "splits": [
+      "公开程度按各组成项分别判断。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法公开；FrontierCode 1.1 Main 的 100 任务私有。"
+    ],
+    "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方网页未为全部任务与成品声明统一再发布许可。",
+    "scope": "本站仅整理公开方法及任务事实，底层题目和作品需分别核对权利。",
+    "boundaries": [
+      "官方可浏览不等于整套数据可转载。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "复用三项成员的真实案例，不为指数编造新题。",
+    "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "三项等权平均",
+    "description": "FrontierCode 1.1 为 rubric 平均分，另两项为 pass@1；先平均同题三次再等权平均各题，最后三项等权。错误、超时、阻断拒绝和确认的 reward hacking 按协议计零。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "此指数仍使用 FrontierCode 1.1 Main，不是 Intelligence Index v5.0.1 的 FrontierCode-AA 2.0。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "v2.0 换入 FrontierCode 1.1 并调整 SWE-Atlas 评分；不把历史 v1.5 当作同一组成。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+      "label": "AA Coding Agent Index v2.0 方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "label": "智能指数使用不同 FrontierCode 版本",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "artificial-analysis-coding-agent-index",
+      "label": "历史 v1.5",
+      "detail": "保留旧版 DeepSWE 组成和历史计分。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-10",
+  "composition": {
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ],
+    "items": [
+      {
+        "id": "frontiercode-1-1-main",
+        "group": "软件工程",
+        "weight": 33.333333333333336,
+        "detail": "1.1 Main：100 任务，每题 3 次；阻断失败得零，否则 70–100%。"
+      },
+      {
+        "id": "terminal-bench-4",
+        "group": "终端",
+        "weight": 33.333333333333336,
+        "detail": "4.0：66 任务，每题 3 次，pass@1。"
+      },
+      {
+        "id": "swe-atlas-qna",
+        "group": "仓库问答",
+        "weight": 33.333333333333336,
+        "detail": "AA 评分协议：同 124 题、127 项 rubric 改写，GPT-6 Luna（xhigh）每项 5 票；all-pass。"
+      }
+    ]
+  }
+}

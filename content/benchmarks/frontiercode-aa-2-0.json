@@ -1,0 +1,172 @@
+{
+  "id": "frontiercode-aa-2-0",
+  "status": "published",
+  "order": 600,
+  "name": "FrontierCode-AA 2.0",
+  "subtitle": "以维护者可合并标准评判真实仓库修改",
+  "category": "coding",
+  "tags": [
+    "软件工程",
+    "代理",
+    "私有题集"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "FrontierCode 2.0；AA 实施快照 2026-11-13",
+  "kind": "derivative",
+  "aliases": [
+    "FrontierCode 2.0",
+    "Frontier Code AA 2.0"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 132 项真实仓库任务中修改代码，以阻断检查和加权评分衡量是否达到维护者的合并标准。",
+    "task": "模型从非完备的需求与现有仓库推断修改范围、兼容性和隐含约束，交付可维护的代码变更。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/frontiercode-2-0"
+    ]
+  },
+  "taskContract": {
+    "input": "任务描述、固定仓库环境及现有实现；完整 132 项正式任务保持私有。",
+    "output": "仓库代码修改及对应测试，不是仅给出文字修复建议。",
+    "environment": "AA Stirrup harness；每题 3 次、最多 500 turns；shell 可后台运行，每次有时限，到时按仓库现状评分。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA 使用 Cognition FrontierCode 2.0 的同一套 132 项任务、测试、rubric 和轨迹扫描器，另用自己的 harness、裁判和重复次数。",
+    "disclosure": "partial",
+    "scale": [
+      "132 项任务；每题 3 次。"
+    ],
+    "splits": [
+      "正式评测集私有；官网另公开少量任务说明。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "private",
+    "requirements": [
+      "可浏览官方方法和公开展示案例；132 项正式任务不公开下载。"
+    ],
+    "url": "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/frontiercode-2-0"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方网页未为全部任务与成品声明统一再发布许可。",
+    "scope": "本站仅整理公开方法及任务事实，底层题目和作品需分别核对权利。",
+    "boundaries": [
+      "官方可浏览不等于整套数据可转载。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/frontiercode-2-0"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示已核对的公开具体任务，原始材料与本站说明分开。",
+    "url": "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/frontiercode-2-0"
+    ]
+  },
+  "metric": {
+    "name": "任务平均加权分",
+    "description": "任何 blocking check 失败，或轨迹扫描发现查找参考解答，该次得 0；其余按 rubric 加权。先平均每题 3 次，再对任务等权平均；AA 使用 GPT-6 Luna（medium）裁判。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "AA 实施不等于 Cognition 原报告的运行配置；2.0 与 1.1 题集、检查项和范围均改变，不应直接比较百分比。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
+        "https://cognition.com/blog/frontier-code-2.0"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
+      "label": "AA FrontierCode-AA 2.0 任务与方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "label": "AA 智能指数实施方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://cognition.com/blog/frontier-code-2.0",
+      "label": "Cognition 2.0 发布与实际任务",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+      "label": "AA 编程代理指数组成",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "frontiercode-1-1-main",
+      "label": "前代 Main",
+      "detail": "1.1 Main 为另一版本；Coding Agent Index v2.0 仍使用它，而非本页 2.0。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+      ]
+    },
+    {
+      "id": "frontiercode-1-1-extended",
+      "label": "前代 Extended",
+      "detail": "保留 1.1 Extended 的独立范围与版本入口。",
+      "sourceUrls": [
+        "https://cognition.com/blog/frontier-code-2.0"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "interpretation": {
+    "versionChanges": {
+      "text": "Cognition 于 2026-10-27 发布上游 2.0；该日期不是已核实的 AA 实施首发日。2.0 增加任务覆盖与隐含正确性检查，不能沿用 1.1 的 70–100% 评分区间描述。",
+      "sourceUrls": [
+        "https://cognition.com/blog/frontier-code-2.0",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "msw-fix-reset-generator-state",
+        "title": "Mock Service Worker：重置生成器并保留清理行为",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "修复 resetHandlers() 未重启生成器 resolver 的问题，同时保持已有用户 finally 清理逻辑可执行。输入是实际 Mock Service Worker 仓库，交付物是兼容既有 API 的修复。",
+        "explanation": "这是 Cognition 和 AA 公开说明的具体案例。只丢弃旧生成器引用虽可重启，却不关闭旧生成器，导致 finally 不执行并触发阻断检查。本站未取得完整私有任务、测试或模型轨迹；不把此节录当成完整题包。 样例 ID 为本站直达标识，官方页面未提供该案例的原始任务 ID。",
+        "raw": "A user reports that resetHandlers() doesn't restart generator resolvers, and the task asks the agent to fix the bug.",
+        "source": "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
+        "license": "基于官方公开具体任务事实的中文说明；仅保留必要原文节录，不转载私有题目、参考补丁或完整轨迹。",
+        "split": "官网公开任务展示，不是可下载正式 split",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -11,9 +11,11 @@
     "scale"
   ],
   "year": 2026,
-  "version": "2026-03-04公开定义版",
+  "version": "SWE-Atlas-QnA 原版；AA 评分协议 1f28d51（同 124 题）",
   "kind": "subset",
-  "aliases": [],
+  "aliases": [
+    "SWE-Atlas-QnA-AA"
+  ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "task": "通过运行时分析、多文件推理及代码库检视，回答工程师式代码理解问题。",
@@ -35,7 +37,8 @@
   "dataProfile": {
     "sourceUrls": [
       "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA",
-      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md"
     ],
     "fields": [
       "task_id",
@@ -44,12 +47,13 @@
       "language",
       "category",
       "docker_image",
-      "prompt"
+      "prompt",
+      "AA rubric 附加 original_title、change（null / stability / precision / scale-correction）。"
     ],
     "disclosure": "partial",
     "splits": [],
     "files": [],
-    "summary": "官方数据页显示 test split 124 行，覆盖 11 个开源仓库；包含 prompt、reference_answer、repository_url、固定基础提交、语言、类别、rubric 与 docker_image 字段。",
+    "summary": "原版与 AA 评分版是同 124 题、同仓库与固定 commit；AA 在 1,306 项 rubric 中改写 127 项，并保留 original_title 和 change 以便逐项对照。",
     "scale": [
       "官方数据页显示 124 条 test 任务",
       "覆盖 11 个代码仓库"
@@ -59,38 +63,42 @@
     "status": "public",
     "url": "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA",
     "requirements": [
-      "已实际读取此处记录；完整评测环境、媒体和数据许可分别按来源说明获取。"
+      "原版与 AA 评分版均公开；本站当前样例读取固定 AA 数据 revision 1f28d51。完整镜像和仓库依各自许可获取。"
     ],
     "sourceUrls": [
-      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md"
     ]
   },
   "reusePolicy": {
-    "license": "本轮未核实覆盖题库/媒体内容的许可。",
-    "scope": "本页仅展示对应实际任务的编辑解读和必要原始字段节选；完整题面、答案或附件再分发许可未确认。",
-    "status": "unknown",
-    "sourceUrls": [
-      "https://huggingface.co/datasets/ScaleAI/SWE-Atlas-QnA"
-    ],
+    "status": "permitted",
+    "license": "AA 固定版本明确声明 Apache-2.0（与上游相同），附 LICENSE 与 NOTICE。",
+    "scope": "本次以 AA 发布记录补充原有 kitty 案例及同题评分对照，不增加重复题目。",
     "boundaries": [
-      "不将代码仓库许可推定为题库或媒体许可。"
+      "仓库源代码、镜像和所引用第三方材料仍有各自许可；本站不分发镜像。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
+    "reason": "一条真实 kitty 任务同时展示题目与 Scale / AA rubric 原文对照；不重复收录同题。",
     "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
-      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/data/test-00000-of-00001.parquet"
     ]
   },
   "metric": {
-    "sourceUrls": [
-      "https://scale.com/blog/swe-atlas"
-    ],
-    "description": "Scale 定义为所有 rubric 条目均满足的任务占比。",
     "name": "Task Resolve Rate",
-    "direction": "higher"
+    "description": "只有所有 rubric 条件都满足才判任务通过，不给部分分；AA 每项 5 票后再应用负向条件极性，修改受跟踪仓库文件的回答失败。每题 3 次再平均，不是 pass@3。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md",
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
   },
   "limitations": [
     {
@@ -121,43 +129,67 @@
       "label": "已实际读取的原始任务记录",
       "url": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md",
+      "label": "AA 固定数据卡、评分变化与 Apache-2.0",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/data/test-00000-of-00001.parquet",
+      "label": "AA 固定 124 题 test Parquet",
+      "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+      "label": "AA 编程指数评分协议",
+      "role": "definition"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-13",
   "releaseDate": "2026-03-04",
   "interpretation": {
     "versionChanges": {
-      "text": "日期依据：2026-03-04，Scale AI官方SWE Atlas发布文章发布日期（文章称Codebase QnA当日已可用）。",
+      "text": "SWE-Atlas-QnA-AA 保持题目、仓库、固定 commit、镜像与参考答案；修改评分措辞及评委配置。固定 1f28d51 同时带入上游两项负向 rubric 的极性修正。",
       "sourceUrls": [
-        "https://scale.com/blog/swe-atlas"
+        "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md"
+      ]
+    },
+    "judge": {
+      "text": "Scale 原评分使用 Claude Opus 4.5；AA 使用 GPT-6 Luna（xhigh），每项 rubric 5 票多数决，并以 reason/evidence/verdict 结构化输出判断。AA 维持同 124 题和 1,306 项标准，其中 127 项改写；没有新建另一套题库。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/README.md",
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
       ]
     }
   },
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
-    "retrievedAt": "2026-10-19",
+    "retrievedAt": "2026-11-13",
     "samples": [
       {
         "id": "6905333b74f22949d97ba9e3",
         "title": "kitty · 远程控制命令的端到端追踪",
         "type": "code",
         "prompt": "在指定commit的kitty仓库中，追踪kitten @ ls如何找到正在运行的kitty、通过socket或TTY传输、解析协议并路由到ls处理器，同时解释日志、shell integration及真实返回JSON。原任务要求不能修改仓库代码，并清理临时脚本。",
-        "explanation": "这是一条实际代码库问答行，重点是从客户端、传输、分派到响应的端到端证据；只读某个函数名不能完整回答。raw保留真实task_id、repo/commit、语言/分类、镜像和提问中的操作片段；完整prompt、rubric及约1万字的reference_answer可在来源核对。数据卡未声明数据再分发许可，本页不转载完整参考回答，也没有自写答案冒充原始标注。",
+        "explanation": "同一 kitty 任务的 AA 版本记录：raw 保留完整 prompt 与本题改写的 1 项 rubric（原 rubric JSON 中节选），省略其余未改标准和完整 reference_answer。1.7 的 original_title 曾称 shell integration 通过三个环境变量工作，AA title 改为 kitty 为子进程设置这些变量。题目与固定仓库未改变；这不是新增题或本站答案。",
         "raw": {
           "task_id": "6905333b74f22949d97ba9e3",
+          "prompt": "I'm  trying to wrap my head around kitty's remote control system because I want to eventually add a new command to it. I've been reading through the code but I'm getting lost in how all the pieces connect.\n\nSo here's what's confusing me. When I run something like kitten @ ls from another terminal, somehow that command finds its way to the running kitty instance, gets processed, and sends back a list of windows. But I can't figure out how the kitten knows where to send the command in the first place. Is it a socket? A pipe? Something else?\n\nI got kitty built and running, but when I poke around in /tmp looking for sockets, I'm not finding what I expected based on the docs. I'm wondering if the socket path is generated dynamically or if I'm looking in the wrong place entirely.\n\nThe other thing that's throwing me off is the shell integration angle. The docs mention you can send remote commands \"without explicit configuration\" when shell integration is active, but I don't understand the mechanism. Is it using the same socket? Or is there some TTY magic happening where commands go through the terminal's own pty? I tried looking at the shell integration scripts but they're setting environment variables that I can't trace back to where they're actually used.\n\nCan you help me trace through what actually happens end-to-end including the logging behavior? I want to see the real socket path kitty creates, what the actual protocol messages look like on the wire, and where in the Python code the incoming command gets parsed and routed to the ls handler. If you can show me the JSON that comes back from a real ls call, that would help me understand the response format I'd need to follow for a new command.\n\nDon't modify any files in the repository. If you need to create temporary scripts for testing, that's fine. but don't change the actual codebase files. And delete all those temporary scripts/files after task completion.",
           "repository_url": "kovidgoyal/kitty",
           "repository_base_commit": "815df1e210e0a9ab4622f5c7f2d6891d7dbeddf1",
           "language": "c",
           "category": "Architecture & system design",
           "docker_image": "ghcr.io/scaleapi/swe-atlas:swe_atlas_QnA_kovidgoyal_kitty_1.0",
-          "prompt": "When I run something like kitten @ ls from another terminal"
+          "rubric": "[{\"id\": \"4ca20ef4bbf52c6414a7478d688d08c3\", \"title\": \"1.7: States that kitty sets environment variables KITTY_PID, KITTY_LISTEN_ON, and KITTY_WINDOW_ID for child processes.\", \"annotations\": {\"type\": \"positive hli verifier\", \"importance\": \"must have\"}, \"original_title\": \"1.7: States that shell integration works through environment variables KITTY_PID, KITTY_LISTEN_ON, and KITTY_WINDOW_ID that kitty sets for child processes.\", \"change\": \"precision\"}]"
         },
-        "source": "https://datasets-server.huggingface.co/rows?dataset=ScaleAI%2FSWE-Atlas-QnA&config=default&split=test&offset=0&length=1",
-        "license": "The Scale AI dataset README at the observed revision documents the public 124-row test set but does not state a data license; that revision has no LICENSE file. Public access is not a reuse license.",
+        "source": "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA/blob/1f28d51b6e191e9f2bfdc22b09d92eecdab6654e/data/test-00000-of-00001.parquet",
+        "license": "SWE-Atlas-QnA © Scale AI；AA grading modifications © Artificial Analysis。Apache-2.0，保留 LICENSE / NOTICE；本站节选并整理中文说明。",
         "split": "test",
         "excerpt": true,
-        "promptOrigin": "editorial"
+        "promptOrigin": "editorial",
+        "licensePath": "licenses/swe-atlas-qna-aa.txt"
       }
     ]
   },

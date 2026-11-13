@@ -1,0 +1,147 @@
+{
+  "id": "aa-3d",
+  "status": "published",
+  "order": 600,
+  "name": "AA-3D",
+  "subtitle": "相同 brief 下交互式 three.js 场景的人工盲评",
+  "category": "coding",
+  "tags": [
+    "3D",
+    "交互式作品",
+    "人工偏好"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "v1.0；方法快照 2026-11-13",
+  "kind": "original",
+  "aliases": [
+    "AA-3D v1.0",
+    "Interactive 3D Experience Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "55 个场景 brief；模型在离线沙箱构建交互式 3D 网页，由招募面板盲选比较作品。",
+    "task": "为同一 brief 构建可运行、可交互的 three.js 场景，再比较不同模型的实际成品。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-3d"
+    ]
+  },
+  "taskContract": {
+    "input": "一个书面场景 brief、统一工具和可选 CC0 资产库。",
+    "output": "一张 HTML 页面及资源，总量最多 200 MiB，不计预置 three.js 与 Rapier。",
+    "environment": "Stirrup 离线沙箱；每任务 1 次、250 turns、3 小时、4 CPU/8 GB RAM、无 GPU；three.js 0.186.0、Rapier 0.20.0、Blender 4.5 和 Chromium。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-3d"
+    ]
+  },
+  "dataProfile": {
+    "summary": "55 项任务分 7 个领域；官方 Explorer 可按同一任务比较各模型交互场景。",
+    "disclosure": "partial",
+    "scale": [
+      "55 项 brief；7 个领域。"
+    ],
+    "splits": [
+      "官网展示任务与模型成品；未核实可下载的完整题包。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-3d",
+      "https://artificialanalysis.ai/evaluations/aa-3d"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "在官方 Explorer 选择同一个任务与不同模型，查看交互场景；本站不复制整套作品。"
+    ],
+    "url": "https://artificialanalysis.ai/3d/explorer",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-3d",
+      "https://artificialanalysis.ai/evaluations/aa-3d"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方网页未为全部任务与成品声明统一再发布许可。",
+    "scope": "本站仅整理公开方法及任务事实，底层题目和作品需分别核对权利。",
+    "boundaries": [
+      "官方可浏览不等于整套数据可转载。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-3d"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示已核对的公开具体任务，原始材料与本站说明分开。",
+    "url": "https://artificialanalysis.ai/3d/explorer",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/aa-3d",
+      "https://artificialanalysis.ai/methodology/aa-3d"
+    ]
+  },
+  "metric": {
+    "name": "Quality Elo",
+    "description": "招募面板对同一 brief 的两份作品盲选，Bradley–Terry 最大似然拟合并转为 Elo 量级，附 95% 置信区间。每份场景至少观看 30 秒；公众投票不进入正式评级。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/aa-3d"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "场景先通过自动运行和人工检查再进入投票；Elo 是合格作品间的相对偏好，不是所有任务通过率。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/aa-3d"
+      ]
+    },
+    {
+      "text": "可选素材库为 CC0 不代表最终模型作品或全部任务说明也获得统一转载许可。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/aa-3d"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/aa-3d",
+      "label": "AA-3D v1.0 方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/aa-3d",
+      "label": "AA-3D 官方任务与榜单",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/3d/explorer",
+      "label": "AA-3D 官方成品 Explorer",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "aa-3d-weightlifter-anatomy",
+        "title": "Weightlifter anatomy：可交互的举重人体场景",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "官方任务要求创建成年男性举重的交互场景，并能切换查看肌肉、骨骼和器官的解剖结构。交付一张可运行的 three.js 网页，而不是静态说明图。",
+        "explanation": "保留官网实际 brief；不同模型作品可在官方 Explorer 以同一任务比较。本站没有复制模型成品、录屏或生成替代场景，也不以自己绘制的图代替参评作品。 样例 ID 为本站用于直达的展示标识；官网文字未给出可核验的原始题目 ID。",
+        "raw": "Create an interactive adult man performing weightlifting exercises, with views that expose his muscles, skeleton and organs in anatomically accurate form.",
+        "source": "https://artificialanalysis.ai/evaluations/aa-3d",
+        "license": "基于官方公开具体任务事实整理，必要 brief 节录；作品转载权限未确认，实际成品仅链接官方。",
+        "split": "官网公开 Example Tasks",
+        "excerpt": true
+      }
+    ]
+  }
+}
