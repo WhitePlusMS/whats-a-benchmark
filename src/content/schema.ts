@@ -154,6 +154,11 @@ export const sampleSchema = z
         ),
     ]),
     source: https,
+    references: z
+      .array(z.strictObject({ label: text, url: https }))
+      .min(1)
+      .max(20)
+      .optional(),
     license: text,
     licensePath: z
       .string()

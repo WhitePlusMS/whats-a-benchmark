@@ -8,7 +8,7 @@ function firstId(query: string) {
 
 test("指数、AA实施与原版名称各自识别，Terminal-Bench版本不混合", () => {
   const expected = new Map([
-    ["AA 智能指数", "aa-intelligence-index"],
+    ["AA 智能指数", "aa-intelligence-index-v5-0-1"],
     ["AA-Briefcase", "aa-briefcase"],
     ["AA-Omniscience", "aa-omniscience"],
     ["AA-LCR", "aa-lcr"],
@@ -88,4 +88,22 @@ test("国内模型发布页中的新增名称能唯一识别，版本不会串�
   for (const [label, id] of expected) assert.equal(firstId(label), id);
   assert.notEqual(firstId("Terminal-Bench 2.0"), firstId("Terminal-Bench 2.1"));
   assert.notEqual(firstId("Terminal-Bench 2.1"), firstId("Terminal-Bench 4.0"));
+});
+
+test("AA 指数通用名称优先新版，完整旧版名称仍可查找", () => {
+  const cases = new Map([
+    ["Artificial Analysis Intelligence Index", "aa-intelligence-index-v5-0-1"],
+    ["AA Index", "aa-intelligence-index-v5-0-1"],
+    ["Artificial Analysis Intelligence Index v4.3.2", "aa-intelligence-index"],
+    ["AA 智能指数 v4.3.2", "aa-intelligence-index"],
+    [
+      "Artificial Analysis Coding Agent Index",
+      "artificial-analysis-coding-agent-index-v2-0",
+    ],
+    [
+      "Artificial Analysis Coding Agent Index v1.5",
+      "artificial-analysis-coding-agent-index",
+    ],
+  ]);
+  for (const [query, id] of cases) assert.equal(firstId(query), id);
 });

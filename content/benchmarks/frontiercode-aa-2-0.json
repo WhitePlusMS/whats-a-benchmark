@@ -76,7 +76,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示已核对的公开具体任务，原始材料与本站说明分开。",
+    "reason": "站内保留公开任务标识与中文概述；原题和轨迹仅链接官方，不在站内转载。",
     "url": "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
     "sourceUrls": [
       "https://artificialanalysis.ai/evaluations/frontiercode-2-0"
@@ -160,10 +160,12 @@
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "修复 resetHandlers() 未重启生成器 resolver 的问题，同时保持已有用户 finally 清理逻辑可执行。输入是实际 Mock Service Worker 仓库，交付物是兼容既有 API 的修复。",
-        "explanation": "这是 Cognition 和 AA 公开说明的具体案例。只丢弃旧生成器引用虽可重启，却不关闭旧生成器，导致 finally 不执行并触发阻断检查。本站未取得完整私有任务、测试或模型轨迹；不把此节录当成完整题包。 样例 ID 为本站直达标识，官方页面未提供该案例的原始任务 ID。",
-        "raw": "A user reports that resetHandlers() doesn't restart generator resolvers, and the task asks the agent to fix the bug.",
-        "source": "https://artificialanalysis.ai/evaluations/frontiercode-2-0",
-        "license": "基于官方公开具体任务事实的中文说明；仅保留必要原文节录，不转载私有题目、参考补丁或完整轨迹。",
+        "explanation": "这是 Cognition 公开的具体案例，官方任务 ID 为 msw-fix-reset-generator-state。只丢弃旧生成器引用虽可重启，却不关闭旧生成器，导致 finally 不执行并触发阻断检查。本站仅用中文概括任务事实，未取得完整私有任务、测试或模型轨迹，不转载 AA 任务原文。",
+        "raw": {
+          "task": "msw-fix-reset-generator-state"
+        },
+        "source": "https://cognition.com/blog/frontier-code-2.0",
+        "license": "仅保留 Cognition 公开任务标识与本站中文概述；未确认 AA 题目转载许可，不转载其原文、私有题目、参考补丁或完整轨迹。",
         "split": "官网公开任务展示，不是可下载正式 split",
         "excerpt": true
       }

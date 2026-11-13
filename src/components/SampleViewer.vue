@@ -385,6 +385,20 @@ onMounted(() => {
         </template>
       </div>
       <aside class="sample-insight">
+        <div v-if="current.references?.length">
+          <span class="insight-heading">本条记录的参考网页</span>
+          <ul>
+            <li v-for="reference in current.references" :key="reference.url">
+              <a
+                :href="reference.url"
+                target="_blank"
+                rel="noreferrer"
+                class="text-link"
+                >{{ reference.label }}</a
+              >
+            </li>
+          </ul>
+        </div>
         <template v-if="showExplanation">
           <span class="insight-heading">{{
             item.embodied ? "怎样理解这条记录" : "怎样理解这道题"
