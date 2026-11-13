@@ -2,10 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import test from "node:test";
-import { createSSRApp, computed, effectScope, nextTick, ref } from "vue";
-import { renderToString } from "@vue/server-renderer";
-import { parse, compileScript } from "@vue/compiler-sfc";
-import ts from "typescript";
+import { computed, effectScope, nextTick, ref } from "vue";
 import { createMemoryHistory, createRouter } from "vue-router";
 import {
   bfclCases,
@@ -20,12 +17,10 @@ import {
   bfclPreview,
   normalizeBfclString,
 } from "../src/content/bfclExperience";
-import { useBfclWorkbench } from "../src/composables/bfclWorkbench";
 import {
   createSampleLocation,
   selectSampleFromWalkthrough,
 } from "../src/lib/sampleLocation";
-import { createDeferredDetailAnchor } from "../src/lib/deferredDetailAnchor";
 import { useSampleLoader } from "../src/composables/sampleLoader";
 import type { SampleFile } from "../src/types/benchmark";
 const read = (p: string) =>
@@ -282,36 +277,6 @@ test("BFCL each sourced example is accepted locally without execution or invente
     "fail",
   );
 });
-test("BFCL live workbench state clears drafts, stale results and revealed annotations when appropriate", async () => {
-  const record = ref(records[0]),
-    scope = effectScope(),
-    s = scope.run(() => useBfclWorkbench(() => record.value))!;
-  assert.equal(s.selectedName.value, "");
-  assert.equal(s.revealed.value, false);
-  s.loadExample();
-  s.checked.value = true;
-  assert.equal(s.result.value.status, "pass");
-  s.inputs.value.base = "11";
-  assert.equal(s.checked.value, false);
-  s.checked.value = true;
-  s.included.value.unit = true;
-  assert.equal(s.checked.value, false);
-  record.value = records[2];
-  assert.deepEqual(s.inputs.value, {});
-  assert.equal(s.revealed.value, false);
-  assert.equal(s.selectedName.value, "");
-  s.selectedName.value = "country_info.capital";
-  s.inputs.value.country = '"Brazil"';
-  s.revealed.value = true;
-  s.checked.value = true;
-  s.selectedName.value = "country_info.population";
-  assert.deepEqual(s.inputs.value, {});
-  assert.equal(s.checked.value, false);
-  assert.equal(s.revealed.value, false);
-  s.reset();
-  assert.equal(s.selectedName.value, "");
-  scope.stop();
-});
 test("BFCL unknown ids are explicit and case selection shares URL/history/raw mode", async () => {
   assert.equal(findBfclCase(undefined), bfclCases[0]);
   assert.equal(findBfclCase("bad"), undefined);
@@ -421,83 +386,16 @@ test("BFCL independent loaders recover after a real failed request", async (t) =
   await settle();
   assert.equal(lower.error.value, false);
 });
-test("BFCL actual Vue workbench starts with hidden answers, empty draft and intact real schema", async () => {
-  const filename = new URL(
-    "../src/components/BfclWorkbench.vue",
-    import.meta.url,
-  ).pathname;
-  const { descriptor } = parse(await read("src/components/BfclWorkbench.vue"), {
-    filename,
-  });
-  let code = compileScript(descriptor, { id: "bf-test", inlineTemplate: true })
-    .content.replace(
-      /from ['"]vue['"]/g,
-      `from ${JSON.stringify(import.meta.resolve("vue"))}`,
-    )
-    .replace(
-      /from ['"]..\/content\/bfclExperience['"]/g,
-      `from ${JSON.stringify(new URL("../src/content/bfclExperience.ts", import.meta.url).href)}`,
-    )
-    .replace(
-      /from ['"]..\/composables\/bfclWorkbench['"]/g,
-      `from ${JSON.stringify(new URL("../src/composables/bfclWorkbench.ts", import.meta.url).href)}`,
-    );
-  code = ts.transpileModule(code, {
-    compilerOptions: {
-      target: ts.ScriptTarget.ES2022,
-      module: ts.ModuleKind.ESNext,
-    },
-  }).outputText;
-  const component = (
-    await import(
-      "data:text/javascript;base64," + Buffer.from(code).toString("base64")
-    )
-  ).default;
-  for (let i = 0; i < records.length; i++) {
-    const html = await renderToString(
-      createSSRApp(component, { record: records[i], entry: bfclCases[i] }),
-    );
-    assert.match(html, /尚未选择函数/);
-    assert.match(html, /查看官方调用标注/);
-    assert.doesNotMatch(html, /id="bf-answer"/);
-    assert.doesNotMatch(html, /class="bf-result"/);
-    assert.ok(html.includes(records[i].function[0].name));
-  }
-});
-test("BFCL integrates deep anchors, unknown selections, source separation and responsive keyboard UI", async () => {
-  const [main, detail, viewer, card, pilot, bench, css] = await Promise.all(
-    [
-      "src/main.ts",
-      "src/views/DetailView.vue",
-      "src/components/SampleViewer.vue",
-      "src/components/BenchmarkCard.vue",
-      "src/components/BfclPilot.vue",
-      "src/components/BfclWorkbench.vue",
-      "src/styles/bfcl-pilot.css",
-    ].map(read),
-  );
-  assert.ok(main.includes('to.path === "/benchmarks/bfcl/"'));
-  assert.ok(detail.includes("<BfclPilot"));
-  assert.ok(viewer.includes("isUnknownBfclSample"));
-  assert.ok(viewer.includes('item.id === "bfcl" && findBfclCase(current.id)'));
-  assert.ok(viewer.includes("该任务原文不含 ground_truth；可在上方调用练习查看另一个官方文件的标注。"));
-  assert.ok(viewer.includes("此公开记录未附参考答案，完成标准见评分方法。"));
-  assert.ok(card.includes("'bfcl', 'mmlu-pro'].includes(item.id) ? '#task-walkthrough'"));
-  assert.match(pilot, /:key="entry.sampleId"/);
-  assert.match(pilot, /loaded \|\| failed/);
-  assert.match(bench, /v-if="revealed"/);
-  assert.match(css, /prefers-reduced-motion/);
-  assert.match(css, /focus-visible/);
-  assert.match(css, /overflow-wrap:.*anywhere/);
-  assert.doesNotMatch(bench, /v-html|<iframe|<canvas|<img/);
-  const a = createDeferredDetailAnchor();
-  a.begin("/benchmarks/bfcl/#score");
-  let ready = false;
-  const pending = a.wait("/benchmarks/bfcl/#score").then((v) => (ready = v));
-  a.settled("/benchmarks/bfcl/#score", "pilot");
-  await nextTick();
-  assert.equal(ready, false);
-  a.settled("/benchmarks/bfcl/#score", "samples");
-  await pending;
-  assert.equal(ready, true);
+test("BFCL 在真实案例中提供工具与可展开的官方调用标注", async () => {
+  const [detail, viewer, pilot] = await Promise.all([
+    read("src/views/DetailView.vue"),
+    read("src/components/SampleViewer.vue"),
+    read("src/components/BfclPilot.vue"),
+  ]);
+  assert.match(detail, /bfcl: BfclPilot/);
+  assert.match(viewer, /:href="current.source"/);
+  assert.match(pilot, /record\.function/);
+  assert.match(pilot, /<details v-if="annotation"/);
+  assert.match(pilot, /bfclSource\(entry, true\)/);
+  assert.doesNotMatch(pilot, /<input|<form|<textarea/);
 });

@@ -94,7 +94,7 @@
         "title": "三角形面积函数调用",
         "type": "record",
         "prompt": "Find the area of a triangle with a base of 10 units and height of 5 units.",
-        "explanation": "请求给出三角形底边和高度。模型需要从函数定义中选出合适的工具，并将两项数值填入正确参数；不能只口头回答面积。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在上方调用练习展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
+        "explanation": "请求给出三角形底边和高度。模型需要从函数定义中选出合适的工具，并将两项数值填入正确参数；不能只口头回答面积。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "simple_python_0",
           "question": [
@@ -143,7 +143,7 @@
         "title": "阶乘函数调用",
         "type": "record",
         "prompt": "Calculate the factorial of 5 using math functions.",
-        "explanation": "请求要求用数学函数计算 5 的阶乘。重点是选择正确函数并生成符合定义的调用参数；原任务行未包含答案。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在上方调用练习展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
+        "explanation": "请求要求用数学函数计算 5 的阶乘。重点是选择正确函数并生成符合定义的调用参数；原任务行未包含答案。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "simple_python_1",
           "question": [
@@ -183,7 +183,7 @@
         "title": "国家首都与邻近工具区分",
         "type": "record",
         "prompt": "What is the capital of Brazil?",
-        "explanation": "题目问巴西首都，但工具列表同时给出最大城市、首都和人口查询函数。重点是按请求选择首都查询并填写国家参数，不能只看参数相同就任选工具；原任务行未提供标准调用。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在上方调用练习展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
+        "explanation": "题目问巴西首都，但工具列表同时给出最大城市、首都和人口查询函数。重点是按请求选择首都查询并填写国家参数，不能只看参数相同就任选工具；原任务行未提供标准调用。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "multiple_2",
           "question": [
@@ -255,7 +255,7 @@
         "title": "欧氏距离与角度函数区分",
         "type": "record",
         "prompt": "Compute the Euclidean distance between two points A(3,4) and B(1,2).",
-        "explanation": "请求计算两点的欧氏距离，而另一工具用相同点坐标计算与x轴夹角。这个案例考察按操作语义选择函数，原工具定义和参数保持完整，未补造标准调用。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在上方调用练习展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
+        "explanation": "请求计算两点的欧氏距离，而另一工具用相同点坐标计算与x轴夹角。这个案例考察按操作语义选择函数，原工具定义和参数保持完整，未补造标准调用。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "multiple_3",
           "question": [
@@ -341,7 +341,7 @@
         "title": "位移与末速度函数区分",
         "type": "record",
         "prompt": "Can you calculate the displacement of a car moving at an initial speed of 20 m/s and then accelerates at 10 m/s^2 for 5 seconds? (assuming a straight line motion)",
-        "explanation": "用户给初速度、加速度和时间并要求位移；两个工具都接受这些量，但分别计算位移和末速度。原始行完整保留两套定义，没有把自行计算的数值填成官方答案。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在上方调用练习展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
+        "explanation": "用户给初速度、加速度和时间并要求位移；两个工具都接受这些量，但分别计算位移和末速度。原始行完整保留两套定义，没有把自行计算的数值填成官方答案。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "multiple_4",
           "question": [
@@ -426,7 +426,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "5 条真实任务可切换函数与参数练习，涵盖 simple_python 和 multiple。原任务行与另文件的官方调用标注分开展示；本站局部对照不是完整 BFCL 评测。",
+    "reason": "5 条真实任务展示可用函数与参考调用，涵盖 simple_python 和 multiple。原任务行与另文件的官方调用标注分开展示；本站局部对照不是完整 BFCL 评测。",
     "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L1-L2",
     "sourceUrls": [
       "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L1-L2",
@@ -437,7 +437,7 @@
   },
   "metric": {
     "name": "类别准确率与版本特定加权汇总",
-    "description": "单轮所选五题按 AST 结构与参数候选检查，不以函数返回数值作答案。固定 V4 代码总体权重为 Non-live 10%、Live 10%、Irrelevance 10%、Multi-turn 30%、Agentic 40%，各类内部另有聚合规则；不是所有题简单平均。多轮会检查执行后的状态与响应，Agentic 使用独立检查器。须注明版本，本站五题练习不构成 BFCL 总分。",
+    "description": "单轮所选五题按 AST 结构与参数候选检查，不以函数返回数值作答案。固定 V4 代码总体权重为 Non-live 10%、Live 10%、Irrelevance 10%、Multi-turn 30%、Agentic 40%，各类内部另有聚合规则；不是所有题简单平均。多轮会检查执行后的状态与响应，Agentic 使用独立检查器。须注明版本，本站五条案例不构成 BFCL 总分。",
     "direction": "higher",
     "sourceUrls": [
       "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#evaluation",

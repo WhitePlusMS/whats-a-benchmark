@@ -16,6 +16,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "从彩色网格中找出共同规律，再为新输入画出完整输出。尺寸和每一个格子都必须正确，才算答对。",
   },
+  bfcl: {
+    context: "工具调用 · 从请求到结构化参数",
+    accent: "CL",
+    lead: "知道答案，还要会选工具、填参数。",
+    summary:
+      "从五条真实任务出发，把用户请求变成一份调用。这里练的是函数与参数，不是计算面积、查询首都或真的执行工具。",
+  },
   gsm8k: {
     context: "数学推理 · 把文字变成数量关系",
     accent: "8K",
