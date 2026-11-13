@@ -6,10 +6,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import test from "node:test";
-import { createSSRApp, effectScope, ref, nextTick } from "vue";
-import { renderToString } from "@vue/server-renderer";
-import { parse, compileScript } from "@vue/compiler-sfc";
-import ts from "typescript";
+import { effectScope, ref, nextTick } from "vue";
 import {
   mmluProCases,
   readMmluProRecord,
@@ -20,7 +17,6 @@ import {
   mmluProDataSource,
   mmluProCardSource,
 } from "../src/content/mmluProExperience";
-import { useMmluProPractice } from "../src/composables/mmluProPractice";
 import { createMemoryHistory, createRouter } from "vue-router";
 import { selectSampleFromWalkthrough } from "../src/lib/sampleLocation";
 const read = (p: string) =>
@@ -127,30 +123,6 @@ test("MMLU-Pro pipeline has one immediate dependency, six cycles and unchanged i
     assert.equal(reg.R7, A * B + A * B * C + B * C);
   }
 });
-test("MMLU-Pro real practice state resets selections, explanations, original CoT and pipeline step", () => {
-  const record = ref(records[0]),
-    scope = effectScope();
-  const s = scope.run(() => useMmluProPractice(() => record.value))!;
-  assert.equal(s.revealed.value, false);
-  assert.equal(s.result.value, "waiting");
-  s.selected.value = 7;
-  s.revealed.value = true;
-  s.explanation.value = true;
-  s.original.value = true;
-  s.step.value = 4;
-  s.selected.value = 0;
-  assert.equal(s.revealed.value, false);
-  assert.equal(s.original.value, false);
-  assert.equal(s.step.value, 0);
-  s.revealed.value = true;
-  record.value = records[1];
-  assert.equal(s.selected.value, null);
-  assert.equal(s.revealed.value, false);
-  s.selected.value = 4;
-  s.reset();
-  assert.equal(s.result.value, "waiting");
-  scope.stop();
-});
 test("MMLU-Pro unknown ids are explicit and case selection shares URL/history/raw mode", async () => {
   assert.equal(findMmluProCase(undefined), mmluProCases[0]);
   assert.equal(findMmluProCase("bad"), undefined);
@@ -234,74 +206,18 @@ test("MMLU-Pro unknown ids are explicit and case selection shares URL/history/ra
   assert.equal(index.value, 0);
   scope.stop();
 });
-test("MMLU-Pro default SSR never includes answer panel, explanation, corrections or original CoT", async () => {
-  const { descriptor } = parse(await read("src/components/MmluProTask.vue"));
-  let code = compileScript(descriptor, { id: "mp-test", inlineTemplate: true })
-    .content.replace(
-      /from ['"]vue['"]/g,
-      `from ${JSON.stringify(import.meta.resolve("vue"))}`,
-    )
-    .replace(
-      /from ['"]..\/content\/mmluProExperience['"]/g,
-      `from ${JSON.stringify(new URL("../src/content/mmluProExperience.ts", import.meta.url).href)}`,
-    )
-    .replace(
-      /from ['"]..\/composables\/mmluProPractice['"]/g,
-      `from ${JSON.stringify(new URL("../src/composables/mmluProPractice.ts", import.meta.url).href)}`,
-    );
-  code = ts.transpileModule(code, {
-    compilerOptions: {
-      target: ts.ScriptTarget.ES2022,
-      module: ts.ModuleKind.ESNext,
-    },
-  }).outputText;
-  const component = (
-    await import(
-      "data:text/javascript;base64," + Buffer.from(code).toString("base64")
-    )
-  ).default;
-  for (let i = 0; i < records.length; i++) {
-    const html = await renderToString(
-      createSSRApp(component, { record: records[i], entry: mmluProCases[i] }),
-    );
-    assert.doesNotMatch(
-      html,
-      /id="mp-answer"|id="mp-original"|id="mp-explanation"|公开解释纠错/,
-    );
-    assert.match(html, /查看标注与解读/);
-    assert.ok(!html.includes(records[i].cot));
-  }
-});
-test("MMLU-Pro shared navigation, asynchronous anchor handshake, independent retry and scoped styles wired", async () => {
-  const [main, detail, viewer, card, pilot, task, css] = await Promise.all(
-    [
-      "src/main.ts",
-      "src/views/DetailView.vue",
-      "src/components/SampleViewer.vue",
-      "src/components/BenchmarkCard.vue",
-      "src/components/MmluProPilot.vue",
-      "src/components/MmluProTask.vue",
-      "src/styles/mmlu-pro-pilot.css",
-    ].map(read),
-  );
-  assert.match(main, /to.path === "\/benchmarks\/mmlu-pro\/"/);
-  assert.match(detail, /<MmluProPilot/);
-  assert.match(viewer, /isUnknownMmluProSample/);
-  assert.match(card, /'mmlu-pro'\].includes/);
-  assert.match(pilot, /:key="entry.sampleId"/);
-  assert.match(pilot, /loaded \|\| failed/);
-  assert.ok(
-    pilot.includes("record.value.questionId !== entry.value.questionId"),
-  );
-  assert.ok(
-    !pilot.includes("String(record.value.questionId) !== entry.value.sampleId"),
-  );
-  assert.match(pilot, /@click="reload"/);
-  assert.match(task, /v-if="revealed"/);
-  assert.match(task, /v-if="original"/);
-  assert.match(css, /prefers-reduced-motion/);
-  assert.match(css, /focus-visible/);
-  assert.doesNotMatch(task, /<img|<canvas|v-html/);
+test("MMLU-Pro 使用案例卡的选项和按需揭示，原始 CoT 仍可切换查看", async () => {
+  const [detail, viewer, card] = await Promise.all([
+    read("src/views/DetailView.vue"),
+    read("src/components/SampleViewer.vue"),
+    read("src/components/BenchmarkCard.vue"),
+  ]);
+  assert.doesNotMatch(detail, /MmluProPilot/);
+  assert.match(card, /#samples/);
+  assert.match(viewer, /current\.options/);
+  assert.match(viewer, /current\.answer && showAnswer/);
+  assert.match(viewer, /数据集公开答案与示范/);
+  assert.match(viewer, /公开解释纠错/);
 });
 
 async function settle() {

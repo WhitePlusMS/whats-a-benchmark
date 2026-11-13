@@ -58,6 +58,13 @@ export const benchmarkDetailIntros: Partial<
     summary:
       "相机看到桌面，语言指定目标，策略输出动作。双杯要各归其位，黑碗要先找对那一只：用一条真实训练示范和一条第三方运行，拆开“完成任务”的含义。",
   },
+  "mmlu-pro": {
+    context: "跨学科知识 · 更难的选择",
+    accent: "-Pro",
+    lead: "多想一步，再做选择。",
+    summary:
+      "十条真实 validation 示例：读懂题干、作答，再对照公开标注。从数学关系到专业知识，先尝试作答，再辨析答案与推导的依据。",
+  },
   mmmlu: {
     context: "多语言 · 同一学科框架，不同语言题面",
     accent: "MLU",
