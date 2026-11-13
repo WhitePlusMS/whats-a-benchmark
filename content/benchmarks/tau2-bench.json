@@ -4,7 +4,11 @@
     "tau-bench 2",
     "tau²-bench",
     "τ2-bench",
-    "tau2"
+    "tau2",
+    "τ²-Bench Telecom",
+    "𝜏²-Bench Telecom",
+    "tau2-bench telecom",
+    "AA τ²-Bench Telecom"
   ],
   "related": [
     {
@@ -126,6 +130,16 @@
       "label": "τ²-bench telecom tasks.json at fixed v0.1.0 commit",
       "url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/37199f36924c8896f5e048360691f8476cd89ba1/data/tau2/domains/telecom/tasks.json",
       "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/tau2-bench",
+      "label": "AA 历史 Telecom 结果与案例",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "label": "AA Telecom 协议及指数替换历史",
+      "role": "definition"
     }
   ],
   "status": "published",
@@ -244,7 +258,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
@@ -419,5 +433,20 @@
         "excerpt": true
       }
     ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "AA 历史 Telecom 协议（2026-11-13 方法快照）：从 2,285 项程序生成任务中抽取的 114 项 Telecom 任务，每题重复 3 次，按三次平均成功率报告 pass@1。采用 default 双控制模式，用户与助手可改变共享状态；以最终世界状态判成功，用户模拟器为 Qwen3 235B A22B 2507（Non-reasoning），每次最多 100 步。不是整个 τ²-bench 多领域的统一成绩。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/tau2-bench",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "AA 在 Intelligence Index v4.1 用 τ³-Banking 替换历史 Telecom 分项；原 τ² 与新银行任务仍是不同范围，本站保留各自入口，不把既有上游样例断言为 AA 114 项成员。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
   }
 }

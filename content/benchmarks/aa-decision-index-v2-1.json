@@ -1,0 +1,241 @@
+{
+  "id": "aa-decision-index-v2-1",
+  "status": "published",
+  "order": 600,
+  "name": "Artificial Analysis Decision Index v2.1",
+  "subtitle": "六项任务加权，联合衡量选择正确性、置信度与决策不变性",
+  "category": "general",
+  "tags": [
+    "决策模型",
+    "概率校准",
+    "工具调用",
+    "文档决策"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v2.1",
+  "kind": "suite",
+  "aliases": [
+    "AA Decision Index v2.1",
+    "AA-Paperclip",
+    "EvalSafe-O*NET-AA",
+    "EvalSafe-ONET-AA",
+    "AA-Symmetry v1.1",
+    "WildGuardTest（历史成员）",
+    "Artificial Analysis Decision Index",
+    "AA Decision Index",
+    "AA 决策指数",
+    "AA 决策指数 v2.1",
+    "WildGuardTest",
+    "AA-Symmetry"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "当前 v2.1 将五项 Decision Score 与一项 Symmetry Score 按 30%/15%/10%/15%/15%/15% 加权；既评价选择，也评价置信度，不能用准确率平均冒充指数。",
+    "task": "完成文档决策和抽取、工作文档判断、工具调用选择、知识与推理选择，并测试等义变换下的决定和概率是否稳定。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index/"
+    ]
+  },
+  "taskContract": {
+    "input": "state 文本和选择题、评分题或是非题；每项有自己的文档、问题和选项规则。",
+    "output": "决策 API 或 LLM 结构化 JSON 为所有选项/评分级别提供概率，或提供 yes 概率；不是仅输出选项字母。",
+    "environment": "每个任务的全部问题在一次调用回答；LLM 使用固定系统提示和 structured outputs，概率归一化，格式不合规时再请求一次。Paperclip 每文档分决策和抽取两次请求。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "六个组成项没有统一可下载题库；Paperclip、Omniscience-Decision 与 AA-Symmetry 标记私有，公开上游数据还需按 AA 过滤及改题规则区分。",
+    "disclosure": "partial",
+    "scale": [
+      "AA-Paperclip｜30%：1,500 私有文档，简历、票据/发票、AI/ML 论文各 500。每文档 5 决策＋10 抽取答案，两次任务请求，共 3,000 请求；并非 3,000 独立文档。",
+      "EvalSafe-O*NET-AA｜15%：150 合成职场文档 ×50 问题 =7,500；仅保留两个参考模型最可能答案一致的 6,582 题，排除不一致、平局或缺答的 918 题。参考共识不是人工 ground truth。",
+      "When2Call｜10%：原 test 3,652 中移除 229 个存在补充信息歧义的任务，使用 3,423 题；每题四类回复是直接回答、调工具、询问更多信息、无法回答。",
+      "AA-Omniscience-Decision v1.1｜15%：500 私有题，四个答案加拒答选项。保留 v1.0 的题目和正确答案，改变拒答措辞。",
+      "HLE-MultiChoice v1.1｜15%：从 v1.0 的 513 纯文本选择题中移除四个已占满 A–Z 的题，保留 509 题并新增拒答选项；不是完整 HLE。",
+      "AA-Symmetry v1.1｜15%：120 基础题生成 460 个等义表述，三组各 40：在 state 中重排选项、改写选项、否定问题。v1.0 为 440 表述，不能沿用旧数量。"
+    ],
+    "splits": [
+      "私有集合与上游 test 子集混合；指数本身无独立 train/test split。",
+      "WildGuardTest 只属于指数 v1.0：从 1,725 test 行选 835 行，要求三位标注员在三种标签上全同意，并排除持续触发拒答的问题；v2 起不再直接加权。"
+    ],
+    "fields": [
+      "state、题目、选项/评分级别/yes-no、各选项概率；不同分项分别保留其参考答案或等义映射。"
+    ],
+    "files": [
+      "官方方法页列出 When2Call 的 229 个排除 ID，以及 HLE-MultiChoice 的 4 个移除 ID；本轮未下载或复现全套过滤后数据。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index/",
+      "https://artificialanalysis.ai/evaluations/aa-paperclip",
+      "https://artificialanalysis.ai/evaluations/evalsafe-onet-aa",
+      "https://artificialanalysis.ai/evaluations/when2call",
+      "https://artificialanalysis.ai/evaluations/aa-omniscience-decision",
+      "https://artificialanalysis.ai/evaluations/hle-multichoice",
+      "https://artificialanalysis.ai/evaluations/aa-symmetry",
+      "https://artificialanalysis.ai/evaluations/wildguardtest"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "方法、分项榜单与过滤规则公开；私有题库不能从网页可访问推断可下载。",
+      "本轮亲自读取方法及七个分项入口，未读取完整数据文件，也未复现评测。"
+    ],
+    "url": "https://artificialanalysis.ai/methodology/decision-index/",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "各组成项许可不同：方法页标 EvalSafe 原数据 Apache-2.0、When2Call CC BY 4.0、WildGuardMix ODC-BY；这些声明不自动覆盖 AA 的全部修改、私有题库与其他材料。",
+    "scope": "本站中文概述方法、规模和版本边界，不转载未获授权的原题或回答。",
+    "boundaries": [
+      "AA-Paperclip、AA-Omniscience-Decision 与 AA-Symmetry 为私有集合。",
+      "本轮没有为 HLE 派生题或 AA-Symmetry 全量改写集核准再发布许可。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "指数没有自有原题；使用官方方法中的六分项入口查看范围和公开程度，不编造指数示例，不将私有题或生成替代题写成真实样例。",
+    "url": "https://artificialanalysis.ai/methodology/decision-index/",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index/"
+    ]
+  },
+  "metric": {
+    "name": "加权 Decision Score / Symmetry Score",
+    "description": "Decision Score：单题为 50×[1+c−(p−c)²]，c 为所选答案是否正确（1/0），p 为其概率；五项按题平均，Paperclip 例外按文档平均。五项 Decision Score 联合选择正确性与所选答案置信度：确定且正确为 100，确定且错误为 0，Omniscience/HLE 保留拒答概率并使分数趋向 50。Paperclip 每文档仅在全部 15 答案正确时算对，置信度取 15 个所选概率的乘积。Symmetry Score 以等义表述是否保持同一选择和高于随机基线的概率幅度计算；选项改变或缺答得零，否则概率波动越小分越高。最后按六项权重汇总。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "Paperclip 概率乘积将 15 答案当成独立事件，小幅单答案校准误差会复合；超上下文文档被截断。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    {
+      "text": "等义一致不等于答案正确；Symmetry 因此没有校准曲线，也不参与正确性校准池。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    {
+      "text": "Omniscience/HLE 的 Decision Score 保留拒答概率后，仍选择其余答案中最可能的一项计分，不能把它解释为传统拒答计零的准确率。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/decision-index/",
+      "label": "AA Decision Index v2.1：权重、完整方法与历史",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/aa-paperclip",
+      "label": "aa-paperclip 官方分项入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/evalsafe-onet-aa",
+      "label": "evalsafe-onet-aa 官方分项入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/when2call",
+      "label": "when2call 官方分项入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/aa-omniscience-decision",
+      "label": "aa-omniscience-decision 官方分项入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/hle-multichoice",
+      "label": "hle-multichoice 官方分项入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/aa-symmetry",
+      "label": "aa-symmetry 官方分项入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/wildguardtest",
+      "label": "wildguardtest 官方分项入口",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [
+    {
+      "id": "when2call",
+      "label": "工具决策协议",
+      "detail": "原卡列出 AA 3,423 题过滤与概率评分，保留上游样例及排除边界。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    {
+      "id": "hle",
+      "label": "HLE 多选协议",
+      "detail": "母卡单列 HLE-MultiChoice 509 题，不等同完整 HLE 或 Diamond。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    {
+      "id": "aa-omniscience",
+      "label": "区别开放式问答",
+      "detail": "此处私有 500 题多选与母卡开放式问答是不同协议。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-11",
+  "interpretation": {
+    "judge": {
+      "text": "EvalSafe 参考由 GPT-6 Astra 与 Claude Fable 5.1 概率共识建立，不是客观真值。其 Decision Score 按题平均；Accuracy 区按 yes/no、score、choice 三类等权，二者分母和选答案处理并不相同。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/",
+        "https://artificialanalysis.ai/evaluations/evalsafe-onet-aa"
+      ]
+    },
+    "comparison": {
+      "text": "Accuracy 区不是指数主分：Paperclip 显示 all-pass；When2Call 显示准确率；Omniscience 与 HLE 各把原 15% 拆成 10% 准确率和 5% 非幻觉率；Symmetry 显示全表述同选项且每选项概率差不超过 5 个百分点的 all-pass。Brier 更低更好，只汇总五项正确性任务并重归一化权重，不含 Symmetry。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    "disclosure": {
+      "text": "v2.1 首发仅核实到 2026 年 11 月，未找到可靠日级日期。当前页面与 v1.0 的四项准确率/F1 加权，以及 v2.0 的旧 Symmetry 表述不同，不可视作同一量尺的无缝历史序列。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    "versionChanges": {
+      "text": "v1.0（2026-10 至 2026-11）：Omniscience-Decision、HLE-MultiChoice、When2Call、WildGuardTest 各 25%；WildGuard 为 prompt harm、response harm、refusal 三个 F1 的均值。v2.0（2026-11）：改用概率评分，加入 Paperclip、EvalSafe、Symmetry 并移出 WildGuard，调整权重与拒答选项。v2.1（2026-11）：把 Symmetry 升为 1.1，替换可能被 API 按选项文本排序抵消的两种变化方式。WildGuard 虽退出直接加权，其题源仍可参与 Symmetry。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/",
+        "https://artificialanalysis.ai/evaluations/wildguardtest"
+      ]
+    }
+  }
+}

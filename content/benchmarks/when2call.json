@@ -20,7 +20,10 @@
   "kind": "original",
   "aliases": [
     "When 2 Call",
-    "When (not) to Call Tools"
+    "When (not) to Call Tools",
+    "When2Call AA Decision v2.1",
+    "When2Call AA 决策协议",
+    "When2Call Decision Score"
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
@@ -43,7 +46,9 @@
   "dataProfile": {
     "summary": "NVIDIA 固定 revision 的数据卡公开 train/test 文件及工具调用/不调用/澄清任务字段；test 与 llm_judge 的显示行数属于不同拆分视图。",
     "disclosure": "partial",
-    "scale": [],
+    "scale": [
+      "AA 决策协议：从 3,652 道原始多选 test 中剔除 229 道澄清需求存在歧义的题，保留 3,423 道；不同于原始全 test 或 300 行 llm_judge 文件。"
+    ],
     "splits": [
       "固定HF修订ca9b4b48225b8236ed7a3d3bc0b78986c19991d7：when2call_test_llm_judge.jsonl有300行，when2call_test_mcq.jsonl有3652行；这是两种评估文件，重叠/派生关系未按ID逐条核实，不将3952行说成去重后的独立题数。"
     ],
@@ -58,7 +63,9 @@
       "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7",
       "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FWhen2Call&config=test&split=mcq&offset=0&length=1",
       "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_llm_judge.jsonl",
-      "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_mcq.jsonl"
+      "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_mcq.jsonl",
+      "https://artificialanalysis.ai/evaluations/when2call",
+      "https://artificialanalysis.ai/methodology/decision-index/"
     ]
   },
   "dataAccess": {
@@ -154,10 +161,29 @@
       "label": "已核对的数据结构与版本来源（2026-10-21）",
       "url": "https://huggingface.co/datasets/nvidia/When2Call/resolve/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7/test/when2call_test_mcq.jsonl",
       "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/when2call",
+      "label": "AA When2Call 当前计分与结果",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/decision-index/",
+      "label": "AA 决策指数方法、筛题名单及版本历史",
+      "role": "definition"
     }
   ],
-  "related": [],
-  "verifiedAt": "2026-10-21",
+  "related": [
+    {
+      "id": "aa-decision-index-v2-1",
+      "label": "AA 决策指数 v2.1",
+      "detail": "When2Call 在 v2.1 占 10%，采用 Decision Score；v1.0 占 25% 且以正确率计分。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
   "interpretation": {
     "versionChanges": {
       "text": "When2Call论文及NVIDIA数据/代码发布版；不同评估形式需注明",
@@ -165,10 +191,31 @@
         "https://arxiv.org/abs/2504.18851",
         "https://github.com/NVIDIA/When2Call"
       ]
+    },
+    "comparison": {
+      "text": "AA 将每题组织为四个候选回复：直接回答、调用工具、请求补充信息、表示无法回答，并按题打乱回复顺序。3,423 道筛选题在 Decision Index v1.0 与 v2.x 保持相同；后者重跑语言模型以取得每个选项的概率，而不是直接沿用旧运行。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/when2call",
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    "judge": {
+      "text": "AA v2.1 用 Decision Score：每题 50 × [1 + c − (p − c)²]，p 为所选（最高概率）回复的概率，c 为选择是否正确（1/0），再对题取均值。它不同于 v1 的正确率；准确率仍在官方 Accuracy 分区保留。此处“无法回答”是四种可正确选择的回复之一，不能套用知识题额外拒答选项的特殊处理。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/when2call",
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    "disclosure": {
+      "text": "本站旧样例来自 NVIDIA 原始 test/mcq，不作为 AA 3,423 题成员展示。其 source_id live_multiple_0-0-0 出现在 AA 官方列出的剔除名单；本站未改写原始样例或将其换成 AA 已入选任务。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/",
+        "https://huggingface.co/datasets/nvidia/When2Call/tree/ca9b4b48225b8236ed7a3d3bc0b78986c19991d7"
+      ]
     }
   },
   "releaseDate": "2025-04-26",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [

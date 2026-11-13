@@ -16,7 +16,10 @@
   "version": "v1.1；保留 v1.0 公开示例以供区分",
   "kind": "original",
   "aliases": [
-    "AA Omniscience"
+    "AA Omniscience",
+    "AA-Omniscience-Decision",
+    "AA-Omniscience-Decision v1.1",
+    "AA Omniscience Decision"
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
@@ -123,6 +126,13 @@
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
         "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public"
       ]
+    },
+    {
+      "text": "AA-Omniscience-Decision 的 500 题为私有集；本站原有 v1.0/v1.1 公开样例没有被确认属于该私有多选集，不把公开开放式原题自动当作决策协议案例。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-omniscience-decision",
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
     }
   ],
   "interpretation": {
@@ -135,11 +145,13 @@
       ]
     },
     "comparison": {
-      "text": "区分独立 Omniscience 指数和综合智能指数中的两个分项；同时核对裁判与拒答统计口径。",
+      "text": "区分独立 Omniscience 指数和综合智能指数中的两个分项；同时核对裁判与拒答统计口径。 AA-Omniscience-Decision v1.1 是另一个私有 500 题多选协议，不是本页开放式问答：四个知识答案加一个拒答选项，v1.1 保留 v1.0 的题干、四个答案及正确答案，只将拒答改为 10 种措辞，并改用 Decision Score。完整分项和权重见关联的 AA 决策指数 v2.1。",
       "sourceUrls": [
         "https://artificialanalysis.ai/evaluations/omniscience",
         "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
-        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public"
+        "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+        "https://artificialanalysis.ai/evaluations/aa-omniscience-decision",
+        "https://artificialanalysis.ai/methodology/decision-index/"
       ]
     },
     "disclosure": {
@@ -198,10 +210,30 @@
       "label": "当前版本发布日期来源",
       "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5/",
       "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/aa-omniscience-decision",
+      "label": "AA-Omniscience-Decision v1.1 私有多选协议",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/decision-index/",
+      "label": "AA 决策指数分项、概率计分与版本历史",
+      "role": "definition"
     }
   ],
-  "related": [],
-  "verifiedAt": "2026-11-05",
+  "related": [
+    {
+      "id": "aa-decision-index-v2-1",
+      "label": "AA 决策指数 v2.1",
+      "detail": "其中 AA-Omniscience-Decision v1.1 分项为私有 500 道多选，占 15%；拒答概率保留，以最高概率非拒答答案计 Decision Score，完全拒答得 50。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/aa-omniscience-decision",
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
   "researchNotes": [
     {
       "text": "已读取固定原文件：train, question_id=1; CSV data row 0；SHA-256 1e04603dafa3bd0d16d8151f07a5eb74c43d90c3a85d2fca120da2359174d02f。未运行模型评测，也未核验全部上游题目的逐题来源。",
@@ -233,7 +265,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "retrievedAt": "2026-11-05",
     "samples": [

@@ -1,5 +1,8 @@
 {
-  "aliases": [],
+  "aliases": [
+    "SWE-Bench-Pro-Hard-AA",
+    "SWE Bench Pro Hard AA"
+  ],
   "related": [
     {
       "id": "swe-bench-verified",
@@ -134,6 +137,21 @@
       "label": "2026-10-20 简介核查第一方定义",
       "url": "https://raw.githubusercontent.com/scaleapi/SWE-bench_Pro-os/main/v2/README.md",
       "role": "readme"
+    },
+    {
+      "url": "https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index",
+      "label": "AA 2026-05-20 历史结果报告",
+      "role": "definition"
+    },
+    {
+      "url": "https://www.linkedin.com/posts/artificial-analysis_announcing-the-artificial-analysis-coding-activity-7459631455477051395-gJsd",
+      "label": "AA 官方首发公告：150 项困难子集",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+      "label": "AA 编程指数 v1.0/v1.1 历史",
+      "role": "definition"
     }
   ],
   "status": "published",
@@ -278,7 +296,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
@@ -379,5 +397,22 @@
         "licensePath": "licenses/nodebb-nodebb-8ceb4b9ee5.txt"
       }
     ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "历史 SWE-Bench-Pro-Hard-AA：AA 首发公告列出从 Scale AI SWE-bench Pro 抽取的 150 项困难仓库任务；2026-05-20 官方文章仍报告该项。Coding Agent Index v1.0（2026 年 5–6 月）包含它，v1.1（2026 年 6 月）换入 DeepSWE 后移除。这里记录历史评测范围，不把 5 月文章日期当作精确首发日。",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/artificial-analysis_announcing-the-artificial-analysis-coding-activity-7459631455477051395-gJsd",
+        "https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index",
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "AA 的历史 150 项抽样与上游当前 v2 的 HARD-51 不是同一集合：上游 v2 为 642 项公开任务，另列 51 项 HARD-51。未取得 AA 150 项逐题成员及完整历史运行配置，不将下方上游公开样例标作 AA 入选题，也不套用当前 v2 锁定协议解释旧 AA 成绩。",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/artificial-analysis_announcing-the-artificial-analysis-coding-activity-7459631455477051395-gJsd",
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md"
+      ]
+    }
   }
 }

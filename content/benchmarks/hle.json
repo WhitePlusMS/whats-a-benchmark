@@ -3,11 +3,33 @@
     "HLE",
     "Humanity's Last Exam",
     "人类最后的考试",
-    "HLE · AA"
+    "HLE · AA",
+    "HLE-MultiChoice",
+    "HLE-MultiChoice v1.1",
+    "HLE-MultiChoice v1.0",
+    "HLE MultiChoice AA"
   ],
-  "related": [],
+  "related": [
+    {
+      "id": "aa-decision-index-v2-1",
+      "label": "AA 决策指数 v2.1",
+      "detail": "HLE-MultiChoice v1.1 在 v2.1 占 15%；本卡保留上游 HLE 与 AA 子协议区别。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    {
+      "id": "hle-diamond",
+      "label": "不同版本：Diamond",
+      "detail": "独立的 1,000 题修订版本，不是本页 509 道 HLE-MultiChoice 或端点 250 题。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/hle-diamond",
+        "https://artificialanalysis.ai/evaluations/hle-multichoice"
+      ]
+    }
+  ],
   "kind": "original",
-  "verifiedAt": "2026-10-19",
+  "verifiedAt": "2026-11-13",
   "id": "hle",
   "name": "Humanity’s Last Exam",
   "subtitle": "跨学科的高难度专业问答",
@@ -69,6 +91,26 @@
       "label": "已核验的具体公开任务",
       "url": "https://scale.com/blog/humanitys-last-exam-results",
       "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/hle-multichoice",
+      "label": "AA HLE-MultiChoice v1.1 范围与计分",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/decision-index/",
+      "label": "AA 决策方法和四道剔除题名单",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/endpoint-accuracy-index",
+      "label": "AA 端点 HLE-250 范围对照",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/hle-diamond",
+      "label": "AA HLE-Diamond 独立版本",
+      "role": "definition"
     }
   ],
   "status": "published",
@@ -97,7 +139,8 @@
     "summary": "公开集有 2,500 题、百余学科；另保留私有 held-out questions，题量未公开。",
     "disclosure": "partial",
     "scale": [
-      "公开集：2,500 题、百余学科；约 14% 要求图像理解，约 24% 为选择题。"
+      "公开集：2,500 题、百余学科；约 14% 要求图像理解，约 24% 为选择题。",
+      "AA HLE-MultiChoice v1.1：509 道纯文本选择题，增加拒答选项；v1.0 为 513 道且无拒答选项。"
     ],
     "splits": [
       "公开 test：2,500 题；另有 private held-out questions，未公布数量。"
@@ -110,7 +153,9 @@
     ],
     "sourceUrls": [
       "https://arxiv.org/abs/2501.14249",
-      "https://huggingface.co/datasets/cais/hle"
+      "https://huggingface.co/datasets/cais/hle",
+      "https://artificialanalysis.ai/evaluations/hle-multichoice",
+      "https://artificialanalysis.ai/methodology/decision-index/"
     ]
   },
   "dataAccess": {
@@ -191,7 +236,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
@@ -222,5 +267,36 @@
         "excerpt": true
       }
     ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "HLE-MultiChoice v1.1 从 v1.0 的 513 道纯文本选择题中移除 4 道已用尽 A–Z 选项字母的题，保留 509 道。原有答案顺序不变，在最后一个选项字母后增加拒答选项，以 10 种措辞表达；Decision Score 替代旧 headline 准确率。AA 方法将此变化列于 2026-11 的 Decision Index v2.0，v2.1 延用该子协议。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/hle-multichoice",
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    "judge": {
+      "text": "HLE-MultiChoice v1.1 的 Decision Score 使用概率最高的非拒答选项及它原本的概率 p，不把拒答概率重新归一化；每题为 50 × [1 + c − (p − c)²]。因此完全拒答得 50，确信且正确得 100，确信且错误得 0。官方另列准确率（答案字母精确匹配，拒答不算答对）和非幻觉率，不能将它们混作 Decision Score。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/hle-multichoice",
+        "https://artificialanalysis.ai/methodology/decision-index/"
+      ]
+    },
+    "comparison": {
+      "text": "HLE-MultiChoice 的 509 道纯文本多选与 HLE-Diamond 1,000 题版本不同，也不是 Endpoint Accuracy Index 的 HLE-250 困难纯文本子集；题数、选择形式、拒答处理和运行目的不同，不能互换成绩。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/hle-multichoice",
+        "https://artificialanalysis.ai/evaluations/hle-diamond",
+        "https://artificialanalysis.ai/methodology/endpoint-accuracy-index"
+      ]
+    },
+    "disclosure": {
+      "text": "本站保留的原版公开网站/文章案例没有定位为 AA HLE-MultiChoice 509 题成员，不复制受限 HF 数据行，也不把缺图的公开演示当作完整多模态输入。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/hle-multichoice",
+        "https://huggingface.co/datasets/cais/hle"
+      ]
+    }
   }
 }

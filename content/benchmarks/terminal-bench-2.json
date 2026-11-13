@@ -3,7 +3,10 @@
     "Terminal Bench",
     "Terminal-Bench",
     "Terminal Bench 2.0",
-    "TB2"
+    "TB2",
+    "Terminal-Bench Hard",
+    "AA Terminal-Bench Hard",
+    "terminal-bench-core hard"
   ],
   "related": [
     {
@@ -13,6 +16,14 @@
       "sourceUrls": [
         "https://github.com/harbor-framework/terminal-bench-2/blob/2fd12b88aafdd04a52c298e3940bcb189f9766d6/build-cython-ext/instruction.md",
         "https://raw.githubusercontent.com/harbor-framework/terminal-bench-2-1/7131e4375048a0e408a8fb404b5f499d726b695b/tasks/build-cython-ext/instruction.md"
+      ]
+    },
+    {
+      "id": "terminal-bench-4",
+      "label": "后续 4.0",
+      "detail": "4.0 为独立的后续版本；不等同早期 terminal-bench-core Hard 44 题。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
       ]
     }
   ],
@@ -137,6 +148,16 @@
     {
       "label": "当前版本发布日期来源",
       "url": "https://www.tbench.ai/news",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-hard",
+      "label": "AA Terminal-Bench Hard 历史入口",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "label": "AA 44 题、74221fb 与版本替换方法",
       "role": "definition"
     }
   ],
@@ -278,7 +299,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-06",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
@@ -320,5 +341,20 @@
       }
     ]
   },
-  "releaseDate": "2025-11-07"
+  "releaseDate": "2025-11-07",
+  "interpretation": {
+    "versionChanges": {
+      "text": "历史 AA Terminal-Bench Hard 使用早期 terminal-bench-core 在 2025-08-14 的提交 74221fb，不是 Terminal-Bench 2.0 的难题划分。AA 排除少量外部依赖问题后测 44 题，使用 Terminus 2，每题 3 次、取平均 pass@1；每次须全部测试通过，最多 100 episodes、7,200 秒和累计 100 万输入 token。这里的 2025-08-14 是数据快照日，不是 2.0 首发日。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/terminalbench-hard",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "该历史分项在 AA Intelligence Index v4.1 被 Terminal-Bench 2.1 替换。2.0、2.1 和 4.0 是不同版本；本页仅承载家族历史说明，下方 2.0 样例不能据此标作旧 Hard 44 题。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  }
 }
