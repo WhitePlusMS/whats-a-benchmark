@@ -1,0 +1,192 @@
+{
+  "id": "arena-text-to-image",
+  "status": "published",
+  "order": 23310,
+  "name": "Arena Text-to-Image",
+  "subtitle": "文生图模型的用户盲选偏好榜",
+  "category": "writing",
+  "tags": [
+    "文本生成图像",
+    "人类偏好",
+    "匿名对战"
+  ],
+  "publisher": "Arena / LMArena",
+  "brandIds": [
+    "arena"
+  ],
+  "year": null,
+  "version": "持续更新的专项榜单",
+  "kind": "subset",
+  "aliases": [
+    "Text-to-Image Arena",
+    "LMArena Text-to-Image Arena",
+    "Arena.ai text-to-image"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "Arena.ai 的文本生成图像专项，通过用户对匿名输出的偏好形成排名；与 Artificial Analysis 的同类 Arena 不属于同一机构、数据或计分池。",
+    "task": "文本生成图像，由用户比较两个结果。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/image/text-to-image",
+      "https://help.arena.ai/articles/1626988163-arena-how-to-use-image-generation"
+    ]
+  },
+  "taskContract": {
+    "input": "用户文字提示。",
+    "output": "两幅匿名模型生成的图像。",
+    "environment": "Arena.ai 用户提交需求、匿名比较输出并投票；不是使用固定题包的离线正确率测试。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/image/text-to-image",
+      "https://help.arena.ai/articles/1626988163-arena-how-to-use-image-generation"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方公开 text_to_image 历史榜单表；表中是模型评级和投票统计，不是用户提示、输入媒体或逐次对战记录。",
+    "disclosure": "partial",
+    "scale": [
+      "固定 revision 4ca698d9 的 full 文件实读 24,573 行榜单记录；不是测试题数。"
+    ],
+    "splits": [
+      "full 为历史已发布榜单；latest 为最近发布榜单，均非训练/验证/测试划分。"
+    ],
+    "fields": [
+      "model_name / organization",
+      "rating / rating_lower / rating_upper / variance",
+      "vote_count / rank / category / leaderboard_publish_date",
+      "license（参评模型许可，不是数据集许可）"
+    ],
+    "files": [
+      "text_to_image/full-00000-of-00001.parquet"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/4ca698d9bb5780db156459679d5c7e6dff4edbd3/text_to_image/full-00000-of-00001.parquet"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://arena.ai/leaderboard/image/text-to-image",
+    "requirements": [
+      "榜单和官方历史汇总可公开读取；未确认覆盖当前榜单的完整原始对战与媒体数据开放。",
+      "复核历史成绩需固定数据 revision、类别与 leaderboard_publish_date；不能把历史表当作当前实时结果。"
+    ],
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/image/text-to-image",
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方 leaderboard-dataset 数据卡标注 CC-BY-4.0；原始用户内容和生成媒体的统一转载许可未核实。",
+    "scope": "本站仅整理方法与入口，不镜像媒体或用户对话；历史汇总数据许可不外推到原始任务。",
+    "boundaries": [
+      "参评模型 license 字段只描述该模型，不授予输入或输出媒体转载权。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/blog/arena-leaderboard-dataset"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "url": "https://arena.ai/image",
+    "reason": "官方入口用于实时发起对战，并非可永久定位的公开题目档案；本站不把榜单行或新生成会话伪装成原始测试样例。图片生成与编辑共用入口，请按文字生成或带参考图编辑选择。",
+    "sourceUrls": [
+      "https://arena.ai/leaderboard/image/text-to-image",
+      "https://arena.ai/image",
+      "https://help.arena.ai/articles/1626988163-arena-how-to-use-image-generation"
+    ]
+  },
+  "metric": {
+    "name": "Arena Score / Rank Spread",
+    "description": "根据成对偏好计算 Bradley–Terry 相对评级；同时看分数区间与名次范围，不把排名等同正确率或任务成功率。不同专项、时期和配置的绝对分数不能直接混比。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "https://arena.ai/blog/ranking-method"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "社区提示、参与用户、模型配置和收票范围会变化；公开榜单不等于每个模型完成同一套固定测试题。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/image/text-to-image",
+        "https://arena.ai/blog/arena-leaderboard-dataset"
+      ]
+    },
+    {
+      "text": "历史汇总数据不包含完整原始提示和媒体，不能凭评级表重建每一次对战。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/image/text-to-image"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方专项榜单",
+      "url": "https://arena.ai/leaderboard/image/text-to-image",
+      "role": "leaderboard"
+    },
+    {
+      "label": "官方图片对战入口",
+      "url": "https://arena.ai/image",
+      "role": "access"
+    },
+    {
+      "label": "官方排名与区间方法",
+      "url": "https://arena.ai/blog/ranking-method",
+      "role": "definition"
+    },
+    {
+      "label": "固定版本历史榜单数据卡（非原始对战题库）",
+      "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md",
+      "role": "data"
+    },
+    {
+      "label": "官方榜单变更记录",
+      "url": "https://arena.ai/company/leaderboard-changelog",
+      "role": "definition"
+    },
+    {
+      "label": "官方历史榜单数据介绍",
+      "url": "https://arena.ai/blog/arena-leaderboard-dataset",
+      "role": "data"
+    },
+    {
+      "label": "固定版本专项历史评级表（非题目）",
+      "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/resolve/4ca698d9bb5780db156459679d5c7e6dff4edbd3/text_to_image/full-00000-of-00001.parquet",
+      "role": "data"
+    },
+    {
+      "label": "官方图片生成与编辑使用说明",
+      "url": "https://help.arena.ai/articles/1626988163-arena-how-to-use-image-generation",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "arena",
+      "label": "平台总览",
+      "detail": "Arena.ai 的专项偏好榜，不是 Artificial Analysis 的同名平台。",
+      "sourceUrls": [
+        "https://arena.ai/leaderboard/image/text-to-image"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "interpretation": {
+    "comparison": {
+      "text": "2026-10-26 起官方图片榜纳入 Agent Mode 中的图片对战，并提供 Agentic 筛选；这衡量图片输出偏好，不代表 Agent 全流程成功率。",
+      "sourceUrls": [
+        "https://arena.ai/company/leaderboard-changelog"
+      ]
+    },
+    "versionChanges": {
+      "text": "未核实本专项的独立首次发布日期；历史数据最早行只能证明当时已有记录，不作为首发日。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/blob/4ca698d9bb5780db156459679d5c7e6dff4edbd3/README.md"
+      ]
+    }
+  }
+}
