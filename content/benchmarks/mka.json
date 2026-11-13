@@ -1,0 +1,277 @@
+{
+  "id": "mka",
+  "status": "published",
+  "order": 1600,
+  "name": "Multimodal Knowledge Agent（MKA）",
+  "subtitle": "视觉密集的专业工作：读图纸、跨文件核对并交付成果",
+  "category": "work",
+  "tags": [
+    "多模态",
+    "专业工作",
+    "代理交付",
+    "建筑图纸"
+  ],
+  "publisher": "Google DeepMind · Artificial Analysis",
+  "brandIds": [
+    "google",
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "2026-11 首发；AA 200 题实施，公开展示集 46bce7a",
+  "kind": "original",
+  "aliases": [
+    "MKA",
+    "Multimodal Knowledge Agent",
+    "多模态知识工作代理"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "让代理跨图纸等视觉文件完成专业工作，提交可检查的文稿、表格或演示文稿。",
+    "task": "模型读取多文件工作区中的视觉材料，执行跨文件推理与工具操作，交付专业成果；AA 对成果按专家编写的加权标准评分。",
+    "sourceUrls": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "https://artificialanalysis.ai/evaluations/mka/"
+    ]
+  },
+  "taskContract": {
+    "input": "任务提示与多文件工作区，包括建筑平面图、剖面图、工程图、地理栅格或其他必须结合视觉理解的材料。",
+    "output": "按任务要求提交独立成果，如 PPTX、XLSX、DOCX、JSON 或技术报告，而不只是聊天答案。",
+    "environment": "AA 使用 Stirrup、Linux 沙箱、代码执行、互联网、搜索及页面抓取；支持图像输入的模型可查看图片，每题最多 250 轮。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mka/",
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "正式评测为 200 个私有任务，覆盖 10 个行业和 83 个职业；另行公开 10 个展示任务，不能用展示集成绩代替正式榜单。",
+    "disclosure": "partial",
+    "scale": [
+      "正式评测：200 题；10 个行业，83 个职业。",
+      "公开展示集：10 题，每个领域一例；与私有评测集分开。"
+    ],
+    "splits": [
+      "Hugging Face Showcase Examples，不标为训练或测试 split；不是 AA 私有 200 题。"
+    ],
+    "fields": [
+      "metadata.json：TaskID、Prompt、Input_files、Vertical、Domain、Role、Task Goal 等。",
+      "rubrics.json：description、justification、criterion_weight、grading_target、dependencies 等。"
+    ],
+    "files": [
+      "每个 tasks/task_<id>/ 含 metadata.json、rubrics.json 与 input/。"
+    ],
+    "sourceUrls": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/README.md",
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/metadata.json",
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/rubrics.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/tree/46bce7ab8768f661750bd1016ec8cbdc517740b5",
+    "requirements": [
+      "公开展示任务可匿名访问；正式 200 题由 AA 保密运行，不提供下载。",
+      "模型提交成果可在 AA 页面 Example Tasks 查看，不能据此认定是参考答案。"
+    ],
+    "sourceUrls": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "https://artificialanalysis.ai/evaluations/mka/",
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Google 公开展示集 README 明确声明 Apache-2.0。",
+    "scope": "本站仅转载固定展示版本的建筑任务元数据、评分条目节选及两张输入 PDF 的整页缩略图。",
+    "boundaries": [
+      "私有 200 题不在公开展示许可范围内。",
+      "AA 上的模型提交成果仅提供官方入口，本次不转载，不将模型结果当标准答案。",
+      "图纸只栅格化缩小并无损编码，没有合成、重绘或添加未经来源支持的标注；原 PDF 留在官方来源。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/README.md",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "https://artificialanalysis.ai/evaluations/mka/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "建筑协调审查公开展示任务：两张真实输入图、PPT 交付要求及原始评分条目节选；官方页面另有实际模型交付物可查看。",
+    "url": "https://artificialanalysis.ai/evaluations/mka/",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/metadata.json",
+      "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/rubrics.json",
+      "https://artificialanalysis.ai/evaluations/mka/"
+    ]
+  },
+  "metric": {
+    "name": "Climb WSR（加权标准满足率）",
+    "direction": "higher",
+    "description": "每个任务的 WSR 为满足的标准权重之和除以全部标准权重之和。AA 分别在 Climb（较难要求）和 Regression（基础要求）组内计算每题 WSR，再跨任务平均；主榜为 Climb WSR。每条标准权重为 1–5；没有提交文件且没有最终回复的运行得 0 分。它不是整题全对率。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/mka/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "10 个公开展示任务与正式私有 200 题分开；本站这一条只能说明任务形式，不代表正式题集覆盖或模型总体成绩。",
+      "sourceUrls": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+        "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/README.md"
+      ]
+    },
+    {
+      "text": "公开建筑任务 rubric 含 84 条标准，但其 criterion_tags 为空；本站不据此推断这些条目属于 Climb 还是 Regression，也不计算榜单成绩。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/rubrics.json",
+        "https://artificialanalysis.ai/evaluations/mka/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Google 首发与公开／私有范围",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "role": "release"
+    },
+    {
+      "label": "AA MKA 方法、榜单与模型交付物",
+      "url": "https://artificialanalysis.ai/evaluations/mka/",
+      "role": "definition"
+    },
+    {
+      "label": "Google 固定展示集与 Apache-2.0 许可",
+      "url": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/README.md",
+      "role": "access"
+    },
+    {
+      "label": "建筑任务原始记录",
+      "url": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/metadata.json",
+      "role": "data"
+    },
+    {
+      "label": "建筑任务实际评分标准",
+      "url": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/rubrics.json",
+      "role": "data"
+    },
+    {
+      "label": "Google 固定展示集目录",
+      "url": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/tree/46bce7ab8768f661750bd1016ec8cbdc517740b5",
+      "role": "data"
+    },
+    {
+      "label": "Ground Floor 原图",
+      "url": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/input/Ground_Floor_Plan.pdf",
+      "role": "data"
+    },
+    {
+      "label": "Section B-B 原图",
+      "url": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/input/Section_B_B.pdf",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "interpretation": {
+    "judge": {
+      "text": "截至本页核验时，AA 使用 GPT-6 Luna（medium）作为代理评委，在独立沙箱检查提交文件和最终回复，不提供任务输入文件；逐条作满足／不满足判断。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mka/"
+      ]
+    },
+    "comparison": {
+      "text": "比较应固定模型、推理设置、Stirrup 工具和 250 轮预算，并区分 Climb WSR、Regression WSR、每任务成本及运行时长。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mka/"
+      ]
+    },
+    "disclosure": {
+      "text": "公开集可检查提示、输入文件和 rubric；AA 页面展示部分模型单次交付物，它们是待评分输出，不是标准答案。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/evaluations/mka/",
+        "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/README.md"
+      ]
+    }
+  },
+  "releaseDate": "2026-11-10",
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "task_a46a6c3cebd54b82b9ad5e66d1e14e48",
+        "title": "建筑图纸协调审查：平面图与剖面图是否一致",
+        "shortTitle": "建筑图纸协调审查",
+        "type": "image",
+        "prompt": "审查五层平面图、A-A／B-B 剖面图和四张立面图之间的协调问题。只依据所给图纸，交付不超过 10 页的 Architectural_Section_Elevation_Opening_Coordination_Audit.pptx。按楼层列出不一致（Mismatch）和无法确定（Cannot Determine）的发现，附对应图纸截图；首页汇总各楼层状态和两类问题数量。",
+        "promptOrigin": "editorial",
+        "explanation": "这是 Google 的公开展示任务，不是 AA 私有评测题。下图为同一任务的 Ground_Floor_Plan.pdf 和 Section_B_B.pdf 第 1 页整页缩略图，点击可放大；完整输入共有 12 个文件。这里展示真实任务输入、交付要求和评分依据，不生成示范解答，不声称已经完成建筑审查。官方 AA 页面 Example Tasks 的 Task 1 可查看不同模型实际提交的 PPT（以 PDF 预览），这些输出不是参考答案。原始数据保留 metadata.json 全部字段，未将 rubric 混入原记录。 公开 rubric 的 G-01 对应四个独立检查项：是否单独识别 Ground 西侧 D3 与 B-B 剖切的冲突（权重 5）；是否判为 Mismatch（4）；是否说明平面门洞与剖面连续墙之间的矛盾（3）；是否提供两张相关原图截图作为证据（2）。这些是官方评分要求，不是本网站或某个模型的实际得分。其余检查项见原始 rubric。",
+        "raw": {
+          "TaskID": "task_a46a6c3cebd54b82b9ad5e66d1e14e48",
+          "Vertical": "Construction",
+          "Domain": "Architecture",
+          "Role": "Architect",
+          "Task Goal": "Audit floor plans against building sections and elevations to flag coordination exceptions.",
+          "Prompt": "Create ‘Architectural_Section_Elevation_Opening_Coordination_Audit.pptx’, an exception-only coordination audit of the five floor plans against Sections A-A and B-B and the four elevations. Base the analysis only on the supplied drawings, and prepare the report in accordance with the attached drawing coordination review standard.\n\nOn every floor, audit the content cut by each section against the plan, the content visible beyond each cut plane, and every exterior door and window opening, including its representation on the elevations, its floor band and its written width. Begin with a building summary showing each floor’s overall status and separate Mismatch and Cannot Determine counts, then present only Mismatch and Cannot Determine findings, organized by floor and supported by crops from the relevant drawings. Limit the report to 10 slides.",
+          "Input_files": "Drawing_Coordination_Review_Standard.pptx, Elevation_01.pdf, Elevation_02.pdf, Elevation_03.pdf, Elevation_04.pdf, First_Floor_Plan.pdf, Ground_Floor_Plan.pdf, Roof_Floor_Plan.pdf, Second_Floor_Plan.pdf, Section_A_A.pdf, Section_B_B.pdf, Third_Floor_Plan.pdf",
+          "All Task Files": "tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/input/",
+          "Rubric Criteria": "tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/rubrics.json",
+          "Economic Rationale": "This audit helps identify plan-to-section, elevation, and opening-schedule coordination errors before construction, reducing RFIs, costly rework, material waste, and project delays."
+        },
+        "source": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/metadata.json",
+        "license": "Google DeepMind MKA Showcase Examples，Apache-2.0；中文任务说明为本站翻译整理，输入 PDF 缩小为整页 WebP，未重绘。",
+        "licensePath": "licenses/mka-apache-2-0.txt",
+        "split": "10 Showcase Examples / Construction / Architecture；固定修订 46bce7ab8768f661750bd1016ec8cbdc517740b5；不属于私有 200 题",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/mka-ground.webp",
+            "alt": "Ground Floor 平面图，含 B-B 剖切线、入口厅和门窗位置",
+            "width": 1500,
+            "height": 1061,
+            "caption": "真实输入：Ground_Floor_Plan.pdf 第 1 页。整页缩略图，非模型输出。",
+            "source": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/input/Ground_Floor_Plan.pdf"
+          },
+          {
+            "kind": "image",
+            "path": "images/mka-section.webp",
+            "alt": "Section B-B 剖面图，含各楼层标高、门窗与墙体",
+            "width": 1500,
+            "height": 1061,
+            "caption": "同一任务真实输入：Section_B_B.pdf 第 1 页。整页缩略图，非模型输出。",
+            "source": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/input/Section_B_B.pdf"
+          },
+          {
+            "kind": "file",
+            "path": "files/mka-rubric-g01.json",
+            "label": "查看 G-01 原始评分条目（4 项）",
+            "description": "rubrics.json 的 criterion 1–4，原键和值保留；非完整 rubric，未计算得分。",
+            "source": "https://huggingface.co/datasets/google/multimodal-knowledge-agent/blob/46bce7ab8768f661750bd1016ec8cbdc517740b5/tasks/task_a46a6c3cebd54b82b9ad5e66d1e14e48/rubrics.json"
+          }
+        ],
+        "walkthrough": {
+          "summary": "建筑图纸协调审查：把平面、剖面与立面中的不一致转成可复核的审查报告。",
+          "input": "五层平面图、A-A／B-B 剖面图、四张立面图和审查规范，共 12 个文件。下方两张图来自同一公开任务。",
+          "output": "不超过 10 页的 PPTX；先列楼层汇总，再按楼层报告 Mismatch／Cannot Determine，附相关图纸截图。",
+          "checks": [
+            "公开 rubric 对同一发现分别检查定位、分类、矛盾说明和原图证据，而不是仅判断 PPT 是否生成。",
+            "G-01 的四项标准权重分别为 5、4、3、2；查看下方原始评分条目可逐项核对。",
+            "AA 正式榜单另按 Climb／Regression 分组计算加权满足率，不能用这四项节选代替完整评分。"
+          ],
+          "sourceField": "Prompt",
+          "excerpts": [
+            {
+              "label": "交付物",
+              "text": "Limit the report to 10 slides."
+            },
+            {
+              "label": "问题分类与证据",
+              "text": "then present only Mismatch and Cannot Determine findings, organized by floor and supported by crops from the relevant drawings."
+            }
+          ],
+          "note": "本站按公开任务整理输入与交付合同，不提供解题教程或模拟分数。10 个 Showcase 与 AA 私有 200 题分开；实际模型交付物见 AA 官方页面。"
+        }
+      }
+    ]
+  }
+}
