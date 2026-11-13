@@ -9,6 +9,13 @@ interface BenchmarkDetailIntro {
 export const benchmarkDetailIntros: Partial<
   Record<string, BenchmarkDetailIntro>
 > = {
+  "swe-bench-verified": {
+    context: "编程与软件工程",
+    accent: "Verified",
+    lead: "给 AI 一个真实的软件问题，看它能否修好代码。",
+    summary:
+      "模型需要理解问题、修改指定版本的代码，并交付可应用的补丁。评测程序再用问题测试和回归测试检查结果。",
+  },
   "terminal-bench-4": {
     context: "Agent 与工具使用",
     accent: "4.0",

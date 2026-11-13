@@ -1,9 +1,5 @@
 .swe-pilot {
-  padding-top: 28px;
-}
-.pilot-intro {
-  max-width: 900px;
-  padding-bottom: 36px;
+  margin: 0;
 }
 .case-button {
   min-height: 44px;
@@ -226,15 +222,6 @@
   }
 }
 @media (max-width: 700px) {
-  .swe-pilot {
-    padding-top: 22px;
-  }
-  .pilot-intro {
-    padding-bottom: 28px;
-  }
-  .pilot-intro h1 {
-    font-size: clamp(32px, 8vw, 42px);
-  }
   .walkthrough-heading {
     align-items: flex-start;
     flex-direction: column;
@@ -286,6 +273,12 @@
   }
   .matrix-pair {
     gap: 12px;
+  }
+  .matrix-grid {
+    grid-template-columns: repeat(2, 32px);
+  }
+  .matrix-grid b {
+    height: 32px;
   }
   .verification-scene > div {
     align-items: flex-start;

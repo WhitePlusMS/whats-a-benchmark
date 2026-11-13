@@ -313,6 +313,7 @@
       {
         "id": "public-case-swe-bench-verified",
         "title": "Astropy 复合模型可分离矩阵",
+        "shortTitle": "复合模型可分离矩阵",
         "type": "record",
         "prompt": "为什么只是加了一层括号，两个独立的线性模型就变得相互依赖？这一题要求修复 Astropy 对嵌套组合模型的可分离性判断。",
         "explanation": "矩阵的行对应输出、列对应输入，True 表示存在依赖。重点看右下 2×2：平铺写法只在对角线上为 True，嵌套后却全部为 True。要修复的是组合模型的依赖计算，而非把这一组数组硬编码为答案。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
@@ -357,6 +358,7 @@
       {
         "id": "astropy__astropy-13033",
         "title": "Astropy TimeSeries 缺列异常",
+        "shortTitle": "TimeSeries 缺列",
         "type": "record",
         "prompt": "删掉必需的 flux 列后，报错却说“期望 time，实际也是 time”。这一题要让异常准确指出缺少必需列，而不是允许无效的表格继续使用。",
         "explanation": "异常应帮助用户找到真正缺少的列。题面复现使用了 np，却没有包含 numpy 导入；这里逐字保留原片段，没有补写成声称可直接运行的脚本。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
@@ -401,6 +403,7 @@
       {
         "id": "astropy__astropy-13236",
         "title": "Astropy 结构化列自动转换",
+        "shortTitle": "结构化列自动转换",
         "type": "record",
         "prompt": "把结构化数组加入 Table 时，它会自动变成 NdarrayMixin。这是一项类型转换行为的改进提议，要理解兼容性和迁移阶段，而不只是修一个报错。",
         "explanation": "这是功能与兼容性任务。原题里的版本计划是问题作者当时的提案，并不表示本站认定它就是最终发布方案或参考补丁。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
@@ -441,6 +444,7 @@
       {
         "id": "astropy__astropy-13398",
         "title": "Astropy ITRS 到 Observed 变换",
+        "shortTitle": "ITRS 坐标变换",
         "type": "record",
         "prompt": "怎样把地球坐标中的卫星位置转换为观测者看到的方向？题目提出 ITRS 与 AltAz/HADec 的直接变换，避免不恰当的时间变换让位置偏离。",
         "explanation": "先从地心 ITRS 位置减去观测站位置，得到站心表示，再变换到观测框架。这里解释的是原提案的计算路径，未生成数值结果，也不把作者的方案代码称为最终正确实现。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
