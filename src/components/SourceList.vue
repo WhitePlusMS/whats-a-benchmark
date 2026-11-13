@@ -3,6 +3,7 @@ import { useRoute } from "vue-router";
 import type { SourceReferenceGroup } from "../lib/sourceReferences";
 import { sourceRoleLabels } from "../content/labels";
 import Icon from "./Icon.vue";
+import { formatDate } from "../lib/displayFormats";
 defineProps<{ groups: SourceReferenceGroup[] }>();
 const route = useRoute();
 </script>
@@ -18,12 +19,18 @@ const route = useRoute();
       >
         <span class="source-number">[{{ group.first.number }}]</span>
         <span>
-          <strong>{{ group.first.source.label }}</strong>
+          <strong>{{ group.first.title }}</strong>
           <small
             >{{
               group.roles.map((role) => sourceRoleLabels[role]).join(" · ")
             }}
-            · <span translate="no">{{ group.host }}</span></small
+            · <span translate="no">{{ group.host }}</span>
+            <span v-if="group.first.verifiedAt" class="source-verification">
+              · 核验于
+              <time :datetime="group.first.verifiedAt">{{
+                formatDate(group.first.verifiedAt)
+              }}</time>
+            </span></small
           >
         </span>
         <Icon name="up" :size="18" />
@@ -43,9 +50,15 @@ const route = useRoute();
             :key="location.id"
           >
             <a :href="location.source.url" target="_blank" rel="noreferrer"
-              >[{{ location.number }}] {{ location.source.label }}
+              >[{{ location.number }}] {{ location.title }}
               <Icon name="up" :size="14"
             /></a>
+            <small v-if="location.verifiedAt">
+              核验于
+              <time :datetime="location.verifiedAt">{{
+                formatDate(location.verifiedAt)
+              }}</time>
+            </small>
           </li>
         </ul>
       </details>

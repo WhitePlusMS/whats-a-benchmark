@@ -129,6 +129,36 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://raw.githubusercontent.com/astropy/astropy/6500928dc0e57be8f06d1162eacc3ba5e2eff692/LICENSE.rst",
       "role": "data"
+    },
+    {
+      "label": "Astropy 组合模型原问题 #12906",
+      "url": "https://github.com/astropy/astropy/issues/12906",
+      "role": "data"
+    },
+    {
+      "label": "Astropy TimeSeries 原问题 #13009",
+      "url": "https://github.com/astropy/astropy/issues/13009",
+      "role": "data"
+    },
+    {
+      "label": "Astropy 结构化列原提案 #13235",
+      "url": "https://github.com/astropy/astropy/issues/13235",
+      "role": "data"
+    },
+    {
+      "label": "Astropy 坐标变换原提案 #13355",
+      "url": "https://github.com/astropy/astropy/issues/13355",
+      "role": "data"
+    },
+    {
+      "label": "SWE-bench 官方判分实现",
+      "url": "https://github.com/SWE-bench/SWE-bench/blob/main/swebench/harness/grading.py",
+      "role": "code"
+    },
+    {
+      "label": "Verified 官方 test 数据视图",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/viewer/default/test?p=0",
+      "role": "data"
     }
   ],
   "status": "published",
@@ -152,7 +182,8 @@
     "sourceUrls": [
       "https://github.com/SWE-bench/SWE-bench/blob/main/docs/reference/harness.md",
       "https://openai.com/index/introducing-swe-bench-verified/",
-      "https://github.com/SWE-bench/SWE-bench"
+      "https://github.com/SWE-bench/SWE-bench",
+      "https://github.com/SWE-bench/SWE-bench/blob/main/swebench/harness/grading.py"
     ]
   },
   "dataProfile": {
@@ -205,7 +236,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "4条实际公开任务可切换，保留完整problem_statement与原定位字段；Pro另保留requirements/interface。补丁、隐藏测试和参考实现未复制，任务未执行。",
+    "reason": "4 条 Verified 真实任务提供中文导读、原题关键片段及问题原文；可切换查看定位字段与完整 problem_statement。参考补丁、判分测试代码未复制，本站未运行任务。",
     "url": "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1",
     "sourceUrls": [
       "https://datasets-server.huggingface.co/rows?dataset=SWE-bench%2FSWE-bench_Verified&config=default&split=test&offset=0&length=1",
@@ -275,16 +306,17 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-12",
   "sampleSet": {
     "retrievedAt": "2026-10-19",
     "samples": [
       {
         "id": "public-case-swe-bench-verified",
         "title": "Astropy 复合模型可分离矩阵",
+        "shortTitle": "复合模型可分离矩阵",
         "type": "record",
-        "prompt": "给出的嵌套 `CompoundModel` 示例中，`separability_matrix` 没有按预期计算模型分离性，任务围绕组合模型结构与矩阵结果。",
-        "explanation": "给出的嵌套 `CompoundModel` 示例中，`separability_matrix` 没有按预期计算模型分离性，任务围绕组合模型结构与矩阵结果。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
+        "prompt": "为什么只是加了一层括号，两个独立的线性模型就变得相互依赖？这一题要求修复 Astropy 对嵌套组合模型的可分离性判断。",
+        "explanation": "矩阵的行对应输出、列对应输入，True 表示存在依赖。重点看右下 2×2：平铺写法只在对角线上为 True，嵌套后却全部为 True。要修复的是组合模型的依赖计算，而非把这一组数组硬编码为答案。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
         "raw": {
           "instance_id": "astropy__astropy-12907",
           "repo": "astropy/astropy",
@@ -297,14 +329,39 @@
         "split": "default / test / astropy__astropy-12907 / repo=astropy/astropy / base_commit=d16bfe05a744909de4b27f5875fe0d4ed41ce607",
         "excerpt": true,
         "promptOrigin": "editorial",
-        "licensePath": "licenses/astropy-astropy-c24e11182f.txt"
+        "licensePath": "licenses/astropy-astropy-c24e11182f.txt",
+        "walkthrough": {
+          "input": "Astropy 的固定仓库版本，以及包含复现代码和矩阵输出的真实问题。cm 把两个 Linear1D 模型先组合起来；平铺与嵌套两种写法应保留相同的依赖关系。",
+          "output": "修改修复前的 Astropy 仓库，生成可应用的代码补丁。只解释矩阵、写出预期数组，不能代替修复代码。",
+          "checks": [
+            "由官方评测程序应用补丁：修复指定的 FAIL_TO_PASS 测试，并保持指定的 PASS_TO_PASS 回归检查，才计为解决。",
+            "本站案例用于理解任务；原题中的演示输出不是本次补丁的测试报告。"
+          ],
+          "sourceField": "problem_statement",
+          "excerpts": [
+            {
+              "label": "先把两个独立线性模型组合成 cm",
+              "text": "from astropy.modeling import models as m\nfrom astropy.modeling.separable import separability_matrix\n\ncm = m.Linear1D(10) & m.Linear1D(5)"
+            },
+            {
+              "label": "平铺写法：右下两维仍各自独立",
+              "text": ">>> separability_matrix(m.Pix2Sky_TAN() & m.Linear1D(10) & m.Linear1D(5))\narray([[ True,  True, False, False],\n       [ True,  True, False, False],\n       [False, False,  True, False],\n       [False, False, False,  True]])"
+            },
+            {
+              "label": "嵌套写法：右下两维被错误地关联",
+              "text": ">>> separability_matrix(m.Pix2Sky_TAN() & cm)\narray([[ True,  True, False, False],\n       [ True,  True, False, False],\n       [False, False,  True,  True],\n       [False, False,  True,  True]])"
+            }
+          ],
+          "note": "这是原题输入的阅读导览，不是本站运行结果；未附参考补丁、判分测试代码或可执行仓库环境。"
+        }
       },
       {
         "id": "astropy__astropy-13033",
         "title": "Astropy TimeSeries 缺列异常",
+        "shortTitle": "TimeSeries 缺列",
         "type": "record",
-        "prompt": "TimeSeries 必需列校验失败时抛出的异常信息具有误导性；输入问题涉及缺列检查而不是时间序列数据本身。",
-        "explanation": "TimeSeries 必需列校验失败时抛出的异常信息具有误导性；输入问题涉及缺列检查而不是时间序列数据本身。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
+        "prompt": "删掉必需的 flux 列后，报错却说“期望 time，实际也是 time”。这一题要让异常准确指出缺少必需列，而不是允许无效的表格继续使用。",
+        "explanation": "异常应帮助用户找到真正缺少的列。题面复现使用了 np，却没有包含 numpy 导入；这里逐字保留原片段，没有补写成声称可直接运行的脚本。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
         "raw": {
           "instance_id": "astropy__astropy-13033",
           "repo": "astropy/astropy",
@@ -317,14 +374,39 @@
         "split": "default / test / astropy__astropy-13033 / repo=astropy/astropy / base_commit=298ccb478e6bf092953bca67a3d29dc6c35f6752",
         "excerpt": true,
         "promptOrigin": "editorial",
-        "licensePath": "licenses/astropy-astropy-c24e11182f.txt"
+        "licensePath": "licenses/astropy-astropy-c24e11182f.txt",
+        "walkthrough": {
+          "input": "Astropy TimeSeries 的修复前仓库与问题描述。示例把 time、flux 都设为必需列，再调用 remove_column(\"flux\")。",
+          "output": "提交修改 TimeSeries 校验或异常信息的代码补丁，保留必需列约束，并让失败原因与实际缺列一致。",
+          "checks": [
+            "由官方评测程序应用补丁：修复指定的 FAIL_TO_PASS 测试，并保持指定的 PASS_TO_PASS 回归检查，才计为解决。",
+            "本站案例用于理解任务；原题中的演示输出不是本次补丁的测试报告。"
+          ],
+          "sourceField": "problem_statement",
+          "excerpts": [
+            {
+              "label": "原题的复现代码",
+              "text": "from astropy.time import Time\nfrom astropy.timeseries import TimeSeries\n\ntime=Time(np.arange(100000, 100003), format='jd')\nts = TimeSeries(time=time, data = {\"flux\": [99.9, 99.8, 99.7]})\nts._required_columns = [\"time\", \"flux\"]                                   \nts.remove_column(\"flux\")"
+            },
+            {
+              "label": "实际异常：缺的是 flux，报错却围绕 time",
+              "text": "ValueError: TimeSeries object is invalid - expected 'time' as the first columns but found 'time'"
+            },
+            {
+              "label": "问题作者期待的行为",
+              "text": "An exception that informs the users required columns are missing."
+            }
+          ],
+          "note": "这是原题输入的阅读导览，不是本站运行结果；未附参考补丁、判分测试代码或可执行仓库环境。"
+        }
       },
       {
         "id": "astropy__astropy-13236",
         "title": "Astropy 结构化列自动转换",
+        "shortTitle": "结构化列自动转换",
         "type": "record",
-        "prompt": "讨论是否移除结构化列自动转换为 `NdarrayMixin` 的行为，关注列类型保留及混入类型的转换语义。",
-        "explanation": "讨论是否移除结构化列自动转换为 `NdarrayMixin` 的行为，关注列类型保留及混入类型的转换语义。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
+        "prompt": "把结构化数组加入 Table 时，它会自动变成 NdarrayMixin。这是一项类型转换行为的改进提议，要理解兼容性和迁移阶段，而不只是修一个报错。",
+        "explanation": "这是功能与兼容性任务。原题里的版本计划是问题作者当时的提案，并不表示本站认定它就是最终发布方案或参考补丁。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
         "raw": {
           "instance_id": "astropy__astropy-13236",
           "repo": "astropy/astropy",
@@ -337,14 +419,35 @@
         "split": "default / test / astropy__astropy-13236 / repo=astropy/astropy / base_commit=6ed769d58d89380ebaa1ef52b300691eefda8928",
         "excerpt": true,
         "promptOrigin": "editorial",
-        "licensePath": "licenses/astropy-astropy-a86d75ead6.txt"
+        "licensePath": "licenses/astropy-astropy-a86d75ead6.txt",
+        "walkthrough": {
+          "input": "Astropy 固定版本的 Table 实现，以及关于 structured ndarray、Column 与 NdarrayMixin 的公开提案。",
+          "output": "在指定仓库状态上实现与任务要求一致的变更并提交补丁。题面包含先提示 FutureWarning、后续版本再切换行为的建议，不能把它改写为“立即删除全部转换”。",
+          "checks": [
+            "由官方评测程序应用补丁：修复指定的 FAIL_TO_PASS 测试，并保持指定的 PASS_TO_PASS 回归检查，才计为解决。",
+            "本站案例用于理解任务；原题中的演示输出不是本次补丁的测试报告。"
+          ],
+          "sourceField": "problem_statement",
+          "excerpts": [
+            {
+              "label": "现有逻辑：结构化 ndarray 被转为 mixin",
+              "text": "        # Structured ndarray gets viewed as a mixin unless already a valid\n        # mixin class\n        if (not isinstance(data, Column) and not data_is_mixin\n                and isinstance(data, np.ndarray) and len(data.dtype) > 1):\n            data = data.view(NdarrayMixin)\n            data_is_mixin = True"
+            },
+            {
+              "label": "原提案：先警告，再切换类型行为",
+              "text": "Proposal:\n- Add a FutureWarning here telling the user to wrap `data` in `Column` and that in the future (5.2) the structured array will be added as a `Column`.\n- Change the behavior in 5.2 by removing this clause."
+            }
+          ],
+          "note": "这是原题输入的阅读导览，不是本站运行结果；未附参考补丁、判分测试代码或可执行仓库环境。"
+        }
       },
       {
         "id": "astropy__astropy-13398",
         "title": "Astropy ITRS 到 Observed 变换",
+        "shortTitle": "ITRS 坐标变换",
         "type": "record",
-        "prompt": "要求实现从 ITRS 到 Observed 的直接变换，并保持计算路径在 ITRS 框架内。",
-        "explanation": "要求实现从 ITRS 到 Observed 的直接变换，并保持计算路径在 ITRS 框架内。 已从官方 rows 响应恢复完整 `problem_statement`；本 raw 不含 patch、test_patch、hints、测试代码或参考实现。",
+        "prompt": "怎样把地球坐标中的卫星位置转换为观测者看到的方向？题目提出 ITRS 与 AltAz/HADec 的直接变换，避免不恰当的时间变换让位置偏离。",
+        "explanation": "先从地心 ITRS 位置减去观测站位置，得到站心表示，再变换到观测框架。这里解释的是原提案的计算路径，未生成数值结果，也不把作者的方案代码称为最终正确实现。 原始数据保留完整 problem_statement 与定位字段；其余数据集字段未复制。",
         "raw": {
           "instance_id": "astropy__astropy-13398",
           "repo": "astropy/astropy",
@@ -357,7 +460,27 @@
         "split": "default / test / astropy__astropy-13398 / repo=astropy/astropy / base_commit=6500928dc0e57be8f06d1162eacc3ba5e2eff692",
         "excerpt": true,
         "promptOrigin": "editorial",
-        "licensePath": "licenses/astropy-astropy-a86d75ead6.txt"
+        "licensePath": "licenses/astropy-astropy-a86d75ead6.txt",
+        "walkthrough": {
+          "input": "Astropy 坐标框架的修复前仓库、问题说明与作者附带的设计代码，涉及地心位置、观测站位置和输出坐标框架。",
+          "output": "提交实现相应坐标变换的代码补丁，处理题面讨论的位置与时间语义。原题附带的方案代码是输入材料，不是已经验证的完整解答。",
+          "checks": [
+            "由官方评测程序应用补丁：修复指定的 FAIL_TO_PASS 测试，并保持指定的 PASS_TO_PASS 回归检查，才计为解决。",
+            "本站案例用于理解任务；原题中的演示输出不是本次补丁的测试报告。"
+          ],
+          "sourceField": "problem_statement",
+          "excerpts": [
+            {
+              "label": "原提案明确的变换范围",
+              "text": "This approach stays entirely within the ITRS and merely converts between ITRS, AltAz, and HADec coordinates."
+            },
+            {
+              "label": "原提案代码：先取得站心位置，再变换",
+              "text": "    # form the Topocentric ITRS position\n    topocentric_itrs_repr = (itrs_coo.cartesian\n                             - observed_frame.location.get_itrs().cartesian)\n    rep = topocentric_itrs_repr.transform(itrs_to_observed_mat(observed_frame))\n    return observed_frame.realize_frame(rep)"
+            }
+          ],
+          "note": "这是原题输入的阅读导览，不是本站运行结果；未附参考补丁、判分测试代码或可执行仓库环境。"
+        }
       }
     ]
   },

@@ -1,9 +1,15 @@
 import { ViteSSG } from "vite-ssg";
 import "@fontsource-variable/inter";
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
+import {
+  humanEvalInitialAnchor,
+  preserveSavedDetailPosition,
+  shouldWaitForDetailLayout,
+} from "./lib/deferredDetailAnchor";
 import App from "./App.vue";
-import { allBenchmarks } from "./content/catalog";
+import { allBenchmarks, byId } from "./content/catalog";
 import ExploreView from "./views/ExploreView.vue";
+import { compositionSample } from "./lib/sampleAccess";
 import { catalogNavigationKey } from "./composables/catalogNavigation";
 import "./styles/main.css";
 
@@ -50,6 +56,17 @@ export const createApp = ViteSSG(
 
     // 只记录离开目录时的位置；筛选和视图状态本身由目录 URL 保存。
     router.beforeEach((to, from) => {
+      // A newly entered detail page settles when its case viewer renders.
+      humanEvalInitialAnchor.cancel();
+      const benchmark = byId.get(String(to.meta.benchmarkId ?? ""));
+      if (
+        to.path !== from.path &&
+        ((benchmark?.sampleAccess.status === "local" &&
+          !benchmark.composition) ||
+          (benchmark && compositionSample(benchmark, byId)))
+      ) {
+        humanEvalInitialAnchor.begin(to.fullPath);
+      }
       if (from.path === "/" && from.matched.length && to.path !== "/") {
         catalogLocation.value = from.fullPath;
         catalogScrollTop = window.scrollY;
@@ -63,8 +80,58 @@ export const createApp = ViteSSG(
         embodiedScrollTop = window.scrollY;
       }
     });
-    router.options.scrollBehavior = (to, from, saved) => {
-      if (saved) return { ...saved, behavior: "instant" };
+    router.options.scrollBehavior = async (to, from, saved) => {
+      const documentNavigation = performance.getEntriesByType(
+        "navigation",
+      )[0] as PerformanceNavigationTiming | undefined;
+      const restoreSaved =
+        !!saved &&
+        preserveSavedDetailPosition(
+          from.matched.length > 0,
+          humanEvalInitialAnchor.matches(to.fullPath) && !!to.hash,
+          documentNavigation?.type,
+        );
+      let waitedForInitialLayout = false;
+      const initialAnchorToken = humanEvalInitialAnchor.token(to.fullPath);
+      if (
+        shouldWaitForDetailLayout(
+          initialAnchorToken !== undefined,
+          !!to.hash,
+          restoreSaved,
+        )
+      ) {
+        // Hash targets and saved pixel positions both depend on the final layout.
+        // User interaction or a newer navigation always cancels the restoration.
+        const cancel = () => humanEvalInitialAnchor.cancel();
+        const events = [
+          "wheel",
+          "touchstart",
+          "pointerdown",
+          "keydown",
+        ] as const;
+        for (const event of events)
+          window.addEventListener(event, cancel, { passive: true });
+        try {
+          if (!(await humanEvalInitialAnchor.wait(to.fullPath))) return false;
+          await nextTick();
+          await new Promise<void>((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+          );
+          if (
+            humanEvalInitialAnchor.token(to.fullPath) !== initialAnchorToken ||
+            router.currentRoute.value.fullPath !== to.fullPath
+          )
+            return false;
+          humanEvalInitialAnchor.cancel();
+          waitedForInitialLayout = true;
+        } finally {
+          for (const event of events) window.removeEventListener(event, cancel);
+        }
+      } else if (initialAnchorToken !== undefined) {
+        // A fresh entry without a hash or saved position needs no deferred scroll.
+        humanEvalInitialAnchor.cancel();
+      }
+      if (restoreSaved && saved) return { ...saved, behavior: "instant" };
       if (to.hash) {
         // 精确引用可能在折叠的来源定位中；先展开祖先，刷新深链接也能到达。
         const target = document.getElementById(to.hash.slice(1));
@@ -75,7 +142,11 @@ export const createApp = ViteSSG(
             "--anchor-offset",
           ),
         );
-        return { el: to.hash, top: offset };
+        return {
+          el: to.hash,
+          top: offset,
+          ...(waitedForInitialLayout ? { behavior: "instant" as const } : {}),
+        };
       }
       if (to.path === from.path) return false;
       if (to.fullPath === catalogLocation.value)

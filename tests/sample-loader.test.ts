@@ -153,11 +153,55 @@ test("sample loading rejects empty required text and unsafe optional containers"
   const sample = sampleFile("selected").samples[0]!;
   const pair = { input: [[0]], output: [[0]] };
   const invalid = [
+    { benchmarkId: "selected", samples: [{ ...sample, walkthrough: null }] },
+    {
+      benchmarkId: "selected",
+      samples: [
+        {
+          ...sample,
+          walkthrough: {
+            input: "Input",
+            output: "Patch",
+            note: "Reading only",
+            checks: ["Tests"],
+            excerpts: [null],
+          },
+        },
+      ],
+    },
+    {
+      benchmarkId: "selected",
+      samples: [
+        {
+          ...sample,
+          raw: { problem: "Original" },
+          walkthrough: {
+            input: "Input",
+            output: "Patch",
+            note: "Reading only",
+            checks: ["Tests"],
+            sourceField: "absent",
+            excerpts: [{ label: "Original", text: "Original" }],
+          },
+        },
+      ],
+    },
     { benchmarkId: "selected", samples: [{ ...sample, title: " " }] },
     // 本站任务说明必须标为节选，原始数据不能为空。
-    { benchmarkId: "selected", samples: [{ ...sample, promptOrigin: "editorial" }] },
-    { benchmarkId: "selected", samples: [{ ...sample, promptOrigin: "editorial", excerpt: true, raw: {} }] },
-    { benchmarkId: "selected", samples: [{ ...sample, promptOrigin: "unknown", excerpt: true }] },
+    {
+      benchmarkId: "selected",
+      samples: [{ ...sample, promptOrigin: "editorial" }],
+    },
+    {
+      benchmarkId: "selected",
+      samples: [
+        { ...sample, promptOrigin: "editorial", excerpt: true, raw: {} },
+      ],
+    },
+    {
+      benchmarkId: "selected",
+      samples: [{ ...sample, promptOrigin: "unknown", excerpt: true }],
+    },
     { benchmarkId: "selected", samples: [{ ...sample, assets: [{}] }] },
     {
       benchmarkId: "selected",
@@ -224,13 +268,21 @@ test("sample loading retains source JSON and source text with an editorial promp
   };
   let count = 0;
   const text = "Source task paragraph. ".repeat(20);
-  t.mock.method(globalThis, "fetch", async () => Response.json({
-    ...file,
-    samples: [{ ...file.samples[0]!, raw: count++ === 0 ? raw : text }],
-  }));
+  t.mock.method(globalThis, "fetch", async () =>
+    Response.json({
+      ...file,
+      samples: [{ ...file.samples[0]!, raw: count++ === 0 ? raw : text }],
+    }),
+  );
   const scope = effectScope();
   t.after(() => scope.stop());
-  const loader = scope.run(() => useSampleLoader(() => "selected", () => true, "/"))!;
+  const loader = scope.run(() =>
+    useSampleLoader(
+      () => "selected",
+      () => true,
+      "/",
+    ),
+  )!;
   await settle();
   assert.equal(loader.error.value, false);
   assert.deepEqual(loader.data.value?.samples[0]?.raw, raw);

@@ -200,3 +200,69 @@ test("sample viewer exposes malformed sample data and recovers after retry", asy
   const currentId = viewer.current.value?.id;
   assert.equal(currentId, "first");
 });
+
+test("media-only retries preserve the current interaction and remain repeatable and instance-local", async (t) => {
+  let requests = 0;
+  t.mock.method(globalThis, "fetch", async () => {
+    requests++;
+    return Response.json(fixture("selected"));
+  });
+  const scope = effectScope();
+  t.after(() => scope.stop());
+  const makeViewer = () =>
+    useSampleViewer(
+      () => "selected",
+      () => true,
+      "/",
+    );
+  const [viewer, otherViewer] = scope.run(
+    () => [makeViewer(), makeViewer()] as const,
+  )!;
+  await settle();
+  viewer.index.value = 1;
+  viewer.showAnswer.value = true;
+  viewer.selectedOption.value = 1;
+  otherViewer.markAssetFailed("first.png");
+  const record = viewer.current.value;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    viewer.markAssetFailed("second.png");
+    viewer.markAssetFailed("second.png");
+    assert.deepEqual([...viewer.failedAssets.value], ["second.png"]);
+    viewer.mode.value = "raw";
+    await nextTick();
+    viewer.mode.value = "read";
+    assert.deepEqual([...viewer.failedAssets.value], ["second.png"]);
+    // Even a programmatic retry in raw mode must not change the mode.
+    viewer.mode.value = "raw";
+    viewer.retryMedia();
+    await nextTick();
+    assert.deepEqual([...viewer.failedAssets.value], []);
+    assert.equal(viewer.mode.value, "raw");
+    assert.equal(viewer.index.value, 1);
+    assert.equal(viewer.current.value, record);
+    assert.equal(viewer.showAnswer.value, true);
+    assert.equal(viewer.selectedOption.value, 1);
+    assert.deepEqual([...otherViewer.failedAssets.value], ["first.png"]);
+    viewer.mode.value = "read";
+  }
+  assert.equal(requests, 2, "media retry must not refetch sample data");
+  viewer.markAssetFailed("second.png");
+  viewer.index.value = 0;
+  assert.deepEqual([...viewer.failedAssets.value], []);
+  viewer.markAssetFailed("second.png");
+  assert.deepEqual(
+    [...viewer.failedAssets.value],
+    [],
+    "ignore old task failures",
+  );
+  viewer.markAssetFailed("first.png");
+  viewer.retryMedia();
+  viewer.index.value = 1;
+  assert.deepEqual(
+    [...viewer.failedAssets.value],
+    [],
+    "return without stale failures",
+  );
+  otherViewer.retryMedia();
+  assert.deepEqual([...otherViewer.failedAssets.value], []);
+});

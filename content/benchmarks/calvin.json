@@ -53,10 +53,11 @@
   },
   "taskContract": {
     "input": "语言指令、视觉观测和机器人状态，依实验设置而定。",
-    "output": "连续执行多个语言指定的操作。",
+    "output": "策略依据语言与当前观测输出动作；环境连续更新，成功检查器决定是否进入下一子任务。本站配置与训练摘录没有模型执行结果。",
     "environment": "仿真桌面操作环境；官方定义 D→D、ABC→D 与 ABCD→D 等环境划分。",
     "sourceUrls": [
-      "https://github.com/mees/calvin"
+      "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/calvin_agent/evaluation/evaluate_policy.py",
+      "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/dataset/README.md"
     ]
   },
   "dataProfile": {
@@ -123,11 +124,12 @@
     ]
   },
   "metric": {
-    "name": "连续任务完成情况",
-    "description": "依据连续指令序列完成情况评估；应同时报告环境划分与任务序列。",
+    "name": "连续成功长度与成功率@k",
+    "description": "每条五任务链在首个失败处停止，返回此前连续成功数 0–5。成功率@k = 连续成功长度 ≥ k 的链条数 / 总链条数（k=1…5）；平均连续长度为各链长度的平均值。后续未执行的任务不单独重试。须固定环境划分和运行协议，不能只比较五步全通过率。",
     "direction": "higher",
     "sourceUrls": [
-      "https://github.com/mees/calvin"
+      "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/calvin_agent/evaluation/evaluate_policy.py",
+      "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/calvin_agent/evaluation/utils.py"
     ]
   },
   "limitations": [
@@ -135,6 +137,13 @@
       "text": "不同任务、环境和评测协议的结果不能直接混合比较。",
       "sourceUrls": [
         "https://github.com/mees/calvin"
+      ]
+    },
+    {
+      "text": "固定官方实现每子任务最多 360 环境步，链开始时重置环境；OpenBMB 固定实现上限 720 步，另有逐子任务重置初始环境的 reset=True 变体。不能仅因两者均为 1,000 条序列就视作相同协议。",
+      "sourceUrls": [
+        "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/calvin_agent/evaluation/evaluate_policy.py",
+        "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_calvin.py"
       ]
     }
   ],
@@ -208,6 +217,46 @@
       "label": "validation 单帧查看接口",
       "url": "https://datasets-server.huggingface.co/rows?dataset=KyujinL%2FCALVIN_ABC&config=default&split=validation&offset=0&length=1",
       "role": "data"
+    },
+    {
+      "label": "官方固定版本评测循环",
+      "url": "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/calvin_agent/evaluation/evaluate_policy.py",
+      "role": "code"
+    },
+    {
+      "label": "官方固定版本链式评分",
+      "url": "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/calvin_agent/evaluation/utils.py",
+      "role": "code"
+    },
+    {
+      "label": "官方固定版本成功条件参数",
+      "url": "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/conf/callbacks/rollout/tasks/new_playtable_tasks.yaml",
+      "role": "code"
+    },
+    {
+      "label": "固定环境子模块任务判断",
+      "url": "https://github.com/mees/calvin_env/blob/1431a46bd36bde5903fb6345e68b5ccc30def666/calvin_env/envs/tasks.py",
+      "role": "code"
+    },
+    {
+      "label": "官方固定版本语言映射",
+      "url": "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/calvin_models/conf/annotations/new_playtable_validation.yaml",
+      "role": "data"
+    },
+    {
+      "label": "OpenBMB 固定版本运行设置",
+      "url": "https://github.com/OpenBMB/MiniCPM-Robot/blob/f666593066641d2c0cef06bc17bfb1e954547674/MiniCPM-RobotManip/evaluation/calvin/eval_calvin.py",
+      "role": "code"
+    },
+    {
+      "label": "官方固定版本字段说明",
+      "url": "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/dataset/README.md",
+      "role": "data"
+    },
+    {
+      "label": "官方代码 MIT 许可（不等于素材许可）",
+      "url": "https://github.com/mees/calvin/blob/fa03f01f19c65920e18cf37398a9ce859274af76/LICENSE",
+      "role": "code"
     }
   ],
   "related": [],
@@ -499,5 +548,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-06"
+  "updatedAt": "2026-11-12"
 }

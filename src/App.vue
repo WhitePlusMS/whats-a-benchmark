@@ -2,9 +2,9 @@
 import { computed, onMounted, onUnmounted, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { comparisonKey, createComparison } from "./composables/compare";
-import { COMPARISON_LIMIT } from "./lib/comparison";
 import { byId } from "./content/catalog";
 import Icon from "./components/Icon.vue";
+import ComparisonSelectionBar from "./components/ComparisonSelectionBar.vue";
 import ThemeSwitcher from "./components/ThemeSwitcher.vue";
 import { initTheme, useTheme } from "./lib/theme";
 import { useCatalogNavigation } from "./composables/catalogNavigation";
@@ -19,14 +19,14 @@ initTheme();
 const { colorModeIcon, colorModeLabel, cycleColorMode } = useTheme();
 // Own selection state per application and dispose the navigation subscription.
 const comparison = createComparison(useRouter());
-const { selected, notice, toggle, clear } = comparison;
+const { selected } = comparison;
+const isCatalog = computed(() => ["/", "/embodied/"].includes(route.path));
+const showCompareDock = computed(
+  () => selected.value.length > 0 && !/^\/compare\/?$/.test(route.path),
+);
 provide(comparisonKey, comparison);
 onMounted(comparison.activate);
 onUnmounted(comparison.dispose);
-const compareUrl = computed(() => ({
-  path: "/compare/",
-  query: { ids: selected.value.join(",") },
-}));
 </script>
 
 <template>
@@ -55,13 +55,26 @@ const compareUrl = computed(() => ({
                 route.path === '/' ||
                 (route.path.startsWith('/benchmarks/') && !isEmbodiedDetail),
             }"
-            :aria-current="route.path === '/' || (route.path.startsWith('/benchmarks/') && !isEmbodiedDetail) ? 'page' : undefined"
-          ><Icon name="sparkle" :size="16" />模型评测</RouterLink>
+            :aria-current="
+              route.path === '/' ||
+              (route.path.startsWith('/benchmarks/') && !isEmbodiedDetail)
+                ? 'page'
+                : undefined
+            "
+            ><Icon name="sparkle" :size="16" />模型评测</RouterLink
+          >
           <RouterLink
-            :to="route.path === '/embodied/' ? route.fullPath : embodiedLocation"
+            :to="
+              route.path === '/embodied/' ? route.fullPath : embodiedLocation
+            "
             :class="{ active: route.path === '/embodied/' || isEmbodiedDetail }"
-            :aria-current="route.path === '/embodied/' || isEmbodiedDetail ? 'page' : undefined"
-          ><Icon name="robot" :size="16" />具身评测</RouterLink>
+            :aria-current="
+              route.path === '/embodied/' || isEmbodiedDetail
+                ? 'page'
+                : undefined
+            "
+            ><Icon name="robot" :size="16" />具身评测</RouterLink
+          >
         </div>
       </nav>
       <div class="header-actions">
@@ -101,7 +114,13 @@ const compareUrl = computed(() => ({
     </div>
   </header>
   <main id="main-content"><RouterView /></main>
-  <footer class="site-footer">
+  <footer
+    class="site-footer"
+    :class="{
+      'with-compare-dock': showCompareDock,
+      'catalog-footer': isCatalog,
+    }"
+  >
     <div class="container footer-inner">
       <div class="footer-brand" translate="no">
         what's a benchmark?<span>读懂每个 benchmark 到底测什么</span>
@@ -132,33 +151,8 @@ const compareUrl = computed(() => ({
       提交纠错
     </div>
   </footer>
-  <div v-if="selected.length" class="compare-dock" aria-label="已选评测">
-    <div class="dock-heading">
-      <Icon name="compare" /><strong
-        >评测对比
-        <span>{{ selected.length }}/{{ COMPARISON_LIMIT }}</span></strong
-      >
-    </div>
-    <div class="dock-items">
-      <button
-        v-for="id in selected"
-        :key="id"
-        @click="toggle(id)"
-        :aria-label="`移出对比：${byId.get(id)?.name}`"
-      >
-        <span translate="no">{{ byId.get(id)?.name }}</span
-        ><Icon name="close" :size="14" />
-      </button>
-    </div>
-    <RouterLink
-      v-if="selected.length >= 2"
-      :to="compareUrl"
-      class="primary-button"
-      >开始对比</RouterLink
-    ><span v-else class="muted dock-instruction">再选择 1 个评测</span
-    ><button class="icon-button" @click="clear" aria-label="清空对比">
-      <Icon name="close" :size="18" />
-    </button>
-    <p v-if="notice" role="status" class="dock-notice">{{ notice }}</p>
-  </div>
+  <ComparisonSelectionBar
+    v-if="showCompareDock"
+    :class="{ 'catalog-compare-dock': isCatalog }"
+  />
 </template>

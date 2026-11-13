@@ -35,11 +35,13 @@
   "version": "MMLU test 的 14 种语言翻译",
   "metric": {
     "name": "正确率",
-    "description": "逐语言报告四选一准确率；如给跨语言汇总，必须写清 locale 范围、宏/微平均和提示/解析设置。OpenAI technical report 说明答案解析会匹配不同提示语言中 “Answer” 的表达；因此不同评测脚本和 locale 的原始分数不宜直接并在一起。",
+    "description": "每题解析出的选项与参考 Answer 相同得 1，否则得 0；固定版本 Simple Evals 规范化响应并按多语言答案表达提取字母，题级分数取平均。此代码不是所有历史报告唯一协议；跨语言汇总须说明 locale、样本、宏/微平均及提示、采样和解析设置。",
     "direction": "higher",
     "sourceUrls": [
       "https://openai.com/index/gpt-oss-model-card/",
-      "https://github.com/openai/simple-evals"
+      "https://github.com/openai/simple-evals",
+      "https://github.com/openai/simple-evals/blob/652c89d0ca9df547706735883097e9537d40dc47/mmlu_eval.py",
+      "https://github.com/openai/simple-evals/blob/652c89d0ca9df547706735883097e9537d40dc47/common.py"
     ]
   },
   "limitations": [
@@ -101,6 +103,31 @@
       "label": "gpt-oss-120b & gpt-oss-20b Model Card - OpenAI Deployment Safety Hub",
       "url": "https://deploymentsafety.openai.com/gpt-oss/multilingual-performance",
       "role": "definition"
+    },
+    {
+      "label": "MMMLU 数据卡与 MIT 标注（后续固定修订）",
+      "url": "https://huggingface.co/datasets/openai/MMMLU/blob/325a01dc3e173cac1578df94120499aaca2e2504/README.md",
+      "role": "data"
+    },
+    {
+      "label": "官方英文对应记录（2026-11-12 读取）",
+      "url": "https://openaipublic.blob.core.windows.net/simple-evals/mmlu.csv",
+      "role": "data"
+    },
+    {
+      "label": "Simple Evals 固定版本 MMLU 评测代码",
+      "url": "https://github.com/openai/simple-evals/blob/652c89d0ca9df547706735883097e9537d40dc47/mmlu_eval.py",
+      "role": "code"
+    },
+    {
+      "label": "Simple Evals 固定版本答案提取规则",
+      "url": "https://github.com/openai/simple-evals/blob/652c89d0ca9df547706735883097e9537d40dc47/common.py",
+      "role": "code"
+    },
+    {
+      "label": "原 MMLU 作者 MIT 许可",
+      "url": "https://github.com/hendrycks/test/blob/master/LICENSE",
+      "role": "access"
     }
   ],
   "status": "published",
@@ -110,31 +137,35 @@
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
-    "summary": "OpenAI将MMLU人工专业翻译为14种语言，用于比较跨语言学科知识和问题求解表现；保留原有学科框架，不等同于针对各地文化另建的知识测试。",
+    "summary": "OpenAI 将 MMLU test 由专业人工翻译为 14 种语言，用于比较跨语言学科知识和问题求解表现；沿用底本的 57 学科框架，不是各地文化另建的题库，也不是图文评测 MMMU。",
     "task": "以某一 locale 的 MMLU 选择题考查跨语言学科知识；它保留原学科框架，不等同各语言地区文化知识的本地化测试。",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/MMMLU",
-      "https://deploymentsafety.openai.com/gpt-oss/multilingual-performance"
+      "https://deploymentsafety.openai.com/gpt-oss/multilingual-performance",
+      "https://huggingface.co/datasets/openai/MMMLU/blob/325a01dc3e173cac1578df94120499aaca2e2504/README.md"
     ]
   },
   "taskContract": {
     "input": "一个 locale 下的 MMLU 问题及四个选项。",
-    "output": "选择正确答案；按语言报告准确率，汇总时注明 locale 范围和平均方式。",
+    "output": "答案选项；固定版本 Simple Evals 模板要求末尾写 Answer: 字母。模型回复经规范化和选项解析后与参考标签比较；本站点选练习不模拟文本解析器。",
     "environment": "静态文本问答；跨语言比较应保持一致的提示和解析规则，不将翻译题库解释为本地文化知识测试。",
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/MMMLU",
       "https://openai.com/index/gpt-oss-model-card/",
-      "https://github.com/openai/simple-evals"
+      "https://github.com/openai/simple-evals",
+      "https://github.com/openai/simple-evals/blob/652c89d0ca9df547706735883097e9537d40dc47/mmlu_eval.py",
+      "https://github.com/openai/simple-evals/blob/652c89d0ca9df547706735883097e9537d40dc47/common.py"
     ]
   },
   "dataProfile": {
-    "summary": "数据卡列出 14 个 locale，分别对应 MMLU test 的翻译。",
+    "summary": "后续固定版本数据卡描述 14 个 locale，分别对应 MMLU test 的专业人工翻译；底本包含 57 个学科。本站仅展示中文 abstract_algebra 的四条连续记录。",
     "disclosure": "partial",
     "scale": [
       "14 个 locale。"
     ],
     "splits": [
-      "AR_XY、BN_BD、DE_DE、ES_LA、FR_FR、HI_IN、ID_ID、IT_IT、JA_JP、KO_KR、PT_BR、SW_KE、YO_NG、ZH_CN；每个配置均为 test。"
+      "AR_XY、BN_BD、DE_DE、ES_LA、FR_FR、HI_IN、ID_ID、IT_IT、JA_JP、KO_KR、PT_BR、SW_KE、YO_NG、ZH_CN；每个配置均为 test。",
+      "default 配置聚合 test/*.csv，不是单一语言；本站四条取自 mmlu_ZH-CN.csv 的零基行 0–3。"
     ],
     "fields": [
       "官方 CSV 字段：空表头索引列、Question、A、B、C、D、Answer、Subject；空表头索引仅作行定位，不视为稳定 ID。"
@@ -144,7 +175,8 @@
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/MMMLU",
-      "https://huggingface.co/datasets/openai/MMMLU/tree/main/test"
+      "https://huggingface.co/datasets/openai/MMMLU/tree/main/test",
+      "https://huggingface.co/datasets/openai/MMMLU/blob/325a01dc3e173cac1578df94120499aaca2e2504/README.md"
     ]
   },
   "dataAccess": {
@@ -159,14 +191,17 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "OpenAI/MMMLU 数据卡标注 MIT；底本来自原始 MMLU test。",
+    "license": "后续固定修订 325a01dc 的 OpenAI/MMMLU 数据卡标注 MIT；样例所在早期数据修订 64d5b3a0 不含 README，不能把后来的许可元数据说成该早期修订文件。底本 MMLU 作者仓库附 MIT 许可。",
     "scope": "转载时保留 OpenAI 和原 MMLU 作者引用及附带许可说明。",
     "boundaries": [
-      "Simple Evals 的代码许可不用于推定 MMMLU 数据许可。"
+      "Simple Evals 的代码许可不用于推定 MMMLU 数据许可。",
+      "保留原 MMLU 作者署名与 MIT 全文（本站附带 licenses/mmlu.txt）及 OpenAI/MMMLU 来源；未逐项审计所有原始考试材料的第三方权利链。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/openai/MMMLU",
-      "https://github.com/openai/simple-evals"
+      "https://github.com/openai/simple-evals",
+      "https://huggingface.co/datasets/openai/MMMLU/blob/325a01dc3e173cac1578df94120499aaca2e2504/README.md",
+      "https://github.com/hendrycks/test/blob/master/LICENSE"
     ]
   },
   "sampleAccess": {
@@ -195,7 +230,7 @@
           "6"
         ],
         "answer": "B",
-        "explanation": "这条中文人工翻译的抽象代数题给出 Q(√2,√3,√18)，要求判断扩张次数；需要识别 √18 与 √2 的依赖关系，避免把三个根式误当成三个独立二次扩张。raw 的首列按原CSV保留为空字符串表头，值为字符串“0”。",
+        "explanation": "这条中文题要求判断 Q 上的域扩张次数。根式个数不等于独立生成元个数；展开参考答案可查看本站数学图解。raw 空表头索引列按原 CSV 保留，值为字符串“0”。",
         "raw": {
           "Question": "求 Q 上给定域扩张 Q(sqrt(2), sqrt(3), sqrt(18)) 的次数。",
           "A": "0",
@@ -224,7 +259,7 @@
           "120"
         ],
         "answer": "C",
-        "explanation": "原始中文题干使用“幂”这一表述，选项为8、2、24、120，原答案C。本站保留原翻译和选项，不替作者改成另一道群论题；原 Subject 标明所属学科。",
+        "explanation": "原中文写“幂”，2026-11-12 核对的官方英文对应记录明确问子群指数 index，而非元素阶 order。本站保留中文原题与全部字段，另行解释英文原意；展开参考答案可查看置换与陪集图解。",
         "raw": {
           "": "1",
           "Question": "设 S_5 中 p = (1, 2, 5, 4)(2, 3)。求 S_5 中 <p> 的幂。",
@@ -253,7 +288,7 @@
           "0,4"
         ],
         "answer": "D",
-        "explanation": "在 Z_5 中找给定多项式的零点，候选答案可能含一个或多个域元素。原始答案 D 对应0和4，题面中的系数和选项顺序保持原值。",
+        "explanation": "原译文“所有零”意为有限域中的零点或根，不是数有几个数字 0。需要检查 Z_5 中各元素代入后的余数。原题与选项保持不变，展开参考答案可查看本站穷举图解。",
         "raw": {
           "": "2",
           "Question": "求系数在该域中的给定多项式的所示有限域的所有零。Z_5 中：x^5 + 3x^3 + x^2 + 2x",
@@ -282,7 +317,7 @@
           "假，真"
         ],
         "answer": "B",
-        "explanation": "题目要求分别判断关于因子群与正规子群的两个陈述，选项编码为真假组合。官方答案B表示两者均假；原记录与 Subject 字段保留，本站没有补造证明。",
+        "explanation": "需要分别判断关于因子群与正规子群的两个全称陈述，选项是两项真假组合。原始题面和 Subject 保留；展开参考答案可查看本站构造的具体反例，它们不是官方解析或模型作答。",
         "raw": {
           "": "3",
           "Question": "陈述 1 | 非阿贝尔群的因子群是非阿贝尔的。陈述 2 | 若 K 是 H 的正规子群，H 是 G 的正规子群，则 K 是 G 的正规子群。",
@@ -356,6 +391,20 @@
         "https://huggingface.co/datasets/openai/MMMLU/resolve/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
         "https://huggingface.co/datasets/openai/MMMLU",
         "https://arxiv.org/abs/2009.03300"
+      ]
+    },
+    {
+      "text": "2026-11-12 补核：固定数据修订的 ZH-CN 零基行 0–3 的 raw、题干、选项与答案逐字段一致，当前 HEAD 前四条亦一致；未推及整文件或其他语言。英文对应记录核实 index 译为“幂”的差异，原中文不改。数学图解为本站说明，不是官方解析或模型轨迹；历史核验日期保留。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU/blob/64d5b3a05a263d14426f109345c38abaa7c7948d/test/mmlu_ZH-CN.csv",
+        "https://openaipublic.blob.core.windows.net/simple-evals/mmlu.csv"
+      ]
+    },
+    {
+      "text": "2026-11-12 元数据核对：早期固定数据 revision 没有 README；14 语言和 MIT 描述引用后续固定修订 325a01dc 数据卡。保留早期核验历史说明，不把许可标注扩展为逐题权利链法律审计。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/openai/MMMLU/blob/325a01dc3e173cac1578df94120499aaca2e2504/README.md",
+        "https://github.com/hendrycks/test/blob/master/LICENSE"
       ]
     }
   ],

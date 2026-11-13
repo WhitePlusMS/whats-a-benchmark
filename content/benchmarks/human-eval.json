@@ -29,6 +29,12 @@
   },
   "limitations": [
     {
+      "text": "官方仓库已标记为 deprecated / unmaintained，不再提供持续支持或更新，现作为历史参考保留。",
+      "sourceUrls": [
+        "https://github.com/openai/human-eval/blob/b9453e8f1865df0a0057a1383767caa400acfbcf/README.md#L3-L5"
+      ]
+    },
+    {
       "text": "官方仓库根许可证未将题库、测试、示例和 harness 分别列出许可范围；正式大规模镜像前应按具体文件和许可文本复核。",
       "sourceUrls": [
         "https://github.com/openai/human-eval"
@@ -95,6 +101,21 @@
       "label": "2026-10-19 核验的官方原始记录",
       "url": "https://raw.githubusercontent.com/openai/human-eval/b9453e8f1865df0a0057a1383767caa400acfbcf/data/HumanEval.jsonl.gz",
       "role": "data"
+    },
+    {
+      "label": "官方停更声明（固定版本）",
+      "url": "https://github.com/openai/human-eval/blob/b9453e8f1865df0a0057a1383767caa400acfbcf/README.md#L3-L5",
+      "role": "readme"
+    },
+    {
+      "label": "官方执行入口与安全警告（固定版本）",
+      "url": "https://github.com/openai/human-eval/blob/b9453e8f1865df0a0057a1383767caa400acfbcf/human_eval/execution.py#L40-L50",
+      "role": "code"
+    },
+    {
+      "label": "官方 reliability_guard 安全边界（固定版本）",
+      "url": "https://github.com/openai/human-eval/blob/b9453e8f1865df0a0057a1383767caa400acfbcf/human_eval/execution.py#L163-L174",
+      "role": "code"
     }
   ],
   "status": "published",
@@ -239,10 +260,12 @@
   "taskContract": {
     "input": "函数签名、docstring/上下文和待补全位置；原始问题记录含 task_id、prompt、canonical_solution、test、entry_point。",
     "output": "补全代码；harness 执行单元测试并记录 passed、timeout 或 failed，再计算 pass@k。",
-    "environment": "生成代码是不可信程序，必须在稳健隔离环境执行；官方仓库默认不直接启用执行入口，并要求先阅读安全说明。",
+    "environment": "模型生成代码是不可信程序，必须另行配置可靠安全沙箱后执行。官方 reliability_guard 明确不是安全沙箱；固定版本 execution.py 的执行调用未被注释，不能依赖“默认关闭执行入口”来保证安全。",
     "sourceUrls": [
-      "https://github.com/openai/human-eval#usage",
-      "https://arxiv.org/html/2107.03374#S2.SS2"
+      "https://github.com/openai/human-eval/blob/b9453e8f1865df0a0057a1383767caa400acfbcf/human_eval/execution.py#L40-L50",
+      "https://github.com/openai/human-eval/blob/b9453e8f1865df0a0057a1383767caa400acfbcf/human_eval/execution.py#L163-L174",
+      "https://arxiv.org/html/2107.03374#S2.SS2",
+      "https://arxiv.org/html/2107.03374#S2.SS3"
     ]
   },
   "dataProfile": {
@@ -321,5 +344,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20"
+  "updatedAt": "2026-11-12"
 }

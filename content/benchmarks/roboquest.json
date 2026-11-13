@@ -33,7 +33,8 @@
     "environment": "在 RoboCasa365 的 MuJoCo 厨房仿真中，使用移动底盘与 Franka Panda 机械臂；初始观测不暴露完成任务所需的全部信息。",
     "sourceUrls": [
       "https://declare-lab.github.io/RoboQuest/",
-      "https://arxiv.org/abs/2610.10388"
+      "https://arxiv.org/abs/2610.10388",
+      "https://declare-lab.github.io/RoboQuest/methods.html"
     ]
   },
   "dataProfile": {
@@ -89,7 +90,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示开发场景示范、Tool-Call 训练记录，以及作者公开的单次评测结果；三者划分不同。",
+    "reason": "按“开发示范 → 单步训练 → 单次模型结果 → 另一类任务概览”分别展示，保留原始记录与媒体出处。四条资料不属于同一回合，不能拼成完整模型轨迹。",
     "url": "https://declare-lab.github.io/RoboQuest/",
     "sourceUrls": [
       "https://declare-lab.github.io/RoboQuest/",
@@ -111,7 +112,8 @@
     "direction": "higher",
     "sourceUrls": [
       "https://declare-lab.github.io/RoboQuest/",
-      "https://arxiv.org/abs/2610.10388"
+      "https://arxiv.org/abs/2610.10388",
+      "https://declare-lab.github.io/RoboQuest/methods.html"
     ]
   },
   "limitations": [
@@ -214,6 +216,16 @@
       "label": "Puzzle Box 评测实例配置",
       "url": "https://github.com/declare-lab/RoboQuest/blob/c2a1d3df1526850a0a4c51de1a7ad40173dc4d47/suite/v1/puzzle_box/registry/instances/059f7f6ecc3ee5e7.json",
       "role": "data"
+    },
+    {
+      "label": "官方各类任务与提交目标",
+      "url": "https://declare-lab.github.io/RoboQuest/tasks.html",
+      "role": "definition"
+    },
+    {
+      "label": "官方观测接口与评分方法",
+      "url": "https://declare-lab.github.io/RoboQuest/methods.html",
+      "role": "definition"
     }
   ],
   "related": [
@@ -227,7 +239,7 @@
     }
   ],
   "verifiedAt": "2026-11-05",
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-12",
   "embodied": {
     "tasks": [
       "navigation",
@@ -239,25 +251,13 @@
     "retrievedAt": "2026-11-05",
     "samples": [
       {
-        "id": "roboquest-official-task",
-        "title": "Search Room",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "搜索并找齐隐藏目标，把它们放到托盘后主动提交。",
-        "explanation": "这是官方公开的任务示例，用于理解评测要求；不是本站实际运行记录或模型成绩。",
-        "raw": "Search Room",
-        "source": "https://declare-lab.github.io/RoboQuest/",
-        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
-        "split": "官方公开任务示例；不推断其训练或测试划分。",
-        "excerpt": true
-      },
-      {
         "id": "roboquest-puzzle-box-demo-000000",
-        "title": "Puzzle Box：官方示范记录 000000",
+        "title": "Puzzle Box · 看一次官方开发示范",
+        "shortTitle": "开盒开发示范",
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "打开被插销锁住的木盒，取出橘子并竖放在托盘上；松手后按红色 SUBMIT。",
-        "explanation": "视频对应官方 puzzle_box 第 0 条示范：数据记录给出完整任务指令和 1740 帧，示范来自开发场景，不是评测集轨迹。论文说明插销存在先后阻挡关系，首次按 SUBMIT 即结束，提交错误或不提交均失败；评测配置与示范场景应分开理解。",
+        "explanation": "先注意插销与盒盖之间的阻挡，再看取物、放置和主动提交。视频展示官方开发示范的动作过程，不能据此推断某个模型的成功率。完整任务指令保留在原始记录 tasks[0]。",
         "raw": {
           "episode_index": 0,
           "tasks": [
@@ -277,15 +277,37 @@
             "caption": "官方仿真示范视频，Puzzle Box episode 000000；不是模型评测成绩。",
             "source": "https://huggingface.co/datasets/declare-lab/RoboQuest/blob/30952cee53890ec39a90fdef62e4e0dee3d2cf8b/lerobot/puzzle_box/videos/chunk-000/image/episode_000000.mp4"
           }
-        ]
+        ],
+        "walkthrough": {
+          "summary": "先看任务是什么：木盒盖被插销锁住，机器人要找出可行顺序，打开盒子、取出橘子并竖放到托盘，最后松手并按红色 SUBMIT。下方是官方开发示范，不是模型评测成绩。",
+          "input": "仿真厨房中的木盒、相互阻挡的插销、托盘及任务指令。机器人需要通过观察和操作找出能解锁盒盖的顺序，题目不指定唯一顺序。",
+          "output": "连续的机器人动作：解锁、开盒、取物、把橘子竖放到托盘，松手后按红色 SUBMIT 结束该回合。",
+          "checks": [
+            "按原指令，只要能完成任务，插销操作顺序可以不同；完成不只是“把盖子打开”。",
+            "首次提交就结束回合；提交时状态不正确或一直不提交都会失败。不要把视频结束当成自动提交。"
+          ],
+          "sourceField": "/tasks/0",
+          "excerpts": [
+            {
+              "label": "原指令中的物理目标",
+              "text": "Open the wooden puzzle box on the counter, take out the tangerine inside, and stand it inside the tray."
+            },
+            {
+              "label": "原指令中的提交与失败条件",
+              "text": "Once the tangerine is inside the tray and you have let go of everything, press the red SUBMIT button. Your first submission ends the episode; a wrong submission or no submission fails."
+            }
+          ],
+          "note": "此视频对应开发示范 episode 000000，共 1740 帧。它与下一个单步训练样本、后面的模型评测记录不是同一实例，不可拼接成一条运行证据。"
+        }
       },
       {
         "id": "roboquest-toolcall-002e-step1",
-        "title": "Puzzle Box：第一步工具调用",
+        "title": "Puzzle Box · 三路观测与一次训练动作",
+        "shortTitle": "三路相机与动作",
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "观察木盒与插销，执行示范的第一步：移动机械臂以操作左侧最前方的红色滑块。",
-        "explanation": "这是官方 Tool-Call 训练数据中实例 002e0374cb9719d0 的第 1 个决策：提供三路相机和机器人状态，目标为一次 arm 调用，逐步核验等级为 A。该数据从示范状态逐步核验，并非整段开环重放成功或模型评测结果。",
+        "explanation": "同时对照三路画面，理解机器人在这一刻能看到什么，再看目标调用的坐标与步数。tier A 来自逐步核验，整段调用未从 reset 开环重放，因此不应显示“任务通过”徽章。",
         "raw": {
           "id": "puzzle_box__002e0374cb9719d0__001",
           "task": "puzzle_box",
@@ -377,15 +399,33 @@
             "caption": "决策 1 的 wrist 相机图像，来自该条记录。",
             "source": "https://huggingface.co/datasets/declare-lab/RoboQuest-Tool-Call/blob/ab10f3f858f713c926b340c314485ffaefbb79b7/puzzle_box/images/e1/e1c52baf2265bb2b332733d77e8e192a3ada8d301d8d5bb7374d2756f5034240.png"
           }
-        ]
+        ],
+        "walkthrough": {
+          "summary": "换一个独立训练实例，只看一个决策：输入是左、右和腕部三路相机及机器人状态，目标动作是调用 arm 移向左侧最前方的红色滑块。不是重放上一段示范的第一步。",
+          "input": "实例 002e0374cb9719d0 的第 1 个决策：三路相机、机械臂末端位置、关节状态及回合预算等。图像是观测，proprio 字段是机器人的自身状态。",
+          "output": "这一条训练样本的目标为一次 arm 工具调用。arguments 给出世界坐标位置和 ticks；它是数据集保存的目标动作，不是本站向机器人发送的指令。",
+          "checks": [
+            "作者从该步的示范状态单独核验调用，tier A 表示该步的几何误差等级，不能读成整个任务已经成功。",
+            "本条只覆盖一个决策，不包含从初始状态一路执行到 SUBMIT 的成功证据，也不是模型测试成绩。"
+          ],
+          "sourceField": "/target/tool_calls/0/function/arguments",
+          "excerpts": [
+            {
+              "label": "训练记录中的 arm 参数字符串",
+              "text": "{\"position_world_m\":[1.944,-3.775,1.16],\"ticks\":40}"
+            }
+          ],
+          "note": "本条是 Tool-Call 训练资料。相机图片、状态和目标动作属于这个实例；不得与其他示范或 eval50 结果混为同一回合。"
+        }
       },
       {
         "id": "roboquest-eval50-astra-puzzle-059f",
-        "title": "Puzzle Box：一次官方模型评测记录",
+        "title": "Puzzle Box · 读一条官方评测结果",
+        "shortTitle": "开盒评测结果",
         "type": "record",
         "promptOrigin": "editorial",
         "prompt": "在五个插销相互阻挡的木盒任务中，找出操作顺序，取出橘子并提交。",
-        "explanation": "作者公开的 eval50 清单包含此实例；评测结果表记录 GPT-6 Astra 在该实例以 80 次决策完成正确提交，进度为 1.0。实例配置包含 5 个联动插销、无遮罩；这是发布方报告的单次仿真结果，不代表整体成功率，也没有该次运行的录像。",
+        "explanation": "读分时同时核对实例、观察条件、提交方式与成本字段。本例保留官方结果的原始字符串值；它证明的是发布方记录了这一行结果，不代表本站验证了整个模型评测。",
         "raw": {
           "model": "GPT-6 Astra",
           "model_dir": "openai-gpt-6-astra",
@@ -410,6 +450,37 @@
         "license": "RoboQuest 代码仓库标注 MIT License，Copyright (c) 2026 DeCLaRe Lab；本条摘录公开结果表中的一行。",
         "licensePath": "licenses/roboquest-mit.txt",
         "split": "官方 suite/v1/eval50 / puzzle_box / 实例 059f7f6ecc3ee5e7；模型评测结果。",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "最后看结果如何记录：官方 eval50 表中，GPT-6 Astra 在一个五插销、无遮罩的独立实例完成了正确提交。这是一条结果行，不是一段可回放的模型轨迹。",
+          "input": "本条能查到的是评测实例配置：059f7f6ecc3ee5e7，chain_length=5、cover=none，观测级别 pb_visible。结果表不包含模型每一步看到的图像与完整对话。",
+          "output": "模型通过机器人动作完成任务并进行物理提交。结果行记录 80 次决策、6819 ticks、341.0 秒仿真时间，结束方式为 physical_submit。",
+          "checks": [
+            "作者结果行记录 outcome=correct submit、success=1、progress=1.0、submitted=1；这些是发布方对这一次运行的判定。",
+            "单个成功回合不能替代整个评测集成功率。仿真时间 341.0 秒与实际用时 wall_seconds=1147 是不同口径。"
+          ],
+          "sourceField": "outcome",
+          "excerpts": [
+            {
+              "label": "官方 CSV 中的 outcome 字段",
+              "text": "correct submit"
+            }
+          ],
+          "note": "本站未独立重跑该实例，也未提供这次运行的录像。前面的开发视频和训练图像不能充当这次评测的影像证据。"
+        }
+      },
+      {
+        "id": "roboquest-official-task",
+        "title": "Search Room · 官方任务概览",
+        "shortTitle": "Search Room 搜索",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "搜索并找齐隐藏目标，把它们放到托盘后主动提交。",
+        "explanation": "这是官网公开的另一类任务概览，用于理解搜索、搬运与主动提交的要求。本条原始来源字段仅是任务名称，没有对应完整轨迹、图像或单次成绩，不能当作可复现的评测记录。",
+        "raw": "Search Room",
+        "source": "https://declare-lab.github.io/RoboQuest/",
+        "license": "原始任务名称来自官方资料；本站中文说明为整理解读，未转载完整题集或媒体。",
+        "split": "官方公开任务示例；不推断其训练或测试划分。",
         "excerpt": true
       }
     ]

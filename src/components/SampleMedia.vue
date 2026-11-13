@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import type { SampleAsset } from "../content/schema";
 import { ref } from "vue";
+import { liberoMediaUrl, isCurrentMediaEvent } from "../lib/liberoMediaRetry";
 import Icon from "./Icon.vue";
 import SampleImageDialog from "./SampleImageDialog.vue";
-defineProps<{
+const props = defineProps<{
   assets: SampleAsset[];
   title: string;
   failedAssets: readonly string[];
+  overview?: boolean;
+  retryToken?: string;
 }>();
 // 由查看器保留当前样例的失败记录，切换到原始数据再返回时不重复请求失败媒体。
 const emit = defineEmits<{ assetError: [path: string] }>();
 const baseUrl = import.meta.env.BASE_URL;
 const openedImage = ref<Extract<SampleAsset, { kind: "image" }> | null>(null);
 function assetUrl(path: string) {
-  return `${baseUrl}${path}`;
+  return liberoMediaUrl(baseUrl, path, props.retryToken);
 }
-function markAssetFailed(path: string) {
+function markAssetFailed(path: string, event?: Event) {
+  if (!isCurrentMediaEvent(event)) return;
   emit("assetError", path);
 }
 function assetCaption(asset: SampleAsset) {
@@ -25,11 +29,16 @@ function assetCaption(asset: SampleAsset) {
 }
 </script>
 <template>
-  <div class="sample-assets">
+  <div class="sample-assets" :class="{ 'sample-assets-overview': overview }">
     <figure
       v-for="asset in assets"
-      :key="`${asset.kind}:${asset.path}`"
+      :key="`${asset.kind}:${asset.path}:${retryToken || ''}`"
       class="sample-media"
+      :class="{
+        'image-media': asset.kind === 'image',
+        'libero-video-media':
+          asset.path === 'videos/libero-episode0-reconstructed.mp4',
+      }"
     >
       <button
         v-if="asset.kind === 'image' && !failedAssets.includes(asset.path)"
@@ -44,7 +53,7 @@ function assetCaption(asset: SampleAsset) {
           :width="asset.width"
           :height="asset.height"
           loading="lazy"
-          @error="markAssetFailed(asset.path)"
+          @error="markAssetFailed(asset.path, $event)"
         /><span class="image-action"
           ><Icon name="image" :size="15" />点击放大<span
             >{{ asset.width }} × {{ asset.height }}</span
@@ -57,16 +66,21 @@ function assetCaption(asset: SampleAsset) {
         :aria-label="asset.caption || title"
         controls
         preload="metadata"
-        @error="markAssetFailed(asset.path)"
+        @error="markAssetFailed(asset.path, $event)"
       ></audio>
       <video
         v-else-if="asset.kind === 'video' && !failedAssets.includes(asset.path)"
         :src="assetUrl(asset.path)"
+        :style="
+          asset.path === 'videos/libero-episode0-reconstructed.mp4'
+            ? { aspectRatio: '1 / 1' }
+            : undefined
+        "
         :poster="asset.poster ? assetUrl(asset.poster) : undefined"
         :aria-label="asset.caption || title"
         controls
         preload="metadata"
-        @error="markAssetFailed(asset.path)"
+        @error="markAssetFailed(asset.path, $event)"
       >
         <track
           v-if="asset.captions"
@@ -174,6 +188,37 @@ function assetCaption(asset: SampleAsset) {
 .sample-media video {
   /* 小分辨率原片也需要足够大的原生播放控件。 */
   width: min(100%, 680px);
+}
+.sample-assets-overview {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  align-items: start;
+}
+.sample-assets-overview .sample-media:not(.image-media) {
+  grid-column: 1 / -1;
+}
+.sample-assets-overview .sample-image-button,
+.sample-assets-overview img {
+  width: 100%;
+}
+.sample-assets-overview video {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  background: var(--surface-sunken);
+}
+/* LIBERO reserves the same square for metadata, success and failure states. */
+.libero-video-media video,
+.libero-video-media .media-error {
+  width: 100%;
+  max-width: 320px;
+  max-height: none;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+.libero-video-media .media-error {
+  display: grid;
+  place-items: center;
+  margin: 0;
 }
 .sample-media audio {
   display: block;

@@ -1,21 +1,10 @@
 <script setup lang="ts">
+import ArcGrid from "./ArcGrid.vue";
 import type { TaskSample } from "../types/benchmark";
 defineProps<{
   task: NonNullable<TaskSample["gridTask"]>;
   showAnswer: boolean;
 }>();
-const colors = [
-  "#171923",
-  "#1479e8",
-  "#ed343b",
-  "#29b957",
-  "#ffd633",
-  "#979ba8",
-  "#e43daa",
-  "#f98f21",
-  "#66d7ec",
-  "#941b3a",
-];
 </script>
 <template>
   <div class="arc-task">
@@ -35,28 +24,11 @@ const colors = [
       <div class="arc-grids">
         <figure v-for="side in ['input', 'output'] as const" :key="side">
           <figcaption>{{ side === "input" ? "输入" : "输出" }}</figcaption>
-          <svg
+          <ArcGrid
             v-if="side === 'input' || p < task.train.length || showAnswer"
-            :viewBox="`0 0 ${(pair[side][0]?.length || 1) * 20} ${pair[side].length * 20}`"
-            role="img"
-            :aria-label="`${p < task.train.length ? '示范' : '测试'}网格${side === 'input' ? '输入' : '输出'}，${pair[side].length} 行 ${pair[side][0]?.length} 列`"
-          >
-            <g v-for="(row, y) in pair[side]" :key="y">
-              <rect
-                v-for="(cell, x) in row"
-                :key="x"
-                :x="x * 20"
-                :y="y * 20"
-                width="20"
-                height="20"
-                :fill="colors[cell]"
-                stroke="#ffffff35"
-                stroke-width=".7"
-              >
-                <title>{{ y + 1 }} 行 {{ x + 1 }} 列：{{ cell }}</title>
-              </rect>
-            </g>
-          </svg>
+            :grid="pair[side]"
+            :label="`${p < task.train.length ? '示范' : '测试'}网格${side === 'input' ? '输入' : '输出'}`"
+          />
           <div v-else class="arc-hidden">?<small>展开参考答案查看</small></div>
         </figure>
       </div>
@@ -89,7 +61,7 @@ const colors = [
   color: var(--muted);
   margin-bottom: 8px;
 }
-.arc-grids svg {
+.arc-grids :deep(.arc-grid) {
   width: 100%;
   max-height: 220px;
   display: block;

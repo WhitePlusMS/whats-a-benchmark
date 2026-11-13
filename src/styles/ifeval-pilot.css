@@ -1,0 +1,666 @@
+.if-pilot {
+  color: var(--text);
+}
+.if-cases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1.6rem 0;
+}
+.if-cases button,
+.if-presets button,
+.if-variants button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+.if-cases small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.7rem;
+  margin-bottom: 0.4rem;
+}
+.if-cases b {
+  font-size: 0.95rem;
+}
+.if-cases button[aria-pressed="true"],
+.if-variants button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent-text);
+}
+.if-task {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.if-task > div,
+.if-task > aside {
+  padding: 1.5rem;
+  min-width: 0;
+}
+.if-task > aside {
+  background: var(--surface-raised, var(--bg));
+  border-left: 1px solid var(--border);
+}
+.if-task h3 {
+  margin: 0.6rem 0 1rem;
+  font-size: 1.3rem;
+}
+.if-original {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.85;
+  font-size: 0.97rem;
+  border-left: 3px solid var(--accent-text);
+  padding: 0.7rem 1rem;
+  background: var(--bg);
+}
+.if-task a,
+.if-protocol a {
+  color: var(--accent-text);
+  font-size: 0.8rem;
+}
+.if-task ol {
+  padding-left: 1.2rem;
+}
+.if-task li {
+  margin: 0.9rem 0;
+  font-size: 0.85rem;
+}
+.if-task li code {
+  display: block;
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+  margin-top: 0.3rem;
+  color: var(--muted);
+}
+.if-boundary {
+  border: 1px dashed var(--accent-text);
+  padding: 0.8rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+.if-task small {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.75rem;
+}
+.if-lab {
+  margin: 1.4rem 0;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  padding: 1.5rem;
+}
+.if-editor-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.if-editor h3 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+.if-editor p {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.if-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.if-presets button {
+  font-size: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border-style: dashed;
+}
+.if-editor label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.7rem 0;
+}
+.if-editor label small {
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-left: 0.4rem;
+}
+.if-editor textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 140px;
+  max-height: 440px;
+  resize: vertical;
+  padding: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font: 0.9rem/1.7 var(--font-mono, monospace);
+}
+.if-editor .if-scope {
+  font-size: 0.72rem;
+  margin: 0.65rem 0;
+}
+.if-flow-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.3rem 0 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.if-flow-caption b {
+  color: var(--text);
+}
+.if-visuals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.if-rule {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--bg);
+}
+.if-rule header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.if-rule h4 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+.if-state {
+  font-size: 0.65rem;
+  flex-shrink: 0;
+  padding: 0.25rem 0.4rem;
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--muted);
+}
+.if-rule.pass .if-state {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.if-rule.fail .if-state {
+  border: 1px solid var(--muted);
+  color: var(--text);
+}
+.if-rule.unknown .if-state {
+  border: 1px dashed var(--accent-text);
+  color: var(--accent-text);
+}
+.if-scan,
+.if-case-scan {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-height: 65px;
+  align-content: start;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  font: 0.9rem/1.8 monospace;
+}
+.if-scan span {
+  min-width: 0.65em;
+  text-align: center;
+}
+.if-scan .hit,
+.if-case-scan .hit {
+  background: var(--accent-text);
+  color: var(--surface);
+  border-radius: 3px;
+  box-shadow: 0 2px 0 var(--accent-text);
+}
+.if-readout {
+  margin: 0.75rem 0;
+  font-size: 0.78rem;
+}
+.if-readout > b {
+  font-size: 1.8rem;
+  color: var(--accent-text);
+  font-variant-numeric: tabular-nums;
+}
+.if-readout small,
+.if-rule > small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.6;
+  margin-top: 0.35rem;
+}
+.if-rule-note {
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+.if-rule-id {
+  font-size: 0.61rem;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+.if-slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+.if-slots > span {
+  min-height: 44px;
+  border: 1px dashed var(--border);
+  border-radius: 7px;
+  padding: 0.4rem;
+  overflow-wrap: anywhere;
+  font: 0.7rem/1.5 monospace;
+  text-align: center;
+}
+.if-slots small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.58rem;
+}
+.if-slots .filled,
+.if-keywords .filled {
+  background: var(--accent-soft);
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+.if-budget {
+  height: 65px;
+  position: relative;
+  border: 1px solid var(--border);
+  border-right: 3px solid var(--accent-text);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.if-budget > div {
+  height: 100%;
+  background: var(--accent-soft);
+  transition: width 0.2s;
+}
+.if-budget > span {
+  position: absolute;
+  right: 0.6rem;
+  top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--accent-text);
+}
+.if-token-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.if-token-row > span {
+  font: 0.65rem monospace;
+  padding: 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+}
+.if-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.if-highlights > span {
+  padding: 0.7rem;
+  border-left: 3px solid var(--accent-text);
+  background: var(--accent-soft);
+  border-radius: 0 8px 8px 0;
+  overflow-wrap: anywhere;
+}
+.if-highlights small {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--muted);
+}
+.if-highlights code {
+  font-size: 0.8rem;
+}
+.if-prefix-sample {
+  margin-top: 0.8rem;
+  background: var(--surface);
+  border-left: 3px solid var(--accent-text);
+  padding: 0.75rem;
+  overflow-wrap: anywhere;
+}
+.if-prefix-sample small {
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+.if-prefix-sample p {
+  font: 0.75rem/1.8 monospace;
+  margin: 0.4rem 0 0;
+}
+.if-section-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.if-section-track > div {
+  padding: 0.8rem;
+  background: var(--surface);
+  border-left: 3px solid var(--accent-text);
+  border-radius: 0 8px 8px 0;
+}
+.if-section-track b {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+.if-section-track code {
+  font-size: 0.8rem;
+}
+.if-pending {
+  padding: 0.7rem;
+  border: 1px dashed var(--accent-text);
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+.if-keywords {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.if-keywords > div {
+  border: 1px solid var(--border);
+  padding: 0.7rem;
+  border-radius: 8px;
+  min-width: 0;
+}
+.if-keywords b {
+  font: 0.75rem monospace;
+  overflow-wrap: anywhere;
+}
+.if-keywords small {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+.if-summary {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: var(--accent-soft);
+  border-radius: 12px;
+}
+.if-summary > div {
+  flex-shrink: 0;
+}
+.if-summary small {
+  font-size: 0.65rem;
+  display: block;
+}
+.if-summary strong {
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 0.3rem;
+  color: var(--accent-text);
+}
+.if-summary p {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  margin: 0;
+}
+.if-matrix-toggle {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--accent-text);
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+}
+.if-loose {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.if-loose h3 {
+  font-size: 1.2rem;
+}
+.if-loose p {
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+.if-variants {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.if-variants button {
+  font-size: 0.7rem;
+  padding: 0.65rem;
+}
+.if-candidate {
+  max-height: 160px;
+  overflow: auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 0.75rem/1.6 monospace;
+}
+.if-matrix-scroll {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+.if-matrix-scroll table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+  font-size: 0.75rem;
+}
+.if-matrix-scroll caption {
+  font-size: 0.7rem;
+  text-align: left;
+  padding: 0.7rem;
+  color: var(--muted);
+}
+.if-matrix-scroll th,
+.if-matrix-scroll td {
+  padding: 0.7rem 0.4rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.if-matrix-scroll th:first-child {
+  text-align: left;
+}
+.if-matrix-scroll .pass {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.if-matrix-scroll .unknown {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+.if-matrix-scroll .fail {
+  color: var(--text);
+}
+.if-protocol {
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: var(--surface);
+  margin-top: 1.5rem;
+}
+.if-protocol h3 {
+  font-size: 1.2rem;
+  margin: 0 0 1rem;
+}
+.if-protocol p {
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.if-score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+.if-score-grid > div {
+  border-left: 2px solid var(--accent-text);
+  padding-left: 0.7rem;
+}
+.if-score-grid b {
+  display: block;
+  font: 0.85rem monospace;
+  color: var(--accent-text);
+}
+.if-score-grid span {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  margin-top: 0.4rem;
+}
+.if-pilot button:focus-visible,
+.if-pilot a:focus-visible,
+.if-pilot textarea:focus-visible,
+.if-matrix-scroll:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+@media (max-width: 850px) {
+  .if-task {
+    grid-template-columns: 1fr;
+  }
+  .if-task > aside {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .if-score-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .if-visuals {
+    grid-template-columns: 1fr;
+  }
+  .if-editor-heading {
+    align-items: start;
+  }
+  .if-cases {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .if-cases {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+  }
+  .if-cases button {
+    padding: 0.7rem;
+  }
+  .if-cases b {
+    font-size: 0.8rem;
+  }
+  .if-task > div,
+  .if-task > aside,
+  .if-lab,
+  .if-protocol {
+    padding: 1rem;
+  }
+  .if-editor-heading {
+    flex-wrap: wrap;
+  }
+  .if-editor h3 {
+    font-size: 1.1rem;
+  }
+  .if-editor label small {
+    display: block;
+    margin: 0.3rem 0;
+  }
+  .if-original {
+    font-size: 0.84rem;
+    padding: 0.6rem;
+  }
+  .if-flow-caption {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .if-summary {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+  .if-summary > span {
+    display: none;
+  }
+  .if-variants {
+    grid-template-columns: 1fr 1fr;
+  }
+  .if-rule {
+    padding: 0.8rem;
+  }
+  .if-rule header {
+    flex-wrap: wrap;
+  }
+  .if-score-grid {
+    gap: 1rem;
+  }
+  .if-slots {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .if-pilot * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.if-match-text {
+  font-size: 0.8rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.if-match-text code {
+  display: inline-block;
+  margin: 0.2rem 0.4rem;
+  padding: 0.15rem 0.4rem;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.if-match-context {
+  padding-left: 1rem;
+  font: 0.75rem/1.8 monospace;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.if-match-context mark {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-weight: 700;
+  text-decoration: underline;
+}

@@ -83,7 +83,7 @@
       "不同版本和贡献类别可能有各自说明；复用前按具体文件及其上游来源核验。"
     ],
     "sourceUrls": [
-      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353"
+      "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/README.md"
     ]
   },
   "sampleSet": {
@@ -94,7 +94,7 @@
         "title": "三角形面积函数调用",
         "type": "record",
         "prompt": "Find the area of a triangle with a base of 10 units and height of 5 units.",
-        "explanation": "请求给出三角形底边和高度。模型需要从函数定义中选出合适的工具，并将两项数值填入正确参数；不能只口头回答面积。",
+        "explanation": "请求给出三角形底边和高度。模型需要从函数定义中选出合适的工具，并将两项数值填入正确参数；不能只口头回答面积。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "simple_python_0",
           "question": [
@@ -133,7 +133,7 @@
             }
           ]
         },
-        "source": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L1",
         "license": "Apache-2.0 · BFCL benchmark data",
         "split": "BFCL V4 · simple_python category; official source does not name a train/validation/test split",
         "excerpt": false
@@ -143,7 +143,7 @@
         "title": "阶乘函数调用",
         "type": "record",
         "prompt": "Calculate the factorial of 5 using math functions.",
-        "explanation": "请求要求用数学函数计算 5 的阶乘。重点是选择正确函数并生成符合定义的调用参数；此记录未附标准答案。",
+        "explanation": "请求要求用数学函数计算 5 的阶乘。重点是选择正确函数并生成符合定义的调用参数；原任务行未包含答案。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "simple_python_1",
           "question": [
@@ -173,7 +173,7 @@
             }
           ]
         },
-        "source": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L2",
         "license": "Apache-2.0 · BFCL benchmark data",
         "split": "BFCL V4 · simple_python category; official source does not name a train/validation/test split",
         "excerpt": false
@@ -183,7 +183,7 @@
         "title": "国家首都与邻近工具区分",
         "type": "record",
         "prompt": "What is the capital of Brazil?",
-        "explanation": "题目问巴西首都，但工具列表同时给出最大城市、首都和人口查询函数。重点是按请求选择首都查询并填写国家参数，不能只看参数相同就任选工具；该行未提供标准调用。",
+        "explanation": "题目问巴西首都，但工具列表同时给出最大城市、首都和人口查询函数。重点是按请求选择首都查询并填写国家参数，不能只看参数相同就任选工具；原任务行未提供标准调用。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "multiple_2",
           "question": [
@@ -245,7 +245,7 @@
             }
           ]
         },
-        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json",
+        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json#L3",
         "license": "Apache-2.0 · BFCL 作者团队；固定版本官方 data/README.md 标注该许可。仅展示任务与函数定义，未附模型输出或执行结果。",
         "split": "BFCL V4 · multiple category · record multiple_2; official source does not identify a train/validation/test split · repository commit 6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
         "excerpt": false
@@ -255,7 +255,7 @@
         "title": "欧氏距离与角度函数区分",
         "type": "record",
         "prompt": "Compute the Euclidean distance between two points A(3,4) and B(1,2).",
-        "explanation": "请求计算两点的欧氏距离，而另一工具用相同点坐标计算与x轴夹角。这个案例考察按操作语义选择函数，原工具定义和参数保持完整，未补造标准调用。",
+        "explanation": "请求计算两点的欧氏距离，而另一工具用相同点坐标计算与x轴夹角。这个案例考察按操作语义选择函数，原工具定义和参数保持完整，未补造标准调用。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "multiple_3",
           "question": [
@@ -331,7 +331,7 @@
             }
           ]
         },
-        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json",
+        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json#L4",
         "license": "Apache-2.0 · BFCL 作者团队；固定版本官方 data/README.md 标注该许可。仅展示任务与函数定义，未附模型输出或执行结果。",
         "split": "BFCL V4 · multiple category · record multiple_3; official source does not identify a train/validation/test split · repository commit 6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
         "excerpt": false
@@ -341,7 +341,7 @@
         "title": "位移与末速度函数区分",
         "type": "record",
         "prompt": "Can you calculate the displacement of a car moving at an initial speed of 20 m/s and then accelerates at 10 m/s^2 for 5 seconds? (assuming a straight line motion)",
-        "explanation": "用户给初速度、加速度和时间并要求位移；两个工具都接受这些量，但分别计算位移和末速度。原始行完整保留两套定义，没有把自行计算的数值填成官方答案。",
+        "explanation": "用户给初速度、加速度和时间并要求位移；两个工具都接受这些量，但分别计算位移和末速度。原始行完整保留两套定义，没有把自行计算的数值填成官方答案。 本次另查到固定版本 possible_answer 中的官方 ground_truth，可在本案例展开；它是参数候选，不是函数执行返回值，未混入本条原始 raw。",
         "raw": {
           "id": "multiple_4",
           "question": [
@@ -417,7 +417,7 @@
             }
           ]
         },
-        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json",
+        "source": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json#L5",
         "license": "Apache-2.0 · BFCL 作者团队；固定版本官方 data/README.md 标注该许可。仅展示任务与函数定义，未附模型输出或执行结果。",
         "split": "BFCL V4 · multiple category · record multiple_4; official source does not identify a train/validation/test split · repository commit 6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
         "excerpt": false
@@ -426,22 +426,24 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "5 条真实案例可在本站切换查看，原字段及数据入口保留。每条解析说明具体任务和取样范围；公开示例不代替完整题集。",
-    "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json",
+    "reason": "5 条真实任务展示可用函数与参考调用，涵盖 simple_python 和 multiple。原任务行与另文件的官方调用标注分开展示；本站局部对照不是完整 BFCL 评测。",
+    "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L1-L2",
     "sourceUrls": [
-      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L990-L991",
-      "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353",
+      "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L1-L2",
+      "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
       "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json",
       "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/README.md"
     ]
   },
   "metric": {
-    "name": "Accuracy / category macro average",
-    "description": "按任务类别计算调用结构或执行结果是否正确，再汇总各类别结果；V4 leaderboard 采用版本特定的类别聚合方式。必须注明版本与任务类别，不能将 V1 规模或口径直接外推到 V4。",
+    "name": "类别准确率与版本特定加权汇总",
+    "description": "单轮所选五题按 AST 结构与参数候选检查，不以函数返回数值作答案。固定 V4 代码总体权重为 Non-live 10%、Live 10%、Irrelevance 10%、Multi-turn 30%、Agentic 40%，各类内部另有聚合规则；不是所有题简单平均。多轮会检查执行后的状态与响应，Agentic 使用独立检查器。须注明版本，本站五条案例不构成 BFCL 总分。",
     "direction": "higher",
     "sourceUrls": [
       "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#evaluation",
-      "https://gorilla.cs.berkeley.edu/leaderboard.html"
+      "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/eval_checker/eval_runner_helper.py",
+      "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/eval_checker/ast_eval/ast_checker.py"
     ]
   },
   "limitations": [
@@ -461,9 +463,10 @@
       ]
     },
     {
-      "text": "样例只覆盖 V4 simple_python 类别，不代表其他类别的记录 schema。",
+      "text": "本站样例覆盖 V4 simple_python 与 multiple 两类单轮任务；multiple 在这些题中要求多工具选一，不代表 parallel、多轮或 Agentic，也不等同完整模型输出解码器。",
       "sourceUrls": [
-        "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L990-L991"
+        "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L1-L2",
+        "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_multiple.json"
       ]
     }
   ],
@@ -495,12 +498,12 @@
     },
     {
       "label": "官方 V4 数据",
-      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L990-L991",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L1-L2",
       "role": "leaderboard"
     },
     {
       "label": "许可说明",
-      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
       "role": "leaderboard"
     },
     {
@@ -529,17 +532,52 @@
       "role": "data"
     },
     {
-      "label": "2026-10-19 核验的官方原始记录",
-      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
-      "role": "data"
-    },
-    {
       "label": "Berkeley Function Calling Leaderboard data README",
       "url": "https://raw.githubusercontent.com/ShishirPatil/gorilla/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md",
       "role": "readme"
+    },
+    {
+      "label": "官方 simple_python 调用标注",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/possible_answer/BFCL_v4_simple_python.json",
+      "role": "data"
+    },
+    {
+      "label": "官方 multiple 调用标注",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/data/possible_answer/BFCL_v4_multiple.json",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 AST 检查器",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/eval_checker/ast_eval/ast_checker.py",
+      "role": "code"
+    },
+    {
+      "label": "固定版本类别聚合",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/eval_checker/eval_runner_helper.py",
+      "role": "code"
+    },
+    {
+      "label": "固定版本多轮检查",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/berkeley-function-call-leaderboard/bfcl_eval/eval_checker/multi_turn_eval/multi_turn_checker.py",
+      "role": "code"
+    },
+    {
+      "label": "Gorilla 仓库 Apache-2.0 许可全文",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/6ea57973c7a6097fd7c5915698c54c17c5b1b6c8/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "历史核验所录入口（旧行号不适用；现用固定版见正文）",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/BFCL_v4_simple_python.json#L990-L991",
+      "role": "data"
+    },
+    {
+      "label": "历史核验所录入口（旧行号不适用；现用固定版见正文）",
+      "url": "https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/bfcl_eval/data/README.md#L343-L353",
+      "role": "data"
     }
   ],
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-12",
   "researchNotes": [
     {
       "text": "2026-10-19 真实记录补核：逐字段核对官方原始响应，去重后新增 3 条，现有 5 条；保留原字段与值，并提供逐条中文解析。文件修订和 HF /rows 响应快照分别记录，不把另行观察的仓库 HEAD 当作 /rows 固定版本。",

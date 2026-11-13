@@ -1,5 +1,6 @@
 import { ref, watch } from "vue";
 import type { SampleFile } from "../types/benchmark";
+import { sampleSourceText } from "../lib/sampleSourceText";
 
 const sampleTypes = new Set([
   "text",
@@ -68,11 +69,16 @@ function isSample(value: unknown): boolean {
   if (
     !hasText(value.id) ||
     !hasText(value.title) ||
+    ("shortTitle" in value &&
+      (!hasText(value.shortTitle) || value.shortTitle.length > 24)) ||
     typeof value.type !== "string" ||
     !sampleTypes.has(value.type) ||
     !hasText(value.prompt) ||
     !hasText(value.explanation) ||
-    !(hasText(value.raw) || (isRecord(value.raw) && Object.keys(value.raw).length > 0)) ||
+    !(
+      hasText(value.raw) ||
+      (isRecord(value.raw) && Object.keys(value.raw).length > 0)
+    ) ||
     !hasText(value.source) ||
     !hasText(value.license) ||
     !hasText(value.split) ||
@@ -81,6 +87,29 @@ function isSample(value: unknown): boolean {
     return false;
 
   return (
+    (!("walkthrough" in value) ||
+      (isRecord(value.walkthrough) &&
+        (!("summary" in value.walkthrough) ||
+          hasText(value.walkthrough.summary)) &&
+        hasText(value.walkthrough.input) &&
+        hasText(value.walkthrough.output) &&
+        hasText(value.walkthrough.note) &&
+        Array.isArray(value.walkthrough.checks) &&
+        value.walkthrough.checks.length > 0 &&
+        value.walkthrough.checks.every(hasText) &&
+        Array.isArray(value.walkthrough.excerpts) &&
+        value.walkthrough.excerpts.length > 0 &&
+        value.walkthrough.excerpts.every(
+          (part) => isRecord(part) && hasText(part.label) && hasText(part.text),
+        ) &&
+        hasText(
+          sampleSourceText(
+            value.raw,
+            typeof value.walkthrough.sourceField === "string"
+              ? value.walkthrough.sourceField
+              : undefined,
+          ),
+        ))) &&
     (!("promptOrigin" in value) ||
       (value.promptOrigin === "editorial" && value.excerpt === true)) &&
     (!("answer" in value) || typeof value.answer === "string") &&

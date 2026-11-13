@@ -48,6 +48,11 @@ export function useSampleViewer(
       state.failedAssets.push(path);
   }
 
+  // 只重试当前媒体，不重新获取样例或改变模式、答案与选题。
+  function retryMedia() {
+    state.failedAssets = [];
+  }
+
   const { mode, showAnswer, selectedOption } = toRefs(state);
   return {
     data,
@@ -58,8 +63,9 @@ export function useSampleViewer(
     mode,
     showAnswer,
     selectedOption,
-    // 展示模式切换不会清除此状态；切题或重新加载才会清除。
+    // 展示模式切换不会清除此状态；媒体重试、切题或重新加载会清除。
     failedAssets: computed(() => readonly(state.failedAssets)),
     markAssetFailed,
+    retryMedia,
   };
 }

@@ -6,10 +6,7 @@
   "subtitle": "机器人操作中的知识迁移与持续学习",
   "category": "agents",
   "embodied": {
-    "tasks": [
-      "manipulation",
-      "long-horizon"
-    ],
+    "tasks": ["manipulation", "long-horizon"],
     "resources": [
       {
         "label": "官方 Spatial 演示文件目录",
@@ -28,14 +25,9 @@
       }
     ]
   },
-  "tags": [
-    "抓取与操作",
-    "长步骤任务"
-  ],
+  "tags": ["抓取与操作", "长步骤任务"],
   "publisher": "LIBERO Team",
-  "brandIds": [
-    "libero"
-  ],
+  "brandIds": ["libero"],
   "year": 2023,
   "version": "官方资料所述版本",
   "kind": "original",
@@ -66,21 +58,15 @@
       "LIBERO-Spatial、LIBERO-Object、LIBERO-Goal",
       "LIBERO-90 预训练与 LIBERO-10 下游任务"
     ],
-    "fields": [
-      "工作区及腕部相机观测、机器人状态、任务语言"
-    ],
-    "files": [
-      "官方按任务提供 HDF5 演示文件。"
-    ],
+    "fields": ["工作区及腕部相机观测、机器人状态、任务语言"],
+    "files": ["官方按任务提供 HDF5 演示文件。"],
     "sourceUrls": [
       "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
     ]
   },
   "dataAccess": {
     "status": "public",
-    "requirements": [
-      "以官方数据页面的下载、运行和使用条件为准。"
-    ],
+    "requirements": ["以官方数据页面的下载、运行和使用条件为准。"],
     "url": "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial",
     "sourceUrls": [
       "https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_spatial"
@@ -88,16 +74,20 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "转换数据卡标注 Apache 2.0；LIBERO 官方 README 将数据标为 CC BY 4.0。",
-    "scope": "展示 HuggingFaceVLA/libero 固定版本的单条训练示范首尾帧和按原帧率合成的视频。",
+    "license": "LIBERO 官方数据为 CC BY 4.0、代码为 MIT；转换数据卡标注 Apache 2.0，不能覆盖上游数据许可。",
+    "scope": "仅限本站现有 train 轨迹 0 的衍生媒体：首尾帧与按 10 Hz 从场景相机观测帧重新编码的视频；不包含黑碗任务的第三方评测录像。",
     "boundaries": [
       "训练示范不等同验证集，也不能代表模型评测成绩。",
-      "LIBERO 数据采用 CC BY 4.0；许可正文见参考资料中的 CC BY 4.0 入口。"
+      "LIBERO 数据采用 CC BY 4.0；许可正文见参考资料中的 CC BY 4.0 入口。",
+      "上游署名：LIBERO Team（Lifelong Robot Learning）；转换来源：HuggingFaceVLA/libero。本站从场景相机观测帧按 10 Hz 重新编码为视频，并展示首尾帧。",
+      "第三方黑碗录像数据卡标注 license: other，未给予独立明确的再发布授权，本站仅外链；其日志仓库 MIT 许可不自动覆盖录像。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/README.md",
       "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md",
-      "https://creativecommons.org/licenses/by/4.0/"
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/README.md#license",
+      "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/blob/4b03350d65593f39b2f12fe83c866f1ac1902b7d/README.md"
     ]
   },
   "sampleAccess": {
@@ -129,6 +119,13 @@
       "sourceUrls": [
         "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/master/README.md"
       ]
+    },
+    {
+      "text": "LIBERO-PRO 与 LIBERO-Plus 是独立衍生协议，扰动、样本量和成绩不能并入本条原版 LIBERO。",
+      "sourceUrls": [
+        "https://github.com/Zxy-MLlab/LIBERO-PRO",
+        "https://github.com/sylvestf/LIBERO-plus"
+      ]
     }
   ],
   "sources": [
@@ -148,12 +145,12 @@
       "role": "data"
     },
     {
-      "label": "相关版本官方资料",
+      "label": "LIBERO-PRO 独立衍生协议",
       "url": "https://github.com/Zxy-MLlab/LIBERO-PRO",
       "role": "definition"
     },
     {
-      "label": "相关版本官方资料",
+      "label": "LIBERO-Plus 独立衍生协议",
       "url": "https://github.com/sylvestf/LIBERO-plus",
       "role": "definition"
     },
@@ -201,6 +198,51 @@
       "label": "第三方录像数据卡和许可",
       "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts",
       "role": "data"
+    },
+    {
+      "label": "双杯任务目标 BDDL（固定版本）",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.bddl",
+      "role": "data"
+    },
+    {
+      "label": "黑碗任务目标 BDDL（固定版本）",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/bddl_files/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+      "role": "data"
+    },
+    {
+      "label": "双杯场景成功检查（固定版本）",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/problems/libero_living_room_tabletop_manipulation.py#L136-L144",
+      "role": "data"
+    },
+    {
+      "label": "桌面场景成功检查（固定版本）",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/problems/libero_tabletop_manipulation.py#L135-L143",
+      "role": "data"
+    },
+    {
+      "label": "On 条件委托（固定版本）",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/predicates/base_predicates.py#L62-L64",
+      "role": "data"
+    },
+    {
+      "label": "物体接触与位置检查（固定版本）",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/object_states/base_object_states.py#L78-L94",
+      "role": "data"
+    },
+    {
+      "label": "官方代码与数据许可（固定版本）",
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/README.md#license",
+      "role": "access"
+    },
+    {
+      "label": "第三方录像数据卡与许可（固定版本）",
+      "url": "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/blob/4b03350d65593f39b2f12fe83c866f1ac1902b7d/README.md",
+      "role": "access"
+    },
+    {
+      "label": "第三方日志仓库代码许可",
+      "url": "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/LICENSE",
+      "role": "access"
     }
   ],
   "related": [
@@ -208,48 +250,19 @@
       "id": "libero-pro",
       "label": "衍生评测",
       "detail": "LIBERO-PRO 在原版任务上引入泛化扰动。",
-      "sourceUrls": [
-        "https://github.com/Zxy-MLlab/LIBERO-PRO"
-      ]
+      "sourceUrls": ["https://github.com/Zxy-MLlab/LIBERO-PRO"]
     },
     {
       "id": "libero-plus",
       "label": "衍生评测",
       "detail": "LIBERO-Plus 基于原版引入七维鲁棒性扰动。",
-      "sourceUrls": [
-        "https://github.com/sylvestf/LIBERO-plus"
-      ]
+      "sourceUrls": ["https://github.com/sylvestf/LIBERO-plus"]
     }
   ],
   "verifiedAt": "2026-10-28",
   "sampleSet": {
     "retrievedAt": "2026-10-28",
     "samples": [
-      {
-        "id": "libero-pi05-spatial-task0-trial0",
-        "title": "黑碗放到盘子上 · 第三方评测记录",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "在仿真桌面上，拿起盘子与小烤碗之间的黑碗，放到盘子上。",
-        "explanation": "第三方使用 pi05_libero 策略，在 LIBERO-Spatial 的第 0 个任务进行第 0 次尝试。该日志记录 79 个动作步骤、随机种子 7，并标记该次成功；这是单次仿真结果，不能代表整体成功率。对应录像见相关资源链接。",
-        "raw": {
-          "episode_id": "official:libero_spatial:task-00:trial-00:seed-7",
-          "task_description": "pick up the black bowl between the plate and the ramekin and place it on the plate",
-          "suite": "libero_spatial",
-          "task_id": 0,
-          "trial": 0,
-          "seed": 7,
-          "attempt": 0,
-          "action_steps": 79,
-          "status": "success",
-          "success": true,
-          "video": "videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4"
-        },
-        "source": "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
-        "license": "评测日志与录像来自第三方；录像数据卡要求核对各上游许可，本站仅链接原视频。",
-        "split": "第三方评测 / LIBERO-Spatial / task 0 / trial 0 / seed 7",
-        "excerpt": true
-      },
       {
         "id": "libero-dataset-episode-0",
         "title": "真实轨迹 0：两个杯子放到两个盘子",
@@ -271,24 +284,11 @@
             "task_index": 0,
             "timestamp": 0.0,
             "observation.state": [
-              -0.05338004603981972,
-              0.007029631175100803,
-              0.6783280968666077,
-              3.1407692432403564,
-              0.0017593271331861615,
-              -0.08994418382644653,
-              0.03878866136074066,
-              -0.03878721222281456
+              -0.05338004603981972, 0.007029631175100803, 0.6783280968666077,
+              3.1407692432403564, 0.0017593271331861615, -0.08994418382644653,
+              0.03878866136074066, -0.03878721222281456
             ],
-            "action": [
-              0.01607142947614193,
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              -1.0
-            ]
+            "action": [0.01607142947614193, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0]
           },
           "last_frame": {
             "frame_index": 213,
@@ -326,7 +326,71 @@
             "caption": "轨迹 0 · 第 213 帧 · 第三方转换数据分片中的相机画面",
             "source": "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet"
           }
-        ]
+        ],
+        "walkthrough": {
+          "summary": "从一段仿真示范理解任务：把两只不同颜色的杯子分别放到指定盘子上。可播放的是 train 轨迹 0，不是模型评测录像。",
+          "input": "任务语言指定物体与目标；策略还需相机观测和机器人状态。本页保留场景相机视频、首尾帧，以及首帧的 8 维 observation.state 和 7 维 action。",
+          "output": "机器人输出连续动作，不是文字答案。这里的 action 只保存首帧 7 个数值，不是完整动作轨迹；不从视频反推出未公开的逐步动作。",
+          "checks": [
+            "官方固定版本 BDDL 要求同时满足 On porcelain_mug_1 plate_1 与 On white_yellow_mug_1 plate_2，两项按 AND 合取，不是任选一个。",
+            "白杯对应场景定义的左盘 plate_1，黄白杯对应右盘 plate_2。视频中白杯在屏幕右、黄白杯在屏幕左；示意不代表相机方位，不可把指令左右直接映射为画面左右。",
+            "On 使用环境状态中的接触与位置条件；仅凭训练末帧不能代替评测器的成功判定。本条没有 success 字段，本站未运行评测。"
+          ],
+          "sourceField": "/episode/tasks/0",
+          "excerpts": [
+            {
+              "label": "原指令：白杯的目标",
+              "text": "put the white mug on the left plate"
+            },
+            {
+              "label": "原指令：黄白杯的目标",
+              "text": "put the yellow and white mug on the right plate"
+            }
+          ],
+          "note": "214 帧，帧号 0–213；按 10 Hz 合成的视频容器时长 21.4 秒，末帧时间戳约 21.3 秒。它与黑碗第三方运行是不同任务，不能用这段训练视频解释那次 success。上游 LIBERO Team 数据为 CC BY 4.0，HuggingFaceVLA 提供转换；本站从观测帧按 10 Hz 重新编码。"
+        }
+      },
+      {
+        "id": "libero-pi05-spatial-task0-trial0",
+        "title": "黑碗放到盘子上 · 第三方评测记录",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在仿真桌面上，拿起盘子与小烤碗之间的黑碗，放到盘子上。",
+        "explanation": "第三方使用 pi05_libero 策略，在 LIBERO-Spatial 的 task 0、trial 0、seed 7 运行。日志记录 79 个环境动作步并标记 success；这是单次仿真结果，不是整体成功率，也不等于 79 次模型决策。对应录像仅外链。",
+        "raw": {
+          "episode_id": "official:libero_spatial:task-00:trial-00:seed-7",
+          "task_description": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+          "suite": "libero_spatial",
+          "task_id": 0,
+          "trial": 0,
+          "seed": 7,
+          "attempt": 0,
+          "action_steps": 79,
+          "status": "success",
+          "success": true,
+          "video": "videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4"
+        },
+        "source": "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
+        "license": "评测日志与录像来自第三方；录像数据卡要求核对各上游许可，本站仅链接原视频。",
+        "split": "第三方评测 / LIBERO-Spatial / task 0 / trial 0 / seed 7",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "独立的黑碗任务：找出盘子与 ramekin（小烤碗）之间的目标黑碗，放到盘子上。第三方日志报告成功，但只代表一次尝试。",
+          "input": "固定官方 BDDL 含两只黑碗；目标是盘子与 ramekin 之间的 akita_black_bowl_1，另一只为干扰物。第三方日志原文以 task_description 保留，不与 BDDL 含 akita 的语言原文混用。",
+          "output": "日志 action_steps=79 表示 79 个环境动作步，不能直接读成模型做了 79 次决策；该运行另有 replan=5、wait_steps=10。本条摘录没有完整相机观测或动作序列。",
+          "checks": [
+            "第三方记录 task 0 / trial 0 / seed 7、status=success、success=true。本站未独立重跑；一次成功不能代表整体成功率。",
+            "官方固定版本目标为 On akita_black_bowl_1 plate_1，按环境接触与位置条件判断。此规则用于解释任务，未证明第三方历史运行依赖的 LIBERO SHA 就是该版本。"
+          ],
+          "sourceField": "task_description",
+          "excerpts": [
+            {
+              "label": "第三方日志保留的完整任务指令",
+              "text": "pick up the black bowl between the plate and the ramekin and place it on the plate"
+            }
+          ],
+          "note": "LIBERO 是任务来源，第三方 pi05 项目是日志发布方。episode_id 与路径中的 official 不表示 LIBERO 官方发布了该结果。原录像 license: other，未明确独立再发布授权，仅提供外链；双杯训练视频不是这次运行录像。"
+        }
       }
     ]
   },
@@ -351,6 +415,25 @@
         "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
         "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts/blob/4b03350d65593f39b2f12fe83c866f1ac1902b7d/videos/official/full/libero_spatial_task-00_trial-00_attempt-00_success-fb443e5254.mp4",
         "https://huggingface.co/datasets/ctegdf/pi05-libero-rollouts"
+      ]
+    },
+    {
+      "text": "2026-11-12 复核固定第三方日志、录像摘要、转换集 info 与 rows API 的 215 行边界：episode 0 为连续 214 帧，下一行为 episode 1/frame 0。现有视频为 214 帧、10 Hz、容器 21.4 秒；末帧时间戳约 21.3 秒。首尾图与同版本缓存图的场景和编码差异交叉核对。本轮未重下完整原始 parquet、未逐像素重建全部 214 帧，也未重新解码 tasks/episodes 元数据完成任务文字映射；保留既有原始记录及核验日期，不声称全链路重建。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/data/chunk-000/file-000.parquet",
+        "https://github.com/ctegdf/pi05-libero-eval/blob/3a02da0c37ce82022fd5f58e92203d571d2383cd/results/openpi-libero/official-full/episodes.jsonl",
+        "https://huggingface.co/datasets/HuggingFaceVLA/libero/blob/86958911c0f959db2bbbdb107eb3e17c5f9c798e/meta/info.json"
+      ]
+    },
+    {
+      "text": "2026-11-12 以官方固定 SHA 8f1084e3132a39270c3a13ebe37270a43ece2a01 的 BDDL 与 On 实现解释两个任务的目标条件；未证明第三方历史运行使用同一依赖版本，未在本站运行评测。",
+      "sourceUrls": [
+        "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.bddl",
+        "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/bddl_files/libero_spatial/pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+        "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/problems/libero_living_room_tabletop_manipulation.py#L136-L144",
+        "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/problems/libero_tabletop_manipulation.py#L135-L143",
+        "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/predicates/base_predicates.py#L62-L64",
+        "https://github.com/Lifelong-Robot-Learning/LIBERO/blob/8f1084e3132a39270c3a13ebe37270a43ece2a01/libero/libero/envs/object_states/base_object_states.py#L78-L94"
       ]
     }
   ]

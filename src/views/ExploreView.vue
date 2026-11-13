@@ -18,6 +18,7 @@ import BenchmarkCard from "../components/BenchmarkCard.vue";
 import CatalogFilters from "../components/CatalogFilters.vue";
 import UiDialog from "../components/UiDialog.vue";
 import Icon from "../components/Icon.vue";
+import ComparisonSelectionBar from "../components/ComparisonSelectionBar.vue";
 import { formatCount } from "../lib/displayFormats";
 
 const route = useRoute();
@@ -188,7 +189,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         <Icon
           :name="query.sample === 'local' ? 'tick' : 'book'"
           :size="17"
-        />站内案例<span>{{ localCount }}</span>
+        />有站内案例<span>{{ localCount }} 项</span>
       </button>
       <button
         class="mobile-filter-button"
@@ -203,6 +204,20 @@ function setFilter(key: CatalogFilterKey, value: string) {
         ><Icon name="down" :size="15" />
       </button>
     </section>
+  </div>
+  <div v-if="!isEmbodied && !hasFilters" class="container">
+    <RouterLink class="reading-feature" to="/benchmarks/terminal-bench-4/">
+      <span class="reading-feature-mark" aria-hidden="true"
+        ><Icon name="code" :size="21"
+      /></span>
+      <span class="reading-feature-copy">
+        <strong>Terminal-Bench 4.0 任务示例</strong>
+        <small>从输入到验收，看看这项评测怎样出题</small>
+      </span>
+      <span class="reading-feature-action"
+        >开始阅读 <Icon name="up" :size="16"
+      /></span>
+    </RouterLink>
   </div>
   <div id="catalog" class="container atlas-layout">
     <aside v-if="!isMobile" class="filters" aria-label="评测筛选">
@@ -221,6 +236,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         {{ query.q ? `搜索“${query.q}”，` : "" }}找到
         {{ formatCount(results.length) }} 项评测。
       </p>
+      <ComparisonSelectionBar inline />
       <div class="results-toolbar">
         <div>
           <h2>

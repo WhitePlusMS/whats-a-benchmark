@@ -2,7 +2,7 @@
 
 .sample-viewer {
   border: 1px solid var(--border);
-  border-radius: 11px;
+  border-radius: var(--ui-card-radius);
   background: var(--surface);
   overflow: hidden;
 }
@@ -79,6 +79,34 @@
 .sample-body {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(220px, 1fr);
+}
+.sample-body-wide {
+  grid-template-columns: minmax(0, 1fr);
+}
+.sample-body-wide > .sample-insight {
+  border-top: 1px solid var(--border);
+  border-left: 0;
+}
+.case-visual {
+  margin-block-start: var(--ui-space);
+}
+.task-walkthrough > .case-visual {
+  margin-block-end: 22px;
+}
+.case-visual:empty {
+  display: none;
+}
+.sample-question :deep(.case-visual-disclosure > summary) {
+  color: var(--accent-text);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding-block: 9px;
+}
+.sample-question :deep(.swe-pilot figcaption) {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-bottom: 6px;
 }
 .sample-question {
   padding: 22px;
@@ -183,7 +211,7 @@
   color: var(--muted);
   font-size: 13px;
   border: 1px dashed var(--accent-border);
-  border-radius: 10px;
+  border-radius: var(--ui-card-radius);
 }
 .external-sample {
   text-align: left;
@@ -232,23 +260,23 @@
     max-width: 100%;
     width: 100%;
     font-size: 16px;
-    min-height: 44px;
+    min-height: var(--ui-touch-target);
   }
   .sample-picker {
     width: 100%;
     max-width: none;
   }
   .sample-step {
-    flex-basis: 44px;
-    width: 44px;
-    height: 44px;
+    flex-basis: var(--ui-touch-target);
+    width: var(--ui-touch-target);
+    height: var(--ui-touch-target);
   }
   .sample-tabs {
     width: 100%;
   }
   .sample-tabs button {
     flex: 1;
-    min-height: 44px;
+    min-height: var(--ui-touch-target);
     font-size: 13px;
   }
   .sample-question,
@@ -267,10 +295,11 @@
 }
 
 /* 当前样例的选项、答案及来源交互。 */
-.mode-note {
-  margin-left: 6px;
-  font-size: 11px;
+.sample-raw-note {
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--border);
   color: var(--muted);
+  font-size: var(--ui-text-meta);
 }
 .external-sample > .downloaded-sample-note {
   max-width: 760px;
