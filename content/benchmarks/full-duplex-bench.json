@@ -21,7 +21,9 @@
   "aliases": [
     "Full Duplex Bench",
     "FDB",
-    "Full-Duplex-Bench v1"
+    "Full-Duplex-Bench v1",
+    "Full Duplex Bench（AA 对话动态子集）",
+    "AA Conversational Dynamics"
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
@@ -112,10 +114,9 @@
       ]
     },
     {
-      "text": "Artificial Analysis 的 Conversational Dynamics 采用特定子集/实现，不等同于自动覆盖作者完整基准。",
+      "text": "本站 pause-handling example 来自上游 v1/v1.5 示例目录，未取得 AA 逐题成员表，不将该例冒称 AA 计分成员。",
       "sourceUrls": [
-        "https://arxiv.org/abs/2503.04721",
-        "https://github.com/DanielLin94144/Full-Duplex-Bench"
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
       ]
     }
   ],
@@ -179,16 +180,37 @@
       "label": "包含本页各原始记录/文件的官方数据目录",
       "url": "https://github.com/DanielLin94144/Full-Duplex-Bench/tree/3e799c45a045256f47d5f1c9cda90157e2d2ec9e/v1_v1.5/evaluation/example_data/pause_handling_example/1",
       "role": "data"
+    },
+    {
+      "label": "AA 语音到语音方法与版本历史",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "role": "definition"
     }
   ],
-  "related": [],
+  "related": [
+    {
+      "id": "aa-speech-to-speech-index-v2-0",
+      "label": "现行 AA 指数 v2.0",
+      "detail": "本子集已不计入 v2.0，历史关系保留。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    }
+  ],
   "verifiedAt": "2026-10-19",
   "interpretation": {
     "versionChanges": {
-      "text": "原始论文v1；另有v1.5、v2、v3后续版本，任务与协议有变化",
+      "text": "原始论文v1；另有v1.5、v2、v3后续版本，任务与协议有变化。AA 指数 v1.0（2026 年 6–8 月）纳入该子集；v1.1（8 月）加入 Arena；v2.0（8 月起）将对话动态换成 Arena Task Success Rate。AA 方法页仍说明对话动态，不意味着它仍计入现行指数。",
       "sourceUrls": [
         "https://arxiv.org/abs/2503.04721",
-        "https://github.com/DanielLin94144/Full-Duplex-Bench"
+        "https://github.com/DanielLin94144/Full-Duplex-Bench",
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "AA 对话动态是跨上游版本的混合子集：v1 提供 Pause Handling（用户停顿时不抢话）和 Turn Taking（适时接话）；v1.5 提供 User Interruption Handling（回应用户中途打断）和 Backchannel Handling（听到附和时继续说话）。每项按正确行为的比例统计，不等于任何一个完整上游版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
       ]
     }
   },
@@ -214,7 +236,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-13",
   "sampleSet": {
     "samples": [
       {

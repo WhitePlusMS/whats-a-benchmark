@@ -1,0 +1,168 @@
+{
+  "id": "aa-tts-provider-voice",
+  "status": "published",
+  "order": 600,
+  "name": "Provider Voice Arena",
+  "subtitle": "用供应商提供的音色比较实际语音体验",
+  "category": "multimodal",
+  "tags": [
+    "语音合成",
+    "供应商音色",
+    "人类偏好"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": null,
+  "version": "2026-11-13 官方方法快照；未核实独立版本号或首发年月",
+  "kind": "original",
+  "aliases": [
+    "Provider Voice Arena",
+    "AA Provider Voice Arena",
+    "AA TTS Provider Voice",
+    "供应商音色评测"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "相同文本由不同模型使用各自供应商提供的代表性音色合成语音，比较用户实际可获得的语音体验。",
+    "task": "比较自然度、音质、发音、节奏和韵律等整体听感；偏好票不是客观答案正确率。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech"
+    ]
+  },
+  "taskContract": {
+    "input": "文本提示与选定的供应商音色；一组对比使用同一性别和口音类别。",
+    "output": "同一文本的两段模型合成语音，供听众二选一盲评。",
+    "environment": "隐藏模型名、随机播放位置，听过每段的最低要求比例后可投票，无平局选项。音频预先生成并统一播放格式和响度；不在本站发起投票或克隆新声音。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原则上每模型选择 8 个供应商音色：美国/英国口音 × 男/女，每组合 2 个；模型不提供的组合从该模型评测中排除，不伪补齐。",
+    "disclosure": "partial",
+    "scale": [
+      "目标每模型 8 音色；实际数量随供应商可用的性别/口音组合变化。"
+    ],
+    "splits": [
+      "提示覆盖客服、娱乐、知识分享、助手四类并持续更新；未核实固定公开 train/test 题包。"
+    ],
+    "fields": [
+      "文本提示",
+      "供应商音色、性别及口音",
+      "模型生成语音",
+      "成对偏好票"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech",
+      "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "正式分榜提供 Elo、置信区间及筛选；具体音频对比由独立 Speech Arena 入口访问。",
+      "方法页可按供应商查看所选音色；完整提示集、输出音频和投票明细未核实为可下载开放数据。"
+    ],
+    "url": "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech",
+      "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice",
+      "https://artificialanalysis.ai/text-to-speech/arena"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到覆盖参考录音、提示、合成音频与投票记录的统一再发布许可。",
+    "scope": "本站整理官方方法事实，提供榜单、Arena 与参考音色入口，不复制音频或提示原文。",
+    "boundaries": [
+      "网页可试听不等于允许下载再发布；开源模型权重许可不等于语音素材或说话人声音复用授权。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "实际成对音频请到官方 Speech Arena；本卡对应 Provider Voice（供应商音色）模式，不能把 Controlled Voice 的统一参考克隆对比当作本协议。本站未复制未授权音频，也未声称完成试听或投票。",
+    "url": "https://artificialanalysis.ai/text-to-speech/arena",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/text-to-speech/arena",
+      "https://artificialanalysis.ai/methodology/text-to-speech"
+    ]
+  },
+  "metric": {
+    "name": "Quality Elo（成对偏好）",
+    "description": "以 Bradley–Terry 最大似然拟合盲选票；每个 Arena 固定一个模型为 1000，其他分数相对它报告。展示 95% 置信区间；整体、分类、口音和语言榜分别拟合，不是对总体榜简单平均。两种 Arena 的 Elo 独立标定，不能直接横向比较绝对分数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/text-to-speech"
+    ]
+  },
+  "interpretation": {
+    "comparison": {
+      "text": "Controlled Voice 控制参考说话人；Provider Voice 使用供应商可提供的代表性音色。两者互补但不共用一个可直接比较的 Elo 标尺。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech"
+      ]
+    },
+    "versionChanges": {
+      "text": "官方对实质更新后的模型创建新的带日期变体、重新生成全部音频且不继承旧票；旧变体仍可保留。合格历史票无时间衰减，重复对阵过多会降权，不应把某次榜单名次当作永久能力结论。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech"
+      ]
+    }
+  },
+  "limitations": [
+    {
+      "text": "Provider Voice 反映模型与所选音色的综合体验，不能视为剥离声音身份后的纯模型能力。缺少供应商原生音色时，官方使用专业配音录音生成声音；因此并非所有模型都具有 8 个原生音色。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech"
+      ]
+    },
+    {
+      "text": "多数评分来自筛选过的付费评审；官方同时比较公开与付费票的一致性，并对票做质量筛选。偏好 Elo 与单独的 Pronunciation Robustness 发音挑战评分不是同一指标。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech"
+      ]
+    },
+    {
+      "text": "未核实本 Arena 的独立首发年月；榜单的 Released 列是参评模型发布日期，不是评测发布日期。快照日期仅表示方法核对时间。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech",
+        "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/text-to-speech",
+      "label": "AA TTS 官方方法：音色条件、投票与 Elo",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice",
+      "label": "Provider Voice Arena 正式榜单",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://artificialanalysis.ai/text-to-speech/arena",
+      "label": "官方 Speech Arena：成对音频与盲选入口",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-tts-controlled-voice",
+      "label": "另一音色条件",
+      "detail": "对照统一参考音色下的克隆语音质量，不以两榜绝对 Elo 直接比较。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/text-to-speech"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13"
+}

@@ -1,0 +1,237 @@
+{
+  "id": "aa-wer",
+  "status": "published",
+  "order": 600,
+  "name": "AA-WER",
+  "subtitle": "三种英语语音场景加权，分开比较批量与流式识别",
+  "category": "multimodal",
+  "tags": [
+    "语音识别",
+    "ASR",
+    "流式转录",
+    "词错误率"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA-WER v2.2；公开清洗转录 v1.0",
+  "kind": "suite",
+  "aliases": [
+    "Artificial Analysis Word Error Rate",
+    "AA-WER v2.2",
+    "AA-WER v2.0",
+    "AA-AgentTalk",
+    "VoxPopuli-Cleaned-AA",
+    "Earnings22-Cleaned-AA",
+    "AMI SDM（历史成员）",
+    "VoxPopuli-Cleaned-AA v1.0",
+    "Earnings22-Cleaned-AA v1.0",
+    "AMI SDM",
+    "AA-WER v1.0"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以代理脚本、议会讲话和财报电话会的英语转录错误率加权衡量语音识别，区分批量与流式接口。",
+    "task": "把英语音频转成逐字文本；与人工核对参考转录统一规范化后计算替换、插入和删除错误。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-text"
+    ]
+  },
+  "taskContract": {
+    "input": "三套英语音频，约 8 小时；支持提示的接口要求只转录说出的内容。",
+    "output": "批量接口返回转录；流式接口返回可修改 partial 与确认 final，分别计算相应 WER。",
+    "environment": "直接调用 model-provider API。batch 默认处理 Earnings22 整段，受限时从约9分钟分块缩至约30秒；stream 通常约30秒分块、部分配置整段，20ms 实时送音频或遵循公开配置。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-text"
+    ]
+  },
+  "dataProfile": {
+    "summary": "当前 1,103 音频样本由私有 AgentTalk 469 条和两套公开 test 清洗转录 634 条组成；官方规模约 8 小时，不代表三套原始语料全量。",
+    "disclosure": "partial",
+    "scale": [
+      "AA-AgentTalk｜50%：469 条，8–109 秒，约250分钟；参与者朗读为语音代理场景设计的脚本，涵盖6内容类别、17口音组和8说话风格，不是自然交互日志。",
+      "VoxPopuli-Cleaned-AA｜25%：628 条英语欧洲议会片段，约5–38秒；固定 JSONL 实读628行，duration合计7122.378375秒（约118.7分钟）。",
+      "Earnings22-Cleaned-AA｜25%：6 段公司财报电话会议，约14–22分钟；固定 JSONL 实读6行，duration合计6895秒（约114.9分钟）。"
+    ],
+    "splits": [
+      "AgentTalk：proprietary held-out。",
+      "VoxPopuli、Earnings22：各自 default 配置 / test split，清洗转录发布版本1.0。",
+      "历史 AMI SDM：Single Distant Microphone（单远场麦克风），不是所有多通道音频；未确认 AA 旧版子集等于上游完整 sdm/test。"
+    ],
+    "fields": [
+      "id、duration、transcript、language、url、dataset、file_name；VoxPopuli另有gender。"
+    ],
+    "files": [
+      "voxpopuli_cleaned_aa_v1.jsonl，固定07adf4a，280621字节。",
+      "earnings22_cleaned_aa_v1.jsonl，固定5999936，93751字节。",
+      "两个仓库另有 audio/；本轮只读取数据卡、索引和JSONL，未下载或听辨音频。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-text",
+      "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/voxpopuli_cleaned_aa_v1.jsonl",
+      "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/earnings22_cleaned_aa_v1.jsonl",
+      "https://groups.inf.ed.ac.uk/ami/corpus/",
+      "https://huggingface.co/datasets/edinburghcstr/ami/blob/9429bb0d3192aaa7d49baee9a642cd03db3a1f4b/README.md",
+      "https://www.microsoft.com/en-us/research/wp-content/uploads/2023/11/ICASSP2023_Real_Simulation_tSOT.pdf"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "两套固定公开转录与官方音频入口可访问。",
+      "AgentTalk完整留出集私有；方法页主动展示少量音频，不等于授权获取或再发布全量。"
+    ],
+    "url": "https://artificialanalysis.ai/speech-to-text",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-text",
+      "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "两个固定 AA 数据卡均声明 Apache-2.0，并要求参照上游 ESB 条款；AgentTalk 为专有留出集。",
+    "scope": "本站中文介绍方法、权重和数据字段，链接公开语料与官方示例，不分发音频或完整转录。",
+    "boundaries": [
+      "AA 清洗数据卡许可不直接作为所有上游音频权利的确认；所指上游 esb/datasets README 本次匿名读取返回401，尚未完成权利链核验。",
+      "没有将 AA 网页音频或私有 AgentTalk 转录转载到站内。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-text",
+      "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方方法页含 AgentTalk、VoxPopuli 清洗前后与 Earnings22 的可播放示例；本站提供入口，不以合成语音替代真实评测材料。本轮未实际播放或独立听辨。",
+    "url": "https://artificialanalysis.ai/methodology/speech-to-text",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-text",
+      "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/README.md",
+      "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/README.md"
+    ]
+  },
+  "metric": {
+    "name": "AA-WER（越低越好）",
+    "description": "WER=(替换+插入+删除)/参考词数，以 Levenshtein 对齐计算。每语料内先按音频时长加权，再按 AgentTalk50%、VoxPopuli25%、Earnings22 25%加权。Earnings22分块转录先拼回母录音再算WER，不直接平均分块WER。batch另列音频时长/API耗时的Speed Factor；stream另列语音结束后的Time to Final与Time to First Partial，两者都包含网络影响。",
+    "direction": "lower",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-text"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "此页测英语转录，不外推多语言理解、语音生成或代理任务执行能力。AgentTalk为脚本朗读，虽覆盖口音与噪声，也不是所有真实会话分布。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-wer-v2",
+        "https://artificialanalysis.ai/methodology/speech-to-text"
+      ]
+    },
+    {
+      "text": "WER不包含说话人归属错误；方法页另有WDER及Diarization Index，不计入本页50/25/25权重。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-text"
+      ]
+    },
+    {
+      "text": "清洗修正的是参考转录错误，并保留真实说出的重复和语法错误；版本变化可能改变同一模型的WER，历史数值应带评测与规范化版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-wer-v2",
+        "https://artificialanalysis.ai/methodology/speech-to-text"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/speech-to-text",
+      "label": "官方STT方法、当前v2.2与历史",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "label": "AA-WER v2.0发布：2026-02-17",
+      "role": "release"
+    },
+    {
+      "url": "https://artificialanalysis.ai/speech-to-text",
+      "label": "官方批量及流式语音榜单入口",
+      "role": "leaderboard"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/README.md",
+      "label": "VoxPopuli固定数据卡与许可",
+      "role": "readme"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/README.md",
+      "label": "Earnings22固定数据卡与许可",
+      "role": "readme"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/voxpopuli_cleaned_aa_v1.jsonl",
+      "label": "实际读取的628行固定test JSONL",
+      "role": "data"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/earnings22_cleaned_aa_v1.jsonl",
+      "label": "实际读取的6行固定test JSONL",
+      "role": "data"
+    },
+    {
+      "label": "AMI 官方语料入口（历史成员来源）",
+      "url": "https://groups.inf.ed.ac.uk/ami/corpus/",
+      "role": "data"
+    },
+    {
+      "label": "爱丁堡 CSTR AMI 固定数据卡：sdm 配置",
+      "url": "https://huggingface.co/datasets/edinburghcstr/ami/blob/9429bb0d3192aaa7d49baee9a642cd03db3a1f4b/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "作者论文 §4.1：AMI SDM 单远场麦克风定义",
+      "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2023/11/ICASSP2023_Real_Simulation_tSOT.pdf",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-05",
+  "interpretation": {
+    "judge": {
+      "text": "参考文本和模型输出共同使用基于 Whisper English normalizer 的定制规范化，消除数字、缩写、标点等不改变语义的差异，保留有意义的代码、符号与词语遗漏错误；这是转录对齐，不是LLM裁判。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-text"
+      ]
+    },
+    "comparison": {
+      "text": "batch与stream共享WER语料、权重和规范化，但分块及输出时点可不同。流式final/partial WER分开报告，不将早期partial与最终结果直接等同。SileroVAD确定语音结束；支持强制endpoint时从实际送完语音并发出信号的墙钟时刻计时，不从文件时间戳计时。无强制endpoint时先取2秒内自然final，缺失则按官方规则退回partial。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-text"
+      ]
+    },
+    "disclosure": {
+      "text": "固定转录v1.0不等于评测版本v1.0；现行方法是v2.2。公开JSONL的行数和duration已亲自核对，但未独立验证音频与转录对应、未复现规范化或运行模型，因此不能把官方清洗声明写成本站听辨验收。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-text",
+        "https://huggingface.co/datasets/ArtificialAnalysis/VoxPopuli-Cleaned-AA/blob/07adf4a242e2e5dd955a230909c177573c978ee3/README.md",
+        "https://huggingface.co/datasets/ArtificialAnalysis/Earnings22-Cleaned-AA/blob/5999936ee3d8d3cde160e3c65a8cc6ff5b7c5276/README.md"
+      ]
+    },
+    "versionChanges": {
+      "text": "AA-WER首次发布于2025-09，仅能核实到月：v1.0含AMI SDM、VoxPopuli、Earnings22共约6小时。v2.0于2026-02-17宣布加入AgentTalk、发布清洗转录与50/25/25权重，并因转录质量问题移除AMI SDM。v2.1在2026-04改进规范化；v2.2自2026-05起继续规范化并加入streaming评测，现行2.2日级发布日期未确认。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-text",
+        "https://artificialanalysis.ai/articles/aa-wer-v2",
+        "https://groups.inf.ed.ac.uk/ami/corpus/",
+        "https://huggingface.co/datasets/edinburghcstr/ami/blob/9429bb0d3192aaa7d49baee9a642cd03db3a1f4b/README.md"
+      ]
+    }
+  }
+}

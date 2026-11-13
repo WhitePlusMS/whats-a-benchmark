@@ -1,0 +1,183 @@
+{
+  "id": "aa-speech-to-speech-index-v2-0",
+  "status": "published",
+  "order": 1379,
+  "name": "Artificial Analysis Speech-to-Speech Index v2.0",
+  "subtitle": "四项等权指标，区分语音推理、工具任务与真人偏好",
+  "category": "general",
+  "tags": [
+    "复合指数",
+    "speech",
+    "index"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v2.0（2026-08 起；2026-11-13 方法快照）",
+  "kind": "suite",
+  "aliases": [
+    "Artificial Analysis Speech-to-Speech Index",
+    "AA Speech-to-Speech Index",
+    "Speech-to-Speech Index",
+    "AA Speech to Speech Index",
+    "语音到语音指数"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以四项等权指标汇总原生语音模型的推理、客服任务完成、真人偏好及真人工具任务成功率。",
+    "task": "仅在四项均有有效结果时纳入指数；分别记录各分项再计算综合分。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "Big Bench Audio 音频问题、τ-Voice 模拟客户与领域工具、Speech Agent Arena 真人对话场景。",
+    "output": "语音回答与工具调用，形成四项分数及加权综合指数。",
+    "environment": "AA 原生音频输入输出模型测试；自动任务、模拟客户和真人盲测采用不同协议，不能混为一次对话。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "三个评测产生四个等权指标；Arena 同时提供偏好和任务成功率，结构化组成合并为 50%。",
+    "disclosure": "partial",
+    "scale": [
+      "Big Bench Audio：1,000 题，四类各 250。",
+      "τ-Voice：278 场景，50 Airline + 114 Retail + 114 Telecom，每题 3 次。",
+      "Speech Agent Arena：35 场景，15 项工具任务、20 项非工具场景。"
+    ],
+    "splits": [
+      "指数本身无独立题集；成员公开数据、模拟场景和真人对话记录的开放范围不同。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+    "requirements": [
+      "方法与组成公开；各评测的数据入口见组成卡片。",
+      "Arena 参与者录音与转写不公开，不能从公开演示推断完整评测记录开放。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未确认整个指数及所有成员的统一题库或音频再发布许可。",
+    "scope": "本站整理中文方法说明并链接官方来源，不转载新音频或真人通话。",
+    "boundaries": [
+      "各成员许可独立；公开方法不等于题库或录音转载授权。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "指数不另造样例；可通过组成卡查看既有样例及官方 Arena 演示。",
+    "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "四项各 25% 的综合指数",
+    "description": "25% Big Bench Audio 准确率 + 25% τ-Voice 三次平均 pass@1 + 25% Arena Score + 25% Arena Task Success Rate。Arena Score = 100 / (1 + 10^((800 − frozen Elo) / 400))，采用达到发布条件时冻结的 Elo，不能直接用原始 Elo 与百分比相加。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "只有四项都有有效结果的模型才进入指数；任务完成率与真人偏好不等价。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    },
+    {
+      "text": "Arena 成功率分母为 success + model failure；排除 participant deviation 和 unverifiable，不能当作所有通话的成功比例。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    },
+    {
+      "text": "v2.0 仅披露到 2026 年 8 月，不把旧版首次公告日或 Arena 公告日冒充本版发布日期。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "AA 语音到语音方法与版本历史",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "artificial-analysis-speech-to-speech-index",
+      "label": "历史 v1.0",
+      "detail": "查看原有三项等权指数；不覆盖历史页。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-13",
+  "composition": {
+    "items": [
+      {
+        "id": "big-bench-audio",
+        "group": "语音推理",
+        "weight": 25,
+        "detail": "现行 BBA v1.2 判分协议；1,000 题准确率，未回答题不从分母删除。"
+      },
+      {
+        "id": "tau-voice",
+        "group": "客服任务",
+        "weight": 25,
+        "detail": "AA 基础三领域 278 场景；每题 3 次独立试验的平均 pass@1。"
+      },
+      {
+        "id": "speech-agent-arena",
+        "group": "真人对话",
+        "weight": 50,
+        "detail": "同一 Arena 提供两项独立指标：25% 冻结 Elo 转换的 Arena Score + 25% 合格工具对话 Task Success Rate；不是一个指标独占 50%。"
+      }
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+    ]
+  },
+  "interpretation": {
+    "judge": {
+      "text": "BBA 由裁判结合问题、参考答案与模型回答判正误；τ-Voice 使用状态核对和 GPT-4.1 自然语言检查；Arena 偏好由参与者给出，任务完成另检查最终工具调用。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    },
+    "comparison": {
+      "text": "Arena Elo 使用 Bradley–Terry 最大似然估计，以 GPT Realtime 1.5 为 1,000 锚点；进入指数时另转换为对 800 Elo 基线的预期偏好百分比。两种基准数字不要混用。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    },
+    "versionChanges": {
+      "text": "v1.0（2026 年 6–8 月）为 BBA、Full Duplex AA 子集、τ-Voice 三项等权；v1.1（8 月）加入 Arena；v2.0（8 月起）以 Arena Task Success Rate 替换 Full Duplex，对应四项各 25%。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    }
+  },
+  "releaseDate": "2026-08",
+  "updatedAt": "2026-11-13"
+}

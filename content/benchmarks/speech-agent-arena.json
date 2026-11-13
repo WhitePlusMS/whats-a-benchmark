@@ -15,7 +15,7 @@
     "artificial-analysis"
   ],
   "year": 2026,
-  "version": "AA于2026-08-24公告的初始Speech Agent Arena；其后纳入Speech-to-Speech Index v1.1的确切日未披露",
+  "version": "AA于2026-08-24公告的初始Speech Agent Arena；其后纳入Speech-to-Speech Index v1.1的确切日未披露；现行方法快照 2026-11-13（指数 v2.0）",
   "kind": "original",
   "aliases": [],
   "researchStatus": "pass-with-limitations",
@@ -79,7 +79,7 @@
   },
   "metric": {
     "name": "Arena偏好Elo及任务表现",
-    "description": "偏好投票用于拟合 Elo；工具任务成功率统计符合条件的对话中最终工具调用正确的比例。两项指标分别解释。",
+    "description": "真人偏好用 Bradley–Terry 最大似然拟合 Elo，以 GPT Realtime 1.5 为 1,000 锚点，报告近似 95% 区间。Task Success Rate = successes / (successes + model failures)，排除参与者偏离与不可核验对话，报告 Wilson 95% 区间。",
     "direction": "higher",
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
@@ -116,7 +116,16 @@
       "role": "access"
     }
   ],
-  "related": [],
+  "related": [
+    {
+      "id": "aa-speech-to-speech-index-v2-0",
+      "label": "AA 语音指数 v2.0",
+      "detail": "两项 Arena 指标合计占 50%，各自 25%。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
+    }
+  ],
   "verifiedAt": "2026-10-19",
   "releaseDate": "2026-08-24",
   "interpretation": {
@@ -126,9 +135,15 @@
         "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking",
         "https://artificialanalysis.ai/articles/announcing-the-speech-agent-arena"
       ]
+    },
+    "comparison": {
+      "text": "指数 v2.0 中本 Arena 提供两个独立分项：25% Arena Score（达到发布资格时冻结 Elo，再转换为相对 800 Elo 基线的偏好概率）及 25% Task Success Rate。整体榜单发布要求至少 100 次出场、95% 区间半宽不大于 75。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking"
+      ]
     }
   },
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-13",
   "researchNotes": [
     {
       "text": "2026-10-19直接核对官方原文，保留页面实际展示的短片段；任务说明及解析由本站整理，未将文字节选包装为完整题库行。源页面与响应哈希保存在本轮逐项核验资料中。",
