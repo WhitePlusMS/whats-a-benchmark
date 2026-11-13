@@ -14,9 +14,12 @@
     "cwe-bench"
   ],
   "year": 2026,
-  "version": "v1",
+  "version": "v1；AA Cyber Index v1.0 实施另列",
   "kind": "original",
-  "aliases": [],
+  "aliases": [
+    "CWE-Bench-AA",
+    "CWE-Bench-AA v1"
+  ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
     "summary": "评估智能体在真实开源代码库中审计并修补漏洞的防御能力；v1包含120项私有留出任务、覆盖73类CWE，以强化验证器检查修复结果。",
@@ -40,28 +43,32 @@
       "120项任务",
       "73种CWE"
     ],
-    "splits": [],
+    "splits": [
+      "AA 与 Collinear 的 120 项正式留出任务均私有；官方训练语料与该留出集不重叠。"
+    ],
     "fields": [],
     "files": [],
     "sourceUrls": [
-      "https://blog.collinear.ai/p/cwe-bench-v1"
+      "https://blog.collinear.ai/p/cwe-bench-v1",
+      "https://artificialanalysis.ai/evaluations/cwe-bench-aa"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "url": "https://cwe-bench.com/",
     "requirements": [
-      "120道留出评测题仍私有；官网另公开BlurHash训练示例，本站展示其实际验证输入。"
+      "120 项留出题私有。本站仅保留防御任务与评估条件说明，不展示可触发漏洞的输入或操作性样例。"
     ],
     "sourceUrls": [
       "https://cwe-bench.com/",
-      "https://blog.collinear.ai/p/cwe-bench-v1"
+      "https://blog.collinear.ai/p/cwe-bench-v1",
+      "https://artificialanalysis.ai/evaluations/cwe-bench-aa"
     ]
   },
   "reusePolicy": {
     "status": "unknown",
     "license": "未核实题库与媒体的统一再发布许可。",
-    "scope": "仅记录官方定义和已披露范围。",
+    "scope": "仅整理非操作性的官方任务定义、私有范围及防御评分，不转载任务测试输入。",
     "boundaries": [
       "不将代码许可推定为题库、素材或媒体再发布许可。"
     ],
@@ -70,11 +77,11 @@
     ]
   },
   "sampleAccess": {
-    "status": "local",
-    "reason": "完整留出题集私有，但官方另有具体公开演示；本站展示真实任务事实、原始数据节选与解析。",
-    "url": "https://cwe-bench.com/",
+    "status": "official",
+    "url": "https://artificialanalysis.ai/evaluations/cwe-bench-aa",
+    "reason": "查看官方评测定义与防御评分说明。本站不转载触发输入、攻击步骤或补丁代码；公开训练例不能冒称私有正式测试题。",
     "sourceUrls": [
-      "https://cwe-bench.com/"
+      "https://artificialanalysis.ai/evaluations/cwe-bench-aa"
     ]
   },
   "metric": {
@@ -103,44 +110,45 @@
       "label": "CWE-bench官方实际训练示例",
       "url": "https://cwe-bench.com/",
       "role": "data"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/cyber-index",
+      "label": "AA Cyber Index 方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/cwe-bench-aa",
+      "label": "CWE-Bench-AA 官方评测",
+      "role": "definition"
     }
   ],
-  "related": [],
+  "related": [
+    {
+      "id": "aa-cyber-index",
+      "label": "AA 实施所属指数",
+      "detail": "CWE-Bench-AA 在 v1.0 占 1/3，原榜与 AA 运行协议分别解释。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/cyber-index"
+      ]
+    }
+  ],
   "verifiedAt": "2026-10-19",
   "releaseDate": "2026-09-28",
   "interpretation": {
     "versionChanges": {
-      "text": "Collinear v1公告日期。",
+      "text": "Collinear v1公告日期。 AA 采用同一留出任务及确定性验证器，但原榜的代理产品、重复次数和部分给分轨道不同，不直接比较。",
       "sourceUrls": [
-        "https://blog.collinear.ai/p/cwe-bench-v1"
+        "https://blog.collinear.ai/p/cwe-bench-v1",
+        "https://artificialanalysis.ai/evaluations/cwe-bench-aa"
+      ]
+    },
+    "comparison": {
+      "text": "CWE-Bench-AA：120 私有留出任务，覆盖 OWASP Top 10（2025）的十类；统一 Stirrup、离线隔离环境，每题 2 小时、一次运行。程序化验证修复有效且合法行为仍正确才给 1，无部分分或 LLM 判分；汇总为 pass@1。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/cyber-index",
+        "https://artificialanalysis.ai/evaluations/cwe-bench-aa"
       ]
     }
   },
-  "updatedAt": "2026-10-20",
-  "sampleSet": {
-    "retrievedAt": "2026-10-19",
-    "samples": [
-      {
-        "id": "public-training-example-blurhash-decoder",
-        "title": "BlurHash 解码器：八个实际验证输入",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "审计Rust blurhash-rs的解码入口，使任何字符串输入都返回正常结果或可处理的错误，不能panic；合法BlurHash的像素输出必须保持不变，已有调用仍须编译。官方公开演示分别用多字节字符、越界数值和正常输入检查修补是否完整。",
-        "explanation": "这是官网明确标为training example的CVE-2023-42447公开任务，不是私有120道留出题中的已定位行。前三个输入检查UTF-8字符边界，接着两个检查解析数值导致的越界，最后三个检查正常行为。只拒绝非ASCII字符仍会在数值路径失败；同时验证字符和范围、保留合法像素输出，才满足官方通过条件。原始数据保留官网实际列出的八个输入，未编写或执行补丁/漏洞代码。",
-        "raw": "\"ıABCDE\"\n\"€ABCDE\"\n\"😀ABCDEF\"\n\n\"00~~~~\"\n\"00}}}}\"\n\n\"LBAdAqof00WCqZj[PDay0.WB}pof\"\n\"LEHV6nWB2yk8pyo0adR*.7kCMdnj\"\n\"abc\"",
-        "source": "https://cwe-bench.com/",
-        "license": "官方公开训练示例中实际测试字符串及任务事实的必要节选；不转载私有评测集或训练语料全集。",
-        "split": "官方Sample task / training example / blurhash-rs / CVE-2023-42447",
-        "excerpt": true
-      }
-    ]
-  },
-  "researchNotes": [
-    {
-      "text": "这是官网明确标为training example的CVE-2023-42447公开任务，不是私有120道留出题中的已定位行。前三个输入检查UTF-8字符边界，接着两个检查解析数值导致的越界，最后三个检查正常行为。只拒绝非ASCII字符仍会在数值路径失败；同时验证字符和范围、保留合法像素输出，才满足官方通过条件。原始数据保留官网实际列出的八个输入，未编写或执行补丁/漏洞代码。",
-      "sourceUrls": [
-        "https://cwe-bench.com/"
-      ]
-    }
-  ]
+  "updatedAt": "2026-11-13"
 }

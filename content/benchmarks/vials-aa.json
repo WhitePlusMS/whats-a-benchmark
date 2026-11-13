@@ -1,0 +1,179 @@
+{
+  "id": "vials-aa",
+  "status": "published",
+  "order": 600,
+  "name": "VIALS-AA",
+  "subtitle": "工具辅助解读生命科学图像，以三次都正确衡量稳定性",
+  "category": "multimodal",
+  "tags": [
+    "生命科学",
+    "科学图像",
+    "工具使用",
+    "视觉问答"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA实施；上游VIALS2.0.0",
+  "kind": "derivative",
+  "aliases": [
+    "VIALS",
+    "VIALS 2.0.0",
+    "Visual Interpretation of Artifacts in the Life Sciences",
+    "Artificial Analysis VIALS"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AA独立实施Handshake AI的生命科学视觉问答：161任务、174源图像、8类科学图像；评估是否能从专业实验材料读取与解释证据。",
+    "task": "在离线工具环境检查任务图像并回答科学问题；不把描述自然图片流畅程度当作专业图像理解能力。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/vials-aa",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa",
+      "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "科学问题和原图文件路径，图像文件可在沙箱读取。",
+    "output": "写入/task/answer.txt，最后以ANSWER:给出答案；抽取最后一个标记之后的文本评分。",
+    "environment": "Stirrup、Python3.13.11、科学/图像处理包及Tesseract；最多100 turns，无网络；仅视觉模型启用看图工具。每任务3次独立运行。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa"
+    ]
+  },
+  "dataProfile": {
+    "summary": "上游当前2.0.0仍为161题；AA网页样例明确标注VIALS2.0.0。固定HF数据卡为tasks/test，完整题图文件本轮未下载。",
+    "disclosure": "partial",
+    "scale": [
+      "161任务、174源图像、8类artifact；每题3次。"
+    ],
+    "splits": [
+      "HF tasks配置/test split。"
+    ],
+    "fields": [
+      "id、question、images、answer、domain、metadata（标签、图片文件名及数值答案上下界）。"
+    ],
+    "files": [
+      "data/tasks/test-*.parquet（固定数据卡声明，本轮未读Parquet）。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa",
+      "https://artificialanalysis.ai/evaluations/vials-aa",
+      "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/README.md",
+      "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/CHANGELOG.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "上游题库公开，官方AA页面可查看5个展示任务及部分保存运行。",
+      "本次读取固定README/CHANGELOG和AA方法；没有重跑代理或逐题验证全部161项。"
+    ],
+    "url": "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/README.md",
+      "https://artificialanalysis.ai/evaluations/vials-aa",
+      "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/CHANGELOG.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "上游数据CC BY4.0；代码MIT；作者明确要求基准数据不要进入训练语料。",
+    "scope": "本次仅中文说明方法并链接官方任务图像与回答，不搬运实验图片或模型轨迹。",
+    "boundaries": [
+      "代码许可不能代替数据/图像许可；若将来收录具体图片还需逐条保留来源归属。",
+      "公开示例中的单次正确不等于该任务三次均正确。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/README.md",
+      "https://github.com/Handshake-AI-Research/VIALS",
+      "https://artificialanalysis.ai/evaluations/vials-aa"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方页面提供科学图像问答的具体展示任务。本站仅链接非操作性视觉解读案例，不搬运实验图片、实验操作步骤或模型轨迹；展示回答不等于本站复验。",
+    "url": "https://artificialanalysis.ai/evaluations/vials-aa",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/evaluations/vials-aa"
+    ]
+  },
+  "metric": {
+    "name": "pass³（三次全对率）",
+    "description": "主分是3次独立运行全部正确的任务比例；Average of3为三次平均正确性；pass@3为三次至少一次正确。GPT-6 Luna(medium)依据上游judge提示评最终答案，先文本，必要时第二次调用加入图像；未交答案、无ANSWER:或拒答为零。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa",
+      "https://artificialanalysis.ai/evaluations/vials-aa"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "模型三次稳定答对比至少一次答对严格；相同161题不代表版本改动或工具/裁判变化可忽略。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa",
+        "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/CHANGELOG.md"
+      ]
+    },
+    {
+      "text": "方法和公开数据卡可核查，但本轮未复算分数或检查完整图像集；不报告本站模型成绩。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/README.md",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/evaluations/vials-aa",
+      "label": "AA正式定义与VIALS2.0.0具体示例",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/articles/vials-aa",
+      "label": "AA首发文章2026-11-06",
+      "role": "release"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa",
+      "label": "AA工具、判分与pass³协议",
+      "role": "definition"
+    },
+    {
+      "url": "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/README.md",
+      "label": "上游固定161题test数据卡与许可",
+      "role": "readme"
+    },
+    {
+      "url": "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/CHANGELOG.md",
+      "label": "上游固定2.0.0变更与日期",
+      "role": "release"
+    },
+    {
+      "url": "https://github.com/Handshake-AI-Research/VIALS",
+      "label": "上游运行框架及训练边界",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2026-11-06",
+  "interpretation": {
+    "judge": {
+      "text": "AA采用agentic Stirrup与GPT-6 Luna(medium)，不同于上游一阶段直接问答、GPT-5-mini与三次平均准确率；上游论文另有工具辅助实验，不能把所有上游设置笼统称无工具。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#vials-aa",
+        "https://github.com/Handshake-AI-Research/VIALS"
+      ]
+    },
+    "versionChanges": {
+      "text": "上游v1.0.0发布于2026-09-15；v2.0.0于2026-10-30修订3个任务，涉及2处提示、1个答案和1幅图，要求相关任务重新运行。AA独立发布于2026-11-06；不将上游发布日期冒充AA日期。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/handshake-ai-research/VIALS/blob/76be0fc34a7b2fbd27de0bac2aa58e07973d1095/CHANGELOG.md",
+        "https://artificialanalysis.ai/articles/vials-aa"
+      ]
+    }
+  }
+}

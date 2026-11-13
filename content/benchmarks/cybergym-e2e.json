@@ -11,10 +11,12 @@
     "sunblaze-ucb"
   ],
   "year": 2026,
-  "version": "论文定义版（初次公开日；数据修订需另行固定）",
+  "version": "论文定义版（初次公开日；数据修订需另行固定）；AA Cyber Index v1.0 的 131 项子集另列",
   "kind": "original",
   "aliases": [
-    "CyberGym E2E"
+    "CyberGym E2E",
+    "CyberGym-E2E-AA",
+    "CyberGym-E2E-AA v1"
   ],
   "researchStatus": "pass-with-limitations",
   "officialDefinition": {
@@ -38,7 +40,8 @@
   "dataProfile": {
     "summary": "任务覆盖139个项目中的920个真实漏洞；评测材料包括易受攻击的源代码仓库及构建、测试脚本。",
     "scale": [
-      "920个漏洞；分布于139个项目"
+      "920个漏洞；分布于139个项目",
+      "AA 子集：131 项、每项目一项；按难度筛选，并去除参考信息泄漏或沙箱不兼容项，不是上游全量成绩。"
     ],
     "splits": [],
     "fields": [],
@@ -49,7 +52,8 @@
     "sourceUrls": [
       "https://arxiv.org/abs/2606.04460",
       "https://github.com/sunblaze-ucb/cybergym-e2e",
-      "https://www.cybergym.io/cybergym-e2e/"
+      "https://www.cybergym.io/cybergym-e2e/",
+      "https://artificialanalysis.ai/methodology/cyber-index"
     ]
   },
   "dataAccess": {
@@ -62,7 +66,7 @@
   },
   "reusePolicy": {
     "license": "本轮未核实覆盖题库/媒体内容的许可。",
-    "scope": "本页仅展示对应实际任务的编辑解读和必要原始字段节选；完整题面、答案或附件再分发许可未确认。",
+    "scope": "本站仅提供非操作性的防御任务定义、公开范围及评分说明，不转载漏洞触发输入或操作代码。",
     "status": "unknown",
     "sourceUrls": [
       "https://arxiv.org/abs/2606.04460"
@@ -72,11 +76,11 @@
     ]
   },
   "sampleAccess": {
-    "status": "local",
-    "reason": "已取得并核对官方实际记录或具体公开案例，本站展示原始字段/原文节选及中文解析；省略范围见案例。",
-    "url": "https://www.cybergym.io/cybergym-e2e/",
+    "status": "official",
+    "url": "https://artificialanalysis.ai/methodology/cyber-index",
+    "reason": "仅链接官方高层方法及子集说明。本站不提供或执行漏洞触发材料、攻击工作流或补丁代码，也不以此前上游案例证明 AA 子集成员关系。",
     "sourceUrls": [
-      "https://www.cybergym.io/cybergym-e2e/"
+      "https://artificialanalysis.ai/methodology/cyber-index"
     ]
   },
   "metric": {
@@ -121,9 +125,28 @@
       "label": "CyberGym-E2E: Scalable Real-World Benchmark for AI Agents’ End-to-End Cybersecurity Capabilities",
       "url": "https://arxiv.org/html/2606.04460",
       "role": "paper"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/cyber-index",
+      "label": "AA Cyber Index 方法",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/evaluations/cybergym-e2e-aa",
+      "label": "CyberGym-E2E-AA 官方评测",
+      "role": "definition"
     }
   ],
-  "related": [],
+  "related": [
+    {
+      "id": "aa-cyber-index",
+      "label": "AA 子集所属指数",
+      "detail": "AA 的 131 项实施占 v1.0 指数 1/3，区别上游 920 项。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/cyber-index"
+      ]
+    }
+  ],
   "verifiedAt": "2026-10-19",
   "releaseDate": "2026-06-03",
   "interpretation": {
@@ -133,33 +156,14 @@
         "https://arxiv.org/abs/2606.04460",
         "https://rdi.berkeley.edu/blog/cybergym-e2e/"
       ]
-    }
-  },
-  "updatedAt": "2026-10-20",
-  "sampleSet": {
-    "retrievedAt": "2026-10-19",
-    "samples": [
-      {
-        "id": "cybergym-e2e-graphicsmagick-case",
-        "title": "公开案例 · GraphicsMagick MNG解析路径",
-        "type": "record",
-        "prompt": "官方E2E案例中，代理拿到GraphicsMagick代码库及构建、测试条件，自行定位MNG解析器问题并尝试修复。页面叙述其最终追踪到ReadMNGImage()/mng_LOOP；这不是已公开的完整原始任务提示。",
-        "explanation": "该页面案例描述沿 `ReadMNGImage()` 跟踪 `mng_LOOP` chunk，检查样例 MNG 字节布局并构造触发 heap-buffer-overflow 的最小 malformed 输入，再逐轮修补直至验证通过。这里是官方案例摘要，不是公开题库任务；网页没有提供可下载的输入文件或完整补丁，未下载或运行 PoC。",
-        "raw": "uses targeted search to home in on `ReadMNGImage()` in `coders/png.c`.",
-        "source": "https://www.cybergym.io/cybergym-e2e/",
-        "license": "官方案例页只公开此案例叙述；该页面未说明案例文字的再发布许可，仅保留不超过25个英文词的原文节选。",
-        "split": "Official page example / GraphicsMagick",
-        "excerpt": true,
-        "promptOrigin": "editorial"
-      }
-    ]
-  },
-  "researchNotes": [
-    {
-      "text": "2026-10-19实际取得记录cybergym-e2e-graphicsmagick-case；来源响应SHA-256 627b31e2a2112f89eec254ba30b2c0cffbb9b83d117faf29ffb6a708059ee8ff。来源文件commit/revision及原始字节哈希见本轮逐项取证。 展示字段、附件及省略范围见样例，未运行任务、训练或评测。",
+    },
+    "comparison": {
+      "text": "CyberGym-E2E-AA 在 920 项、139 项目的母集中选择 131 项，每项目一项；统一 Stirrup，任务只运行一次。主分为完成防御验证与功能回归三阶段的 pass@1；额外参考漏洞检查 S4 只记录，不参与主分。",
       "sourceUrls": [
-        "https://www.cybergym.io/cybergym-e2e/"
+        "https://artificialanalysis.ai/methodology/cyber-index",
+        "https://artificialanalysis.ai/evaluations/cybergym-e2e-aa"
       ]
     }
-  ]
+  },
+  "updatedAt": "2026-11-13"
 }

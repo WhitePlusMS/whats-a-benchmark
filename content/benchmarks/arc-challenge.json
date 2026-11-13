@@ -1,0 +1,181 @@
+{
+  "id": "arc-challenge",
+  "status": "published",
+  "order": 600,
+  "name": "ARC-Challenge",
+  "subtitle": "小学至中学科学选择题中的困难子集，不是ARC-AGI图形任务",
+  "category": "reasoning",
+  "tags": [
+    "科学问答",
+    "多项选择",
+    "常识推理"
+  ],
+  "publisher": "Allen Institute for Artificial Intelligence (AI2)",
+  "brandIds": [],
+  "year": 2018,
+  "version": "ARC-Challenge；固定数据210d026",
+  "kind": "subset",
+  "aliases": [
+    "AI2 Reasoning Challenge Challenge Set",
+    "ARC-C",
+    "ARC Challenge",
+    "AI2 ARC-Challenge"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "AI2 ARC科学选择题的Challenge子集：题目在原始检索与词共现基线上均答错，用于检验知识结合推理的问答能力。",
+    "task": "阅读自然科学题干和备选项，选择原始答案标签；与ARC-AGI网格归纳任务没有同一题集关系。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md",
+      "https://arxiv.org/abs/1803.05457"
+    ]
+  },
+  "taskContract": {
+    "input": "英文科学题干及choices.text/choices.label；选项标签应逐题读取，不能假定全为A–D。",
+    "output": "一个选项标签，与answerKey比对。",
+    "environment": "公开离线多项选择任务；few-shot、检索、工具或选项概率评分设置由实施者额外声明，不能混为统一配置。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "ARC整体有Easy与Challenge两配置；本页仅Challenge。固定test文件亲自读取1172行。",
+    "disclosure": "partial",
+    "scale": [
+      "Challenge：train1119、validation299、test1172，共2590题。",
+      "原始ARC全体7787题包含Easy，不可当成本页测试规模。"
+    ],
+    "splits": [
+      "ARC-Challenge/test；不混入ARC-Easy或ARC-AGI。"
+    ],
+    "fields": [
+      "id、question、choices.text、choices.label、answerKey。"
+    ],
+    "files": [
+      "ARC-Challenge/test-00000-of-00001.parquet：203808字节，1172行。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md",
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet",
+      "https://arxiv.org/abs/1803.05457"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "固定HF版本公开可读；本次下载小型test Parquet核对字段与样例。"
+    ],
+    "url": "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md",
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "allenai固定数据卡声明CC BY-SA 4.0。",
+    "scope": "节选一条真实test记录，保留AI2/ARC来源及答案；中文题干整理作为改编同样采用CC BY-SA 4.0。",
+    "boundaries": [
+      "署名并标明中文改编；转载该改编需按相同许可共享。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示已核对的公开具体任务，原始材料与本站说明分开。",
+    "url": "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md",
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet"
+    ]
+  },
+  "metric": {
+    "name": "多项选择准确率",
+    "description": "将预测选项与answerKey比较并在test上汇总；使用生成答案、选项对数概率或长度归一化时需另行标明，不能把不同推理设置的结果直接等同。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md",
+      "https://arxiv.org/abs/1803.05457"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "原始困难度来自当时两种基线的筛选，不意味着当代模型同样困难；公开多年题目存在训练暴露可能，不能单独代表前沿能力。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/1803.05457"
+      ]
+    },
+    {
+      "text": "发布日期采用原论文首次提交日2018-03-14，不是当前HF转换版本日期。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/1803.05457"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/README.md",
+      "label": "AI2固定数据卡与CC BY-SA许可",
+      "role": "readme"
+    },
+    {
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet",
+      "label": "亲自读取的1172题固定test文件",
+      "role": "data"
+    },
+    {
+      "url": "https://arxiv.org/abs/1803.05457",
+      "label": "ARC原始论文与2018-03-14发布日期",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "releaseDate": "2018-03-14",
+  "sampleSet": {
+    "retrievedAt": "2026-11-13",
+    "samples": [
+      {
+        "id": "Mercury_7175875",
+        "title": "行星自转加快后的昼夜周期",
+        "type": "choice",
+        "promptOrigin": "editorial",
+        "prompt": "天文学家观察到行星在陨石撞击后自转加快，最可能产生什么影响？",
+        "answer": "C — Planetary days will become shorter.",
+        "explanation": "固定ARC-Challenge/test的真实记录，原answerKey为C。raw保留完整英文题干、选项和答案；中文为本站翻译，不新增解题图或虚构模型作答。已按ID、题干及答案文本检索本站，未发现同题。",
+        "raw": {
+          "id": "Mercury_7175875",
+          "question": "An astronomer observes that a planet rotates faster after a meteorite impact. Which is the most likely effect of this increase in rotation?",
+          "choices": {
+            "text": [
+              "Planetary density will decrease.",
+              "Planetary years will become longer.",
+              "Planetary days will become shorter.",
+              "Planetary gravity will become stronger."
+            ],
+            "label": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "answerKey": "C"
+        },
+        "source": "https://huggingface.co/datasets/allenai/ai2_arc/blob/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet",
+        "license": "AI2 ARC，CC BY-SA 4.0；本站中文翻译/整理亦采用CC BY-SA 4.0。https://creativecommons.org/licenses/by-sa/4.0/",
+        "split": "ARC-Challenge/test",
+        "excerpt": true,
+        "options": [
+          "A. 行星密度下降",
+          "B. 行星公转年变长",
+          "C. 行星的一天变短",
+          "D. 行星引力增强"
+        ]
+      }
+    ]
+  }
+}
