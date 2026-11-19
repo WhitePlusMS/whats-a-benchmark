@@ -1,0 +1,13 @@
+exec(open('.scratch/embodied-benchmarks/read-toto.py',encoding='utf-8').read().split('with open(')[0])
+import json
+from pathlib import Path
+with open('.scratch/embodied-benchmarks/toto-scooping-parsed.pkl','rb') as f:d=R(f).load()
+e=d[0];n=len(e['actions']);frames=[]
+for i in [0,n//2,n-1]:
+ frames.append({'step':i,'observation_joint_angles':e['observations'][i].tolist(),'action_joint_angles':e['actions'][i].tolist(),'reward':float(e['rewards'][i]),'terminated':float(e['terminated'][i]),'camera_color_file':e['cam0c'][i]})
+p=Path('content/benchmarks/toto.json');x=json.loads(p.read_text(encoding='utf-8'))
+data='https://storage.googleapis.com/toto-dataset/cloud-data-scooping/parsed.pkl'; img='https://storage.googleapis.com/toto-dataset/cloud-data-scooping/data/22-04-01-14-12-17/c0-818312070212-1648836737259.7883-color.jpeg'; docs='https://github.com/AGI-Labs/toto_benchmark/blob/main/assets/README.md'
+x['sampleAccess']={'status':'local','reason':'已下载官方真实机器人舀取轨迹文件，展示其中一条的数值摘录和原始图片链接。','sourceUrls':[data,img,docs]};x['sources'] += [{'label':'官方真实舀取轨迹文件','url':data,'role':'data'},{'label':'对应的原始相机图像','url':img,'role':'data'},{'label':'官方数据格式说明','url':docs,'role':'readme'}]
+x['embodied']['resources'].append({'label':'该轨迹的首张真实相机图像','type':'原始图片','url':img})
+x['sampleSet']={'retrievedAt':'2026-10-29','samples':[{'id':'toto-scooping-real-traj-22-04-01-14-12-17','title':'真实机器人舀取杏仁 · 轨迹 22-04-01','type':'record','prompt':'真实机器人执行舀取操作；下面列出这条采集轨迹的首、中、末时间步。','promptOrigin':'editorial','explanation':'官方数据桶中的真实舀取轨迹，材料为杏仁，共 626 个时间步；观测与动作都是七维关节角。normalized_reward 是此条记录字段，不是模型榜单成绩。原图由官方数据桶提供，数据转载许可尚未核实，本站不复制图片。','raw':{'dataset':'toto-dataset/cloud-data-scooping/parsed.pkl','file_sha256':'75e08fbf3f45f8aa544009b3c12ba2c6c6f30140a9ea0437734813b6643177a5','traj_id':e['traj_id'],'material':e['material'],'length':n,'normalized_reward':float(e['normalized_reward']),'first_color_sha256':'11a7de2127073ee02f44ba819340bfa34a1c99e6640d9528bd3552f8d4811805','frames':frames},'source':data,'license':'官方数据的独立许可未核实；本站仅展示有限数值摘录和原图链接。','split':'real-world scooping / trajectory 22-04-01-14-12-17','excerpt':True}]};x['researchNotes']=[{'text':'2026-10-29 下载 367,640,015 字节官方 parsed.pkl，SHA-256 75e08fbf3f45f8aa544009b3c12ba2c6c6f30140a9ea0437734813b6643177a5；限制反序列化可调用类型后读取 1,895 条记录，首条 626 帧。官方文档列 1,900 条，该文件与文档数量不一致。','sourceUrls':[data,docs]}];p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+with Path('UPDATE_LOG.md').open('a',encoding='utf-8') as f:f.write('\n### 2026-10-29：补充 TOTO 真机舀取轨迹\n\n- `content/benchmarks/toto.json`：从官方 367,640,015 字节文件读取首条 626 帧真机舀取数据，展示三个时间步的关节角、动作、奖励及官方原图链接，并记录文件哈希和许可边界。文件读取到 1,895 条与文档 1,900 条不一致，如实标明。\n- 影响：详情页可查看真实物理实验数据；不复制许可尚不明确的原始照片。\n')

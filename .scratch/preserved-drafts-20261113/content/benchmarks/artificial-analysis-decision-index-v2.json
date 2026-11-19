@@ -1,0 +1,205 @@
+{
+  "id": "artificial-analysis-decision-index-v2",
+  "status": "published",
+  "order": 16,
+  "name": "Artificial Analysis Decision Index v2",
+  "subtitle": "决策正确性、置信度与表达一致性的综合指数",
+  "category": "general",
+  "tags": [
+    "综合指数",
+    "决策",
+    "置信度校准",
+    "工具调用",
+    "一致性"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-11-08",
+  "version": "v2.0",
+  "kind": "suite",
+  "aliases": [
+    "AA Decision Index v2",
+    "Artificial Analysis 决策指数 v2"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "综合评估模型在文档决策、工具调用、知识推理与等义表述下的一致性。",
+    "task": "完成六项评测，按 v2 权重汇总正确性、置信度校准和决策一致性。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index"
+    ]
+  },
+  "taskContract": {
+    "input": "根据分项提供文档、工具调用情境、知识问题或不同表述的等义问题。",
+    "output": "对每项任务输出选项及其概率；文档任务还需作出筛选决定和提取事实。",
+    "environment": "Artificial Analysis 按各分项协议运行；文档超出模型上下文窗口时截断，各分项的参考答案与计分方式不同。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index"
+    ]
+  },
+  "dataProfile": {
+    "summary": "v2 由六项评测组成，私有与公开数据混合，访问条件依组成项而异。",
+    "disclosure": "partial",
+    "scale": [
+      "AA-Paperclip：30%；1,500 篇私有文档，每篇 5 个决策及 10 个事实提取结果，15 项全对才算文档正确。",
+      "EvalSafe-O*NET-AA：15%；在原始 7,500 题中采用两参考模型结论一致的 6,582 题。",
+      "When2Call：10%；采用 NVIDIA 多选测试过滤后的 3,423 题。",
+      "AA-Omniscience-Decision v1.1：15%；500 道私有题，包含拒答选项。",
+      "HLE-MultiChoice v1.1：15%；509 道纯文本多选题，附拒答选项。",
+      "AA-Symmetry：15%；120 个基础问题、440 个等义表述，考察决策与概率的一致性。"
+    ],
+    "splits": [
+      "AA 称 v2 中私有数据集对应指数权重的 45%，不表示全部题目均已公开。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index",
+      "https://artificialanalysis.ai/articles/decision-index-v2"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方公开方法与榜单；AA-Paperclip 和 AA-Omniscience-Decision 所用题集为私有，其余数据需分别按上游条件获取。"
+    ],
+    "url": "https://artificialanalysis.ai/methodology/decision-index",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "各组成数据集及代码分别适用其发布方的许可和访问条件。",
+    "scope": "本站概述官方方法，不复制私有题目或完整数据集。",
+    "boundaries": [
+      "指数方法公开不代表所有底层文档、题目和答案均可再分发。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方方法页提供分项说明；本站关联的基础评测样例不自动视为 v2 实际评分题。",
+    "url": "https://artificialanalysis.ai/methodology/decision-index",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index"
+    ]
+  },
+  "metric": {
+    "name": "Decision Index v2（0–100）",
+    "description": "五个有正确答案的分项使用 Decision Score：按所选答案正确性及概率计分；AA-Symmetry 使用衡量等义表述一致性的 Symmetry Score。六项按各自权重求和，分数越高越好。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/decision-index",
+      "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "指数并非单纯准确率：预测概率、拒答处理以及一致性分项会影响总分；需结合分项成绩和同版本模型配置比较。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index",
+        "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index"
+      ]
+    },
+    {
+      "text": "EvalSafe-O*NET-AA 的参考答案基于两个模型的共识，官方说明这些问题没有 ground truth；不能把共识直接视为人工事实真值。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index"
+      ]
+    },
+    {
+      "text": "部分题集私有，公开方法和基础数据不能保证完整复现指数；不同版本的题目、权重和评分不可直接混用。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index",
+        "https://artificialanalysis.ai/articles/decision-index-v2"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "按各分项参考答案计算；EvalSafe-O*NET-AA 的参考答案来自两个模型的概率共识，AA-Symmetry 则检查等义表述的一致性。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index"
+      ]
+    },
+    "comparison": {
+      "text": "比较时核对 v2 的模型配置、分项成绩、调用费用与时间；总分不会单独反映这些差异。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index",
+        "https://artificialanalysis.ai/articles/decision-index-v2"
+      ]
+    },
+    "disclosure": {
+      "text": "官方公开权重、评分和部分数据来源；AA-Paperclip 与 AA-Omniscience-Decision 题集私有。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index"
+      ]
+    },
+    "versionChanges": {
+      "text": "v2 新增 AA-Paperclip、EvalSafe-O*NET-AA、AA-Symmetry，调整原有分项权重并移除 WildGuardTest；WildGuardTest 仍是 AA-Symmetry 的题目来源之一。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "AA Decision Index 官方方法",
+      "url": "https://artificialanalysis.ai/methodology/decision-index",
+      "role": "definition"
+    },
+    {
+      "label": "AA Decision Index v2 发布说明",
+      "url": "https://artificialanalysis.ai/articles/decision-index-v2",
+      "role": "release"
+    },
+    {
+      "label": "AA Decision Index 榜单及计分说明",
+      "url": "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [
+    {
+      "id": "when2call",
+      "label": "工具调用评测基础",
+      "detail": "v2 使用过滤后的多选测试及 Decision Score；本站所展 NVIDIA 示例 live_multiple_0-0-0 位于 AA 排除清单中，并非 v2 评分题。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index"
+      ]
+    },
+    {
+      "id": "aa-omniscience",
+      "label": "知识评测基础",
+      "detail": "指数使用 500 道私有题组成的 AA-Omniscience-Decision v1.1，多选且包含拒答选项；不能将基础评测公开案例视为该私有题集。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index"
+      ]
+    },
+    {
+      "id": "hle",
+      "label": "HLE 基础评测",
+      "detail": "指数采用 HLE-MultiChoice v1.1 的 509 道纯文本多选题并增加拒答选项，范围和计分不同于 HLE 整体。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "researchNotes": [
+    {
+      "text": "本条依据 AA 官方 v2 发布说明与方法整理；相关基础评测链接用于解释来源，不声称站内案例均属于指数实际评分题。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/decision-index",
+        "https://artificialanalysis.ai/articles/decision-index-v2"
+      ]
+    }
+  ]
+}

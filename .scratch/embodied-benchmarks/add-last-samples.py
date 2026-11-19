@@ -1,0 +1,22 @@
+import json, hashlib
+from pathlib import Path
+import h5py, pyarrow.parquet as pq, pyarrow.compute as pc
+root=Path('.')
+base='https://huggingface.co/datasets/haosulab/ManiSkill2/blob/0c367447d26e4e2de13fbf5e5d2ab09a258187da/demos/v0/rigid_body/PickCube-v0/'
+p=root/'content/benchmarks/maniskill2.json'; data=json.loads(p.read_text(encoding='utf-8'))
+f=h5py.File(root/'.scratch/embodied-benchmarks/maniskill2-trajectory.h5'); g=f['traj_0']; meta=json.loads((root/'.scratch/embodied-benchmarks/maniskill2-trajectory.json').read_text(encoding='utf-8'))['episodes'][0]
+frames=[{'action_index':i,'action':g['actions'][i].tolist(),'success':bool(g['success'][i])} for i in (0,44,87)]
+data['sampleAccess']={'status':'local','reason':'已下载官方 PickCube-v0 HDF5 轨迹与元数据，展示真实动作与成功标志。','sourceUrls':[base+'trajectory.h5',base+'trajectory.json']}
+data['sampleSet']={'retrievedAt':'2026-10-29','samples':[{'id':'maniskill2-pickcube-trajectory-0','title':'PickCube · 官方演示轨迹 0','type':'record','prompt':'机械臂操作方块，以下按时间显示同一条演示的三个动作。','promptOrigin':'editorial','explanation':'官方 ManiSkill2 PickCube-v0 轨迹 0 共 88 个动作，控制模式为 pd_joint_pos；最终成功标志是该条演示的结果，不是模型榜单成绩。原文件还包含 89 个环境状态。','raw':{'dataset':'haosulab/ManiSkill2','revision':'0c367447d26e4e2de13fbf5e5d2ab09a258187da','h5_sha256':'a5920e22e4a9ae49e16d6c56aeb728a082d6ea9c32b62d979b6a95208f27dcd1','metadata_sha256':'aab69b6f89a2e6f2b6c168b7b85a97d3d0ed5ca78326b6a80484660f42d1665f','episode_metadata':meta,'actions':frames},'source':base+'trajectory.h5','license':'官方 ManiSkill2 数据卡标注 Apache-2.0；第三方资产使用范围需分别核对。','split':'PickCube-v0 / traj_0','excerpt':True}]}
+data['sources'] += [{'label':'官方 PickCube 轨迹','url':base+'trajectory.h5','role':'data'},{'label':'官方 PickCube 轨迹元数据','url':base+'trajectory.json','role':'data'}]
+data.setdefault('researchNotes',[]).append({'text':'2026-10-29 下载 34,238,682 字节 HDF5 与元数据；HDF5 SHA-256 a5920e22e4a9ae49e16d6c56aeb728a082d6ea9c32b62d979b6a95208f27dcd1；traj_0 含 88 个动作、89 个环境状态。','sourceUrls':[base+'trajectory.h5',base+'trajectory.json']})
+p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+base='https://huggingface.co/datasets/DAVIAN-Robotics/robocasa-MG_100/blob/510a2940a66e0debc9818803cdb62b140a6c4bb6/'
+p=root/'content/benchmarks/robocasa.json'; data=json.loads(p.read_text(encoding='utf-8'))
+t=pq.read_table(root/'.scratch/embodied-benchmarks/robocasa-original-file-0.parquet'); e=t.filter(pc.equal(t['episode_index'],0)); frames=[e.slice(i,1).to_pylist()[0] for i in (0,e.num_rows//2,e.num_rows-1)]
+data['sampleAccess']={'status':'local','reason':'已下载原版 RoboCasa 的第三方 LeRobot 转换演示数据并解析轨迹。','sourceUrls':[base+'data/chunk-000/file-000.parquet',base+'meta/tasks.parquet']}
+data['sampleSet']={'retrievedAt':'2026-10-29','samples':[{'id':'robocasa-mg100-episode-0','title':'关闭橱柜门 · 合成演示轨迹 0','type':'record','prompt':'机器人关闭橱柜门；下面展示这条演示的首、中、末帧状态和动作。','promptOrigin':'editorial','explanation':'来自原版 RoboCasa 的 MG_100 合成数据第三方转换集，episode 0 共 415 帧；任务标签来自同版本索引。合成演示不代表模型评测成绩，也不能与 RoboCasa365 混同。','raw':{'dataset':'DAVIAN-Robotics/robocasa-MG_100','revision':'510a2940a66e0debc9818803cdb62b140a6c4bb6','file_sha256':'b81b1d2594c6fa6771f10a4a2f9728484b39e8d35d068694e84377df1ca2828d','task_index':0,'frames':frames},'source':base+'data/chunk-000/file-000.parquet','license':'转换数据卡标 Apache-2.0；原版及第三方场景资产的具体转载范围需分别核实。','split':'MG_100 / episode_index 0 / task_index 0','excerpt':True}]}
+data['sources'] += [{'label':'原版 MG_100 转换轨迹','url':base+'data/chunk-000/file-000.parquet','role':'data'},{'label':'转换数据任务索引','url':base+'meta/tasks.parquet','role':'data'},{'label':'原版 MG_100 数据说明','url':'https://huggingface.co/datasets/Voxel51/robocasa-MG_100','role':'readme'}]
+data.setdefault('researchNotes',[]).append({'text':'2026-10-29 下载 60,639,847 字节转换 Parquet，SHA-256 b81b1d2594c6fa6771f10a4a2f9728484b39e8d35d068694e84377df1ca2828d；提取 episode 0 的 415 帧中的 3 帧。','sourceUrls':[base+'data/chunk-000/file-000.parquet',base+'meta/tasks.parquet']})
+p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+with (root/'UPDATE_LOG.md').open('a',encoding='utf-8') as o:o.write('\n### 2026-10-29：补充 ManiSkill2 与原版 RoboCasa 的真实样例\n\n- `content/benchmarks/maniskill2.json`：读取官方 PickCube-v0 的 HDF5 和元数据，补充 88 步演示中的三条动作与成功标志，记录固定版本和 SHA-256。\n- `content/benchmarks/robocasa.json`：读取原版 MG_100 的第三方转换集和任务索引，补充 415 帧合成演示中的三帧，区分 RoboCasa365 和模型成绩。\n- 影响：详情页可展开真实数值摘录及来源，不增加新的前端样式或组件；数据许可和资产范围分别说明。\n')
