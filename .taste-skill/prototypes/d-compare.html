@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>原型 · 对比页（dense 规范取材）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6957d4;
+  --accent-text: #5845ba;
+  --accent-softer: rgb(105 87 212 / 7%);
+  --accent-soft: rgb(105 87 212 / 14%);
+  --accent-border: rgb(105 87 212 / 25%);
+  --muted: #606773;
+  --border: #e2e5e9;
+  --surface: #fff;
+  --surface-subtle: #f8f9fa;
+  --surface-sunken: #f4f5f7;
+  --text: #252932;
+  --text-strong: #303641;
+  --text-secondary: #4f5664;
+  --page-background: #f7f8fa;
+  --mono: "Cascadia Code", Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: "Inter Variable", Inter, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--page-background);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.container { max-width: 1400px; margin: 0 auto; padding: 0 36px; }
+a { color: inherit; text-decoration: none; }
+
+.site-header {
+  height: 72px; background: var(--surface);
+  display: flex; align-items: center;
+  position: sticky; top: 0; z-index: 30;
+}
+.header-inner { display: flex; align-items: center; gap: 60px; width: 100%; }
+.brand { display: flex; align-items: center; gap: 11px; font-size: 21px; font-weight: 700; letter-spacing: -0.8px; }
+.brand .mark { width: 36px; height: 36px; border-radius: 11px; background: var(--accent); }
+.main-nav { display: flex; gap: 38px; font-size: 14px; color: var(--muted); height: 100%; }
+.main-nav a { display: flex; align-items: center; }
+
+.reading-page { padding-top: 36px; }
+h1 { font-size: 32px; letter-spacing: -0.7px; margin-bottom: 14px; }
+.page-lead { font-size: 15px; max-width: 750px; line-height: 1.9; color: var(--text-secondary); margin-bottom: 28px; }
+.comparison-note { margin-bottom: 16px; color: var(--muted); font-size: 13px; }
+
+.comparison-scroll {
+  overflow: auto;
+  max-height: calc(100dvh - 190px);
+  scrollbar-gutter: stable;               /* C4 */
+  scroll-padding-inline-start: 150px;
+  border-radius: 11px;
+  background: var(--surface);
+}
+.comparison-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  min-width: 760px;
+  table-layout: fixed;
+  text-align: left;
+  font-size: 13px;
+}
+.comparison-table th, .comparison-table td {
+  padding: 20px 24px;
+  vertical-align: top;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+.comparison-table th:first-child {
+  width: 150px; position: sticky; left: 0; z-index: 1;
+}
+.comparison-table thead th {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--surface-sunken);
+  font-size: 16px; font-weight: 600;
+  color: var(--text-strong);
+}
+.comparison-table thead th:first-child { z-index: 3; }
+.comparison-table tbody th { font-weight: 500; color: var(--muted); background: var(--surface-subtle); }
+.comparison-table td { color: var(--text-secondary); }
+
+/* C3：行 hover 微反馈 */
+.comparison-table tbody tr { transition: background 80ms; }
+.comparison-table tbody tr:hover td,
+.comparison-table tbody tr:hover th { background: var(--accent-softer); }
+
+/* C1/C2：版本串等宽、数字 tabular */
+.mono { font-family: var(--mono); font-size: 12.5px; }
+.num { font-variant-numeric: tabular-nums; }
+
+.text-link { color: var(--accent-text); font-size: 13px; font-weight: 500; }
+.text-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.missing { color: var(--muted); }
+
+/* C5：空状态 */
+.empty-state {
+  padding: 80px 25px; text-align: center; color: var(--muted);
+  border-radius: 12px; background: var(--surface);
+  margin-top: 40px; display: none;
+}
+.empty-state h2 { color: var(--text-strong); margin-bottom: 10px; }
+.empty-state .hint { font-size: 13px; margin-bottom: 24px; }
+kbd {
+  font-family: var(--mono); font-size: 12px;
+  background: var(--surface-sunken); border-radius: 4px; padding: 2px 6px;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <span class="brand"><span class="mark"></span>what's a benchmark?</span>
+    <nav class="main-nav"><a href="#">评测目录</a><a href="#">发布资料</a><a href="#">阅读指南</a></nav>
+  </div>
+</header>
+
+<div class="container reading-page">
+  <h1>评测对比</h1>
+  <p class="page-lead">同时查看 2–3 项评测的任务、评分方法与适用限制。完整数据和依据可从各项详情继续阅读。</p>
+  <p class="comparison-note">— 表示本站尚未整理该项，不表示官方没有披露。</p>
+
+  <div class="comparison-scroll" tabindex="0" aria-label="评测对比表，可横向和纵向滚动">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th scope="col">对比维度</th>
+          <th scope="col">SWE-bench Verified</th>
+          <th scope="col">HumanEval</th>
+          <th scope="col">MMMU-Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">测什么</th>
+          <td>根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</td>
+          <td>按函数签名和 docstring 补全 Python 函数，再用单元测试检查功能；题目由人工编写。</td>
+          <td>结合图像回答多学科问题；筛除仅靠文本可解的题，并增加干扰项和 Vision-only 设置。</td>
+        </tr>
+        <tr>
+          <th scope="row">能力方向</th>
+          <td>编程与软件工程</td>
+          <td>编程与软件工程</td>
+          <td>图像、文档与音视频</td>
+        </tr>
+        <tr>
+          <th scope="row">评分指标</th>
+          <td>任务成功率：<span class="mono">solved/resolved rate</span>，完整通过 FAIL_TO_PASS 与 PASS_TO_PASS 才计为 resolved。</td>
+          <td><span class="mono">pass@k</span>：生成 k 个候选中至少一个通过单元测试的无偏估计。</td>
+          <td>正确率：按选项判分；standard / vision 设置分别报告。</td>
+        </tr>
+        <tr>
+          <th scope="row">具体版本</th>
+          <td class="mono">Verified · 500 题子集</td>
+          <td class="mono">原始 HumanEval · 164 题</td>
+          <td class="mono">MMMU-Pro · standard / vision</td>
+        </tr>
+        <tr>
+          <th scope="row">发布年份</th>
+          <td class="num">2024</td>
+          <td class="num">2021</td>
+          <td class="num">2024</td>
+        </tr>
+        <tr>
+          <th scope="row">发布方</th>
+          <td>SWE-bench 团队 / OpenAI</td>
+          <td>OpenAI</td>
+          <td>MMMU 研究团队</td>
+        </tr>
+        <tr>
+          <th scope="row">关键限制</th>
+          <td>仅覆盖 Python 仓库；部分题目依赖测试环境完整性。<br /><a class="text-link" href="#">查看完整评分说明</a></td>
+          <td>164 题规模小，数据污染风险高。<br /><a class="text-link" href="#">查看完整评分说明</a></td>
+          <td><span class="missing">—</span></td>
+        </tr>
+        <tr>
+          <th scope="row">数据与许可</th>
+          <td><a class="text-link" href="#">查看获取方式与使用范围</a></td>
+          <td><a class="text-link" href="#">查看获取方式与使用范围</a></td>
+          <td><a class="text-link" href="#">查看获取方式与使用范围</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="empty-state" style="display:block">
+    <h2>选择至少两项评测</h2>
+    <p class="hint">在目录卡片上点 <kbd>+ 对比</kbd>，凑够 2 个即可开始；也可以按 <kbd>⌘K</kbd> 直接搜索评测名。</p>
+  </div>
+</div>
+
+</body>
+</html>

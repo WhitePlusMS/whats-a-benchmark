@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>卡片变体展板</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6957d4;
+  --accent-text: #5845ba;
+  --accent-softer: rgb(105 87 212 / 7%);
+  --accent-soft: rgb(105 87 212 / 14%);
+  --accent-border: rgb(105 87 212 / 25%);
+  --accent-border-strong: #a698e0;
+  --muted: #606773;
+  --muted-tint: #756581;
+  --border: #e2e5e9;
+  --surface: #fff;
+  --surface-sunken: #f4f5f7;
+  --text: #252932;
+  --text-strong: #303641;
+  --text-secondary: #4f5664;
+  --page-background: #f7f8fa;
+  --mono: "Cascadia Code", Consolas, monospace;
+  --warn: #c99a3a;
+  --evidence-text: #685523;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: "Inter Variable", Inter, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--page-background);
+  color: var(--text);
+  font-size: 14px; line-height: 1.65;
+  padding: 40px 36px;
+}
+.board { max-width: 1400px; margin: 0 auto; }
+h1 { font-size: 26px; letter-spacing: -0.5px; margin-bottom: 6px; }
+.note { color: var(--muted); margin-bottom: 30px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 28px; }
+.variant > .cap { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.variant > .cap b { color: var(--text-strong); font-weight: 600; }
+
+/* ===== 共用 ===== */
+.card {
+  background: var(--surface);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 24px 24px 0;
+  display: flex; flex-direction: column;
+  min-height: 300px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.card:hover { border-color: var(--accent-border-strong); transform: translateY(-2px); }
+.logo-tile { width: 44px; height: 44px; background: #fff; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; }
+.logo-tile img { width: 36px; height: 36px; object-fit: contain; }
+.logo-tile.sm { width: 30px; height: 30px; border-radius: 6px; }
+.logo-tile.sm img { width: 24px; height: 24px; }
+h3.nm { font-size: 18px; letter-spacing: -0.5px; color: var(--text); }
+.tldr { margin-top: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 600; }
+.summary {
+  margin: 8px 0 14px; color: var(--text-secondary); font-size: 14px; line-height: 1.8;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tags span { background: var(--accent-softer); border-radius: 4px; padding: 2px 8px; color: var(--muted-tint); font-size: 13px; }
+.kind { font-size: 13px; color: var(--muted); }
+.dot-status { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--evidence-text); }
+.dot-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.num { font-variant-numeric: tabular-nums; }
+a.link { color: var(--accent-text); font-size: 13px; font-weight: 500; }
+a.link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ===== V1 现状（控制组） ===== */
+
+/* ===== V2 logo 内联标题行 ===== */
+.v2 .head { display: flex; align-items: center; gap: 12px; }
+.v2 .kind { margin-left: auto; }
+.v2 .card { padding-top: 20px; }
+.v2 .meta-row { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; margin-top: auto; padding: 14px 0 12px; }
+.v2 .actions { display: flex; justify-content: space-between; align-items: center; min-height: 46px; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 4px;
+  border: 1px solid var(--accent-border); border-radius: 5px;
+  padding: 5px 10px; min-height: 40px; font-size: 13px; color: var(--muted);
+  background: none; cursor: pointer; font-family: inherit;
+}
+.btn-ghost:hover { background: var(--accent-soft); }
+
+/* ===== V3 底部主操作条 ===== */
+.v3 .card { padding-bottom: 0; overflow: hidden; }
+.v3 .meta-row { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; padding: 12px 0; }
+.v3 .actionbar {
+  display: flex; margin: 0 -24px;
+  border-top: 1px solid var(--border);
+}
+.v3 .actionbar a, .v3 .actionbar button {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  min-height: 48px; font-size: 13px; font-weight: 500;
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  color: var(--accent-text);
+}
+.v3 .actionbar button { color: var(--muted); border-left: 1px solid var(--border); }
+.v3 .actionbar a:hover { background: var(--accent-softer); }
+.v3 .actionbar button:hover { background: var(--surface-sunken); }
+
+/* ===== V4 元信息上移 + 双文字链接 ===== */
+.v4 .under { color: var(--muted); font-size: 13px; margin-top: 6px; display: flex; gap: 8px; align-items: center; }
+.v4 .actions { display: flex; gap: 22px; align-items: center; margin-top: auto; padding: 14px 0 16px; }
+
+/* ===== V5 数据条型：样例数 + 年份 mono 大数字 ===== */
+.v5 .stats-strip {
+  display: flex; gap: 24px; margin-top: auto; padding: 12px 0;
+}
+.v5 .stats-strip .cell small { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.v5 .stats-strip .cell b { font-size: 18px; font-weight: 600; font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--text-strong); }
+.v5 .actions { display: flex; justify-content: space-between; align-items: center; min-height: 46px; }
+.icon-only {
+  width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--accent-border);
+  background: none; color: var(--muted); font-size: 18px; cursor: pointer; font-family: inherit;
+}
+.icon-only:hover { background: var(--accent-soft); color: var(--accent-text); }
+
+/* ===== V6 整卡可点：标题即链接，操作极简 ===== */
+.v6 .card { position: relative; }
+.v6 h3.nm a::after { content: ""; position: absolute; inset: 0; }
+.v6 h3.nm a:hover { color: var(--accent-text); }
+.v6 .foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding: 14px 0 14px; color: var(--muted); font-size: 13px; }
+.v6 .foot .open { color: var(--accent-text); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="board">
+  <h1>卡片变体展板</h1>
+  <p class="note">同一份真实内容（SWE-bench Verified · 部分核验的 AIME 2025 用于状态点对照），六种结构与按钮方案。</p>
+
+  <div class="grid">
+
+    <!-- V1 现状控制组 -->
+    <div class="variant">
+      <p class="cap"><b>V1</b> 现状（控制组）</p>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span>
+          <span class="kind">评测子集</span>
+        </div>
+        <h3 class="nm">SWE-bench Verified</h3>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div style="display:flex; justify-content:space-between; margin-top:auto; padding:14px 0 12px; color:var(--muted); font-size:13px">
+          <span>SWE-bench 团队 / OpenAI</span><span class="num">2024</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; min-height:46px; margin-top:4px">
+          <a class="link" href="#">查看真实题目</a>
+          <button class="btn-ghost">+ 对比</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- V2 logo 内联 -->
+    <div class="variant v2">
+      <p class="cap"><b>V2</b> logo 内联标题行 · 压缩纵向</p>
+      <div class="card">
+        <div class="head">
+          <span class="logo-tile sm"><img src="../../dist/logos/openai.png" alt="" /></span>
+          <h3 class="nm">SWE-bench Verified</h3>
+          <span class="kind">评测子集</span>
+        </div>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="meta-row"><span>SWE-bench 团队 / OpenAI</span><span class="num">2024</span></div>
+        <div class="actions">
+          <a class="link" href="#">查看真实题目</a>
+          <button class="btn-ghost">+ 对比</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- V3 底部主操作条 -->
+    <div class="variant v3">
+      <p class="cap"><b>V3</b> 底部贯通操作条 · 双分区</p>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span>
+          <span class="kind">评测子集</span>
+        </div>
+        <h3 class="nm">SWE-bench Verified</h3>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="meta-row" style="margin-top:auto"><span>SWE-bench 团队 / OpenAI</span><span class="num">2024</span></div>
+        <div class="actionbar">
+          <a href="#">查看真实题目</a>
+          <button>+ 对比</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- V4 元信息上移 -->
+    <div class="variant v4">
+      <p class="cap"><b>V4</b> 发布方/年份上移 · 底部双文字链接</p>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span>
+          <span class="kind">评测子集</span>
+        </div>
+        <h3 class="nm">SWE-bench Verified</h3>
+        <p class="under"><span>SWE-bench 团队 / OpenAI</span><span>·</span><span class="num">2024</span><span>·</span><span class="dot-status">部分核验</span></p>
+        <p class="summary" style="margin-top:10px">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。筛选关注问题描述是否明确、测试是否公平。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="actions">
+          <a class="link" href="#">查看真实题目</a>
+          <a class="link" href="#" style="color:var(--muted)">加入对比</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- V5 数据条 -->
+    <div class="variant v5">
+      <p class="cap"><b>V5</b> 样例数/年份数据条 · 图标化对比钮</p>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span>
+          <span class="kind">评测子集</span>
+        </div>
+        <h3 class="nm">SWE-bench Verified</h3>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="stats-strip">
+          <div class="cell"><small>真实样例</small><b>3</b></div>
+          <div class="cell"><small>发布年份</small><b>2024</b></div>
+          <div class="cell"><small>发布方</small><b style="font-family:inherit; font-size:14px">OpenAI 等</b></div>
+        </div>
+        <div class="actions">
+          <a class="link" href="#">查看真实题目</a>
+          <button class="icon-only" aria-label="加入对比" title="加入对比">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- V6 整卡可点 -->
+    <div class="variant v6">
+      <p class="cap"><b>V6</b> 整卡可点 · 底部只留状态</p>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span>
+          <span class="kind">评测子集</span>
+        </div>
+        <h3 class="nm"><a href="#">SWE-bench Verified</a></h3>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="foot">
+          <span>SWE-bench 团队 / OpenAI · <span class="num">2024</span></span>
+          <span class="open">打开 →</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>原型 C · 瓷砖板 — 到底测什么？</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soot: #1c1c1a;
+  --soot-2: #262622;
+  --lime: #d8f34f;
+  --lime-ink: #1c1c1a;
+  --paper: #efefea;
+  --tile: #e3e3da;
+  --muted: #6d6d64;
+  --gap: 8px;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: "Jost", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  background: var(--paper);
+  color: var(--soot);
+  font-size: 16px;
+  line-height: 1.55;
+}
+a { color: inherit; text-decoration: none; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 90px;
+  gap: var(--gap);
+  padding: 12px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.tile {
+  background: var(--tile);
+  border-radius: 8px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+.tile.dark { background: var(--soot); color: var(--paper); }
+.tile.accent { background: var(--lime); color: var(--lime-ink); }
+.tile.s6x4 { grid-column: span 6; grid-row: span 4; }
+.tile.s6x2 { grid-column: span 6; grid-row: span 2; }
+.tile.s4x2 { grid-column: span 4; grid-row: span 2; }
+.tile.s3x2 { grid-column: span 3; grid-row: span 2; }
+.tile.s3x4 { grid-column: span 3; grid-row: span 4; }
+.tile.s4x4 { grid-column: span 4; grid-row: span 4; }
+.tile.s12x2 { grid-column: span 12; grid-row: span 2; }
+
+.name-tile h1 {
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+.name-tile .sub { font-size: 19px; color: var(--muted); margin-top: 14px; }
+.name-tile .sub zh { font-weight: 600; }
+
+.statement-tile p {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-width: 26ch;
+}
+.statement-tile .go {
+  margin-top: auto;
+  font-weight: 600;
+  border-bottom: 2px solid var(--soot);
+  padding-bottom: 2px;
+}
+
+.stat-tile .num { font-size: clamp(3rem, 5vw, 4.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-top: auto; }
+.stat-tile .cap { font-size: 14px; color: var(--muted); }
+.tile.dark .cap { color: #9a9a90; }
+
+.action-tile { justify-content: space-between; }
+.action-tile .big { font-size: 26px; font-weight: 600; line-height: 1.25; }
+.action-tile .search {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.img-tile { padding: 0; justify-content: center; align-items: center; background: #fff; }
+.img-tile img { max-width: 62%; max-height: 62%; object-fit: contain; }
+.img-tile .tag {
+  position: absolute; left: 14px; top: 12px;
+  font-size: 13px; color: var(--muted);
+}
+
+/* ARC 真实样例瓷砖：彩色网格 */
+.arc-tile { gap: 6px; }
+.arc-tile .tag { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.arc-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; width: 100%; margin-top: auto; margin-bottom: auto; }
+.arc-grid i { aspect-ratio: 1; border-radius: 2px; display: block; }
+.arc-grid .c0 { background: #171923; } .arc-grid .c1 { background: #1479e8; }
+.arc-grid .c2 { background: #ed343b; } .arc-grid .c3 { background: #29b957; }
+.arc-grid .c4 { background: #ffd633; } .arc-grid .c6 { background: #e43daa; }
+.arc-grid .c8 { background: #f98f21; }
+
+.code-tile { font-family: "Cascadia Code", Consolas, monospace; font-size: 13px; line-height: 1.7; }
+.code-tile .tag { font-size: 13px; font-family: "Jost", "Noto Sans SC", sans-serif; color: var(--muted); margin-bottom: 10px; }
+.code-tile pre { white-space: pre-wrap; color: var(--soot-2); overflow: hidden; }
+.code-tile .kw { color: #7d3ac1; } .code-tile .fn { color: #1d5fd6; }
+
+/* 名录行瓷砖 */
+.entry-tile { justify-content: center; }
+.entry-tile .nm { font-size: clamp(1.3rem, 2vw, 1.8rem); font-weight: 600; letter-spacing: -0.01em; }
+.entry-tile .tl { font-size: 15px; color: var(--muted); margin-top: 6px; }
+.entry-tile:hover { background: var(--soot); color: var(--paper); }
+.entry-tile:hover .tl { color: #b7b7ac; }
+.entry-tile .yr { position: absolute; right: 16px; top: 14px; font-size: 13px; color: var(--muted); }
+
+.section-tile {
+  background: none; padding: 22px 8px;
+  justify-content: flex-end;
+}
+.section-tile h2 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.section-tile .n { font-size: 15px; color: var(--muted); margin-top: 8px; }
+
+.foot-tile { min-height: 0; }
+.foot-tile .wm { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; }
+.foot-tile nav { display: flex; gap: 22px; font-size: 15px; margin-top: auto; }
+.foot-tile nav a:hover { border-bottom: 2px solid var(--lime); }
+
+.tile { animation: pop 0.5s ease both; animation-delay: calc(var(--i, 0) * 40ms); }
+@keyframes pop { from { opacity: 0; transform: translateY(14px); } }
+@media (prefers-reduced-motion: reduce) { .tile { animation: none; } }
+
+@media (max-width: 1000px) {
+  .board { grid-template-columns: repeat(6, 1fr); }
+  .s6x4, .s6x2 { grid-column: span 6; }
+  .s4x2, .s4x4 { grid-column: span 3; }
+  .s3x2, .s3x4 { grid-column: span 3; }
+  .s12x2 { grid-column: span 6; }
+}
+@media (max-width: 640px) {
+  .board { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 76px; }
+  .tile { grid-column: span 2 !important; grid-row: span 2 !important; }
+  .tile.s3x4, .tile.s4x4 { grid-row: span 3 !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <div class="tile s6x4 name-tile" style="--i:0">
+    <h1>到底测<br />什么？</h1>
+    <p class="sub">what's a benchmark? —— 中文 AI 评测图鉴</p>
+  </div>
+
+  <div class="tile s6x4 statement-tile dark" style="--i:1">
+    <p>不看榜单分数。看真实题目、评分方法与版本关系。</p>
+    <a class="go" href="#" style="color:var(--paper); border-color:var(--lime)">翻开 151 个评测</a>
+  </div>
+
+  <div class="tile s3x2 stat-tile" style="--i:2"><span class="cap">收录评测</span><span class="num">151</span></div>
+  <div class="tile s3x2 stat-tile dark" style="--i:3"><span class="cap">真实样例</span><span class="num">149</span></div>
+  <div class="tile s3x2 stat-tile" style="--i:4"><span class="cap">能力分类</span><span class="num">10</span></div>
+
+  <div class="tile s3x2 action-tile accent" style="--i:5">
+    <p class="big">按你的工作任务<br />反查评测</p>
+    <span class="search">搜索名称、能力或发布方…</span>
+  </div>
+
+  <div class="tile s3x4 arc-tile" style="--i:6">
+    <span class="tag">真实样例 · ARC-AGI-2</span>
+    <div class="arc-grid">
+      <i class="c0"></i><i class="c1"></i><i class="c0"></i><i class="c0"></i><i class="c2"></i><i class="c0"></i>
+      <i class="c1"></i><i class="c1"></i><i class="c0"></i><i class="c2"></i><i class="c2"></i><i class="c0"></i>
+      <i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c0"></i>
+      <i class="c0"></i><i class="c3"></i><i class="c3"></i><i class="c0"></i><i class="c4"></i><i class="c0"></i>
+      <i class="c3"></i><i class="c3"></i><i class="c3"></i><i class="c4"></i><i class="c4"></i><i class="c0"></i>
+      <i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c0"></i>
+    </div>
+    <span class="tag">看彩色格子，发现新规则</span>
+  </div>
+
+  <div class="tile s4x4 code-tile" style="--i:7">
+    <span class="tag">真实样例 · HumanEval</span>
+    <pre><span class="kw">from</span> typing <span class="kw">import</span> List
+
+<span class="kw">def</span> <span class="fn">has_close_elements</span>(numbers:
+    List[float], threshold: float)
+    -> <span class="kw">bool</span>:
+  <span class="kw">for</span> idx, elem <span class="kw">in</span> enumerate(numbers):
+    <span class="kw">for</span> idx2, elem2 <span class="kw">in</span> …</pre>
+  </div>
+
+  <div class="tile s4x2 img-tile" style="--i:8"><span class="tag">SWE-bench Verified · 2024</span><img src="../../dist/logos/openai.png" alt="OpenAI" /></div>
+  <div class="tile s3x2 img-tile" style="--i:9"><span class="tag">MBPP</span><img src="../../dist/logos/google-research.png" alt="Google Research" /></div>
+  <div class="tile s3x2 img-tile" style="--i:10"><span class="tag">ARC-AGI</span><img src="../../dist/logos/arc-prize.jpg" alt="ARC Prize" /></div>
+
+  <div class="tile s12x2 section-tile" style="--i:11">
+    <h2>编程与软件工程</h2>
+    <span class="n">26 个条目 · 写代码、改代码，把程序真正跑通</span>
+  </div>
+
+  <a class="tile s3x2 entry-tile" style="--i:12" href="#"><span class="yr">2024</span><span class="nm">SWE-bench Verified</span><span class="tl">让 AI 在真实仓库里修好一个问题</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:13" href="#"><span class="yr">2021</span><span class="nm">HumanEval</span><span class="tl">按说明补全一个 Python 函数</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:14" href="#"><span class="yr">2021</span><span class="nm">MBPP</span><span class="tl">把一段小程序需求写成代码</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:15" href="#"><span class="yr">2024</span><span class="nm">LiveCodeBench</span><span class="tl">持续加入新题的编程考场</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:16" href="#"><span class="yr">2024</span><span class="nm">SWE-bench</span><span class="tl">从函数题走向真实软件问题</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:17" href="#"><span class="yr">2025</span><span class="nm">SWE-bench Pro</span><span class="tl">更长流程的软件工程任务</span></a>
+
+  <div class="tile s12x2 section-tile" style="--i:18">
+    <h2>数理与逻辑推理</h2>
+    <span class="n">17 个条目 · 从竞赛题到研究级推理</span>
+  </div>
+
+  <a class="tile s3x2 entry-tile" style="--i:19" href="#"><span class="yr">2025</span><span class="nm">AIME 2025</span><span class="tl">AI 做人类数学竞赛试卷</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:20" href="#"><span class="yr">2023</span><span class="nm">GPQA Diamond</span><span class="tl">研究生级科学问答</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:21" href="#"><span class="yr">2025</span><span class="nm">ARC-AGI-2</span><span class="tl">看彩色格子发现新规则</span></a>
+  <a class="tile s3x2 entry-tile" style="--i:22" href="#"><span class="yr">2023</span><span class="nm">MathVista</span><span class="tl">读懂几何图和图表再做数学</span></a>
+
+  <div class="tile s4x2 foot-tile dark" style="--i:23">
+    <span class="wm">what's a benchmark?</span>
+    <nav><a href="#">名录</a><a href="#">指南</a><a href="#">发布资料</a><a href="#">GitHub</a></nav>
+  </div>
+  <div class="tile s4x2 foot-tile" style="--i:24">
+    <span class="tl" style="color:var(--muted)">由 WhitePlusMS 维护<br />内容以官方来源为准</span>
+    <nav style="margin-top:auto"><a href="#">提交纠错</a><a href="#">收录规范</a></nav>
+  </div>
+  <div class="tile s4x2 foot-tile accent" style="--i:25">
+    <span class="wm" style="font-size:22px">还有 145 个条目</span>
+    <nav style="margin-top:auto"><a href="#" style="font-weight:600">继续翻 →</a></nav>
+  </div>
+
+</div>
+
+</body>
+</html>

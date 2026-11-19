@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>原型 B · 图鉴标本馆 — 到底测什么？</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bone: #f2ede3;
+  --bone-deep: #e8e1d2;
+  --ink: #1a2418;
+  --ink-soft: #4c554a;
+  --green: #23402c;
+  --green-deep: #14210f;
+  --stamp: #8a3b2a;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: "EB Garamond", "Noto Serif SC", "Songti SC", serif;
+  background: var(--bone);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.65;
+}
+.bebas { font-family: "Bebas Neue", "Noto Sans SC", sans-serif; letter-spacing: 0.02em; }
+.margins { padding-left: 5vw; padding-right: 5vw; }
+a { color: inherit; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  font-size: 15px;
+}
+.topbar .links a { margin-left: 26px; text-decoration: none; border-bottom: 1px solid transparent; }
+.topbar .links a:hover { border-color: var(--ink); }
+.topbar .cat-no { font-style: italic; color: var(--ink-soft); }
+
+/* Hero：宽字标 + 馆藏说明 */
+.hero { padding-top: 9vh; padding-bottom: 8vh; }
+.hero .wordmark {
+  font-family: "Bebas Neue", "Noto Sans SC", sans-serif;
+  font-size: clamp(3rem, 10.5vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.hero .zh {
+  font-family: "Noto Serif SC", serif;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3.4vw, 3rem);
+  margin-top: 3vh;
+}
+.hero .note {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 19px;
+  max-width: 52ch;
+  margin-top: 3vh;
+}
+.hero .rule { border: 0; border-top: 2px solid var(--ink); margin: 5vh 0 0; }
+.hero .catalogue-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  padding-top: 14px;
+  color: var(--ink-soft);
+}
+
+/* 标本卡 */
+.specimens { padding-bottom: 10vh; }
+.specimen {
+  display: grid;
+  grid-template-columns: 90px 1fr 220px;
+  gap: 4vw;
+  padding: 5vh 0;
+  border-top: 2px solid var(--ink);
+  align-items: start;
+}
+.specimen .no {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  color: var(--stamp);
+}
+.specimen h2 {
+  font-family: "Bebas Neue", "Noto Sans SC", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: 0.015em;
+}
+.specimen .vernacular {
+  font-family: "Noto Serif SC", serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.specimen .desc {
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  max-width: 58ch;
+}
+.specimen .plate {
+  background: var(--bone-deep);
+  padding: 18px;
+  text-align: center;
+}
+.specimen .plate img { max-width: 100%; height: 64px; object-fit: contain; mix-blend-mode: multiply; }
+.specimen .plate figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 10px; font-style: italic; }
+.specimen dl {
+  grid-column: 2;
+  display: flex;
+  gap: 3vw;
+  font-size: 14px;
+  margin-top: 18px;
+  color: var(--ink-soft);
+}
+.specimen dl dt { font-style: italic; }
+.specimen dl dd { margin-left: 6px; }
+.specimen dl div { display: flex; }
+
+/* 大数字独占一屏 */
+.figure {
+  background: var(--green-deep);
+  color: var(--bone);
+  text-align: left;
+  padding-top: 18vh;
+  padding-bottom: 18vh;
+}
+.figure .num {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(8rem, 26vw, 24rem);
+  line-height: 0.85;
+}
+.figure .cap { font-style: italic; font-size: 21px; max-width: 40ch; margin-top: 3vh; color: #cdd4c6; }
+
+/* 核验流程：阶梯线 */
+.steps { padding-top: 12vh; padding-bottom: 12vh; }
+.steps h2 { font-family: "Bebas Neue", "Noto Sans SC", sans-serif; font-size: clamp(2.4rem, 5vw, 4.4rem); font-weight: 400; margin-bottom: 7vh; }
+.step {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 3vw;
+  padding: 3vh 0;
+  align-items: baseline;
+}
+.step:nth-child(odd) { margin-left: 8vw; }
+.step .k { font-family: "Bebas Neue", sans-serif; font-size: 24px; color: var(--stamp); }
+.step p { max-width: 52ch; font-size: 19px; }
+.step p strong { font-family: "Noto Serif SC", serif; }
+
+/* faq：一问一横带 */
+.bands { padding-bottom: 12vh; }
+.band { background: var(--green); color: var(--bone); padding: 4vh 5vw; margin-bottom: 3vh; }
+.band:nth-child(even) { background: var(--bone-deep); color: var(--ink); }
+.band h3 { font-family: "Noto Serif SC", serif; font-size: 22px; font-weight: 600; }
+.band p { margin-top: 8px; font-style: italic; max-width: 64ch; }
+
+/* footer：裁切字标上的邀请 */
+.footer { background: var(--green-deep); color: var(--bone); padding-top: 12vh; overflow: hidden; }
+.footer .invite { font-family: "Noto Serif SC", serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 600; max-width: 26ch; }
+.footer .invite a { color: #d9e6c8; }
+.footer .crop {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(4rem, 15vw, 15rem);
+  line-height: 0.8;
+  color: #2c3a2a;
+  white-space: nowrap;
+  transform: translateY(0.16em);
+  margin-top: 6vh;
+}
+
+.fade { animation: xf 1.4s ease both; }
+.fade-2 { animation-delay: 0.3s; }
+@keyframes xf { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .fade { animation: none; } }
+
+@media (max-width: 700px) {
+  .hero .wordmark { white-space: normal; }
+  .specimen { grid-template-columns: 1fr; gap: 3vh; }
+  .specimen dl { grid-column: 1; flex-wrap: wrap; }
+  .specimen .plate { max-width: 260px; }
+  .step:nth-child(odd) { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar margins">
+  <span class="bebas" style="font-size:22px">W·A·B 评测图鉴</span>
+  <span class="links">
+    <a href="#specimens">标本</a>
+    <a href="#method">核验法</a>
+    <a href="#bands">答问</a>
+    <span class="cat-no">Catalogue raisonné, Vol. Ⅰ</span>
+  </span>
+</header>
+
+<section class="hero margins">
+  <h1 class="wordmark fade">WHAT'S A BENCHMARK?</h1>
+  <p class="zh fade fade-2">到底测什么？——大模型评测标本馆</p>
+  <p class="note fade fade-2">本馆收藏一百五十一件评测标本。每件附采集出处、核验日期与真实样例，供研究者、采购者与好奇者驻足细察。</p>
+  <hr class="rule" />
+  <div class="catalogue-line">
+    <span>收展单位：WhitePlusMS</span>
+    <span>核验至 2026 年 10 月</span>
+    <span>免费参观</span>
+  </div>
+</section>
+
+<section class="specimens margins" id="specimens">
+  <article class="specimen">
+    <span class="no">No. 001</span>
+    <div>
+      <h2>SWE-BENCH VERIFIED</h2>
+      <p class="vernacular">让 AI 在真实仓库里修好一个问题</p>
+      <p class="desc">据真实 GitHub issue 修复仓库并通过测试；Verified 系人工质量筛选之五百项子集。</p>
+      <dl>
+        <div><dt>采集自</dt><dd>OpenAI / SWE-bench 团队</dd></div>
+        <div><dt>年份</dt><dd>2024</dd></div>
+        <div><dt>核验</dt><dd>2026-10-08</dd></div>
+      </dl>
+    </div>
+    <figure class="plate">
+      <img src="../../dist/logos/openai.png" alt="OpenAI 标识" />
+      <figcaption>图版 Ⅰ · 原始仓库修复任务节选</figcaption>
+    </figure>
+  </article>
+
+  <article class="specimen">
+    <span class="no">No. 002</span>
+    <div>
+      <h2>ARC-AGI-2</h2>
+      <p class="vernacular">看几个彩色格子，发现新规则</p>
+      <p class="desc">彩色网格归纳推理；不得借助题库记忆，唯现场抽象者可解。</p>
+      <dl>
+        <div><dt>采集自</dt><dd>ARC Prize</dd></div>
+        <div><dt>年份</dt><dd>2025</dd></div>
+        <div><dt>核验</dt><dd>2026-10-08</dd></div>
+      </dl>
+    </div>
+    <figure class="plate">
+      <img src="../../dist/logos/arc-prize.jpg" alt="ARC Prize 标识" />
+      <figcaption>图版 Ⅱ · 网格归纳任务</figcaption>
+    </figure>
+  </article>
+
+  <article class="specimen">
+    <span class="no">No. 003</span>
+    <div>
+      <h2>AIME 2025</h2>
+      <p class="vernacular">AI 做人类数学竞赛试卷</p>
+      <p class="desc">美国数学邀请赛年度试题；整数答案 0–999，错漏无部分分。</p>
+      <dl>
+        <div><dt>采集自</dt><dd>MAA</dd></div>
+        <div><dt>年份</dt><dd>2025</dd></div>
+        <div><dt>核验</dt><dd>2026-10-08</dd></div>
+      </dl>
+    </div>
+    <figure class="plate">
+      <img src="../../dist/logos/maa.webp" alt="MAA 标识" />
+      <figcaption>图版 Ⅲ · 竞赛试卷</figcaption>
+    </figure>
+  </article>
+
+  <article class="specimen">
+    <span class="no">No. 004</span>
+    <div>
+      <h2>OSWORLD</h2>
+      <p class="vernacular">像人一样操作桌面软件</p>
+      <p class="desc">在真实桌面与网页应用中操作文件、完成跨应用任务，由执行式评估器核验结果。</p>
+      <dl>
+        <div><dt>采集自</dt><dd>OSWorld 研究团队</dd></div>
+        <div><dt>年份</dt><dd>2024</dd></div>
+        <div><dt>核验</dt><dd>2026-10-08</dd></div>
+      </dl>
+    </div>
+    <figure class="plate">
+      <img src="../../dist/logos/havard-ihle.jpg" alt="OSWorld 维护者" />
+      <figcaption>图版 Ⅳ · 桌面操作环境</figcaption>
+    </figure>
+  </article>
+</section>
+
+<section class="figure">
+  <div class="margins">
+    <div class="num">149</div>
+    <p class="cap">条真实样例在馆——每件的题干、选项与判分方式，均可于展签上核验原始出处。</p>
+  </div>
+</section>
+
+<section class="steps margins" id="method">
+  <h2>核验之法</h2>
+  <div class="step"><span class="k">其一</span><p><strong>寻源。</strong>每条结论挂编号出处，直达官方论文、仓库或文档，不接受二手转述。</p></div>
+  <div class="step"><span class="k">其二</span><p><strong>辨版。</strong>同名评测逐年逐版分辨：AIME 2024 与 2025 非一套题，MMLU 一族有三个物种。</p></div>
+  <div class="step"><span class="k">其三</span><p><strong>标注。</strong>证据不足者，条目上明示"部分核验"，不粉饰，不臆造。</p></div>
+</section>
+
+<section class="bands" id="bands">
+  <div class="band"><h3>分数高的模型就是更好吗？</h3><p>仅在这套题、这个口径、这个版本下成立。本馆给每个分数挂上它的条件。</p></div>
+  <div class="band"><h3>我该看哪个评测？</h3><p>先想你的工作任务——修代码、写报告、做研究——再查谁真的在测它。</p></div>
+  <div class="band"><h3>条目有误如何指正？</h3><p>每件标本附核验日期；纠错经 GitHub Issues 提交，附官方出处即受理。</p></div>
+</section>
+
+<footer class="footer">
+  <div class="margins">
+    <p class="invite">欲阅全馆一百五十一件标本，请入 <a href="#">名录</a>；或先读 <a href="#">观展指南</a>。</p>
+  </div>
+  <div class="crop margins">BENCHMARK?</div>
+</footer>
+
+</body>
+</html>

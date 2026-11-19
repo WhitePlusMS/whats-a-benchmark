@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>原型 · 详情页（dense 规范取材）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6957d4;
+  --accent-text: #5845ba;
+  --accent-softer: rgb(105 87 212 / 7%);
+  --accent-soft: rgb(105 87 212 / 14%);
+  --accent-border: rgb(105 87 212 / 25%);
+  --muted: #606773;
+  --muted-tint: #756581;
+  --border: #e2e5e9;
+  --surface: #fff;
+  --surface-subtle: #f8f9fa;
+  --surface-sunken: #f4f5f7;
+  --text: #252932;
+  --text-strong: #303641;
+  --text-secondary: #4f5664;
+  --page-background: #f7f8fa;
+  --mono: "Cascadia Code", Consolas, monospace;
+  --evidence-text: #685523;
+  --evidence-bg: #fff8e8;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: "Inter Variable", Inter, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--page-background);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 36px; }
+a { color: inherit; text-decoration: none; }
+
+.site-header {
+  height: 72px; background: var(--surface);
+  display: flex; align-items: center;
+  position: sticky; top: 0; z-index: 30;
+}
+.header-inner { display: flex; align-items: center; gap: 60px; }
+.brand { display: flex; align-items: center; gap: 11px; font-size: 21px; font-weight: 700; letter-spacing: -0.8px; }
+.brand .mark { width: 36px; height: 36px; border-radius: 11px; background: var(--accent); }
+.main-nav { display: flex; gap: 38px; font-size: 14px; color: var(--muted); height: 100%; }
+.main-nav a { display: flex; align-items: center; }
+
+.detail-page { padding-top: 30px; }
+.breadcrumbs { font-size: 13px; color: var(--muted); }
+.breadcrumbs a:hover { color: var(--accent-text); }
+
+.detail-heading { padding: 24px 0; max-width: 960px; }
+.detail-title-line { display: flex; align-items: center; gap: 18px; }
+.logo-tile {
+  width: 54px; height: 54px; background: #fff; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-tile img { width: 44px; height: 44px; object-fit: contain; }
+.tags { display: flex; gap: 6px; }
+.tags span {
+  background: var(--accent-softer); border-radius: 4px;
+  padding: 2px 8px; color: var(--muted-tint); font-size: 13px;
+}
+h1 { font-size: 32px; letter-spacing: -0.8px; margin-top: 6px; }
+.detail-subtitle { font-size: 15px; font-weight: 600; margin-top: 8px; color: var(--text-secondary); }
+.detail-summary { font-size: 15px; line-height: 1.9; margin-top: 12px; max-width: 720px; color: var(--text-secondary); }
+
+/* D3：状态点替代 pill */
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--text-secondary); }
+.status .dot { width: 7px; height: 7px; border-radius: 50%; background: #2f9e6e; }
+.status.warn .dot { background: #c99a3a; }
+.status.warn { color: var(--evidence-text); }
+
+/* D1：事实条强化 */
+.detail-facts {
+  display: grid;
+  grid-template-columns: 1.25fr 0.7fr 1.35fr 0.8fr 0.85fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.detail-facts small {
+  display: block; font-size: 11px; margin-bottom: 8px; color: var(--muted);
+  letter-spacing: 0.4px;
+}
+.detail-facts strong {
+  font-size: 13px; font-weight: 500; color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+.detail-facts .mono { font-family: var(--mono); font-size: 12.5px; }
+.detail-facts .num { font-variant-numeric: tabular-nums; }
+
+.detail-nav {
+  position: sticky; top: 72px; z-index: 20;
+  display: flex; gap: 26px; padding: 14px 0;
+  background: var(--page-background);
+  font-size: 13px;
+}
+.detail-nav a { color: var(--text-secondary); }
+.detail-nav a:hover { color: var(--accent-text); }
+
+.detail-section { padding: 28px 0; }
+.detail-section h2 { font-size: 21px; margin-bottom: 16px; }
+.task-description { font-size: 15px; line-height: 1.95; max-width: 880px; color: var(--text-secondary); }
+
+.score-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 25px; }
+
+/* D2：主指标卡——全页唯一 accent 底 */
+.metric-panel {
+  padding: 28px;
+  background: var(--accent-softer);
+  border-radius: 10px;
+}
+.metric-panel > small { color: var(--muted); font-size: 11px; }
+.metric-panel h3 {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  margin: 10px 0;
+  color: var(--text-strong);
+}
+.metric-panel > span { color: var(--muted); font-size: 11px; }
+.metric-panel p { font-size: 13px; line-height: 1.9; margin-top: 19px; color: var(--text-secondary); }
+
+.caveat-panel { padding: 25px; }
+.caveat-panel h3 { font-size: 15px; color: var(--text-strong); }
+.caveat-panel ul { padding-left: 18px; font-size: 13px; line-height: 1.9; color: var(--muted); }
+.caveat-panel li { margin-bottom: 12px; }
+
+.source-entry {
+  background: var(--surface); border-radius: 8px;
+  display: flex; align-items: center; gap: 15px; padding: 18px 20px;
+}
+.source-number { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.source-entry strong { font-weight: 500; color: var(--text-secondary); font-size: 13px; display: block; }
+.source-entry small { font-size: 11px; color: var(--muted); display: block; margin-top: 3px; }
+.source-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <span class="brand"><span class="mark"></span>what's a benchmark?</span>
+    <nav class="main-nav"><a href="#">评测目录</a><a href="#">发布资料</a><a href="#">阅读指南</a></nav>
+  </div>
+</header>
+
+<div class="container detail-page">
+  <nav class="breadcrumbs"><a href="#">返回目录</a> / <a href="#">编程与软件工程</a> / SWE-bench Verified</nav>
+
+  <header class="detail-heading">
+    <div class="detail-title-line">
+      <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="OpenAI 标识" /></span>
+      <div>
+        <div class="tags">
+          <span>评测子集</span>
+          <span>编程与软件工程</span>
+          <!-- D3：状态点 + 文字，替代 pill -->
+          <span class="status warn" style="background:none; padding:0"><span class="dot"></span>已核验，有边界</span>
+        </div>
+        <h1>SWE-bench Verified</h1>
+        <p class="detail-subtitle">让 AI 在真实仓库里修好一个问题</p>
+      </div>
+    </div>
+    <p class="detail-summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+  </header>
+
+  <!-- D1：事实条 -->
+  <div class="detail-facts">
+    <div><small>发布方</small><strong>SWE-bench 团队 / OpenAI</strong></div>
+    <div><small>首次发布年份</small><strong class="num">2024</strong></div>
+    <div><small>评测版本</small><strong class="mono">Verified · 500 题子集</strong></div>
+    <div><small>数据访问</small><strong>公开访问</strong></div>
+    <div><small>资料核验日期</small><strong class="mono num">2026-10-08</strong></div>
+  </div>
+
+  <nav class="detail-nav">
+    <a href="#">测什么</a><a href="#">具体任务</a><a href="#">真实案例</a><a href="#">评分与比较</a><a href="#">数据与许可</a><a href="#">参考资料</a>
+  </nav>
+
+  <section class="detail-section">
+    <h2>测什么</h2>
+    <p class="task-description">根据真实 GitHub issue 在修复前仓库状态上生成补丁，再用测试验证。Verified 是人工质量筛选的 500 项子集；筛选关注问题描述是否明确、FAIL_TO_PASS 测试是否公平，以及其他重大质量问题。<sup class="mono" style="color:var(--accent-text)">[1]</sup></p>
+  </section>
+
+  <section class="detail-section">
+    <h2>评分与比较条件</h2>
+    <div class="score-layout">
+      <div class="metric-panel">
+        <small>评分指标</small>
+        <h3>resolved rate</h3>
+        <span>越高越好 · 官方 leaderboard 口径</span>
+        <p>主结果为 solved/resolved rate：完整通过该任务的 FAIL_TO_PASS 与 PASS_TO_PASS 测试才计为 resolved。部分通过不计分。</p>
+      </div>
+      <div class="caveat-panel">
+        <h3>适用限制</h3>
+        <ul>
+          <li>仅覆盖 Python 仓库；其他语言生态不适用。</li>
+          <li>部分题目依赖测试环境完整性，复现需 Docker harness。</li>
+          <li>不同报告的执行预算与 retry 策略不同，横向比较前先核对协议。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <h2>参考资料</h2>
+    <div class="source-list">
+      <div class="source-entry">
+        <span class="source-number">[1]</span>
+        <span><strong>SWE-bench Verified 官方介绍（OpenAI Blog）</strong><small>定义 · openai.com</small></span>
+      </div>
+      <div class="source-entry">
+        <span class="source-number">[2]</span>
+        <span><strong>SWE-bench 官方仓库</strong><small>代码与数据 · github.com</small></span>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

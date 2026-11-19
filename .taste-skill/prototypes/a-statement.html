@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>原型 A · 宣言型 — 到底测什么？</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f3f3f3;
+  --ink: #0a0a0a;
+  --muted: #6b6b6b;
+  --accent: #2436ff;
+  --accent-ink: #ffffff;
+  --field-dark: #0a0a0a;
+  --field-dark-ink: #ffffff;
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+}
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Switzer", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: var(--step-body);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+}
+a { color: inherit; }
+.margins { padding-left: 4vw; padding-right: 4vw; }
+
+/* 顶部角落链接，无导航条 */
+.toplinks {
+  position: absolute;
+  top: 28px;
+  right: 4vw;
+  display: flex;
+  gap: 28px;
+  font-size: var(--step-small);
+  font-weight: 500;
+  z-index: 2;
+}
+.toplinks a { text-decoration: none; }
+.toplinks a:hover { color: var(--accent); }
+
+/* Hero：宣言占满上部三分之二 */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 12vh;
+  padding-bottom: 6vh;
+  position: relative;
+}
+.hero h1 {
+  font-size: clamp(3rem, 7.5vw, 7.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
+  max-width: none;
+}
+.hero h1 .zh { display: block; font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif; }
+.hero h1 .q { color: var(--accent); }
+.hero-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+.hero-lead {
+  font-size: var(--step-lead);
+  max-width: 34ch;
+  line-height: 1.5;
+}
+.hero-cta {
+  flex-shrink: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 18px 34px;
+  font-size: var(--step-body);
+  font-weight: 500;
+  text-decoration: none;
+}
+.hero-cta:hover { background: #0a1fd6; }
+
+/* 宣言揭示动效 */
+.reveal {
+  clip-path: inset(0 0 100% 0);
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s forwards;
+}
+.reveal-2 { animation-delay: 0.35s; }
+@keyframes rise { to { clip-path: inset(0 0 -10% 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; clip-path: none; }
+}
+
+/* stats：大数字与其凭据 */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  padding-top: 16vh;
+  padding-bottom: 16vh;
+  align-items: end;
+}
+.stats .big {
+  font-size: clamp(6rem, 16vw, 15rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+.stats aside { max-width: 30ch; color: var(--muted); }
+.stats aside strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 10px; }
+
+/* list：同一字号的名录 */
+.lineup { padding-bottom: 14vh; }
+.lineup h2 {
+  font-size: var(--step-head);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 6vh;
+}
+.lineup ol { list-style: none; padding: 0; }
+.lineup li {
+  display: flex;
+  align-items: baseline;
+  gap: 3vw;
+  padding: 2.2vh 0;
+}
+.lineup li + li { border-top: none; }
+.lineup .name {
+  font-size: clamp(1.8rem, 4.4vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-decoration: none;
+}
+.lineup .name:hover { color: var(--accent); }
+.lineup .meta {
+  margin-left: auto;
+  text-align: right;
+  font-size: var(--step-small);
+  color: var(--muted);
+  max-width: 26ch;
+}
+
+/* how-it-works：问答呼应栏，深色场 */
+.qa {
+  background: var(--field-dark);
+  color: var(--field-dark-ink);
+  padding-top: 14vh;
+  padding-bottom: 14vh;
+}
+.qa .pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  padding: 5vh 0;
+}
+.qa .q {
+  font-size: var(--step-head);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.qa .a { color: #b9b9b9; max-width: 38ch; font-size: var(--step-lead); }
+.qa .a em { color: #fff; font-style: normal; border-bottom: 3px solid var(--accent); }
+
+/* faq：大问题，答案在旁 */
+.faq { padding-top: 14vh; padding-bottom: 10vh; }
+.faq .row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4vw;
+  padding: 4.5vh 0;
+}
+.faq .row h3 { font-size: var(--step-lead); font-weight: 600; letter-spacing: -0.02em; }
+.faq .row p { color: var(--muted); max-width: 44ch; }
+
+/* footer：上方栏目，下方字标 */
+.footer { background: var(--field-dark); color: var(--field-dark-ink); padding-top: 10vh; overflow: hidden; }
+.footer .cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4vw;
+  font-size: var(--step-small);
+  padding-bottom: 8vh;
+}
+.footer .cols h4 { font-weight: 500; margin-bottom: 12px; color: #8d8d8d; }
+.footer .cols a { display: block; text-decoration: none; padding: 4px 0; }
+.footer .cols a:hover { color: var(--accent); }
+.footer .wordmark {
+  font-size: clamp(3rem, 12.5vw, 12rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  white-space: nowrap;
+  transform: translateY(0.12em);
+  color: #1d1d1d;
+}
+
+@media (max-width: 700px) {
+  .hero { padding-top: 16vh; }
+  .hero-row { flex-direction: column; align-items: flex-start; }
+  .stats, .qa .pair, .faq .row { grid-template-columns: 1fr; }
+  .lineup .meta { display: none; }
+  .footer .cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="toplinks">
+  <a href="#list">名录</a>
+  <a href="#how">读法</a>
+  <a href="#faq">问答</a>
+</nav>
+
+<header class="hero margins">
+  <h1 class="reveal">每个 benchmark<span class="zh">到底<span class="q">测什么</span>？</span></h1>
+  <div class="hero-row reveal reveal-2">
+    <p class="hero-lead">不看榜单分数。看真实题目、评分方法和版本关系——151 个评测，逐个拆开给你看。</p>
+    <a class="hero-cta" href="#list">翻开名录</a>
+  </div>
+</header>
+
+<section class="stats margins">
+  <div class="big">149</div>
+  <aside>
+    <strong>条真实样例，逐条附原始来源</strong>
+    不是截图，不是转述。每个评测打开都能看到它真实在考的那道题——题干、选项、答案与判分方式。
+  </aside>
+</section>
+
+<section class="lineup margins" id="list">
+  <h2>名录</h2>
+  <ol>
+    <li><a class="name" href="#">SWE-bench Verified</a><span class="meta">让 AI 在真实仓库里修好一个问题 · 2024</span></li>
+    <li><a class="name" href="#">HumanEval</a><span class="meta">按说明补全一个 Python 函数 · 2021</span></li>
+    <li><a class="name" href="#">GPQA Diamond</a><span class="meta">研究生级科学问答，专家也难满分 · 2023</span></li>
+    <li><a class="name" href="#">ARC-AGI-2</a><span class="meta">看几个彩色格子，发现新规则 · 2025</span></li>
+    <li><a class="name" href="#">AIME 2025</a><span class="meta">AI 做人类数学竞赛试卷 · 2025</span></li>
+    <li><a class="name" href="#">OSWorld</a><span class="meta">像人一样操作桌面软件 · 2024</span></li>
+    <li><a class="name" href="#">BrowseComp</a><span class="meta">找到网上很难找到的那个答案 · 2025</span></li>
+    <li><a class="name" href="#">τ²-bench</a><span class="meta">客服对话里按规矩办事 · 2024</span></li>
+  </ol>
+</section>
+
+<section class="qa" id="how">
+  <div class="margins">
+    <div class="pair">
+      <p class="q">榜单说这个模型 92 分。</p>
+      <p class="a">分数不会告诉你<em>它考的到底是什么</em>。同一科目换一套题，排名就可能重写。</p>
+    </div>
+    <div class="pair">
+      <p class="q">那看什么才有用？</p>
+      <p class="a">看题。<em>真实的题</em>。本站每个评测都给出官方题目节选、评分口径和版本差异，附可核验的原始出处。</p>
+    </div>
+    <div class="pair">
+      <p class="q">我怎么判断它适不适合我？</p>
+      <p class="a">按你的工作任务反查：修代码、写报告、做研究——<em>先找任务，再看谁测它</em>，而不是先看分数。</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq margins" id="faq">
+  <div class="row">
+    <h3>分数高的模型就是更好吗？</h3>
+    <p>只在这套题、这个评分口径、这个版本下成立。本站给每个分数都挂上它的条件。</p>
+  </div>
+  <div class="row">
+    <h3>同名评测为什么会打架？</h3>
+    <p>AIME 2024 和 AIME 2025 不是一套题；MMLU 有原版、Pro、MMMLU 三个物种。版本关系页专门拆这个。</p>
+  </div>
+  <div class="row">
+    <h3>这些数据可信吗？</h3>
+    <p>每条结论带编号出处，链接到官方论文或仓库；核验日期写在条目上，证据不足的条目标注"部分核验"。</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="margins cols">
+    <div>
+      <h4>名录</h4>
+      <a href="#">全部 151 个评测</a>
+      <a href="#">按工作任务找</a>
+      <a href="#">版本关系</a>
+    </div>
+    <div>
+      <h4>读法</h4>
+      <a href="#">阅读指南</a>
+      <a href="#">评分指标怎么读</a>
+      <a href="#">收录与核验规范</a>
+    </div>
+    <div>
+      <h4>项目</h4>
+      <a href="#">GitHub</a>
+      <a href="#">提交纠错</a>
+    </div>
+  </div>
+  <div class="wordmark margins">what's a benchmark?</div>
+</footer>
+
+</body>
+</html>

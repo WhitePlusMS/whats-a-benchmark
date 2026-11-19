@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>卡片杂交 V2+V3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6957d4;
+  --accent-text: #5845ba;
+  --accent-softer: rgb(105 87 212 / 7%);
+  --accent-soft: rgb(105 87 212 / 14%);
+  --accent-border: rgb(105 87 212 / 25%);
+  --accent-border-strong: #a698e0;
+  --muted: #606773;
+  --muted-tint: #756581;
+  --border: #e2e5e9;
+  --surface: #fff;
+  --surface-sunken: #f4f5f7;
+  --text: #252932;
+  --text-strong: #303641;
+  --text-secondary: #4f5664;
+  --page-background: #f7f8fa;
+  --warn: #c99a3a;
+  --evidence-text: #685523;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: "Inter Variable", Inter, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--page-background);
+  color: var(--text);
+  font-size: 14px; line-height: 1.65;
+  padding: 48px 36px;
+}
+.wrap { max-width: 1400px; margin: 0 auto; }
+h1 { font-size: 26px; letter-spacing: -0.5px; margin-bottom: 6px; }
+.note { color: var(--muted); margin-bottom: 32px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 20px 22px 0;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.card:hover { border-color: var(--accent-border-strong); transform: translateY(-2px); }
+
+/* V2 头部：logo 内联标题行 */
+.head { display: flex; align-items: center; gap: 12px; }
+.logo-tile {
+  width: 32px; height: 32px; background: #fff; border-radius: 7px;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.logo-tile img { width: 26px; height: 26px; object-fit: contain; }
+.head h3 { font-size: 18px; letter-spacing: -0.5px; color: var(--text); }
+.head .tail { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.kind { font-size: 13px; color: var(--muted); }
+.dot-status { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--evidence-text); }
+.dot-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+
+.tldr { margin-top: 10px; color: var(--text-secondary); font-size: 14px; font-weight: 600; }
+.summary {
+  margin: 8px 0 14px; color: var(--text-secondary); font-size: 14px; line-height: 1.8;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tags span { background: var(--accent-softer); border-radius: 4px; padding: 2px 8px; color: var(--muted-tint); font-size: 13px; }
+.meta-row {
+  display: flex; justify-content: space-between; gap: 10px;
+  margin-top: auto; padding: 14px 0 12px; color: var(--muted); font-size: 13px;
+}
+.meta-row .yr { font-variant-numeric: tabular-nums; }
+
+/* V3 底部贯通操作条 */
+.actionbar {
+  display: flex; margin: 0 -22px;
+  border-top: 1px solid var(--border);
+}
+.actionbar a, .actionbar button {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  min-height: 48px; font-size: 13px; font-weight: 500;
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  color: var(--accent-text);
+  transition: background 0.12s;
+}
+.actionbar button { color: var(--muted); border-left: 1px solid var(--border); }
+.actionbar a:hover { background: var(--accent-softer); }
+.actionbar button:hover { background: var(--surface-sunken); }
+.actionbar button.chosen { color: var(--accent-text); background: var(--accent-soft); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>V2 + V3 杂交：logo 内联标题行 + 贯通操作条</h1>
+  <p class="note">三张并排看节奏：正常态 / 部分核验状态点 / 已选对比。</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="head">
+        <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="OpenAI" /></span>
+        <h3>SWE-bench Verified</h3>
+        <span class="tail"><span class="kind">评测子集</span></span>
+      </div>
+      <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+      <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+      <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+      <div class="meta-row"><span>SWE-bench 团队 / OpenAI</span><span class="yr">2024</span></div>
+      <div class="actionbar">
+        <a href="#">查看真实题目</a>
+        <button>+ 对比</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <span class="logo-tile"><img src="../../dist/logos/maa.webp" alt="MAA" /></span>
+        <h3>AIME 2025</h3>
+        <span class="tail"><span class="dot-status">部分核验</span></span>
+      </div>
+      <p class="tldr">AI 做人类数学竞赛试卷</p>
+      <p class="summary">用 2025 年 AIME 竞赛题考查数学解题；具体试卷和模型评测协议由报告方决定。</p>
+      <div class="tags"><span>数学竞赛</span><span>短答案</span></div>
+      <div class="meta-row"><span>MAA（原始竞赛）</span><span class="yr">2025</span></div>
+      <div class="actionbar">
+        <a href="#">查看真实题目</a>
+        <button>+ 对比</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <span class="logo-tile"><img src="../../dist/logos/openai.png" alt="OpenAI" /></span>
+        <h3>HumanEval</h3>
+        <span class="tail"><span class="kind">独立评测</span></span>
+      </div>
+      <p class="tldr">按说明补全一个 Python 函数</p>
+      <p class="summary">按函数签名和 docstring 补全 Python 函数，再用单元测试检查功能；题目由人工编写。</p>
+      <div class="tags"><span>函数生成</span><span>Python</span></div>
+      <div class="meta-row"><span>OpenAI</span><span class="yr">2021</span></div>
+      <div class="actionbar">
+        <a href="#">查看真实题目</a>
+        <button class="chosen">✓ 已选</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

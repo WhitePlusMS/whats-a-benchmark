@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>meta 行变体（团队/年份）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6957d4;
+  --accent-text: #5845ba;
+  --accent-softer: rgb(105 87 212 / 7%);
+  --accent-soft: rgb(105 87 212 / 14%);
+  --accent-border: rgb(105 87 212 / 25%);
+  --accent-border-strong: #a698e0;
+  --muted: #606773;
+  --muted-tint: #756581;
+  --border: #e2e5e9;
+  --surface: #fff;
+  --surface-sunken: #f4f5f7;
+  --text: #252932;
+  --text-strong: #303641;
+  --text-secondary: #4f5664;
+  --page-background: #f7f8fa;
+  --mono: "Cascadia Code", Consolas, monospace;
+  --warn: #c99a3a;
+  --evidence-text: #685523;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: "Inter Variable", Inter, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--page-background); color: var(--text);
+  font-size: 14px; line-height: 1.65; padding: 44px 36px;
+}
+.wrap { max-width: 1400px; margin: 0 auto; }
+h1 { font-size: 24px; letter-spacing: -0.5px; margin-bottom: 6px; }
+.note { color: var(--muted); margin-bottom: 30px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 24px; }
+.cap { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.cap b { color: var(--text-strong); }
+
+.card {
+  background: var(--surface); border: 1px solid transparent; border-radius: 14px;
+  padding: 20px 22px 0; display: flex; flex-direction: column; overflow: hidden;
+}
+.head { display: flex; align-items: center; gap: 12px; }
+.logo-tile { width: 32px; height: 32px; background: #fff; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo-tile img { width: 26px; height: 26px; object-fit: contain; }
+.head h3 { font-size: 18px; letter-spacing: -0.5px; }
+.kind { font-size: 13px; color: var(--muted); margin-left: auto; }
+.tldr { margin-top: 10px; color: var(--text-secondary); font-size: 14px; font-weight: 600; }
+.summary {
+  margin: 8px 0 14px; color: var(--text-secondary); font-size: 14px; line-height: 1.8;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tags { display: flex; gap: 6px; }
+.tags span { background: var(--accent-softer); border-radius: 4px; padding: 2px 8px; color: var(--muted-tint); font-size: 13px; }
+.actionbar { display: flex; margin: 0 -22px; border-top: 1px solid var(--border); }
+.actionbar a, .actionbar button {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  min-height: 48px; font-size: 13px; font-weight: 500;
+  background: none; border: 0; font-family: inherit; color: var(--accent-text);
+}
+.actionbar button { color: var(--muted); border-left: 1px solid var(--border); }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.num { font-variant-numeric: tabular-nums; }
+.dot-status { display: inline-flex; align-items: center; gap: 6px; color: var(--evidence-text); }
+.dot-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--warn); }
+
+/* M1 基线：左右分开 */
+.m1 .meta { display: flex; justify-content: space-between; margin-top: auto; padding: 14px 0 12px; color: var(--muted); font-size: 13px; }
+
+/* M2 年份大字角标 */
+.m2 .meta { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding: 12px 0 14px; }
+.m2 .pub { font-size: 13px; color: var(--muted); }
+.m2 .yr { font-family: var(--mono); font-size: 22px; font-weight: 600; color: var(--text-strong); font-variant-numeric: tabular-nums; line-height: 1; }
+
+/* M3 双 chip */
+.m3 .meta { display: flex; gap: 6px; margin-top: auto; padding: 12px 0 14px; }
+.m3 .mc {
+  font-size: 12px; color: var(--text-secondary);
+  background: var(--surface-sunken); border-radius: 5px; padding: 3px 8px;
+}
+.m3 .mc.yr { font-family: var(--mono); margin-left: auto; }
+
+/* M4 并入标题区（标题下小字一行） */
+.m4 .under { color: var(--muted); font-size: 12.5px; margin-top: 4px; display: flex; gap: 8px; }
+.m4 .under .num { color: var(--muted); }
+.m4 .spacer { flex: 1; }
+
+/* M5 档案式两列 */
+.m5 .meta {
+  margin-top: auto; padding: 10px 0 12px;
+  display: grid; grid-template-columns: auto 1fr; gap: 2px 12px;
+  font-size: 12.5px;
+}
+.m5 .meta dt { color: var(--muted); }
+.m5 .meta dd { color: var(--text-secondary); }
+.m5 .meta dd.num { font-variant-numeric: tabular-nums; }
+
+/* M6 单行合并 + 点分隔 + 状态点 */
+.m6 .meta {
+  margin-top: auto; padding: 14px 0 12px;
+  font-size: 13px; color: var(--muted);
+  display: flex; align-items: center; gap: 8px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.m6 .meta .sep { color: var(--border); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>meta 行变体（发布方 / 年份）</h1>
+  <p class="note">卡片骨架固定为杂交版，只有「团队/年份」一行在变。</p>
+
+  <div class="grid">
+
+    <div>
+      <p class="cap"><b>M1</b> 基线：左团队右年份（现状）</p>
+      <div class="card m1">
+        <div class="head"><span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span><h3>SWE-bench Verified</h3><span class="kind">评测子集</span></div>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="meta"><span>SWE-bench 团队 / OpenAI</span><span class="num">2024</span></div>
+        <div class="actionbar"><a href="#">查看真实题目</a><button>+ 对比</button></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="cap"><b>M2</b> 年份 mono 大角标</p>
+      <div class="card m2">
+        <div class="head"><span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span><h3>SWE-bench Verified</h3><span class="kind">评测子集</span></div>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="meta"><span class="pub">SWE-bench 团队 / OpenAI</span><span class="yr">2024</span></div>
+        <div class="actionbar"><a href="#">查看真实题目</a><button>+ 对比</button></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="cap"><b>M3</b> 双 chip（与 tags 同族）</p>
+      <div class="card m3">
+        <div class="head"><span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span><h3>SWE-bench Verified</h3><span class="kind">评测子集</span></div>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="meta"><span class="mc">SWE-bench 团队 / OpenAI</span><span class="mc yr">2024</span></div>
+        <div class="actionbar"><a href="#">查看真实题目</a><button>+ 对比</button></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="cap"><b>M4</b> 并入标题区（不占底部）</p>
+      <div class="card m4">
+        <div class="head"><span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span>
+          <div><h3>SWE-bench Verified</h3><p class="under"><span>SWE-bench 团队 / OpenAI</span><span>·</span><span class="num">2024</span></p></div>
+          <span class="kind" style="align-self:flex-start">评测子集</span>
+        </div>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <div class="spacer"></div>
+        <div class="actionbar" style="margin-top:14px"><a href="#">查看真实题目</a><button>+ 对比</button></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="cap"><b>M5</b> 档案式 label:value</p>
+      <div class="card m5">
+        <div class="head"><span class="logo-tile"><img src="../../dist/logos/openai.png" alt="" /></span><h3>SWE-bench Verified</h3><span class="kind">评测子集</span></div>
+        <p class="tldr">让 AI 在真实仓库里修好一个问题</p>
+        <p class="summary">根据真实 GitHub issue 修复仓库并通过测试；Verified 是人工质量筛选的 500 项子集。</p>
+        <div class="tags"><span>真实代码库</span><span>自动测试</span></div>
+        <dl class="meta"><dt>发布方</dt><dd>SWE-bench 团队 / OpenAI</dd><dt>年份</dt><dd class="num">2024</dd></dl>
+        <div class="actionbar"><a href="#">查看真实题目</a><button>+ 对比</button></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="cap"><b>M6</b> 单行点分隔 + 状态点同行</p>
+      <div class="card m6">
+        <div class="head"><span class="logo-tile"><img src="../../dist/logos/maa.webp" alt="" /></span><h3>AIME 2025</h3><span class="kind">独立评测</span></div>
+        <p class="tldr">AI 做人类数学竞赛试卷</p>
+        <p class="summary">用 2025 年 AIME 竞赛题考查数学解题；具体试卷和模型评测协议由报告方决定。</p>
+        <div class="tags"><span>数学竞赛</span><span>短答案</span></div>
+        <div class="meta"><span>MAA（原始竞赛）</span><span class="sep">·</span><span class="num">2025</span><span class="sep">·</span><span class="dot-status">部分核验</span></div>
+        <div class="actionbar"><a href="#">查看真实题目</a><button>+ 对比</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
