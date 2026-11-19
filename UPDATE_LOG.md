@@ -1,9 +1,32 @@
 # 更新说明
 
+## 2026-11-19 · 部署 FrontierML 并提交工作区资料
+
+- FrontierML 条目及本次收录说明随提交 `8da62bd` 部署到 GitHub Pages。已核验线上目录入口、详情页榜单数字及三个公开案例的数据。
+- 本地提交包含 `docs/` 的研究记录与评测体验标准、`.agents/skills/` 和 `skills-lock.json` 的项目技能、`.oil-ui/` 与 `.taste-skill/` 的界面设计资料，以及 `.scratch/` 中已保留的草稿、研究脚本和图标评审材料，便于后续查找和复核。下载数据、依赖副本、构建产物与临时检出留在工作区。
+
 ## 2026-11-19 · 收录 Synthetic Sciences FrontierML
 
 - 新增 `content/benchmarks/frontierml-synthetic-sciences.json`，让评测进入「Agent 与工具使用」目录和通用详情、对比流程。录入 Lab0 实验条件、留出评分、公开与私有范围、官方榜单、公开包与首发运行条件的差异，以及数据许可和来源。
 - 补充 Pokémon Battles、Rule Worlds、Emotive Voice 三条公开任务的中文案例，分别展示模型、方法和研究判断的交付与判分。记录 Grok 4.7 仅覆盖 15 道公开题，另四款模型覆盖 25 道题，并注明 Induction Labs 同名评测的发布方与任务范围。
+
+## 2026-11-13 · 整理主工作区与未提交资料
+
+- 原项目目录切换到最新 main（fe21b30），保留未提交的研究资料及技能文件；将体验标准草稿、UI 评审记录与截图迁回原目录。
+- 保留 ScreenSpot-Pro 补充说明；将尚未复核的 Kimi 发布资料和 Decision Index v2 草稿移至 .scratch/preserved-drafts-20261113，避免自动生成到网站。旧试点代码、历史更新说明和临时工作区日志均备份至项目目录旁的 benchmark-preserved-20261113-234416，附 SHA-256 清单。
+- 原因和影响：统一正式工作区和主线，避免旧代码覆盖已合并实现，并保留后续复核所需材料；上述草稿与资料仍未提交。
+- 临时工作区已从 Git 列表移除；benchmark-mka-preview-202a34c 目录残留的清理被自动审批拦截，文件仍保留。依赖按锁文件重新安装，未启动开发服务。内容校验、类型检查与 174 项测试通过；生成目录为主线的 358 个评测、746 条样例和 19 条发布资料。
+
+## 2026-11-12 · 统一评测卡片与阅读流程
+
+- `BenchmarkCard.vue`、`BenchmarkDetailHeader.vue`、`sampleAccess.ts` 和 `ExploreView.vue` 统一真实案例、组成样例、任务示例、获取方式入口及对比动作。压缩手机目录专题入口并明确筛选统计单位。
+- `DetailView.vue`、`SampleViewer.vue`、`SampleWalkthrough.vue`、`GuideView.vue` 增加评测与评分上下文，连续展示输入、交付和验收，后置来源长文。选择题解读随答案揭示，原始数据注明答案和节选范围。`sampleLocation.ts`、`main.ts` 统一处理未知编号和案例锚点，指数页可分享组成项样例。
+- `samplePickerLabel.ts`、`schema.ts`、`roboquest.json` 和 `swe-bench-verified.json` 增加选择器短题名，`sampleLoader.ts` 校验新字段，保留完整题名、样例 ID、原始数据和许可。
+- `CompareView.vue`、`ComparisonCell.vue` 和 `App.vue` 共用对比维度及内容，手机按维度展示，页面内管理选择，结果页移除浮栏。手机目录复用 `ComparisonSelectionBar.vue` 在结果上方展示选择，避免遮挡卡片操作。`compare.ts` 在当前标签页保留选择，目录刷新可继续比较。
+- `sourceReferences.ts`、`SourceList.vue`、`EvidenceLinks.vue` 显示可区分的来源对象和核验日期，保留原始链接、引用号及定位。`benchmark-card.css`、`catalog.css`、`detail.css`、`layout.css`、`reading.css`、`sample-viewer.css`、`shared.css` 与 `tokens.css` 收口共用字号、间距、圆角与触控区，发布资料卡随内容定高。
+- `docs/benchmark-experience-standard.md` 更新页面结构、组件职责、状态与验收口径。
+- 更新 `comparison.test.ts`、`mmlu-pro-experience.test.ts`、`sample-location.test.ts`，并新增 `source-references.test.ts`，覆盖选择恢复、原文提示、未知编号和引用稳定性。
+- 验证通过类型检查、173 项测试、317 个评测与 738 条样例内容校验，以及 323 个静态页面构建。逐页检查详情共用结构与锚点。浏览器在 390px 遍历 265 个评测的 738 条案例，并核对答案揭示、加载失败重试、原始数据分享、对比状态与刷新恢复。另有桌面及窄屏截图和独立视觉与流程走查。触屏为浏览器模拟。
 
 ## 2026-11-12 · MMMLU 中文真实题互动体验
 
