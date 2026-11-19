@@ -1,5 +1,10 @@
 # 更新说明
 
+## 2026-11-19 · 收录 Synthetic Sciences FrontierML
+
+- 新增 `content/benchmarks/frontierml-synthetic-sciences.json`，让评测进入「Agent 与工具使用」目录和通用详情、对比流程。录入 Lab0 实验条件、留出评分、公开与私有范围、官方榜单、公开包与首发运行条件的差异，以及数据许可和来源。
+- 补充 Pokémon Battles、Rule Worlds、Emotive Voice 三条公开任务的中文案例，分别展示模型、方法和研究判断的交付与判分。记录 Grok 4.7 仅覆盖 15 道公开题，另四款模型覆盖 25 道题，并注明 Induction Labs 同名评测的发布方与任务范围。
+
 ## 2026-11-12 · MMMLU 中文真实题互动体验
 
 - 为四条真实中文抽象代数题加入独立视觉：域扩张塔与基、五节点置换与陪集分块、模 5 穷举、群论反例。原题和选项先显示，参考标签及本站数学图解主动揭示，切题与重试状态分离，不运行模型、不计正式成绩。

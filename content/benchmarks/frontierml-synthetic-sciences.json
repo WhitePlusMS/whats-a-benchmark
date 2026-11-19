@@ -1,0 +1,153 @@
+{
+  "id": "frontierml-synthetic-sciences",
+  "status": "published",
+  "order": 717,
+  "name": "FrontierML",
+  "subtitle": "在看不到最终成绩的情况下自主开展机器学习研究",
+  "category": "agents",
+  "tags": ["机器学习研究", "实验设计", "长时程任务", "留出评估"],
+  "publisher": "Synthetic Sciences",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-11-19",
+  "version": "首发 Lab0 评测 / 公开任务 1.0.0",
+  "kind": "original",
+  "aliases": ["FrontierML Synthetic Sciences", "FrontierML Lab0", "Synthetic Sciences FrontierRSI"],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用开放式机器学习问题评估智能体能否独立设定实验、衡量进展，并交付经得起留出评估的成果。",
+    "task": "根据研究目标设计能在本地运行的替代指标，用实验判断它有多可靠，再选定最终交付物。",
+    "sourceUrls": ["https://syntheticsciences.ai/research/frontierml"]
+  },
+  "taskContract": {
+    "input": "研究任务说明、起始仓库和开发资源。任务说明交代最终如何验收，运行期间无法查询正式成绩。",
+    "output": "在时限结束时封存所选版本，按任务交付训练好的模型、学习程序或可重训的配方。",
+    "environment": "官方每次运行限时 12 小时，统一使用 Harbor 下的 mini-swe-agent 分支。Lab0 提供冻结的文献和数据镜像、模型 API 及按任务分配的 50–125 美元预算，按需从共享集群租用 H100，最多同时使用四张卡。",
+    "sourceUrls": ["https://syntheticsciences.ai/research/frontierml"]
+  },
+  "dataProfile": {
+    "summary": "任务覆盖强化学习、持续学习、生成建模、语音、具身导航等方向。",
+    "disclosure": "partial",
+    "scale": ["共 25 项开放式研究任务。15 道公开题包括 7 道模型题、5 道方法题和 3 道研究判断题。"],
+    "splits": ["10 道任务保留为私有集，其结果只进入汇总。各任务的开发资源与最终评估条件也有独立边界。"],
+    "fields": ["官方任务页列出实验环境、交付规格、评分协议和各模型的任务分数。"],
+    "files": ["公开任务 1.0.0 提供任务说明、起始仓库、评分代码和评分计划。"],
+    "sourceUrls": ["https://frontierml.ai/tasks", "https://syntheticsciences.ai/research/frontierml", "https://github.com/synthetic-sciences/FrontierML"]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": ["公开任务可在 GitHub 浏览，完整 25 题评测需联系发布方。自行运行时按各任务要求准备算力及服务凭据。"],
+    "url": "https://github.com/synthetic-sciences/FrontierML",
+    "sourceUrls": ["https://github.com/synthetic-sciences/FrontierML", "https://frontierml.ai/"]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "原创任务文字采用 CC BY 4.0，发布版自研代码采用 Apache-2.0。",
+    "scope": "许可覆盖各自的官方发布材料。站内案例为公开任务事实的中文导读。",
+    "boundaries": ["第三方代码、模型和数据遵循各自许可，部分限非商业使用。发布方要求带任务识别标记的文件排除在训练数据之外。"],
+    "sourceUrls": ["https://github.com/synthetic-sciences/FrontierML#licence"]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内提供模型、方法和研究判断各一条中文案例，官方任务目录可浏览全部 15 道公开任务及其原文。",
+    "url": "https://frontierml.ai/tasks",
+    "sourceUrls": ["https://frontierml.ai/tasks"]
+  },
+  "metric": {
+    "name": "平均归一化分数",
+    "description": "每道题以起始参照为 0、官方设定的强结果参照为 1。榜单将各任务得分截断到 0–1 后取平均，表示平均缩小了多少起始参照与强结果之间的差距。",
+    "direction": "higher",
+    "sourceUrls": ["https://syntheticsciences.ai/research/frontierml", "https://frontierml.ai/"]
+  },
+  "limitations": [
+    {
+      "text": "官方榜单的 Grok 4.7 只覆盖 15 道公开题，其余四款模型覆盖全部 25 题。比较模型时可在论文附录 C.1 核对统一的公开题口径。",
+      "sourceUrls": ["https://frontierml.ai/", "https://frontierml.ai/paper"]
+    },
+    {
+      "text": "公开 1.0.0 使用固定机器，官方首发结果使用 Lab0 的按需算力预算，复跑成绩需要标明环境和任务范围。",
+      "sourceUrls": ["https://syntheticsciences.ai/research/frontierml", "https://github.com/synthetic-sciences/FrontierML"]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条对应 frontierml.ai 的 Synthetic Sciences 评测。发布方曾使用 FrontierRSI 作为早期名称。frontierml.org 的 21 题 FrontierML 由 Induction Labs 发布，采用另一套任务和预算。",
+      "sourceUrls": ["https://github.com/synthetic-sciences/FrontierML/blob/main/CHANGELOG.md", "https://www.frontierml.org/blog/"]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "提交封存后再按任务运行最终评估，例如用未见样本、重跑提交的训练方法、进行比赛或组织盲听。元认知、新颖性、效率和实验控制四项过程指标单独报告，任务成绩依据交付成果计算。",
+      "sourceUrls": ["https://syntheticsciences.ai/research/frontierml", "https://frontierml.ai/"]
+    },
+    "comparison": {
+      "text": "首发榜单的 25 题均分为 Claude Fable 5.2（0.523）、Claude Opus 5.5（0.399）、GPT-6 Astra（0.371）和 Gemini 4 Carbon（0.353）。Grok 4.7 在 15 道公开题上的均分为 0.115。官方报告的所有运行均低于各自任务的强结果参照。",
+      "sourceUrls": ["https://frontierml.ai/"]
+    }
+  },
+  "sources": [
+    {"url": "https://syntheticsciences.ai/research/frontierml", "label": "Synthetic Sciences 首发报告与评测方法", "role": "definition"},
+    {"url": "https://frontierml.ai/", "label": "FrontierML 官方榜单与过程指标", "role": "leaderboard"},
+    {"url": "https://frontierml.ai/tasks", "label": "官方 15 道公开任务目录", "role": "data"},
+    {"url": "https://frontierml.ai/paper", "label": "FrontierML 论文与逐题成绩附录", "role": "paper"},
+    {"url": "https://github.com/synthetic-sciences/FrontierML", "label": "公开任务代码与运行条件", "role": "code"},
+    {"url": "https://github.com/synthetic-sciences/FrontierML#licence", "label": "公开任务许可及训练数据边界", "role": "readme"},
+    {"url": "https://github.com/synthetic-sciences/FrontierML/blob/main/CHANGELOG.md", "label": "1.0.0 发行记录与旧名", "role": "release"},
+    {"url": "https://x.com/SynScience/status/2123191679964545342", "label": "Synthetic Sciences 首发公告", "role": "release"},
+    {"url": "https://www.frontierml.org/blog/", "label": "Induction Labs 同名评测说明", "role": "definition"}
+  ],
+  "related": [
+    {
+      "id": "paperbench",
+      "label": "机器学习研究任务",
+      "detail": "PaperBench 按论文和评分细则检查研究复现，FrontierML 让智能体自行选择实验方法，再用留出协议检验交付成果。",
+      "sourceUrls": ["https://syntheticsciences.ai/research/frontierml"]
+    }
+  ],
+  "verifiedAt": "2026-11-19",
+  "updatedAt": "2026-11-19",
+  "sampleSet": {
+    "retrievedAt": "2026-11-19",
+    "samples": [
+      {
+        "id": "pokemon",
+        "title": "Pokémon Battles · 训练竞技对战模型",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "用给定模拟器、练习对手和对局记录训练 Qwen3.5-9B，交付模型权重和可选笔记。正式对战固定使用官方的玩家程序。",
+        "explanation": "评审使用未见阵容，从比赛结果估计玩家强度，正式分采用对固定参照梯队的评级。Claude Fable 5.2 的官方归一化分为 0.749。",
+        "raw": {"task": "pokemon"},
+        "source": "https://frontierml.ai/tasks/pokemon",
+        "license": "官方原创任务文字为 CC BY 4.0。本站摘录任务标识及事实，第三方游戏和素材遵循其自身条款。",
+        "split": "公开任务 · Model",
+        "excerpt": true
+      },
+      {
+        "id": "rule-worlds",
+        "title": "Rule Worlds · 持续学习与知识保留",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "给定公开规则游戏、起始学习程序和 Qwen3.5-4B，提交一个能在新游戏里自行练习的学习程序，可附起始权重和笔记。",
+        "explanation": "官方在两个未公开的游戏上依次运行学习程序，最后让模型独立解新关卡，两款游戏的解题率等权计入成绩。Claude Fable 5.2 的官方归一化分为 0.574。",
+        "raw": {"task": "rule-worlds"},
+        "source": "https://frontierml.ai/tasks/rule-worlds",
+        "license": "官方原创任务文字为 CC BY 4.0。本站摘录任务标识及事实。",
+        "split": "公开任务 · Method",
+        "excerpt": true
+      },
+      {
+        "id": "offline-voice",
+        "title": "Emotive Voice · 从零训练有表现力的语音",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "使用给定语音语料和基线，交付训练代码、数据清单和固定依赖，让评审能从随机初始化开始训练一个语音合成模型。",
+        "explanation": "官方用未见文段合成语音，交给听众做双样本盲听偏好选择。研究时可用自动指标筛选方案，正式评估采用人类听感。Claude Fable 5.2 的官方归一化分为 0.628。",
+        "raw": {"task": "offline-voice"},
+        "source": "https://frontierml.ai/tasks/emotive-voice",
+        "license": "官方原创任务文字为 CC BY 4.0。本站摘录任务标识及事实，语音素材遵循其各自条款。",
+        "split": "公开任务 · Judgment",
+        "excerpt": true
+      }
+    ]
+  }
+}
