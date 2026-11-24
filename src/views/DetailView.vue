@@ -129,7 +129,7 @@ const sampleTitle = computed(
   () => item.value && sampleSectionTitle(item.value),
 );
 const constituentSample = computed(
-  () => item.value && compositionSample(item.value, byId),
+  () => item.value && compositionSample(item.value, byId, route.query.sample),
 );
 // 数据获取与交叉导航只补充新出处，已在相邻概况/定义/版本说明中注明的来源不重列。
 const accessEvidenceExclusions = computed(() => [
@@ -256,7 +256,7 @@ useHead(() => ({
               >{{ constituentSample.name }}</RouterLink
             >，原题、答案与许可由该组成项提供。
           </p>
-          <SampleViewer :item="constituentSample" :detail-id="item.id" @settled="reportSamplesReady" />
+          <SampleViewer :key="constituentSample.id" :item="constituentSample" :detail-id="item.id" @settled="reportSamplesReady" />
         </template>
         <div class="composition-samples">
           <RouterLink
