@@ -322,3 +322,47 @@ test("两项 Autoform 不切标签也直接展示所选的原始 Lean 目标", a
     /^theorem theorem_24_12_smoktunowicz_gkdim_gap/,
   );
 });
+
+test("Terminal-Bench 4.1 默认展示原始 FreeCAD 任务正文，完整文件仍可在原始数据查看", async (t) => {
+  const id = "terminal-bench-4-1";
+  const file = new URL(
+    `../.generated/public/samples/${id}.json`,
+    import.meta.url,
+  );
+  const fixture = JSON.parse(await readFile(file, "utf8"));
+  t.mock.method(globalThis, "fetch", async () => Response.json(fixture));
+  const scope = effectScope();
+  t.after(() => scope.stop());
+  const viewer = scope.run(() =>
+    useSampleViewer(
+      () => id,
+      () => true,
+      "/",
+    ),
+  )!;
+  await settle();
+
+  assert.equal(viewer.index.value, 0);
+  assert.equal(viewer.mode.value, "read");
+  const sample = viewer.current.value;
+  assert.ok(sample);
+  assert.equal(sample.id, "terminal-bench-4-1-freecad-platform-drawing");
+  assert.equal(sample.walkthrough, undefined);
+  assert.equal(sample.promptOrigin, undefined);
+  assert.ok(typeof sample.raw === "string");
+  assert.equal(
+    sample.prompt,
+    sample.raw.slice(sample.raw.indexOf("\n\n") + 2).trimEnd(),
+  );
+  assert.match(
+    sample.prompt,
+    /^Write a FreeCAD Python script at \/app\/build_part\.py/,
+  );
+  assert.match(sample.prompt, /You have 28800 seconds to complete this task/);
+  assert.ok(
+    sample.references?.some(({ url }) =>
+      url.endsWith("/environment/e0fe7718e6.png"),
+    ),
+  );
+  assert.equal(sample.assets, undefined);
+});
