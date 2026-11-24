@@ -1,7 +1,10 @@
-import { readFile, writeFile, copyFile } from "node:fs/promises";
+import { readFile, writeFile, copyFile, mkdir } from "node:fs/promises";
 import assert from "node:assert/strict";
 import { verifyBuild } from "./verify-public-output";
-import { healthcarePath } from "../src/content/healthcare";
+import {
+  healthcareCategory,
+  legacyHealthcarePath,
+} from "../src/content/healthcare";
 const { entries: benchmarks } = await verifyBuild();
 
 // Pages needs an actual 404.html; known routes already have their own index.html.
@@ -10,7 +13,6 @@ await writeFile("dist/.nojekyll", "");
 const routes = [
   "",
   "embodied/",
-  healthcarePath.slice(1),
   "compare/",
   "releases/",
   "guide/",
@@ -20,18 +22,40 @@ const routes = [
 for (const route of routes) {
   const html = await readFile(`dist/${route}index.html`, "utf8");
   assert(html.includes("<h1"), `Missing prerendered content: ${route}`);
-  if (route === healthcarePath.slice(1))
-    assert(
-      html.includes("<h1>医疗健康</h1>") &&
-        html.includes("/benchmarks/physicianbench/"),
-      "医疗健康专区缺少预渲染标题或评测卡",
-    );
   if (route.startsWith("benchmarks/"))
     assert(
       html.includes('id="task"') && html.includes('id="samples"'),
       `Missing benchmark body: ${route}`,
     );
 }
+// Pages has no server redirect rules. The old URL is a forwarder, not a second
+// indexed catalog. Relative URLs work both at / and under the Pages base path.
+const legacyDirectory = `dist${legacyHealthcarePath}`;
+const healthcareDestination = `../?category=${healthcareCategory.id}`;
+await mkdir(legacyDirectory, { recursive: true });
+await writeFile(
+  `${legacyDirectory}index.html`,
+  `<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>前往医疗健康评测</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${healthcareDestination}">
+<meta http-equiv="refresh" content="0;url=${healthcareDestination}">
+<script>
+const target = new URL(${JSON.stringify(healthcareDestination)}, location.href);
+for (const [key, value] of new URLSearchParams(location.search)) {
+  if (key !== "category") target.searchParams.append(key, value);
+}
+target.hash = location.hash;
+location.replace(target.href);
+</script>
+</head>
+<body><a href="${healthcareDestination}">前往模型评测 · 医疗健康</a></body>
+</html>`,
+);
+
 // Never invent a deployment hostname. Actions supplies the actual Pages URL.
 if (process.env.SITE_URL) {
   const root = process.env.SITE_URL.replace(/\/$/, "") + "/";

@@ -10,11 +10,11 @@ import {
 import { searchBenchmarks } from "./search";
 import {
   healthcareBenchmarks,
-  healthcareCategories,
+  healthcareCategory,
   healthcareCategoryByBenchmarkId,
-  healthcarePath,
-  healthcareRouteName,
 } from "../content/healthcare";
+
+export const modelFilterCategories = [...categories, healthcareCategory];
 
 export type CatalogSort = "featured" | "name" | "year";
 export type CatalogView = "grid" | "list";
@@ -28,33 +28,15 @@ export interface CatalogQuery {
   view: CatalogView;
 }
 export type CatalogFilterKey = keyof CatalogQuery;
-export type CatalogScope = "model" | "embodied" | "healthcare";
-
-export function matchesCatalogCategory(
-  item: (typeof benchmarks)[number],
-  category: string,
-  scope: CatalogScope,
-): boolean {
-  if (scope === "embodied")
-    return item.embodied?.tasks.some((task) => task === category) ?? false;
-  if (scope === "healthcare")
-    return healthcareCategoryByBenchmarkId.get(item.id) === category;
-  return item.category === category;
-}
 
 /** Build the reader-facing catalog state from the application's real router. */
 export function createCatalogQuery(router: Router) {
-  const path = computed(() => router.currentRoute.value.path);
-  const scope = computed<CatalogScope>(() =>
-    path.value === "/embodied/"
-      ? "embodied"
-      : router.currentRoute.value.name === healthcareRouteName
-        ? "healthcare"
-        : "model",
+  const isEmbodied = computed(
+    () => router.currentRoute.value.path === "/embodied/",
   );
   const query = computed(() => {
     const parsed = parseCatalogQuery(router.currentRoute.value.query);
-    return scope.value === "embodied"
+    return isEmbodied.value
       ? { ...parsed, publisher: "", sample: "", kind: "" }
       : parsed;
   });
@@ -64,12 +46,7 @@ export function createCatalogQuery(router: Router) {
     queuedQuery = nextQuery;
     return router
       .replace({
-        path:
-          scope.value === "healthcare"
-            ? healthcarePath
-            : scope.value === "embodied"
-              ? "/embodied/"
-              : "/",
+        path: isEmbodied.value ? "/embodied/" : "/",
         query: nextQuery,
       })
       .finally(() => {
@@ -79,15 +56,20 @@ export function createCatalogQuery(router: Router) {
 
   return {
     query,
-    scope,
     currentCategory: computed(() =>
-      catalogCategories[scope.value].find(
-        (category) => category.id === query.value.category,
-      ),
+      isEmbodied.value
+        ? embodiedCategories.find(
+            (category) => category.id === query.value.category,
+          )
+        : query.value.category === healthcareCategory.id
+          ? healthcareCategory
+          : categoryById.get(query.value.category),
     ),
-    results: computed(() => filterCatalog(query.value, scope.value)),
+    results: computed(() => filterCatalog(query.value, isEmbodied.value)),
     hasFilters: computed(() => hasCatalogFilters(query.value)),
-    stats: computed(() => catalogStatsByScope[scope.value]),
+    stats: computed(() =>
+      isEmbodied.value ? embodiedCatalogStats : catalogStats,
+    ),
     setFilter(key: CatalogFilterKey, value: string) {
       const current = queuedQuery ?? router.currentRoute.value.query;
       return navigate(updateCatalogQuery(current, key, value));
@@ -138,16 +120,15 @@ export function hasCatalogFilters(query: CatalogQuery): boolean {
   );
 }
 
-export function filterCatalog(
-  query: CatalogQuery,
-  scope: CatalogScope = "model",
-) {
-  const items = searchBenchmarks(query.q, scope === "embodied").filter(
+export function filterCatalog(query: CatalogQuery, embodied = false) {
+  const items = searchBenchmarks(query.q, embodied).filter(
     (item) =>
-      (scope !== "healthcare" ||
-        healthcareCategoryByBenchmarkId.has(item.id)) &&
       (!query.category ||
-        matchesCatalogCategory(item, query.category, scope)) &&
+        (embodied
+          ? item.embodied?.tasks.some((task) => task === query.category)
+          : query.category === healthcareCategory.id
+            ? healthcareCategoryByBenchmarkId.has(item.id)
+            : item.category === query.category)) &&
       (!query.publisher || item.publisher === query.publisher) &&
       (!query.sample || item.sampleAccess.status === query.sample) &&
       (!query.kind || item.kind === query.kind),
@@ -160,47 +141,44 @@ export function filterCatalog(
 }
 
 // Catalog metadata is immutable during an application run, so compute totals once.
-export const catalogCategories = {
-  model: categories,
-  embodied: embodiedCategories,
-  healthcare: healthcareCategories,
-} satisfies Record<CatalogScope, typeof categories>;
-
-export const catalogCollections = {
-  model: benchmarks,
-  embodied: embodiedBenchmarks,
-  healthcare: healthcareBenchmarks,
-} satisfies Record<CatalogScope, typeof benchmarks>;
-
-function buildStats(scope: CatalogScope) {
-  const collection = catalogCollections[scope];
-  return {
-    publishers: [...new Set(collection.map((item) => item.publisher))].sort(
-      (a, b) => a.localeCompare(b, "zh"),
-    ),
-    localCount: collection.filter(
-      (item) => item.sampleAccess.status === "local",
-    ).length,
-    sampleCount: collection.reduce(
-      (total, item) => total + item.sampleCount,
-      0,
-    ),
-    categoryCounts: new Map(
-      catalogCategories[scope].map((category) => [
-        category.id,
-        collection.filter((item) =>
-          matchesCatalogCategory(item, category.id, scope),
-        ).length,
-      ]),
-    ),
-  };
-}
-
-const catalogStatsByScope = {
-  model: buildStats("model"),
-  embodied: buildStats("embodied"),
-  healthcare: buildStats("healthcare"),
+export const catalogStats = {
+  publishers: [...new Set(benchmarks.map((item) => item.publisher))].sort(
+    (a, b) => a.localeCompare(b, "zh"),
+  ),
+  localCount: benchmarks.filter((item) => item.sampleAccess.status === "local")
+    .length,
+  sampleCount: benchmarks.reduce((total, item) => total + item.sampleCount, 0),
+  categoryCounts: new Map(categories.map((category) => [category.id, 0])),
 };
-export const catalogStats = catalogStatsByScope.model;
-export const embodiedCatalogStats = catalogStatsByScope.embodied;
+for (const item of benchmarks) {
+  catalogStats.categoryCounts.set(
+    item.category,
+    (catalogStats.categoryCounts.get(item.category) || 0) + 1,
+  );
+}
+catalogStats.categoryCounts.set(
+  healthcareCategory.id,
+  healthcareBenchmarks.length,
+);
+
+export const embodiedCatalogStats = {
+  publishers: [
+    ...new Set(embodiedBenchmarks.map((item) => item.publisher)),
+  ].sort((a, b) => a.localeCompare(b, "zh")),
+  localCount: embodiedBenchmarks.filter(
+    (item) => item.sampleAccess.status === "local",
+  ).length,
+  sampleCount: embodiedBenchmarks.reduce(
+    (total, item) => total + item.sampleCount,
+    0,
+  ),
+  categoryCounts: new Map(
+    embodiedCategories.map((category) => [
+      category.id,
+      embodiedBenchmarks.filter((item) =>
+        item.embodied?.tasks.some((task) => task === category.id),
+      ).length,
+    ]),
+  ),
+};
 export { categoryById };
