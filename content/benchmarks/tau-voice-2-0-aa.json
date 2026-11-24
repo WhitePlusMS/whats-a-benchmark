@@ -53,18 +53,19 @@
       "任务 ID、用户情景、工具动作与验证条件由上游任务定义提供。"
     ],
     "files": [
-      "官方 voice.json 记录各领域子集和绑定版本；零售案例由零售子集及英语任务文件定位。"
+      "固定 voice.json 记录各领域子集和版本；零售及电信案例可定位到各自的 50 项英语任务源。"
     ],
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
-      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json"
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/telecom_50.json"
     ]
   },
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "Sierra 的冻结任务与运行协议公开；未取得该任务的 AA 音频或实际运行记录。"
+      "Sierra 的冻结任务与运行协议公开；未取得本站所列两题的 AA 音频或实际运行记录。"
     ],
     "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
     "sourceUrls": [
@@ -72,30 +73,35 @@
       "https://github.com/sierra-research/tau2-bench/releases/tag/v2.0.0",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
-      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json"
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/telecom_50.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json"
     ]
   },
   "reusePolicy": {
     "status": "permitted",
     "license": "MIT · Sierra Research。许可原文随本页所选任务字段提供。",
-    "scope": "仅转载一项 Sierra 英语零售任务的模拟用户请求及原生字段。",
+    "scope": "仅展示 Sierra 英语零售、电信各一个模拟任务的所选原始字段。",
     "boundaries": [
-      "不复制人物设定、AA 音频、评分输出或第三方材料。"
+      "不复制人物设定、账户或工单资料、AA 音频、评分输出或第三方材料。"
     ],
     "sourceUrls": [
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
-      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json"
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内显示零售50子集的一条冻结英语文本输入，不是 AA 实际通话或输出。",
-    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+    "reason": "站内展示冻结英语零售与电信任务。电信案例含环境验收字段；两例都不是 AA 实际通话或运行输出。",
+    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
-      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json"
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/telecom_50.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json"
     ]
   },
   "metric": {
@@ -161,6 +167,16 @@
       "label": "Sierra MIT 许可原文",
       "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
       "role": "access"
+    },
+    {
+      "label": "固定电信 50 题子集",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/telecom_50.json",
+      "role": "data"
+    },
+    {
+      "label": "固定英文电信任务与环境验收",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json",
+      "role": "data"
     }
   ],
   "sampleSet": {
@@ -185,6 +201,89 @@
         "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
         "split": "v2.0.0 / voice-v2 / en / retail_50 / task 8",
         "license": "MIT · Copyright (c) 2025 Sierra Research；仅所示模拟任务字段。",
+        "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
+        "excerpt": true
+      },
+      {
+        "id": "tau-voice-2-en-telecom-mobile-data",
+        "title": "恢复移动数据并达到模拟测速要求",
+        "shortTitle": "电信：恢复移动数据",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "输入：模拟来电称手机移动数据很慢或断开，且无法使用 Wi-Fi。\n任务：在电话中指导来电人检查飞行模式和移动数据开关。\n验收：模拟环境确认移动数据恢复，测速等级为 excellent。",
+        "explanation": "原始验收项分别检查移动数据状态和测速；阈值 200 是环境参数，源字段未标单位。动作的 requestor 为模拟用户，表示由来电人调整手机，不是客服模型直接操作手机。这里展示的是验收定义，而非一段 AA 通话或该题的得分。",
+        "raw": {
+          "id": "[mobile_data_issue]airplane_mode_on|data_mode_off[PERSONA:None]",
+          "description": {
+            "purpose": "Test resolution path: Mobile Data/Slow Internet Issues."
+          },
+          "user_scenario": {
+            "instructions": {
+              "reason_for_call": "You mobile data is not working properly. It either stops working or is very slow. You want to fix it and absolutely want to get excellent internet speed on your phone. You are not willing to accept any other internet speed (poor, fair or good). You do not have access to wifi."
+            }
+          },
+          "evaluation_criteria": {
+            "actions": [
+              {
+                "action_id": "toggle_airplane_mode_0",
+                "requestor": "user",
+                "name": "toggle_airplane_mode",
+                "arguments": {},
+                "info": null,
+                "compare_args": null
+              },
+              {
+                "action_id": "toggle_data_1",
+                "requestor": "user",
+                "name": "toggle_data",
+                "arguments": {},
+                "info": null,
+                "compare_args": null
+              }
+            ],
+            "env_assertions": [
+              {
+                "env_type": "user",
+                "func_name": "assert_mobile_data_status",
+                "arguments": {
+                  "expected_status": true
+                },
+                "assert_value": true,
+                "message": null
+              },
+              {
+                "env_type": "user",
+                "func_name": "assert_internet_speed",
+                "arguments": {
+                  "expected_speed": 200,
+                  "expected_desc": "excellent"
+                },
+                "assert_value": true,
+                "message": null
+              }
+            ],
+            "reward_basis": [
+              "ENV_ASSERTION"
+            ]
+          }
+        },
+        "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json#L176-L220",
+        "references": [
+          {
+            "label": "电信样例任务与验收字段",
+            "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json"
+          },
+          {
+            "label": "固定电信子集成员",
+            "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/telecom_50.json"
+          },
+          {
+            "label": "AA 英语语音实验方法",
+            "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+          }
+        ],
+        "split": "Sierra voice-v2 / en / telecom_50 · 原始任务字段节选",
+        "license": "MIT · Sierra Research。仅列出模拟任务和环境验收，不含账户资料或音频。",
         "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
         "excerpt": true
       }
