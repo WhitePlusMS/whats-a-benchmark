@@ -1,0 +1,171 @@
+{
+  "id": "artificial-analysis-coding-agent-index-v2-1",
+  "status": "published",
+  "order": 600,
+  "name": "Artificial Analysis Coding Agent Index v2.1",
+  "subtitle": "真实仓库修改、终端任务与仓库问答三项等权",
+  "category": "coding",
+  "tags": [
+    "综合指数",
+    "编程代理"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v2.1",
+  "kind": "suite",
+  "aliases": [
+    "AA Coding Agent Index v2.1",
+    "Coding Agent Index 2.1",
+    "Artificial Analysis Coding Agent Index",
+    "AA Coding Agent Index"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "对 FrontierCode-AA 2.0、Terminal-Bench 4.1 和 SWE-Atlas-QnA-AA 三项成绩等权平均。",
+    "task": "在仓库修改、终端执行和只读仓库问答三类工作流中评估代理完成能力。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "taskContract": {
+    "input": "共 322 项：132 项真实代码仓库修改、66 项终端任务、124 项仓库问答。",
+    "output": "按任务要求提交代码修改、终端执行结果或只读问答答案。",
+    "environment": "每题 3 次；不同 coding agent 使用各自 harness，按方法记录运行配置和完整性审查。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "同一指数包含私有代码修改任务和公开终端、问答任务；没有独立指数题库。",
+    "disclosure": "partial",
+    "scale": [
+      "322 项任务，每题运行 3 次。"
+    ],
+    "splits": [
+      "公开程度按各组成项分别判断。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "指数无单独题库；FrontierCode-AA 2.0 的 132 项未公开，终端与问答数据从对应成员入口获取。"
+    ],
+    "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+      "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方网页未为全部任务与成品声明统一再发布许可。",
+    "scope": "本站仅整理公开方法及任务事实，底层题目和作品需分别核对权利。",
+    "boundaries": [
+      "官方可浏览不等于整套数据可转载。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "指数没有单独题目；查看各成员的任务来源与可展示样例。",
+    "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "三项等权平均",
+    "description": "先对同题三次尝试取平均，再等权平均各题；最后对三项评测等权平均。FrontierCode-AA 2.0 采用平均分，另两项采用 pass@1。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同版本的组成与评分不同，不能用指数变化直接推断同一配置的能力进步。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+      ]
+    },
+    {
+      "text": "Terminal-Bench 4.1 使用保存产出重评；无法重评或判分变化来自运行波动时保留 4.0 判分。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "AA Coding Agent Index v2.1 方法",
+      "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking",
+      "role": "definition"
+    },
+    {
+      "label": "AA 指数版本历史",
+      "url": "https://artificialanalysis.ai/methodology/coding-agents-benchmarking#version-history",
+      "role": "release"
+    },
+    {
+      "label": "AA 仓库问答公开数据",
+      "url": "https://huggingface.co/datasets/ArtificialAnalysis/SWE-Atlas-QnA-AA",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "artificial-analysis-coding-agent-index-v2-0",
+      "label": "前一版本",
+      "detail": "v2.1 替换代码修改与终端测试的版本，仓库问答组成不变。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking#version-history"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "releaseDate": "2026-11",
+  "composition": {
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/coding-agents-benchmarking"
+    ],
+    "items": [
+      {
+        "id": "frontiercode-aa-2-0",
+        "group": "软件工程",
+        "weight": 33.333333333333336,
+        "detail": "132 项，每题 3 次；阻断检查失败得零，否则按规则评分 70–100%。"
+      },
+      {
+        "id": "terminal-bench-4-1",
+        "group": "终端",
+        "weight": 33.333333333333336,
+        "detail": "66 项，每题 3 次；按测试通过或失败计 pass@1。"
+      },
+      {
+        "id": "swe-atlas-qna",
+        "group": "仓库问答",
+        "weight": 33.333333333333336,
+        "detail": "AA 实施：124 项，每题 3 次；GPT-6 Luna（xhigh）对每项标准投票 5 次，所有标准均通过才计为解决。"
+      }
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "将 FrontierCode 1.1 Main 更新为 FrontierCode-AA 2.0、Terminal-Bench 4.0 更新为 4.1；仍采用 SWE-Atlas-QnA-AA。 效率统计使用供应商记录的用量，缓存命中按实测口径计价。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/coding-agents-benchmarking#version-history"
+      ]
+    }
+  }
+}
