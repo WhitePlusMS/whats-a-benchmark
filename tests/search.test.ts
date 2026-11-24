@@ -98,7 +98,19 @@ test("AA 指数通用名称优先新版，完整旧版名称仍可查找", () =>
     ["AA 智能指数 v4.3.2", "aa-intelligence-index"],
     [
       "Artificial Analysis Coding Agent Index",
+      "artificial-analysis-coding-agent-index-v2-1",
+    ],
+    [
+      "AA Coding Agent Index",
+      "artificial-analysis-coding-agent-index-v2-1",
+    ],
+    [
+      "AA Coding Agent Index v2.0",
       "artificial-analysis-coding-agent-index-v2-0",
+    ],
+    [
+      "AA Coding Agent Index v2.1",
+      "artificial-analysis-coding-agent-index-v2-1",
     ],
     [
       "Artificial Analysis Coding Agent Index v1.5",
