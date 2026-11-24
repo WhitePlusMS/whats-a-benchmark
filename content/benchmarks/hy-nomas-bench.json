@@ -83,11 +83,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "每组精选一条真实 test 记录。中文导读解释操作，原始数据保留所选真实字段，不伪造视频或答案。",
+    "reason": "默认展示真实 B3 测试记录的三段指令、相机按键和时轴；仍可切换其余三组。官方交互视频另列，未确认是该记录输出。",
     "url": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench",
     "sourceUrls": [
       "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench",
-      "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/README.md"
+      "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/README.md",
+      "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench3_multiturn_interleaved_control/bench3_multiturn_interleaved_control.json",
+      "https://hy-nomas.hy.tencent.com/",
+      "https://arxiv.org/html/2610.36729v1/Hy-Nomas-Bench_overview_clear.png",
+      "https://hy-nomas.hy.tencent.com/official_website_videos/cam500-0011_overlay.mp4"
     ]
   },
   "metric": {
@@ -167,6 +171,21 @@
       "label": "官方 bench4_spatial_memory 测试原始 JSON",
       "url": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench4_spatial_memory/bench4_spatial_memory.json",
       "role": "data"
+    },
+    {
+      "label": "腾讯官方交互视频演示（非同题）",
+      "url": "https://hy-nomas.hy.tencent.com/",
+      "role": "definition"
+    },
+    {
+      "label": "论文图 10 · Bench-3 官方输出对比",
+      "url": "https://arxiv.org/html/2610.36729v1/Hy-Nomas-Bench_overview_clear.png",
+      "role": "paper"
+    },
+    {
+      "label": "腾讯月球基地交替控制视频（非 B3-0007）",
+      "url": "https://hy-nomas.hy.tencent.com/official_website_videos/cam500-0011_overlay.mp4",
+      "role": "definition"
     }
   ],
   "verifiedAt": "2026-11-24",
@@ -175,110 +194,12 @@
     "retrievedAt": "2026-11-24",
     "samples": [
       {
-        "id": "hy-nomas-b1-0001",
-        "title": "沿河骑行后停车喝水",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "使第一人称骑行画面按文本请求经过桥与停车标志，最后停车喝水。",
-        "explanation": "user_prompts 给出初始化及三次后续文本交互；检查场景与对象连续、动作顺序合理。节选不含 subject_list 或 segments。",
-        "raw": {
-          "test_id": "Hy-Nomas-B1-0001",
-          "total_duration": "00:33.000",
-          "perspective_view": "first-person",
-          "user_prompts": [
-            {
-              "turn_number": 1,
-              "input_type": "initialization",
-              "perspective": "first-person",
-              "subject_description": "A cyclist wearing a bright windbreaker, a black helmet, and fingerless cycling gloves.",
-              "environment_description": "A paved riverside bike path with trees on one side and calm water on the other."
-            },
-            {
-              "turn_number": 2,
-              "input_type": "text",
-              "user_prompt": "I ride toward the bridge, continue riding"
-            },
-            {
-              "turn_number": 3,
-              "input_type": "text",
-              "user_prompt": "Then I ride past the bridge and ride pass a stop sign"
-            },
-            {
-              "turn_number": 4,
-              "input_type": "text",
-              "user_prompt": "I stop my bike at the stop sign, take out a water bottle, raise it to my mouth, and drink water."
-            }
-          ]
-        },
-        "source": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench1_multiturn_text_control/bench1_multiturn_text_control.json",
-        "split": "bench1_multiturn_text_control / test / Hy-Nomas-B1-0001",
-        "license": "Apache-2.0 · 腾讯混元视觉生成团队；仅所列记录字段。",
-        "licensePath": "licenses/hy-nomas-bench-apache-2-0.txt",
-        "excerpt": true
-      },
-      {
-        "id": "hy-nomas-b2-0001",
-        "title": "木屋相机导航与逆向返回",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "在木屋场景按四段按键时间表控制视角。",
-        "explanation": "前两段互为俯仰反向动作，后两段为左右平移；frame_end_exclusive 不包含该帧。节选保留轨迹引用和按键，未复制坐标文件。",
-        "raw": {
-          "test_id": "Hy-Nomas-B2-0001",
-          "scene_name": "Rustic log cabin",
-          "total_duration": "00:08.000",
-          "camera_trajectory_spec": {
-            "motion_template_kind": "simple",
-            "ground_truth_npz": "trajectories/Hy-Nomas-B2-0001.npz",
-            "keyboard_timeline": [
-              {
-                "frame_start": 0,
-                "frame_end_exclusive": 48,
-                "keys": [
-                  "ArrowUp"
-                ],
-                "pair_index": 0
-              },
-              {
-                "frame_start": 48,
-                "frame_end_exclusive": 96,
-                "keys": [
-                  "ArrowDown"
-                ],
-                "pair_index": 0
-              },
-              {
-                "frame_start": 96,
-                "frame_end_exclusive": 144,
-                "keys": [
-                  "a"
-                ],
-                "pair_index": 1
-              },
-              {
-                "frame_start": 144,
-                "frame_end_exclusive": 192,
-                "keys": [
-                  "d"
-                ],
-                "pair_index": 1
-              }
-            ]
-          }
-        },
-        "source": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench2_multiturn_camera_control/bench2_multiturn_camera_control.json",
-        "split": "bench2_multiturn_camera_control / test / Hy-Nomas-B2-0001",
-        "license": "Apache-2.0 · 腾讯混元视觉生成团队；仅所列记录字段。",
-        "licensePath": "licenses/hy-nomas-bench-apache-2-0.txt",
-        "excerpt": true
-      },
-      {
         "id": "hy-nomas-b3-0007",
         "title": "蜂蜜加工场景的交替控制",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "0–8 秒：以文字初始化蜂蜜加工场景。\n8–17 秒：以 W → A → W 的按键区间控制镜头。\n17–28.583 秒：回到文字指令，续接前面的场景与动作。",
-        "explanation": "user_prompts 记录初始化、镜头和后续文字三个交互；按键事件 t 从镜头段开始计算。segments[].keyIntervals 的 videoStartMs / videoEndMs 则是整段视频的时间轴。这里展示原始控制输入，不是生成视频或模型得分。",
+        "prompt": "同一蜂蜜加工场景：先用文字开场，再按 W → A → W 移动镜头，最后回到文字指令。三段连续生成，不重置场景。",
+        "explanation": "按键事件 t 以相机段开始为零点；segments[].keyIntervals 使用整段视频的毫秒时间轴。站内时间条是按实际输入绘制，不表示模型已经生成视频。",
         "raw": {
           "test_id": "Hy-Nomas-B3-0007",
           "total_duration": "00:28.583",
@@ -374,6 +295,143 @@
         },
         "source": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench3_multiturn_interleaved_control/bench3_multiturn_interleaved_control.json",
         "split": "bench3_multiturn_interleaved_control / test / Hy-Nomas-B3-0007",
+        "license": "Apache-2.0 · 腾讯混元视觉生成团队；仅所列记录字段。",
+        "licensePath": "licenses/hy-nomas-bench-apache-2-0.txt",
+        "excerpt": true,
+        "shortTitle": "文本→相机→文本",
+        "walkthrough": {
+          "summary": "同一蜂蜜加工场景：先用文字开场，再按 W → A → W 移动镜头，最后回到文字指令。三段连续生成，不重置场景。",
+          "input": "0–8 秒：第三人称从侧面观察工作人员取出蜂框。8–17 秒：输入实际相机按键 W（8–13.208 秒）、A（13.208–15.208 秒）、W（15.208–17 秒）。17–28.583 秒：要求在白箱上方用刀刮除蜂蜡，镜头稍推近。",
+          "output": "28.583 秒的连续视频，后段仍是同一人物、蜂框和加工场景。这里展示原始控制输入，不是模型产出。",
+          "checks": [
+            "文本段：工序与镜头跟随请求，动作合理。",
+            "相机段：画面随实际按键序列移动；文本与相机切换时保持场景连续。"
+          ],
+          "sourceField": "/user_prompts/2/user_prompt",
+          "excerpts": [
+            {
+              "label": "第 3 轮真实文字指令",
+              "text": "Have man uncapping honey frames hold the frame upright over the white crate and scrape the pale wax cappings off with a knife, glancing toward the camera before trimming the top edge. Push in slightly and hold a steadier medium close-up."
+            }
+          ],
+          "note": "时段和按键源自官方 B3-0007；秒数保留到三位小数。尚未确认同题公开视频，下方官方展示是另例。"
+        },
+        "references": [
+          {
+            "label": "播放腾讯官方交替控制视频 · 月球基地（另例）",
+            "url": "https://hy-nomas.hy.tencent.com/official_website_videos/cam500-0011_overlay.mp4"
+          },
+          {
+            "label": "查看论文图 10 · 海滨抚猫的 Bench-3 输出对比（另例）",
+            "url": "https://arxiv.org/html/2610.36729v1/Hy-Nomas-Bench_overview_clear.png"
+          }
+        ],
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/hy-nomas-b3-control-timeline.webp",
+            "alt": "B3-0007 的真实控制输入：0 到 8 秒文字、8 到 17 秒相机按键 W→A→W、17 到 28.583 秒文字。",
+            "width": 1120,
+            "height": 316,
+            "caption": "本站按官方 B3-0007 原始时间轴与按键绘制，不是模型生成的视频。",
+            "source": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench3_multiturn_interleaved_control/bench3_multiturn_interleaved_control.json"
+          }
+        ]
+      },
+      {
+        "id": "hy-nomas-b1-0001",
+        "title": "沿河骑行后停车喝水",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "使第一人称骑行画面按文本请求经过桥与停车标志，最后停车喝水。",
+        "explanation": "user_prompts 给出初始化及三次后续文本交互；检查场景与对象连续、动作顺序合理。节选不含 subject_list 或 segments。",
+        "raw": {
+          "test_id": "Hy-Nomas-B1-0001",
+          "total_duration": "00:33.000",
+          "perspective_view": "first-person",
+          "user_prompts": [
+            {
+              "turn_number": 1,
+              "input_type": "initialization",
+              "perspective": "first-person",
+              "subject_description": "A cyclist wearing a bright windbreaker, a black helmet, and fingerless cycling gloves.",
+              "environment_description": "A paved riverside bike path with trees on one side and calm water on the other."
+            },
+            {
+              "turn_number": 2,
+              "input_type": "text",
+              "user_prompt": "I ride toward the bridge, continue riding"
+            },
+            {
+              "turn_number": 3,
+              "input_type": "text",
+              "user_prompt": "Then I ride past the bridge and ride pass a stop sign"
+            },
+            {
+              "turn_number": 4,
+              "input_type": "text",
+              "user_prompt": "I stop my bike at the stop sign, take out a water bottle, raise it to my mouth, and drink water."
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench1_multiturn_text_control/bench1_multiturn_text_control.json",
+        "split": "bench1_multiturn_text_control / test / Hy-Nomas-B1-0001",
+        "license": "Apache-2.0 · 腾讯混元视觉生成团队；仅所列记录字段。",
+        "licensePath": "licenses/hy-nomas-bench-apache-2-0.txt",
+        "excerpt": true
+      },
+      {
+        "id": "hy-nomas-b2-0001",
+        "title": "木屋相机导航与逆向返回",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在木屋场景按四段按键时间表控制视角。",
+        "explanation": "前两段互为俯仰反向动作，后两段为左右平移；frame_end_exclusive 不包含该帧。节选保留轨迹引用和按键，未复制坐标文件。",
+        "raw": {
+          "test_id": "Hy-Nomas-B2-0001",
+          "scene_name": "Rustic log cabin",
+          "total_duration": "00:08.000",
+          "camera_trajectory_spec": {
+            "motion_template_kind": "simple",
+            "ground_truth_npz": "trajectories/Hy-Nomas-B2-0001.npz",
+            "keyboard_timeline": [
+              {
+                "frame_start": 0,
+                "frame_end_exclusive": 48,
+                "keys": [
+                  "ArrowUp"
+                ],
+                "pair_index": 0
+              },
+              {
+                "frame_start": 48,
+                "frame_end_exclusive": 96,
+                "keys": [
+                  "ArrowDown"
+                ],
+                "pair_index": 0
+              },
+              {
+                "frame_start": 96,
+                "frame_end_exclusive": 144,
+                "keys": [
+                  "a"
+                ],
+                "pair_index": 1
+              },
+              {
+                "frame_start": 144,
+                "frame_end_exclusive": 192,
+                "keys": [
+                  "d"
+                ],
+                "pair_index": 1
+              }
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/tencent/Hy-Nomas-Bench/blob/d9de365b6cbec9869026709de64c42833062b961/bench2_multiturn_camera_control/bench2_multiturn_camera_control.json",
+        "split": "bench2_multiturn_camera_control / test / Hy-Nomas-B2-0001",
         "license": "Apache-2.0 · 腾讯混元视觉生成团队；仅所列记录字段。",
         "licensePath": "licenses/hy-nomas-bench-apache-2-0.txt",
         "excerpt": true

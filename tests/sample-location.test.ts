@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { effectScope, nextTick } from "vue";
 import { createMemoryHistory, createRouter } from "vue-router";
@@ -8,6 +9,7 @@ import {
   selectSampleFromWalkthrough,
 } from "../src/lib/sampleLocation";
 import type { SampleFile } from "../src/types/benchmark";
+import { entrySchema } from "../src/content/schema";
 
 test("样例在详情页同步 URL，在指南中只修改查看器状态", async (t) => {
   const fixture: SampleFile = {
@@ -107,4 +109,80 @@ test("样例在详情页同步 URL，在指南中只修改查看器状态", asyn
     assert.equal(viewer.mode.value, "raw");
     assert.equal(router.currentRoute.value.fullPath, guideLocation);
   });
+});
+
+test("Hy-Nomas 与 τ-Voice 在无查询参数时直接展示有证据的任务内容，旧案例地址仍可打开", async (t) => {
+  const fixtures = [
+    {
+      benchmarkId: "hy-nomas-bench",
+      first: "hy-nomas-b3-0007",
+      previous: "hy-nomas-b1-0001",
+      summary: /W → A → W/,
+      evidence: /官方交替控制视频.*另例/,
+    },
+    {
+      benchmarkId: "tau-voice-2-0-aa",
+      first: "tau-voice-2-en-telecom-mobile-data",
+      previous: "tau-voice-2-en-retail-8",
+      summary: /mobile data is not working/,
+      evidence: /Sierra 同题.*非 AA/,
+    },
+  ];
+  for (const fixture of fixtures) {
+    await t.test(fixture.benchmarkId, async (subtest) => {
+      const entry = entrySchema.parse(
+        JSON.parse(
+          readFileSync(
+            `content/benchmarks/${fixture.benchmarkId}.json`,
+            "utf8",
+          ),
+        ),
+      );
+      assert(entry.sampleSet);
+      const route = `/benchmarks/${fixture.benchmarkId}/`;
+      const router = createRouter({
+        history: createMemoryHistory(),
+        routes: [{ path: route, component: { template: "<div />" } }],
+      });
+      await router.push(route);
+      subtest.mock.method(globalThis, "fetch", async () =>
+        Response.json({
+          benchmarkId: fixture.benchmarkId,
+          ...entry.sampleSet,
+        }),
+      );
+      const scope = effectScope();
+      subtest.after(() => scope.stop());
+      const viewer = scope.run(() => {
+        const viewer = useSampleViewer(
+          () => fixture.benchmarkId,
+          () => true,
+          "/",
+        );
+        createSampleLocation(router, viewer);
+        return viewer;
+      })!;
+      await new Promise<void>((resolve) => setImmediate(resolve));
+      await nextTick();
+      assert.equal(viewer.mode.value, "read");
+      assert.equal(viewer.current.value?.id, fixture.first);
+      assert.match(
+        viewer.current.value?.walkthrough?.summary ?? "",
+        fixture.summary,
+      );
+      assert.match(
+        viewer.current.value?.references?.[0]?.label ?? "",
+        fixture.evidence,
+      );
+      assert(viewer.current.value!.walkthrough!.checks.length >= 2);
+      assert.equal(router.currentRoute.value.fullPath, route);
+      await router.push({
+        path: route,
+        query: { sample: fixture.previous, sampleView: "raw" },
+      });
+      await nextTick();
+      assert.equal(viewer.current.value?.id, fixture.previous);
+      assert.equal(viewer.mode.value, "raw");
+    });
+  }
 });
