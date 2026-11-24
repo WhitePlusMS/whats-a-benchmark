@@ -1,0 +1,235 @@
+{
+  "id": "ifmtbench",
+  "status": "published",
+  "order": 715,
+  "name": "IFMTBench",
+  "subtitle": "翻译时遵守术语、结构与风格等约束",
+  "category": "alignment",
+  "tags": [
+    "机器翻译",
+    "多语言",
+    "指令遵循"
+  ],
+  "publisher": "Tencent",
+  "brandIds": [
+    "tencent-editorial"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-05-21",
+  "version": "Tencent 公开测试集 · 2026-05",
+  "kind": "original",
+  "aliases": [
+    "IFMTBench",
+    "IFMT Bench",
+    "Translation Instruction Following Benchmark",
+    "翻译指令遵循基准"
+  ],
+  "researchStatus": "pass",
+  "officialDefinition": {
+    "summary": "评测模型翻译时能否遵守指定术语、排版、结构、代码资源、风格及上下文背景等六类约束。",
+    "task": "读原文与同一条记录的翻译指令，只提交满足该题约束的目标语言译文。",
+    "sourceUrls": [
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "原始文字和明确翻译约束。题目可能给定术语表、风格、结构或消歧背景。",
+    "output": "目标语言的译文，按题目保留指定术语、格式或其他约束。",
+    "environment": "作者提供规则检查器与 LLM 评审代码，测试项分为单约束和多约束两组。",
+    "sourceUrls": [
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/README.md",
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/scoring.py#L55-L76"
+    ]
+  },
+  "dataProfile": {
+    "summary": "两组公开 JSONL 测试样例；记录保留原始输入、参考译文和约束类别。",
+    "disclosure": "complete",
+    "scale": [
+      "单约束 4,506 条，多约束 2,838 条，共 7,344 条测试记录。"
+    ],
+    "splits": [
+      "单约束测试",
+      "多约束测试"
+    ],
+    "fields": [
+      "input（完整任务指令与原文）",
+      "output（参考译文）",
+      "class（约束类别）",
+      "md5（记录标识）",
+      "origin_language 和 target_language（源与目标语言）"
+    ],
+    "files": [
+      "data/test_single_constraint.jsonl",
+      "data/test_multi_constraint.jsonl"
+    ],
+    "sourceUrls": [
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/README.md",
+      "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/data/test_single_constraint.jsonl#L2",
+      "https://huggingface.co/datasets/tencent/IFMTBench"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "固定公开仓库提供两组测试数据，评分脚本中部分约束需自行配置评审模型。"
+    ],
+    "url": "https://huggingface.co/datasets/tencent/IFMTBench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/tencent/IFMTBench",
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Tencent IFMTBench 数据集 CC BY 4.0；该许可不覆盖模型或标识。",
+    "scope": "本站按原字段展示一条公开测试记录的原题与参考译文；中文标签与评分说明由本站整理。",
+    "boundaries": [
+      "保留 Tencent 署名、原记录定位和 CC BY 4.0 许可。",
+      "腾讯标识来自腾讯官方媒体资源，仅用于编辑性标明发布方，不代表合作或背书。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/LICENSE.txt",
+      "https://www.tencent.com/newsroom/media-resources/logos/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示同一公开测试题的原始中文要求、指定术语、官方英文参考译文与该题评审条件。",
+    "url": "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/data/test_single_constraint.jsonl#L2",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/data/test_single_constraint.jsonl#L2",
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/scoring.py#L55-L76",
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/llm_judge.py#L24-L55"
+    ]
+  },
+  "metric": {
+    "name": "约束遵循得分",
+    "description": "术语、排版、结构和代码资源为 0/1 门槛；风格和背景由评审模型打 0–5 分后归一化。多约束先合并门槛再乘连续分均值。术语规则不能通过时，用评审模型做二值判定。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/README.md",
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/scoring.py#L55-L76",
+      "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/llm_judge.py#L24-L55"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "得分反映对翻译约束的遵循程度，不是覆盖所有语种和场景的通用翻译质量。涉及模型评审的题，比较时应同时核对评审模型与配置。",
+      "sourceUrls": [
+        "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/README.md",
+        "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/scoring.py#L55-L76"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Tencent Hy-MT2 公开发布公告 · 2026-05-21",
+      "url": "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/README.md",
+      "role": "release"
+    },
+    {
+      "label": "固定版 IFMTBench 任务、约束及数据说明",
+      "url": "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "Tencent 官方数据入口",
+      "url": "https://huggingface.co/datasets/tencent/IFMTBench",
+      "role": "data"
+    },
+    {
+      "label": "官方固定原始记录 · 单约束文件第 2 行",
+      "url": "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/data/test_single_constraint.jsonl#L2",
+      "role": "data"
+    },
+    {
+      "label": "固定版本计分分支",
+      "url": "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/scoring.py#L55-L76",
+      "role": "code"
+    },
+    {
+      "label": "同题使用的术语遵循评审规则",
+      "url": "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/llm_judge.py#L24-L55",
+      "role": "code"
+    },
+    {
+      "label": "Tencent IFMTBench 数据许可 · CC BY 4.0",
+      "url": "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/LICENSE.txt",
+      "role": "access"
+    },
+    {
+      "label": "腾讯媒体资源：标识仅供个人或编辑用途",
+      "url": "https://www.tencent.com/newsroom/media-resources/logos/",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "ifmtbench-single-glossary-game-localization",
+        "title": "游戏本地化：按术语要求翻译一句原文",
+        "shortTitle": "游戏术语翻译",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "把中文游戏说明翻成英文，遵守指定术语，只输出译文。",
+        "walkthrough": {
+          "summary": "Tencent IFMTBench · 单约束公开测试集第 2 行。原题是游戏本地化，不是开放式写作。",
+          "input": "请帮忙把这句话翻译成英文，用于我们新ARPG游戏的海外本地化：当技能冷却完毕后，你的下一次普通攻击将必定造成暴击，请合理把握时机。对了，内部开发文档规定把“技能冷却”统一叫作breath recovery，“暴击”固定翻译成fatal strike，注意别用常规译法。\n\n注意仅输出翻译内容，不要其他任何解释",
+          "output": "原题要求仅提交英文译文。作者原始参考译文：When the breath recovery is complete, your next basic attack is guaranteed to trigger a fatal strike. Please time it wisely.",
+          "checks": [
+            "本题把术语直接写进 input，没有单独的 term_dict。固定评分程序因此走术语 LLM 评审分支，不是直接字符串判分。",
+            "评审对照原指令、参考译文与候选译文，核对是否使用 breath recovery 和 fatal strike。自然语法变化可接受；擅自换成常用译法或漏掉必需术语判 0，符合术语约束判 1。"
+          ],
+          "sourceField": "/input",
+          "excerpts": [
+            {
+              "label": "作者原始任务指令",
+              "text": "请帮忙把这句话翻译成英文，用于我们新ARPG游戏的海外本地化：当技能冷却完毕后，你的下一次普通攻击将必定造成暴击，请合理把握时机。对了，内部开发文档规定把“技能冷却”统一叫作breath recovery，“暴击”固定翻译成fatal strike，注意别用常规译法。\n\n注意仅输出翻译内容，不要其他任何解释"
+            }
+          ],
+          "note": "参考译文是数据集原始标注，不是模型实跑结果。原始数据保留该条记录的字段，未跑评审模型。"
+        },
+        "explanation": "完整输入及参考译文均来自同一条公开原始记录，中文导读与验收说明不属于原始 JSONL。译文可有不同的自然措辞，官方术语评审不要求逐字匹配参考译文。",
+        "raw": {
+          "input": "请帮忙把这句话翻译成英文，用于我们新ARPG游戏的海外本地化：当技能冷却完毕后，你的下一次普通攻击将必定造成暴击，请合理把握时机。对了，内部开发文档规定把“技能冷却”统一叫作breath recovery，“暴击”固定翻译成fatal strike，注意别用常规译法。\n\n注意仅输出翻译内容，不要其他任何解释",
+          "output": "When the breath recovery is complete, your next basic attack is guaranteed to trigger a fatal strike. Please time it wisely.",
+          "origin_language": "中文",
+          "target_language": "英文",
+          "origin_text": "当技能冷却完毕后，你的下一次普通攻击将必定造成暴击，请合理把握时机。",
+          "class": [
+            "机器翻译-术语表约束翻译"
+          ],
+          "md5": "6953e58b3d8ddf3161cbb3ff5f0de7f0",
+          "instruction_lang": "中文"
+        },
+        "source": "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/data/test_single_constraint.jsonl#L2",
+        "references": [
+          {
+            "label": "固定原始 JSONL 第 2 行",
+            "url": "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/data/test_single_constraint.jsonl#L2"
+          },
+          {
+            "label": "计分程序的术语分支",
+            "url": "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/scoring.py#L55-L76"
+          },
+          {
+            "label": "术语遵循 LLM 评审规则",
+            "url": "https://github.com/Tencent-Hunyuan/Hy-MT2/blob/ff1903ecaa724e10951a23c16817a2413c752b35/IFMTBench/eval/llm_judge.py#L24-L55"
+          },
+          {
+            "label": "数据许可",
+            "url": "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/LICENSE.txt"
+          }
+        ],
+        "split": "公开测试集 · test_single_constraint.jsonl 第 2 行 · md5 6953e58b3d8ddf3161cbb3ff5f0de7f0",
+        "license": "CC BY 4.0 · Copyright (C) 2026 Tencent；原始输入和参考译文未改写，说明由本站整理。",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "excerpt": true
+      }
+    ]
+  }
+}

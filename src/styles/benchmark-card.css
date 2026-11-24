@@ -213,6 +213,10 @@
   column-gap: 14px;
   padding: 14px 16px;
 }
+/* 官方编辑性字标有最小字高和留白要求，不能塞入原 36px 方形标识栏。 */
+.list-view .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback)) {
+  grid-template-columns: 148px minmax(0, 1fr) minmax(160px, 185px);
+}
 .list-view .card-top {
   display: contents;
 }
@@ -275,6 +279,10 @@
   .list-view .benchmark-card {
     grid-template-columns: 36px minmax(0, 1fr);
   }
+  .list-view
+    .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback)) {
+    grid-template-columns: 148px minmax(0, 1fr);
+  }
   .list-view .card-meta {
     grid-column: 2;
     grid-row: 5;
@@ -315,6 +323,11 @@
   .list-view .benchmark-card {
     padding: 14px;
     gap: 0 11px;
+  }
+  .list-view
+    .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback))
+    :is(.card-meta, .card-actions) {
+    grid-column: 1 / -1;
   }
   .list-view .card-tldr {
     font-size: 13px;

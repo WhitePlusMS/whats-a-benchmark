@@ -49,7 +49,11 @@ watch(
       v-for="mark in marks"
       :key="mark.id"
       class="publisher-logo"
-      :class="{ wide: mark.wide, 'is-fallback': failed.includes(mark.id) }"
+      :class="{
+        wide: mark.wide,
+        'tencent-editorial-wordmark': mark.id === 'tencent-editorial',
+        'is-fallback': failed.includes(mark.id),
+      }"
       :style="{
         backgroundColor: failed.includes(mark.id) ? undefined : mark.background,
       }"
@@ -139,6 +143,16 @@ watch(
 }
 .large .publisher-name {
   max-width: 110px;
+}
+/* 腾讯媒体资源原 PNG 含透明边。保留至少 22px 的可见字高和半个字高的留白。 */
+.publisher-marks .publisher-logo.tencent-editorial-wordmark:not(.is-fallback) {
+  width: 148px;
+  height: 56px;
+  flex: none;
+}
+.publisher-marks .publisher-logo.tencent-editorial-wordmark:not(.is-fallback) img {
+  width: 132px;
+  height: auto;
 }
 :global(.list-view .publisher-marks) {
   flex-direction: column;
