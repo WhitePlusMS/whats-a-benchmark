@@ -3,6 +3,7 @@ import { computed, type Component } from "vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
 import { byId, categoryById, embodiedCategories } from "../content/catalog";
+import { healthcareCategoryByBenchmarkId } from "../content/healthcare";
 import {
   dataAccessLabels,
   disclosureLabels,
@@ -87,7 +88,22 @@ const featuredIn = computed(() =>
   ),
 );
 const { selected, toggle } = useComparison();
-const { catalogLocation, embodiedLocation } = useCatalogNavigation();
+const {
+  catalogLocation,
+  embodiedLocation,
+  healthcareLocation,
+  lastModelCatalog,
+} = useCatalogNavigation();
+const returnToCatalog = computed(() => {
+  if (item.value?.embodied) return embodiedLocation.value;
+  if (
+    item.value &&
+    lastModelCatalog.value === "healthcare" &&
+    healthcareCategoryByBenchmarkId.has(item.value.id)
+  )
+    return healthcareLocation.value;
+  return catalogLocation.value;
+});
 const sourceGroups = computed(() =>
   groupSourceReferences(item.value?.sources || []),
 );
@@ -156,9 +172,7 @@ useHead(() => ({
 <template>
   <div v-if="item" class="container detail-page">
     <nav class="breadcrumbs" aria-label="面包屑">
-      <RouterLink :to="item.embodied ? embodiedLocation : catalogLocation"
-        >返回目录</RouterLink
-      ><span>/</span>
+      <RouterLink :to="returnToCatalog">返回目录</RouterLink><span>/</span>
       <RouterLink
         :to="{
           path: item.embodied ? '/embodied/' : '/',
