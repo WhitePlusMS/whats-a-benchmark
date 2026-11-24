@@ -1,13 +1,16 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createMemoryHistory, createRouter } from "vue-router";
-import { benchmarks, embodiedBenchmarks } from "../src/content/catalog";
+import {
+  benchmarks,
+  categories,
+  embodiedBenchmarks,
+} from "../src/content/catalog";
 import {
   healthcareBenchmarks,
-  healthcareCategories,
+  healthcareCategory,
   healthcareCategoryByBenchmarkId,
-  healthcarePath,
-  healthcareRouteName,
+  legacyHealthcarePath,
 } from "../src/content/healthcare";
 import { benchmarkSearchTarget } from "../src/lib/search";
 import {
@@ -16,6 +19,7 @@ import {
   filterCatalog,
   hasCatalogFilters,
   parseCatalogQuery,
+  modelFilterCategories,
   resetCatalogQuery,
   updateCatalogQuery,
 } from "../src/lib/catalogQuery";
@@ -27,9 +31,12 @@ function createTestRouter() {
       { path: "/", component: { template: "<div />" } },
       { path: "/other", component: { template: "<div />" } },
       {
-        path: healthcarePath,
-        name: healthcareRouteName,
-        component: { template: "<div />" },
+        path: legacyHealthcarePath,
+        redirect: (to) => ({
+          path: "/",
+          query: { ...to.query, category: healthcareCategory.id },
+          hash: to.hash,
+        }),
       },
     ],
   });
@@ -103,8 +110,9 @@ test("catalog filters intersect, sort without mutating content, and preserve unk
     [],
   );
   assert.equal(
-    [...catalogStats.categoryCounts.values()].reduce(
-      (sum, count) => sum + count,
+    categories.reduce(
+      (sum, category) =>
+        sum + (catalogStats.categoryCounts.get(category.id) ?? 0),
       0,
     ),
     benchmarks.length,
@@ -138,7 +146,7 @@ test("router-backed catalog interface merges rapid filters and restores URL stat
   );
 
   await catalog.setFilter("publisher", "unknown publisher");
-  assert.equal(catalog.results.value.length, 0);
+  assert.deepEqual(catalog.results.value, []);
   await catalog.reset();
   assert.deepEqual(router.currentRoute.value.query, {
     view: "list",
@@ -189,99 +197,75 @@ test("具身目录只包含具身评测，同一评测可按多个任务找到",
   assert.ok(catalog.results.value.some((item) => item.id === "robotwin-2"));
   assert.equal(router.currentRoute.value.path, "/embodied/");
   assert.ok(
-    filterCatalog(parseCatalogQuery({ q: "bimanual" }), "embodied").some(
+    filterCatalog(parseCatalogQuery({ q: "bimanual" }), true).some(
       (item) => item.id === "robotwin-2",
     ),
   );
   assert.deepEqual(
-    filterCatalog(parseCatalogQuery({ q: "Agent 与工具使用" }), "embodied"),
+    filterCatalog(parseCatalogQuery({ q: "Agent 与工具使用" }), true),
     [],
   );
 });
 
-test("医疗健康专区只列已上架医疗评测，不改变原分类或详情链接", () => {
+test("医疗健康是模型目录的一个筛选项，原能力和详情路径不变", () => {
+  const id = healthcareCategory.id;
+  assert.deepEqual(modelFilterCategories.slice(0, -1), categories);
+  assert.equal(modelFilterCategories.at(-1)?.name, "医疗健康");
   assert.ok(healthcareBenchmarks.length >= 8);
   assert.equal(
     healthcareBenchmarks.length,
     healthcareCategoryByBenchmarkId.size,
   );
-  assert.ok(
-    healthcareCategories.every((category) =>
-      healthcareBenchmarks.some(
-        (item) => healthcareCategoryByBenchmarkId.get(item.id) === category.id,
-      ),
-    ),
-  );
-  const modelResult = filterCatalog(
-    parseCatalogQuery({ q: "PhysicianBench", category: "agents" }),
-  )[0];
-  const healthcareResult = filterCatalog(
-    parseCatalogQuery({ q: "PhysicianBench", category: "clinical-workflow" }),
-    "healthcare",
-  )[0];
-  assert.ok(modelResult);
-  assert.equal(healthcareResult, modelResult);
   assert.equal(
-    benchmarkSearchTarget(healthcareResult!),
-    "/benchmarks/physicianbench/",
-  );
-  assert.deepEqual(
-    filterCatalog(parseCatalogQuery({ q: "Terminal-Bench 4.0" }), "healthcare"),
-    [],
-  );
-  assert.equal(
-    filterCatalog(parseCatalogQuery({}), "healthcare").length,
+    catalogStats.categoryCounts.get(id),
     healthcareBenchmarks.length,
   );
+
+  const healthcare = filterCatalog(parseCatalogQuery({ category: id }));
+  assert.deepEqual(
+    healthcare.map((item) => item.id).sort(),
+    healthcareBenchmarks.map((item) => item.id).sort(),
+  );
+  assert.equal(
+    filterCatalog(parseCatalogQuery({ category: id }), true).length,
+    0,
+  );
+  assert.equal(filterCatalog(parseCatalogQuery({})).length, benchmarks.length);
+  const fromDoctorFilter = filterCatalog(
+    parseCatalogQuery({ category: "agents", q: "PhysicianBench" }),
+  )[0];
+  const fromHealthFilter = healthcare.find(
+    (item) => item.id === "physicianbench",
+  );
+  assert.ok(fromHealthFilter);
+  assert.equal(fromDoctorFilter, fromHealthFilter);
+  assert.equal(
+    benchmarkSearchTarget(fromHealthFilter),
+    "/benchmarks/physicianbench/",
+  );
 });
 
-test("医疗健康链接中的搜索、专题与显示方式能叠加，清空不退出专区", async () => {
+test("模型目录医疗健康和搜索叠加，清空回到模型目录，旧网址跳转", async () => {
   const router = createTestRouter();
-  await router.push({
-    path: healthcarePath,
-    query: {
-      category: "clinical-workflow",
-      q: "PhysicianBench",
-      view: "list",
-      sort: "name",
-    },
-  });
-  const catalog = createCatalogQuery(router);
-  assert.equal(catalog.currentCategory.value?.name, "临床与医疗管理工作流");
-  assert.deepEqual(
-    catalog.results.value.map((item) => item.id),
-    ["physicianbench"],
+  await router.push(
+    "/healthcare/?category=clinical-workflow&q=PhysicianBench&view=list#catalog",
   );
-  assert.equal(catalog.stats.value.categoryCounts.get("clinical-workflow"), 3);
-  await catalog.setFilter("category", "medical-safety");
-  assert.equal(catalog.results.value.length, 0);
-  assert.equal(router.currentRoute.value.path, healthcarePath);
-  await catalog.reset();
-  assert.equal(router.currentRoute.value.path, healthcarePath);
+  const catalog = createCatalogQuery(router);
+  assert.equal(router.currentRoute.value.path, "/");
+  assert.equal(router.currentRoute.value.hash, "#catalog");
+  assert.equal(catalog.query.value.category, healthcareCategory.id);
+  assert.equal(catalog.query.value.q, "PhysicianBench");
   assert.equal(catalog.query.value.view, "list");
-  assert.equal(catalog.query.value.sort, "name");
-  assert.equal(catalog.results.value.length, healthcareBenchmarks.length);
-
-  await router.push({
-    path: "/",
-    query: { category: "agents", q: "PhysicianBench" },
-  });
+  assert.equal(catalog.currentCategory.value?.name, "医疗健康");
   assert.deepEqual(
     catalog.results.value.map((item) => item.id),
     ["physicianbench"],
   );
-});
-
-test("没有尾斜杠的医疗健康地址仍是专区，改筛选使用正式路径", async () => {
-  const router = createTestRouter();
-  await router.push("/healthcare?q=PhysicianBench");
-  const catalog = createCatalogQuery(router);
-  assert.equal(catalog.scope.value, "healthcare");
-  assert.deepEqual(
-    catalog.results.value.map((item) => item.id),
-    ["physicianbench"],
-  );
-  await catalog.setFilter("view", "list");
-  assert.equal(router.currentRoute.value.path, healthcarePath);
-  assert.equal(router.currentRoute.value.query.q, "PhysicianBench");
+  await catalog.setFilter("q", "Terminal-Bench 4.0");
+  assert.equal(catalog.results.value.length, 0);
+  assert.equal(router.currentRoute.value.path, "/");
+  await catalog.reset();
+  assert.equal(catalog.query.value.category, "");
+  assert.equal(catalog.query.value.view, "list");
+  assert.equal(catalog.results.value.length, benchmarks.length);
 });

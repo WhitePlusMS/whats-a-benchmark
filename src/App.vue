@@ -3,7 +3,6 @@ import { computed, onMounted, onUnmounted, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { comparisonKey, createComparison } from "./composables/compare";
 import { byId } from "./content/catalog";
-import { healthcareRouteName } from "./content/healthcare";
 import Icon from "./components/Icon.vue";
 import ComparisonSelectionBar from "./components/ComparisonSelectionBar.vue";
 import ThemeSwitcher from "./components/ThemeSwitcher.vue";
@@ -21,13 +20,7 @@ const { colorModeIcon, colorModeLabel, cycleColorMode } = useTheme();
 // Own selection state per application and dispose the navigation subscription.
 const comparison = createComparison(useRouter());
 const { selected } = comparison;
-const isHealthcare = computed(() => route.name === healthcareRouteName);
-const isCatalog = computed(
-  () => route.path === "/" || route.path === "/embodied/" || isHealthcare.value,
-);
-const isModelDetail = computed(
-  () => route.path.startsWith("/benchmarks/") && !isEmbodiedDetail.value,
-);
+const isCatalog = computed(() => ["/", "/embodied/"].includes(route.path));
 const showCompareDock = computed(
   () => selected.value.length > 0 && !/^\/compare\/?$/.test(route.path),
 );
@@ -58,14 +51,15 @@ onUnmounted(comparison.dispose);
           <RouterLink
             :to="route.path === '/' ? route.fullPath : catalogLocation"
             :class="{
-              active: route.path === '/' || isHealthcare || isModelDetail,
+              active:
+                route.path === '/' ||
+                (route.path.startsWith('/benchmarks/') && !isEmbodiedDetail),
             }"
             :aria-current="
-              route.path === '/'
+              route.path === '/' ||
+              (route.path.startsWith('/benchmarks/') && !isEmbodiedDetail)
                 ? 'page'
-                : isHealthcare || isModelDetail
-                  ? 'location'
-                  : undefined
+                : undefined
             "
             ><Icon name="sparkle" :size="16" />模型评测</RouterLink
           >

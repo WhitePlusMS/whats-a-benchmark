@@ -1,9 +1,14 @@
 import { benchmarks } from "./catalog";
 import type { Category } from "../types/benchmark";
 
-export const healthcarePath = "/healthcare/";
-export const healthcareName = "医疗健康";
-export const healthcareRouteName = "healthcare";
+export const legacyHealthcarePath = "/healthcare/";
+export const healthcareCategory: Category = {
+  id: "healthcare",
+  name: "医疗健康",
+  description: "面向临床推理、医疗工作流和专业安全的模型评测。",
+  glyph: "check",
+  color: "#587d91",
+};
 
 // 同一张评测卡保留原能力分类和详情路径；这里只维护它在专区内的主专题。
 const groups: Array<{ category: Category; ids: string[] }> = [

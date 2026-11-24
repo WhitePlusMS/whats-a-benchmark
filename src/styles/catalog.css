@@ -141,23 +141,7 @@
 .mobile-filter-button {
   display: none;
 }
-.catalog-features {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 12px;
-}
-.catalog-features > :only-child {
-  grid-column: 1 / -1;
-}
-@media (max-width: 700px) {
-  .catalog-features {
-    grid-template-columns: 1fr;
-  }
-}
-.catalog-intro .breadcrumbs {
-  margin-bottom: 6px;
-}
-/* 专区和精选入口复用同一套目录样式。 */
+/* 精选入口只引向一条已整理的阅读路径，筛选时不打断目录。 */
 .reading-feature {
   display: flex;
   align-items: center;

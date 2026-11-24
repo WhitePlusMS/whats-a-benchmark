@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useHead } from "@unhead/vue";
-import { kindLabels } from "../content/catalog";
-import { healthcareName, healthcarePath } from "../content/healthcare";
+import { useRoute } from "vue-router";
 import {
-  catalogCategories,
-  catalogCollections,
-  matchesCatalogCategory,
-} from "../lib/catalogQuery";
+  benchmarks,
+  categories,
+  embodiedBenchmarks,
+  embodiedCategories,
+  kindLabels,
+} from "../content/catalog";
 import { sampleAccessLabels } from "../content/labels";
 import {
   useCatalogQuery,
@@ -19,35 +20,18 @@ import UiDialog from "../components/UiDialog.vue";
 import Icon from "../components/Icon.vue";
 import ComparisonSelectionBar from "../components/ComparisonSelectionBar.vue";
 import { formatCount } from "../lib/displayFormats";
-import { useCatalogNavigation } from "../composables/catalogNavigation";
+import { modelFilterCategories } from "../lib/catalogQuery";
 
-const { catalogLocation } = useCatalogNavigation();
-const {
-  query,
-  results,
-  scope,
-  currentCategory,
-  hasFilters,
-  stats,
-  setFilter: updateFilter,
-  reset,
-} = useCatalogQuery();
-const isEmbodied = computed(() => scope.value === "embodied");
-const isHealthcare = computed(() => scope.value === "healthcare");
-const visibleBenchmarks = computed(() => catalogCollections[scope.value]);
-const visibleCategories = computed(() => catalogCategories[scope.value]);
-const categoryLabel = computed(() =>
-  isHealthcare.value ? "专题" : isEmbodied.value ? "任务" : "能力",
+const route = useRoute();
+const isEmbodied = computed(() => route.path === "/embodied/");
+const visibleBenchmarks = computed(() =>
+  isEmbodied.value ? embodiedBenchmarks : benchmarks,
 );
-const title = computed(() =>
-  isHealthcare.value
-    ? healthcareName
-    : isEmbodied.value
-      ? "具身智能"
-      : "到底测什么？",
+const visibleCategories = computed(() =>
+  isEmbodied.value ? embodiedCategories : categories,
 );
 useHead(() => ({
-  title: `${title.value} · what's a benchmark?`,
+  title: `${isEmbodied.value ? "具身智能" : "到底测什么？"} · what's a benchmark?`,
 }));
 const showFilters = ref(false);
 const isMobile = ref(false);
@@ -80,6 +64,15 @@ onUnmounted(() => {
   mobileQuery?.removeEventListener("change", syncViewport);
   window.removeEventListener("keydown", onGlobalKeydown);
 });
+const {
+  query,
+  results,
+  currentCategory,
+  hasFilters,
+  stats,
+  setFilter: updateFilter,
+  reset,
+} = useCatalogQuery();
 const publishers = computed(() => stats.value.publishers);
 const localCount = computed(() => stats.value.localCount);
 const sampleCount = computed(() => stats.value.sampleCount);
@@ -90,11 +83,11 @@ const activeFilters = computed(() =>
     { key: "q", label: "搜索", value: query.value.q, remove: "移除搜索词" },
     {
       key: "category",
-      label: categoryLabel.value,
+      label: isEmbodied.value ? "任务" : "能力",
       value: query.value.category
         ? currentCategory.value?.name || query.value.category
         : "",
-      remove: `移除${categoryLabel.value}分类`,
+      remove: isEmbodied.value ? "移除任务分类" : "移除能力分类",
     },
     {
       key: "publisher",
@@ -130,7 +123,9 @@ const groupedResults = computed(() => {
     .map((category) => ({
       category,
       items: results.value.filter((item) =>
-        matchesCatalogCategory(item, category.id, scope.value),
+        isEmbodied.value
+          ? item.embodied?.tasks.some((task) => task === category.id)
+          : item.category === category.id,
       ),
     }))
     .filter((group) => group.items.length);
@@ -144,19 +139,12 @@ function setFilter(key: CatalogFilterKey, value: string) {
   <div class="hero">
     <section class="catalog-header container">
       <div class="catalog-intro">
-        <nav v-if="isHealthcare" class="breadcrumbs" aria-label="面包屑">
-          <RouterLink :to="catalogLocation">模型评测</RouterLink>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">{{ healthcareName }}</span>
-        </nav>
-        <h1>{{ title }}</h1>
+        <h1>{{ isEmbodied ? "具身智能" : "到底测什么？" }}</h1>
         <p>
           {{
-            isHealthcare
-              ? "汇集医疗健康领域的模型评测，涵盖临床推理、医疗工作流与安全。"
-              : isEmbodied
-                ? "机器人与物理交互的任务、数据与评测方法。"
-                : "评测任务、真实案例、评分方法与版本关系。"
+            isEmbodied
+              ? "机器人与物理交互的任务、数据与评测方法。"
+              : "评测任务、真实案例、评分方法与版本关系。"
           }}
         </p>
       </div>
@@ -165,7 +153,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
           ><b>{{ formatCount(visibleBenchmarks.length) }}</b> 个评测</span
         ><span
           ><b>{{ formatCount(visibleCategories.length) }}</b> 类{{
-            categoryLabel
+            isEmbodied ? "任务" : "能力"
           }}</span
         ><span
           ><b>{{ formatCount(sampleCount) }}</b> 条真实案例</span
@@ -182,11 +170,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
           autocomplete="off"
           :value="query.q"
           @input="setFilter('q', ($event.target as HTMLInputElement).value)"
-          :placeholder="
-            isHealthcare
-              ? '搜索医疗健康评测或发布方…'
-              : '搜索评测、能力或发布方…'
-          "
+          placeholder="搜索评测、能力或发布方…"
         /><button
           v-if="query.q"
           class="icon-button"
@@ -222,24 +206,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
       </button>
     </section>
   </div>
-  <div v-if="scope === 'model'" class="container catalog-features">
-    <RouterLink class="reading-feature" :to="healthcarePath">
-      <span class="reading-feature-mark" aria-hidden="true"
-        ><Icon name="healthcare" :size="21"
-      /></span>
-      <span class="reading-feature-copy">
-        <strong>{{ healthcareName }}</strong>
-        <small>浏览医疗健康专区</small>
-      </span>
-      <span class="reading-feature-action"
-        >查看专区 <Icon name="up" :size="16"
-      /></span>
-    </RouterLink>
-    <RouterLink
-      v-if="!hasFilters"
-      class="reading-feature"
-      to="/benchmarks/terminal-bench-4/"
-    >
+  <div v-if="!isEmbodied && !hasFilters" class="container">
+    <RouterLink class="reading-feature" to="/benchmarks/terminal-bench-4/">
       <span class="reading-feature-mark" aria-hidden="true"
         ><Icon name="code" :size="21"
       /></span>
@@ -259,9 +227,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
         :publishers="publishers"
         :category-counts="categoryCounts"
         :total="visibleBenchmarks.length"
-        :categories="visibleCategories"
+        :categories="isEmbodied ? visibleCategories : modelFilterCategories"
         :task-only="isEmbodied"
-        :category-label="categoryLabel + '分类'"
         @change="setFilter"
       />
     </aside>
@@ -389,9 +356,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
       :publishers="publishers"
       :category-counts="categoryCounts"
       :total="visibleBenchmarks.length"
-      :categories="visibleCategories"
+      :categories="isEmbodied ? visibleCategories : modelFilterCategories"
       :task-only="isEmbodied"
-      :category-label="categoryLabel + '分类'"
       @change="setFilter" /><template #footer
       ><button class="clear-all" :disabled="!hasFilters" @click="reset">
         清空条件</button

@@ -12,7 +12,6 @@ defineProps<{
   total: number;
   categories: readonly Category[];
   taskOnly?: boolean;
-  categoryLabel: string;
 }>();
 const emit = defineEmits<{ change: [key: CatalogFilterKey, value: string] }>();
 // 桌面和手机复用同一套控件，各实例仍有唯一的 label/id。
@@ -20,8 +19,12 @@ const id = useId();
 </script>
 <template>
   <div class="catalog-filter-content">
-    <div class="filter-heading">{{ categoryLabel }}</div>
-    <div class="category-filters" role="group" :aria-label="categoryLabel">
+    <div class="filter-heading">{{ taskOnly ? "任务分类" : "能力分类" }}</div>
+    <div
+      class="category-filters"
+      role="group"
+      :aria-label="taskOnly ? '任务分类' : '能力分类'"
+    >
       <button
         class="category-filter"
         :class="{ active: !query.category }"
