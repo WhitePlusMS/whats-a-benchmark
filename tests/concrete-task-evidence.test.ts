@@ -403,3 +403,79 @@ test("SWEEP-Bench 的目录和详情只显示明确标注的本站图标和作�
   assert.match(fake, /Other authors/);
   assert.doesNotMatch(fake, /本站图标|<svg/);
 });
+
+test("ExtractBench 默认显示同一付款清单的原字段、JSON 交付和原核验", async () => {
+  const { item, sampleFile } = await load("extractbench");
+  const { shown, html } = await renderDefault(item, sampleFile);
+  assert.match(
+    shown,
+    /116953｜BUTLER CONSTRUCTION COMPANY｜\$107,000\.00｜\$0\.00｜\$0\.00｜BLDGS-CONSTRUCTED/,
+  );
+  assert.match(
+    shown,
+    /符合 JSON Schema 的 JSON.*完整 checks 列表.*state_fund_amount="\$107,000\.00"/s,
+  );
+  assert.match(
+    shown,
+    /\[0\.32202, 0\.20194, 0\.05612, 0\.01307\].*≥ 0\.5.*source_page.*没有精确框/s,
+  );
+  assert.match(shown, /213 条付款/);
+  assert.doesNotMatch(html, /\.pdf(?=[#"'?])|\b<iframe\b|\b<object\b/);
+  const sample = sampleFile?.samples[0];
+  const sourceUrl =
+    "https://huggingface.co/datasets/llamaindex/ExtractBench/resolve/f9b910906cd7e73cc9eb5379a8d5d935c67b92c4/short.jsonl?download=true";
+  assert.equal(sample?.source, sourceUrl);
+  assert.deepEqual(sample?.references?.[0], {
+    label: "官方固定 short.jsonl（下载后查看第 229 行）",
+    url: sourceUrl,
+  });
+  assert.equal(item.sampleAccess?.url, sourceUrl);
+  assert.ok(
+    item.sources.some(
+      ({ url, label }) =>
+        url === sourceUrl && label.includes("下载后查看第 229 行"),
+    ),
+  );
+  assert.doesNotMatch(
+    JSON.stringify({ item, sampleFile }),
+    /short\.jsonl#L229/,
+  );
+  assert.match(
+    shown,
+    /顶层五个字段必填：organization、report_title、period_start、period_end 为字符串，checks 为数组。state_fund_total、federal_fund_total、local_fund_total 是可选字符串/,
+  );
+  assert.match(
+    shown,
+    /checks 每项有六个必填字段：check_number、vendor_name、state_fund_amount、federal_fund_amount、local_fund_amount 都是字符串；description 是字符串或 null。source_page 可省略，若提供须为整数或 null/,
+  );
+  assert.match(shown, /顶层和每项都不接受额外字段/);
+  assert.ok(sample?.raw && typeof sample.raw === "object");
+});
+
+test("ExtractBench 目录和详情用相同的官方 LlamaIndex 小空间版本", async () => {
+  const { item } = await load("extractbench");
+  assert.deepEqual(item.brandIds, ["llamaindex"]);
+  const path = "logos/llamaindex-official-mark.svg";
+  const bytes = await readFile(
+    new URL("../content/assets/" + path, import.meta.url),
+  );
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "389b1b8d95572b8f722cd81901a7e738279f04b50a1ab163c3d0fe8c744ae5f9",
+  );
+  const url = new URL("../src/components/PublisherMarks.vue", import.meta.url);
+  const { default: Mark } = await import(await component(url, ""));
+  for (const large of [false, true]) {
+    const html = await renderToString(
+      createSSRApp(Mark, {
+        benchmarkId: item.id,
+        publisher: item.publisher,
+        large,
+      }),
+    );
+    assert.match(html, /class="[^"]*llamaindex-editorial-mark/);
+    assert.ok(html.includes('src="/' + path + '"'));
+    assert.match(html, /alt="LlamaIndex 标识"/);
+    assert.doesNotMatch(html, /is-fallback|publisher-name|本站图标/);
+  }
+});

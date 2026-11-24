@@ -53,6 +53,7 @@ watch(
       :class="{
         wide: mark.wide,
         'tencent-editorial-wordmark': mark.id === 'tencent-editorial',
+        'llamaindex-editorial-mark': mark.id === 'llamaindex',
         'is-fallback': failed.includes(mark.id),
       }"
       :style="{
@@ -110,6 +111,11 @@ watch(
   height: 40px;
   object-fit: contain;
 }
+/* 官方 LlamaIndex 小版标识，保留至少四分之一图标宽度的周边留白。 */
+.publisher-marks .publisher-logo.llamaindex-editorial-mark img {
+  width: 60%;
+  height: 60%;
+}
 .publisher-logo.is-fallback {
   height: auto;
   min-height: 44px;
@@ -158,7 +164,9 @@ watch(
   height: 56px;
   flex: none;
 }
-.publisher-marks .publisher-logo.tencent-editorial-wordmark:not(.is-fallback) img {
+.publisher-marks
+  .publisher-logo.tencent-editorial-wordmark:not(.is-fallback)
+  img {
   width: 132px;
   height: auto;
 }
