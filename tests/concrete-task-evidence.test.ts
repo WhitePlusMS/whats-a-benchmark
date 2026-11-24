@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { compileScript, parse } from "@vue/compiler-sfc";
@@ -248,4 +249,62 @@ test("RCTBench 默认仅描述同一个外部真实动作，不把它当作原�
     html,
     /href="https:\/\/www\.vals\.ai\/benchmarks\/rctbench#example-decisions"/,
   );
+});
+
+test("IFMTBench 默认展示同一固定公开记录的原题、参考和实际评分分支", async () => {
+  const { item, sampleFile } = await load("ifmtbench");
+  const sample = sampleFile?.samples[0];
+  assert.ok(sample);
+  assert.equal(
+    sample.source,
+    "https://huggingface.co/datasets/tencent/IFMTBench/blob/0d63f2612a0e974e6d496a2e5ed798904022b185/data/test_single_constraint.jsonl#L2",
+  );
+  assert.equal(typeof sample.raw, "object");
+  if (typeof sample.raw !== "object") throw new Error("应保存原始记录对象");
+  assert.equal(sample.raw.md5, "6953e58b3d8ddf3161cbb3ff5f0de7f0");
+  assert.ok(!Object.hasOwn(sample.raw, "term_dict"));
+  const { shown } = await renderDefault(item, sampleFile);
+  const plainText = (value: string) => value.replace(/\s+/g, " ");
+  assert.ok(plainText(shown).includes(plainText(String(sample.raw.input))));
+  assert.ok(plainText(shown).includes(plainText(String(sample.raw.output))));
+  assert.match(
+    shown,
+    /没有单独的 term_dict.*LLM 评审.*breath recovery 和 fatal strike.*判 0.*判 1/s,
+  );
+  assert.match(shown, /不是模型实跑结果/);
+});
+
+test("IFMTBench 的目录和详情组件选择未经修改的腾讯编辑性官方标识", async () => {
+  const { item } = await load("ifmtbench");
+  assert.deepEqual(item.brandIds, ["tencent-editorial"]);
+  const mark = await readFile(
+    new URL("../content/assets/logos/tencent-editorial.png", import.meta.url),
+  );
+  assert.equal(
+    createHash("sha256").update(mark).digest("hex"),
+    "5f2c7ae33573b9d313298578c503c1772dea6571860dbfd483641b13164de173",
+  );
+  const Mark = (
+    await import(
+      await component(
+        new URL("../src/components/PublisherMarks.vue", import.meta.url),
+        "",
+      )
+    )
+  ).default;
+  for (const large of [false, true]) {
+    const html = await renderToString(
+      createSSRApp(Mark, {
+        benchmarkId: item.id,
+        publisher: item.publisher,
+        large,
+      }),
+    );
+    assert.match(html, /class="[^"]*tencent-editorial-wordmark/);
+    assert.match(
+      html,
+      /<img[^>]+src="\/logos\/tencent-editorial\.png"[^>]*alt="Tencent 标识"/,
+    );
+    assert.doesNotMatch(html, /is-fallback|publisher-name|logos\/tencent\.png/);
+  }
 });
