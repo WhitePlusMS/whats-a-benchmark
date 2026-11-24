@@ -46,7 +46,7 @@ const groups: Array<{ category: Category; ids: string[] }> = [
       glyph: "check",
       color: "#708847",
     },
-    ids: ["mentalhealthbench"],
+    ids: ["mentalhealthbench", "medguardbench"],
   },
 ];
 export const healthcareCategories = groups.map(({ category }) => category);

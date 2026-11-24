@@ -287,3 +287,21 @@ test("医疗健康分类可检索 InclusionMed，保留原能力分类和详情�
     "/benchmarks/inclusionmed-index/",
   );
 });
+
+test("医疗健康分类可检索 MedGuardBench，保留原能力分类和详情路径", () => {
+  const fromHealthcare = filterCatalog(
+    parseCatalogQuery({ category: healthcareCategory.id, q: "MedGuardBench" }),
+  );
+  assert.deepEqual(
+    fromHealthcare.map((item) => item.id),
+    ["medguardbench"],
+  );
+  const fromCapability = filterCatalog(
+    parseCatalogQuery({ category: "alignment", q: "MedGuardBench" }),
+  )[0];
+  assert.equal(fromHealthcare[0], fromCapability);
+  assert.equal(
+    benchmarkSearchTarget(fromHealthcare[0]!),
+    "/benchmarks/medguardbench/",
+  );
+});
