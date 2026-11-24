@@ -75,24 +75,26 @@
   },
   "reusePolicy": {
     "status": "permitted",
-    "license": "Ai2 为 point_tracks.npz 标注声明 ODC-BY 1.0；视频权利单独按各来源核对。",
-    "scope": "仅展示 Ai2 发布的一小段数值标注；保留发布者、原视频来源和许可证链接。",
+    "license": "Ai2 的点标注为 ODC-BY 1.0；所选 MolmoAct2 片段画面为 Apache-2.0，分别署名。",
+    "scope": "仅展示同一官方片段的两个查询点标注节选，以及其中一个点遮挡前后的两张标注预览截图。",
     "boundaries": [
-      "不重发视频、图像或整套标注。数据库许可不授予上游媒体权利。"
+      "不转载完整或其他上游视频、整套标注或模型预测。数据库许可不授予媒体权利。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
-      "https://opendatacommons.org/licenses/by/1-0/"
+      "https://opendatacommons.org/licenses/by/1-0/",
+      "https://www.apache.org/licenses/LICENSE-2.0"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "展示一段 MolmoAct2 片段的 1 个点、3 帧真实标注。不含视频和模型预测，不能单独运行评测。",
+    "reason": "同一 MolmoAct2 片段展示两个不同查询点。可查看点 0 遮挡前后的官方预览截图，及其 NPZ 坐标与可见性节选。没有转载完整视频。",
     "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
     "sourceUrls": [
       "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
       "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
-      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz"
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4"
     ]
   },
   "metric": {
@@ -106,7 +108,7 @@
   },
   "limitations": [
     {
-      "text": "上线案例只选真实坐标标注，不包含可复现跟踪所需的原视频；没有运行任何模型。",
+      "text": "站内包含两张标注预览截图和局部标注，没有复现跟踪所需的完整视频，也没有运行模型。",
       "sourceUrls": [
         "https://allenai.org/blog/robotrack",
         "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md"
@@ -161,11 +163,118 @@
       "label": "固定片段聚合实现",
       "url": "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/evaluate.py",
       "role": "code"
+    },
+    {
+      "label": "Ai2 官方标注叠加预览 · SO-100 电池片段",
+      "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4",
+      "role": "data"
+    },
+    {
+      "label": "所选 MolmoAct2 画面 Apache-2.0 许可",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "role": "access"
     }
   ],
   "sampleSet": {
     "retrievedAt": "2026-11-24",
     "samples": [
+      {
+        "id": "robotrack-so100-battery-point0-occlusion",
+        "title": "SO-100 电池操作：点 0 从可见到遮挡",
+        "shortTitle": "遮挡前后：点 0",
+        "type": "image",
+        "promptOrigin": "editorial",
+        "prompt": "从第 61 帧查询点出发，逐帧判断点 0 的二维位置与可见性。第 126 帧仍可见，第 127 帧转为遮挡；两张官方预览截图展示遮挡前后的相邻时刻。",
+        "explanation": "此片段共 299 帧，帧和点索引均从 0 开始。原始数据保留点 0 的第 125–128 帧，可见性依次为 1、1、0、0。后两帧的 (0, 0) 不表示该点移动到了图像左上角。截图上的轨迹为官方标注叠加，不是模型预测。",
+        "raw": {
+          "trajs_2d": [
+            [
+              [
+                410.28656005859375,
+                394.5000305175781
+              ]
+            ],
+            [
+              [
+                410.655029296875,
+                398.2532653808594
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "visibility": [
+            [
+              1.0
+            ],
+            [
+              1.0
+            ],
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ],
+          "query_frames": [
+            61
+          ]
+        },
+        "source": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz",
+        "references": [
+          {
+            "label": "Ai2 官方全段标注预览（可下载）",
+            "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4"
+          },
+          {
+            "label": "Ai2 数据卡：标注与视频分开授权",
+            "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md"
+          },
+          {
+            "label": "点标注 ODC-BY 1.0",
+            "url": "https://opendatacommons.org/licenses/by/1-0/"
+          },
+          {
+            "label": "MolmoAct2 画面 Apache-2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+          }
+        ],
+        "split": "default / test · so100_00ri_so100_battery · 点索引 0、帧 125–128",
+        "license": "坐标与可见性：Ai2，ODC-BY 1.0；截图底图：MolmoAct2（Ai2），Apache-2.0；截帧并转换为 WebP。",
+        "licensePath": "licenses/robotrack-molmoact2-apache-2-0.txt",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/robotrack-so100-occlusion-frame-126.webp",
+            "alt": "SO-100 电池片段的官方标注预览，第 126 帧，点 0 仍可见。",
+            "width": 640,
+            "height": 480,
+            "caption": "第 126 帧：点 0 仍可见。Ai2 官方叠加预览截帧，转为 WebP；底图 MolmoAct2（Apache-2.0），点标注 Ai2（ODC-BY 1.0）。",
+            "source": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4"
+          },
+          {
+            "kind": "image",
+            "path": "images/robotrack-so100-occlusion-frame-127.webp",
+            "alt": "SO-100 电池片段的官方标注预览，第 127 帧，点 0 被遮挡。",
+            "width": 640,
+            "height": 480,
+            "caption": "第 127 帧：点 0 被遮挡。Ai2 官方叠加预览截帧，转为 WebP；底图 MolmoAct2（Apache-2.0），点标注 Ai2（ODC-BY 1.0）。",
+            "source": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4"
+          }
+        ]
+      },
       {
         "id": "robotrack-so100-battery-point1",
         "title": "SO-100 电池操作片段的二维跟踪点",

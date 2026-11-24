@@ -277,8 +277,8 @@
         "title": "蜂蜜加工场景的交替控制",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "初始化蜂蜜加工场景，执行相机控制，再按文字执行后续动作。",
-        "explanation": "三次交互按初始化、相机、文本排列；后续动作需与此前画面连续。仅保留记录 ID、时长和原生 user_prompts。",
+        "prompt": "0–8 秒：以文字初始化蜂蜜加工场景。\n8–17 秒：以 W → A → W 的按键区间控制镜头。\n17–28.583 秒：回到文字指令，续接前面的场景与动作。",
+        "explanation": "user_prompts 记录初始化、镜头和后续文字三个交互；按键事件 t 从镜头段开始计算。segments[].keyIntervals 的 videoStartMs / videoEndMs 则是整段视频的时间轴。这里展示原始控制输入，不是生成视频或模型得分。",
         "raw": {
           "test_id": "Hy-Nomas-B3-0007",
           "total_duration": "00:28.583",
@@ -333,6 +333,42 @@
               "turn_number": 3,
               "input_type": "text",
               "user_prompt": "Have man uncapping honey frames hold the frame upright over the white crate and scrape the pale wax cappings off with a knife, glancing toward the camera before trimming the top edge. Push in slightly and hold a steadier medium close-up."
+            }
+          ],
+          "segments": [
+            {
+              "start_time": "00:00.000",
+              "end_time": "00:08.000",
+              "segment_control": "prompt",
+              "keyIntervals": []
+            },
+            {
+              "start_time": "00:08.000",
+              "end_time": "00:17.000",
+              "segment_control": "camera",
+              "keyIntervals": [
+                {
+                  "code": "KeyW",
+                  "videoStartMs": 8000.0,
+                  "videoEndMs": 13208.333333
+                },
+                {
+                  "code": "KeyA",
+                  "videoStartMs": 13208.333333,
+                  "videoEndMs": 15208.333333
+                },
+                {
+                  "code": "KeyW",
+                  "videoStartMs": 15208.333333,
+                  "videoEndMs": 17000.0
+                }
+              ]
+            },
+            {
+              "start_time": "00:17.000",
+              "end_time": "00:28.583",
+              "segment_control": "prompt",
+              "keyIntervals": []
             }
           ]
         },
