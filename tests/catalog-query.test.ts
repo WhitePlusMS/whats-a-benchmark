@@ -269,3 +269,21 @@ test("模型目录医疗健康和搜索叠加，清空回到模型目录，旧�
   assert.equal(catalog.query.value.view, "list");
   assert.equal(catalog.results.value.length, benchmarks.length);
 });
+
+test("医疗健康分类可检索 InclusionMed，保留原能力分类和详情路径", () => {
+  const fromHealthcare = filterCatalog(
+    parseCatalogQuery({ category: healthcareCategory.id, q: "InclusionMed" }),
+  );
+  assert.deepEqual(
+    fromHealthcare.map((item) => item.id),
+    ["inclusionmed-index"],
+  );
+  const fromCapability = filterCatalog(
+    parseCatalogQuery({ category: "general", q: "InclusionMed" }),
+  )[0];
+  assert.equal(fromHealthcare[0], fromCapability);
+  assert.equal(
+    benchmarkSearchTarget(fromHealthcare[0]!),
+    "/benchmarks/inclusionmed-index/",
+  );
+});

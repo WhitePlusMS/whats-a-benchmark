@@ -25,6 +25,7 @@ const groups: Array<{ category: Category; ids: string[] }> = [
       "healthbench-hard",
       "healthbench-professional",
       "mlcr-aa",
+      "inclusionmed-index",
     ],
   },
   {
