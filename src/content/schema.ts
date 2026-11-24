@@ -39,10 +39,19 @@ export const categorySchema = z.strictObject({
   ]),
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
 });
-export const brandSchema = z.strictObject({
+// Publisher-hosted images are a narrow, reviewed exception. These URLs were
+// verified as the publishers' actual marks; displaying them does not license
+// redistribution. Never use untrusted content or an arbitrary remote SVG here.
+const publisherHostedLogos = new Map([
+  ["inclusion-ai", "https://www.inclusion-ai.org/img/favicon.png"],
+  [
+    "inclusionmed-collaboration",
+    "https://raw.githubusercontent.com/panuvi/inclusionmed/bfa63c526093a38dc1476e4740157fa9145dae57/assets/brand/inclusionmed-favicon.svg",
+  ],
+]);
+const brandFields = {
   id: idSchema,
   name: text,
-  file: z.string().regex(/^logos\/[a-z0-9-]+\.(svg|png|jpg|jpeg|webp)$/),
   sourceUrl: https,
   assetUrl: https,
   wide: z.boolean().optional(),
@@ -51,7 +60,23 @@ export const brandSchema = z.strictObject({
     .string()
     .regex(/^#[0-9a-fA-F]{6}$/)
     .optional(),
-});
+};
+export const brandSchema = z
+  .union([
+    z.strictObject({
+      ...brandFields,
+      file: z.string().regex(/^logos\/[a-z0-9-]+\.(svg|png|jpg|jpeg|webp)$/),
+    }),
+    z.strictObject({
+      ...brandFields,
+      publisherHosted: z.literal(true),
+    }),
+  ])
+  .refine(
+    (brand) =>
+      "file" in brand || publisherHostedLogos.get(brand.id) === brand.assetUrl,
+    { path: ["assetUrl"], message: "须是该发布方经过核实的官方直源标识" },
+  );
 const grid = z
   .array(z.array(z.number().int().min(0).max(9)).min(1).max(30))
   .min(1)

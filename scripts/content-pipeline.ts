@@ -156,6 +156,7 @@ export async function loadContent(
         id,
       );
   for (const brand of brands) {
+    if (!("file" in brand)) continue;
     const bytes = await readFile(await sourceAssetPath(root, brand.file));
     if (!bytes.length)
       throw new Error(`content/brands.json → ${brand.id}.file: 空文件`);
@@ -203,7 +204,7 @@ export function referencedAssets(workspace: ContentWorkspace): string[] {
     ...new Set([
       ...workspace.brands
         .filter((brand) => ids.has(brand.id))
-        .map((brand) => brand.file),
+        .flatMap((brand) => ("file" in brand ? [brand.file] : [])),
       ...workspace.entries.flatMap((entry) =>
         (entry.sampleSet?.samples || []).flatMap((sample) =>
           [
