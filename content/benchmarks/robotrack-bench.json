@@ -1,0 +1,221 @@
+{
+  "id": "robotrack-bench",
+  "status": "published",
+  "order": 681,
+  "name": "RoboTrack-Bench",
+  "subtitle": "机器人操作视频中的二维点跟踪与遮挡判断",
+  "category": "multimodal",
+  "tags": [
+    "机器人视频",
+    "点跟踪",
+    "视觉感知",
+    "遮挡"
+  ],
+  "publisher": "Allen Institute for AI（Ai2）",
+  "brandIds": [
+    "ai2"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-11-23",
+  "version": "官方 test 发布",
+  "kind": "original",
+  "aliases": [
+    "RoboTrack Bench",
+    "Ai2 RoboTrack-Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在真实机器人操作等视频中跟踪查询点，检验定位和遮挡判断。",
+    "task": "给定一段视频和已标定的查询点，预测后续逐帧坐标与可见性。",
+    "sourceUrls": [
+      "https://allenai.org/blog/robotrack",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "操作视频片段及各点首次可见帧的位置。",
+    "output": "查询点在后续帧的二维位置与是否可见。",
+    "environment": "运行离线点跟踪和逐段评分，不向机器人发控制指令。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
+      "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/metrics.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "正式评测含 307 段视频与 2,522 条点轨迹；不是 RoboTrack-15M 训练集。",
+    "disclosure": "complete",
+    "scale": [
+      "公开 metadata.jsonl 有 265 段；另 42 段 Ego-Exo4D 视频需从上游另取。"
+    ],
+    "splits": [
+      "RoboTrack-Bench 是评测集；RoboTrack-15M 是另行发布的合成训练数据。"
+    ],
+    "fields": [
+      "视频来源、设备形态、帧数、点数，以及 NPZ 中的二维轨迹、可见性和查询帧。"
+    ],
+    "files": [
+      "point_tracks.npz、metadata.jsonl；Ego-Exo4D 片段另有索引，需按上游规则取得视频。"
+    ],
+    "sourceUrls": [
+      "https://allenai.org/blog/robotrack",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/metadata.jsonl"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可公开读取标注；随数据集可取的视频与需从上游获取的 Ego-Exo4D 不同。"
+    ],
+    "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Ai2 为 point_tracks.npz 标注声明 ODC-BY 1.0；视频权利单独按各来源核对。",
+    "scope": "仅展示 Ai2 发布的一小段数值标注；保留发布者、原视频来源和许可证链接。",
+    "boundaries": [
+      "不重发视频、图像或整套标注。数据库许可不授予上游媒体权利。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
+      "https://opendatacommons.org/licenses/by/1-0/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示一段 MolmoAct2 片段的 1 个点、3 帧真实标注。不含视频和模型预测，不能单独运行评测。",
+    "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz"
+    ]
+  },
+  "metric": {
+    "name": "平均 Jaccard（AJ）",
+    "description": "只评分各点查询帧之后；以归一化到 256×256 后的 1、2、4、8、16 像素距离阈值综合定位与可见性。另报位置准确率和遮挡准确率；逐段计算后等权平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/metrics.py",
+      "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/evaluate.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "上线案例只选真实坐标标注，不包含可复现跟踪所需的原视频；没有运行任何模型。",
+      "sourceUrls": [
+        "https://allenai.org/blog/robotrack",
+        "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md"
+      ]
+    },
+    {
+      "text": "比较成绩时需使用相同查询帧、坐标归一化、阈值和片段范围。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/metrics.py",
+        "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/evaluate.py"
+      ]
+    }
+  ],
+  "related": [],
+  "sources": [
+    {
+      "label": "Ai2 发布公告",
+      "url": "https://allenai.org/blog/robotrack",
+      "role": "release"
+    },
+    {
+      "label": "官方数据入口",
+      "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+      "role": "data"
+    },
+    {
+      "label": "固定数据卡与许可说明",
+      "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "固定片段索引",
+      "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/metadata.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "官方原始点标注 NPZ",
+      "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz",
+      "role": "data"
+    },
+    {
+      "label": "ODC-BY 1.0 许可",
+      "url": "https://opendatacommons.org/licenses/by/1-0/",
+      "role": "access"
+    },
+    {
+      "label": "固定评分实现",
+      "url": "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/metrics.py",
+      "role": "code"
+    },
+    {
+      "label": "固定片段聚合实现",
+      "url": "https://raw.githubusercontent.com/allenai/robotrack/fc5cd87f60fad57c7cbc48c3d09e9aa7b45061a3/robotrack/evaluate.py",
+      "role": "code"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "robotrack-so100-battery-point1",
+        "title": "SO-100 电池操作片段的二维跟踪点",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "从点的首次可见位置出发，追踪它在后续帧的位置和是否可见。",
+        "explanation": "此 MolmoAct2 / SO-100 片段共有 299 帧、3 个点。原始数据由 NPZ 解码为 JSON，仅保留索引 1 的点、帧 0–2 的坐标和可见性；query_frames 的值为 0，查询帧本身不计分。坐标是源标注值，不是 256×256 评分坐标，也不是模型输出。",
+        "raw": {
+          "trajs_2d": [
+            [
+              [
+                299.19354248046875,
+                443.2257995605469
+              ]
+            ],
+            [
+              [
+                299.15582275390625,
+                443.2487487792969
+              ]
+            ],
+            [
+              [
+                299.16265869140625,
+                443.2684020996094
+              ]
+            ]
+          ],
+          "visibility": [
+            [
+              1.0
+            ],
+            [
+              1.0
+            ],
+            [
+              1.0
+            ]
+          ],
+          "query_frames": [
+            0
+          ]
+        },
+        "source": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz",
+        "split": "default / test · so100_00ri_so100_battery · 点索引 1、帧 0–2",
+        "license": "ODC-BY 1.0 · RoboTrack-Bench 点标注，Ai2；原视频来源 MolmoAct2，仅标注切片，不含视频。",
+        "excerpt": true
+      }
+    ]
+  },
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24"
+}
