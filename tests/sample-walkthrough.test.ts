@@ -129,3 +129,47 @@ test("Terminal-Bench guides explain native instructions without replacing source
     "python3 /app/anon.py /app/input --policy /app/policy.yaml --output /app/output --seed 42 --max-memory 64MB",
   );
 });
+
+test("语音条目默认在正常任务内容中显示实际字段和验收，官方游戏回放不冒充本地原始数据", () => {
+  const load = (id: string) =>
+    entrySchema.parse(
+      JSON.parse(readFileSync(`content/benchmarks/${id}.json`, "utf8")),
+    );
+  const banking = load("tau-banking-voice-aa");
+  const bankDefault = banking.sampleSet?.samples[0];
+  assert.equal(bankDefault?.id, "tau-banking-voice-task-012");
+  assert.match(bankDefault?.walkthrough?.summary ?? "", /travel notification/);
+  assert.match(
+    bankDefault?.walkthrough?.checks.join(" ") ?? "",
+    /kb_search_unsuccessful_customer_requests_transfer/,
+  );
+  assert.equal(bankDefault?.answer, undefined);
+  assert.deepEqual(
+    load("tau3-banking").sampleSet?.samples.map((sample) => {
+      const raw = sample.raw;
+      return typeof raw === "object" ? raw.id : undefined;
+    }),
+    ["task_001", "task_006", "task_008"],
+  );
+  const entity = load("tau-entity-aa");
+  const entityDefault = entity.sampleSet?.samples[0];
+  assert.equal(entityDefault?.id, "tau-entity-en-drop-off-date");
+  assert.match(
+    entityDefault?.walkthrough?.output ?? "",
+    /drop_off_date.*2025-09-20/,
+  );
+  assert.match(
+    entityDefault?.walkthrough?.checks.join(" ") ?? "",
+    /三种音频条件/,
+  );
+  assert.equal(entityDefault?.assets?.[0]?.kind, "image");
+  assert(!JSON.stringify(entityDefault?.raw).includes("REC-1061"));
+  for (const item of [banking, entity])
+    assert.equal(item.releaseDate, undefined);
+  const rct = load("rctbench");
+  assert.equal(rct.sampleAccess.status, "official");
+  assert.equal(rct.sampleSet, undefined);
+  assert.match(rct.sampleAccess.reason, /1,042.*86%/);
+  assert.match(rct.sampleAccess.url ?? "", /#explore-every-run$/);
+  assert.equal(rct.reusePolicy.status, "restricted");
+});

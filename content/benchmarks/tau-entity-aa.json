@@ -1,0 +1,287 @@
+{
+  "id": "tau-entity-aa",
+  "status": "published",
+  "order": 685,
+  "name": "τ-Entity（AA 实施）",
+  "subtitle": "在不同音频条件下精确采集并写入口述字段",
+  "category": "agents",
+  "tags": [
+    "语音智能体",
+    "实体采集",
+    "多轮对话"
+  ],
+  "publisher": "Sierra Research（任务）／Artificial Analysis（独立实施）",
+  "brandIds": [
+    "sierra",
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA 英语三种音频条件 / Sierra voice-v2-entity",
+  "kind": "derivative",
+  "aliases": [
+    "τ-Entity",
+    "Tau Entity",
+    "AA τ-Entity",
+    "τ-Elicitation",
+    "Tau Elicitation"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "sources": [
+    {
+      "label": "AA 独立语音评测方法",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "role": "definition"
+    },
+    {
+      "label": "AA 语音榜单",
+      "url": "https://artificialanalysis.ai/speech-to-speech/",
+      "role": "definition"
+    },
+    {
+      "label": "Sierra v2.0.0 发布说明（上游）",
+      "url": "https://github.com/sierra-research/tau2-bench/releases/tag/v2.0.0",
+      "role": "release"
+    },
+    {
+      "label": "Sierra 固定 MIT 许可",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "Sierra 上游 τ-Entity 发布说明（2026-10-22）",
+      "url": "https://sierra.ai/blog/tau-entity-can-voice-agents-get-the-details-right",
+      "role": "release"
+    },
+    {
+      "label": "τ-Elicitation 论文图 1：配对运行和交叉通过",
+      "url": "https://arxiv.org/html/2609.13602v1#S1.F1",
+      "role": "paper"
+    },
+    {
+      "label": "固定 entity 语音协议清单",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/entity.json",
+      "role": "data"
+    },
+    {
+      "label": "固定 200 道实体采集任务清单",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/intake_200.json",
+      "role": "data"
+    },
+    {
+      "label": "固定实体采集任务字段",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json",
+      "role": "data"
+    },
+    {
+      "label": "实体词库和日期来源边界",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/ENTITY_PROVENANCE.md",
+      "role": "access"
+    }
+  ],
+  "related": [
+    {
+      "id": "tau-voice-2-0-aa",
+      "label": "同系列客服语音协议",
+      "detail": "τ-Voice 看业务任务是否完成；τ-Entity 隔离几类口述字段是否精确写入。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+      ]
+    },
+    {
+      "id": "tau-banking-voice-aa",
+      "label": "同系列银行语音协议",
+      "detail": "银行版看业务任务、动作与最终状态，不使用日期采集的跨条件计分。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "officialDefinition": {
+    "summary": "衡量语音代理能否准确收集缺失字段，并在常规和受扰语音下稳定写对。",
+    "task": "通过回拨向模拟用户收集一个缺失的值，并写回对应字段。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://arxiv.org/html/2609.13602v1#S1.F1"
+    ]
+  },
+  "taskContract": {
+    "input": "英语模拟回拨、缺字段的虚构记录和提交字段的工具。模拟场景有诊所、汽车服务和酒店。",
+    "output": "在通话中获得值，在后台写入规范格式的精确字段。",
+    "environment": "每题分别在常规、重信道噪声、重语音扰动下运行一次；GPT-5.5（低推理）与 ElevenLabs eleven_v3 模拟通话人，每通最多 240 秒。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/entity.json"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA 使用英语切片；Sierra 上游六语言发布规模不能当成 AA 题数。",
+    "disclosure": "partial",
+    "scale": [
+      "200 道英语题：10 类实体 × 2 个难度 × 每格 10 题；每题 3 种音频条件。"
+    ],
+    "splits": [
+      "上游 intake_200；本文只说明 AA 英语实施。"
+    ],
+    "fields": [
+      "任务 ID、模拟会话条件、目标字段和值、参考动作、数据库计分基准。"
+    ],
+    "files": [
+      "固定 entity.json 协议、intake_200.json 题目清单、intake 领域 tasks.json。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/entity.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/intake_200.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "Sierra 的任务与协议公开；未取得这道题三种条件下的 AA 原始通话和结果。"
+    ],
+    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/entity.json",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/entity.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT · Sierra Research，仅适用于所选任务字段；论文公开图不在本站转载。",
+    "scope": "展示单条测试记录的 ID、目的、目标日期及预期评分字段；本站另据公开方法绘评分示意。",
+    "boundaries": [
+      "省去人物设定、记录号及其他身份字段；没有复制论文示例中的姓名、电话号码、地址或音频。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/ENTITY_PROVENANCE.md",
+      "https://arxiv.org/html/2609.13602v1#S1.F1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示真实车行回拨日期案例，说明写入字段、期望值和三种条件如何合并计分。",
+    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://arxiv.org/html/2609.13602v1#S1.F1",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/intake_200.json"
+    ]
+  },
+  "metric": {
+    "name": "crossed Pass³",
+    "description": "同一题在常规、重信道噪声、重语音扰动三种条件中均精确写对，才计为一道通过；不是三次中任意一次通过。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://arxiv.org/html/2609.13602v1#S1.F1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "评分看目标字段精确匹配，不把参考流程的固定复述动作当成所有条件的强制做法。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+        "https://arxiv.org/html/2609.13602v1#S1.F1",
+        "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json"
+      ]
+    },
+    {
+      "text": "本站排除模拟个人信息；没有复用 AA 通话、模型分数或论文图中的联络数据。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+        "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/ENTITY_PROVENANCE.md"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "tau-entity-en-drop-off-date",
+        "title": "回拨收集缺失的汽车送修日期",
+        "shortTitle": "车行回拨：送修日期",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "模拟车行回拨需要补齐一个日期。真实任务 intake_dates_easy_01 的期望写入值是 2025-09-20。",
+        "walkthrough": {
+          "summary": "模拟车行回拨需要补齐一个日期。真实任务 intake_dates_easy_01 的期望写入值是 2025-09-20。",
+          "input": "汽车服务场景已有一条虚构记录，但 drop_off_date（送修日期）字段为空。通话中向模拟客户询问该日期。",
+          "output": "把听到的值以 YYYY-MM-DD 写入 drop_off_date；本题参考提交为 2025-09-20。",
+          "checks": [
+            "以最终数据库字段完全匹配为准（reward_basis = DB），不是听起来相近。",
+            "AA 对同一题的三种音频条件各运行一次，要求三个字段结果都正确；下图不是实跑结果。"
+          ],
+          "sourceField": "/description/purpose",
+          "excerpts": [
+            {
+              "label": "固定任务原始目的",
+              "text": "Canonical v4 capture cell: dates x easy, n=1: collect the missing drop_off_date on the auto record."
+            }
+          ],
+          "note": "站内仅展示预期写入；没有模拟拨号、用户身份或真实 AA 回拨音频。"
+        },
+        "explanation": "原始参考动作仅保留字段值和动作名称，新图按 AA 方法绘制，未展示成功、转录或通话轨迹。",
+        "raw": {
+          "id": "intake_dates_easy_01",
+          "description": {
+            "purpose": "Canonical v4 capture cell: dates x easy, n=1: collect the missing drop_off_date on the auto record."
+          },
+          "evaluation_criteria": {
+            "actions": [
+              {
+                "name": "submit_fields",
+                "requestor": "assistant",
+                "action_id": "submit_fields_1",
+                "arguments": {
+                  "fields": {
+                    "drop_off_date": "2025-09-20"
+                  }
+                }
+              }
+            ],
+            "reward_basis": [
+              "DB"
+            ]
+          }
+        },
+        "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/intake/tasks.json",
+        "references": [
+          {
+            "label": "论文图 1 · 官方协议流程（原图）",
+            "url": "https://arxiv.org/html/2609.13602v1#S1.F1"
+          },
+          {
+            "label": "固定 intake_200 测试成员",
+            "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/intake_200.json"
+          },
+          {
+            "label": "AA 三种音频条件与判分",
+            "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+          }
+        ],
+        "split": "Sierra voice-v2-entity / en / intake_200 · intake_dates_easy_01",
+        "license": "MIT · Copyright (c) 2025 Sierra Research；仅所示上游原始任务字段，不含音频和个人信息。",
+        "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/tau-entity-crossed-pass-date.png",
+            "alt": "同一日期在常规、重信道噪声、重语音扰动三种条件中均须精确写入 2025-09-20。",
+            "width": 1120,
+            "height": 326,
+            "caption": "本站按 Sierra 固定任务的日期与 AA 公开判分规则绘制；这不是通话录音或评分结果。",
+            "source": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+          }
+        ]
+      }
+    ]
+  }
+}

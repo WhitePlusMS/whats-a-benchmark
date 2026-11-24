@@ -100,10 +100,7 @@ test("AA 指数通用名称优先新版，完整旧版名称仍可查找", () =>
       "Artificial Analysis Coding Agent Index",
       "artificial-analysis-coding-agent-index-v2-1",
     ],
-    [
-      "AA Coding Agent Index",
-      "artificial-analysis-coding-agent-index-v2-1",
-    ],
+    ["AA Coding Agent Index", "artificial-analysis-coding-agent-index-v2-1"],
     [
       "AA Coding Agent Index v2.0",
       "artificial-analysis-coding-agent-index-v2-0",
@@ -118,4 +115,19 @@ test("AA 指数通用名称优先新版，完整旧版名称仍可查找", () =>
     ],
   ]);
   for (const [query, id] of cases) assert.equal(firstId(query), id);
+});
+
+test("银行文本、银行语音和实体采集使用不同详情页，RCT 短名可定位", () => {
+  assert.equal(firstId("τ³-Banking"), "tau3-banking");
+  assert.equal(firstId("τ-Banking 文本"), "tau3-banking");
+  assert.equal(firstId("τ-Banking Voice"), "tau-banking-voice-aa");
+  assert.equal(firstId("AA Tau Banking"), "tau-banking-voice-aa");
+  assert(
+    searchBenchmarks("τ-Banking").some(
+      (item) => item.id === "tau-banking-voice-aa",
+    ),
+  );
+  assert.equal(firstId("τ-Entity"), "tau-entity-aa");
+  assert.equal(firstId("Tau Elicitation"), "tau-entity-aa");
+  assert.equal(firstId("RCTBench"), "rctbench");
 });
