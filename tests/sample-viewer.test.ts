@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { effectScope, nextTick, ref } from "vue";
@@ -265,4 +266,59 @@ test("media-only retries preserve the current interaction and remain repeatable 
   );
   otherViewer.retryMedia();
   assert.deepEqual([...otherViewer.failedAssets.value], []);
+});
+
+test("两项 Autoform 不切标签也直接展示所选的原始 Lean 目标", async (t) => {
+  const entries = await Promise.all(
+    ["autoformbench", "autoform-hard"].map(async (id) => {
+      const file = new URL(
+        `../.generated/public/samples/${id}.json`,
+        import.meta.url,
+      );
+      return [id, JSON.parse(await readFile(file, "utf8"))] as const;
+    }),
+  );
+  t.mock.method(globalThis, "fetch", async (url: string) => {
+    const fixture = entries.find(([id]) => url.endsWith(`/samples/${id}.json`));
+    assert.ok(fixture, `unexpected sample URL: ${url}`);
+    return Response.json(fixture[1]);
+  });
+  const scope = effectScope();
+  t.after(() => scope.stop());
+  const viewers = scope.run(() =>
+    entries.map(([id]) =>
+      useSampleViewer(
+        () => id,
+        () => true,
+        "/",
+      ),
+    ),
+  )!;
+  await settle();
+  for (const viewer of viewers) {
+    assert.equal(viewer.index.value, 0);
+    assert.equal(viewer.mode.value, "read");
+    const sample = viewer.current.value;
+    assert.ok(sample);
+    assert.equal(sample.type, "code");
+    assert.equal(sample.walkthrough, undefined);
+    assert.equal(sample.promptOrigin, undefined);
+    assert.equal(sample.answer, undefined);
+    assert.ok(typeof sample.raw === "object");
+    assert.equal(sample.prompt, sample.raw["Challenge.lean"]);
+    assert.match(sample.prompt, /^theorem .+\n/);
+    assert.match(sample.prompt, /:= by\n  sorry$/);
+    assert.match(
+      sample.source,
+      /af1aa38fd44e019e566bce0b5a168609a886d8e6.*Challenge\.lean#L\d+-L\d+$/,
+    );
+  }
+  assert.match(
+    viewers[0]!.current.value!.prompt,
+    /^theorem bezout_plane_projective_curves/,
+  );
+  assert.match(
+    viewers[1]!.current.value!.prompt,
+    /^theorem theorem_24_12_smoktunowicz_gkdim_gap/,
+  );
 });
