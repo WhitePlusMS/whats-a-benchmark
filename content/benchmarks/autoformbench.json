@@ -1,0 +1,155 @@
+{
+  "id": "autoformbench",
+  "status": "published",
+  "order": 687,
+  "name": "AutoformBench",
+  "subtitle": "把进阶数学论证变成可核验的 Lean 4 证明",
+  "category": "reasoning",
+  "tags": [
+    "数学证明",
+    "Lean 4",
+    "形式化"
+  ],
+  "publisher": "Meta FAIR",
+  "brandIds": [
+    "meta"
+  ],
+  "year": 2026,
+  "version": "Meta FAIR 首版；341 题",
+  "kind": "original",
+  "aliases": [
+    "Autoform Bench",
+    "Lean 数学形式化评测"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "releaseDate": "2026-10-13",
+  "officialDefinition": {
+    "summary": "测试模型能否在 Lean 4 中为进阶数学定理补齐证明及缺失的辅助引理。",
+    "task": "将进阶数学结果编入机器可核验的形式化开发，而不只是给出自然语言证明。",
+    "sourceUrls": [
+      "https://ai.meta.com/research/publications/autoformbench-a-lean-formalization-benchmark-for-advanced-mathematics/",
+      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6"
+    ]
+  },
+  "taskContract": {
+    "input": "收到 Lean 项目和命名的目标声明。论文的有来源条件另给书面非形式化证明；公开仓库版不附这些材料。",
+    "output": "提交通过检查的 Lean 证明；在允许范围内补充定义和辅助引理，不能改变目标声明。",
+    "environment": "Lean 4、Mathlib 和独立的洁净室工作区；上游也提供 Harbor 适配器。",
+    "sourceUrls": [
+      "https://ai.meta.com/research/publications/autoformbench-a-lean-formalization-benchmark-for-advanced-mathematics/",
+      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6"
+    ]
+  },
+  "dataProfile": {
+    "summary": "341 个经过数学专家审核的问题；仓库公开不含上游书面来源的评测工作区。",
+    "disclosure": "partial",
+    "scale": [
+      "341 题，选自 24 个进阶数学来源。"
+    ],
+    "splits": [
+      "官方总榜为有来源的 341 题条件。",
+      "Vals 后续对原版 100 道验证题另行筛选，不等同于总榜。"
+    ],
+    "fields": [
+      "任务 ID、数学领域、目标声明、允许的公理。"
+    ],
+    "files": [
+      "MANIFEST.csv、SOURCES.csv、各题 Lean 工作区、逐题榜单数据。"
+    ],
+    "sourceUrls": [
+      "https://ai.meta.com/research/publications/autoformbench-a-lean-formalization-benchmark-for-advanced-mathematics/",
+      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6",
+      "https://www.vals.ai/benchmarks/autoform_hard"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可读取工作区与任务清单；正文和书面证明未随无来源版本再分发。"
+    ],
+    "url": "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6",
+    "sourceUrls": [
+      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "作者仓库为 CC BY-NC 4.0；NOTICE 说明供评测和研究，非训练用途。",
+    "scope": "本站独立整理正式任务事实、指向固定工作区；不重发任何教材、题目代码或解答。",
+    "boundaries": [
+      "第三方材料使用各自许可；公共工作区不等于书面证明材料可复用。"
+    ],
+    "sourceUrls": [
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/NOTICE",
+      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "实际公开任务：平面射影曲线的贝祖定理。站内可核对的任务要求不是只填最后一条定理：评分配置列出四个验证目标，先处理多项式消失在坐标缩放下的正、反两个方向，再检验仿射点理想为素理想，最后验证贝祖定理。原始工作区可查看目标声明和规则；这里不复制原代码或书面证明。",
+    "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json",
+    "sourceUrls": [
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean"
+    ]
+  },
+  "metric": {
+    "name": "机器核验通过率",
+    "description": "在洁净室中核验要求的证明声明与公理约束，按题统计验证通过。看分数时一并核对运行工具、预算和是否向模型提供书面原证明。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公众下载的是不附书面证明材料的版本，不能把在这个条件中测得的成绩直接与有原证明的官方榜单混比。",
+      "sourceUrls": [
+        "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6",
+        "https://ai.meta.com/research/publications/autoformbench-a-lean-formalization-benchmark-for-advanced-mathematics/"
+      ]
+    }
+  ],
+  "related": [],
+  "sources": [
+    {
+      "label": "Meta FAIR 首发研究页",
+      "url": "https://ai.meta.com/research/publications/autoformbench-a-lean-formalization-benchmark-for-advanced-mathematics/",
+      "role": "release"
+    },
+    {
+      "label": "固定版工作区、清单与评分入口",
+      "url": "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6",
+      "role": "data"
+    },
+    {
+      "label": "贝祖定理任务的正式评分配置",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json",
+      "role": "data"
+    },
+    {
+      "label": "贝祖定理任务的 Lean 声明",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean",
+      "role": "data"
+    },
+    {
+      "label": "固定仓库许可",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "固定仓库用途声明",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/NOTICE",
+      "role": "access"
+    },
+    {
+      "label": "Vals 列出的原版验证集与后续切片",
+      "url": "https://www.vals.ai/benchmarks/autoform_hard",
+      "role": "definition"
+    }
+  ]
+}
