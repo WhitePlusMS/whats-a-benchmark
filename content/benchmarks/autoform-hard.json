@@ -1,0 +1,139 @@
+{
+  "id": "autoform-hard",
+  "status": "published",
+  "order": 688,
+  "name": "Autoform-Hard",
+  "subtitle": "56 道经 Vals 筛选及修正的 Lean 4 验证任务",
+  "category": "reasoning",
+  "tags": [
+    "数学证明",
+    "Lean 4",
+    "困难子集"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2026,
+  "version": "Vals AI 公开榜首版；56 题",
+  "kind": "derivative",
+  "aliases": [
+    "Autoform Hard",
+    "Vals Autoform"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "releaseDate": "2026-11-18",
+  "officialDefinition": {
+    "summary": "从 AutoformBench 的验证集筛选原创研究中无模型解出的任务，并修正五项。",
+    "task": "让模型证明 Lean 4 项目中给出的声明，并由独立内核检查提交。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/autoform_hard",
+      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem"
+    ]
+  },
+  "taskContract": {
+    "input": "读取 Lean 目标声明及项目；使用已准备好的 Mathlib、Shell 与统一的代理环境。",
+    "output": "提交能在洁净室重建并通过独立内核复核的证明；修改原有定义或留下证明占位符不能得分。",
+    "environment": "每题一次尝试，时限 3 小时、费用上限 200 美元；因错误结束按未解。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/autoform_hard"
+    ]
+  },
+  "dataProfile": {
+    "summary": "Vals 公开筛选规则、分数和一条完整的官方案例叙述，未找到可再分发的本版本任务包。",
+    "disclosure": "partial",
+    "scale": [
+      "正式榜单 56 题，筛选自原版 100 道验证题。"
+    ],
+    "splits": [
+      "保留原研究 10 个模型均未解出的题，去掉三个重复；修复三条错误陈述和两项打包问题。"
+    ],
+    "fields": [
+      "Lean 目标声明、同题统一环境、是否通过独立校验。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/autoform_hard",
+      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可浏览官方案例和方法；不能把 Meta 原版文件当作修订后全部 56 题的本版本数据。"
+    ],
+    "url": "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/autoform_hard",
+      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "Vals 页面保留权利；官方发布一例模型证明，不表示第三方获得下游转载授权。",
+    "scope": "本站仅独立概述公开的任务事实和评分，不复制案例的代码、推理或基础教材材料。",
+    "boundaries": [
+      "Meta 基础发布许可不自动覆盖 Vals 修订任务、榜单和模型输出。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/autoform_hard",
+      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "官方公开案例是 Smoktunowicz 的增长间隙定理。目标是证明满足定理假设的无零因子分次代数，其 Gelfand–Kirillov 维数不能严格处在 2 和 3 之间。Vals 记录：首次提交只完成交换情形、一般情形留空而被拒；同一轮最终在约 94 分钟时通过洁净室和独立内核。这里描述的是实际测试过程，并非本站重跑或对公开优先权的独立证明。",
+    "url": "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
+    "sourceUrls": [
+      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
+      "https://www.vals.ai/benchmarks/autoform_hard"
+    ]
+  },
+  "metric": {
+    "name": "56 题证明核验通过率",
+    "description": "用可信原题重建声明，检查原定义未变、只使用标准公理，再由独立内核复核；出错计为未解。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/autoform_hard",
+      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "此榜只测较难的筛选与修订子集，不等同原版总榜；单次运行和预算也会影响比较。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/autoform_hard"
+      ]
+    }
+  ],
+  "related": [
+    {
+      "id": "autoformbench",
+      "label": "上游原版",
+      "detail": "从原版验证集筛选难题、去重并修正，保留为不同的评分版本。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/autoform_hard"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Vals 官方评测方法与榜单",
+      "url": "https://www.vals.ai/benchmarks/autoform_hard",
+      "role": "definition"
+    },
+    {
+      "label": "2026-11-18 发布及实际定理证明记录",
+      "url": "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
+      "role": "release"
+    },
+    {
+      "label": "Meta 基础数据许可",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE",
+      "role": "access"
+    }
+  ]
+}
