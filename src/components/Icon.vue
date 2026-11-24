@@ -73,7 +73,25 @@ const resolved = computed(() => {
 });
 </script>
 <template>
+  <svg
+    v-if="name === 'robot-arm'"
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 21h12M6 21v-3h6v3M8 18v-3m1-4 3-6m2-1 5 3m1 2v3m-2 2 2-2 2 2" />
+    <circle cx="8" cy="13" r="2" />
+    <circle cx="13" cy="4" r="1.5" />
+    <circle cx="20" cy="8" r="1.5" />
+  </svg>
   <component
+    v-else
     :is="resolved"
     :size="size"
     :stroke-width="1.7"

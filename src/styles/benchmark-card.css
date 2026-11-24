@@ -217,6 +217,9 @@
 .list-view .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback)) {
   grid-template-columns: 148px minmax(0, 1fr) minmax(160px, 185px);
 }
+.list-view .benchmark-card:has(.site-icon-credit) {
+  grid-template-columns: 84px minmax(0, 1fr) minmax(160px, 185px);
+}
 .list-view .card-top {
   display: contents;
 }
@@ -283,6 +286,9 @@
     .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback)) {
     grid-template-columns: 148px minmax(0, 1fr);
   }
+  .list-view .benchmark-card:has(.site-icon-credit) {
+    grid-template-columns: 84px minmax(0, 1fr);
+  }
   .list-view .card-meta {
     grid-column: 2;
     grid-row: 5;
@@ -326,6 +332,11 @@
   }
   .list-view
     .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback))
+    :is(.card-meta, .card-actions) {
+    grid-column: 1 / -1;
+  }
+  .list-view
+    .benchmark-card:has(.site-icon-credit)
     :is(.card-meta, .card-actions) {
     grid-column: 1 / -1;
   }
