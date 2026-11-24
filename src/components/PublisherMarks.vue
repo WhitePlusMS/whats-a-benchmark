@@ -34,7 +34,7 @@ function checkImage(
     markFailed(id);
   }
 }
-// A missing local image falls back to the publisher's name, never a made-up logo.
+// A missing image falls back to the publisher's name, never a made-up logo.
 watch(
   () => props.benchmarkId,
   () => {
@@ -50,13 +50,16 @@ watch(
       :key="mark.id"
       class="publisher-logo"
       :class="{ wide: mark.wide, 'is-fallback': failed.includes(mark.id) }"
-      :style="{ backgroundColor: failed.includes(mark.id) ? undefined : mark.background }"
+      :style="{
+        backgroundColor: failed.includes(mark.id) ? undefined : mark.background,
+      }"
       :title="mark.name"
     >
       <img
         v-if="!failed.includes(mark.id)"
         :ref="(element) => checkImage(element, mark.id)"
-        :src="`${baseUrl}${mark.file}`"
+        :referrerpolicy="'file' in mark ? undefined : 'no-referrer'"
+        :src="'file' in mark ? `${baseUrl}${mark.file}` : mark.assetUrl"
         :alt="`${mark.name} 标识`"
         width="40"
         height="40"
