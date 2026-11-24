@@ -1,0 +1,267 @@
+{
+  "id": "tau-banking-voice-aa",
+  "status": "published",
+  "order": 684,
+  "name": "τ-Banking（AA 语音实施）",
+  "subtitle": "通过电话检索虚构银行政策并完成客服操作",
+  "category": "agents",
+  "tags": [
+    "语音智能体",
+    "银行客服",
+    "知识检索",
+    "工具调用"
+  ],
+  "publisher": "Sierra Research（任务）／Artificial Analysis（独立实施）",
+  "brandIds": [
+    "sierra",
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA 英语单次测试 / Sierra voice-v2-banking",
+  "kind": "derivative",
+  "aliases": [
+    "τ-Banking 语音版",
+    "Tau Banking Voice",
+    "AA τ-Banking",
+    "AA Tau Banking",
+    "τ-Banking Voice"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "sources": [
+    {
+      "label": "AA 独立语音评测方法",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "role": "definition"
+    },
+    {
+      "label": "AA 语音榜单",
+      "url": "https://artificialanalysis.ai/speech-to-speech/",
+      "role": "definition"
+    },
+    {
+      "label": "Sierra v2.0.0 发布说明（上游）",
+      "url": "https://github.com/sierra-research/tau2-bench/releases/tag/v2.0.0",
+      "role": "release"
+    },
+    {
+      "label": "Sierra 固定 MIT 许可",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "固定 banking 语音协议清单",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/banking.json",
+      "role": "data"
+    },
+    {
+      "label": "固定 97 项银行任务子集",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/banking_knowledge_97.json",
+      "role": "data"
+    },
+    {
+      "label": "固定银行任务与评分条件",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json",
+      "role": "data"
+    },
+    {
+      "label": "AA 文本银行不同评测方法",
+      "url": "https://artificialanalysis.ai/evaluations/tau3-banking",
+      "role": "definition"
+    }
+  ],
+  "related": [
+    {
+      "id": "tau3-banking",
+      "label": "同任务域的文本协议",
+      "detail": "相似虚构银行环境；文本和语音的运行与评分协议不同。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+        "https://artificialanalysis.ai/evaluations/tau3-banking"
+      ]
+    },
+    {
+      "id": "tau-voice-2-0-aa",
+      "label": "不同客服域的语音实施",
+      "detail": "语音航空、零售、电信任务；不包含该虚构银行数据集。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "officialDefinition": {
+    "summary": "在虚构银行中，评测语音代理能否边对话边查政策，并以工具正确处理用户请求。",
+    "task": "接听模拟来电，利用银行知识库及业务工具处理账户、卡片或支付请求。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+    ]
+  },
+  "taskContract": {
+    "input": "模拟来电语音、虚构银行初始环境和客服工具。698 份政策文档支持关键词、向量及只读终端检索。",
+    "output": "语音答复与相应业务状态；特定题只核对已调用的动作。",
+    "environment": "97 项英语语音任务，每项只运行一次；来电人为低推理 GPT-5.5，ElevenLabs eleven_v3 合成，单通上限 2,400 秒。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/banking.json"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA 用 97 项模拟银行业务，不是现实银行来电库。Sierra 另发布多语言部署。",
+    "disclosure": "partial",
+    "scale": [
+      "97 项英语题、698 份虚构政策文档。"
+    ],
+    "splits": [
+      "上游固定 banking_knowledge_97；本站按英语任务展示。"
+    ],
+    "fields": [
+      "用户模拟指令、初始业务环境、参考工具动作或数据库计分条件。"
+    ],
+    "files": [
+      "banking.json 语音清单、banking_knowledge_97.json 任务清单、tasks.json 任务体。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/banking.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/banking_knowledge_97.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "上游任务、清单与模拟材料公开；未取得 AA 通话及逐题运行记录。"
+    ],
+    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/banking.json",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/banking.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/banking_knowledge_97.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT · Sierra Research，仅转载所选上游任务字段。",
+    "scope": "只展示 task_012 的任务问句及参考转人工判定。",
+    "boundaries": [
+      "不复制人物、知识库全文、账户记录、录音或 AA 评分结果。实际业务遵循对应机构政策。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认直接展示可复核的银行语音任务：先查旅行通知政策，查不到且模拟来电人要求时转人工。",
+    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/banking_knowledge_97.json"
+    ]
+  },
+  "metric": {
+    "name": "单次 pass@1",
+    "description": "每题只运行一次；最终数据库状态用于大多数任务，9 题用动作判定。97 道题通过比例即本项分数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "语音版与文本 τ³-Banking 不可互换；题域相似，交互方式和试次数不同。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+        "https://artificialanalysis.ai/evaluations/tau3-banking"
+      ]
+    },
+    {
+      "text": "本站只展示上游任务和预期动作，不是 AA 通话、结果或真实金融建议。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+        "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json"
+      ]
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "tau-banking-voice-task-012",
+        "title": "查不到信用卡旅行通知政策时转人工",
+        "shortTitle": "旅行通知政策查询",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "来电原句：“How do I set up a travel notification?” 模拟客户想知道出境前如何设置卡片旅行通知。",
+        "walkthrough": {
+          "summary": "来电原句：“How do I set up a travel notification?” 模拟客户想知道出境前如何设置卡片旅行通知。",
+          "input": "接听模拟英语来电，检索虚构银行政策。查不到流程时，告诉来电人未找到，不编造步骤。",
+          "output": "查不到且来电人提出要求时，由客服调用 transfer_to_human_agents；不修改信用卡或账户。",
+          "checks": [
+            "此题按 ACTION 评分，而非最终数据库修改。",
+            "参考动作的 reason 必须为 kb_search_unsuccessful_customer_requests_transfer；原始 compare_args 只比较 reason。"
+          ],
+          "sourceField": "/user_scenario/instructions",
+          "excerpts": [
+            {
+              "label": "模拟来电者原句",
+              "text": "How do I set up a travel notification?"
+            }
+          ],
+          "note": "上游任务指令与期望动作节选；模拟人物、工具摘要和银行资料已省去。未执行任务，无 AA 音频。"
+        },
+        "explanation": "本题示例是人工转接分支的评分定义，不是实际电话、银行政策或模型输出。",
+        "raw": {
+          "id": "task_012",
+          "description": {
+            "purpose": "Task: task_012"
+          },
+          "user_scenario": {
+            "instructions": "How do I set up a travel notification?"
+          },
+          "evaluation_criteria": {
+            "actions": [
+              {
+                "name": "transfer_to_human_agents",
+                "requestor": "assistant",
+                "action_id": "012_0",
+                "compare_args": [
+                  "reason"
+                ],
+                "arguments": {
+                  "reason": "kb_search_unsuccessful_customer_requests_transfer"
+                }
+              }
+            ],
+            "reward_basis": [
+              "ACTION"
+            ]
+          }
+        },
+        "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json#L428-L457",
+        "references": [
+          {
+            "label": "查看固定银行任务与预期动作",
+            "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/domains/banking_knowledge/tasks.json#L428-L457"
+          },
+          {
+            "label": "核对 97 项测试成员",
+            "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/banking_knowledge_97.json#L22-L34"
+          },
+          {
+            "label": "AA 语音协议、时限和计分",
+            "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+          }
+        ],
+        "split": "Sierra voice-v2-banking / en / banking_knowledge_97 · task_012",
+        "license": "MIT · Copyright (c) 2025 Sierra Research；仅所示上游原始任务字段，不含音频和个人信息。",
+        "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
+        "excerpt": true
+      }
+    ]
+  }
+}
