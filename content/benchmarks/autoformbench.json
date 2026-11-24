@@ -75,25 +75,27 @@
     ]
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "作者仓库为 CC BY-NC 4.0；NOTICE 说明供评测和研究，非训练用途。",
-    "scope": "本站独立整理正式任务事实、指向固定工作区；不重发任何教材、题目代码或解答。",
+    "status": "permitted",
+    "license": "Meta 原始挑战声明及对应所列字段：CC BY-NC 4.0。作者 NOTICE 指明评测与研究用途，不用于训练。",
+    "scope": "本站仅非商业展示所列的原始 Lean 目标与必要任务字段，不转载教材、原证明、模型答案或运行日志。",
     "boundaries": [
       "第三方材料使用各自许可；公共工作区不等于书面证明材料可复用。"
     ],
     "sourceUrls": [
       "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE",
       "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/NOTICE",
-      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6"
+      "https://github.com/facebookresearch/autoformbench/tree/af1aa38fd44e019e566bce0b5a168609a886d8e6",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean#L236-L245"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "实际公开任务：平面射影曲线的贝祖定理。站内可核对的任务要求不是只填最后一条定理：评分配置列出四个验证目标，先处理多项式消失在坐标缩放下的正、反两个方向，再检验仿射点理想为素理想，最后验证贝祖定理。原始工作区可查看目标声明和规则；这里不复制原代码或书面证明。",
-    "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json",
+    "status": "local",
+    "reason": "默认显示贝祖定理实际 Lean 目标，原始数据保留该任务四个评分声明和允许的公理。",
+    "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean#L236-L245",
     "sourceUrls": [
-      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json",
-      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean"
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean#L236-L245",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/MANIFEST.csv",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json"
     ]
   },
   "metric": {
@@ -150,6 +152,63 @@
       "label": "Vals 列出的原版验证集与后续切片",
       "url": "https://www.vals.ai/benchmarks/autoform_hard",
       "role": "definition"
+    },
+    {
+      "label": "固定原始 Lean 目标 · 逐行定位",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean#L236-L245",
+      "role": "data"
+    },
+    {
+      "label": "固定任务清单与编号",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/MANIFEST.csv",
+      "role": "data"
     }
-  ]
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "alg-geom-bezout-plane-projective-curves",
+        "title": "平面射影曲线的贝祖定理 · Lean 原题",
+        "type": "code",
+        "prompt": "theorem bezout_plane_projective_curves\n    [IsAlgClosed k]\n    (C D : PlaneProjectiveCurve k)\n    (hcommon : ¬ C.HasCommonComponent D) :\n    ∃ S : Finset (Projectivization k (Fin 3 → k)),\n      (↑S : Set (Projectivization k (Fin 3 → k))) =\n        C.zeroLocus ∩ D.zeroLocus ∧\n      (∑ p ∈ S, intersectionMultiplicity C D p) =\n        C.degree * D.degree := by\n  sorry",
+        "explanation": "原始评分配置有四个目标：坐标缩放下多项式消失的两个方向、仿射点理想为素理想，以及上面的贝祖定理。原始输入的 sorry 是待填占位，不是参考答案。本站未转载教材正文、原证明或模型答案。",
+        "raw": {
+          "problem_id": "alg_geom_bezout_plane_projective_curves",
+          "Challenge.lean": "theorem bezout_plane_projective_curves\n    [IsAlgClosed k]\n    (C D : PlaneProjectiveCurve k)\n    (hcommon : ¬ C.HasCommonComponent D) :\n    ∃ S : Finset (Projectivization k (Fin 3 → k)),\n      (↑S : Set (Projectivization k (Fin 3 → k))) =\n        C.zeroLocus ∩ D.zeroLocus ∧\n      (∑ p ∈ S, intersectionMultiplicity C D p) =\n        C.degree * D.degree := by\n  sorry",
+          "challenge_module": "Challenge",
+          "theorem_names": [
+            "Autoform_Algebraic_Geometry_I_alg_geom_bezout_plane_projective_curves.vanishesAt_scaling_forward",
+            "Autoform_Algebraic_Geometry_I_alg_geom_bezout_plane_projective_curves.vanishesAt_scaling_reverse",
+            "Autoform_Algebraic_Geometry_I_alg_geom_bezout_plane_projective_curves.affinePointIdeal_isPrime",
+            "Autoform_Algebraic_Geometry_I_alg_geom_bezout_plane_projective_curves.bezout_plane_projective_curves"
+          ],
+          "permitted_axioms": [
+            "propext",
+            "Quot.sound",
+            "Classical.choice"
+          ]
+        },
+        "source": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean#L236-L245",
+        "references": [
+          {
+            "label": "Meta 固定任务清单和原任务编号",
+            "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/MANIFEST.csv"
+          },
+          {
+            "label": "原始工作区许可证",
+            "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE"
+          },
+          {
+            "label": "Meta 原始评分配置：四个目标及允许的公理",
+            "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/config.json"
+          }
+        ],
+        "split": "Meta AutoformBench / 公开无教材正文的完整 341 题 / alg_geom_bezout_plane_projective_curves",
+        "license": "CC BY-NC 4.0 · © Meta Platforms, Inc. and affiliates；仅所列原始目标与 Meta 任务字段，限非商业复用。",
+        "licensePath": "licenses/cc-by-nc-4.txt",
+        "excerpt": true
+      }
+    ]
+  }
 }

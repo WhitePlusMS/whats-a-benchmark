@@ -42,7 +42,7 @@
     ]
   },
   "dataProfile": {
-    "summary": "Vals 公开筛选规则、分数和一条完整的官方案例叙述，未找到可再分发的本版本任务包。",
+    "summary": "正式困难榜使用 56 道验证题。本站核对了 Vals 官方案例：提交的七行目标声明与 Meta 上游原文逐字一致；未取得整套 Vals 修订工作区。",
     "disclosure": "partial",
     "scale": [
       "正式榜单 56 题，筛选自原版 100 道验证题。"
@@ -62,34 +62,38 @@
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "可浏览官方案例和方法；不能把 Meta 原版文件当作修订后全部 56 题的本版本数据。"
+      "可读 Vals 正式案例与注释代码。本站展示的同题目标来自 Meta 公开工作区；这不代表其余 Vals 修订任务可获取。"
     ],
     "url": "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/autoform_hard",
-      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem"
+      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
+      "https://www.vals.ai/blogs/2026-11-18-smoktunowicz-gap-theorem/proof/index.html"
     ]
   },
   "reusePolicy": {
-    "status": "restricted",
-    "license": "Vals 页面保留权利；官方发布一例模型证明，不表示第三方获得下游转载授权。",
-    "scope": "本站仅独立概述公开的任务事实和评分，不复制案例的代码、推理或基础教材材料。",
+    "status": "permitted",
+    "license": "Meta 原始挑战声明及对应所列字段：CC BY-NC 4.0。作者 NOTICE 指明评测与研究用途，不用于训练。 未对 Vals 材料授予此许可。",
+    "scope": "本站仅非商业展示所列的原始 Lean 目标与必要任务字段，不转载教材、原证明、模型答案或运行日志。",
     "boundaries": [
-      "Meta 基础发布许可不自动覆盖 Vals 修订任务、榜单和模型输出。"
+      "Meta 的许可仅覆盖所示上游字段，不延伸至 Vals 的修订文件、榜单、模型证明或运行日志。"
     ],
     "sourceUrls": [
       "https://www.vals.ai/benchmarks/autoform_hard",
       "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
-      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE"
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/NOTICE",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/noncomm_alg_theorem_24_12_smoktunowicz_gkdim_gap/Challenge.lean#L14-L21"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "官方公开案例是 Smoktunowicz 的增长间隙定理。目标是证明满足定理假设的无零因子分次代数，其 Gelfand–Kirillov 维数不能严格处在 2 和 3 之间。Vals 记录：首次提交只完成交换情形、一般情形留空而被拒；同一轮最终在约 94 分钟时通过洁净室和独立内核。这里描述的是实际测试过程，并非本站重跑或对公开优先权的独立证明。",
-    "url": "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
+    "status": "local",
+    "reason": "默认显示已核实属于 Vals 正式 56 题的 Lean 目标。其七行声明与 Vals 的已评分公开提交逐字一致；本站只摘用 Meta 的许可文件。",
+    "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/noncomm_alg_theorem_24_12_smoktunowicz_gkdim_gap/Challenge.lean#L14-L21",
     "sourceUrls": [
-      "https://www.vals.ai/blogs/smoktunowicz-gap-theorem",
-      "https://www.vals.ai/benchmarks/autoform_hard"
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/noncomm_alg_theorem_24_12_smoktunowicz_gkdim_gap/Challenge.lean#L14-L21",
+      "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/MANIFEST.csv",
+      "https://www.vals.ai/blogs/2026-11-18-smoktunowicz-gap-theorem/proof/index.html"
     ]
   },
   "metric": {
@@ -134,6 +138,65 @@
       "label": "Meta 基础数据许可",
       "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE",
       "role": "access"
+    },
+    {
+      "label": "Vals 注释稿：已评分提交及原题声明说明",
+      "url": "https://www.vals.ai/blogs/2026-11-18-smoktunowicz-gap-theorem/proof/index.html",
+      "role": "data"
+    },
+    {
+      "label": "固定原始 Lean 目标 · 逐行定位",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/noncomm_alg_theorem_24_12_smoktunowicz_gkdim_gap/Challenge.lean#L14-L21",
+      "role": "data"
+    },
+    {
+      "label": "固定任务清单与编号",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/MANIFEST.csv",
+      "role": "data"
+    },
+    {
+      "label": "Meta 固定仓库用途声明",
+      "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/NOTICE",
+      "role": "access"
     }
-  ]
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "noncomm-alg-theorem-24-12-smoktunowicz-gkdim-gap",
+        "title": "Smoktunowicz 增长间隙定理 · Lean 原题",
+        "type": "code",
+        "prompt": "theorem theorem_24_12_smoktunowicz_gkdim_gap (k : Type u) [Field k]\n    (A : Type v) [Ring A] [Algebra k A]\n    (G : NGradedAlgebra k A)\n    (h_domain : IsNoncommutativeDomain A)\n    {δ : ℝ}\n    (h_gk : HasGelfandKirillovDimension k A δ) :\n    ¬ (2 < δ ∧ δ < 3) := by\n  sorry",
+        "explanation": "Vals 官方注释说明判分将七行目标声明与 Challenge.lean 对照；本站与 Meta 固定工作区逐字比对至 := by。末行 sorry 是 Meta 起始文件里的待填占位，不是证明。未转载 Vals 的作答或运行日志，也不推断其他文件或任务一致。",
+        "raw": {
+          "problem_id": "noncomm_alg_theorem_24_12_smoktunowicz_gkdim_gap",
+          "Challenge.lean": "theorem theorem_24_12_smoktunowicz_gkdim_gap (k : Type u) [Field k]\n    (A : Type v) [Ring A] [Algebra k A]\n    (G : NGradedAlgebra k A)\n    (h_domain : IsNoncommutativeDomain A)\n    {δ : ℝ}\n    (h_gk : HasGelfandKirillovDimension k A δ) :\n    ¬ (2 < δ ∧ δ < 3) := by\n  sorry"
+        },
+        "source": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/noncomm_alg_theorem_24_12_smoktunowicz_gkdim_gap/Challenge.lean#L14-L21",
+        "references": [
+          {
+            "label": "Meta 固定任务清单和原任务编号",
+            "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/MANIFEST.csv"
+          },
+          {
+            "label": "原始工作区许可证",
+            "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/LICENSE"
+          },
+          {
+            "label": "Vals 官方困难榜单（正式 56 题）",
+            "url": "https://www.vals.ai/benchmarks/autoform_hard"
+          },
+          {
+            "label": "Vals 官方案例：提交中的原题声明（Submission.lean）",
+            "url": "https://www.vals.ai/blogs/2026-11-18-smoktunowicz-gap-theorem/proof/index.html"
+          }
+        ],
+        "split": "Vals Autoform-Hard / 正式 56 题中的公开案例 / Meta 任务 noncomm_alg_theorem_24_12_smoktunowicz_gkdim_gap",
+        "license": "CC BY-NC 4.0 · © Meta Platforms, Inc. and affiliates；仅所列原始目标与 Meta 任务字段，限非商业复用。",
+        "licensePath": "licenses/cc-by-nc-4.txt",
+        "excerpt": true
+      }
+    ]
+  }
 }
