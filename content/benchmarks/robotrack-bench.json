@@ -76,25 +76,27 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "Ai2 的点标注为 ODC-BY 1.0；所选 MolmoAct2 片段画面为 Apache-2.0，分别署名。",
-    "scope": "仅展示同一官方片段的两个查询点标注节选，以及其中一个点遮挡前后的两张标注预览截图。",
+    "scope": "展示同一 MolmoAct2 片段的两个点标注节选、点 0 的一张原始 RGB 查询帧，以及后续两张带真值叠加的预览截图。",
     "boundaries": [
       "不转载完整或其他上游视频、整套标注或模型预测。数据库许可不授予媒体权利。"
     ],
     "sourceUrls": [
       "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
       "https://opendatacommons.org/licenses/by/1-0/",
-      "https://www.apache.org/licenses/LICENSE-2.0"
+      "https://www.apache.org/licenses/LICENSE-2.0",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/metadata.jsonl"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "同一 MolmoAct2 片段展示两个不同查询点。可查看点 0 遮挡前后的官方预览截图，及其 NPZ 坐标与可见性节选。没有转载完整视频。",
+    "reason": "默认显示原始 RGB 查询帧、实际点坐标及后续真值；可切换同一片段的另一查询点。只存轻量截帧和标注，不转载整段视频。",
     "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
     "sourceUrls": [
       "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
       "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/README.md",
       "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz",
-      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4"
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/video.mp4"
     ]
   },
   "metric": {
@@ -173,6 +175,11 @@
       "label": "所选 MolmoAct2 画面 Apache-2.0 许可",
       "url": "https://www.apache.org/licenses/LICENSE-2.0",
       "role": "access"
+    },
+    {
+      "label": "同一任务片段 MolmoAct2 原始 RGB 视频",
+      "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/video.mp4",
+      "role": "data"
     }
   ],
   "sampleSet": {
@@ -184,8 +191,8 @@
         "shortTitle": "遮挡前后：点 0",
         "type": "image",
         "promptOrigin": "editorial",
-        "prompt": "从第 61 帧查询点出发，逐帧判断点 0 的二维位置与可见性。第 126 帧仍可见，第 127 帧转为遮挡；两张官方预览截图展示遮挡前后的相邻时刻。",
-        "explanation": "此片段共 299 帧，帧和点索引均从 0 开始。原始数据保留点 0 的第 125–128 帧，可见性依次为 1、1、0、0。后两帧的 (0, 0) 不表示该点移动到了图像左上角。截图上的轨迹为官方标注叠加，不是模型预测。",
+        "prompt": "模型输入 · 原始 RGB 片段和一个查询点\nquery_frames[0] = 61（从 0 开始，距片段起始约 2.033 秒）\ntrajs_2d[61, 0] = [189.83871459960938, 15.483870506286621]（原视频像素 x, y）\n\n任务 · 从该点出发，预测随后各帧的二维位置与可见性。\n官方真值 · 第 126 帧 visibility[126, 0] = 1；第 127 帧 visibility[127, 0] = 0。下方后两张图是官方标注预览，不是模型输出。",
+        "explanation": "本条包含原视频 299 帧中的第 61 帧输入截面，以及第 125–128 帧标注节选；帧和点索引均从 0 开始。实际输入是视频和查询帧、坐标；第 125–128 帧的可见性真值为 1、1、0、0。遮挡时的 (0, 0) 是标注占位，不表示点在左上角。官方只对查询之后的帧计分：坐标按 256×256 尺度计算平均 Jaccard、位置和遮挡准确率，按片段平均，本站没有模型预测或得分。",
         "raw": {
           "trajs_2d": [
             [
@@ -229,10 +236,36 @@
           ],
           "query_frames": [
             61
-          ]
+          ],
+          "query_frame_slice": {
+            "trajs_2d": [
+              [
+                [
+                  189.83871459960938,
+                  15.483870506286621
+                ]
+              ]
+            ],
+            "visibility": [
+              [
+                1.0
+              ]
+            ],
+            "query_frames": [
+              61
+            ]
+          }
         },
         "source": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks.npz",
         "references": [
+          {
+            "label": "同一片段的原始 RGB 视频（Ai2 官方）",
+            "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/video.mp4"
+          },
+          {
+            "label": "片段来源记录：metadata.jsonl 第 242 行（MolmoAct2）",
+            "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/metadata.jsonl"
+          },
           {
             "label": "Ai2 官方全段标注预览（可下载）",
             "url": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/point_tracks_preview.mp4"
@@ -250,11 +283,20 @@
             "url": "https://www.apache.org/licenses/LICENSE-2.0"
           }
         ],
-        "split": "default / test · so100_00ri_so100_battery · 点索引 0、帧 125–128",
-        "license": "坐标与可见性：Ai2，ODC-BY 1.0；截图底图：MolmoAct2（Ai2），Apache-2.0；截帧并转换为 WebP。",
+        "split": "default / test · so100_00ri_so100_battery · 点索引 0，查询帧 61，真值帧 125–128",
+        "license": "坐标与可见性：Ai2，ODC-BY 1.0；原视频截帧及预览截图底图：MolmoAct2（Ai2），Apache-2.0；截帧转 WebP。",
         "licensePath": "licenses/robotrack-molmoact2-apache-2-0.txt",
         "excerpt": true,
         "assets": [
+          {
+            "kind": "image",
+            "path": "images/robotrack-so100-query-frame-61.webp",
+            "alt": "SO-100 电池片段的原始 RGB 输入第 61 帧，未叠加标注。",
+            "width": 640,
+            "height": 480,
+            "caption": "原始输入 · 第 61 帧（零基；片段起始后 2.033 秒，原视频 PTS 2.066341 秒）。Ai2 发布的 MolmoAct2 原始 RGB 截帧，无轨迹叠加，转 WebP；Apache-2.0。",
+            "source": "https://huggingface.co/datasets/allenai/RoboTrack-Bench/resolve/bb275295d5f616260df87dda32f0362108736340/so100_00ri_so100_battery/video.mp4"
+          },
           {
             "kind": "image",
             "path": "images/robotrack-so100-occlusion-frame-126.webp",
