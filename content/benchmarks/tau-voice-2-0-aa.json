@@ -65,7 +65,7 @@
   "dataAccess": {
     "status": "partial",
     "requirements": [
-      "Sierra 的冻结任务与运行协议公开；未取得本站所列两题的 AA 音频或实际运行记录。"
+      "Sierra 冻结英语任务、运行协议与部分同题录音公开；未取得本站两题的 AA 实际音频或运行记录。"
     ],
     "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
     "sourceUrls": [
@@ -75,7 +75,8 @@
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/telecom_50.json",
-      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json"
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json",
+      "https://github.com/sierra-research/tau2-bench/blob/main/docs/voice-v2-publication.md"
     ]
   },
   "reusePolicy": {
@@ -83,7 +84,7 @@
     "license": "MIT · Sierra Research。许可原文随本页所选任务字段提供。",
     "scope": "仅展示 Sierra 英语零售、电信各一个模拟任务的所选原始字段。",
     "boundaries": [
-      "不复制人物设定、账户或工单资料、AA 音频、评分输出或第三方材料。"
+      "不复制人物设定、账户、工单、模型跑分或第三方材料。站内不存音频，只链接 Sierra 的官方公开录音。"
     ],
     "sourceUrls": [
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
@@ -93,7 +94,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内展示冻结英语零售与电信任务。电信案例含环境验收字段；两例都不是 AA 实际通话或运行输出。",
+    "reason": "默认展示真实英语电信任务和两条环境验收，仍可切换零售。Sierra 的同题公开运行不是 AA 实际通话。",
     "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
     "sourceUrls": [
       "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
@@ -101,7 +102,11 @@
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
       "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/telecom_50.json",
-      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json"
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json",
+      "https://github.com/sierra-research/tau2-bench/blob/main/docs/voice-v2-publication.md",
+      "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/results.json",
+      "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/artifacts/task_%5Bmobile_data_issue%5Dairplane_mode_on%7Cdata_mode_off%5BPERSONA%3ANone%5D/sim_dfd23471-b1b8-4de7-9ac0-621a9f60ca47/audio/both.wav",
+      "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/simulations/dfd23471-b1b8-4de7-9ac0-621a9f60ca47.json"
     ]
   },
   "metric": {
@@ -177,41 +182,39 @@
       "label": "固定英文电信任务与环境验收",
       "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json",
       "role": "data"
+    },
+    {
+      "label": "Sierra voice-v2 公开运行发布说明",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/main/docs/voice-v2-publication.md",
+      "role": "definition"
+    },
+    {
+      "label": "Sierra 英语电信发布运行索引（非 AA）",
+      "url": "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/results.json",
+      "role": "data"
+    },
+    {
+      "label": "Sierra 同题模拟通话原音频（外链）",
+      "url": "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/artifacts/task_%5Bmobile_data_issue%5Dairplane_mode_on%7Cdata_mode_off%5BPERSONA%3ANone%5D/sim_dfd23471-b1b8-4de7-9ac0-621a9f60ca47/audio/both.wav",
+      "role": "data"
+    },
+    {
+      "label": "Sierra 同一英语任务的公开运行记录（非 AA）",
+      "url": "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/simulations/dfd23471-b1b8-4de7-9ac0-621a9f60ca47.json",
+      "role": "data"
     }
   ],
   "sampleSet": {
     "retrievedAt": "2026-11-24",
     "samples": [
       {
-        "id": "tau-voice-2-en-retail-8",
-        "title": "换更大的水瓶和更亮的台灯",
-        "type": "record",
-        "promptOrigin": "editorial",
-        "prompt": "根据来电人的要求办理换货，核对水瓶、台灯偏好及确认时的范围。",
-        "explanation": "Sierra 固定英文 retail_50 子集的任务 8。用户原先提到两个物品；如果客服询问确认，该用户只确认更换台灯。节选只保留原请求字段，未复制个人设定、订单字段、评分条件或音频。",
-        "raw": {
-          "id": "8",
-          "user_scenario": {
-            "instructions": {
-              "domain": "retail",
-              "reason_for_call": "You want to exchange the water bottle and the desk lamp. You want to exchange the water bottle to a bigger one, and the desk lamp to a brighter one (prefer battery > USB > AC). If the agent asks for confirmation, only exchange the desk lamp."
-            }
-          }
-        },
-        "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
-        "split": "v2.0.0 / voice-v2 / en / retail_50 / task 8",
-        "license": "MIT · Copyright (c) 2025 Sierra Research；仅所示模拟任务字段。",
-        "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
-        "excerpt": true
-      },
-      {
         "id": "tau-voice-2-en-telecom-mobile-data",
         "title": "恢复移动数据并达到模拟测速要求",
         "shortTitle": "电信：恢复移动数据",
         "type": "record",
         "promptOrigin": "editorial",
-        "prompt": "输入：模拟来电称手机移动数据很慢或断开，且无法使用 Wi-Fi。\n任务：在电话中指导来电人检查飞行模式和移动数据开关。\n验收：模拟环境确认移动数据恢复，测速等级为 excellent。",
-        "explanation": "原始验收项分别检查移动数据状态和测速；阈值 200 是环境参数，源字段未标单位。动作的 requestor 为模拟用户，表示由来电人调整手机，不是客服模型直接操作手机。这里展示的是验收定义，而非一段 AA 通话或该题的得分。",
+        "prompt": "模拟电话里，用户的移动数据时断时续且无法用 Wi-Fi。客服需要指导用户恢复数据上网，并达到用户要求的测速等级。",
+        "explanation": "真实冻结任务的初始状态去掉了人物信息，只保留两个手机状态动作。评分看环境状态，不因一句“已修复”而通过。",
         "raw": {
           "id": "[mobile_data_issue]airplane_mode_on|data_mode_off[PERSONA:None]",
           "description": {
@@ -265,10 +268,36 @@
             "reward_basis": [
               "ENV_ASSERTION"
             ]
+          },
+          "initial_state": {
+            "initialization_actions": [
+              {
+                "env_type": "user",
+                "func_name": "turn_airplane_mode_on",
+                "arguments": {}
+              },
+              {
+                "env_type": "user",
+                "func_name": "turn_data_off",
+                "arguments": {}
+              }
+            ]
           }
         },
         "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json#L176-L220",
         "references": [
+          {
+            "label": "查看 Sierra 同题公开通话记录（非 AA）",
+            "url": "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/simulations/dfd23471-b1b8-4de7-9ac0-621a9f60ca47.json"
+          },
+          {
+            "label": "Sierra 官方 WAV 文件（外链，非 AA）",
+            "url": "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/artifacts/task_%5Bmobile_data_issue%5Dairplane_mode_on%7Cdata_mode_off%5BPERSONA%3ANone%5D/sim_dfd23471-b1b8-4de7-9ac0-621a9f60ca47/audio/both.wav"
+          },
+          {
+            "label": "追溯 Sierra 官方英语电信运行记录",
+            "url": "https://sierra-tau-bench-public.s3.amazonaws.com/submissions/gemini-3-8-live-extended-thinking_google_2026-10-07/trajectories/en/telecom/results.json"
+          },
           {
             "label": "电信样例任务与验收字段",
             "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/telecom_tasks_en.json"
@@ -284,6 +313,45 @@
         ],
         "split": "Sierra voice-v2 / en / telecom_50 · 原始任务字段节选",
         "license": "MIT · Sierra Research。仅列出模拟任务和环境验收，不含账户资料或音频。",
+        "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "来电原文：“You mobile data is not working properly. It either stops working or is very slow.” 用户没有可用 Wi-Fi，只接受最高的 excellent 速度。",
+          "input": "模拟手机起初开启飞行模式、关闭移动数据。客服可以和来电人对话，指导来电人在手机上操作。",
+          "output": "关闭飞行模式、开启移动数据并核实测速；原记录的 requestor 是模拟来电人，不是客服代按。",
+          "checks": [
+            "移动数据状态为 true（已恢复）。",
+            "模拟测速结果为 excellent；原始验收阈值是 200，源字段未标单位。"
+          ],
+          "sourceField": "/user_scenario/instructions/reason_for_call",
+          "excerpts": [
+            {
+              "label": "来电者原始场景指令",
+              "text": "You mobile data is not working properly. It either stops working or is very slow. You want to fix it and absolutely want to get excellent internet speed on your phone. You are not willing to accept any other internet speed (poor, fair or good). You do not have access to wifi."
+            }
+          ],
+          "note": "Sierra 另公开同题的 Gemini 3.8 Live 运行和音频文件，采用常规语音条件。它不是 AA 实跑，本站也不复制通话。"
+        }
+      },
+      {
+        "id": "tau-voice-2-en-retail-8",
+        "title": "换更大的水瓶和更亮的台灯",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据来电人的要求办理换货，核对水瓶、台灯偏好及确认时的范围。",
+        "explanation": "Sierra 固定英文 retail_50 子集的任务 8。用户原先提到两个物品；如果客服询问确认，该用户只确认更换台灯。节选只保留原请求字段，未复制个人设定、订单字段、评分条件或音频。",
+        "raw": {
+          "id": "8",
+          "user_scenario": {
+            "instructions": {
+              "domain": "retail",
+              "reason_for_call": "You want to exchange the water bottle and the desk lamp. You want to exchange the water bottle to a bigger one, and the desk lamp to a brighter one (prefer battery > USB > AC). If the agent asks for confirmation, only exchange the desk lamp."
+            }
+          }
+        },
+        "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+        "split": "v2.0.0 / voice-v2 / en / retail_50 / task 8",
+        "license": "MIT · Copyright (c) 2025 Sierra Research；仅所示模拟任务字段。",
         "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
         "excerpt": true
       }
