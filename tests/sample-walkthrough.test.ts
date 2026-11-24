@@ -169,7 +169,7 @@ test("语音条目默认在正常任务内容中显示实际字段和验收，�
   const rct = load("rctbench");
   assert.equal(rct.sampleAccess.status, "official");
   assert.equal(rct.sampleSet, undefined);
-  assert.match(rct.sampleAccess.reason, /1,042.*86%/);
-  assert.match(rct.sampleAccess.url ?? "", /#explore-every-run$/);
+  assert.match(rct.sampleAccess.reason, /1\.10.*86%.*1\.20/);
+  assert.match(rct.sampleAccess.url ?? "", /#example-decisions$/);
   assert.equal(rct.reusePolicy.status, "restricted");
 });

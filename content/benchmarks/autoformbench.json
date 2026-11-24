@@ -90,7 +90,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "默认显示贝祖定理实际 Lean 目标，原始数据保留该任务四个评分声明和允许的公理。",
+    "reason": "默认显示实际 Lean 贝祖目标、四个计分声明和允许的公理，原始配置另附固定来源。",
     "url": "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean#L236-L245",
     "sourceUrls": [
       "https://github.com/facebookresearch/autoformbench/blob/af1aa38fd44e019e566bce0b5a168609a886d8e6/workspaces/alg_geom_bezout_plane_projective_curves/Challenge.lean#L236-L245",
@@ -172,7 +172,7 @@
         "title": "平面射影曲线的贝祖定理 · Lean 原题",
         "type": "code",
         "prompt": "theorem bezout_plane_projective_curves\n    [IsAlgClosed k]\n    (C D : PlaneProjectiveCurve k)\n    (hcommon : ¬ C.HasCommonComponent D) :\n    ∃ S : Finset (Projectivization k (Fin 3 → k)),\n      (↑S : Set (Projectivization k (Fin 3 → k))) =\n        C.zeroLocus ∩ D.zeroLocus ∧\n      (∑ p ∈ S, intersectionMultiplicity C D p) =\n        C.degree * D.degree := by\n  sorry",
-        "explanation": "原始评分配置有四个目标：坐标缩放下多项式消失的两个方向、仿射点理想为素理想，以及上面的贝祖定理。原始输入的 sorry 是待填占位，不是参考答案。本站未转载教材正文、原证明或模型答案。",
+        "explanation": "上面是该工作区四个计分声明之一，不是完整输入。须补全相同工作区内的四个证明目标：vanishesAt_scaling_forward、vanishesAt_scaling_reverse、affinePointIdeal_isPrime、bezout_plane_projective_curves。评分器核验提交证明是否匹配原始声明；原始 config.json 只允许 propext、Quot.sound、Classical.choice；sorry 是待填占位，不是答案。本站未转载教材、正式证明或模型答案。",
         "raw": {
           "problem_id": "alg_geom_bezout_plane_projective_curves",
           "Challenge.lean": "theorem bezout_plane_projective_curves\n    [IsAlgClosed k]\n    (C D : PlaneProjectiveCurve k)\n    (hcommon : ¬ C.HasCommonComponent D) :\n    ∃ S : Finset (Projectivization k (Fin 3 → k)),\n      (↑S : Set (Projectivization k (Fin 3 → k))) =\n        C.zeroLocus ∩ D.zeroLocus ∧\n      (∑ p ∈ S, intersectionMultiplicity C D p) =\n        C.degree * D.degree := by\n  sorry",

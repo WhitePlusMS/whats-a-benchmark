@@ -12,7 +12,9 @@
     "医疗工作流"
   ],
   "publisher": "The InclusionMed Collaboration",
-  "brandIds": ["inclusionmed-collaboration"],
+  "brandIds": [
+    "inclusionmed-collaboration"
+  ],
   "year": 2026,
   "version": "初版研究报告 v1",
   "kind": "suite",
@@ -191,21 +193,23 @@
         "promptOrigin": "editorial",
         "prompt": "在 Linux/R 中重建纵向统计仿真的六个缺失脚本，运行两个预先给出的模拟设置，交付可复核的汇总 CSV 与 PDF。",
         "walkthrough": {
-          "summary": "对给出的纵向模拟研究材料补全六个 R 脚本，不是为患者下诊断。",
-          "input": "收到纵向模拟生成脚本、R 软件包和公开研究计划。这是 ALE-CLI v1.0 医疗子集真实任务，不涉及病历。 原始任务指令：You are working on a Linux R biostatistics simulation benchmark.",
-          "output": "交付六个 R 脚本、summary.csv 和 report.pdf；按预设 n=200 与 n=1,000 两组运行。",
+          "summary": "重建纵向统计仿真流程，把两个样本量的实验结果做成可独立复跑的交付物。这是指数的 ALE-CLI v1.0 医疗子集原题，不是患者诊断。",
+          "input": "已有的数据生成脚本 01_data_generation_longitudinal.R、本地 lmtp-bootstrap 源码以及公开计划 study_plan_public.json（n=200、n=1,000）。原任务环境：You are working on a Linux R biostatistics simulation benchmark.",
+          "output": "原始任务指令：Your job is to reconstruct the missing longitudinal simulation pipeline and write the required deliverables under `base/output`. 需在 base/output 下提交六个缺失的 R 脚本：02_variance_methods_longitudinal.R、03_simulation_runner_longitudinal.R、04_analysis_functions_longitudinal.R、05_run_full_simulation_longitudinal.R、06_analyze_part2_results_longitudinal.R、06b_analyze_by_sample_size.R；另交流程生成的 summary.csv 和 report.pdf。",
           "checks": [
-            "必须用工作流程生成结果，不能将输入中供参考的汇总 CSV 搬作输出。",
+            "按任务卡二元计分（0 或 1）：六个脚本、summary.csv 和 report.pdf 均须存在且非空。",
+            "检查 summary.csv 是否符合规定的列结构和行键，指标须为有限值且落在基准记录的绝对公差内；不能照搬供参考的 CSV。",
+            "评测方在干净的临时目录独立复跑脚本，将重建的汇总与基准对照。结构不符、行键重复、指标无效或复跑失败均判 0。",
             "这是五项之一 ALE-CLI 医疗子集的真实题，不是综合指数独立题；该分项计分占指数 20%。"
           ],
           "sourceField": "/taskPrompt",
           "excerpts": [
             {
-              "label": "任务卡原句",
-              "text": "You are working on a Linux R biostatistics simulation benchmark."
+              "label": "重建流程的原始任务指令",
+              "text": "Your job is to reconstruct the missing longitudinal simulation pipeline and write the required deliverables under `base/output`."
             }
           ],
-          "note": "作者任务卡保留原字段节选，未展示模拟附件、完整题面、参考结果、书面材料或模型输出。"
+          "note": "只展示任务卡节选、文件名和评分规则整理；不提供任何附件、参考结果、脚本解答或模型运行输出。"
         },
         "explanation": "本站从 CC BY 4.0 原任务卡节选，中文说明为编辑整理。InclusionMed 初版另外四项及私有 DxFiles 数据不在此案例。",
         "raw": {
@@ -224,7 +228,7 @@
             "Run the required `n=200` and `n=1000` study settings from the public study plan.",
             "Write the six R scripts plus `summary.csv` and `report.pdf` under `output/`."
           ],
-          "taskPrompt": "You are working on a Linux R biostatistics simulation benchmark."
+          "taskPrompt": "Your job is to reconstruct the missing longitudinal simulation pipeline and write the required deliverables under `base/output`."
         },
         "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/tasks/health_medicine/ltmle_targeted_bootstrap_simulation_study/task_card.json",
         "references": [

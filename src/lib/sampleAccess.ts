@@ -21,11 +21,22 @@ export function sampleExternalUrl(item: Benchmark) {
 export function compositionSample(
   item: Benchmark,
   catalog: ReadonlyMap<string, Benchmark>,
+  sampleId?: unknown,
 ) {
-  return item.composition?.items
+  // v2.1 曾默认内嵌此题，原始数据切换会把它写入指数的 URL。
+  const legacyMemberId =
+    item.id === "artificial-analysis-coding-agent-index-v2-1" &&
+    sampleId === "msw-fix-reset-generator-state"
+      ? "frontiercode-aa-2-0"
+      : undefined;
+  const available = item.composition?.items
     .map((component) => catalog.get(component.id))
-    .find(
+    .filter(
       (component) =>
         component?.sampleAccess.status === "local" && component.sampleCount > 0,
     );
+  return (
+    available?.find((component) => component?.id === legacyMemberId) ??
+    available?.[0]
+  );
 }
