@@ -9,6 +9,7 @@ import {
 import App from "./App.vue";
 import { allBenchmarks, byId } from "./content/catalog";
 import ExploreView from "./views/ExploreView.vue";
+import { healthcarePath, healthcareRouteName } from "./content/healthcare";
 import { compositionSample } from "./lib/sampleAccess";
 import { catalogNavigationKey } from "./composables/catalogNavigation";
 import "./styles/main.css";
@@ -20,6 +21,11 @@ export const createApp = ViteSSG(
     base: import.meta.env.BASE_URL,
     routes: [
       { path: "/", component: ExploreView },
+      {
+        path: healthcarePath,
+        name: healthcareRouteName,
+        component: ExploreView,
+      },
       { path: "/embodied/", component: ExploreView },
       ...allBenchmarks.map((item) => ({
         path: `/benchmarks/${item.id}/`,
@@ -49,9 +55,17 @@ export const createApp = ViteSSG(
   ({ app, router, isClient }) => {
     const catalogLocation = ref("/");
     const embodiedLocation = ref("/embodied/");
+    const healthcareLocation = ref(healthcarePath);
+    const lastModelCatalog = ref<"model" | "healthcare">("model");
     let catalogScrollTop = 0;
     let embodiedScrollTop = 0;
-    app.provide(catalogNavigationKey, { catalogLocation, embodiedLocation });
+    let healthcareScrollTop = 0;
+    app.provide(catalogNavigationKey, {
+      catalogLocation,
+      embodiedLocation,
+      healthcareLocation,
+      lastModelCatalog,
+    });
     if (!isClient) return;
 
     // 只记录离开目录时的位置；筛选和视图状态本身由目录 URL 保存。
@@ -70,6 +84,16 @@ export const createApp = ViteSSG(
       if (from.path === "/" && from.matched.length && to.path !== "/") {
         catalogLocation.value = from.fullPath;
         catalogScrollTop = window.scrollY;
+        lastModelCatalog.value = "model";
+      }
+      if (
+        from.name === healthcareRouteName &&
+        from.matched.length &&
+        to.name !== healthcareRouteName
+      ) {
+        healthcareLocation.value = from.fullPath;
+        healthcareScrollTop = window.scrollY;
+        lastModelCatalog.value = "healthcare";
       }
       if (
         from.path === "/embodied/" &&
@@ -153,6 +177,8 @@ export const createApp = ViteSSG(
         return { top: catalogScrollTop, behavior: "instant" };
       if (to.fullPath === embodiedLocation.value)
         return { top: embodiedScrollTop, behavior: "instant" };
+      if (to.fullPath === healthcareLocation.value)
+        return { top: healthcareScrollTop, behavior: "instant" };
       return { top: 0 };
     };
   },

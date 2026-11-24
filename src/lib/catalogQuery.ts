@@ -8,6 +8,13 @@ import {
   embodiedCategories,
 } from "../content/catalog";
 import { searchBenchmarks } from "./search";
+import {
+  healthcareBenchmarks,
+  healthcareCategories,
+  healthcareCategoryByBenchmarkId,
+  healthcarePath,
+  healthcareRouteName,
+} from "../content/healthcare";
 
 export type CatalogSort = "featured" | "name" | "year";
 export type CatalogView = "grid" | "list";
@@ -21,15 +28,33 @@ export interface CatalogQuery {
   view: CatalogView;
 }
 export type CatalogFilterKey = keyof CatalogQuery;
+export type CatalogScope = "model" | "embodied" | "healthcare";
+
+export function matchesCatalogCategory(
+  item: (typeof benchmarks)[number],
+  category: string,
+  scope: CatalogScope,
+): boolean {
+  if (scope === "embodied")
+    return item.embodied?.tasks.some((task) => task === category) ?? false;
+  if (scope === "healthcare")
+    return healthcareCategoryByBenchmarkId.get(item.id) === category;
+  return item.category === category;
+}
 
 /** Build the reader-facing catalog state from the application's real router. */
 export function createCatalogQuery(router: Router) {
-  const isEmbodied = computed(
-    () => router.currentRoute.value.path === "/embodied/",
+  const path = computed(() => router.currentRoute.value.path);
+  const scope = computed<CatalogScope>(() =>
+    path.value === "/embodied/"
+      ? "embodied"
+      : router.currentRoute.value.name === healthcareRouteName
+        ? "healthcare"
+        : "model",
   );
   const query = computed(() => {
     const parsed = parseCatalogQuery(router.currentRoute.value.query);
-    return isEmbodied.value
+    return scope.value === "embodied"
       ? { ...parsed, publisher: "", sample: "", kind: "" }
       : parsed;
   });
@@ -39,7 +64,12 @@ export function createCatalogQuery(router: Router) {
     queuedQuery = nextQuery;
     return router
       .replace({
-        path: isEmbodied.value ? "/embodied/" : "/",
+        path:
+          scope.value === "healthcare"
+            ? healthcarePath
+            : scope.value === "embodied"
+              ? "/embodied/"
+              : "/",
         query: nextQuery,
       })
       .finally(() => {
@@ -49,18 +79,15 @@ export function createCatalogQuery(router: Router) {
 
   return {
     query,
+    scope,
     currentCategory: computed(() =>
-      isEmbodied.value
-        ? embodiedCategories.find(
-            (category) => category.id === query.value.category,
-          )
-        : categoryById.get(query.value.category),
+      catalogCategories[scope.value].find(
+        (category) => category.id === query.value.category,
+      ),
     ),
-    results: computed(() => filterCatalog(query.value, isEmbodied.value)),
+    results: computed(() => filterCatalog(query.value, scope.value)),
     hasFilters: computed(() => hasCatalogFilters(query.value)),
-    stats: computed(() =>
-      isEmbodied.value ? embodiedCatalogStats : catalogStats,
-    ),
+    stats: computed(() => catalogStatsByScope[scope.value]),
     setFilter(key: CatalogFilterKey, value: string) {
       const current = queuedQuery ?? router.currentRoute.value.query;
       return navigate(updateCatalogQuery(current, key, value));
@@ -111,13 +138,16 @@ export function hasCatalogFilters(query: CatalogQuery): boolean {
   );
 }
 
-export function filterCatalog(query: CatalogQuery, embodied = false) {
-  const items = searchBenchmarks(query.q, embodied).filter(
+export function filterCatalog(
+  query: CatalogQuery,
+  scope: CatalogScope = "model",
+) {
+  const items = searchBenchmarks(query.q, scope === "embodied").filter(
     (item) =>
+      (scope !== "healthcare" ||
+        healthcareCategoryByBenchmarkId.has(item.id)) &&
       (!query.category ||
-        (embodied
-          ? item.embodied?.tasks.some((task) => task === query.category)
-          : item.category === query.category)) &&
+        matchesCatalogCategory(item, query.category, scope)) &&
       (!query.publisher || item.publisher === query.publisher) &&
       (!query.sample || item.sampleAccess.status === query.sample) &&
       (!query.kind || item.kind === query.kind),
@@ -130,39 +160,47 @@ export function filterCatalog(query: CatalogQuery, embodied = false) {
 }
 
 // Catalog metadata is immutable during an application run, so compute totals once.
-export const catalogStats = {
-  publishers: [...new Set(benchmarks.map((item) => item.publisher))].sort(
-    (a, b) => a.localeCompare(b, "zh"),
-  ),
-  localCount: benchmarks.filter((item) => item.sampleAccess.status === "local")
-    .length,
-  sampleCount: benchmarks.reduce((total, item) => total + item.sampleCount, 0),
-  categoryCounts: new Map(categories.map((category) => [category.id, 0])),
-};
-for (const item of benchmarks) {
-  catalogStats.categoryCounts.set(
-    item.category,
-    (catalogStats.categoryCounts.get(item.category) || 0) + 1,
-  );
+export const catalogCategories = {
+  model: categories,
+  embodied: embodiedCategories,
+  healthcare: healthcareCategories,
+} satisfies Record<CatalogScope, typeof categories>;
+
+export const catalogCollections = {
+  model: benchmarks,
+  embodied: embodiedBenchmarks,
+  healthcare: healthcareBenchmarks,
+} satisfies Record<CatalogScope, typeof benchmarks>;
+
+function buildStats(scope: CatalogScope) {
+  const collection = catalogCollections[scope];
+  return {
+    publishers: [...new Set(collection.map((item) => item.publisher))].sort(
+      (a, b) => a.localeCompare(b, "zh"),
+    ),
+    localCount: collection.filter(
+      (item) => item.sampleAccess.status === "local",
+    ).length,
+    sampleCount: collection.reduce(
+      (total, item) => total + item.sampleCount,
+      0,
+    ),
+    categoryCounts: new Map(
+      catalogCategories[scope].map((category) => [
+        category.id,
+        collection.filter((item) =>
+          matchesCatalogCategory(item, category.id, scope),
+        ).length,
+      ]),
+    ),
+  };
 }
-export const embodiedCatalogStats = {
-  publishers: [
-    ...new Set(embodiedBenchmarks.map((item) => item.publisher)),
-  ].sort((a, b) => a.localeCompare(b, "zh")),
-  localCount: embodiedBenchmarks.filter(
-    (item) => item.sampleAccess.status === "local",
-  ).length,
-  sampleCount: embodiedBenchmarks.reduce(
-    (total, item) => total + item.sampleCount,
-    0,
-  ),
-  categoryCounts: new Map(
-    embodiedCategories.map((category) => [
-      category.id,
-      embodiedBenchmarks.filter((item) =>
-        item.embodied?.tasks.some((task) => task === category.id),
-      ).length,
-    ]),
-  ),
+
+const catalogStatsByScope = {
+  model: buildStats("model"),
+  embodied: buildStats("embodied"),
+  healthcare: buildStats("healthcare"),
 };
+export const catalogStats = catalogStatsByScope.model;
+export const embodiedCatalogStats = catalogStatsByScope.embodied;
 export { categoryById };

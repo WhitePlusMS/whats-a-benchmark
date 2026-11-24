@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import {
   BookOpen,
+  HeartPulse,
   Bot,
   Code2,
   Sigma,
@@ -36,6 +37,7 @@ const props = withDefaults(defineProps<{ name: string; size?: number }>(), {
 });
 const icons = {
   book: BookOpen,
+  healthcare: HeartPulse,
   robot: Bot,
   code: Code2,
   sigma: Sigma,
