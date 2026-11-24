@@ -1,0 +1,138 @@
+{
+  "id": "lifeval",
+  "status": "published",
+  "order": 682,
+  "name": "LifeVal",
+  "subtitle": "结合个人上下文完成日常生活任务",
+  "category": "agents",
+  "tags": [
+    "个人助理",
+    "个性化",
+    "电脑使用"
+  ],
+  "publisher": "OpenAI",
+  "brandIds": [
+    "openai"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-11-02",
+  "version": "2026 年 11 月公开说明的研究评测",
+  "kind": "internal",
+  "aliases": [
+    "LifeVal OpenAI"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "衡量助理利用个人资料与应用状态，完成日常生活中的多步骤任务。",
+    "task": "按请求和个人上下文，在模拟环境中完成有证据可查的交付或操作。",
+    "sourceUrls": [
+      "https://openai.com/index/lifeval/",
+      "https://cdn.openai.com/pdf/lifeval.pdf"
+    ]
+  },
+  "taskContract": {
+    "input": "请求、与任务有关的对话及记忆、参考文件、补充背景和模拟应用初始状态。",
+    "output": "任务所需成果或完成后的应用状态，以及最终回复。",
+    "environment": "在模拟应用与可搜索的网页快照中操作；论文报告单次运行超时为 8 小时。",
+    "sourceUrls": [
+      "https://cdn.openai.com/pdf/lifeval.pdf"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文公开任务结构、评审方法与汇总结果，未提供完整可下载题包。",
+    "disclosure": "partial",
+    "scale": [
+      "论文共实际评测 169 项任务；148 个活动类别用于研究任务分布，不是评测题数。"
+    ],
+    "splits": [],
+    "fields": [
+      "请求、个性化上下文、评分细则、交互环境和初始状态。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://cdn.openai.com/pdf/lifeval.pdf"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方公开介绍和部分脱敏或合成示例；未找到完整任务及其上下文、评分表和环境的公开入口。"
+    ],
+    "url": "https://openai.com/index/lifeval/",
+    "sourceUrls": [
+      "https://openai.com/index/lifeval/",
+      "https://cdn.openai.com/pdf/lifeval.pdf"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "未找到覆盖完整评测记录或示例素材的可再发布许可。",
+    "scope": "仅整理公开任务方法并指向 OpenAI 原文。",
+    "boundaries": [
+      "不转载会话、记忆、参考附件、图片或示例模型回复。"
+    ],
+    "sourceUrls": [
+      "https://openai.com/index/lifeval/",
+      "https://cdn.openai.com/pdf/lifeval.pdf"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "可到官方介绍页查看公开工作流示意；不是可运行的完整测试记录，本站不复制。",
+    "url": "https://openai.com/index/lifeval/",
+    "sourceUrls": [
+      "https://openai.com/index/lifeval/",
+      "https://cdn.openai.com/pdf/lifeval.pdf"
+    ]
+  },
+  "metric": {
+    "name": "平均任务奖励",
+    "description": "主要评分器按细则逐项查看输出、实际交付物和应用状态变化。独立完整性评分器检测到环境操纵时，该次得分为零。论文汇总平均奖励。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://cdn.openai.com/pdf/lifeval.pdf"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "以英语进行的美国中心调查可能低估其他国家或部分群体常见的任务；支付意愿也不是实际使用价值。",
+      "sourceUrls": [
+        "https://cdn.openai.com/pdf/lifeval.pdf"
+      ]
+    },
+    {
+      "text": "网页缓存并不完全冻结；依赖时效的浏览任务可能在不同运行中出现变化。",
+      "sourceUrls": [
+        "https://cdn.openai.com/pdf/lifeval.pdf"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "论文使用两个 GPT-5.6 自动评分器；其中主要评分器依据任务细则和实际交付证据评分。",
+      "sourceUrls": [
+        "https://cdn.openai.com/pdf/lifeval.pdf"
+      ]
+    }
+  },
+  "related": [],
+  "sources": [
+    {
+      "label": "OpenAI 首发介绍与示例入口",
+      "url": "https://openai.com/index/lifeval/",
+      "role": "release"
+    },
+    {
+      "label": "LifeVal 技术报告（§3–5）",
+      "url": "https://cdn.openai.com/pdf/lifeval.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "OpenAI GPT-6.2 Astra 与 Sol 发布报告",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+      "role": "vendor-report"
+    }
+  ],
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24"
+}

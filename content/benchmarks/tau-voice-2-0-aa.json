@@ -1,0 +1,195 @@
+{
+  "id": "tau-voice-2-0-aa",
+  "status": "published",
+  "order": 1851,
+  "name": "τ-Voice 2.0（AA 实施）",
+  "subtitle": "英语语音客服与环境操作，航空、零售及电信各 50 项",
+  "category": "agents",
+  "tags": [
+    "语音智能体",
+    "多轮交互",
+    "工具使用"
+  ],
+  "publisher": "Sierra Research（任务）／Artificial Analysis（独立实施）",
+  "brandIds": [
+    "sierra",
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "AA 英语流程 / Sierra τ-bench v2.0.0",
+  "kind": "derivative",
+  "aliases": [
+    "τ-Voice 2.0",
+    "tau-Voice 2.0",
+    "Tau Voice 2.0 AA"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "通过模拟电话完成航空、零售和电信客服任务，考察语音跟随、工具操作与最终状态。",
+    "task": "与模拟来电人对话，在政策约束下完成任务并做出语音回应。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/releases/tag/v2.0.0"
+    ]
+  },
+  "taskContract": {
+    "input": "模拟来电语音、统一的智能体提示、业务策略和模拟客服工具。",
+    "output": "语音回应及通过工具形成的环境状态；部分任务还核对动作或口头答复。",
+    "environment": "AA 测试仅英语；模拟用户为低推理 GPT-5.5，由 ElevenLabs eleven_v3 合成语音，每次通话上限 2,400 秒。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+    ]
+  },
+  "dataProfile": {
+    "summary": "AA 使用英语版本，三个领域各 50 项；与 Sierra 同版本的六语言发布口径及旧 AA 1.0 区分。",
+    "disclosure": "partial",
+    "scale": [
+      "航空 50、零售 50、电信 50；共 150 任务。"
+    ],
+    "splits": [
+      "AA 英语；上游 voice-v2 task_subsets 指向各领域冻结的 50 项子集。"
+    ],
+    "fields": [
+      "任务 ID、用户情景、工具动作与验证条件由上游任务定义提供。"
+    ],
+    "files": [
+      "官方 voice.json 记录各领域子集和绑定版本；零售案例由零售子集及英语任务文件定位。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "Sierra 的冻结任务与运行协议公开；未取得该任务的 AA 音频或实际运行记录。"
+    ],
+    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/releases/tag/v2.0.0",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT · Sierra Research。许可原文随本页所选任务字段提供。",
+    "scope": "仅转载一项 Sierra 英语零售任务的模拟用户请求及原生字段。",
+    "boundaries": [
+      "不复制人物设定、AA 音频、评分输出或第三方材料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内显示零售50子集的一条冻结英语文本输入，不是 AA 实际通话或输出。",
+    "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
+      "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json"
+    ]
+  },
+  "metric": {
+    "name": "三轮平均 pass@1",
+    "description": "用最终数据库或环境状态判断成败，部分任务附动作或回复判定。先在每个领域计算 pass@1，再对三领域与三次运行取平均；不是任意一次通过的 pass@3。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "AA 的 2.0 与旧 1.0 成绩不可直接比较；上游 900 调用指六语言版本，不是 AA 的题目数。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+        "https://github.com/sierra-research/tau2-bench/releases/tag/v2.0.0"
+      ]
+    },
+    {
+      "text": "基础设施出错的通话排除并重跑；模拟来电人违背任务指令的通话按官方限制重跑。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+      ]
+    }
+  ],
+  "related": [
+    {
+      "id": "tau-voice",
+      "label": "前一版本／原始协议",
+      "detail": "旧条目描述原论文与 AA 1.0 的 278 项实施，分开看分。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "AA 独立语音评测方法",
+      "url": "https://artificialanalysis.ai/methodology/speech-to-speech-benchmarking#agentic-performance-tau-voice",
+      "role": "definition"
+    },
+    {
+      "label": "Sierra 2.0.0 发布说明",
+      "url": "https://github.com/sierra-research/tau2-bench/releases/tag/v2.0.0",
+      "role": "release"
+    },
+    {
+      "label": "固定 voice-v2 任务清单",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/benchmarks/voice.json",
+      "role": "data"
+    },
+    {
+      "label": "固定零售 50 题子集",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/task_subsets/retail_50.json",
+      "role": "data"
+    },
+    {
+      "label": "固定英文零售任务",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+      "role": "data"
+    },
+    {
+      "label": "Sierra MIT 许可原文",
+      "url": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/LICENSE",
+      "role": "access"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "tau-voice-2-en-retail-8",
+        "title": "换更大的水瓶和更亮的台灯",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "根据来电人的要求办理换货，核对水瓶、台灯偏好及确认时的范围。",
+        "explanation": "Sierra 固定英文 retail_50 子集的任务 8。用户原先提到两个物品；如果客服询问确认，该用户只确认更换台灯。节选只保留原请求字段，未复制个人设定、订单字段、评分条件或音频。",
+        "raw": {
+          "id": "8",
+          "user_scenario": {
+            "instructions": {
+              "domain": "retail",
+              "reason_for_call": "You want to exchange the water bottle and the desk lamp. You want to exchange the water bottle to a bigger one, and the desk lamp to a brighter one (prefer battery > USB > AC). If the agent asks for confirmation, only exchange the desk lamp."
+            }
+          }
+        },
+        "source": "https://github.com/sierra-research/tau2-bench/blob/989d3285ae669e49503324bdb9981bf14fccedeb/data/tau2/multilingual/en/retail_tasks_en.json",
+        "split": "v2.0.0 / voice-v2 / en / retail_50 / task 8",
+        "license": "MIT · Copyright (c) 2025 Sierra Research；仅所示模拟任务字段。",
+        "licensePath": "licenses/tau-voice-2-sierra-mit.txt",
+        "excerpt": true
+      }
+    ]
+  },
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24"
+}
