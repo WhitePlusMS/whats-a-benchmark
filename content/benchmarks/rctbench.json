@@ -1,0 +1,172 @@
+{
+  "id": "rctbench",
+  "status": "published",
+  "order": 686,
+  "name": "RollerCoasterTycoonBench",
+  "subtitle": "在 96 个游戏回合中管理主题公园",
+  "category": "agents",
+  "tags": [
+    "长程决策",
+    "游戏环境",
+    "决策模型"
+  ],
+  "publisher": "Vals AI",
+  "brandIds": [
+    "vals-ai"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-11-19",
+  "version": "Vals AI 公开发布 v1",
+  "kind": "original",
+  "aliases": [
+    "RCTBench",
+    "RCT Bench",
+    "RollerCoaster Tycoon Bench",
+    "过山车大亨评测"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "衡量决策模型能否根据不断变化的乐园状态，长程经营游乐场，而非回答独立选择题。",
+    "task": "在 Forest Frontiers 场景连续经营 96 周，兼顾客流、评分与公司价值。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/rctbench",
+      "https://www.vals.ai/benchmarks/rctbench#methodology",
+      "https://www.vals.ai/blogs/building-rctbench"
+    ]
+  },
+  "taskContract": {
+    "input": "空公园，初始现金和贷款各 10,000 游戏美元。每次读取状态、最近八周历史和当时合法且负担得起的打乱选项。",
+    "output": "给选项分配概率，由环境执行概率最大的操作，逐周改变游乐园状态。",
+    "environment": "原游戏数据上的无界面 OpenRCT2；每周可打开最多六个动作窗口，每个窗口完成一项改动。每模型三局。",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/rctbench",
+      "https://www.vals.ai/benchmarks/rctbench#methodology"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方网页有逐步决策、概率及部分精选运行的可视状态，不提供本站可复用的测试包。",
+    "disclosure": "partial",
+    "scale": [
+      "每局 96 周、每模型 3 局；同一局内决策相互依赖。"
+    ],
+    "splits": [],
+    "fields": [
+      "运行状态、合法选项、每项概率、实际执行动作、部分运行的输入文本。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/rctbench",
+      "https://www.vals.ai/benchmarks/rctbench#explore-every-run",
+      "https://www.vals.ai/benchmarks/rctbench#example-decisions"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方回放可浏览；公开方法未提供可再分发的评测运行包或完整标注。OpenRCT2 的许可不等于游戏数据与 Vals 材料的许可。"
+    ],
+    "url": "https://www.vals.ai/benchmarks/rctbench#explore-every-run",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/rctbench",
+      "https://www.vals.ai/benchmarks/rctbench#explore-every-run",
+      "https://www.vals.ai/benchmarks/rctbench#methodology"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "Vals AI 页面将评测标为 Proprietary，未发现回放、资产或运行输入的转载授权。",
+    "scope": "本站独立描述公开的方法、可核验运行事实并链接官方回放。",
+    "boundaries": [
+      "不转载截图、游戏资产、完整题面、模型输入或逐步轨迹。回放可阅读不代表可复制。"
+    ],
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/rctbench",
+      "https://www.vals.ai/benchmarks/rctbench#explore-every-run"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "真实回放：Decider V1.3 第 2 局，第 1 周 0 位游客、评分 0、现金 10,000；第 96 周结束有 1,042 位游客，Vals 标记达标。另一局示例中，GPT-6 Luna 决策模型在原票价 1.10 时，给涨到 1.20 的选项 86% 概率并执行。逐周选择与状态可在官方回放核对。",
+    "url": "https://www.vals.ai/benchmarks/rctbench#explore-every-run",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/rctbench#explore-every-run",
+      "https://www.vals.ai/benchmarks/rctbench#example-decisions",
+      "https://www.vals.ai/benchmarks/rctbench#scoring"
+    ]
+  },
+  "metric": {
+    "name": "三局平均的综合经营分",
+    "description": "一半是游客数 ÷ 1,000 与乐园评分 ÷ 600 中的较小值（最高 1），另一半是公司价值 ÷ 100,000（限定在 0–1）。公司价值是乐园估值加现金减贷款；三局得分取平均。并非单题正确率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.vals.ai/benchmarks/rctbench#scoring",
+      "https://www.vals.ai/blogs/building-rctbench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "随机种子会影响游客行为与故障；三局结果不能可靠区分很小的差距。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/rctbench#scoring",
+        "https://www.vals.ai/benchmarks/rctbench"
+      ]
+    },
+    {
+      "text": "首版只测一个游戏场景，可选操作由环境生成，不涵盖自由绘制路径或自制过山车轨道。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/rctbench",
+        "https://www.vals.ai/blogs/building-rctbench"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "核查每次执行是否从合法选项选择、扣款是否匹配、状态是否按操作更新；未执行的拒答并不当成完成动作。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/rctbench#methodology"
+      ]
+    },
+    "comparison": {
+      "text": "官方回放中的 1,042 名游客是单局结果，不能当成模型三局平均分。",
+      "sourceUrls": [
+        "https://www.vals.ai/benchmarks/rctbench#explore-every-run",
+        "https://www.vals.ai/benchmarks/rctbench#scoring"
+      ]
+    }
+  },
+  "related": [],
+  "sources": [
+    {
+      "label": "Vals AI 评测发布公告 · 2026-11-19",
+      "url": "https://www.vals.ai/blogs/building-rctbench",
+      "role": "release"
+    },
+    {
+      "label": "Vals AI 官方方法与专有标记",
+      "url": "https://www.vals.ai/benchmarks/rctbench",
+      "role": "definition"
+    },
+    {
+      "label": "官方周回合与输入规范",
+      "url": "https://www.vals.ai/benchmarks/rctbench#methodology",
+      "role": "definition"
+    },
+    {
+      "label": "官方经营分公式",
+      "url": "https://www.vals.ai/benchmarks/rctbench#scoring",
+      "role": "definition"
+    },
+    {
+      "label": "官方逐周回放 · 默认 Decider V1.3 第 2 局",
+      "url": "https://www.vals.ai/benchmarks/rctbench#explore-every-run",
+      "role": "data"
+    },
+    {
+      "label": "官方实际决策案例 · 小火车票价",
+      "url": "https://www.vals.ai/benchmarks/rctbench#example-decisions",
+      "role": "data"
+    }
+  ],
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24"
+}
