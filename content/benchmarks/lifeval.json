@@ -39,7 +39,7 @@
     ]
   },
   "dataProfile": {
-    "summary": "论文公开任务结构、评审方法与汇总结果，未提供完整可下载题包。",
+    "summary": "论文公开任务结构、图文案例、评审方法与汇总结果，未发布完整可下载题包。",
     "disclosure": "partial",
     "scale": [
       "论文共实际评测 169 项任务；148 个活动类别用于研究任务分布，不是评测题数。"
@@ -65,24 +65,26 @@
     ]
   },
   "reusePolicy": {
-    "status": "unknown",
-    "license": "未找到覆盖完整评测记录或示例素材的可再发布许可。",
-    "scope": "仅整理公开任务方法并指向 OpenAI 原文。",
+    "status": "permitted",
+    "license": "CC BY 4.0，仅适用于所选的 arXiv v1 论文图文。",
+    "scope": "署名展示图 1 的积分航班面板、图 3 的任务结构以及对图 1 六个案例的中文整理。",
     "boundaries": [
-      "不转载会话、记忆、参考附件、图片或示例模型回复。"
+      "论文称图文涉及的个人信息已去标识或为合成内容；本站不复制其余面板所嵌病历、居家照片、人像或参考附件。",
+      "论文许可不等于完整题包、原始聊天、记忆、评分表或模拟环境的再发布授权。"
     ],
     "sourceUrls": [
-      "https://openai.com/index/lifeval/",
-      "https://cdn.openai.com/pdf/lifeval.pdf"
+      "https://arxiv.org/html/2611.06687v1",
+      "https://creativecommons.org/licenses/by/4.0/"
     ]
   },
   "sampleAccess": {
-    "status": "official",
-    "reason": "可到官方介绍页查看公开工作流示意；不是可运行的完整测试记录，本站不复制。",
+    "status": "local",
+    "reason": "站内可切换论文图 1 的六个公开案例，查看积分航班原图面板和任务结构图；这些示例并非发布的完整测试记录。",
     "url": "https://openai.com/index/lifeval/",
     "sourceUrls": [
-      "https://openai.com/index/lifeval/",
-      "https://cdn.openai.com/pdf/lifeval.pdf"
+      "https://arxiv.org/html/2611.06687v1#S0.F1",
+      "https://arxiv.org/html/2611.06687v1#S3.F4.fig1",
+      "https://openai.com/index/lifeval/"
     ]
   },
   "metric": {
@@ -128,11 +130,198 @@
       "role": "paper"
     },
     {
+      "label": "arXiv v1 论文与 CC BY 4.0 声明",
+      "url": "https://arxiv.org/html/2611.06687v1",
+      "role": "paper"
+    },
+    {
       "label": "OpenAI GPT-6.2 Astra 与 Sol 发布报告",
       "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
       "role": "vendor-report"
+    },
+    {
+      "label": "arXiv v1 · 图 1 公开案例",
+      "url": "https://arxiv.org/html/2611.06687v1#S0.F1",
+      "role": "paper"
+    },
+    {
+      "label": "arXiv v1 · 图 3 任务结构",
+      "url": "https://arxiv.org/html/2611.06687v1#S3.F4.fig1",
+      "role": "paper"
+    },
+    {
+      "label": "CC BY 4.0 署名许可",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "role": "access"
     }
   ],
   "verifiedAt": "2026-11-24",
-  "updatedAt": "2026-11-24"
+  "updatedAt": "2026-11-24",
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "lifeval-figure1-reward-travel",
+        "title": "用信用卡积分找航班",
+        "type": "image",
+        "promptOrigin": "editorial",
+        "prompt": "输入：可转移的信用卡积分、账户可用性与航班偏好。\n任务：为指定日期从芝加哥到日内瓦的行程查找最划算的积分票，最多一次中转。\n交付：符合条件的可兑换航班建议。",
+        "explanation": "图 1 左侧给出请求，右侧只说明会提供哪些偏好和背景。这个示例要求找到可兑换方案，未展示付款、出票或模型真值。",
+        "raw": "Booking travel with credit card points",
+        "source": "https://arxiv.org/html/2611.06687v1#S0.F1",
+        "references": [
+          {
+            "label": "论文图 1 · 原始案例面板",
+            "url": "https://arxiv.org/html/2611.06687v1#S0.F1"
+          },
+          {
+            "label": "论文图 3 · 任务结构",
+            "url": "https://arxiv.org/html/2611.06687v1#S3.F4.fig1"
+          },
+          {
+            "label": "CC BY 4.0 署名许可",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "split": "论文图 1 · 作者公开示例，非可运行测试记录",
+        "license": "Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/lifeval-figure-1-reward-travel.webp",
+            "alt": "论文图 1 积分兑换航班面板：左侧是请求，右侧是个人上下文类型。",
+            "width": 1700,
+            "height": 629,
+            "caption": "图 1 右下面板，裁切并缩放转换为 WebP。Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+            "source": "https://arxiv.org/html/2611.06687v1#S0.F1"
+          },
+          {
+            "kind": "image",
+            "path": "images/lifeval-figure-3-task-structure.webp",
+            "alt": "论文图 3 从提示、个人背景和应用初始状态，到模型执行与评分的流程。",
+            "width": 1800,
+            "height": 1177,
+            "caption": "图 3 完整任务结构示意，缩放转换为 WebP。Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+            "source": "https://arxiv.org/html/2611.06687v1#S3.F4.fig1"
+          }
+        ]
+      },
+      {
+        "id": "lifeval-figure1-moving",
+        "title": "制订同城搬家计划",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "输入：搬家期限、物品规模、个人安排和住房背景。\n任务：比较自己搬与请搬家公司。\n交付：给出搬家计划；若建议请人，在模拟环境中安排搬运及邮件转寄。",
+        "explanation": "图 1 同时展示两部分的任务设计：先根据个人情况作决策，再按决策执行。论文面板未展示本例的完整评分表或实际预订结果。",
+        "raw": "Planning and booking a move across town",
+        "source": "https://arxiv.org/html/2611.06687v1#S0.F1",
+        "references": [
+          {
+            "label": "论文图 1 · 原始案例面板",
+            "url": "https://arxiv.org/html/2611.06687v1#S0.F1"
+          },
+          {
+            "label": "CC BY 4.0 署名许可",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "split": "论文图 1 · 作者公开示例，非可运行测试记录",
+        "license": "Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+        "excerpt": true
+      },
+      {
+        "id": "lifeval-figure1-job-interview",
+        "title": "分析模拟面试录像",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "输入：模拟案例面试视频、工作背景和目标。\n任务：查找非语言表达和案例分析等问题，按类型分类，再按严重程度排序。\n交付：一份反馈 PDF。",
+        "explanation": "此处说明了可检查的交付格式与组织方式。这里只整理公开面板描述，不转载图中的人物照片或视频。",
+        "raw": "Preparing for job interviews",
+        "source": "https://arxiv.org/html/2611.06687v1#S0.F1",
+        "references": [
+          {
+            "label": "论文图 1 · 原始案例面板",
+            "url": "https://arxiv.org/html/2611.06687v1#S0.F1"
+          },
+          {
+            "label": "CC BY 4.0 署名许可",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "split": "论文图 1 · 作者公开示例，非可运行测试记录",
+        "license": "Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+        "excerpt": true
+      },
+      {
+        "id": "lifeval-figure1-childcare",
+        "title": "筛选有急救资质的全职保姆",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "输入：工作安排、孩子年龄、预算和面试要求。\n任务：核对适龄照护经验、心肺复苏和急救资质等条件。\n交付：筛出三位可进一步面试的人选。",
+        "explanation": "本例要求匹配家庭需求，而不只是搜索一份候选名单。未公开正式环境、候选人原始记录或标准答案。",
+        "raw": "Finding a full time babysitter with CPR certification",
+        "source": "https://arxiv.org/html/2611.06687v1#S0.F1",
+        "references": [
+          {
+            "label": "论文图 1 · 原始案例面板",
+            "url": "https://arxiv.org/html/2611.06687v1#S0.F1"
+          },
+          {
+            "label": "CC BY 4.0 署名许可",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "split": "论文图 1 · 作者公开示例，非可运行测试记录",
+        "license": "Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+        "excerpt": true
+      },
+      {
+        "id": "lifeval-figure1-family-meals",
+        "title": "做家庭餐单和采购购物车",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "输入：家庭饮食限制、购物偏好、禁用食材和参考食谱。\n任务：规划三周餐单，并给出首周所需食材。\n交付：餐单与当地杂货店的首周购物车。",
+        "explanation": "此处只介绍公开示例的任务结构，不转载健康资料或食谱，也不是饮食建议。图 1 未报告结账或模型是否完成。",
+        "raw": "Planning family meals and ordering groceries",
+        "source": "https://arxiv.org/html/2611.06687v1#S0.F1",
+        "references": [
+          {
+            "label": "论文图 1 · 原始案例面板",
+            "url": "https://arxiv.org/html/2611.06687v1#S0.F1"
+          },
+          {
+            "label": "CC BY 4.0 署名许可",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "split": "论文图 1 · 作者公开示例，非可运行测试记录",
+        "license": "Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+        "excerpt": true
+      },
+      {
+        "id": "lifeval-figure1-care-transition",
+        "title": "整理转诊就医摘要",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "输入：相关健康背景、既往资料及对话上下文。\n任务：在更换医疗服务提供者前，整理与新医生沟通需要的材料。\n交付：既往照护摘要和下次就诊的讨论事项 PDF。",
+        "explanation": "本站不转载病历、个人健康细节或附件；公开面板展示的是如何定义交付，不是诊断建议或模型作答。",
+        "raw": "Navigating post-cancer care & switching to a new care provider",
+        "source": "https://arxiv.org/html/2611.06687v1#S0.F1",
+        "references": [
+          {
+            "label": "论文图 1 · 原始案例面板",
+            "url": "https://arxiv.org/html/2611.06687v1#S0.F1"
+          },
+          {
+            "label": "CC BY 4.0 署名许可",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "split": "论文图 1 · 作者公开示例，非可运行测试记录",
+        "license": "Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
+        "excerpt": true
+      }
+    ]
+  }
 }
