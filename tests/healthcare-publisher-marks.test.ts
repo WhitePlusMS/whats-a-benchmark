@@ -71,6 +71,10 @@ test("真实发布方组件在卡片和详情渲染原标识，不用文字占�
           new URL("../src/content/brands.ts", import.meta.url).href,
         ),
     )
+    .replace(
+      /from ['"]\.\/Icon\.vue['"]/g,
+      "from " + JSON.stringify("data:text/javascript,export default {}"),
+    )
     .replace("import.meta.env.BASE_URL", '"/base/"');
   const code = ts.transpileModule(script, {
     compilerOptions: {

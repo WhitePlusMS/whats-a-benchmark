@@ -1,0 +1,309 @@
+{
+  "id": "sweep-bench",
+  "status": "published",
+  "order": 23205,
+  "name": "SWEEP-Bench",
+  "subtitle": "测试机械臂能否随传送带速度调整动作时机",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "作者项目页与同场回放",
+        "type": "任务与回放",
+        "url": "https://damin3927.github.io/SWEEP-Bench/#collapse-more"
+      }
+    ]
+  },
+  "tags": [
+    "具身智能",
+    "传送带",
+    "速度适应"
+  ],
+  "publisher": "Hiroaki Honda 等作者",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-11-23",
+  "version": "作者论文 v1 · 公布的仿真速度扫描",
+  "kind": "original",
+  "aliases": [
+    "SWEEP-Bench",
+    "SWEEP Bench",
+    "SWEEPBench",
+    "传送带速度评测"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "改变传送带速度，评测机械臂是否根据实际运动调整到达、抓取、投放等动作时机。",
+    "task": "执行传送带上运动物体的操控任务，按任务的仿真状态验收成功。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30637v1",
+      "https://damin3927.github.io/SWEEP-Bench/#collapse-more"
+    ]
+  },
+  "taskContract": {
+    "input": "两版 DynamicVLA 都接收当前外部画面、腕部画面和机械臂末端位姿；加历史帧版还收到两路相机在 0.1 秒和 0.2 秒前的画面。两种策略基于同一示范与训练方案分别微调，不是测试时开关。",
+    "output": "输出机械臂末端的目标位姿与夹爪动作；末端位姿通过逆运动学换算为关节目标。根据同题的验收状态判定各回合成败。",
+    "environment": "ManiSkill 仿真及论文单独的真机实验。本站样例只展示仿真配对回放，0.20 m/s 是实际带速条件而非提供给原策略的数字输入。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30637v1",
+      "https://arxiv.org/html/2611.30637v1#S4.SS1",
+      "https://arxiv.org/html/2611.30637v1#A2.SS1",
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/index.html#L148-L154",
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/sweep_bench/tasks/conveyor_fruit_drop/env.py#L213-L259"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者公开任务、验证代码和部分评测回放；训练示范与测试回放不是同一数据。",
+    "disclosure": "partial",
+    "scale": [
+      "主仿真协议：80 个任务 × 13 个固定带速 × 每个任务速度组合 20 回合（每种策略 20,800 回合）。",
+      "带速 0.10–0.40 m/s、每档相差 0.025 m/s；另有加速场景和独立真机实验。"
+    ],
+    "splits": [
+      "固定带速正式仿真评测；本站取同场展示的 FruitDrop / DynamicVLA / 0.20 m/s。",
+      "公开 HF 包为 16,000 条恒速训练专家示范，不是完整测试回合数据。"
+    ],
+    "fields": [
+      "公开项目页任务及回放条目包含 task、model、input、speed、outcome 和 file。"
+    ],
+    "files": [
+      "web/static/data.js",
+      "两个作者公开的 0.20 m/s 仿真 MP4"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30637v1",
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/data.js",
+      "https://huggingface.co/datasets/Damin3927/SWEEP-Bench/tree/15c180a50effe97f6a538da3e64197f936c64bab"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可读训练演示和作者案例；未取得此回放对应的观测张量、逐步动作、随机种子或试次 ID。"
+    ],
+    "url": "https://damin3927.github.io/SWEEP-Bench/#collapse-more",
+    "sourceUrls": [
+      "https://damin3927.github.io/SWEEP-Bench/#collapse-more",
+      "https://huggingface.co/datasets/Damin3927/SWEEP-Bench/tree/15c180a50effe97f6a538da3e64197f936c64bab",
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/data.js"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "仅本页两段作者项目页视频及其无裁切封面按 CC BY-NC 4.0 非商业编辑展示。代码、训练数据及仿真素材不适用单一许可。",
+    "scope": "署名 Hiroaki Honda 等，原视频未修改。两个 WebP 封面各自仅从原片第 0 帧提取；保留上游场景与对象致谢链接；原任务短句和两条结果字段引自固定项目页记录。",
+    "boundaries": [
+      "不得将视频用于商业用途；不得认为允许转载完整测试、训练包、模型或发布方标识。",
+      "页面机械臂标注「本站图标」，为本站通用示意，非作者标识。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/LICENSES.txt",
+      "https://damin3927.github.io/SWEEP-Bench/#collapse-more"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示同场配对回放的初始状态、原任务、五步持续验收及两个作者标注的运行结果。",
+    "url": "https://damin3927.github.io/SWEEP-Bench/#collapse-more",
+    "sourceUrls": [
+      "https://damin3927.github.io/SWEEP-Bench/#collapse-more",
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/data.js",
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/sweep_bench/tasks/conveyor_fruit_drop/env.py#L213-L259"
+    ]
+  },
+  "metric": {
+    "name": "各带速的任务成功率",
+    "description": "每回合以任务状态检查判成败；按带速汇总即可发现均值掩盖的速度差异。FruitDrop 需连续 5 个控制步满足落碗、释放、相对稳定及碗仍在带上的条件。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30637v1",
+      "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/sweep_bench/tasks/conveyor_fruit_drop/env.py#L213-L259"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "同场公开视频只证明两个展示回合的结果，不能外推为普遍增益或真机表现；视频为第三人称回放，不是策略的实际观测或动作数组。",
+      "sourceUrls": [
+        "https://damin3927.github.io/SWEEP-Bench/#collapse-more",
+        "https://arxiv.org/html/2611.30637v1"
+      ]
+    },
+    {
+      "text": "此仿真比较测试策略的动作，而不计入模型推理延迟；论文在推理时暂停仿真。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.30637v1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者论文 v1 · 2026-11-23",
+      "url": "https://arxiv.org/abs/2611.30637",
+      "role": "release"
+    },
+    {
+      "label": "作者论文 · 仿真设计、输入及协议",
+      "url": "https://arxiv.org/html/2611.30637v1",
+      "role": "paper"
+    },
+    {
+      "label": "论文 §4.1 · 两种策略分别微调",
+      "url": "https://arxiv.org/html/2611.30637v1#S4.SS1",
+      "role": "paper"
+    },
+    {
+      "label": "附表 S4 · DynamicVLA 同一协议下的观测和动作",
+      "url": "https://arxiv.org/html/2611.30637v1#A2.SS1",
+      "role": "paper"
+    },
+    {
+      "label": "作者同场回放 · FruitDrop",
+      "url": "https://damin3927.github.io/SWEEP-Bench/#collapse-more",
+      "role": "data"
+    },
+    {
+      "label": "固定作者网页配对说明",
+      "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/index.html#L148-L154",
+      "role": "definition"
+    },
+    {
+      "label": "固定作者任务和回放结果原字段",
+      "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/data.js",
+      "role": "data"
+    },
+    {
+      "label": "固定 FruitDrop 验收规则",
+      "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/sweep_bench/tasks/conveyor_fruit_drop/env.py#L213-L259",
+      "role": "code"
+    },
+    {
+      "label": "固定 FruitDrop 原始阈值",
+      "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/sweep_bench/tasks/conveyor_fruit_drop/env.py#L165-L169",
+      "role": "code"
+    },
+    {
+      "label": "作者项目视频许可及上游素材署名",
+      "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/LICENSES.txt",
+      "role": "access"
+    },
+    {
+      "label": "作者公开恒速训练演示（非本站样例）",
+      "url": "https://huggingface.co/datasets/Damin3927/SWEEP-Bench/tree/15c180a50effe97f6a538da3e64197f936c64bab",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "sweep-fruitdrop-dynamicvla-020",
+        "title": "把苹果放进移动红碗 · DynamicVLA 0.20 m/s",
+        "shortTitle": "移动红碗投放",
+        "type": "video",
+        "promptOrigin": "editorial",
+        "prompt": "把已拿在夹爪中的苹果放进以 0.20 m/s 移动的红碗，并松开夹爪。",
+        "walkthrough": {
+          "summary": "同一个 FruitDrop 仿真场景和 0.20 m/s 带速，比较 DynamicVLA 仅当前帧与加历史帧的实际公开回合。",
+          "input": "两段原回放第 0 帧，机械臂已夹着苹果；随后的画面里，红碗沿传送带经过。作者原始指令：put the apple into the red bowl on the conveyor belt。两版策略都收到当前外部、腕部画面和末端位姿；加历史帧版额外收到两路相机在 0.1 秒和 0.2 秒前的画面。",
+          "output": "输出机械臂末端目标位姿与夹爪动作，将苹果放进红碗并松开。作者标签：仅当前帧（orig）失败；加历史帧（hist）成功。下面各有对应原始回放。",
+          "checks": [
+            "苹果与碗的平面中心距小于 0.05 m，苹果相对碗高度严格处于 −0.025 m 至 0.05 m 之间。",
+            "苹果相对碗的速度低于 0.3 m/s，且苹果已脱离夹持、末端工具中心与苹果距离大于 0.08 m；红碗仍在传送带上。",
+            "上述条件须同时连续满足 5 个控制步，程序才判成功。"
+          ],
+          "sourceField": "/task/instruction",
+          "excerpts": [
+            {
+              "label": "作者项目页原始指令字段（含强调标记）",
+              "text": "put the <em>apple</em> into the red bowl on the conveyor belt"
+            }
+          ],
+          "note": "原片是第三人称仿真回放，封面各为原片第 0 帧，不等于策略输入或真实机器人录像；未取得此配对的种子、原始观测或完整动作轨迹，也未独立复跑。"
+        },
+        "explanation": "作者项目页将两段标为同场、对应在同样示范和训练方案上分别微调的两种输入设置，并非评测时临时切换。这里只展示该对运行，未据此推断所有带速或策略的总体效果。",
+        "raw": {
+          "task": {
+            "id": "FruitDrop",
+            "name": "Fruit drop",
+            "category": "Place",
+            "subset": 20,
+            "instruction": "put the <em>apple</em> into the red bowl on the conveyor belt"
+          },
+          "collapse": [
+            {
+              "model": "dvla",
+              "input": "orig",
+              "task": "FruitDrop",
+              "speed": "0.20",
+              "outcome": "failure",
+              "differs": false,
+              "file": "dvla-orig-FruitDrop-0.20.mp4"
+            },
+            {
+              "model": "dvla",
+              "input": "hist",
+              "task": "FruitDrop",
+              "speed": "0.20",
+              "outcome": "success",
+              "differs": false,
+              "file": "dvla-hist-FruitDrop-0.20.mp4"
+            }
+          ]
+        },
+        "source": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/data.js",
+        "references": [
+          {
+            "label": "作者同场对照与原始影片",
+            "url": "https://damin3927.github.io/SWEEP-Bench/#collapse-more"
+          },
+          {
+            "label": "论文 §4.1 · 两种策略分别微调",
+            "url": "https://arxiv.org/html/2611.30637v1#S4.SS1"
+          },
+          {
+            "label": "论文附表 S4 · 对应策略输入与动作输出",
+            "url": "https://arxiv.org/html/2611.30637v1#A2.SS1"
+          },
+          {
+            "label": "同题仿真成功条件",
+            "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/sweep_bench/tasks/conveyor_fruit_drop/env.py#L213-L259"
+          },
+          {
+            "label": "同题数值阈值",
+            "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/sweep_bench/tasks/conveyor_fruit_drop/env.py#L165-L169"
+          },
+          {
+            "label": "CC BY-NC 与场景素材的上游署名",
+            "url": "https://github.com/Damin3927/SWEEP-Bench/blob/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/LICENSES.txt"
+          }
+        ],
+        "split": "作者公开仿真配对回放 · FruitDrop · DynamicVLA (dvla) · 0.20 m/s · orig/hist；未公布试次编号。",
+        "license": "Hiroaki Honda 等，SWEEP-Bench 项目页。两段回放与第 0 帧封面按 CC BY-NC 4.0 作非商业编辑展示；上游场景和对象来源见作者 LICENSES。",
+        "licensePath": "licenses/cc-by-nc-4.txt",
+        "excerpt": true,
+        "assets": [
+          {
+            "kind": "video",
+            "path": "videos/sweep-fruitdrop-dvla-orig.mp4",
+            "poster": "images/sweep-fruitdrop-dvla-orig-poster.webp",
+            "caption": "DynamicVLA · 仅当前帧 · 失败（作者公开仿真回放，0.20 m/s）。原片未修改；封面为该片第 0 帧，无裁切。来源：Hiroaki Honda 等；媒体 CC BY-NC 4.0。",
+            "source": "https://raw.githubusercontent.com/Damin3927/SWEEP-Bench/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/vid/collapse/dvla-orig-FruitDrop-0.20.mp4"
+          },
+          {
+            "kind": "video",
+            "path": "videos/sweep-fruitdrop-dvla-hist.mp4",
+            "poster": "images/sweep-fruitdrop-dvla-hist-poster.webp",
+            "caption": "DynamicVLA · 加历史帧 · 成功（作者公开仿真回放，0.20 m/s）。原片未修改；封面为该片第 0 帧，无裁切。来源：Hiroaki Honda 等；媒体 CC BY-NC 4.0。",
+            "source": "https://raw.githubusercontent.com/Damin3927/SWEEP-Bench/ca53dc4e087172dcae4022c3f060c77ac930be48/web/static/vid/collapse/dvla-hist-FruitDrop-0.20.mp4"
+          }
+        ]
+      }
+    ]
+  }
+}

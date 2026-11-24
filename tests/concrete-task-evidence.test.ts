@@ -308,3 +308,98 @@ test("IFMTBench 的目录和详情组件选择未经修改的腾讯编辑性官�
     assert.doesNotMatch(html, /is-fallback|publisher-name|logos\/tencent\.png/);
   }
 });
+
+test("SWEEP-Bench 默认显示输入、落碗验收及原作者同场正反配对", async () => {
+  const { item, sampleFile } = await load("sweep-bench");
+  const sample = sampleFile?.samples[0];
+  assert.ok(sample && sample.raw && typeof sample.raw === "object");
+  assert.deepEqual(item.brandIds, []);
+  assert.deepEqual(
+    (
+      sample.raw.collapse as {
+        input: string;
+        outcome: string;
+        speed: string;
+        task: string;
+      }[]
+    ).map(({ input, outcome, speed, task }) => [input, outcome, speed, task]),
+    [
+      ["orig", "failure", "0.20", "FruitDrop"],
+      ["hist", "success", "0.20", "FruitDrop"],
+    ],
+  );
+  const { html, shown } = await renderDefault(item, sampleFile);
+  assert.match(
+    shown,
+    /夹着苹果.*put the apple into the red bowl on the conveyor belt/s,
+  );
+  assert.match(
+    shown,
+    /仅当前帧（orig）失败；加历史帧（hist）成功.*小于 0\.05 m.*−0\.025 m.*0\.3 m\/s.*0\.08 m.*连续满足 5 个控制步/s,
+  );
+  assert.match(
+    shown,
+    /当前外部、腕部画面和末端位姿.*0\.1 秒和 0\.2 秒前.*末端目标位姿与夹爪动作/s,
+  );
+  assert.match(shown, /第三人称仿真回放.*不等于策略输入或真实机器人录像/);
+  assert.ok(!/class="raw-content"/.test(html));
+  const media = [
+    [
+      "orig",
+      "206cbe2c7e4af713fe196ab2aa080105bdf4dc12b652fde8609e99d77a0eb9e8",
+    ],
+    [
+      "hist",
+      "5aad1d5a7065e7fd989c14611f3458fedab07b44199739a25988e0341c6af8d5",
+    ],
+  ] as const;
+  for (const [variant, digest] of media) {
+    const video = `videos/sweep-fruitdrop-dvla-${variant}.mp4`;
+    const poster = `images/sweep-fruitdrop-dvla-${variant}-poster.webp`;
+    assert.ok(html.includes(`src="/${video}"`));
+    assert.ok(html.includes(`poster="/${poster}"`));
+    const bytes = await readFile(
+      new URL("../content/assets/" + video, import.meta.url),
+    );
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), digest);
+    assert.ok(
+      (await readFile(new URL("../content/assets/" + poster, import.meta.url)))
+        .byteLength < 16000,
+    );
+  }
+});
+
+test("SWEEP-Bench 的目录和详情只显示明确标注的本站图标和作者署名", async () => {
+  const { item } = await load("sweep-bench");
+  const Mark = (
+    await import(
+      await component(
+        new URL("../src/components/PublisherMarks.vue", import.meta.url),
+        "",
+      )
+    )
+  ).default;
+  for (const large of [false, true]) {
+    const html = await renderToString(
+      createSSRApp(Mark, {
+        benchmarkId: item.id,
+        publisher: item.publisher,
+        large,
+      }),
+    );
+    assert.match(
+      html,
+      /<svg[^>]*aria-hidden="true".*本站图标.*Hiroaki Honda 等作者/s,
+    );
+    assert.match(html, /不是发布方标识/);
+    assert.doesNotMatch(html, /<img|class="publisher-logo/);
+  }
+  const fake = await renderToString(
+    createSSRApp(Mark, {
+      benchmarkId: "no-such-benchmark",
+      publisher: "Other authors",
+    }),
+  );
+  assert.match(fake, /Other authors/);
+  assert.doesNotMatch(fake, /本站图标|<svg/);
+});

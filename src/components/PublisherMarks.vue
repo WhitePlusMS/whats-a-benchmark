@@ -2,6 +2,7 @@
 import { computed, ref, watch } from "vue";
 import type { ComponentPublicInstance } from "vue";
 import { brands, benchmarkBrands } from "../content/brands";
+import Icon from "./Icon.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -72,7 +73,14 @@ watch(
       />
       <span v-else class="publisher-name" translate="no">{{ mark.name }}</span>
     </span>
-    <span v-if="!marks.length" class="publisher-name" translate="no">{{
+    <template v-if="!marks.length && benchmarkId === 'sweep-bench'">
+      <span class="site-icon-credit" title="本站图标，不是发布方标识">
+        <Icon name="robot-arm" :size="19" />
+        <span>本站图标</span>
+      </span>
+      <span class="publisher-name" translate="no">{{ publisher }}</span>
+    </template>
+    <span v-else-if="!marks.length" class="publisher-name" translate="no">{{
       publisher
     }}</span>
   </span>
@@ -178,5 +186,18 @@ watch(
     width: 36px;
     height: 36px;
   }
+}
+
+.site-icon-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.site-icon-credit svg {
+  flex: none;
 }
 </style>
