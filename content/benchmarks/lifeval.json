@@ -79,7 +79,7 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "站内可切换论文图 1 的六个公开案例，查看积分航班原图面板和任务结构图；这些示例并非发布的完整测试记录。",
+    "reason": "默认直接展示论文图 1 的积分航班原始提示与原图面板；可切换其余五个公开示例。论文图 3 是通用任务结构，不是该题完整上下文或评分表。",
     "url": "https://openai.com/index/lifeval/",
     "sourceUrls": [
       "https://arxiv.org/html/2611.06687v1#S0.F1",
@@ -164,10 +164,9 @@
         "id": "lifeval-figure1-reward-travel",
         "title": "用信用卡积分找航班",
         "type": "image",
-        "promptOrigin": "editorial",
-        "prompt": "输入：可转移的信用卡积分、账户可用性与航班偏好。\n任务：为指定日期从芝加哥到日内瓦的行程查找最划算的积分票，最多一次中转。\n交付：符合条件的可兑换航班建议。",
-        "explanation": "图 1 左侧给出请求，右侧只说明会提供哪些偏好和背景。这个示例要求找到可兑换方案，未展示付款、出票或模型真值。",
-        "raw": "Booking travel with credit card points",
+        "prompt": "Find the best value rewards ticket bookable with my transferable credit card points for a flight from Chicago to Geneva, departing March 9th, 2026. One stop maximum.",
+        "explanation": "作者公开示例：找 2026 年 3 月 9 日从芝加哥飞往日内瓦的积分机票，最多中转一次。请求的结果是能用可转移积分兑换、并符合上述约束的机票建议，不是出票或实跑记录。原图只公开账户及出行偏好的上下文类别；没有该题的账户或积分余额、具体偏好、聊天、模拟初态、参考答案或独立评分表。不能仅用这一张图与提示复跑并评分。",
+        "raw": "Find the best value rewards ticket bookable with my transferable credit card points for a flight from Chicago to Geneva, departing March 9th, 2026. One stop maximum.",
         "source": "https://arxiv.org/html/2611.06687v1#S0.F1",
         "references": [
           {
@@ -183,7 +182,7 @@
             "url": "https://creativecommons.org/licenses/by/4.0/"
           }
         ],
-        "split": "论文图 1 · 作者公开示例，非可运行测试记录",
+        "split": "论文 v1 图 1 · 作者公开输入示例（保留原文，去掉图中文字换行），非完整测试记录",
         "license": "Jenny Yang 等（OpenAI），LifeVal（arXiv:2611.06687v1），CC BY 4.0。",
         "excerpt": true,
         "assets": [
