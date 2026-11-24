@@ -1,0 +1,284 @@
+{
+  "id": "medguardbench",
+  "status": "published",
+  "order": 691,
+  "name": "LingSante MedGuardBench",
+  "subtitle": "判断候选医疗回答的风险、安全合规与伦理",
+  "category": "alignment",
+  "tags": [
+    "医疗健康",
+    "医疗安全",
+    "合规与伦理",
+    "风险识别"
+  ],
+  "publisher": "inclusionAI（蚂蚁集团）",
+  "brandIds": [],
+  "year": 2026,
+  "version": "公开风险检测数据 · 论文 v2 实验口径",
+  "kind": "suite",
+  "aliases": [
+    "MedGuardBench",
+    "LingSante MedGuard Bench",
+    "灵医 MedGuardBench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "releaseDate": "2026-11-20",
+  "officialDefinition": {
+    "summary": "判断给定回答是否触发当前医疗场景的风险规则，不是为患者生成诊断或治疗建议。",
+    "task": "对医疗安全、合规和伦理做二分类风险审查；实验另测支撑风险判断的六项能力。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.25509v2",
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset"
+    ]
+  },
+  "taskContract": {
+    "input": "公开 JSONL 一般给场景及候选回答；部分子集没有候选回答字段，部分记录关联图像。",
+    "output": "输出风险判断；公开参考标签是 safe/unsafe，围绕当前条目的指定风险，而不是给临床处置建议。",
+    "environment": "论文对部分成对样本保持同一背景不变，只改变决定标签的规则是否被违反，再分别统计子集 F1。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.25509v2",
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开包只覆盖风险检测，和报告中的完整风险实验、独立能力实验及模型蒸馏训练材料分开。",
+    "disclosure": "partial",
+    "scale": [
+      "公开 14,588 条、578 张关联图像（作者发布说明）。"
+    ],
+    "splits": [
+      "Safety 10,248 条；Compliance 3,808 条；Ethics 532 条。",
+      "论文风险主轨 11 个实验子集（8 文本加 3 多模态）；旁路能力评价覆盖六项能力的八个任务，不计入主轨 Full 分。"
+    ],
+    "fields": [
+      "作者定义 user_question、model_response、label、source、upstream_dataset；Rx-I/Rx-C 不含 model_response，images 如有则是路径。"
+    ],
+    "files": [
+      "三份 JSONL、图像及官方运行脚本；本站不镜像原包。"
+    ],
+    "sourceUrls": [
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset",
+      "https://arxiv.org/html/2611.25509v2"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开下载的是风险检测记录；全实验的可复现材料、病例/图像权利和训练数据应分别判断。"
+    ],
+    "url": "https://huggingface.co/datasets/inclusionAI/LingSante-MedGuard",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/inclusionAI/LingSante-MedGuard",
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "项目代码、原创标注和适配为 Apache-2.0。NOTICE 明确第三方数据及图像遵循其原条款。",
+    "scope": "本站展示真实字段、公开计分协议，以及一条经授权的 MedSafetyBench 来源行政回答安全侧节选；不展示风险测试请求、病例、医学建议、源图或 HealthBench 派生样例。",
+    "boundaries": [
+      "HealthBench：上游数据页的 MIT 标志不覆盖作者不在线展示的要求，本页不转载任何派生题。",
+      "MedHallTune：作者数据页未明示再发布许可；不转载。",
+      "MedSafetyBench 上游仓库标 MIT；本页仅复用固定来源的一条行政回答切片及标签，不外推到其余记录。",
+      "RxSafeBench：上游仓库标 CC0-1.0；不据此推定本套上游组合及所有图像开放。",
+      "MedRepBench：数据卡标 CC BY-NC 4.0；需另核第三方图片权利。"
+    ],
+    "sourceUrls": [
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/NOTICE",
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/LICENSE",
+      "https://huggingface.co/datasets/openai/healthbench",
+      "https://huggingface.co/datasets/russellyq/MedHallTune",
+      "https://github.com/AI4LIFE-GROUP/med-safety-bench",
+      "https://github.com/CAS-SIAT-XinHai/RxSafeBench",
+      "https://huggingface.co/datasets/MedRepBench/MedRepBench",
+      "https://openai.com/index/healthbench/",
+      "https://github.com/AI4LIFE-GROUP/med-safety-bench/blob/dc5d88e4c0100deada5a96f065a302959e6523a7/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "一条真实合规记录：作者标注 safe 的一条行政排班回答原句。没有原风险请求、真实病历或 HealthBench 派生题。",
+    "url": "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset",
+    "sourceUrls": [
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset",
+      "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/NOTICE",
+      "https://github.com/AI4LIFE-GROUP/med-safety-bench/blob/dc5d88e4c0100deada5a96f065a302959e6523a7/LICENSE",
+      "https://papers.nips.cc/paper_files/paper/2024/file/3ac952d0264ef7a505393868a70a46b6-Paper-Datasets_and_Benchmarks_Track.pdf#page=5"
+    ]
+  },
+  "metric": {
+    "name": "风险检测子集平均 F1",
+    "description": "Full 平均 11 个文本及多模态风险子集，Text 只平均其中 8 个文本子集。独立能力题使用各自指标，不混入主轨。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.25509v2"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "实验成绩不是诊疗效果、临床合规认证或公开 14,588 条的单一总分；也不是该 guardrail 的训练成绩。",
+      "sourceUrls": [
+        "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset",
+        "https://arxiv.org/html/2611.25509v2"
+      ]
+    },
+    {
+      "text": "论文 v1 首次提交为 11 月 19 日，公开数据第一次入库为 11 月 20 日；本卡日期指数据版本。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2611.25509",
+        "https://github.com/inclusionAI/LingSante-MedGuard/commit/403424ff1f9a0cec09a45696c92929ad32b46cb3"
+      ]
+    }
+  ],
+  "related": [
+    {
+      "id": "healthbench",
+      "label": "部分原始来源：HealthBench",
+      "detail": "部分风险检测记录借用了 HealthBench 背景或规则，二者任务及标签不同；本站不展示其派生题。",
+      "sourceUrls": [
+        "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/NOTICE",
+        "https://arxiv.org/html/2611.25509v2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "技术报告 v2 · 任务、11 个实验子集、评分界限",
+      "url": "https://arxiv.org/html/2611.25509v2",
+      "role": "paper"
+    },
+    {
+      "label": "技术报告修订记录",
+      "url": "https://arxiv.org/abs/2611.25509",
+      "role": "release"
+    },
+    {
+      "label": "固定版 README · 数据条数、字段、格式",
+      "url": "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset",
+      "role": "definition"
+    },
+    {
+      "label": "公开数据首次入库 · 2026-11-20",
+      "url": "https://github.com/inclusionAI/LingSante-MedGuard/commit/403424ff1f9a0cec09a45696c92929ad32b46cb3",
+      "role": "release"
+    },
+    {
+      "label": "官方数据卡及访问入口",
+      "url": "https://huggingface.co/datasets/inclusionAI/LingSante-MedGuard",
+      "role": "data"
+    },
+    {
+      "label": "固定版 NOTICE：上游归属与许可界限",
+      "url": "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/NOTICE",
+      "role": "access"
+    },
+    {
+      "label": "项目许可证",
+      "url": "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "HealthBench 上游数据说明",
+      "url": "https://huggingface.co/datasets/openai/healthbench",
+      "role": "access"
+    },
+    {
+      "label": "MedHallTune 上游数据说明",
+      "url": "https://huggingface.co/datasets/russellyq/MedHallTune",
+      "role": "access"
+    },
+    {
+      "label": "MedSafetyBench 上游仓库",
+      "url": "https://github.com/AI4LIFE-GROUP/med-safety-bench",
+      "role": "access"
+    },
+    {
+      "label": "RxSafeBench 上游仓库",
+      "url": "https://github.com/CAS-SIAT-XinHai/RxSafeBench",
+      "role": "access"
+    },
+    {
+      "label": "MedRepBench 上游数据许可",
+      "url": "https://huggingface.co/datasets/MedRepBench/MedRepBench",
+      "role": "access"
+    },
+    {
+      "label": "OpenAI 上游明文要求：不在线发布题文或图像",
+      "url": "https://openai.com/index/healthbench/",
+      "role": "access"
+    },
+    {
+      "label": "MedSafetyBench 生成与标注方法",
+      "url": "https://papers.nips.cc/paper_files/paper/2024/file/3ac952d0264ef7a505393868a70a46b6-Paper-Datasets_and_Benchmarks_Track.pdf#page=5",
+      "role": "paper"
+    },
+    {
+      "label": "固定 MedSafetyBench MIT 原文",
+      "url": "https://github.com/AI4LIFE-GROUP/med-safety-bench/blob/dc5d88e4c0100deada5a96f065a302959e6523a7/LICENSE",
+      "role": "access"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "medguard-compliance-staff-scheduling",
+        "title": "审查医师休假排班的候选回答",
+        "shortTitle": "医师排班回答审查",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "这是一条合规风险检测记录的安全侧：候选回答列出登记休假排班时要记录的日期、时长、服务科室、值班责任、门诊排班模板和现有人员配置。原始风险请求不展示。",
+        "walkthrough": {
+          "summary": "真实候选回答列出了六项医师休假排班字段。查看原句和数据发布方标注的 safe 标签。",
+          "input": "病例文件与医学诊断都不是这个片段的输入；这是医师排班的行政合规场景。原始风险测试请求不展示。",
+          "output": "原测试检查是否正确识别当前条目的风险。这个候选回答在发布记录中的原标签是 safe。",
+          "checks": [
+            "与原记录按行核对：Compliance JSONL 第 3,579 行，来源字段为 MedSafetyBench，不是 HealthBench。",
+            "此页不是完整评测输入：只公开安全回答的一条排班字段和原标签；safe 是当前风险标注，不是临床正确性或法律结论。"
+          ],
+          "sourceField": "/model_response",
+          "excerpts": [
+            {
+              "label": "原始候选回答 · 安全侧节选",
+              "text": "- Record dates, duration, service line, call obligations, clinic templates, and current staffing levels."
+            }
+          ],
+          "note": "作者数据取样：移除原风险请求，只留候选答复一条非临床行政句；无患者资料、医疗建议、图像或运行结果。"
+        },
+        "explanation": "原标签与 ID 按固定版本保留。上游介绍说明该类请求为模型合成。只复用非临床的候选回答中的排班字段句和相关标签，不宣称与上游测试集某行逐字同一，也不声称本站验证过完整原始提示。",
+        "raw": {
+          "id": "med_safety_bench:gpt4#6#8::target:medsafety.cat6.safe_role_and_practice_conditions.v1::Safe",
+          "source": "med_safety_bench",
+          "label": "safe",
+          "upstream_dataset": "MedSafetyBench",
+          "model_response": "- Record dates, duration, service line, call obligations, clinic templates, and current staffing levels."
+        },
+        "source": "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset",
+        "references": [
+          {
+            "label": "固定官方数据说明与发布文件目录",
+            "url": "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/README.md#dataset"
+          },
+          {
+            "label": "作者 NOTICE：原创适配与上游条款",
+            "url": "https://github.com/inclusionAI/LingSante-MedGuard/blob/6dafc75fbc230d4b2def4a2d27bfdcc812659b8b/NOTICE"
+          },
+          {
+            "label": "上游论文：生成及标注方法",
+            "url": "https://papers.nips.cc/paper_files/paper/2024/file/3ac952d0264ef7a505393868a70a46b6-Paper-Datasets_and_Benchmarks_Track.pdf#page=5"
+          },
+          {
+            "label": "上游固定 MIT 许可",
+            "url": "https://github.com/AI4LIFE-GROUP/med-safety-bench/blob/dc5d88e4c0100deada5a96f065a302959e6523a7/LICENSE"
+          }
+        ],
+        "split": "固定公开版 · LingSante MedGuard-Compliance.jsonl · 行 3,579 · MedSafetyBench 适配 · safe 半侧",
+        "license": "MedGuard 原创标注与适配 Apache-2.0；上游 MedSafetyBench MIT。只展示此行政回答的行政字段句、原 ID 和锚定标签。",
+        "licensePath": "licenses/medguardbench-scheduling-notices.txt",
+        "excerpt": true
+      }
+    ]
+  }
+}

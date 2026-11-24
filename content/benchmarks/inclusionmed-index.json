@@ -1,0 +1,254 @@
+{
+  "id": "inclusionmed-index",
+  "status": "published",
+  "order": 690,
+  "name": "InclusionMed Index",
+  "subtitle": "五项等权的医疗角色与能力指数",
+  "category": "general",
+  "tags": [
+    "医疗健康",
+    "综合指数",
+    "临床推理",
+    "医疗工作流"
+  ],
+  "publisher": "The InclusionMed Collaboration",
+  "brandIds": [],
+  "year": 2026,
+  "version": "初版研究报告 v1",
+  "kind": "suite",
+  "aliases": [
+    "InclusionMed",
+    "InclusionMed Atlas",
+    "InclusionMed 医疗指数"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "verifiedAt": "2026-11-24",
+  "updatedAt": "2026-11-24",
+  "releaseDate": "2026-11-16",
+  "officialDefinition": {
+    "summary": "将四项公开评测及一项私有诊断评测等权汇总；初版覆盖医疗角色与能力矩阵的 3 个格子。",
+    "task": "分别测临床推理、电子病历操作、可核验的医学计算任务和医疗运营，再聚合为总分。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.21218v1"
+    ]
+  },
+  "taskContract": {
+    "input": "按分项收到临床对话、隔离病历中的任务、计算材料或运营指令；DxFiles 的完整病例不公开。",
+    "output": "分别提交专业回答、可验证的工作流结果、代码/分析报告或诊断推理；没有单一统一题型。",
+    "environment": "分项使用 API、隔离 FHIR 病历环境或终端代理；同一指数依各分项的配置独立取分。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.21218v1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "初版以患者/公众、医疗专业人员、医疗行政人员三类角色，与知识、推理、代理执行三种能力交叉；初版实际覆盖 3/9 格。",
+    "disclosure": "partial",
+    "scale": [
+      "五项共 1,034 项任务，不是每模型总运行次数；报告评测 22 个模型发布配置。"
+    ],
+    "splits": [
+      "临床专业人员 × 推理：HealthBench Professional 525、InclusionMed-DxFiles 312（私有）。",
+      "临床专业人员 × 代理执行：PhysicianBench 100、ALE-CLI v1.0 医疗子集 22。",
+      "医疗行政人员 × 代理执行：CHI-Bench 75（指数采用范围）。"
+    ],
+    "fields": [
+      "分项任务数、每题计分次数、计分指标、指数权重。"
+    ],
+    "files": [],
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.21218v1"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "作者报告公布分项方法及结果、四项公开评测的原入口。DxFiles 312 个病例为私有，不把它当作可下载或可转载题库。"
+    ],
+    "url": "https://arxiv.org/html/2611.21218v1",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.21218v1",
+      "https://inclusionmed.ai/"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "原评测、底层病历和论文各自适用其权利；未确认有可再发布的完整指数题库。",
+    "scope": "整项指数无统一再发布许可。此处仅展示一条经 Berkeley CC BY 4.0 授权的 ALE-CLI 医疗原任务字段节选，并概述作者的公开指数方法。",
+    "boundaries": [
+      "站内原始任务属 ALE-CLI 组成项，不是指数独立题；不展示 HealthBench 派生题、DxFiles 病例或临床资料。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.21218v1",
+      "https://arxiv.org/abs/2611.21218",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/LICENSE-DATA"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "一条可复核的 InclusionMed 组成原题：原版 ALE-CLI 22 项医疗任务中的 R 纵向仿真。指数另含四项，不复制患者病历或 DxFiles。",
+    "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/tasks/health_medicine/ltmle_targeted_bootstrap_simulation_study/task_card.json",
+    "sourceUrls": [
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/tasks/health_medicine/ltmle_targeted_bootstrap_simulation_study/task_card.json",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/selected_tasks/ale_cli.txt",
+      "https://arxiv.org/html/2611.21218v1",
+      "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/LICENSE-DATA"
+    ]
+  },
+  "metric": {
+    "name": "五项等权指数（0–100）",
+    "description": "HealthBench Professional 用长度校正的细则分，PhysicianBench 和 CHI-Bench 用成功率，ALE-CLI 医疗用部分得分，DxFiles 用满档率。统一到 0–100 后等权平均，不按题数加权。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.21218v1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "初版仅覆盖九格中的三格，没有患者/公众角色或知识能力的独立计分格；不应由总分推断临床部署安全性。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.21218v1"
+      ]
+    },
+    {
+      "text": "报告时间为 2026-11-16 的首发研究，不是各成员或模型的发布日期；此处数字不是实时榜。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2611.21218",
+        "https://arxiv.org/html/2611.21218v1"
+      ]
+    }
+  ],
+  "related": [
+    {
+      "id": "healthbench-professional",
+      "label": "已收录成员：HealthBench Professional",
+      "detail": "初版指数含该成员的 525 项临床专业对话；不汇入普通 HealthBench 或 Hard。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.21218v1"
+      ]
+    },
+    {
+      "id": "physicianbench",
+      "label": "已收录成员：PhysicianBench",
+      "detail": "初版指数含 100 项电子病历操作任务。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.21218v1"
+      ]
+    },
+    {
+      "id": "agents-last-exam",
+      "label": "ALE-CLI 医疗子集的上游",
+      "detail": "初版指数仅采用 ALE-CLI v1.0 Health and Medicine 的 22 项，并非整个 Agents’ Last Exam。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.21218v1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "InclusionMed 作者报告 · 初版组成、计分及结果",
+      "url": "https://arxiv.org/html/2611.21218v1",
+      "role": "paper"
+    },
+    {
+      "label": "arXiv 首次公开日期 · 2026-11-16",
+      "url": "https://arxiv.org/abs/2611.21218",
+      "role": "release"
+    },
+    {
+      "label": "InclusionMed 官方项目与榜单入口",
+      "url": "https://inclusionmed.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Berkeley 公开任务卡固定版本",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/tasks/health_medicine/ltmle_targeted_bootstrap_simulation_study/task_card.json",
+      "role": "data"
+    },
+    {
+      "label": "原版 ALE-CLI 评测清单",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/selected_tasks/ale_cli.txt",
+      "role": "data"
+    },
+    {
+      "label": "Berkeley 数据许可 CC BY 4.0",
+      "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/LICENSE-DATA",
+      "role": "access"
+    },
+    {
+      "label": "InclusionMed 作者发布仓库",
+      "url": "https://github.com/panuvi/inclusionmed/tree/bfa63c526093a38dc1476e4740157fa9145dae57",
+      "role": "readme"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-24",
+    "samples": [
+      {
+        "id": "ale-cli-ltmle-targeted-bootstrap",
+        "title": "在 R 中重建纵向统计仿真流程",
+        "shortTitle": "R 纵向统计仿真",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "在 Linux/R 中重建纵向统计仿真的六个缺失脚本，运行两个预先给出的模拟设置，交付可复核的汇总 CSV 与 PDF。",
+        "walkthrough": {
+          "summary": "对给出的纵向模拟研究材料补全六个 R 脚本，不是为患者下诊断。",
+          "input": "收到纵向模拟生成脚本、R 软件包和公开研究计划。这是 ALE-CLI v1.0 医疗子集真实任务，不涉及病历。",
+          "output": "交付六个 R 脚本、summary.csv 和 report.pdf；按预设 n=200 与 n=1,000 两组运行。",
+          "checks": [
+            "必须用工作流程生成结果，不能将输入中供参考的汇总 CSV 搬作输出。",
+            "这是五项之一 ALE-CLI 医疗子集的真实题，不是综合指数独立题；该分项计分占指数 20%。"
+          ],
+          "sourceField": "/taskPrompt",
+          "excerpts": [
+            {
+              "label": "任务卡原句",
+              "text": "You are working on a Linux R biostatistics simulation benchmark."
+            }
+          ],
+          "note": "作者任务卡保留原字段节选，未展示模拟附件、完整题面、参考结果、书面材料或模型输出。"
+        },
+        "explanation": "本站从 CC BY 4.0 原任务卡节选，中文说明为编辑整理。InclusionMed 初版另外四项及私有 DxFiles 数据不在此案例。",
+        "raw": {
+          "taskId": "health_medicine/ltmle_targeted_bootstrap_simulation_study",
+          "title": "LTMLE Targeted Bootstrap Simulation Study",
+          "summary": "Reconstruct a six-script R simulation pipeline for a longitudinal LMTP variance study and reproduce the required summary and report outputs from the staged public materials.",
+          "category": "health_medicine",
+          "software": [
+            "R",
+            "lmtp",
+            "SuperLearner"
+          ],
+          "agentMustDo": [
+            "Read the staged longitudinal DGP, bundled `lmtp-bootstrap` source tree, variance paper, and public benchmark materials under `input/public_benchmark/`.",
+            "Reconstruct the missing six-file R pipeline for the standard LMTP, full-data targeting, and targeted-bootstrap inference workflows.",
+            "Run the required `n=200` and `n=1000` study settings from the public study plan.",
+            "Write the six R scripts plus `summary.csv` and `report.pdf` under `output/`."
+          ],
+          "taskPrompt": "You are working on a Linux R biostatistics simulation benchmark."
+        },
+        "source": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/tasks/health_medicine/ltmle_targeted_bootstrap_simulation_study/task_card.json",
+        "references": [
+          {
+            "label": "Berkeley 固定任务卡",
+            "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/tasks/health_medicine/ltmle_targeted_bootstrap_simulation_study/task_card.json"
+          },
+          {
+            "label": "原版 ALE-CLI 正式清单（医疗条目 22 项）",
+            "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/selected_tasks/ale_cli.txt"
+          },
+          {
+            "label": "InclusionMed 作者报告 §3.4 与表 1",
+            "url": "https://arxiv.org/html/2611.21218v1"
+          },
+          {
+            "label": "Berkeley 任务数据许可",
+            "url": "https://github.com/rdi-berkeley/agents-last-exam/blob/9c699ba82a570d0eb3294898426080353f003284/LICENSE-DATA"
+          }
+        ],
+        "split": "InclusionMed v1 组成：ALE-CLI v1.0 · health_medicine 22 项 · ltmle_targeted_bootstrap_simulation_study",
+        "license": "CC BY 4.0 · Copyright 2026 UC Berkeley RDI and RDI Foundation；保留原任务元数据与文字节选，导读是中文整理，不包含第三方资料。",
+        "excerpt": true
+      }
+    ]
+  }
+}
