@@ -1,0 +1,208 @@
+{
+  "id": "artificial-analysis-search-index",
+  "status": "published",
+  "order": 600,
+  "name": "Artificial Analysis Search Index",
+  "subtitle": "固定答题模型，比较不同搜索 API 的回答质量",
+  "category": "general",
+  "tags": [
+    "综合指数",
+    "搜索 API",
+    "网页检索",
+    "供应商对比"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-08-18",
+  "version": "官方 Search API 方法（未标版本号）",
+  "kind": "suite",
+  "aliases": [
+    "AA Search Index",
+    "Artificial Analysis 搜索指数",
+    "AA 搜索指数",
+    "Search API Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "固定答题模型和评测任务，更换搜索 API；等权汇总三项问答质量指标。",
+    "task": "比较同一个智能体配接不同搜索 API 时的回答质量，另以同模型不搜索的一次作答作基线。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/search-api",
+      "https://artificialanalysis.ai/methodology/search-api"
+    ]
+  },
+  "taskContract": {
+    "input": "三个组成集各自的检索或事实问题；指数不另出题。常规供应商通过检索与网页读取工具提供外部信息。",
+    "output": "提交单个答案或答案集合，由该组成项的规则判分；Stirrup 流程未在 25 轮内提交最终答案则计零。",
+    "environment": "常规供应商使用固定 GPT-5.6 Luna（medium）与 Stirrup，最多 25 轮，搜索每次最多 10 条结果。无搜索基线直接单次作答；榜单另列使用 OpenAI 自带搜索工具的一次调用，不走 Stirrup。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/search-api",
+      "https://artificialanalysis.ai/agents/search-api"
+    ]
+  },
+  "dataProfile": {
+    "summary": "使用完整公开 DeepSearchQA eval（900 题）、私有 AA-Omniscience（600 题）和 BrowseComp 困难子集（200 题）。",
+    "disclosure": "partial",
+    "scale": [
+      "DeepSearchQA：900 题；AA-Omniscience：6 个领域各 100 题；BrowseComp：从 1,266 题中取困难的 200 题。"
+    ],
+    "splits": [
+      "DeepSearchQA 为完整公开 eval；AA-Omniscience 为私有保留题；BrowseComp 记作 n200，本站未推定逐题成员。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/search-api#index-components",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "官方公开方法和榜单；Google 完整 eval 可下载。AA-Omniscience 600 题未公开，不能用公开示例代替；本站没有已核对的 BrowseComp n200 逐题清单。"
+    ],
+    "url": "https://artificialanalysis.ai/agents/search-api",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/search-api",
+      "https://artificialanalysis.ai/agents/search-api",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "指数不单独发布统一题库或许可；所展示的 DeepSearchQA 原题及参考答案适用 Google 数据卡声明的 Apache-2.0。",
+    "scope": "由成员页复用一条 Google 公开原题与参考答案；不复制 AA 供应商运行输出或题目引用的第三方网页。",
+    "boundaries": [
+      "不将许可扩展到其他组成题集、第三方网页、检索轨迹或评审输出。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/search-api",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "默认展示完整公开 eval 中已有的 DeepSearchQA 原题和 Google 标注；它不是指数独立题、AA 某供应商的运行记录或指数得分。",
+    "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/search-api#deepsearchqa",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv"
+    ]
+  },
+  "metric": {
+    "name": "三项答案质量指标等权平均",
+    "description": "DeepSearchQA 取题均 F1，BrowseComp 取简短答案准确率，AA-Omniscience 取准确率（不是 Net Score 或幻觉率）。三项各占三分之一，结果用 0–100 表示；成本与耗时单列，不计入质量指数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/search-api",
+      "https://artificialanalysis.ai/methodology/search-api",
+      "https://artificialanalysis.ai/agents/search-api"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "比较的是固定模型和流程下的搜索 API，不是模型排行榜；结果不代表换用其他模型或流程后仍保持同样排序。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/search-api",
+        "https://artificialanalysis.ai/agents/search-api"
+      ]
+    },
+    {
+      "text": "只有 DeepSearchQA 在这里使用完整公开 eval；不能把 AA-Omniscience 公开例题或 BrowseComp 原版示例当成各自运行子集的题。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/search-api"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "2026-08-18 AA 搜索指数首发",
+      "url": "https://artificialanalysis.ai/articles/search-api",
+      "role": "release"
+    },
+    {
+      "label": "AA 搜索 API 官方方法",
+      "url": "https://artificialanalysis.ai/methodology/search-api",
+      "role": "definition"
+    },
+    {
+      "label": "三项评测范围与指标",
+      "url": "https://artificialanalysis.ai/methodology/search-api#index-components",
+      "role": "definition"
+    },
+    {
+      "label": "AA 实施的 DeepSearchQA 评测范围",
+      "url": "https://artificialanalysis.ai/methodology/search-api#deepsearchqa",
+      "role": "definition"
+    },
+    {
+      "label": "AA 搜索 API 官方榜单",
+      "url": "https://artificialanalysis.ai/agents/search-api",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Google 固定公开 eval 文件 DSQA-full.csv",
+      "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
+      "role": "data"
+    },
+    {
+      "label": "Google 固定数据卡与 Apache-2.0 声明",
+      "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "composition": {
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/search-api#index-components",
+      "https://artificialanalysis.ai/articles/search-api"
+    ],
+    "items": [
+      {
+        "id": "deepsearchqa",
+        "group": "深度检索问答",
+        "weight": 33.333333333333336,
+        "detail": "完整公开 eval 900 题；单次作答，由裁判对答案项计 F1，再按题平均。默认案例是该范围内的一道原题。"
+      },
+      {
+        "id": "browsecomp",
+        "group": "困难网页检索",
+        "weight": 33.333333333333336,
+        "detail": "1,266 题中的困难 n200，比较简短答案准确率；本站未核对逐题成员。"
+      },
+      {
+        "id": "aa-omniscience",
+        "group": "事实问答",
+        "weight": 33.333333333333336,
+        "detail": "私有 600 道保留题，6 个领域各 100 题；只计准确率，不用 Net Score 或幻觉率。"
+      }
+    ]
+  },
+  "interpretation": {
+    "judge": {
+      "text": "三项均由 GPT-5.6 Luna（medium）按各组成项规则判分；答题模型也固定为 GPT-5.6 Luna（medium）。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/search-api"
+      ]
+    },
+    "comparison": {
+      "text": "对照同模型无搜索基线观察回答质量增益；成本和耗时独立用于取舍，不当作指数权重。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/search-api",
+        "https://artificialanalysis.ai/methodology/search-api"
+      ]
+    },
+    "versionChanges": {
+      "text": "2026-08-18 是指数首发日期。当前榜单会增加供应商、更新结果；榜单数据日期不等于指数发布或新版本。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/search-api",
+        "https://artificialanalysis.ai/agents/search-api"
+      ]
+    }
+  }
+}

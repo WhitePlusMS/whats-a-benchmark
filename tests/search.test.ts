@@ -149,3 +149,14 @@ test("Harvey Contracts 新任务线不替换原 LAB 或 AA 私有实施", () => 
   assert.equal(firstId("Harvey LAB"), "harvey-lab");
   assert.equal(firstId("Harvey LAB-AA v1.1"), "harvey-lab-aa-v1-1");
 });
+
+test("AA 搜索指数与智能指数及组成评测的目录入口保持独立", () => {
+  assert.equal(
+    firstId("Artificial Analysis Search Index"),
+    "artificial-analysis-search-index",
+  );
+  assert.equal(firstId("AA Search Index"), "artificial-analysis-search-index");
+  assert.equal(firstId("Search API Bench"), "artificial-analysis-search-index");
+  assert.equal(firstId("AA Index"), "aa-intelligence-index-v5-0-2");
+  assert.equal(firstId("DeepSearchQA"), "deepsearchqa");
+});

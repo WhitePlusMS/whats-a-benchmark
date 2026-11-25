@@ -589,3 +589,55 @@ test("Harvey Contracts 默认显示真实 NDA 输入、指定交付及有限准�
   assert.ok(html.includes("7f9b1ee19f9224576a5a5143c4e6f75842ac7020"));
   assert.doesNotMatch(shown, /成品答案如下|全部 75 条/);
 });
+
+test("AA 搜索指数默认展示正式 eval 原题、参考答案与 F1 规则", async () => {
+  const { item: index, sampleFile: native } = await load(
+    "artificial-analysis-search-index",
+  );
+  assert.equal(index.releaseDate, "2026-08-18");
+  assert.deepEqual(index.brandIds, ["artificial-analysis"]);
+  assert.equal(native, undefined);
+  const items = index.composition!.items;
+  assert.deepEqual(
+    items.map(({ id, weight }) => [id, weight]),
+    [
+      ["deepsearchqa", 100 / 3],
+      ["browsecomp", 100 / 3],
+      ["aa-omniscience", 100 / 3],
+    ],
+  );
+  assert.match(items[0]!.detail, /完整公开 eval 900 题.*F1/);
+  assert.match(items[1]!.detail, /困难 n200.*准确率.*未核对逐题成员/);
+  assert.match(items[2]!.detail, /私有 600 道.*准确率，不用 Net Score/);
+  assert.match(index.metric.description, /成本与耗时单列，不计入质量指数/);
+
+  const members = await Promise.all(items.map(({ id }) => load(id)));
+  const catalog = new Map(members.map(({ item }) => [item.id, item]));
+  const member = compositionSample(index, catalog);
+  assert.equal(member?.id, "deepsearchqa");
+  const sampleFile = members[0]!.sampleFile;
+  const sample = sampleFile!.samples[0]!;
+  assert.equal(sample.id, "deepsearchqa-eval-0");
+  assert.equal(sample.split, "DSQA-full.csv / eval / row_idx=0（首条数据行）");
+  assert.match(
+    sample.source,
+    /b2623f8653065c2672de6d941fc5434cd652376c\/DSQA-full\.csv$/,
+  );
+  assert.match(sample.license, /Apache-2\.0（Google 固定数据卡/);
+  assert.equal(sample.licensePath, "licenses/extractbench-apache-2-0.txt");
+  assert.ok(sample.raw && typeof sample.raw === "object");
+  assert.equal(sample.prompt, sample.raw.problem);
+  assert.equal(sample.raw.answer, "New Zealand");
+  assert.equal(sample.answer, "New Zealand");
+
+  const { html, shown } = await renderDefault(member!, sampleFile, index.id);
+  assert.ok(shown.includes(sample.prompt), "完整原题不在折叠内容中");
+  assert.match(
+    shown,
+    /参考答案是 New Zealand.*GPT-5\.6 Luna（medium）.*精确率和召回率计算 F1/s,
+  );
+  assert.match(shown, /不是指数独立题、AA 某供应商的回答、检索轨迹或指数得分/);
+  assert.match(html, /methodology\/search-api#deepsearchqa/);
+  assert.match(html, /href="\/licenses\/extractbench-apache-2-0\.txt"/);
+  assert.doesNotMatch(html, /class="answer-content"/);
+});
