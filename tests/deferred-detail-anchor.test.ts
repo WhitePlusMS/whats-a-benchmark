@@ -86,7 +86,7 @@ test("HumanEval 初次定位仅绑定本页跨页/刷新深链，保留历史和
   assert.match(main, /window\.removeEventListener\(event, cancel\)/);
   assert.match(
     main,
-    /waitedForInitialLayout \? \{ behavior: "instant" as const \} : \{\}/,
+    /\(waitedForInitialLayout \|\| to\.path !== from\.path\s*\? \{ behavior: "instant" as const \}/,
   );
   assert.match(main, /router\.currentRoute\.value\.fullPath !== to\.fullPath/);
   assert.match(detail, /@settled="reportSamplesReady"/);

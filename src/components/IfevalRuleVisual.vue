@@ -18,7 +18,7 @@ const slots = computed(() =>
   ),
 );
 const progress = computed(() =>
-  Math.min(100, (100 * (props.result.count || 0)) / (props.result.target || 1)),
+  Math.min(1, (props.result.count || 0) / (props.result.target || 1)),
 );
 const chars = computed(() =>
   Array.from(props.text.slice(0, 160)).map((char, i) => ({
@@ -87,7 +87,10 @@ const stateText = computed(() =>
     </template>
     <template v-else-if="result.id === 'length_constraints:number_words'">
       <div class="if-budget">
-        <div :style="{ width: `${active ? progress : 0}%` }"></div>
+        <div
+          class="motion-progress"
+          :style="{ transform: `scaleX(${active ? progress : 0})` }"
+        ></div>
         <span>阈值 {{ result.target ?? "—" }}</span>
       </div>
       <p class="if-readout">

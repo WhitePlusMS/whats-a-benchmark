@@ -152,7 +152,6 @@
   justify-content: center;
   background-image: radial-gradient(var(--border) 0.7px, transparent 0.7px);
   background-size: 16px 16px;
-  animation: arc-arrive 0.18s ease-out;
 }
 .arc-grid-pair {
   display: grid;
@@ -226,16 +225,6 @@
   font-size: 13px;
   line-height: 1.9;
   margin-top: 6px;
-}
-@keyframes arc-arrive {
-  from {
-    opacity: 0.65;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
 }
 @media (max-width: 850px) {
   .walkthrough-heading {
@@ -316,10 +305,5 @@
   }
   .walkthrough-heading h2 {
     font-size: 22px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .arc-example-pair {
-    animation: none;
   }
 }

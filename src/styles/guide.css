@@ -217,19 +217,6 @@
   font-size: 13px;
   margin: 10px 0 0;
 }
-/* 沿用目录页的短位移浮现；关闭动态效果时，内容直接显示。 */
-@media (prefers-reduced-motion: no-preference) {
-  .guide-intro,
-  .guide-example {
-    animation: guide-in 280ms cubic-bezier(0.25, 1, 0.5, 1) backwards;
-  }
-  @keyframes guide-in {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-  }
-}
 @media (max-width: 900px) {
   .guide-definition {
     grid-template-columns: 1fr;

@@ -9,9 +9,6 @@
   min-width: 0;
   content-visibility: auto;
   contain-intrinsic-size: auto 310px;
-  transition:
-    border-color 180ms,
-    transform 180ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 .card-top {
   display: flex;
@@ -187,23 +184,9 @@
 .benchmark-card:focus-within {
   border-color: var(--accent-border-strong);
 }
-/* 保留原版轻浮现；最多错开120ms，后续结果不再累积等待。 */
-@media (prefers-reduced-motion: no-preference) {
-  .benchmark-card {
-    animation: card-in 200ms cubic-bezier(0.25, 1, 0.5, 1) backwards;
-    animation-delay: calc(var(--i, 0) * 30ms);
-  }
-  @keyframes card-in {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-  }
-}
 @media (hover: hover) and (pointer: fine) {
   .benchmark-card:hover {
     border-color: var(--accent-border-strong);
-    transform: translateY(-1px);
   }
 }
 .list-view .benchmark-card {

@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { useId } from "vue";
+import { computed, useId } from "vue";
 import { kindLabels } from "../content/catalog";
 import type { Category } from "../types/benchmark";
 import { sampleAccessLabels } from "../content/labels";
-import type { CatalogFilterKey, CatalogQuery } from "../lib/catalogQuery";
+import type {
+  catalogFacetOptions,
+  CatalogFilterKey,
+  CatalogQuery,
+} from "../lib/catalogQuery";
 import Icon from "./Icon.vue";
-defineProps<{
+const props = defineProps<{
   query: CatalogQuery;
-  publishers: readonly string[];
+  facets?: ReturnType<typeof catalogFacetOptions>;
   categoryCounts: ReadonlyMap<string, number>;
   total: number;
   categories: readonly Category[];
@@ -16,6 +20,35 @@ defineProps<{
 const emit = defineEmits<{ change: [key: CatalogFilterKey, value: string] }>();
 // 桌面和手机复用同一套控件，各实例仍有唯一的 label/id。
 const id = useId();
+function namedOptions(values: Set<string>, labels: Readonly<Record<string, string>>) {
+  return [...values].map((value) => ({ value, label: labels[value] ?? value }));
+}
+const fields = computed(() => {
+  const facets = props.facets;
+  if (!facets) return [];
+  const available = [
+    {
+      key: "publisher" as const,
+      label: "发布方",
+      all: "全部发布方",
+      options: [...facets.publishers].sort((a, b) => a.localeCompare(b, "zh"))
+        .map((value) => ({ value, label: value })),
+    },
+    {
+      key: "sample" as const,
+      label: "案例查看方式",
+      all: "全部方式",
+      options: namedOptions(facets.sampleTypes, sampleAccessLabels),
+    },
+    {
+      key: "kind" as const,
+      label: "评测类型",
+      all: "全部类型",
+      options: namedOptions(facets.kinds, kindLabels),
+    },
+  ];
+  return available.filter((field) => field.options.length > 0);
+});
 </script>
 <template>
   <div class="catalog-filter-content">
@@ -49,72 +82,25 @@ const id = useId();
         ><small>{{ categoryCounts.get(cat.id) || 0 }}</small>
       </button>
     </div>
-    <div v-if="!taskOnly" class="filter-more">
-      <label :for="`${id}-publisher`">发布方</label
-      ><select
-        :id="`${id}-publisher`"
-        name="publisher"
-        autocomplete="off"
-        :class="{ 'has-selection': query.publisher }"
-        :value="query.publisher"
-        @change="
-          emit(
-            'change',
-            'publisher',
-            ($event.target as HTMLSelectElement).value,
-          )
-        "
-      >
-        <option value="">全部发布方</option>
-        <option
-          v-for="publisher in publishers"
-          :key="publisher"
-          :value="publisher"
+    <div v-if="fields.length" class="filter-more">
+      <template v-for="field in fields" :key="field.key">
+        <label :for="`${id}-${field.key}`">{{ field.label }}</label>
+        <select
+          :id="`${id}-${field.key}`"
+          :name="field.key"
+          autocomplete="off"
+          :class="{ 'has-selection': query[field.key] }"
+          :value="query[field.key]"
+          @change="
+            emit('change', field.key, ($event.target as HTMLSelectElement).value)
+          "
         >
-          {{ publisher }}
-        </option>
-      </select>
-      <label :for="`${id}-sample`">案例查看方式</label
-      ><select
-        :id="`${id}-sample`"
-        name="sample-status"
-        autocomplete="off"
-        :class="{ 'has-selection': query.sample }"
-        :value="query.sample"
-        @change="
-          emit('change', 'sample', ($event.target as HTMLSelectElement).value)
-        "
-      >
-        <option value="">全部方式</option>
-        <option
-          v-for="(label, key) in sampleAccessLabels"
-          :key="key"
-          :value="key"
-        >
-          {{ label }}
-        </option>
-      </select>
-      <label :for="`${id}-kind`">评测类型</label
-      ><select
-        :id="`${id}-kind`"
-        name="benchmark-kind"
-        autocomplete="off"
-        :class="{ 'has-selection': query.kind }"
-        :value="query.kind"
-        @change="
-          emit('change', 'kind', ($event.target as HTMLSelectElement).value)
-        "
-      >
-        <option value="">全部类型</option>
-        <option v-for="(label, key) in kindLabels" :key="key" :value="key">
-          {{ label }}
-        </option>
-      </select>
+          <option value="">{{ field.all }}</option>
+          <option v-for="option in field.options" :key="option.value" :value="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </template>
     </div>
-    <RouterLink to="/guide/" class="sidebar-tip"
-      ><Icon name="book" :size="17" /><span
-        ><strong>评测入门</strong><small>指标、版本与评测条件</small></span
-      ><Icon name="up" :size="15"
-    /></RouterLink>
   </div>
 </template>

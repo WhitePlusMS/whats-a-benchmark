@@ -150,7 +150,7 @@ test("router-backed catalog interface merges rapid filters and restores URL stat
 
   await catalog.setFilter("publisher", "unknown publisher");
   assert.deepEqual(catalog.results.value, []);
-  await catalog.reset();
+  await catalog.relaxFilters();
   assert.deepEqual(router.currentRoute.value.query, {
     view: "list",
     sort: "year",
@@ -267,10 +267,11 @@ test("模型目录医疗健康和搜索叠加，清空回到模型目录，旧�
   await catalog.setFilter("q", "Terminal-Bench 4.0");
   assert.equal(catalog.results.value.length, 0);
   assert.equal(router.currentRoute.value.path, "/");
-  await catalog.reset();
+  await catalog.relaxFilters();
   assert.equal(catalog.query.value.category, "");
   assert.equal(catalog.query.value.view, "list");
-  assert.equal(catalog.results.value.length, benchmarks.length);
+  assert.equal(catalog.query.value.q, "Terminal-Bench 4.0");
+  assert.ok(catalog.results.value.some((item) => item.id === "terminal-bench-4"));
 });
 
 test("医疗健康分类可检索 InclusionMed，保留原能力分类和详情路径", () => {

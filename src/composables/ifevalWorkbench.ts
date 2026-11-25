@@ -6,8 +6,9 @@ export function useIfevalWorkbench(getId: () => string | undefined) {
   const previousDraft = ref<string | null>(null);
   function replaceDraft(text: string) {
     if (text === draft.value) return;
-    previousDraft.value = draft.value;
+    const previous = draft.value;
     draft.value = text;
+    previousDraft.value = previous;
   }
   function undo() {
     if (previousDraft.value === null) return;
@@ -27,7 +28,15 @@ export function useIfevalWorkbench(getId: () => string | undefined) {
     },
     { flush: "sync" },
   );
-  watch(draft, () => (selectedVariant.value = 0), { flush: "sync" });
+  watch(
+    draft,
+    () => {
+      selectedVariant.value = 0;
+      // 继续手写后，旧的替换撤销不能覆盖新输入。
+      previousDraft.value = null;
+    },
+    { flush: "sync" },
+  );
   watch(
     showMatrix,
     (open) => {

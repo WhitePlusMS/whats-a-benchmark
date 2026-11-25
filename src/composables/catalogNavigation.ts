@@ -4,6 +4,7 @@ import type { InjectionKey, Ref } from "vue";
 interface CatalogNavigation {
   catalogLocation: Ref<string>;
   embodiedLocation: Ref<string>;
+  lastCatalog: Ref<"model" | "embodied" | undefined>;
 }
 
 // 每个应用实例单独提供，避免预生成页面之间共享浏览状态。
