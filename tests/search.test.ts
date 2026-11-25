@@ -8,7 +8,7 @@ function firstId(query: string) {
 
 test("指数、AA实施与原版名称各自识别，Terminal-Bench版本不混合", () => {
   const expected = new Map([
-    ["AA 智能指数", "aa-intelligence-index-v5-0-1"],
+    ["AA 智能指数", "aa-intelligence-index-v5-0-2"],
     ["AA-Briefcase", "aa-briefcase"],
     ["AA-Omniscience", "aa-omniscience"],
     ["AA-LCR", "aa-lcr"],
@@ -92,8 +92,16 @@ test("国内模型发布页中的新增名称能唯一识别，版本不会串�
 
 test("AA 指数通用名称优先新版，完整旧版名称仍可查找", () => {
   const cases = new Map([
-    ["Artificial Analysis Intelligence Index", "aa-intelligence-index-v5-0-1"],
-    ["AA Index", "aa-intelligence-index-v5-0-1"],
+    ["Artificial Analysis Intelligence Index", "aa-intelligence-index-v5-0-2"],
+    ["AA Index", "aa-intelligence-index-v5-0-2"],
+    ["AA Intelligence Index", "aa-intelligence-index-v5-0-2"],
+    ["Artificial Analysis 智能指数", "aa-intelligence-index-v5-0-2"],
+    ["AA Intelligence Index v5.0.2", "aa-intelligence-index-v5-0-2"],
+    [
+      "Artificial Analysis Intelligence Index v5.0.1",
+      "aa-intelligence-index-v5-0-1",
+    ],
+    ["AA 智能指数 v5.0.1", "aa-intelligence-index-v5-0-1"],
     ["Artificial Analysis Intelligence Index v4.3.2", "aa-intelligence-index"],
     ["AA 智能指数 v4.3.2", "aa-intelligence-index"],
     [
@@ -130,4 +138,14 @@ test("银行文本、银行语音和实体采集使用不同详情页，RCT 短�
   assert.equal(firstId("τ-Entity"), "tau-entity-aa");
   assert.equal(firstId("Tau Elicitation"), "tau-entity-aa");
   assert.equal(firstId("RCTBench"), "rctbench");
+});
+
+test("Harvey Contracts 新任务线不替换原 LAB 或 AA 私有实施", () => {
+  assert.equal(firstId("Harvey LAB: Contracts"), "harvey-lab-contracts");
+  assert.equal(
+    firstId("Legal Agent Benchmark: In-House Contracting"),
+    "harvey-lab-contracts",
+  );
+  assert.equal(firstId("Harvey LAB"), "harvey-lab");
+  assert.equal(firstId("Harvey LAB-AA v1.1"), "harvey-lab-aa-v1-1");
 });

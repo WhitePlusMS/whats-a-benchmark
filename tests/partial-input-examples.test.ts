@@ -4,7 +4,7 @@ import test from "node:test";
 import { effectScope, nextTick } from "vue";
 import { useSampleViewer } from "../src/composables/sampleViewer";
 
-test("部分公开的三项样例默认呈现实际输入及边界，不借用原始数据标签代替", async (t) => {
+test("部分公开的三项样例在阅读态呈现实际输入及边界，不借用原始数据标签代替", async (t) => {
   const ids = ["robotrack-bench", "lifeval", "terminal-bench-4-1"] as const;
   const samples = new Map(
     await Promise.all(
@@ -44,6 +44,15 @@ test("部分公开的三项样例默认呈现实际输入及边界，不借用�
     assert.equal(viewer.current.value.answer, undefined);
   }
 
+  // The complete spring-clip task is now the default. Keep this partial-input
+  // regression on the preserved named drawing sample rather than array order.
+  viewers[2]!.index.value = samples
+    .get("terminal-bench-4-1")
+    .samples.findIndex(
+      (sample: { id: string }) =>
+        sample.id === "terminal-bench-4-1-freecad-platform-drawing",
+    );
+  await nextTick();
   const [tracking, travel, cad] = viewers.map((v) => v.current.value!);
   assert.ok(tracking && travel && cad);
   assert.equal(tracking.id, "robotrack-so100-battery-point0-occlusion");

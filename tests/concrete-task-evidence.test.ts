@@ -196,12 +196,20 @@ test("AA v2.1 默认沿用正式 Terminal 成员的原题而不再存一份", as
   assert.equal(compositionSample(index, catalog), terminal);
   assert.equal(
     sampleFile?.samples[0]?.id,
-    "terminal-bench-4-1-freecad-platform-drawing",
+    "terminal-bench-4-1-freecad-spring-clip",
   );
   const { shown } = await renderDefault(terminal, sampleFile, index.id);
-  assert.match(shown, /e0fe7718e6\.png/);
-  assert.match(shown, /build_part\.py.*part\.FCStd/s);
-  assert.match(shown, /重放.*0\.9/s);
+  assert.match(shown, /answer\.py.*answer_base\.FCStd.*answer_edit\.FCStd/s);
+  assert.match(shown, /Base parameters in mm and degrees:.*Edit delta/s);
+  assert.match(shown, /乘积须达到 0\.5.*交付件和重放件两套都须达标/s);
+  const drawing = await renderDefault(
+    terminal,
+    sampleFile,
+    index.id,
+    "?sample=terminal-bench-4-1-freecad-platform-drawing#samples",
+  );
+  assert.match(drawing.shown, /build_part\.py.*e0fe7718e6\.png/s);
+  assert.match(drawing.shown, /重放.*0\.9/s);
   assert.equal(compositionSample(index, catalog, "unknown"), terminal);
   const oldId = "msw-fix-reset-generator-state";
   const oldMember = compositionSample(index, catalog, oldId);
@@ -216,6 +224,83 @@ test("AA v2.1 默认沿用正式 Terminal 成员的原题而不再存一份", as
   assert.match(old.html, /class="raw-content"/);
   assert.doesNotMatch(old.shown, /没有匹配此编号/);
   assert.match(old.shown, /MSW|msw/);
+});
+
+test("AA v5.0.2 九项权重不漂移，默认复用完整正式任务而非指数自造题", async () => {
+  const { item: index, sampleFile: native } = await load(
+    "aa-intelligence-index-v5-0-2",
+  );
+  const expected = {
+    "aa-briefcase": ["知识工作", 15],
+    "automationbench-aa": ["知识工作", 5],
+    "gdp-pdf": ["知识工作", 5],
+    "frontiercode-aa-2-0": ["编程", 15],
+    "terminal-bench-4-1": ["编程", 10],
+    "terminal-bench-science-0-1": ["科学", 15],
+    "critpt-v2": ["科学", 10],
+    "aa-omniscience": ["通用", 15],
+    "hle-diamond": ["通用", 10],
+  };
+  assert.deepEqual(
+    Object.fromEntries(
+      index.composition!.items.map(({ id, group, weight }) => [
+        id,
+        [group, weight],
+      ]),
+    ),
+    expected,
+  );
+  assert.equal(index.releaseDate, "2026-11-24");
+  assert.deepEqual(index.brandIds, ["artificial-analysis"]);
+  assert.equal(native, undefined);
+  const members = await Promise.all(
+    index.composition!.items.map(({ id }) => load(id)),
+  );
+  const catalog = new Map(members.map(({ item }) => [item.id, item]));
+  const selected = compositionSample(index, catalog);
+  assert.equal(selected?.id, "terminal-bench-4-1");
+  const { sampleFile } = members.find(({ item }) => item.id === selected?.id)!;
+  const sample = sampleFile!.samples[0]!;
+  assert.equal(sample.id, "terminal-bench-4-1-freecad-spring-clip");
+  assert.equal(typeof sample.raw, "string");
+  assert.equal(
+    createHash("sha256").update(String(sample.raw)).digest("hex"),
+    "28596ebe9683dbd0aa1067bc6b97d136b58c44d2578f7d7f674daefe6a264a07",
+  );
+  assert.equal(
+    sample.prompt,
+    String(sample.raw)
+      .replace(/^<!--[^]*?-->\s*/, "")
+      .trim(),
+  );
+  assert.match(
+    sample.source,
+    /4070d6cef56a7d20cb5dc98d5e10ada88a6b9440\/tasks\/freecad-spring-clip\/instruction\.md$/,
+  );
+  assert.equal(sample.licensePath, "licenses/terminal-bench-4-apache-2-0.txt");
+  assert.equal(sample.excerpt, false);
+  const { html, shown } = await renderDefault(selected!, sampleFile, index.id);
+  const compact = (value: string) => value.replace(/\s+/g, " ");
+  assert.ok(compact(shown).includes(compact(sample.prompt)));
+  assert.match(shown, /answer\.py.*answer_base\.FCStd.*answer_edit\.FCStd/s);
+  assert.match(
+    shown,
+    /基础件与编辑件各取 min.*乘积须达到 0\.5.*交付件和重放件两套都须达标/s,
+  );
+  assert.match(shown, /不是指数独立题、AA 模型输出或 v5\.0\.2 指数得分/);
+  assert.ok(html.includes("freecad-spring-clip/tests/criteria/checks.py"));
+  assert.doesNotMatch(shown, /每项均须达到 0\.71/);
+  const historical = await load("aa-intelligence-index-v5-0-1");
+  assert.ok(
+    historical.item.composition!.items.some(
+      ({ id }) => id === "terminal-bench-4",
+    ),
+  );
+  assert.ok(
+    !historical.item.composition!.items.some(
+      ({ id }) => id === "terminal-bench-4-1",
+    ),
+  );
 });
 
 test("MedGuard 默认说明是片段而非完整输入，只渲染安全候选句与原标签", async () => {
@@ -478,4 +563,29 @@ test("ExtractBench 目录和详情用相同的官方 LlamaIndex 小空间版本"
     assert.match(html, /alt="LlamaIndex 标识"/);
     assert.doesNotMatch(html, /is-fallback|publisher-name|本站图标/);
   }
+});
+
+test("Harvey Contracts 默认显示真实 NDA 输入、指定交付及有限准则", async () => {
+  const { item, sampleFile } = await load("harvey-lab-contracts");
+  const sample = sampleFile!.samples[0]!;
+  assert.equal(item.releaseDate, "2026-06-12");
+  assert.deepEqual(item.brandIds, ["harvey"]);
+  assert.equal(sample.excerpt, true);
+  assert.equal(sample.licensePath, "licenses/harvey-lab-v1-mit.txt");
+  assert.ok(sample.raw && typeof sample.raw === "object");
+  assert.deepEqual(
+    (sample.raw.criteria as { id: string }[]).map(({ id }) => id),
+    ["C-001", "C-074"],
+  );
+  const { html, shown } = await renderDefault(item, sampleFile);
+  const compact = (value: string) => value.replace(/\s+/g, " ");
+  assert.ok(compact(shown).includes(compact(sample.prompt)));
+  assert.match(
+    shown,
+    /Mutuality is a firm recommendation\. We do not recommend circulating a one-way draft under any circumstances\./,
+  );
+  assert.match(shown, /project-parapet-nda-draft\.docx/);
+  assert.match(shown, /C-001.*C-074.*75 条准则的节选.*没有单独提供成品答案/s);
+  assert.ok(html.includes("7f9b1ee19f9224576a5a5143c4e6f75842ac7020"));
+  assert.doesNotMatch(shown, /成品答案如下|全部 75 条/);
 });

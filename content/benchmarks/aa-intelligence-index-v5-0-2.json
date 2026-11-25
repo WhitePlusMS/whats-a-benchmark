@@ -1,0 +1,224 @@
+{
+  "id": "aa-intelligence-index-v5-0-2",
+  "status": "published",
+  "order": 600,
+  "name": "Artificial Analysis Intelligence Index v5.0.2",
+  "subtitle": "四个能力组等权、九项评测加权汇总",
+  "category": "general",
+  "tags": [
+    "综合指数",
+    "知识工作",
+    "编程",
+    "科学"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "version": "v5.0.2",
+  "kind": "suite",
+  "aliases": [
+    "AA Intelligence Index v5.0.2",
+    "AA 智能指数 v5.0.2",
+    "Artificial Analysis Intelligence Index",
+    "AA Intelligence Index",
+    "Artificial Analysis 智能指数",
+    "AA 智能指数",
+    "AA Index"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "九项评测组成的智能指数，四个能力组各占 25%；v5.0.2 更新终端任务验证与代码修改完整性判分。",
+    "task": "在各自环境完成九项评测，将不同分项的结果按规定转换与权重汇总。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://artificialanalysis.ai/changelog"
+    ]
+  },
+  "taskContract": {
+    "input": "组成项的任务与数据；没有指数独立原题。",
+    "output": "文件、代码、科学答案或知识回答，依分项规则评分后汇总。",
+    "environment": "各分项按自己的协议运行；Terminal-Bench 4.1 使用 mini-swe-agent、每题 3 次取 pass@1，已有 4.0 结果按保存产物重评，不代表全部重跑。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataProfile": {
+    "summary": "9 项成员；Terminal-Bench 4.1 保留 66 题，FrontierCode-AA 2.0 保留 132 题；CritPt 仍为私有 40 题 Hard，不能用完整 70 题替代。",
+    "disclosure": "partial",
+    "scale": [
+      "知识工作、编程、科学、通用各 25%。"
+    ],
+    "splits": [
+      "公开程度依组成项，指数没有独立 split。"
+    ],
+    "fields": [],
+    "files": [],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开方法可查；若干组成项的正式题集或成员名单私有。"
+    ],
+    "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "官方网页未为全部任务与成品声明统一再发布许可。",
+    "scope": "本站仅整理公开方法及任务事实，底层题目和作品需分别核对权利。",
+    "boundaries": [
+      "官方可浏览不等于整套数据可转载。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "sampleAccess": {
+    "status": "official",
+    "reason": "指数没有独立题库。默认复用 Terminal-Bench 4.1 正式成员 freecad-spring-clip 的完整英文原题、参数和同任务验收说明，不是 v5.0.2 独立题、模型输出或指数得分。",
+    "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "metric": {
+    "name": "加权智能指数",
+    "description": "按官方分项标准化规则转换后加权；不能直接相加 Elo、准确率和 rubric 分。AA-Omniscience 总权重 15%，含准确率 10% 与非幻觉率 5%。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "以英文文本相关任务为主，部分分项可输入图像；语音与多语言另行评测，不属于这九项。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    },
+    {
+      "text": "v5.0.2 将既有 Terminal-Bench 4.0 产物按 4.1 验证器重评，并重新判定 FrontierCode-AA 2.0 的既有尝试；分数变化不能直接解释成模型重新运行或能力提升。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+        "https://artificialanalysis.ai/changelog"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "label": "AA 官方方法与九项权重",
+      "role": "definition"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking#version-history",
+      "label": "AA 智能指数版本历史",
+      "role": "release"
+    },
+    {
+      "url": "https://artificialanalysis.ai/changelog",
+      "label": "2026-11-24 v5.0.2 发布记录",
+      "role": "release"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-intelligence-index-v5-0-1",
+      "label": "前一版本 v5.0.1",
+      "detail": "保留 Terminal-Bench 4.0 的历史配置；v5.0.1 的变化是 CritPt 重判，不是本次新增组成。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#version-history"
+      ]
+    },
+    {
+      "id": "aa-intelligence-index",
+      "label": "历史 v4.3.2",
+      "detail": "旧版稳定页面保留，不覆盖其十项组成。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "releaseDate": "2026-11-24",
+  "composition": {
+    "sourceUrls": [
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "https://artificialanalysis.ai/methodology/intelligence-benchmarking#version-history"
+    ],
+    "items": [
+      {
+        "id": "terminal-bench-4-1",
+        "group": "编程",
+        "weight": 10,
+        "detail": "4.1 的完整 66 项，每题 3 次，pass@1；保留 4.0 任务与环境，更新验证器。默认所示 spring-clip 原题是正式组成任务，不是指数独立题。"
+      },
+      {
+        "id": "aa-briefcase",
+        "group": "知识工作",
+        "weight": 15,
+        "detail": "v1.1，91 任务、4 场景；任务成功、分析和呈现的综合 Elo。"
+      },
+      {
+        "id": "automationbench-aa",
+        "group": "知识工作",
+        "weight": 5,
+        "detail": "657 任务；触发 guardrail 违规得零。"
+      },
+      {
+        "id": "gdp-pdf",
+        "group": "知识工作",
+        "weight": 5,
+        "detail": "100 任务；rubric all-pass，每题 5 次。"
+      },
+      {
+        "id": "frontiercode-aa-2-0",
+        "group": "编程",
+        "weight": 15,
+        "detail": "仍为 2.0 的 132 项、每题 3 次；更新完整性扫描，并对 advisory 扫描项进行 LLM 评委复核，重判既有尝试。"
+      },
+      {
+        "id": "terminal-bench-science-0-1",
+        "group": "科学",
+        "weight": 15,
+        "detail": "0.1.0 的 70 任务，每题 3 次，pass@1。"
+      },
+      {
+        "id": "critpt-v2",
+        "group": "科学",
+        "weight": 10,
+        "detail": "只使用 40 题 Hard Subset，不是完整 70 题；每题 5 次。"
+      },
+      {
+        "id": "aa-omniscience",
+        "group": "通用",
+        "weight": 15,
+        "detail": "v1.1 的 3,000 题；准确率 10%＋非幻觉率 5%。"
+      },
+      {
+        "id": "hle-diamond",
+        "group": "通用",
+        "weight": 10,
+        "detail": "1,000 题，含 272 图像题；无工具；不能替换为原 HLE。"
+      }
+    ]
+  },
+  "interpretation": {
+    "versionChanges": {
+      "text": "2026-11-24 发布 v5.0.2：Terminal-Bench 4.0 换为 4.1，任务仍为同一 66 项，对可用的既有产物使用新验证器重评；FrontierCode-AA 仍为 2.0、132 项，更新完整性扫描及 advisory 扫描项的 LLM 评委复核，重判既有尝试。九项权重不变，CritPt 的上一轮重判属于 v5.0.1。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking#version-history",
+        "https://artificialanalysis.ai/changelog",
+        "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+      ]
+    }
+  }
+}

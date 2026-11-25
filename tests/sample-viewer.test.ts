@@ -346,7 +346,7 @@ test("Terminal-Bench 4.1 默认展示原始 FreeCAD 任务正文，完整文件�
   assert.equal(viewer.mode.value, "read");
   const sample = viewer.current.value;
   assert.ok(sample);
-  assert.equal(sample.id, "terminal-bench-4-1-freecad-platform-drawing");
+  assert.equal(sample.id, "terminal-bench-4-1-freecad-spring-clip");
   assert.equal(sample.walkthrough, undefined);
   assert.equal(sample.promptOrigin, undefined);
   assert.ok(typeof sample.raw === "string");
@@ -356,12 +356,12 @@ test("Terminal-Bench 4.1 默认展示原始 FreeCAD 任务正文，完整文件�
   );
   assert.match(
     sample.prompt,
-    /^Write a FreeCAD Python script at \/app\/build_part\.py/,
+    /^Write a FreeCAD Python script at \/app\/answer\.py/,
   );
   assert.match(sample.prompt, /You have 28800 seconds to complete this task/);
   assert.ok(
     sample.references?.some(({ url }) =>
-      url.endsWith("/environment/e0fe7718e6.png"),
+      url.endsWith("/freecad-spring-clip/tests/criteria/checks.py"),
     ),
   );
   assert.equal(sample.assets, undefined);
