@@ -1,0 +1,206 @@
+{
+  "id": "mazebench",
+  "status": "published",
+  "order": 23315,
+  "name": "MazeBench",
+  "subtitle": "三维迷宫中依靠局部观察完成长程寻宝",
+  "category": "agents",
+  "tags": [
+    "空间推理",
+    "长程规划"
+  ],
+  "publisher": "MazeBench 作者团队",
+  "brandIds": [
+    "mazebench"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-07-28",
+  "version": "Main World · 2026-11-23 公开快照（20f6ea1）",
+  "kind": "original",
+  "aliases": [
+    "Maze Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在相连的三维迷宫房间中评估长程空间理解、规划与工具操作。",
+    "task": "从 H×I 房间开始探索迷宫并收集宝石。",
+    "sourceUrls": [
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/README.md",
+      "https://mazebench.com/blog?post=maze-bench-results"
+    ]
+  },
+  "taskContract": {
+    "input": "只观察当前房间，按赛道接收 ASCII 或渲染图；可通过工具改变视角。",
+    "output": "以游戏动作探索并解开空间谜题，最终收集所有宝石。",
+    "environment": "独立三维游戏引擎，支持不同编码工具条件。",
+    "sourceUrls": [
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/README.md",
+      "https://mazebench.com/blog?post=maze-bench-results"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方引擎包含 Main World 关卡及评测提示。",
+    "disclosure": "complete",
+    "scale": [
+      "16×16 个房间，每个房间 16×16 格；共 100 颗宝石。"
+    ],
+    "splits": [
+      "此处展示主世界开局，不是独立开发集或测试子集。"
+    ],
+    "fields": [
+      "世界映射把关卡文件关联到房间坐标；玩家和格子定义存入房间文件。"
+    ],
+    "files": [
+      "level-data/v1/main-world 与 benchmarking/v1/EVAL-PROMPT.md。"
+    ],
+    "sourceUrls": [
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/README.md",
+      "https://mazebench.com/blog?post=maze-bench-results"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "样例的官方文本公开；运行条件见作者说明。"
+    ],
+    "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/ftplmvndyl.txt",
+    "sourceUrls": [
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/ftplmvndyl.txt"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT，© 2026 Jonathan Pappas 与 David Pappas。",
+    "scope": "仅转载此处列出的作者任务材料，保留对应版权与许可。",
+    "boundaries": [
+      "不把本条的许可扩展到未选素材、站外视频或第三方资料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示一条来源可定位的真实任务，包含初始输入、交付和同题验收。",
+    "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/ftplmvndyl.txt",
+    "sourceUrls": [
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/ftplmvndyl.txt"
+    ]
+  },
+  "metric": {
+    "name": "独立宝石计数",
+    "description": "榜单按收集到的不同宝石数量计分，满分 100。固定快照的评测适配器另将宝石数除以 100（最高 1）作为奖励，并单独记录是否胜利。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/README.md",
+      "https://mazebench.com/blog?post=maze-bench-results",
+      "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/environments/mazebench/mazebench/taskset.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同世界版本与工具配置的成绩不可直接混读。关卡目录名 v1 是文件路径，不代表此页面对应网站的某个榜单版本。",
+      "sourceUrls": [
+        "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/README.md",
+        "https://mazebench.com/blog?post=maze-bench-results",
+        "https://mazebench.com/blog?post=epoch-ai-review-response"
+      ]
+    },
+    {
+      "text": "本页不是模型轨迹，也没有重跑任务。",
+      "sourceUrls": [
+        "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/README.md",
+        "https://mazebench.com/blog?post=maze-bench-results"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方引擎说明（固定版）",
+      "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "发布与计分说明",
+      "url": "https://mazebench.com/blog?post=maze-bench-results",
+      "role": "release"
+    },
+    {
+      "label": "官方工具评测提示",
+      "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/benchmarking/v1/EVAL-PROMPT.md",
+      "role": "code"
+    },
+    {
+      "label": "官方 H×I 房间原文件",
+      "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/ftplmvndyl.txt",
+      "role": "data"
+    },
+    {
+      "label": "官方房间坐标映射",
+      "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/world_map.json",
+      "role": "data"
+    },
+    {
+      "label": "MIT 许可",
+      "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "同日作者版本说明（与文件路径 v1 区分）",
+      "url": "https://mazebench.com/blog?post=epoch-ai-review-response",
+      "role": "readme"
+    },
+    {
+      "label": "同版本官方计分适配器",
+      "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/environments/mazebench/mazebench/taskset.py",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "main-world-hxi-20f6ea1",
+        "title": "Main World：从 H×I 出发寻找宝石",
+        "type": "record",
+        "prompt": "起始输入：官方 H×I 房间的 16×16 原始格子定义。下方是版本库关卡记录，不是模型工具渲染后的屏幕。\n\n.+# .+# .+# .+# .+# .+# . . . . .+# .+# .+# .+# .+# .+#\n.+# . . . . . . . . . .+# . . . . .+#\n.+# . . . . . . . . . .+# . . . . .+#\n.+# .+# .+# . .+# .+# .+# .+# .+# .+# .+# . . . . .+#\n.+# .+# .+# . .+# .+# .+# .+# .+# .+# .+# . . . . .+#\n.+# . . . . . . . M0 M0 . . . . . .+#\n.+# . . . . . . . M0 M0 . . . . . .+#\n.+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# . . + + .+#\n.+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# . . + + .+#\n.+# . . . . . . . . .+# .+# . . . . .+#\n.+# . . . . . . . . .+# .+# + + . . .+#\n.+# . . . . . . . . .+# .+# + + . . .+#\n.+# . . . .+p . . . . . . . . . . .+#\n.+# . . . . . . . . . . . . . . .+#\n.+# . . . . . . . . . . . . . . .+#\n.+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+#\n\n官方任务指令（节选）：\nYou are \"P\" for player, and the goal is to find and collect \"G\" gems.\nThere are 100 gems total, so do not finish until you collect them all.\n\n交付：通过游戏工具探索，直到收齐 100 颗宝石。\n验收：引擎按不同宝石 ID 计数，同一颗不能重复计分；全收集才完成整局。",
+        "raw": {
+          "ftplmvndyl.txt": ".+# .+# .+# .+# .+# .+# . . . . .+# .+# .+# .+# .+# .+#\n.+# . . . . . . . . . .+# . . . . .+#\n.+# . . . . . . . . . .+# . . . . .+#\n.+# .+# .+# . .+# .+# .+# .+# .+# .+# .+# . . . . .+#\n.+# .+# .+# . .+# .+# .+# .+# .+# .+# .+# . . . . .+#\n.+# . . . . . . . M0 M0 . . . . . .+#\n.+# . . . . . . . M0 M0 . . . . . .+#\n.+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# . . + + .+#\n.+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# . . + + .+#\n.+# . . . . . . . . .+# .+# . . . . .+#\n.+# . . . . . . . . .+# .+# + + . . .+#\n.+# . . . . . . . . .+# .+# + + . . .+#\n.+# . . . .+p . . . . . . . . . . .+#\n.+# . . . . . . . . . . . . . . .+#\n.+# . . . . . . . . . . . . . . .+#\n.+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+# .+#",
+          "EVAL-PROMPT.md": "You are \"P\" for player, and the goal is to find and collect \"G\" gems.\nThere are 100 gems total, so do not finish until you collect them all.",
+          "world_map.json": {
+            "levels": {
+              "ftplmvndyl.txt": [
+                "H",
+                "I"
+              ]
+            }
+          }
+        },
+        "source": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/ftplmvndyl.txt",
+        "license": "MIT，© 2026 Jonathan Pappas 与 David Pappas。",
+        "split": "Main World · 公开固定快照 · H×I",
+        "explanation": "这是同一长程评测的起始房间，不是单房间独立测试或模型实跑记录。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "同版本官方评测提示",
+            "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/benchmarking/v1/EVAL-PROMPT.md"
+          },
+          {
+            "label": "同版本官方房间映射",
+            "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/level-data/v1/main-world/world_map.json"
+          },
+          {
+            "label": "同版本官方计分适配器",
+            "url": "https://github.com/mazebench/MazeBenchEngine/blob/20f6ea173ab27ffc721632a34d4c2ac5ce21c233/environments/mazebench/mazebench/taskset.py"
+          }
+        ],
+        "licensePath": "licenses/mazebench-mit.txt"
+      }
+    ]
+  },
+  "updatedAt": "2026-11-25"
+}
