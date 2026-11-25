@@ -16,7 +16,7 @@
     "google-deepmind"
   ],
   "year": 2025,
-  "version": "Google DeepSearchQA 技术报告与公开数据/榜单；模型报告所用pass和judge设置未必相同",
+  "version": "Google DeepSearchQA 公开 eval（900 题）",
   "kind": "original",
   "aliases": [
     "DeepSearch QA"
@@ -40,39 +40,47 @@
     ]
   },
   "dataProfile": {
-    "summary": "Google DeepMind 报告由900个人工构建问题组成，覆盖17个领域；数据从官方评测页链接至 Kaggle，访问条款和数据许可仍待核实。",
-    "disclosure": "partial",
+    "summary": "Google 官方完整公开 eval 含 900 个问题，覆盖 17 个领域；固定数据文件和许可见 Hugging Face 数据卡。",
+    "disclosure": "complete",
     "scale": [
-      "官方技术报告称900个问题，覆盖17个领域"
+      "Google 公开 eval：900 题、17 个领域。"
     ],
-    "splits": [],
+    "splits": [
+      "deepsearchqa / eval：完整 900 题。"
+    ],
     "fields": [
       "problem",
       "problem_category",
       "answer",
       "answer_type"
     ],
-    "files": [],
+    "files": [
+      "DSQA-full.csv：题目、分类、参考答案和答案类型。"
+    ],
     "sourceUrls": [
       "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
       "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/",
       "https://deepmind.google/research/evals/",
-      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md"
     ]
   },
   "dataAccess": {
-    "status": "partial",
+    "status": "public",
     "requirements": [
-      "Kaggle account and dataset terms have not been independently confirmed; no additional gate is inferred."
+      "Google Hugging Face 数据库提供完整公开 eval；Kaggle 另有发放入口，未另核对其账户条件。"
     ],
     "sourceUrls": [
       "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
       "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/",
       "https://www.kaggle.com/datasets/deepmind/deepsearchqa/data",
       "https://deepmind.google/research/evals/",
-      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1"
+      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md"
     ],
-    "url": "https://www.kaggle.com/datasets/deepmind/deepsearchqa/data"
+    "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv"
   },
   "reusePolicy": {
     "status": "permitted",
@@ -84,15 +92,17 @@
     ],
     "sourceUrls": [
       "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
-      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+      "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md"
     ]
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "已取得此评测的真实记录、原始字段或官方具体案例，并附简短解析；完整环境及省略范围见案例。",
-    "url": "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
+    "reason": "展示 Google 固定公开 eval 的首条真实记录及参考答案，未包含实际网络搜索轨迹。",
+    "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
     "sourceUrls": [
-      "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1"
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
+      "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md"
     ]
   },
   "metric": {
@@ -156,27 +166,48 @@
       "label": "官方数据卡",
       "url": "https://huggingface.co/datasets/google/deepsearchqa",
       "role": "data"
+    },
+    {
+      "label": "固定快照的 DSQA-full.csv（eval 第 1 条）",
+      "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
+      "role": "data"
+    },
+    {
+      "label": "同一快照的数据卡与 Apache-2.0 声明",
+      "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md",
+      "role": "access"
+    },
+    {
+      "label": "AA 搜索指数采用完整 eval 的方法",
+      "url": "https://artificialanalysis.ai/methodology/search-api#deepsearchqa",
+      "role": "definition"
+    },
+    {
+      "label": "AA 搜索指数的题级判分协议",
+      "url": "https://artificialanalysis.ai/methodology/search-api#index-components",
+      "role": "definition"
     }
   ],
   "related": [],
-  "verifiedAt": "2026-11-05",
+  "verifiedAt": "2026-11-25",
   "interpretation": {
     "versionChanges": {
-      "text": "Google DeepSearchQA 技术报告与公开数据/榜单；模型报告所用pass和judge设置未必相同",
+      "text": "Google 固定公开 eval 为 900 题，数据卡建议使用 Gemini 2.5 Flash 自动评分；AA 搜索指数覆盖同一公开 eval，但使用其固定裁判和执行协议，两类成绩不能视为同一设置。",
       "sourceUrls": [
-        "https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf",
-        "https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/"
+        "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md",
+        "https://artificialanalysis.ai/methodology/search-api#index-components"
       ]
     }
   },
   "releaseDate": "2025-12-11",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-25",
   "sampleSet": {
-    "retrievedAt": "2026-10-19",
+    "retrievedAt": "2026-11-25",
     "samples": [
       {
         "excerpt": true,
-        "license": "官方HF数据卡声明 Apache-2.0。",
+        "license": "Apache-2.0（Google 固定数据卡；不覆盖题目引用的第三方网页）。",
+        "licensePath": "licenses/extractbench-apache-2-0.txt",
         "raw": {
           "problem": "Consider the OECD countries whose total population was composed of at least 20% of foreign-born populations as of 2023 (according to the Observatory of Migration at the university of Oxford). Amongst them, which country saw their overall criminality score increase by at least +0.2 point between 2021 and 2023 and their resilience score decrease by more than 0.3 between these same dates (according to the Organised Crime Index)?",
           "problem_category": "Politics & Government",
@@ -186,11 +217,25 @@
         "prompt": "Consider the OECD countries whose total population was composed of at least 20% of foreign-born populations as of 2023 (according to the Observatory of Migration at the university of Oxford). Amongst them, which country saw their overall criminality score increase by at least +0.2 point between 2021 and 2023 and their resilience score decrease by more than 0.3 between these same dates (according to the Organised Crime Index)?",
         "type": "text",
         "answer": "New Zealand",
-        "split": "deepsearchqa/eval row_idx=0",
-        "source": "https://datasets-server.huggingface.co/rows?dataset=google%2Fdeepsearchqa&config=deepsearchqa&split=eval&offset=0&length=1",
-        "explanation": "Google DeepMind官方DeepSearchQA eval首行：要求筛选2023年外来人口比例至少20%的OECD国家，再按2021至2023有组织犯罪指数变化筛出 criminality 上升至少0.2且resilience下降超过0.3的国家。该行答案为New Zealand；样例不包括网络搜索轨迹。",
+        "split": "DSQA-full.csv / eval / row_idx=0（首条数据行）",
+        "source": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/DSQA-full.csv",
+        "explanation": "这是一道单答案题，Google 标注的参考答案是 New Zealand。AA 搜索指数使用完整公开 eval；在这项评测中，GPT-5.6 Luna（medium）裁判将一次提交的答案项与参考项比较，以精确率和召回率计算 F1，再按题平均。这里展示的是组成评测的原始题与标注，不是指数独立题、AA 某供应商的回答、检索轨迹或指数得分。",
         "id": "deepsearchqa-eval-0",
-        "title": "DeepSearchQA 多步国家指标检索题"
+        "title": "DeepSearchQA 多步国家指标检索题",
+        "references": [
+          {
+            "label": "Google 固定数据卡与 Apache-2.0 许可",
+            "url": "https://huggingface.co/datasets/google/deepsearchqa/blob/b2623f8653065c2672de6d941fc5434cd652376c/README.md"
+          },
+          {
+            "label": "AA 官方方法：DeepSearchQA 完整 eval 与 F1",
+            "url": "https://artificialanalysis.ai/methodology/search-api#deepsearchqa"
+          },
+          {
+            "label": "AA 官方方法：裁判与三项分开判分",
+            "url": "https://artificialanalysis.ai/methodology/search-api#index-components"
+          }
+        ]
       }
     ]
   },
