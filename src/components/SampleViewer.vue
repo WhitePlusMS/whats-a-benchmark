@@ -64,6 +64,14 @@ const showExplanation = computed(
     !(current.value?.options && current.value.answer),
 );
 const mediaRetryToken = ref("");
+const readingBody = ref<HTMLElement>();
+watch(mode, (value) => {
+  // 隐藏媒体时停止播放但保留进度，避免阅读原始数据时仍在后台发声。
+  if (value === "raw")
+    readingBody.value
+      ?.querySelectorAll<HTMLMediaElement>("audio, video")
+      .forEach((media) => media.pause());
+});
 function retryMedia() {
   if (props.item.id === "libero")
     mediaRetryToken.value = nextLiberoMediaRetryToken();
@@ -229,7 +237,8 @@ onMounted(() => {
           }}</span>
         </div>
         <h3 translate="no">{{ current.title }}</h3>
-        <template v-if="mode === 'read'">
+        <!-- 同一道题切换展示方式只隐藏阅读区，保留草稿、画板和撤销历史。 -->
+        <div ref="readingBody" v-show="mode === 'read'" class="sample-reading">
           <div v-if="failedAssets.length" class="sample-media-retry">
             <button type="button" class="secondary-button" @click="retryMedia">
               重新加载本条记录媒体
@@ -344,9 +353,9 @@ onMounted(() => {
                     ? "本页节选不含参考答案，完整任务见原始来源。"
                     : "此公开记录未附参考答案，完成标准见评分方法。"
             }}
-          </p></template
-        >
-        <template v-else>
+          </p>
+        </div>
+        <template v-if="mode === 'raw'">
           <div v-if="item.id === 'mmlu-pro'" class="muted">
             <p>
               以下包含数据集公开答案与示范

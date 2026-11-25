@@ -6,6 +6,7 @@ import {
 } from "../content/roboQuestExperience";
 import type { TaskSample } from "../types/benchmark";
 import SampleMedia from "./SampleMedia.vue";
+import Icon from "./Icon.vue";
 
 const props = defineProps<{ sample: TaskSample }>();
 const concept = ref(0);
