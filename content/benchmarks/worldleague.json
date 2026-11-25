@@ -1,0 +1,298 @@
+{
+  "id": "worldleague",
+  "status": "published",
+  "order": 23220,
+  "name": "WorldLeague",
+  "subtitle": "用轨迹验收家居仿真中的探索、操控与变化适应",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "navigation",
+      "manipulation",
+      "long-horizon",
+      "reasoning"
+    ],
+    "resources": [
+      {
+        "label": "作者项目页",
+        "type": "项目",
+        "url": "https://xyangzhou.github.io/WorldLeague/"
+      },
+      {
+        "label": "固定任务与场景配置",
+        "type": "数据",
+        "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/tree/bec5a4ca0da48321e0a59be601852193680347fe"
+      }
+    ]
+  },
+  "tags": [
+    "具身智能",
+    "家居仿真",
+    "物理目标",
+    "轨迹验收"
+  ],
+  "publisher": "Xinyang Zhou、Qi Li、Xinchao Wang",
+  "brandIds": [
+    "worldleague"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-11-24",
+  "version": "WorldLeague 首发 · 60 项任务",
+  "kind": "original",
+  "aliases": [
+    "World League",
+    "WorldLeague Benchmark",
+    "WorldLeague: Benchmarking Physical Agency"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 60 项模拟机器人任务中，依据交互轨迹分别衡量部分进展和完整物理成功。",
+    "task": "依任务要求探索场景、重新安置物体，或在环境变化后继续完成物理目标。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30989v1",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "公开目标与场景观测；WorldHarness 中的视觉语言模型还可获得动作反馈，并按接口使用可保留的观测和记录。",
+    "output": "通过对应控制接口行动，留下可验证的物理轨迹；部分配置另在结束后进行文字问答。",
+    "environment": "在家居仿真中运行。VLM 以 WorldHarness 选择动作，VLA/WAM 使用各自的低层控制；同题比较仍需注明接口、预算和覆盖任务。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30989v1",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/docs/scoring.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "60 项仿真任务组成 WorldSeek、WorldShape、WorldShift 三条赛道，覆盖导航、目标定位、几何、物理推理、时序记忆和约束管理。",
+    "disclosure": "partial",
+    "scale": [
+      "60 项任务、6 个能力维度；作者公开配置包含 73 个终局问题。",
+      "论文中 VLM 结果覆盖 60 项，连续控制覆盖 59 项；共同分母排除 T52。"
+    ],
+    "splits": [
+      "GF2-1 属于 WorldShape 的几何任务；本站不发布实机记录。"
+    ],
+    "fields": [
+      "任务公开目标、环境、验收条件和约束；评测工具还记录轨迹所示谓词、完整成功和独立的终局问答结果。"
+    ],
+    "files": [
+      "catalogue.json；tasks/ 和 scenes/ 下的配置。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30989v1",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md",
+      "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/catalogue.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开任务及场景配置可通过固定数据快照查看；运行依赖仿真器和对应资产，相关依赖不是本站样例附件。"
+    ],
+    "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/tree/bec5a4ca0da48321e0a59be601852193680347fe",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/xyangzhou/WorldLeague/tree/bec5a4ca0da48321e0a59be601852193680347fe",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT，适用于作者发布的 benchmark 材料和评测代码；源许可署名为 WorldLeague contributors。",
+    "scope": "仅保留 GF2-1 作者任务文字节选，以及作者项目导航中的未修改 WorldLeague 标识作为编辑性识别。",
+    "boundaries": [
+      "不复制上游模拟器、场景网格、贴图、视频或机器人媒体；第三方资产保留原有条款。",
+      "项目标识不表示作者背书，也不授予本站其他品牌用途。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/LICENSE",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/LICENSE",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/index.html"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "公开 GF2-1 的原始物理目标、环境文字和同题验收约束；没有视频、传感器帧或完整可运行场景。",
+    "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/tasks/GF2-1.yaml",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/tasks/GF2-1.yaml",
+      "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/catalogue.json",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/docs/scoring.md"
+    ]
+  },
+  "metric": {
+    "name": "Interactive Score 与物理成功率",
+    "description": "按轨迹验收物理谓词，平均所得进展分并缩放到 0–100；只有全部物理目标和该题约束均满足才记完整成功。终局文字问答另评，不计入物理进展或成功。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30989v1",
+      "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/docs/scoring.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "论文的 60 项与 59 项结果不要直接用同一分母解释。比较共通任务时排除 T52。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.30989v1"
+      ]
+    },
+    {
+      "text": "这里评估的是仿真中的物理结果；机器人控制接口和交互预算不同，不能直接作为同条件真实机器人部署能力。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.30989v1",
+        "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "WorldLeague 论文 v1 与物理评测协议",
+      "url": "https://arxiv.org/html/2611.30989v1",
+      "role": "paper"
+    },
+    {
+      "label": "WorldLeague 项目页",
+      "url": "https://xyangzhou.github.io/WorldLeague/",
+      "role": "readme"
+    },
+    {
+      "label": "作者发布记录与许可范围",
+      "url": "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md",
+      "role": "release"
+    },
+    {
+      "label": "作者首次公开发布项目的提交",
+      "url": "https://github.com/xyangzhou/WorldLeague/commit/26721977900f6a69f8cc28eb59df026133b6334e",
+      "role": "release"
+    },
+    {
+      "label": "WorldLeague 固定评测配置",
+      "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/tree/bec5a4ca0da48321e0a59be601852193680347fe",
+      "role": "data"
+    },
+    {
+      "label": "WorldLeague 固定任务目录",
+      "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/catalogue.json",
+      "role": "data"
+    },
+    {
+      "label": "GF2-1 官方任务与验收原文",
+      "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/tasks/GF2-1.yaml",
+      "role": "data"
+    },
+    {
+      "label": "WorldLeague 官方物理与问答评分说明",
+      "url": "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/docs/scoring.md",
+      "role": "code"
+    },
+    {
+      "label": "GF2-1 与 GF2-2 的论文分项证据",
+      "url": "https://arxiv.org/html/2611.30989v1#A4.SS1",
+      "role": "paper"
+    },
+    {
+      "label": "WorldLeague 作者数据 MIT 许可",
+      "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "WorldLeague 作者仓库 MIT 许可",
+      "url": "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "WorldLeague 官方项目导航标识出处",
+      "url": "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/index.html",
+      "role": "readme"
+    },
+    {
+      "label": "固定原始 WorldLeague 项目标识",
+      "url": "https://raw.githubusercontent.com/xyangzhou/WorldLeague/a385c81fe3f517c8c828a49915061e02c3b7e361/assets/site/figures/WebLogo.svg",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "interpretation": {
+    "versionChanges": {
+      "text": "论文 v1 标注 2026-11-23（UTC）；作者首发说明把项目、代码及公开数据的发布日期标为 2026-11-24。",
+      "sourceUrls": [
+        "https://github.com/xyangzhou/WorldLeague/commit/26721977900f6a69f8cc28eb59df026133b6334e",
+        "https://arxiv.org/html/2611.30989v1",
+        "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/README.md"
+      ]
+    },
+    "comparison": {
+      "text": "附录表 15 合并了 GF2-1 与 GF2-2 的分项结果，不是 GF2-1 单独的某模型轨迹。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.30989v1#A4.SS1",
+        "https://arxiv.org/html/2611.30989v1"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "worldleague-gf2-1",
+        "title": "将果汁纸盒从正面送入矮储物格",
+        "shortTitle": "果汁纸盒入格 · GF2-1",
+        "type": "record",
+        "prompt": "Store the juice carton inside the low blue pantry cubby. Turn the carton to fit the opening, slide it through the front mouth, and leave it completely inside on the cubby floor.",
+        "walkthrough": {
+          "input": "作者原题中的厨房备餐台、果汁纸盒和矮蓝色储物格。仿真交互以公开传感器和物理控制为准；本站未收录观测画面或场景资产。",
+          "output": "转动纸盒适配开口，从储物格正面推入，完整置于格底并松开；按原题声明 DONE。",
+          "checks": [
+            "必须从外侧穿过正面开口，并有可测量的中间位置；从上方或侧面绕过不计。",
+            "纸盒全部位于可用内部并由格底支承；脱离机器人接触后稳定至少 0.5 秒，线速度 ≤0.02 m/s，角速度 ≤0.1 rad/s。",
+            "结束时工作夹爪打开、双手空置且与物品至少相距 2 cm；不要求先抓起或达到最低举升高度。",
+            "穿越和稳定放置分别验收；终局问答只复核观测，不替代物理轨迹。"
+          ],
+          "sourceField": "objective_excerpt",
+          "excerpts": [
+            {
+              "label": "作者原始物理目标",
+              "text": "Store the juice carton inside the low blue pantry cubby. Turn the carton to fit the opening, slide it through the front mouth, and leave it completely inside on the cubby floor."
+            }
+          ],
+          "note": "显示的是 GF2-1 任务配置节选及同题验收条件，不是机器人运行录像、某模型单次结果或可直接运行的场景。"
+        },
+        "explanation": "正确终态并不够：还要在轨迹中验证从正面穿过开口。终局会另问有几个目标物完整在格内且由格底支承，答案取决于实际终态，不附一个预填的模型答案。",
+        "raw": {
+          "id": "wia_household_gf2_1_v1",
+          "version": 2,
+          "objective_excerpt": "Store the juice carton inside the low blue pantry cubby. Turn the carton to fit the opening, slide it through the front mouth, and leave it completely inside on the cubby floor.",
+          "environment": "A kitchen preparation table with ordinary household items and physical storage compartments.",
+          "success_criteria": "The object must cross the front mouth from the outside through measured intermediate positions before its final placement. Routing over or around the mouth does not count. Leave every required item on its assigned compartment floor, entirely within its usable interior, released without robot contact and stable for at least 0.5 seconds. Keep linear speed at most 0.02 m/s and angular speed at most 0.1 rad/s. Finish with empty hands, the working gripper open and all hands at least 2 cm clear of the items. No minimum lift height or prior grasp is required. Declare DONE.",
+          "constraints": [
+            "Use public robot sensors and legal physical controls.",
+            "Preserve object size and shape and the fixed storage apparatus.",
+            "Ordinary movable background furniture may be repositioned when needed.",
+            "Sliding and reorientation are allowed; the robot hand need not enter a narrow opening."
+          ]
+        },
+        "source": "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/tasks/GF2-1.yaml",
+        "references": [
+          {
+            "label": "固定任务目录中的 GF2-1",
+            "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/catalogue.json"
+          },
+          {
+            "label": "同题物理评分与独立终局问答说明",
+            "url": "https://github.com/xyangzhou/WorldLeague/blob/a385c81fe3f517c8c828a49915061e02c3b7e361/docs/scoring.md"
+          },
+          {
+            "label": "作者 MIT 许可",
+            "url": "https://huggingface.co/datasets/xyangzhou/WorldLeague/blob/bec5a4ca0da48321e0a59be601852193680347fe/LICENSE"
+          }
+        ],
+        "split": "WorldShape / Geometry / GF2-1（公开配置）",
+        "license": "MIT · Copyright (c) 2026 WorldLeague contributors；原始使用范围限作者文字，不含上游资产。",
+        "licensePath": "licenses/worldleague-mit.txt",
+        "excerpt": true
+      }
+    ]
+  }
+}

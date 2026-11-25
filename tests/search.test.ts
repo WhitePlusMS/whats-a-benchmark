@@ -160,3 +160,14 @@ test("AA 搜索指数与智能指数及组成评测的目录入口保持独立",
   assert.equal(firstId("AA Index"), "aa-intelligence-index-v5-0-2");
   assert.equal(firstId("DeepSearchQA"), "deepsearchqa");
 });
+
+test("WorldLeague 和 Humanity’s First Exam 各进正确目录，不串同名系列", () => {
+  assert.equal(searchBenchmarks("WorldLeague", true)[0]?.id, "worldleague");
+  assert.equal(searchBenchmarks("World League", true)[0]?.id, "worldleague");
+  assert.ok(
+    !searchBenchmarks("WorldLeague").some(({ id }) => id === "worldleague"),
+  );
+  assert.equal(firstId("Humanity's First Exam"), "humanitys-first-exam");
+  assert.equal(firstId("HFE"), "humanitys-first-exam");
+  assert.equal(firstId("Humanity's Last Exam"), "hle");
+});

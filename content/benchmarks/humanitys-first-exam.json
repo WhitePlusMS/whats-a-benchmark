@@ -1,0 +1,247 @@
+{
+  "id": "humanitys-first-exam",
+  "status": "published",
+  "order": 1800,
+  "name": "Humanity’s First Exam",
+  "subtitle": "用重复作答和四题变体衡量基础能力是否稳定",
+  "category": "general",
+  "tags": [
+    "可靠性",
+    "题目变体",
+    "多模态",
+    "基础能力"
+  ],
+  "publisher": "Google DeepMind",
+  "brandIds": [
+    "google-deepmind"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-11-24",
+  "version": "首发协议 · Kaggle 公开数据 v4",
+  "kind": "original",
+  "aliases": [
+    "Humanity's First Exam",
+    "HFE",
+    "Google HFE",
+    "人类第一场考试"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用文字和图片中的基础任务检验模型能否稳定答对同题及其变体，而不只是偶尔答对。",
+    "task": "单轮回答题目；每个题族包括一道种子题和三道受控变体。",
+    "sourceUrls": [
+      "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/humanitys-first-exam/",
+      "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf"
+    ]
+  },
+  "taskContract": {
+    "input": "题目原文；多模态题另附图片。同一家族中的提示词分别提供给模型。",
+    "output": "按各题要求提交最终答案，例如数字、文本或按规则生成的字符串。",
+    "environment": "公开 Harbor 复现每题进行 6 次独立单轮作答，temperature 为 1.0；论文 §3.3 同样每题采样 6 次，但被测模型采用各服务商默认的 temperature 和 top-p，不能混用这两种运行设置。裁判另用 temperature 0 判定语义等价。",
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+      "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4"
+    ]
+  },
+  "dataProfile": {
+    "summary": "共 544 条提示词、136 个四题家族，覆盖 20 类基础能力；公开 112 条，官方榜单保留 432 条。",
+    "disclosure": "partial",
+    "scale": [
+      "公开 28 个题族（112 题）：48 个纯文字提示与 64 个多模态提示。",
+      "私有保留 108 个题族（432 题）。"
+    ],
+    "splits": [
+      "Kaggle v4 公开数据用于查阅与复现样例；官方榜单使用私有保留题，不能混比。"
+    ],
+    "fields": [
+      "uuid、family_id、category、modality、is_seed、prompt、gold_answer、image_paths。"
+    ],
+    "files": [
+      "hfe_public_112.jsonl、hfe_public_112.csv；另有图像和 Harbor 任务目录。"
+    ],
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+      "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+      "https://www.kaggle.com/api/v1/datasets/view/deepmind/hfe-public"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "Kaggle 提供版本化公开包；官方保留题的题目及答案不在公开包中。"
+    ],
+    "url": "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+    "sourceUrls": [
+      "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+      "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+      "https://www.kaggle.com/benchmarks/deepmind/hfe",
+      "https://www.kaggle.com/api/v1/datasets/download/deepmind/hfe-public"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "公开 112 题按 CC BY 4.0 发布，署名 Google DeepMind。",
+    "scope": "本页保留一条无图公开记录的原题、参考答案和所选原始字段；中文解释由本站整理，没有修改原题与答案。",
+    "boundaries": [
+      "不复制保留题、图像、运行者输出、完整题库或评分程序；项目 Logo 不是 CC BY 样例内容。"
+    ],
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+      "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+      "https://www.kaggle.com/api/v1/datasets/view/deepmind/hfe-public",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示公开 v4 一条完整纯文字题和原始参考字符串，并解释同题评分及题族指标；不展示模型实跑。",
+    "url": "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+    "sourceUrls": [
+      "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+      "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf"
+    ]
+  },
+  "metric": {
+    "name": "Family pass⁴（题族稳定性）",
+    "description": "每题 6 次独立作答中若有 c 次正确，四次都正确的无偏估计为 C(c,4)/C(6,4)，c<4 时为 0。一个家族的四题分别计算后相乘，再按家族平均；不是单次正确率，也不是 Family pass@4。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+      "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+      "https://www.kaggle.com/benchmarks/deepmind/hfe"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站只展示公开的一道种子题，不显示同族其他三题，也不推断正式榜单的保留题内容或本题模型分数。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+        "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4"
+      ]
+    },
+    {
+      "text": "题族指标同时反映变体稳健性与同题多次一致性，不能用一次答对或纯文字分数替代。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "2026-11-24 Google DeepMind 首发公告",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/humanitys-first-exam/",
+      "role": "release"
+    },
+    {
+      "label": "Google DeepMind 技术报告：评测协议和题族指标",
+      "url": "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+      "role": "paper"
+    },
+    {
+      "label": "官方 Kaggle v4 公开数据：hfe_public_112.jsonl 与 Harbor 配置",
+      "url": "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+      "role": "data"
+    },
+    {
+      "label": "官方 Kaggle 数据版本与公开许可元数据",
+      "url": "https://www.kaggle.com/api/v1/datasets/view/deepmind/hfe-public",
+      "role": "data"
+    },
+    {
+      "label": "官方公开 ZIP 下载入口（随 Kaggle 当前版本更新）",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/deepmind/hfe-public",
+      "role": "data"
+    },
+    {
+      "label": "官方 Kaggle 榜单",
+      "url": "https://www.kaggle.com/benchmarks/deepmind/hfe",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Creative Commons Attribution 4.0 正文",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "interpretation": {
+    "judge": {
+      "text": "公开参考实现用 Gemini 3.1 Pro Preview 对每次最终答案作语义等价判断，判 Yes 或 No；题目要求指定输出仍照原题。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+        "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4"
+      ]
+    },
+    "comparison": {
+      "text": "题族可靠性要跨 4 道题估计 4 次都对；单题的参考字符串不代表一次模型输出，更不能推出家族得分。",
+      "sourceUrls": [
+        "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf",
+        "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4"
+      ]
+    }
+  },
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "hfe-9b19d78d37b2cb55",
+        "title": "把风向标的连续转向写成字符串",
+        "shortTitle": "风向标转向字符串",
+        "type": "record",
+        "prompt": "A weather vane points in this order as the wind changes: north, east, south, west, north, west, south\nWhenever it moves clockwise by 90 degrees, write C.\nWhenever it moves counterclockwise by 90 degrees, write A.\nIgnore any move that is not 90 degrees.\nGive only the final string.",
+        "answer": "CCCCAA",
+        "walkthrough": {
+          "input": "原始纯文字序列：北、东、南、西、北、西、南。此题不带图像或附件。",
+          "output": "按题目只交付由 C 和 A 组成的最终字符串，不附推导。",
+          "checks": [
+            "逐次判断 90° 转向：顺时针记 C，逆时针记 A；忽略不恰为 90° 的跳转。",
+            "同题官方参考答案为 CCCCAA。公开评分器核对每次最终答案是否与此参考语义等价。",
+            "这是 Task 308 的种子题；Family pass⁴ 还需同族另外三题与同题多次作答，不能用这条参考答案充当该指标。"
+          ],
+          "sourceField": "prompt",
+          "excerpts": [
+            {
+              "label": "官方原题",
+              "text": "A weather vane points in this order as the wind changes: north, east, south, west, north, west, south\nWhenever it moves clockwise by 90 degrees, write C.\nWhenever it moves counterclockwise by 90 degrees, write A.\nIgnore any move that is not 90 degrees.\nGive only the final string."
+            }
+          ],
+          "note": "原题及参考答案来自公开 v4；本站仅解释规则，未运行模型或裁判，不含任何实跑得分。"
+        },
+        "explanation": "前四次转弯为顺时针，后两次为逆时针，故官方标注是 CCCCAA。",
+        "raw": {
+          "uuid": "9b19d78d37b2cb55",
+          "family_id": "Task 308",
+          "category": "Algorithmic and Symbolic Execution",
+          "modality": "Text-only",
+          "is_seed": "Y",
+          "prompt": "A weather vane points in this order as the wind changes: north, east, south, west, north, west, south\nWhenever it moves clockwise by 90 degrees, write C.\nWhenever it moves counterclockwise by 90 degrees, write A.\nIgnore any move that is not 90 degrees.\nGive only the final string.",
+          "gold_answer": "CCCCAA",
+          "image_paths": [],
+          "license": "CC-BY-4.0",
+          "harbor_task_path": "tasks/hfe-9b19d78d37b2cb55"
+        },
+        "source": "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4",
+        "references": [
+          {
+            "label": "公开 v4：JSONL 行 9b19d78d37b2cb55；同题 tests/ground_truth.json 与 tests/grade.py",
+            "url": "https://www.kaggle.com/datasets/deepmind/hfe-public/versions/4"
+          },
+          {
+            "label": "技术报告：重复作答与题族计分",
+            "url": "https://storage.googleapis.com/deepmind-media/papers/hfe_tech_paper.pdf"
+          },
+          {
+            "label": "Creative Commons Attribution 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "split": "Kaggle 公开 v4 / Task 308 / 纯文字种子题 / 9b19d78d37b2cb55",
+        "license": "CC BY 4.0 · Google DeepMind《Humanity’s First Exam》；原题与答案未改动，本站新增中文解读。",
+        "licensePath": "licenses/cc-by-4-0.txt",
+        "excerpt": true
+      }
+    ]
+  }
+}
