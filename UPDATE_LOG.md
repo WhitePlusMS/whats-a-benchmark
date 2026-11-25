@@ -1,5 +1,37 @@
 # 更新说明
 
+## 2026-11-25 · 丰富主题换色
+
+- `src/lib/theme.ts`：主题色从 7 款增至 12 款，新增海盐青、橄榄绿、石榴红、可可棕和梅子紫。每款仍通过现有入口保存，深浅外观分别使用对应色值。
+- `src/components/ThemeSwitcher.vue`：色板仅显示色点和选中勾，颜色名称供读屏识别。桌面六列，窄屏四列。保留现有进退场、键盘操作和焦点恢复。
+- `src/styles/tokens.css`：浅层面板和选项的底色随主题轻微染色。正文字色沿用既有值，浅色主题的强调文字加深以维持对比度。
+- 验证：桌面深色和 320px 浅色下色板各显示 12 项。键盘选色后焦点正确返回，Esc 可收起，刷新保留所选主题。6 项相关回归通过。
+
+## 2026-11-25 · 统一全站状态动效
+
+- `src/styles/motion.css`、`src/styles/main.css`、`src/styles/base.css`：新增共用时长、减速曲线与减少动态效果规则。页面只给首要标题或导读轻过渡，按下、选中、换图标、加载与退场共用样式，减少列表和页面级绘制。
+- `src/App.vue`、`src/main.ts`、`src/styles/layout.css`：目录与案例模式采用移动底色，页眉外观图标原位切换，底栏与撤销提示短进快出。新页及历史位置直接定位，避免长距离滚动与入场叠加。
+- `src/components/UiDialog.vue`、`src/components/ThemeSwitcher.vue`、`src/components/SampleMedia.vue`、`src/components/SampleImageDialog.vue`：筛选、看图、主题菜单与提示共用浮层节奏。保留原生焦点管理，图片可在退场期间重开，打开后恢复适应窗口。
+- `src/components/SampleViewer.vue`、`src/styles/sample-viewer.css`、`src/components/IfevalRuleVisual.vue`、`src/styles/ifeval-pilot.css`：用案例标题标记换题，等待较久时显示轻量加载状态，字数条改为缩放填充，计数即时显示。
+- `src/views/ExploreView.vue`、`src/styles/catalog.css`、`src/styles/benchmark-card.css`、`src/styles/guide.css`、`src/styles/reading.css`、`src/styles/detail.css`：移除卡片错峰入场、首屏与指南重复浮现、逐项位移及无效局部曲线。
+- `src/components/TerminalBenchPilot.vue` 与 ARC、HumanEval、RoboQuest、SWE-bench、CALVIN、LIBERO、MMMLU、IFEval 的旧专用样式：删除独立进出场曲线及重复减少动态效果覆盖。步骤、画格、拖动、媒体时间、缩放尺寸和搜索结果直接更新。
+- `tests/arc-experience.test.ts`、`tests/human-eval-experience.test.ts`、`tests/ifeval-experience.test.ts`、`tests/deferred-detail-anchor.test.ts`：调整依赖旧样式位置或旧滚动条件的断言，继续验证图解无独立动画、字数进度无布局动画、同页与跨页锚点策略。
+- `tests/calvin-experience.test.ts`、`tests/mmmlu-experience.test.ts`：全量检查时补齐共用动效入口的断言，并核对案例样式中没有独立动效。
+- `src/views/ExploreView.vue`：保留已经浏览过的同一排序目录，清空搜索时复用卡片，减少大批挂载造成的长帧。`src/components/UiDialog.vue` 同步恢复触发器和更新关闭状态，提交后校准同批次关闭与重开。
+- GPT 复审后收窄共用颜色过渡：只有悬停或键盘聚焦的控件会平滑变色，主题切换整页立即换色，ARC 格子上色和清空保持即时。
+- `docs/reviews/2026-11-25-motion.md`：记录按状态变化划分的审查、Gemini 建议、GPT 复审和实测。82 项相关测试通过，清空搜索恢复 326 张卡片的布局次数约 26→4，修改后最长采样帧约 33ms。本轮只保留 5173 本地预览，未推送、合并或发布。
+
+## 2026-11-25 · 本地体验复查
+
+- `src/views/ExploreView.vue`、`src/components/CatalogFilters.vue`、`src/lib/catalogQuery.ts`、`src/styles/catalog.css`：减少无结果筛选、显示当前可读案例数，搜索错目录时带原搜索词去匹配目录。清除筛选保留搜索词，移除重复的搜索标签和入门入口。
+- `src/App.vue`、`src/components/ComparisonSelectionBar.vue`、`src/styles/layout.css`、`src/styles/reading.css`、`src/views/CompareView.vue`：目录手机端在底部直接进入对比，主要差异包含“测什么”。底栏用“清空”文字说明操作。保留屏幕阅读器操作反馈，简短提示自动退场，撤销入口持续可用。增加发布资料入口。
+- `src/main.ts`、`src/composables/catalogNavigation.ts`、`src/views/CompareView.vue`、`src/views/NotFoundView.vue`：返回实际离开的目录，保留搜索、筛选和浏览位置。直达链接统一尾斜线并保留查询和锚点。错误页直接说明问题并提供返回操作。
+- `src/views/DetailView.vue`、`src/lib/sampleLocation.ts`、`src/composables/sampleViewer.ts`：选项、IFEval 草稿及 ARC 画板按题目保留。检查原始数据时保留当前位置。复审发现快速换题后立即切模式会覆盖旧题的历史，已修正并补测前进和返回。
+- `src/composables/ifevalWorkbench.ts`、`src/components/IfevalWorkbench.vue`、`src/components/ArcPractice.vue`：手动续写后旧撤销不会覆盖新输入。ARC 按钮明确说明填充画板，没有着色时隐藏清空。
+- `src/views/AboutView.vue`：把模型发布资料关联到实际索引。
+- `tests/system-first-ux.test.ts`、`tests/catalog-query.test.ts`、`tests/sample-viewer.test.ts`、`tests/sample-location.test.ts`：补充无效筛选恢复、保留搜索词、旧撤销保护、选项隔离及换题后退的回归用例。按照本轮要求，只在本地启动预览。
+- `docs/reviews/2026-11-25-system-first-ux.md`：追加本地复查记录。TypeScript 与 109 项相关测试通过，桌面及 390px、320px 实操通过。独立 GPT 回验快速换题与后退，31 项专项通过。本轮使用 5173 本地预览，未推送、合并或发布。
+
 ## 2026-11-25 · 补充保护案例练习状态
 
 - 修改 `src/components/SampleViewer.vue`：同一案例在“任务内容/原始数据”之间切换时用隐藏保留阅读子树，不再卸载互动组件；IFEval 草稿、ARC 画板及撤销历史不会因核对原始数据而丢失。换题仍由原有题目 key 和 watcher 重置，参考答案保持原有显式展开规则。
