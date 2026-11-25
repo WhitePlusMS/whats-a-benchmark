@@ -1,0 +1,212 @@
+{
+  "id": "dayjob-law",
+  "status": "published",
+  "order": 443,
+  "name": "DAYJOB: Law",
+  "subtitle": "阅读模拟法律卷宗，核验证据并提交专业文书",
+  "category": "work",
+  "tags": ["法律", "知识工作", "文件交付"],
+  "publisher": "Surge AI",
+  "brandIds": ["surge-ai"],
+  "year": 2026,
+  "releaseDate": "2026-11-18",
+  "kind": "original",
+  "aliases": ["DAYJOB Law", "Surge AI DAYJOB Law"],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体能否从简短的工作委托出发，调查模拟卷宗并交付法律工作成果。",
+    "task": "针对公司交易、诉讼、知识产权等不同事项，核对事实与证据，再以备忘录、意见函、协议等形式作出回应。",
+    "sourceUrls": [
+      "https://surgehq.ai/blog/dayjob-law",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "简短委托和模拟事项材料，可能包含合同、邮件、法律资料以及不完整或互相冲突的记录。",
+    "output": "按题交付法律备忘录、意见函、诉讼文书、协议或其他指定成果。",
+    "environment": "Harbor 工作区；案件及文件由发布方构建用于评测，本例不是实际法律咨询。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/instruction.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "正式评测有 71 个任务；发布者公开了其中 2 个任务作为样例。",
+    "disclosure": "partial",
+    "scale": ["正式题组共 2,638 个工作区文件，包含合成卷宗及引入的参考资料。"],
+    "splits": [
+      "所示任务来自作者标记为 test 的公开样例仓，不将 2 道公开题的成绩当成完整榜单结果。"
+    ],
+    "fields": [
+      "每题包括 instruction.md、任务环境及评分器；本例 tests/judge.toml 包含 104 条二元标准。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/tests/judge.toml"
+    ],
+    "files": [
+      "题目说明、Harbor 工作区素材及裁判配置分开保存；本例只展示固定快照的最小节选。"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": ["公开固定样例可直接查阅；完整 71 题需向发布方申请。"],
+    "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT（发布方固定数据卡所标公开样例许可）。",
+    "scope": "仅节选一条公开样例的原指令、同题合成赠与契据的一处短语及少量评分标准，不分发附件。",
+    "boundaries": [
+      "不转载完整卷宗、外部判例或评测成品；遵守作者要求，不将任务、评分和衍生材料用于训练或训练期选模。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/instruction.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/tests/judge.toml"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示公开样例的原委托、合成赠与契据短引、指定交付物和同题评分标准。",
+    "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/instruction.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/environment/initial_workspace/Artistic%20Craft%20Institute%20Files/ACI_Deed_of_Gift_Alton_signed_2026-02-03.pdf",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/tests/judge.toml"
+    ]
+  },
+  "metric": {
+    "name": "任务通过率（95% 评分条款门槛）",
+    "description": "按任务评分表逐条判定，一次尝试至少满足该题 95% 的条款才算通过；发布方报告 pass@1，不以单条标准代替整题。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://surgehq.ai/blog/dayjob-law",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/tests/judge.toml"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "仅有 2 道公开样例，不足以复现完整榜单；页面摘录也不是可直接运行的整套事项工作区。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Surge AI 首发与评分方法",
+      "url": "https://surgehq.ai/blog/dayjob-law",
+      "role": "release"
+    },
+    {
+      "label": "DAYJOB: Law 官方榜单",
+      "url": "https://surgehq.ai/benchmarks/dayjob-law",
+      "role": "leaderboard"
+    },
+    {
+      "label": "公开样例数据说明及许可（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md",
+      "role": "data"
+    },
+    {
+      "label": "原始任务指令（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "同题原始赠与契据（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/environment/initial_workspace/Artistic%20Craft%20Institute%20Files/ACI_Deed_of_Gift_Alton_signed_2026-02-03.pdf",
+      "role": "data"
+    },
+    {
+      "label": "同题评分标准（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/tests/judge.toml",
+      "role": "data"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "law_b5b93951",
+        "title": "基于艺术机构卷宗评估版权主张",
+        "shortTitle": "艺术机构版权备忘录",
+        "type": "record",
+        "prompt": "Review the Artistic Craft Institute documents and prepare a legal memorandum in an output file evaluating whether Ms. Samara Emmerson-Bell’s demand has merit, the potential damages, and the available defenses. Use the summer associate’s research file and draft memo as starting materials, but verify their conclusions against the full record.",
+        "walkthrough": {
+          "input": "工作区含合成赠与契据、机构收购记录、研究材料和备忘录草稿。赠与契据第 1 条原文节选：“together with all rights (including copyrights) therein and thereto”。契据文字是待核查的记录，不等于权属已证实。",
+          "output": "向艺术机构提交一份法律备忘录文件，评估该案主张、潜在赔偿和可能的抗辩；核对已有草稿与原始卷宗。",
+          "checks": [
+            "c001：提交可读的备忘录文件。",
+            "c004：如果现有材料不能证实版权登记状态，不把已登记或未登记当成确定事实。",
+            "c018：分析赠与契据时区分挂毯实物的所有权和作品版权。"
+          ],
+          "sourceField": "instruction_excerpt",
+          "excerpts": [
+            {
+              "label": "官方原始委托（节选）",
+              "text": "Review the Artistic Craft Institute documents and prepare a legal memorandum in an output file evaluating whether Ms. Samara Emmerson-Bell’s demand has merit, the potential damages, and the available defenses. Use the summer associate’s research file and draft memo as starting materials, but verify their conclusions against the full record."
+            }
+          ],
+          "note": "只列同题 104 条标准中的 3 条。本站不提供法律结论、模型成品或运行结果。"
+        },
+        "explanation": "任务来自发布者筛出的 2 条公开样例。原始数据保留作者指令、合成卷宗一处短引和同题 3 条标准，省略通用前导指令、卷宗附件及其他评分条款。",
+        "raw": {
+          "task_id": "law_b5b93951",
+          "instruction_excerpt": "Review the Artistic Craft Institute documents and prepare a legal memorandum in an output file evaluating whether Ms. Samara Emmerson-Bell’s demand has merit, the potential damages, and the available defenses. Use the summer associate’s research file and draft memo as starting materials, but verify their conclusions against the full record.",
+          "deed_clause_1_excerpt": "together with all rights (including copyrights) therein and thereto",
+          "criterion": [
+            {
+              "name": "c001",
+              "description": "A readable legal memorandum evaluating Ms. Emmerson-Bell’s demand is delivered as an output file.",
+              "type": "binary"
+            },
+            {
+              "name": "c004",
+              "description": "The response treats the works’ copyright-registration status as unverified in the provided record and does not conclude either that the works are registered or that they are unregistered.",
+              "type": "binary"
+            },
+            {
+              "name": "c018",
+              "description": "When analyzing Ms. Alton's deed, the response distinguishes copyright ownership from title to the physical tapestries.",
+              "type": "binary"
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/instruction.md",
+        "references": [
+          {
+            "label": "原始任务目录",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951"
+          },
+          {
+            "label": "合成赠与契据",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/environment/initial_workspace/Artistic%20Craft%20Institute%20Files/ACI_Deed_of_Gift_Alton_signed_2026-02-03.pdf"
+          },
+          {
+            "label": "原始评分表",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/tasks/law_b5b93951/tests/judge.toml"
+          },
+          {
+            "label": "数据说明与许可",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-law/blob/48ee0347804a044e7a03561b98528882c1775d8e/README.md"
+          }
+        ],
+        "license": "MIT · Surge AI DAYJOB Law 公开样例；本站仅展示短摘录，未复制事项文件。",
+        "licensePath": "licenses/surge-dayjob-mit.txt",
+        "split": "作者公开 test 样例子集（2/71）；law_b5b93951。",
+        "excerpt": true
+      }
+    ]
+  },
+  "version": "Law",
+  "related": []
+}

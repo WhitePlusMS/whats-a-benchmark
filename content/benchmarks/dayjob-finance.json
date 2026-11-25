@@ -1,0 +1,255 @@
+{
+  "id": "dayjob-finance",
+  "status": "published",
+  "order": 444,
+  "name": "DAYJOB: Finance",
+  "subtitle": "核对多份财务材料，给出可复核的分析与业务建议",
+  "category": "work",
+  "tags": ["金融", "财务分析", "文件交付"],
+  "publisher": "Surge AI",
+  "brandIds": ["surge-ai"],
+  "year": 2026,
+  "releaseDate": "2026-10-22",
+  "version": "Finance",
+  "kind": "original",
+  "aliases": ["DAYJOB Finance", "Surge AI DAYJOB Finance"],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体能否从简短财务委托出发，核对相互冲突的材料并完成有据可查的工作成果。",
+    "task": "读合同、账册和工作簿，确认分析范围及数字来源，再完成估值复核、成本比较或经营分析等指定任务。",
+    "sourceUrls": [
+      "https://surgehq.ai/blog/dayjob",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "简短工作委托，加上多份可能存在口径冲突的业务文档和电子表格。",
+    "output": "提交题目指定的财务比较、估值复核、业务建议书或其他文件。",
+    "environment": "Harbor 工作区提供本地文件；最终交付物按任务评分表评阅。以下样例不用于实际财务决策。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+      "https://github.com/surge-ai/dayjob"
+    ]
+  },
+  "dataProfile": {
+    "summary": "正式评测有 80 个专业任务；发布者公开了其中 3 个作为样例。",
+    "disclosure": "partial",
+    "scale": ["正式题组每题平均有 25.7 份输入文件，评分条款中位数为 57.5 条。"],
+    "splits": ["作者公开样例仓的 test 划分只有 3 项，不是完整评测。"],
+    "fields": [
+      "Harbor 任务包含 instruction.md、环境和评分器；本例 tests/judge.toml 含 61 条二元准则。"
+    ],
+    "files": ["公开任务有 instruction.md、task.toml、environment/ 和 tests/。"],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/tree/308ec7ffb5c5447067f22b0b0e98d82b995615fa",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/tests/judge.toml"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": ["3 个固定样例可公开查阅；完整 80 题需联系发布方申请。"],
+    "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/tree/308ec7ffb5c5447067f22b0b0e98d82b995615fa",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/tree/308ec7ffb5c5447067f22b0b0e98d82b995615fa"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT（固定的作者公开数据卡声明）。",
+    "scope": "一条公开题的原指令、一项非识别性工作簿数值和三条同题原评分标准。不分发原文件或商业流水。",
+    "boundaries": [
+      "不分发整套题目、完整输入或评分表、第三方素材、参考成品和模型提交。",
+      "尊重发布者的保留评测用途要求，不将题目、评分或衍生材料用于训练及训练期选模。",
+      "数据卡许可不同于 GitHub 执行框架的 Apache-2.0 许可。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+      "https://github.com/surge-ai/dayjob",
+      "https://spdx.org/licenses/MIT.html",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/environment/initial_workspace/inputs/AP_Payment_Volume_Summary_2021-2025.xlsx"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示原始支票外包委托、同题工作表一格、指定 PDF 交付物及 3 条评分标准。",
+    "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/instruction.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/environment/initial_workspace/inputs/AP_Payment_Volume_Summary_2021-2025.xlsx",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/tests/judge.toml"
+    ]
+  },
+  "metric": {
+    "name": "任务全通过率（固定数据卡口径）",
+    "description": "固定公开数据卡以单题全部准则满足（100%）为通过。Fireworks 的合作榜单另以至少 95% 准则满足计算 pass@1，两种门槛的成绩不能直接比较。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/tests/judge.toml",
+      "https://surgehq.ai/blog/dayjob",
+      "https://fireworks.ai/specialized-intelligence-index/benchmarks/finance/dayjob-finance"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "80 题完整评测需向发布方申请；不能用 3 道公共样例的通过率复现官方榜单。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+        "https://surgehq.ai/blog/dayjob"
+      ]
+    },
+    {
+      "text": "本站节选不可直接运行，不提供标准成品或执行记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/instruction.md",
+        "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/tests/judge.toml"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "样例固定到 Hugging Face 308ec7ffb5c5447067f22b0b0e98d82b995615fa。输入文件 SHA-256：28068c508d06274caff3944a454890c3b50aa336b6a02ed4c4d7373ca9baa4a9；本站只展示极少量可核对的事实。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/environment/initial_workspace/inputs/AP_Payment_Volume_Summary_2021-2025.xlsx"
+      ]
+    },
+    {
+      "text": "日期采用 2026 年 10 月 22 日 Surge AI 正式公告；固定样例仓记录的 9 月 25 日上传不是正式公告日。",
+      "sourceUrls": [
+        "https://surgehq.ai/blog/dayjob",
+        "https://huggingface.co/datasets/surgeai/DAYJOB-finance/tree/308ec7ffb5c5447067f22b0b0e98d82b995615fa"
+      ]
+    }
+  ],
+  "related": [],
+  "sources": [
+    {
+      "label": "Surge AI 首次发布公告",
+      "url": "https://surgehq.ai/blog/dayjob",
+      "role": "release"
+    },
+    {
+      "label": "Surge AI 官方榜单",
+      "url": "https://surgehq.ai/benchmarks/dayjob-finance",
+      "role": "leaderboard"
+    },
+    {
+      "label": "DAYJOB 公开样例、评分说明及 MIT 数据许可（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md",
+      "role": "data"
+    },
+    {
+      "label": "作者公开样例仓（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/tree/308ec7ffb5c5447067f22b0b0e98d82b995615fa",
+      "role": "access"
+    },
+    {
+      "label": "DAYJOB 官方执行框架",
+      "url": "https://github.com/surge-ai/dayjob",
+      "role": "code"
+    },
+    {
+      "label": "MIT 标准许可文字（SPDX）",
+      "url": "https://spdx.org/licenses/MIT.html",
+      "role": "readme"
+    },
+    {
+      "label": "原始任务委托（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "原始输入：支付笔数汇总工作簿（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/environment/initial_workspace/inputs/AP_Payment_Volume_Summary_2021-2025.xlsx",
+      "role": "data"
+    },
+    {
+      "label": "同题评分标准（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/tests/judge.toml",
+      "role": "data"
+    },
+    {
+      "label": "Fireworks 合作榜单（95% 门槛，与固定数据卡口径不同）",
+      "url": "https://fireworks.ai/specialized-intelligence-index/benchmarks/finance/dayjob-finance",
+      "role": "vendor-report"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "finance_01c19f73",
+        "title": "测算支票处理内制与外包的成本",
+        "shortTitle": "支票处理成本比较",
+        "type": "record",
+        "prompt": "We are considering implementing a Check Outsourcing solution for our checks, currently being issued in-house. Use the attached documents to create a PDF format annual cost comparison of in-house vs. outsourced check processing for 2021-2025 and a recommendation on whether adopting the service is worthwhile beginning some time in 2026.",
+        "walkthrough": {
+          "input": "输入包括支票登记簿、历年支付量汇总和外包报价。汇总工作簿「AP Payment Volume」的 2025 年一行，B6（Check Payments）原值为 2838。这是待核查的汇总值，不等于实际有效支票量。",
+          "output": "交付一份 PDF，逐年比较 2021–2025 年内制和外包的支票处理成本，并就 2026 年是否采用外包提出建议。",
+          "checks": [
+            "c001：提交包含年度成本比较及 2026 年建议的 PDF。",
+            "c003：计数与成本计算都排除作废或取消的支票。",
+            "c004：从明细独立复算，不把汇总的 2838 当成 2025 年真实支票量。"
+          ],
+          "sourceField": "tests/task_prompt.txt",
+          "excerpts": [
+            {
+              "label": "官方原始委托",
+              "text": "We are considering implementing a Check Outsourcing solution for our checks, currently being issued in-house. Use the attached documents to create a PDF format annual cost comparison of in-house vs. outsourced check processing for 2021-2025 and a recommendation on whether adopting the service is worthwhile beginning some time in 2026."
+            }
+          ],
+          "note": "仅列同题 61 条标准中的 3 条，不是参考成品或试跑结果。"
+        },
+        "explanation": "原始数据保留 tests/task_prompt.txt 原始委托及同题评分文件的 criterion 节选。任务内容页展示原始任务请求（省略公共前导）、工作区输入少量事实和指定交付物；不随站点下载原始附件。",
+        "raw": {
+          "tests/task_prompt.txt": "We are considering implementing a Check Outsourcing solution for our checks, currently being issued in-house. Use the attached documents to create a PDF format annual cost comparison of in-house vs. outsourced check processing for 2021-2025 and a recommendation on whether adopting the service is worthwhile beginning some time in 2026.",
+          "criterion": [
+            {
+              "name": "c001",
+              "description": "The submitted PDF contains a 2021-2025 annual in-house versus outsourced check-processing cost comparison and a recommendation on adoption in 2026.",
+              "type": "binary"
+            },
+            {
+              "name": "c003",
+              "description": "The response excludes voided/cancelled check entries (e.g., Status = Void) from both the check-volume counts and all cost calculations, counting only cleared/issued checks.",
+              "type": "binary"
+            },
+            {
+              "name": "c004",
+              "description": "The response calculates check volumes independently and does not use the AP Payment Volume Summary's gross check counts (e.g., 2,838 for 2025) as the true check volumes.",
+              "type": "binary"
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/instruction.md",
+        "references": [
+          {
+            "label": "原任务委托",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/instruction.md"
+          },
+          {
+            "label": "原始输入：支付笔数汇总工作簿",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/environment/initial_workspace/inputs/AP_Payment_Volume_Summary_2021-2025.xlsx"
+          },
+          {
+            "label": "同题评分表",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/tasks/finance_01c19f73/tests/judge.toml"
+          },
+          {
+            "label": "数据说明及许可",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-finance/blob/308ec7ffb5c5447067f22b0b0e98d82b995615fa/README.md"
+          }
+        ],
+        "license": "MIT · Surge AI DAYJOB Finance 公开样例；仅展所选字段和少量输入事实。",
+        "licensePath": "licenses/surge-dayjob-mit.txt",
+        "split": "作者公开 test 样例子集 (3/80)；finance_01c19f73。",
+        "excerpt": true
+      }
+    ]
+  }
+}
