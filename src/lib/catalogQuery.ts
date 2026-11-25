@@ -8,6 +8,7 @@ import {
   embodiedCategories,
 } from "../content/catalog";
 import { searchBenchmarks } from "./search";
+import type { Benchmark } from "../types/benchmark";
 import {
   healthcareBenchmarks,
   healthcareCategory,
@@ -40,6 +41,26 @@ export function createCatalogQuery(router: Router) {
       ? { ...parsed, publisher: "", sample: "", kind: "" }
       : parsed;
   });
+  const results = computed(() => filterCatalog(query.value, isEmbodied.value));
+  const hasFilters = computed(() => hasCatalogFilters(query.value));
+  const groupedResults = computed(() => {
+    if (hasFilters.value || query.value.view === "list") return [];
+    const categoryList = isEmbodied.value ? embodiedCategories : categories;
+    return categoryList
+      .map((category) => {
+        const items = results.value.filter((item) =>
+          isEmbodied.value
+            ? item.embodied?.tasks.some((task) => task === category.id)
+            : item.category === category.id,
+        );
+        return {
+          category,
+          items:
+            query.value.sort === "featured" ? groupByPublisher(items) : items,
+        };
+      })
+      .filter((group) => group.items.length);
+  });
   let queuedQuery: LocationQueryRaw | undefined;
 
   function navigate(nextQuery: LocationQueryRaw) {
@@ -65,8 +86,9 @@ export function createCatalogQuery(router: Router) {
           ? healthcareCategory
           : categoryById.get(query.value.category),
     ),
-    results: computed(() => filterCatalog(query.value, isEmbodied.value)),
-    hasFilters: computed(() => hasCatalogFilters(query.value)),
+    results,
+    groupedResults,
+    hasFilters,
     stats: computed(() =>
       isEmbodied.value ? embodiedCatalogStats : catalogStats,
     ),
@@ -120,6 +142,35 @@ export function hasCatalogFilters(query: CatalogQuery): boolean {
   );
 }
 
+/**
+ * Group within the caller's existing category only. Exact publisher labels match
+ * the publisher filter; joint attribution is not split into separate names.
+ */
+export function groupByPublisher(items: readonly Benchmark[]): Benchmark[] {
+  const byPublisher = new Map<string, Benchmark[]>();
+  const groups: Benchmark[][] = [];
+  for (const item of items) {
+    const publisher = item.publisher;
+    if (
+      /^(?:unknown|n\/a|未知(?:发布方)?|未公开|待确认|[—-])?$/i.test(
+        publisher.trim(),
+      )
+    ) {
+      groups.push([item]);
+      continue;
+    }
+    const existing = byPublisher.get(publisher);
+    if (existing) {
+      existing.push(item);
+    } else {
+      const group = [item];
+      byPublisher.set(publisher, group);
+      groups.push(group);
+    }
+  }
+  return groups.flat();
+}
+
 export function filterCatalog(query: CatalogQuery, embodied = false) {
   const items = searchBenchmarks(query.q, embodied).filter(
     (item) =>
@@ -137,7 +188,8 @@ export function filterCatalog(query: CatalogQuery, embodied = false) {
     return items.sort((a, b) => a.name.localeCompare(b.name));
   if (query.sort === "year")
     return items.sort((a, b) => (b.year || 0) - (a.year || 0));
-  return items;
+  // A pinned category remains one category in grid or list mode.
+  return query.category && !query.q ? groupByPublisher(items) : items;
 }
 
 // Catalog metadata is immutable during an application run, so compute totals once.

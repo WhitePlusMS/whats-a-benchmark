@@ -67,6 +67,7 @@ onUnmounted(() => {
 const {
   query,
   results,
+  groupedResults,
   currentCategory,
   hasFilters,
   stats,
@@ -117,19 +118,6 @@ const activeFilters = computed(() =>
 const filterCount = computed(
   () => activeFilters.value.filter((item) => item.key !== "q").length,
 );
-const groupedResults = computed(() => {
-  if (hasFilters.value || query.value.view === "list") return [];
-  return visibleCategories.value
-    .map((category) => ({
-      category,
-      items: results.value.filter((item) =>
-        isEmbodied.value
-          ? item.embodied?.tasks.some((task) => task === category.id)
-          : item.category === category.id,
-      ),
-    }))
-    .filter((group) => group.items.length);
-});
 function setFilter(key: CatalogFilterKey, value: string) {
   void updateFilter(key, value);
 }
