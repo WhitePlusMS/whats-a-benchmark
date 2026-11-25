@@ -10,9 +10,15 @@ import {
 } from "../content/ifevalExperience";
 import IfevalRuleVisual from "./IfevalRuleVisual.vue";
 const props = defineProps<{ record: IfevalRecord; sampleId: string }>();
-const { draft, selectedVariant, showMatrix, reset } = useIfevalWorkbench(
-  () => props.sampleId,
-);
+const {
+  draft,
+  selectedVariant,
+  showMatrix,
+  reset,
+  replaceDraft,
+  undo,
+  canUndo,
+} = useIfevalWorkbench(() => props.sampleId);
 const analysis = computed(() => inspectIfeval(props.record, draft.value));
 const presets = computed(() => ifevalPresets(props.record));
 const active = computed(() => draft.value.length > 0);
@@ -28,7 +34,12 @@ const symbol = (s: CheckState) => ({ pass: "✓", fail: "×", unknown: "?" })[s]
           <span class="walkthrough-kicker">本站格式实验 · 非模型记录</span>
           <h3>改一处，看看哪条规则变了。</h3>
         </div>
-        <button type="button" class="secondary-button" @click="reset">
+        <button
+          v-if="draft"
+          type="button"
+          class="secondary-button"
+          @click="reset"
+        >
           清空练习
         </button>
       </div>
@@ -40,10 +51,11 @@ const symbol = (s: CheckState) => ({ pass: "✓", fail: "×", unknown: "?" })[s]
           v-for="p in presets"
           :key="p.label"
           type="button"
-          @click="draft = p.text"
+          @click="replaceDraft(p.text)"
         >
           {{ p.label }}
         </button>
+        <button v-if="canUndo" type="button" @click="undo">撤销替换</button>
       </div>
       <label for="if-draft"
         >可编辑格式片段

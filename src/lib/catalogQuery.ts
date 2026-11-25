@@ -100,6 +100,11 @@ export function createCatalogQuery(router: Router) {
       const current = queuedQuery ?? router.currentRoute.value.query;
       return navigate(resetCatalogQuery(current));
     },
+    // 无结果时先放宽筛选，保留读者已经输入的搜索词和显示偏好。
+    relaxFilters() {
+      const current = queuedQuery ?? router.currentRoute.value.query;
+      return navigate({ ...resetCatalogQuery(current), q: current.q });
+    },
   };
 }
 

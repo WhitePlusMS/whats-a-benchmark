@@ -4,7 +4,6 @@ import { useHead } from "@unhead/vue";
 import { useRoute } from "vue-router";
 import {
   benchmarks,
-  categories,
   embodiedBenchmarks,
   embodiedCategories,
   kindLabels,
@@ -20,15 +19,15 @@ import UiDialog from "../components/UiDialog.vue";
 import Icon from "../components/Icon.vue";
 import ComparisonSelectionBar from "../components/ComparisonSelectionBar.vue";
 import { formatCount } from "../lib/displayFormats";
-import { modelFilterCategories } from "../lib/catalogQuery";
+import { filterCatalog, modelFilterCategories } from "../lib/catalogQuery";
 
 const route = useRoute();
 const isEmbodied = computed(() => route.path === "/embodied/");
 const visibleBenchmarks = computed(() =>
   isEmbodied.value ? embodiedBenchmarks : benchmarks,
 );
-const visibleCategories = computed(() =>
-  isEmbodied.value ? embodiedCategories : categories,
+const filterCategories = computed(() =>
+  isEmbodied.value ? embodiedCategories : modelFilterCategories,
 );
 useHead(() => ({
   title: `${isEmbodied.value ? "具身智能" : "到底测什么？"} · what's a benchmark?`,
@@ -45,6 +44,8 @@ function syncViewport() {
 function onGlobalKeydown(event: KeyboardEvent) {
   // 模态打开时保持其原生焦点边界，快捷键不把焦点拉回背景。
   if (
+    !event.isComposing &&
+    !(event.target instanceof HTMLElement && event.target.isContentEditable) &&
     !showFilters.value &&
     (event.metaKey || event.ctrlKey) &&
     event.key.toLowerCase() === "k"
@@ -73,11 +74,38 @@ const {
   stats,
   setFilter: updateFilter,
   reset,
+  relaxFilters,
 } = useCatalogQuery();
 const publishers = computed(() => stats.value.publishers);
 const localCount = computed(() => stats.value.localCount);
 const sampleCount = computed(() => stats.value.sampleCount);
-const categoryCounts = computed(() => stats.value.categoryCounts);
+// 分类数量反映当前搜索和其他筛选，不让读者逐个试出空分类。
+const categoryCandidates = computed(() =>
+  filterCatalog({ ...query.value, category: "" }, isEmbodied.value),
+);
+const categoryCounts = computed(
+  () =>
+    new Map(
+      filterCategories.value.map((category) => [
+        category.id,
+        // 专题分类与原能力分类复用同一筛选规则，避免医疗专区被错误计为零。
+        filterCatalog(
+          { ...query.value, category: category.id },
+          isEmbodied.value,
+        ).length,
+      ]),
+    ),
+);
+const hasNonSearchFilters = computed(() => filterCount.value > 0);
+function search(event: Event) {
+  // 拼音尚未选字时不更新 URL，避免重新渲染打断中文输入。
+  if (event instanceof InputEvent && event.isComposing) return;
+  setFilter("q", (event.target as HTMLInputElement).value);
+}
+function clearSearch() {
+  setFilter("q", "");
+  searchInput.value?.focus();
+}
 // 侧栏、面板和条件标签都从同一URL模型派生，不维护第二份筛选状态。
 const activeFilters = computed(() =>
   [
@@ -140,10 +168,6 @@ function setFilter(key: CatalogFilterKey, value: string) {
         <span
           ><b>{{ formatCount(visibleBenchmarks.length) }}</b> 个评测</span
         ><span
-          ><b>{{ formatCount(visibleCategories.length) }}</b> 类{{
-            isEmbodied ? "任务" : "能力"
-          }}</span
-        ><span
           ><b>{{ formatCount(sampleCount) }}</b> 条真实案例</span
         >
       </div>
@@ -157,13 +181,14 @@ function setFilter(key: CatalogFilterKey, value: string) {
           name="benchmark-search"
           autocomplete="off"
           :value="query.q"
-          @input="setFilter('q', ($event.target as HTMLInputElement).value)"
+          @input="search"
+          @compositionend="search"
           placeholder="搜索评测、能力或发布方…"
         /><button
           v-if="query.q"
           class="icon-button"
           aria-label="清空搜索"
-          @click="setFilter('q', '')"
+          @click="clearSearch"
         >
           <Icon name="close" :size="18" /></button
         ><kbd v-else class="search-kbd">{{ isMac ? "⌘K" : "Ctrl K" }}</kbd>
@@ -200,8 +225,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
         :query="query"
         :publishers="publishers"
         :category-counts="categoryCounts"
-        :total="visibleBenchmarks.length"
-        :categories="isEmbodied ? visibleCategories : modelFilterCategories"
+        :total="categoryCandidates.length"
+        :categories="filterCategories"
         :task-only="isEmbodied"
         @change="setFilter"
       />
@@ -308,8 +333,23 @@ function setFilter(key: CatalogFilterKey, value: string) {
       <div v-if="!results.length" class="empty-state">
         <Icon name="search" :size="30" />
         <h3>未找到匹配的评测</h3>
-        <p>试试英文简称，或移除上方的筛选条件。</p>
-        <button class="primary-button" @click="reset">查看全部评测</button>
+        <p>
+          {{
+            hasNonSearchFilters
+              ? "放宽筛选再找找，搜索词会保留。"
+              : "试试评测简称、能力或发布方。"
+          }}
+        </p>
+        <button
+          v-if="hasNonSearchFilters"
+          class="primary-button"
+          @click="relaxFilters"
+        >
+          移除筛选条件
+        </button>
+        <button v-else class="primary-button" @click="clearSearch">
+          清空搜索
+        </button>
       </div>
       <p class="catalog-footnote">
         {{ sampleCount }} 条真实案例，覆盖
@@ -329,8 +369,8 @@ function setFilter(key: CatalogFilterKey, value: string) {
       :query="query"
       :publishers="publishers"
       :category-counts="categoryCounts"
-      :total="visibleBenchmarks.length"
-      :categories="isEmbodied ? visibleCategories : modelFilterCategories"
+      :total="categoryCandidates.length"
+      :categories="filterCategories"
       :task-only="isEmbodied"
       @change="setFilter" /><template #footer
       ><button class="clear-all" :disabled="!hasFilters" @click="reset">

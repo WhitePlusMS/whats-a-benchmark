@@ -19,7 +19,7 @@ initTheme();
 const { colorModeIcon, colorModeLabel, cycleColorMode } = useTheme();
 // Own selection state per application and dispose the navigation subscription.
 const comparison = createComparison(useRouter());
-const { selected } = comparison;
+const { selected, notice, canUndoClear, undoClear } = comparison;
 const isCatalog = computed(() => ["/", "/embodied/"].includes(route.path));
 const showCompareDock = computed(
   () => selected.value.length > 0 && !/^\/compare\/?$/.test(route.path),
@@ -113,7 +113,19 @@ onUnmounted(comparison.dispose);
       </div>
     </div>
   </header>
-  <main id="main-content"><RouterView /></main>
+  <main id="main-content">
+    <div
+      v-if="notice || canUndoClear"
+      class="comparison-feedback"
+      :class="{ 'with-selection': showCompareDock }"
+    >
+      <p role="status">{{ notice || "已清空对比。" }}</p>
+      <button v-if="canUndoClear" class="text-link" @click="undoClear">
+        撤销清空
+      </button>
+    </div>
+    <RouterView />
+  </main>
   <footer
     class="site-footer"
     :class="{

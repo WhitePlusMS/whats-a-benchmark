@@ -30,8 +30,8 @@ const {
   color,
   history,
   revealed,
+  referenceVisible,
   checked,
-  reset,
   paint,
   undo,
   check,
@@ -49,19 +49,15 @@ watch(
   { immediate: true },
 );
 const differences = computed(() =>
-  revealed.value ? gridDifferences(draft.value, props.pair.output) : null,
+  referenceVisible.value
+    ? gridDifferences(draft.value, props.pair.output)
+    : null,
 );
 const differenceCount = computed(
   () => differences.value?.flat().filter(Boolean).length,
 );
 function applySize() {
   sizeError.value = !practice.resize(Number(rows.value), Number(columns.value));
-}
-function startOver() {
-  reset();
-  rows.value = draft.value.length;
-  columns.value = draft.value[0].length;
-  sizeError.value = false;
 }
 </script>
 <template>
@@ -162,12 +158,12 @@ function startOver() {
           <button type="button" class="arc-tool" @click="clear">
             清空颜色
           </button>
-          <button type="button" class="arc-tool" @click="startOver">
-            重开练习
-          </button>
         </div>
       </div>
-      <div class="arc-answer-layout" :class="{ 'has-reference': revealed }">
+      <div
+        class="arc-answer-layout"
+        :class="{ 'has-reference': referenceVisible }"
+      >
         <figure class="arc-draft">
           <figcaption>
             你的预测 <span>{{ gridSize(draft) }}</span>
@@ -180,7 +176,7 @@ function startOver() {
             @paint="paint"
           />
         </figure>
-        <figure v-if="revealed" class="arc-reference">
+        <figure v-if="referenceVisible" class="arc-reference">
           <figcaption>
             公开参考输出 <span>{{ gridSize(pair.output) }}</span>
           </figcaption>
@@ -210,15 +206,12 @@ function startOver() {
         <button
           type="button"
           class="arc-tool"
-          :aria-expanded="revealed"
-          :aria-disabled="revealed"
+          :aria-expanded="referenceVisible"
           @click="reveal"
         >
-          {{ revealed ? "参考输出已揭示" : "揭示参考输出" }}
+          {{ referenceVisible ? "收起参考输出" : "查看参考输出" }}
         </button>
-        <span v-if="revealed" class="arc-revealed"
-          >已查看参考 · 重开练习可重新隐藏</span
-        >
+        <span v-if="revealed" class="arc-revealed">已查看参考</span>
       </div>
       <div class="arc-check-result" aria-live="polite" aria-atomic="true">
         <p v-if="checked === true">
@@ -233,7 +226,7 @@ function startOver() {
           输出尺寸和每一格都必须一致。可以继续调整，或主动揭示参考输出。
         </p>
         <p v-else>检查只判断整张网格是否相同，不把像素正确比例当作题目得分。</p>
-        <p v-if="revealed">
+        <p v-if="referenceVisible">
           {{
             differences
               ? `白框标出 ${differenceCount} 个与参考不同的位置（当前画板与参考同尺寸）。`

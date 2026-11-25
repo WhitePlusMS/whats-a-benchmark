@@ -45,7 +45,7 @@ AI users reading model reports can find explanations of unfamiliar benchmarks. D
 - **Scores and conditions:** read metric definitions, execution requirements, limitations, and version differences to assess whether two reported results can be compared.
 - **Relationships and sources:** distinguish original evaluations, subsets, derivatives, and suites, then follow official papers, project pages, dataset documentation, and model reports.
 
-The catalog supports search by name, capability, or publisher, category filters, and batch lookup of benchmark names. Readers can also compare two or three evaluations side by side and share the comparison URL.
+The catalog supports search by name, capability, or publisher, and category filters. Readers can also compare two or three evaluations side by side and copy a link to share the comparison.
 
 Coverage includes coding, mathematical and logical reasoning, knowledge, agents and tools, multimodal understanding, long context, instruction following, professional work, writing and design, and evaluations spanning multiple capabilities.
 

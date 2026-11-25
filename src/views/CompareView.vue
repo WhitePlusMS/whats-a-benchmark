@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { useHead } from "@unhead/vue";
 import { byId, categoryById, embodiedCategories } from "../content/catalog";
 import {
@@ -18,6 +18,33 @@ import { COMPARISON_LIMIT } from "../lib/comparison";
 import { useComparison } from "../composables/compare";
 useHead({ title: "评测对比 · what's a benchmark?" });
 const { selected, toggle, clear } = useComparison();
+const shareStatus = ref("");
+const shareUrl = ref("");
+const copying = ref(false);
+watch(selected, () => {
+  shareStatus.value = "";
+  shareUrl.value = "";
+});
+async function copyLink() {
+  if (copying.value) return;
+  copying.value = true;
+  const url = window.location.href;
+  const selection = selected.value.join(",");
+  const isCurrentSelection = () => selected.value.join(",") === selection;
+  try {
+    await navigator.clipboard.writeText(url);
+    // 等待权限期间可能已移除评测；旧操作不能覆盖当前对比的反馈。
+    if (isCurrentSelection()) shareStatus.value = "对比链接已复制。";
+  } catch {
+    // 权限被拒绝时提供可选中的实际链接，不假报复制成功。
+    if (isCurrentSelection()) {
+      shareUrl.value = url;
+      shareStatus.value = "未能自动复制，请选择下方链接复制。";
+    }
+  } finally {
+    copying.value = false;
+  }
+}
 const { catalogLocation, embodiedLocation } = useCatalogNavigation();
 const items = computed(() =>
   selected.value
@@ -80,7 +107,9 @@ const overview: Dimension[] = [
     label: "评分指标",
     primary: true,
     value: (item) => ({
-      text: item.metric.name + "：" + item.metric.description,
+      text: item.metric.description.startsWith(item.metric.name + "：")
+        ? item.metric.description
+        : item.metric.name + "：" + item.metric.description,
     }),
   },
   {
@@ -188,7 +217,25 @@ const grouped = computed(() => [
       >
         {{ items.length < COMPARISON_LIMIT ? "添加评测" : "返回目录" }}
       </RouterLink>
+      <button
+        v-if="items.length >= 2"
+        type="button"
+        class="secondary-button"
+        :disabled="copying"
+        @click="copyLink"
+      >
+        {{ copying ? "正在复制…" : "复制对比链接" }}
+      </button>
     </div>
+    <p v-if="shareStatus" role="status" class="muted">{{ shareStatus }}</p>
+    <input
+      v-if="shareUrl"
+      class="comparison-share-url"
+      aria-label="对比链接"
+      :value="shareUrl"
+      readonly
+      @focus="($event.target as HTMLInputElement).select()"
+    />
     <template v-if="items.length >= 2">
       <div class="comparison-scroll" tabindex="0" aria-label="评测对比表">
         <table class="comparison-table">

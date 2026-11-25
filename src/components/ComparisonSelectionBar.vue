@@ -6,7 +6,7 @@ import { COMPARISON_LIMIT } from "../lib/comparison";
 import Icon from "./Icon.vue";
 
 defineProps<{ inline?: boolean }>();
-const { selected, notice, toggle, clear } = useComparison();
+const { selected, toggle, clear } = useComparison();
 const compareUrl = computed(() => ({
   path: "/compare/",
   query: { ids: selected.value.join(",") },
@@ -46,6 +46,5 @@ const compareUrl = computed(() => ({
     ><button class="icon-button" @click="clear" aria-label="清空对比">
       <Icon name="close" :size="18" />
     </button>
-    <p v-if="notice" role="status" class="dock-notice">{{ notice }}</p>
   </div>
 </template>

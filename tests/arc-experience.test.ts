@@ -321,10 +321,10 @@ test("ARC 保留原始矩阵与来源入口；参考只在明确揭示后渲染�
   assert.match(rawViewer, /:href="current.source"/);
   assert.match(pilot, /:sample-id="sample.id"/);
   assert.match(pilot, /不将放大后的画面对齐/);
-  assert.match(practice, /v-if="revealed" class="arc-reference"/);
-  assert.match(practice, /revealed.value \? gridDifferences/);
+  assert.match(practice, /v-if="referenceVisible" class="arc-reference"/);
+  assert.match(practice, /referenceVisible.value\s*\? gridDifferences/);
   assert.match(practice, /不运行模型，不计正式成绩/);
-  assert.match(practice, /重开练习/);
+  assert.match(practice, /收起参考输出/);
   assert.match(editor, /role="grid"/);
   assert.match(editor, /ArrowRight/);
   assert.match(editor, /ArrowLeft/);

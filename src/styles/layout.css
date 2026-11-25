@@ -99,7 +99,9 @@
   color: var(--muted);
 }
 .site-footer.with-compare-dock {
-  padding-bottom: calc(var(--dock-clearance) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(
+    var(--dock-clearance) + env(safe-area-inset-bottom, 0px)
+  );
 }
 .footer-inner {
   display: flex;
@@ -216,6 +218,10 @@
   }
 }
 @media (max-width: 780px) {
+  /* 源码链接在页脚已有入口，窄屏把页眉空间留给阅读和外观操作。 */
+  .header-actions > a.icon-button {
+    display: none;
+  }
   .site-header {
     height: auto;
     min-height: 98px;

@@ -15,13 +15,55 @@ export interface ThemePreset {
 
 export const THEME_PRESETS: ThemePreset[] = [
   // 默认与 C 方案的深蓝题卡一致，橙色对号作为固定识别点。
-  { id: "navy", name: "深海蓝", brand: "#092d56", hover: "#062344", darkBrand: "#8cb6e2" },
-  { id: "violet", name: "鸢尾紫", brand: "#6957d4", hover: "#5845ba", darkBrand: "#a08ef0" },
-  { id: "indigo", name: "靛蓝", brand: "#3b56d9", hover: "#3147b8", darkBrand: "#93a5f0" },
-  { id: "teal", name: "黛绿", brand: "#0e8465", hover: "#0b6d53", darkBrand: "#4cc9a5" },
-  { id: "amber", name: "蜜橙", brand: "#b45309", hover: "#96460a", darkBrand: "#f09a5c" },
-  { id: "rose", name: "玫红", brand: "#c42b6d", hover: "#a52259", darkBrand: "#f06f9f" },
-  { id: "graphite", name: "石墨", brand: "#4b5563", hover: "#3c4450", darkBrand: "#9aa5b4" },
+  {
+    id: "navy",
+    name: "深海蓝",
+    brand: "#092d56",
+    hover: "#062344",
+    darkBrand: "#8cb6e2",
+  },
+  {
+    id: "violet",
+    name: "鸢尾紫",
+    brand: "#6957d4",
+    hover: "#5845ba",
+    darkBrand: "#a08ef0",
+  },
+  {
+    id: "indigo",
+    name: "靛蓝",
+    brand: "#3b56d9",
+    hover: "#3147b8",
+    darkBrand: "#93a5f0",
+  },
+  {
+    id: "teal",
+    name: "黛绿",
+    brand: "#0e8465",
+    hover: "#0b6d53",
+    darkBrand: "#4cc9a5",
+  },
+  {
+    id: "amber",
+    name: "蜜橙",
+    brand: "#b45309",
+    hover: "#96460a",
+    darkBrand: "#f09a5c",
+  },
+  {
+    id: "rose",
+    name: "玫红",
+    brand: "#c42b6d",
+    hover: "#a52259",
+    darkBrand: "#f06f9f",
+  },
+  {
+    id: "graphite",
+    name: "石墨",
+    brand: "#4b5563",
+    hover: "#3c4450",
+    darkBrand: "#9aa5b4",
+  },
 ];
 
 const THEME_STORAGE_KEY = "wab-theme";
@@ -53,14 +95,18 @@ function writeThemeVars(preset: ThemePreset) {
 
 /** Persist as resolved variable values so the anti-flash script stays palette-agnostic. */
 function persist(preset: ThemePreset) {
-  localStorage.setItem(
-    THEME_STORAGE_KEY,
-    JSON.stringify({
-      "--theme-brand": preset.brand,
-      "--theme-brand-hover": preset.hover,
-      "--theme-dark-brand": preset.darkBrand,
-    }),
-  );
+  try {
+    localStorage.setItem(
+      THEME_STORAGE_KEY,
+      JSON.stringify({
+        "--theme-brand": preset.brand,
+        "--theme-brand-hover": preset.hover,
+        "--theme-dark-brand": preset.darkBrand,
+      }),
+    );
+  } catch {
+    // 浏览器禁止保存时仍可使用本次选择，不让外观设置中断阅读。
+  }
 }
 
 function systemPrefersDark() {
@@ -80,29 +126,34 @@ function writeColorMode(mode: ColorMode) {
   colorMode.value = mode;
   if (mode === "system") {
     document.documentElement.removeAttribute("data-color-mode");
-    localStorage.removeItem(COLOR_MODE_KEY);
   } else {
     document.documentElement.dataset.colorMode = mode;
-    localStorage.setItem(COLOR_MODE_KEY, mode);
   }
   syncThemeColor();
+  try {
+    if (mode === "system") localStorage.removeItem(COLOR_MODE_KEY);
+    else localStorage.setItem(COLOR_MODE_KEY, mode);
+  } catch {
+    // 与主题色保持一致：当前页面立即生效，存储失败不影响操作。
+  }
 }
 
 /** Restore state on startup; CSS variables and the mode attribute were applied inline. */
 export function initTheme() {
   // vite-ssg 在 Node 中执行 setup，没有 localStorage；变量由内联脚本兜底。
-  if (typeof localStorage === "undefined") return;
+  if (typeof window === "undefined") return;
   try {
     const saved = JSON.parse(localStorage.getItem(THEME_STORAGE_KEY) || "null");
     const match = THEME_PRESETS.find(
       (preset) => preset.brand === saved?.["--theme-brand"],
     );
     if (match) activeId.value = match.id;
+    const savedMode = localStorage.getItem(COLOR_MODE_KEY);
+    if (savedMode === "light" || savedMode === "dark")
+      colorMode.value = savedMode;
   } catch {
     /* 损坏的存储按默认主题处理 */
   }
-  const savedMode = localStorage.getItem(COLOR_MODE_KEY);
-  if (savedMode === "light" || savedMode === "dark") colorMode.value = savedMode;
   syncThemeColor();
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
     if (colorMode.value === "system") syncThemeColor();
@@ -118,13 +169,14 @@ export function useTheme() {
     colorModeLabel: computed(() => COLOR_MODE_LABELS[colorMode.value]),
     applyTheme(preset: ThemePreset) {
       writeThemeVars(preset);
-      persist(preset);
       activeId.value = preset.id;
+      persist(preset);
     },
     cycleColorMode() {
       const next =
         COLOR_MODE_CYCLE[
-          (COLOR_MODE_CYCLE.indexOf(colorMode.value) + 1) % COLOR_MODE_CYCLE.length
+          (COLOR_MODE_CYCLE.indexOf(colorMode.value) + 1) %
+            COLOR_MODE_CYCLE.length
         ];
       writeColorMode(next);
     },

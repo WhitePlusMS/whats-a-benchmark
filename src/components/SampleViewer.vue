@@ -164,7 +164,7 @@ onMounted(() => {
           原始数据
         </button>
       </div>
-      <div class="sample-picker">
+      <div v-if="data.samples.length > 1 || !current" class="sample-picker">
         <button
           class="sample-step"
           aria-label="上一个案例"
