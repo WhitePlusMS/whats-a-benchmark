@@ -4,7 +4,6 @@ import { useHead } from "@unhead/vue";
 import { useRoute } from "vue-router";
 import {
   benchmarks,
-  categories,
   embodiedBenchmarks,
   embodiedCategories,
   kindLabels,
@@ -26,9 +25,6 @@ const route = useRoute();
 const isEmbodied = computed(() => route.path === "/embodied/");
 const visibleBenchmarks = computed(() =>
   isEmbodied.value ? embodiedBenchmarks : benchmarks,
-);
-const visibleCategories = computed(() =>
-  isEmbodied.value ? embodiedCategories : categories,
 );
 const filterCategories = computed(() =>
   isEmbodied.value ? embodiedCategories : modelFilterCategories,
@@ -171,10 +167,6 @@ function setFilter(key: CatalogFilterKey, value: string) {
       <div class="catalog-stats" aria-label="目录收录情况">
         <span
           ><b>{{ formatCount(visibleBenchmarks.length) }}</b> 个评测</span
-        ><span
-          ><b>{{ formatCount(visibleCategories.length) }}</b> 类{{
-            isEmbodied ? "任务" : "能力"
-          }}</span
         ><span
           ><b>{{ formatCount(sampleCount) }}</b> 条真实案例</span
         >
