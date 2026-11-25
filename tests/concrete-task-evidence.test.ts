@@ -772,3 +772,47 @@ test("DAYJOB Tax 默认展示同一日志定义、工作底稿与核验天数", 
   assert.match(shown, /Form 1120-S 草稿和调查工作底稿/);
   assert.match(shown, /c003：.*现场工作日须与派工日志一致/);
 });
+
+test("Big Finance Bench 默认展示原题与同一记录的参考答案及加权评分条款", async () => {
+  const { item, sampleFile } = await load("big-finance-benchmark");
+  const sample = sampleFile?.samples[0];
+  assert.ok(sample && typeof sample.raw === "object");
+  assert.equal(item.releaseDate, "2026-05-27");
+  assert.deepEqual(item.brandIds, ["rogo"]);
+  assert.equal(sample.id, "bf-712e20a246");
+  assert.equal(sample.prompt, sample.raw.query);
+  assert.equal(
+    sample.answer,
+    "2022 was 63.0% Digital, 37.0% Print; 2024 being 70.2% Digital, 29.8% Print",
+  );
+  assert.equal(sample.raw.reference_answer, sample.answer);
+  assert.match(
+    sample.source,
+    /685f1bfcc6a97cea3d396f37c36bc415db3cb064\/data\/big_finance_subset\.jsonl#L18$/,
+  );
+  assert.deepEqual(
+    (sample.raw.rubric as { points: number }[]).map(({ points }) => points),
+    [1, 1, 1, 1, 2, 2],
+  );
+
+  const { shown, html } = await renderDefault(item, sampleFile);
+  assert.ok(shown.includes(sample.prompt));
+  assert.match(
+    shown,
+    /2022 年数字订阅收入为 978,574.*573,788.*1,254,592.*533,615.*63\.0%.*37\.0%.*70\.2%.*29\.8%/s,
+  );
+  assert.match(shown, /11 条 rubric 中的 6 条/);
+  assert.match(html, /href="\/licenses\/rogo-big-finance-cc-by-4-0\.txt"/);
+
+  const mark = await readFile(
+    new URL("../content/assets/logos/rogo.svg", import.meta.url),
+  );
+  assert.equal(
+    createHash("sha256").update(mark).digest("hex"),
+    "60c7040f25ba011748e03eb0fa5fb8d7751bfbb186fefe5fef424ea6d06c1b41",
+  );
+  assert.doesNotMatch(
+    mark.toString(),
+    /<(?:script|foreignObject|image)\b|\son\w+=|href="(?!#)/i,
+  );
+});
