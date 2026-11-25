@@ -1,5 +1,26 @@
 # 更新说明
 
+## 2026-11-25 · 全站体验审查与简化（进行中）
+
+- 修改 `src/components/CatalogFilters.vue`、`src/views/ExploreView.vue`、`src/lib/catalogQuery.ts`：分类支持再次点击取消；数量按当前搜索和其他条件计算，零结果分类不可误选；中文输入选字期间不刷新查询；清空搜索后继续聚焦输入框；无结果时优先移除筛选并保留搜索词、排序和视图。原因：避免读者试错和重复输入，桌面与手机共用同一逻辑。
+- 编译校正：具身任务分类使用逐项严格比较，保持通用分类 ID 和具身任务联合类型之间的类型安全。
+- 修改 `src/composables/compare.ts`、`src/App.vue`、`src/components/ComparisonSelectionBar.vue`、`src/views/CompareView.vue`、`src/styles/reading.css`：清空对比后提供一次撤销，不用确认弹窗；上限和清空反馈统一展示；对比页新增复制链接，权限失败时给出可手动复制的链接。原因：低打扰地防止误清空，并让分享成为明确操作，不要求读者自行理解地址栏。
+- 修改 `src/lib/theme.ts`、`src/components/ThemeSwitcher.vue`：主题与外观即时生效，浏览器拒绝存储时不抛出异常打断页面；颜色选择采用普通可切换按钮语义，支持 Tab、Esc 与选择后的焦点返回，扩大触控范围。原因：使常用设置在不同输入方式和存储限制下都能完成。
+- 修改 `src/components/BenchmarkCard.vue`、`src/components/BenchmarkDetailHeader.vue`：标题下的两段说明完全相同时只显示一次。全量扫描发现 38 项摘要重复，采用共用展示规则，保留原始内容与出处。
+- 用户已取消 Gemini 环节，改由主执行者自行检查，保留 GPT 独立复审；清单据此更新。
+- 修改 `src/composables/ifevalWorkbench.ts`、`src/components/IfevalWorkbench.vue`：清空或载入教学片段可撤销一次；空草稿不显示清空；收起候选矩阵时返回原片段检查。原因：避免误覆盖手工输入，也避免隐藏选项继续影响可见结果。
+- 修改 `src/composables/arcPractice.ts`、`src/components/ArcPractice.vue`：参考输出可再次点击收起，仍保留“已查看参考”的事实；移除会清掉撤销历史的重复重开按钮，清空颜色、复制输入、改尺寸仍可撤销。原因：把收起与重置分开，保护作答内容并保持反馈准确。
+- 修改 `src/components/SampleViewer.vue`：只有一个有效样例时不显示两侧无效换题控件；无效样例链接仍保留选择恢复入口。补充主题窄屏换行；对比反馈改为当前视口可见的非模态提示，避免长页中按下按钮后看不到回应。
+- 新增 `tests/system-first-ux.test.ts`：覆盖放宽筛选时保留输入、对比清空与立即撤销及会话写回、IFEval 撤销与折叠状态、ARC 收起参考不丢作答和查看记录、存储拒绝时的主题初始化及切换。测试使用合成状态和内存路由，不冒充浏览器实测。
+- 实测后修正 `src/components/ThemeSwitcher.vue`、`src/styles/layout.css`：390px 宽度下主题菜单曾伸出屏幕，现改为限制在视口内；手机页眉隐藏在页脚已有的 GitHub 入口，为常用控件留出空间。
+- 修改 `src/views/CompareView.vue`：评分说明已包含指标名前缀时不重复拼接（实测发现 HumanEval 显示为两次 pass@k）。更新 `tests/arc-experience.test.ts` 以覆盖可收起参考的新规则。
+- 修改 `README.md`、`README_ZH.md`：移除当前代码没有实现的批量名称查询承诺，同步实际存在的复制对比链接功能。原因：文案必须符合真实行为，不让读者寻找不存在的操作。
+- 验证进展：内置浏览器恢复后已实际走通目录搜索/分类取消、对比清空撤销/复制链接/刷新读回、390px 手机筛选无结果恢复、换肤菜单和 IFEval 覆盖/清空撤销及收起候选；TypeScript 检查通过，内容校验通过（359 项、749 条样例、19 份报告）。格式化修改文件；全量回归仅旧源码断言受格式化换行影响，已改为接受正常空白，行为由新增状态测试验证。
+- GPT 独立复审发现并修复 `src/views/CompareView.vue` 的复制并发反馈：等待剪贴板权限期间更换对比项时，旧复制操作不再回填成功提示或旧链接；始终释放复制中的状态。ARC 已实际验证参考收起、绘色保留及清空撤销。
+- 发布前同步远端 59 个提交，保留新收录内容、首页横幅删除、医疗专题分类、分类内发布方分组及 PR CI。解决 `src/views/ExploreView.vue` 冲突：沿用远端分组结果，桌面/手机共用完整筛选分类，动态计数复用既有 `filterCatalog`，使医疗专题与具身任务遵循真实筛选规则。原有用户日志单独暂存并将在变基后恢复，不混入本次提交。
+- 新增 `docs/reviews/2026-11-25-system-first-ux.md`：按八条体验原则记录全站覆盖、修复及验收清单。目标是由系统处理可判断的信息、减少无关操作，并保留可撤回的状态。
+- 已确认 GitHub Pages 由 main 推送触发。当前独立分支修复；浏览器工具因无法可靠识别 Windows 当前网址而强制停止，Gemini 网页咨询、真实交互验收与最终发布尚未完成。
+
 ## 2026-11-19 · 忽略工作区临时文件
 
 - `.gitignore` 加入根目录 `/.scratch/`，让下载数据、依赖副本、构建产物和临时检出退出 Git 状态。此前提交的 59 个草稿、脚本和评审文件继续由 Git 跟踪。

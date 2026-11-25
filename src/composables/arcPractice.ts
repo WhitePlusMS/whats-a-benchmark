@@ -11,12 +11,14 @@ export function useArcPractice(
   const history = ref<ArcGrid[]>([]);
   const color = ref(0);
   const revealed = ref(false);
+  const referenceVisible = ref(false);
   const checked = ref<boolean | null>(null);
   function reset() {
     draft.value = getPair().input.map((row) => row.map(() => 0));
     history.value = [];
     color.value = 0;
     revealed.value = false;
+    referenceVisible.value = false;
     checked.value = null;
   }
   watch([getPair, getSampleId], reset, { immediate: true, flush: "sync" });
@@ -55,7 +57,9 @@ export function useArcPractice(
     checked.value = exactGridMatch(draft.value, getPair().output);
   }
   function reveal() {
+    // 已看过参考的事实保留，收起图片不把本次练习重新算作未查看。
     revealed.value = true;
+    referenceVisible.value = !referenceVisible.value;
   }
   function copyInput() {
     replace(getPair().input);
@@ -68,6 +72,7 @@ export function useArcPractice(
     history,
     color,
     revealed,
+    referenceVisible,
     checked,
     reset,
     paint,

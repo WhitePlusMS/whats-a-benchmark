@@ -257,6 +257,40 @@
   margin-bottom: var(--ui-space);
   color: var(--text-secondary);
 }
+.comparison-feedback {
+  position: fixed;
+  z-index: 55;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 6px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--ui-control-radius);
+  box-shadow: 0 8px 28px var(--dock-shadow);
+  color: var(--text-secondary);
+}
+.comparison-feedback.with-selection {
+  bottom: calc(var(--dock-clearance) + 24px + env(safe-area-inset-bottom, 0px));
+}
+.comparison-feedback button {
+  min-height: var(--ui-touch-target);
+  color: var(--accent-text);
+}
+.comparison-share-url {
+  width: 100%;
+  min-height: var(--ui-touch-target);
+  margin-block: 12px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--ui-control-radius);
+}
 .comparison-mobile {
   display: none;
 }

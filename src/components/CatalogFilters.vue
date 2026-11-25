@@ -40,7 +40,10 @@ const id = useId();
         class="category-filter"
         :class="{ active: query.category === cat.id }"
         :aria-pressed="query.category === cat.id"
-        @click="emit('change', 'category', cat.id)"
+        :disabled="!categoryCounts.get(cat.id) && query.category !== cat.id"
+        @click="
+          emit('change', 'category', query.category === cat.id ? '' : cat.id)
+        "
       >
         <Icon :name="cat.glyph" :size="17" /><span>{{ cat.name }}</span
         ><small>{{ categoryCounts.get(cat.id) || 0 }}</small>

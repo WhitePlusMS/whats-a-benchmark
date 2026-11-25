@@ -28,11 +28,18 @@ const { selected, toggle } = useComparison();
         >
       </div>
     </div>
-    <RouterLink :to="benchmarkSearchTarget(item, searchQuery)" class="card-title"
+    <RouterLink
+      :to="benchmarkSearchTarget(item, searchQuery)"
+      class="card-title"
       ><h3 translate="no">{{ item.name }}</h3></RouterLink
     >
     <p class="card-tldr">{{ item.subtitle }}</p>
-    <p class="card-summary">{{ item.officialDefinition.summary }}</p>
+    <p
+      v-if="item.officialDefinition.summary !== item.subtitle"
+      class="card-summary"
+    >
+      {{ item.officialDefinition.summary }}
+    </p>
     <div class="tags">
       <span v-for="tag in item.tags" :key="tag">{{ tag }}</span>
     </div>

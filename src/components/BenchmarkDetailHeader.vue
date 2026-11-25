@@ -32,6 +32,10 @@ const titleStart = computed(() =>
     : props.item.name,
 );
 const action = computed(() => sampleAction(props.item));
+const lead = computed(() => intro.value?.lead ?? props.item.subtitle);
+const summary = computed(
+  () => intro.value?.summary ?? props.item.officialDefinition.summary,
+);
 </script>
 
 <template>
@@ -47,9 +51,9 @@ const action = computed(() => sampleAction(props.item));
     <h1 translate="no">
       {{ titleStart }}<span v-if="titleAccent">{{ titleAccent }}</span>
     </h1>
-    <p class="benchmark-header-lead">{{ intro?.lead ?? item.subtitle }}</p>
-    <p class="benchmark-header-summary">
-      {{ intro?.summary ?? item.officialDefinition.summary }}
+    <p class="benchmark-header-lead">{{ lead }}</p>
+    <p v-if="summary !== lead" class="benchmark-header-summary">
+      {{ summary }}
     </p>
     <div class="benchmark-header-actions">
       <a href="#samples" class="primary-button">

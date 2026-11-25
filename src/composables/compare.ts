@@ -10,6 +10,8 @@ export interface Comparison {
   selected: ComputedRef<string[]>;
   toggle: (id: string) => void;
   clear: () => void;
+  undoClear: () => void;
+  canUndoClear: ComputedRef<boolean>;
   notice: Ref<string>;
 }
 export const comparisonKey: InjectionKey<Comparison> = Symbol("comparison");
@@ -24,6 +26,7 @@ export function createComparison(
 ) {
   const remembered = ref<string[]>([]);
   const notice = ref("");
+  const clearedIds = ref<string[]>([]);
   // SSG generates query-free pages. Read shared selections after hydration only.
   const active = ref(false);
   let pendingIds: string[] | undefined;
@@ -54,7 +57,8 @@ export function createComparison(
       remember(parseComparisonIds(from.query.ids));
       pendingIds = undefined;
     }
-    notice.value = "";
+    // 修改对比 URL 是当前操作的一部分，不能清掉刚产生的撤销反馈。
+    if (to.path !== from.path) notice.value = "";
   });
   function update(ids: string[]) {
     const next = normalizeComparisonIds(ids);
@@ -74,6 +78,7 @@ export function createComparison(
   }
   function toggle(id: string) {
     notice.value = "";
+    clearedIds.value = [];
     const current = isCompare(router.currentRoute.value.path)
       ? (pendingIds ?? selected.value)
       : selected.value;
@@ -83,14 +88,26 @@ export function createComparison(
     else notice.value = `最多对比 ${COMPARISON_LIMIT} 个评测，请先移除一个。`;
   }
   function clear() {
-    notice.value = "";
+    const current = pendingIds ?? selected.value;
+    if (!current.length) return;
+    clearedIds.value = [...current];
+    notice.value = "已清空对比。";
     update([]);
+  }
+  function undoClear() {
+    const ids = clearedIds.value;
+    if (!ids.length) return;
+    clearedIds.value = [];
+    notice.value = "已恢复对比选择。";
+    update(ids);
   }
   return {
     selected,
     notice,
     toggle,
     clear,
+    undoClear,
+    canUndoClear: computed(() => clearedIds.value.length > 0),
     activate: () => {
       try {
         remembered.value = parseComparisonIds(session()?.getItem(selectionKey));
