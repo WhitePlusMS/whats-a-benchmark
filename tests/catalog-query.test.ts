@@ -5,6 +5,7 @@ import {
   benchmarks,
   categories,
   embodiedBenchmarks,
+  embodiedCategories,
 } from "../src/content/catalog";
 import {
   healthcareBenchmarks,
@@ -12,11 +13,12 @@ import {
   healthcareCategoryByBenchmarkId,
   legacyHealthcarePath,
 } from "../src/content/healthcare";
-import { benchmarkSearchTarget } from "../src/lib/search";
+import { benchmarkSearchTarget, searchBenchmarks } from "../src/lib/search";
 import {
   catalogStats,
   createCatalogQuery,
   filterCatalog,
+  groupByPublisher,
   hasCatalogFilters,
   parseCatalogQuery,
   modelFilterCategories,
@@ -29,6 +31,7 @@ function createTestRouter() {
     history: createMemoryHistory(),
     routes: [
       { path: "/", component: { template: "<div />" } },
+      { path: "/embodied/", component: { template: "<div />" } },
       { path: "/other", component: { template: "<div />" } },
       {
         path: legacyHealthcarePath,
@@ -303,5 +306,157 @@ test("医疗健康分类可检索 MedGuardBench，保留原能力分类和详情
   assert.equal(
     benchmarkSearchTarget(fromHealthcare[0]!),
     "/benchmarks/medguardbench/",
+  );
+});
+
+const frontierPairs = [
+  ["frontierscience", "frontierscience-research"],
+  ["frontiermath-v2-tiers-1-3", "frontiermath-v2-tier-4"],
+] as const;
+
+function assertFrontierPairs(ids: readonly string[]) {
+  for (const [first, second] of frontierPairs) {
+    const i = ids.indexOf(first);
+    assert.notEqual(i, -1);
+    assert.equal(ids[i + 1], second);
+  }
+}
+
+test("default directory and selected category keep the actual Frontier publishers adjacent", async () => {
+  const router = createTestRouter();
+  const catalog = createCatalogQuery(router);
+  await router.push("/");
+  const groups = catalog.groupedResults.value;
+  assert.deepEqual(
+    groups.map(({ category }) => category.id),
+    categories.map(({ id }) => id),
+  );
+  for (const { category, items } of groups) {
+    const original = benchmarks.filter(
+      (entry) => entry.category === category.id,
+    );
+    assert.deepEqual(
+      items.map(({ id }) => id).sort(),
+      original.map(({ id }) => id).sort(),
+    );
+    const publishers = [...new Set(original.map(({ publisher }) => publisher))];
+    assert.deepEqual(
+      items.map(({ publisher }) => publisher),
+      publishers.flatMap((p) =>
+        original
+          .filter((entry) => entry.publisher === p)
+          .map(({ publisher }) => publisher),
+      ),
+    );
+    for (const publisher of publishers) {
+      const ids = (entries: typeof items) =>
+        entries
+          .filter((item) => item.publisher === publisher)
+          .map(({ id }) => id);
+      assert.deepEqual(ids(items), ids(original));
+    }
+  }
+  const reasoning = groups.find(({ category }) => category.id === "reasoning")!;
+  assertFrontierPairs(reasoning.items.map(({ id }) => id));
+  for (const view of ["grid", "list"]) {
+    await router.push({ path: "/", query: { category: "reasoning", view } });
+    assert.equal(catalog.groupedResults.value.length, 0);
+    assert.deepEqual(
+      catalog.results.value.map(({ id }) => id),
+      reasoning.items.map(({ id }) => id),
+    );
+  }
+  await router.push({ path: "/", query: { category: healthcareCategory.id } });
+  assert.deepEqual(
+    catalog.results.value.map(({ id }) => id).sort(),
+    healthcareBenchmarks.map(({ id }) => id).sort(),
+  );
+
+  await router.push("/embodied/");
+  assert.deepEqual(
+    catalog.groupedResults.value.map(({ category }) => category.id),
+    embodiedCategories.map(({ id }) => id),
+  );
+  for (const { category, items } of catalog.groupedResults.value) {
+    assert.deepEqual(
+      items.map(({ id }) => id).sort(),
+      embodiedBenchmarks
+        .filter((item) =>
+          item.embodied?.tasks.some((task) => task === category.id),
+        )
+        .map(({ id }) => id)
+        .sort(),
+    );
+  }
+});
+
+test("publisher grouping leaves the global flat list, query relevance, and explicit sorts alone", async () => {
+  const router = createTestRouter();
+  const catalog = createCatalogQuery(router);
+  const ids = (items: typeof benchmarks) => items.map(({ id }) => id);
+  await router.push({ path: "/", query: { view: "list" } });
+  assert.equal(catalog.groupedResults.value.length, 0);
+  assert.deepEqual(ids(catalog.results.value), ids(benchmarks));
+
+  await router.push({
+    path: "/",
+    query: { q: "Frontier", category: "reasoning" },
+  });
+  const relevance = searchBenchmarks("Frontier").filter(
+    (item) => item.category === "reasoning",
+  );
+  assert.ok(relevance.length >= 4);
+  assert.equal(catalog.groupedResults.value.length, 0);
+  assert.deepEqual(ids(catalog.results.value), ids(relevance));
+
+  for (const sort of ["name", "year"] as const) {
+    const compare =
+      sort === "name"
+        ? (a: (typeof benchmarks)[number], b: (typeof benchmarks)[number]) =>
+            a.name.localeCompare(b.name)
+        : (a: (typeof benchmarks)[number], b: (typeof benchmarks)[number]) =>
+            (b.year || 0) - (a.year || 0);
+    const expected = benchmarks
+      .filter((item) => item.category === "reasoning")
+      .sort(compare);
+    await router.push({ path: "/", query: { sort } });
+    assert.deepEqual(
+      ids(
+        catalog.groupedResults.value.find(
+          ({ category }) => category.id === "reasoning",
+        )!.items,
+      ),
+      ids(expected),
+    );
+    await router.push({ path: "/", query: { category: "reasoning", sort } });
+    assert.deepEqual(ids(catalog.results.value), ids(expected));
+  }
+});
+
+test("complete co-publisher names are distinct; missing and unknown names do not become a bucket", () => {
+  const labels = [
+    "OpenAI",
+    "OpenAI / Partner",
+    "未知",
+    "OpenAI",
+    "Other",
+    "未知",
+    "",
+    "Other",
+    "",
+    "OpenAI / Partner",
+  ];
+  const items = labels.map((publisher, i) => ({
+    ...benchmarks[0]!,
+    id: String(i),
+    publisher,
+  }));
+  assert.deepEqual(
+    groupByPublisher(items).map(({ id }) => id),
+    ["0", "3", "1", "9", "2", "4", "7", "5", "6", "8"],
+  );
+  assert.deepEqual(
+    items.map(({ publisher }) => publisher),
+    labels,
   );
 });
