@@ -1,0 +1,286 @@
+{
+  "id": "harvey-lab-contracts",
+  "status": "published",
+  "order": 439,
+  "name": "Harvey LAB: Contracts",
+  "subtitle": "从合同谈判的当前状态出发，交付可推进下一步的法律文件",
+  "category": "work",
+  "tags": [
+    "法律",
+    "合同谈判",
+    "文档交付"
+  ],
+  "publisher": "Harvey",
+  "brandIds": [
+    "harvey"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-06-12",
+  "version": "In-House Contracting",
+  "kind": "derivative",
+  "aliases": [
+    "LAB Contracts",
+    "LAB: Contracts",
+    "Legal Agent Benchmark: In-House Contracting",
+    "Harvey LAB In-House Contracting"
+  ],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估法律智能体能否根据既有合同、谈判记录和内部授权，完成谈判当前阶段的可审阅交付物。",
+    "task": "在一个模拟公司法务事项中推进指定谈判阶段，如起草合同、回复对方修订或提交问题清单与升级建议。",
+    "sourceUrls": [
+      "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting"
+    ]
+  },
+  "taskContract": {
+    "input": "短指令，以及当前合同、既往修订、邮件、谈判指南和交易背景文件。",
+    "output": "根据阶段交付合同初稿、红线稿、批注回复、未决问题清单或升级备忘录。",
+    "environment": "沿用 Harvey LAB 执行与评分框架；每题固定在谈判的一个时间点，并非与真实对手实时谈判。",
+    "sourceUrls": [
+      "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting",
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/docs/eval-strategies.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "发布公告介绍 500 项任务、10 类合同；固定公开快照含 498 个实际任务配置。",
+    "disclosure": "partial",
+    "scale": [
+      "2026 年 6 月 12 日首批公开 409 项；6 月 15 日补入 89 项后为 498 项。",
+      "官网公布的 10 类合同与公开快照的 14 个目录分组口径不同。"
+    ],
+    "splits": [
+      "公开任务与 Harvey Tenet 报告中的 50 项官方保留集不混用；11 月研究未披露足以逐题确认两次评测样本一致的信息。"
+    ],
+    "fields": [
+      "task.json 包含 title、instructions 和 criteria；评分准则记录 id、title、match_criteria。"
+    ],
+    "files": [
+      "每个任务目录提供 task.json 和事项所用 documents/；本例要求输出 .docx，没有独立参考成品。"
+    ],
+    "sourceUrls": [
+      "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting",
+      "https://github.com/harveyai/harvey-labs/pull/81",
+      "https://github.com/harveyai/harvey-labs/pull/82",
+      "https://github.com/harveyai/harvey-labs/tree/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts",
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/task.json",
+      "https://www.harvey.ai/blog/post-training-update-harvey-tenet",
+      "https://www.harvey.ai/blog/applying-the-harvey-tenet-training-recipe-to-us-open-weight-models",
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/docs/eval-strategies.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开固定快照可直接浏览。官方保留集题目及完整参评交付物未在所核公开来源中找到。"
+    ],
+    "url": "https://github.com/harveyai/harvey-labs/tree/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts",
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs/tree/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts",
+      "https://www.harvey.ai/blog/post-training-update-harvey-tenet",
+      "https://www.harvey.ai/blog/applying-the-harvey-tenet-training-recipe-to-us-open-weight-models"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT · Harvey AI 固定快照根许可；本例限所选作者任务配置及合成谈判备忘录短引。",
+    "scope": "展示一条公开任务的原指令、两条评分准则、官方输入文件名和一段不含身份信息的事项说明短引；不分发文件。",
+    "boundaries": [
+      "不转载事项附件、有身份信息的准则、完整评分表、保留集、参考成品或参评者输出。",
+      "根许可不替代第三方法律材料或附件的权利审查。"
+    ],
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/LICENSE",
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/task.json",
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/documents/nda-negotiation-guidance-memo.docx",
+      "https://github.com/harveyai/harvey-labs/pull/81"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示固定公开快照的 NDA 初稿任务，含输入文件名、指定交付物与两条原始评分准则；未把它认定为保留集任务。",
+    "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/task.json",
+    "sourceUrls": [
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/task.json",
+      "https://github.com/harveyai/harvey-labs/tree/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/documents",
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "任务全通过率（all-pass）",
+    "description": "语言模型裁判按专家制定的 match_criteria 逐条判通过或失败；只有每条准则都通过，整题才计为通过。准则通过率可辅助排查差异，不能替代全通过率。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting",
+      "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/docs/eval-strategies.md"
+    ]
+  },
+  "interpretation": {
+    "judge": {
+      "text": "裁判按每项准则直接评阅代理提交的文件，无需比对标准成品。公开样例展示的两条准则只是整题 75 条中的一部分。",
+      "sourceUrls": [
+        "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/docs/eval-strategies.md",
+        "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/task.json"
+      ]
+    },
+    "comparison": {
+      "text": "保留集与公开快照不要混比；新报告沿用既有评测方法，但未给出可逐题核对的样本清单。",
+      "sourceUrls": [
+        "https://www.harvey.ai/blog/post-training-update-harvey-tenet",
+        "https://www.harvey.ai/blog/applying-the-harvey-tenet-training-recipe-to-us-open-weight-models"
+      ]
+    }
+  },
+  "limitations": [
+    {
+      "text": "每题只考查单个谈判阶段；成功不代表能独立发起、管理并结束一整场持续谈判。",
+      "sourceUrls": [
+        "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting"
+      ]
+    },
+    {
+      "text": "形似原始 LAB 或第三方 LAB-AA 的任务形式，不表示题集、裁判设置及得分可互换。",
+      "sourceUrls": [
+        "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting",
+        "https://www.harvey.ai/blog/post-training-update-harvey-tenet"
+      ]
+    }
+  ],
+  "related": [
+    {
+      "id": "harvey-lab",
+      "label": "原系列",
+      "detail": "沿用 LAB 框架，扩展到公司法务的合同拟写与谈判阶段；不是原版法律事项的重命名。",
+      "sourceUrls": [
+        "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Harvey：合同评测首发与任务定义",
+      "url": "https://www.harvey.ai/blog/legal-agent-benchmark-in-house-contracting",
+      "role": "release"
+    },
+    {
+      "label": "首批公开 409 个合同任务（#81）",
+      "url": "https://github.com/harveyai/harvey-labs/pull/81",
+      "role": "release"
+    },
+    {
+      "label": "公开任务增至 498 项（#82）",
+      "url": "https://github.com/harveyai/harvey-labs/pull/82",
+      "role": "release"
+    },
+    {
+      "label": "公开合同任务固定快照",
+      "url": "https://github.com/harveyai/harvey-labs/tree/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts",
+      "role": "data"
+    },
+    {
+      "label": "NDA 初稿任务配置（固定快照）",
+      "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/task.json",
+      "role": "data"
+    },
+    {
+      "label": "NDA 初稿任务输入材料（固定快照）",
+      "url": "https://github.com/harveyai/harvey-labs/tree/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/documents",
+      "role": "data"
+    },
+    {
+      "label": "NDA 谈判备忘录第 II 节（固定快照）",
+      "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/documents/nda-negotiation-guidance-memo.docx",
+      "role": "data"
+    },
+    {
+      "label": "Harvey LAB 评分文档（固定快照）",
+      "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/docs/eval-strategies.md",
+      "role": "readme"
+    },
+    {
+      "label": "Harvey LAB 固定快照 MIT 许可",
+      "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "Harvey Tenet：合同保留集评测方法",
+      "url": "https://www.harvey.ai/blog/post-training-update-harvey-tenet",
+      "role": "definition"
+    },
+    {
+      "label": "Harvey 与 Baseten：跨任务能力复评",
+      "url": "https://www.harvey.ai/blog/applying-the-harvey-tenet-training-recipe-to-us-open-weight-models",
+      "role": "vendor-report"
+    },
+    {
+      "label": "Harvey 官方品牌指南",
+      "url": "https://www.harvey.ai/press",
+      "role": "readme"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "non-disclosure-agreement-first-draft",
+        "title": "起草双向保密协议",
+        "shortTitle": "双向保密协议初稿",
+        "type": "record",
+        "prompt": "Using provided templates and reference documents, draft a complete first-version mutual Non-Disclosure Agreement by filling every bracketed placeholder with deal-specific terms from the reference documents. Include all operative sections and complete the annex as specified in the templates.",
+        "walkthrough": {
+          "input": "mutual-nda-template.docx、clean-team-protocol-template.docx、deal-term-sheet.docx、nda-instruction-email.eml、nda-negotiation-guidance-memo.docx。谈判备忘录第 II 节的原文：“Mutuality is a firm recommendation. We do not recommend circulating a one-way draft under any circumstances.”",
+          "output": "交付 project-parapet-nda-draft.docx，完成正文与附录中的待填字段。",
+          "checks": [
+            "C-001：协议采用双向结构，双方均可披露或接收保密信息。",
+            "C-074：协议正文和附录中没有遗留占位符或未填字段。"
+          ],
+          "sourceField": "instructions",
+          "excerpts": [
+            {
+              "label": "官方原始指令",
+              "text": "Using provided templates and reference documents, draft a complete first-version mutual Non-Disclosure Agreement by filling every bracketed placeholder with deal-specific terms from the reference documents. Include all operative sections and complete the annex as specified in the templates.\n\n### Output:\nproject-parapet-nda-draft.docx"
+            }
+          ],
+          "note": "这两条是官方 75 条准则的节选；公开评分依据是 rubrics，没有单独提供成品答案。"
+        },
+        "explanation": "原始数据仅节选公开任务的 title、instructions 及 C-001、C-074 两条原始准则。事项依据短引自谈判备忘录第 II 节；不复制事项文件或生成合同。评分依据并非可直接使用的合同条款。",
+        "raw": {
+          "title": "Draft Non Disclosure Agreement First Version",
+          "instructions": "Using provided templates and reference documents, draft a complete first-version mutual Non-Disclosure Agreement by filling every bracketed placeholder with deal-specific terms from the reference documents. Include all operative sections and complete the annex as specified in the templates.\n\n### Output:\nproject-parapet-nda-draft.docx",
+          "criteria": [
+            {
+              "id": "C-001",
+              "title": "NDA structured as mutual (bilateral) agreement",
+              "match_criteria": "PASS if the NDA is structured as a mutual (bilateral) agreement where each party is designated as both a Discloser and a Recipient throughout the operative provisions. FAIL if the NDA is structured as a one-way/unilateral agreement or if only one party is designated as Discloser."
+            },
+            {
+              "id": "C-074",
+              "title": "No unresolved bracketed placeholders remain",
+              "match_criteria": "PASS if no bracketed placeholders, placeholder text (e.g., '[●]', '[Insert]', '[TBD]'), or unfilled fields remain anywhere in the NDA body or Annex A. FAIL if any unresolved placeholders or brackets remain."
+            }
+          ]
+        },
+        "source": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/task.json",
+        "references": [
+          {
+            "label": "官方输入文件目录",
+            "url": "https://github.com/harveyai/harvey-labs/tree/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/documents"
+          },
+          {
+            "label": "输入短引：谈判备忘录第 II 节",
+            "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/contracts/commercial-vendor-customer/non-disclosure-agreement-first-draft/documents/nda-negotiation-guidance-memo.docx"
+          },
+          {
+            "label": "任务评分方法",
+            "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/docs/eval-strategies.md"
+          }
+        ],
+        "license": "MIT · Copyright (c) 2026 Harvey AI；仅原任务配置所选字段及合成谈判备忘录短引，不分发附件。",
+        "licensePath": "licenses/harvey-lab-v1-mit.txt",
+        "split": "公开 tasks/contracts / commercial-vendor-customer；不标为保留集。",
+        "excerpt": true
+      }
+    ]
+  }
+}
