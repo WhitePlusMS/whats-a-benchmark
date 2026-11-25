@@ -1,0 +1,243 @@
+{
+  "id": "dayjob-tax",
+  "status": "published",
+  "order": 445,
+  "name": "DAYJOB: Tax",
+  "subtitle": "核查异常记录与跨辖区问题，生成可审阅的税务工作成果",
+  "category": "work",
+  "tags": ["税务", "专业判断", "文件交付"],
+  "publisher": "Surge AI",
+  "brandIds": ["surge-ai"],
+  "year": 2026,
+  "releaseDate": "2026-10-27",
+  "version": "Tax",
+  "kind": "original",
+  "aliases": ["DAYJOB Tax", "Surge AI DAYJOB Tax"],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估税务智能体能否调查不完整或相互冲突的客户材料，发现遗漏并完成指定工作。",
+    "task": "调查客户税务记录、确定需要处理的问题；视任务提交申报草稿、工作底稿、技术复核或客户说明。",
+    "sourceUrls": [
+      "https://surgehq.ai/blog/dayjob-tax",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "简短委托和按题提供的业务材料，如账册、运营日志、往来邮件与税表。",
+    "output": "按题提交申报表、工作底稿、技术复核或说明。公开样例中的提交物是草稿，不是正式申报。",
+    "environment": "Harbor Linux 工作区可处理文档和电子表格。官方设置仅允许指定模型接口，不能用浏览器补充外部记录。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+      "https://github.com/surge-ai/dayjob"
+    ]
+  },
+  "dataProfile": {
+    "summary": "正式评测有 50 个专业任务；发布者公开了其中 2 个作为样例。",
+    "disclosure": "partial",
+    "scale": [
+      "正式题组覆盖 8 个领域，共 1,789 份工作区文件；每题评分标准中位数 30.5 条。"
+    ],
+    "splits": ["作者公开样例仓的 test 划分只有 2 项，不是完整评测。"],
+    "fields": [
+      "Harbor 任务包含 instruction.md、环境和评分器；本例 tests/judge.toml 含 45 条二元准则。"
+    ],
+    "files": ["公开任务有 instruction.md、task.toml、environment/ 和 tests/。"],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/tree/91237b657aded987efb0180acaffff11c2cb3418",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/tests/judge.toml"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": ["2 个固定样例可公开查阅；完整 50 题需联系发布方申请。"],
+    "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/tree/91237b657aded987efb0180acaffff11c2cb3418",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/tree/91237b657aded987efb0180acaffff11c2cb3418"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT（固定的作者公开数据卡声明）。",
+    "scope": "一条公开题的原始公司委托、派工日志定义与非个人聚合及一条同题原评分标准。不分发委托函、企业记录或外部表格。",
+    "boundaries": [
+      "不分发整套题目、完整输入或评分表、第三方素材、参考成品和模型提交。",
+      "尊重发布者的保留评测用途要求，不将题目、评分或衍生材料用于训练及训练期选模。",
+      "数据卡许可不同于 GitHub 执行框架的 Apache-2.0 许可。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+      "https://github.com/surge-ai/dayjob",
+      "https://spdx.org/licenses/MIT.html",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Hargett%20Silo%20-%202024%20Job%20Dispatch%20Log.pdf",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Engagement%20Letter%20-%20Hargett%20Silo%20Services%20(2024).docx"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示合成公司委托、原始派工日志的计日定义和聚合值、草稿交付要求及一条同题评分标准。",
+    "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/instruction.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Hargett%20Silo%20-%202024%20Job%20Dispatch%20Log.pdf",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Engagement%20Letter%20-%20Hargett%20Silo%20Services%20(2024).docx",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/tests/judge.toml"
+    ]
+  },
+  "metric": {
+    "name": "任务通过率（95% 评分条款门槛）",
+    "description": "发布评测报告 pass@1；一次尝试至少满足该任务 95% 的准则才算通过。正式比较使用每题五次尝试，不能把它解读成五次里任一次过关。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/tests/judge.toml",
+      "https://surgehq.ai/blog/dayjob-tax"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "50 题完整评测需向发布方申请；两道公开样例不足以复现榜单，也不是税务建议。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+        "https://surgehq.ai/blog/dayjob-tax"
+      ]
+    },
+    {
+      "text": "本站节选不可直接运行，不提供标准成品或执行记录。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/instruction.md",
+        "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/tests/judge.toml"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "样例固定到 Hugging Face 91237b657aded987efb0180acaffff11c2cb3418。输入文件 SHA-256：d32e09bf9304be13336e6cf7e560bfc8dff51a93f1956fc3970026ab80963702；本站只展示极少量可核对的事实。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Hargett%20Silo%20-%202024%20Job%20Dispatch%20Log.pdf"
+      ]
+    }
+  ],
+  "related": [],
+  "sources": [
+    {
+      "label": "Surge AI 首次发布公告",
+      "url": "https://surgehq.ai/blog/dayjob-tax",
+      "role": "release"
+    },
+    {
+      "label": "Surge AI 官方榜单",
+      "url": "https://surgehq.ai/benchmarks/dayjob-tax",
+      "role": "leaderboard"
+    },
+    {
+      "label": "DAYJOB 公开样例、评分说明及 MIT 数据许可（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md",
+      "role": "data"
+    },
+    {
+      "label": "作者公开样例仓（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/tree/91237b657aded987efb0180acaffff11c2cb3418",
+      "role": "access"
+    },
+    {
+      "label": "DAYJOB 官方执行框架",
+      "url": "https://github.com/surge-ai/dayjob",
+      "role": "code"
+    },
+    {
+      "label": "MIT 标准许可文字（SPDX）",
+      "url": "https://spdx.org/licenses/MIT.html",
+      "role": "readme"
+    },
+    {
+      "label": "原始任务委托（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "原始输入：2024 年派工日志（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Hargett%20Silo%20-%202024%20Job%20Dispatch%20Log.pdf",
+      "role": "data"
+    },
+    {
+      "label": "同题评分标准（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/tests/judge.toml",
+      "role": "data"
+    },
+    {
+      "label": "原始输入：2024 年委托函（固定版本）",
+      "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Engagement%20Letter%20-%20Hargett%20Silo%20Services%20(2024).docx",
+      "role": "data"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "tax_f9d73a67",
+        "title": "按派工记录核查跨州现场作业",
+        "shortTitle": "跨州派工与税务草稿",
+        "type": "record",
+        "prompt": "Attached is the Hargett file. Create the promised deliverables, keep in mind we are not ready to file yet so the forms will be drafts.",
+        "walkthrough": {
+          "input": "输入包括委托函、账册和 2024 年派工日志。日志明确说 “days on site” 计实际工作日（原文：“counts working days actually performing work.”）。按日志现场天数列汇总：GA 12 天、TN 2 天、KY 35 天、WV 4 天。",
+          "output": "按委托函准备 Form 1120-S 草稿和调查工作底稿，记录各州业务事实及分析依据。不提交正式申报。",
+          "checks": [
+            "c003：州别分析须采用能说明依据的分配因子，现场工作日须与派工日志一致：GA 12、TN 2、KY 35、WV 4。"
+          ],
+          "sourceField": "tests/task_prompt.txt",
+          "excerpts": [
+            {
+              "label": "官方原始委托",
+              "text": "Attached is the Hargett file. Create the promised deliverables, keep in mind we are not ready to file yet so the forms will be drafts."
+            }
+          ],
+          "note": "仅列同题 45 条标准中的 1 条，不是参考成品或试跑结果。"
+        },
+        "explanation": "原始数据保留 tests/task_prompt.txt 原始委托及同题评分文件的 criterion 节选。任务内容页展示原始任务请求（省略公共前导）、工作区输入少量事实和指定交付物；不随站点下载原始附件。",
+        "raw": {
+          "tests/task_prompt.txt": "Attached is the Hargett file. Create the promised deliverables, keep in mind we are not ready to file yet so the forms will be drafts.",
+          "criterion": [
+            {
+              "name": "c003",
+              "description": "The deliverable must apportion activity by state using a defensible factor, with on-site working days matching the dispatch log: Georgia 12, Tennessee 2, Kentucky 35, and West Virginia 4.",
+              "type": "binary"
+            }
+          ]
+        },
+        "source": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/instruction.md",
+        "references": [
+          {
+            "label": "原任务委托",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/instruction.md"
+          },
+          {
+            "label": "原始输入：2024 年派工日志",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Hargett%20Silo%20-%202024%20Job%20Dispatch%20Log.pdf"
+          },
+          {
+            "label": "原始输入：委托函",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/environment/initial_workspace/Engagement%20Letter%20-%20Hargett%20Silo%20Services%20(2024).docx"
+          },
+          {
+            "label": "同题评分表",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/tasks/tax_f9d73a67/tests/judge.toml"
+          },
+          {
+            "label": "数据说明及许可",
+            "url": "https://huggingface.co/datasets/surgeai/DAYJOB-tax/blob/91237b657aded987efb0180acaffff11c2cb3418/README.md"
+          }
+        ],
+        "license": "MIT · Surge AI DAYJOB Tax 公开样例；仅展所选字段和少量输入事实。",
+        "licensePath": "licenses/surge-dayjob-mit.txt",
+        "split": "作者公开 test 样例子集 (2/50)；tax_f9d73a67。",
+        "excerpt": true
+      }
+    ]
+  }
+}
