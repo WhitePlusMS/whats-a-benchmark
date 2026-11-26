@@ -5,7 +5,11 @@ import { createMemoryHistory, createRouter } from "vue-router";
 import { createComparison } from "../src/composables/compare";
 import { useIfevalWorkbench } from "../src/composables/ifevalWorkbench";
 import { useArcPractice } from "../src/composables/arcPractice";
-import { createCatalogQuery } from "../src/lib/catalogQuery";
+import {
+  catalogFacetOptions,
+  createCatalogQuery,
+  parseCatalogQuery,
+} from "../src/lib/catalogQuery";
 import { allBenchmarks } from "../src/content/catalog";
 import { initTheme, useTheme } from "../src/lib/theme";
 
@@ -32,6 +36,16 @@ test("无结果放宽条件保留搜索词和显示偏好，并合并尚未完�
   assert.ok(catalog.results.value.some((item) => item.id === "human-eval"));
   await Promise.all([catalog.setFilter("q", "ARC"), catalog.relaxFilters()]);
   assert.equal(catalog.query.value.q, "ARC");
+});
+
+test("目录只提供当前条件下可选的值，并允许清除外部链接的无效条件", () => {
+  const query = parseCatalogQuery({ q: "IFEval", publisher: "不存在的发布方" });
+  const options = catalogFacetOptions(query);
+  assert.ok(options.publishers.has("Google Research"));
+  assert.ok(options.publishers.has("不存在的发布方"));
+  assert.equal(options.kinds.size, 0);
+  assert.equal(options.localMatches, 0);
+  assert.ok(catalogFacetOptions({ ...query, publisher: "" }).localMatches > 0);
 });
 
 test("清空后立即撤销在目录、对比页及会话存储中恢复同一组选择", async () => {
@@ -104,6 +118,12 @@ test("IFEval 覆盖和清空可撤回，收起候选后只检查当前输入", (
   state.reset();
   id.value = "second";
   assert.equal(state.canUndo.value, false, "切题不恢复其他题目的输入");
+  state.draft.value = "second draft";
+  state.replaceDraft("teaching fragment");
+  state.draft.value += " with new writing";
+  assert.equal(state.canUndo.value, false);
+  state.undo();
+  assert.equal(state.draft.value, "teaching fragment with new writing");
   scope.stop();
 });
 

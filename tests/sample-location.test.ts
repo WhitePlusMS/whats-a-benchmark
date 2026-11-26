@@ -63,6 +63,14 @@ test("样例在详情页同步 URL，在指南中只修改查看器状态", asyn
   assert.equal(router.currentRoute.value.query.sample, "first/id");
   assert.equal(router.currentRoute.value.query.sampleView, "raw");
   assert.equal(viewer.showAnswer.value, false);
+  router.back();
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  assert.equal(viewer.current.value?.id, "second:id");
+  assert.equal(viewer.mode.value, "raw");
+  router.forward();
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  assert.equal(viewer.current.value?.id, "first/id");
+  assert.equal(viewer.mode.value, "raw");
   await router.push({
     path: "/benchmarks/selected/",
     query: { sample: "unknown", sampleView: "invalid" },
@@ -93,6 +101,10 @@ test("样例在详情页同步 URL，在指南中只修改查看器状态", asyn
   await nextTick();
   assert.equal(router.currentRoute.value.query.sample, "first/id");
   assert.equal(router.currentRoute.value.hash, "#samples");
+  router.back();
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  assert.equal(viewer.current.value?.id, "second:id");
+  assert.equal(router.currentRoute.value.hash, "");
 
   await t.test("嵌入指南后换题和切原始模式不改动页面地址或锚点", async () => {
     router.addRoute({ path: "/guide/", component: { template: "<div />" } });

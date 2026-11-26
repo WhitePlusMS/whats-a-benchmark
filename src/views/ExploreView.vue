@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from "vue";
 import { useHead } from "@unhead/vue";
 import { useRoute } from "vue-router";
 import {
@@ -17,14 +17,15 @@ import BenchmarkCard from "../components/BenchmarkCard.vue";
 import CatalogFilters from "../components/CatalogFilters.vue";
 import UiDialog from "../components/UiDialog.vue";
 import Icon from "../components/Icon.vue";
-import ComparisonSelectionBar from "../components/ComparisonSelectionBar.vue";
 import { formatCount } from "../lib/displayFormats";
 import {
+  catalogFacetOptions,
   catalogInclusionMonths,
   filterCatalog,
   formatInclusionMonth,
   modelFilterCategories,
 } from "../lib/catalogQuery";
+import { normalizeName, searchBenchmarks } from "../lib/search";
 
 const route = useRoute();
 const isEmbodied = computed(() => route.path === "/embodied/");
@@ -78,15 +79,41 @@ const {
   results,
   groupedResults,
   currentCategory,
-  hasFilters,
   stats,
   setFilter: updateFilter,
-  reset,
   relaxFilters,
 } = useCatalogQuery();
-const publishers = computed(() => stats.value.publishers);
+// 清空过滤时复用已渲染的目录，避免重新挂载数百张卡片。
+const cachedGroups = shallowRef(groupedResults.value);
+let cachedSort = cachedGroups.value.length ? query.value.sort : undefined;
+watch(groupedResults, (groups) => {
+  if (!groups.length || cachedSort === query.value.sort) return;
+  cachedSort = query.value.sort;
+  cachedGroups.value = groups;
+});
 const localCount = computed(() => stats.value.localCount);
 const sampleCount = computed(() => stats.value.sampleCount);
+const facets = computed(() =>
+  isEmbodied.value ? undefined : catalogFacetOptions(query.value),
+);
+const otherCatalog = computed(() => {
+  const q = query.value.q.trim();
+  const needle = normalizeName(q);
+  if (!needle) return;
+  const matches = searchBenchmarks(q, !isEmbodied.value);
+  const isExact = (item: (typeof matches)[number]) =>
+    [item.name, ...item.aliases].some((name) => normalizeName(name) === needle);
+  if (
+    !matches.length ||
+    (results.value.length &&
+      (results.value.some(isExact) || !matches.some(isExact)))
+  ) return;
+  return {
+    to: { path: isEmbodied.value ? "/" : "/embodied/", query: { q } },
+    name: isEmbodied.value ? "模型评测" : "具身评测",
+    count: matches.length,
+  };
+});
 // 分类数量反映当前搜索和其他筛选，不让读者逐个试出空分类。
 const categoryCandidates = computed(() =>
   filterCatalog({ ...query.value, category: "" }, isEmbodied.value),
@@ -104,7 +131,6 @@ const categoryCounts = computed(
       ]),
     ),
 );
-const hasNonSearchFilters = computed(() => filterCount.value > 0);
 function search(event: Event) {
   // 拼音尚未选字时不更新 URL，避免重新渲染打断中文输入。
   if (event instanceof InputEvent && event.isComposing) return;
@@ -117,7 +143,6 @@ function clearSearch() {
 // 侧栏、面板和条件标签都从同一URL模型派生，不维护第二份筛选状态。
 const activeFilters = computed(() =>
   [
-    { key: "q", label: "搜索", value: query.value.q, remove: "移除搜索词" },
     {
       key: "category",
       label: isEmbodied.value ? "任务" : "能力",
@@ -159,9 +184,7 @@ const activeFilters = computed(() =>
     },
   ].filter((item) => item.value),
 );
-const filterCount = computed(
-  () => activeFilters.value.filter((item) => item.key !== "q").length,
-);
+const filterCount = computed(() => activeFilters.value.length);
 function setFilter(key: CatalogFilterKey, value: string) {
   void updateFilter(key, value);
 }
@@ -210,7 +233,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         ><kbd v-else class="search-kbd">{{ isMac ? "⌘K" : "Ctrl K" }}</kbd>
       </div>
       <button
-        v-if="!isEmbodied"
+        v-if="facets && (facets.localMatches || query.sample === 'local')"
         class="sample-shortcut"
         :class="{ active: query.sample === 'local' }"
         :aria-pressed="query.sample === 'local'"
@@ -219,7 +242,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
         <Icon
           :name="query.sample === 'local' ? 'tick' : 'book'"
           :size="17"
-        />有站内案例<span>{{ localCount }} 项</span>
+        />有站内案例<span>{{ facets.localMatches }} 项</span>
       </button>
       <button
         class="mobile-filter-button"
@@ -239,7 +262,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
     <aside v-if="!isMobile" class="filters" aria-label="评测筛选">
       <CatalogFilters
         :query="query"
-        :publishers="publishers"
+        :facets="facets"
         :inclusion-months="inclusionMonths"
         :category-counts="categoryCounts"
         :total="categoryCandidates.length"
@@ -253,7 +276,6 @@ function setFilter(key: CatalogFilterKey, value: string) {
         {{ query.q ? `搜索“${query.q}”，` : "" }}找到
         {{ formatCount(results.length) }} 项评测。
       </p>
-      <ComparisonSelectionBar inline />
       <div class="results-toolbar">
         <div>
           <h2>
@@ -303,10 +325,11 @@ function setFilter(key: CatalogFilterKey, value: string) {
           </div>
         </div>
       </div>
-      <div v-if="hasFilters" class="active-filters" aria-label="当前筛选条件">
-        <span class="filter-summary"
-          >已选 {{ activeFilters.length }} 项条件</span
-        ><button
+      <RouterLink v-if="otherCatalog && results.length" :to="otherCatalog.to" class="text-link catalog-other-results">
+        在{{ otherCatalog.name }}中查找 <Icon name="up" :size="15" />
+      </RouterLink>
+      <div v-if="filterCount" class="active-filters" aria-label="当前筛选条件">
+        <button
           v-for="filter in activeFilters"
           :key="filter.key"
           class="filter-chip"
@@ -316,12 +339,13 @@ function setFilter(key: CatalogFilterKey, value: string) {
           <span
             >{{ filter.label }}：<b>{{ filter.value }}</b></span
           ><Icon name="close" :size="14" /></button
-        ><button class="clear-all" @click="reset">清空条件</button>
+        ><button class="clear-all" @click="relaxFilters">清除筛选</button>
       </div>
-      <template v-if="groupedResults.length">
+      <div v-if="cachedGroups.length" v-show="groupedResults.length">
         <section
-          v-for="group in groupedResults"
+          v-for="group in cachedGroups"
           :key="group.category.id"
+          v-memo="[group]"
           class="category-group"
         >
           <div class="category-group-heading">
@@ -335,23 +359,24 @@ function setFilter(key: CatalogFilterKey, value: string) {
           <p class="category-group-desc">{{ group.category.description }}</p>
           <div class="cards">
             <BenchmarkCard
-              v-for="(item, index) in group.items"
+              v-for="item in group.items"
               :key="item.id"
               :item="item"
-              :search-query="query.q"
-              :style="{ '--i': Math.min(index, 4) }"
             />
           </div>
         </section>
-      </template>
-      <div v-else class="cards" :class="{ 'list-view': query.view === 'list' }">
+      </div>
+      <div
+        v-if="!groupedResults.length"
+        class="cards"
+        :class="{ 'list-view': query.view === 'list' }"
+      >
         <BenchmarkCard
-          v-for="(item, index) in results"
+          v-for="item in results"
           :key="item.id"
           :item="item"
           :search-query="query.q"
           :show-inclusion-date="!!query.included || query.sort === 'included'"
-          :style="{ '--i': Math.min(index, 4) }"
         />
       </div>
       <div v-if="!results.length" class="empty-state">
@@ -359,21 +384,28 @@ function setFilter(key: CatalogFilterKey, value: string) {
         <h3>未找到匹配的评测</h3>
         <p>
           {{
-            hasNonSearchFilters
+            otherCatalog
+              ? `在${otherCatalog.name}中找到 ${otherCatalog.count} 项。`
+              : filterCount
               ? "放宽筛选再找找，搜索词会保留。"
               : "试试评测简称、能力或发布方。"
           }}
         </p>
-        <button
-          v-if="hasNonSearchFilters"
-          class="primary-button"
-          @click="relaxFilters"
-        >
-          移除筛选条件
-        </button>
-        <button v-else class="primary-button" @click="clearSearch">
-          清空搜索
-        </button>
+        <div class="catalog-empty-actions">
+          <RouterLink v-if="otherCatalog" :to="otherCatalog.to" class="primary-button">
+            搜索{{ otherCatalog.name }}
+          </RouterLink>
+          <button
+            v-if="filterCount"
+            :class="otherCatalog ? 'secondary-button' : 'primary-button'"
+            @click="relaxFilters"
+          >
+            清除筛选
+          </button>
+          <button v-else-if="!otherCatalog" class="primary-button" @click="clearSearch">
+            清空搜索
+          </button>
+        </div>
       </div>
       <p class="catalog-footnote">
         {{ sampleCount }} 条真实案例，覆盖
@@ -391,15 +423,15 @@ function setFilter(key: CatalogFilterKey, value: string) {
     </p>
     <CatalogFilters
       :query="query"
-      :publishers="publishers"
+      :facets="facets"
       :inclusion-months="inclusionMonths"
       :category-counts="categoryCounts"
       :total="categoryCandidates.length"
       :categories="filterCategories"
       :task-only="isEmbodied"
       @change="setFilter" /><template #footer
-      ><button class="clear-all" :disabled="!hasFilters" @click="reset">
-        清空条件</button
+      ><button v-if="filterCount" class="clear-all" @click="relaxFilters">
+        清除筛选</button
       ><button class="primary-button" @click="showFilters = false">
         查看 {{ results.length }} 项结果<Icon
           name="up"

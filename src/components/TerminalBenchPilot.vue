@@ -44,57 +44,56 @@ const currentStep = computed(() => activeCase.value?.steps[activeStep.value]);
         aria-live="polite"
         aria-atomic="true"
       >
-        <Transition name="step-switch" mode="out-in">
-          <div :key="activeCase.sampleId + ':' + activeStep" class="step-panel">
-            <!-- 图形和示例结构均为本站示意，不能当作原题附件或模型输出。 -->
-            <div class="step-visual" aria-hidden="true">
-              <div
-                v-if="
-                  activeCase.kind === 'layout' &&
-                  (activeStep === 'input' || activeStep === 'task')
-                "
-                class="scene-window"
-              >
-                <div class="scene-bar">
-                  <span class="scene-dots"><i></i><i></i><i></i></span>
-                  <span translate="no">layout.png</span>
-                  <span>示意</span>
-                </div>
-                <div
-                  class="artboard"
-                  :class="{ 'artboard-layers': activeStep === 'task' }"
-                >
-                  <span class="art-header"></span>
-                  <span class="art-image"><i></i></span>
-                  <span class="art-title"></span>
-                  <span class="art-line art-line-one"></span>
-                  <span class="art-line art-line-two"></span>
-                  <span class="art-button"></span>
-                  <template v-if="activeStep === 'task'">
-                    <span class="layer-outline layer-image"><b>IMAGE</b></span>
-                    <span class="layer-outline layer-text"><b>TEXT</b></span>
-                  </template>
-                </div>
-                <div class="scene-caption" translate="no">
-                  {{
-                    activeStep === "input"
-                      ? "layout.png + components/"
-                      : "位置 · 尺寸 · 样式 · 层级"
-                  }}
-                </div>
+        <div :key="activeCase.sampleId + ':' + activeStep" class="step-panel">
+          <!-- 图形和示例结构均为本站示意，不能当作原题附件或模型输出。 -->
+          <div class="step-visual" aria-hidden="true">
+            <div
+              v-if="
+                activeCase.kind === 'layout' &&
+                (activeStep === 'input' || activeStep === 'task')
+              "
+              class="scene-window"
+            >
+              <div class="scene-bar">
+                <span class="scene-dots"><i></i><i></i><i></i></span>
+                <span translate="no">layout.png</span>
+                <span>示意</span>
               </div>
               <div
-                v-else-if="
-                  activeCase.kind === 'layout' && activeStep === 'output'
-                "
-                class="scene-window code-window"
+                class="artboard"
+                :class="{ 'artboard-layers': activeStep === 'task' }"
               >
-                <div class="scene-bar">
-                  <span class="scene-dots"><i></i><i></i><i></i></span>
-                  <span translate="no">config.json</span>
-                  <span>结构示意</span>
-                </div>
-                <pre v-pre>
+                <span class="art-header"></span>
+                <span class="art-image"><i></i></span>
+                <span class="art-title"></span>
+                <span class="art-line art-line-one"></span>
+                <span class="art-line art-line-two"></span>
+                <span class="art-button"></span>
+                <template v-if="activeStep === 'task'">
+                  <span class="layer-outline layer-image"><b>IMAGE</b></span>
+                  <span class="layer-outline layer-text"><b>TEXT</b></span>
+                </template>
+              </div>
+              <div class="scene-caption" translate="no">
+                {{
+                  activeStep === "input"
+                    ? "layout.png + components/"
+                    : "位置 · 尺寸 · 样式 · 层级"
+                }}
+              </div>
+            </div>
+            <div
+              v-else-if="
+                activeCase.kind === 'layout' && activeStep === 'output'
+              "
+              class="scene-window code-window"
+            >
+              <div class="scene-bar">
+                <span class="scene-dots"><i></i><i></i><i></i></span>
+                <span translate="no">config.json</span>
+                <span>结构示意</span>
+              </div>
+              <pre v-pre>
 {
   "components": [
     { "type": "IMAGE", ... },
@@ -102,69 +101,61 @@ const currentStep = computed(() => activeCase.value?.steps[activeStep.value]);
   ],
   "style": { ... }
 }</pre
-                >
-                <div class="scene-caption" translate="no">
-                  /app/output/config.json
-                </div>
-              </div>
-              <div
-                v-else-if="activeCase.kind === 'layout'"
-                class="verify-scene"
               >
-                <div class="verify-pair">
-                  <div>
-                    <span class="verify-picture"><i></i><b></b></span
-                    ><small>原图</small>
-                  </div>
-                  <span class="verify-arrow">→</span>
-                  <div>
-                    <span class="verify-picture"><i></i><b></b></span
-                    ><small>重新渲染</small>
-                  </div>
-                </div>
-                <div class="verify-threshold">
-                  <strong>≥ 98<span>%</span></strong
-                  ><span>像素一致率要求</span>
-                </div>
-              </div>
-              <div v-else class="scene-window concept-window">
-                <div class="scene-bar">
-                  <span class="scene-dots"><i></i><i></i><i></i></span>
-                  <span>{{ activeCase.label }}</span>
-                  <span>示意</span>
-                </div>
-                <div class="concept-flow">
-                  <div class="concept-node">
-                    <Icon :name="currentStep.visual.leftIcon" :size="25" />
-                    <strong translate="no">{{
-                      currentStep.visual.left
-                    }}</strong>
-                    <small>{{ currentStep.visual.leftLabel }}</small>
-                  </div>
-                  <span class="concept-arrow">→</span>
-                  <div class="concept-node">
-                    <Icon :name="currentStep.visual.rightIcon" :size="25" />
-                    <strong translate="no">{{
-                      currentStep.visual.right
-                    }}</strong>
-                    <small>{{ currentStep.visual.rightLabel }}</small>
-                  </div>
-                </div>
-                <div class="scene-caption">
-                  {{ stepLabels[activeStep] }} · 任务示意
-                </div>
+              <div class="scene-caption" translate="no">
+                /app/output/config.json
               </div>
             </div>
-            <div class="step-explanation">
-              <span class="step-eyebrow"
-                >任务步骤 · 0{{ stepOrder.indexOf(activeStep) + 1 }} / 04</span
-              >
-              <h3>{{ currentStep.title }}</h3>
-              <p>{{ currentStep.description }}</p>
-              <p class="step-note">{{ currentStep.note }}</p>
+            <div v-else-if="activeCase.kind === 'layout'" class="verify-scene">
+              <div class="verify-pair">
+                <div>
+                  <span class="verify-picture"><i></i><b></b></span
+                  ><small>原图</small>
+                </div>
+                <span class="verify-arrow">→</span>
+                <div>
+                  <span class="verify-picture"><i></i><b></b></span
+                  ><small>重新渲染</small>
+                </div>
+              </div>
+              <div class="verify-threshold">
+                <strong>≥ 98<span>%</span></strong
+                ><span>像素一致率要求</span>
+              </div>
+            </div>
+            <div v-else class="scene-window concept-window">
+              <div class="scene-bar">
+                <span class="scene-dots"><i></i><i></i><i></i></span>
+                <span>{{ activeCase.label }}</span>
+                <span>示意</span>
+              </div>
+              <div class="concept-flow">
+                <div class="concept-node">
+                  <Icon :name="currentStep.visual.leftIcon" :size="25" />
+                  <strong translate="no">{{ currentStep.visual.left }}</strong>
+                  <small>{{ currentStep.visual.leftLabel }}</small>
+                </div>
+                <span class="concept-arrow">→</span>
+                <div class="concept-node">
+                  <Icon :name="currentStep.visual.rightIcon" :size="25" />
+                  <strong translate="no">{{ currentStep.visual.right }}</strong>
+                  <small>{{ currentStep.visual.rightLabel }}</small>
+                </div>
+              </div>
+              <div class="scene-caption">
+                {{ stepLabels[activeStep] }} · 任务示意
+              </div>
             </div>
           </div>
-        </Transition>
+          <div class="step-explanation">
+            <span class="step-eyebrow"
+              >任务步骤 · 0{{ stepOrder.indexOf(activeStep) + 1 }} / 04</span
+            >
+            <h3>{{ currentStep.title }}</h3>
+            <p>{{ currentStep.description }}</p>
+            <p class="step-note">{{ currentStep.note }}</p>
+          </div>
+        </div>
       </div>
       <div class="walkthrough-footer">
         <span>{{ activeCase.disclaimer }}</span>
@@ -456,23 +447,6 @@ const currentStep = computed(() => activeCase.value?.steps[activeStep.value]);
   border: 1px solid var(--accent-border);
   border-radius: 10px;
   background: var(--accent-softer);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .step-switch-enter-active {
-    transition:
-      opacity 220ms ease,
-      transform 220ms ease;
-  }
-  .step-switch-leave-active {
-    transition: opacity 120ms ease;
-  }
-  .step-switch-enter-from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  .step-switch-leave-to {
-    opacity: 0;
-  }
 }
 @media (max-width: 700px) {
   .walkthrough-heading {

@@ -8,7 +8,8 @@
   /* accent 家族从主题变量派生；tint 用 alpha 混合，亮暗模式自适应底层。 */
   --accent: var(--theme-brand);
   --accent-hover: var(--theme-brand-hover);
-  --accent-text: var(--theme-brand);
+  /* 浅色文字在带主题色的背景上也要保住对比度。 */
+  --accent-text: color-mix(in srgb, var(--theme-brand) 88%, #000);
   --accent-softer: color-mix(in srgb, var(--accent) 7%, transparent);
   --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
   --accent-ring: color-mix(in srgb, var(--accent) 16%, transparent);
@@ -24,8 +25,14 @@
   --border: #e2e5e9;
   --border-strong: #b8b5ca;
   --surface: #fff;
-  --surface-subtle: #f8f9fa;
-  --surface-sunken: #f4f5f7;
+  --surface-subtle: light-dark(
+    color-mix(in srgb, var(--theme-brand) 3%, #f8f9fa),
+    color-mix(in srgb, var(--theme-dark-brand) 3%, #161a21)
+  );
+  --surface-sunken: light-dark(
+    color-mix(in srgb, var(--theme-brand) 4%, #f4f5f7),
+    color-mix(in srgb, var(--theme-dark-brand) 4%, #12151c)
+  );
   --text-inverse: #fff;
   --text: #252932;
   --text-strong: #303641;
@@ -70,8 +77,6 @@
     --border: #2c313c;
     --border-strong: #4a5160;
     --surface: #1a1e26;
-    --surface-subtle: #161a21;
-    --surface-sunken: #12151c;
     --text-inverse: #fff;
     --text: #e4e7ee;
     --text-strong: #eef0f5;
@@ -107,8 +112,6 @@
   --border: #2c313c;
   --border-strong: #4a5160;
   --surface: #1a1e26;
-  --surface-subtle: #161a21;
-  --surface-sunken: #12151c;
   --text-inverse: #fff;
   --text: #e4e7ee;
   --text-strong: #eef0f5;

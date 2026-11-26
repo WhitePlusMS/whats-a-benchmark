@@ -2,8 +2,8 @@ import { computed, ref } from "vue";
 
 /**
  * 主题色板是全站换肤的唯一数据源：新增颜色只在这里加一行参数。
- * brand 用于亮色的填充与文字（白字/白底对比度均需过 AA），hover 是亮色
- * 悬停加深，darkBrand 是暗色下的文字与焦点色（按钮底色由 tokens.css 派生）。
+ * brand 用作亮色强调色，hover 是亮色悬停填色。文字、浅层背景及暗色按钮
+ * 从这组色值由 tokens.css 派生，在两种外观下使用各自的对比度。
  */
 export interface ThemePreset {
   id: string;
@@ -23,6 +23,13 @@ export const THEME_PRESETS: ThemePreset[] = [
     darkBrand: "#8cb6e2",
   },
   {
+    id: "indigo",
+    name: "靛蓝",
+    brand: "#3b56d9",
+    hover: "#3147b8",
+    darkBrand: "#93a5f0",
+  },
+  {
     id: "violet",
     name: "鸢尾紫",
     brand: "#6957d4",
@@ -30,11 +37,11 @@ export const THEME_PRESETS: ThemePreset[] = [
     darkBrand: "#a08ef0",
   },
   {
-    id: "indigo",
-    name: "靛蓝",
-    brand: "#3b56d9",
-    hover: "#3147b8",
-    darkBrand: "#93a5f0",
+    id: "sea",
+    name: "海盐青",
+    brand: "#126b79",
+    hover: "#0e5360",
+    darkBrand: "#63c4d0",
   },
   {
     id: "teal",
@@ -44,6 +51,13 @@ export const THEME_PRESETS: ThemePreset[] = [
     darkBrand: "#4cc9a5",
   },
   {
+    id: "olive",
+    name: "橄榄绿",
+    brand: "#536a2a",
+    hover: "#40541e",
+    darkBrand: "#a9c16e",
+  },
+  {
     id: "amber",
     name: "蜜橙",
     brand: "#b45309",
@@ -51,11 +65,32 @@ export const THEME_PRESETS: ThemePreset[] = [
     darkBrand: "#f09a5c",
   },
   {
+    id: "garnet",
+    name: "石榴红",
+    brand: "#a63f36",
+    hover: "#8d2f27",
+    darkBrand: "#f59a8e",
+  },
+  {
     id: "rose",
     name: "玫红",
     brand: "#c42b6d",
     hover: "#a52259",
     darkBrand: "#f06f9f",
+  },
+  {
+    id: "cocoa",
+    name: "可可棕",
+    brand: "#79543f",
+    hover: "#65412f",
+    darkBrand: "#d6aa8b",
+  },
+  {
+    id: "plum",
+    name: "梅子紫",
+    brand: "#795173",
+    hover: "#623f5d",
+    darkBrand: "#d2a1ca",
   },
   {
     id: "graphite",

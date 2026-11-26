@@ -458,7 +458,7 @@ test("HumanEval 在案例卡内显示可选图解，公开测试和参考答案�
   assert.match(viewer, /含参考代码与测试/);
   assert.match(viewer, /:href="current.source"/);
   assert.match(scene, /:data-scene="kind"/);
-  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.doesNotMatch(css, /animation:/);
   assert.match(css, /focus-visible/);
   assert.match(detail, /"human-eval": HumanEvalPilot/);
 });

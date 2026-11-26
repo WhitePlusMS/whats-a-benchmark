@@ -27,6 +27,7 @@ export function createSampleLocation(
   viewer: Viewer,
   detailId = () => viewer.data.value?.benchmarkId,
 ) {
+  let pendingSample: ReturnType<typeof writeLocation>;
   watch(
     [router.currentRoute, viewer.data],
     ([route, data]) => {
@@ -59,30 +60,26 @@ export function createSampleLocation(
       hash: "#samples",
     });
   }
+  function pushSampleLocation() {
+    const navigation = writeLocation("push");
+    if (!navigation) return;
+    pendingSample = navigation;
+    return navigation.finally(() => {
+      if (pendingSample === navigation) pendingSample = undefined;
+    });
+  }
   function selectSample(index: number) {
     if (!viewer.data.value?.samples[index]) return;
     // 同步更新保证连续点击换题与模式时，后一次操作使用最新题目。
     viewer.index.value = index;
     viewer.mode.value = "read";
-    return writeLocation(
-      [
-        "arc-agi-2",
-        "human-eval",
-        "gsm8k",
-        "libero",
-        "mmmlu",
-        "ifeval",
-        "calvin",
-        "bfcl",
-        "mmlu-pro",
-      ].includes(viewer.data.value?.benchmarkId || "")
-        ? "push"
-        : "replace",
-    );
+    return pushSampleLocation();
   }
   function setMode(mode: "read" | "raw") {
+    if (viewer.mode.value === mode) return;
     viewer.mode.value = mode;
-    return writeLocation();
+    // 如果后一笔导航会取消仍在提交的换题，保留其 push 语义。
+    return pendingSample ? pushSampleLocation() : writeLocation();
   }
   return { selectSample, setMode };
 }

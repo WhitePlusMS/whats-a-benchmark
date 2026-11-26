@@ -45,14 +45,19 @@ async function copyLink() {
     copying.value = false;
   }
 }
-const { catalogLocation, embodiedLocation } = useCatalogNavigation();
+const { catalogLocation, embodiedLocation, lastCatalog } = useCatalogNavigation();
 const items = computed(() =>
   selected.value
     .map((id) => byId.get(id))
     .filter((item): item is Benchmark => !!item),
 );
+const inferredCatalog = ref<"model" | "embodied">();
+watch(items, (entries) => {
+  if (entries.length && !inferredCatalog.value)
+    inferredCatalog.value = entries.every((item) => item.embodied) ? "embodied" : "model";
+}, { immediate: true });
 const directory = computed(() =>
-  items.value.length && items.value.every((item) => item.embodied)
+  (lastCatalog.value ?? inferredCatalog.value) === "embodied"
     ? embodiedLocation.value
     : catalogLocation.value,
 );
@@ -64,6 +69,7 @@ interface Dimension {
 const overview: Dimension[] = [
   {
     label: "测什么",
+    primary: true,
     value: (item) => ({ text: item.officialDefinition.summary }),
   },
   {
@@ -227,7 +233,7 @@ const grouped = computed(() => [
         {{ copying ? "正在复制…" : "复制对比链接" }}
       </button>
     </div>
-    <p v-if="shareStatus" role="status" class="muted">{{ shareStatus }}</p>
+    <p role="status" :class="shareStatus ? 'muted' : 'sr-only'">{{ shareStatus }}</p>
     <input
       v-if="shareUrl"
       class="comparison-share-url"

@@ -151,10 +151,6 @@
 .comparison-table td .mono {
   font-size: 12.5px;
 }
-/* 行 hover 微反馈（dense 操作台惯例）。 */
-.comparison-table tbody tr {
-  transition: background 80ms;
-}
 .comparison-table tbody tr:hover td,
 .comparison-table tbody tr:hover th {
   background: var(--accent-softer);
@@ -278,6 +274,11 @@
 }
 .comparison-feedback.with-selection {
   bottom: calc(var(--dock-clearance) + 24px + env(safe-area-inset-bottom, 0px));
+}
+@media (max-width: 700px) {
+  .comparison-feedback.with-selection {
+    bottom: calc(var(--dock-clearance) + 4px + env(safe-area-inset-bottom, 0px));
+  }
 }
 .comparison-feedback button {
   min-height: var(--ui-touch-target);

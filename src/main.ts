@@ -53,19 +53,28 @@ export const createApp = ViteSSG(
       if (saved) return saved;
       if (to.hash) return { el: to.hash, top: 120 };
       if (to.path === from.path) return false;
-      return { top: 0 };
+      return { top: 0, behavior: "instant" };
     },
   },
   ({ app, router, isClient }) => {
     const catalogLocation = ref("/");
     const embodiedLocation = ref("/embodied/");
+    const lastCatalog = ref<"model" | "embodied">();
     let catalogScrollTop = 0;
     let embodiedScrollTop = 0;
-    app.provide(catalogNavigationKey, { catalogLocation, embodiedLocation });
+    app.provide(catalogNavigationKey, {
+      catalogLocation,
+      embodiedLocation,
+      lastCatalog,
+    });
     if (!isClient) return;
 
     // 只记录离开目录时的位置；筛选和视图状态本身由目录 URL 保存。
     router.beforeEach((to, from) => {
+      // 路由可匹配没有尾斜线的直达地址，统一成生成页面使用的地址。
+      const path = to.matched.at(-1)?.path;
+      if (path && !path.includes(":") && path !== to.path)
+        return { path, query: to.query, hash: to.hash, replace: true };
       // A newly entered detail page settles when its case viewer renders.
       humanEvalInitialAnchor.cancel();
       const benchmark = byId.get(String(to.meta.benchmarkId ?? ""));
@@ -79,6 +88,7 @@ export const createApp = ViteSSG(
       }
       if (from.path === "/" && from.matched.length && to.path !== "/") {
         catalogLocation.value = from.fullPath;
+        lastCatalog.value = "model";
         catalogScrollTop = window.scrollY;
       }
       if (
@@ -87,6 +97,7 @@ export const createApp = ViteSSG(
         to.path !== "/embodied/"
       ) {
         embodiedLocation.value = from.fullPath;
+        lastCatalog.value = "embodied";
         embodiedScrollTop = window.scrollY;
       }
     });
@@ -142,6 +153,13 @@ export const createApp = ViteSSG(
         humanEvalInitialAnchor.cancel();
       }
       if (restoreSaved && saved) return { ...saved, behavior: "instant" };
+      // 换题或切换原始数据会更新可分享地址，读者仍留在当前操作位置。
+      if (
+        to.path === from.path &&
+        to.hash === "#samples" &&
+        (to.query.sample !== from.query.sample ||
+          to.query.sampleView !== from.query.sampleView)
+      ) return false;
       if (to.hash) {
         // 精确引用可能在折叠的来源定位中；先展开祖先，刷新深链接也能到达。
         const target = document.getElementById(to.hash.slice(1));
@@ -155,7 +173,9 @@ export const createApp = ViteSSG(
         return {
           el: to.hash,
           top: offset,
-          ...(waitedForInitialLayout ? { behavior: "instant" as const } : {}),
+          ...(waitedForInitialLayout || to.path !== from.path
+            ? { behavior: "instant" as const }
+            : {}),
         };
       }
       if (to.path === from.path) return false;
@@ -163,7 +183,7 @@ export const createApp = ViteSSG(
         return { top: catalogScrollTop, behavior: "instant" };
       if (to.fullPath === embodiedLocation.value)
         return { top: embodiedScrollTop, behavior: "instant" };
-      return { top: 0 };
+      return { top: 0, behavior: "instant" };
     };
   },
 );

@@ -5,7 +5,6 @@ import { useComparison } from "../composables/compare";
 import { COMPARISON_LIMIT } from "../lib/comparison";
 import Icon from "./Icon.vue";
 
-defineProps<{ inline?: boolean }>();
 const { selected, toggle, clear } = useComparison();
 const compareUrl = computed(() => ({
   path: "/compare/",
@@ -14,19 +13,14 @@ const compareUrl = computed(() => ({
 </script>
 
 <template>
-  <div
-    v-if="selected.length"
-    class="compare-dock"
-    :class="{ 'compare-dock-inline': inline }"
-    aria-label="已选评测"
-  >
+  <section class="compare-dock" aria-label="已选评测">
     <div class="dock-heading">
       <Icon name="compare" /><strong
         >评测对比
         <span>{{ selected.length }}/{{ COMPARISON_LIMIT }}</span></strong
       >
     </div>
-    <div v-if="!inline" class="dock-items">
+    <div class="dock-items">
       <button
         v-for="id in selected"
         :key="id"
@@ -38,13 +32,17 @@ const compareUrl = computed(() => ({
       </button>
     </div>
     <RouterLink
-      v-if="selected.length >= 2"
       :to="compareUrl"
-      class="primary-button"
-      >开始对比</RouterLink
-    ><span v-else class="muted dock-instruction">再选择 1 个评测</span
-    ><button class="icon-button" @click="clear" aria-label="清空对比">
-      <Icon name="close" :size="18" />
+      :class="selected.length >= 2 ? 'primary-button' : 'secondary-button'"
+      >{{ selected.length >= 2 ? "开始对比" : "查看已选" }}</RouterLink
+    ><button
+      v-if="selected.length >= 2"
+      type="button"
+      class="icon-button dock-clear"
+      aria-label="清空对比"
+      @click="clear"
+    >
+      清空
     </button>
-  </div>
+  </section>
 </template>
