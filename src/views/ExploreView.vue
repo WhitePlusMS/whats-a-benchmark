@@ -19,12 +19,20 @@ import UiDialog from "../components/UiDialog.vue";
 import Icon from "../components/Icon.vue";
 import ComparisonSelectionBar from "../components/ComparisonSelectionBar.vue";
 import { formatCount } from "../lib/displayFormats";
-import { filterCatalog, modelFilterCategories } from "../lib/catalogQuery";
+import {
+  catalogInclusionMonths,
+  filterCatalog,
+  formatInclusionMonth,
+  modelFilterCategories,
+} from "../lib/catalogQuery";
 
 const route = useRoute();
 const isEmbodied = computed(() => route.path === "/embodied/");
 const visibleBenchmarks = computed(() =>
   isEmbodied.value ? embodiedBenchmarks : benchmarks,
+);
+const inclusionMonths = computed(() =>
+  catalogInclusionMonths(visibleBenchmarks.value),
 );
 const filterCategories = computed(() =>
   isEmbodied.value ? embodiedCategories : modelFilterCategories,
@@ -141,6 +149,14 @@ const activeFilters = computed(() =>
         query.value.kind,
       remove: "移除类型筛选",
     },
+    {
+      key: "included",
+      label: "收录时间",
+      value: query.value.included
+        ? formatInclusionMonth(query.value.included)
+        : "",
+      remove: "移除收录时间筛选",
+    },
   ].filter((item) => item.value),
 );
 const filterCount = computed(
@@ -224,6 +240,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
       <CatalogFilters
         :query="query"
         :publishers="publishers"
+        :inclusion-months="inclusionMonths"
         :category-counts="categoryCounts"
         :total="categoryCandidates.length"
         :categories="filterCategories"
@@ -260,6 +277,12 @@ function setFilter(key: CatalogFilterKey, value: string) {
             <option value="featured">编辑精选</option>
             <option value="name">名称 A–Z</option>
             <option value="year">发布年份</option>
+            <option
+              v-if="inclusionMonths.length || query.sort === 'included'"
+              value="included"
+            >
+              最新收录
+            </option>
           </select>
           <div class="view-toggle" role="group" aria-label="目录显示方式">
             <button
@@ -327,6 +350,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
           :key="item.id"
           :item="item"
           :search-query="query.q"
+          :show-inclusion-date="!!query.included || query.sort === 'included'"
           :style="{ '--i': Math.min(index, 4) }"
         />
       </div>
@@ -368,6 +392,7 @@ function setFilter(key: CatalogFilterKey, value: string) {
     <CatalogFilters
       :query="query"
       :publishers="publishers"
+      :inclusion-months="inclusionMonths"
       :category-counts="categoryCounts"
       :total="categoryCandidates.length"
       :categories="filterCategories"

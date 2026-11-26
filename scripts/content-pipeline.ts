@@ -11,6 +11,7 @@ import {
 } from "node:fs/promises";
 import { resolve, relative, dirname, join, sep, isAbsolute } from "node:path";
 import { z } from "zod";
+import { loadCatalogInclusion } from "./catalog-inclusion";
 import {
   entrySchema,
   draftSchema,
@@ -220,9 +221,13 @@ export function referencedAssets(workspace: ContentWorkspace): string[] {
     ]),
   ].sort();
 }
-export function publicProjection(workspace: ContentWorkspace) {
+export function publicProjection(
+  workspace: ContentWorkspace,
+  inclusionDates: ReadonlyMap<string, string> = new Map(),
+) {
   const catalog = workspace.entries.map(({ sampleSet, ...entry }) => ({
     ...entry,
+    includedOn: inclusionDates.get(entry.id),
     sampleCount: sampleSet?.samples.length || 0,
   }));
   const brandIds = new Set(
@@ -283,7 +288,7 @@ async function resetGenerated(root: string) {
 export async function generateContent(root = process.cwd()) {
   // Complete validation before replacing previously generated output.
   const workspace = await loadContent(root);
-  const projection = publicProjection(workspace);
+  const projection = publicProjection(workspace, loadCatalogInclusion(root));
   // favicon 不属于条目附件，必须同样在清理旧产物前读取并验证。
   const favicon = await readFile(join(root, "public/favicon.svg"));
   if (!favicon.length) throw new Error("public/favicon.svg: 空文件");

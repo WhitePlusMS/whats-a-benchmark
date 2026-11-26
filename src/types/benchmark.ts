@@ -5,6 +5,8 @@ export type BenchmarkKind = ContentEntry["kind"];
 /** A public projection has metadata only; sample bodies are fetched on demand. */
 export type Benchmark = Omit<ContentEntry, "sampleSet"> & {
   sampleCount: number;
+  /** The first day this card entered the main repository, in Beijing time. */
+  includedOn?: string;
 };
 export interface SampleFile {
   benchmarkId: string;

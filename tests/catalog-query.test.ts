@@ -16,6 +16,7 @@ import {
 import { benchmarkSearchTarget, searchBenchmarks } from "../src/lib/search";
 import {
   catalogStats,
+  catalogInclusionMonths,
   createCatalogQuery,
   filterCatalog,
   groupByPublisher,
@@ -76,6 +77,37 @@ test("filter changes preserve other URL values; reset retains only display choic
       parseCatalogQuery(resetCatalogQuery(original) as typeof original),
     ),
     false,
+  );
+});
+
+test("收录月份可叠加搜索、与发布日期分开，能清空且保留排序", (t) => {
+  assert.equal(parseCatalogQuery({ included: "2026-13" }).included, "");
+  assert.equal(parseCatalogQuery({ included: ["2026-11"] }).included, "");
+  const months = catalogInclusionMonths(benchmarks);
+  if (!months.length) return t.skip("浅克隆或无 Git 历史的预览不推断收录日期");
+  const [latest] = months;
+  const selected = filterCatalog(
+    parseCatalogQuery({ included: latest, sort: "included" }),
+  );
+  assert.ok(selected.length);
+  assert.ok(selected.every((item) => item.includedOn?.slice(0, 7) === latest));
+  assert.ok(
+    selected.every(
+      (item, i) => i === 0 || item.includedOn! <= selected[i - 1]!.includedOn!,
+    ),
+  );
+  assert.ok(selected.some((item) => item.releaseDate?.slice(0, 7) !== latest));
+  const item = selected[0]!;
+  const narrowed = filterCatalog(
+    parseCatalogQuery({ included: latest, q: item.name }),
+  );
+  assert.ok(narrowed.some((candidate) => candidate.id === item.id));
+  assert.deepEqual(
+    resetCatalogQuery({ included: latest, view: "list", sort: "included" }),
+    {
+      sort: "included",
+      view: "list",
+    },
   );
 });
 
