@@ -1,0 +1,169 @@
+{
+  "id": "4dcodebench",
+  "status": "published",
+  "order": 23316,
+  "name": "4DCodeBench",
+  "subtitle": "用可执行代码重建视频中的动态三维场景",
+  "category": "coding",
+  "tags": [],
+  "publisher": "4DCodeBench 作者团队",
+  "brandIds": [
+    "4dcodebench"
+  ],
+  "year": 2026,
+  "version": "论文 v1 · Synthetic B_08",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用可执行代码重建视频中的动态三维场景",
+    "task": "从单段视频反推三维场景结构、相机和运动，并交付可重新生成的结果。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.03715v1",
+      "https://github.com/4DCodeBench/4DCodeBench/blob/6c466be34107d7f388f30f97bf059b68ba1a21b0/docs/spec.md#evaluation"
+    ]
+  },
+  "taskContract": {
+    "input": "参考视频与固定任务说明。",
+    "output": "可执行重建程序、同步渲染、相机与世界几何数据。",
+    "environment": "作者区分真实视频与具有参考三维世界的合成场景。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.03715v1",
+      "https://github.com/4DCodeBench/4DCodeBench/blob/6c466be34107d7f388f30f97bf059b68ba1a21b0/docs/spec.md#evaluation"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者区分真实视频与具有参考三维世界的合成场景。",
+    "disclosure": "partial",
+    "scale": [
+      "本例属于 100 个合成场景。"
+    ],
+    "splits": [
+      "Synthetic · B_08，不是实机操控。"
+    ],
+    "fields": [
+      "场景编号、参考视频、参考世界和实跑渲染。"
+    ],
+    "files": [
+      "作者数据清单 B_08 及对应两段视频。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "本站仅整理公开任务事实；原始视频与模型输出由作者托管，未转载。"
+    ],
+    "url": "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "本站仅整理公开任务事实；原始视频与模型输出由作者托管，未转载。",
+    "scope": "本站仅整理公开任务事实；原始视频与模型输出由作者托管，未转载。",
+    "boundaries": [
+      "本站不分发原始附件、未公开题库或整批运行数据。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示同一任务的具体要求和验收依据，并链接官方原始记录。",
+    "url": "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases"
+    ]
+  },
+  "metric": {
+    "name": "动态重建评分",
+    "description": "先验证视频与产物格式，再按适用指标比较视频、几何与运动。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.03715v1",
+      "https://github.com/4DCodeBench/4DCodeBench/blob/6c466be34107d7f388f30f97bf059b68ba1a21b0/docs/spec.md#evaluation"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "同题模型输出只是作者发布的渲染，不是参考三维世界、成功判定或单题分数。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2610.03715v1",
+        "https://github.com/4DCodeBench/4DCodeBench/blob/6c466be34107d7f388f30f97bf059b68ba1a21b0/docs/spec.md#evaluation"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "论文 v1（10 月 2 日提交）",
+      "url": "https://arxiv.org/abs/2610.03715v1",
+      "role": "paper"
+    },
+    {
+      "label": "官方产物与验收协议",
+      "url": "https://github.com/4DCodeBench/4DCodeBench/blob/6c466be34107d7f388f30f97bf059b68ba1a21b0/docs/spec.md#evaluation",
+      "role": "code"
+    },
+    {
+      "label": "固定合成集清单",
+      "url": "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases",
+      "role": "data"
+    },
+    {
+      "label": "B_08 官方输入视频",
+      "url": "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/resolve/6b634b2ef9e63ffa6b78639c16b6859717423a59/videos/B_08.mp4",
+      "role": "data"
+    },
+    {
+      "label": "B_08 同题模型渲染",
+      "url": "https://huggingface.co/datasets/4DCodeBench/Results/resolve/b73894dc8990420faae9ad5e3aacf72559209200/codex-gpt-6-astra-high/synthetic/B_08.mp4",
+      "role": "data"
+    },
+    {
+      "label": "作者公告（10 月 5 日发布）",
+      "url": "https://github.com/4DCodeBench/4DCodeBench/blob/6c466be34107d7f388f30f97bf059b68ba1a21b0/README.md#news",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-26",
+  "sampleSet": {
+    "retrievedAt": "2026-11-26",
+    "samples": [
+      {
+        "id": "synthetic-b-08",
+        "title": "B_08 · 输送线将螺丝和螺母送入料箱",
+        "type": "record",
+        "prompt": "输入：作者固定测试场景 B_08 的参考视频。原始案例标识：conveyor_drops_screws_and_nuts_into_bin。视频显示滚筒输送线把紧固件送进料箱；场景名称是数据清单标签，并不是额外发给模型的提示。\n\n交付：生成可执行重建程序，产出相机、几何与同步渲染；重新执行时不能依赖参考视频。\n\n验收：合成场景的几何与运动对照参考三维世界，不能仅凭画面相似判通过。",
+        "promptOrigin": "editorial",
+        "explanation": "已核对同题输入与 Codex GPT-6 Astra High 的发布渲染。未取得该次运行的程序或单题得分。 「原始数据」只保留作者清单的同题编号和场景标识，不是视频或结果文件。",
+        "raw": "B_08 | `conveyor_drops_screws_and_nuts_into_bin`",
+        "source": "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/blob/6b634b2ef9e63ffa6b78639c16b6859717423a59/README.md#cases",
+        "license": "本站仅整理公开任务事实；原始视频与模型输出由作者托管，未转载。",
+        "split": "Synthetic · B_08",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "原始输入视频（作者托管）",
+            "url": "https://huggingface.co/datasets/4DCodeBench/Dataset-Synthetic/resolve/6b634b2ef9e63ffa6b78639c16b6859717423a59/videos/B_08.mp4"
+          },
+          {
+            "label": "模型输出视频（作者托管）",
+            "url": "https://huggingface.co/datasets/4DCodeBench/Results/resolve/b73894dc8990420faae9ad5e3aacf72559209200/codex-gpt-6-astra-high/synthetic/B_08.mp4"
+          },
+          {
+            "label": "官方验收协议",
+            "url": "https://github.com/4DCodeBench/4DCodeBench/blob/6c466be34107d7f388f30f97bf059b68ba1a21b0/docs/spec.md#evaluation"
+          }
+        ]
+      }
+    ]
+  },
+  "updatedAt": "2026-11-26",
+  "releaseDate": "2026-10-05"
+}

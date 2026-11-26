@@ -43,6 +43,7 @@ export const categorySchema = z.strictObject({
 // verified as the publishers' actual marks; displaying them does not license
 // redistribution. Never use untrusted content or an arbitrary remote SVG here.
 const publisherHostedLogos = new Map([
+  ["4dcodebench", "https://4dcodebench.com/logos/bunny/icon-512.png"],
   ["inclusion-ai", "https://www.inclusion-ai.org/img/favicon.png"],
   [
     "inclusionmed-collaboration",
