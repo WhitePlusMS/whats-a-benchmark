@@ -97,7 +97,7 @@
   },
   "metric": {
     "name": "assignment 得分与 matter 加权得分",
-    "description": "每条 criterion 由三名 LLM 裁判（GPT-5.6 Terra、Claude Sonnet 5、Gemini 3.8 Flash，medium effort）严格多数判定通过与否；assignment 得分等于实得带符号点数除以可用正分，并 clamp 到 [0,1]；matter 得分按点数跨 assignment 加权，由 `scripts/score_matter.py` 计算。Harbor 自带的 multi_step_reward_strategy=\"mean\" 只作诊断。",
+    "description": "每条 criterion 由三名 LLM 裁判（GPT-5.6 Terra、Claude Sonnet 5、Gemini 3.8 Flash，medium effort）严格多数判定通过与否；assignment 得分等于实得带符号点数除以可用正分，并 clamp 到 [0,1]；matter 得分按点数跨 assignment 加权，由 `scripts/score_matter.py` 计算；榜单再对 matter 等权平均（每 matter 先取三次运行的均值）。Harbor 自带的 multi_step_reward_strategy=\"mean\" 只作诊断。",
     "direction": "higher",
     "sourceUrls": [
       "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
@@ -162,7 +162,7 @@
       ]
     },
     "comparison": {
-      "text": "比较需固定 agent 与工具条件、三个裁判模型、research universe 与快照版本；matter 之间按点数加权而不是简单平均，不同 assignment 数或罚分构成的 matter 不宜直接比分数。",
+      "text": "评分分两层聚合：matter 内部把各 assignment 的带符号点数按点数加权；榜单再对 matter 取平均（先算同一 matter 三次运行的均值，再对 matter 等权平均）。比较时须固定 agent 与工具条件、三个裁判模型、research universe 与快照版本；不要把 matter 之间也按点数加权，那会偏向 rubric 更大的 matter。",
       "sourceUrls": [
         "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
       ]
