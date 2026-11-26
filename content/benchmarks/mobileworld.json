@@ -1,0 +1,170 @@
+{
+  "id": "mobileworld",
+  "status": "published",
+  "order": 24020,
+  "name": "MobileWorld",
+  "subtitle": "跨手机应用完成任务，并按需澄清与调用工具",
+  "category": "agents",
+  "tags": [
+    "手机操作",
+    "GUI Agent"
+  ],
+  "publisher": "Tongyi Lab · MobileWorld 作者团队",
+  "brandIds": [
+    "tongyi-mai"
+  ],
+  "year": 2025,
+  "releaseDate": "2025-12-23",
+  "version": "首发 201 题；官方源码固定快照（0379388）",
+  "kind": "original",
+  "aliases": [
+    "MobileWorld Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在 Android 环境评估移动端智能体多步骤任务，覆盖纯 GUI、需要用户澄清及 MCP 增强任务。",
+    "task": "根据用户目标查看手机状态并完成操作；必要时先询问用户或使用工具。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2512.19432v1#S3.T4",
+      "https://tongyi-mai.github.io/MobileWorld/"
+    ]
+  },
+  "taskContract": {
+    "input": "用户任务文本及 Android 界面状态，部分任务另给澄清机制或 MCP 工具。",
+    "output": "完成应用状态更改，或返回指定结果。",
+    "environment": "官方预置了安卓应用与初始状态；样例是原生时钟任务。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2512.19432v1#S3.T4",
+      "https://tongyi-mai.github.io/MobileWorld/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者公开任务定义与多种评分逻辑。",
+    "disclosure": "complete",
+    "scale": [
+      "首发有 201 项任务，覆盖 20 个应用。"
+    ],
+    "splits": [
+      "首发任务类型含 GUI-Only、Agent-User Interaction 和 MCP-Augmented；样例属第一类。"
+    ],
+    "fields": [
+      "任务定义包含 goal、app_names、task_tags 及 is_successful。"
+    ],
+    "files": [
+      "src/mobile_world/tasks/definitions 按应用或场景组织。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2512.19432v1#S3.T4",
+      "https://tongyi-mai.github.io/MobileWorld/"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "样例的官方文本公开；运行条件见作者说明。"
+    ],
+    "url": "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/src/mobile_world/tasks/definitions/native/set_alarm.py",
+    "sourceUrls": [
+      "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/src/mobile_world/tasks/definitions/native/set_alarm.py"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0；采用官方任务源码中的提示与同题评分实现。",
+    "scope": "仅转载此处列出的作者任务材料，保留对应版权与许可。",
+    "boundaries": [
+      "不把本条的许可扩展到未选素材、站外视频或第三方资料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示一条来源可定位的真实任务，包含初始输入、交付和同题验收。",
+    "url": "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/src/mobile_world/tasks/definitions/native/set_alarm.py",
+    "sourceUrls": [
+      "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/src/mobile_world/tasks/definitions/native/set_alarm.py"
+    ]
+  },
+  "metric": {
+    "name": "任务成功率",
+    "description": "时钟任务读取应用实际状态；其他任务通过文本匹配、数据或回调判分。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2512.19432v1#S3.T4",
+      "https://tongyi-mai.github.io/MobileWorld/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "手机操作成功不等于可泛化到生产账户、任意安卓设备或陌生应用。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2512.19432v1#S3.T4",
+        "https://tongyi-mai.github.io/MobileWorld/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "首发论文与 Table 4 同题",
+      "url": "https://arxiv.org/html/2512.19432v1#S3.T4",
+      "role": "paper"
+    },
+    {
+      "label": "作者项目站",
+      "url": "https://tongyi-mai.github.io/MobileWorld/",
+      "role": "definition"
+    },
+    {
+      "label": "官方闹钟任务与验证器",
+      "url": "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/src/mobile_world/tasks/definitions/native/set_alarm.py",
+      "role": "data"
+    },
+    {
+      "label": "官方初始发行记录",
+      "url": "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/CHANGELOG.md#2025-12-23",
+      "role": "release"
+    },
+    {
+      "label": "官方 Apache-2.0 许可",
+      "url": "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/LICENSE",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "set-alarm-task",
+        "title": "设置周末 8:25 的手机闹钟",
+        "type": "record",
+        "prompt": "初始环境：官方任务指定 Android Clock 应用。\n\n原始指令：\nSet a weekend alarm for 8:25 a.m. with the ringtone \"beebeep\" and vibration off.\n\n交付：在时钟里保存并启用该闹钟。\n验收：读取闹钟实际状态；8:25、恰好周六和周日、已启用、关闭振动、铃声字段包含 beebeep 五项均满足才得 1 分。",
+        "raw": {
+          "goal": "Set a weekend alarm for 8:25 a.m. with the ringtone \"beebeep\" and vibration off. ",
+          "task_tags": [
+            "lang-en"
+          ],
+          "app_names": [
+            "Clock"
+          ]
+        },
+        "source": "https://github.com/Tongyi-MAI/MobileWorld/blob/037938836d96cde6923da7052f1b529e2e5eb451/src/mobile_world/tasks/definitions/native/set_alarm.py",
+        "license": "Apache-2.0；采用官方任务源码中的提示与同题评分实现。",
+        "split": "作者论文 Table 4 · GUI-Only 英文任务 · SetAlarmTask",
+        "explanation": "保留原始目标、标签和应用名。验收条件根据同题验证器整理；不转载整段验证器。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "论文 Table 4",
+            "url": "https://arxiv.org/html/2512.19432v1#S3.T4"
+          }
+        ],
+        "licensePath": "licenses/mobileworld-apache-2-0.txt"
+      }
+    ]
+  }
+}

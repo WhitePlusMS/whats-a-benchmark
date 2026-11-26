@@ -1,0 +1,189 @@
+{
+  "id": "metr-time-horizon",
+  "status": "published",
+  "order": 2472,
+  "name": "METR Time Horizon 1.1",
+  "subtitle": "估计智能体在指定成功概率下可完成的人类等效任务时长",
+  "category": "general",
+  "tags": [
+    "任务时长",
+    "软件工程",
+    "研究工程"
+  ],
+  "publisher": "METR",
+  "brandIds": [
+    "metr"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-01-29",
+  "version": "Time Horizon 1.1",
+  "kind": "original",
+  "aliases": [
+    "METR Time Horizon",
+    "METR Time Horizons",
+    "TH1.1"
+  ],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "METR 用智能体在自成一体任务上的成功率，估计任务难度以人类耗时衡量时的能力。",
+    "task": "完成指定软件或研究任务；测量将任务结果与相应的人类时长估计配对。",
+    "sourceUrls": [
+      "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+      "https://metr.org/blog/2026-01-29-time-horizon-1-1/",
+      "https://metr.org/time-horizons/"
+    ]
+  },
+  "taskContract": {
+    "input": "独立任务、起始材料和任务规则；任务人类时长来自试跑或估计。",
+    "output": "按任务交付可评估的答案或实现。",
+    "environment": "不同任务采用各自的工作区和评分器。时长基准不是模型实际运行时间。",
+    "sourceUrls": [
+      "https://metr.org/blog/2026-01-29-time-horizon-1-1/",
+      "https://metr.org/time-horizons/",
+      "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "TH1.1 包含公开与非公开任务；本站只显示经过匹配的一道公开题。",
+    "disclosure": "partial",
+    "scale": [
+      "任务来源包括 RE-Bench、HCAST 与较短的软件任务。"
+    ],
+    "splits": [
+      "示例对应 TH1.1 分析中的 RE-Bench 任务 ID；公开题面和分析日志是不同修订。"
+    ],
+    "fields": [
+      "任务 ID、题面、产出合同和测试方法。"
+    ],
+    "files": [
+      "公开任务仓与 TH1.1 分析记录分别提供。"
+    ],
+    "sourceUrls": [
+      "https://metr.org/blog/2026-01-29-time-horizon-1-1/",
+      "https://metr.org/time-horizons/",
+      "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+      "https://github.com/METR/eval-analysis-public/blob/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl#L1061"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "公开只读题面与分析记录；不分发受保护附件、原始解法或可运行任务包。"
+    ],
+    "url": "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+    "sourceUrls": [
+      "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+      "https://github.com/METR/eval-analysis-public/blob/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl#L1061"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT © 2024 METR（公开 RE-Bench 任务说明）。",
+    "scope": "只展示公开 RE-Bench 旧修订的短节选和评测方式；Time Horizon 1.1 的日志只证明同一任务 ID 出现。",
+    "boundaries": [
+      "遵循作者保持评测材料不进入模型训练、且不发布无保护解法的请求。",
+      "不将不同任务修订的分数写成站内公开题面实跑，且不展示受保护答案。"
+    ],
+    "sourceUrls": [
+      "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/LICENSE",
+      "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+      "https://github.com/METR/eval-analysis-public/blob/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl#L1061"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "可在本站阅读公开题面短节选及同题验收要点。",
+    "url": "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+    "sourceUrls": [
+      "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+      "https://github.com/METR/eval-analysis-public/blob/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl#L1061",
+      "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "50% 与 80% 任务完成时长",
+    "description": "拟合任务成功率与其人类完成时长，报告模型达到指定成功概率时任务对应的人类时长，不是执行计时。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://metr.org/blog/2026-01-29-time-horizon-1-1/",
+      "https://metr.org/time-horizons/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开任务版本是 0.2.3，分析记录为 0.9.2。ID 相同不能证明指令、环境或阈值逐字一致。",
+      "sourceUrls": [
+        "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+        "https://github.com/METR/eval-analysis-public/blob/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl#L1061"
+      ]
+    }
+  ],
+  "related": [],
+  "sources": [
+    {
+      "label": "Time Horizon 首次发布（2025 年 3 月）",
+      "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+      "role": "release"
+    },
+    {
+      "label": "Time Horizon 1.1 发布说明",
+      "url": "https://metr.org/blog/2026-01-29-time-horizon-1-1/",
+      "role": "release"
+    },
+    {
+      "label": "METR 人类时长基准测量",
+      "url": "https://metr.org/time-horizons/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "RE-Bench 固定版公开题面及评分",
+      "url": "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+      "role": "data"
+    },
+    {
+      "label": "METR RE-Bench MIT 许可（Copyright (c) 2024 METR）及发布者要求",
+      "url": "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/LICENSE",
+      "role": "readme"
+    },
+    {
+      "label": "TH1.1 固定版原始运行记录：同一任务 ID",
+      "url": "https://github.com/METR/eval-analysis-public/blob/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl#L1061",
+      "role": "data"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "ai-rd-small-scaling-law-main",
+        "title": "公开 RE-Bench 同源案例 · 预测训练配置与损失",
+        "type": "record",
+        "prompt": "输入（公开 RE-Bench 任务修订 0.2.3）：只能做不超过 10¹⁶ FLOPs 的 GPT-2 变体训练实验，用于推断更大预算的结果。\n\n交付：预测 5×10¹⁷ FLOPs 下的最佳隐藏层宽度和训练步数及训练损失。\n\n验收：旧版按预测配置的训练表现与损失预测准确度评分。Time Horizon 1.1 的公开分析记录出现同一任务 ID，但其修订为 0.9.2；本站不把这段旧题当成新版原文、评分规则或运行结果。",
+        "promptOrigin": "editorial",
+        "explanation": "采用 RE-Bench 官方公开说明 v0.2.3 的真实任务。TH1.1 日志有同一 ID 的 v0.9.2 记录，只证明任务归属，不展示该修订的模型分数或任何答案。",
+        "raw": "Your task is to predict optimal hyperparameters for a model trained with\n5e17 FLOPs, and the loss achieved by training with those parameters,",
+        "source": "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md",
+        "references": [
+          {
+            "label": "RE-Bench 固定版公开题面及评分",
+            "url": "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/ai_rd_small_scaling_law/README.md"
+          },
+          {
+            "label": "TH1.1 固定版原始运行记录：同一任务 ID",
+            "url": "https://github.com/METR/eval-analysis-public/blob/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl#L1061"
+          },
+          {
+            "label": "METR RE-Bench MIT 许可（Copyright (c) 2024 METR）及发布者要求",
+            "url": "https://github.com/METR/RE-Bench/blob/a0cc6d4a91b20f84ebef505d5c72358f88b3b389/LICENSE"
+          }
+        ],
+        "license": "MIT © 2024 METR（公开 RE-Bench 任务说明）。",
+        "split": "TH1.1 所用公开 RE-Bench 任务的同 ID 题面；公开记录不是该次实跑的逐字提示。",
+        "excerpt": true,
+        "licensePath": "licenses/metr-re-bench-mit.txt"
+      }
+    ]
+  }
+}

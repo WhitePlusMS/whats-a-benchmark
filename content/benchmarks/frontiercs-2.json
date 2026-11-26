@@ -1,0 +1,196 @@
+{
+  "id": "frontiercs-2",
+  "status": "published",
+  "order": 1145,
+  "name": "FrontierCS 2",
+  "subtitle": "评估智能体能否在真实计算机科学研究代码上改进被移除的关键实现。",
+  "category": "coding",
+  "tags": [
+    "计算机科学研究",
+    "代码改进",
+    "留出工作负载"
+  ],
+  "publisher": "FrontierCS 团队",
+  "brandIds": [
+    "frontiercs-2"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-10-20",
+  "version": "FrontierCS 2 · 48 项公开任务",
+  "kind": "original",
+  "aliases": [
+    "FrontierCS 2.0",
+    "Frontier-CS 2"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体能否在真实计算机科学研究代码上改进被移除的关键实现。",
+    "task": "从研究论文的原始程序恢复或改进指定实现，并在未见工作负载上超过论文的参考实现。",
+    "sourceUrls": [
+      "https://frontier-cs.org/",
+      "https://github.com/FrontierCS/FrontierCS-2"
+    ]
+  },
+  "taskContract": {
+    "input": "论文及其研究代码快照，指定可编辑范围和开发工作负载。",
+    "output": "提交选定的代码补丁和能由独立验证器检验的程序。",
+    "environment": "作者运行协议规定五小时预算，评测容器独立执行留出工作负载。",
+    "sourceUrls": [
+      "https://github.com/FrontierCS/FrontierCS-2",
+      "https://frontier-cs.org/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开任务包提供任务说明、起始仓库和评分配置，另有未发布任务。",
+    "disclosure": "partial",
+    "scale": [
+      "48 项公开任务，覆盖 13 个计算机科学领域。"
+    ],
+    "splits": [
+      "每题有开发工作负载和留出工作负载；独立私有集不是公开 48 题。"
+    ],
+    "fields": [
+      "任务 ID、可编辑范围、资源预算、输出指标和参考实现。"
+    ],
+    "files": [
+      "任务目录内包含 README.md、task.toml、工作负载描述与验证器。"
+    ],
+    "sourceUrls": [
+      "https://github.com/FrontierCS/FrontierCS-2",
+      "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/task.toml"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开任务与评估框架使用作者仓库。本站不含完整运行环境。"
+    ],
+    "url": "https://github.com/FrontierCS/FrontierCS-2",
+    "sourceUrls": [
+      "https://github.com/FrontierCS/FrontierCS-2"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CC BY 4.0（任务作者材料）；上游研究代码与数据保留各自许可。",
+    "scope": "本站样例仅用作者任务文档的短原文和文档明示的数字。",
+    "boundaries": [
+      "不转载 SCOPE 仓库快照、图数据、留出工作负载或模型轨迹。"
+    ],
+    "sourceUrls": [
+      "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/LICENSE",
+      "https://github.com/FrontierCS/FrontierCS-2"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示公开原任务的具体输入、交付要求和同题验证条件。",
+    "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/repo/README.md",
+    "sourceUrls": [
+      "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/repo/README.md"
+    ]
+  },
+  "metric": {
+    "name": "通过率 / FrontierCS Capabilities Index",
+    "description": "通过要求选定提交在每项留出评估指标上胜过论文参考；FCI 另结合任务难度及超越或落后参考的幅度。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://frontier-cs.org/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开 48 题并不等于公开完整私有集；样例只说明该任务的输入输出与判分。",
+      "sourceUrls": [
+        "https://frontier-cs.org/",
+        "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/repo/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方评测与榜单",
+      "url": "https://frontier-cs.org/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "作者任务仓库",
+      "url": "https://github.com/FrontierCS/FrontierCS-2",
+      "role": "data"
+    },
+    {
+      "label": "首发日期：项目发布记录",
+      "url": "https://github.com/FrontierCS/Frontier-CS",
+      "role": "release"
+    },
+    {
+      "label": "评测论文",
+      "url": "https://arxiv.org/abs/2610.29932",
+      "role": "paper"
+    },
+    {
+      "label": "Batch Local Counting 原始任务文本（固定版本）",
+      "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/repo/README.md",
+      "role": "data"
+    },
+    {
+      "label": "同题运行配置（固定版本）",
+      "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/task.toml",
+      "role": "code"
+    },
+    {
+      "label": "同题作者验证记录（固定版本）",
+      "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/docs/task-authoring/batch_local_counting/provenance/judge-result.json",
+      "role": "data"
+    },
+    {
+      "label": "任务作者材料许可（固定版本）",
+      "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/LICENSE",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "batch-local-counting",
+        "title": "补回并加速批量局部子图计数",
+        "type": "record",
+        "prompt": "输入：在 SCOPE 仓库里做批量本地计数。官方查询文件片段：首行 `5 4`，随后的前两行是 `0 2` 和 `0 4`。\n\n交付：恢复共享批处理路径，在单核上加速六个用例。\n\n验收：所有输出必须和独立计数路径逐字节相同。作者对应结果文件的前三行是 `37589`、`342369`、`81862`，不是本站跑分。",
+        "promptOrigin": "editorial",
+        "answer": "原说明中的 web-spam / 15.txt 样例输出前三行是 37589、342369、81862。",
+        "explanation": "保留任务 ID、原文片段、查询文件指示值和作者示例输出；中文说明仅整理同题输入和验证条件。",
+        "raw": {
+          "id": "batch_local_counting",
+          "README.md_excerpt": "Every output file must equal the\nindependent counting path's output byte for byte",
+          "query_file_15.txt_excerpt": "5 4\n0 2\n0 4\n1 3\n1 4\n1 3",
+          "result_file_15.txt_first_three_lines": "37589\n342369\n81862"
+        },
+        "source": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/repo/README.md",
+        "references": [
+          {
+            "label": "Batch Local Counting 原始任务文本（固定版本）",
+            "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/repo/README.md"
+          },
+          {
+            "label": "同题运行配置（固定版本）",
+            "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/tasks/problems/Database/batch_local_counting/task.toml"
+          },
+          {
+            "label": "同题作者验证记录（固定版本）",
+            "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/docs/task-authoring/batch_local_counting/provenance/judge-result.json"
+          },
+          {
+            "label": "任务作者材料许可（固定版本）",
+            "url": "https://github.com/FrontierCS/FrontierCS-2/blob/1867a902b24a3a89e8c1ede73f76c28d1f102c3c/LICENSE"
+          }
+        ],
+        "license": "CC BY 4.0 · FrontierCS 作者，保留任务文本短节选并标明中文整理。此处不转载上游源码或数据文件。",
+        "split": "FrontierCS 2 公布的 48 项研究任务；本样例是 Batch Local Counting 任务说明内的公开演示输入输出。",
+        "excerpt": true
+      }
+    ]
+  }
+}

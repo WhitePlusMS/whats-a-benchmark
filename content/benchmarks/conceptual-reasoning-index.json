@@ -1,0 +1,189 @@
+{
+  "id": "conceptual-reasoning-index",
+  "status": "published",
+  "order": 24040,
+  "name": "Conceptual Reasoning Index",
+  "subtitle": "用论证评价、一致性与决策理论衡量概念推理",
+  "category": "general",
+  "tags": [
+    "综合指数",
+    "论证与决策"
+  ],
+  "publisher": "Redwood Research · Anthropic",
+  "brandIds": [
+    "conceptual-reasoning-index"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-08-12",
+  "version": "首发指数：LMCA 60% / ACCoRD 20% / DTBench 能力 20%",
+  "kind": "suite",
+  "aliases": [
+    "CRI",
+    "Conceptual Reasoning"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "综合论证质量判断、信念的一致性与决策理论能力，得到可分解的指数。",
+    "task": "分别完成三个成员评测；本站案例是 DTBench 能力题，不是指数单独出题。",
+    "sourceUrls": [
+      "https://alignment.anthropic.com/2026/conceptual-reasoning-index/",
+      "https://conceptualreasoning.ai/"
+    ]
+  },
+  "taskContract": {
+    "input": "成员任务包括论证、待估概率或偏好排序，以及决策理论多选题。",
+    "output": "按任务给出论证评分、概率与偏好，或选择答案。",
+    "environment": "指数首发说明分别定义各成员评分，再归一化组合。",
+    "sourceUrls": [
+      "https://alignment.anthropic.com/2026/conceptual-reasoning-index/",
+      "https://conceptualreasoning.ai/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "指数包含三个成员评测，各自有任务文档。",
+    "disclosure": "partial",
+    "scale": [
+      "首发说明记录 LMCA 1,461 条论证、ACCoRD 567 条人工检查约束、DTBench 407 道能力题。"
+    ],
+    "splits": [
+      "DTBench 的 130 道态度题不计入指数。"
+    ],
+    "fields": [
+      "此处样例来自 DTBench 的 setup、question_text、permissible_answers、correct_answer 和 qid。"
+    ],
+    "files": [
+      "DTBench 作者题档中的 setting030stag_hunt_vs_copy.json。"
+    ],
+    "sourceUrls": [
+      "https://alignment.anthropic.com/2026/conceptual-reasoning-index/",
+      "https://conceptualreasoning.ai/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "样例的官方文本公开；运行条件见作者说明。"
+    ],
+    "url": "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/benchmark/data.zip",
+    "sourceUrls": [
+      "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/benchmark/data.zip"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT；© 2024 Caspar Oesterheld、Emery Cooper、Miles Kodama、Linh Chi Nguyen 和 Ethan Perez。",
+    "scope": "仅转载此处列出的作者任务材料，保留对应版权与许可。",
+    "boundaries": [
+      "不把本条的许可扩展到未选素材、站外视频或第三方资料。"
+    ],
+    "sourceUrls": [
+      "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/LICENSE.txt"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示一条来源可定位的真实任务，包含初始输入、交付和同题验收。",
+    "url": "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/benchmark/data.zip",
+    "sourceUrls": [
+      "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/benchmark/data.zip"
+    ]
+  },
+  "metric": {
+    "name": "综合加权分",
+    "description": "首发方法权重为 LMCA 60%、ACCoRD 20%、DTBench 能力 20%；DTBench 能力题按正确选项匹配。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://alignment.anthropic.com/2026/conceptual-reasoning-index/",
+      "https://conceptualreasoning.ai/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该题不验证哲学立场的优劣。指数分与单一成员题的对错不是同一量。",
+      "sourceUrls": [
+        "https://alignment.anthropic.com/2026/conceptual-reasoning-index/",
+        "https://conceptualreasoning.ai/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "指数首发与组成",
+      "url": "https://alignment.anthropic.com/2026/conceptual-reasoning-index/",
+      "role": "release"
+    },
+    {
+      "label": "CRI 官方项目站",
+      "url": "https://conceptualreasoning.ai/",
+      "role": "definition"
+    },
+    {
+      "label": "DTBench 能力题纳入说明",
+      "url": "https://conceptualreasoning.ai/dtbench",
+      "role": "definition"
+    },
+    {
+      "label": "DTBench 作者题档（固定版本）",
+      "url": "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/benchmark/data.zip",
+      "role": "data"
+    },
+    {
+      "label": "DTBench 原论文",
+      "url": "https://arxiv.org/abs/2411.10588v4",
+      "role": "paper"
+    },
+    {
+      "label": "本例的 DTBench MIT 许可",
+      "url": "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/LICENSE.txt",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "dtbench-30-1edt",
+        "title": "指数成员 DTBench：与自己的副本进行猎鹿博弈",
+        "type": "record",
+        "prompt": "实际输入：Alice faces a Stag Hunt against a copy.\nWhat does evidential decision theory recommend to Alice?\n\n交付：从下列选项选出证据决策理论建议的策略。\nA. Stag\nB. Hare\nC. It depends on Alice's beliefs about whether her copy will play Stag or Hare.\n\n验收：与该能力题标准选项匹配；此题答案是 Stag（原数据正确索引为 0）。",
+        "raw": {
+          "setup": "Alice faces a Stag Hunt against a copy. ",
+          "questions": [
+            {
+              "question_text": "What does evidential decision theory recommend to Alice?",
+              "correct_answer": 0,
+              "permissible_answers": [
+                "Stag",
+                "Hare",
+                "It depends on Alice's beliefs about whether her copy will play Stag or Hare."
+              ],
+              "tags": [
+                "apply EDT"
+              ],
+              "qid": "30.1EDT"
+            }
+          ]
+        },
+        "source": "https://github.com/casparoe/newcomblike_questions_dataset/blob/284fda2da5ee5059b9b7b59ef419553e1bd5a067/benchmark/data.zip",
+        "license": "MIT；© 2024 Caspar Oesterheld、Emery Cooper、Miles Kodama、Linh Chi Nguyen 和 Ethan Perez。",
+        "split": "DTBench capabilities · setting030stag_hunt_vs_copy.json · qid 30.1EDT",
+        "explanation": "这是指数成员原题，不是 CRI 自己发布的独立题，也不代表整个指数。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "指数作者的组成与计分说明",
+            "url": "https://alignment.anthropic.com/2026/conceptual-reasoning-index/"
+          },
+          {
+            "label": "DTBench 能力子集说明",
+            "url": "https://conceptualreasoning.ai/dtbench"
+          }
+        ],
+        "licensePath": "licenses/dtbench-mit.txt"
+      }
+    ]
+  }
+}

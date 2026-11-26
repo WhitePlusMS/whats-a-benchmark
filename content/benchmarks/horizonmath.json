@@ -1,0 +1,179 @@
+{
+  "id": "horizonmath",
+  "status": "published",
+  "order": 24030,
+  "name": "HorizonMath",
+  "subtitle": "可自动核验的数学发现与研究级构造",
+  "category": "reasoning",
+  "tags": [
+    "数学发现",
+    "确定性验证"
+  ],
+  "publisher": "HorizonMath 作者团队",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-03-16",
+  "version": "论文 v2（2026-09-10）",
+  "kind": "original",
+  "aliases": [
+    "Horizon Math"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用以检验模型能否对数学及数学科学研究问题给出可验证的具体新答案。",
+    "task": "提出闭式、优化界或数学构造，由相应的确定性计算验证。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.15617v2",
+      "https://ewang26.github.io/HorizonMath/"
+    ]
+  },
+  "taskContract": {
+    "input": "研究题面给出数学对象、约束和交付格式。",
+    "output": "提交常数、函数、闭式或可执行的构造。",
+    "environment": "较难的是生成候选结果；验证通常可计算或可按约束确定性检查。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.15617v2",
+      "https://ewang26.github.io/HorizonMath/"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者论文 v2 记录校准题与研究题的规模和原始案例。",
+    "disclosure": "partial",
+    "scale": [
+      "113 题、8 个领域；基准整理时 103 道为未解层，10 道为已解校准层。"
+    ],
+    "splits": [
+      "层级 0 为校准，层级 1–3 代表不同难度的研究题。"
+    ],
+    "fields": [
+      "数据文件包含题目、输出类型、领域、求解层级和验证模式。"
+    ],
+    "files": [
+      "题单见 data/problems_full.json；所收录的文字、执行要求和验证从许可明确的论文取材。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.15617v2",
+      "https://ewang26.github.io/HorizonMath/"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "样例的官方文本公开；运行条件见作者说明。"
+    ],
+    "url": "https://arxiv.org/pdf/2603.15617v2#page=7",
+    "sourceUrls": [
+      "https://arxiv.org/pdf/2603.15617v2#page=7"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CC BY 4.0；转载 Wang 等人 arXiv:2603.15617v2 §5、附录 A.1 中的作者题例；公式改用 Unicode 排版，任务与验证文字有中文整理。",
+    "scope": "仅转载此处列出的作者任务材料，保留对应版权与许可。",
+    "boundaries": [
+      "不把本条的许可扩展到未选素材、站外视频或第三方资料。"
+    ],
+    "sourceUrls": [
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示一条来源可定位的真实任务，包含初始输入、交付和同题验收。",
+    "url": "https://arxiv.org/pdf/2603.15617v2#page=7",
+    "sourceUrls": [
+      "https://arxiv.org/pdf/2603.15617v2#page=7"
+    ]
+  },
+  "metric": {
+    "name": "通过率（pass@1）",
+    "description": "符号闭式须与参考值高精度匹配并符合允许的形式；优化题须改善基线，构造题须通过指定规则。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2603.15617v2",
+      "https://ewang26.github.io/HorizonMath/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "高精度数值匹配不是形式证明。未从仓库直接转载无独立许可声明的其他题。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2603.15617v2",
+        "https://ewang26.github.io/HorizonMath/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "论文预印本及版本记录",
+      "url": "https://arxiv.org/abs/2603.15617v2",
+      "role": "paper"
+    },
+    {
+      "label": "作者项目站",
+      "url": "https://ewang26.github.io/HorizonMath/",
+      "role": "definition"
+    },
+    {
+      "label": "论文 §5 原始实例",
+      "url": "https://arxiv.org/pdf/2603.15617v2#page=7",
+      "role": "data"
+    },
+    {
+      "label": "论文附录 A.1",
+      "url": "https://arxiv.org/pdf/2603.15617v2#page=13",
+      "role": "paper"
+    },
+    {
+      "label": "原任务数据文件对应记录",
+      "url": "https://github.com/ewang26/HorizonMath/blob/4ef0b61a8a6d4c5ded661fab7c2e896af84abe6e/data/problems_full.json#L1345-L1354",
+      "role": "data"
+    },
+    {
+      "label": "论文标明 CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "role": "code"
+    },
+    {
+      "label": "首发预印本 v1（2026-03-16）",
+      "url": "https://arxiv.org/abs/2603.15617v1",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "spinor-norm-integral-i0",
+        "title": "自旋量范数的椭圆积分",
+        "type": "record",
+        "prompt": "输入：K(z)、E(z) 分别是第一类和第二类完全椭圆积分。给定作者论文中的积分常数：\nI₀ = (4√2/π) ∫₀¹ [(1+√z)/(1+z)³] · [2E(z)−(1−z)K(z)] dz\n\n原题要求（节选）：Find a closed-form symbolic expression for I₀.\n交付：提交自包含的 Python `proposed_solution()`，按题面模板用 mpmath 返回 I₀ 的符号闭式。\n验收：与高精度参考值逐位比对，且不得用数值积分、无穷级数截断或硬编码值代替闭式。参考 I₀ ≈ 1.774250423444665045。",
+        "raw": {
+          "paper_section": "5.1 / A.1",
+          "formula_transcription": "I₀ = (4√2/π) ∫₀¹ [(1+√z)/(1+z)³] · [2E(z)−(1−z)K(z)] dz",
+          "task_statement_excerpt": "Find a closed-form symbolic expression for I₀.",
+          "reported_symbolic_expression_transcription": "Γ(1/4)²/(8√π) + Γ(3/4)²/√π"
+        },
+        "source": "https://arxiv.org/pdf/2603.15617v2#page=7",
+        "license": "CC BY 4.0；转载 Wang 等人 arXiv:2603.15617v2 §5、附录 A.1 中的作者题例；公式改用 Unicode 排版，任务与验证文字有中文整理。",
+        "split": "公开作者案例 · solvability 1 · spinor_norm_integral_i0",
+        "explanation": "论文报告该闭式与高精度参考一致；通过数值验证并不等同于形式证明。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "answer": "Γ(1/4)²/(8√π) + Γ(3/4)²/√π",
+        "references": [
+          {
+            "label": "附录 A.1：完整题面、解及验证结果",
+            "url": "https://arxiv.org/pdf/2603.15617v2#page=13"
+          },
+          {
+            "label": "对应数据文件记录",
+            "url": "https://github.com/ewang26/HorizonMath/blob/4ef0b61a8a6d4c5ded661fab7c2e896af84abe6e/data/problems_full.json#L1345-L1354"
+          }
+        ]
+      }
+    ]
+  }
+}

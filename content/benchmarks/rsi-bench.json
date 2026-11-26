@@ -1,0 +1,185 @@
+{
+  "id": "rsi-bench",
+  "status": "published",
+  "order": 2471,
+  "name": "RSI Bench",
+  "subtitle": "改进已有 AI 研究和工程系统，并用独立评估检验增益",
+  "category": "coding",
+  "tags": [
+    "机器学习工程",
+    "算法改进",
+    "隐藏评测"
+  ],
+  "publisher": "Scale AI",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-08-07",
+  "version": "官方项目；公开任务仓固定到 cded973",
+  "kind": "original",
+  "aliases": [
+    "RSI Benchmark",
+    "Scale AI RSI Bench",
+    "RSI-Bench"
+  ],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以可验证的研究工程任务衡量智能体能否改进已有系统。",
+    "task": "在给定的起点、资源和任务约束下改进实现，交由独立评分器验证。",
+    "sourceUrls": [
+      "https://rsi-benchmark.com/blog/announcing-rsi-bench",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "现有实现、验证数据、可用资源和验收约束均按题提供。",
+    "output": "在指定目录交付可独立复验的实现；本站所选任务要求输出原解与对偶解向量。",
+    "environment": "官方任务在沙盒执行；时限取决于具体任务。",
+    "sourceUrls": [
+      "https://rsi-benchmark.com/blog/announcing-rsi-bench",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方任务仓能核对任务指令与评分规则，不等于公开所有隐藏测试。",
+    "disclosure": "partial",
+    "scale": [
+      "任务覆盖基础设施、训练与其他 AI 研究环节。"
+    ],
+    "splits": [
+      "本例从固定仓库的 tasks 目录选取；验证问题与最终隐藏评估分开。"
+    ],
+    "fields": [
+      "任务指令、计分方法和官方基线记录。"
+    ],
+    "files": [
+      "本例任务说明在 instruction.md，配置与基线在 task.toml。"
+    ],
+    "sourceUrls": [
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/README.md",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/task.toml"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "可读取公开任务；不提供本例的隐藏试题或第三方问题归档。"
+    ],
+    "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+    "sourceUrls": [
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/task.toml"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT © 2026 RSI Bench（固定仓库许可）。",
+    "scope": "仅展示作者任务指令与同题评分要点。",
+    "boundaries": [
+      "第三方案例文件另行许可，不搬运；不含 canary、参考实现或隐藏输入。",
+      "不把任务基线当作模型榜单成绩。"
+    ],
+    "sourceUrls": [
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/LICENSE",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/task.toml"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "可在本站阅读公开题面短节选及同题验收要点。",
+    "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+    "sourceUrls": [
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/task.toml",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/LICENSE"
+    ]
+  },
+  "metric": {
+    "name": "任务独立评分",
+    "description": "具体计分按任务定义，本例由隐藏线性规划实例逐例打分，最终取平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+      "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/task.toml"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "示例只反映线性规划求解；没有据此推断系统能自主改进全部研究流程。",
+      "sourceUrls": [
+        "https://rsi-benchmark.com/blog/announcing-rsi-bench",
+        "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md"
+      ]
+    }
+  ],
+  "related": [],
+  "sources": [
+    {
+      "label": "2026 年 8 月项目发布",
+      "url": "https://rsi-benchmark.com/blog/announcing-rsi-bench",
+      "role": "release"
+    },
+    {
+      "label": "固定版本开发与任务说明",
+      "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/README.md",
+      "role": "code"
+    },
+    {
+      "label": "原题 improve-pdhg：任务指令",
+      "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "同题元数据及测试基线",
+      "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/task.toml",
+      "role": "data"
+    },
+    {
+      "label": "固定版本 MIT 许可（Copyright (c) 2026 RSI Bench）",
+      "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/LICENSE",
+      "role": "readme"
+    },
+    {
+      "label": "官方项目与榜单",
+      "url": "https://rsi-benchmark.com/",
+      "role": "leaderboard"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "improve-pdhg",
+        "title": "保持 PDHG 方法不变，改进线性规划求解器",
+        "type": "record",
+        "prompt": "输入：PyTorch PDHG 求解器，读取稀疏矩阵 A 及 b、c、l、u，求解可行线性规划。\n\n交付：提交仍基于 PDHG 的求解器及实验报告；求解器输出原变量 x 和对偶变量 y。\n\n验收：每例 120 秒，比较原始可行性、对偶可行性和相对间隙，取最坏误差转为单例分数；失败得零，最终取平均。",
+        "promptOrigin": "editorial",
+        "explanation": "作者真实任务的指令与同题计分节选。未运行基线，也不展示验证或隐藏实例数据。",
+        "raw": {
+          "instruction.md": "Your method must remain PDHG-based."
+        },
+        "source": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md",
+        "references": [
+          {
+            "label": "原题 improve-pdhg：任务指令",
+            "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/instruction.md"
+          },
+          {
+            "label": "同题元数据及测试基线",
+            "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/tasks/improve-pdhg/task.toml"
+          },
+          {
+            "label": "固定版本 MIT 许可（Copyright (c) 2026 RSI Bench）",
+            "url": "https://github.com/scaleapi/rsi-benchmark/blob/cded973cd3941d2b592fa442906a5aa0febdd530/LICENSE"
+          }
+        ],
+        "license": "MIT © 2026 RSI Bench（固定仓库许可）。",
+        "split": "官方固定版本公开 tasks 条目 improve-pdhg；最终测试实例隐藏。",
+        "excerpt": true,
+        "licensePath": "licenses/rsi-bench-mit.txt"
+      }
+    ]
+  }
+}
