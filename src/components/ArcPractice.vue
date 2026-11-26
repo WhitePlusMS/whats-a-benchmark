@@ -56,6 +56,7 @@ const differences = computed(() =>
 const differenceCount = computed(
   () => differences.value?.flat().filter(Boolean).length,
 );
+const hasColor = computed(() => draft.value.some((row) => row.some((value) => value !== 0)));
 function applySize() {
   sizeError.value = !practice.resize(Number(rows.value), Number(columns.value));
 }
@@ -145,7 +146,7 @@ function applySize() {
         </p>
         <div class="arc-edit-actions">
           <button type="button" class="arc-tool" @click="copyInput">
-            复制测试输入
+            用测试输入填充画板
           </button>
           <button
             type="button"
@@ -155,7 +156,7 @@ function applySize() {
           >
             撤销
           </button>
-          <button type="button" class="arc-tool" @click="clear">
+          <button v-if="hasColor" type="button" class="arc-tool" @click="clear">
             清空颜色
           </button>
         </div>

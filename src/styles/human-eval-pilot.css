@@ -391,19 +391,6 @@
   outline: 3px solid var(--accent-text);
   outline-offset: 3px;
 }
-.he-observation {
-  animation: he-arrive 0.18s ease-out;
-}
-@keyframes he-arrive {
-  from {
-    opacity: 0.7;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
 @media (max-width: 900px) {
   .walkthrough-heading {
     align-items: flex-start;
@@ -493,14 +480,5 @@
   }
   .he-case-label b {
     font-size: 14px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .he-observation {
-    animation: none;
-    transition: none;
-  }
-  .he-pilot :deep(*) {
-    scroll-behavior: auto;
   }
 }

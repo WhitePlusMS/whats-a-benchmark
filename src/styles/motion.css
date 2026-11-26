@@ -1,0 +1,255 @@
+/* 状态变化共用时长、曲线和位移。静态是默认值，系统允许动效时才启用。 */
+:root {
+  --motion-press: 80ms;
+  --motion-fast: 120ms;
+  --motion-state: 160ms;
+  --motion-enter: 220ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 两段切换只移动底色，文字及命中区域留在原位。 */
+.motion-segments {
+  position: relative;
+  isolation: isolate;
+  --segment-padding: 3px;
+  --segment-gap: 3px;
+}
+.motion-segments > :is(a, button) {
+  flex: 1 1 0;
+}
+.motion-segments::before {
+  content: "";
+  position: absolute;
+  inset: var(--segment-padding) auto var(--segment-padding)
+    var(--segment-padding);
+  width: calc((100% - 2 * var(--segment-padding) - var(--segment-gap)) / 2);
+  border-radius: var(--segment-radius, 6px);
+  background: var(--segment-fill, var(--accent-softer));
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.motion-segments:has(> :is(.active, [aria-pressed="true"]))::before {
+  opacity: 1;
+}
+.motion-segments:has(
+    > :nth-child(2):is(.active, [aria-pressed="true"])
+  )::before {
+  translate: calc(100% + var(--segment-gap));
+}
+
+.motion-icon-slot {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+}
+.motion-icon-slot > svg {
+  grid-area: 1 / 1;
+}
+.motion-progress {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 只让当前交互对象过渡。换肤不同时启动数百条过渡，画板立即着色。 */
+  :is(a, button, summary, select):not([role="gridcell"]):is(
+      :hover,
+      :focus-visible
+    ) {
+    transition-property: color, background-color, border-color, scale;
+    transition-duration: var(--motion-fast);
+    transition-timing-function: var(--motion-ease);
+  }
+  :is(
+    .primary-button,
+    .secondary-button,
+    .icon-button,
+    .theme-trigger,
+    .compare-toggle,
+    .sample-step
+  ):not(:hover, :focus-visible) {
+    transition: scale var(--motion-fast) var(--motion-ease);
+  }
+  :is(
+      .primary-button,
+      .secondary-button,
+      .icon-button,
+      .theme-trigger,
+      .compare-toggle,
+      .sample-step
+    ):active:not(:disabled) {
+    scale: 0.98;
+    transition: scale var(--motion-press) var(--motion-ease);
+  }
+  .search-box {
+    transition:
+      border-color var(--motion-fast) var(--motion-ease),
+      box-shadow var(--motion-fast) var(--motion-ease);
+  }
+  .motion-segments::before {
+    transition:
+      opacity var(--motion-fast) var(--motion-ease),
+      translate var(--motion-state) var(--motion-ease);
+  }
+  .motion-progress {
+    transition: transform var(--motion-fast) var(--motion-ease);
+  }
+  .motion-route
+    :is(
+      .catalog-header,
+      .benchmark-detail-header,
+      .guide-intro,
+      .reading-page > h1,
+      .not-found > h1
+    ) {
+    animation: motion-arrive var(--motion-enter) var(--motion-ease);
+  }
+  .motion-case-title {
+    animation: motion-arrive var(--motion-state) var(--motion-ease);
+  }
+  @keyframes motion-arrive {
+    from {
+      opacity: 0.68;
+      translate: 0 4px;
+    }
+  }
+  details[open]::details-content {
+    animation: motion-reveal var(--motion-fast) var(--motion-ease);
+  }
+  @keyframes motion-reveal {
+    from {
+      opacity: 0.72;
+    }
+  }
+
+  :is(
+    .motion-float-enter-active,
+    .motion-float-leave-active,
+    .motion-menu-enter-active,
+    .motion-menu-leave-active
+  ) {
+    transition:
+      opacity var(--motion-state) var(--motion-ease),
+      translate var(--motion-state) var(--motion-ease);
+  }
+  :is(.motion-float-leave-active, .motion-menu-leave-active) {
+    transition-duration: var(--motion-fast);
+    pointer-events: none;
+  }
+  :is(.motion-float-enter-from, .motion-float-leave-to) {
+    opacity: 0;
+    translate: 0 6px;
+  }
+  :is(.motion-menu-enter-from, .motion-menu-leave-to) {
+    opacity: 0;
+    translate: 0 -4px;
+  }
+  :is(.motion-icon-enter-active, .motion-icon-leave-active) {
+    transition:
+      opacity var(--motion-fast) var(--motion-ease),
+      scale var(--motion-fast) var(--motion-ease);
+  }
+  :is(.motion-icon-enter-from, .motion-icon-leave-to) {
+    opacity: 0;
+    scale: 0.78;
+  }
+  .compare-toggle.chosen > svg {
+    animation: motion-arrive var(--motion-fast) var(--motion-ease);
+  }
+  .motion-loading::before {
+    content: "";
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    margin-inline-end: 0.55em;
+    border: 2px solid var(--border-strong);
+    border-top-color: var(--accent-text);
+    border-radius: 50%;
+    opacity: 0;
+    animation: motion-loading 800ms linear var(--motion-state) infinite;
+  }
+  @keyframes motion-loading {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+      rotate: 1turn;
+    }
+  }
+
+  /* 原生顶层负责焦点与关闭，CSS 只保留退出时的画面。 */
+  .ui-dialog,
+  .ui-tooltip-content {
+    opacity: 0;
+    transition:
+      opacity var(--layer-time, var(--motion-fast)) var(--motion-ease),
+      translate var(--layer-time, var(--motion-fast)) var(--motion-ease),
+      scale var(--layer-time, var(--motion-fast)) var(--motion-ease);
+  }
+  .ui-dialog {
+    translate: 0 6px;
+    scale: 0.985;
+  }
+  .ui-dialog[open],
+  .ui-tooltip-content:popover-open {
+    opacity: 1;
+    translate: none;
+    scale: none;
+  }
+  .ui-dialog[open] {
+    --layer-time: var(--motion-enter);
+  }
+  .ui-dialog::backdrop {
+    opacity: 0;
+    transition: opacity var(--motion-fast) var(--motion-ease);
+  }
+  .ui-dialog[open]::backdrop {
+    opacity: 1;
+  }
+  :is(.ui-dialog:not([open]), .ui-tooltip-content:not(:popover-open)),
+  .ui-dialog:not([open])::backdrop {
+    pointer-events: none;
+  }
+  @supports (overlay: auto) and (transition-behavior: allow-discrete) {
+    .ui-dialog,
+    .ui-tooltip-content {
+      transition-property: opacity, translate, scale, display, overlay;
+      transition-behavior: allow-discrete;
+    }
+    .ui-dialog::backdrop {
+      transition-property: opacity, display, overlay;
+      transition-behavior: allow-discrete;
+    }
+  }
+  @starting-style {
+    .ui-dialog[open],
+    .ui-tooltip-content:popover-open,
+    .ui-dialog[open]::backdrop {
+      opacity: 0;
+    }
+    .ui-dialog[open] {
+      translate: 0 6px;
+      scale: 0.985;
+    }
+  }
+  @media (max-width: 700px) {
+    .ui-dialog-sheet:not([open]) {
+      translate: 0 14px;
+      scale: none;
+    }
+    @starting-style {
+      .ui-dialog-sheet[open] {
+        translate: 0 14px;
+        scale: none;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -104,14 +104,6 @@ svg {
 ::selection {
   background: var(--selection);
 }
-a,
-button {
-  transition:
-    color 0.15s,
-    background 0.15s,
-    box-shadow 0.15s,
-    transform 0.15s;
-}
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -171,19 +163,5 @@ time,
   .container {
     padding-left: 20px;
     padding-right: 20px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    transition: none !important;
-    animation: none !important;
-  }
-  .benchmark-card:hover {
-    transform: none;
   }
 }

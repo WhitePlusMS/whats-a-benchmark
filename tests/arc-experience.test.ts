@@ -331,8 +331,7 @@ test("ARC 保留原始矩阵与来源入口；参考只在明确揭示后渲染�
   assert.match(editor, /ArrowUp/);
   assert.match(editor, /ArrowDown/);
   assert.match(editor, /role="gridcell"/);
-  assert.match(styles, /prefers-reduced-motion: reduce/);
-  assert.match(styles, /animation: none/);
+  assert.doesNotMatch(styles, /animation:/);
   assert.match(rawViewer, /含参考输出/);
   assert.match(rawViewer, /没有匹配此编号的样例/);
   assert.match(shared, /<ArcGrid/);

@@ -327,7 +327,7 @@ test("MMMLU integration retains deferred layout, source distinction and answer g
   assert.match(card, /#samples/);
   assert.match(pilot, /v-if="entry && revealed"/);
   assert.match(viewer, /current\.answer && showAnswer/);
-  assert.ok(css.includes("prefers-reduced-motion"));
+  assert.doesNotMatch(css, /(?:animation|transition):/);
   assert.ok(css.includes("var(--accent-text)"));
   const anchor = createDeferredDetailAnchor();
   anchor.begin("/benchmarks/mmmlu/#score");

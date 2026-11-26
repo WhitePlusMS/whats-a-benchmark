@@ -59,7 +59,7 @@ const symbol = (s: CheckState) => ({ pass: "✓", fail: "×", unknown: "?" })[s]
       </div>
       <label for="if-draft"
         >可编辑格式片段
-        <small>最多 12,000 字符；切题清空，不保存草稿</small></label
+        <small>最多 12,000 字符。草稿保留到离开本页。</small></label
       >
       <textarea
         id="if-draft"

@@ -65,6 +65,10 @@ const showExplanation = computed(
 );
 const mediaRetryToken = ref("");
 const readingBody = ref<HTMLElement>();
+const switchedSample = ref(false);
+watch(current, (next, previous) => {
+  switchedSample.value = !!next && !!previous && next.id !== previous.id;
+});
 watch(mode, (value) => {
   // 隐藏媒体时停止播放但保留进度，避免阅读原始数据时仍在后台发声。
   if (value === "raw")
@@ -144,14 +148,14 @@ onMounted(() => {
     <p>请重试，或通过参考资料查看原始任务。</p>
     <button class="primary-button" @click="reload">重新加载</button>
   </div>
-  <div v-else-if="!data" class="sample-loading" role="status">
+  <div v-else-if="!data" class="sample-loading motion-loading" role="status">
     正在加载样例…
   </div>
   <div v-else class="sample-viewer">
     <div class="sample-toolbar">
       <div
         v-if="current"
-        class="sample-tabs"
+        class="sample-tabs motion-segments"
         role="group"
         aria-label="样例展示方式"
       >
@@ -236,7 +240,9 @@ onMounted(() => {
                   : "公开样例"
           }}</span>
         </div>
-        <h3 translate="no">{{ current.title }}</h3>
+        <h3 :key="current.id" :class="{ 'motion-case-title': switchedSample }" translate="no">
+          {{ current.title }}
+        </h3>
         <!-- 同一道题切换展示方式只隐藏阅读区，保留草稿、画板和撤销历史。 -->
         <div ref="readingBody" v-show="mode === 'read'" class="sample-reading">
           <div v-if="failedAssets.length" class="sample-media-retry">

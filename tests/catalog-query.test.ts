@@ -16,6 +16,7 @@ import {
 import { benchmarkSearchTarget, searchBenchmarks } from "../src/lib/search";
 import {
   catalogStats,
+  catalogFacetOptions,
   catalogInclusionMonths,
   createCatalogQuery,
   filterCatalog,
@@ -111,6 +112,32 @@ test("收录月份可叠加搜索、与发布日期分开，能清空且保留�
   );
 });
 
+test("收录月份和动态选项一起生效，具身目录保留月份", async (t) => {
+  const [month] = catalogInclusionMonths(benchmarks);
+  const [embodiedMonth] = catalogInclusionMonths(embodiedBenchmarks);
+  if (!month || !embodiedMonth) return t.skip("无 Git 历史时没有收录月份");
+  const query = parseCatalogQuery({
+    included: month, publisher: "不匹配的分享值", view: "list",
+  });
+  const facets = catalogFacetOptions(query);
+  assert.deepEqual(facets.publishers, new Set([
+    ...filterCatalog({ ...query, publisher: "" }).map((item) => item.publisher),
+    query.publisher,
+  ]));
+  assert.equal(facets.localMatches, 0);
+  const router = createTestRouter();
+  await router.push({ path: "/embodied/", query: {
+    included: embodiedMonth, publisher: query.publisher, sort: "included",
+  } });
+  const catalog = createCatalogQuery(router);
+  assert.equal(catalog.query.value.publisher, "");
+  assert.equal(catalog.query.value.included, embodiedMonth);
+  assert.ok(catalog.results.value.length);
+  assert.ok(catalog.results.value.every(
+    (item) => item.includedOn?.slice(0, 7) === embodiedMonth,
+  ));
+});
+
 test("catalog filters intersect, sort without mutating content, and preserve unknown-filter empty results", () => {
   const item = benchmarks[0]!;
   const originalIds = benchmarks.map((entry) => entry.id);
@@ -182,7 +209,7 @@ test("router-backed catalog interface merges rapid filters and restores URL stat
 
   await catalog.setFilter("publisher", "unknown publisher");
   assert.deepEqual(catalog.results.value, []);
-  await catalog.reset();
+  await catalog.relaxFilters();
   assert.deepEqual(router.currentRoute.value.query, {
     view: "list",
     sort: "year",
@@ -299,10 +326,11 @@ test("模型目录医疗健康和搜索叠加，清空回到模型目录，旧�
   await catalog.setFilter("q", "Terminal-Bench 4.0");
   assert.equal(catalog.results.value.length, 0);
   assert.equal(router.currentRoute.value.path, "/");
-  await catalog.reset();
+  await catalog.relaxFilters();
   assert.equal(catalog.query.value.category, "");
   assert.equal(catalog.query.value.view, "list");
-  assert.equal(catalog.results.value.length, benchmarks.length);
+  assert.equal(catalog.query.value.q, "Terminal-Bench 4.0");
+  assert.ok(catalog.results.value.some((item) => item.id === "terminal-bench-4"));
 });
 
 test("医疗健康分类可检索 InclusionMed，保留原能力分类和详情路径", () => {

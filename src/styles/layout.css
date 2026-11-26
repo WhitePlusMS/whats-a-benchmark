@@ -61,6 +61,7 @@
 }
 /* 两个目录并列切换；颜色和圆角沿用全站变量。 */
 .catalog-switch {
+  --segment-fill: var(--accent-softer);
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -79,6 +80,7 @@
   border-radius: 6px;
   color: var(--muted);
   font-size: 13px;
+  font-weight: 600;
   white-space: nowrap;
 }
 .catalog-switch a:hover {
@@ -88,8 +90,7 @@
 .catalog-switch a.active,
 .catalog-switch a.router-link-exact-active {
   color: var(--accent-text);
-  background: var(--accent-softer);
-  font-weight: 600;
+  background: transparent;
 }
 .site-footer {
   margin-top: 55px;
@@ -191,19 +192,11 @@
   padding: 6px 9px;
   border-radius: 6px;
 }
-.dock-notice {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  padding: 7px 16px;
-  border-radius: 7px;
-  background: var(--notice-bg);
-  color: var(--text-inverse);
-  font-size: 12px;
+.dock-clear {
+  min-width: var(--ui-touch-target);
+  min-height: var(--ui-touch-target);
+  font-size: var(--ui-text-meta);
 }
-
 @media (max-width: 1190px) {
   .main-nav {
     margin-left: 0;
@@ -278,6 +271,9 @@
   }
 }
 @media (max-width: 700px) {
+  :root {
+    --dock-clearance: 68px;
+  }
   .footer-inner {
     align-items: flex-start;
     gap: 20px;
@@ -294,86 +290,19 @@
   }
   .compare-dock {
     bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    padding: 12px;
-    gap: 9px;
-    flex-wrap: wrap;
-    width: calc(
-      100% - 24px - env(safe-area-inset-left, 0px) -
-        env(safe-area-inset-right, 0px)
-    );
-  }
-  .dock-items {
-    flex: 1 0 calc(100% - 34px);
-    gap: 5px;
-  }
-  .dock-items > button {
-    font-size: 12px;
-    padding: 4px 6px;
-  }
-  .compare-dock > .primary-button {
-    min-height: 34px;
-    font-size: 12px;
-    padding: 7px 12px;
-  }
-  .compare-dock > .icon-button {
-    position: absolute;
-    right: 8px;
-    bottom: 14px;
-  }
-  .dock-notice {
-    font-size: 12px;
-    max-width: 100%;
-    white-space: normal;
-    width: 280px;
-    text-align: center;
-  }
-}
-
-.compare-dock-inline {
-  display: none;
-}
-@media (max-width: 700px) {
-  .catalog-compare-dock {
-    display: none;
-  }
-  .site-footer.catalog-footer {
-    padding-bottom: calc(25px + env(safe-area-inset-bottom, 0px));
-  }
-  .compare-dock-inline {
-    position: static;
-    transform: none;
-    display: flex;
-    max-width: none;
-    width: auto;
-    min-height: var(--ui-touch-target);
     padding: 4px 10px;
     gap: 8px;
-    margin-bottom: 10px;
-    border-radius: var(--ui-card-radius);
-    box-shadow: none;
   }
-  .compare-dock-inline .dock-heading {
-    display: flex;
-    margin-right: auto;
-  }
-  .compare-dock-inline .dock-heading > svg {
+  .dock-items {
     display: none;
   }
-  .compare-dock-inline > .icon-button {
-    position: static;
-    width: var(--ui-touch-target);
-    height: var(--ui-touch-target);
+  .compare-dock .dock-heading {
+    display: flex;
   }
-  .compare-dock-inline > .primary-button {
+  .compare-dock .dock-heading > svg {
+    display: none;
+  }
+  .compare-dock > a {
     min-height: var(--ui-touch-target);
-  }
-  .compare-dock-inline .dock-instruction {
-    font-size: var(--ui-text-meta);
-  }
-  .compare-dock-inline .dock-notice {
-    position: static;
-    flex-basis: 100%;
-    transform: none;
-    padding: 6px 8px;
   }
 }

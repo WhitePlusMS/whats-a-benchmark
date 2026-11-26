@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from "vue";
+import { computed, onBeforeUnmount, ref, useId } from "vue";
 import { useTheme, type ThemePreset } from "../lib/theme";
+import Icon from "./Icon.vue";
 
 const { presets, activeId, applyTheme } = useTheme();
 const open = ref(false);
 const root = ref<HTMLElement>();
 const trigger = ref<HTMLButtonElement>();
+const menuId = useId();
 const activePreset = computed(
   () => presets.find((preset) => preset.id === activeId.value) ?? presets[0],
 );
@@ -49,27 +51,47 @@ onBeforeUnmount(() => document.removeEventListener("click", onDocClick));
   >
     <button
       ref="trigger"
+      type="button"
       class="theme-trigger"
       aria-label="主题色"
       :aria-expanded="open"
+      :aria-controls="menuId"
       :title="`主题色：${activePreset.name}`"
       @click="toggle"
     >
-      <span class="theme-dot on" :style="{ background: activePreset.brand }" />
+      <span class="theme-dot" aria-hidden="true" />
     </button>
-    <div v-if="open" class="theme-menu" role="group" aria-label="主题色">
-      <button
-        v-for="preset in presets"
-        :key="preset.id"
-        class="theme-dot"
-        :class="{ on: preset.id === activeId }"
-        :aria-pressed="preset.id === activeId"
-        :aria-label="preset.name"
-        :title="preset.name"
-        :style="{ background: preset.brand }"
-        @click="choose(preset)"
-      />
-    </div>
+    <Transition name="motion-menu">
+      <div
+        v-show="open"
+        :id="menuId"
+        :inert="!open"
+        class="theme-menu"
+        role="group"
+        aria-label="主题色"
+      >
+        <button
+          v-for="preset in presets"
+          :key="preset.id"
+          type="button"
+          class="theme-choice"
+          :aria-label="preset.name"
+          :aria-pressed="preset.id === activeId"
+          @click="choose(preset)"
+        >
+          <span
+            class="theme-dot"
+            :style="{
+              '--swatch-light': preset.brand,
+              '--swatch-dark': preset.darkBrand,
+            }"
+            aria-hidden="true"
+          >
+            <Icon v-if="preset.id === activeId" name="tick" :size="13" />
+          </span>
+        </button>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -95,40 +117,55 @@ onBeforeUnmount(() => document.removeEventListener("click", onDocClick));
   height: 16px;
   border-radius: 50%;
   display: block;
-  padding: 0;
+  background: light-dark(
+    var(--swatch-light, var(--theme-brand)),
+    var(--swatch-dark, var(--theme-dark-brand))
+  );
+  forced-color-adjust: none;
 }
 .theme-menu {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
   z-index: 60;
-  display: flex;
-  gap: 0;
-  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(6, var(--ui-touch-target));
+  gap: 2px;
+  width: max-content;
+  max-height: calc(100dvh - 108px);
+  padding: 6px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 999px;
-  box-shadow: 0 8px 28px rgb(37 41 50 / 14%);
+  border-radius: var(--ui-card-radius);
+  box-shadow: 0 8px 28px var(--dock-shadow);
 }
-.theme-menu .theme-dot {
-  width: 44px;
-  height: 44px;
-  border: 13px solid var(--surface);
-  cursor: pointer;
+.theme-choice {
+  display: grid;
+  place-items: center;
+  min-height: var(--ui-touch-target);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
 }
-.theme-menu .theme-dot:hover {
-  transform: scale(1.15);
+.theme-choice .theme-dot {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: light-dark(#fff, #12151c);
 }
-.theme-menu .theme-dot.on {
-  box-shadow:
-    inset 0 0 0 2px var(--surface),
-    0 0 0 1px var(--accent);
+.theme-choice:hover {
+  background: var(--surface-sunken);
 }
-@media (max-width: 400px) {
-  .theme-menu {
-    display: grid;
-    grid-template-columns: repeat(4, 44px);
-    border-radius: 16px;
+.theme-choice[aria-pressed="true"] {
+  border-color: var(--accent-border);
+  background: var(--accent-softer);
+}
+@media (forced-colors: active) {
+  .theme-choice[aria-pressed="true"] {
+    border-color: Highlight;
   }
 }
 @media (max-width: 780px) {
@@ -136,7 +173,12 @@ onBeforeUnmount(() => document.removeEventListener("click", onDocClick));
   .theme-menu {
     position: fixed;
     top: 96px;
-    right: 20px;
+    right: 18px;
+  }
+}
+@media (max-width: 420px) {
+  .theme-menu {
+    grid-template-columns: repeat(4, var(--ui-touch-target));
   }
 }
 </style>

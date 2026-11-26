@@ -52,6 +52,8 @@ const caseVisuals: Partial<Record<string, Component>> = {
   mmmlu: MmmluPilot,
 };
 const caseVisual = computed(() => item.value && caseVisuals[item.value.id]);
+// 只保留可编辑的练习。带视频等媒体的图解换题后正常卸载。
+const editablePractice = ["ArcAgiPilot", "IfevalPilot"];
 function reportSamplesReady() {
   humanEvalInitialAnchor.settled(route.fullPath);
 }
@@ -271,6 +273,7 @@ useHead(() => ({
       </template>
       <SampleViewer
         v-else
+        :key="item.id"
         :item="item"
         :wide-visual="
           !!caseVisual &&
@@ -279,16 +282,18 @@ useHead(() => ({
         @settled="reportSamplesReady"
       >
         <template v-if="caseVisual" #visual="{ sample, showAnswer }">
-          <component
-            :is="caseVisual"
-            :key="sample.id"
-            :sample="sample"
-            v-bind="
-              ['gsm8k', 'mmmlu'].includes(item.id)
-                ? { revealed: showAnswer }
-                : {}
-            "
-          />
+          <KeepAlive :include="editablePractice">
+            <component
+              :is="caseVisual"
+              :key="sample.id"
+              :sample="sample"
+              v-bind="
+                ['gsm8k', 'mmmlu'].includes(item.id)
+                  ? { revealed: showAnswer }
+                  : {}
+              "
+            />
+          </KeepAlive>
         </template>
       </SampleViewer>
     </section>

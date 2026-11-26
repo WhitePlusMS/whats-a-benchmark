@@ -17,14 +17,21 @@ export function useSampleViewer(
   const state = reactive({
     mode: "read" as "read" | "raw",
     showAnswer: false,
-    selectedOption: null as number | null,
     failedAssets: [] as string[],
   });
+  const choices = reactive(new Map<string, number>());
+  const selectedOption = computed({
+    get: () => choices.get(current.value?.id ?? "") ?? null,
+    set(value: number) {
+      if (current.value) choices.set(current.value.id, value);
+    },
+  });
 
-  // 新的加载结果总从第一题开始；题目对象变化统一重置交互状态。
+  // 换题后允许返回继续作答，只有加载新题集才清除原来记录的选项。
   watch(
     data,
     () => {
+      choices.clear();
       index.value = 0;
     },
     { flush: "sync" },
@@ -34,7 +41,6 @@ export function useSampleViewer(
     () => {
       state.mode = "read";
       state.showAnswer = false;
-      state.selectedOption = null;
       state.failedAssets = [];
     },
     { flush: "sync" },
@@ -53,7 +59,7 @@ export function useSampleViewer(
     state.failedAssets = [];
   }
 
-  const { mode, showAnswer, selectedOption } = toRefs(state);
+  const { mode, showAnswer } = toRefs(state);
   return {
     data,
     error,

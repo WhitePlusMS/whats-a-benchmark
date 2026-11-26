@@ -448,7 +448,7 @@ test("IFEval integration preserves origins, local-only drafts and async layout r
   assert.match(viewer, /current.prompt/);
   assert.match(pilot, /record.instruction_id_list/);
   assert.match(pilot, /试用格式检查/);
-  assert.ok(css.includes("prefers-reduced-motion"));
+  assert.doesNotMatch(css, /transition: width/);
   assert.ok(css.includes("focus-visible"));
   assert.ok(workbench.includes('maxlength="12000"'));
   assert.ok(workbench.includes("未判定"));

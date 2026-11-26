@@ -15,6 +15,11 @@ const props = defineProps<{
 const emit = defineEmits<{ assetError: [path: string] }>();
 const baseUrl = import.meta.env.BASE_URL;
 const openedImage = ref<Extract<SampleAsset, { kind: "image" }> | null>(null);
+const imageOpen = ref(false);
+function showImage(image: NonNullable<typeof openedImage.value>) {
+  openedImage.value = image;
+  imageOpen.value = true;
+}
 function assetUrl(path: string) {
   return liberoMediaUrl(baseUrl, path, props.retryToken);
 }
@@ -45,7 +50,7 @@ function assetCaption(asset: SampleAsset) {
         class="sample-image-button"
         :aria-label="`放大图片：${asset.alt}`"
         aria-haspopup="dialog"
-        @click="openedImage = asset"
+        @click="showImage(asset)"
       >
         <img
           :src="assetUrl(asset.path)"
@@ -125,9 +130,10 @@ function assetCaption(asset: SampleAsset) {
   </div>
   <SampleImageDialog
     v-if="openedImage"
+    :key="openedImage.path"
+    v-model="imageOpen"
     :asset="openedImage"
     :url="assetUrl(openedImage.path)"
-    @close="openedImage = null"
     @asset-error="markAssetFailed"
   />
 </template>

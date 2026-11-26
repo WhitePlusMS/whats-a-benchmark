@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import Icon from "./Icon.vue";
 const props = withDefaults(
   defineProps<{
@@ -43,38 +43,50 @@ function syncOpen() {
   const element = dialog.value;
   if (!element) return;
   if (props.modelValue && !element.open) {
-    trigger =
-      document.activeElement instanceof HTMLElement
-        ? document.activeElement
-        : null;
-    savedPage = {
-      overflow: document.documentElement.style.overflow,
-      scrollBehavior: document.documentElement.style.scrollBehavior,
-      position: document.body.style.position,
-      top: document.body.style.top,
-      width: document.body.style.width,
-      x: window.scrollX,
-      y: window.scrollY,
-    };
-    document.documentElement.style.scrollBehavior = "auto";
-    window.scrollTo({
-      left: savedPage.x,
-      top: savedPage.y,
-      behavior: "instant",
-    });
-    Object.assign(document.body.style, {
-      position: "fixed",
-      top: `${-savedPage.y}px`,
-      width: "100%",
-    });
-    document.documentElement.style.overflow = "hidden";
+    if (!savedPage) {
+      trigger =
+        document.activeElement instanceof HTMLElement
+          ? document.activeElement
+          : null;
+      savedPage = {
+        overflow: document.documentElement.style.overflow,
+        scrollBehavior: document.documentElement.style.scrollBehavior,
+        position: document.body.style.position,
+        top: document.body.style.top,
+        width: document.body.style.width,
+        x: window.scrollX,
+        y: window.scrollY,
+      };
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo({
+        left: savedPage.x,
+        top: savedPage.y,
+        behavior: "instant",
+      });
+      Object.assign(document.body.style, {
+        position: "fixed",
+        top: `${-savedPage.y}px`,
+        width: "100%",
+      });
+      document.documentElement.style.overflow = "hidden";
+    }
+    element.inert = false;
     element.showModal();
-  } else if (!props.modelValue && element.open) element.close();
+  } else if (!props.modelValue && element.open) close();
 }
 function close() {
-  dialog.value?.close();
+  const element = dialog.value;
+  if (!element?.open) return;
+  // 退场可以继续绘制，关闭状态与焦点同步生效，按钮可立即重新打开。
+  element.inert = true;
+  element.close();
+  onClose();
+  // Vue 可能合并同一次任务里的关、开两次更新。提交后以父级状态为准。
+  void nextTick(syncOpen);
 }
 function onClose() {
+  // 异步原生事件只作兜底，已经重开的弹层不受上一次关闭影响。
+  if (dialog.value?.open || !savedPage) return;
   restorePage();
   emit("update:modelValue", false);
 }
@@ -109,6 +121,7 @@ onBeforeUnmount(() => {
     class="ui-dialog"
     :class="`ui-dialog-${layout}`"
     :aria-label="title"
+    @cancel.prevent="close"
     @close="onClose"
     @click.self="close"
     @keydown="onKeydown"
@@ -222,17 +235,6 @@ onBeforeUnmount(() => {
   .dialog-footer {
     padding-left: 16px;
     padding-right: 16px;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .ui-dialog[open] {
-    animation: dialog-enter 180ms cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  @keyframes dialog-enter {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
   }
 }
 </style>

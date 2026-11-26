@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, provide } from "vue";
+import { computed, onMounted, onUnmounted, provide, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { comparisonKey, createComparison } from "./composables/compare";
 import { byId } from "./content/catalog";
@@ -11,6 +11,8 @@ import { useCatalogNavigation } from "./composables/catalogNavigation";
 // 引用同一份 SVG 的图形片段，使页眉可继承主题变量；独立 favicon 使用默认配色。
 const brandLogoUrl = `${import.meta.env.BASE_URL}favicon.svg`;
 const route = useRoute();
+const animateRoute = ref(false);
+watch(() => route.path, () => (animateRoute.value = !route.hash));
 const isEmbodiedDetail = computed(
   () => !!byId.get(String(route.meta.benchmarkId || ""))?.embodied,
 );
@@ -20,10 +22,18 @@ const { colorModeIcon, colorModeLabel, cycleColorMode } = useTheme();
 // Own selection state per application and dispose the navigation subscription.
 const comparison = createComparison(useRouter());
 const { selected, notice, canUndoClear, undoClear } = comparison;
-const isCatalog = computed(() => ["/", "/embodied/"].includes(route.path));
 const showCompareDock = computed(
   () => selected.value.length > 0 && !/^\/compare\/?$/.test(route.path),
 );
+function stopExitingInteraction(element: Element) {
+  if (element instanceof HTMLElement) element.inert = true;
+}
+watch([notice, canUndoClear], ([message, canUndo], _previous, onCleanup) => {
+  // 不给撤销设时限。无需操作的反馈自动让出阅读空间。
+  if (!message || canUndo) return;
+  const timer = setTimeout(() => (notice.value = ""), 4200);
+  onCleanup(() => clearTimeout(timer));
+});
 provide(comparisonKey, comparison);
 onMounted(comparison.activate);
 onUnmounted(comparison.dispose);
@@ -47,7 +57,7 @@ onUnmounted(comparison.dispose);
         ></RouterLink
       >
       <nav class="main-nav" aria-label="主导航">
-        <div class="catalog-switch">
+        <div class="catalog-switch motion-segments">
           <RouterLink
             :to="route.path === '/' ? route.fullPath : catalogLocation"
             :class="{
@@ -88,7 +98,11 @@ onUnmounted(comparison.dispose);
           :title="`外观：${colorModeLabel}`"
           @click="cycleColorMode"
         >
-          <Icon :name="colorModeIcon" :size="18" />
+          <span class="motion-icon-slot" aria-hidden="true">
+            <Transition name="motion-icon">
+              <Icon :key="colorModeIcon" :name="colorModeIcon" :size="18" />
+            </Transition>
+          </span>
         </button>
         <a
           class="icon-button"
@@ -114,24 +128,26 @@ onUnmounted(comparison.dispose);
     </div>
   </header>
   <main id="main-content">
-    <div
-      v-if="notice || canUndoClear"
-      class="comparison-feedback"
-      :class="{ 'with-selection': showCompareDock }"
-    >
-      <p role="status">{{ notice || "已清空对比。" }}</p>
-      <button v-if="canUndoClear" class="text-link" @click="undoClear">
-        撤销清空
-      </button>
+    <p role="status" class="sr-only">{{ notice }}</p>
+    <Transition name="motion-float" @before-leave="stopExitingInteraction">
+      <div
+        v-if="notice || canUndoClear"
+        class="comparison-feedback"
+        :class="{ 'with-selection': showCompareDock }"
+      >
+        <p>{{ notice || "已清空对比。" }}</p>
+        <button v-if="canUndoClear" class="text-link" @click="undoClear">
+          撤销清空
+        </button>
+      </div>
+    </Transition>
+    <div :key="route.path" :class="{ 'motion-route': animateRoute }">
+      <RouterView />
     </div>
-    <RouterView />
   </main>
   <footer
     class="site-footer"
-    :class="{
-      'with-compare-dock': showCompareDock,
-      'catalog-footer': isCatalog,
-    }"
+    :class="{ 'with-compare-dock': showCompareDock }"
   >
     <div class="container footer-inner">
       <div class="footer-brand" translate="no">
@@ -139,6 +155,7 @@ onUnmounted(comparison.dispose);
       </div>
       <nav class="footer-links" aria-label="页脚导航">
         <RouterLink to="/guide/">评测入门</RouterLink>
+        <RouterLink to="/releases/">发布资料</RouterLink>
         <RouterLink to="/about/">来源与收录规范</RouterLink>
         <a
           href="https://github.com/WhitePlusMS/whats-a-benchmark"
@@ -163,8 +180,7 @@ onUnmounted(comparison.dispose);
       提交纠错
     </div>
   </footer>
-  <ComparisonSelectionBar
-    v-if="showCompareDock"
-    :class="{ 'catalog-compare-dock': isCatalog }"
-  />
+  <Transition name="motion-float" @before-leave="stopExitingInteraction">
+    <ComparisonSelectionBar v-if="showCompareDock" />
+  </Transition>
 </template>

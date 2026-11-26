@@ -310,8 +310,8 @@ test("CALVIN actual Vue workbench renders all records without media or pretend s
   html.forEach((h) => assert.doesNotMatch(h, /<video|<img|<canvas/));
 });
 test("CALVIN integration includes anchors, local state reset and accessible narrow layout", async () => {
-  const [main, detail, viewer, card, pilot, bench, css] = await Promise.all(
-    [
+  const [main, detail, viewer, card, pilot, bench, css, styles, motion] =
+    await Promise.all([
       "src/main.ts",
       "src/views/DetailView.vue",
       "src/components/SampleViewer.vue",
@@ -319,8 +319,9 @@ test("CALVIN integration includes anchors, local state reset and accessible narr
       "src/components/CalvinPilot.vue",
       "src/components/CalvinWorkbench.vue",
       "src/styles/calvin-pilot.css",
-    ].map(read),
-  );
+      "src/styles/main.css",
+      "src/styles/motion.css",
+    ].map(read));
   assert.match(main, /benchmark\?\.sampleAccess\.status === "local"/);
   assert.match(detail, /calvin: CalvinPilot/);
   assert.match(viewer, /没有匹配此编号的样例/);
@@ -328,7 +329,9 @@ test("CALVIN integration includes anchors, local state reset and accessible narr
   assert.match(pilot, /<CalvinWorkbench/);
   assert.match(bench, /step.value = 0/);
   assert.match(bench, /frame.value = 0/);
-  assert.match(css, /prefers-reduced-motion/);
+  assert.match(styles, /@import "\.\/motion\.css"/);
+  assert.match(motion, /@media \(prefers-reduced-motion: no-preference\)/);
+  assert.doesNotMatch(css, /(?:animation|transition):/);
   assert.match(css, /focus-visible/);
   assert.match(css, /overflow-x:\s*auto/);
   const a = createDeferredDetailAnchor();

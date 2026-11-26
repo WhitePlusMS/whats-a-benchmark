@@ -1,28 +1,22 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import type { SampleAsset } from "../content/schema";
 import UiDialog from "./UiDialog.vue";
 import Icon from "./Icon.vue";
 defineProps<{ asset: Extract<SampleAsset, { kind: "image" }>; url: string }>();
-const emit = defineEmits<{ close: []; assetError: [path: string] }>();
-const open = ref(true);
+const emit = defineEmits<{ assetError: [path: string] }>();
+const open = defineModel<boolean>({ required: true });
 // 适应窗口与按原始像素滚动分别呈现；只缩放显示，不改动图片内容。
 const scale = ref<number | null>(null);
+watch(open, (visible) => {
+  if (visible) scale.value = null;
+});
 function resize(step: number) {
   scale.value = Math.max(0.5, Math.min(3, (scale.value ?? 1) + step));
 }
-function updateOpen(value: boolean) {
-  open.value = value;
-  if (!value) emit("close");
-}
 </script>
 <template>
-  <UiDialog
-    :model-value="open"
-    title="案例图片"
-    layout="image"
-    @update:model-value="updateOpen"
-  >
+  <UiDialog v-model="open" title="案例图片" layout="image">
     <div class="image-controls" role="group" aria-label="图片缩放">
       <button
         :class="{ active: scale === null }"

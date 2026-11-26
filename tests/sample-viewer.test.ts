@@ -124,6 +124,12 @@ test("sample viewer preserves interaction across modes and resets when selecting
   assert.deepEqual([...viewer.failedAssets.value], []);
   viewer.markAssetFailed("first.png");
   assert.deepEqual([...viewer.failedAssets.value], []);
+  viewer.selectedOption.value = 2;
+  viewer.index.value = 0;
+  assert.equal(viewer.selectedOption.value, 1);
+  assert.equal(viewer.showAnswer.value, false);
+  viewer.index.value = 1;
+  assert.equal(viewer.selectedOption.value, 2);
 });
 
 test("sample viewer resets on retry and benchmark changes, and never loads before enabled", async (t) => {

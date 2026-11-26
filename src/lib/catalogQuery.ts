@@ -102,10 +102,6 @@ export function createCatalogQuery(router: Router) {
       const current = queuedQuery ?? router.currentRoute.value.query;
       return navigate(updateCatalogQuery(current, key, value));
     },
-    reset() {
-      const current = queuedQuery ?? router.currentRoute.value.query;
-      return navigate(resetCatalogQuery(current));
-    },
     // 无结果时先放宽筛选，保留读者已经输入的搜索词和显示偏好。
     relaxFilters() {
       const current = queuedQuery ?? router.currentRoute.value.query;
@@ -231,11 +227,28 @@ export function catalogInclusionMonths(items: readonly Benchmark[]): string[] {
     .reverse();
 }
 
+/** 每个筛选项只忽略自己的条件，始终保留当前值以便清除无效的分享条件。 */
+export function catalogFacetOptions(query: CatalogQuery) {
+  function choices(
+    key: "publisher" | "sample" | "kind",
+    valueOf: (item: Benchmark) => string,
+  ) {
+    const candidates = filterCatalog({ ...query, [key]: "", sort: "featured" });
+    const values = new Set(candidates.map(valueOf));
+    if (query[key]) values.add(query[key]);
+    return values;
+  }
+  return {
+    publishers: choices("publisher", (item) => item.publisher),
+    sampleTypes: choices("sample", (item) => item.sampleAccess.status),
+    kinds: choices("kind", (item) => item.kind),
+    localMatches: filterCatalog({ ...query, sample: "local", sort: "featured" })
+      .length,
+  };
+}
+
 // Catalog metadata is immutable during an application run, so compute totals once.
 export const catalogStats = {
-  publishers: [...new Set(benchmarks.map((item) => item.publisher))].sort(
-    (a, b) => a.localeCompare(b, "zh"),
-  ),
   localCount: benchmarks.filter((item) => item.sampleAccess.status === "local")
     .length,
   sampleCount: benchmarks.reduce((total, item) => total + item.sampleCount, 0),
@@ -253,9 +266,6 @@ catalogStats.categoryCounts.set(
 );
 
 export const embodiedCatalogStats = {
-  publishers: [
-    ...new Set(embodiedBenchmarks.map((item) => item.publisher)),
-  ].sort((a, b) => a.localeCompare(b, "zh")),
   localCount: embodiedBenchmarks.filter(
     (item) => item.sampleAccess.status === "local",
   ).length,
