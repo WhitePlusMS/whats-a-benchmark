@@ -211,16 +211,12 @@
 .list-view .benchmark-card {
   contain-intrinsic-size: auto 130px;
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) minmax(190px, 205px);
-  column-gap: 14px;
+  --list-card-gap: 14px;
+  /* 由实际标识（横向字标、方形 Logo 或站内标记）决定左栏宽度。 */
+  grid-template-columns: max-content minmax(0, 1fr) calc(
+      205px + var(--list-card-gap)
+    );
   padding: 14px 16px;
-}
-/* 官方编辑性字标有最小字高和留白要求，不能塞入原 36px 方形标识栏。 */
-.list-view .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback)) {
-  grid-template-columns: 148px minmax(0, 1fr) minmax(190px, 205px);
-}
-.list-view .benchmark-card:has(.site-icon-credit) {
-  grid-template-columns: 84px minmax(0, 1fr) minmax(190px, 205px);
 }
 .list-view .card-top {
   display: contents;
@@ -228,6 +224,16 @@
 .list-view .card-top > .publisher-marks {
   grid-column: 1;
   grid-row: 1 / 5;
+  margin-inline-end: var(--list-card-gap);
+}
+/* 列表已有完整的发布方字段；无 Logo 或加载失败时不重复占位。 */
+.list-view .card-top > .publisher-marks > :is(.publisher-name, .is-fallback),
+.list-view
+  .card-top
+  > .publisher-marks:not(
+    :has(> .publisher-logo:not(.is-fallback), > .site-icon-credit)
+  ) {
+  display: none;
 }
 .list-view .card-badges {
   grid-column: 2;
@@ -259,6 +265,7 @@
 .list-view .card-meta {
   grid-column: 3;
   grid-row: 1;
+  margin-inline-start: var(--list-card-gap);
   font-size: 11px;
   padding: 0;
   margin-top: 2px;
@@ -271,6 +278,7 @@
 .list-view .card-actions {
   grid-column: 3;
   grid-row: 2 / 5;
+  margin-inline-start: var(--list-card-gap);
   align-self: end;
   border: 0;
   min-height: 36px;
@@ -286,14 +294,10 @@
 }
 @media (max-width: 900px) {
   .list-view .benchmark-card {
-    grid-template-columns: 36px minmax(0, 1fr);
+    grid-template-columns: max-content minmax(0, 1fr);
   }
-  .list-view
-    .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback)) {
-    grid-template-columns: 148px minmax(0, 1fr);
-  }
-  .list-view .benchmark-card:has(.site-icon-credit) {
-    grid-template-columns: 84px minmax(0, 1fr);
+  .list-view :is(.card-meta, .card-actions) {
+    margin-inline-start: 0;
   }
   .list-view .card-meta {
     grid-column: 2;
@@ -333,17 +337,10 @@
     font-size: 12px;
   }
   .list-view .benchmark-card {
+    --list-card-gap: 11px;
     padding: 14px;
-    gap: 0 11px;
   }
-  .list-view
-    .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback))
-    :is(.card-meta, .card-actions) {
-    grid-column: 1 / -1;
-  }
-  .list-view
-    .benchmark-card:has(.site-icon-credit)
-    :is(.card-meta, .card-actions) {
+  .list-view :is(.card-meta, .card-actions) {
     grid-column: 1 / -1;
   }
   .list-view .card-tldr {
