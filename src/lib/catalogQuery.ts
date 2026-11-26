@@ -17,7 +17,7 @@ import {
 
 export const modelFilterCategories = [...categories, healthcareCategory];
 
-export type CatalogSort = "featured" | "name" | "year";
+export type CatalogSort = "featured" | "name" | "year" | "included";
 export type CatalogView = "grid" | "list";
 export interface CatalogQuery {
   q: string;
@@ -25,6 +25,7 @@ export interface CatalogQuery {
   publisher: string;
   sample: string;
   kind: string;
+  included: string;
   sort: CatalogSort;
   view: CatalogView;
 }
@@ -44,7 +45,12 @@ export function createCatalogQuery(router: Router) {
   const results = computed(() => filterCatalog(query.value, isEmbodied.value));
   const hasFilters = computed(() => hasCatalogFilters(query.value));
   const groupedResults = computed(() => {
-    if (hasFilters.value || query.value.view === "list") return [];
+    if (
+      hasFilters.value ||
+      query.value.view === "list" ||
+      query.value.sort === "included"
+    )
+      return [];
     const categoryList = isEmbodied.value ? embodiedCategories : categories;
     return categoryList
       .map((category) => {
@@ -112,14 +118,20 @@ export function createCatalogQuery(router: Router) {
 export function parseCatalogQuery(query: LocationQuery): CatalogQuery {
   const text = (key: CatalogFilterKey) =>
     typeof query[key] === "string" ? query[key] : "";
+  const month = text("included");
   return {
     q: text("q"),
     category: text("category"),
     publisher: text("publisher"),
     sample: text("sample"),
     kind: text("kind"),
+    included: /^\d{4}-(0[1-9]|1[0-2])$/.test(month) ? month : "",
     sort:
-      query.sort === "name" || query.sort === "year" ? query.sort : "featured",
+      query.sort === "name" ||
+      query.sort === "year" ||
+      query.sort === "included"
+        ? query.sort
+        : "featured",
     view: query.view === "list" ? "list" : "grid",
   };
 }
@@ -143,7 +155,8 @@ export function hasCatalogFilters(query: CatalogQuery): boolean {
     query.category ||
     query.publisher ||
     query.sample ||
-    query.kind
+    query.kind ||
+    query.included
   );
 }
 
@@ -187,14 +200,35 @@ export function filterCatalog(query: CatalogQuery, embodied = false) {
             : item.category === query.category)) &&
       (!query.publisher || item.publisher === query.publisher) &&
       (!query.sample || item.sampleAccess.status === query.sample) &&
-      (!query.kind || item.kind === query.kind),
+      (!query.kind || item.kind === query.kind) &&
+      (!query.included || item.includedOn?.slice(0, 7) === query.included),
   );
   if (query.sort === "name")
     return items.sort((a, b) => a.name.localeCompare(b.name));
   if (query.sort === "year")
     return items.sort((a, b) => (b.year || 0) - (a.year || 0));
+  if (query.sort === "included")
+    return items.sort((a, b) =>
+      (b.includedOn ?? "").localeCompare(a.includedOn ?? ""),
+    );
   // A pinned category remains one category in grid or list mode.
   return query.category && !query.q ? groupByPublisher(items) : items;
+}
+
+export function formatInclusionMonth(month: string): string {
+  return `${month.slice(0, 4)} 年 ${Number(month.slice(5))} 月`;
+}
+
+export function catalogInclusionMonths(items: readonly Benchmark[]): string[] {
+  return [
+    ...new Set(
+      items.flatMap((item) =>
+        item.includedOn ? [item.includedOn.slice(0, 7)] : [],
+      ),
+    ),
+  ]
+    .sort()
+    .reverse();
 }
 
 // Catalog metadata is immutable during an application run, so compute totals once.

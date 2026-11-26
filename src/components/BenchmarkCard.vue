@@ -8,7 +8,11 @@ import { formatDate } from "../lib/displayFormats";
 import { benchmarkSearchTarget } from "../lib/search";
 import Icon from "./Icon.vue";
 import PublisherMarks from "./PublisherMarks.vue";
-defineProps<{ item: Benchmark; searchQuery?: string }>();
+defineProps<{
+  item: Benchmark;
+  searchQuery?: string;
+  showInclusionDate?: boolean;
+}>();
 const { selected, toggle } = useComparison();
 </script>
 <template>
@@ -46,7 +50,13 @@ const { selected, toggle } = useComparison();
     <div class="card-meta">
       <span :title="item.publisher" translate="no">{{ item.publisher }}</span
       ><time
-        v-if="item.releaseDate"
+        v-if="showInclusionDate && item.includedOn"
+        :datetime="item.includedOn"
+        title="本站首次入库（按主分支记录，北京时间）"
+        >收录 {{ formatDate(item.includedOn) }}</time
+      ><span v-else-if="showInclusionDate">收录日期未记录</span
+      ><time
+        v-else-if="item.releaseDate"
         :datetime="item.releaseDate"
         title="版本发布日期"
         >{{ formatDate(item.releaseDate) }}</time

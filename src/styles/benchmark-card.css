@@ -137,7 +137,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 0 8px;
   min-height: 49px;
   margin-top: 0;
   border-top: 1px solid var(--border);
@@ -150,6 +151,7 @@
   color: var(--text-secondary);
   font-size: 12px;
   font-weight: 550;
+  white-space: nowrap;
 }
 .card-actions > a.is-local {
   color: var(--accent-text);
@@ -209,16 +211,16 @@
 .list-view .benchmark-card {
   contain-intrinsic-size: auto 130px;
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) minmax(160px, 185px);
+  grid-template-columns: 36px minmax(0, 1fr) minmax(190px, 205px);
   column-gap: 14px;
   padding: 14px 16px;
 }
 /* 官方编辑性字标有最小字高和留白要求，不能塞入原 36px 方形标识栏。 */
 .list-view .benchmark-card:has(.tencent-editorial-wordmark:not(.is-fallback)) {
-  grid-template-columns: 148px minmax(0, 1fr) minmax(160px, 185px);
+  grid-template-columns: 148px minmax(0, 1fr) minmax(190px, 205px);
 }
 .list-view .benchmark-card:has(.site-icon-credit) {
-  grid-template-columns: 84px minmax(0, 1fr) minmax(160px, 185px);
+  grid-template-columns: 84px minmax(0, 1fr) minmax(190px, 205px);
 }
 .list-view .card-top {
   display: contents;
@@ -261,13 +263,17 @@
   padding: 0;
   margin-top: 2px;
 }
+.list-view .card-meta > span:first-child {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  overflow: visible;
+}
 .list-view .card-actions {
   grid-column: 3;
   grid-row: 2 / 5;
   align-self: end;
   border: 0;
   min-height: 36px;
-  gap: 8px;
   justify-content: flex-end;
 }
 .list-view .card-actions > a {
