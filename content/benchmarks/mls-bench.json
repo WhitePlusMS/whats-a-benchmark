@@ -1,0 +1,255 @@
+{
+  "id": "mls-bench",
+  "status": "published",
+  "order": 720,
+  "name": "MLS-Bench",
+  "subtitle": "评估智能体能否发明在不同数据、随机种子与规模上仍然有效的机器学习方法。",
+  "category": "agents",
+  "tags": [
+    "机器学习研究",
+    "方法迁移",
+    "多设置评估"
+  ],
+  "publisher": "MLS-Bench 团队",
+  "brandIds": [
+    "mls-bench"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-05-09",
+  "version": "论文首版 · 140 项完整任务",
+  "kind": "original",
+  "aliases": [
+    "MLS Bench",
+    "Machine Learning Science Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体能否发明在不同数据、随机种子与规模上仍然有效的机器学习方法。",
+    "task": "在现有研究代码中修改指定组件，并用多设置实验检验改进是否可迁移。",
+    "sourceUrls": [
+      "https://mls-bench.com/",
+      "https://arxiv.org/abs/2605.08678",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks"
+    ]
+  },
+  "taskContract": {
+    "input": "研究问题、限于指定文件的起始代码、数据运行配置与参考方法。",
+    "output": "提交模块实现；作者验证器在预定义设置中运行并汇总指标。",
+    "environment": "各个任务会绑定不同数据、软件、预算与可编辑范围。",
+    "sourceUrls": [
+      "https://mls-bench.com/",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/README.md",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/config.json"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者任务包发布原始任务及可执行的评估规格；部分任务所需上游资源由各自来源提供。",
+    "disclosure": "partial",
+    "scale": [
+      "12 个研究方向、140 项任务；另有 30 项 Lite 子集。"
+    ],
+    "splits": [
+      "本案例出自完整任务集；Lite 成员以独立清单为准。"
+    ],
+    "fields": [
+      "原始任务描述、随机种子、运行命令、基线、可编辑文件和分项评分。"
+    ],
+    "files": [
+      "作者任务表与单题 config.json、score_spec.py、task_description.md。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/README.md",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/metadata/mls_bench_lite.json",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/config.json",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/score_spec.py",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/task_description.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "可读取任务元数据和单题文件，部分依赖仍由各自上游提供。"
+    ],
+    "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT（作者任务数据包）；第三方资源沿用各自许可。",
+    "scope": "本站仅展示作者的原始任务提示及其评估配置节选。",
+    "boundaries": [
+      "不转载 scikit-learn 示例数据文件或上游代码。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/README.md",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/config.json"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示公开原任务的具体输入、交付要求和同题验证条件。",
+    "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/task_description.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/task_description.md"
+    ]
+  },
+  "metric": {
+    "name": "归一化任务评分",
+    "description": "作者按任务定义转换并汇总各配置的指标；聚类实例的几何平均不替代完整榜单的跨任务聚合规则。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://mls-bench.com/",
+      "https://arxiv.org/abs/2605.08678",
+      "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/score_spec.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不同研究任务的评分公式和执行预算各异；完整与 Lite 两套成绩不可混作单题结果。",
+      "sourceUrls": [
+        "https://mls-bench.com/",
+        "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/metadata/mls_bench_lite.json",
+        "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/score_spec.py"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "MLS-Bench 官方站点",
+      "url": "https://mls-bench.com/",
+      "role": "definition"
+    },
+    {
+      "label": "论文及首次公开日期",
+      "url": "https://arxiv.org/abs/2605.08678",
+      "role": "paper"
+    },
+    {
+      "label": "作者公开任务集合",
+      "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks",
+      "role": "data"
+    },
+    {
+      "label": "发布资料和 MIT 数据许可（固定版本）",
+      "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "原始聚类算法任务（固定版本）",
+      "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/task_description.md",
+      "role": "data"
+    },
+    {
+      "label": "同题配置（固定版本）",
+      "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/config.json",
+      "role": "code"
+    },
+    {
+      "label": "同题评分配置（固定版本）",
+      "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/score_spec.py",
+      "role": "code"
+    },
+    {
+      "label": "Lite 任务清单（固定版本）",
+      "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/metadata/mls_bench_lite.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "ml-clustering-algorithm",
+        "title": "为三类数据实现一个通用聚类算法",
+        "type": "record",
+        "prompt": "输入：现有 `CustomClustering` 实现；作者配置在高斯点团、交错月牙和高维手写数字三组上评测，固定种子为 42。\n\n交付：修改同一个聚类实现，不为每组数据分别写规则。\n\n验收：把三组的分数取几何平均。数字组标为隐藏评测；这是完整版任务，不是 MLS-Bench Lite。",
+        "promptOrigin": "editorial",
+        "answer": "任务以每套数据上的 ARI、NMI 和轮廓系数评估聚类，再对三套数据的分项得分取几何平均。",
+        "explanation": "保留作者任务说明短节选、原始配置字段与同题聚合表达式。无第三方数据转载。",
+        "raw": {
+          "task_description.md_excerpt": "Modify `CustomClustering` (and optionally the `custom_distance` helper) in `scikit-learn/custom_clustering.py`",
+          "config.json": {
+            "seeds": [
+              42
+            ],
+            "test_cmds": [
+              {
+                "cmd": "scripts/blobs.sh",
+                "label": "blobs",
+                "group": 1,
+                "compute": 0.25,
+                "time": "00:10:00",
+                "package": "scikit-learn"
+              },
+              {
+                "cmd": "scripts/moons.sh",
+                "label": "moons",
+                "group": 1,
+                "compute": 0.25,
+                "time": "00:10:00",
+                "package": "scikit-learn"
+              },
+              {
+                "cmd": "scripts/digits.sh",
+                "label": "digits",
+                "group": 1,
+                "compute": 0.25,
+                "time": "00:15:00",
+                "package": "scikit-learn",
+                "hidden": true
+              }
+            ],
+            "files": [
+              {
+                "filename": "scikit-learn/custom_clustering.py",
+                "read": [
+                  {
+                    "start": -1,
+                    "end": -1
+                  }
+                ],
+                "edit": [
+                  {
+                    "start": 36,
+                    "end": 109
+                  }
+                ]
+              }
+            ]
+          },
+          "score_spec.py_excerpt": "task(gmean(\"blobs\", \"moons\", \"digits\"))"
+        },
+        "source": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/task_description.md",
+        "references": [
+          {
+            "label": "原始聚类算法任务（固定版本）",
+            "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/task_description.md"
+          },
+          {
+            "label": "同题配置（固定版本）",
+            "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/config.json"
+          },
+          {
+            "label": "同题评分配置（固定版本）",
+            "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/tasks/ml-clustering-algorithm/score_spec.py"
+          },
+          {
+            "label": "Lite 任务清单（固定版本）",
+            "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/metadata/mls_bench_lite.json"
+          },
+          {
+            "label": "发布资料和 MIT 数据许可（固定版本）",
+            "url": "https://huggingface.co/datasets/Bohan22/MLS-Bench-Tasks/blob/b50fe197b609b1225ba296dbacd0dd1a45fb4cf4/README.md"
+          }
+        ],
+        "license": "MIT · MLS-Bench 作者任务包；保留字段节选及中文整理，不含第三方上游数据。",
+        "split": "官方完整 140 任务中的 ml-clustering-algorithm；不属于官方 30 题 Lite 子集。",
+        "excerpt": true
+      }
+    ]
+  }
+}

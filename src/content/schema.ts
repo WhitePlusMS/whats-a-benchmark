@@ -43,6 +43,17 @@ export const categorySchema = z.strictObject({
 // verified as the publishers' actual marks; displaying them does not license
 // redistribution. Never use untrusted content or an arbitrary remote SVG here.
 const publisherHostedLogos = new Map([
+  [
+    "frontiercs-2",
+    "https://huggingface.co/datasets/FrontierCS2/FrontierCS-2-runs/resolve/6bdee2fc94c4e7721ae78543620edc5c2c7a980c/assets/frontiercs-logo-dark.svg",
+  ],
+  ["mls-bench", "https://mls-bench.com/icon.svg?icon.16s_~a3rtgjal.svg"],
+  ["tongyi-mai", "https://avatars.githubusercontent.com/u/246097416?s=200&v=4"],
+  [
+    "conceptual-reasoning-index",
+    "https://conceptualreasoning.ai/assets/favicon.png?v=2",
+  ],
+  ["metr", "https://metr.org/assets/images/logo/logo.svg"],
   ["4dcodebench", "https://4dcodebench.com/logos/bunny/icon-512.png"],
   ["inclusion-ai", "https://www.inclusion-ai.org/img/favicon.png"],
   [

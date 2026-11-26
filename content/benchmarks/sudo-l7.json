@@ -1,0 +1,171 @@
+{
+  "id": "sudo-l7",
+  "status": "published",
+  "order": 2470,
+  "name": "sudo L7",
+  "subtitle": "在真实代码库中识别未明说的约束，并判断该改什么",
+  "category": "coding",
+  "tags": [
+    "软件工程",
+    "工程判断",
+    "交付核查"
+  ],
+  "publisher": "Surge AI",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-08",
+  "version": "首发 60 题；论文 v1",
+  "kind": "original",
+  "aliases": [
+    "Surge AI sudo L7",
+    "Sudo L7 Benchmark"
+  ],
+  "verifiedAt": "2026-11-25",
+  "updatedAt": "2026-11-25",
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估编码智能体如何处理需求本身不完整或存在错误前提的工程任务。",
+    "task": "检查现有系统，判断是否需要改动并按题提交修复、报告或澄清。",
+    "sourceUrls": [
+      "https://surgehq.ai/blog/sudo-l7",
+      "https://arxiv.org/html/2611.30517v1"
+    ]
+  },
+  "taskContract": {
+    "input": "任务请求、已有代码库及执行环境。",
+    "output": "可核查的代码改动、验证结果，或有依据的说明；并非每题都需要写代码。",
+    "environment": "智能体可以读代码和使用工具；评分器读取记录、检查代码并执行验证。",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30517v1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "论文展示了几道实测案例；不提供全量题目、仓库和评分表。",
+    "disclosure": "partial",
+    "scale": [
+      "60 项任务，论文记载其中 38 项来自私有生产代码库。"
+    ],
+    "splits": [
+      "本站采用论文第 6 节的一道正式测试题，不是公开测试下载集。"
+    ],
+    "fields": [
+      "用户请求、运行观察和同题评分要求。"
+    ],
+    "files": [
+      "发布公告、论文和榜单可读。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30517v1",
+      "https://arxiv.org/html/2611.30517v1#S6",
+      "https://surgehq.ai/benchmarks/sudo-l7"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "原始案例见论文第 6 节；完整仓库、评估轨迹和原评分文件未随论文公开。"
+    ],
+    "url": "https://arxiv.org/html/2611.30517v1#S6",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30517v1#S6",
+      "https://arxiv.org/html/2611.30517v1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CC BY 4.0（论文 v1；Nick Heiner 等，Surge AI）。",
+    "scope": "引用论文篇幅内公开的同题原始请求，并用中文整理任务状态和评分证据。",
+    "boundaries": [
+      "不转载未公开的代码、评分表或完整模型记录。",
+      "论文许可不覆盖发布方商标。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30517v1",
+      "https://arxiv.org/html/2611.30517v1#S6",
+      "https://creativecommons.org/licenses/by/4.0/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "可在本站阅读公开题面短节选及同题验收要点。",
+    "url": "https://arxiv.org/html/2611.30517v1#S6",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30517v1#S6",
+      "https://arxiv.org/html/2611.30517v1"
+    ]
+  },
+  "metric": {
+    "name": "尝试通过率",
+    "description": "每次尝试须满足最高两级严重度的全部标准；测试通过只是评分证据，不会自动判为通过。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.30517v1",
+      "https://surgehq.ai/benchmarks/sudo-l7"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "不根据测试数量推断任务通过，也不由少数案例推断全套任务的行为比例。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.30517v1",
+        "https://arxiv.org/html/2611.30517v1#S6"
+      ]
+    }
+  ],
+  "related": [],
+  "sources": [
+    {
+      "label": "Surge AI 首发公告",
+      "url": "https://surgehq.ai/blog/sudo-l7",
+      "role": "release"
+    },
+    {
+      "label": "正式论文 v1：60 项任务",
+      "url": "https://arxiv.org/html/2611.30517v1",
+      "role": "paper"
+    },
+    {
+      "label": "论文第 6 节：捐款案例与表 4",
+      "url": "https://arxiv.org/html/2611.30517v1#S6",
+      "role": "data"
+    },
+    {
+      "label": "官方榜单",
+      "url": "https://surgehq.ai/benchmarks/sudo-l7",
+      "role": "leaderboard"
+    },
+    {
+      "label": "CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "role": "readme"
+    }
+  ],
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "donation-split-section-6",
+        "title": "需求里的捐款拆分其实已存在",
+        "type": "record",
+        "prompt": "输入：慈善捐款应用里，用户希望把已承诺的金额分给多个机构，且总额不变。\n\n任务：在现有仓库中处理这项请求。\n\n同题验收：指出应用已经支持分配捐款，并询问用户尚未满足的需求，不重复实现。作者报告有一次提交虽然通过 267 项测试和 4 项浏览器检查，却实现了重复功能。",
+        "promptOrigin": "editorial",
+        "explanation": "论文第 6 节与表 4 的公开首发题节选，中文为翻译及整理。不是原始仓库或评分 JSON；案例 ID 是本站定位。",
+        "raw": "Can you let people split donations across a couple of different organizations instead, as long as it still adds up to what they’ve pledged?",
+        "source": "https://arxiv.org/html/2611.30517v1#S6",
+        "references": [
+          {
+            "label": "论文第 6 节：捐款案例与表 4",
+            "url": "https://arxiv.org/html/2611.30517v1#S6"
+          },
+          {
+            "label": "正式论文 v1：60 项任务",
+            "url": "https://arxiv.org/html/2611.30517v1"
+          }
+        ],
+        "license": "CC BY 4.0（论文 v1；Nick Heiner 等，Surge AI）。",
+        "split": "正式榜单 60 题中的一个公开论文案例；第 6 节 Restraint。",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "id": "autoresearchexam",
+  "status": "published",
+  "order": 719,
+  "name": "AutoResearchExam",
+  "subtitle": "评估智能体能否在限定时间内持续改进机器学习方案，并在留出数据上保持收益。",
+  "category": "agents",
+  "tags": [
+    "机器学习研究",
+    "实验设计",
+    "隐藏评分"
+  ],
+  "publisher": "Bespoke Labs",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-09-09",
+  "version": "首发 29 项任务",
+  "kind": "original",
+  "aliases": [
+    "AutoResearch-Exam"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估智能体能否在限定时间内持续改进机器学习方案，并在留出数据上保持收益。",
+    "task": "在给定问题和实验约束下提出方案，迭代代码并提交候选。",
+    "sourceUrls": [
+      "https://benchmarks.bespokelabs.ai/autoresearchexam/",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam"
+    ]
+  },
+  "taskContract": {
+    "input": "任务说明、起始文件及用于调试或开发的公开输入。",
+    "output": "提交满足每题接口要求的代码，由验证器在留出数据上评分。",
+    "environment": "首发实验窗口为 24 小时。可见验证反馈与密封测试成绩分开。",
+    "sourceUrls": [
+      "https://benchmarks.bespokelabs.ai/autoresearchexam/",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/tests/finalize.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "各研究任务分别分发指令、环境和验证器。",
+    "disclosure": "partial",
+    "scale": [
+      "29 项作者任务。"
+    ],
+    "splits": [
+      "本例分公开 examples 和密封评分点云。"
+    ],
+    "fields": [
+      "样例清单记录 id、file、n 和 k。"
+    ],
+    "files": [
+      "作者发布指令、公开点云和最终评分脚本。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/environment/app/data/examples/manifest.json",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/tests/finalize.py"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "作者任务文件直接公开；固定版本的样例输入可分别读取。"
+    ],
+    "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0（作者发布的任务数据与材料）。",
+    "scope": "本站仅展示同题作者指令、公开调试点云及其清单的一小部分。",
+    "boundaries": [
+      "不把公开调试数据当作最终评分集；不转载第三方品牌资产或密封评估内容。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/LICENSE",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示公开原任务的具体输入、交付要求和同题验证条件。",
+    "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md"
+    ]
+  },
+  "metric": {
+    "name": "AUARC",
+    "description": "跟踪按可见验证分选定的最佳提交在密封测试上的表现；以实验窗口归一化其随时间的曲线面积，衡量进展速度及最终质量。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://benchmarks.bespokelabs.ai/autoresearchexam/",
+      "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/tests/finalize.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "每题底层指标不同；星偏差只是本例的任务指标，不是整套题唯一评分标准。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md",
+        "https://benchmarks.bespokelabs.ai/autoresearchexam/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者榜单和评测方法",
+      "url": "https://benchmarks.bespokelabs.ai/autoresearchexam/",
+      "role": "definition"
+    },
+    {
+      "label": "作者发布的任务集合",
+      "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam",
+      "role": "data"
+    },
+    {
+      "label": "作者发布日及引文信息（固定版本）",
+      "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/CITATION.cff",
+      "role": "release"
+    },
+    {
+      "label": "三维点云子集原始指令（固定版本）",
+      "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "公开样例清单（固定版本）",
+      "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/environment/app/data/examples/manifest.json",
+      "role": "data"
+    },
+    {
+      "label": "cloud_00 输入点云（固定版本）",
+      "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/environment/app/data/examples/cloud_00.npy",
+      "role": "data"
+    },
+    {
+      "label": "同题最终评分脚本（固定版本）",
+      "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/tests/finalize.py",
+      "role": "code"
+    },
+    {
+      "label": "作者 Apache-2.0 数据许可（固定版本）",
+      "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/LICENSE",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-25",
+  "sampleSet": {
+    "retrievedAt": "2026-11-25",
+    "samples": [
+      {
+        "id": "carps-star-discrepancy-subset-select",
+        "title": "从三维点云中选出均匀覆盖立方体的点",
+        "type": "record",
+        "prompt": "输入：公开实例 cloud_00 含 2,436 个三维点，目标选 30 个；首点约为 (0.867152, 0.466671, 0.424069)。\n\n交付：实现 `select(points, k, seed, time_budget_s)`，返回 30 个不重复的原数组索引。\n\n验收：检查索引合法并按选出点集的星偏差评分，越小越好。这里展示的是同题公开输入，不是密封测试点云。",
+        "promptOrigin": "editorial",
+        "answer": "每个测试点云按精确星偏差评分。没有固定唯一索引集合；偏差不优于均匀随机子集时计零。",
+        "explanation": "保留公开实例清单项；首点为作者公开点云首行的四舍五入，未转载整个点云。公开点云不属于已验证的最终测试输入。",
+        "raw": {
+          "manifest_json_item": {
+            "id": "cloud_00",
+            "file": "cloud_00.npy",
+            "n": 2436,
+            "k": 30
+          }
+        },
+        "source": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md",
+        "references": [
+          {
+            "label": "三维点云子集原始指令（固定版本）",
+            "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/instruction.md"
+          },
+          {
+            "label": "公开样例清单（固定版本）",
+            "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/environment/app/data/examples/manifest.json"
+          },
+          {
+            "label": "cloud_00 输入点云（固定版本）",
+            "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/environment/app/data/examples/cloud_00.npy"
+          },
+          {
+            "label": "同题最终评分脚本（固定版本）",
+            "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/tasks/carps-star-discrepancy-subset-select/tests/finalize.py"
+          },
+          {
+            "label": "作者 Apache-2.0 数据许可（固定版本）",
+            "url": "https://huggingface.co/datasets/bespokelabs/AutoResearchExam/blob/2cfd41b022b5effec2ab9e9df9045afb6a1cc312/LICENSE"
+          }
+        ],
+        "license": "Apache-2.0 · Bespoke Labs AutoResearchExam 作者；保留有来源的字段节选及中文整理。",
+        "split": "29 个作者发布任务之一；cloud_00 为该任务公开调试点云，正式评分使用密封点云。",
+        "excerpt": true
+      }
+    ]
+  }
+}
