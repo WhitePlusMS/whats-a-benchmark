@@ -74,9 +74,9 @@
   "reusePolicy": {
     "status": "permitted",
     "license": "MIT，© 2026 Fleet AI（仓库 LICENSE 原文）；arcengine（MIT）与 miles（Apache-2.0）系单独安装的第三方依赖。",
-    "scope": "只转载官方文档给出的 board-as-text 观测样例与 data/val.jsonl 的一条任务行，保留出处、版权与许可边界。",
+    "scope": "仅节选仓库文档公开的 ft12 开局观测，保留来源与许可提示。",
     "boundaries": [
-      "未核到针对 35 个公开游戏数据单独的许可文件，故按仓库 MIT 处理，并在此写明这一限制。",
+      "本条仅使用 MIT 仓库中的文档节选，不据此推定独立游戏数据包的再发布许可。",
       "不转载 docs/games.md 的规则清单（该文件自带 canary），也不声称能复现排行榜成绩。"
     ],
     "sourceUrls": [
@@ -87,11 +87,10 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "默认展示官方文档里公开游戏 ft12 第 1 关的完整文本观测，并附公开验证集的一条任务行，说明这是公开 split 而非排行榜题。",
-    "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
+    "reason": "默认展示公开训练游戏 ft12 第 1 关的文本棋盘、动作交付方式和同一回合预算；不是排行榜题。",
+    "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145",
     "sourceUrls": [
-      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
-      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/data/val.jsonl"
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145"
     ]
   },
   "metric": {
@@ -155,10 +154,9 @@
       ]
     },
     {
-      "text": "站内样例的选取说明：棋盘观测取自官方文档对公开训练游戏 ft12 第 1 关的逐字记录（同一块也出现在 README），任务行取自公开验证集 data/val.jsonl 第一行（tw08）。两者都是公开 split，均不是排行榜的 26 个测试游戏。",
+      "text": "原始观测和两个 300 的预算来自同一个 ft12 首条用户消息；公开验证集为独立数据，不用于该案例。",
       "sourceUrls": [
-        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
-        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/data/val.jsonl"
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145"
       ]
     }
   ],
@@ -207,6 +205,11 @@
       "label": "论文（v1 harness 口径）",
       "url": "https://arxiv.org/abs/2609.32208",
       "role": "paper"
+    },
+    {
+      "label": "同一任务原始证据",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145",
+      "role": "data"
     }
   ],
   "related": [],
@@ -223,14 +226,12 @@
         "prompt": "只拿到棋盘的文本描述：从起点走到终点，试出这个游戏的隐藏规则，并让引擎接受你提交的线路。",
         "promptOrigin": "editorial",
         "walkthrough": {
-          "summary": "公开 split 的开局观测：棋盘写成文本、配图例与颜色分组，规则完全不给；模型只能靠动作试验，并在回复里维护规则假设与计划。",
+          "summary": "公开训练游戏 ft12 第 1 关的真实开局。棋盘用文本表示，模型从动作反馈里摸索游戏规则。",
           "input": "官方文档给出的 ft12 第 1 关首条观测（原文）：Grid: 4×4 dot intersections (cursor moves on dots, not in cells) | Agent at row=0, col=3；Level: 1/10；Legend: @=agent  E=end  Q=colored_square  g=gargoyles；接着是文本棋盘（含 E、@、Q、g 与行列号）、Start: (0,3)、End: (3,0)、Cell content 与 Color groups。其中颜色分组原文是：Squares of color 6: (0,1), (1,1), (2,0)／Squares of color 10: (1,2)／Gargoyles of color 10: (1,0)。像素图不给模型，提示里也没有任何一句解释 gargoyle 做什么。",
           "output": "一条回复：用 <add>/<delete>/<keep/> 维护至多 15 条规则假设，<plan> 里至多 16 个动作（0 RESET、1 上、2 下、3 左、4 右、5 CONFIRM）；harness 把计划放进引擎执行，再发来新棋盘。",
           "checks": [
-            "过关判定：只有该关引擎接受提交的线路才算通过，episode 记录 levels beaten（从第 1 关起连续解出的关数）。",
-            "预算：每关 300 个动作，用尽则以 level_budget 结束；验证集任务文件给 250 次反思调用。",
-            "公开验证集的任务行原文：{\"prompt\": \"tw08\", \"metadata\": {\"game_id\": \"tw08\", \"max_levels\": 5, \"max_reflection_calls\": 250}}。",
-            "这不是排行榜题：榜单用未公开的 26 个测试游戏 × 20 关 × 3 seeds 计算 OAE-L20，本样例来自公开 split。"
+            "这关由引擎判定：到达终点并提交的线路只有在满足隐藏约束时才通过。",
+            "同一条开局观测标明：本关最多 300 个动作，本回合最多 300 次反思调用；此处两者均未使用。"
           ],
           "sourceField": "docs/harness.md",
           "excerpts": [
@@ -247,22 +248,17 @@
               "text": "Color groups (cells sharing the same color):\n  Squares of color 6: (0,1), (1,1), (2,0)\n  Squares of color 10: (1,2)\n  Gargoyles of color 10: (1,0)"
             }
           ],
-          "note": "棋盘观测取自公开训练游戏 ft12，任务行取自公开验证集 tw08；两者都不是排行榜的 26 个测试游戏。本站没有安装引擎、没有跑 episode，也没有该题的模型实跑记录。"
+          "note": "只展示 ft12 的开局与对应判定，不混入验证集任务，不展示模型或本站实跑成绩。"
         },
-        "explanation": "raw 保留两段官方原文：docs/harness.md 中 ft12 第 1 关的 ## Current Board State 整块（第 115–145 行，含文本棋盘原有的行尾空格），以及 data/val.jsonl 第一行。省略的是系统提示全文、该关的像素图 assets/ft12_level1.png 与其余观测分区（Known Action Semantics、Recent Observations、Current Knowledge、Instructions）；没有跑过这个游戏。",
+        "explanation": "原始数据是固定版 docs/harness.md 的 Current Board State 块，保留 ASCII 棋盘、预算、位置和颜色分组；没有附其他关卡记录。",
         "raw": {
-          "docs/harness.md": "## Current Board State\nGrid: 4×4 dot intersections (cursor moves on dots, not in cells) | Agent at row=0, col=3\nLevel: 1/10\nBudget: actions on this level 0 of 300 | reflection calls used 0 of 300\nCoordinates: (row, col), 0-indexed, (0,0) at top-left.\nLegend: @=agent  E=end  Q=colored_square  g=gargoyles\n\nBoard:\n   0 1 2 3 \n 0       @\n      Q   \n 1        \n    g Q Q \n 2        \n    Q     \n 3 E      \n\nStart: (0,3)\nEnd:   (3,0)\n\nCell content:\n  (0,1): square color=6\n  (1,1): square color=6\n  (1,2): square color=10\n  (2,0): square color=6\n  (1,0): gargoyles color=10\n\nColor groups (cells sharing the same color):\n  Squares of color 6: (0,1), (1,1), (2,0)\n  Squares of color 10: (1,2)\n  Gargoyles of color 10: (1,0)",
-          "data/val.jsonl": "{\"prompt\": \"tw08\", \"metadata\": {\"game_id\": \"tw08\", \"max_levels\": 5, \"max_reflection_calls\": 250}}"
+          "docs/harness.md": "## Current Board State\nGrid: 4×4 dot intersections (cursor moves on dots, not in cells) | Agent at row=0, col=3\nLevel: 1/10\nBudget: actions on this level 0 of 300 | reflection calls used 0 of 300\nCoordinates: (row, col), 0-indexed, (0,0) at top-left.\nLegend: @=agent  E=end  Q=colored_square  g=gargoyles\n\nBoard:\n   0 1 2 3 \n 0       @\n      Q   \n 1        \n    g Q Q \n 2        \n    Q     \n 3 E      \n\nStart: (0,3)\nEnd:   (3,0)\n\nCell content:\n  (0,1): square color=6\n  (1,1): square color=6\n  (1,2): square color=10\n  (2,0): square color=6\n  (1,0): gargoyles color=10\n\nColor groups (cells sharing the same color):\n  Squares of color 6: (0,1), (1,1), (2,0)\n  Squares of color 10: (1,2)\n  Gargoyles of color 10: (1,0)"
         },
-        "source": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
+        "source": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145",
         "references": [
           {
             "label": "同一棋盘也出现在 README 的「How an agent plays」",
             "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md"
-          },
-          {
-            "label": "公开验证集任务文件",
-            "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/data/val.jsonl"
           },
           {
             "label": "计分公式与 evaluator 差异",
@@ -275,7 +271,7 @@
         ],
         "license": "MIT，© 2026 Fleet AI；公开游戏数据的单独许可见 reusePolicy 的边界说明。",
         "licensePath": "licenses/fleet-witnessbench-mit.txt",
-        "split": "公开 split（训练游戏 ft12 第 1 关 + 验证集任务行 tw08）；非排行榜的 26 个测试游戏。",
+        "split": "公开训练游戏 ft12，第 1 关的 harness v2 开局；非公开验证集或排行榜题。",
         "excerpt": true
       }
     ]

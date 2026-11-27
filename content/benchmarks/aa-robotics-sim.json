@@ -92,7 +92,7 @@
   "reusePolicy": {
     "status": "restricted",
     "license": "无独立数据或媒体许可。官方只给出 Artificial Analysis 网站使用条款：仅授予个人非商业访问，并禁止复制、再发布、下载、展示或托管站点内容。",
-    "scope": "所引 AA 官网内容层：任务名称、十句 Goal 与 Success、计分与协议描述，以及本站中文解读；不含录像、图片与完整题文。",
+    "scope": "仅记一个公开回合的事实、短标签和官方视频外链，不复制任务集、评分正文或媒体。",
     "boundaries": [
       "本站不下载、不镜像、不内嵌官方 mp4，只在资源与来源处给出 artificialanalysiscdn.com 原链。",
       "十条 Goal 与 Success 为识别该评测任务内容所需的最小英文引用，逐字保留；中文说明与排版由本站撰写，不是官方译文。",
@@ -105,15 +105,15 @@
   },
   "sampleAccess": {
     "status": "local",
-    "reason": "默认直接显示十项任务的 Goal 与 Success 英文原句和官方计分段落；不含录像、模型成品或任何实跑记录。",
-    "url": "https://artificialanalysis.ai/articles/aa-robotics-sim",
+    "reason": "默认展示 Conveyor 场景 05 的任务、通过条件和官方单次得分，回放仅外链。",
+    "url": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
     "sourceUrls": [
-      "https://artificialanalysis.ai/articles/aa-robotics-sim"
+      "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes"
     ]
   },
   "metric": {
     "name": "十任务均分（0–100）",
-    "description": "每个评测 episode 满分 100，完整成功 100 分，部分进展按任务阶段给部分分；任务分为其 10 个评测 episode 的均值，总分为 10 个任务分的均值。官方原文：Each evaluation episode is scored out of 100: full success scores 100, and partial progress earns partial credit.",
+    "description": "每个评测 episode 满分 100，完整成功 100 分，部分进展按任务阶段给部分分；任务分为其 10 个评测 episode 的均值，总分为 10 个任务分的均值。",
     "direction": "higher",
     "sourceUrls": [
       "https://artificialanalysis.ai/articles/aa-robotics-sim"
@@ -148,23 +148,16 @@
   ],
   "researchNotes": [
     {
-      "text": "2026-11-27 以 Invoke-WebRequest 抓取文章 HTML 并转成纯文本核对十项任务的 Goal 与 Success 与计分段落；引用的十句与两段均按页面渲染文本逐字保留。",
-      "sourceUrls": [
-        "https://artificialanalysis.ai/articles/aa-robotics-sim"
-      ]
-    },
-    {
-      "text": "未运行该评测，未复算任何分数。仅对两个 mp4 做 HEAD 校验可用性（water-plants.mp4 3,435,246 字节；load-dishwasher-fragile.mp4 2,155,157 字节），未下载、未转载。",
-      "sourceUrls": [
-        "https://artificialanalysis.ai/articles/aa-robotics-sim",
-        "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-1-sol/water-plants.mp4",
-        "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/load-dishwasher-fragile.mp4"
-      ]
-    },
-    {
       "text": "首名 GPT-6.2 Astra 71.0，领先 Claude Fable 5.2（57.5）13.5 分，100 个评测 episode 中成功 61 个；这些数字取自官方文章，本站未独立验证。",
       "sourceUrls": [
         "https://artificialanalysis.ai/articles/aa-robotics-sim"
+      ]
+    },
+    {
+      "text": "回放区官方标签标明 GPT-6.2 Astra、Conveyor、场景 05、单回合 100；该回放是作者选播的最佳回合、2 倍速，不是任务均分。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
+        "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/conveyor.mp4"
       ]
     }
   ],
@@ -185,13 +178,18 @@
       "role": "release"
     },
     {
-      "label": "Water plants 评测 episode 官方原片（外链，未转载）",
-      "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-1-sol/water-plants.mp4",
+      "label": "Fragile dishwasher 官方原片（外链，不计入总分）",
+      "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/load-dishwasher-fragile.mp4",
       "role": "data"
     },
     {
-      "label": "Fragile dishwasher 官方原片（外链，不计入总分）",
-      "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/load-dishwasher-fragile.mp4",
+      "label": "Conveyor 场景 05 官方选播",
+      "url": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
+      "role": "data"
+    },
+    {
+      "label": "Conveyor 官方原片（外链）",
+      "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/conveyor.mp4",
       "role": "data"
     }
   ],
@@ -212,131 +210,48 @@
     "retrievedAt": "2026-11-27",
     "samples": [
       {
-        "id": "aa-robotics-sim-ten-tasks",
-        "title": "十项任务的 Goal 与 Success 原文",
-        "shortTitle": "十项任务判据",
+        "id": "aa-robotics-sim-conveyor-scene-05",
+        "title": "Conveyor：将零件装入传送带送来的小车",
+        "shortTitle": "传送带装配",
         "type": "record",
+        "prompt": "控制仿真人形机器人，将零件装到传送带送来的小车上。",
         "promptOrigin": "editorial",
-        "prompt": "官方文章把这十项任务分成四组能力，并逐条给出 Goal（要做什么）与 Success（什么算成功）。本站把十条判据原文列出，并注明每组的评分入口；这条样例不是模型实跑记录，也不代表其中任何一项已被完成。",
         "walkthrough": {
-          "summary": "官方文章『The ten tasks』一节逐任务给出 Goal 与 Success；下表十句英文原句即该节全文的任务判据部分，录像只外链。",
-          "input": "任务目标与判据原文：\nToy piano — Goal: Play the given melody on the toy piano. Success: The last key presses match the melody.\nChess — Goal: Play Black's mate in one on the board. Success: The board shows the mating position, hand open.\nAbacus — Goal: Add the given number to the one on the abacus. Success: The abacus shows the correct sum.\nBox to shelf — Goal: Carry the box from the table to the shelf. Success: The box rests on the target shelf, hands away.\nDishwasher — Goal: Put the dish from the table into the dishwasher rack. Success: The dish rests in the rack, hands away.\nLaundry — Goal: Put all the laundry from the chair into the washing machine. Success: Every piece is in the drum.\nConveyor — Goal: Fit the part onto the cart the conveyor brings. Success: The part is fully seated, hand open.\nPour-over — Goal: Pour the kettle's water through the dripper into the vessel. Success: At least 150 ml through the dripper, at most 5% spilled.\nWater plants — Goal: Water every potted plant with the kettle. Success: Every pot gets at least 60 ml, at most 20% spilled.\nWarehouse navigation — Goal: Walk to the green disc without touching the packages. Success: Both ankles in the disc, standing, no package moved.",
-          "output": "模型的交付不是文件，而是它自己写的 Python 代码在 Isaac Sim 里跑完的 episode；分数由该任务的 scoring script 从物理状态读取后换算（full success scores 100, and partial progress earns partial credit）。四组能力的通过条件口径不同，例如 Water plants 要每盆至少 60 ml 且溢出不超过 20%，Warehouse navigation 要两只脚踝都在圆盘内且站直、没碰动包裹。",
+          "summary": "官方公布 GPT-6.2 Astra 的同题回放：评测场景 05 单次得到 100 分。",
+          "input": "仿真场景中有传送带、小车和待装零件；官方回放含第三人称镜头与头部相机小窗，未转载模型逐步输入。",
+          "output": "模型生成控制代码，让仿真机器人将零件装到车上并松手。",
           "checks": [
-            "计分口径原文：Each evaluation episode is scored out of 100: full success scores 100, and partial progress earns partial credit. A task's score is the mean of its 10 evaluation episodes, and the AA-Robotics-Sim score is the mean of the 10 task scores.",
-            "部分分按任务阶段：lifting the dish in a grasp earns 50 in the dishwasher, for example, and the piano scores the longest run of correct notes.",
-            "判据是物理量而不是图像相似度：脚本记录物体位姿、手是否触碰或抬升过物体、各容器水量与行走距离，episode 结束（模型收工、步数耗尽或机器人摔倒）时换算成 0–100。",
-            "评分脚本本身不公开，本页只能核对判据文字与计分描述，无法复算任何一个 episode 的分数。"
+            "完整成功要求零件完全就位，机器人手掌张开。",
+            "官方记录为场景 05 得 100 分。这是该模型在本任务中公开选播的最佳回合，不是十次均分。"
           ],
-          "sourceField": "/Water plants/Success",
+          "sourceField": "Official episode caption",
           "excerpts": [
             {
-              "label": "Water plants 的 Success 原文",
-              "text": "Every pot gets at least 60 ml, at most 20% spilled."
+              "label": "官方回合标签节选",
+              "text": "GPT-6.2 Astra, conveyor, evaluation scene 05: scored 100."
             }
           ],
-          "note": "原始数据区保留十项任务的 Goal 与 Success 原文，按页面标签命名；分组说明、视频播放器与结果表未收录。本站不提供录像转载，也不提供任何模型在该任务上的实跑结果。"
+          "note": "官方视频为 2 倍速，视频里的计时读数按官方说明对应真实耗时。本站未运行或复算。"
         },
-        "explanation": "取自官方文章『The ten tasks』一节：十张任务卡的 h4（任务名）与 dl（Goal、Success）逐条誊录，未改写下限、比例与手部条件；未包含四组能力的分组说明句、配图与视频。本页没有跑过任何 episode。",
+        "explanation": "官方视频为 2 倍速，视频里的计时读数按官方说明对应真实耗时。本站未运行或复算。",
         "raw": {
-          "Toy piano": {
-            "Goal": "Play the given melody on the toy piano.",
-            "Success": "The last key presses match the melody."
-          },
-          "Chess": {
-            "Goal": "Play Black's mate in one on the board.",
-            "Success": "The board shows the mating position, hand open."
-          },
-          "Abacus": {
-            "Goal": "Add the given number to the one on the abacus.",
-            "Success": "The abacus shows the correct sum."
-          },
-          "Box to shelf": {
-            "Goal": "Carry the box from the table to the shelf.",
-            "Success": "The box rests on the target shelf, hands away."
-          },
-          "Dishwasher": {
-            "Goal": "Put the dish from the table into the dishwasher rack.",
-            "Success": "The dish rests in the rack, hands away."
-          },
-          "Laundry": {
-            "Goal": "Put all the laundry from the chair into the washing machine.",
-            "Success": "Every piece is in the drum."
-          },
-          "Conveyor": {
-            "Goal": "Fit the part onto the cart the conveyor brings.",
-            "Success": "The part is fully seated, hand open."
-          },
-          "Pour-over": {
-            "Goal": "Pour the kettle's water through the dripper into the vessel.",
-            "Success": "At least 150 ml through the dripper, at most 5% spilled."
-          },
-          "Water plants": {
-            "Goal": "Water every potted plant with the kettle.",
-            "Success": "Every pot gets at least 60 ml, at most 20% spilled."
-          },
-          "Warehouse navigation": {
-            "Goal": "Walk to the green disc without touching the packages.",
-            "Success": "Both ankles in the disc, standing, no package moved."
-          }
+          "Official episode caption": "GPT-6.2 Astra, conveyor, evaluation scene 05: scored 100."
         },
-        "source": "https://artificialanalysis.ai/articles/aa-robotics-sim",
+        "source": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
+        "split": "AA-Robotics-Sim v0.1，Conveyor 的 evaluation scene 05（官方公开选播）",
+        "license": "只保留简短的官方回合标签，其余为中文转述；视频仅从官方入口查看。",
+        "excerpt": true,
         "references": [
           {
-            "label": "Water plants 评测 episode 官方原片（外链）",
-            "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-1-sol/water-plants.mp4"
+            "label": "官方同题回放（外链）",
+            "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/conveyor.mp4"
           },
           {
-            "label": "Artificial Analysis 网站使用条款",
-            "url": "https://artificialanalysis.ai/terms-of-use"
+            "label": "官方回放区与回合说明",
+            "url": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes"
           }
         ],
-        "split": "AA-Robotics-Sim v0.1 · 十项任务判据（官方文章公开）",
-        "license": "任务判据短句来自 Artificial Analysis 官方文章，按网站使用条款作最小引用；本站未获录像或完整任务资源再发布权。",
-        "licensePath": "licenses/aa-robotics-sim-terms-excerpt.txt",
-        "excerpt": true
-      },
-      {
-        "id": "aa-robotics-sim-episode-scoring",
-        "title": "官方计分与部分分说明原文",
-        "shortTitle": "计分口径原文",
-        "type": "text",
-        "promptOrigin": "editorial",
-        "prompt": "同一篇文章的『How episodes are scored』一节说明分数怎么来：谁能读物理状态、什么时候结束、部分分按什么给。这条样例只保留该段英文原文，用于核对该评测不是让模型或裁判打分。",
-        "walkthrough": {
-          "summary": "官方原文一段，说明每个 episode 由该任务的 scoring script 从仿真物理状态换算成分数。",
-          "input": "该段说明的取量对象：物体位置、手触碰或抬升过哪些物体、每个容器里有多少水、机器人走了多远。",
-          "output": "episode 结束（模型收工、步数预算耗尽或机器人摔倒）后，脚本把这些测量换算成 0 到 100 的分数。",
-          "checks": [
-            "部分分按任务阶段给，例如 dishwasher 只要夹起盘子就记 50 分。",
-            "piano 记最长的连续正确音符串长度，而不是整体相似度。",
-            "打分只读仿真物理状态，不涉及第二个模型或人工裁判。"
-          ],
-          "excerpts": [
-            {
-              "label": "计分实现说明开头",
-              "text": "Each episode is scored by a scoring script written for each task."
-            },
-            {
-              "label": "部分分举例",
-              "text": "lifting the dish in a grasp earns 50 in the dishwasher, for example, and the piano scores the longest run of correct notes."
-            }
-          ],
-          "note": "原文里的 dishwasher 50 分是举例，不是全部任务的阶段表；官方未公开各任务的完整阶段分值。"
-        },
-        "explanation": "取自官方文章『How episodes are scored』一节正文段落（不含该节小标题），逐字保留。-50 分的 fragile dishwasher 属于单独加分任务，不计入总分，未收录在本段。",
-        "raw": "Each episode is scored by a scoring script written for each task. Throughout the episode the simulator records measurements from its physics state: where each object is, which objects a hand touched or lifted, how much water is in each container and how far the robot walked. When the episode ends (the model finishes, its step budget runs out or the robot falls), the script turns these measurements into a score from 0 to 100. Partial credit follows the stages of each task: lifting the dish in a grasp earns 50 in the dishwasher, for example, and the piano scores the longest run of correct notes.",
-        "source": "https://artificialanalysis.ai/articles/aa-robotics-sim",
-        "references": [
-          {
-            "label": "同页十项任务的 Goal 与 Success",
-            "url": "https://artificialanalysis.ai/articles/aa-robotics-sim"
-          }
-        ],
-        "split": "AA-Robotics-Sim v0.1 · 计分说明（官方文章公开）",
-        "license": "计分说明段落来自 Artificial Analysis 官方文章，按网站使用条款作最小引用。",
-        "licensePath": "licenses/aa-robotics-sim-terms-excerpt.txt",
-        "excerpt": true
+        "licensePath": "licenses/aa-robotics-sim-terms-excerpt.txt"
       }
     ]
   }
