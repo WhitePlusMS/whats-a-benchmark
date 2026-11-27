@@ -1,0 +1,270 @@
+{
+  "id": "swe-clar",
+  "status": "published",
+  "order": 24050,
+  "name": "SWE-Clar",
+  "subtitle": "先向客户问清需求，再交付能跑的软件",
+  "category": "coding",
+  "tags": [
+    "需求澄清",
+    "多轮对话",
+    "验收测试",
+    "全栈开发"
+  ],
+  "publisher": "Upwork（SWE-Clar 作者团队）",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-22",
+  "version": "论文 v1（arXiv 2610.31854；仓库 master 6de08a3）",
+  "kind": "original",
+  "aliases": [
+    "Swe Clar",
+    "SWE Clar",
+    "SWECLAR"
+  ],
+  "researchStatus": "pass",
+  "officialDefinition": {
+    "summary": "从一条不完整的客户委托出发，先问清需求再交付可运行软件。",
+    "task": "编码 Agent 与模拟客户多轮提问，冻结澄清上下文后实现软件，并在一轮隔离运行中回答需求问题。",
+    "sourceUrls": [
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+      "https://arxiv.org/abs/2610.31854"
+    ]
+  },
+  "taskContract": {
+    "input": "一份不完整的初始客户请求与合成起始工程，其余业务规则须向模拟客户提问获得。",
+    "output": "通过隐藏验收测试的可运行软件，以及同一上下文下对需求问题的书面回答。",
+    "environment": "每题在 Linux x86-64 的 Docker 环境内运行；客户、监督者与裁判由指定模型扮演。",
+    "sourceUrls": [
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/harness/CONTRACT_PROTOCOL.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "100 个基于真实自由职业委托重构的绿地任务，每个任务带需求单元与隐藏验收测试。",
+    "disclosure": "complete",
+    "scale": [
+      "100 个任务，需求单元合计 512 个；本例 SWECLAR-013 有 5 个需求单元。"
+    ],
+    "splits": [
+      "全部任务走同一目录；validation 提供参考、等价与故意错误三种实现，用于验证测试本身，不是另外的题目子集。"
+    ],
+    "fields": [
+      "request.md 初始请求、workspace 起始工程、environment.json 运行要求、requirement_units.yaml 需求单元与对应测试。"
+    ],
+    "files": [
+      "SWE-Clar/tasks/SWECLAR-001…100、environments 的 Docker 配方，以及 harness、interaction、audit 运行与判分脚本。"
+    ],
+    "sourceUrls": [
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/evaluation/requirement_units.yaml"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开仓库直接下载，无需登录或申请；构建任务环境需要 Linux x86-64 与 Docker。"
+    ],
+    "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+    "sourceUrls": [
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT，© 2026 The SWE-Clar Authors。",
+    "scope": "可转载本页引用的任务请求、需求单元与接口约定，保留版权与许可声明。",
+    "boundaries": [
+      "许可不覆盖任务环境构建时下载的第三方依赖。",
+      "本站未转载 validation 参考实现与验收测试代码，只在需求单元字段中保留其文件路径。"
+    ],
+    "sourceUrls": [
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示同一任务的初始客户请求与对应需求单元、接口约定，并链接官方原始记录。",
+    "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/request.md",
+    "sourceUrls": [
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/request.md"
+    ]
+  },
+  "metric": {
+    "name": "实现得分与澄清得分",
+    "description": "实现得分看隐藏验收测试是否全部通过；澄清得分由裁判把每个需求问题的作答判为正确、部分或错误后平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+      "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/docs/EVALUATION_GUIDE.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方分别报告实现得分与澄清得分两个指标，没有定义合计总分；本站与对比表都不把它们相加。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md"
+      ]
+    },
+    {
+      "text": "客户、监督者和裁判都由模型扮演；换用其他角色模型即为不同的评测设置，须单独报告。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+        "https://arxiv.org/abs/2610.31854"
+      ]
+    },
+    {
+      "text": "任务记录、联系人与样例文件均为合成重构，不含原始客户材料、对话或身份信息。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "样例取自公开仓库 master 6de08a3 的 SWECLAR-013，官方 README 的安装与运行示例也用该题。未构建环境镜像，未重跑评测，没有该题的任何模型成绩。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/request.md"
+      ]
+    },
+    {
+      "text": "原始数据只保留 request.md、input.yaml 全文和 requirement_units.yaml 前两个需求单元，未复制隐藏测试与界面评测脚本。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/evaluation/requirement_units.yaml",
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/input.yaml"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "实现部分由隐藏验收测试判定；澄清部分逐题交给裁判模型，按参考答案给出 1、0.5 或 0。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/docs/EVALUATION_GUIDE.md"
+      ]
+    },
+    "comparison": {
+      "text": "主设置是 clarify 模式；direct 不给提问机会，oracle 一次性提供适用的需求与接口（不含隐藏测试与参考实现）；两者是控制组，不是另一套题。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md"
+      ]
+    },
+    "disclosure": {
+      "text": "仓库公开 100 个任务、512 个需求单元、验收测试（对被测 Agent 隐藏，但随仓库发布）和每题参考、等价与故意错误三种实现；第三方可复现评分流程，但仓库不含完整论文结果存档，聚合需自行执行。",
+      "sourceUrls": [
+        "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "官方说明（固定提交）",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "论文 v1（10 月 22 日提交）",
+      "url": "https://arxiv.org/abs/2610.31854",
+      "role": "paper"
+    },
+    {
+      "label": "MIT 许可",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "角色信息访问约定",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/harness/CONTRACT_PROTOCOL.md",
+      "role": "code"
+    },
+    {
+      "label": "评分流程说明",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/docs/EVALUATION_GUIDE.md",
+      "role": "code"
+    },
+    {
+      "label": "SWECLAR-013 初始客户请求",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/request.md",
+      "role": "data"
+    },
+    {
+      "label": "SWECLAR-013 任务布局",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/input.yaml",
+      "role": "data"
+    },
+    {
+      "label": "SWECLAR-013 需求单元与对应测试",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/evaluation/requirement_units.yaml",
+      "role": "data"
+    },
+    {
+      "label": "SWECLAR-013 交付接口约定",
+      "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/evaluation/delivery_contract.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-26",
+  "sampleSet": {
+    "retrievedAt": "2026-11-26",
+    "samples": [
+      {
+        "id": "sweclar-013",
+        "title": "SWECLAR-013：重建应收账催收跟进流程",
+        "shortTitle": "SWECLAR-013",
+        "type": "text",
+        "prompt": "客户发来的委托只有目标和大致范围（原文节选）：\n\n> Our team imports account balances and needs a reliable way to track follow-ups and export the outstanding work.\n\n它没有写清催收队列的入选规则、重复导入怎么处理、批量更新的边界，以及导出哪些字段；这些都要由 Agent 主动向模拟客户追问。\n\n交付：在 `/workspace` 扩展现成应用，产出能通过隐藏验收测试的可运行软件；另外在一轮隔离运行里回答该题的 5 个需求问题。\n\n验收：需求单元与隐藏测试一一对应。RU-001 要求保留上传、全量列表、详情、选择后提交状态与备注、CSV 下载和重启后持久化；RU-002 要求整份 CSV 先校验再整体生效，重复导入只更新余额与账龄，同时保留状态、备注与历史。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "先问清客户需求，再实现软件，最后单独考需求理解的同一套任务。",
+          "input": "客户只给了一句目标（原文）：Our team imports account balances and needs a reliable way to track follow-ups and\nexport the outstanding work.\n此外只有能跑的 Receivables Desk 起始工程和合成的本地环境；催收队列怎么入选、重复导入怎么处理、批量更新边界、导出哪些字段，都要向模拟客户追问。",
+          "output": "在 `/workspace` 扩展现成应用，交付能通过隐藏验收测试的可运行软件：上传、全量列表、详情、选择后提交状态与备注、CSV 导出，重启后数据与操作历史仍在；另在一轮隔离运行里回答该题 5 个需求问题。",
+          "checks": [
+            "RU-001：上述流程全部保留，未知账户详情返回 404，重启后数据与操作历史不丢。",
+            "RU-002：整份 CSV 先校验再整体生效；重复导入只更新余额与账龄，保留状态、备注与历史，重复同一文件结果不变。",
+            "隐藏验收测试 `evaluation/tests/receivables_contract.py` 逐条对应需求单元，全部通过才算实现成功。"
+          ],
+          "sourceField": "request.md",
+          "excerpts": [
+            {
+              "label": "初始请求给出的目标",
+              "text": "Our team imports account balances and needs a reliable way to track follow-ups and\nexport the outstanding work."
+            },
+            {
+              "label": "要求补齐的功能名",
+              "text": "Complete the follow-up queue, repeated import behavior, bulk status/note\nupdates, operation history and CSV export."
+            }
+          ],
+          "note": "本页只展示公开仓库里的同一任务；中文说明与归纳由本站整理，原文保留在「原始数据」。"
+        },
+        "explanation": "SWECLAR-013 是官方 README 快速开始使用的示例题。本站核对了 request.md、input.yaml 与 requirement_units.yaml 的前两个需求单元；未复制隐藏测试实现与 validation 参考解，也没有该题的任何模型成绩。",
+        "raw": {
+          "request.md": "# Build the receivables follow-up workflow\n\nOur team imports account balances and needs a reliable way to track follow-ups and\nexport the outstanding work. Extend the supplied working Receivables Desk application. Preserve its CSV upload, all-account list, detail view, persistent storage and browser\ncontrols. Complete the follow-up queue, repeated import behavior, bulk status/note\nupdates, operation history and CSV export.\n\nThe local development environment and synthetic fixtures are prepared. Work in `/workspace`; no customer accounts or external deployment are required.\n",
+          "input.yaml": "schema_version: 1\ndesign: controlled_requirement_disclosure\ninitial_request_file: request.md\nmaterials:\n  attachments: all\n  starter_code: all\nlayout_version: 2\nworkspace_dir: workspace\npublic_tests_dir: public_tests\nrequirement_units_file: evaluation/requirement_units.yaml\n",
+          "evaluation/requirement_units.yaml": "- ru_id: RU-001\n  name: Working account application\n  content: 'Preserve the real HTTP/browser application: upload the documented CSV, display all accounts\n    ordered by account ID, inspect an account, select accounts and submit status/notes, and download CSV.\n    New accounts have open status and empty note. Retain all data and operation history across restart.\n    Unknown detail IDs return 404. Both the API and actual browser controls must perform these operations.'\n  requirement_category: core\n  source_visibility: visible\n  benchmark_visibility: hidden\n  benchmark_visibility_reason: No requirement or delivery-interface intake injection; existing source\n    remains inspectable. Client supplies relevant agreements through clarification.\n  audit_question: What are the rules for working account application?\n  matching_keywords:\n  - application\n  - interface\n  test_interface:\n    type: api\n    entry:\n      command: python server.py --host 127.0.0.1 --port 0 --db <isolated database>\n      protocol: HTTP endpoints and browser workflow documented in starter README\n    inputs: Synthetic CSV, account IDs, statuses and notes\n    output: Observable HTTP responses, browser behavior, exported CSV and persisted records\n    operations: []\n  evaluation: executable\n  pass_rule: all_tests_pass\n  notes: All exact software behavior is a benchmark reconstruction convention, not a quotation or confirmed\n    original software commission. Source visibility is the synthetic initial-disclosure label for runtime\n    compatibility.\n  tests:\n  - test_id: RU-001-T01\n    file: evaluation/tests/receivables_contract.py\n- ru_id: RU-002\n  name: Atomic repeated imports\n  content: Validate the entire CSV before making changes. Reject an empty file, incorrect columns, malformed\n    IDs, noninteger or out-of-range numbers, and duplicate IDs within the upload with HTTP 400 and no\n    changes. On repeat import, update balance and age for existing accounts but preserve their status,\n    note and history. Retain accounts absent from the upload. Repeating an identical file is idempotent.\n    Do not create follow-up audit events for imports.\n  requirement_category: refinement\n  source_visibility: hidden\n  benchmark_visibility: hidden\n  benchmark_visibility_reason: No requirement or delivery-interface intake injection; existing source\n    remains inspectable. Client supplies relevant agreements through clarification.\n  audit_question: What are the rules for atomic repeated imports?\n  matching_keywords:\n  - import\n  - duplicate\n  - CSV\n  test_interface:\n    type: api\n    entry:\n      command: python server.py --host 127.0.0.1 --port 0 --db <isolated database>\n      protocol: HTTP endpoints and browser workflow documented in starter README\n    inputs: Synthetic CSV, account IDs, statuses and notes\n    output: Observable HTTP responses, browser behavior, exported CSV and persisted records\n    operations: []\n  evaluation: executable\n  pass_rule: all_tests_pass\n  notes: All exact software behavior is a benchmark reconstruction convention, not a quotation or confirmed\n    original software commission. Source visibility is the synthetic initial-disclosure label for runtime\n    compatibility.\n  tests:\n  - test_id: RU-002-T01\n    file: evaluation/tests/receivables_contract.py"
+        },
+        "source": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/request.md",
+        "references": [
+          {
+            "label": "同题需求单元与测试对应",
+            "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/evaluation/requirement_units.yaml"
+          },
+          {
+            "label": "同题交付接口约定",
+            "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/evaluation/delivery_contract.json"
+          },
+          {
+            "label": "同题任务布局",
+            "url": "https://github.com/upwork/SWE-Clar/blob/6de08a3cf1a2c1e0e8ee4effe75346a92ebef712/SWE-Clar/tasks/SWECLAR-013/input.yaml"
+          }
+        ],
+        "license": "MIT，© 2026 The SWE-Clar Authors。",
+        "licensePath": "licenses/swe-clar-mit.txt",
+        "split": "公开数据集 · SWECLAR-013（100 题之一）· master 6de08a3",
+        "excerpt": true
+      }
+    ]
+  },
+  "updatedAt": "2026-11-26"
+}

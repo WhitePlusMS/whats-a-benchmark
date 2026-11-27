@@ -1,0 +1,357 @@
+{
+  "id": "legalreasonbench",
+  "status": "published",
+  "order": 24070,
+  "name": "LegalReasonBench",
+  "subtitle": "读案卷、检索法律、写出法院文件与备忘录",
+  "category": "work",
+  "tags": [
+    "法律",
+    "多步任务",
+    "法院文件",
+    "专家 rubric",
+    "LLM 裁判"
+  ],
+  "publisher": "micro1",
+  "brandIds": [],
+  "year": 2026,
+  "version": "Sample release（5/50 matter）· 初步发布 2026-05；当前版本页面未标日期，数据集快照 1bfa904",
+  "kind": "original",
+  "aliases": [
+    "Legal Reason Bench",
+    "LRB (micro1)"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "衡量 Agent 能否像执业律师一样读案卷、出法院文件，并按律师 rubric 逐条判分。",
+    "task": "在一个持久沙箱里按顺序完成同一法律事务的多个 assignment，逐份提交交付文件，再由律师撰写的带符号 rubric 逐条判定。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+      "https://www.micro1.ai/benchmark/legal-reason-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "每个 assignment 给出案例卷宗（本例 4 份案卷：Resolution Z-23-035、Petition、Order Granting Petition、LCU Project Detail）与一封县检察官的委托说明，并注明书状词数上限；open universe 的 matter 允许联网检索外部法律权威。",
+    "output": "每个 assignment 一份 Markdown 交付，写到 `/app/response<N>.md`；本例要一份给县委员会的法律备忘录，包含命令与案件史、命令的影响、Lee County 的选项、建议，并用完整 Bluebook 引用。",
+    "environment": "Harbor 多步任务：一个持久 `/app` 沙箱（Python、pandoc、poppler-utils、LibreOffice）内按顺序跑 2–5 个 assignment，后续步骤可读前面交付物与附件；公开结果以 OpenCode agent 运行，每 assignment 三小时上限。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/instruction.md",
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/task.toml"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开的是完整评测的 sample：5 个 matter 的可运行 Harbor 多步任务与带符号 rubric，其余 matter 保留。",
+    "disclosure": "partial",
+    "scale": [
+      "公开 5 个 matter、15 个 assignment、221 条 criterion（其中 40 条罚分）、40 个 PDF 与 DOCX 附件；完整集另有 45 个 matter 未公开。",
+      "本例 matter 有 2 个 assignment、37 条 criterion，其中 assignment-1 为 25 条（5 条罚分）。"
+    ],
+    "splits": [
+      "公开部分只有 assignments 的 test split，每行对应一个 assignment，没有训练集或开发集；保留的 matter 需联系作者申请。"
+    ],
+    "fields": [
+      "索引列含 matter_id、matter_title、practice_area、research_universe、assignment、num_assignments、assignment_title、prompt、attachments，以及 rubric_count、penalty_count、positive_points。",
+      "Dataset Viewer 的 rubric 列说明每条含 criterion_id、points（罚分为负数）、polarity、irac_section、criterion、source（所依据的权威或案卷定位）与 justification。"
+    ],
+    "files": [
+      "`tasks/<matter>/` 下有 task.toml、environment/Dockerfile 与 steps/assignment-N/（instruction.md、workdir/attachments、tests/fixtures/rubric.json、tests/m1_judge_panel.json）。",
+      "另有 data/assignments/*.parquet 供 Dataset Viewer 使用，以及 `scripts/score_matter.py` 汇总 matter 得分。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+      "https://www.micro1.ai/benchmark/legal-reason-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "固定提交的内容在 Hugging Face 直接下载，无需登录或申请；完整数据集需联系作者或填写官方咨询表单。",
+      "运行任务需要 Harbor；评分需要三家裁判模型的 API key，任一裁判不可用即判该 assignment 失败。"
+    ],
+    "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CC BY 4.0，© 2026 micro1 Inc。",
+    "scope": "可转载本页展示的 instruction 与 rubric 字段，需署名 micro1、注明 CC BY 4.0 并说明是否修改。",
+    "boundaries": [
+      "许可不覆盖案卷引用的公开法律权威、法院记录原文与第三方材料，这些按各自来源核对。",
+      "许可只涉及公开的 5 个 matter，不覆盖保留的 45 个 matter。",
+      "不得把数据或其产出当作法律意见，也不得未经独立验证用于生产决策。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示公开 sample 中同一 assignment 的真实 instruction 与 rubric 字段，并链接固定提交的官方原文。",
+    "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/instruction.md"
+    ]
+  },
+  "metric": {
+    "name": "assignment 得分与 matter 加权得分",
+    "description": "每条 criterion 由三名 LLM 裁判（GPT-5.6 Terra、Claude Sonnet 5、Gemini 3.8 Flash，medium effort）严格多数判定通过与否；assignment 得分等于实得带符号点数除以可用正分，并 clamp 到 [0,1]；matter 得分按点数跨 assignment 加权，由 `scripts/score_matter.py` 计算；榜单再对 matter 等权平均（每 matter 先取三次运行的均值）。Harbor 自带的 multi_step_reward_strategy=\"mean\" 只作诊断。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+      "https://www.micro1.ai/benchmark/legal-reason-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "正分与罚分都由三名 LLM 裁判判定。报告写明没有任何模型在任一 matter 上通过全部 criterion，因此若改用「全部 criterion 通过才算解决」的口径，所有模型都会得到 0 分。",
+      "sourceUrls": [
+        "https://www.micro1.ai/benchmark/legal-reason-bench",
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+      ]
+    },
+    {
+      "text": "数据集卡声明部分 matter 基于真实公开诉讼案卷，公开记录里可能出现真实当事人姓名；数据不构成法律意见，未经独立验证不得用于生产决策，使用也不代表 micro1 背书。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+      ]
+    },
+    {
+      "text": "公开的只是 5/50 的 sample release，其余 45 个 matter 保留；公开部分不足以代表完整集的难度分布或总分。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本与日期：报告页自述「初步结果发布于 2026 年 5 月」，并说明当前这一版更新了环境、任务构成与 IRAC 分类，但页面没有给出这一版的具体发布日期，因此本条不填 releaseDate，只记 year 2026 与数据集快照 1bfa904。",
+      "sourceUrls": [
+        "https://www.micro1.ai/benchmark/legal-reason-bench"
+      ]
+    },
+    {
+      "text": "评分结构：rubric 每条 criterion 归入 Issue / Rule / Application / Conclusion 四类，报告称 Rule 与 Application 合计约占正分权重 80%，并把 matter 分为 open universe（可联网检索）与 closed universe（只用案卷）各占一半；本例 certiorari matter 属 open universe。",
+      "sourceUrls": [
+        "https://www.micro1.ai/benchmark/legal-reason-bench",
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+      ]
+    },
+    {
+      "text": "取样范围：该 matter 共 37 条 criterion，本站只下载并核对了 assignment-1 的 25 条（含 5 条罚分，分值 -15、-10、-20、-15、-30），其余未下载。4 份附件为 PDF 与 DOCX，本站未下载也未核对其内容，rubric 里对案卷页码与原文的引证只能按 rubric 自身的 source 字段转述。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/tests/fixtures/rubric.json"
+      ]
+    },
+    {
+      "text": "字段差异：README 的 Dataset Viewer 列说明 rubric 带 irac_section，但本站下载的 assignment-1 rubric 文件实际字段为 name、description、source、justification、metadata、score、polarity、raw_weight，未含 irac_section，因此本页不逐条标注 IRAC 归类。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/tests/fixtures/rubric.json"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "裁判是三名 LLM，而非律师逐份阅读：每条 criterion 单独一次调用，裁判只读交付文件，按严格多数决定通过与否，罚分项按是否犯该错误扣分。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+        "https://www.micro1.ai/benchmark/legal-reason-bench"
+      ]
+    },
+    "comparison": {
+      "text": "评分分两层聚合：matter 内部把各 assignment 的带符号点数按点数加权；榜单再对 matter 取平均（先算同一 matter 三次运行的均值，再对 matter 等权平均）。比较时须固定 agent 与工具条件、三个裁判模型、research universe 与快照版本；不要把 matter 之间也按点数加权，那会偏向 rubric 更大的 matter。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+      ]
+    },
+    "disclosure": {
+      "text": "公开部分含题目、附件、rubric 与裁判面板配置，第三方可重跑；但只有 5/50 matter 公开，完整集需向作者申请。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "官方数据卡（固定提交 1bfa904）",
+      "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/README.md",
+      "role": "data"
+    },
+    {
+      "label": "本例 assignment-1 的 instruction 原文",
+      "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "本例 assignment-1 的加权 rubric",
+      "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/tests/fixtures/rubric.json",
+      "role": "data"
+    },
+    {
+      "label": "本例 matter 的 Harbor 任务配置",
+      "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/task.toml",
+      "role": "data"
+    },
+    {
+      "label": "发布方报告页（初步结果 2026-05）",
+      "url": "https://www.micro1.ai/benchmark/legal-reason-bench",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-26",
+  "sampleSet": {
+    "retrievedAt": "2026-11-26",
+    "samples": [
+      {
+        "id": "lrb-certiorari-quasi-judicial-land-use-assignment-1",
+        "title": "调卷令被批准后：给县委员会写法律备忘录",
+        "shortTitle": "调卷令备忘录",
+        "type": "record",
+        "prompt": "模型收到的角色是「自主工作的资深法律分析师」，要在多步法律事务里完成一段：读案卷、检索法律、写出交付物（以下为本站中文归纳）。\n\n给什么：`/app/attachments/` 里的 4 份案卷（Resolution Z-23-035、Petition for Writ of Certiorari、Order Granting Petition、LCU Project Detail），加上一封县检察官转来的委托，说明已收到调卷令批准命令；本题属 open universe，可以用 websearch 检索未附上的法条、判例与行政指引，其它分析以 2025-01-01 生效的法律版本为准，且不得做超出该范围的检索。\n\n要求什么：写一份给县委员会（Board of County Commissioners）的结构化法律备忘录，内容须包含 1) 概述该命令与案件史，2) 解释该命令的影响，3) 列出 Lee County 可选的行动，4) 给出法律上的建议，并全文使用完整 Bluebook 引用；不得中途询问确认或请求澄清，最终交付只写到 `/app/response1.md`。\n\n怎么判：本题 rubric 有 25 条 criterion，其中 5 条是罚分项；每条由三名 LLM 裁判严格多数判定，assignment 得分等于实得带符号点数除以可用正分并截到 [0,1]。要点包括是否写出命令撤销 Z-23-035、巡回法院认定的起诉资格与偏见问题、FAA 指引未被充分考虑，以及可上诉至第六地区上诉法院、可发回听证官等选项和相应建议。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "一段多步法律事务里的首个 assignment：拿到 4 份真实案卷，交一份带 Bluebook 引用的县级法律备忘录。",
+          "input": "持久沙箱 `/app/attachments/` 中的 4 份案卷（决议、调卷令申请书、批准命令、项目说明）与县检察官的委托说明；open universe 允许联网检索，分析以 2025-01-01 生效版本为准。原文：Use the uploaded matter documents in `/app/attachments/` as your primary case file.",
+          "output": "写到 `/app/response1.md` 的一份法律备忘录，含命令与案件史、命令影响、Lee County 的选项与法律建议，全文完整 Bluebook 引用；后续 assignment 可读这份交付物。原文：Write the final complete legal deliverable for this assignment to `/app/response1.md`. The verifier reads only that file.",
+          "checks": [
+            "命令与案件史：须写明命令撤销 Lee County Res. No. Z-23-035、巡回法院认定申请人有邻近性起诉资格、县委员会偏离准司法听证记录、被认定预先定调或至少造成偏见、FAA 指引未被充分考虑（5–10 分不等）。",
+            "影响与选项：须写出准司法决定只能以调卷令在 30 天内审查，命令的效果是撤销该决定并如同未作出命令般发回、而不是「推翻决定」，也不能因此得到禁令救济；选项须覆盖上诉至第六地区上诉法院、发回听证官、另行申请重新分区、协商附加野生动物与水质条件等。",
+            "建议与罚分：建议部分要求提出及时上诉并在上诉期间发回听证官（各 20 分）；把命令效果写成推翻决定、要求县停止施工、或认为申请人可另案申请禁令，分别扣 10、20、15 分。"
+          ],
+          "sourceField": "instruction.md",
+          "excerpts": [
+            {
+              "label": "角色设定",
+              "text": "You are a senior legal analyst operating autonomously. You are completing a multi-step legal reasoning task. Follow the role, factual record, instructions, and deliverable requirements provided in the Task and each Assignment."
+            },
+            {
+              "label": "交付位置与验收范围",
+              "text": "Write the final complete legal deliverable for this assignment to `/app/response1.md`. The verifier reads only that file."
+            },
+            {
+              "label": "备忘录的四项要求与引用格式",
+              "text": "Review only these documents and draft a structured legal memorandum to the Board of County Commissioners that 1) outlines the Order and case history, 2) explains the implications of the Order, 3) identifies options and available actions for Lee County, 4) recommends a legal course of action to the Board. Use full Bluebook citation format."
+            }
+          ],
+          "note": "中文导读与归纳由本站整理；英文原句逐字引自 instruction.md，「原始数据」保留该文件全文与 rubric 前 3 条原文。"
+        },
+        "explanation": "这是 sample release 中 `lrb-certiorari-quasi-judicial-land-use` matter 的 assignment-1，属 open universe，2 个 assignment、37 条 criterion（5 条罚分），本页 rubric 取样为该 assignment 的 25 条。任务本体是一份给县委员会的备忘录，评分靠律师撰写的带符号 criterion：既要写出命令撤销了哪份决议、巡回法院认定的程序缺陷，也要正确说明调卷令审查下没有禁令救济、县的可行选项与建议，写反方向会按罚分项扣分。原始数据只保留 `instruction.md` 全文，`tests/fixtures/rubric.json` 仅保留 criteria 数组前 3 条（其余 22 条未转载），`README.md` 仅保留 YAML front matter 的字段与值、未含正文段落；4 份 PDF/DOCX 附件未下载，附件内容只能按 rubric 的 source 字段转述。",
+        "raw": {
+          "instruction.md": "# Petition for Writ of Certiorari for Quasi-judicial Proceeding — Legal Memorandum to Board of County Commissioners\n\nDomain: Legal\n\nMatter: Petition for Writ of Certiorari for Quasi-judicial Proceeding\n\nYou are a senior legal analyst operating autonomously. You are completing a multi-step legal reasoning task. Follow the role, factual record, instructions, and deliverable requirements provided in the Task and each Assignment.\n\nEach Assignment may require a different legal deliverable. Follow the requirements specific to that Assignment.\n\n## Word limits for court briefs\n\n- A brief in support of or in response to a motion may not exceed **8,750 words**.\n- A reply brief may not exceed **3,500 words**.\n- For a motion for reconsideration, a brief in support of or in response to the motion may not exceed **3,500 words**, and a reply brief may not exceed **1,750 words**.\n- If an Assignment specifies a stricter word limit, follow the stricter limit.\n\nThese word limits do not apply to legal memoranda or other non-court-filing deliverables unless the Assignment expressly provides otherwise.\n\nComplete the task end-to-end without asking for confirmation, permission, or clarification.\n\nUse the uploaded matter documents in `/app/attachments/` as your primary case file. You also have internet access via OpenCode's `websearch` tool; use it to research any statutes, regulations, cases, administrative guidance, or secondary authorities that are not supplied as attachments. Cite any authority you rely on in the format requested by the prompt.\n\nFor document inspection:\n- PDF: `pdftotext /app/attachments/<filename>.pdf -`\n- DOCX: `pandoc /app/attachments/<filename>.docx -t markdown`\n- XLSX/CSV: use Python with `openpyxl` or `pandas`\n- If extraction is unreliable, inspect the raw file with Python libraries or convert/render the relevant pages.\n\nWrite the final complete legal deliverable for this assignment to `/app/response1.md`. The verifier reads only that file.\n\n## Attachments\n\n- `/app/attachments/1774361815-lcu-project.pdf`: LCU Project Detail\n- `/app/attachments/1774361815-orderpdf.docx`: Order Granting Petition\n- `/app/attachments/1774361815-petition.docx`: Petition for Writ of Certiorari\n- `/app/attachments/1774361815-resolution.docx`: Resolution Z-23-035\n\n\n## Prompt\n\n1st ASSIGNMENT\nTO: Denise Swarek, Assistant County Attorney\nFROM: Thomas Rowe, County Attorney\nRE: PETER SPAHN, ET. AL., V. LEE COUNTY; Case No. 24-CA-1479\nDATE: October 27, 2025\n________________________________________\nWe received the attached Order Granting Petition for Writ of Certiorari.\nYou are initially provided with the following record as uploaded files. Limit your review to these documents and what legal research is necessary to identify applicable rules and case law relevant to these documents. Do not conduct legal research beyond that. All legal analysis should be based on the versions of statutes, regulations, and ordinances in effect as of January 1, 2025.\n•\tResolution Z-23-035 (Resolution.docx)\n•\tPetition for Writ of Certiorari (Petition.docx)\n•\tOrder Granting Petition (Orderpdf.docx)\n•\tLCU Project Detail (LCU Project.pdf)\nReview only these documents and draft a structured legal memorandum to the Board of County Commissioners that 1) outlines the Order and case history, 2) explains the implications of the Order, 3) identifies options and available actions for Lee County, 4) recommends a legal course of action to the Board. Use full Bluebook citation format.\n",
+          "tests/fixtures/rubric.json": {
+            "criteria": [
+              {
+                "name": "states_in_the_first_assignment_that_the_order_granting_petition",
+                "description": "States in the first assignment that the Order Granting Petition for Writ of Certiorari quashes Lee County, Fla., Res. No. Z-23-035 (2024).",
+                "source": "Order.docx at 1. \"the petition for writ of certiorari is hereby GRANTED and the rezoning is QUASHED for the reasons discussed below.\"",
+                "justification": "This rubric item is requested directly in the following portion of the prompt: “Review only these documents and draft a legal memorandum to the Board of County Commissioners that 1) outlines the Order and case history.”",
+                "metadata": {
+                  "review_flag": false,
+                  "original_name": "states_in_the_first_assignment_that_the_order_granting_petition_for_writ_of_cert",
+                  "original_index": 1,
+                  "classifier_reason": "Names first assignment",
+                  "classifier_confidence": "high"
+                },
+                "score": 5,
+                "polarity": "positive",
+                "raw_weight": 1
+              },
+              {
+                "name": "states_in_the_first_assignment_that_the_circuit_court_found_that",
+                "description": "States in the first assignment that the circuit court found that the Petitioners had standing to bring the petition based on proximity of the Petitioners' property to the proposed facility.",
+                "source": "Order.docx at 2. \"The court finds that Petitioners have standing to bring this petition for writ of certiorari based on their proximity of Petitioners' property.\"",
+                "justification": "This rubric item is requested directly in the following portion of the prompt: “Review only these documents and draft a legal memorandum to the Board of County Commissioners that 1) outlines the Order and case history.”",
+                "metadata": {
+                  "review_flag": false,
+                  "original_name": "states_in_the_first_assignment_that_the_circuit_court_found_that_the_petitioners",
+                  "original_index": 2,
+                  "classifier_reason": "Names first assignment",
+                  "classifier_confidence": "high"
+                },
+                "score": 5,
+                "polarity": "positive",
+                "raw_weight": 1
+              },
+              {
+                "name": "states_in_the_first_assignment_that_the_circuit_court_found_th_2",
+                "description": "States in the first assignment that the circuit court found that the Lee County Board of County Commissioners \"improperly departed from the record created at the quasi-judicial hearings held below.\"",
+                "source": "Order.docx at 2. \"[t]he Lee County Board of County Commissioners (\"BOCC\") improperly departed from the record created at the quasi-judicial hearings held below.\"",
+                "justification": "This rubric item is requested directly in the following portion of the prompt: “Review only these documents and draft a legal memorandum to the Board of County Commissioners that 1) outlines the Order and case history.”",
+                "metadata": {
+                  "review_flag": false,
+                  "original_name": "states_in_the_first_assignment_that_the_circuit_court_found_that_the_lee_county",
+                  "original_index": 3,
+                  "classifier_reason": "Names first assignment",
+                  "classifier_confidence": "high"
+                },
+                "score": 10,
+                "polarity": "positive",
+                "raw_weight": 1
+              }
+            ]
+          },
+          "README.md": {
+            "license": "cc-by-4.0",
+            "language": [
+              "en"
+            ],
+            "pretty_name": "LegalReasonBench (sample)",
+            "task_categories": [
+              "text-generation"
+            ],
+            "annotations_creators": [
+              "expert-generated"
+            ],
+            "language_creators": [
+              "expert-generated"
+            ],
+            "source_datasets": [
+              "original"
+            ],
+            "size_categories": [
+              "n<1K"
+            ],
+            "tags": [
+              "legal",
+              "legal-reasoning",
+              "agents",
+              "long-horizon",
+              "benchmark"
+            ],
+            "configs": [
+              {
+                "config_name": "assignments",
+                "data_files": [
+                  {
+                    "split": "test",
+                    "path": "data/assignments/*.parquet"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/instruction.md",
+        "references": [
+          {
+            "label": "同题加权 rubric（25 条 criterion）",
+            "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/steps/assignment-1/tests/fixtures/rubric.json"
+          },
+          {
+            "label": "同题 Harbor 任务配置",
+            "url": "https://huggingface.co/datasets/micro1-inc/LegalReasonBench/blob/1bfa904c8f255925baf2610c0f86aa7c05d94ed9/tasks/lrb-certiorari-quasi-judicial-land-use/task.toml"
+          }
+        ],
+        "license": "CC BY 4.0，© 2026 micro1 Inc。",
+        "licensePath": "licenses/legalreasonbench-cc-by-4-0.txt",
+        "split": "公开 sample release · lrb-certiorari-quasi-judicial-land-use · assignment-1 · 提交 1bfa904",
+        "excerpt": true
+      }
+    ]
+  },
+  "updatedAt": "2026-11-26"
+}
