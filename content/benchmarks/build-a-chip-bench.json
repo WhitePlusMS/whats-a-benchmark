@@ -1,0 +1,217 @@
+{
+  "id": "build-a-chip-bench",
+  "status": "published",
+  "order": 24310,
+  "name": "Build-A-Chip-Bench",
+  "subtitle": "从负载规格一路做到 GDS 的端到端芯片设计智能体评测",
+  "category": "coding",
+  "tags": [
+    "硬件设计",
+    "EDA",
+    "RTL",
+    "长时程智能体",
+    "工具调用"
+  ],
+  "publisher": "ChipAgents（NVIDIA 参与贡献评测套件与评分规则）",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10",
+  "version": "2026-10 发布页（官方未标版本号）",
+  "kind": "original",
+  "aliases": [
+    "Build A Chip Bench",
+    "Build-A-Chip Bench",
+    "ChipAgents Build-A-Chip-Bench"
+  ],
+  "researchStatus": "partial",
+  "officialDefinition": {
+    "summary": "从负载规格一路做到 GDS，考 agent 的端到端芯片设计能力。",
+    "task": "每个任务给一份负载规格与固定接口，agent 在沙箱里用开源工具与开源 PDK 走完 RTL、验证、综合、布局布线到 GDS，再把结果交给隐藏评分器。",
+    "sourceUrls": [
+      "https://chipagents.ai/research/build-a-chip-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "负载规格、固定接口（interface/ABI.md）、钉住 checkpoint 与工具链的 lock file、一份标准性能负载、VIP SDK，以及 Verilator、OpenROAD 与 Nangate45 平台。",
+    "output": "可综合 RTL、checkpoint packer、自写 oracle 与 testbench、变异体、OpenROAD 流程配置与最终 GDS 加 DEF、netlist、SPEF，以及机器可读的 PPA 报告。",
+    "environment": "agent 在沙箱容器内工作；隐藏容器放测试向量与 VIP，可查询但不可查看；评分器在第三个容器里，同时存放用于校准任务约束的参考设计。官方结果以 OpenCode 作为 agent 运行。",
+    "sourceUrls": [
+      "https://chipagents.ai/research/build-a-chip-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方只公开摘要任务卡、评分公式与结果表；任务全集、隐藏验证 IP 与评分器不公开。",
+    "disclosure": "partial",
+    "scale": [
+      "正文未标任务数；结果表按 5 个模型报分，其中最好的模型硬门通过率 65%、总分 16.6%。",
+      "另有第三方索引与题集结果表记 20 个任务，属二手口径，本页正文未确认该数字。"
+    ],
+    "splits": [
+      "未披露训练、验证或测试划分；每个任务各带一份参考设计，任务约束按该参考设计校准，因此门槛已知可达。"
+    ],
+    "fields": [
+      "摘要任务卡分六段：What you own、Objective、Inputs、Deliverables、Constraints 与 Grading。"
+    ],
+    "files": [
+      "没有公开仓库或数据包，任务卡、隐藏验证 IP 与 grader 都留在 ChipAgents 一侧。"
+    ],
+    "sourceUrls": [
+      "https://chipagents.ai/research/build-a-chip-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "方法与摘要任务卡可公开浏览；任务全集、隐藏 VIP 与评分器未公开，本轮未在页面找到下载或仓库入口。"
+    ],
+    "url": "https://chipagents.ai/research/build-a-chip-bench",
+    "sourceUrls": [
+      "https://chipagents.ai/research/build-a-chip-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "页面未声明数据或代码许可；页脚版权归 © Alpha Design AI 2026，保留所有权利。",
+    "scope": "只引用官方页 2.2 节摘要任务卡的五段原文与一处参考设计数值，用于说明任务形态与判分口径。",
+    "boundaries": [
+      "不转载完整任务卡、隐藏验证 IP、grader 或任何 PDK 与工具产物。",
+      "参考设计数值是发布方自报的单次结果，本站没有复算，也不把它当作模型成绩。"
+    ],
+    "sourceUrls": [
+      "https://chipagents.ai/research/build-a-chip-bench"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示官方示例任务的摘要任务卡原文，含约束清单、交付物与硬门加 PPA 的判分口径。",
+    "url": "https://chipagents.ai/research/build-a-chip-bench",
+    "sourceUrls": [
+      "https://chipagents.ai/research/build-a-chip-bench"
+    ]
+  },
+  "metric": {
+    "name": "复合分 Score（功能 × GDS × PPA）",
+    "description": "每题先过两道门：隐藏 VIP 的功能验证与 GDS pass，后者要求布线干净、无 hold 违例、DRC 通过。过门的设计再按 PPA 相对约束计 0% 到 100%，未过门记 0，总分是所有任务的平均，因此少数任务的高 PPA 补不回失败的题。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://chipagents.ai/research/build-a-chip-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "任务数未在正文披露：正文没有给出任务总数，20 题只见于第三方索引与题集结果表，不能当作官方口径。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    },
+    {
+      "text": "隐藏 VIP、grader 与任务全集都留在发布方，分数无法独立复现；参考设计由作者用 AI 辅助完成，任务约束按它校准。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    },
+    {
+      "text": "结果表只覆盖 5 个模型，并标注更多结果待发布；同一模型在同一任务上的多次尝试分数波动很大，单点最好分不能代表稳定水平。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "2026-11-27 直读官方页：摘要任务卡各段与参考设计数值按 HTML 折行合并空格后逐字命中；页面自标摘要为 HEAVILY SUMMARIZED。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    },
+    {
+      "text": "发布日期取页面标注的 Published October 2026，只有年月，故 releaseDate 记为 2026-10；官方未给版本号，本条不自行编号。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    },
+    {
+      "text": "本轮没有运行任何 agent、没有生成 GDS，也没有复算 Table 1 的任何分数。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "由隐藏 grader 规则评分：功能验证与 GDS 两道门是二元的，过门后 PPA 按约束换算成 0 到 100 的百分比，再按任务取平均。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    },
+    "comparison": {
+      "text": "PAA 只在过门设计上测量，所以「PPA vs. constraint」一列不能单独横比，必须与功能通过率、GDS 通过率合看。",
+      "sourceUrls": [
+        "https://chipagents.ai/research/build-a-chip-bench"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "Build-A-Chip-Bench 官方研究页",
+      "url": "https://chipagents.ai/research/build-a-chip-bench",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "build-a-chip-example-qwen3-int4",
+        "title": "Qwen3-0.6B INT4 推理加速器：从 RTL 到 GDS",
+        "shortTitle": "INT4 推理 ASIC",
+        "type": "record",
+        "prompt": "（此字段是本站整理的中文任务说明，官方摘要任务卡原文见下方导读与原始数据。）你要为一个钉住的 Qwen3-0.6B INT4 checkpoint 设计推理加速器：自己定架构与微架构，写完 RTL 后做验证、综合、布局布线，直到 OpenROAD 输出合法 GDS、400 MHz 收敛、并通过隐藏 VIP 的功能测试。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "端到端芯片任务：只有顶层边界固定，架构、分块、缓冲、调度与数值格式都由 agent 自己定；判分先过隐藏功能验证与 GDS 两道门，再看吞吐与 PPA。",
+          "input": "任务卡的约束段原文：\"- Nangate45 at 400 MHz, setup WNS ≥ 0 ns, no TNS\"、\"- Zero DRC errors and zero unrouted nets\"、\"- Die area ≤ 6 mm², power < 10 W\"、\"- Decode throughput ≥ 15 tokens/s\"。输入段还写明：\"Not provided: held-out tests, expected outputs, a numerical oracle, a physical design, or reference RTL. The run is network-isolated.\"",
+          "output": "交付物原文包含：\"- Synthesizable RTL and a checkpoint packer\"、\"- An independent software oracle and self-written testbenches\"、\"- OpenROAD flow config and final GDS, DEF, netlist, SPEF\"、\"- Architecture, verification, and machine-readable PPA reports\"。",
+          "checks": [
+            "硬门原文：\"Held-out functional tests on a hidden VIP, plus routability, hold-time, and DRC checks, form a hard gate.\"",
+            "计分原文：\"Qualified designs are then scored on grader-measured decode throughput for the canonical workload.\"；页面另给 Score = (1/N) Σ f_i · g_i · p_i，f_i 为隐藏 VIP 功能通过、g_i 为 GDS pass、p_i 为 PPA 相对约束的比例。",
+            "同一示例任务的参考设计实测：16.35 tok/s decode（门槛 ≥ 15）、5.76 mm² die area（≤ 6.0）、136.2 mW power（< 10 W）、+0.131 ns setup WNS（≥ 0）、DRC 与 unrouted nets 为 0 · 0、held-out prompts 56 / 56 matched。"
+          ],
+          "sourceField": "task.md § Grading",
+          "excerpts": [
+            {
+              "label": "硬门（Grading 段原文）",
+              "text": "Held-out functional tests on a hidden VIP, plus routability, hold-time, and DRC checks, form a hard gate."
+            },
+            {
+              "label": "过门后的计分方式（Grading 段原文）",
+              "text": "Qualified designs are then scored on grader-measured decode throughput for the canonical workload."
+            }
+          ],
+          "note": "只转录官方 2.2 节标注 HEAVILY SUMMARIZED 的摘要任务卡与参考设计数值；完整任务卡、隐藏 VIP 与 grader 均未公开，本站没有运行 agent，也没有生成任何 GDS。"
+        },
+        "explanation": "raw 按官方页 2.2 节转录摘要任务卡的 Objective、Inputs、Deliverables、Constraints 与 Grading 五段原文，页面自标 heavily summarized，HTML 折行已合并为单个空格；未收录完整 task.md、图表、逐模型 trace 与 Table 1 其余行。参考设计数值是发布方自报结果，本站未复算。",
+        "raw": {
+          "task.md § Objective": "Maximize decode tokens per second, after meeting correctness and every area, power, timing, routing, and memory constraint. Do not stop at the first design that passes.",
+          "task.md § Inputs": "- The task card and a lock file pinning the checkpoint and toolchain\n- The fixed interface spec and a canonical performance workload\n- A VIP SDK to test against\n- Verilator, OpenROAD, and the Nangate45 platform\nNot provided: held-out tests, expected outputs, a numerical oracle, a physical design, or reference RTL. The run is network-isolated.",
+          "task.md § Deliverables": "- Synthesizable RTL and a checkpoint packer\n- An independent software oracle and self-written testbenches\n- Deliberate mutants that the tests must catch\n- OpenROAD flow config and final GDS, DEF, netlist, SPEF\n- Architecture, verification, and machine-readable PPA reports",
+          "task.md § Constraints": "- Nangate45 at 400 MHz, setup WNS ≥ 0 ns, no TNS\n- Zero DRC errors and zero unrouted nets\n- Die area ≤ 6 mm², power < 10 W\n- Decode throughput ≥ 15 tokens/s",
+          "task.md § Grading": "Held-out functional tests on a hidden VIP, plus routability, hold-time, and DRC checks, form a hard gate. Qualified designs are then scored on grader-measured decode throughput for the canonical workload."
+        },
+        "source": "https://chipagents.ai/research/build-a-chip-bench",
+        "references": [
+          {
+            "label": "官方页 2.2 Example task（摘要任务卡）",
+            "url": "https://chipagents.ai/research/build-a-chip-bench"
+          }
+        ],
+        "license": "页面未声明再发布许可（页脚 © Alpha Design AI 2026）；本条只引用官方已公开的摘要任务卡与一处参考设计数值。",
+        "split": "官方 2.2 节示例任务（HEAVILY SUMMARIZED）· 单题",
+        "excerpt": true
+      }
+    ]
+  }
+}

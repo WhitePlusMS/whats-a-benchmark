@@ -1,0 +1,246 @@
+{
+  "id": "grafana-o11y-bench",
+  "status": "published",
+  "order": 24240,
+  "name": "Grafana o11y-bench",
+  "subtitle": "在真实 Grafana 栈里查日志与链路，判断告警的影响范围",
+  "category": "agents",
+  "tags": [
+    "可观测性",
+    "SRE 值班",
+    "LogQL",
+    "故障排查"
+  ],
+  "publisher": "Grafana Labs",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-04-21",
+  "version": "1.1",
+  "kind": "original",
+  "aliases": [
+    "o11y-bench",
+    "o11ybench"
+  ],
+  "researchStatus": "pass",
+  "officialDefinition": {
+    "summary": "在真实 Grafana 栈上评估智能体排查可观测性任务，并核对结论依据。",
+    "task": "在预置的 Grafana 栈里自行取数：任务只给一句值班口吻的请求，智能体要查 Prometheus、Loki、Tempo 或 Grafana API 得出可核对的结论。",
+    "sourceUrls": [
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md",
+      "https://o11ybench.ai/"
+    ]
+  },
+  "taskContract": {
+    "input": "一条用户口吻的排查或取数请求，通常不提供查询语句，只说明现象、时间范围与要核实的范围。",
+    "output": "一条最终自然语言回答；逐条 rubric 比对结论是否与栈内真值一致，另外执行 checks 里的状态断言。",
+    "environment": "Harbor 任务容器加每个任务各自的 Grafana sidecar 栈（Prometheus、Loki、Tempo），默认通过 mcp-grafana 的 MCP 工具访问，也可换成 gcx CLI 接线。",
+    "sourceUrls": [
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md",
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/grading/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "tasks-spec 目录是题目唯一真源，tasks/ 由它生成；当前版本 64 个任务。",
+    "disclosure": "complete",
+    "scale": [
+      "64 个任务，站点按 investigation、Grafana API 等类别分列，并标出每题的类别。"
+    ],
+    "splits": [
+      "1.0 与 1.1 的成绩分开排名，提交通道为 submissions/o11y-bench/1.1/<agent>__<model>/；单次运行默认对每个任务跑 3 次尝试。"
+    ],
+    "fields": [
+      "每题 YAML 含 id、category、tags、statement（用户口吻请求）、checks（栈内状态断言）与 rubric（criterion、weight、fact 真值查询）。"
+    ],
+    "files": [
+      "tasks-spec/ 下按类别存放的 YAML 规格，以及 grading/ 下的 verifier.py、checks.py、judge.py、facts.py 与两份裁判提示词。"
+    ],
+    "sourceUrls": [
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md",
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/grading/README.md",
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/tasks-spec/investigation/cache-incident-blast-radius.yaml"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "仓库与任务规格公开可读，可自行起 Docker 栈重跑；提交榜单需按 HF 提交仓的结构开 PR。"
+    ],
+    "url": "https://o11ybench.ai/tasks/",
+    "sourceUrls": [
+      "https://o11ybench.ai/tasks/",
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "代码与任务规格为 AGPL-3.0，© 2026 Grafana Labs；榜单提交数据另为 Apache-2.0。",
+    "scope": "仅转载本条列出的任务规格节选：一条任务的 statement 与三条 rubric（含 LogQL 真值查询），并保留 AGPL-3.0 许可全文与出处。",
+    "boundaries": [
+      "AGPL-3.0 只覆盖该仓库的代码与任务规格，不覆盖榜单上各模型成绩、第三方提交的 verifier 输出或 Grafana 产品本身。",
+      "本站不再分发完整任务包或 Docker 环境，也不声称对 tasks-spec 有修改权。",
+      "榜单数据集 grafanalabs/o11y-bench-leaderboard 为 Apache-2.0，与仓库的 AGPL-3.0 是两个不同许可，不能混用。"
+    ],
+    "sourceUrls": [
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/LICENSE",
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md",
+      "https://huggingface.co/datasets/grafanalabs/o11y-bench-leaderboard"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示一条公开任务规格：原始排查请求、三条加权评分条款与各自的可执行 LogQL 真值查询。",
+    "url": "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/tasks-spec/investigation/cache-incident-blast-radius.yaml",
+    "sourceUrls": [
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/tasks-spec/investigation/cache-incident-blast-radius.yaml",
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md"
+    ]
+  },
+  "metric": {
+    "name": "Pass^3",
+    "description": "每个任务默认跑 3 次尝试，三次全过才算该任务通过；站点同时列出 Pass@3、已解题目数（如 60/64）、单次尝试成本与 token。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://o11ybench.ai/",
+      "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "1.0 与 1.1 的成绩不可比，仓库与站点都要求两代分开排名。",
+      "sourceUrls": [
+        "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md"
+      ]
+    },
+    {
+      "text": "rubric 由一次 LLM 裁判调用打分，只有 checks 与 fact 是栈内确定值；fact 查询读不到时记为评分错误而不是零分，本站未实跑任何任务。",
+      "sourceUrls": [
+        "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/grading/README.md"
+      ]
+    },
+    {
+      "text": "不同 reasoning effort 与不同 agent 接线（默认 agent、OpenCode、gcx CLI）给出的是不同口径的成绩，不能混读。",
+      "sourceUrls": [
+        "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md",
+        "https://o11ybench.ai/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "本条 raw 为固定 commit b66d8cf 下该任务 YAML 的完整原文（1566 字节），由 raw.githubusercontent.com 实抓，未改写字段。",
+      "sourceUrls": [
+        "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/tasks-spec/investigation/cache-incident-blast-radius.yaml"
+      ]
+    },
+    {
+      "text": "站点首页给出 64 题与 Pass^3 口径，本条按该快照记录；本站没有运行任务，没有执行这些 LogQL，也没有该题的模型回答。",
+      "sourceUrls": [
+        "https://o11ybench.ai/",
+        "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "o11y-bench 仓库说明（固定版）",
+      "url": "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "榜单与任务站首页",
+      "url": "https://o11ybench.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "站点任务浏览页",
+      "url": "https://o11ybench.ai/tasks/",
+      "role": "access"
+    },
+    {
+      "label": "AGPL-3.0 许可原文",
+      "url": "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "评分与真值机制说明",
+      "url": "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/grading/README.md",
+      "role": "code"
+    },
+    {
+      "label": "本条任务的 YAML 规格",
+      "url": "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/tasks-spec/investigation/cache-incident-blast-radius.yaml",
+      "role": "data"
+    },
+    {
+      "label": "榜单提交数据集（Apache-2.0）",
+      "url": "https://huggingface.co/datasets/grafanalabs/o11y-bench-leaderboard",
+      "role": "data"
+    },
+    {
+      "label": "首发博客（2026-04-21）",
+      "url": "https://grafana.com/blog/o11y-bench-open-benchmark-for-observability-agents/",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "cache-incident-blast-radius",
+        "title": "缓存告警是否只影响一个服务",
+        "shortTitle": "缓存告警影响范围",
+        "type": "record",
+        "prompt": "值班同事发来一条排查请求：先查清此前 user-service 缓存刷新的告警是否只发生在 user-service，还是其他后端服务也出现了同样的告警模式，并要求结论落在警告日志与发布证据上。下方给出该任务的原始 YAML：statement、空的 checks 与三条带权重的 rubric（含可执行 LogQL）。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "任务只给一句现象描述，评分看的是结论能否对上栈内 LogQL 查到的真值，而不是回答的措辞。",
+          "input": "任务请求原文（statement）：\"Before we call this a broad backend rollout issue, check the earlier user-service cache-refresh incident and tell me whether it really looked isolated to user-service or whether the same warning pattern clearly showed up across other backend services too. I want the answer grounded in the warning logs and the rollout evidence around that incident, not just a guess.\" 该任务的 checks 是空数组，全部判定走 rubric 三条，权重分别为 25、40、15。",
+          "output": "交付是一条最终自然语言回答。三条条款分别要求：说明 order-service 与 payment-service 在窗口内没有 auth-cache-refresh 警告（weight 25）；判定该告警模式只出现在 user-service 而非整体后端（weight 40）；把 user-service v2.5.0 发布当作相关发布证据（weight 15）。",
+          "checks": [
+            "weight 25：真值查询走 Loki，语句为 sum(count_over_time({job=~\"order-service|payment-service\",level=\"warn\"} | json | __error__=\"\" | job_name=\"auth-cache-refresh\" [12h]))，并带 allow_empty: true，因为“窗口内没有该警告”本身就是真值。",
+            "weight 40：真值查询为 sum by (job) (count_over_time({level=\"warn\"} | json | __error__=\"\" | job_name=\"auth-cache-refresh\" [12h]))，按 job 分组计数，用来证明只有 user-service 命中。",
+            "weight 15：这一条没有 fact，交回裁判按回答是否引用了 user-service v2.5.0 作为发布证据判定。"
+          ],
+          "sourceField": "cache-incident-blast-radius.yaml",
+          "excerpts": [
+            {
+              "label": "YAML 里 statement 的首行",
+              "text": "Before we call this a broad backend rollout issue, check the earlier user-service cache-refresh"
+            },
+            {
+              "label": "weight 40 条款原文（节选）",
+              "text": "The final response identifies the cache-refresh warning pattern as isolated to `user-service`"
+            },
+            {
+              "label": "weight 40 的真值 LogQL（节选）",
+              "text": "sum by (job) (count_over_time({level=\"warn\"} | json | __error__=\"\" | job_name=\"auth-cache-refresh\""
+            }
+          ],
+          "note": "只列该任务的三条 rubric（YAML 里面没有别的条款，权重合计 80）；没有该题的模型回答，也没有实跑这些 LogQL。"
+        },
+        "explanation": "raw 是固定 commit 下 tasks-spec/investigation/cache-incident-blast-radius.yaml 的完整原文，字段未改写；上方中文为本站解读，英文原句保留。未运行该任务，也没有该题的成绩。",
+        "raw": {
+          "cache-incident-blast-radius.yaml": "id: cache-incident-blast-radius\ncategory: investigation\ntags:\n- investigation\n- cache\n- deployment\n- logs\n- blast-radius\nstatement: |\n  Before we call this a broad backend rollout issue, check the earlier user-service cache-refresh\n  incident and tell me whether it really looked isolated to user-service or whether the same warning\n  pattern clearly showed up across other backend services too. I want the answer grounded in the\n  warning logs and the rollout evidence around that incident, not just a guess.\nchecks: []\nrubric:\n- criterion: The final response states that order-service and payment-service logged no auth-cache-refresh\n    warnings in the window, consistent with the Source of truth.\n  weight: 25\n  fact:\n    kind: query\n    backend: loki\n    allow_empty: true\n    query: sum(count_over_time({job=~\"order-service|payment-service\",level=\"warn\"} | json | __error__=\"\"\n      | job_name=\"auth-cache-refresh\" [12h]))\n- criterion: 'The final response identifies the cache-refresh warning pattern as isolated to `user-service`\n    rather than a broad backend pattern: it is the only job with auth-cache-refresh warnings in the Source\n    of truth'\n  weight: 40\n  fact:\n    kind: query\n    backend: loki\n    query: sum by (job) (count_over_time({level=\"warn\"} | json | __error__=\"\" | job_name=\"auth-cache-refresh\"\n      [12h]))\n- criterion: The final response cites the `user-service v2.5.0` rollout as the relevant deployment evidence\n    and does not claim an order-service or payment-service rollout immediately preceded this cache incident\n  weight: 15\n"
+        },
+        "source": "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/tasks-spec/investigation/cache-incident-blast-radius.yaml",
+        "references": [
+          {
+            "label": "站点任务浏览页",
+            "url": "https://o11ybench.ai/tasks/"
+          },
+          {
+            "label": "评分与真值机制说明",
+            "url": "https://github.com/grafana/o11y-bench/blob/b66d8cfbbe309d2e03e9a301baea056d9718b71b/grading/README.md"
+          }
+        ],
+        "license": "AGPL-3.0，© 2026 Grafana Labs；本站仅节选这条任务规格并保留许可全文。",
+        "licensePath": "licenses/grafana-o11y-bench-agpl-3-0.txt",
+        "split": "1.1 快照 · investigation · cache-incident-blast-radius"
+      }
+    ]
+  }
+}

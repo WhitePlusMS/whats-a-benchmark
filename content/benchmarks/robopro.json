@@ -1,0 +1,309 @@
+{
+  "id": "robopro",
+  "status": "published",
+  "order": 24430,
+  "name": "RoboPRO",
+  "subtitle": "双臂操作策略在语言、视觉与物体扰动下的鲁棒性评测",
+  "category": "agents",
+  "tags": [
+    "机器人操作",
+    "双臂",
+    "鲁棒性",
+    "扰动评测"
+  ],
+  "publisher": "RoboPRO 作者团队",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-11-20",
+  "version": "80 tasks × 4 场景 · 仓库 b3cd13a · SAPIEN 钉死 3.0.0b1",
+  "kind": "original",
+  "aliases": [
+    "RoboPRO Benchmark",
+    "RoboPro"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual",
+      "long-horizon"
+    ],
+    "resources": [
+      {
+        "label": "评测配置（固定版）",
+        "type": "YAML",
+        "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_task_config/bench_demo_office_clean.yml"
+      },
+      {
+        "label": "任务表（固定版）",
+        "type": "Markdown",
+        "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/TASKS.md"
+      },
+      {
+        "label": "评测流程与冻结 seed 说明（固定版）",
+        "type": "Markdown",
+        "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md"
+      }
+    ],
+    "taskExample": {
+      "title": "官方任务：Office #6 Put the mouse on the mousepad",
+      "steps": [
+        "在桌面上随机放置鼠标，并按随机选定的颜色放置一个 6 cm × 6 cm 的目标色块。",
+        "按鼠标当前位置选择左臂或右臂，从桌面抓取鼠标。",
+        "抬起 10 cm 后把鼠标挂到该夹爪上。",
+        "以 align 约束把鼠标放到目标位姿，接近段 0.05 m、最后一段 0.005 m。",
+        "check_success：鼠标与目标位姿的水平误差都小于 2 cm，且左右夹爪均张开。"
+      ],
+      "note": "步骤取自该任务的官方演示脚本 play_once 与 check_success，是参考动作顺序，不是策略轨迹或模型结果。",
+      "sourceUrl": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_envs/office/put_mouse_on_pad.py"
+    }
+  },
+  "officialDefinition": {
+    "summary": "在 4 个场景 80 个双臂任务上测策略对语言、视觉与物体扰动的鲁棒性。",
+    "task": "每个任务有干净场景与 10 档物体堆积扰动（d6 至 d15）：策略按任务语言指令操作 Aloha-AgileX 双臂完成动作，按 check_success 判定成功。",
+    "sourceUrls": [
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md",
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/TASKS.md"
+    ]
+  },
+  "taskContract": {
+    "input": "任务 YAML（episode 数、embodiment、扰动与相机设置）加任务代码里声明的目标物体与目标位姿，以及该 (task, config) 的冻结 seed 列表。",
+    "output": "策略 rollout 的每个 episode 结果：_result.txt 汇总成功率，_episodes.jsonl 记逐 episode 成功与碰撞统计。",
+    "environment": "SAPIEN 加 CuRobo 的 RoboTwin 2.0 派生运行时，Aloha-AgileX 双臂；评测须用 sapien==3.0.0b1，换版本会改变物理与渲染。",
+    "sourceUrls": [
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md",
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "80 个任务分布在 Study、Office、KitchenL、KitchenS 四个场景，另有三轴扰动配置。",
+    "disclosure": "partial",
+    "scale": [
+      "每任务 200 个演示 episode（100 干净加 10 档扰动各 10 个），合计 16,000 个 episode；HF 数据卡记 15,999 个。"
+    ],
+    "splits": [
+      "评测优先用冻结 seed 文件 benchmark/eval_seeds/<task>/<config>.txt（存在时跳过实时专家校验），没有则退回从 st_seed 扫描；seed 从 40000 起，*_clean 20 个、其余配置 2 个。"
+    ],
+    "fields": [
+      "配置 YAML 记 episode_num、embodiment、obstacle_density、相机与采集项；任务表按 Study、Office、KitchenL、KitchenS 各 20 行列出描述、代码名与 Atomic 或 Compositional 类型。"
+    ],
+    "files": [
+      "任务代码在 benchmark/bench_envs/<scene>/<task>.py，配置在 benchmark/bench_task_config/*.yml，评测脚本在 eval/，采集配置在 collect/。"
+    ],
+    "sourceUrls": [
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/TASKS.md",
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md",
+      "https://huggingface.co/datasets/RoboPRO/RoboPRO_data/blob/main/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "任务代码与配置在 GitHub 公开；演示数据在 Hugging Face 公开，不 gated。复跑需约 15 GB 资产、CUDA 与 Vulkan 环境。"
+    ],
+    "url": "https://github.com/robopro-bench/RoboPRO/tree/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c",
+    "sourceUrls": [
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md",
+      "https://github.com/robopro-bench/RoboPRO/tree/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c",
+      "https://huggingface.co/datasets/RoboPRO/RoboPRO_data/blob/main/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT，© 2025-2026 RoboPRO authors；演示数据另为 CC BY 4.0。",
+    "scope": "转载 Office 任务的判定代码片段、干净场景配置全文与任务表，并保留署名。",
+    "boundaries": [
+      "sim/ 是 RoboTwin 2.0 的修改版，遵循其 MIT 声明；openpi 子模块为 Apache-2.0，不在本仓 MIT 授权内。",
+      "assets/ 与 CuRobo 各自条款，本站不转载任何资产或网格。",
+      "本站没有安装环境或跑评测，不给出任何成功率。"
+    ],
+    "sourceUrls": [
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/LICENSE",
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示 Office #6 的判定代码、任务语言描述与干净场景配置原文。",
+    "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_envs/office/put_mouse_on_pad.py",
+    "sourceUrls": [
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_envs/office/put_mouse_on_pad.py",
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_task_config/bench_demo_office_clean.yml",
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/TASKS.md"
+    ]
+  },
+  "metric": {
+    "name": "逐任务成功率（冻结 seed）",
+    "description": "按 check_success 在冻结 seed 列表上逐 episode 判定成功，汇总为每个 (task, config) 的成功率；_result.txt 记时间戳、指令类型、seed 列表与成功率，双环境客户端另写逐 episode 成功与碰撞统计。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md",
+      "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_envs/office/put_mouse_on_pad.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "SAPIEN 必须为 3.0.0b1，换版本会改变物理与渲染，成功率不可比。",
+      "sourceUrls": [
+        "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md"
+      ]
+    },
+    {
+      "text": "本站没有安装环境、资产或运行评测，页面不含成功率，也不复现作者的数字。",
+      "sourceUrls": [
+        "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md"
+      ]
+    },
+    {
+      "text": "演示 episode 数与数据卡口径略有出入：任务表写每任务 200 个、合计 16,000，HF 数据卡写 15,999 个 episode。",
+      "sourceUrls": [
+        "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/TASKS.md",
+        "https://huggingface.co/datasets/RoboPRO/RoboPRO_data/blob/main/README.md"
+      ]
+    },
+    {
+      "text": "同一 seed 在干净与各扰动档下目标位姿相同，只有周围杂物变化；因此扰动档之间的差异不能解释为目标位置不同。",
+      "sourceUrls": [
+        "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本锚定 git ls-remote 的 refs/heads/main = b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c。只读了 README、TASKS.md、eval/README.md、一个 Office 任务代码、一个配置 YAML 与许可文件，未下载资产或数据。",
+      "sourceUrls": [
+        "https://github.com/robopro-bench/RoboPRO/tree/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c",
+        "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md"
+      ]
+    },
+    {
+      "text": "本轮没有逐一确认每个 (task, config) 都存在 eval_seeds 文件；评测取集顺序是环境包优先、其次 seed 文件、否则退回扫描模式，所以「冻结 seed」只在文件存在时成立。",
+      "sourceUrls": [
+        "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库说明（固定版）",
+      "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "论文（arXiv:2611.26971）",
+      "url": "https://arxiv.org/abs/2611.26971",
+      "role": "paper"
+    },
+    {
+      "label": "仓库固定快照入口",
+      "url": "https://github.com/robopro-bench/RoboPRO/tree/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c",
+      "role": "access"
+    },
+    {
+      "label": "任务表 TASKS.md（固定版）",
+      "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/TASKS.md",
+      "role": "definition"
+    },
+    {
+      "label": "样例任务判定代码（固定版）",
+      "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_envs/office/put_mouse_on_pad.py",
+      "role": "code"
+    },
+    {
+      "label": "干净场景评测配置（固定版）",
+      "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_task_config/bench_demo_office_clean.yml",
+      "role": "data"
+    },
+    {
+      "label": "评测流程与冻结 seed 说明（固定版）",
+      "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "MIT 许可（固定版）",
+      "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "演示数据卡（CC BY 4.0）",
+      "url": "https://huggingface.co/datasets/RoboPRO/RoboPRO_data/blob/main/README.md",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "robotwin-2",
+      "label": "运行时来源",
+      "detail": "RoboPRO 的仿真运行时是 RoboTwin 2.0 的修改版；80 个任务、扰动档与成功判据均为 RoboPRO 自有，成绩不可与 RoboTwin 2.0 互相替代。",
+      "sourceUrls": [
+        "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/README.md"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "office-put-mouse-on-pad",
+        "title": "Office #6：把鼠标放到鼠标垫上，判定看 2 cm 与双爪张开",
+        "shortTitle": "鼠标放到垫上",
+        "type": "record",
+        "prompt": "起始条件：Office 场景的干净配置（bench_demo_office_clean，100 个 episode，无堆积杂物），Aloha-AgileX 双臂。\n\n任务语言：Office #6 “Put the mouse on the mousepad”，代码名 put_mouse_on_pad。\n\n交付：策略驱动的双臂 rollout，评测只认 check_success 的判定。\n验收：鼠标与目标位姿的水平误差都小于 2 cm，且左右夹爪都处于张开状态。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "record 形态：官方任务代码、配置与任务表原文，判定条件写在 check_success 里。",
+          "input": "任务代码先随机放鼠标与目标色块：鼠标位姿在 x 于 -0.45 至 0.45、y 于 -0.23 至 0.05 的范围内随机，目标色块从 8 种颜色里随机取一种。配置 YAML 原文给出 episode_num: 100、embodiment: [aloha-agilex]、obstacle_density: 0。",
+          "output": "策略完成抓取与放置：从桌面抓鼠标、抬起 10 cm、以 align 约束放到目标位姿；评测结果写 _result.txt 与 _episodes.jsonl。",
+          "checks": [
+            "check_success 原文判据：水平误差小于 [0.02, 0.02]，且 is_left_gripper_open() 与 is_right_gripper_open() 同时为真。",
+            "任务表原文把该任务列为 Office #6 “Put the mouse on the mousepad”，代码名 put_mouse_on_pad，类型 Atomic。",
+            "评测配置原文：obstacle_density: 0、enable_collision_metrics: true，episode_num: 100。"
+          ],
+          "sourceField": "benchmark/bench_envs/office/put_mouse_on_pad.py",
+          "excerpts": [
+            {
+              "label": "成功判定原文",
+              "text": "    def check_success(self):\n        end_pose_actual = self.target_obj.get_pose().p\n        end_pose_desired = self.des_obj.get_pose().p\n        eps1 = 0.02\n        eps2 = 0.02\n\n        return (np.all(abs(end_pose_actual[:2] - end_pose_desired[:2]) < np.array([eps1, eps2]))\n                and self.robot.is_left_gripper_open()\n                and self.robot.is_right_gripper_open())"
+            },
+            {
+              "label": "目标物体加载原文",
+              "text": "        self.mouse_id = np.random.choice(self._target_ids(\"office\", \"047_mouse\"))"
+            }
+          ],
+          "note": "只展示这一个 Office 任务的代码与配置；本站未安装 SAPIEN、资产或策略，未跑评测。"
+        },
+        "explanation": "raw 保留该任务的判定代码与干净场景配置全文，另附官方任务表原文（7835 字节全文，覆盖四个场景各 20 任务）。没有策略实跑结果，也没有成功率。",
+        "raw": {
+          "benchmark/bench_envs/office/put_mouse_on_pad.py": "from bench_envs.office._office_base_task import Office_base_task\nfrom envs.utils import *\nimport sapien\nimport math\nfrom envs._GLOBAL_CONFIGS import *\nfrom copy import deepcopy\nimport glob\n\n\nclass put_mouse_on_pad(Office_base_task):\n\n    def setup_demo(self, is_test=False, **kwargs):\n        kwargs[\"collision_cache\"] = {\"mesh\": 100, \"obb\": 3}\n        super()._init_task_env_(**kwargs)\n\n    def _get_target_object_names(self) -> set[str]:\n        return {self.target_obj.get_name(), self.des_obj.get_name()}\n\n    def load_actors(self):\n        rand_pos = rand_pose(\n            xlim=[-0.45, 0.45],\n            ylim=[-0.23, 0.05],\n            qpos=[0.5, 0.5, 0.5, 0.5],\n            rotate_rand=True,\n            rotate_lim=[0, 3.14, 0],\n        )\n        while abs(rand_pos.p[0]) < 0.3:\n            rand_pos = rand_pose(\n            xlim=[-0.45, 0.45],\n            ylim=[-0.23, 0.05],\n            qpos=[0.5, 0.5, 0.5, 0.5],\n            rotate_rand=True,\n            rotate_lim=[0, 3.14, 0],\n        )\n\n        self.mouse_id = np.random.choice(self._target_ids(\"office\", \"047_mouse\"))\n        self.target_obj = create_actor(\n            scene=self,\n            pose=rand_pos,\n            modelname=\"047_mouse\",\n            convex=True,\n            model_id=self.mouse_id,\n            scale=self.item_info['scales']['047_mouse'].get(f'{self.mouse_id}',None),\n        )\n        self.target_obj.set_mass(0.05)\n\n        xlim=[0]\n        \n        target_rand_pose = rand_pose(\n            xlim=xlim,\n            ylim=[-0.23, 0.05],\n            qpos=[1, 0, 0, 0],\n            rotate_rand=False,\n        )\n\n        colors = {\n            \"Red\": (1, 0, 0),\n            \"Green\": (0, 1, 0),\n            \"Blue\": (0, 0, 1),\n            \"Yellow\": (1, 1, 0),\n            \"Cyan\": (0, 1, 1),\n            \"Magenta\": (1, 0, 1),\n            \"Black\": (0, 0, 0),\n            \"Gray\": (0.5, 0.5, 0.5),\n        }\n\n        color_items = list(colors.items())\n        color_index = np.random.choice(len(color_items))\n        self.color_name, self.color_value = color_items[color_index]\n\n        half_size = [0.06, 0.06, 0.0005]\n        self.des_obj = create_box(\n            scene=self,\n            pose=target_rand_pose,\n            half_size=half_size,\n            color=self.color_value,\n            name=\"box\",\n            is_static=True,\n        )\n        self.add_prohibit_area(self.des_obj, padding=0.01, area=\"table\")\n        self.add_prohibit_area(self.target_obj, padding=0.02, area=\"table\")\n        # Construct des_obj pose with position from des_obj object and identity orientation\n        self.des_obj_pose = self.des_obj.get_pose().p.tolist() + [0, 0, 0, 1]\n        self.des_obj_pose[2] += 0.02\n\n        if np.random.rand() > self.clean_background_rate and self.obstacle_density >0 and self.cluttered_table:\n            self.obstacle_density = max(0, self.obstacle_density-1)  # Ensure non-negative density\n            # ------------------------------------------------------------\n            center_x = (self.target_obj.get_pose().p[0] + self.des_obj.get_pose().p[0]) / 2\n            center_y = (self.target_obj.get_pose().p[1] + self.des_obj.get_pose().p[1]) / 2\n            id_list = [i for i in range(4)]\n            self.milk_box_id = np.random.choice(id_list)\n            self.milk_box = rand_create_actor(\n                self,\n                xlim=[center_x],\n                ylim=[center_y],\n                modelname=\"038_milk-box\",\n                rotate_rand=True,\n                rotate_lim=[0, 1, 0],\n                qpos=[0.66, 0.66, -0.25, -0.25],\n                convex=True,\n                model_id=self.milk_box_id,\n            )\n            \n            self.milk_box.set_mass(0.1)\n            self.add_prohibit_area(self.milk_box, padding=0.01, area=\"table\")\n            self.collision_list.append({\n                \"actor\": self.milk_box,\n                \"collision_path\": f\"{os.environ['ASSETS_ROOT']}/objects/038_milk-box/collision/base{self.milk_box_id}.glb\",\n            })\n\n    def play_once(self):\n        arm_tag = ArmTag(\"right\" if self.target_obj.get_pose().p[0] > 0 else \"left\")\n\n        self.grasp_actor_from_table(self.target_obj, arm_tag=arm_tag, pre_grasp_dis=0.1)\n\n        self.move(self.move_by_displacement(arm_tag=arm_tag, z=0.1))\n\n        self.attach_object(self.target_obj, f\"{os.environ['ASSETS_ROOT']}/objects/047_mouse/collision/base{self.mouse_id}.glb\", str(arm_tag))\n        self.enable_table(enable=True)\n        \n        self.move(\n            self.place_actor(\n                self.target_obj,\n                arm_tag=arm_tag,\n                target_pose=self.des_obj_pose,\n                constrain=\"align\",\n                pre_dis=0.05,\n                dis=0.005,\n            ))\n\n\n    def check_success(self):\n        end_pose_actual = self.target_obj.get_pose().p\n        end_pose_desired = self.des_obj.get_pose().p\n        eps1 = 0.02\n        eps2 = 0.02\n\n        return (np.all(abs(end_pose_actual[:2] - end_pose_desired[:2]) < np.array([eps1, eps2]))\n                and self.robot.is_left_gripper_open()\n                and self.robot.is_right_gripper_open())\n",
+          "benchmark/bench_task_config/bench_demo_office_clean.yml": "# if you want to modify the config, please check the following tutorial first:\n# https://robotwin-platform.github.io/doc/usage/configurations.html\nrender_freq: 0\nepisode_num: 100\nuse_seed: false\nsave_freq: 15\nvideo_fps: 30\nembodiment: [aloha-agilex]\nlanguage_num: 100\ndomain_randomization:\n  random_background: false\n  cluttered_table: False\n  clean_background_rate: 0\n  random_head_camera_dis: 0\n  random_table_height: 0\n  random_light: false\n  crazy_random_light_rate: 0\n  obstacle_density: 0\n\n  language_perturbation:\n    enabled: false\n    instruction_bank: benchmark/bench_task_config/instruction_bank.json\ncamera:\n  head_camera_type: D435\n  wrist_camera_type: D435\n  demo_camera_type: D435\n  collect_head_camera: true\n  collect_wrist_camera: true\ndata_type:\n  rgb: true\n  third_view: false\n  depth: true\n  pointcloud: false\n  observer: false\n  endpose: true\n  qpos: true\n  mesh_segmentation: false\n  actor_segmentation: false\npcd_down_sample_num: 1024\npcd_crop: true\nsave_path: ./data\nclear_cache_freq: 1\ncollect_data: true\neval_video_log: true\n# Data collection: no collision metrics. Set true for evaluation.\nenable_collision_metrics: true\n",
+          "benchmark/TASKS.md": "# RoboPRO Benchmark Tasks\n\n## Demonstrations\n\nEach task has:\n- **Clean**: 100 episodes (obstacle_density = 0)\n- **Cluttered**: 10 densities (d6 through d15) x 10 episodes each = 100 episodes total\n\nTotal per task: 200 episodes (100 clean + 100 cluttered)\n\n**Total: 80 tasks across 4 domains** (Study, Office, KitchenL, KitchenS) = 16,000 episodes.\n\n---\n\n## Study (20 tasks)\n\n| # | Task Description | Code File | Type |\n|---|---|---|---|\n| 1 | Move the book onto the table | `move_book_onto_table` | Atomic |\n| 2 | Move the cup to the right/left | `move_cup` | Atomic |\n| 3 | Move the cup next to the book | `move_cup_next_to_book` | Atomic |\n| 4 | Move the cup onto the table | `move_cup_onto_table` | Atomic |\n| 5 | Move the pen to the box | `move_pen_to_box` | Atomic |\n| 6 | Move the seal next to the box | `move_seal_next_to_box` | Atomic |\n| 7 | Move the seal next to the pencup | `move_seal_next_to_pencup` | Atomic |\n| 8 | Move the seal onto the table | `move_seal_onto_table` | Atomic |\n| 9 | Put the cup in the box | `put_cup_in_box` | Atomic |\n| 10 | Put the cup on the coaster | `put_cup_on_coaster` | Atomic |\n| 11 | Put the cup on the table | `put_cup_on_table` | Atomic |\n| 12 | Put the glue in the box | `put_glue_in_box` | Atomic |\n| 13 | Put the pen in the box | `put_pen_in_box` | Atomic |\n| 14 | Put the pen in the pencup | `put_pen_in_pencup` | Atomic |\n| 15 | Put the seal in the box | `put_seal_in_box` | Atomic |\n| 16 | Empty the box | `empty_box` | Compositional |\n| 17 | Move the cup, then put the pen in the cup | `move_cup_put_pen_in_cup` | Compositional |\n| 18 | Move the cups into the box | `move_cups_into_box` | Compositional |\n| 19 | Move the seal next to box, put cup in box | `move_seal_cup_next_to_box` | Compositional |\n| 20 | Move the seal onto the book | `move_seal_onto_book` | Compositional |\n\n## Office (20 tasks)\n\n| # | Task Description | Code File | Type |\n|---|---|---|---|\n| 1 | Move the milktea to the right of the laptop | `put_milktea_next_to_laptop` | Atomic |\n| 2 | Put the stapler in the open drawer | `put_stapler_in_drawer` | Atomic |\n| 3 | Stack the book from file holder on top of the book on the table | `put_book_on_book` | Atomic |\n| 4 | Put the phone on the holder | `put_phone_on_holder` | Atomic |\n| 5 | Move the phone to beside the cube | `put_phone_next_to_cube` | Atomic |\n| 6 | Put the mouse on the mousepad | `put_mouse_on_pad` | Atomic |\n| 7 | Place the milktea on the lower shelf | `put_milktea_on_shelf` | Atomic |\n| 8 | Pick the mouse from the open drawer and place it to the right of the stapler | `put_mouse_next_to_stapler` | Atomic |\n| 9 | Open the drawer | `open_drawer` | Atomic |\n| 10 | Close the drawer | `close_drawer` | Atomic |\n| 11 | Move the book from the shelf to the lower level of the file holder | `put_book_in_fileholder` | Atomic |\n| 12 | Place the rubiks cube to the left of the milktea | `put_rubikscube_next_to_milktea` | Atomic |\n| 13 | Place the stapler next to the mouse | `put_stapler_next_to_mouse` | Atomic |\n| 14 | Move rubiks cube to drawer | `put_rubikscube_in_drawer` | Atomic |\n| 15 | Place the stapler on the book | `put_stapler_on_book` | Atomic |\n| 16 | Open the drawer, place the stapler inside, close the drawer | `store_stapler_in_drawer` | Compositional |\n| 17 | Mouse to pad, phone to holder, milktea to shelf | `organize_table` | Compositional |\n| 18 | Mouse from drawer to pad, close drawer, book to file holder | `set_up_table` | Compositional |\n| 19 | Open drawer, rubiks cube to shelf, close drawer | `store_rubikscube_on_shelf` | Compositional |\n| 20 | Milktea to coaster, rubiks cube to shelf, notebook to book | `move_items_around` | Compositional |\n\n## KitchenL (20 tasks)\n\n| # | Task Description | Code File | Type |\n|---|---|---|---|\n| 1 | Move the bottle | `move_bottle` | Atomic |\n| 2 | Pick up the bottle from the fridge | `pick_bottle_from_fridge` | Atomic |\n| 3 | Pick up the box drink from the basket | `pick_boxdrink_from_basket` | Atomic |\n| 4 | Pick up the can from the basket | `pick_can_from_basket` | Atomic |\n| 5 | Pick up the can from the cabinet | `pick_can_from_cabinet` | Atomic |\n| 6 | Pick up the milk box from the fridge | `pick_milk_box_from_fridge` | Atomic |\n| 7 | Pick up the sauce can from the cabinet | `pick_sauce_can_from_cabinet` | Atomic |\n| 8 | Put the bottle in the basket | `put_bottle_in_basket` | Atomic |\n| 9 | Put the bottle in the fridge | `put_bottle_in_fridge` | Atomic |\n| 10 | Put the can in the cabinet | `put_can_in_cabinet` | Atomic |\n| 11 | Put the can in front of the microwave | `put_can_infront_of_microwave` | Atomic |\n| 12 | Put the can next to the basket | `put_can_next_to_basket` | Atomic |\n| 13 | Put the milk box in the fridge | `put_milk_box_in_fridge` | Atomic |\n| 14 | Put the sauce can in the basket | `put_sauce_can_in_basket` | Atomic |\n| 15 | Put the sauce can in the cabinet | `put_sauce_can_in_cabinet` | Atomic |\n| 16 | Move the bottle from the fridge next to the can | `move_bottle_from_fridge_next_to_can` | Compositional |\n| 17 | Move the can from the cabinet to the basket | `move_can_from_cabinet_to_basket` | Compositional |\n| 18 | Move the milk and close the fridge | `move_milk_close_fridge` | Compositional |\n| 19 | Put the can away and close the cabinet | `put_can_close_cabinet` | Compositional |\n| 20 | Swap the can with the bottle in the basket | `switch_can_with_bottle_in_basket` | Compositional |\n\n## KitchenS (20 tasks)\n\n| # | Task Description | Code File | Type |\n|---|---|---|---|\n| 1 | Close the microwave door | `close_microwave_ks` | Atomic |\n| 2 | Drop the apple in the bin | `drop_apple_in_bin_ks` | Atomic |\n| 3 | Move the hamburger onto the plate | `move_hamburger_onto_plate_ks` | Atomic |\n| 4 | Pick up the apple from the bowl | `pick_apple_from_bowl_ks` | Atomic |\n| 5 | Pick up the apple from the sink | `pick_apple_from_sink_ks` | Atomic |\n| 6 | Pick up the fork from the sink | `pick_fork_from_sink_ks` | Atomic |\n| 7 | Pick up the hamburger from the microwave | `pick_hamburger_from_microwave_ks` | Atomic |\n| 8 | Place the bowl in the dishrack | `place_bowl_in_dishrack_ks` | Atomic |\n| 9 | Put the bowl in the sink | `put_bowl_in_sink_ks` | Atomic |\n| 10 | Put the bread on the board | `put_bread_on_board_ks` | Atomic |\n| 11 | Put the hamburger in the microwave | `put_hamburger_in_microwave_ks` | Atomic |\n| 12 | Put the plate in the sink | `put_plate_in_sink_ks` | Atomic |\n| 13 | Put the spoon in the dishrack | `put_spoon_in_dishrack_ks` | Atomic |\n| 14 | Put the spoon in the sink | `put_spoon_in_sink_ks` | Atomic |\n| 15 | Put the spoon on the plate | `put_spoon_on_plate_ks` | Atomic |\n| 16 | Put the apple in the bin, the bowl in the dishrack, and the spoon in the sink | `chain_apple_bin_bowl_rack_spoon_sink_ks` | Compositional |\n| 17 | Put the apple from the sink on the plate and the bread on the board | `chain_apple_sink_plate_bread_board_ks` | Compositional |\n| 18 | Move the bowl from the sink to the dishrack and the apple into the sink | `chain_bowl_rack_apple_sink_ks` | Compositional |\n| 19 | Put the hamburger in the microwave and close the door | `chain_heat_hamburger_ks` | Compositional |\n| 20 | Take the hamburger out of the microwave, place it on the bowl, and close the door | `chain_serve_hamburger_ks` | Compositional |\n\n## Hugging Face dataset\n\nThe demonstrations are released at [RoboPRO/RoboPRO_data](https://huggingface.co/datasets/RoboPRO/RoboPRO_data) as a single LeRobot v2.1 dataset covering all 80 tasks. Each task has 100 episodes in the clean scene (density 0) and 10 episodes at each distractor density from d6 to d15.\n\n```\nlerobot/roboreal_all_80tasks/\n  meta/                 # info.json, tasks.jsonl, episodes.jsonl, episodes_stats.jsonl\n  data/chunk-*/episode_*.parquet\n  videos/chunk-*/observation.images.{cam_high,cam_left_wrist,cam_right_wrist}/episode_*.mp4\n```\n"
+        },
+        "source": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_envs/office/put_mouse_on_pad.py",
+        "references": [
+          {
+            "label": "干净场景评测配置",
+            "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/bench_task_config/bench_demo_office_clean.yml"
+          },
+          {
+            "label": "任务表",
+            "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/benchmark/TASKS.md"
+          },
+          {
+            "label": "评测流程与冻结 seed",
+            "url": "https://github.com/robopro-bench/RoboPRO/blob/b3cd13ae80e87328dbc9bb454f95d8e8a1d6561c/eval/README.md"
+          },
+          {
+            "label": "论文",
+            "url": "https://arxiv.org/abs/2611.26971"
+          }
+        ],
+        "license": "MIT · RoboPRO 作者团队（© 2025-2026）；演示数据另为 CC BY 4.0。",
+        "licensePath": "licenses/robopro-mit.txt",
+        "split": "Office #6 · bench_demo_office_clean（100 episodes）",
+        "excerpt": true
+      }
+    ]
+  }
+}

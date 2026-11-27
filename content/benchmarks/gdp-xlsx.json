@@ -1,0 +1,290 @@
+{
+  "id": "gdp-xlsx",
+  "status": "published",
+  "order": 24120,
+  "name": "GDP.xlsx",
+  "subtitle": "在真实工作簿里核对取证，只交付指定表头的表格",
+  "category": "work",
+  "tags": [
+    "电子表格",
+    "专业推理",
+    "金融",
+    "数据核对"
+  ],
+  "publisher": "Surge AI",
+  "brandIds": [
+    "surge-ai"
+  ],
+  "year": 2026,
+  "version": "GDP.xlsx · 公开样例仓 7cdb540（3/70 题）",
+  "kind": "original",
+  "aliases": [
+    "GDP xlsx",
+    "Surge AI GDP.xlsx"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "按同事式的一句话请求读工作簿、算准数额，并只交表格。",
+    "task": "每题给一段简短工作请求与一个工作簿或 CSV，要求在文件里定位相关信息，按专业惯例推算并按规定格式作答。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+      "https://surgehq.ai/benchmarks/gdp-xlsx"
+    ]
+  },
+  "taskContract": {
+    "input": "工作请求原文（instruction.md）加 environment/ 下的工作簿附件；本例是一个物业租赁工作簿。",
+    "output": "按请求指定的 Markdown 表格。本例要求两张表、指定表头、金额取整到 1 美元，且除表格外不写别的内容。",
+    "environment": "Harbor Linux 容器，2 CPU 与 4 GB 内存，agent 与 verifier 各 3600 秒超时，网络为 allowlist 模式且允许主机列表为空。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/instruction.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/task.toml"
+    ]
+  },
+  "dataProfile": {
+    "summary": "全量 70 题、13 个专业领域；公开仓只放 3 个样例任务。",
+    "disclosure": "partial",
+    "scale": [
+      "全量 70 题、13 个领域；公开卡称共 58 个 Excel 与 12 个 CSV、393 个工作表、逾 210 万个填充单元格与 CSV 字段。"
+    ],
+    "splits": [
+      "公开仓 3 题为样例：finance_investing_58a8dbb2、healthcare_4a2e62e7、engineering_017cf4f7，不代表 70 题的领域分布。"
+    ],
+    "fields": [
+      "每题有 instruction.md、task.toml、environment/ 输入工作簿，tests/ 下有 judge.toml 二值准则、prompt_template.md 与 test.sh。"
+    ],
+    "files": [
+      "本例 judge.toml 列 c001 至 c024 共 24 条二值准则，由 rewardkit 调 LLM judge 逐条判定；工作簿是 .xlsx 二进制，本站只外链不转载。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/judge.toml"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "3 个样例任务在 Hugging Face 公开可读；完整 70 题与详细评分协议需向 benchmarks@surgehq.ai 申请。"
+    ],
+    "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/tree/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/tree/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0，© Surge AI（固定数据卡声明）。",
+    "scope": "转载 finance_investing_58a8dbb2 的委托原文全文与 3 条评分准则（c001、c009、c020），工作簿附件只给官方外链。",
+    "boundaries": [
+      "不转载工作簿、评分模板与裁判输出，也不复制每题 canary 文件里的字符串。",
+      "遵守作者要求，不把题目、评分或衍生材料用于训练、微调、强化学习、蒸馏或训练期选模。",
+      "不把本条的表格推理题与 GDP.pdf、DAYJOB: Tax、DAYJOB: Law 或第三方 SpreadsheetBench 的题目混用。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/instruction.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/judge.toml"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示同题委托原文、交付格式要求与 3 条原评分准则；工作簿以官方链接引用。",
+    "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/instruction.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/judge.toml",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/environment/initial_workspace/ba82d0f6-ba56-4685-a2e4-d41391babcd8_20a161e1-bd9d-463b-b00e-46c56424d4d2_6f5d21ad-c003-4eb5-866f-f7cdc814d505.xlsx"
+    ]
+  },
+  "metric": {
+    "name": "按题准则判分（LLM judge）",
+    "description": "每题由 rewardkit 调 LLM judge 逐条判定二值准则（本例 24 条），官方榜单按 100 分制展示；公开卡只说明按 task-specific rubrics 评估准确、完整与得体，未披露整题通过阈值。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://surgehq.ai/benchmarks/gdp-xlsx",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+      "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/judge.toml"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "完整 70 题与详细评分协议需申请，3 个公开样例不足以复现榜单。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md"
+      ]
+    },
+    {
+      "text": "答案数值只写在评分准则里；本站没有打开工作簿复核，也没有该题的模型实跑结果。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/judge.toml",
+        "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/environment/initial_workspace/ba82d0f6-ba56-4685-a2e4-d41391babcd8_20a161e1-bd9d-463b-b00e-46c56424d4d2_6f5d21ad-c003-4eb5-866f-f7cdc814d505.xlsx"
+      ]
+    },
+    {
+      "text": "同一发布方另有 GDP.pdf、DAYJOB: Tax、DAYJOB: Law 等独立条目，题集与分数不可互相替代。",
+      "sourceUrls": [
+        "https://surgehq.ai/benchmarks"
+      ]
+    },
+    {
+      "text": "候选取证时的 GDPx 一词按 Hugging Face 上的两个候选分别核实：本项指 Surge AI 的 GDP.xlsx；Ginkgo Bioworks 的 GDPx1 至 GDPx4 是需要申请的基因组学数据集，不是评测。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+        "https://huggingface.co/datasets/ginkgo-datapoints/GDPx1"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "样例固定到 Hugging Face 7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9，数据集卡 lastModified 为 2026-09-30，因此不单独推定发布日。本轮读了 README、instruction.md、task.toml、tests/judge.toml 与 tests/test.sh，未下载 .xlsx 附件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/surgeai/GDP.xlsx/tree/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9",
+        "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+        "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/test.sh"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方榜单与题介",
+      "url": "https://surgehq.ai/benchmarks/gdp-xlsx",
+      "role": "leaderboard"
+    },
+    {
+      "label": "Surge AI 评测总览（区分同发布方的其他条目）",
+      "url": "https://surgehq.ai/benchmarks",
+      "role": "definition"
+    },
+    {
+      "label": "公开样例数据卡与许可声明（固定版）",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md",
+      "role": "data"
+    },
+    {
+      "label": "公开样例仓固定快照",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/tree/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9",
+      "role": "access"
+    },
+    {
+      "label": "原始工作委托（固定版）",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "同题评分准则（固定版）",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/judge.toml",
+      "role": "data"
+    },
+    {
+      "label": "同题环境与资源配额（固定版）",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/task.toml",
+      "role": "data"
+    },
+    {
+      "label": "同题评分执行脚本（固定版）",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/test.sh",
+      "role": "code"
+    },
+    {
+      "label": "同题输入工作簿（外链，未下载）",
+      "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/environment/initial_workspace/ba82d0f6-ba56-4685-a2e4-d41391babcd8_20a161e1-bd9d-463b-b00e-46c56424d4d2_6f5d21ad-c003-4eb5-866f-f7cdc814d505.xlsx",
+      "role": "data"
+    },
+    {
+      "label": "同名前缀的近名数据集（Ginkgo Bioworks GDPx1，受控访问，非本评测）",
+      "url": "https://huggingface.co/datasets/ginkgo-datapoints/GDPx1",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "finance_investing_58a8dbb2",
+        "title": "物业租赁工作簿的空置单元租金预测",
+        "shortTitle": "空置单元租金预测",
+        "type": "record",
+        "prompt": "起始条件：一个真实的物业租赁工作簿，含物业、单元与租约多张工作表。\n\n题面是同事口吻的一句请求：要美国境内当前空置单元在 2026 年 6 月至 2027 年 5 月的预测毛租金，以及一批有折扣结束或可行使 break 的租约明细。\n\n交付：两张 Markdown 表，表头与列名由请求指定，金额取整到 1 美元，除表格外不写别的内容。\n验收：由 LLM judge 按同题 24 条二值准则逐条判定。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "以物业租赁工作簿为题：只用两张规定表头的表格回答，金额取整，不作解释。",
+          "input": "委托原文（instruction.md）首句：“Can you please extract for me the forecast gross rents for the currently vacant units located in the US from June 2026 to May 2027?” 工作簿在 environment/initial_workspace 的 .xlsx 附件里，本轮未下载。",
+          "output": "交付两张 Markdown 表。一张表头为 “Forecast rent for vacant space”，列是 Property Reference、Property \"Type\"、Forecast Rent Jun 2026 to May 2027；另一张表头为 “Forecast rent - tenancies with discounts ending or actionable breaks (excluding expiries)”，含六列。金额取整到 1 美元。",
+          "checks": [
+            "c001（原文）：The response should contain exactly two markdown tables.",
+            "c009（原文）：If the response includes any correctly identified property, then for each one it includes, it should correctly state the June 2026 through May 2027 forecast gross rent for vacant US space in the Forecast Rent Jun 2026 to May 2027 column in Table 1: P001  ($821,333), P002 ( $640,527).",
+            "c020（原文）：The response should avoid including breaks where the notice period for the break has passed at the forecast start date. For example P003-T039 should not be included as an actionable break row because the break option dated 2027-02-22 required 12 months’ notice, so the last notice date of  2026-02-22 had already been missed by the forecast start date, so it was not actionable during the forecast period."
+          ],
+          "sourceField": "instruction.md",
+          "excerpts": [
+            {
+              "label": "原始委托首句",
+              "text": "Can you please extract for me the forecast gross rents for the currently vacant units located in the US from June 2026 to May 2027?"
+            },
+            {
+              "label": "原始委托的输出与取整要求",
+              "text": "All monetary amounts should in both tables should be to the nearest 1 USD. Just the tables, data in the tables and headings - absolutely nothing else."
+            }
+          ],
+          "note": "只列同题 24 条准则中的 3 条（c001、c009、c020），不整份转载评分表；工作簿与参考成品均未收录。"
+        },
+        "explanation": "raw 保留该样例的 instruction.md 全文，以及 tests/judge.toml 的 [judge] 段和 c001、c009、c020 三条准则原文（其余 21 条未转载）。工作簿是 .xlsx 二进制，本站只给官方外链；没有该题的模型实跑结果，也未打开工作簿复核数值。",
+        "raw": {
+          "instruction.md": "Can you please extract for me the forecast gross rents for the currently vacant units located in the US from June 2026 to May 2027? Can you give me the amounts at the property level only (only include properties with Vacant units) in a markdown table headed \"Forecast rent for vacant space\" with three columns as follows:\n\n1. Property Reference\n2. Property \"Type\" \n3. Forecast Rent Jun 2026 to May 2027. \n\nCan you also extract me a list of any tenancies with a discounted rent over the next 3 years, March 1, 2026 to February 2029? Only include units where the initial rent discount ends or rent starts being charged during the forecast period or where the tenant can action a break during the forecast period. Don't include any units with expiry dates during this period. Please use a markdown table headed \"Forecast rent - tenancies with discounts ending or actionable breaks (excluding expiries)\" and these columns:\n\nTenancy reference, Demise, Discount end date, Live break date, Expected ERV at discount end date (annual for occupied space), Forecast net rent for 3 years from 1 March 2026  \n\nAll monetary amounts should in both tables should be to the nearest 1 USD. Just the tables, data in the tables and headings - absolutely nothing else.\n",
+          "tests/judge.toml": {
+            "judge": {
+              "judge": "opencode",
+              "model": "google/gemini-3.8-flash",
+              "prompt_template": "prompt_template.md",
+              "timeout": 2400
+            },
+            "criterion": [
+              {
+                "name": "c001",
+                "description": "The response should contain exactly two markdown tables.",
+                "type": "binary"
+              },
+              {
+                "name": "c009",
+                "description": "If the response includes any correctly identified property, then for each one it includes, it should correctly state the June 2026 through May 2027 forecast gross rent for vacant US space in the Forecast Rent Jun 2026 to May 2027 column in Table 1: P001  ($821,333), P002 ( $640,527).",
+                "type": "binary"
+              },
+              {
+                "name": "c020",
+                "description": "The response should avoid including breaks where the notice period for the break has passed at the forecast start date. For example P003-T039 should not be included as an actionable break row because the break option dated 2027-02-22 required 12 months’ notice, so the last notice date of  2026-02-22 had already been missed by the forecast start date, so it was not actionable during the forecast period.",
+                "type": "binary"
+              }
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/instruction.md",
+        "references": [
+          {
+            "label": "同题评分表",
+            "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/tests/judge.toml"
+          },
+          {
+            "label": "同题输入工作簿（外链）",
+            "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/tasks/finance_investing_58a8dbb2/environment/initial_workspace/ba82d0f6-ba56-4685-a2e4-d41391babcd8_20a161e1-bd9d-463b-b00e-46c56424d4d2_6f5d21ad-c003-4eb5-866f-f7cdc814d505.xlsx"
+          },
+          {
+            "label": "数据卡与许可声明",
+            "url": "https://huggingface.co/datasets/surgeai/GDP.xlsx/blob/7cdb5406bb7bd12cf73cbaaabb0edcf449a473e9/README.md"
+          },
+          {
+            "label": "官方榜单",
+            "url": "https://surgehq.ai/benchmarks/gdp-xlsx"
+          }
+        ],
+        "license": "Apache-2.0 · Surge AI GDP.xlsx 公开样例；本站未转载工作簿与评分模板。",
+        "licensePath": "licenses/surge-gdp-xlsx-apache-2-0.txt",
+        "split": "公开样例 3/70；finance_investing_58a8dbb2",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "id": "warc-bench",
+  "status": "published",
+  "order": 24250,
+  "name": "WARC-Bench",
+  "subtitle": "在网页存档回放里完成短程界面操作，由脚本判定状态",
+  "category": "agents",
+  "tags": [
+    "网页操作",
+    "WARC 存档",
+    "GUI 智能体",
+    "程序化判分"
+  ],
+  "publisher": "Uniphore",
+  "brandIds": [],
+  "year": 2025,
+  "releaseDate": "2025-10-10",
+  "version": "未编号版本 · main 180f07ce",
+  "kind": "original",
+  "aliases": [
+    "WARCBench",
+    "WARC Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在网页存档回放中评估短程界面操作，用脚本判定页面状态是否达标。",
+    "task": "任务给一句界面目标（如把侧栏滑块拖到 75%），智能体在回放的存档页面里操作，结束时由该任务的断言脚本核对页面状态。",
+    "sourceUrls": [
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md",
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json"
+    ]
+  },
+  "taskContract": {
+    "input": "一条短程界面目标，外加该任务绑定的 .wacz 存档与起始 URL；goal 文本通常只描述要达成的界面状态。",
+    "output": "浏览器内的实际操作（点击、输入、滚动、拖拽等），任务结束时页面状态须满足该任务的断言脚本。",
+    "environment": "WARC 回放服务器加 Playwright Chromium，经 BrowserGym 环境注册；每个任务对应一个存档文件。",
+    "sourceUrls": [
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md",
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方称 438 个任务；test 划分单列一份配置文件，仓库另附白名单标出可跑通的 test 任务。",
+    "disclosure": "complete",
+    "scale": [
+      "README 记 438 个任务，覆盖日期选择、容器滚动、下拉菜单、多步表单与动态内容等子任务类型。"
+    ],
+    "splits": [
+      "实验分别报 dev 与 test 两套成功率；test 由 benchmark_test_whitelist.json 指定可跑子集，该文件同时记录被排除任务及原因。"
+    ],
+    "fields": [
+      "每条任务含 task_id、env（存档路径 data_path、起始 URL）、goal 与 eval（eval_type 与 evaluate_scripts 断言脚本）。"
+    ],
+    "files": [
+      "benchmark*.json 任务配置，以及 environments/web_archives/<站点>/ 下的 .wacz 存档，例如 svelte_toolbar.wacz。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md",
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "仓库公开、无需登录即可读任务配置与断言脚本；本地跑测需自建 WARC 回放服务器并安装 Playwright Chromium。"
+    ],
+    "url": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json",
+    "sourceUrls": [
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json",
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT（README 的 License 节与 pyproject 的 license = {text = \"MIT\"}；作者字段记为 Orby Team）。",
+    "scope": "仅转载一条公开任务的配置字段（task_id、goal、起始 URL、存档路径与断言脚本）及 README 中与该机制相关的说明。",
+    "boundaries": [
+      "仓库在该 commit 下没有根 LICENSE 文件，MIT 只由 README 与 pyproject 声明；本站据此标注，不代作者补写版权行。",
+      "vendor 进仓库的三个 BrowserGym 文件按 Apache-2.0（Copyright 2024 ServiceNow）单独授权，不在 MIT 范围内。",
+      ".wacz 存档内的页面内容版权属于各原始站点，MIT 不覆盖其再发布。"
+    ],
+    "sourceUrls": [
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md",
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/pyproject.toml",
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/LICENSE-BrowserGym"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示一条公开 test 任务的原始配置：界面目标、起始 URL、存档路径与判分脚本。",
+    "url": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json",
+    "sourceUrls": [
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json",
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md"
+    ]
+  },
+  "metric": {
+    "name": "轨迹级成功率（程序化 reward）",
+    "description": "README 的模型表按轨迹级成功率给分，取 3 次运行平均；CUA 表示经模型自带的计算机操作脚手架运行。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "README 称 test 划分 192 题，而固定 commit 的 benchmark_test.json 有 201 条记录、200 个不同 task_id（online.206 出现两次）；本页不把任一口径当成唯一官方题数。",
+      "sourceUrls": [
+        "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md",
+        "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json"
+      ]
+    },
+    {
+      "text": "test 成绩只在白名单列出的任务上有效，README 说明白名单文件同时记录被排除的任务及原因。",
+      "sourceUrls": [
+        "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md"
+      ]
+    },
+    {
+      "text": "本站只读了任务配置字段，没有回放存档、没有跑任何模型，也没有验证断言脚本在浏览器中的实际行为。",
+      "sourceUrls": [
+        "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json",
+        "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "固定 commit 180f07ce 的 benchmark_test.json 由 raw.githubusercontent.com 实抓，129,101 字节；逐条键名一致，本条取第 1 条 online.0。",
+      "sourceUrls": [
+        "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json"
+      ]
+    },
+    {
+      "text": "取证笔记曾把顶层 environments/benchmark.json 当作路径，该路径在仓库中不存在；任务配置实际在 src/orby/subtask_benchmark/environments/ 下。",
+      "sourceUrls": [
+        "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "WARC-Bench 仓库说明（固定版）",
+      "url": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "MIT 许可声明（pyproject）",
+      "url": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/pyproject.toml",
+      "role": "code"
+    },
+    {
+      "label": "vendor 的 BrowserGym 许可",
+      "url": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/LICENSE-BrowserGym",
+      "role": "code"
+    },
+    {
+      "label": "test 划分任务配置（固定版）",
+      "url": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json",
+      "role": "data"
+    },
+    {
+      "label": "论文（arXiv 2510.09872）",
+      "url": "https://arxiv.org/abs/2510.09872",
+      "role": "paper"
+    },
+    {
+      "label": "项目站",
+      "url": "https://sanjari-orb.github.io/warc-bench/",
+      "role": "access"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "online.0",
+        "title": "把侧栏滑块拖到 75%",
+        "shortTitle": "滑块拖到 75%",
+        "type": "record",
+        "prompt": "一条短程界面操作目标：在回放的 Svelte 文档站里打开侧栏的 Button types 页面，把滑块拖到 75%，让页面状态显示为 x changed: 75。下方是该任务的原始配置：task_id、env、goal 与 eval 断言脚本。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "题目是一句界面目标，判分是一行 DOM 断言，中间没有 LLM 裁判。",
+          "input": "原始配置给出的起手信息：goal 为 \"Go to Button types in side menu and move slider to 75%\"，env.start_url 指向 https://docs.svar.dev/svelte/core/samples-toolbar/，env.data_path 指向存档 environments/web_archives/svelte/svelte_toolbar.wacz。",
+          "output": "交付是浏览器里的实际状态。页面把结果写到 div.demo-status 的文本上，最终文本需恰好等于 x changed: 75。",
+          "checks": [
+            "判分脚本原文（eval_type 为 js_matcher）：document.querySelector('div[class=\"demo-status\"]').textContent == 'x changed: 75'。",
+            "断言用相等比较，因此文本必须恰为 x changed: 75，多一个空格或换一种写法都不通过。"
+          ],
+          "sourceField": "/eval/evaluate_scripts/0/script",
+          "excerpts": [
+            {
+              "label": "断言脚本原文",
+              "text": "document.querySelector('div[class=\"demo-status\"]').textContent == 'x changed: 75'"
+            },
+            {
+              "label": "脚本里的比较条件",
+              "text": "textContent == 'x changed: 75'"
+            }
+          ],
+          "note": "折叠佐证只取脚本行的两段连续片段；同一任务的 goal 与 start_url 已写在上方输入里。本站没有回放该存档，也没有跑模型。"
+        },
+        "explanation": "raw 是 benchmark_test.json 第 1 条任务的完整字段（task_id、env、goal、eval），未改写；站内中文为解读。该文件有 201 条记录，本页只取其中 1 条，未展开其他任务。",
+        "raw": {
+          "task_id": "online.0",
+          "env": {
+            "data_path": "environments/web_archives/svelte/svelte_toolbar.wacz",
+            "start_url": "https://docs.svar.dev/svelte/core/samples-toolbar/"
+          },
+          "goal": "Go to Button types in side menu and move slider to 75%",
+          "eval": {
+            "eval_type": "js_matcher",
+            "evaluate_scripts": [
+              {
+                "script": "document.querySelector('div[class=\"demo-status\"]').textContent == 'x changed: 75'"
+              }
+            ]
+          }
+        },
+        "source": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/src/orby/subtask_benchmark/environments/benchmark_test.json",
+        "references": [
+          {
+            "label": "项目站",
+            "url": "https://sanjari-orb.github.io/warc-bench/"
+          },
+          {
+            "label": "README 的任务与白名单说明",
+            "url": "https://github.com/sanjari-orb/warc-bench/blob/180f07ce8d1f226f96ccd6e0a6df75d7ccd9b08e/README.md"
+          }
+        ],
+        "license": "MIT（README 与 pyproject 声明）；本站仅转载该任务配置字段并保留许可说明。",
+        "licensePath": "licenses/warc-bench-mit.txt",
+        "split": "test 划分 · online.0"
+      }
+    ]
+  }
+}

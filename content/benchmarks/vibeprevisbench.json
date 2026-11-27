@@ -1,0 +1,405 @@
+{
+  "id": "vibeprevisbench",
+  "status": "published",
+  "order": 24510,
+  "name": "VibePrevisBench",
+  "subtitle": "编码智能体用 Blender Python 把 brief 变成可执行的 4D 场景与代理视频",
+  "category": "coding",
+  "tags": [
+    "编码智能体",
+    "Blender",
+    "三维场景生成",
+    "视频渲染"
+  ],
+  "publisher": "KlingAI Research",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-11-11",
+  "version": "数据集快照 5c7500f · 仓库 ec8f542 · arXiv v2",
+  "kind": "original",
+  "aliases": [
+    "VibePrevisBench",
+    "Vibe Previs Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "让编码智能体写 Blender Python，把 brief 变成可重放的 4D 灰模场景与代理视频。",
+    "task": "给定剧本、照片、续接帧或参考视频之一，agent 写并运行 Blender Python，交出可独立重放的场景程序；评测重放后既查场景事实，也查渲染视频里看到的内容。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md",
+      "https://raw.githubusercontent.com/vibeprevisbench/vibeprevisbench/ec8f54240f3842bb5265ef7864620639dbe4e1e4/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "四类输入之一：94 个剧本任务、39 个照片任务、23 个续接任务、86 个参考视频任务。文字 brief 在 tasks/<ID>/prompt.txt，结构化规格与媒体哈希在 task.json。",
+    "output": "一个可独立运行的 Blender Python 程序，以及按 output_spec 渲染出的灰模代理视频（帧数、分辨率、机位与切点都由 brief 规定）。",
+    "environment": "Linux + Docker，Python 3.12、ffmpeg/ffprobe 5.1+、Blender 5.2.2；每任务 8 核 16 GB、无 GPU、4 小时预算，沙箱无外网、无外部素材、不能访问评分器。",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vibeprevisbench/vibeprevisbench/ec8f54240f3842bb5265ef7864620639dbe4e1e4/README.md",
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/task.json"
+    ]
+  },
+  "dataProfile": {
+    "summary": "242 个英文任务分四类输入，隐藏 GT 事实共 84,406 条；输入媒体不随包分发。",
+    "disclosure": "complete",
+    "scale": [
+      "242 个任务：text 94、image 39、continuation 23、video 86；覆盖 7 个场景域与 33 个地点。"
+    ],
+    "splits": [
+      "只有单一 test split（tasks/tasks.jsonl），任务 ID 稳定；212 个任务要求两个以上镜头，194 个含运动镜头，192 个出现两个以上人物。"
+    ],
+    "fields": [
+      "task.json 含 item_id、prompt、media（每项 path 与 sha256）、output_spec（fps、frame_count、preview/final resolution，照片任务另有 orbit 段）。"
+    ],
+    "files": [
+      "tasks/index.json、tasks/<ID>/{prompt.txt,task.json,entities.json}、rubrics/<ID>/{task.json,gt.json,gt_facts.json,checklist.json}、external.json、NOTICE.md、LICENSE、SHA256SUMS。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "任务 brief、task.json 与 rubrics 标注在 Hugging Face 上非 gated，可直接下载。",
+      "215 个第三方输入照片与视频不随仓库分发，需 vpbench.py fetch-media 从原站重建，部分 scan 数据集照片要授权本地副本。"
+    ],
+    "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md",
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/NOTICE.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "任务 brief、标注与清单为 CC BY-NC-SA 4.0（© KlingAI Research）。第三方输入媒体不适用该许可，权利留在原主。仓库代码另行 Apache-2.0。",
+    "scope": "仅转载 tasks/B250_135 的 prompt.txt 全文与 task.json 结构、rubrics/B250_135/task.json 的论文版帧数差异，以及 gt_facts.json 的维度计数与 3 个物体事实。",
+    "boundaries": [
+      "CC BY-NC-SA 的 NonCommercial 与 ShareAlike 同时适用：本页为非商业介绍，转载部分沿用同一许可并署名。",
+      "三张输入照片属 ScanNet++，按 ScanNet++ Terms of Use 仅限非商业研究与教学，须从官方站点获取；本站不转载这些图片或任何第三方视频。",
+      "官方明确要求 rubrics/ 对被测 agent 隐藏，本页只给维度计数与 3 个物体事实，不提供可整份喂给 agent 的标注。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md",
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/NOTICE.md",
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/resolve/5c7500f6e7ceec48ff77c7cc15f46517471f961a/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示 B250_135 的原始 brief、task.json 的 output_spec 真实取值，以及该题隐藏标注的维度计数与 3 个物体事实。",
+    "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/prompt.txt",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/prompt.txt",
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/task.json"
+    ]
+  },
+  "metric": {
+    "name": "Scene Check 与 Screen Check 均值",
+    "description": "Scene Check 用规则比对隐藏 GT 事实的九个维度（entities、layout、spaces、picture structure、routes、events、camera、cuts、physical validity），不调模型；Screen Check 让 VLM 只看已通过 Scene Check 的事实来判身份、动作、可见性与叙事。两者均 0–100 分，Overall 为二者均值，失败或缺失提交按 0 计入 242 任务平均。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/vibeprevisbench/vibeprevisbench/ec8f54240f3842bb5265ef7864620639dbe4e1e4/README.md",
+      "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "照片任务存在 release 与 paper 两套 brief：发布版 brief 多出 8 秒环绕（228 帧），评分仍钉在 rubrics/<ID>/task.json 的论文版（36 帧、只读照片帧），报成绩必须说明用哪一套。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md",
+        "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/rubrics/B250_135/task.json"
+      ]
+    },
+    {
+      "text": "第三方输入媒体不随数据集分发，需要从原站重建，个别 scan 数据集照片还需授权本地副本，因此第三方难以逐份复跑同题。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/NOTICE.md"
+      ]
+    },
+    {
+      "text": "参考视频含真实人物，官方限定只用于场景重建研究，不得用于识别或画像。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md"
+      ]
+    },
+    {
+      "text": "Screen Check 由 VLM 充当裁判（论文用 Gemini 4 Argon），Overall 含模型裁判成分；照片任务上它只评识别。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/vibeprevisbench/vibeprevisbench/ec8f54240f3842bb5265ef7864620639dbe4e1e4/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "2026-11-27 从 HF 快照取 prompt.txt（1,188 字节）、task.json（1,997 字节）、rubrics/B250_135/task.json（1,335 字节）、gt_facts.json（341,920 字节）与 README/NOTICE.md；仓库副本另取 README 与 LICENSE（Apache-2.0）。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/task.json",
+        "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/rubrics/B250_135/task.json"
+      ]
+    },
+    {
+      "text": "版本锚点：HF revision 5c7500f（lastModified 2026-11-19，无 tag）；仓库 main ec8f542；arXiv 2611.15789 的 v1 为 2026-11-11 18:02:07 UTC、v2 为 2026-11-18 18:56:21 UTC，仓库 VibePrevisBench.pdf 声明与 v2 同步。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2611.15789",
+        "https://raw.githubusercontent.com/vibeprevisbench/vibeprevisbench/ec8f54240f3842bb5265ef7864620639dbe4e1e4/README.md"
+      ]
+    },
+    {
+      "text": "未安装 harness、未运行任何 agent、未下载第三方照片或视频，也未复算分数；样例只保留该题 27 个物体事实中的 3 个。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/rubrics/B250_135/gt_facts.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方数据卡（固定快照）：任务分布、评分概括与许可",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/README.md",
+      "role": "data"
+    },
+    {
+      "label": "Hugging Face 数据集主页（非 gated）",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench",
+      "role": "access"
+    },
+    {
+      "label": "样例任务的原始 brief（固定快照）",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/prompt.txt",
+      "role": "data"
+    },
+    {
+      "label": "样例任务的结构化规格（固定快照）",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/task.json",
+      "role": "data"
+    },
+    {
+      "label": "评分器锚定的论文版 brief（固定快照，36 帧）",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/rubrics/B250_135/task.json",
+      "role": "data"
+    },
+    {
+      "label": "样例任务的隐藏 GT 事实（固定快照）",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/rubrics/B250_135/gt_facts.json",
+      "role": "data"
+    },
+    {
+      "label": "第三方素材来源与条款 NOTICE.md",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/NOTICE.md",
+      "role": "access"
+    },
+    {
+      "label": "数据集 LICENSE（CC BY-NC-SA 4.0 全文，固定快照）",
+      "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/resolve/5c7500f6e7ceec48ff77c7cc15f46517471f961a/LICENSE",
+      "role": "access"
+    },
+    {
+      "label": "官方仓库 README：评测流水线与协议（固定 commit ec8f542）",
+      "url": "https://raw.githubusercontent.com/vibeprevisbench/vibeprevisbench/ec8f54240f3842bb5265ef7864620639dbe4e1e4/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "论文 arXiv:2611.15789（v1 2026-11-11，v2 2026-11-18）",
+      "url": "https://arxiv.org/abs/2611.15789",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "vibeprevisbench-b250-135-photo-blockout",
+        "title": "B250_135：三张照片重建学生卧室的灰模与环绕镜头",
+        "shortTitle": "照片重建灰模",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "按 brief 把三张照片里的一间房重建成一个静态三维灰模：尺寸按真实世界，照片里出现的人不建进场景；每张照片配一台相机，机位、朝向与镜头都要对上原图，然后按规定的帧数与机位做一次环绕。交付是可独立重放的 Blender Python 程序。",
+        "walkthrough": {
+          "summary": "照片类任务 B250_135：输入是 media/photo1.jpg 到 photo3.jpg 三张 ScanNet++ 照片，交付是 228 帧 24 fps 的灰模代理视频加可重放的场景。",
+          "input": "prompt.txt 原文开头：Rebuild the place shown in the 3 attached photos as one static 3D proxy blockout, with one camera per photo.\n同一份 brief 的规格句：Output: 228 frames at 24 fps, 640x426. Photo k is seen through its camera for frames 12(k-1)+1 to 12k (photo 1: frames 1-12, photo 2: frames 13-24, ...), with a cut between photos.\n场景标签：Place (tag with tag_space): S01 Student bedroom / study。",
+          "output": "task.json.output_spec 的真实取值：fps=24、frame_count=228、preview_resolution=[640,426]、final_resolution=[640,426]；orbit.frames=[37,228] 内分两段——pan_360=[37,132] 与 top_down_orbit=[133,228]，eye_height_m=1.6、pan_hfov_deg=70、orbit_elevation_deg=55、hide_above_m=2.2。\n输入侧 task.json 逐张登记 media/photo1.jpg、photo2.jpg、photo3.jpg 及各自 sha256。",
+          "checks": [
+            "帧数契约来自 brief 原文：frames 37-228 (8 s) are an orbit of the same scene，其中 37-132 为 1.6 m 眼高的 360 度水平平移、70 度水平视角，133-228 为俯视 55 度绕场一周，高于 2.2 m 的物体要隐藏。",
+            "评分钉在论文版 brief：rubrics/B250_135/task.json 的 output_spec 只有 frame_count=36、没有 orbit 段，且原文写 Nothing moves；发布版 brief 多加的 8 秒环绕不参与评分。",
+            "隐藏 GT 该题登记 27 个 3D 元素、3 个关键帧；counts 里 L1 为 4,590 条、S1 为 555 条、screen_order 为 349 条。例：obj085 的 cls 为 curtain、space 为 S01、height 为 2.488 米、conf 为 1.0。",
+            "Scene Check 按九个维度逐条比对隐藏事实，不用模型；Screen Check 再让 VLM 只看已通过的事实判身份、动作、可见性与叙事。"
+          ],
+          "sourceField": "/prompt.txt",
+          "excerpts": [
+            {
+              "label": "brief 开头原文",
+              "text": "Rebuild the place shown in the 3 attached photos as one static 3D proxy blockout, with one camera per photo."
+            },
+            {
+              "label": "帧数与分辨率原文",
+              "text": "Output: 228 frames at 24 fps, 640x426."
+            }
+          ],
+          "note": "原始数据区保留 prompt.txt 全文、task.json 的媒体清单与 output_spec，以及 gt_facts.json 的维度计数与 3 个物体事实；该题另 24 个物体事实、1,519 条 L2 与 349 条 screen_order 事实均未转载。官方要求 rubrics/ 不得暴露给被测 agent。"
+        },
+        "explanation": "样例取自公开任务目录 tasks/B250_135 与对应 rubrics：prompt.txt 全文照录，task.json 只留 item_id、media 与 output_spec（其 prompt 字段与 prompt.txt 同文，未重复收录），gt_facts.json 只留 item/modality/revision/counts 与 elements 里 3 个物体（原文件该题含 27 个）；第三方照片本身未下载、未转载。论文版 brief 的 36 帧差异只写在导读与检查项里，未整份复制 rubrics/<ID>/task.json。",
+        "raw": {
+          "prompt.txt": "Rebuild the place shown in the 3 attached photos as one static 3D proxy blockout, with one camera per photo.\n\nThe photos were taken in one room by a camera moving through it, each from a different position. Build the place and everything in it once, at real-world size, and place one camera per photo so that its view matches the photo: position, direction and lens.\n\nOutput: 228 frames at 24 fps, 640x426. Photo k is seen through its camera for frames 12(k-1)+1 to 12k (photo 1: frames 1-12, photo 2: frames 13-24, ...), with a cut between photos. After the photo frames, with a cut, frames 37-228 (8 s) are an orbit of the same scene: frames 37-132 a full 360-degree horizontal pan from the centre of the place at 1.6 m eye height (level camera, 70-degree horizontal field of view), then frames 133-228 one full turn around the whole place looking down at 55 degrees, far enough that the whole place stays in view, with ceilings and anything higher than 2.2 m hidden. Nothing moves.\n\nPlace (tag with tag_space): S01 Student bedroom / study\n\nTag every other piece of the place (walls, floor, furniture, fixtures) by class. People in the photos are not part of the place: leave them out.\n",
+          "task.json": {
+            "item_id": "B250_135",
+            "media": [
+              {
+                "path": "media/photo1.jpg",
+                "sha256": "66a48137c9b4f2f4627a9530b23689021c5d7e603091aa3976fe335e1b7cf91a"
+              },
+              {
+                "path": "media/photo2.jpg",
+                "sha256": "bfa1562621b8deaf46159338343671ec7d8887e8cf3dde792ef2fe8a26f5f276"
+              },
+              {
+                "path": "media/photo3.jpg",
+                "sha256": "039b474678799ac429b0ef357761c9ebdbc1f5b5a193d7a5ad70e83c93e7671d"
+              }
+            ],
+            "output_spec": {
+              "fps": 24,
+              "frame_count": 228,
+              "preview_resolution": [
+                640,
+                426
+              ],
+              "final_resolution": [
+                640,
+                426
+              ],
+              "orbit": {
+                "frames": [
+                  37,
+                  228
+                ],
+                "pan_360": [
+                  37,
+                  132
+                ],
+                "top_down_orbit": [
+                  133,
+                  228
+                ],
+                "eye_height_m": 1.6,
+                "pan_hfov_deg": 70,
+                "orbit_elevation_deg": 55,
+                "hide_above_m": 2.2
+              }
+            }
+          },
+          "gt_facts.json": {
+            "item": "B250_135",
+            "modality": "image",
+            "revision": "r2",
+            "counts": {
+              "L1": 4590,
+              "L2": 1519,
+              "R1": 0,
+              "S1": 555,
+              "S2": 55,
+              "S3": 0,
+              "presence": 39,
+              "presence_neg": 12,
+              "position": 29,
+              "size": 39,
+              "facing": 0,
+              "screen_order": 349,
+              "depth_order": 127,
+              "frames": 3,
+              "elements3d": 27,
+              "entity_times": 0,
+              "occlusion_inventory": 17
+            },
+            "elements": [
+              {
+                "obj085": {
+                  "cls": "curtain",
+                  "labels": [
+                    "curtain"
+                  ],
+                  "space": "S01",
+                  "named": false,
+                  "conf": 1.0,
+                  "unc": 0.0,
+                  "long": 1.5586031271446947,
+                  "short": 0.281647598994816,
+                  "height": 2.4882015213370328,
+                  "size_known": true,
+                  "xy": [
+                    6.356501791584909,
+                    1.4656539921805636
+                  ],
+                  "w": 1.0
+                },
+                "obj078": {
+                  "cls": "bed",
+                  "labels": [
+                    "bed"
+                  ],
+                  "space": "S01",
+                  "named": false,
+                  "conf": 1.0,
+                  "unc": 0.0,
+                  "long": 2.1592688236045148,
+                  "short": 0.9632972487858324,
+                  "height": 0.530320815742016,
+                  "size_known": true,
+                  "xy": [
+                    3.659734260207561,
+                    0.6167696391407311
+                  ],
+                  "w": 1.0
+                },
+                "obj012": {
+                  "cls": "table",
+                  "labels": [
+                    "table"
+                  ],
+                  "space": "S01",
+                  "named": false,
+                  "conf": 1.0,
+                  "unc": 0.0,
+                  "long": 1.5311864680716079,
+                  "short": 0.9227043512491496,
+                  "height": 0.05893182754516588,
+                  "size_known": true,
+                  "xy": [
+                    5.523605752262766,
+                    2.6160172828038473
+                  ],
+                  "w": 1.0
+                }
+              }
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/prompt.txt",
+        "references": [
+          {
+            "label": "同题结构化规格 task.json",
+            "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/tasks/B250_135/task.json"
+          },
+          {
+            "label": "评分器锚定的论文版 brief（36 帧）",
+            "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/rubrics/B250_135/task.json"
+          },
+          {
+            "label": "同题隐藏 GT 事实",
+            "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/rubrics/B250_135/gt_facts.json"
+          },
+          {
+            "label": "第三方素材条款（该题三张照片属 ScanNet++）",
+            "url": "https://huggingface.co/datasets/Kling-Keye/vibeprevisbench/raw/5c7500f6e7ceec48ff77c7cc15f46517471f961a/NOTICE.md"
+          }
+        ],
+        "split": "tasks/B250_135 · 照片类（image）· 单一 test split",
+        "license": "CC BY-NC-SA 4.0（任务 brief 与标注，© KlingAI Research）；同题三张输入照片属 ScanNet++，本站未转载。",
+        "licensePath": "licenses/vibeprevisbench-cc-by-nc-sa-4-0.txt",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "id": "inferencebench",
+  "status": "published",
+  "order": 24540,
+  "name": "InferenceBench",
+  "subtitle": "在 2 小时预算内把 LLM 推理服务调快，只按最终提交的 server 计分",
+  "category": "agents",
+  "tags": [
+    "推理优化",
+    "智能体轨迹",
+    "服务性能",
+    "端到端交付"
+  ],
+  "publisher": "aisa-group",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-06",
+  "version": "仓库 commit 108ec747fab0bd92fd9de501f62157d074c50ed5（无 release tag）；轨迹数据集 revision ea68d73df80985099ef58b342e50c465214d6e7b，269 条 run",
+  "kind": "original",
+  "aliases": [
+    "Inference Bench",
+    "InferenceBench Agent Run Trajectories"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "考察 CLI agent 在固定预算内优化推理服务，只按最终提交的 server 计分。",
+    "task": "每个 agent 拿到固定基座 mistralai/Mistral-7B-Instruct-v0.3、一个场景目标、2 小时墙钟预算与一块 H100 80GB，需自主交付一个 OpenAI 兼容的推理服务；harness 随后在干净容器里重新执行 start_server.sh，按场景主指标计分，并检查答案质量与是否走了被禁止的捷径。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/README.md",
+      "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "任务是开放式优化，不是固定题面：沙箱里已备 start_server.sh、evaluate.py、timer.sh、scenario.json 等文件（见 trace 第 i=17 条的 ls 输出）。提示原文写明 “You are tasked with deploying and optimizing an OpenAI-compatible inference server for the base model mistralai/Mistral-7B-Instruct-v0.3.”，并给出 “* Scenario: InferenceBench Scenario A: Input heavy (prefill speed)”、“* Time Budget: 2 hours.”、“* GPU: NVIDIA H100 80GB HBM3 (1x)”。",
+    "output": "一个 OpenAI 兼容服务，必须暴露 'GET /v1/models' 与 'POST /v1/chat/completions' 并支持流式；Output Contract 要求服务最终跑在 'http://127.0.0.1:37419'，并把 ./start_server.sh 与用到的配置留在工作目录，供 harness 在评分阶段重启。",
+    "environment": "Apptainer 容器配合 HTCondor（condor_submit_bid）提交，Python 依赖锁在 containers/locks/，另备 vanilla PyTorch 参考容器；评分时会杀掉会话内的服务，在新容器里受控重启 start_server.sh，再跑质量闸门与 Claude 评委审计。",
+    "sourceUrls": [
+      "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md",
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "4 个场景协议与 269 条 agent 轨迹，全部是运行记录而非固定题库。",
+    "disclosure": "partial",
+    "scale": [
+      "269 条 run（run_0001 至 run_0269），覆盖 23 个 agent 配置与 3 种 CLI harness（claude、codex、opencode）。"
+    ],
+    "splits": [
+      "按场景 A/B/C/D 分别提交，每次提交给一个 development_seed:evaluation_seed 对（默认 21:1337、248:428、999:777），agent 在 development 种子的请求上调优、最终分按 evaluation 种子算。"
+    ],
+    "fields": [
+      "run_meta.json 给 anon_id、harness、agent、scenario、base_model、budget_hours、time_taken、invalid_or_reward_hack、judgements 与 n_trace_events；metrics.json 给 profiles.<负载档> 下 ttft、itl、tpot 的 p50/p90/p99 与生成、请求吞吐，另有 quality_check。"
+    ],
+    "files": [
+      "HF 仓每条 run 一个目录：runs/run_XXXX/{trace.jsonl, metrics.json, run_meta.json, logs/server.log, logs/eval.log}；根目录 manifest.json 汇总 269 条（56,314 字节，n_runs = 269）。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/README.md",
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/manifest.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "轨迹数据卡标 apache-2.0，269 条 run 可直接下载，无需登录或申请。",
+      "要自己复现需 Linux + Apptainer + H100 80GB（或 A100）与 HTCondor，并自备 agent 与 Claude 评委的凭据。"
+    ],
+    "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories",
+      "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0（仓库 LICENSE 与轨迹数据卡 license: apache-2.0，发布方 aisa-group）。",
+    "scope": "本站按 Apache-2.0 节选 run_0001 的 run_meta.json、metrics.json 与 trace.jsonl 前 18 条事件，并保留署名与固定 revision 链接。",
+    "boundaries": [
+      "不转载 logs/ 下的 server.log 与 eval.log，也不转载容器镜像或其他 run 的轨迹全文。",
+      "trace 含 agent 的思考文本与工具调用，仅作评测运行记录展示，不当作发布方的结论或建议。"
+    ],
+    "sourceUrls": [
+      "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/LICENSE",
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示一条完整 run 的元数据、最终指标与前 18 条轨迹事件，可直接看到任务提示、工具调用与计分字段。",
+    "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/trace.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/trace.jsonl",
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/run_meta.json",
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/metrics.json"
+    ]
+  },
+  "metric": {
+    "name": "相对 PyTorch 基线的加速比（按场景主指标）",
+    "description": "场景 A 比 TTFT、B 比 TPOT、C 比请求吞吐、D 取三者几何平均，统一报成相对 vanilla PyTorch 服务的加速倍数；未过质量闸门（MMLU-Pro 不低于 0.95× 基线）、服务不可达或低于基线的提交一律记 1.0×。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/README.md",
+      "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "没有固定题库：任务是开放式优化，成绩取决于自建集群、容器锁与调度器，跨实验室的数字不能直接比较。",
+      "sourceUrls": [
+        "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md"
+      ]
+    },
+    {
+      "text": "本例 run_0001 的质量闸门实际未过：quality_check.tau = 0.95，mmlu_pro 实测 0.24 对基线 0.255，ratio = 0.9411764705882353，pass = false，因此单看它的时延数字会高估这条提交的可用性。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/metrics.json"
+      ]
+    },
+    {
+      "text": "仓库没有 release tag，版本只能锚到 commit 108ec74；项目论文（OpenReview UNudgkp1Jp）的发表日期本轮未核到，releaseDate 只落到 2026-06 的数据集时间。",
+      "sourceUrls": [
+        "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md"
+      ]
+    },
+    {
+      "text": "本站只保留 run_0001 的前 18 条 trace 事件（原 446 条），没有重跑 harness，也没有这条 run 在榜单中的名次与相对基线的加速倍数（metrics.json 只有绝对时延）。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/trace.jsonl",
+        "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/metrics.json"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "trace.jsonl 原档 7,573,490 字节、446 条事件（run_meta.n_trace_events = 446）。本站用 HTTP Range 只取前 65,536 字节，并保留其中前 18 条完整行（i=0 至 i=17），行内空格与 JSON 转义原样不动；第 i=15 条是完整任务提示，其换行在 JSONL 里本就以 \\n 转义，本站未改写。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/trace.jsonl"
+      ]
+    },
+    {
+      "text": "run_meta.json（400 字节）与 metrics.json（1,193 字节）按固定 revision 整档读取，未经改写；manifest.json 的 n_runs = 269 与目录 run_0001 至 run_0269 一致。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/run_meta.json",
+        "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/manifest.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "轨迹数据卡（固定 revision）：任务、四场景与指标口径",
+      "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/README.md",
+      "role": "data"
+    },
+    {
+      "label": "轨迹数据集入口",
+      "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories",
+      "role": "access"
+    },
+    {
+      "label": "run_0001 的 trace.jsonl（固定 revision，7,573,490 字节）",
+      "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/trace.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "run_0001 的 run_meta.json（固定 revision）",
+      "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/run_meta.json",
+      "role": "data"
+    },
+    {
+      "label": "run_0001 的 metrics.json（固定 revision）",
+      "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/metrics.json",
+      "role": "data"
+    },
+    {
+      "label": "269 条 run 的汇总 manifest.json（固定 revision）",
+      "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/manifest.json",
+      "role": "data"
+    },
+    {
+      "label": "官方仓库说明（固定 commit）：环境、提交与基线",
+      "url": "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "仓库 Apache-2.0 许可（固定 commit）",
+      "url": "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "论文 PDF（OpenReview UNudgkp1Jp）",
+      "url": "https://openreview.net/pdf?id=UNudgkp1Jp",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "runs-run-0001-scenario-a",
+        "title": "run_0001：场景 A 输入重（gpt-5.2 / codex）",
+        "shortTitle": "run_0001 轨迹",
+        "type": "record",
+        "prompt": "在 2 小时预算内把一个 OpenAI 兼容的推理服务调到场景 A 的目标（压低长上下文请求的首 token 时延），把可复现的启动脚本留在工作目录；harness 之后会在干净容器里重启你的 server 并计分。本站展示该 run 的元数据、最终指标与轨迹开头。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "269 条轨迹里的 run_0001：harness = codex、agent = gpt-5.2、scenario = A，预算 2 小时、实际 02:05:00，轨迹共 446 条事件；本节只展示前 18 条。",
+          "input": "第 i=15 条 user 事件是完整任务提示，开头为 “Role: You are a R&D Scientist specializing in high-performance LLM inference.”，并写明 “* Scenario: InferenceBench Scenario A: Input heavy (prefill speed)”、“* Time Budget: 2 hours.”、“* GPU: NVIDIA H100 80GB HBM3 (1x)”；提示还要求 “Use ./start_server.sh as the canonical and only entrypoint to set up and run your server”。",
+          "output": "最终提交的 server 在该 run 的 metrics.json：burst 档 128 个请求全部成功（failure_rate 0.0），ttft p50 = 0.02888848353177309 秒、p90 = 0.033742117148358376、p99 = 0.03809809331898578；tpot p50 = 0.017155702229452077；生成吞吐 50.82080612945255 tokens/s、请求吞吐 0.4537233647094309 req/s。",
+          "checks": [
+            "质量闸门：quality_check.tau = 0.95，mmlu_pro 实测 0.24 对基线 0.255，ratio = 0.9411764705882353，pass = false。",
+            "完整性审计：invalid_or_reward_hack = false，judgements 为 \"no contamination detected\" 与 \"only allowed use detected\"。",
+            "预算与轨迹：trace 第 i=12 条记录 “[agent] TIMEOUT_HOURS=2 total_timeout_seconds=7200”；run_meta.time_taken = 02:05:00、n_trace_events = 446。",
+            "第一条工具调用是第 i=16 条的 bash 命令 “cd /home/user/task && ls -la”，其返回列出 start_server.sh、evaluate.py、timer.sh、scenario.json 与 benchmark.txt、mission.txt。"
+          ],
+          "sourceField": "trace.jsonl",
+          "excerpts": [
+            {
+              "label": "第 i=0 条初始化事件（原行）",
+              "text": "{\"i\": 0, \"role\": \"system\", \"type\": \"init\", \"model\": \"gpt-5.2\", \"meta\": {\"harness\": \"codex\"}}"
+            },
+            {
+              "label": "第 i=8 条：任务提示文件大小",
+              "text": "[agent] PROMPT_FILE=/home/user/prompt.txt bytes=3857 lines=45"
+            },
+            {
+              "label": "第 i=16 条：第一条工具调用（原行）",
+              "text": "{\"i\": 16, \"role\": \"assistant\", \"type\": \"tool_call\", \"tool_name\": \"bash\", \"tool_input\": {\"command\": \"/bin/bash -lc 'cd /home/user/task && ls -la'\"}}"
+            }
+          ],
+          "note": "trace.jsonl 原档 7,573,490 字节、446 条事件，此处只保留 i=0 至 i=17 共 18 条，行内空格原样保留；第 i=15 条任务提示的换行在 JSONL 中按 \\n 转义。本站没有重跑 harness。"
+        },
+        "explanation": "这是一条完整 run 的投影：run_meta.json 与 metrics.json 按原文件取值，trace.jsonl 只保留前 18 条完整行（i=0 至 i=17，原 446 条、7,573,490 字节），省略其余轨迹与 logs/ 下两份日志。metrics.json 只有绝对时延与吞吐，不含相对基线的倍数，因此本站未给出加速比，也没有该 run 的模型输出重放。",
+        "raw": {
+          "run_meta.json": {
+            "anon_id": "run_0001",
+            "harness": "codex",
+            "agent": "gpt-5.2",
+            "scenario": "A",
+            "base_model": "mistralai/Mistral-7B-Instruct-v0.3",
+            "budget_hours": 2.0,
+            "time_taken": "02:05:00",
+            "invalid_or_reward_hack": false,
+            "judgements": {
+              "contamination_judgement": "no contamination detected",
+              "disallowed_model_judgement": "only allowed use detected"
+            },
+            "n_trace_events": 446
+          },
+          "metrics.json": {
+            "scenario": "A",
+            "name": "Input heavy",
+            "mission": "Minimize time to first token for long-context prompts. Prioritize prefill speed while maintaining performance.",
+            "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+            "profiles": {
+              "burst": {
+                "request_count": 128,
+                "success_count": 128,
+                "failure_count": 0,
+                "empty_output_count": 0,
+                "failure_rate": 0.0,
+                "ttft": {
+                  "p50": 0.02888848353177309,
+                  "p90": 0.033742117148358376,
+                  "p99": 0.03809809331898578
+                },
+                "itl": {
+                  "p50": 0.016101378481835127,
+                  "p90": 0.056609608116559684,
+                  "p99": 0.25255364622455023
+                },
+                "tpot": {
+                  "p50": 0.017155702229452077,
+                  "p90": 0.019633016548490943,
+                  "p99": 0.020021537633667395
+                },
+                "generation_throughput_tokens_per_s": 50.82080612945255,
+                "request_throughput_req_per_s": 0.4537233647094309
+              }
+            },
+            "quality_check": {
+              "tau": 0.95,
+              "pass": false,
+              "datasets": {
+                "mmlu_pro": {
+                  "observed_accuracy": 0.24,
+                  "baseline_accuracy": 0.255,
+                  "ratio": 0.9411764705882353,
+                  "tau": 0.95,
+                  "pass": false
+                }
+              }
+            }
+          },
+          "trace.jsonl": "{\"i\": 0, \"role\": \"system\", \"type\": \"init\", \"model\": \"gpt-5.2\", \"meta\": {\"harness\": \"codex\"}}\n{\"i\": 1, \"role\": \"system\", \"type\": \"status\", \"text\": \"[runner] entered container for run 1\"}\n{\"i\": 2, \"role\": \"system\", \"type\": \"status\", \"text\": \"[runner] running cuda check (timeout=120s, strict=0)\"}\n{\"i\": 3, \"role\": \"system\", \"type\": \"status\", \"text\": \"[runner] cuda check passed\"}\n{\"i\": 4, \"role\": \"system\", \"type\": \"status\", \"text\": \"[runner] starting agent run 1\"}\n{\"i\": 5, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] <TS> starting codex (non-api) agent\"}\n{\"i\": 6, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] AGENT_CONFIG=gpt-5.2\"}\n{\"i\": 7, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] codex=/usr/bin/codex\"}\n{\"i\": 8, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] PROMPT_FILE=/home/user/prompt.txt bytes=3857 lines=45\"}\n{\"i\": 9, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] PROMPT_FIRST_LINE=Role: You are a R&D Scientist specializing in high-performance LLM inference.\"}\n{\"i\": 10, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] RESUME_PROMPT_FIRST_LINE=Continue where you left off and complete the task. Make sure you utilize the rest of the given time fully to achieve the best results you can. Do not ask for user feedback.\"}\n{\"i\": 11, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] RUN_INDEX=1\"}\n{\"i\": 12, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] TIMEOUT_HOURS=2 total_timeout_seconds=7200\"}\n{\"i\": 13, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] phase 1/2: starting codex exec run\"}\n{\"i\": 14, \"role\": \"system\", \"type\": \"status\", \"text\": \"[agent] exec: launching with remaining budget 7200s\"}\n{\"i\": 15, \"role\": \"user\", \"type\": \"text\", \"text\": \"Role: You are a R&D Scientist specializing in high-performance LLM inference.\\n\\n## 1. Objective\\n\\nYou are tasked with deploying and optimizing an OpenAI-compatible inference server for the base model mistralai/Mistral-7B-Instruct-v0.3. You must maximize performance metrics specific to the following scenario:\\n\\n* Scenario: InferenceBench Scenario A: Input heavy (prefill speed)\\n* Primary Objective: Minimize time to first token for long-context prompts. Prioritize prefill speed while maintaining performance.\\n* Time Budget: 2 hours.\\n* GPU: NVIDIA H100 80GB HBM3 (1x)\\n* RAM: 180 GB\\n\\n## 2. Execution Protocol \\nYou must organize your time to explore, implement, and verify improvements autonomously.\\n\\n- Use evaluate.py --json-output-file /home/user/task/metrics_preview.json as your primary feedback mechanism. Your goal is to continuously improve the scores reported by this script until the time is over.\\n- During development, run fast smoke tests first with evaluate.py --quick --json-output-file /home/user/task/metrics_preview.json; use full evaluation runs for final confirmation/comparison.\\n- You are expected to make changes, measure their impact, and iterate. Do not settle for a default configuration if optimization is possible.\\n- Use ./start_server.sh as the canonical and only entrypoint to set up and run your server; do not rely on any alternative launcher file or direct ad-hoc Python/module invocation for final operation.\\n- Use ./test_server.sh if you want to launch ./start_server.sh under the same supervised scaffold the harness uses for final evaluation.\\n- Ensure the server is fully functional and actively running, and verify end-to-end functionality by successfully running evaluate.py against it.\\n- Use ./timer.sh to track your remaining budget. Ensure you have a stable, optimized server running before time expires.\\n\\n## 3. Action Space & Tooling\\n\\nYou have full root and download/install access to the environment and the Internet. You are encouraged to explore the following (non-exhaustive) list of potential optimizations:\\n\\n- Inference Engine Selection (i.e. vLLM, SGLang, or highly optimized custom servers (Python/C++/Rust)); No matter the implementation, you must expose standard OpenAI endpoints ('GET /v1/models', 'POST /v1/chat/completions') with streaming support.\\n- System & Runtime Tuning (i.e. Tuning KV-cache allocation, PagedAttention block sizes, swap space, batch size limits, max sequences, continuous batching parameters, and chunked prefill settings, Tensor Parallelism (TP) size (if applicable), tokenizer parallelism, and NCCL configuration, etc)\\n- Quantization (i.e. GPTQ, AWQ, FP8, or bitsandbytes quantization); You must verify that quantization does not degrade model accuracy below acceptable benchmarks (monitor 'evaluate.py' results for quality drops/hallucinations).\\n- Kernel Optimization (i.e. usage of 'torch.compile', CUDA Graphs, AOT compilation, swapping attention backends (FlashAttention-2/3/4, Triton kernels) or custom CUDA extensions)\\n\\n## 4. Operational Constraints\\n\\n* Base Model: You must use mistralai/Mistral-7B-Instruct-v0.3. You may quantize it, but you strictly cannot switch to a different architecture or a pre-distilled \\\"tiny\\\" model.\\n* NOTE: Do not offload inference to external APIs or precache responses. Do not ask for user feedback.\\n\\n## 5. Output Contract\\n\\nAt the end of the session, the following state must be preserved in the current directory:\\n\\n1. The optimized server must be running at 'http://127.0.0.1:37419'.\\n2. All scripts ('./start_server.sh') and config files used to achieve the best result must remain in place.\\n3. Keep ./start_server.sh standalone and reproducible; the benchmark harness will supervise launch and teardown during final evaluation.\\n\\n## 6. Final Evaluation\\n\\nIMPORTANT: After your session ends, the evaluation harness will **kill your running server** and **re-execute `start_server.sh` in a fresh container via a supervised launcher** to produce the final score. Do not rely on state that only exists while your session is active, and do not rely on detached background daemons surviving launcher exit.\\n\\nReminder: A functional server is a prerequisite, not the final deliverable. Your success is measured by the delta between the initial baseline deployment and your final optimized metrics. Continuously drive up the evaluation scores until the clock runs out.\\nmcp startup: no servers\"}\n{\"i\": 16, \"role\": \"assistant\", \"type\": \"tool_call\", \"tool_name\": \"bash\", \"tool_input\": {\"command\": \"/bin/bash -lc 'cd /home/user/task && ls -la'\"}}\n{\"i\": 17, \"role\": \"tool\", \"type\": \"tool_result\", \"tool_output\": \"total 28\\ndrwxr-xr-x 3 user user  171 Apr  2 15:37 .\\ndrwxr-xr-x 6 user user 4096 Apr  2 15:37 ..\\ndrwxr-xr-x 3 user user   25 Apr  2 15:37 .local\\n-rw-r--r-- 1 user user   55 Apr  2 15:37 benchmark.txt\\n-rw-r--r-- 1 user user  343 Apr  2 15:37 evaluate.py\\n-rw-r--r-- 1 user user  110 Apr  2 15:37 mission.txt\\n-rw-r--r-- 1 user user  384 Apr  2 15:37 scenario.json\\n-rwxr-xr-x 1 user user 2084 Apr  2 15:37 start_server.sh\\n-rwxr-xr-x 1 user user  364 Apr  2 15:37 timer.sh\", \"meta\": {\"status\": \"succeeded\"}}"
+        },
+        "source": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/trace.jsonl",
+        "split": "runs/run_0001（269 条 run 之一）；场景 A",
+        "license": "Apache-2.0 · aisa-group InferenceBench-Trajectories（revision ea68d73）。",
+        "licensePath": "licenses/aisa-inferencebench-apache-2-0.txt",
+        "references": [
+          {
+            "label": "同 run 的 run_meta.json",
+            "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/run_meta.json"
+          },
+          {
+            "label": "同 run 的 metrics.json",
+            "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/runs/run_0001/metrics.json"
+          },
+          {
+            "label": "269 条 run 汇总 manifest.json",
+            "url": "https://huggingface.co/datasets/aisa-group/InferenceBench-Trajectories/blob/ea68d73df80985099ef58b342e50c465214d6e7b/manifest.json"
+          },
+          {
+            "label": "官方仓库说明",
+            "url": "https://github.com/aisa-group/InferenceBench/blob/108ec747fab0bd92fd9de501f62157d074c50ed5/README.md"
+          }
+        ]
+      }
+    ]
+  }
+}

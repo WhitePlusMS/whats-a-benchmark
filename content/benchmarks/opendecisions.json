@@ -1,0 +1,307 @@
+{
+  "id": "opendecisions",
+  "status": "published",
+  "order": 24550,
+  "name": "OpenDecisions",
+  "subtitle": "给路由与业务判断逐项给出概率，按分题型校准与机会校正准确率打分",
+  "category": "reasoning",
+  "tags": [
+    "决策模型",
+    "概率输出",
+    "校准",
+    "模型路由",
+    "任务分类"
+  ],
+  "publisher": "Jonathan Geuter、Andrew Cheng、David Alvarez-Melis",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-15",
+  "version": "1.0.1（opendecisions.jsonl 固定 revision ff0b640）",
+  "kind": "original",
+  "aliases": [
+    "Open Decisions",
+    "OpenDecisions 决策验证集"
+  ],
+  "researchStatus": "pass",
+  "officialDefinition": {
+    "summary": "给一道决策题按选项输出概率，同时考分题型校准与机会校正准确率。",
+    "task": "每题给出 state（输入）、typed question（题型、指令与各选项含义），决策模型需为每个选项返回一个概率，概率之和须为 1。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions"
+    ]
+  },
+  "taskContract": {
+    "input": "一行一题的 JSON 对象：state 为输入文本或 JSON，question 含 type（choice、noul 即是/否、score 即有序档位）、instructions 与 criteria。",
+    "output": "一个 JSONL 预测文件，每行 {\"id\": …, \"probs\": {…}}，choice 给每个 label 一个概率、是/否给 yes 与 no、score 给每个档位一个概率。",
+    "environment": "纯本地判分：score.py 只用 Python 标准库，读取同目录 opendecisions.jsonl；predict_letters.py 另需 torch、transformers 与 accelerate 才能自己跑推断。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/score.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "2,352 道 Jev 式决策题，构造成分对齐 JevBench v1.6 的题型、难度档、题族与语言，但不含 JevBench 的题。",
+    "disclosure": "complete",
+    "scale": [
+      "2,352 题：choice 1,178、yes/no 586、score 588；难度 easy 443、standard 407、judge 581、hard 921。",
+      "语言以英语 1,842 题为主，另有 510 题使用其余 21 种语言或混合语言输入。",
+      "题族最大者为 llm_router 694、multilingual 422、fairness 236、usecase 213、jaggedness 162。"
+    ],
+    "splits": [
+      "只有一个 test split：1.0.1 起把原 train 命名为 test，全部 2,352 题公开，没有隐藏留出集。"
+    ],
+    "fields": [
+      "state、question（type、instructions、criteria）、labels、expected 之外，还有 family、tier、language、use_case、topic、group 等元数据。",
+      "trap_answer 记录作者围绕它构造题目的诱惑性错误答案，129 条 calibration 题另有 target_probs 给出状态决定的精确概率。",
+      "provenance 内逐条记来源与许可，panel 给出三个标注模型各自的答案、每选项平均概率与一致程度。"
+    ],
+    "files": [
+      "opendecisions.jsonl（4,931,936 字节，2,352 行）、score.py（11,463 字节）与 predict_letters.py 同仓发布。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Hugging Face 直取，无需登录或接受条款；数据卡明示请不要用于训练。",
+      "自备被测模型产出预测 JSONL；概率须为有限非负且和落在 1 的 0.01 容差内，缺预测按答错计。"
+    ],
+    "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "数据 CC BY-SA 4.0（© 2026 Jonathan Geuter、Andrew Cheng、David Alvarez-Melis）；score.py 与 predict_letters.py 为 MIT。",
+    "scope": "仅节选 opendecisions.jsonl 首行这一条题目的原文对象，以及 score.py 的公开计分口径。",
+    "boundaries": [
+      "ShareAlike：本站对该题原文的引用同样按 CC BY-SA 4.0 提供，转载或改编须署名、注明改动并沿用同一许可。",
+      "310 条取自真实请求的题目沿用各自源许可（Chatbot Arena 55k 为 Apache-2.0、Dolly 为 CC BY-SA 3.0、GSM8K 与 MATH-500 为 MIT），由各条 provenance 逐条写明；示例所选题目不属这一类。",
+      "数据卡要求这些题目不得用于训练，本站只做展示性节选，不提供可训练的完整题库副本。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/opendecisions.jsonl",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/score.py"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示 opendecisions.jsonl 首行原题、四个选项含义、参考答案与诱饵答案，以及 score.py 对 choice 题的口径。",
+    "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/opendecisions.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/opendecisions.jsonl",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/score.py",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md"
+    ]
+  },
+  "metric": {
+    "name": "Capability（Intelligence 与 Calibration 的均值）",
+    "description": "Intelligence 为扣掉猜对概率后的准确率，按题型分别算再按难度档加权（easy 0.1、standard 0.2、judge 0.3、hard 0.4），三种题型等权；Calibration 为分题型的期望校准误差得分；两者均值即 Capability。是/否题以 P(yes) ≥ 0.5 判为 yes。129 条 calibration 题另报预测与真值分布的总变差距离，不计入 Capability。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/score.py",
+      "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "78% 的题目是英语，且所有输入都很短（最长约 10,000 字符），这套题不测长输入。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md"
+      ]
+    },
+    {
+      "text": "作者自述撰写题可能与真实请求风格不同、部分标注可能有误；相对 JevBench v1.6，easy 与 standard 档更易、hard 档更难。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md"
+      ]
+    },
+    {
+      "text": "公开榜分数按各系统作者自己的服务方式评测（权重、服务代码、提示与温度，Jev 走 API），因此与论文表格的均值口径不同。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md",
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions"
+      ]
+    },
+    {
+      "text": "榜单说明 2 分之内的差距不具统计显著性，不能据此排出更细的名次。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "2026-11-27 实抓 opendecisions.jsonl（4,931,936 字节）并取首行作样例；未下载其余文件之外的任何资料，也未运行 score.py 或任何模型。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/opendecisions.jsonl"
+      ]
+    },
+    {
+      "text": "示例 raw 是该行 JSON 的完整对象，未删字段、未改名，也未把中文解读写回原始字段；节选与原文逐字核对过。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/opendecisions.jsonl"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "数据卡与格式、榜单说明（固定 revision）",
+      "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "论文 Releasing the Inner Jev",
+      "url": "https://arxiv.org/abs/2610.17205",
+      "role": "paper"
+    },
+    {
+      "label": "数据集页面",
+      "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions",
+      "role": "access"
+    },
+    {
+      "label": "原始题目文件（固定 revision）",
+      "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/opendecisions.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "官方评分脚本（固定 revision）",
+      "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/score.py",
+      "role": "code"
+    }
+  ],
+  "related": [
+    {
+      "id": "jev-decision-index",
+      "label": "Jev Decision Index · 公开复现榜",
+      "detail": "站内既有条目是社区维护的复现榜单，本条是独立发布的 2,352 题验证集与自带评分脚本。两者同属 Jev 式决策模型生态，但制品与分数口径不同，成绩不可互换。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md",
+        "https://huggingface.co/datasets/jgeuter/OpenDecisions"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "jb16-llm_router-9a24706d03",
+        "title": "把三条报销行整理成 JSON 的请求该路由到哪一类任务",
+        "shortTitle": "任务类型路由",
+        "type": "record",
+        "prompt": "这是数据集的第 1 行题。模型读到三条差旅报销行，要求判断这段请求属于哪一类路由任务，并为 chitchat、creative_writing、extraction_json、data_analysis 四个类别各给出一个概率，四个概率之和为 1。只挑一个类别或只输出标签都不合要求。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "正确答案不是「数据分析」而是「结构化抽取」。作者把 data_analysis 设成诱饵，正是为了让只凭关键词猜的模型掉进去。",
+          "input": "state 原文是三条报销行加一句加工要求：Here are three expense lines from my trip. Turn them into a JSON list with fields merchant, date, amount_usd. 之后列出 Blue Cafe 14.50 美元、MetroCab 23.00 美元、Hotel Lira 189.90 美元（下文 excerpt 为逐字片段）。question.instructions 原文：Classify the task type of this request for routing. 四个选项含义为：chitchat 指寒暄无任务，creative_writing 指原创文本，extraction_json 指把已给细节抽成结构化 JSON，data_analysis 指对数据计算统计或趋势。",
+          "output": "提交的是每行一题的预测文件。数据卡给出的格式示例为 {\"id\": \"jb16-usecase-842d6d23b1\", \"probs\": {\"lower_volume\": 0.02, \"same_volume\": 0.05, \"higher_volume\": 0.9, \"not_mentioned\": 0.03}}，该示例取自另一道题，本站没有代答本题。本题参考答案 expected 为 extraction_json，trap_answer 为 data_analysis；随题发布的三个标注模型答案全部是 extraction_json，panel.mean 为 [0.0001, 0.0, 0.9999, 0.0]。",
+          "checks": [
+            "score.py 对 choice 题的口径原文：choice: 100 (acc - c) / (1 - c), c = mean of 1 / (number of options)，即先扣掉随机猜对的概率再算准确率。",
+            "数据卡对提交的要求原文：The probabilities of an item must sum to 1. Items without a prediction count as wrong.",
+            "本题 tier 为 easy，按 score.py 的 TIER_WEIGHTS，这一档权重只有 0.1，单题答对能贡献的分数有限。"
+          ],
+          "sourceField": "state",
+          "excerpts": [
+            {
+              "label": "state 原文（第 1 行）",
+              "text": "Here are three expense lines from my trip. Turn them into a JSON list with fields merchant, date, amount_usd."
+            },
+            {
+              "label": "state 原文（三条报销行）",
+              "text": "- Blue Cafe, 2024-03-02, $14.50\n- MetroCab, 2024-03-02, $23.00\n- Hotel Lira, 2024-03-04, $189.90"
+            }
+          ],
+          "note": "本站没有跑任何模型，也没有跑 score.py；panel 是作者随题发布的标注模型投票与其平均概率原值，不是本站实测。"
+        },
+        "explanation": "raw 是 opendecisions.jsonl 首行的完整 JSON 对象，保留 state、question.criteria、labels、expected、trap_answer、provenance、panel 等全部原字段与嵌套，未删减也未改写。excerpts 取自 state 的连续原文。",
+        "raw": {
+          "id": "jb16-llm_router-9a24706d03",
+          "family": "llm_router",
+          "state": "Here are three expense lines from my trip. Turn them into a JSON list with fields merchant, date, amount_usd.\n- Blue Cafe, 2024-03-02, $14.50\n- MetroCab, 2024-03-02, $23.00\n- Hotel Lira, 2024-03-04, $189.90",
+          "question": {
+            "type": "choice",
+            "instructions": "Classify the task type of this request for routing.",
+            "criteria": {
+              "chitchat": "Casual small talk, no task.",
+              "creative_writing": "Compose original text.",
+              "extraction_json": "Pull given details into a structured JSON shape.",
+              "data_analysis": "Compute statistics or trends over the data."
+            }
+          },
+          "labels": [
+            "chitchat",
+            "creative_writing",
+            "extraction_json",
+            "data_analysis"
+          ],
+          "expected": "extraction_json",
+          "trap_answer": "data_analysis",
+          "group": null,
+          "provenance": {
+            "source": "OpenDecisions, written by an LLM author, confirmed by the labeler panel",
+            "license": "CC BY-SA 4.0",
+            "rationale": "The user gives explicit lines and asks for them as JSON with named fields; this is structured extraction, not computing any statistic over them."
+          },
+          "tier": "easy",
+          "language": "en",
+          "use_case": "model_routing",
+          "topic": "finance_commerce",
+          "label_source": "author+panel",
+          "panel": {
+            "models": [
+              "glm47",
+              "gptoss",
+              "q38"
+            ],
+            "answers": {
+              "glm47": "extraction_json",
+              "gptoss": "extraction_json",
+              "q38": "extraction_json"
+            },
+            "mean": [
+              0.0001,
+              0,
+              0.9999,
+              0
+            ],
+            "status": "unanimous"
+          },
+          "target_probs": null
+        },
+        "source": "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/opendecisions.jsonl",
+        "references": [
+          {
+            "label": "同仓官方评分脚本",
+            "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/score.py"
+          },
+          {
+            "label": "数据卡（规模、字段、榜单、许可）",
+            "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions/blob/ff0b640be2b72c7d06d9d656a34ad6eed79ec7fe/README.md"
+          },
+          {
+            "label": "数据集页面",
+            "url": "https://huggingface.co/datasets/jgeuter/OpenDecisions"
+          },
+          {
+            "label": "论文",
+            "url": "https://arxiv.org/abs/2610.17205"
+          }
+        ],
+        "license": "CC BY-SA 4.0，© 2026 Jonathan Geuter、Andrew Cheng、David Alvarez-Melis；本站节选该题原文并保持同一许可。",
+        "licensePath": "licenses/opendecisions-cc-by-sa-4-0.txt",
+        "split": "官方 test split 第 1 行（2,352 题之一）",
+        "excerpt": true
+      }
+    ]
+  }
+}

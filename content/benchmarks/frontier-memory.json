@@ -1,0 +1,240 @@
+{
+  "id": "frontier-memory",
+  "status": "published",
+  "order": 24260,
+  "name": "FrontierMemory",
+  "subtitle": "用下游任务是否改善来衡量智能体记忆，而不是做回忆测验",
+  "category": "context",
+  "tags": [
+    "长期记忆",
+    "智能体记忆",
+    "持续学习"
+  ],
+  "publisher": "Letta",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10",
+  "version": "语料 v1.1 · 任务包 v1.2（博客发布为 FrontierMemory 1.0）",
+  "kind": "original",
+  "aliases": [
+    "Frontier Memory"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用记忆生成后下游任务是否跑通，衡量智能体从过往轨迹学习的能力。",
+    "task": "先由一个记忆系统读固定语料写出记忆目录，再让任务智能体带着这份记忆完成 15 个依赖记忆的任务，按各任务自带 verifier 的严格通过率计分，并另跑一次无记忆对照。",
+    "sourceUrls": [
+      "https://www.frontiermemory.com/blog/v1/",
+      "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "固定语料（版本化的轨迹集）与 15 个目标任务；记忆生成阶段只允许访问记忆模型的 API。",
+    "output": "一个记忆目录，随后是任务智能体在各任务上的交付物，是否通过由任务自带的 verifier 判定。",
+    "environment": "Harbor 任务，可用 Docker 或 Modal；记忆生成限 6 小时，期间禁止网页浏览。",
+    "sourceUrls": [
+      "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "15 个依赖记忆的任务，改编自 DeepSWE、SkillsBench、AutomationBench、APEX-Agents 与 EnterpriseOps-Gym。",
+    "disclosure": "partial",
+    "scale": [
+      "15 个任务；语料规模有两处口径，README 记 800 条轨迹，2026-10-29 的 changelog 记 v1.1 为 750 条。"
+    ],
+    "splits": [
+      "v1.0 发布、v1.1 语料更新、v1.2 任务包三代并存；changelog 记更新到 v1.1 时所有模型与 harness 全部重跑。"
+    ],
+    "fields": [
+      "单题页给出题名、来源基准、任务描述、记忆必要性说明、发布层级策略示例、源轨迹清单与新增 verifier 说明。"
+    ],
+    "files": [
+      "仓库提供 generate-memory、run-tasks、score 与 bundle 命令，任务包在 Harbor Hub 的 letta-ai/frontier-memory@v1.2。"
+    ],
+    "sourceUrls": [
+      "https://www.frontiermemory.com/blog/v1/",
+      "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md",
+      "https://www.frontiermemory.com/changelog/"
+    ]
+  },
+  "dataAccess": {
+    "status": "gated",
+    "requirements": [
+      "语料是 gated 的 HF 数据集，需接受条款并用 hf auth login 登录后才能下载；任务包从 Harbor Hub 拉取。"
+    ],
+    "url": "https://huggingface.co/datasets/letta-ai/frontier-memory-corpus",
+    "sourceUrls": [
+      "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md",
+      "https://huggingface.co/datasets/letta-ai/frontier-memory-corpus"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "代码为 Apache-2.0（© 2026 Letta）；语料在 HF 标 cc-by-4.0，但为 gated，需接受条款。",
+    "scope": "仅节选公开单题页的文案（题名、任务描述、记忆必要性说明、策略示例、附加 verifier）作解读，不转载语料或轨迹。",
+    "boundaries": [
+      "语料与轨迹属 gated 数据，本站不展示、不下载，也不据页面文案推断其字段结构。",
+      "任务页文案由 Letta 发布且未声明再发布许可，本站按短引用处理并逐处标注出处。",
+      "任务改编自其他基准，各基准许可见仓库 THIRD_PARTY_NOTICES.md，不在 Apache-2.0 范围内。"
+    ],
+    "sourceUrls": [
+      "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md",
+      "https://www.frontiermemory.com/blog/v1/",
+      "https://www.frontiermemory.com/tasks/awilix-release-tier-explicit/"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示公开单题页的原题说明、记忆必要性论证与附加 verifier 要求，gated 语料不展示。",
+    "url": "https://www.frontiermemory.com/tasks/awilix-release-tier-explicit/",
+    "sourceUrls": [
+      "https://www.frontiermemory.com/tasks/awilix-release-tier-explicit/",
+      "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md"
+    ]
+  },
+  "metric": {
+    "name": "严格通过率（3 次运行均值）",
+    "description": "每个任务按自带 verifier 严格判通过与否，榜单分数取 3 次独立运行的平均，并另跑无记忆对照。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.frontiermemory.com/blog/v1/",
+      "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "单题页上的分数是某组记忆模型与任务模型在这一题上的表现（例如 Letta 配 Gemini 4 Argon 与 Opus 5.5 时为 80.0%），不代表模型整体能力。",
+      "sourceUrls": [
+        "https://www.frontiermemory.com/tasks/awilix-release-tier-explicit/"
+      ]
+    },
+    {
+      "text": "语料 gated，本站无法核验轨迹内容与 gold memory，因此不判断该题难度，也不断言记忆确有必要。",
+      "sourceUrls": [
+        "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md",
+        "https://huggingface.co/datasets/letta-ai/frontier-memory-corpus"
+      ]
+    },
+    {
+      "text": "1.0 博客、v1.1 语料与 v1.2 任务包是三代口径，跨代分数不可直接比较。",
+      "sourceUrls": [
+        "https://www.frontiermemory.com/changelog/",
+        "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md",
+        "https://www.frontiermemory.com/blog/v1/"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "单题页、博客与 changelog 均于 2026-11-27 实抓；单题页 HTML 410,850 字节，去掉脚本与标签后取正文节选。",
+      "sourceUrls": [
+        "https://www.frontiermemory.com/tasks/awilix-release-tier-explicit/"
+      ]
+    },
+    {
+      "text": "语料本体未下载：HF 元数据的 gated 为 auto，需接受条款后才能读取，故本页不含任何轨迹或记忆样本。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/letta-ai/frontier-memory-corpus"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "FrontierMemory 1.0 研究博客",
+      "url": "https://www.frontiermemory.com/blog/v1/",
+      "role": "release"
+    },
+    {
+      "label": "官方仓库说明（固定版）",
+      "url": "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "变更日志（语料 v1.1）",
+      "url": "https://www.frontiermemory.com/changelog/",
+      "role": "release"
+    },
+    {
+      "label": "单题页（Awilix Release Tier）",
+      "url": "https://www.frontiermemory.com/tasks/awilix-release-tier-explicit/",
+      "role": "data"
+    },
+    {
+      "label": "15 题清单",
+      "url": "https://www.frontiermemory.com/tasks/",
+      "role": "access"
+    },
+    {
+      "label": "gated 语料数据集",
+      "url": "https://huggingface.co/datasets/letta-ai/frontier-memory-corpus",
+      "role": "data"
+    },
+    {
+      "label": "Harbor Hub 任务包 v1.2",
+      "url": "https://hub.harborframework.com/datasets/letta-ai/frontier-memory",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "awilix-release-tier-explicit",
+        "title": "Awilix 发布层级与版本号：从邻近任务归纳策略",
+        "shortTitle": "Awilix 版本号策略",
+        "type": "record",
+        "prompt": "分两个阶段：先让记忆系统读一批历史轨迹写出记忆，再让任务智能体带着记忆做这道题。题目要求在 Awilix 里加依赖感知的异步初始化，并按请求声明的内部发布层级决定版本号怎么涨；层级到版本号的对应关系没有直接给出，需要从更早的任务里归纳。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "这道题考的不是回忆事实，而是把先前任务里的隐性约定迁移到新任务上。",
+          "input": "记忆必要性说明原文：\"Earlier tasks establish parts of the tier-to-version policy without showing the requested tier directly. Memory must synthesize neighboring examples so the agent makes the right version change alongside the initialization work.\" 策略示例原文是 \"Policy: Internal release tiers 6–8 correspond to a minor bump.\"，而一条源轨迹里的请求为 \"Can you add an error-accumulating Validated container to returns? Also, this one's internal release tier is 6.\"",
+          "output": "在 Awilix 仓库里完成依赖感知的异步初始化改造，并把根包版本号改到与请求所述发布层级一致的版本。",
+          "checks": [
+            "任务描述原文：\"Add dependency-aware asynchronous initialization to Awilix. Our adaptation also adds a verifier check requiring the package version to be updated based on an internal release tier stated in the request.\"",
+            "附加校验原文：\"Checks that the root Awilix package version reflects the release-tier policy, in addition to the original initialization tests.\"",
+            "也就是说，除原有初始化测试外，还要多过一项「根包版本号是否体现发布层级策略」的检查。"
+          ],
+          "excerpts": [
+            {
+              "label": "题目描述原文",
+              "text": "Add async initialization to Awilix, where the version bump is determined by applying a policy learned from earlier tasks to a stated release tier."
+            },
+            {
+              "label": "发布层级策略示例原文",
+              "text": "Policy: Internal release tiers 6–8 correspond to a minor bump."
+            },
+            {
+              "label": "附加 verifier 原文",
+              "text": "Checks that the root Awilix package version reflects the release-tier policy, in addition to the original initialization tests."
+            }
+          ],
+          "note": "页面列出的 5 条源轨迹均为 Codex + SWE-Interact 与 GPT-5.6 Sol，reward 依次为 0、0、0、1、0。本站没有跑记忆生成，也没有跑该任务。"
+        },
+        "explanation": "raw 是公开单题页去掉导航、成绩表与页脚后的正文节选（题名、任务描述、记忆必要性、策略示例、任务请求与附加 verifier），保留英文原文；不含任何 gated 语料、轨迹内容或 gold memory。",
+        "raw": "Awilix Release Tier (Explicit)\nAdd async initialization to Awilix, where the version bump is determined by applying a policy learned from earlier tasks to a stated release tier.\nAdd dependency-aware asynchronous initialization to Awilix. Our adaptation also adds a verifier check requiring the package version to be updated based on an internal release tier stated in the request.\nWhy is memory necessary?\nEarlier tasks establish parts of the tier-to-version policy without showing the requested tier directly. Memory must synthesize neighboring examples so the agent makes the right version change alongside the initialization work.\nRelease-tier policy example\nPolicy: Internal release tiers 6–8 correspond to a minor bump.\nTask request\nCan you add an error-accumulating Validated container to returns? Also, this one's internal release tier is 6.\nLater feedback\nok, bump the minor version for this one. confirm the resulting version after the change.\nAdditional verifier\nChecks that the root Awilix package version reflects the release-tier policy, in addition to the original initialization tests.",
+        "source": "https://www.frontiermemory.com/tasks/awilix-release-tier-explicit/",
+        "references": [
+          {
+            "label": "15 题清单",
+            "url": "https://www.frontiermemory.com/tasks/"
+          },
+          {
+            "label": "FrontierMemory 1.0 研究博客",
+            "url": "https://www.frontiermemory.com/blog/v1/"
+          },
+          {
+            "label": "官方仓库说明",
+            "url": "https://github.com/letta-ai/frontiermemory/blob/ddc878a7ae528660ba6098650e76f83a525ac453/README.md"
+          }
+        ],
+        "license": "Letta 公开任务页文案的短引用；底层语料为 cc-by-4.0 但 gated，未转载。",
+        "licensePath": "licenses/letta-frontiermemory-license-notice.txt",
+        "split": "15 题之一 · 改编自 DeepSWE"
+      }
+    ]
+  }
+}

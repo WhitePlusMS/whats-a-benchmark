@@ -1,0 +1,260 @@
+{
+  "id": "humanitys-sixth-sense",
+  "status": "published",
+  "order": 24080,
+  "name": "Humanity's Sixth Sense",
+  "subtitle": "凭一眼图片或一段短视频作直觉推理，评分标准全中才算答对",
+  "category": "multimodal",
+  "tags": [
+    "视觉推理",
+    "视频理解",
+    "图像问答",
+    "评分标准",
+    "空间推理"
+  ],
+  "publisher": "Scale AI（与 Elorian、加州大学圣克鲁兹分校合作）",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-08",
+  "version": "v2（arXiv:2610.08966v2）· 数据集快照 9add42c5",
+  "kind": "original",
+  "aliases": [
+    "HSS",
+    "Humanity's Sixth Sense (HSS)",
+    "Scale AI HSS"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "考图片或短视频里的直觉视觉推理，评分标准逐条全中才算答对。",
+    "task": "每题把一张图片或一段短视频与一条人工撰写的问题、一份人写的参考答案和一组可独立核对的标准配对，模型只回答问题。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md",
+      "https://arxiv.org/abs/2610.08966"
+    ]
+  },
+  "taskContract": {
+    "input": "一张图片或整段短视频，加一条英文问题；media_path 指向仓库内的媒体文件。",
+    "output": "一段自然语言回答，没有固定格式要求，由 LLM 裁判对照标准逐条判定。",
+    "environment": "离线问答式评测：媒体与问题随数据集提供，模型答案交给 LLM 裁判打分。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开 522 条只含 test 的任务，每题配 1 至 7 条评分标准，另附 522 个媒体文件。",
+    "disclosure": "complete",
+    "scale": [
+      "522 条任务，其中 288 条用图片、234 条用视频；评分标准合计 723 条。",
+      "作者共撰写 3,466 题，经三轮独立评审一致通过后保留 522 题（15.1%）。"
+    ],
+    "splits": [
+      "只有 test 一个划分，官方未提供训练集或验证集。"
+    ],
+    "fields": [
+      "task_id 唯一标识；domain 与 subdomain 构成 4 域、11 子域的两级分类；prompt 是问题，golden_response 是人写参考答案；rubric_criteria 为 {id, title} 列表，num_criteria 等于其长度；视频题另带 evidence_start/evidence_end 与对应秒数。"
+    ],
+    "files": [
+      "data/test.jsonl 承载全部题目；media/images 与 media/videos 存放媒体本体，其路径由 media_path 给出。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "HF 仓库 gated 为 false，无需登录或申请即可读取题目与媒体。"
+    ],
+    "url": "https://huggingface.co/datasets/ScaleAI/HSS",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/HSS"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT（数据卡对 prompt、参考答案、评分标准与分类标注的授权）。",
+    "scope": "只转载本条样例所用的一条任务的 prompt、golden_response 与评分标准原文，连同真实字段名一并展示。",
+    "boundaries": [
+      "media/ 下的图片与视频仍归原权利人所有，数据卡明确说 MIT 不适用于它们，本站一个媒体文件也没有转载。",
+      "数据卡声明这是 test 集并要求不要在其上训练，引用时保留该限制。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示数据卡第一条任务的原题、参考答案与评分标准原文，媒体文件未下载也未展示。",
+    "url": "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/data/test.jsonl",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/data/test.jsonl"
+    ]
+  },
+  "metric": {
+    "name": "按题正确率（评分标准全中）",
+    "description": "LLM 裁判逐条判定标准是否满足，一题的全部标准都满足才算答对；522 题上的正确率就是主指标，论文所用裁判为 Claude Opus 5。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "分数经 LLM 裁判产生，数据卡自己把裁判依赖列为限制，并说明论文另报了裁判间一致性与人工核对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+      ]
+    },
+    {
+      "text": "媒体取自公开网络，可能已经出现在预训练数据里；数据卡只说明问题是为本基准新写的。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+      ]
+    },
+    {
+      "text": "媒体权利不随 MIT 转移，使用 media/ 下的文件需自行遵守原权利人条款。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "证据锚点为数据集 sha 9add42c59783cdd0d5b871473374e59f05f2b3cb：test.jsonl 共 522 行，media 下 522 个文件，gated 为 false。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/HSS"
+      ]
+    },
+    {
+      "text": "数据集仓库根目录只有 README.md、data/test.jsonl 与 media/，本轮没有在其中见到评测 harness 或评分脚本文件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/HSS"
+      ]
+    },
+    {
+      "text": "releaseDate 取论文 v2 修订日与数据卡 Updates 里的 2026-10-08（补全 234 条视频题的证据时间窗）；数据卡的最后更新时间晚于该日。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2610.08966",
+        "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "由 LLM 裁判按评分标准逐条判满足或不满足，论文中固定使用 Claude Opus 5；因为只留下必需的标准，一题必须全部满足才算对。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md",
+        "https://arxiv.org/abs/2610.08966"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "HSS 数据卡（固定版本）",
+      "url": "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md",
+      "role": "data"
+    },
+    {
+      "label": "data/test.jsonl（固定版本）",
+      "url": "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/data/test.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "论文（arXiv:2610.08966）",
+      "url": "https://arxiv.org/abs/2610.08966",
+      "role": "paper"
+    },
+    {
+      "label": "官方排行榜",
+      "url": "https://scale.com/leaderboard/hss",
+      "role": "leaderboard"
+    },
+    {
+      "label": "数据集访问入口",
+      "url": "https://huggingface.co/datasets/ScaleAI/HSS",
+      "role": "access"
+    },
+    {
+      "label": "样例对应图片（未转载）",
+      "url": "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/media/images/6a9e06bce6e80e99fcf1f818.jpg",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "6a9e06bce6e80e99fcf1f818",
+        "title": "白发的人能不能不移动就碰到灯柱",
+        "shortTitle": "空间可达性",
+        "type": "text",
+        "prompt": "（此字段是本站整理的中文任务说明，官方原题是英文，见下方导读与原始数据。）看图片回答问题：有多少白发的人能在不移动的情况下碰到那根灯柱？请给出结论并说明判断依据。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "一张街景图片配一道空间可达性问题：要判断画面里的人与灯柱之间的距离是否允许不移动就碰到。本题只有 1 条评分标准。",
+          "input": "官方原题（prompt 原文）：\"How many people with white hair can touch the light pole without moving?\" 对应媒体为一张图片：media_type = \"image\"，media_path = \"media/images/6a9e06bce6e80e99fcf1f818.jpg\"。本题的证据时间窗字段为 null，属于图片题。",
+          "output": "参考答案（golden_response 原文）：\"There is no one with white hair that would be able to touch the light pole without moving. It is evident from the image that they are all sufficiently far away that they would have to move closer to be able to touch the light pole.\"",
+          "checks": [
+            "评分标准唯一一条原文：\"States that no one with white hair would be able to touch the light pole without moving.\"（num_criteria = 1）",
+            "计分口径（数据卡原文，原行有折行，这里合并成一行）：\"a task counts as correct only if every one of its criteria is met\"，所以本题必须满足上面这一条才算答对。"
+          ],
+          "sourceField": "golden_response",
+          "excerpts": [
+            {
+              "label": "参考答案全文（golden_response）",
+              "text": "There is no one with white hair that would be able to touch the light pole without moving. It is evident from the image that they are all sufficiently far away that they would have to move closer to be able to touch the light pole."
+            },
+            {
+              "label": "参考答案第二句",
+              "text": "It is evident from the image that they are all sufficiently far away that they would have to move closer to be able to touch the light pole."
+            }
+          ],
+          "note": "只展示这一条记录，图片没有下载也没有展示；本站没有该题的模型回答，也没有裁判打分结果。"
+        },
+        "explanation": "样例为 data/test.jsonl 第 1 条记录的完整字段原值（该文件共 522 行），未删改任何字段；对应图片属媒体目录，按数据卡的媒体条款未转载，因此展示类型选 text 而非 image。本站没有跑过这道题。",
+        "raw": {
+          "task_id": "6a9e06bce6e80e99fcf1f818",
+          "domain": "Physical & Spatial Logic",
+          "subdomain": "Spatial Reachability",
+          "media_type": "image",
+          "media_path": "media/images/6a9e06bce6e80e99fcf1f818.jpg",
+          "prompt": "How many people with white hair can touch the light pole without moving?",
+          "golden_response": "There is no one with white hair that would be able to touch the light pole without moving. It is evident from the image that they are all sufficiently far away that they would have to move closer to be able to touch the light pole.",
+          "rubric_criteria": [
+            {
+              "id": "e3541365-2e73-40e9-9c14-2f767b04c35a",
+              "title": "States that no one with white hair would be able to touch the light pole without moving."
+            }
+          ],
+          "num_criteria": 1,
+          "evidence_start": null,
+          "evidence_end": null,
+          "evidence_start_sec": null,
+          "evidence_end_sec": null
+        },
+        "source": "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/data/test.jsonl",
+        "references": [
+          {
+            "label": "本条对应图片（未转载）",
+            "url": "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/media/images/6a9e06bce6e80e99fcf1f818.jpg"
+          },
+          {
+            "label": "数据卡字段与计分说明",
+            "url": "https://huggingface.co/datasets/ScaleAI/HSS/blob/9add42c59783cdd0d5b871473374e59f05f2b3cb/README.md"
+          },
+          {
+            "label": "论文",
+            "url": "https://arxiv.org/abs/2610.08966"
+          }
+        ],
+        "license": "MIT（数据集标注）；本条对应的图片不在 MIT 范围内，未转载。",
+        "licensePath": "licenses/scaleai-hss-mit.txt",
+        "split": "test（数据卡唯一划分）· 第 1 条记录",
+        "excerpt": true
+      }
+    ]
+  }
+}

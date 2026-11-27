@@ -1,0 +1,281 @@
+{
+  "id": "libero-dynamic",
+  "status": "published",
+  "order": 24400,
+  "name": "LIBERO-Dynamic",
+  "subtitle": "目标持续运动、推理有延迟时的机器人操作策略评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "动态场景",
+    "延迟感知",
+    "策略评测",
+    "具身智能"
+  ],
+  "publisher": "LIBERO-Dynamic 作者团队（仓库 renshaojie233）",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-17",
+  "version": "arXiv:2610.24579 · 代码仓库 fd45961",
+  "kind": "derivative",
+  "aliases": [
+    "LIBERO Dynamic",
+    "LIBERO-Dynamic benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在原版 40 个 LIBERO 任务上加目标运动与推理延迟的动态评测。",
+    "task": "目标物由工作台下的隐藏载体经摩擦驱动，沿直线、曲线与锯齿三类轨迹、三档速度移动；场景在测得的推理延迟期间继续推进，策略要在可能已经过期的观测上执行动作。",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "https://arxiv.org/abs/2610.24579"
+    ]
+  },
+  "taskContract": {
+    "input": "双视角相机观测与机器人状态，观测可能已在延迟期间过期；外加任务语言与初始状态，目标速度取 0.03、0.06 或 0.09 m/s。",
+    "output": "动作块，在 20 Hz 动作时钟下执行；每条 episode 记录成功与否，并保存 manifest、逐 step trace 与双视角模型输入视频。",
+    "environment": "MuJoCo 仿真加 LIBERO 环境，需要 CUDA、EGL 与各上游策略自己的 Python 环境；评测入口与延迟校准脚本在仓库内，仓库不下载也不转发 checkpoint。",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "协议、脚本与聚合结果公开；正式评测用的 1,800 episode 人口没有发布。",
+    "disclosure": "partial",
+    "scale": [
+      "正式配置为 40 tasks × 3 motion families × 5 reviewed trajectories × 3 speeds = 1,800 episodes，速度档取 0.03、0.06、0.09 m/s。",
+      "另发布 9,000 条质量过滤的动态演示轨迹，以及 1,800 条严格非基准训练 episode（284,502 帧、20 Hz）。"
+    ],
+    "splits": [
+      "评测人口与训练数据分开：HF 上的 strict-nonbenchmark 训练集与那 1,800 个评测 episode 没有重叠。"
+    ],
+    "fields": [
+      "逐 episode 产出 per-item manifest、可选视频与 summary.json；manifest 保留 success 与 success_count、队列 underflow、延迟、RTC 请求/支持/使用状态，以及 action 连续性聚合。"
+    ],
+    "files": [
+      "libero/ 放环境与任务定义，examples/ 放各策略入口，scripts/ 放评测与延迟校准，results/ 放聚合结果表，docs/ 放与正式协议相关的说明。"
+    ],
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "代码、协议与 results/ 聚合结果公开可读；1,800 episode 的评测人口未发布，训练集与 9 个 checkpoint 在 Hugging Face。"
+    ],
+    "url": "https://github.com/renshaojie233/LIBERO-Dynamic",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic",
+      "https://huggingface.co/datasets/rsj2003/libero-dynamic-strict-nonbenchmark-1800"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT · © 2023 Lifelong Robot Learning（许可继承自 LIBERO）；模型集成与外部资产随各自上游许可。",
+    "scope": "只转载 README 与 examples/README.md 中说明任务形态与判据的原文片段。",
+    "boundaries": [
+      "不转载上游策略 checkpoint 与模型权重，它们随 openpi、LeRobot、FastWAM、VLASH 各自的上游许可。",
+      "HF 训练数据卡本轮未见 license 字段，数据部分不按 MIT 处理。"
+    ],
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示官方协议原文：载体摩擦驱动的任务形态、三档速度、1,800 episode 的正式配置，以及 600 步停止判据。",
+    "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/examples/README.md"
+    ]
+  },
+  "metric": {
+    "name": "动态操作成功率（success rate）",
+    "description": "每个配置在固定的 1,800 episode 人口上汇总成功率；不同速度与执行策略（同步 hold、异步 queue、RTC）分开报告，表中 best measured K 是按已测点描述性选取，不是验证集选出。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "正式评测用的 1,800 episode 人口没有发布，仓库只给代码、协议与聚合结果，无法据此重算榜上数字。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    },
+    {
+      "text": "best measured K 是描述性选择而非验证集选出；异步 OpenVLA-OFT 的总成功率 27.3% 不能与静态 LIBERO 的成绩直接相减。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    },
+    {
+      "text": "训练数据放在 Hugging Face，数据卡本轮未见 license 字段，数据许可未核到，仓库的 MIT 不能自动覆盖它。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/rsj2003/libero-dynamic-strict-nonbenchmark-1800"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "仓库锚点为 fd45961603cc50debaa959be52116626bc0fda1f：README.md、examples/README.md、docs/formal_dynamic_eval.md 与 LICENSE 都按该 SHA 的 raw 原文核对。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    },
+    {
+      "text": "examples/README.md 建议复现时使用 tag formal-eval-final-20260622；本轮未核到该 tag 是否存在，因此不把它当作已核实锚点。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/examples/README.md"
+      ]
+    },
+    {
+      "text": "本站没有安装 MuJoCo 与 EGL，未运行任何 episode，也没有下载 checkpoint。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    }
+  ],
+  "interpretation": {
+    "comparison": {
+      "text": "与本仓原版 libero 的分母不同：这里是 40 任务 × 3 运动族 × 5 条复核轨迹 × 3 档速度的 1,800 episode，两边的成功率不能直接相减。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "官方仓库说明（固定版本）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "评测示例与停止判据（固定版本）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/examples/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "正式评测协议（固定版本）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md",
+      "role": "data"
+    },
+    {
+      "label": "MIT 许可（固定版本，继承自 LIBERO）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "论文（arXiv:2610.24579）",
+      "url": "https://arxiv.org/abs/2610.24579",
+      "role": "paper"
+    },
+    {
+      "label": "仓库访问入口",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic",
+      "role": "access"
+    },
+    {
+      "label": "严格非基准训练数据卡",
+      "url": "https://huggingface.co/datasets/rsj2003/libero-dynamic-strict-nonbenchmark-1800",
+      "role": "data"
+    },
+    {
+      "label": "9 个论文 checkpoint",
+      "url": "https://huggingface.co/models/rsj2003/libero-dynamic-paper-models",
+      "role": "data"
+    },
+    {
+      "label": "官方项目页",
+      "url": "https://renshaojie233.github.io/LIBERO-Dynamic/",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [
+    {
+      "id": "libero",
+      "label": "原版评测",
+      "detail": "沿用原版全部 40 个 LIBERO 任务，但目标改为摩擦驱动的持续运动、场景按推理延迟推进，评测人口改为每配置 1,800 episode，成功率与原版静态套件不可直接比较。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+        "https://arxiv.org/abs/2610.24579"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "libero-dynamic-protocol-1800",
+        "title": "动态操作协议：载体驱动、三档速度与 600 步上限",
+        "shortTitle": "动态协议",
+        "type": "text",
+        "prompt": "（此字段是本站整理的中文任务说明，官方原文见下方导读与原始数据。）在 LIBERO 的桌面操作任务里，目标物不再静止：它被工作台下方的隐藏载体用摩擦推着走，同时策略推理还在进行。请说明这个设定下策略要拿什么输入、跑到什么时候停、一个正式配置包含多少 episode。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "把原版 LIBERO 的 40 个任务搬到目标持续运动的条件：隐藏载体靠摩擦推动目标，场景在策略推理的时间里继续推进，所以执行动作时看到的观测可能已经过期。",
+          "input": "官方原文：\"LIBERO-Dynamic uses a contact-driven carrier under the workspace rather than directly teleporting task objects.\" 承载物在目标下方，摩擦带动目标产生直线、曲线与锯齿三类运动；每条任务在 0.03、0.06、0.09 m/s 三档速度下各评一次。",
+          "output": "策略输出动作块，在 20 Hz 动作时钟下执行；正式入口会在保持机器人关节的同时推进真实仿真时间，用来代表同步推理延迟，并记录逐 step trace 与 summary.json。",
+          "checks": [
+            "停止判据原文：\"An episode stops on success or after the full 600-step horizon.\"",
+            "默认行为原文：\"The default is one episode with a 600-step horizon and early termination on success.\"",
+            "评测人口原文：\"40 tasks × 3 motion families × 5 reviewed trajectories × 3 speeds = 1,800 episodes\"，每个配置固定 1,800 个 episode。"
+          ],
+          "sourceField": "README.md#Benchmark",
+          "excerpts": [
+            {
+              "label": "载体与摩擦驱动（Benchmark 段原文）",
+              "text": "LIBERO-Dynamic uses a contact-driven carrier under the workspace rather than directly teleporting task objects. Friction between the hidden carrier and the target produces linear, curvilinear, and zigzag motion."
+            },
+            {
+              "label": "三档速度（Benchmark 段原文）",
+              "text": "Each task is evaluated at 0.03, 0.06, and 0.09 m/s."
+            },
+            {
+              "label": "正式配置的 episode 组成（原文）",
+              "text": "40 tasks × 3 motion families × 5 reviewed trajectories × 3 speeds = 1,800 episodes"
+            }
+          ],
+          "note": "官方没有发布这 1,800 个评测 episode，仓库只给严格非基准训练集与 9 个 checkpoint。这里是协议说明，不是任何真实评测回合；本站未安装 MuJoCo，也没有跑 episode。"
+        },
+        "explanation": "raw 按固定 SHA 的 README 与 examples/README.md 原文摘录三段，即 Benchmark 段、Model evaluation 段与 Common behavior 段，markdown 折行已合并为单个空格，Benchmark 段里包住 1,800 episode 公式的 ```text 代码围栏已省略、只留公式行，图片标签已省略；未收录代码、results 表与视频。评测人口未发布，所以本条不含任何真实 episode 记录或分数。",
+        "raw": {
+          "README.md#Benchmark": "LIBERO-Dynamic uses a contact-driven carrier under the workspace rather than directly teleporting task objects. Friction between the hidden carrier and the target produces linear, curvilinear, and zigzag motion. Each task is evaluated at 0.03, 0.06, and 0.09 m/s. A formal configuration contains:\n\n40 tasks × 3 motion families × 5 reviewed trajectories × 3 speeds = 1,800 episodes",
+          "examples/README.md#Model evaluation": "These examples launch one policy server and evaluate at least one complete LIBERO-Dynamic episode. An episode stops on success or after the full 600-step horizon. Each run saves a dual-view model-input video, per-step traces, the manifest, and the policy-server log.",
+          "examples/README.md#Common behavior": "The default is one episode with a 600-step horizon and early termination on success."
+        },
+        "source": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+        "references": [
+          {
+            "label": "评测示例与停止判据",
+            "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/examples/README.md"
+          },
+          {
+            "label": "正式评测协议",
+            "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md"
+          },
+          {
+            "label": "论文",
+            "url": "https://arxiv.org/abs/2610.24579"
+          }
+        ],
+        "license": "MIT · © 2023 Lifelong Robot Learning（许可继承自 LIBERO）；本条只引用协议原文片段。",
+        "licensePath": "licenses/libero-dynamic-mit.txt",
+        "split": "formal dynamic eval（40 × 3 × 5 × 3 = 1,800 episodes/配置）；评测回合未发布",
+        "excerpt": true
+      }
+    ]
+  }
+}
