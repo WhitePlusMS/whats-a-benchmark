@@ -1,0 +1,313 @@
+{
+  "id": "blenderworld",
+  "status": "published",
+  "order": 24560,
+  "name": "BlenderWorld",
+  "subtitle": "按真实参考图在 Blender 里重建可编辑三维场景，再用二元 rubric 逐条判定",
+  "category": "multimodal",
+  "tags": [
+    "三维建模",
+    "Blender",
+    "视觉智能体",
+    "渲染评估",
+    "rubric 评分"
+  ],
+  "publisher": "Qwen（阿里巴巴）",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-14",
+  "version": "code_version 0.3.0（题库固定 revision e67837a，仓库 dd4f357，schema 1.3）",
+  "kind": "original",
+  "aliases": [
+    "Blender World"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "按文字与参考媒体在 Blender 里交付可编辑三维场景，用每题二元 rubric 逐条判定。",
+    "task": "每题给一份任务简述与参考媒体（或规格附件），要求交付一个可编辑的 final.blend 及请求的导出物，交付后再按渲染与场景检查逐条判 rubric。",
+    "sourceUrls": [
+      "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+      "https://blenderworld.github.io/"
+    ]
+  },
+  "taskContract": {
+    "input": "instruction.md 给出任务正文与输入文件位置；本例 Inputs 段列出 reference_images 为 /workspace/inputs/references/image_01.jpg，原请求另存 query.txt。",
+    "output": "可编辑工程 /workspace/exports/final.blend，请求的图片、视频与纹理依赖放在 /workspace/exports/ 下并用相对路径引用。",
+    "environment": "每题 task.toml 声明 8 CPU、16 GiB 内存、100 GiB 存储与 1 GPU，生成与校验各 28,800 秒；运行时钉定 Blender 4.2.10、Node.js 22.17.0、Codex CLI 0.147.0 或 Claude Code 2.1.220，校验在独立容器中进行。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "223 题、2,651 条二元 rubric，覆盖 9 大类 22 子类，从产品、建筑室内到环境、角色、动画与科学可视化。",
+    "disclosure": "complete",
+    "scale": [
+      "223 题，ID 从 bw_0001 到 bw_0223；按输入模态分为纯文字 78 题、图加文 130 题、视频加文 15 题。",
+      "其中 59 题另附规格附件，对尺寸、材质或相机参数提出要求。",
+      "评分需求合计 2,651 条二元 rubric，本题 bw_0001 为 12 条。"
+    ],
+    "splits": [
+      "没有训练与测试划分：223 题就是完整评测集，按题单独运行、单独计分。"
+    ],
+    "fields": [
+      "task.toml 的 metadata 记 task_id、modality、rubric_count、code_version、submission_format 与分类字段。",
+      "rubric.json 每条含 id、category、importance、importance_weight、score_type 及 criterion、pass_condition、fail_condition 三段可判文本。",
+      "参考图以 base64 记录，每条含 path、media_type、bytes、sha256、width、height 与完整 data_uri。"
+    ],
+    "files": [
+      "每题目录为 bw_XXXX 下 instruction.md、task.toml、environment/inputs/ 与 tests/，评测数据集在 tests/dataset/tasks/<task_id>/。",
+      "Hugging Face 数据仓共 8,901 个文件，任务文件在数据仓内，不在 GitHub 仓库根目录。"
+    ],
+    "sourceUrls": [
+      "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/tests/dataset/tasks/bw_0001/rubric.json"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Hugging Face 直取，非 gated；GitHub 仓库另给 bw download 与 bw verify 的下载校验流程。",
+      "复现评分需 Blender 4.2.10、Node.js 22.17.0、ffmpeg 与三个评审端点变量，以及支持 GPU 的 Linux 环境。"
+    ],
+    "url": "https://huggingface.co/datasets/Qwen/BlenderWorld",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Qwen/BlenderWorld",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+      "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT（GitHub 仓库 LICENSE，© 2026 BlenderWorld contributors；Hugging Face 数据卡 license 标为 mit）。",
+    "scope": "仅节选 bw_0001 的 instruction.md 正文、task.toml 全文，以及 rubric.json 中 R01 这一条 rubric 的原文。",
+    "boundaries": [
+      "数据卡与 README 都说明 MIT 覆盖适配器与评测器代码；第三方参考图与视频的来源与条款未逐项核到，本站因此不转载任何参考图或视频。",
+      "本题的 12 条 rubric 只展示 R01 一条，其余 11 条与全库 2,651 条不入站；rubric 与题目也不用于训练。",
+      "评分依赖外部 VLM 与 agent judge 端点，本站未运行任何渲染或判定，不发布模型产物与渲染图。"
+    ],
+    "sourceUrls": [
+      "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/LICENSE",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/tests/dataset/tasks/bw_0001/rubric.json",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示 bw_0001 的任务正文原文、task.toml 配置与 R01 的通过/不通过条件，均取自固定 revision 的原始文件。",
+    "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/tests/dataset/tasks/bw_0001/rubric.json"
+    ]
+  },
+  "metric": {
+    "name": "Final score（rubric 分与维度分各占一半）",
+    "description": "Rubric score 为 100 乘以按重要性权重加权的通过比例，Dimension score 为八项 1 至 10 分质量评分均值的十倍，最终分为两者各半。Harbor 侧把结果写进 /logs/verifier/reward.json 的 reward、rubric_score 与 dimension_score，均为 0 到 1，整体分为平均 reward 乘 100。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md",
+      "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "评分不是确定性的：先把提交渲染成八个自适应视图，再由 agent judge 判场景检查类标准、由 VLM 判视觉类标准与八项质量维度，依赖外部端点与模型别名。",
+      "sourceUrls": [
+        "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md",
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml"
+      ]
+    },
+    {
+      "text": "缺失或失败的提交记 0 分但仍留在分母里，因此总分不是只对成功提交求平均。",
+      "sourceUrls": [
+        "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md"
+      ]
+    },
+    {
+      "text": "不提供 oracle 解，模型产物需要自备生成 harness 与 GPU 环境重跑，每题生成与校验各有 8 小时预算。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml"
+      ]
+    },
+    {
+      "text": "数据卡的整体 mit 声明尚未逐项覆盖第三方参考图与视频，站内因此不展示这些媒体，也不据其推断素材来源。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+        "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "2026-11-27 用 Hugging Face raw 直取固定 revision e67837a 下 bw_0001 的 instruction.md（3,691 字节）、task.toml（1,526 字节）与 rubric.json（17,998 字节）；仓库 SHA 由 git ls-remote 读得 dd4f357。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md",
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml",
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/tests/dataset/tasks/bw_0001/rubric.json"
+      ]
+    },
+    {
+      "text": "任务文件在 Hugging Face 数据仓（8,901 个文件）内，不在 GitHub 仓库根目录；因此本卡用数据仓固定 revision 定位原始文件。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/Qwen/BlenderWorld",
+        "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库说明（固定 commit）",
+      "url": "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md",
+      "role": "definition"
+    },
+    {
+      "label": "项目主页",
+      "url": "https://blenderworld.github.io/",
+      "role": "definition"
+    },
+    {
+      "label": "论文",
+      "url": "https://arxiv.org/abs/2610.23986",
+      "role": "paper"
+    },
+    {
+      "label": "数据卡（Hugging Face，固定 revision）",
+      "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "数据集页面",
+      "url": "https://huggingface.co/datasets/Qwen/BlenderWorld",
+      "role": "access"
+    },
+    {
+      "label": "MIT 许可（固定 commit）",
+      "url": "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "本题任务正文（固定 revision）",
+      "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "本题 task.toml 配置（固定 revision）",
+      "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml",
+      "role": "data"
+    },
+    {
+      "label": "本题 rubric（固定 revision）",
+      "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/tests/dataset/tasks/bw_0001/rubric.json",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "bw_0001",
+        "title": "数据中心冷通道封闭改造：从参考照片到可编辑 Blender 场景",
+        "shortTitle": "冷通道改造建模",
+        "type": "record",
+        "prompt": "这是第 1 题。给定一张数据中心机房参考照片，要求在 Blender 里按原图的空间关系改造成冷通道封闭方案示意的三维场景，保留机柜阵列、桥架与蓝色线缆、吊顶消防喷淋等原有元素，加上半透明亚克力顶罩与两端推拉门，并按指定材质、光照与相机要求渲染 before/after 对比图，最后保存可编辑工程。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "这题不是画一张效果图，而是交一个后续还能改标注和机位的可编辑工程，判定也落在场景结构与 authored 影像两处证据上。",
+          "input": "instruction.md 的 Inputs 段原文给出 reference_images 为 /workspace/inputs/references/image_01.jpg，并注明原请求另存为 /workspace/inputs/query.txt；task.toml 记 modality 为 image、rubric_count 为 12、taxonomy_version 为 taxonomy_223、code_version 为 0.3.0、submission_format 为 blenderworld-submission-v1、submission_project 为 final.blend，并给 agent timeout_sec 为 28800。",
+          "output": "交付 /workspace/exports/final.blend 可编辑工程，请求的图片与纹理依赖放在同一目录并用相对路径，用 Cycles 在 1920×1080 下带降噪渲染，给出 before 与 after 两张对比图，另需沿主通道的低角度透视与俯视等距两个视角。",
+          "checks": [
+            "rubric R01 的 pass_condition 原文（节选）：The authored final imagery clearly presents the referenced data-center interior as a schematic renovation visualization suitable for operations and maintenance training. 同一段还要求保留参考的空间关系，包括墙体外壳、长开间的宽深比、机柜行距、通道位置与纵深退晕。",
+            "rubric R01 的 fail_condition 原文：Score 0 if the presentation does not clearly communicate the referenced renovation, or if any listed enclosure, proportion, spacing, aisle-position, row-repetition, or depthwise-layout condition is not satisfied.",
+            "R01 的字段取值：category 为 space_layout、importance 为 major、importance_weight 为 3、score_type 为 binary、score_values 为 [0, 1]、evidence_type 为 scene_summary，即只在这条标准上要么 0 要么 1，权重 3 计入 rubric 加权分。"
+          ],
+          "sourceField": "instruction.md",
+          "excerpts": [
+            {
+              "label": "改造要求原文（Task 段）",
+              "text": "The renovation will involve creating a cold aisle enclosure for the main aisle, adding a semi-transparent acrylic canopy above the two rows of opposing racks, and installing sliding doors at both ends of the aisle."
+            },
+            {
+              "label": "渲染规格原文（Task 段）",
+              "text": "The image is then generated using Cycles, 1920×1080 with noise reduction enabled, providing both a before and after comparison image."
+            },
+            {
+              "label": "交付物原文（Deliverables 段）",
+              "text": "Save the editable project as `/workspace/exports/final.blend`."
+            }
+          ],
+          "note": "12 条 rubric 只展示 R01；其余 11 条与全库 2,651 条未入站。本站没有运行 Blender、没有调用任何 judge，也没有取得任何模型产物或渲染图。"
+        },
+        "explanation": "raw 保留三个真实文件的原文：instruction.md 与 task.toml 为整篇原文，rubric.json 只保留 task_id、mode、image_file、rubric_count 与 rubrics 数组中的 R01 一条，其余 11 条省略。三个键名用的是数据仓里的真实文件名或路径末段，便于回指。",
+        "raw": {
+          "instruction.md": "# BlenderWorld bw_0001\n\n## Task\n\nWe need to create a security training deck for our data center operations and maintenance personnel. We want to modify this data center interior layout into a schematic diagram to clearly explain what the main aisle will look like after a cold aisle enclosure renovation. Please strictly adhere to the spatial layout in the diagram—the wall enclosure, bay width and depth, rack spacing, and aisle positions must all be aligned with the original diagram. Retain the following elements from the diagram: server racks arranged in a deep array with dense blue-green LEDs on the front; metal cable trays and bundles of hanging blue cables above the racks; the red-covered sprinkler system with metal hangers on the ceiling; and the tall black side panels in the foreground. Also, add the original square sound-absorbing mineral wool panels, embedded strip lights to the ceiling. The renovation will involve creating a cold aisle enclosure for the main aisle, adding a semi-transparent acrylic canopy above the two rows of opposing racks, and installing sliding doors at both ends of the aisle. The dimensions of these doors should be proportionate to the racks, referencing standard 42U/19-inch rack specifications. In terms of materials, the server racks feature a matte dark gray metallic paint finish with dark perforated mesh doors. The cable trays are made of galvanized steel, and the cables are frosted blue PVC. The ceiling is made of white mineral wool board with subtle self-illumination, and the server rack LEDs are designed as a cyan-blue self-illuminating dot matrix. The lighting uses a neutral to cool color temperature, supplemented by cool-toned LED spotlights, creating a high-contrast, technologically cool tone while keeping the cold aisle bright and clear. The key is to clearly show the location of the fire sprinklers/sensors and the enclosed structure of the cold aisle, ensuring the main elements are not obscured by cables or clutter—a realistic overall image is sufficient, no need for photorealistic cutouts. A low-angle perspective view along the main aisle, positioned close to the angle of the original image, is used, along with a top-down isometric view. The image is then generated using Cycles, 1920×1080 with noise reduction enabled, providing both a before and after comparison image. The Blender project must also be kept for later adjustments to annotations and angles.\n\n## Inputs\n\nThe original request is also in `/workspace/inputs/query.txt`.\n\n- `reference_images`: `/workspace/inputs/references/image_01.jpg`\n\nRead the supplied specifications and inspect the reference media before modeling. Relative filenames in the request refer to the files listed above.\n\n## Deliverables\n\nSave the editable project as `/workspace/exports/final.blend`. Put all requested images, videos, model exports, and texture dependencies under `/workspace/exports/`. Pack textures into the project or keep relative paths inside this directory so the project can be opened in a fresh environment.\n\n## Tools\n\nBlender is installed as `blender`. A Blender MCP server is configured for agents that support task MCP servers; use its advertised tools to inspect the scene, execute Blender Python, and capture viewport images. The Blender Python CLI is also available. Use Blender 4.2.10, Node.js 22.17.0, Codex CLI 0.147.0 or Claude Code 2.1.220; do not upgrade these tools. Inspect your result and save your work before finishing.\n\n## Offline task preview\n\nAn HTML view of the task with embedded reference images is available at `/workspace/inputs/instruction.html`. Inspect the original reference image files listed under Inputs when modeling.\n",
+          "task.toml": "schema_version = \"1.3\"\nartifacts = [\"/workspace/exports\"]\n\n[task]\nname = \"Qwen/BlenderWorld-bw_0001\"\ndescription = \"BlenderWorld bw_0001 (image)\"\nkeywords = [\"blender\", \"3d\", \"image\"]\n\n[metadata]\ncategory = \"Architecture & Interiors\"\nsubcategory = \"Data & Control Facilities\"\ncategory_short = \"Architecture & Interiors\"\nsubcategory_short = \"Data & control\"\ntaxonomy_version = \"taxonomy_223\"\ntask_id = \"bw_0001\"\nmodality = \"image\"\nrubric_count = 12\nprotocol_version = 1\ncode_version = \"0.3.0\"\nblender_version = \"4.2.10\"\nnode_version = \"22.17.0\"\ncodex_version = \"0.147.0\"\nclaude_code_version = \"2.1.220\"\nsubmission_format = \"blenderworld-submission-v1\"\nsubmission_project = \"final.blend\"\n\n[agent]\ntimeout_sec = 28800\n\n[environment]\nbuild_timeout_sec = 3600\ncpus = 8\nmemory_mb = 16384\nstorage_mb = 102400\ngpus = 1\nworkdir = \"/workspace\"\n\n[[environment.mcp_servers]]\nname = \"blender\"\ntransport = \"stdio\"\ncommand = \"/usr/local/bin/bw-blender-mcp\"\nargs = []\n\n[verifier]\ntimeout_sec = 28800\nenvironment_mode = \"separate\"\n\n[verifier.environment]\nbuild_timeout_sec = 3600\ncpus = 8\nmemory_mb = 16384\nstorage_mb = 102400\ngpus = 1\nworkdir = \"/workspace\"\n\n[verifier.env]\nANTHROPIC_BASE_URL = \"${BW_AGENT_JUDGE_ENDPOINT}\"\nANTHROPIC_API_KEY = \"${BW_AGENT_JUDGE_API_KEY}\"\nJUDGE_API_ENDPOINT = \"${BW_VISION_JUDGE_ENDPOINT}\"\nJUDGE_API_KEY = \"${BW_VISION_JUDGE_API_KEY}\"\nRENDER_AGENT_MODEL = \"${BW_RENDER_MODEL:-gpt-5.6-terra}\"\nAGENT_JUDGE_MODEL = \"${BW_AGENT_JUDGE_MODEL:-gpt-5.6-terra}\"\nJUDGE_MODEL = \"${BW_VISION_JUDGE_MODEL:-gpt-5.6-terra}\"\n",
+          "rubric.json": {
+            "task_id": "bw_0001",
+            "mode": "prompt_image",
+            "image_file": "references/image_01.jpg",
+            "rubric_count": 12,
+            "rubrics": [
+              {
+                "id": "R01",
+                "category": "space_layout",
+                "importance": "major",
+                "subject": "reference_aligned_data_center_layout",
+                "requirement_source": "prompt_explicit",
+                "evidence_type": "scene_summary",
+                "criterion": "The renovation must preserve the reference-derived room and aisle organization while clearly communicating the proposed cold-aisle upgrade.",
+                "pass_condition": "The authored final imagery clearly presents the referenced data-center interior as a schematic renovation visualization suitable for operations and maintenance training. Project geometry and authored views preserve the reference-derived wall enclosure, long bay width-to-depth relationship, rack-row spacing, aisle positions, parallel depthwise orientation, numerous tall rack rows, narrow aisle rhythm, and strong recession toward the distant end, apart from the requested containment added around the existing main aisle.",
+                "fail_condition": "Score 0 if the presentation does not clearly communicate the referenced renovation, or if any listed enclosure, proportion, spacing, aisle-position, row-repetition, or depthwise-layout condition is not satisfied.",
+                "category_v2": "space_layout",
+                "importance_weight": 3,
+                "score_type": "binary",
+                "score_values": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/instruction.md",
+        "references": [
+          {
+            "label": "本题 task.toml 配置",
+            "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/task.toml"
+          },
+          {
+            "label": "本题 rubric.json",
+            "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/bw_0001/tests/dataset/tasks/bw_0001/rubric.json"
+          },
+          {
+            "label": "数据卡（Hugging Face）",
+            "url": "https://huggingface.co/datasets/Qwen/BlenderWorld/blob/e67837a78e2d963447bc1b147db42f46bc6ef07f/README.md"
+          },
+          {
+            "label": "官方仓库说明",
+            "url": "https://github.com/QwenLM/BlenderWorld/blob/dd4f3571faed4ed45cc720ac94835534b9f67836/README.md"
+          },
+          {
+            "label": "论文",
+            "url": "https://arxiv.org/abs/2610.23986"
+          }
+        ],
+        "license": "MIT，© 2026 BlenderWorld contributors；仅节选任务正文、配置与一条 rubric，不含第三方参考图或模型产物。",
+        "licensePath": "licenses/blenderworld-mit.txt",
+        "split": "223 题之一（bw_0001，image 模态）",
+        "excerpt": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "id": "sec-bench-pro",
+  "status": "published",
+  "order": 24110,
+  "name": "SEC-bench Pro",
+  "subtitle": "在真实代码库里复现真实漏洞并交出可触发的 PoC",
+  "category": "coding",
+  "tags": [
+    "安全研究",
+    "漏洞复现",
+    "长程任务",
+    "代码定位"
+  ],
+  "publisher": "University of Illinois Urbana-Champaign（SEC-bench 团队）",
+  "brandIds": [],
+  "year": 2026,
+  "version": "V8 / SpiderMonkey / Linux 三目标 · 仓库 66acf2a",
+  "kind": "original",
+  "aliases": [
+    "SEC Bench Pro",
+    "SEC-bench-Pro"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在真实开源软件上衡量智能体能否分析已披露缺陷并提交可验证的结果。",
+    "task": "用隔离环境中的评测期望与软件版本对照，判断交付是否符合该例的验证标准。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.26548",
+      "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "版本固定的源码、缺陷报告及隔离环境。",
+    "output": "接受评测器自动化验证的结果；本站不展示可运行的漏洞复现内容。",
+    "environment": "在隔离环境中对不同软件版本进行自动验证，论文说明了完整协议。",
+    "sourceUrls": [
+      "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "作者称现有 344 个已验证用例，分属 Chromium V8、SpiderMonkey 与 Linux 内核。",
+    "disclosure": "partial",
+    "scale": [
+      "344 个已验证用例，覆盖 memory-safety、sandbox、JIT、race-condition 与内核子系统等缺陷族。"
+    ],
+    "splits": [
+      "仓库按目标分 projects/v8、projects/sm、projects/linux 三组；本例是 projects/v8 下的 324596281。"
+    ],
+    "fields": [
+      "meta.json 记录镜像名、工作目录、验证二进制、命令参数、目标源文件、漏洞类型、错误类型与 VRP 金额。"
+    ],
+    "files": [
+      "官方来源提供用例元数据、验证相关文件与环境配置；此处仅说明类型。"
+    ],
+    "sourceUrls": [
+      "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "仓库、用例元数据与用例镜像均公开；复跑另需 Docker 与 Python 3.11 以上环境。"
+    ],
+    "url": "https://github.com/SEC-bench/SEC-bench-Pro/tree/66acf2a71a557e486368643193489e7f24ddc21b",
+    "sourceUrls": [
+      "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md",
+      "https://github.com/SEC-bench/SEC-bench-Pro/tree/66acf2a71a557e486368643193489e7f24ddc21b"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT，© 2026 SEC-bench contributors。",
+    "scope": "只展示来源归属、样本范围与计分口径；无站内漏洞样例。",
+    "boundaries": [
+      "不转载上游 V8、SpiderMonkey 或 Linux 内核源码与修复补丁，这些素材受上游各自许可约束，本轮未逐项核对。",
+      "不转载其余用例的元数据、PoC 或验证记录。",
+      "本站没有运行容器或评测，不给出模型成绩。"
+    ],
+    "sourceUrls": [
+      "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/LICENSE",
+      "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "restricted",
+    "reason": "站内仅保留评测范围与评分口径，不展示可复现缺陷的输入、命令或代码。",
+    "url": "https://arxiv.org/abs/2605.26548",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.26548"
+    ]
+  },
+  "metric": {
+    "name": "实例解出比例",
+    "description": "按每例的 PoC 能否复现目标缺陷判定，用 harness/grade.py 做分阶段执行判定并复核改动范围；论文另提出 LLM-based judge 以修正规则型裁判的偏差。Codex 配 GPT-5.5 解出 58%，GLM-5 仅解出 344 例中的 13 例。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2605.26548",
+      "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md",
+      "https://sec-bench.github.io/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "用例取自真实上游项目，PoC、补丁与镜像分别受 V8、SpiderMonkey、Linux 内核许可约束，本仓 LICENSE 未逐条列出。",
+      "sourceUrls": [
+        "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/LICENSE",
+        "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md"
+      ]
+    },
+    {
+      "text": "VERIFIED.txt 是作者自验记录，原文把 CONFIRMED 写成 CONFIMRED；它不是本站复跑，本站未运行容器。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2605.26548"
+      ]
+    },
+    {
+      "text": "Linux 用例要求 x86-64 宿主的 Docker 能向特权容器暴露可读写的 /dev/kvm，作者明确 QEMU TCG 不能作为等价判定模式。",
+      "sourceUrls": [
+        "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "保留论文定义的范围与计分口径；站内不分发实例附件，不提供复现步骤或可运行样例。",
+      "sourceUrls": [
+        "https://arxiv.org/abs/2605.26548"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "论文（arXiv v2）",
+      "url": "https://arxiv.org/abs/2605.26548",
+      "role": "paper"
+    },
+    {
+      "label": "官方仓库说明（固定版）",
+      "url": "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "仓库固定快照入口",
+      "url": "https://github.com/SEC-bench/SEC-bench-Pro/tree/66acf2a71a557e486368643193489e7f24ddc21b",
+      "role": "access"
+    },
+    {
+      "label": "官方排行榜",
+      "url": "https://sec-bench.github.io/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "MIT 许可（固定版）",
+      "url": "https://github.com/SEC-bench/SEC-bench-Pro/blob/66acf2a71a557e486368643193489e7f24ddc21b/LICENSE",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27"
+}

@@ -1,0 +1,370 @@
+{
+  "id": "omni-extract-bench",
+  "status": "published",
+  "order": 24500,
+  "name": "Omni Extract Bench",
+  "subtitle": "合并四家厂商 620 份文档，用同一确定性评分器比较抽取系统",
+  "category": "multimodal",
+  "tags": [
+    "文档理解",
+    "结构化提取",
+    "JSON Schema",
+    "确定性评分"
+  ],
+  "publisher": "Datalab",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-09-16",
+  "version": "HF 快照 be82fa4 · 仓库 10e5492 · CLI ≥ 1.0.0",
+  "kind": "suite",
+  "aliases": [
+    "OmniExtractBench",
+    "Omni Extract Bench",
+    "OEB"
+  ],
+  "researchStatus": "pass",
+  "officialDefinition": {
+    "summary": "把四家厂商的 620 份文档并成一套，用同一确定性评分器逐字段比对抽取结果。",
+    "task": "给系统一份 PDF 和该文档自带的内联 JSON Schema，要求输出符合 Schema 的 JSON；每个标量值按地址比对，数组行用 Hungarian 匹配对齐后再算分。",
+    "sourceUrls": [
+      "https://www.datalab.to/blog/omni-extract-bench",
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "pdfs/<doc_id>.pdf 与该行 manifest 内联的 JSON Schema（bytes，解码后是完整 Schema 文本，含每个字段的取值范围与归一化规则）；每份文档的 Schema 都不同。",
+    "output": "符合该 Schema 的 JSON。以本页样例为例，要交出 19 个必填字段，其中五组是剖面表行数组，每行 7 个必填子字段。",
+    "environment": "官方 harness：uv pip install 'omni-extract-bench[benchmark]' 后 oeb init <system> 写 YAML，oeb run 调各厂商适配器，oeb grade 离线复评；评分器自身不联网、不调模型。",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/README.md",
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "620 份文档来自四家厂商的既有基准，逐 suite 许可不同；每行自带内联 Schema 与 gold 路径。",
+    "disclosure": "complete",
+    "scale": [
+      "620 份文档：extractbench 329、internal 202、longarray 42、micro1 47。"
+    ],
+    "splits": [
+      "suite 字段标出来源，成绩可按 suite 与整体分别读；博客另有 coverage 列，记各厂商实际处理了多少份文档。"
+    ],
+    "fields": [
+      "manifest.parquet 共 12 列：doc_id、doc_path、gt_path、schema、suite、pages、scanned、gold_chars、table_rows、num_values、num_null、max_depth。"
+    ],
+    "files": [
+      "manifest.parquet（1,351,857 字节）、pdfs/<doc_id>.pdf、gold/<doc_id>.json、licenses/<suite>-LICENSE.txt、assets/ 图表。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md",
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/manifest.parquet"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Hugging Face 数据集非 gated，PDF、内联 Schema 与 gold 均可直接下载，无需申请或登录。",
+      "评分器与 harness 是独立 Python 包（Apache-2.0），下载数据需 [benchmark] 额外依赖。"
+    ],
+    "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench",
+      "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "数据集整体标注 CC BY 4.0，但逐 suite 许可不同；本页样例属 suite=micro1，其上游许可为 MIT（© 2026 Micro1）。评分器与 harness 另行 Apache-2.0。",
+    "scope": "仅转载 manifest.parquet 首行的文档记录字段、该行内联 Schema 的标题与说明及 19 个必填字段名、gold JSON 的部分标量字段与两条剖面表首行。",
+    "boundaries": [
+      "不转载 PDF 原件，也不转载完整 gold 文件（159,856 字节，含 186/152/137/141/81 条剖面行）。",
+      "gold 封面的联系人姓名、邮箱与电话未收录；其余字段为公开人口普查包的印刷信息。",
+      "取用 suite=extractbench 文档按其 Apache-2.0、suite=longarray 按 CC BY 4.0 并引用 Extend AI 的 LongArray-Extract，不能沿用本页 micro1 的 MIT 授权。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md",
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/licenses/micro1-LICENSE.txt"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认显示 manifest 首行的真实文档记录、该行内联 Schema 的说明与必填字段，以及 gold 的标量真值和两条剖面表首行。",
+    "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/manifest.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/manifest.parquet",
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/gold/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.json"
+    ]
+  },
+  "metric": {
+    "name": "确定性字段匹配（accuracy / precision / recall）",
+    "description": "四阶段：归一化文档、把预测与 gold 摊平成地址、归一化标量、配对地址（无歧义精确配对，数组元素按内容做 Hungarian 匹配）。每个地址落进 matched、misread、unfound、fabricated、invented_item、invented_field 之一，accuracy = matched / total。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/docs/METRIC_SPEC.md",
+      "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "METRIC_SPEC 中引用的统计数字来自 2026-09-11 的 660 份快照，官方明说它们只是规则依据，不代表当前 620 份语料的结果。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/docs/METRIC_SPEC.md"
+      ]
+    },
+    {
+      "text": "accuracy 对「值写错」与「留空」给出相同代价，单看总分分不清误读与漏抽，需配合 precision 与 verdicts 一起读。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/docs/METRIC_SPEC.md"
+      ]
+    },
+    {
+      "text": "数组行默认顺序无关，超过求解上限会退化成贪心并标 matching_exact: false；聚合按 suite 等权而非按文档等权。",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/docs/METRIC_SPEC.md"
+      ]
+    },
+    {
+      "text": "coverage 因系统而异：有系统因输出上限或用例 Schema 过大只处理了部分文档，跨系统比较必须同时看 coverage 列。",
+      "sourceUrls": [
+        "https://www.datalab.to/blog/omni-extract-bench"
+      ]
+    },
+    {
+      "text": "本站未运行任何抽取系统，样例只覆盖一条文档，不能代表 620 份的整体表现。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "2026-11-27 用 HF datasets-server rows API（config=default、split=train、offset=0）取首行，features 即官方 12 列；num_rows_total 实测为 620。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/manifest.parquet"
+      ]
+    },
+    {
+      "text": "该行 schema 字段是 34,136 字节 base64，解码后 25,601 字符的 Schema 文本；卡内只保留 title、description、type、additionalProperties 与 required 五项。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/manifest.parquet"
+      ]
+    },
+    {
+      "text": "gold 文件已下载核对（159,856 字节）；同 id 的 pdf 存在（655,853 字节，HEAD 200），未下载正文，也未安装 omni-extract-bench 跑分。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/gold/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.json",
+        "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/pdfs/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.pdf"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Datalab 发布博客（2026-09-16）：为什么合并四家基准",
+      "url": "https://www.datalab.to/blog/omni-extract-bench",
+      "role": "release"
+    },
+    {
+      "label": "官方数据卡（固定快照）：布局、逐 suite 许可与评分概括",
+      "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md",
+      "role": "data"
+    },
+    {
+      "label": "Hugging Face 数据集主页（非 gated）",
+      "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench",
+      "role": "access"
+    },
+    {
+      "label": "评分规范 METRIC_SPEC.md（固定 commit 10e5492）",
+      "url": "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/docs/METRIC_SPEC.md",
+      "role": "definition"
+    },
+    {
+      "label": "官方仓库 README：harness 与 oeb 命令行（固定 commit 10e5492）",
+      "url": "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "manifest.parquet（固定快照，1,351,857 字节）",
+      "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/manifest.parquet",
+      "role": "data"
+    },
+    {
+      "label": "同 id 的 gold 标注文件（固定快照）",
+      "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/gold/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.json",
+      "role": "data"
+    },
+    {
+      "label": "同 id 的 PDF 原件（固定快照，未转载）",
+      "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/pdfs/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.pdf",
+      "role": "data"
+    },
+    {
+      "label": "suite=micro1 的上游 MIT 许可原文",
+      "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/licenses/micro1-LICENSE.txt",
+      "role": "access"
+    },
+    {
+      "label": "被合并成员：LlamaIndex ExtractBench 数据卡（固定版本）",
+      "url": "https://huggingface.co/datasets/llamaindex/ExtractBench/blob/f9b910906cd7e73cc9eb5379a8d5d935c67b92c4/README.md",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "extractbench",
+      "label": "被合并的成员：LlamaIndex ExtractBench",
+      "detail": "Omni Extract Bench 是四来源合并评测，其中 suite=extractbench 一支就是 LlamaIndex ExtractBench 的文档，标为 329 份并用 OEB 的统一评分器重打分；本站 extractbench 条目记录该基准公开 370 份，官方未说明被剔除的 41 份是哪些，因此两者不是逐份相等的同一集合，成绩也不能互比。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/datalab-to/omni_extract_bench/raw/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/README.md",
+        "https://www.datalab.to/blog/omni-extract-bench",
+        "https://huggingface.co/datasets/llamaindex/ExtractBench/blob/f9b910906cd7e73cc9eb5379a8d5d935c67b92c4/README.md"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "omni-extract-bench-micro1-acs-packet",
+        "title": "Census 剖面包：按内联 Schema 抽取 19 个字段与五张表",
+        "shortTitle": "人口普查剖面包",
+        "type": "record",
+        "promptOrigin": "editorial",
+        "prompt": "同一份 30 页人口普查剖面包 PDF，按该行自带的内联 Schema 交出完整 JSON：封面元数据、剖面索引与五张剖面表的所有数据行。表格行的顺序不要求与印刷顺序一致，但每行的 Subject 标签、Estimate 与 Margin of Error 必须逐单元格对齐；符号单元格照符号抄，空格单元格留 null。",
+        "walkthrough": {
+          "summary": "manifest.parquet 第 1 行（offset=0）：doc_id 与 suite=micro1 指向 pdfs/ 下 30 页 PDF，schema 列内联该文档专属 Schema，gt_path 指向 gold JSON。",
+          "input": "内联 Schema 标题：Census Profile Packet Full Data Export。description 原文：Schema for migrating a Census profile packet into structured metadata and complete profile-table rows. Use the printed packet as the only source, and apply the field-level normalization rules so independently extracted outputs can be compared cell by cell.\n字段级规则举例（acs_estimate_period 的 description 原文）：Emit the range as printed with a single hyphen between years and no surrounding spaces; collapse other repeated whitespace. Null only if no ACS estimate period is printed.",
+          "output": "gold 的标量真值：cover_geography_label = \"Redmond city, WA\"、packet_title = \"Sample Tables\"、issuing_agency_name = \"U.S. Census Bureau\"、census_reference_year = 2010、acs_estimate_period = \"2009-2013\"、profile_geography_name = \"Redmond city, Washington\"、profile_footer_date = \"10/05/2015\"、census_total_population_number = 54144、acs_total_population_estimate = 55505、acs_total_housing_units_estimate = 24874。\n行级真值举例（acs_demographic_housing_estimate_rows 首行）：section_heading = \"SEX AND AGE\"、subject_label = \"Total population\"、row_order = 1、estimate_value = 55505、estimate_margin_of_error = 62、percent_value = 55505、percent_margin_of_error = \"(X)\"。",
+          "checks": [
+            "Schema 共 19 个必填字段且 additionalProperties=false：cover_geography_label、packet_title、issuing_agency_name、contact_name、contact_email、contact_phone_number、census_reference_year、acs_estimate_period、profile_geography_name、profile_footer_date、census_total_population_number、acs_total_population_estimate、acs_total_housing_units_estimate、profile_index_entries，以及五组剖面行数组。",
+            "每个剖面行数组的元素要 7 个必填子字段：row_order、section_heading、subject_label、estimate_value、estimate_margin_of_error、percent_value、percent_margin_of_error。",
+            "符号单元格不能丢：本行 percent_margin_of_error 的真值是字符串 \"(X)\"。Schema 原文要求 for nonnumeric parenthesized or symbolic cells, remove spaces immediately inside parentheses and transcribe the symbol as a string.",
+            "评分时 null、空串、空白与缺键等价，所以整列留空不会得分；地址比对由确定性 scorer 完成，不调模型。"
+          ],
+          "sourceField": "/schema/description",
+          "excerpts": [
+            {
+              "label": "内联 Schema 的任务说明",
+              "text": "Schema for migrating a Census profile packet into structured metadata and complete profile-table rows."
+            },
+            {
+              "label": "同一说明中的字段级归一化要求",
+              "text": "Use the printed packet as the only source, and apply the field-level normalization rules so independently extracted outputs can be compared cell by cell."
+            }
+          ],
+          "note": "原始数据区保留 manifest 首行的 12 列取值（schema 列只摘顶层五项）与 gold 的部分字段；封面联系人姓名、邮箱、电话未收录，PDF 未转载，该行共 4,546 个标量值其余部分也未转载。"
+        },
+        "explanation": "这条样例是 manifest 第 1 行与它 gt_path 指向的 gold 文件的联合投影：manifest 侧省略了 34,136 字节 base64 的 schema 原文，只留 Schema 顶层五项与十项统计列；gold 侧只留封面标量、剖面索引首项和两张表的首行，其余行数与字节数写在说明里。本站没有下载 PDF 正文，也没有安装 omni-extract-bench 跑过任何系统。",
+        "raw": {
+          "doc_id": "06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl",
+          "doc_path": "pdfs/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.pdf",
+          "gt_path": "gold/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.json",
+          "suite": "micro1",
+          "pages": 30,
+          "scanned": false,
+          "gold_chars": 132905,
+          "table_rows": [
+            186,
+            152,
+            141,
+            137,
+            81,
+            5
+          ],
+          "num_values": 4546,
+          "num_null": 1,
+          "max_depth": 2,
+          "schema": {
+            "title": "Census Profile Packet Full Data Export",
+            "description": "Schema for migrating a Census profile packet into structured metadata and complete profile-table rows. Use the printed packet as the only source, and apply the field-level normalization rules so independently extracted outputs can be compared cell by cell.",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "cover_geography_label",
+              "packet_title",
+              "issuing_agency_name",
+              "contact_name",
+              "contact_email",
+              "contact_phone_number",
+              "census_reference_year",
+              "acs_estimate_period",
+              "profile_geography_name",
+              "profile_footer_date",
+              "census_total_population_number",
+              "acs_total_population_estimate",
+              "acs_total_housing_units_estimate",
+              "profile_index_entries",
+              "census_demographic_profile_rows",
+              "acs_social_characteristics_rows",
+              "acs_economic_characteristics_rows",
+              "acs_housing_characteristics_rows",
+              "acs_demographic_housing_estimate_rows"
+            ]
+          },
+          "gold": {
+            "cover_geography_label": "Redmond city, WA",
+            "packet_title": "Sample Tables",
+            "issuing_agency_name": "U.S. Census Bureau",
+            "census_reference_year": 2010,
+            "acs_estimate_period": "2009-2013",
+            "profile_geography_name": "Redmond city, Washington",
+            "profile_footer_date": "10/05/2015",
+            "census_total_population_number": 54144,
+            "acs_total_population_estimate": 55505,
+            "acs_total_housing_units_estimate": 24874,
+            "profile_index_entries": [
+              {
+                "profile_identifier": "DP-1",
+                "profile_title": "Demographic Profile",
+                "program_group": "2010 Census",
+                "row_order": 1,
+                "start_page_number": 3
+              }
+            ],
+            "census_demographic_profile_rows": [
+              {
+                "number_value": 54144,
+                "percent_value": 100,
+                "row_order": 1,
+                "section_heading": "SEX AND AGE",
+                "subject_label": "Total population"
+              }
+            ],
+            "acs_demographic_housing_estimate_rows": [
+              {
+                "estimate_margin_of_error": 62,
+                "estimate_value": 55505,
+                "percent_margin_of_error": "(X)",
+                "percent_value": 55505,
+                "row_order": 1,
+                "section_heading": "SEX AND AGE",
+                "subject_label": "Total population"
+              }
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/manifest.parquet",
+        "references": [
+          {
+            "label": "同 id 的 gold 标注文件（固定快照）",
+            "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/gold/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.json"
+          },
+          {
+            "label": "同 id 的 PDF 原件（未转载）",
+            "url": "https://huggingface.co/datasets/datalab-to/omni_extract_bench/resolve/be82fa4fd27d00641a38c2521bec4093cd1fa2fd/pdfs/06_10_26_American_Community_Survey_ACS_5_year_estimates_f507236a_sampl.pdf"
+          },
+          {
+            "label": "评分规范 METRIC_SPEC.md",
+            "url": "https://raw.githubusercontent.com/datalab-to/omni_extract_bench/10e54923c8df4d0be1d14006a5e137483c9deff2/docs/METRIC_SPEC.md"
+          }
+        ],
+        "split": "manifest.parquet 第 1 行（offset=0）· suite=micro1 · 无 train/test 划分",
+        "license": "MIT（© 2026 Micro1，suite=micro1 的上游许可）；数据集整体标 CC BY 4.0，本行按逐 suite 许可以 MIT 展示。",
+        "licensePath": "licenses/omni-extract-bench-micro1-mit.txt",
+        "excerpt": true
+      }
+    ]
+  }
+}

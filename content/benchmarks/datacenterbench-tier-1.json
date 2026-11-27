@@ -1,0 +1,373 @@
+{
+  "id": "datacenterbench-tier-1",
+  "status": "published",
+  "order": 24270,
+  "name": "DataCenterBench Tier 1",
+  "subtitle": "十道数据中心维护单步台架任务，双臂机器人实机作答",
+  "category": "agents",
+  "tags": [
+    "抓取与操作",
+    "双臂操作",
+    "具身智能",
+    "模型裁判"
+  ],
+  "publisher": "Robocurve",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-28",
+  "version": "v1.0.0（tag v1.0.0 = 59bdd147；发布运行 2026-10-21、10-22 与 10-27 重跑）",
+  "kind": "original",
+  "aliases": [
+    "DataCenterBench",
+    "DataCenter Bench Tier 1"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ]
+  },
+  "officialDefinition": {
+    "summary": "让双臂机械臂完成数据中心维护的单步台架任务，两名模型裁判看前后照片打分。",
+    "task": "从厂商手册取出单步维护动作，改造成桌面台架任务（旋钮、开关、钥匙、保护盖、滑块、数字键盘、拔插充电器、接网线、压线入卡扣），固定布置，每模型每题 3 次 trial。",
+    "sourceUrls": [
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+      "https://robocurve.org/datacenterbench/",
+      "https://robocurve.org/datacenterbench/methods"
+    ]
+  },
+  "taskContract": {
+    "input": "模型只拿到一句英文提示词，以及每步之后三路相机（顶部与两腕）的 224×224 画面；看不到 rubric、板面说明或器材清单。",
+    "output": "用双臂完成一个物理动作，不提交文本交付物；分数取决于起始照片与机械臂归位后结束照片的差异。",
+    "environment": "I2RT YAM 双臂 + Inspect Robots 0.58.0/0.59.0 + inspect-robots-yam 0.36.0；末端位置控制、25% 最大速度、电机 65 °C 上限、每次 ≤40 次模型调用与 900 控制步、无时限。",
+    "sourceUrls": [
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+      "https://robocurve.org/datacenterbench/methods"
+    ]
+  },
+  "dataProfile": {
+    "summary": "10 道任务全部公开：提示词、rubric、逐次结果与视频都在官方发布范围内，官方导出明确说没有 holdout。",
+    "disclosure": "complete",
+    "scale": [
+      "10 道任务，每道计 27 次 trial（9 个模型 × 3 次），合计 270 次计分记录。"
+    ],
+    "splits": [
+      "没有训练/测试划分；官方称这十题就是全部，另在筹备后续 Tier 的私有题集。"
+    ],
+    "fields": [
+      "每题含 task_id、一句 instruction、所用 rig、评分档位（5 题为 0/1，5 题为 0/0.5/1），各模型另带逐次分数、用时与成本字段。"
+    ],
+    "files": [
+      "仓库内是 README、docs/tasks/ 下 10 个任务页、docs/equipment.md 与含裁判实现的 Python 包；站点另给汇总导出 export-results.json 与逐 trial 记录。"
+    ],
+    "sourceUrls": [
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+      "https://robocurve.org/datacenterbench/data/export-results.json",
+      "https://robocurve.org/datacenterbench/methods"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "仓库、任务页与结果导出无需登录即可读取；实机复跑要自备 YAM 双臂，用裁判判分还需 OPENAI_API_KEY 与 ANTHROPIC_API_KEY。"
+    ],
+    "url": "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+    "sourceUrls": [
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+      "https://robocurve.org/datacenterbench/methods"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT，© 2026 Robocurve（仓库 LICENSE 原文）。",
+    "scope": "只转载 README 的 10 题提示词表、docs/tasks/knob.md 全文与官方导出的所选字段，并保留出处、版权与手册引文归属。",
+    "boundaries": [
+      "任务页引用的厂商手册段落不属于 MIT 授权范围，只按短引处理，不整段转载。",
+      "不转载三路相机 setup 照片、器材购买链接与逐 trial 视频；本站没有实机，也没有复跑裁判。"
+    ],
+    "sourceUrls": [
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/LICENSE",
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/docs/tasks/knob.md",
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示 DC-knob 的逐字提示词、板面布置、三档 rubric，以及官方导出里该题的逐次实跑分数。",
+    "url": "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/docs/tasks/knob.md",
+    "sourceUrls": [
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/docs/tasks/knob.md",
+      "https://robocurve.org/datacenterbench/data/export-results.json"
+    ]
+  },
+  "metric": {
+    "name": "avg@3（十题平均）",
+    "description": "每次 trial 由两名模型裁判从三路相机的起始与结束照片给出档位分，两人一致才算；分歧、UNSURE 或失败由人评。题目分为 3 次均值，总分为十题均值，另附按任务重采样的 95% 区间。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+      "https://robocurve.org/datacenterbench/data/export-results.json",
+      "https://robocurve.org/datacenterbench/methods"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方 Limitations 自述：本榜只测单个物理步骤，不是完整维护作业，不覆盖电气隔离、接线端接、仪器测量与故障查找；道具简化了设备外观、阻力与空间约束，也未验证台架成绩与真实设备性能的关系。",
+      "sourceUrls": [
+        "https://robocurve.org/datacenterbench/",
+        "https://robocurve.org/datacenterbench/methods"
+      ]
+    },
+    {
+      "text": "每题只在一台 rig 上跑：官方说 rig 之间的差异（相机角度、道具固定的牢固程度）算进该题难度、不做平均，所以同一分数里混着装置差异。",
+      "sourceUrls": [
+        "https://robocurve.org/datacenterbench/"
+      ]
+    },
+    {
+      "text": "每题只有 3 次 trial，官方自述按 3 次运行算的区间很宽（t 分布自由度 2），并提醒差几个分数点的排名不可靠；同一份导出里 GPT-6 Astra 三次整轮分数都是 0.4、跨轮标准误为 0，而按任务重采样的 95% 区间是 0.1667–0.65，两者描述不同波动来源。",
+      "sourceUrls": [
+        "https://robocurve.org/datacenterbench/data/export-results.json",
+        "https://robocurve.org/datacenterbench/methods",
+        "https://robocurve.org/datacenterbench/"
+      ]
+    },
+    {
+      "text": "224×224 的运行帧进不了裁判：--grader datacenterbench_judges 只送至少 640 px 宽的帧；README 称用 224×224 帧判同样三个 trial 时，六次里有五次答 UNSURE、第六次判错。官方另指出部分失败（如误读旋钮角度）可能就来自这个分辨率。",
+      "sourceUrls": [
+        "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+        "https://robocurve.org/datacenterbench/"
+      ]
+    },
+    {
+      "text": "成本字段不能混用：同一条 GPT-6 Astra 记录里 cost_per_task_usd 为 19.1184，cost_per_task_usd_page_est 为 3.1864，相差约六倍；官方说明估价含 OpenAI ultrafast 的 6 倍与 Claude fast mode 的 2 倍加价。",
+      "sourceUrls": [
+        "https://robocurve.org/datacenterbench/data/export-results.json"
+      ]
+    },
+    {
+      "text": "10 题里有 5 题按 0/1 记分、5 题按 0/0.5/1 记分，0.5 只表示「动了一部分」，不能换算成完成度百分比。",
+      "sourceUrls": [
+        "https://robocurve.org/datacenterbench/data/export-results.json",
+        "https://robocurve.org/datacenterbench/methods"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本锚点：tag v1.0.0 对应提交 59bdd147040bb47227a20d8336ead3d4fdca27dd。本次直读 README.md（9,194 B）、docs/tasks/knob.md（2,457 B）、LICENSE 与站点导出 export-results.json（80,076 B）；未下载三路相机照片、未搭 YAM 实机、未复跑裁判。",
+      "sourceUrls": [
+        "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+        "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/docs/tasks/knob.md",
+        "https://robocurve.org/datacenterbench/data/export-results.json"
+      ]
+    },
+    {
+      "text": "与本站既有研究记录的关系：docs/research/2026-11-09-robotics-evaluation-platforms.md 第 46–56 行已记录本榜的成本字段差异与 270 次计分；本次按导出文件逐字段复核，19.1184 / 3.1864 与 270 次均属实，档位口径也与该文一致——官方 score_levels 与方法页都写 5 题为 0/1、5 题为 0/0.5/1。",
+      "sourceUrls": [
+        "https://robocurve.org/datacenterbench/data/export-results.json",
+        "https://robocurve.org/datacenterbench/methods"
+      ]
+    },
+    {
+      "text": "站点导出的 generated_at 为 2026-10-27T17:01:58-07:00，run_dates 为 2026-10-21 与 2026-10-22，rerun_dates 为 2026-10-27；结果页署名日期为 October 28, 2026，本条 releaseDate 取该署名日。",
+      "sourceUrls": [
+        "https://robocurve.org/datacenterbench/data/export-results.json",
+        "https://robocurve.org/datacenterbench/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库说明与 10 题提示词表（固定版）",
+      "url": "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "旋钮任务页：提示词、布置、rubric（固定版）",
+      "url": "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/docs/tasks/knob.md",
+      "role": "data"
+    },
+    {
+      "label": "MIT 许可原文（固定版）",
+      "url": "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "官方结果导出（逐次分数、成本与区间）",
+      "url": "https://robocurve.org/datacenterbench/data/export-results.json",
+      "role": "data"
+    },
+    {
+      "label": "结果页与逐题说明",
+      "url": "https://robocurve.org/datacenterbench/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "方法说明：裁判、计分与重跑规则",
+      "url": "https://robocurve.org/datacenterbench/methods",
+      "role": "definition"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "datacenterbench-dc-knob",
+        "title": "Turn the knob to the mark：旋钮台架任务",
+        "shortTitle": "旋钮台架任务",
+        "type": "record",
+        "prompt": "把白色盒子上的圆形旋钮顺时针转到旋钮上的黑线对准盒子上的黑色标记。模型只收到一句英文提示词，看不到 rubric、布置说明或器材清单。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "一道题的完整链路：一句提示词 → 固定板面与复位 → 0/0.5/1 三档 rubric → 两名模型裁判看前后照片打分 → datacenterbench grade 可复跑。",
+          "input": "官方任务页的布置与复位原文：“Rotary dimmer in a surface backbox, fixed to the board. A black line is drawn on the knob like a clock hand. One black mark on the box at the start position and one at the goal (fully clockwise). The knob starts at the start mark every trial.” 模型拿到的全部任务信息只有一句提示词：Turn the round knob on the white box clockwise until the black line on it points at the black mark on the box. 三路相机的 setup 照片在官方任务页与本仓库，本站未转载。",
+          "output": "不提交文本交付物：模型驱动双臂把旋钮上的黑线转向目标刻线，评分只看起始照片和机械臂归位后的结束照片。",
+          "checks": [
+            "1 分档原文：The line on the knob points at the goal mark (turned clockwise to it).",
+            "0.5 分档原文：The knob turned clockwise noticeably but the line stops short of the goal mark.",
+            "0 分档原文：The knob did not turn clockwise (unchanged, or turned the other way).",
+            "同题官方实跑（export-results.json）：GPT-6 Astra 在 DC-knob 的 3 次 trial 得 1.0 / 0.5 / 1.0，题均分 0.8333；该题共 27 次计分 trial，9 个模型总均分 0.5185。"
+          ],
+          "sourceField": "docs/tasks/knob.md",
+          "excerpts": [
+            {
+              "label": "官方逐字提示词",
+              "text": "> Turn the round knob on the white box clockwise until the black line on it points at the black mark on the box."
+            },
+            {
+              "label": "同页 rubric 三档",
+              "text": "| 1 | The line on the knob points at the goal mark (turned clockwise to it). |\n| 0.5 | The knob turned clockwise noticeably but the line stops short of the goal mark. |\n| 0 | The knob did not turn clockwise (unchanged, or turned the other way). |"
+            },
+            {
+              "label": "板面布置",
+              "text": "Rotary dimmer in a surface backbox, fixed to the board."
+            }
+          ],
+          "note": "这是 10 题中的 1 题。板面照片、器材链接与逐 trial 视频未转载；本站没有实机，也没有复跑裁判，因此这里没有本站产生的分数。"
+        },
+        "explanation": "raw 保留三份真实文本：README 第 30–51 行（10 题提示词表、任务页说明与评分段）、docs/tasks/knob.md 全文，以及 export-results.json 中 DC-knob 与 GPT-6 Astra 的所选字段（数值未改动）。省略的是 README 其余段落、docs/equipment.md、任务页照片与逐 trial 记录文件；没有该题的模型实跑复现或裁判复跑。",
+        "raw": {
+          "README.md": "| Task (`--task`) | Name | Instruction (all the model is told) |\n|---|---|---|\n| [`datacenterbench/unplug`](docs/tasks/unplug.md) | Unplug the charger from the power strip | Unplug the white phone charger from the white power strip. |\n| [`datacenterbench/knob`](docs/tasks/knob.md) | Turn the knob to the mark | Turn the round knob on the white box clockwise until the black line on it points at the black mark on the box. |\n| [`datacenterbench/toggle`](docs/tasks/toggle.md) | Flip the light switch | Flip the lever of the light switch on the white box to the other side. |\n| [`datacenterbench/key`](docs/tasks/key.md) | Turn the key | Turn the key clockwise to its other position. Leave it there and release it. |\n| [`datacenterbench/cover`](docs/tasks/cover.md) | Open the spring-loaded cover | Lift the clear cover on the grey box all the way open, until it stays open on its own. It is spring-loaded and snaps shut if it is not pushed far enough. |\n| [`datacenterbench/slider`](docs/tasks/slider.md) | Move the slider to the other line | Move the small slider on the white dimmer from the black line it is on to the other black line. |\n| [`datacenterbench/keypad`](docs/tasks/keypad.md) | Enter a code on the keypad | Type 52 on the number pad and nothing else. The iPhone next to it shows what you type. |\n| [`datacenterbench/plug`](docs/tasks/plug.md) | Plug the charger into the power strip | Pick up the white phone charger and plug it into one of the outlets on the white power strip. Push it in until the prongs are fully inserted. |\n| [`datacenterbench/join`](docs/tasks/join.md) | Join the Ethernet plug and coupler | Use one hand to hold the Ethernet coupler and the other to insert the Ethernet plug into it until it clicks into place. |\n| [`datacenterbench/clip`](docs/tasks/clip.md) | Press the cable into the clip | Press the black network cable into the dark clip on the table, so the cable is held by the clip. |\n\nEach task page has the setup photos from all three cameras, the setup and reset steps, the equipment with the\nproducts the published runs used, the rubric, and the real-world procedure step the task stands in for. The board\nand mounting supplies are on [Shared equipment](docs/equipment.md).\n\n## Scoring\n\nA trial gets a score only when two judges, GPT-6 Astra and Claude Opus 5.5 (both at reasoning effort high), give\nthe same one from start and end photos of the three cameras. When they disagree, or either answers UNSURE or fails,\na person scores it. The prompt, requests and answer checks are the published code, copied byte for byte.",
+          "docs/tasks/knob.md": "# Turn the knob to the mark\n\nTask `datacenterbench/knob`, version 1, from release 1.0.0.\n\n## Instruction\n\nWhat the model is told, word for word:\n\n> Turn the round knob on the white box clockwise until the black line on it points at the black mark on the box.\n\n## Setup\n\n![Setup for Turn the knob to the mark, overhead camera](../assets/knob-setup-top.jpg)\n\nRotary dimmer in a surface backbox, fixed to the board. A black line is drawn on the knob like a clock hand. One black mark on the box at the start position and one at the goal (fully clockwise). The knob starts at the start mark every trial.\n\nBetween trials: Turn the knob back counterclockwise until its line points at the start mark.\n\nWrist cameras at the start: [left](../assets/knob-setup-left.jpg), [right](../assets/knob-setup-right.jpg).\n\n## Equipment\n\n| Object | Quantity | Product | As used |\n|---|--:|---|---|\n| Leviton Trimatron rotary dimmer, RNL06-10Z, white | 1 | [link](https://www.amazon.com/dp/B073H9Y7SH) | Black line drawn on the knob; start and goal marks drawn on the box. |\n| Leviton surface-mount backbox, single gang, 42777-1WA, white | 1 | [link](https://www.amazon.com/dp/B0028CIC8U) |  |\n\nThe board and mounting supplies are on [Shared equipment](../equipment.md).\n\n## Rubric\n\nA trial scores one of these levels. The judges see the task name, the guidance and every level\nbelow, word for word.\n\n```text\nThe knob carries a black line like a clock hand. Compare where it points with the start photos and with the marks on the box.\n```\n\n| Score | End state |\n|--:|---|\n| 1 | The line on the knob points at the goal mark (turned clockwise to it). |\n| 0.5 | The knob turned clockwise noticeably but the line stops short of the goal mark. |\n| 0 | The knob did not turn clockwise (unchanged, or turned the other way). |\n\n## The real-world step\n\nSet a UPS bypass selector: Turn a rack-mount maintenance bypass rotary switch from UPS to MAINS, after checking the MAINS lamp is lit.\n\n> Transfer the rotary switch from UPS to MAINS, provided the MAINS lamp is illuminated\n\nSource: [Vertiv Liebert MicroPOD installer/user guide](https://www.vertiv.com/49ecbb/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-micropod-maintenance-bypass-and-output-distribution-accessory2/liebert-micropod-230v-user-guide.pdf), §6.1, p. 11. Our dimmer turns between drawn marks. The real selector has fixed positions and requires checking an indicator before switching.",
+          "export-results.json": {
+            "benchmark": "DataCenterBench",
+            "generated_at": "2026-10-27T17:01:58-07:00",
+            "run_dates": [
+              "2026-10-21",
+              "2026-10-22"
+            ],
+            "rerun_dates": [
+              "2026-10-27"
+            ],
+            "tasks": [
+              {
+                "task_id": "DC-knob",
+                "name": "Turn the knob to the mark",
+                "instruction": "Turn the round knob on the white box clockwise until the black line on it points at the black mark on the box.",
+                "rig": "rig1",
+                "batch_status": "finished",
+                "counted": 27,
+                "planned": 27,
+                "score_levels": [
+                  1,
+                  0.5,
+                  0
+                ],
+                "mean_score_all_models": 0.5185
+              }
+            ],
+            "models": [
+              {
+                "model": "GPT-6 Astra · ultrafast",
+                "model_id": "openai/gpt-6-astra#ultrafast",
+                "api_model": "gpt-6-astra",
+                "effort": "max",
+                "avg_at_3": 0.4,
+                "n_trials_expected": 30,
+                "n_trials_counted": 30,
+                "n_scored": 30,
+                "uncertainty": {
+                  "se_across_runs": 0.0,
+                  "ci95_t_across_runs": [
+                    0.4,
+                    0.4
+                  ],
+                  "ci95_bootstrap_over_tasks": [
+                    0.1667,
+                    0.65
+                  ]
+                },
+                "runs": [
+                  {
+                    "run": 1,
+                    "score": 0.4,
+                    "cost_per_task_usd": 18.6267,
+                    "duration_s_mean": 210.2
+                  },
+                  {
+                    "run": 2,
+                    "score": 0.4,
+                    "cost_per_task_usd": 18.0101,
+                    "duration_s_mean": 204.5
+                  },
+                  {
+                    "run": 3,
+                    "score": 0.4,
+                    "cost_per_task_usd": 20.7183,
+                    "duration_s_mean": 231.1
+                  }
+                ],
+                "per_task": {
+                  "DC-knob": {
+                    "scores_by_run": [
+                      1.0,
+                      0.5,
+                      1.0
+                    ],
+                    "mean": 0.8333,
+                    "n_scored": 3,
+                    "n_counted": 3,
+                    "cost_per_task_usd": 20.5098,
+                    "duration_s_mean": 223.1
+                  }
+                },
+                "cost_per_task_usd": 19.1184,
+                "total_cost_usd": 573.55,
+                "cost_per_task_usd_page_est": 3.1864,
+                "duration_s": {
+                  "mean": 215.3,
+                  "median": 235.2,
+                  "p90": 271.0
+                }
+              }
+            ]
+          }
+        },
+        "source": "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/docs/tasks/knob.md",
+        "references": [
+          {
+            "label": "同仓库 README：10 题提示词表与评分说明",
+            "url": "https://github.com/robocurve/datacenterbench/blob/59bdd147040bb47227a20d8336ead3d4fdca27dd/README.md"
+          },
+          {
+            "label": "官方结果导出（含 DC-knob 逐次分数）",
+            "url": "https://robocurve.org/datacenterbench/data/export-results.json"
+          },
+          {
+            "label": "结果页与方法说明",
+            "url": "https://robocurve.org/datacenterbench/methods"
+          }
+        ],
+        "license": "MIT，© 2026 Robocurve；任务页引用的厂商手册段落不在该许可内，本站未转载手册原文。",
+        "licensePath": "licenses/robocurve-datacenterbench-mit.txt",
+        "split": "公开全量（无 holdout）：DC-knob，9 个模型 × 3 次 trial。",
+        "excerpt": true
+      }
+    ]
+  }
+}

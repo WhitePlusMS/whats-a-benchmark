@@ -1,0 +1,279 @@
+{
+  "id": "witnessbench",
+  "status": "published",
+  "order": 24290,
+  "name": "WitnessBench",
+  "subtitle": "只靠文本棋盘与试验，发现看不见的游戏规则",
+  "category": "agents",
+  "tags": [
+    "游戏环境",
+    "交互推理",
+    "抽象推理"
+  ],
+  "publisher": "Fleet",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10",
+  "version": "v2.0（2026-10；2026-11 为同一 v2.0 的榜单增量；harness v2；提交 678d557）",
+  "kind": "original",
+  "aliases": [
+    "Witness Bench",
+    "WitnessBench v2.0"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在没被告知规则的情况下，用文本棋盘试出隐藏规则并画出过关线路。",
+    "task": "每个游戏都是起点到终点的线路谜题，带隐藏规则（关于路径本身，或路径把棋盘切出的区域）。agent 只拿文本观测，靠试验与文字推理维护规则假设并写行动计划。",
+    "sourceUrls": [
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
+      "https://arxiv.org/abs/2609.32208"
+    ]
+  },
+  "taskContract": {
+    "input": "每次反思调用收到系统提示与一条用户消息：棋盘尺寸、agent 位置、关卡与预算、图例与文本棋盘，另有起点终点、格子内容、颜色/数值分组、已走路径、动作语义与当前规则表；不含像素，也不含规则。",
+    "output": "一条回复：用 <add>/<delete>/<keep/> 维护至多 15 条规则假设，并在 <plan> 里给出至多 16 个动作（0 RESET、1–4 移动、5 CONFIRM）。",
+    "environment": "witness_agent 标准 harness（v2）驱动 witness_env 游戏（arcengine）；Python 3.12+，OpenRouter 评测只需只读 key，自建评测需自备 SGLang 服务与 GPU。",
+    "sourceUrls": [
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/evaluation.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "35 个公开游戏连同 harness、evaluator 与 RL 代码一起发布；排行榜用的测试游戏不在仓库内。",
+    "disclosure": "partial",
+    "scale": [
+      "35 个公开游戏：22 个训练（train.jsonl）、5 个 r2 训练（train_r2.jsonl）、8 个验证（val.jsonl）；每关动作上限 300。"
+    ],
+    "splits": [
+      "榜单口径是 26 个未公开游戏 × 20 关 × 3 seeds，即每个配置 78 个 episode、成绩表 levels_total 为 1,560；公开验证集每局 5 关、250 次反思调用。"
+    ],
+    "fields": [
+      "任务文件每行含 prompt 与 metadata（game_id、max_levels、max_reflection_calls）；观测里是 Grid、Level、Budget、Legend、Board 文本块与 Start、End、Cell content、Color groups 等分区。"
+    ],
+    "files": [
+      "仓库分 witness_env/（公开游戏）、witness_agent/（harness 与两个 evaluator）、witness_game/（跨进程客户端）、witness_rl/ 与 configs/、data/*.jsonl 与 docs/，tests/golden/ 存有对照快照。"
+    ],
+    "sourceUrls": [
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/data/val.jsonl",
+      "https://witnessbench.ai/data/witnessbench-v2.0.csv"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "35 个公开游戏、文档与 evaluator 可直接 clone；26 个测试游戏不公开，只能提交给维护者代跑。"
+    ],
+    "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+    "sourceUrls": [
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/games.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT，© 2026 Fleet AI（仓库 LICENSE 原文）；arcengine（MIT）与 miles（Apache-2.0）系单独安装的第三方依赖。",
+    "scope": "仅节选仓库文档公开的 ft12 开局观测，保留来源与许可提示。",
+    "boundaries": [
+      "本条仅使用 MIT 仓库中的文档节选，不据此推定独立游戏数据包的再发布许可。",
+      "不转载 docs/games.md 的规则清单（该文件自带 canary），也不声称能复现排行榜成绩。"
+    ],
+    "sourceUrls": [
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/LICENSE",
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/games.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示公开训练游戏 ft12 第 1 关的文本棋盘、动作交付方式和同一回合预算；不是排行榜题。",
+    "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145",
+    "sourceUrls": [
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145"
+    ]
+  },
+  "metric": {
+    "name": "OAE-L20（同时报 levels beaten）",
+    "description": "已通过的关卡按 min((参考动作数 / 实际动作数)², 1.15) 计分、未通过记 0，按关卡序号加权并在加权完成比例处封顶后取 20 关平均；榜单值再对 26 个游戏与 3 个 seed 取均值，± 是三个 seed 的样本标准差。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/evaluation.md",
+      "https://witnessbench.ai/"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "排行榜用的 26 个测试游戏与其规则都不公开：README 的 split 表把 Private test 的 in-repo 一栏标为 no，规则只在 35 个公开游戏里给出。",
+      "sourceUrls": [
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/games.md"
+      ]
+    },
+    {
+      "text": "公开验证集有已知的宽松处：tw08 与 tw11 的第 1 关、tw13 的第 1–3 关，任意最短路径都能过关，agent 不必发现规则也能解掉。",
+      "sourceUrls": [
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/games.md"
+      ]
+    },
+    {
+      "text": "当前发布的 harness v2 比论文所用的 v1 把棋盘描述得更完整，README 明确两者分数不能直接比较。",
+      "sourceUrls": [
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md"
+      ]
+    },
+    {
+      "text": "两个 evaluator 设置不同（自建：thinking off、每次 8,192 tokens、seeds 0–2；OpenRouter：effort max、128,000 tokens、seeds 0–4），只能在同一 evaluator 内比较模型。",
+      "sourceUrls": [
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/evaluation.md"
+      ]
+    },
+    {
+      "text": "人类基线动作数与验证/测试关的最短动作数不随仓库发布，所以 RHAE 与 OAE 都不能在本地完整复算。",
+      "sourceUrls": [
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/evaluation.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本锚点与读取范围：钉提交 678d557a96cb0903151e9f0a783e53c438b77a81，直读 README.md（13,684 B）、docs/harness.md（15,428 B）、docs/evaluation.md（12,562 B）、docs/games.md（8,426 B）、data/val.jsonl（784 B）与 LICENSE；另取官网与榜单 CSV（2,397 B）。未安装 witness_env、未跑任何 episode、未取得测试游戏。",
+      "sourceUrls": [
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
+        "https://witnessbench.ai/data/witnessbench-v2.0.csv"
+      ]
+    },
+    {
+      "text": "计数核对：榜单 CSV 的 levels_total 列为 1,560、episodes 列为 78，与官网「26 games × 3 seeds、20 levels each」一致（26×20×3=1,560，26×3=78）；README 只写 Private test 在榜上，未给游戏数，26 这个数字取自官网与 CSV 而非 README。",
+      "sourceUrls": [
+        "https://witnessbench.ai/",
+        "https://witnessbench.ai/data/witnessbench-v2.0.csv",
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md"
+      ]
+    },
+    {
+      "text": "原始观测和两个 300 的预算来自同一个 ft12 首条用户消息；公开验证集为独立数据，不用于该案例。",
+      "sourceUrls": [
+        "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方 README：公开游戏、分裂与许可（固定版）",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "harness 文档：观测格式与动作协议（固定版）",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md",
+      "role": "definition"
+    },
+    {
+      "label": "评测文档：两个 evaluator 与计分公式（固定版）",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/evaluation.md",
+      "role": "definition"
+    },
+    {
+      "label": "公开游戏规则与已知问题（固定版，含 canary）",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/games.md",
+      "role": "data"
+    },
+    {
+      "label": "公开验证集任务行（固定版）",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/data/val.jsonl",
+      "role": "data"
+    },
+    {
+      "label": "MIT 许可原文（固定版）",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "官方榜单与变更记录",
+      "url": "https://witnessbench.ai/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "v2.0 榜单数据（OAE-L20 与 levels_total）",
+      "url": "https://witnessbench.ai/data/witnessbench-v2.0.csv",
+      "role": "data"
+    },
+    {
+      "label": "论文（v1 harness 口径）",
+      "url": "https://arxiv.org/abs/2609.32208",
+      "role": "paper"
+    },
+    {
+      "label": "同一任务原始证据",
+      "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "witnessbench-public-observation",
+        "title": "公开游戏 ft12 第 1 关：board-as-text 观测",
+        "shortTitle": "文本棋盘观测",
+        "type": "record",
+        "prompt": "只拿到棋盘的文本描述：从起点走到终点，试出这个游戏的隐藏规则，并让引擎接受你提交的线路。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "公开训练游戏 ft12 第 1 关的真实开局。棋盘用文本表示，模型从动作反馈里摸索游戏规则。",
+          "input": "官方文档给出的 ft12 第 1 关首条观测（原文）：Grid: 4×4 dot intersections (cursor moves on dots, not in cells) | Agent at row=0, col=3；Level: 1/10；Legend: @=agent  E=end  Q=colored_square  g=gargoyles；接着是文本棋盘（含 E、@、Q、g 与行列号）、Start: (0,3)、End: (3,0)、Cell content 与 Color groups。其中颜色分组原文是：Squares of color 6: (0,1), (1,1), (2,0)／Squares of color 10: (1,2)／Gargoyles of color 10: (1,0)。像素图不给模型，提示里也没有任何一句解释 gargoyle 做什么。",
+          "output": "一条回复：用 <add>/<delete>/<keep/> 维护至多 15 条规则假设，<plan> 里至多 16 个动作（0 RESET、1 上、2 下、3 左、4 右、5 CONFIRM）；harness 把计划放进引擎执行，再发来新棋盘。",
+          "checks": [
+            "这关由引擎判定：到达终点并提交的线路只有在满足隐藏约束时才通过。",
+            "同一条开局观测标明：本关最多 300 个动作，本回合最多 300 次反思调用；此处两者均未使用。"
+          ],
+          "sourceField": "docs/harness.md",
+          "excerpts": [
+            {
+              "label": "观测首行：棋盘尺寸与 agent 位置",
+              "text": "Grid: 4×4 dot intersections (cursor moves on dots, not in cells) | Agent at row=0, col=3"
+            },
+            {
+              "label": "图例一行（原文双空格分隔）",
+              "text": "Legend: @=agent  E=end  Q=colored_square  g=gargoyles"
+            },
+            {
+              "label": "颜色分组四行（原文）",
+              "text": "Color groups (cells sharing the same color):\n  Squares of color 6: (0,1), (1,1), (2,0)\n  Squares of color 10: (1,2)\n  Gargoyles of color 10: (1,0)"
+            }
+          ],
+          "note": "只展示 ft12 的开局与对应判定，不混入验证集任务，不展示模型或本站实跑成绩。"
+        },
+        "explanation": "原始数据是固定版 docs/harness.md 的 Current Board State 块，保留 ASCII 棋盘、预算、位置和颜色分组；没有附其他关卡记录。",
+        "raw": {
+          "docs/harness.md": "## Current Board State\nGrid: 4×4 dot intersections (cursor moves on dots, not in cells) | Agent at row=0, col=3\nLevel: 1/10\nBudget: actions on this level 0 of 300 | reflection calls used 0 of 300\nCoordinates: (row, col), 0-indexed, (0,0) at top-left.\nLegend: @=agent  E=end  Q=colored_square  g=gargoyles\n\nBoard:\n   0 1 2 3 \n 0       @\n      Q   \n 1        \n    g Q Q \n 2        \n    Q     \n 3 E      \n\nStart: (0,3)\nEnd:   (3,0)\n\nCell content:\n  (0,1): square color=6\n  (1,1): square color=6\n  (1,2): square color=10\n  (2,0): square color=6\n  (1,0): gargoyles color=10\n\nColor groups (cells sharing the same color):\n  Squares of color 6: (0,1), (1,1), (2,0)\n  Squares of color 10: (1,2)\n  Gargoyles of color 10: (1,0)"
+        },
+        "source": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/harness.md#L113-L145",
+        "references": [
+          {
+            "label": "同一棋盘也出现在 README 的「How an agent plays」",
+            "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/README.md"
+          },
+          {
+            "label": "计分公式与 evaluator 差异",
+            "url": "https://github.com/fleet-ai/witnessbench/blob/678d557a96cb0903151e9f0a783e53c438b77a81/docs/evaluation.md"
+          },
+          {
+            "label": "官方榜单（26 个测试游戏）",
+            "url": "https://witnessbench.ai/"
+          }
+        ],
+        "license": "MIT，© 2026 Fleet AI；公开游戏数据的单独许可见 reusePolicy 的边界说明。",
+        "licensePath": "licenses/fleet-witnessbench-mit.txt",
+        "split": "公开训练游戏 ft12，第 1 关的 harness v2 开局；非公开验证集或排行榜题。",
+        "excerpt": true
+      }
+    ]
+  }
+}

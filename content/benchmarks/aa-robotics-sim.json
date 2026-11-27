@@ -1,0 +1,258 @@
+{
+  "id": "aa-robotics-sim",
+  "status": "published",
+  "order": 24440,
+  "name": "AA-Robotics-Sim v0.1",
+  "subtitle": "语言模型操控仿真人形机器人完成十项家居与轻工业任务",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "navigation",
+      "long-horizon"
+    ],
+    "resources": [
+      {
+        "label": "Water plants · GPT-6.1 Sol 评测 episode 官方原片",
+        "type": "官方评测视频",
+        "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-1-sol/water-plants.mp4"
+      },
+      {
+        "label": "Fragile dishwasher · GPT-6.2 Astra 官方原片（不计入总分）",
+        "type": "官方评测视频",
+        "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/load-dishwasher-fragile.mp4"
+      }
+    ]
+  },
+  "tags": [
+    "仿真环境",
+    "抓取与操作",
+    "移动导航",
+    "编码智能体"
+  ],
+  "publisher": "Artificial Analysis",
+  "brandIds": [
+    "artificial-analysis"
+  ],
+  "year": 2026,
+  "releaseDate": "2026-11-25",
+  "version": "v0.1（research preview）",
+  "kind": "original",
+  "aliases": [
+    "AA Robotics Sim",
+    "AA-Robotics-Sim",
+    "AA Humanoid Simulation Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在仿真 Unitree G1 人形上评估编码智能体完成十项家居与轻工业任务。",
+    "task": "让语言模型在编码智能体外壳里直接控制一台仿真人形机器人：先按任务练 5 个 episode 并留下笔记与代码，再在 10 个新场景各跑 1 个 episode 计分。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics-sim"
+    ]
+  },
+  "taskContract": {
+    "input": "任务目标文字，加一套机器人客户端接口：NVIDIA SONIC 全身控制器的参考位姿、手臂运动规划、相机帧与像素到点助手。机器人只有一只头部相机，给彩色图与深度图，没有 LiDAR，也没有立体像对。",
+    "output": "模型自己写并运行的 Python 代码，用它驱动机器人行走、观察相机、用双手操作；官方没有单独的提交文件，episode 结束后由脚本按物理状态给分。",
+    "environment": "NVIDIA Isaac Sim 6.1 与 Isaac Lab 物理，Unitree G1（29 关节、三指 Dex3）；Stirrup agent harness，所有模型用同一套 harness 与 prompt；练习阶段单次运行最多 1,000 轮、6 小时，且不重置场景。",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics-sim"
+    ]
+  },
+  "dataProfile": {
+    "summary": "十项任务分四组能力，每项 5 个练习 episode 加 10 个评测 episode，场景逐次更换。",
+    "disclosure": "partial",
+    "scale": [
+      "每配置 10 项任务 × 10 个评测 episode = 100 个计分 episode；练习另有 10 项 × 5 = 50 个 episode，不计入成绩。"
+    ],
+    "splits": [
+      "四组：Embodied Reasoning（Toy piano、Chess、Abacus）、Pick and Place（Box to shelf、Dishwasher、Laundry）、Assembly and Tool Use（Conveyor、Pour-over、Water plants）、Mobility（Warehouse navigation）。"
+    ],
+    "fields": [
+      "每个任务一份 scoring script，从仿真物理状态取量：物体位姿、手是否触碰或抬升过物体、各容器里的水量、机器人走了多远。"
+    ],
+    "files": [
+      "官方未发布任务文件、episode 记录或数据集；公开制品是文章正文与各任务最佳 episode 的第三人称录像（内含头部相机画中画）。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics-sim"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "文章正文、十项任务的 Goal 与 Success、计分说明与协议表公开可读，无需登录或申请。",
+      "任务文件、评测 episode、评分脚本、sim 环境与模型接入条件均未发布，复现需自建 Isaac Sim 与 SONIC 环境。"
+    ],
+    "url": "https://artificialanalysis.ai/articles/aa-robotics-sim",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics-sim"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "无独立数据或媒体许可。官方只给出 Artificial Analysis 网站使用条款：仅授予个人非商业访问，并禁止复制、再发布、下载、展示或托管站点内容。",
+    "scope": "仅记一个公开回合的事实、短标签和官方视频外链，不复制任务集、评分正文或媒体。",
+    "boundaries": [
+      "本站不下载、不镜像、不内嵌官方 mp4，只在资源与来源处给出 artificialanalysiscdn.com 原链。",
+      "十条 Goal 与 Success 为识别该评测任务内容所需的最小英文引用，逐字保留；中文说明与排版由本站撰写，不是官方译文。",
+      "模拟器与资产另有其许可：Isaac Sim 6.1 与 Isaac Lab 为 BSD-3-Clause，Unitree G1 属 Unitree Robotics，SimReady 素材为 CC BY 4.0，均不因本条引用而改变。"
+    ],
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics-sim",
+      "https://artificialanalysis.ai/terms-of-use"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示 Conveyor 场景 05 的任务、通过条件和官方单次得分，回放仅外链。",
+    "url": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes"
+    ]
+  },
+  "metric": {
+    "name": "十任务均分（0–100）",
+    "description": "每个评测 episode 满分 100，完整成功 100 分，部分进展按任务阶段给部分分；任务分为其 10 个评测 episode 的均值，总分为 10 个任务分的均值。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://artificialanalysis.ai/articles/aa-robotics-sim"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "评分脚本、任务文件、评测 episode 记录与数据集都不公开，官方只给实现描述，因此无法复核某个分数具体如何由物理状态换算而来。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim"
+      ]
+    },
+    {
+      "text": "练习与评测的场景不同，每个练习 episode 又能继承前一个的累积，且练习跑在更早版本的环境上、按当前评分规则重算，练习分与评测分之差只能作学习曲线参考。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim"
+      ]
+    },
+    {
+      "text": "这是 v0.1 研究预览，与同机构真机单臂的 AA-Robotics v0.1（8 项桌面任务）任务、硬件、判据与分母全不同，两者成绩不能互相比对或合并。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim",
+        "https://artificialanalysis.ai/articles/aa-robotics/"
+      ]
+    },
+    {
+      "text": "九模型同 harness 同 prompt，但每次 episode 的耗时与成本差异很大（per episode 17.3 到 39 分钟），耗时与分数不完全独立。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "首名 GPT-6.2 Astra 71.0，领先 Claude Fable 5.2（57.5）13.5 分，100 个评测 episode 中成功 61 个；这些数字取自官方文章，本站未独立验证。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim"
+      ]
+    },
+    {
+      "text": "回放区官方标签标明 GPT-6.2 Astra、Conveyor、场景 05、单回合 100；该回放是作者选播的最佳回合、2 倍速，不是任务均分。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
+        "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/conveyor.mp4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方发布文章：Introducing AA-Robotics-Sim v0.1（2026-11-25）",
+      "url": "https://artificialanalysis.ai/articles/aa-robotics-sim",
+      "role": "definition"
+    },
+    {
+      "label": "Artificial Analysis 网站使用条款",
+      "url": "https://artificialanalysis.ai/terms-of-use",
+      "role": "access"
+    },
+    {
+      "label": "同机构真机单臂前作 AA-Robotics v0.1 官方文章",
+      "url": "https://artificialanalysis.ai/articles/aa-robotics/",
+      "role": "release"
+    },
+    {
+      "label": "Fragile dishwasher 官方原片（外链，不计入总分）",
+      "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/load-dishwasher-fragile.mp4",
+      "role": "data"
+    },
+    {
+      "label": "Conveyor 场景 05 官方选播",
+      "url": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
+      "role": "data"
+    },
+    {
+      "label": "Conveyor 官方原片（外链）",
+      "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/conveyor.mp4",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "aa-robotics",
+      "label": "AA-Robotics v0.1（真机单臂，8 项桌面任务）",
+      "detail": "同机构的两条不同评测，不合并。AA-Robotics v0.1 用真实 Hiwonder NexArm 单臂完成 8 项桌面任务（2026-10-14），本条用仿真 Unitree G1 人形完成 10 项家居与轻工业任务（2026-11-25）；官方正文自述本条是上月真机预览之后的第二次研究预览。硬件、任务、判据与分母全不同，成绩不可互比。",
+      "sourceUrls": [
+        "https://artificialanalysis.ai/articles/aa-robotics-sim",
+        "https://artificialanalysis.ai/articles/aa-robotics/"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "aa-robotics-sim-conveyor-scene-05",
+        "title": "Conveyor：将零件装入传送带送来的小车",
+        "shortTitle": "传送带装配",
+        "type": "record",
+        "prompt": "控制仿真人形机器人，将零件装到传送带送来的小车上。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "官方公布 GPT-6.2 Astra 的同题回放：评测场景 05 单次得到 100 分。",
+          "input": "仿真场景中有传送带、小车和待装零件；官方回放含第三人称镜头与头部相机小窗，未转载模型逐步输入。",
+          "output": "模型生成控制代码，让仿真机器人将零件装到车上并松手。",
+          "checks": [
+            "完整成功要求零件完全就位，机器人手掌张开。",
+            "官方记录为场景 05 得 100 分。这是该模型在本任务中公开选播的最佳回合，不是十次均分。"
+          ],
+          "sourceField": "Official episode caption",
+          "excerpts": [
+            {
+              "label": "官方回合标签节选",
+              "text": "GPT-6.2 Astra, conveyor, evaluation scene 05: scored 100."
+            }
+          ],
+          "note": "官方视频为 2 倍速，视频里的计时读数按官方说明对应真实耗时。本站未运行或复算。"
+        },
+        "explanation": "官方视频为 2 倍速，视频里的计时读数按官方说明对应真实耗时。本站未运行或复算。",
+        "raw": {
+          "Official episode caption": "GPT-6.2 Astra, conveyor, evaluation scene 05: scored 100."
+        },
+        "source": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes",
+        "split": "AA-Robotics-Sim v0.1，Conveyor 的 evaluation scene 05（官方公开选播）",
+        "license": "只保留简短的官方回合标签，其余为中文转述；视频仅从官方入口查看。",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "官方同题回放（外链）",
+            "url": "https://artificialanalysiscdn.com/article-assets/2026/aa-humanoid/third-person-v033/gpt-6-2-astra/conveyor.mp4"
+          },
+          {
+            "label": "官方回放区与回合说明",
+            "url": "https://artificialanalysis.ai/articles/aa-robotics-sim#episodes"
+          }
+        ],
+        "licensePath": "licenses/aa-robotics-sim-terms-excerpt.txt"
+      }
+    ]
+  }
+}

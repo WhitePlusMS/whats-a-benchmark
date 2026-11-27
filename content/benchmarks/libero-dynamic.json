@@ -1,0 +1,275 @@
+{
+  "id": "libero-dynamic",
+  "status": "published",
+  "order": 24400,
+  "name": "LIBERO-Dynamic",
+  "subtitle": "目标持续运动、推理有延迟时的机器人操作策略评测",
+  "category": "agents",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ]
+  },
+  "tags": [
+    "抓取与操作",
+    "动态场景",
+    "延迟感知",
+    "策略评测",
+    "具身智能"
+  ],
+  "publisher": "LIBERO-Dynamic 作者团队（仓库 renshaojie233）",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-17",
+  "version": "arXiv:2610.24579 · 代码仓库 fd45961",
+  "kind": "derivative",
+  "aliases": [
+    "LIBERO Dynamic",
+    "LIBERO-Dynamic benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在原版 40 个 LIBERO 任务上加目标运动与推理延迟的动态评测。",
+    "task": "目标物由工作台下的隐藏载体经摩擦驱动，沿直线、曲线与锯齿三类轨迹、三档速度移动；场景在测得的推理延迟期间继续推进，策略要在可能已经过期的观测上执行动作。",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "https://arxiv.org/abs/2610.24579"
+    ]
+  },
+  "taskContract": {
+    "input": "双视角相机观测与机器人状态，观测可能已在延迟期间过期；外加任务语言与初始状态，目标速度取 0.03、0.06 或 0.09 m/s。",
+    "output": "动作块，在 20 Hz 动作时钟下执行；每条 episode 记录成功与否，并保存 manifest、逐 step trace 与双视角模型输入视频。",
+    "environment": "MuJoCo 仿真加 LIBERO 环境，需要 CUDA、EGL 与各上游策略自己的 Python 环境；评测入口与延迟校准脚本在仓库内，仓库不下载也不转发 checkpoint。",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "协议、脚本与聚合结果公开；正式评测用的 1,800 episode 人口没有发布。",
+    "disclosure": "partial",
+    "scale": [
+      "正式配置为 40 tasks × 3 motion families × 5 reviewed trajectories × 3 speeds = 1,800 episodes，速度档取 0.03、0.06、0.09 m/s。",
+      "另发布 9,000 条质量过滤的动态演示轨迹，以及 1,800 条严格非基准训练 episode（284,502 帧、20 Hz）。"
+    ],
+    "splits": [
+      "评测人口与训练数据分开：HF 上的 strict-nonbenchmark 训练集与那 1,800 个评测 episode 没有重叠。"
+    ],
+    "fields": [
+      "逐 episode 产出 per-item manifest、可选视频与 summary.json；manifest 保留 success 与 success_count、队列 underflow、延迟、RTC 请求/支持/使用状态，以及 action 连续性聚合。"
+    ],
+    "files": [
+      "libero/ 放环境与任务定义，examples/ 放各策略入口，scripts/ 放评测与延迟校准，results/ 放聚合结果表，docs/ 放与正式协议相关的说明。"
+    ],
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "代码、协议与 results/ 聚合结果公开可读；1,800 episode 的评测人口未发布，训练集与 9 个 checkpoint 在 Hugging Face。"
+    ],
+    "url": "https://github.com/renshaojie233/LIBERO-Dynamic",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic",
+      "https://huggingface.co/datasets/rsj2003/libero-dynamic-strict-nonbenchmark-1800"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "MIT · © 2023 Lifelong Robot Learning（许可继承自 LIBERO）；模型集成与外部资产随各自上游许可。",
+    "scope": "本站用中文整理公开运行、保留简短任务标签；视频仅外链，未转载。",
+    "boundaries": [
+      "不转载上游策略 checkpoint 与模型权重，它们随 openpi、LeRobot、FastWAM、VLASH 各自的上游许可。",
+      "HF 训练数据卡本轮未见 license 字段，数据部分不按 MIT 处理。"
+    ],
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示同一公开执行的任务、配置和成功标记；完整逐步记录未公开。",
+    "url": "https://renshaojie233.github.io/LIBERO-Dynamic/#trained-title",
+    "sourceUrls": [
+      "https://renshaojie233.github.io/LIBERO-Dynamic/#trained-title"
+    ]
+  },
+  "metric": {
+    "name": "动态操作成功率（success rate）",
+    "description": "每个配置在固定的 1,800 episode 人口上汇总成功率；不同速度与执行策略（同步 hold、异步 queue、RTC）分开报告，表中 best measured K 是按已测点描述性选取，不是验证集选出。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "正式评测用的 1,800 episode 人口没有发布，仓库只给代码、协议与聚合结果，无法据此重算榜上数字。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    },
+    {
+      "text": "best measured K 是描述性选择而非验证集选出；异步 OpenVLA-OFT 的总成功率 27.3% 不能与静态 LIBERO 的成绩直接相减。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    },
+    {
+      "text": "训练数据放在 Hugging Face，数据卡本轮未见 license 字段，数据许可未核到，仓库的 MIT 不能自动覆盖它。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/rsj2003/libero-dynamic-strict-nonbenchmark-1800"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "仓库锚点为 fd45961603cc50debaa959be52116626bc0fda1f：README.md、examples/README.md、docs/formal_dynamic_eval.md 与 LICENSE 都按该 SHA 的 raw 原文核对。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    },
+    {
+      "text": "examples/README.md 建议复现时使用 tag formal-eval-final-20260622；本轮未核到该 tag 是否存在，因此不把它当作已核实锚点。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/examples/README.md"
+      ]
+    },
+    {
+      "text": "本站没有安装 MuJoCo 与 EGL，未运行任何 episode，也没有下载 checkpoint。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    },
+    {
+      "text": "官网 After dynamic-data fine-tuning 的 π0.5 卡给出 L10-03、success、K=4、60.3 ms 与 0.09 m/s；正式回合身份不推断。",
+      "sourceUrls": [
+        "https://renshaojie233.github.io/LIBERO-Dynamic/#trained-title"
+      ]
+    }
+  ],
+  "interpretation": {
+    "comparison": {
+      "text": "与本仓原版 libero 的分母不同：这里是 40 任务 × 3 运动族 × 5 条复核轨迹 × 3 档速度的 1,800 episode，两边的成功率不能直接相减。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "官方仓库说明（固定版本）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "评测示例与停止判据（固定版本）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/examples/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "正式评测协议（固定版本）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md",
+      "role": "data"
+    },
+    {
+      "label": "MIT 许可（固定版本，继承自 LIBERO）",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "论文（arXiv:2610.24579）",
+      "url": "https://arxiv.org/abs/2610.24579",
+      "role": "paper"
+    },
+    {
+      "label": "仓库访问入口",
+      "url": "https://github.com/renshaojie233/LIBERO-Dynamic",
+      "role": "access"
+    },
+    {
+      "label": "严格非基准训练数据卡",
+      "url": "https://huggingface.co/datasets/rsj2003/libero-dynamic-strict-nonbenchmark-1800",
+      "role": "data"
+    },
+    {
+      "label": "9 个论文 checkpoint",
+      "url": "https://huggingface.co/models/rsj2003/libero-dynamic-paper-models",
+      "role": "data"
+    },
+    {
+      "label": "官方项目页",
+      "url": "https://renshaojie233.github.io/LIBERO-Dynamic/",
+      "role": "leaderboard"
+    },
+    {
+      "label": "L10-03 同题官方仿真执行",
+      "url": "https://renshaojie233.github.io/LIBERO-Dynamic/#trained-title",
+      "role": "data"
+    }
+  ],
+  "related": [
+    {
+      "id": "libero",
+      "label": "原版评测",
+      "detail": "沿用原版全部 40 个 LIBERO 任务，但目标改为摩擦驱动的持续运动、场景按推理延迟推进，评测人口改为每配置 1,800 episode，成功率与原版静态套件不可直接比较。",
+      "sourceUrls": [
+        "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/README.md",
+        "https://arxiv.org/abs/2610.24579"
+      ]
+    }
+  ],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "libero-dynamic-l10-03",
+        "title": "L10-03：打开炉灶并放置摩卡壶",
+        "shortTitle": "炉灶与摩卡壶",
+        "type": "record",
+        "prompt": "在官方展示的动态模拟场景里，控制机械臂打开炉灶，并按任务要求放置摩卡壶。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "官方公开视频中的一次成功执行；初始动态相位未见，目标物速度为 0.09 m/s。",
+          "input": "L10-03 的仿真桌面场景包含炉灶和摩卡壶；模型收到该任务指令与视觉观测。页面未提供该次运行的完整逐步输入。",
+          "output": "策略在仿真里执行机械臂动作。视频标注为动态与静态数据联合微调的 π0.5，异步执行 K=4，标注延迟为 60.3 ms。",
+          "checks": [
+            "官方对这段同题视频标记为成功，输入和结果可对照同一张官方视频卡。",
+            "这是一次公开视频展示，不是总站成功率，也未核实它是正式 1,800 回合中的哪一条。"
+          ],
+          "sourceField": "Official L10-03 task label",
+          "excerpts": [
+            {
+              "label": "官方公开字段节选",
+              "text": "Turn on the stove and place the moka pot"
+            }
+          ],
+          "note": "公开的是作者展示的同题执行，不是完整轨迹文件或本站实跑。"
+        },
+        "explanation": "公开的是作者展示的同题执行，不是完整轨迹文件或本站实跑。",
+        "raw": {
+          "Official L10-03 task label": "Turn on the stove and place the moka pot"
+        },
+        "source": "https://renshaojie233.github.io/LIBERO-Dynamic/#trained-title",
+        "split": "官网动态微调展示：未见动态相位（具体正式评测回合编号未公开）",
+        "license": "任务名短节选；官方视频只外链，不将仓库 MIT 扩张为视频再发布许可。",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "同一次执行的官方视频",
+            "url": "https://renshaojie233.github.io/LIBERO-Dynamic/assets/videos/trained_models/01_pi05_dynamic_static_ft_async_k4_latency60ms.mp4"
+          },
+          {
+            "label": "正式评测协议",
+            "url": "https://github.com/renshaojie233/LIBERO-Dynamic/blob/fd45961603cc50debaa959be52116626bc0fda1f/docs/formal_dynamic_eval.md"
+          }
+        ]
+      }
+    ]
+  }
+}

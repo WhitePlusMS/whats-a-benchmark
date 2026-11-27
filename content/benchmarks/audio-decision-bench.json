@@ -1,0 +1,337 @@
+{
+  "id": "audio-decision-bench",
+  "status": "published",
+  "order": 24520,
+  "name": "AudioDecisionBench-v0",
+  "subtitle": "听完录音只交每个选项的概率，考音频事件计时与判断",
+  "category": "multimodal",
+  "tags": [
+    "音频理解",
+    "决策模型",
+    "概率校准",
+    "事件计时"
+  ],
+  "publisher": "Decagon Labs",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-11-24",
+  "version": "public-v0（HF revision 18925e0；评分脚本 benchmark_protocol_v13.py）",
+  "kind": "original",
+  "aliases": [
+    "AudioDecisionBench",
+    "Decagon AudioDecisionBench-v0",
+    "ADB-v0"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在真实录音上按选项输出概率分布，考察音频内容与时长的判断。",
+    "task": "全量 9,989 条决策题，每条给一段音频、一句问题、可空的上下文文本和一张选项表，模型只看到这些输入，需返回每个选项的概率；发布方公开其中 1,989 条，含答案键与评分脚本。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "30 秒以内的音频、一句 instruction、可能为空的 context，以及带 id 的选项表。本例 instruction 原文为 “Comparing cutlery dishes with running water, which is audible for more total time in the first half of the recording? Include overlapping portions.”，选项是 c0 = “Something else: the supported answer is not among the named choices.” 与 c1 = “running water”。",
+    "output": "每题一行 JSON，给出该行全部选项的概率，发布方给出的行格式为 {\"decision_id\": \"d4_…\", \"probabilities\": {\"c0\": 0.04, \"c1\": 0.93, \"c2\": 0.03}}。概率不能为负且必须合计为 1，缺行或非法行记为答错。",
+    "environment": "数据以 8 个 parquet 分片发布，本例取 data/test-00000-of-00008.parquet 第 1 行；评分在仓库内 eval/benchmark_protocol_v13.py 本地运行，另 8,000 条 held out 需邮件申请由发布方代打分。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md",
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet"
+    ]
+  },
+  "dataProfile": {
+    "summary": "公开集 1,989 条带答案键、评分脚本与音频；按 345 个 cluster 整块划分公开与隐藏。",
+    "disclosure": "partial",
+    "scale": [
+      "全量 9,989 条，公开 1,989 条；345 个 cluster 里 106 个公开、239 个隐藏，公开集覆盖 40 个任务类型中的 32 个。"
+    ],
+    "splits": [
+      "只发布 test 划分，共 8 个 parquet 分片，合计 281,747,284 字节；其余 8,000 条由发布方保留并按申请代打分。"
+    ],
+    "fields": [
+      "列有 decision_id、group_id、audio、instruction、context、record_json；record_json 是紧凑 JSON 字符串，内含 input.options、supervision.probabilities 与 metadata.private_oracle 等构造字段。"
+    ],
+    "files": [
+      "data/test-0000X-of-00008.parquet 存音频 FLAC 与上述列；eval/ 下保存 benchmark_protocol_v13.py（包装 v12 的评分实现）。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md",
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "公开部分的题目、音频、答案键与评分脚本可直接下载，无需登录或申请。",
+      "要拿到全量 9,989 条的成绩需发邮件到 dante.everaert@decagon.ai 由发布方代打分。"
+    ],
+    "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0",
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0（Decagon 自有的题目、选项表、上下文规则、标注、评分代码与文档）；第三方音频、源文本与继承标注保留各自原许可。",
+    "scope": "本站只按 Apache-2.0 展示该行 Decagon 自有的 instruction、选项表、监督概率与构造判定字段，并保留署名与固定 revision 链接。",
+    "boundaries": [
+      "仓库 Apache-2.0 不覆盖第三方音频，本站不转载音频；该行 metadata.license 记录的上游条款为 “CC-BY 4.0 (Attribution License), Author: Saman Burburhosseinbeygi”，若要复用音频须逐片段核对 metadata.license 与 source_licenses.json。",
+      "数据集卡明确写了仓库的 Apache-2.0 标签不会把整套音频合集变成可无条件商用；ESC-50 等来源另有非商业条款。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md",
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/THIRD_PARTY_NOTICES.md",
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示公开测试集第 1 行的结构化记录：原始指令、选项表、答案键概率，以及构造答案所用的计时字段；音频按许可边界不转载。",
+    "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet",
+      "https://datasets-server.huggingface.co/rows?dataset=decagon-ai%2FAudioDecisionBench-v0&config=default&split=test&offset=0&length=1",
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md"
+    ]
+  },
+  "metric": {
+    "name": "Expected accuracy（附 Group accuracy、Brier、Log loss）",
+    "description": "主指标 Expected accuracy 取答案键在模型排名第一选项上的权重并对条目平均，主观题因此可以拿到部分得分；另报整组全对率、Brier 与 Log loss（越低越好）和 task-by-context 宏平均。发布方要求连同去音频打分与选项逆序两项对照一起报告，置信区间按 component_id 重采样。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md",
+      "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/eval/benchmark_protocol_v13.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开集只有 1,989 条，覆盖 40 个任务类型中的 32 个且不含会议录音；speaker 相关的 232 条与 speech+event 的 156 条在公开集为 0，因此不能把公开集成绩当成全量 9,989 条的结果。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md"
+      ]
+    },
+    {
+      "text": "本例答案键来自源数据集的带时间标注，同一行 metadata.label_support 写明 “Released timed annotations; derived listening task remains pending perceptual review.”，即该听辨题仍待知觉层面复核。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=decagon-ai%2FAudioDecisionBench-v0&config=default&split=test&offset=0&length=1",
+        "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md"
+      ]
+    },
+    {
+      "text": "本站没有运行任何模型，也没有该题的实跑概率输出；页面上的概率与计时数值都直接来自数据文件的公开字段。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=decagon-ai%2FAudioDecisionBench-v0&config=default&split=test&offset=0&length=1"
+      ]
+    },
+    {
+      "text": "名称里的 v0 与单题 metadata 的 construction_version=audio-context-v9、dataset_version=coverage-v9 是不同层级的版本号，评分脚本又有自己的 v13，引用成绩时要说明用的是哪一层。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/eval/benchmark_protocol_v13.py",
+        "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "样例取自 datasets-server 的 rows API（config=default、split=test、offset=0、length=1）返回的第 1 行；该响应里的音频直链路径带 --/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/--，说明这一行由固定 revision 18925e0 转换而来。record_json 原文是紧凑 JSON 字符串，raw 中按字段展开显示；audio 列（FLAC）整列未下载也未转载。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=decagon-ai%2FAudioDecisionBench-v0&config=default&split=test&offset=0&length=1",
+        "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet"
+      ]
+    },
+    {
+      "text": "8 个分片的字节数逐个取自 HF 固定 revision 的目录列表，相加得 281,747,284 字节；未做抽样统计，也未核对隐藏部分的内容。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "数据卡（固定 revision 18925e0）：四项设计、公开划分与评分口径",
+      "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/README.md",
+      "role": "data"
+    },
+    {
+      "label": "数据集入口",
+      "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0",
+      "role": "access"
+    },
+    {
+      "label": "公开测试分片 data/test-00000-of-00008.parquet（固定 revision）",
+      "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet",
+      "role": "data"
+    },
+    {
+      "label": "单行记录的 rows API 端点（可复现取数）",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=decagon-ai%2FAudioDecisionBench-v0&config=default&split=test&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "评分脚本 benchmark_protocol_v13.py（固定 revision）",
+      "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/eval/benchmark_protocol_v13.py",
+      "role": "code"
+    },
+    {
+      "label": "第三方来源登记 THIRD_PARTY_NOTICES.md（固定 revision）",
+      "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/THIRD_PARTY_NOTICES.md",
+      "role": "data"
+    },
+    {
+      "label": "Apache-2.0 许可与范围声明（固定 revision）",
+      "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/LICENSE",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "d4_74774a95f1f0a47eae850e9f",
+        "title": "餐具与流水：前半段哪种声音更久",
+        "shortTitle": "餐具 vs 流水",
+        "type": "record",
+        "prompt": "听一段室内录音，只回答前半段（0 到 14.474 秒）里餐具声与流水声哪个总时长更长，重叠部分也要计入，然后对选项表给出概率分布。本站展示的是公开测试集第 1 行的结构化字段，不含音频文件。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "公开测试集第 1 行（decision_id=d4_74774a95f1f0a47eae850e9f）：题面问前半段里 cutlery dishes 与 running water 谁的累计可闻时间更长，并要求计入重叠部分；答案键把全部权重压在 c0「Something else」。",
+          "input": "原始 instruction：“Comparing cutlery dishes with running water, which is audible for more total time in the first half of the recording? Include overlapping portions.”，context 为空串。选项表是 c0 = “Something else: the supported answer is not among the named choices.”、c1 = “running water”。音频为 RealDESED 片段 004590.wav:0，28.948 秒，本站不转载。",
+          "output": "每题一行 JSON 概率，例如 {\"decision_id\": \"d4_74774a95f1f0a47eae850e9f\", \"probabilities\": {\"c0\": 0.97, \"c1\": 0.03}}；发布方要求概率非负且和为 1，缺行或非法行记错，最终用 Expected accuracy 等指标与本地答案键比对。",
+          "checks": [
+            "答案键：supervision.probabilities = {\"c0\": 1.0, \"c1\": 0.0}，supervision.status = \"source_supported\"，quality_weight = 1.0。",
+            "构造答案的私有判定：private_oracle.operation = \"first_half\"、interval = [0, 14.474]、values = {\"cutlery_dishes\": 7.394928351694331, \"running_water\": 2.5552865755595864}（秒）。7.39 秒大于 2.56 秒，所以答案是餐具声，而选项 c1 是流水、c0 才是兜底项，答案键因此给 c0 全权重。",
+            "计分：Expected accuracy 取答案键在模型排名第一选项上的权重并平均；另有整组全对率、Brier 与 Log loss，后两者越低越好。",
+            "发布方要求附两项对照：去掉音频再打分的成绩，以及选项逆序后答案变化的比例；置信区间按 component_id 重采样而不是按条目。"
+          ],
+          "sourceField": "instruction",
+          "excerpts": [
+            {
+              "label": "原始题面（instruction 列全文）",
+              "text": "Comparing cutlery dishes with running water, which is audible for more total time in the first half of the recording? Include overlapping portions."
+            }
+          ],
+          "note": "只展示 8 个分片中 test-00000-of-00008.parquet 的第 1 行；音频不随本站转载。答案键与 private_oracle 都是该行公开字段，本站没有跑过任何模型，也没有该题的模型概率。"
+        },
+        "explanation": "这是公开测试集第一行的结构化投影：保留 decision_id、group_id、instruction、context 与展开后的 record_json，省略 audio 列（FLAC）以及 rows API 返回的其它行。record_json 原是紧凑 JSON 字符串，此处按字段展开但不改写取值。没有该题的模型实跑结果，也没有重算分数。",
+        "raw": {
+          "decision_id": "d4_74774a95f1f0a47eae850e9f",
+          "group_id": "pcm:045bb8ec964f02a304c936f0458007523f12a44ed610227404f5b5e8c8005253",
+          "instruction": "Comparing cutlery dishes with running water, which is audible for more total time in the first half of the recording? Include overlapping portions.",
+          "context": "",
+          "record_json": {
+            "decision_id": "d4_74774a95f1f0a47eae850e9f",
+            "split": "eval",
+            "group_id": "pcm:045bb8ec964f02a304c936f0458007523f12a44ed610227404f5b5e8c8005253",
+            "input": {
+              "audio": "a4_3bcf9af91c85dc547e547a86",
+              "instruction": "Comparing cutlery dishes with running water, which is audible for more total time in the first half of the recording? Include overlapping portions.",
+              "context": "",
+              "options": [
+                {
+                  "id": "c0",
+                  "text": "Something else: the supported answer is not among the named choices."
+                },
+                {
+                  "id": "c1",
+                  "text": "running water"
+                }
+              ]
+            },
+            "supervision": {
+              "probabilities": {
+                "c0": 1.0,
+                "c1": 0.0
+              },
+              "status": "source_supported",
+              "evidence_id": "a4_3bcf9af91c85dc547e547a86",
+              "quality_weight": 1.0
+            },
+            "metadata": {
+              "source": "RealDESED",
+              "source_id": "004590.wav:0",
+              "source_family": "RealDESED",
+              "primary_task": "audio_internal_first_half",
+              "task_family": "audio_internal_first_half",
+              "content_domain": "environment",
+              "context_role": "absent",
+              "policy_context_role": "absent",
+              "duration_seconds": 28.948,
+              "independent_evidence_id": "a4_3bcf9af91c85dc547e547a86",
+              "original_recording_id": "realdesed-recording:004590.wav",
+              "request_key": "internal9_ffb31f4d4d3673432715407a:first_half:absent",
+              "label_review": "pending",
+              "label_support": "Released timed annotations; derived listening task remains pending perceptual review.",
+              "license": "CC-BY 4.0 (Attribution License), Author: Saman Burburhosseinbeygi",
+              "difficulty_measured": false,
+              "gold_labels_admitted": false,
+              "option_semantics": {
+                "c0": "other",
+                "c1": "y"
+              },
+              "relation_block": "internal9_ffb31f4d4d3673432715407a",
+              "option_order_key": "f2c5c2bf66be86e023a70f993c6a36bd83aaf208cac4e8a546f37ce1f081076a",
+              "reasoning_stratum": "composition_candidate",
+              "difficulty_design_level": "compositional_candidate",
+              "source_task": "temporal",
+              "input_dependence": "audio_sufficient",
+              "context_relation": "not_applicable",
+              "context_intervention": "invariant_nonessential_context",
+              "optional_context_kind": null,
+              "question_shape": "first_half",
+              "construction_version": "audio-context-v9",
+              "reasoning_location": "within_audio",
+              "private_oracle": {
+                "operation": "first_half",
+                "pair": [
+                  "cutlery_dishes",
+                  "running_water"
+                ],
+                "interval": [
+                  0,
+                  14.474
+                ],
+                "values": {
+                  "cutlery_dishes": 7.394928351694331,
+                  "running_water": 2.5552865755595864
+                }
+              },
+              "dataset_version": "coverage-v9",
+              "empirical_difficulty": null,
+              "auxiliary_context_role": "absent",
+              "intervention_kind": "reference",
+              "training_eligibility": "experimental_source_or_oracle_supervision",
+              "publication_gold": false,
+              "training_admitted": false,
+              "experimental_training_allowed": false,
+              "release_limit": "Construction checked; perceptual/wording error and empirical difficulty not independently established.",
+              "evaluation_track": "main"
+            }
+          }
+        },
+        "source": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/data/test-00000-of-00008.parquet",
+        "split": "test · data/test-00000-of-00008.parquet 第 1 行（公开 1,989 / 全量 9,989）",
+        "license": "Apache-2.0（Decagon 自有题目、选项表与标注）；未转载音频，该片段上游条款见该行 metadata.license。",
+        "licensePath": "licenses/decagon-audiodecisionbench-apache-2-0.txt",
+        "references": [
+          {
+            "label": "同一行的 rows API 取数端点",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=decagon-ai%2FAudioDecisionBench-v0&config=default&split=test&offset=0&length=1"
+          },
+          {
+            "label": "评分脚本 benchmark_protocol_v13.py",
+            "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/eval/benchmark_protocol_v13.py"
+          },
+          {
+            "label": "第三方来源与逐片段许可登记",
+            "url": "https://huggingface.co/datasets/decagon-ai/AudioDecisionBench-v0/blob/18925e0c3f3584ec6ce9dee33e42b7112bf2617e/THIRD_PARTY_NOTICES.md"
+          }
+        ]
+      }
+    ]
+  }
+}

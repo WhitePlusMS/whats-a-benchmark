@@ -1,0 +1,348 @@
+{
+  "id": "vabar",
+  "status": "published",
+  "order": 24420,
+  "name": "VABAR",
+  "subtitle": "工业与机房场景的六类操作任务，按 goal clause 逐条判定成功",
+  "category": "agents",
+  "tags": [
+    "机器人操作",
+    "双臂",
+    "工业场景",
+    "任务规格"
+  ],
+  "publisher": "VABAR 作者团队（BerkeleyAutomation）",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-11-04",
+  "version": "vabar_v1.json v1.0（12 cells × 30 冻结实例）· 仓库 cc9e2d3",
+  "kind": "original",
+  "aliases": [
+    "Variational Automation Benchmark",
+    "VABAR Benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "embodied": {
+    "tasks": [
+      "manipulation",
+      "bimanual"
+    ],
+    "resources": [
+      {
+        "label": "冻结实例清单（固定版）",
+        "type": "JSON",
+        "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/vabar_v1.json"
+      },
+      {
+        "label": "评测协议说明（固定版）",
+        "type": "Markdown",
+        "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/docs/benchmark.md"
+      }
+    ]
+  },
+  "officialDefinition": {
+    "summary": "在六类工业与机房任务上评操作策略，按 goal clause 逐条判成功。",
+    "task": "六个任务类各分两个难度，共 12 个 cell、每 cell 30 条冻结实例；agent 需操作 Franka 或 YAM 双臂完成该实例 task 文档里声明的 goal。",
+    "sourceUrls": [
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md",
+      "https://arxiv.org/abs/2611.06881"
+    ]
+  },
+  "taskContract": {
+    "input": "cell 的 30 条冻结实例（task 与 episode 编号）加对应的 task 文档：objects、fixtures、goal clause、相机与物理配置、最大步数。",
+    "output": "驱动双臂完成 goal 的操作；参考解是仓库里每个任务自带的 scripted routine 与 Graph-as-Policy 参考图。",
+    "environment": "经 RoboSimStudio 跑在 Newton 物理引擎上，需 Linux、NVIDIA GPU、Python 3.12 与 uv；感知图另需 SAM 3 等模型。",
+    "sourceUrls": [
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md",
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangwrench-001.task"
+    ]
+  },
+  "dataProfile": {
+    "summary": "12 个 cell（6 任务类 × 2 难度），每 cell 30 条冻结实例，共 360 条。",
+    "disclosure": "complete",
+    "scale": [
+      "清单 version 为 1.0，instances_per_cell 为 30；六类任务分别是工具分拣、工具悬挂、齿轮啮合、注射器装箱、USB-C 插接与线缆布线。"
+    ],
+    "splits": [
+      "cell 名形如 tool_hanging/L1；每个 cell 的 selection 字段说明取自哪份 manifest、前多少条，例如前 30 条取自 100 条冻结实例。"
+    ],
+    "fields": [
+      "每条实例记 id、task、episode、document 路径与 initial 位姿；cell 另记 task_class、level、suite、graph、flags 与 selection。"
+    ],
+    "files": [
+      "task 文档是 RoboSimStudio 文档格式（.task，Lisp 风格），同族共享 <suite>.suite；graphs/<label>/ 放参考 GaP 图。"
+    ],
+    "sourceUrls": [
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/vabar_v1.json",
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "仓库与冻结清单公开可读；完整复跑需 Linux、NVIDIA GPU 与约 12 GB 依赖，感知图另需配置 HF_TOKEN。"
+    ],
+    "url": "https://github.com/BerkeleyAutomation/VABAR/tree/cc9e2d37a9088eba93c8a75e0da857563737b930",
+    "sourceUrls": [
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md",
+      "https://github.com/BerkeleyAutomation/VABAR/tree/cc9e2d37a9088eba93c8a75e0da857563737b930"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0，© 2026 The VABAR Authors（仓库 LICENSE）。",
+    "scope": "转载一条 task 文档全文与 tool_hanging/L1 cell 的清单字段，并保留署名与许可。",
+    "boundaries": [
+      "不转载机器人模型、网格与场景资产；这些各自带许可，见仓库 NOTICE 与 ASSET_PROVENANCE.md。",
+      "不转载 media/ 下的图片视频，也不转载论文图表。",
+      "本站没有安装依赖或跑 bench，结果栏里的数字不是本站测量。"
+    ],
+    "sourceUrls": [
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/LICENSE",
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/ASSET_PROVENANCE.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示一条冻结实例的 task 文档全文，含 :language、:objects、:goal 与 :instance-layout。",
+    "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangwrench-001.task",
+    "sourceUrls": [
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangwrench-001.task",
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/vabar_v1.json",
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md"
+    ]
+  },
+  "metric": {
+    "name": "clause 判定的成功率（按 trial 计）",
+    "description": "goal 逐条 clause 判定：对象彼此独立的任务（如逐个分拣或悬挂）以单个对象为 trial，取完成比例，工具须离手一秒才算完成；顺序型任务（如齿轮啮合）以整条实例为单位，子目标只作诊断。cycle time 取成功 trial 的中位数。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md",
+      "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/docs/benchmark.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本轮没有安装依赖或运行 bench，本页不含任何成功率或 cycle time 数值。",
+      "sourceUrls": [
+        "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md"
+      ]
+    },
+    {
+      "text": "感知图在发布时对相机配置做过修正，论文与本次发布的结果口径不完全一致，比较分数时须看 docs/benchmark.md 的变更说明。",
+      "sourceUrls": [
+        "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/docs/benchmark.md"
+      ]
+    },
+    {
+      "text": "第三方机器人模型与场景资产各自带许可，公开仓库的 Apache-2.0 不自动覆盖它们。",
+      "sourceUrls": [
+        "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/NOTICE",
+        "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/ASSET_PROVENANCE.md"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本锚定 git ls-remote 的 refs/heads/main = cc9e2d37a9088eba93c8a75e0da857563737b930；本仓既有研究记录引用的 69429b19 是另一个提交，本条以本轮实测为准。只读了 README、docs/benchmark.md、vabar_v1.json、样例 task 文档与许可文件，未解包资产。",
+      "sourceUrls": [
+        "https://github.com/BerkeleyAutomation/VABAR/tree/cc9e2d37a9088eba93c8a75e0da857563737b930",
+        "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/docs/benchmark.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库说明（固定版）",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "论文（arXiv:2611.06881）",
+      "url": "https://arxiv.org/abs/2611.06881",
+      "role": "paper"
+    },
+    {
+      "label": "仓库固定快照入口",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/tree/cc9e2d37a9088eba93c8a75e0da857563737b930",
+      "role": "access"
+    },
+    {
+      "label": "冻结实例清单 vabar_v1.json（固定版）",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/vabar_v1.json",
+      "role": "data"
+    },
+    {
+      "label": "评测协议与结果说明（固定版）",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/docs/benchmark.md",
+      "role": "definition"
+    },
+    {
+      "label": "样例 task 文档（固定版）",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangwrench-001.task",
+      "role": "data"
+    },
+    {
+      "label": "Apache-2.0 许可（固定版）",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "第三方资产与机器人模型许可说明（固定版）",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/NOTICE",
+      "role": "code"
+    },
+    {
+      "label": "逐项资产来源（固定版）",
+      "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/ASSET_PROVENANCE.md",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "toolhanging-easy-hangwrench-001",
+        "title": "工具悬挂 Level 1：把扳手挂到挂钩上并松手",
+        "shortTitle": "悬挂扳手（L1）",
+        "type": "record",
+        "prompt": "起始条件：tool_hanging/L1 cell 的第 1 条冻结实例（seed 1），场景含一个 1.30 倍放大的 260 mm 活动扳手与一个挂板挂钩，双臂为 YAM。\n\n任务：把扳手挂到挂钩上，并在松手后保持住。\n\n交付：由策略驱动的双臂动作；参考解是该任务自带的 HangWrenchRoutineLevel1 脚本与参考 GaP 图。\n验收：goal 里的 clause 全部成立并维持 1 秒——环套住钩杆、接触力不低于 0.2、速度不高于 0.15、双手离物体超过 0.21。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "record 形态：一条冻结实例的 task 文档全文，goal clause 与实例位姿都在里面。",
+          "input": "task 文档的 :objects 声明 wrench_1 为 wrench_adjustable_260，:fixtures 声明 wrench_hook_1 为 pegboard_hook，:staging 给出场景 tool_hanging_bench、双臂 yam_tool_hanging、物理 tool_hanging_480hz@v1 与最大步数 6200。:language 原文是 “hang the wrench on the hook”。",
+          "output": "由策略完成悬挂动作。参考实现由 :artifacts 指定：routine 为 routine:HangWrenchRoutineLevel1，另有 graphs/gt、graphs/gap_gt、graphs/gap_perception 三套图。",
+          "checks": [
+            "goal 原文用 hold-for 1.0 包住四个 clause：encloses wrench_1.ring wrench_hook_1.shank、contact-force 不低于 0.2、speed 不高于 0.15、hands-clear 大于 0.21。",
+            "实例位姿写在 :instance-layout，seed 为 1，object-xform 给出 wrench_1 的七个数（位置加四元数）。",
+            ":observe 只观察 encloses 一条：策略可观测的信号比完整 goal 窄。"
+          ],
+          "sourceField": "toolhanging-easy-hangwrench-001.task",
+          "excerpts": [
+            {
+              "label": "任务语言原文",
+              "text": "(:language hang the wrench on the hook)"
+            },
+            {
+              "label": "goal clause 原文",
+              "text": "  (:goal\n    ; Each tool hung and let go, for a second: see tool_hanging.suite for the release clause.\n    (And\n      (hold-for 1.0\n        (And\n          (encloses wrench_1.ring wrench_hook_1.shank)\n          (>= (contact-force wrench_1 wrench_hook_1) 0.2)\n          (<= (speed wrench_1) 0.15)\n          (> (hands-clear wrench_1) 0.21)\n        )\n      )\n    )\n  )"
+            }
+          ],
+          "note": "只展示这一条实例；本站未安装依赖、未运行 bench，也没有该实例的策略成绩。"
+        },
+        "explanation": "raw 保留该 task 文档全文（.task，RoboSimStudio 文档格式，未改写），以及 vabar_v1.json 里 tool_hanging/L1 这个 cell 的真实字段；为避免整份清单转载，instances 只保留前 3 条。没有安装依赖、没有跑 bench，也没有策略实跑记录。",
+        "raw": {
+          "toolhanging-easy-hangwrench-001.task": "; -*- mode: lisp -*-\n; ---------------------------------------------------------------------------\n; LEVEL 1 -- one hook, one object. See wrenches.task for the family's design\n; (what `encloses`/`contact-force`/`speed`/`hold-for` mean) and\n; tasks/tool_hanging/task.py's LEVEL1_Y for the centring. Does not touch\n; wrenches.task or any other existing document.\n;\n; The single object is a uniformly enlarged (1.30x) version of the task's\n; 200 mm wrench. Its visual mesh, collision hulls and declared ring feature use\n; the same scale; the graph continues to estimate its manipulation geometry\n; from camera observations.\n; ---------------------------------------------------------------------------\n\n(define (problem TOOLHANGING-EASY-HANGWRENCH-001)\n\n  (:domain tool_hanging)\n\n  (:language hang the wrench on the hook)\n\n  (:staging\n    (:scene tool_hanging_bench)\n    (:embodiment yam_tool_hanging (:work-arm left) (:support-arm right))\n    (:physics tool_hanging_480hz@v1)\n    (:cameras tool_hanging_views_level1@v2)\n    (:control-mode joint_position)\n    (:episodes (:count 1) (:seed 1) (:sampler fixed))\n    ; Learned multi-camera graph calls and closed-loop Cartesian moves are\n    ; slower than the scripted routine; 6200 lets gap_perception release and\n    ; retract (measured completion: 5796) without changing either policy.\n    (:max-steps 6200)\n  )\n\n  (:objects\n    wrench_1 - wrench_adjustable_260\n  )\n\n  (:fixtures\n    wrench_hook_1 - pegboard_hook\n  )\n\n  (:init)\n\n  (:goal\n    ; Each tool hung and let go, for a second: see tool_hanging.suite for the release clause.\n    (And\n      (hold-for 1.0\n        (And\n          (encloses wrench_1.ring wrench_hook_1.shank)\n          (>= (contact-force wrench_1 wrench_hook_1) 0.2)\n          (<= (speed wrench_1) 0.15)\n          (> (hands-clear wrench_1) 0.21)\n        )\n      )\n    )\n  )\n\n  (:reward (fraction))\n\n  (:observe\n    (encloses wrench_1.ring wrench_hook_1.shank)\n  )\n\n  (:artifacts\n    (:routine \"routine:HangWrenchRoutineLevel1\")\n    (:tools \"tools:register_tool_hanging_tools\")\n    (:graph gt \"graphs/gt\")\n    (:graph gap_gt \"graphs/gap_gt\")\n    (:graph gap_perception \"graphs/gap_perception\")\n  )\n\n  (:provenance\n    (:tier original)\n    (:source \"A one-object, one-holder reduction of wrenches.task, authored\n              for GaP graph testing. The Level-1 wrench is uniformly enlarged;\n              the scene and holder remain unchanged.\")\n    (:note \"HangWrenchRoutineLevel1 (tasks/tool_hanging/routine.py) is\n            HangWrenchRoutine trimmed to one job -- wrench_1, left arm,\n            hook_center_world_y=LEVEL1_Y -- carrying uniformly scaled grasp\n            and ring landmarks for the enlarged wrench.\")\n  )\n\n\n  (:instance-layout\n    (:source-task tool_hanging/wrenches_level1)\n    (:source-episode 1)\n    (:seed 1)\n    (:object-xform wrench_1 0.0004728649880102673 0.01801854785303741 0.009099999999999997 0.7071067811865476 0.0 0.0 0.7071067811865476)\n  )\n)\n",
+          "vabar_v1.json": {
+            "task_class": "Tool Hanging",
+            "level": 1,
+            "suite": "tool_hanging",
+            "graph": "gap_perception",
+            "flags": [
+              "--motion",
+              "curobo",
+              "--no-privileged",
+              "--perception",
+              "vision",
+              "--bus-timeout",
+              "180",
+              "--max-steps",
+              "8500"
+            ],
+            "env": {},
+            "selection": "benchmark/tool_hanging/easy/manifest.jsonl: the first 30 of 100 frozen instances.",
+            "notes": "",
+            "instances": [
+              {
+                "id": "toolhanging-easy-hangwrench-001",
+                "task": "tool_hanging/wrenches_level1",
+                "episode": 1,
+                "document": "benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangwrench-001.task",
+                "initial": {
+                  "object_xforms": {
+                    "wrench_1": [
+                      0.0004728649880102673,
+                      0.01801854785303741,
+                      0.009099999999999997,
+                      0.7071067811865476,
+                      0,
+                      0,
+                      0.7071067811865476
+                    ]
+                  },
+                  "static_xforms": {}
+                }
+              },
+              {
+                "id": "toolhanging-easy-hangscissors-001",
+                "task": "tool_hanging/scissors_level1",
+                "episode": 2,
+                "document": "benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangscissors-001.task",
+                "initial": {
+                  "object_xforms": {
+                    "scissors_1": [
+                      -0.009535514630027345,
+                      -0.008060354263435068,
+                      0.009505050000000015,
+                      0,
+                      0,
+                      0.7071067811865476,
+                      0.7071067811865476
+                    ]
+                  },
+                  "static_xforms": {}
+                }
+              },
+              {
+                "id": "toolhanging-easy-hangpliers-001",
+                "task": "tool_hanging/pliers_level1",
+                "episode": 3,
+                "document": "benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangpliers-001.task",
+                "initial": {
+                  "object_xforms": {
+                    "plier_1": [
+                      -0.016574033314255027,
+                      -0.010527579736156012,
+                      0.007000000000000006,
+                      0.7071067811865476,
+                      0,
+                      0,
+                      0.7071067811865476
+                    ]
+                  },
+                  "static_xforms": {}
+                }
+              }
+            ]
+          }
+        },
+        "source": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/tool_hanging/easy/tasks/toolhanging-easy-hangwrench-001.task",
+        "references": [
+          {
+            "label": "同 cell 的冻结实例清单",
+            "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/benchmark/vabar_v1.json"
+          },
+          {
+            "label": "评测协议与结果说明",
+            "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/docs/benchmark.md"
+          },
+          {
+            "label": "仓库说明（含六类任务表）",
+            "url": "https://github.com/BerkeleyAutomation/VABAR/blob/cc9e2d37a9088eba93c8a75e0da857563737b930/README.md"
+          },
+          {
+            "label": "论文",
+            "url": "https://arxiv.org/abs/2611.06881"
+          }
+        ],
+        "license": "Apache-2.0 · VABAR 作者团队；task 文档与清单字段按原文转载，机器人模型与资产不在本条范围内。",
+        "licensePath": "licenses/vabar-apache-2-0.txt",
+        "split": "tool_hanging/L1 · 第 1 条冻结实例（seed 1）",
+        "excerpt": true
+      }
+    ]
+  }
+}

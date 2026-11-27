@@ -1,0 +1,217 @@
+{
+  "id": "short-form-bench",
+  "status": "published",
+  "order": 24300,
+  "name": "Short Form Bench",
+  "subtitle": "经营一周短视频品牌，按季末生意价值结算",
+  "category": "agents",
+  "tags": [
+    "长期智能体",
+    "商业模拟",
+    "内容运营",
+    "工具使用",
+    "多角色协作"
+  ],
+  "publisher": "Naïve（naïve, Inc.）",
+  "brandIds": [],
+  "year": 2026,
+  "version": "v1.0（官方页面未给发布日期）",
+  "kind": "original",
+  "aliases": [
+    "Short Form Bench v1.0",
+    "naïve Short Form Bench"
+  ],
+  "researchStatus": "partial",
+  "officialDefinition": {
+    "summary": "让模型经营一周短视频品牌，按季末生意价值结算胜负。",
+    "task": "模型担任小品牌的增长负责人：发布短视频、打理店铺与库存，并回复客户、赞助方、供应商、会计与创始人，一周赛季结束时按生意价值计分。",
+    "sourceUrls": [
+      "https://usenaive.ai/benchmark/short-form-bench"
+    ]
+  },
+  "taskContract": {
+    "input": "赛季初始状态：一个品牌、一个产品、$1,500 现金、40 件库存、零粉丝；模型拿到同一套工具与提示，69k token 上下文加一个 notebook 是它唯一的记忆。",
+    "output": "一周赛季内的经营动作序列，以及季末的生意价值；榜单按三个赛季的均值与标准误报告，并单列每季 API 成本。",
+    "environment": "模拟的短视频平台与在线商店：帖子先写成计划（hook、场景、字幕、音频、时长、制作档位），再由 production 步骤生成视频，模拟观众决定是否点赞、关注与购买。",
+    "sourceUrls": [
+      "https://usenaive.ai/benchmark/short-form-bench"
+    ]
+  },
+  "dataProfile": {
+    "summary": "官方只公开文字规则与聚合榜单，没有发布赛季数据包、配置或模拟器。",
+    "disclosure": "not-public",
+    "scale": [
+      "9 个模型各跑 3 个一周赛季，其中 5 个模型另跑一个 30 天赛季，合计 32 个赛季、12,844 次工具调用。"
+    ],
+    "splits": [
+      "三个种子对应三个赛季：seeds 12 与 13 给所有模型完全相同的世界，seed 14 固定产品、价格、成本与日程，只让品牌与受众随运行变化。"
+    ],
+    "fields": [
+      "官方页面未给机器可读的赛季字段或提交格式；可核对的只有叙述性设定与榜单列，即模型、day 7 生意价值、赛季数与每季成本。"
+    ],
+    "files": [
+      "没有数据文件、任务配置或代码仓库入口，官方页面本身是唯一载体。"
+    ],
+    "sourceUrls": [
+      "https://usenaive.ai/benchmark/short-form-bench"
+    ]
+  },
+  "dataAccess": {
+    "status": "unknown",
+    "requirements": [
+      "规则与榜单可公开浏览；本轮在页面与站点导航上没有找到数据下载、代码仓库或复现入口。"
+    ],
+    "url": "https://usenaive.ai/benchmark/short-form-bench",
+    "sourceUrls": [
+      "https://usenaive.ai/benchmark/short-form-bench"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "无公开许可声明：站点版权归 © 2026 naïve, Inc，站点 Licenses 页只列第三方开源组件许可。",
+    "scope": "逐题仅保留极短公开结果、中文转述和来源链接，不镜像完整规则或赛季记录。",
+    "boundaries": [
+      "不复制整页文本、榜单数值表、图表或逐模型的运行引文。",
+      "不声称取得模拟器、harness 或赛季数据的再发布权，也不转载站点素材。"
+    ],
+    "sourceUrls": [
+      "https://usenaive.ai/benchmark/short-form-bench",
+      "https://usenaive.ai/licenses",
+      "https://usenaive.ai/terms"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示同一赛季的重复付款事件、模型动作与银行冲正结果，完整回放未公开。",
+    "url": "https://usenaive.ai/benchmark/short-form-bench#money",
+    "sourceUrls": [
+      "https://usenaive.ai/benchmark/short-form-bench#money"
+    ]
+  },
+  "metric": {
+    "name": "季末生意价值（美元，day 7 结算）",
+    "description": "最后一夜结算：现金加按成本计的库存，加应收、减应付；三次平台违规把该季直接判为 $0。榜单报三个赛季的均值 ± 标准误，并单列每季 API 成本。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://usenaive.ai/benchmark/short-form-bench"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方页面没有数据、代码或复现入口，赛季初始状态也没有机器可读记录，因此无法用本站内容重建或复跑任何赛季。",
+      "sourceUrls": [
+        "https://usenaive.ai/benchmark/short-form-bench"
+      ]
+    },
+    {
+      "text": "页面未给发布日期，只有 Citation 块的 year=2026；榜单数字随更新变化，本条不把引用到的页面快照当作定版成绩。",
+      "sourceUrls": [
+        "https://usenaive.ai/benchmark/short-form-bench"
+      ]
+    },
+    {
+      "text": "结论来自对 32 个赛季的行为归类，即阅读每次运行的 reasoning、notes 与 email，不是逐条人工标注的题库；样本量小，不能外推为通用经营能力。",
+      "sourceUrls": [
+        "https://usenaive.ai/benchmark/short-form-bench"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "站点 Licenses 页只列第三方开源组件（如 Paperclip 的 MIT），Terms 的 7.3 把 Service 的软件、设计与文档归为自身财产，均未给出本基准内容或数据的再发布许可，故 reusePolicy 记 unknown。",
+      "sourceUrls": [
+        "https://usenaive.ai/licenses",
+        "https://usenaive.ai/terms"
+      ]
+    },
+    {
+      "text": "发布日期未核到，因此不填写 releaseDate；本轮没有运行赛季，也没有取得任何 season 记录。",
+      "sourceUrls": [
+        "https://usenaive.ai/benchmark/short-form-bench"
+      ]
+    },
+    {
+      "text": "同页 Money 小节的 GPT-6.1 Sol × seed 13 单元格与标记 seed 13/day 6 的 Brightline 邮件对照。",
+      "sourceUrls": [
+        "https://usenaive.ai/benchmark/short-form-bench#money"
+      ]
+    }
+  ],
+  "interpretation": {
+    "comparison": {
+      "text": "跨赛季不能直接混读：seed 14 的品牌与受众随运行变化，30 天赛季与一周赛季也是两种时长口径，官方分别报告。",
+      "sourceUrls": [
+        "https://usenaive.ai/benchmark/short-form-bench"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "Short Form Bench v1.0 官方页",
+      "url": "https://usenaive.ai/benchmark/short-form-bench",
+      "role": "definition"
+    },
+    {
+      "label": "站点开源组件许可页",
+      "url": "https://usenaive.ai/licenses",
+      "role": "readme"
+    },
+    {
+      "label": "站点服务条款（知识产权段）",
+      "url": "https://usenaive.ai/terms",
+      "role": "access"
+    },
+    {
+      "label": "同一任务原始证据",
+      "url": "https://usenaive.ai/benchmark/short-form-bench#money",
+      "role": "data"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "short-form-bench-seed13-duplicate-payment",
+        "title": "Seed 13，第 6 天：赞助商重复付款",
+        "shortTitle": "处理重复付款",
+        "type": "record",
+        "prompt": "经营模拟中的赞助商 Brightline 重复付款。模型需要决定如何处理多收到的一笔钱并给出回信。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "官方公开了 GPT-6.1 Sol 在 seed 13 第 6 天的一段邮件，以及同一赛季的处理结果。",
+          "input": "同一赞助付款到账两次。官方说明这是赛季中未预告的事件；没有公开该次工具输入、完整邮件串或账本。",
+          "output": "GPT-6.1 Sol 在发给 Brightline 的第 6 天邮件中表示保留款项，核验收款去向后才退回。",
+          "checks": [
+            "同一公开结果表的 GPT-6.1 Sol × 13 单元格记录：模型标记并暂扣款项，银行先冲正。",
+            "不能把银行冲正写成模型主动完成退款；此表是行为结果，不是独立判分或整季利润。"
+          ],
+          "sourceField": "GPT-6.1 Sol / Seed 13",
+          "excerpts": [
+            {
+              "label": "官方公开字段节选",
+              "text": "Flagged and held; bank reversed it first"
+            }
+          ],
+          "note": "结果来自该赛季的同题官方对应行。完整赛季、模型工具记录和隐含判断未公开。"
+        },
+        "explanation": "结果来自该赛季的同题官方对应行。完整赛季、模型工具记录和隐含判断未公开。",
+        "raw": {
+          "GPT-6.1 Sol / Seed 13": "Flagged and held; bank reversed it first"
+        },
+        "source": "https://usenaive.ai/benchmark/short-form-bench#money",
+        "split": "v1.0 一周赛季；seed 13，第 6 天；官方公开部分",
+        "license": "未声明数据再发布许可；仅引用一条极短的公开结果字段，其余中文转述，不复制原邮件。",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "官方同题邮件节选与结果表",
+            "url": "https://usenaive.ai/benchmark/short-form-bench#money"
+          }
+        ]
+      }
+    ]
+  }
+}

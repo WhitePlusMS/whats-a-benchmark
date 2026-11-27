@@ -1,0 +1,243 @@
+{
+  "id": "factory-legacy-bench",
+  "status": "published",
+  "order": 24200,
+  "name": "Factory Legacy-Bench",
+  "subtitle": "在 COBOL、Java 7 等遗留系统上定位并修复真实故障",
+  "category": "coding",
+  "tags": [
+    "遗留系统",
+    "COBOL",
+    "Java 7",
+    "调试"
+  ],
+  "publisher": "Factory AI",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-04-01",
+  "version": "公开样例仓 12fa7cf9（10 个 Harbor 样例；全量数百题为申请制）",
+  "kind": "original",
+  "aliases": [
+    "Legacy-Bench",
+    "Legacy Bench",
+    "Factory Legacy Bench"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "在遗留语言代码上做修复、实现与迁移，用容器内测试判定。",
+    "task": "每题给出一个遗留系统的故障现象、模块职责与数据文件清单，要求在 Harbor 环境里改代码并通过验收脚本。",
+    "sourceUrls": [
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/instruction.md"
+    ]
+  },
+  "taskContract": {
+    "input": "instruction.md 描述故障现象、四个 COBOL 模块职责、copybook 与 /app/data 输入文件，并给出固定格式与编译约束；environment/ 提供代码库、copybook 与 Dockerfile。",
+    "output": "改后的源码，以及 /app/output/ 下按 copybook 布局的定长记录文件。本例 settlement.dat 每条 45 字节、rule606.dat 每条 30 字节，且不允许输出 JSON 或 CSV。",
+    "environment": "Docker 加 Harbor；task.toml 记录 agent 与 verifier 各 300 秒超时、1 CPU、2 GB 内存并允许联网，验收脚本在容器内用 pytest 运行。",
+    "sourceUrls": [
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/instruction.md",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/task.toml",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/tests/test_outputs.py"
+    ]
+  },
+  "dataProfile": {
+    "summary": "README 称全量有数百道题、六个遗留语言族；仓库公开 10 个代表样例。",
+    "disclosure": "partial",
+    "scale": [
+      "语言占比为 COBOL 46%、Java 7 32%、BASIC 6%、C89 5%、Fortran 5%、Assembly 5%。"
+    ],
+    "splits": [
+      "tasks/ 下共 10 个公开样例目录，本例 3af1fe-cobol-bond-settlement-reconcile 属 COBOL 的 fix/debug；全量题集为申请制。"
+    ],
+    "fields": [
+      "task.toml 记难度、类别、专家与新手耗时估计及资源配额；instruction.md 记现象、交付格式与语言约束。"
+    ],
+    "files": [
+      "environment/ 下有 Dockerfile、copybooks/、src/ 与 generate_data.py，tests/test_outputs.py 是验收脚本，solution/ 放参考解。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/task.toml",
+      "https://github.com/Factory-AI/legacy-bench/tree/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "10 个样例无需登录、可直接读取；完整题集需通过 factory.ai/contact 向发布方申请。"
+    ],
+    "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md",
+    "sourceUrls": [
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "Apache-2.0，© 2026 Factory AI, Inc.（仓库 LICENSE）。",
+    "scope": "转载样例题 3af1fe 的 instruction.md 与 task.toml 全文，并保留许可与署名。",
+    "boundaries": [
+      "不转载全量私有题集。该部分本轮未取得，许可也未核到，因此不作任何再发布声明。",
+      "不转载 environment/ 源码、copybook 与验收脚本全文，只在导读里描述其结构与断言名。",
+      "本站没有运行 Docker、Harbor 或 pytest，不给出该题的通过与否。"
+    ],
+    "sourceUrls": [
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/LICENSE",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/instruction.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示同题题面原文，含故障现象、模块清单、交付格式与编译约束，以及 task.toml 的资源字段。",
+    "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/instruction.md",
+    "sourceUrls": [
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/instruction.md",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/task.toml",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/tests/test_outputs.py",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md"
+    ]
+  },
+  "metric": {
+    "name": "整题通过率（容器内 pytest 验收）",
+    "description": "每题在容器内跑 tests/test_outputs.py，全部断言通过才算解出；README 报告 12 组模型与智能体组合在全量题集上的通过率为 16.9% 至 42.5%。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md",
+      "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/tests/test_outputs.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "全量题集为申请制，公开的 10 个样例不足以复现榜单。",
+      "sourceUrls": [
+        "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md"
+      ]
+    },
+    {
+      "text": "本轮只读到验收脚本的解码函数与测试函数名，没有运行容器或 pytest，也没有该题的模型成绩。",
+      "sourceUrls": [
+        "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/tests/test_outputs.py"
+      ]
+    },
+    {
+      "text": "样例内 environment/ 与 solution/ 的文件清单取自仓库目录页；私有题集的许可本轮未核到。",
+      "sourceUrls": [
+        "https://github.com/Factory-AI/legacy-bench/tree/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile",
+        "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/LICENSE"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本锚定 git ls-remote 的 refs/heads/main = 12fa7cf969b7a253183388040d566fb353a1ab31。发布日期取自发布文章的 JSON-LD datePublished（2026-04-01），仓库创建时间比它晚一天。",
+      "sourceUrls": [
+        "https://factory.ai/news/legacy-bench",
+        "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方仓库说明与样例清单（固定版）",
+      "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "发布文章与全量结果",
+      "url": "https://factory.ai/news/legacy-bench",
+      "role": "release"
+    },
+    {
+      "label": "模板题目录（固定版）",
+      "url": "https://github.com/Factory-AI/legacy-bench/tree/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile",
+      "role": "access"
+    },
+    {
+      "label": "原始题面（固定版）",
+      "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "同题任务配置（固定版）",
+      "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/task.toml",
+      "role": "data"
+    },
+    {
+      "label": "同题验收脚本（固定版）",
+      "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/tests/test_outputs.py",
+      "role": "code"
+    },
+    {
+      "label": "Apache-2.0 许可（固定版）",
+      "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/LICENSE",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "3af1fe-cobol-bond-settlement-reconcile",
+        "title": "COBOL 债券结算系统的应计利息与监管费修复",
+        "shortTitle": "COBOL 债券结算对账",
+        "type": "record",
+        "prompt": "起始条件：容器内 /app/ 的遗留 COBOL 代码、/app/copybooks/ 的 copybook 与 /app/data/ 的四个数据文件。\n\n题面给出故障现象（净结算金额不对、部分债券应计利息系统性出错、卖方 SEC 费与对手方预期不符）、四个模块各自职责，以及必须遵守的日计数口径与费用来源。\n\n交付：修好的源码，以及 /app/output/ 下按 SETTLOUT.cpy 与 RULE606.cpy 布局的定长记录文件。\n验收：GnuCOBOL v3 编译无警告且执行成功，容器内 pytest 跑 tests/test_outputs.py 全部通过。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "题面即完整任务说明：现象、模块清单、交付格式与编译约束都写在 instruction.md 里。",
+          "input": "题面首句原文：“A securities settlement system processes bond trades but produces incorrect net settlement amounts.” 并列出 /app/ 下四个模块：settle.cob 读交易并协调计算，daycount.cob 算日期间隔，accrued.cob 查付息表算应计利息，secfee.cob 算卖出单的 SEC Section 31 费用。",
+          "output": "交付 /app/output/settlement.dat 每条 45 字节的定长记录与 /app/output/rule606.dat 每条 30 字节的季度报告，且不允许输出 JSON 或 CSV。",
+          "checks": [
+            "日计数口径（原文）：bonds marked with convention \"A\" use actual/actual counting, \"B\" uses 30/360, and \"C\" uses actual/360。",
+            "编译与格式硬约束（原文）：代码须为 fixed format 且只占第 7 至 72 列，不得使用 >>SOURCE FORMAT，GnuCOBOL v3 编译无警告、退出码为 0。",
+            "验收脚本 test_outputs.py 按 SETTLOUT.cpy 布局切 45 字节记录（8+9+7+6+5+7+3），把 COMP-3 字段解成十进制后再比对金额。"
+          ],
+          "sourceField": "instruction.md",
+          "excerpts": [
+            {
+              "label": "题面现象（原文首句）",
+              "text": "A securities settlement system processes bond trades but produces incorrect net settlement amounts."
+            },
+            {
+              "label": "交付格式（原文）",
+              "text": "The settlement output at /app/output/settlement.dat must contain fixed-length 45-byte records per the SETTLOUT.cpy layout with computed principal (quantity times price), accrued interest, SEC fee (zero for BUY trades), days accrued, and net settlement amount for each trade."
+            }
+          ],
+          "note": "只引用 instruction.md 与验收脚本的解析布局；本站未运行容器、Harbor 或 pytest。"
+        },
+        "explanation": "raw 保留该样例的 instruction.md 与 task.toml 全文，未改写字段名。environment/ 源码、copybook、solution/ 与验收脚本全文只作外链，未转载；没有该题的模型实跑结果。",
+        "raw": {
+          "instruction.md": "A securities settlement system processes bond trades but produces incorrect net settlement amounts. Counterparties report discrepancies in their reconciliation, and the books don't balance. The symptoms manifest differently depending on the bond being traded - some bonds settle correctly while others show systematic errors in accrued interest calculations. Sell transactions also appear to have incorrect regulatory fee deductions compared to what counterparties expect based on current SEC rates.\n\nThe existing COBOL programs are located in /app/ and consist of four modules that work together: settle.cob serves as the main driver that reads trades and coordinates the calculation, daycount.cob handles date arithmetic for determining days between dates, accrued.cob computes accrued interest by looking up coupon schedules and bond characteristics, and secfee.cob calculates SEC Section 31 transaction fees for sell orders. These programs use copybooks from /app/copybooks/ including TRADEREC.cpy for trade input layout, BONDREC.cpy for bond reference data, COUPON.cpy for coupon schedule records, SECRATE.cpy for SEC fee rate data, SETTLOUT.cpy for settlement output records, and RULE606.cpy for SEC Rule 606 reporting. The input files reside in /app/data/ - trades.dat contains the trades to process, bonds.dat has bond reference data with day-count conventions and coupon frequencies, coupons.dat holds coupon payment schedules, and secrates.dat contains historical SEC fee rates.\n\nExpected correct behavior requires that day-count conventions be honored per bond specification - bonds marked with convention \"A\" use actual/actual counting, \"B\" uses 30/360, and \"C\" uses actual/360. Accrued interest must be calculated from the most recent coupon payment date, respecting whether the bond pays quarterly (frequency 4) or semi-annually (frequency 2). SEC transaction fees must use the current effective rate from the rate file, not any hardcoded historical value.\n\nThe settlement output at /app/output/settlement.dat must contain fixed-length 45-byte records per the SETTLOUT.cpy layout with computed principal (quantity times price), accrued interest, SEC fee (zero for BUY trades), days accrued, and net settlement amount for each trade. For BUY trades, net settlement equals principal plus accrued interest. For SELL trades, net settlement equals principal plus accrued interest minus SEC fee. The SEC Rule 606 quarterly report at /app/output/rule606.dat aggregates order routing statistics per venue using the RULE606.cpy layout (30-byte records) - total orders, total shares, market vs limit order counts, and payment for order flow amounts.\n\nWhen using COBOL programming language, all the source code must be located under /app/. All the copybooks need to be under /app/copybooks/. All the data files are to be under /app/data/. All the output files are to be under /app/output/. The code format must be fixed (coded between columns 7 through 72 only) and should not exceed 80 characters wide. You are not allowed to use the >>SOURCE FORMAT directives while coding. Compilation of your COBOL files must be done using GnuCOBOL v3. For example, if you want to compile a COBOL program named TEST, you would do it like this: cobc -x -I /app/copybooks -o /app/TEST /app/TEST.cob. If you have multiple programs as part of one task, you need to compile the modules using the -m flag (before compiling the main program) and include the COB_LIBRARY_PATH as /app for execution. You will be required to compile your code with no warnings and execute it successfully (exit code = 0). All output is to be generated in mainframe formats and must adhere to the correct fixed-length record format and COMP-3 numeric fields. You are not allowed to produce any JSON or CSV output.\n",
+          "task.toml": "version = \"1.0\"\n\n[metadata]\nauthor_name = \"unknown\"\nauthor_email = \"unknown\"\ndifficulty = \"hard\"\ncategory = \"cobol-debug\"\ntags = [ \"cobol\", \"debug\", \"securities\", \"settlement\",]\nexpert_time_estimate_min = 45.0\njunior_time_estimate_min = 120.0\n\n[verifier]\ntimeout_sec = 300.0\n\n[agent]\ntimeout_sec = 300.0\n\n[environment]\nbuild_timeout_sec = 600.0\ncpus = 1\nmemory_mb = 2048\nstorage_mb = 10240\ngpus = 0\nallow_internet = true\n\n[verifier.env]\n\n[solution.env]\n"
+        },
+        "source": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/instruction.md",
+        "references": [
+          {
+            "label": "同题验收脚本",
+            "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile/tests/test_outputs.py"
+          },
+          {
+            "label": "同题目录（含 environment 与 solution）",
+            "url": "https://github.com/Factory-AI/legacy-bench/tree/12fa7cf969b7a253183388040d566fb353a1ab31/tasks/3af1fe-cobol-bond-settlement-reconcile"
+          },
+          {
+            "label": "公开样例清单与全量结果",
+            "url": "https://github.com/Factory-AI/legacy-bench/blob/12fa7cf969b7a253183388040d566fb353a1ab31/README.md"
+          },
+          {
+            "label": "发布文章",
+            "url": "https://factory.ai/news/legacy-bench"
+          }
+        ],
+        "license": "Apache-2.0 · Factory AI Legacy-Bench 公开样例；全量私有题集不在本条许可声明范围内。",
+        "licensePath": "licenses/factory-legacy-bench-apache-2-0.txt",
+        "split": "公开样例 10 题之一；COBOL · fix/debug",
+        "excerpt": true
+      }
+    ]
+  }
+}

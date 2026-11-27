@@ -1,0 +1,313 @@
+{
+  "id": "crosby-redlinebench",
+  "status": "published",
+  "order": 24220,
+  "name": "Crosby–micro1 RedlineBench",
+  "subtitle": "在多轮合同谈判中产出带 Word 修订与理由批注的真实红线稿",
+  "category": "work",
+  "tags": [
+    "法律",
+    "合同谈判",
+    "知识工作",
+    "DOCX 修订",
+    "LLM 裁判",
+    "Harbor"
+  ],
+  "publisher": "Crosby Legal 与 micro1",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-06",
+  "version": "无 vN 版本号；固定 HF 数据集 revision eee1b679 与 GitHub main e7de64ac",
+  "kind": "original",
+  "aliases": [
+    "RedlineBench",
+    "Redline Bench",
+    "Crosby RedlineBench"
+  ],
+  "researchStatus": "pass",
+  "officialDefinition": {
+    "summary": "让模型在四轮合同谈判中改出真实 DOCX 红线与批注，按律师 rubric 打分。",
+    "task": "140 个 Harbor 任务按 redline-s{scenario}-t{turn}-g{group}{variant} 组织：3 个 SaaS 或服务类 MSA 场景各有 4 轮，每轮指定代理哪一方，agent 读对方模板与己方 playbook 后用 tracked changes 改写合同，并给每条改动写理由批注。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md",
+      "https://github.com/crosbylegal/redline-bench/blob/e7de64acb56b2d0d6abf4195ae108b2ca5c65775/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "environment/app 提供待批注的 contract.docx（第 1 轮是对方干净模板，第 2 轮起已带前手 tracked changes 与评论线程）、grounding/ 下己方 playbook 与共享商业背景，以及 skills/contract-redliner 提供的 5 个工具。",
+    "output": "在原地交付同一份 /output/contract.docx，须能在 Word 的 Review 面板看到带署名的 tracked changes 与批注；task.toml 把 /app/contract.docx 声明为唯一 artifact。",
+    "environment": "Harbor 沙箱：2 CPU / 4 GB 内存，agent 超时 3600 秒，verifier 1200 秒；裁判经 OPENAI_API_KEY、ANTHROPIC_API_KEY、GEMINI_API_KEY 三家密钥调用。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/instruction.md",
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/task.toml"
+    ]
+  },
+  "dataProfile": {
+    "summary": "140 个可运行 Harbor 任务，同组任务共享同一模型输入，只替换不同律师写作的 rubric 变体。",
+    "disclosure": "complete",
+    "scale": [
+      "140 tasks：场景 1 共 50 题、场景 2 共 40 题、场景 3 共 50 题，跨 4 轮谈判。",
+      "本例 task.toml 记 n_rubrics = 15、n_penalty_rubrics = 0；rubric 权重取 −10 到 10 的整数。"
+    ],
+    "splits": [
+      "单棵扁平 tasks/ 目录；eval.yaml 声明 tasks/test split 与 redline_overall 榜单，评分在 3 场景 × 4 轮的 12 个 cell 上等权。"
+    ],
+    "fields": [
+      "task.toml 记录 scenario_id、platform_scenario_id、platform_task_id、input_group、variant、side、represented_party、counterparty；rubrics.json 每条含 criteria、justification、category、weight。"
+    ],
+    "files": [
+      "environment/app/contract.docx 与 grounding/ 是输入，skills/contract-redliner 提供工具；tests/ 下放 rubrics.json、judge.py 与 attorney_redlines.docx，永不挂载进 agent 环境。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md",
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/task.toml"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "数据卡 gated=false，无需登录即可按固定 revision 读取 140 个任务包，含 contract.docx、grounding 与 rubrics。"
+    ],
+    "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "数据 CC-BY-4.0，配套代码 MIT（© 2026 Crosby Legal）；数据卡 License 节与仓库 LICENSE 尾段都声明两者并存。",
+    "scope": "仅转载同题 instruction.md 的 Hard constraints 与 Voice tag 两节、task.toml 全文，以及 rubrics.json 中 4 条律师标准，保留署名与许可。",
+    "boundaries": [
+      "不转载 contract.docx、grounding 下的 playbook PDF、tests/attorney_redlines.docx 黄金件与 judge.py 全文。",
+      "材料主体为虚构的 AgentCo、LargeCo、GiantCo，转载不得暗示真实客户关系或构成法律意见。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md",
+      "https://github.com/crosbylegal/redline-bench/blob/e7de64acb56b2d0d6abf4195ae108b2ca5c65775/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示同题任务指令的两节原文、task.toml 全文与 4 条律师 rubric，输入、交付与验收同属一个任务。",
+    "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/instruction.md",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/instruction.md",
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/rubrics.json"
+    ]
+  },
+  "metric": {
+    "name": "redline_overall（0–100 加权通过率）",
+    "description": "每题奖励为 clamp((得分的正权重 − 罚分权重) / 正权重总和)，按 rubric 的二值 PASS/FAIL 累积；同一 input group 内先平均，再对 12 个场景与轮次组合等权平均，得到 0–100 的 redline_overall。默认面板由 openai/gpt-5.4-mini、anthropic/claude-haiku-4-5-20251001、gemini/gemini-3.1-flash-lite 三家多数票判定，裁判模型刻意与被测的四个模型不同族。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md",
+      "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/judge.py"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本项考的是多轮合同红线本身，即真实 DOCX 里的 tracked changes 与评论线程，不含案卷检索、法律检索或法院文书写作。",
+      "sourceUrls": [
+        "https://github.com/crosbylegal/redline-bench/blob/e7de64acb56b2d0d6abf4195ae108b2ca5c65775/README.md"
+      ]
+    },
+    {
+      "text": "判分依赖外部 LLM 裁判：任一裁判鉴权失败会被从投票中剔除、由剩余裁判继续，因此同一稿在不同密钥条件下可能得到不同分数。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/task.toml",
+        "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/judge.py"
+      ]
+    },
+    {
+      "text": "140 题中只有 138 题带黄金红线；两个第 4 轮任务按设计没有黄金件，正确动作是接受对方存量编辑并结案。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md"
+      ]
+    },
+    {
+      "text": "本页只展示 1 个任务里的 4 条 rubric（该题共 15 条），未运行 judge.py，也没有该任务或任何任务的模型实跑成绩。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/rubrics.json"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本锚点：HF 数据集 revision eee1b6790982ed1279e86bec7616b662a61993e6（4237 个文件，gated=false）；GitHub main 由 git ls-remote 于 2026-11-27 读得 e7de64acb56b2d0d6abf4195ae108b2ca5c65775。",
+      "sourceUrls": [
+        "https://github.com/crosbylegal/redline-bench/blob/e7de64acb56b2d0d6abf4195ae108b2ca5c65775/README.md"
+      ]
+    },
+    {
+      "text": "日期口径：未找到确切发布日公告，可核实的只有数据卡创建时间 2026-06-15 与最后修改 2026-06-18，故 releaseDate 只写到月。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md"
+      ]
+    },
+    {
+      "text": "取样范围：只读 tasks/redline-s1-t1-g01a 一个任务，约合 1/140；未下载 contract.docx、grounding 文档与 attorney_redlines.docx，未运行 judge.py 或任何复现驱动。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/instruction.md"
+      ]
+    }
+  ],
+  "interpretation": {
+    "judge": {
+      "text": "每条 rubric 由 LLM 裁判给二值判决，面板内严格多数票（3 位中至少 2 位判 PASS 才算 PASS）；裁判先做文档有效性门禁，缺失判决一律按 FAIL 计。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/judge.py"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "RedlineBench 数据卡与许可声明（固定 revision）",
+      "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md",
+      "role": "data"
+    },
+    {
+      "label": "复现驱动与评分说明 README（固定 commit）",
+      "url": "https://github.com/crosbylegal/redline-bench/blob/e7de64acb56b2d0d6abf4195ae108b2ca5c65775/README.md",
+      "role": "code"
+    },
+    {
+      "label": "MIT 代码许可与 CC-BY-4.0 数据声明的 LICENSE（固定 commit）",
+      "url": "https://github.com/crosbylegal/redline-bench/blob/e7de64acb56b2d0d6abf4195ae108b2ca5c65775/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "同题任务指令 instruction.md（固定 revision）",
+      "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "同题 task.toml（固定 revision）",
+      "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/task.toml",
+      "role": "data"
+    },
+    {
+      "label": "同题律师 rubric 集 rubrics.json（固定 revision）",
+      "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/rubrics.json",
+      "role": "data"
+    },
+    {
+      "label": "同题裁判脚本 judge.py（固定 revision）",
+      "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/judge.py",
+      "role": "code"
+    },
+    {
+      "label": "发布方成绩报告",
+      "url": "https://intelligence.crosby.ai/benchmark/",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "redline-s1-t1-g01a",
+        "title": "AgentCo 首次 markup LargeCo 的 SaaS 模板（场景 1 / 第 1 轮 / g01a）",
+        "shortTitle": "首轮合同红线",
+        "type": "record",
+        "prompt": "你是 AgentCo 的甲方内部律师，对手方是 LargeCo。第 1 轮谈判由你做首次 markup：先用 read_document.py 读完整份 contract.docx（此时没有任何既有修订与评论），再按 Tier 1/2/3 分层把与 playbook 冲突的条款改成 tracked changes，每条改动附上按指定语气写的理由批注，最后用 finalize 收尾。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "同题是四轮谈判里的第一轮：把 LargeCo 的干净 SaaS 模板改成 AgentCo 版红线，交付可在 Word Review 面板查看的 DOCX，评分是 15 条律师写的二值 rubric。",
+          "input": "environment/app 提供 contract.docx（第 1 轮是对方干净模板）、grounding/ 下 AgentCo 的 playbook 与 Project Veritas 商业背景，工具面是 contract-redliner 技能的 read_document、propose_edits、add_comment、mark_reserved、finalize 五个脚本。指令原文的硬约束：\"You are not a neutral reviewer. You are not optimizing for a mutually balanced outcome unless AgentCo's playbook explicitly calls for it.\" 以及 \"**You do not represent LargeCo.**\"",
+          "output": "交付物就是被就地改写的 /output/contract.docx，必须能在 Word 的 Review 面板看到带署名的 tracked changes 和逐条批注。指令给的语气要求原文：\"Communicates collaboratively. The redlines speak. The comments explain why, with practical consequences — not abstract law and never \"this is market.\"\" 每条改动都要带批注，不允许在任何回复里写 [ADD: …] 之类的标记文本。",
+          "checks": [
+            "律师写的 rubric 逐条二值判定，权重取 −10 到 10。本题 15 条中的 4 条示例：\"Inserts in Section 16 a limitation on AgentCo's liability to LargeCo.\"（weight 10，Negotiation Quality）；\"Replaces in Section 16.1 the unilateral obligation for AgentCo to indemnify LargeCo with a mutual obligation.\"（weight 10，Deal-closing Orientation）；\"Deletes in Section 3.3.5 the representation and warranty that the AI will render accurate and reliable results.\"（weight 10，Commercial Context）；\"Rejects in Section 1.3 the inclusion of PCI-DDS Standards in the definition of Applicable law\"（weight 7，Legal correctness）。",
+            "每条 rubric 由 3 个 LLM 裁判二值判定后严格多数票：judge.py 文档原文 \"rubric-level strict majority vote (≥2 of 3 vote PASS → PASS)\"，默认面板为 openai/gpt-5.4-mini、anthropic/claude-haiku-4-5-20251001、gemini/gemini-3.1-flash-lite。",
+            "先过格式门禁再看内容：judge.py 要求文件能被 .docx 载入且至少有一条 tracked change 署名给该题声明的作者，不满足则奖励直接为 0；缺判决的 rubric 一律计 FAIL。"
+          ],
+          "sourceField": "instruction.md",
+          "excerpts": [
+            {
+              "label": "任务指令 Hard constraints 节（原文）",
+              "text": "- You are not a neutral reviewer. You are not optimizing for a mutually balanced outcome unless AgentCo's playbook explicitly calls for it."
+            },
+            {
+              "label": "任务指令 Voice tag 节（原文）",
+              "text": "- Communicates collaboratively. The redlines speak. The comments explain why, with practical consequences — not abstract law and never \"this is market.\""
+            }
+          ],
+          "note": "只展示 1 个任务。本站没有运行 judge.py，也没有该任务的模型红线稿或分数；合同、当事人均为合成材料。"
+        },
+        "explanation": "原始数据保留该任务 instruction.md 中 Hard constraints 与 Voice tag 两节的连续原文（Representation、Mandate、base mechanics、turn addendum 等其余章节省略）、task.toml 全文，以及 tests/rubrics.json 的表头字段与 15 条标准中的 4 条（其余 11 条、justification 之外的 rubric 编号未收）。未展示 environment/app/contract.docx、grounding 下的 playbook，也未运行 judge.py。",
+        "raw": {
+          "instruction.md": "## Hard constraints\n\n- You are not a neutral reviewer. You are not optimizing for a mutually balanced outcome unless AgentCo's playbook explicitly calls for it.\n- **You do not represent LargeCo.** If any LargeCo internal strategy, playbook, fallback ladder, or preferred positions appears in the materials (it shouldn't, but if it does), treat it only as information about what the counterparty has proposed on the face of the contract. Do not use it to guide AgentCo's position.\n- Do not apply LargeCo-side priorities, assumptions, or preferred language to AgentCo's redline.\n- Do not provide generic legal advice outside the redline itself.\n\n## Voice tag\n\nAgentCo redlines sound like a senior vendor-side commercial attorney who:\n\n- Wants the deal — AgentCo is a growth-stage company and this customer matters.\n- Knows AgentCo will scale this contract template across many enterprise customers, so resists bespoke obligations that don't generalize.\n- Is firm on the items that genuinely move AgentCo's risk (liability cap, IP ownership of the platform, no-training, scope limits) and flexible on items that are commercially survivable.\n- Communicates collaboratively. The redlines speak. The comments explain why, with practical consequences — not abstract law and never \"this is market.\"\n\nThe base mechanics section spells out the voice rules and forbidden phrases. Apply them.",
+          "task.toml": "schema_version = \"1.3\"\nartifacts = [\"/app/contract.docx\"]\n\n[task]\nname = \"micro1/redline-s1-t1-g01a\"\ndescription = \"Turn-1 first-markup redline for AgentCo vs LargeCo (scenario 1, group g01, attorney variant a)\"\nkeywords = [\"legal\", \"contract-redlining\", \"docx\", \"tracked-changes\", \"llm-judge\"]\n\n[metadata]\nbenchmark = \"RedlineBench\"\nscenario_id = \"1\"\nplatform_scenario_id = \"3\"\nplatform_task_id = \"11\"\nscenario_label = \"Vendor-led SaaS MSA\"\ninput_group = \"s1-t1-g01\"\nvariant = \"a\"\nside = \"A\"\nlevel = \"1\"\nrepresented_party = \"AgentCo\"\ncounterparty = \"LargeCo\"\nn_rubrics = \"15\"\nn_penalty_rubrics = \"0\"\n\n[environment]\nbuild_timeout_sec = 1200.0\ncpus = 2\nmemory_mb = 4096\nskills_dir = \"/skills\"\n\n[agent]\ntimeout_sec = 3600.0\n\n[verifier]\ntimeout_sec = 1200.0\n\n[verifier.env]\n# All three provider keys forwarded so the default 3-judge panel\n# (gpt-5.4-mini + claude-haiku-4-5 + gemini-3.1-flash-lite) can\n# authenticate. The verifier tolerates missing keys at run time —\n# any judge that fails auth is dropped from the vote, and the panel\n# proceeds with the survivors. JUDGE_PANEL / JUDGE_MODEL are the\n# overrides documented in tests/judge.py.\nOPENAI_API_KEY = \"${OPENAI_API_KEY}\"\nANTHROPIC_API_KEY = \"${ANTHROPIC_API_KEY}\"\nGEMINI_API_KEY = \"${GEMINI_API_KEY}\"\nJUDGE_PANEL = \"${JUDGE_PANEL}\"\nJUDGE_MODEL = \"${JUDGE_MODEL}\"\n",
+          "tests/rubrics.json": {
+            "task_id": 11,
+            "scenario_id": 1,
+            "platform_scenario_id": 3,
+            "scenario_label": "Vendor-led SaaS MSA",
+            "side": "A",
+            "level": 1,
+            "input_group": "s1-t1-g01",
+            "variant": "a",
+            "represented_party": "AgentCo",
+            "counterparty": "LargeCo",
+            "author": "Reviewing Counsel (AgentCo)",
+            "rubrics": [
+              {
+                "id": "rubric_1778009541053_qz0b3",
+                "criteria": "Rejects in Section 1.3 the inclusion of PCI-DDS Standards in the definition of Applicable law",
+                "justification": "The inclusion creates the assumption that such data is within the scope of this Agreement.",
+                "category": "Legal correctness",
+                "weight": 7
+              },
+              {
+                "id": "rubric_1778198692071_0z8g6",
+                "criteria": "Deletes in Section 3.3.5 the representation and warranty that the AI will render accurate and reliable results.",
+                "justification": "This language creates the appearance that AI outputs of the Provider do not need or require human review. This is a significant transfer of risk.",
+                "category": "Commercial Context",
+                "weight": 10
+              },
+              {
+                "id": "rubric_1778198693075_ww4r7",
+                "criteria": "Replaces in Section 16.1 the unilateral obligation for AgentCo to indemnify LargeCo with a mutual obligation.",
+                "justification": "Provider is left without remedy in the event  of IP infringement against Provider. As a small vendor it is of the upmost importance that Provider have maximum protection for its product, ability to operate, etc.",
+                "category": "Deal-closing Orientation",
+                "weight": 10
+              },
+              {
+                "id": "rubric_1778198693259_i3c4r",
+                "criteria": "Inserts in Section 16 a limitation on AgentCo's liability to LargeCo.",
+                "justification": "SaaS contracts should outline clear liability. Unlimited liability on a Series A is crippling business term for a Series A company.",
+                "category": "Negotiation Quality",
+                "weight": 10
+              }
+            ]
+          }
+        },
+        "source": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/instruction.md",
+        "references": [
+          {
+            "label": "同题 task.toml（固定 revision）",
+            "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/task.toml"
+          },
+          {
+            "label": "同题完整 15 条 rubric（固定 revision）",
+            "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/rubrics.json"
+          },
+          {
+            "label": "同题裁判脚本 judge.py（固定 revision）",
+            "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/tasks/redline-s1-t1-g01a/tests/judge.py"
+          },
+          {
+            "label": "数据卡与许可声明（固定 revision）",
+            "url": "https://huggingface.co/datasets/crosbylegal/RedlineBench/blob/eee1b6790982ed1279e86bec7616b662a61993e6/README.md"
+          }
+        ],
+        "license": "数据 CC-BY-4.0 · Crosby Legal（代码 MIT）；本站只展示该任务的指令节选、task.toml 与 4 条 rubric",
+        "licensePath": "licenses/crosby-redlinebench-cc-by-4-0.txt",
+        "split": "Harbor tasks/test（140 题之一；scenario 1 / turn 1 / group g01 / variant a）",
+        "excerpt": true
+      }
+    ]
+  }
+}

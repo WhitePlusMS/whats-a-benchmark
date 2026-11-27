@@ -1,0 +1,326 @@
+{
+  "id": "rtaste",
+  "status": "published",
+  "order": 24530,
+  "name": "rTaste",
+  "subtitle": "先注册可判定的实验事件再预测成败，按实跑结果审计判断力",
+  "category": "agents",
+  "tags": [
+    "科研判断",
+    "预测校准",
+    "autoresearch",
+    "智能体评测"
+  ],
+  "publisher": "Art Kanke",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-29",
+  "version": "v1.0（HF tag v1.0 = 95a452d；仓库 main 641f2c6）",
+  "kind": "original",
+  "aliases": [
+    "rTaste: Do Research Agents Have Taste?",
+    "rTaste benchmark"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "让模型对论文提出可判定实验并预测成败，再按实跑结果审计判断力。",
+    "task": "给定一篇近期 NLP 论文的正文、逐页图片与代码读权限，模型以单人研究者或研究团队的身份提出 5 个最小可行实验（MVE），为每个注册一个「统计量过阈值」的事件并预测其发生概率、排出优先次序；随后由独立的执行者实现并在新机器上重跑，由审计模型判定结果。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md",
+      "https://arxiv.org/abs/2610.40488"
+    ]
+  },
+  "taskContract": {
+    "input": "种子论文正文、逐页图片、代码读权限与 arXiv 检索能力；agent 需提交 5 个 MVE，每个写明假设、最近的先行工作，以及一个事先设定阈值的注册事件。本例原文为 “The nuisance-residualized retention mask identifies the fine-tuning task on more than three quarters of held-out adapters.”，relation = \"greater\"、threshold = 0.75。",
+    "output": "每个 MVE 的注册事件、发生概率与 5 个 MVE 的排序；之后由两名执行者之一在单卡上实现，重跑得到的统计量与该 MVE 的审计结论、研究价值评分一并落库。",
+    "environment": "研究流程由 rTaste harness 编排（propose / execute / audit / review 四个子命令），实现与重跑在 GPU 机器上进行；本行记录 rerun_on = \"a100-large\"、rerun_seconds = 221。重跑需要 OpenAI、Anthropic、xAI、Meta 的 API 凭据与可启动 GPU Jobs 的 HF 账号。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md",
+      "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md"
+    ]
+  },
+  "dataProfile": {
+    "summary": "8 个 config 记录 415 个 MVE 的注册、预测、排序、审计与调用明细。",
+    "disclosure": "complete",
+    "scale": [
+      "415 个 MVE，来自 7 篇种子论文与 6 个模型的 84 个条件；其中 194 个被判 sound、valuable、new，73 个同时做到「超越原文且非显然」。"
+    ],
+    "splits": [
+      "数据卡只声明一个 train split；8 个 config 是同一批记录的不同视角，不是训练集与测试集的划分。"
+    ],
+    "fields": [
+      "mves 一行一个 MVE，含 title、hypothesis、event_description、relation、threshold、value、event、delivered、sound、research_value、new、good、bno_2of3 等；mves_full 另存注册与每次判定的全文。"
+    ],
+    "files": [
+      "HF 仓根目录 8 个 parquet：mves、mves_full、seeds、conditions、rankings、follow_up_lists、calls、auditor_check。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md",
+      "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "非 gated，可直接按 revision v1.0 下载全部 parquet，无需登录或申请。",
+      "要自己走一遍 propose / execute / audit / review，需要四家模型的 API key 与能启动 GPU Jobs 的 Hugging Face 账号。"
+    ],
+    "url": "https://huggingface.co/datasets/ArtKanke/rTaste",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtKanke/rTaste",
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CC BY 4.0（数据卡 license: cc-by-4.0）；代码仓库为 MIT，Copyright (c) 2026 Art Kanke。",
+    "scope": "本站按 CC BY 4.0 节选 mves 第 1 行的真实字段与取值，并给出作者、版本与固定 revision 链接。",
+    "boundaries": [
+      "种子论文及其代码归原作者，数据集只含短引用；本站不转载种子论文正文、代码或 mves_full 的注册全文。",
+      "案例是公开字段的投影，不是论文成绩复现；引用其数字时须注明来自 v1.0 与对应 config。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md",
+      "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/LICENSE"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示 mves 第 1 行的注册事件、实跑统计量、预测与审计标签，可对照注册阈值直接判断事件是否发生。",
+    "url": "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/mves.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/mves.parquet",
+      "https://datasets-server.huggingface.co/rows?dataset=ArtKanke%2FrTaste&config=mves&split=train&offset=0&length=1",
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md"
+    ]
+  },
+  "metric": {
+    "name": "每条件 5 个 MVE 中判为 sound、valuable、new 的个数",
+    "description": "主表按条件统计 5 个 MVE 里同时满足 sound、valuable、new 的个数并取均值，另列「超越原文且非显然」的条数、informative evidence 比例、注册事件实际发生率与每 100 美元的产出。sound 需三名审计中至少两人判 faithful、两人判 valid，valuable 需审计研究价值中位数不低于 2，new 需两名新颖性审计都认为没有近似先行工作。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md",
+      "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "规模有限：只有 7 篇种子论文、6 个模型与 415 个 MVE，条件之间差异大，单个 MVE 的标签不宜外推到整个评测。",
+      "sourceUrls": [
+        "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md"
+      ]
+    },
+    {
+      "text": "Claude Opus 5.5 的单研究者条件只跑了 6 篇种子论文（30 个 MVE），第七篇在部分列按 0 计，跨条件比较要留意这处缺口。",
+      "sourceUrls": [
+        "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md"
+      ]
+    },
+    {
+      "text": "作者自述：agent 的首选比随机挑选更常命中审计者最看重的 MVE，但并不显著优于「它最先写下的那个」，因此排序能力的证据强度有限。",
+      "sourceUrls": [
+        "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md"
+      ]
+    },
+    {
+      "text": "本站没有重跑 harness，也没有复算论文表格；案例里出现的统计量与标签都是数据文件的公开字段，不代表本站的复现结论。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md",
+        "https://datasets-server.huggingface.co/rows?dataset=ArtKanke%2FrTaste&config=mves&split=train&offset=0&length=1"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "样例取自 datasets-server 的 rows API（config=mves、split=train、offset=0、length=1）返回的第 1 行。该 API 默认读主分支，因此另核对了 git blob：mves.parquet 在 tag v1.0（95a452d）与当时的主分支上同为 c8184f42e83157fdc69b35c56ea31c9648844b76，可确认这一行与论文所用 v1.0 内容一致。",
+      "sourceUrls": [
+        "https://datasets-server.huggingface.co/rows?dataset=ArtKanke%2FrTaste&config=mves&split=train&offset=0&length=1",
+        "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/mves.parquet"
+      ]
+    },
+    {
+      "text": "本条别名刻意不写 TASTE：数据卡与仓库署名只有 Art Kanke，两份文件里都没有出现 Anthropic 或任何 TASTE 系列项目，名称相近不构成同一评测的依据。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md",
+        "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md"
+      ]
+    },
+    {
+      "text": "mves 共 415 行、约 130 列；raw 只保留与本例判定相关的列（事件注册、实跑统计量、审计与评审标签、预测概率与成本），其余逐模型判定明细未转载。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "数据卡（固定 tag v1.0）：8 个 config、字段释义与许可",
+      "url": "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/README.md",
+      "role": "data"
+    },
+    {
+      "label": "数据集入口",
+      "url": "https://huggingface.co/datasets/ArtKanke/rTaste",
+      "role": "access"
+    },
+    {
+      "label": "mves.parquet（固定 tag v1.0）",
+      "url": "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/mves.parquet",
+      "role": "data"
+    },
+    {
+      "label": "单行记录的 rows API 端点（可复现取数）",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=ArtKanke%2FrTaste&config=mves&split=train&offset=0&length=1",
+      "role": "data"
+    },
+    {
+      "label": "官方仓库说明（固定 commit）：研究流程与结果表口径",
+      "url": "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "代码仓库 MIT 许可（固定 commit）",
+      "url": "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/LICENSE",
+      "role": "code"
+    },
+    {
+      "label": "论文 arXiv:2610.40488",
+      "url": "https://arxiv.org/abs/2610.40488",
+      "role": "paper"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "mves-2609-29233-astra-single-mve1",
+        "title": "保留行掩码能否区分微调任务",
+        "shortTitle": "掩码区分任务",
+        "type": "record",
+        "prompt": "读种子论文 2609.29233，提出一个最小可行实验，并事先注册一个可判定的统计事件（统计量、关系与阈值），同时给出你认为它成立的把握与优先级；之后由执行者实跑、由审计判定是否成立以及是否值得做。本站展示的是该 MVE 在 mves 中的公开记录。",
+        "promptOrigin": "editorial",
+        "excerpt": true,
+        "walkthrough": {
+          "summary": "mves 第 1 行（seed=2609.29233、condition=astra-single、mve=1）：agent 注册的事件是「去混淆残差化后的保留掩码在超过四分之三的留出 adapter 上识别出微调任务」，阈值 0.75、关系 greater；实跑得到 0.833333333333，事件判为发生。",
+          "input": "注册事件原文：“The nuisance-residualized retention mask identifies the fine-tuning task on more than three quarters of held-out adapters.”；假设原文：“Binary retention patterns can distinguish sentiment-fine-tuned from Boolean-QA-fine-tuned models on held-out training replicates, even after removing overall retention rates and simple public prompt features.”。提出者 proposer = \"astra\"、harness = \"SR\"（单人研究者），自报 agent_probability = 0.6 并把这题排第 agent_rank = 1；注册模型为 Qwen/Qwen2.5-0.5B-Instruct，需要 GPU。",
+          "output": "执行者 sol 在 a100-large 上实现并在新机器重跑，提交统计量 value = 0.833333333333（executor_value 相同），按 relation = \"greater\" 与 threshold = 0.75 判定 event = true；delivered = true、delivered_on_attempt = 1、rerun_seconds = 221。",
+          "checks": [
+            "事件判定：value 0.833333333333 大于 threshold 0.75 且 relation = \"greater\"，所以 event = true；first_attempt_status = \"submitted\"，一次提交即交付。",
+            "审计标签：三名审计（opus / sol / grok）都判 fidelity = \"faithful\"、validity = \"valid\"，所以 sound = true；三人的 research_value 均为 1，research_value = 1、valuable = false，因此 good = false（good 要求 delivered、sound、valuable、new 同时成立）。",
+            "新颖性与评审：new = true（两名新颖性审计都判 distinct），on_list = false；评审侧 beyond_2of3 = true、non_obvious_2of3 = true，但 informative_2of3 = false、evidence_2of3 = \"inconclusive\"、next_step_2of3 = \"repair\"。",
+            "预测与成本：六名评审对同一 MVE 的概率分别是 astra 0.66、sol 0.62、opus 0.6、fable 0.42、luna 0.2、muse 0.25；执行记录 attempt1_minutes = 16.6、attempt1_calls = 16、attempt1_model_cost = 0.458、attempt1_machine_cost = 0.579。"
+          ],
+          "sourceField": "event_description",
+          "excerpts": [
+            {
+              "label": "注册事件原文（event_description 列全文）",
+              "text": "The nuisance-residualized retention mask identifies the fine-tuning task on more than three quarters of held-out adapters."
+            }
+          ],
+          "note": "只取 mves 的一行；该行还有约一百列逐模型判定明细与 review 文本未逐一列出。事件是否发生按注册阈值机械判定，不等于该实验有研究价值——本例 sound 为真而 valuable 为假。"
+        },
+        "explanation": "这是 mves 第 1 行的字段投影：保留事件注册、实跑统计量、审计与评审标签、预测概率与成本，省略其余列（含 attempt2_* 全为 null 的空列）。没有重跑 harness，也没有复算论文中的条件均值。",
+        "raw": {
+          "title": "Task attribution from the retained-row mask alone",
+          "hypothesis": "Binary retention patterns can distinguish sentiment-fine-tuned from Boolean-QA-fine-tuned models on held-out training replicates, even after removing overall retention rates and simple public prompt features.",
+          "event_description": "The nuisance-residualized retention mask identifies the fine-tuning task on more than three quarters of held-out adapters.",
+          "relation": "greater",
+          "threshold": 0.75,
+          "event_form": "plain threshold",
+          "event": true,
+          "value": 0.833333333333,
+          "executor_value": 0.833333333333,
+          "delivered": true,
+          "delivered_on_attempt": 1,
+          "first_attempt_status": "submitted",
+          "rerun_on": "a100-large",
+          "rerun_seconds": 221,
+          "implemented_on": "a100-large",
+          "expected_minutes": 25.0,
+          "needs_gpu": true,
+          "models_registered": "Qwen/Qwen2.5-0.5B-Instruct",
+          "attempts": 1,
+          "proposer": "astra",
+          "harness": "SR",
+          "seed": "2609.29233",
+          "seed_number": 1,
+          "condition": "astra-single",
+          "mve": 1,
+          "agent_probability": 0.6,
+          "agent_rank": 1,
+          "executor": "sol",
+          "assigned_executor": "sol",
+          "attempt1_executor": "sol",
+          "attempt1_status": "submitted",
+          "attempt1_minutes": 16.6,
+          "attempt1_calls": 16,
+          "attempt1_model_cost": 0.458,
+          "attempt1_machine_cost": 0.579,
+          "attempt1_output_tokens": 17911,
+          "missing_raw_outputs": 0,
+          "fidelity_opus": "faithful",
+          "validity_opus": "valid",
+          "research_value_opus": 1,
+          "value_rank_opus": 5,
+          "fidelity_sol": "faithful",
+          "validity_sol": "valid",
+          "research_value_sol": 1,
+          "value_rank_sol": 4,
+          "fidelity_grok": "faithful",
+          "validity_grok": "valid",
+          "research_value_grok": 1,
+          "value_rank_grok": 4,
+          "sound": true,
+          "research_value": 1,
+          "mean_value_rank": 4.33,
+          "valuable": false,
+          "new": true,
+          "on_list": false,
+          "good": false,
+          "bno_2of3": true,
+          "informative_2of3": false,
+          "relation_2of3": "builds on",
+          "check_2of3": false,
+          "beyond_2of3": true,
+          "non_obvious_2of3": true,
+          "evidence_2of3": "inconclusive",
+          "next_step_2of3": "repair",
+          "auditors_first": 0.0,
+          "judge_astra_probability": 0.66,
+          "judge_astra_rank": 1,
+          "judge_fable_probability": 0.42,
+          "judge_fable_rank": 2,
+          "judge_opus_probability": 0.6,
+          "judge_opus_rank": 2,
+          "judge_sol_probability": 0.62,
+          "judge_sol_rank": 1,
+          "judge_luna_probability": 0.2,
+          "judge_luna_rank": 4,
+          "judge_muse_probability": 0.25,
+          "judge_muse_rank": 4
+        },
+        "source": "https://huggingface.co/datasets/ArtKanke/rTaste/blob/95a452de101ec1c3a9e05684abb4a96ab55b5d97/mves.parquet",
+        "split": "mves config（train）第 1 行；全 415 行",
+        "license": "CC BY 4.0 · rTaste v1.0，作者 Art Kanke。",
+        "licensePath": "licenses/kanke-rtaste-cc-by-4-0.txt",
+        "references": [
+          {
+            "label": "同一行的 rows API 取数端点",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=ArtKanke%2FrTaste&config=mves&split=train&offset=0&length=1"
+          },
+          {
+            "label": "仓库说明：研究流程与结果表口径",
+            "url": "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/README.md"
+          },
+          {
+            "label": "代码仓库 MIT 许可",
+            "url": "https://github.com/ArtKanke/rTaste/blob/641f2c6d23ce50da59f57e1bb36220cc98d38146/LICENSE"
+          }
+        ]
+      }
+    ]
+  }
+}

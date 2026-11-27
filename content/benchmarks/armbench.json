@@ -1,0 +1,260 @@
+{
+  "id": "armbench",
+  "status": "published",
+  "order": 24410,
+  "name": "ARMBench",
+  "subtitle": "亚马逊仓库实拍图像上的分割、开集识别与缺陷检测",
+  "category": "agents",
+  "tags": [
+    "机器人感知",
+    "仓库物流",
+    "开集识别",
+    "数据集基准"
+  ],
+  "publisher": "Amazon（Amazon Robotics）",
+  "brandIds": [],
+  "year": 2023,
+  "version": "HF 官方再发布 · 子集归档 *-0.1（识别子集 9e0b6e8，2026-10-28 更新）",
+  "kind": "original",
+  "aliases": [
+    "Amazon ARMBench",
+    "ARMBench Dataset"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "embodied": {
+    "tasks": [
+      "manipulation"
+    ],
+    "resources": [
+      {
+        "label": "识别子集官方再发布仓（固定版）",
+        "type": "Hugging Face dataset",
+        "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05"
+      },
+      {
+        "label": "官方 3 MB tiny 样本归档",
+        "type": "tar.gz",
+        "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/resolve/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/archive/armbench-object-id-tiny.tar.gz"
+      }
+    ]
+  },
+  "officialDefinition": {
+    "summary": "用亚马逊仓库实拍图像评估分割、开集识别与缺陷检测。",
+    "task": "五个任务：物体分割、物体识别（开集检索与分类，要求给出不确定性）、缺陷检测（图像与视频分成两个下载），以及后续加入的 Stow 成功预测与刀片插入可供性。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md",
+      "https://arxiv.org/abs/2303.16382"
+    ]
+  },
+  "taskContract": {
+    "input": "每个拣选目录给容器内照片 PickRGB.jpg、取后照片 ToteWallRGB.jpg 与 OnArmLowRGB.jpg、容器内全部产品的 container.json，以及带多边形和标签的 annotation.json；参考图在 Reference_Images/<product_id>/ 下。",
+    "output": "识别任务输出被拣商品的 product id，分割任务输出多边形，缺陷检测任务输出缺陷判定；官方要求识别类方法同时给出不确定性。",
+    "environment": "官方不发布运行环境与评分实现；识别子集是一个 tar.gz（101.551 GiB）加 3 MB tiny 样本，内含 train-test-split.pickle。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md",
+      "https://arxiv.org/abs/2303.16382"
+    ]
+  },
+  "dataProfile": {
+    "summary": "五个任务、六个下载；官方称 235,000 次拣选与 200,000+ 件唯一商品。",
+    "disclosure": "partial",
+    "scale": [
+      "官方称 235,000 次拣选活动与 200,000+ 件唯一商品；识别子集归档为 109,039,658,872 字节（101.551 GiB）。"
+    ],
+    "splits": [
+      "识别子集用 train-test-split.pickle 划分；tiny 样本里该文件只有 testset（5 个拣选 id）与 testset-objects（14 个 product id）两个键。"
+    ],
+    "fields": [
+      "annotation.json 以图像文件名为键给多边形顶点，另带 GT_ID；container.json 以 product id 为键记 name、weight 与 dimensions.lengthX/Y/Z。"
+    ],
+    "files": [
+      "每次拣选 5 个文件（三张 RGB 加 container.json、annotation.json）；参考图目录里每个商品最多 6 张，实际张数不等。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "Hugging Face 上不 gated，可直接下载归档；本轮只下载了 3,126,329 字节的识别 tiny 样本。"
+    ],
+    "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md",
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CC BY 4.0，© Amazon Robotics（仓库内 License-CC-BY.txt）。",
+    "scope": "转载识别子集 tiny 样本中一次拣选的容器内图像原文件，以及该拣选的 annotation.json、container.json 原文，并保留署名。",
+    "boundaries": [
+      "不转载 101.551 GiB 完整归档、其他子集、参考图库或 train-test-split.pickle。",
+      "署名须写明 ARMBench、Amazon Robotics 与 CC BY 4.0，不得暗示亚马逊为本站背书。",
+      "本站没有训练或复现任何基线，也不提供评分实现。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/License-CC-BY.txt",
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "默认展示一次拣选的容器内照片、同一声明的 GT_ID 与多边形标注字段。",
+    "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md",
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/resolve/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/archive/armbench-object-id-tiny.tar.gz",
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05"
+    ]
+  },
+  "metric": {
+    "name": "各子任务自定指标（官方未发布评分实现）",
+    "description": "分割、识别与缺陷检测各用不同的评价方式；官方数据卡明确本子集不发布评分脚本、指标定义或 baseline checkpoint，所以本站不给统一口径，也不给出任何数值。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "官方未发布该子集的评分脚本、指标定义与 baseline checkpoint，第三方复现只能自定指标。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md"
+      ]
+    },
+    {
+      "text": "官网 https 证书已过期，数据卡据此建议用 arXiv 链接作稳定参照；打不开站点不等于数据不可得。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md"
+      ]
+    },
+    {
+      "text": "图像尺寸因任务而异：本页展示的识别子集 PickRGB.jpg 为 424×455，与分割子集 tiny 样本的整幅图规格不同。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/amazon/armbench-object-identification/resolve/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/archive/armbench-object-id-tiny.tar.gz"
+      ]
+    },
+    {
+      "text": "官方数字彼此有出入：官网写 200,000+ 件唯一商品，论文摘要写 190,000+，两者都保留不合并。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md",
+        "https://arxiv.org/abs/2303.16382"
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "text": "版本锚定 HF 识别子集 sha 9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05（lastModified 2026-10-28）。解包 armbench-object-id-tiny.tar.gz 得 83 个成员，只取出 Picks/004017001665774539482；图片 SHA-256 为 DC191677212AD1D8D6B3F99BB188592CC9069968A4545C8772749C0EF09C612C，与归档内文件逐字节相同。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/amazon/armbench-object-identification/resolve/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/archive/armbench-object-id-tiny.tar.gz",
+        "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "识别子集官方数据卡（固定版，含逐条引文与来源说明）",
+      "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md",
+      "role": "data"
+    },
+    {
+      "label": "ARMBench 论文（ICRA 2023）",
+      "url": "https://arxiv.org/abs/2303.16382",
+      "role": "paper"
+    },
+    {
+      "label": "识别子集固定快照入口",
+      "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05",
+      "role": "access"
+    },
+    {
+      "label": "官方 tiny 样本归档",
+      "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/resolve/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/archive/armbench-object-id-tiny.tar.gz",
+      "role": "data"
+    },
+    {
+      "label": "CC BY 4.0 许可文件（固定版）",
+      "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/License-CC-BY.txt",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "sampleSet": {
+    "retrievedAt": "2026-11-27",
+    "samples": [
+      {
+        "id": "pick-004017001665774539482",
+        "title": "识别一次拣选的商品：容器内照片与 GT_ID",
+        "shortTitle": "仓库拣选商品识别",
+        "type": "image",
+        "prompt": "起始条件：容器内照片 PickRGB.jpg（424×455）、取后照片 ToteWallRGB.jpg 与 OnArmLowRGB.jpg、容器内全部产品清单 container.json，以及带多边形与标签的 annotation.json。\n\n任务：把多边形圈出的商品识别为容器清单里的一个 product id。官方把这一类任务表述为开集识别，并要求检索与分类方法一并给出不确定性。\n\n交付：一个 product id，可附置信度。\n验收：与 annotation.json 的 GT_ID 比对；官方未发布该子集的评分脚本与指标定义。",
+        "promptOrigin": "editorial",
+        "walkthrough": {
+          "summary": "image 形态：一张未改动的容器内照片，加同目录两个标注文件的原文。",
+          "input": "annotation.json 以图像文件名为键：PickRGB.jpg、OnArmLowRGB.jpg、ToteWallRGB.jpg 各给一串 [x, y] 多边形顶点，另有 \"GT_ID\": \"B0853996GF\"。container.json 则以 product id 为键，记 name、weight 与 dimensions。",
+          "output": "交付被拣商品的 product id。本例的标签取自 annotation.json 的 GT_ID，取值 B0853996GF，对应 container.json 里的 Bare Botanics 椰子咖啡磨砂膏。",
+          "checks": [
+            "标注文件的标签键是 GT_ID，本例取值为 B0853996GF。",
+            "官方卡实测：容器内轮廓有 191 至 657 个顶点，取后视图的轮廓粗得多，约 27 至 32 个。",
+            "官方不发布该子集的评分脚本与指标定义，验收只能以 GT_ID 与自定指标为依据。"
+          ],
+          "sourceField": "annotation.json",
+          "excerpts": [
+            {
+              "label": "标注里的标签字段（原文）",
+              "text": "\"GT_ID\": \"B0853996GF\""
+            },
+            {
+              "label": "容器内照片轮廓起点（原文）",
+              "text": "{\"PickRGB.jpg\": [[266, 0], [258, 1], [254, 2]"
+            }
+          ],
+          "note": "只展示一次拣选的图像与两个标注文件；本站没有训练模型，也没有这次拣选的识别结果。"
+        },
+        "explanation": "raw 保留 tiny 样本里 Picks/004017001665774539482 的 annotation.json 与 container.json 原文文本，均未改写字段名。图像是未修改的 PickRGB.jpg，取自同一目录。没有模型预测，也没有跑基线。",
+        "raw": {
+          "annotation.json": "{\"PickRGB.jpg\": [[266, 0], [258, 1], [254, 2], [251, 3], [248, 5], [244, 6], [237, 7], [220, 8], [181, 9], [163, 8], [159, 8], [126, 9], [108, 10], [100, 11], [94, 12], [88, 13], [87, 14], [80, 15], [72, 15], [64, 16], [60, 17], [58, 18], [55, 20], [52, 23], [50, 23], [40, 28], [33, 35], [30, 37], [29, 37], [24, 42], [21, 44], [18, 45], [14, 49], [12, 52], [9, 56], [5, 61], [4, 63], [3, 65], [4, 68], [5, 71], [6, 73], [9, 76], [10, 78], [11, 81], [12, 85], [12, 88], [13, 92], [14, 95], [16, 98], [19, 101], [20, 104], [21, 107], [22, 110], [22, 114], [23, 117], [24, 119], [30, 125], [31, 127], [32, 131], [33, 135], [34, 142], [34, 166], [33, 172], [32, 175], [31, 178], [29, 181], [27, 183], [25, 187], [24, 191], [23, 196], [22, 202], [22, 209], [21, 217], [20, 223], [19, 226], [17, 230], [15, 233], [13, 235], [12, 237], [12, 239], [10, 242], [10, 244], [9, 247], [8, 249], [5, 252], [2, 258], [1, 263], [0, 273], [0, 304], [1, 313], [2, 314], [2, 331], [1, 335], [0, 336], [0, 340], [1, 345], [3, 348], [5, 350], [8, 352], [9, 356], [10, 363], [10, 393], [11, 399], [12, 405], [13, 406], [13, 416], [14, 422], [15, 426], [18, 432], [20, 435], [29, 444], [33, 445], [39, 446], [56, 446], [69, 447], [79, 448], [87, 449], [94, 450], [98, 451], [99, 452], [103, 453], [112, 454], [139, 454], [154, 453], [163, 452], [169, 451], [170, 450], [176, 449], [186, 448], [208, 447], [280, 448], [321, 447], [337, 447], [348, 448], [353, 449], [356, 450], [360, 451], [361, 452], [365, 453], [372, 454], [395, 454], [399, 453], [404, 448], [409, 446], [412, 443], [413, 440], [413, 358], [414, 309], [415, 287], [416, 267], [417, 252], [418, 251], [417, 218], [417, 205], [418, 189], [419, 185], [420, 180], [421, 179], [422, 174], [423, 168], [423, 157], [422, 151], [421, 148], [417, 141], [416, 138], [415, 133], [414, 92], [415, 38], [415, 29], [414, 23], [412, 19], [409, 17], [393, 16], [374, 16], [364, 15], [357, 14], [352, 13], [347, 12], [343, 11], [342, 10], [337, 9], [331, 8], [317, 7], [302, 7], [296, 6], [292, 5], [289, 4], [288, 3], [285, 2], [281, 1], [271, 0]], \"OnArmLowRGB.jpg\": [[255, 0], [342, 2], [364, 5], [370, 7], [378, 14], [389, 25], [397, 34], [527, 196], [527, 207], [484, 287], [473, 305], [459, 325], [386, 432], [370, 435], [315, 426], [214, 401], [206, 398], [176, 389], [163, 378], [76, 296], [13, 237], [0, 223], [0, 214], [2, 209], [24, 178], [108, 59], [141, 16], [152, 5], [250, 0]], \"ToteWallRGB.jpg\": [[237, 0], [248, 9], [256, 19], [321, 100], [335, 132], [348, 173], [356, 212], [367, 264], [367, 310], [362, 314], [343, 323], [234, 360], [204, 369], [171, 378], [144, 378], [131, 369], [63, 317], [46, 303], [44, 298], [35, 278], [24, 232], [3, 123], [0, 103], [3, 75], [8, 73], [136, 28], [207, 3]], \"GT_ID\": \"B0853996GF\"}",
+          "container.json": "{\"X000P4K9OJ\": {\"name\": \"Texas Metal Auto University Emblem Longhorns (Chrome)\", \"weight\": 0.0449999632552968, \"dimensions\": {\"lengthX\": 0.12445999987305081, \"lengthY\": 0.1168399998808232, \"lengthZ\": 0.0101599999896368}}, \"B008TYX146\": {\"name\": \"Bodum 11057-294BUS Travel Press Coffee and Tea Press, Stainless Steel Insulated Travel Press, 15 Ounce, Red\", \"weight\": 0.4309996484288305, \"dimensions\": {\"lengthX\": 0.22606000000000004, \"lengthY\": 0.09652, \"lengthZ\": 0.06604}}, \"B0853996GF\": {\"name\": \"Bare Botanics Coconut Arabica Coffee Scrub | Includes a Wooden Spoon | Fight Cellulite, Fine Lines, Stretch Marks & Spider Veins | Gentle Exfoliator & Super Moisturizer | Net Weight 24oz\", \"weight\": 0.7939993523259662, \"dimensions\": {\"lengthX\": 0.13462, \"lengthY\": 0.1143, \"lengthZ\": 0.11175999999999998}}, \"X0020CCAUZ\": {\"name\": \"LoyoLady White Linen Sheer Curtains 102 inches Long 2 Panels Set, Grommet Living Room Linen Curtains, Semi Sheer Curtains for Bedroom, 52\\\" W x 102\\\" L\", \"weight\": 0.8969992675555828, \"dimensions\": {\"lengthX\": 0.373, \"lengthY\": 0.282, \"lengthZ\": 0.069}}, \"B000H5T70C\": {\"name\": \"Roebic K-37-Q Septic Tank Treatment Removes Clogs, Environmentally Friendly Bacteria Enzymes Safe for Toilets, Works for 1 Year, 32 Fl Oz\", \"weight\": 0.9889991932624439, \"dimensions\": {\"lengthX\": 0.20396200000000003, \"lengthY\": 0.11506199999999998, \"lengthZ\": 0.070104}}, \"B00KAF5RQ2\": {\"name\": \"STK EN-EL14 EN-EL14a Battery Pack for Nikon D3200 D3400 D3500 D3300 D3100 D5100 D5200 D5500 D5600 D5300 EL14 EL14A ENEL14 ENEL14A EN EL 14 14a D 3200 3300 3400 3500 3100 5100 5200 5500 5600 Grip\", \"weight\": 0.048999960030191865, \"dimensions\": {\"lengthX\": 0.118, \"lengthY\": 0.046, \"lengthZ\": 0.024}}, \"B079JC6Z2Z\": {\"name\": \"Smart & Sexy Women's Signature Lace Push-up Bra, Black Hue, 36DD\", \"weight\": 0.15899987030205115, \"dimensions\": {\"lengthX\": 0.437896, \"lengthY\": 0.202946, \"lengthZ\": 0.086106}}, \"X002I05MZ9\": {\"name\": \"2-Pack Miady 15000mAh Portable Charger, Power Bank/w Two 5V/2A USB Output Ports and USB C Fast Input, Portable Phone Charger Compatible with iPhones, Android Smartphones and More\", \"weight\": 0.7119994192142165, \"dimensions\": {\"lengthX\": 0.185928, \"lengthY\": 0.16408400000000004, \"lengthZ\": 0.023875999999999998}}, \"B00U09MNVK\": {\"name\": \"Peter Thomas Roth | Pumpkin Enzyme Mask | Enzymatic Dermal Resurfacer, Exfoliating Pumpkin Facial Mask for Dullness, Fine Lines, Wrinkles and Uneven Skin Tone\", \"weight\": 0.25899978873101415, \"dimensions\": {\"lengthX\": 0.098, \"lengthY\": 0.077, \"lengthZ\": 0.075}}, \"B09WNJ7CGP\": {\"name\": \"Ahuike Amenazel Soursop Bitters Colon Cleanser - All-Natural Remedy to Relieve Constipation And Boost Energy And Immune System, 16 Fl Oz (Pack of 1)\", \"weight\": 0.8309993221446824, \"dimensions\": {\"lengthX\": 0.317, \"lengthY\": 0.11699999999999999, \"lengthZ\": 0.10300000000000001}}, \"X002PQZ5UX\": {\"name\": \"Nature's Sunshine Skeletal Strength, 150 Tablets, Bone Health Supplements for Women and Men with Calcium, Magnesium, Iron, Manganese, and Vitamin D, C, A, and B\", \"weight\": 0.23999980422951117, \"dimensions\": {\"lengthX\": 0.11912600000000001, \"lengthY\": 0.059944, \"lengthZ\": 0.056896}}, \"B086HKHWZ4\": {\"name\": \"Chemical Guys Chenille Premium Scratch-Free Microfiber Wash Mitt, MIC493, Lime Green\", \"weight\": 0.15899987030205115, \"dimensions\": {\"lengthX\": 0.33020000000000005, \"lengthY\": 0.2286, \"lengthZ\": 0.0381}}, \"X002TPQEUF\": {\"name\": \"MOWFILL 12 083 10 Air Filter Replace for Kohler 12 083 10-S, 12 083 16, 12 883 10-S1, 1208310, John Deere GY20661, M145944 with 12 083 12 Pre Filter Fits CV11-CV16 CV460-CV493 Lawn Mower\", \"weight\": 0.13199989232623113, \"dimensions\": {\"lengthX\": 0.12395199999999999, \"lengthY\": 0.117094, \"lengthZ\": 0.08001}}, \"B09PFSGDV7\": {\"name\": \"22 Pieces 5D Metal Tips Diamond Painting Pen Kit, 13 Pieces Stainless Steel nibs with Single Placer Multi Placer Handmade Diamond Art Pen,3 Pieces Drill Pen Stylus and Glue Clay\", \"weight\": 0.13199989232623113, \"dimensions\": {\"lengthX\": 0.16611599999999999, \"lengthY\": 0.051054, \"lengthZ\": 0.026924}}}"
+        },
+        "assets": [
+          {
+            "kind": "image",
+            "path": "images/armbench-pick-004017001665774539482.jpg",
+            "alt": "ARMBench 识别子集 tiny 样本中一次拣选的容器内照片，被拣商品在标注里给出多边形轮廓与 GT_ID。",
+            "width": 424,
+            "height": 455,
+            "caption": "官方 tiny 样本 Picks/004017001665774539482/PickRGB.jpg，22,391 字节、424×455，未做任何修改。",
+            "source": "https://huggingface.co/datasets/amazon/armbench-object-identification/resolve/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/archive/armbench-object-id-tiny.tar.gz"
+          }
+        ],
+        "source": "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05",
+        "references": [
+          {
+            "label": "识别子集数据卡（含逐条官方引文）",
+            "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/blob/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/README.md"
+          },
+          {
+            "label": "官方 tiny 样本归档",
+            "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/resolve/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05/archive/armbench-object-id-tiny.tar.gz"
+          },
+          {
+            "label": "子集固定快照入口",
+            "url": "https://huggingface.co/datasets/amazon/armbench-object-identification/tree/9e0b6e85a77cebe8b51ccdbf664aa009ff5d5b05"
+          },
+          {
+            "label": "ARMBench 论文",
+            "url": "https://arxiv.org/abs/2303.16382"
+          }
+        ],
+        "license": "CC BY 4.0 · ARMBench, Amazon Robotics；图像未修改，标注文件按原文转载。",
+        "licensePath": "licenses/amazon-armbench-cc-by-4-0.txt",
+        "split": "识别子集 tiny 样本 · testset 拣选 004017001665774539482",
+        "excerpt": true
+      }
+    ]
+  }
+}
