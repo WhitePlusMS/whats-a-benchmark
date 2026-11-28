@@ -1,0 +1,159 @@
+{
+  "id": "swe-sweep",
+  "status": "published",
+  "order": 23318,
+  "name": "SWE-sweep",
+  "subtitle": "不给问题单的仓库级软件修复",
+  "category": "coding",
+  "tags": [],
+  "publisher": "SWE-sweep 作者团队",
+  "brandIds": [],
+  "year": 2026,
+  "version": "100 仓库版",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "不给问题单的仓库级软件修复",
+    "task": "交给智能体整个仓库，要求主动找出并修复缺陷。",
+    "sourceUrls": [
+      "https://swesweep.com/",
+      "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/task.toml"
+    ]
+  },
+  "taskContract": {
+    "input": "固定版本仓库及通用任务指令，不提供具体缺陷的位置或列表。",
+    "output": "改动补丁，由隔离验证器检查。",
+    "environment": "多项隐藏验收归属于同一个仓库任务。",
+    "sourceUrls": [
+      "https://swesweep.com/",
+      "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/task.toml"
+    ]
+  },
+  "dataProfile": {
+    "summary": "多项隐藏验收归属于同一个仓库任务。",
+    "disclosure": "partial",
+    "scale": [
+      "论文报告 100 个仓库、4,068 个缺陷；dateutil 任务配置列有 10 个子项。"
+    ],
+    "splits": [
+      "swe-sweep__dateutil。"
+    ],
+    "fields": [
+      "仓库版本、工作目录、输出补丁和验证器。"
+    ],
+    "files": [
+      "任务 instruction.md 和 task.toml。"
+    ],
+    "sourceUrls": [
+      "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "仓库提供研究审阅入口；本站仅描述非安全类功能测试，不转载补丁或验证代码。"
+    ],
+    "url": "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md",
+    "sourceUrls": [
+      "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md"
+    ]
+  },
+  "reusePolicy": {
+    "status": "restricted",
+    "license": "仓库提供研究审阅入口；本站仅描述非安全类功能测试，不转载补丁或验证代码。",
+    "scope": "仓库提供研究审阅入口；本站仅描述非安全类功能测试，不转载补丁或验证代码。",
+    "boundaries": [
+      "本站不分发原始附件、未公开题库或整批运行数据。"
+    ],
+    "sourceUrls": [
+      "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "站内展示同一任务的具体要求和验收依据，并链接官方原始记录。",
+    "url": "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md",
+    "sourceUrls": [
+      "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md"
+    ]
+  },
+  "metric": {
+    "name": "通过的子项",
+    "description": "使用同一仓库的隐藏功能验收判定所修复的子项。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://swesweep.com/",
+      "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/task.toml"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "公开的验收观察不是发给智能体的一条独立题目。",
+      "sourceUrls": [
+        "https://swesweep.com/",
+        "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/task.toml"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "作者项目",
+      "url": "https://swesweep.com/",
+      "role": "definition"
+    },
+    {
+      "label": "固定任务配置",
+      "url": "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/task.toml",
+      "role": "code"
+    },
+    {
+      "label": "公开任务记录",
+      "url": "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md",
+      "role": "data"
+    },
+    {
+      "label": "作者论文",
+      "url": "https://swesweep.com/paper",
+      "role": "paper"
+    },
+    {
+      "label": "固定版本使用范围",
+      "url": "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/LICENSE",
+      "role": "readme"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-28",
+  "sampleSet": {
+    "retrievedAt": "2026-11-28",
+    "samples": [
+      {
+        "id": "swe-sweep-dateutil",
+        "title": "dateutil 2.6.0 · 仓库级缺陷排查",
+        "type": "record",
+        "prompt": "输入：dateutil 2.6.0 的固定代码仓库，不提供缺陷位置或问题列表。\n\n交付：根据仓库已有行为说明找出功能缺陷，修改源文件，最后导出同一个代码补丁。\n\n验收：这一仓库任务有 10 个子项。隐藏检查评估修复情况，原本通过的测试不能回归。",
+        "promptOrigin": "editorial",
+        "explanation": "本站未执行 verifier，不展示参考补丁。",
+        "raw": {
+          "name": "swe-sweep__dateutil",
+          "upstream_task": "dateutil",
+          "version": "2.6.0",
+          "n_subtasks": 10
+        },
+        "source": "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/instruction.md",
+        "license": "固定版本材料供研究审阅；此处只转述任务与设置，不转载题面、补丁或验证代码。",
+        "split": "官方仓库任务",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "固定任务与输出配置",
+            "url": "https://github.com/facebookresearch/swe-sweep/blob/7310266380f6a109297c14ad0a33760e4a9dee59/tasks/swe-sweep__dateutil/task.toml"
+          }
+        ]
+      }
+    ]
+  },
+  "updatedAt": "2026-11-28",
+  "releaseDate": "2026-10"
+}

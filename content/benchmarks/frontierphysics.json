@@ -1,0 +1,159 @@
+{
+  "id": "frontierphysics",
+  "status": "published",
+  "order": 23322,
+  "name": "FrontierPhysics",
+  "subtitle": "端到端前沿物理研究",
+  "category": "reasoning",
+  "tags": [],
+  "publisher": "BenchFlow",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-11-04",
+  "version": "BenchFlow 原版 · 56 项",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "以仿真实验、计算及研究写作评估智能体完成前沿物理研究的能力。",
+    "task": "阅读研究提案与环境说明，在预算内开展实验、分析结果并解释不确定性。",
+    "sourceUrls": [
+      "https://www.benchflow.ai/frontierphysics"
+    ]
+  },
+  "taskContract": {
+    "input": "实验提案、模拟设备、可用文献及交付模板。",
+    "output": "论文式报告、结果表和支撑分析。",
+    "environment": "各题独立提供实验工具、环境说明及同题评审规则。",
+    "sourceUrls": [
+      "https://www.benchflow.ai/frontierphysics",
+      "https://arxiv.org/html/2611.06910v1#A1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "原版论文报告 56 项研究任务。",
+    "disclosure": "partial",
+    "scale": [
+      "原版论文报告 56 项研究任务。"
+    ],
+    "splits": [
+      "原版论文附录 A 的作者公开案例。"
+    ],
+    "fields": [
+      "任务 ID、实验设施约束、报告要求、验证器和评分规则。"
+    ],
+    "files": [
+      "论文附录、官方例题页的任务文件清单。"
+    ],
+    "sourceUrls": [
+      "https://www.benchflow.ai/frontierphysics",
+      "https://arxiv.org/html/2611.06910v1#A1"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "这是 56 项原版公开例题，不宣称它构成 AA 54 项协议内一条已核验的运行记录。"
+    ],
+    "url": "https://arxiv.org/html/2611.06910v1#A1",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.06910v1#A1"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "依据 BenchFlow 作者论文公开案例作中文整理，论文标记 CC BY 4.0；不转载环境或第三方附件。",
+    "scope": "仅转述作者公开的同题事实及结果，保留出处。",
+    "boundaries": [
+      "不托管工作区、参考补丁或完整运行数据。"
+    ],
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.06910v1#A1"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示同题的具体任务与判分，附原始来源。",
+    "url": "https://arxiv.org/html/2611.06910v1#A1",
+    "sourceUrls": [
+      "https://arxiv.org/html/2611.06910v1#A1"
+    ]
+  },
+  "metric": {
+    "name": "验证器和必过评审项",
+    "description": "数值输出先接受任务验证，再结合研究质量与必过条目，不只看一个临界点数值。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://www.benchflow.ai/frontierphysics",
+      "https://arxiv.org/html/2611.06910v1#A1"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "这是 56 项原版公开例题，不宣称它构成 AA 54 项协议内一条已核验的运行记录。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2611.06910v1#A1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "官方任务示例与评测方法",
+      "url": "https://www.benchflow.ai/frontierphysics",
+      "role": "definition"
+    },
+    {
+      "label": "作者论文 v1 附录 A：原始案例",
+      "url": "https://arxiv.org/html/2611.06910v1#A1",
+      "role": "paper"
+    },
+    {
+      "label": "首发日期与论文许可",
+      "url": "https://arxiv.org/abs/2611.06910v1",
+      "role": "release"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-28",
+  "updatedAt": "2026-11-28",
+  "sampleSet": {
+    "retrievedAt": "2026-11-28",
+    "samples": [
+      {
+        "id": "rydberg-ising-critical-point",
+        "title": "里德伯原子链 · 定位相变临界点",
+        "type": "record",
+        "prompt": "输入：能操纵少量原子的里德伯模拟装置、研究提案和参考文献。\n\n交付：先估计原子相互作用，再建立能外推到更长链的模型，定位相变临界点并说明不确定性。\n\n验收：同题验证包含数值检查；研究报告还要交代有限尺寸的处理和临界点推断依据。",
+        "promptOrigin": "editorial",
+        "raw": {
+          "id": "rydberg-ising-critical-point",
+          "difficulty": "hard",
+          "paper": "2611.06910v1",
+          "source_section": "Appendix A",
+          "published_files": [
+            "task.md",
+            "DEVICE.md",
+            "proposal.pdf",
+            "result_template.md",
+            "rubric.json"
+          ]
+        },
+        "source": "https://arxiv.org/html/2611.06910v1#A1",
+        "license": "依据 BenchFlow 作者论文公开案例作中文整理，论文标记 CC BY 4.0；不转载环境或第三方附件。",
+        "split": "原版论文附录 A 的作者公开案例。",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "官方任务示例与评测方法",
+            "url": "https://www.benchflow.ai/frontierphysics"
+          },
+          {
+            "label": "首发日期与论文许可",
+            "url": "https://arxiv.org/abs/2611.06910v1"
+          }
+        ],
+        "explanation": "同一个案例在论文附录 A 和官网均可找到；这里不提供运行环境或模型提交。"
+      }
+    ]
+  }
+}

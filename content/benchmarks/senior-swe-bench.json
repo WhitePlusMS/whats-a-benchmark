@@ -1,0 +1,163 @@
+{
+  "id": "senior-swe-bench",
+  "status": "published",
+  "order": 23321,
+  "name": "Senior SWE-Bench",
+  "subtitle": "真实 PR 派生的仓库级编程任务",
+  "category": "coding",
+  "tags": [],
+  "publisher": "Snorkel AI",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-06-16",
+  "version": "初始任务集",
+  "kind": "original",
+  "aliases": [],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "评估编程智能体如何在真实软件仓库实现复杂改动，而不仅是让单个单元测试通过。",
+    "task": "在固定代码版本中完成由实际 PR 派生的功能、迁移、修复或性能任务。",
+    "sourceUrls": [
+      "https://senior-swe-bench.snorkel.ai/blog/2026-06-16-how-it-works"
+    ]
+  },
+  "taskContract": {
+    "input": "任务要求与固定代码工作区。",
+    "output": "提交可评测的仓库补丁。",
+    "environment": "公开任务可以在 Harbor 兼容容器配置中核对。",
+    "sourceUrls": [
+      "https://senior-swe-bench.snorkel.ai/blog/2026-06-16-how-it-works",
+      "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker"
+    ]
+  },
+  "dataProfile": {
+    "summary": "首发 100 项，公开和保留任务各 50 项，覆盖 12 个开源仓库。",
+    "disclosure": "partial",
+    "scale": [
+      "首发 100 项，公开和保留任务各 50 项，覆盖 12 个开源仓库。"
+    ],
+    "splits": [
+      "作者公开 50 题之一，不是私有拆分或 Fireworks 同一运行。"
+    ],
+    "fields": [
+      "题面、所属仓库、验收故事、作者结果。"
+    ],
+    "files": [
+      "官方任务页与公开运行表。"
+    ],
+    "sourceUrls": [
+      "https://senior-swe-bench.snorkel.ai/blog/2026-06-16-how-it-works",
+      "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker"
+    ]
+  },
+  "dataAccess": {
+    "status": "partial",
+    "requirements": [
+      "本站展示发布方的公开任务与同题结果，不复跑，不重发补丁。"
+    ],
+    "url": "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker",
+    "sourceUrls": [
+      "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker"
+    ]
+  },
+  "reusePolicy": {
+    "status": "unknown",
+    "license": "作者公开任务与结果的事实转述，不转载题面原文或补丁。",
+    "scope": "仅转述作者公开的同题事实及结果，保留出处。",
+    "boundaries": [
+      "不托管工作区、参考补丁或完整运行数据。"
+    ],
+    "sourceUrls": [
+      "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "展示同题的具体任务与判分，附原始来源。",
+    "url": "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker",
+    "sourceUrls": [
+      "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker"
+    ]
+  },
+  "metric": {
+    "name": "功能验证与工程质量",
+    "description": "同一补丁分开记录验证器、验收故事、评分条目及工程质量，不能把单项通过当作全部通过。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://senior-swe-bench.snorkel.ai/blog/2026-06-16-how-it-works",
+      "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "本站展示发布方的公开任务与同题结果，不复跑，不重发补丁。",
+      "sourceUrls": [
+        "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "发布方首发方法说明",
+      "url": "https://senior-swe-bench.snorkel.ai/blog/2026-06-16-how-it-works",
+      "role": "definition"
+    },
+    {
+      "label": "Gitea 同题任务与运行结果",
+      "url": "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker",
+      "role": "data"
+    },
+    {
+      "label": "官方榜单",
+      "url": "https://snorkel.ai/leaderboard/senior-swe-bench/",
+      "role": "leaderboard"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-28",
+  "updatedAt": "2026-11-28",
+  "sampleSet": {
+    "retrievedAt": "2026-11-28",
+    "samples": [
+      {
+        "id": "gitea-add-project-column-picker",
+        "title": "Gitea · 在问题侧栏移动看板卡片",
+        "type": "record",
+        "prompt": "输入：Gitea 的问题单和合并请求详情侧栏，以及所属项目看板。\n\n交付：让有编辑权限的人在侧栏移动卡片并保存；只读用户只看到当前列。不能移到别的项目的列。\n\n官方同题结果：Claude Fable 5 的 Verifier Tests 为 1/1，Validation Stories 为 2/5；作者参考实现为 1/1 和 5/5。",
+        "promptOrigin": "editorial",
+        "answer": "这两个统计各有自己的分母；基础验证通过不代表全部验收要求都满足。",
+        "raw": {
+          "id": "gitea-add-project-column-picker",
+          "repository": "go-gitea/gitea",
+          "upstream_pull_request": 37037,
+          "segment": "Design-and-build",
+          "reported_result": {
+            "Claude Fable 5": {
+              "verifier": "1/1",
+              "validation": "2/5"
+            },
+            "Oracle": {
+              "verifier": "1/1",
+              "validation": "5/5"
+            }
+          }
+        },
+        "source": "https://senior-swe-bench.snorkel.ai/tasks/gitea-add-project-column-picker",
+        "license": "作者公开任务与结果的事实转述，不转载题面原文或补丁。",
+        "split": "作者公开 50 题之一，不是私有拆分或 Fireworks 同一运行。",
+        "excerpt": true,
+        "references": [
+          {
+            "label": "发布方首发方法说明",
+            "url": "https://senior-swe-bench.snorkel.ai/blog/2026-06-16-how-it-works"
+          },
+          {
+            "label": "官方榜单",
+            "url": "https://snorkel.ai/leaderboard/senior-swe-bench/"
+          }
+        ],
+        "explanation": "运行结果来自作者同题页面，不代表本站复跑或任何一套榜单的总体得分。"
+      }
+    ]
+  }
+}

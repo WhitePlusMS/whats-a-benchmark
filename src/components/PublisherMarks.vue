@@ -53,6 +53,7 @@ watch(
       :class="{
         wide: mark.wide,
         'tencent-editorial-wordmark': mark.id === 'tencent-editorial',
+        'semianalysis-editorial-mark': mark.id === 'semianalysis-editorial',
         'llamaindex-editorial-mark': mark.id === 'llamaindex',
         'is-fallback': failed.includes(mark.id),
       }"
@@ -115,6 +116,11 @@ watch(
 .publisher-marks .publisher-logo.llamaindex-editorial-mark img {
   width: 60%;
   height: 60%;
+}
+/* 官方要求深色底，且四周留白至少等于标识高度。 */
+.publisher-marks .publisher-logo.semianalysis-editorial-mark img {
+  width: 33%;
+  height: 33%;
 }
 .publisher-logo.is-fallback {
   height: auto;
