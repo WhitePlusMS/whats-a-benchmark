@@ -1,0 +1,184 @@
+{
+  "id": "culturalriddles",
+  "status": "published",
+  "order": 24570,
+  "name": "CulturalRiddles",
+  "subtitle": "面向不同语言社群的文化谜题",
+  "category": "knowledge",
+  "tags": [
+    "多语言",
+    "文化常识",
+    "开放问答"
+  ],
+  "publisher": "Cohere Labs Open Science Community",
+  "brandIds": [],
+  "year": 2026,
+  "releaseDate": "2026-10-21",
+  "version": "公开测试集 · da8fb7b",
+  "kind": "original",
+  "aliases": [
+    "Cultural Riddles",
+    "跨文化谜题",
+    "文化谜语"
+  ],
+  "researchStatus": "pass-with-limitations",
+  "officialDefinition": {
+    "summary": "用各地母语者创作的谜语，衡量模型能否根据当地的语言和文化线索找出答案。",
+    "task": "阅读谜面，给出它指代的物品、概念或文化现象。",
+    "sourceUrls": [
+      "https://arxiv.org/abs/2610.29968v1",
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md"
+    ]
+  },
+  "taskContract": {
+    "input": "题目原文及语言社群信息。数据另提供部分题目的英文译文和可选提示。",
+    "output": "用简短文字写出谜底。",
+    "environment": "文本问答。站内案例保留粤语原文，英文答案只是作者提供的译名。",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md",
+      "https://arxiv.org/abs/2610.29968v1"
+    ]
+  },
+  "dataProfile": {
+    "summary": "由母语贡献者写作和审阅，按语言社群组织原题与参考谜底。",
+    "disclosure": "partial",
+    "scale": [
+      "固定数据版公开 6,291 道谜题，涵盖 63 个社群、52 种语言、46 个国家。"
+    ],
+    "splits": [
+      "默认 riddles 配置为 test。数据卡另外报告正式模型评测用了 6,090 道题，不等同公开题目总量。"
+    ],
+    "fields": [
+      "原文、题目 ID、社群、主题、参考答案以及可选翻译或提示。"
+    ],
+    "files": [
+      "data/riddles.parquet；模型作答和标注分别存放。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md",
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet"
+    ]
+  },
+  "dataAccess": {
+    "status": "public",
+    "requirements": [
+      "可公开访问固定版本的测试数据和许可文件。"
+    ],
+    "url": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet",
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md",
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/LICENSE"
+    ]
+  },
+  "reusePolicy": {
+    "status": "permitted",
+    "license": "CulturalRiddles 自定义数据条款：CC BY 4.0 的署名条款加评测用途限制，不是标准 CC BY 4.0。",
+    "scope": "本页只展示一条真实谜面的原文和作者参考答案，选取部分来源字段，未改写保留的原文。",
+    "boundaries": [
+      "不得用于训练、微调、蒸馏或作为合成数据种子。",
+      "不转载完整数据集、在线游戏页面或贡献者记录。"
+    ],
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/LICENSE",
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md"
+    ]
+  },
+  "sampleAccess": {
+    "status": "local",
+    "reason": "公开测试记录中的粤语原题和作者谜底可在本站查看。",
+    "url": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet",
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md"
+    ]
+  },
+  "metric": {
+    "name": "正确率",
+    "description": "以有评分的答案为分母，评分 3 计正确；0、1、2 分分别为错误、不知道和部分正确。作者采用规则、母语者和一致的双模型评审。",
+    "direction": "higher",
+    "sourceUrls": [
+      "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md"
+    ]
+  },
+  "limitations": [
+    {
+      "text": "该案例来自公开 riddles/test；本站不据此宣称它属于论文模型评测报告使用的 6,090 道子集。",
+      "sourceUrls": [
+        "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md",
+        "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "首发日期与论文 v1",
+      "url": "https://arxiv.org/abs/2610.29968v1",
+      "role": "paper"
+    },
+    {
+      "label": "固定版本官方数据卡",
+      "url": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md",
+      "role": "readme"
+    },
+    {
+      "label": "官方原始测试文件（固定版本）",
+      "url": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet",
+      "role": "data"
+    },
+    {
+      "label": "固定版本自定义数据条款",
+      "url": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/LICENSE",
+      "role": "readme"
+    },
+    {
+      "label": "官方代码仓库",
+      "url": "https://github.com/Cohere-Labs-Community/CulturalRiddles",
+      "role": "code"
+    }
+  ],
+  "related": [],
+  "verifiedAt": "2026-11-28",
+  "updatedAt": "2026-11-28",
+  "sampleSet": {
+    "retrievedAt": "2026-11-28",
+    "samples": [
+      {
+        "id": "chinese_china_everyday_life_075",
+        "title": "华语社群 · 粤语谜题",
+        "type": "text",
+        "prompt": "用厚鐵夾烘焙出來嘅金黃色甜蛋漿，外表睇落一格格，好似一排縮細版嘅雞蛋",
+        "answer": "雞蛋仔",
+        "explanation": "谜面和谜底保留作者发布的粤语原文。作者英文译名为 Egg waffles；本页未运行模型或推断其得分。",
+        "raw": {
+          "riddle_id": "chinese_china_everyday_life_075",
+          "community": "chinese_china",
+          "language": "zho",
+          "topic": "Everyday Life",
+          "riddle_original": "用厚鐵夾烘焙出來嘅金黃色甜蛋漿，外表睇落一格格，好似一排縮細版嘅雞蛋",
+          "reference_answer_original": "雞蛋仔",
+          "reference_answer_english": "Egg waffles"
+        },
+        "source": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/data/riddles.parquet",
+        "references": [
+          {
+            "label": "题目字段和评测规则",
+            "url": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/README.md"
+          },
+          {
+            "label": "CulturalRiddles 及其贡献者",
+            "url": "https://arxiv.org/abs/2610.29968v1"
+          },
+          {
+            "label": "数据条款",
+            "url": "https://huggingface.co/datasets/CohereLabsCommunity/CulturalRiddles/blob/da8fb7b5e2a4beb9ed4619aa6ab2f3ce81373109/LICENSE"
+          }
+        ],
+        "license": "CulturalRiddles 及其贡献者；项目数据条款要求署名、链接数据和条款、注明改动，且不得用于训练、微调、蒸馏或作为合成数据种子。",
+        "licensePath": "licenses/culturalriddles-data.txt",
+        "split": "riddles/test · Parquet 第 1,574 行（从 1 开始）· chinese_china_everyday_life_075",
+        "excerpt": true
+      }
+    ]
+  }
+}
